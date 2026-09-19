@@ -63,6 +63,12 @@ def prose_fields(record: object, path: str = "") -> Iterator[tuple[str, str]]:
     """Every authored sentence in a record, with the path it sits at."""
     if isinstance(record, Mapping):
         for key, value in record.items():
+            # Quality-audit provenance/receipts are machine evidence, not authored
+            # teaching prose. Repeated check ids, auditor ids and receipt notes are
+            # expected across independently audited records and must not be treated
+            # as templated academic content.
+            if path.endswith("quality_audit") and key in {"audit_receipts", "audit_provenance"}:
+                continue
             if (key.startswith("_") or key in STRUCTURAL_KEYS
                     or key in SHARED_CONSTRAINT_KEYS or key.endswith(("_ref", "_refs"))):
                 continue
