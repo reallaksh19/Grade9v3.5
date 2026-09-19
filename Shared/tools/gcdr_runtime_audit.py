@@ -336,12 +336,16 @@ def _node_check(scripts: list[str]) -> tuple[bool, list[str]]:
         for idx, script in enumerate(scripts):
             path = Path(tmp) / f"script-{idx}.js"
             path.write_text(script, encoding="utf-8")
-            proc = subprocess.run(
-                [node, "--check", str(path)],
-                text=True,
-                capture_output=True,
-                timeout=5,
-            )
+            try:
+                proc = subprocess.run(
+                    [node, "--check", str(path)],
+                    text=True,
+                    capture_output=True,
+                    timeout=15,
+                )
+            except subprocess.TimeoutExpired:
+                errors.append(f"{path.name}: node syntax check timed out after 15 seconds")
+                continue
             if proc.returncode:
                 errors.append((proc.stderr or proc.stdout).strip())
     return not errors, errors
@@ -352,13 +356,20 @@ def _runtime(parser: ExplorerParser) -> dict:
     if not node:
         return {"init_error": "node runtime unavailable", "interactions": [], "reset": {}}
     spec = {"elements": parser.elements, "scripts": parser.scripts}
-    proc = subprocess.run(
-        [node, "-e", NODE_HARNESS],
-        input=json.dumps(spec),
-        text=True,
-        capture_output=True,
-        timeout=10,
-    )
+    try:
+        proc = subprocess.run(
+            [node, "-e", NODE_HARNESS],
+            input=json.dumps(spec),
+            text=True,
+            capture_output=True,
+            timeout=20,
+        )
+    except subprocess.TimeoutExpired:
+        return {
+            "init_error": "DOM-lite Node runtime timed out after 20 seconds",
+            "interactions": [],
+            "reset": {},
+        }
     if proc.returncode:
         return {
             "init_error": (proc.stderr or proc.stdout).strip() or f"node exited {proc.returncode}",
