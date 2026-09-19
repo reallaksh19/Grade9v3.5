@@ -16315,6 +16315,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "RELATIONAL",
                       "MULTI_REPRESENTATION",
@@ -16543,6 +16555,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "RELATIONAL",
                       "MULTI_REPRESENTATION",
@@ -16868,6 +16892,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "HIDDEN_MECHANISM",
                       "COUNTERINTUITIVE",
@@ -16899,6 +16935,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "COUNTERINTUITIVE",
                       "MULTI_REPRESENTATION",
@@ -16930,6 +16978,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "RELATIONAL",
                       "MULTI_REPRESENTATION",
@@ -16963,6 +17023,18 @@ window.GRADE9V3 = {
                   "support_route": {
                     "kind": "GCDR",
                     "conformance_status": "IMPLEMENTATION_PARTIAL",
+                    "quality_audit_status": "PARTIAL",
+                    "quality_check_counts": {
+                      "PASS": 8,
+                      "FAIL": 0,
+                      "PENDING": 22,
+                      "NOT_APPLICABLE": 0
+                    },
+                    "audit_provenance_mode": "AUTOMATED",
+                    "unresolved_findings_count": 0,
+                    "external_state_mapping": "NOT_APPLICABLE",
+                    "external_state_binding_count": 0,
+                    "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
                     "recommended_when": [
                       "BOUNDARY_SENSITIVE",
                       "MULTI_REPRESENTATION",
