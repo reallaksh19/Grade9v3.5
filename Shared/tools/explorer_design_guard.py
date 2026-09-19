@@ -7,6 +7,7 @@ It does not grant scientific or pedagogical approval.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -196,6 +197,10 @@ def findings(repo: Path = REPO) -> list[dict]:
                         f"waiver exists for {waived_id} but the check is not NOT_APPLICABLE")
 
             receipts = quality["audit_receipts"]
+            implementation_digest = None
+            if locator.startswith("public/") and (repo / locator).is_file():
+                implementation_digest = hashlib.sha256((repo / locator).read_bytes()).hexdigest()
+
             receipts_by_check: dict[str, list[dict]] = {}
             for receipt in receipts:
                 check_id = receipt["check_id"]
@@ -207,6 +212,13 @@ def findings(repo: Path = REPO) -> list[dict]:
                 if receipt["outcome"] != audit_checks[check_id]:
                     add(path, rid, "STALE_AUDIT_RECEIPT",
                         f"{check_id} is {audit_checks[check_id]} but receipt says {receipt['outcome']}")
+                if (
+                    check_id.startswith("audit_4_runtime_release_integrity.")
+                    and implementation_digest is not None
+                    and receipt["artifact_sha256"] != implementation_digest
+                ):
+                    add(path, rid, "STALE_RUNTIME_AUDIT_RECEIPT",
+                        f"{check_id} receipt digest does not match current implementation {locator}")
 
             for check_id, status in audit_checks.items():
                 if status in {"PASS", "FAIL"} and not any(
