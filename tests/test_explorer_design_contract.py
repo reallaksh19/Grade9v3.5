@@ -190,6 +190,39 @@ class ExplorerDesignContractTest(unittest.TestCase):
 
         self.assertIn("MISSING_STATE_BINDINGS", {row["point"] for row in found})
 
+    def test_runtime_receipt_digest_must_match_current_explorer(self):
+        package = json.loads(
+            (REPO / "Physics/library/phy-kin-2d-motion.v1.json").read_text(encoding="utf-8")
+        )
+        activity = copy.deepcopy(next(
+            row for row in package["resources"]
+            if row["id"] == "ACT-KIN-2D-SHARED-CLOCK"
+        ))
+        audit = activity["extensions"]["topic_atlas"]["gcdr_contract"]["quality_audit"]
+        audit["audit_receipts"][0]["artifact_sha256"] = "0" * 64
+
+        mini = {
+            "resources": [activity],
+            "capabilities": [{"id": "CAP-KIN-2D-INDEPENDENT-COMPONENTS"}],
+            "microtopics": [{"teaching_path": [{"id": "K2D1-3"}, {"id": "K2D1-4"}]}],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "Shared/library").mkdir(parents=True)
+            target = root / activity["locator"]
+            target.parent.mkdir(parents=True)
+            (root / "Physics/library").mkdir(parents=True)
+            (root / "Shared/library/explorer_design_contract.schema.json").write_text(
+                (REPO / "Shared/library/explorer_design_contract.schema.json").read_text(encoding="utf-8"),
+                encoding="utf-8",
+            )
+            (root / "Physics/library/test.json").write_text(json.dumps(mini), encoding="utf-8")
+            target.write_bytes((REPO / activity["locator"]).read_bytes())
+            found = explorer_design_guard.findings(root)
+
+        self.assertIn("STALE_RUNTIME_AUDIT_RECEIPT", {row["point"] for row in found})
+
     def test_not_applicable_quality_check_requires_waiver(self):
         package = json.loads(
             (REPO / "Physics/library/phy-kin-2d-motion.v1.json").read_text(encoding="utf-8")
