@@ -35,8 +35,16 @@ class ExplorerDesignContractTest(unittest.TestCase):
                 self.assertEqual(contract["conformance_status"], "IMPLEMENTATION_PARTIAL")
                 self.assertEqual(contract["quality_audit"]["checklist_version"], "1.1.0")
                 self.assertEqual(contract["quality_audit"]["audit_status"], "PARTIAL")
-                self.assertEqual(contract["quality_audit"]["audit_provenance"]["mode"], "NOT_RUN")
-                self.assertEqual(contract["quality_audit"]["audit_receipts"], [])
+                self.assertEqual(contract["quality_audit"]["audit_provenance"]["mode"], "AUTOMATED")
+                self.assertEqual(
+                    contract["quality_audit"]["audit_provenance"]["auditor"],
+                    "Shared/tools/gcdr_runtime_audit.py",
+                )
+                self.assertEqual(len(contract["quality_audit"]["audit_receipts"]), 8)
+                self.assertTrue(all(
+                    status == "PASS"
+                    for status in contract["quality_audit"]["audit_4_runtime_release_integrity"].values()
+                ))
                 self.assertEqual(
                     contract["state_fidelity_contract"]["missing_parameter_policy"],
                     "NEVER_INVENT_AS_EXACT",
@@ -136,6 +144,10 @@ class ExplorerDesignContractTest(unittest.TestCase):
         ))
         audit = activity["extensions"]["topic_atlas"]["gcdr_contract"]["quality_audit"]
         audit["audit_4_runtime_release_integrity"]["static_syntax"] = "PASS"
+        audit["audit_receipts"] = [
+            row for row in audit["audit_receipts"]
+            if row["check_id"] != "audit_4_runtime_release_integrity.static_syntax"
+        ]
 
         mini = {
             "resources": [activity],
