@@ -359,6 +359,33 @@ class SubstanceGateRestraint(unittest.TestCase):
         self.assertEqual(found, [], "duplication is only compared between peers")
 
 
+    def test_machine_audit_receipts_are_not_treated_as_authored_teaching_prose(self):
+        receipt = {
+            "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+            "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+            "note": "Measured PASS against the digest-bound implementation artifact.",
+        }
+        records = {
+            "ACT-A": {
+                "_collection": "resources",
+                "description": "Learner compares one synchronized state across both component histories.",
+                "extensions": {"topic_atlas": {"gcdr_contract": {"quality_audit": {
+                    "audit_provenance": {"auditor": "Shared/tools/gcdr_runtime_audit.py"},
+                    "audit_receipts": [receipt],
+                }}}},
+            },
+            "ACT-B": {
+                "_collection": "resources",
+                "description": "Learner tests whether a landing event obeys the declared vertical geometry.",
+                "extensions": {"topic_atlas": {"gcdr_contract": {"quality_audit": {
+                    "audit_provenance": {"auditor": "Shared/tools/gcdr_runtime_audit.py"},
+                    "audit_receipts": [receipt],
+                }}}},
+            },
+        }
+        self.assertEqual(substance.findings(records), [])
+
+
 class GateAuthorityOverSubjectTruth(unittest.TestCase):
     """The gate owns the mathematics. The library carries a bound copy, not a rival one.
 
