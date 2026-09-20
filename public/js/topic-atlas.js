@@ -561,9 +561,6 @@
           return '<span style="' + cellStyle + '">' + dim + scoreText + '</span>';
         }).join(' ');
 
-        return `<button type="button" onclick="window.ATLAS.toggleLeafDimension('${step.id}', '${r.rung}', '${dim}', event)" style="${cellStyle}" title="Toggle ${dim} diagnostic dimension for ${step.id}">${dim}${scoreText}</button>`;
-        }).join(' ');
-
         return `
           <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
@@ -693,16 +690,9 @@
                 <h4 style="font-size: 13px; font-weight: 700; color: var(--accent); margin: 0;">
                   🌿 Level 2 Semantic Leaves &amp; Level 3 Diagnostic Cells:
                 </h4>
-                <div style="display: flex; gap: 6px;">
-                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
-                          onclick="window.ATLAS.markRungAll('${r.rung}', 'MASTERED', event)" title="Mark all leaves in ${r.rung} as mastered">
-                    ✓ Mark Rung Mastered
-                  </button>
-                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
-                          onclick="window.ATLAS.markRungAll('${r.rung}', 'PENDING', event)" title="Reset leaves in ${r.rung} to pending">
-                    ↺ Reset Rung
-                  </button>
-                </div>
+                <span style="font-size: 11px; color: var(--text-dim);">
+                  Diagnostic cells are read-only projections of imported answer-sheet evidence.
+                </span>
               </div>
               ${semanticLeavesHtml || '<p style="font-size: 12px; color: var(--text-muted);">No distinct teaching-path steps recorded.</p>'}
             </div>
