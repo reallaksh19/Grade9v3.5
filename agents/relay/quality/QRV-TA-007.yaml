@@ -15,32 +15,12 @@
   "router_snapshot": {
     "applicable": [
       {
-        "blueprint": "software-design",
-        "reason": "This EP refines the representation/explorer/hint ownership seam.",
+        "blueprint": "accessibility",
+        "reason": "Canonical representations carry accessibility requirements and staged reveals must remain understandable without relying on hidden visual-only meaning.",
         "review_focus": [
-          "single source of visual truth",
-          "minimal optional schema",
-          "support vs hint separation"
-        ]
-      },
-      {
-        "blueprint": "coding",
-        "reason": "A small shared schema validator may be added.",
-        "review_focus": [
-          "reference integrity",
-          "backward compatibility",
-          "no parallel model"
-        ]
-      },
-      {
-        "blueprint": "testing",
-        "reason": "Schema/back-reference and owner-correction behavior need focused regression coverage.",
-        "review_focus": [
-          "25-question rollback",
-          "three fixtures",
-          "stage refs",
-          "explorer refs",
-          "full guardrails"
+          "stage semantics",
+          "text alternatives",
+          "representation accessibility"
         ]
       },
       {
@@ -53,12 +33,12 @@
         ]
       },
       {
-        "blueprint": "accessibility",
-        "reason": "Canonical representations carry accessibility requirements and staged reveals must remain understandable without relying on hidden visual-only meaning.",
+        "blueprint": "coding",
+        "reason": "A small shared schema validator may be added.",
         "review_focus": [
-          "stage semantics",
-          "text alternatives",
-          "representation accessibility"
+          "reference integrity",
+          "backward compatibility",
+          "no parallel model"
         ]
       },
       {
@@ -70,39 +50,46 @@
           "exact-head validation",
           "PR correlation"
         ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "This EP refines the representation/explorer/hint ownership seam.",
+        "review_focus": [
+          "single source of visual truth",
+          "minimal optional schema",
+          "support vs hint separation"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Schema/back-reference and owner-correction behavior need focused regression coverage.",
+        "review_focus": [
+          "25-question rollback",
+          "three fixtures",
+          "stage refs",
+          "explorer refs",
+          "full guardrails"
+        ]
       }
     ],
     "not_applicable": [
       {
-        "blueprint": "ui-ux",
-        "reason": "Existing explorer webpages are not redesigned in this EP."
-      },
-      {
         "blueprint": "engineering-numerics",
         "reason": "No numerical algorithm changes."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Optional backward-compatible fields require no persisted learner-data migration."
       },
       {
         "blueprint": "performance",
         "reason": "Small metadata/schema changes are not performance-sensitive."
       },
       {
-        "blueprint": "migration",
-        "reason": "Optional backward-compatible fields require no persisted learner-data migration."
+        "blueprint": "ui-ux",
+        "reason": "Existing explorer webpages are not redesigned in this EP."
       }
-    ],
-    "review_contract": {
-      "required": true,
-      "required_before_checkpoint": true,
-      "receipt_namespace": "QRV-",
-      "required_outputs": [
-        "procedure_results",
-        "findings",
-        "owner_report",
-        "successor_handover"
-      ]
-    },
-    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
-    "ordinary_findings_are_hard_stops": false
+    ]
   },
   "procedure_results": [
     {
