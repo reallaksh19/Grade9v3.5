@@ -1,0 +1,178 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-011",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-005",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-005",
+    "ep_id": "EP-TA-005",
+    "ep_path": "agents/relay/execution-packages/EP-TA-005.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+    "ep_contract_digest": "sha256:588adf4be8cdcd8b0738608f5a9f5a3c2657656530cfff67e9abac1606147698",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-004",
+      "path": "agents/relay/checkpoints/CP-TA-004.yaml",
+      "digest": "sha256:b11bf97d7e6e5fe7d7a546290d3f6a9b2f3cf6e263513a23cfa2f0e4d64f3000"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA5-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "existing learner-loop stages",
+          "value": "worksheet/readiness planning → learner-facing route → attempt feedback → targeted hint/diagnosis/repair → observation draft → delayed review; study_session composes rather than replaces these contracts.",
+          "basis": [
+            "Shared/tools/study_session.py",
+            "docs/CORE-IMPLEMENTATION-PLAN-WORKSHEET-STUDY-FEEDBACK.md"
+          ]
+        },
+        {
+          "name": "assisted versus independent evidence rule",
+          "value": "learner_evidence.py gives direct/current observations precedence and downgrades DEMONSTRATED with HINT, WORKED_EXAMPLE or SOLUTION to effective UNCERTAIN for routing.",
+          "basis": [
+            "Shared/tools/learner_evidence.py"
+          ]
+        },
+        {
+          "name": "review scheduling rule",
+          "value": "review_schedule.py uses deterministic 1/3/7/14-day outcomes for incorrect, correct-with-hint, correct-independent and transfer-independent evidence.",
+          "basis": [
+            "Shared/tools/review_schedule.py"
+          ]
+        },
+        {
+          "name": "missing behavior, if any",
+          "value": "No missing architecture is established at takeover; the active package must use six-matrix falsifiers to prove or expose concrete gaps before changing code.",
+          "basis": [
+            "RM-0006 WP-TA-104",
+            "current Shared learner-loop tools"
+          ]
+        }
+      ],
+      "basis": [
+        "current Shared learner-loop implementation"
+      ]
+    },
+    {
+      "id": "DSTEP-TA5-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "six-matrix coverage table",
+          "value": "The required set is Motion 1D, NLM, Gravitation, Work/Energy/Power, Sound and Simple Machines; all six have completed Grade-9 authoring audits and saved agent-path checkpoints.",
+          "basis": [
+            "docs/grade9/grade9-physics-scope-coverage.json",
+            "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+          ]
+        },
+        {
+          "name": "real missing loop elements",
+          "value": "Not established by takeover. The successor must inspect canonical microtopics/questions and current tests per matrix; absence stays a gap rather than being inferred filled.",
+          "basis": [
+            "EP-TA-005 contract"
+          ]
+        },
+        {
+          "name": "age/depth boundary observations",
+          "value": "Non-default/extension rungs and all non-core matrices remain outside the ordinary completion boundary unless current demand explicitly activates them.",
+          "basis": [
+            "CP-TA-004",
+            "docs/grade9/grade9-physics-scope-coverage.json"
+          ]
+        }
+      ],
+      "basis": [
+        "completed scope audit",
+        "Grade-9 authoring completion record"
+      ]
+    },
+    {
+      "id": "DSTEP-TA5-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "reusable falsifiers",
+          "value": "Existing question-study-map observations exercise unknown learner state, prior evidence and prerequisite routes; Grade-9 completion records carry saved agent-path checkpoints; practical learner-evidence/feedback/session tests are present in the repository.",
+          "basis": [
+            "benchmarks/question-study-map/",
+            "benchmarks/agent-path/",
+            "tests/"
+          ]
+        },
+        {
+          "name": "coverage gaps across the six required matrices",
+          "value": "A single explicit RM-0006 six-matrix learner-loop closure report/test is not yet present; that is the intended derived output/falsifier of EP-TA-005.",
+          "basis": [
+            "repository search",
+            "RM-0006 WP-TA-104"
+          ]
+        },
+        {
+          "name": "smallest missing cross-matrix regression test",
+          "value": "If existing tests cannot collectively prove the roadmap exit evidence, add one focused subject-neutral Grade-9 six-matrix test rather than broad runtime rewrites.",
+          "basis": [
+            "EP-TA-005 scope"
+          ]
+        }
+      ],
+      "basis": [
+        "current tests and benchmark corpus"
+      ]
+    },
+    {
+      "id": "DSTEP-TA5-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 provider readback"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Successor discovery observed 4e85a4657de8c2a422e9f60a611b750e08ee359e; the coordination commit containing this receipt descends from that material head.",
+          "basis": [
+            "PR #148/Git history"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "4e85a4657de8c2a422e9f60a611b750e08ee359e is the successor material basis and is an ancestor of the coordination commit.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "main remains 194791528cd3a69b30aced1480aee3254293dfe0, matching successor base_observed_ref at takeover.",
+          "basis": [
+            "GitHub main branch readback",
+            "successor Git basis"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub provider readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}
