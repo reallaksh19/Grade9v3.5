@@ -764,7 +764,8 @@ class StudySessionRunner(unittest.TestCase):
         self.assertEqual(step["capability_ref"], "CAP-NLM-FBD-BODY-OWNERSHIP")
         self.assertEqual(step["routing_posture"], "READY")
         self.assertEqual(step["starting_support"], "low")
-        self.assertEqual(step["exercise_demand"], "TRANSFER")
+        self.assertEqual(step["exercise_demand"], "PRACTICE")
+        self.assertFalse(step["transfer_eligible"])
         self.assertEqual(
             step["initial_visual"]["visual_stage_ref"],
             "VIS-NLM-FBD-V0",

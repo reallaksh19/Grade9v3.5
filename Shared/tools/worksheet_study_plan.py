@@ -237,10 +237,27 @@ def _route_action(row: dict, learner_state: dict) -> tuple[str, str]:
     )
 
 
+def _active_question_families(mapping: dict, required_by: list[str],
+                              records: dict) -> list[str]:
+    """Resolve worksheet question demand to canonical question-family refs when possible."""
+    declared = {row.get("question_id"): row for row in mapping.get("questions", [])}
+    families = []
+    for question_id in required_by:
+        row = declared.get(question_id) or {}
+        canonical_ref = row.get("canonical_question_ref") or question_id
+        question = records.get(canonical_ref)
+        if not question or question.get("_collection") != "questions":
+            continue
+        family_ref = question.get("family_ref")
+        if family_ref and family_ref not in families:
+            families.append(family_ref)
+    return families
+
+
 def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             profile: dict | None = None, repo: Path = REPO) -> dict:
     """Compile a learner-facing question map plus an ordered study route."""
-    started = study_start.resolve(mapping, owner_estimates or [], repo)
+    started = study_start.resolve(mapping, owner_estimates or [], repo, profile=profile)
     subject = mapping.get("subject")
     index = study_map.subject_index(subject, repo)
     resolved_map = study_map.resolve(mapping, repo)
@@ -357,6 +374,13 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             routing_by_capability.get(ref, {}).get("routing_posture") == learning_router.READY
             for ref in dependencies
         )
+        evidence_history = (
+            learner_evidence.evidence_for_capability(profile, capability_ref, repo)
+            if profile is not None else []
+        )
+        active_question_families = _active_question_families(
+            mapping, list(row.get("required_by_questions") or []), canonical_records
+        )
         routing = learning_router.route_decision(
             state,
             capability_ref=capability_ref,
@@ -367,6 +391,9 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             ],
             records=canonical_records,
             prerequisites_ready=prerequisites_ready,
+            evidence_history=evidence_history,
+            active_question_families=active_question_families,
+            repo=repo,
         )
         routing_by_capability[capability_ref] = routing
         route_rows.append({
@@ -382,6 +409,10 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             "exercise_demand": routing["exercise_demand"],
             "exercise_question_ref": routing["exercise_question_ref"],
             "exercise_reason": routing["exercise_reason"],
+            "exercise_family_ref": routing.get("exercise_family_ref"),
+            "transfer_eligible": routing.get("transfer_eligible", False),
+            "transfer_dimension": routing.get("transfer_dimension"),
+            "transfer_evidence": routing.get("transfer_evidence", []),
             "routing_findings": routing["routing_findings"],
             "routing_persistence": routing["persistence"],
         })

@@ -87,10 +87,23 @@ def family_support_context(
                 if rung.get("microtopic_ref")
             }
             if wanted & board_microtopics:
+                matched_rungs = [
+                    rung.get("rung")
+                    for rung in board.get("rungs", []) or []
+                    if rung.get("microtopic_ref") in wanted and rung.get("rung")
+                ]
+                transfer_dimensions = []
+                for transfer in board.get("transfer", []) or []:
+                    if transfer.get("repair_to") in matched_rungs and transfer.get("dimension"):
+                        dimension = transfer["dimension"]
+                        if dimension not in transfer_dimensions:
+                            transfer_dimensions.append(dimension)
                 matches.append({
                     "family_ref": board.get("matrix_id"),
                     "source": str(path.relative_to(repo)),
                     "support_ladder": list((board.get("family") or {}).get("support_ladder") or []),
+                    "matched_rungs": matched_rungs,
+                    "transfer_dimensions": transfer_dimensions,
                 })
 
     if not matches:
@@ -195,17 +208,79 @@ def decision(learner_state: dict) -> dict:
     }
 
 
-def _question_candidates(records: dict, capability_ref: str, core: str) -> list[dict]:
-    """Canonical questions for one primary capability and one Core product."""
+def _question_candidates(records: dict, capability_ref: str, core: str,
+                         *, family_ref: str | None = None,
+                         transfer_dimensions: list[str] | None = None) -> list[dict]:
+    """Canonical candidates filtered by capability, family and declared demand."""
+    dimensions = set(transfer_dimensions or [])
+    rows = []
+    for row in records.values():
+        if row.get("_collection") != "questions":
+            continue
+        if row.get("primary_capability_ref") != capability_ref:
+            continue
+        if not any(exposure.get("core") == core for exposure in row.get("exposure", [])):
+            continue
+        if family_ref is not None and row.get("family_ref") != family_ref:
+            continue
+        if core == "CORE2B" and dimensions:
+            if (row.get("transfer") or {}).get("dimension") not in dimensions:
+                continue
+        rows.append(row)
+
+    dimension_order = {value: index for index, value in enumerate(transfer_dimensions or [])}
     return sorted(
-        (
-            row for row in records.values()
-            if row.get("_collection") == "questions"
-            and row.get("primary_capability_ref") == capability_ref
-            and any(exposure.get("core") == core for exposure in row.get("exposure", []))
+        rows,
+        key=lambda row: (
+            dimension_order.get((row.get("transfer") or {}).get("dimension"), 999),
+            int((row.get("answer") or {}).get("difficult_move") or 0),
+            str(row.get("id") or ""),
         ),
-        key=lambda row: str(row.get("id") or ""),
     )
+
+
+def _stable_independent_family(evidence_history: list[dict], records: dict,
+                               capability_ref: str,
+                               allowed_families: list[str]) -> dict:
+    """Require two distinct independent canonical questions in one family."""
+    grouped: dict[str, dict[str, str]] = {}
+    for observation in evidence_history or []:
+        if observation.get("evidence_kind") != "DIRECT_ATTEMPT":
+            continue
+        if observation.get("result") != "DEMONSTRATED" or observation.get("help") != "NONE":
+            continue
+        question_ref = observation.get("question_ref")
+        question = records.get(question_ref)
+        if not question or question.get("_collection") != "questions":
+            continue
+        if question.get("primary_capability_ref") != capability_ref:
+            continue
+        family_ref = question.get("family_ref")
+        if not family_ref:
+            continue
+        if allowed_families and family_ref not in allowed_families:
+            continue
+        grouped.setdefault(family_ref, {})[question_ref] = observation.get("observation_id") or question_ref
+
+    stable = [family for family, questions in grouped.items() if len(questions) >= 2]
+    if len(stable) != 1:
+        return {
+            "eligible": False,
+            "family_ref": None,
+            "independent_question_refs": [],
+            "reason": (
+                "stable independent same-family evidence is ambiguous"
+                if len(stable) > 1
+                else "fewer than two distinct independent same-family canonical questions are demonstrated"
+            ),
+        }
+    family_ref = stable[0]
+    return {
+        "eligible": True,
+        "family_ref": family_ref,
+        "independent_question_refs": sorted(grouped[family_ref]),
+        "reason": "two or more distinct independent canonical questions are demonstrated in one family",
+    }
 
 
 def visual_decision(records: dict, microtopic_refs: list[str], support: str | None) -> dict:
@@ -301,32 +376,97 @@ def exercise_decision(
     records: dict,
     *,
     prerequisites_ready: bool,
+    evidence_history: list[dict] | None = None,
+    active_question_families: list[str] | None = None,
+    transfer_dimensions: list[str] | None = None,
 ) -> dict:
-    """Choose only an exercise-demand preference; canonical questions stay authoritative."""
+    """Choose demand from canonical family/demand authority; READY alone never transfers."""
     if posture == REBUILD:
         return {
             "demand": GUIDED_RECONSTRUCTION,
             "question_ref": None,
+            "family_ref": None,
+            "transfer_dimension": None,
+            "transfer_eligible": False,
             "reason": "concept/setup evidence requires reconstruction before independent practice",
+            "finding": None,
         }
 
-    practice = _question_candidates(records, capability_ref, "CORE2A")
-    transfer = _question_candidates(records, capability_ref, "CORE2B")
-    if posture == READY and prerequisites_ready and transfer:
+    explicit_families = list(dict.fromkeys(active_question_families or []))
+    stability = _stable_independent_family(
+        evidence_history or [], records, capability_ref, explicit_families
+    )
+    family_ref = explicit_families[0] if len(explicit_families) == 1 else stability.get("family_ref")
+
+    if len(explicit_families) > 1:
+        family_finding = {
+            "point": "LEARNING_ROUTER_EXERCISE_FAMILY_AMBIGUOUS",
+            "detail": "worksheet demand resolves to more than one canonical question family; no question is guessed",
+            "candidates": explicit_families,
+        }
+    else:
+        family_finding = None
+
+    practice = _question_candidates(
+        records, capability_ref, "CORE2A", family_ref=family_ref
+    ) if family_ref else []
+    transfer = _question_candidates(
+        records,
+        capability_ref,
+        "CORE2B",
+        family_ref=family_ref,
+        transfer_dimensions=transfer_dimensions,
+    ) if family_ref and transfer_dimensions else []
+
+    transfer_eligible = bool(
+        posture == READY
+        and prerequisites_ready
+        and stability.get("eligible")
+        and stability.get("family_ref") == family_ref
+        and transfer
+    )
+    if transfer_eligible:
+        chosen = transfer[0]
         return {
             "demand": TRANSFER,
-            "question_ref": transfer[0]["id"],
-            "reason": "independent evidence and prerequisite readiness permit changed-demand transfer",
+            "question_ref": chosen["id"],
+            "family_ref": family_ref,
+            "transfer_dimension": (chosen.get("transfer") or {}).get("dimension"),
+            "transfer_eligible": True,
+            "transfer_evidence": stability.get("independent_question_refs"),
+            "reason": "stable independent same-family evidence, prerequisites and canonical transfer demand all agree",
+            "finding": family_finding,
         }
+
+    if family_ref is None and not family_finding:
+        candidate_families = sorted({
+            row.get("family_ref")
+            for row in _question_candidates(records, capability_ref, "CORE2A")
+            if row.get("family_ref")
+        })
+        if len(candidate_families) == 1:
+            family_ref = candidate_families[0]
+            practice = _question_candidates(records, capability_ref, "CORE2A", family_ref=family_ref)
+        elif candidate_families:
+            family_finding = {
+                "point": "LEARNING_ROUTER_EXERCISE_FAMILY_UNRESOLVED",
+                "detail": "multiple canonical practice families exist and the active worksheet does not choose one",
+                "candidates": candidate_families,
+            }
 
     return {
         "demand": PRACTICE,
         "question_ref": practice[0]["id"] if practice else None,
+        "family_ref": family_ref,
+        "transfer_dimension": None,
+        "transfer_eligible": False,
+        "transfer_evidence": stability.get("independent_question_refs") or [],
         "reason": (
-            "reinforce with same-family practice"
-            if posture == REINFORCE
-            else "transfer is not yet safe or available; retain supported practice"
+            stability.get("reason")
+            if posture == READY and prerequisites_ready
+            else "transfer prerequisites are not yet satisfied; retain family-compatible practice"
         ),
+        "finding": family_finding,
     }
 
 
@@ -337,6 +477,8 @@ def route_decision(
     microtopic_refs: list[str],
     records: dict,
     prerequisites_ready: bool,
+    evidence_history: list[dict] | None = None,
+    active_question_families: list[str] | None = None,
     repo: Path = REPO,
 ) -> dict:
     """Combine evidence, family-authorized support, visuals and exercise demand."""
@@ -349,6 +491,9 @@ def route_decision(
         capability_ref,
         records,
         prerequisites_ready=prerequisites_ready,
+        evidence_history=evidence_history,
+        active_question_families=active_question_families,
+        transfer_dimensions=family_context.get("transfer_dimensions") or [],
     )
     explorers = list(visual.get("interactive_resource_refs") or [])
     findings = []
@@ -356,6 +501,8 @@ def route_decision(
         findings.append(support["finding"])
     if visual.get("finding"):
         findings.append(visual["finding"])
+    if exercise.get("finding"):
+        findings.append(exercise["finding"])
     return {
         **routed,
         "starting_support": support["starting_support"],
@@ -375,5 +522,9 @@ def route_decision(
         "exercise_demand": exercise["demand"],
         "exercise_question_ref": exercise["question_ref"],
         "exercise_reason": exercise["reason"],
+        "exercise_family_ref": exercise.get("family_ref"),
+        "transfer_eligible": exercise.get("transfer_eligible", False),
+        "transfer_dimension": exercise.get("transfer_dimension"),
+        "transfer_evidence": exercise.get("transfer_evidence", []),
         "routing_findings": findings,
     }

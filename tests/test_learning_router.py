@@ -196,8 +196,8 @@ class LearningRouterTest(unittest.TestCase):
             ready["initial_visual"]["visual_stage_ref"],
             "VIS-NLM-FRICTION-V0",
         )
-        self.assertEqual(ready["exercise_demand"], learning_router.TRANSFER)
-        self.assertTrue(ready["exercise_question_ref"].startswith("Q-PHY-NLM-"))
+        self.assertEqual(ready["exercise_demand"], learning_router.PRACTICE)
+        self.assertFalse(ready["transfer_eligible"])
 
         gated = learning_router.route_decision(
             {"state": "DEMONSTRATED", "independence_proven": True, "error_stage": None},
@@ -208,6 +208,93 @@ class LearningRouterTest(unittest.TestCase):
             repo=REPO,
         )
         self.assertEqual(gated["exercise_demand"], learning_router.PRACTICE)
+
+    def test_transfer_requires_stable_same_family_independent_evidence_and_matching_demand(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        history = [
+            {
+                "observation_id": "OBS-FR-1",
+                "capability_ref": "CAP-NLM-FRICTION-QUANT",
+                "evidence_kind": "DIRECT_ATTEMPT",
+                "question_ref": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+                "result": "DEMONSTRATED",
+                "help": "NONE",
+                "when": "2026-09-19T12:00:00Z",
+            },
+            {
+                "observation_id": "OBS-FR-2",
+                "capability_ref": "CAP-NLM-FRICTION-QUANT",
+                "evidence_kind": "DIRECT_ATTEMPT",
+                "question_ref": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
+                "result": "DEMONSTRATED",
+                "help": "NONE",
+                "when": "2026-09-20T12:00:00Z",
+            },
+        ]
+        routed = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "independence_proven": True},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=True,
+            evidence_history=history,
+            active_question_families=["FAM-PHY-NLM-PRACTICE"],
+            repo=REPO,
+        )
+        self.assertTrue(routed["transfer_eligible"])
+        self.assertEqual(routed["exercise_demand"], learning_router.TRANSFER)
+        self.assertEqual(routed["exercise_family_ref"], "FAM-PHY-NLM-PRACTICE")
+        self.assertEqual(routed["transfer_dimension"], "model_choice")
+        self.assertEqual(routed["exercise_question_ref"], "Q-PHY-NLM-2B-FRICTION-STATE-01")
+        self.assertEqual(len(routed["transfer_evidence"]), 2)
+
+    def test_one_ready_result_or_cross_family_results_do_not_unlock_transfer(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        one = [{
+            "observation_id": "OBS-ONE",
+            "capability_ref": "CAP-NLM-FRICTION-QUANT",
+            "evidence_kind": "DIRECT_ATTEMPT",
+            "question_ref": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            "result": "DEMONSTRATED",
+            "help": "NONE",
+        }]
+        routed = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "independence_proven": True},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=True,
+            evidence_history=one,
+            active_question_families=["FAM-PHY-NLM-PRACTICE"],
+            repo=REPO,
+        )
+        self.assertFalse(routed["transfer_eligible"])
+        self.assertEqual(routed["exercise_demand"], learning_router.PRACTICE)
+
+        cross_family = one + [{
+            "observation_id": "OBS-INCLINE",
+            "capability_ref": "CAP-NLM-FRICTION-QUANT",
+            "evidence_kind": "DIRECT_ATTEMPT",
+            "question_ref": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+            "result": "DEMONSTRATED",
+            "help": "NONE",
+        }]
+        routed = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "independence_proven": True},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=True,
+            evidence_history=cross_family,
+            active_question_families=["FAM-PHY-NLM-PRACTICE"],
+            repo=REPO,
+        )
+        self.assertFalse(routed["transfer_eligible"])
+        self.assertEqual(routed["exercise_demand"], learning_router.PRACTICE)
 
     def test_routing_does_not_consume_question_hints(self):
         records = build_index(load_packages([
