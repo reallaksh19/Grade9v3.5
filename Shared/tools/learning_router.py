@@ -6,12 +6,20 @@ state owner and returns DEMONSTRATED / UNCERTAIN / MISSING / UNOBSERVED. The val
 are disposable next-action annotations: they may choose how much support to start with,
 but they are never persisted as mastery evidence.
 
-The deliberate asymmetry for MISSING protects against over-remediation. A conceptual or
-setup failure (or an unattributed missing state) may justify rebuilding. A failure whose
-recorded stage is EXECUTION or CARELESS is reinforced without declaring the underlying
-concept missing.
+READY is deliberately strict: only evidence whose current effective projection explicitly
+proves an independent attempt may route READY. A bare DEMONSTRATED label is not enough.
+
+Starting support is a two-stage decision. Posture requests a level; the active matrix
+family's support_ladder decides whether that level actually exists. Missing, ambiguous or
+undeclared family support is withheld and reported rather than guessed.
 """
 from __future__ import annotations
+
+from pathlib import Path
+
+from Shared.contracts import load
+
+REPO = Path(__file__).resolve().parents[2]
 
 READY = "READY"
 REINFORCE = "REINFORCE"
@@ -40,11 +48,7 @@ def posture_for(learner_state: dict) -> str:
     error_stage = learner_state.get("error_stage")
 
     if state == "DEMONSTRATED":
-        source = str(learner_state.get("source") or "")
-        help_used = learner_state.get("help")
-        if source.startswith("PROFILE_") or help_used not in {None, "NONE"}:
-            return REINFORCE
-        return READY
+        return READY if learner_state.get("independence_proven") is True else REINFORCE
     if state == "MISSING":
         if error_stage in PROCEDURAL_ERROR_STAGES:
             return REINFORCE
@@ -52,17 +56,114 @@ def posture_for(learner_state: dict) -> str:
     return REINFORCE
 
 
-def starting_support(posture: str) -> str:
-    """Map a routing posture to pre-attempt support without touching the hint ladder."""
+def requested_support(posture: str) -> str:
+    """Return the pre-attempt support level requested by posture, not availability."""
     return POSTURE_SUPPORT.get(posture, MEDIUM)
 
 
+def family_support_context(
+    microtopic_refs: list[str],
+    repo: Path = REPO,
+) -> dict:
+    """Resolve the one matrix family governing the active route, or fail closed."""
+    wanted = {ref for ref in microtopic_refs if ref}
+    matches = []
+    if wanted:
+        for path in sorted(repo.glob("*/matrices/*.rungs.json")):
+            board = load(path)
+            board_microtopics = {
+                rung.get("microtopic_ref")
+                for rung in board.get("rungs", []) or []
+                if rung.get("microtopic_ref")
+            }
+            if wanted & board_microtopics:
+                matches.append({
+                    "family_ref": board.get("matrix_id"),
+                    "source": str(path.relative_to(repo)),
+                    "support_ladder": list((board.get("family") or {}).get("support_ladder") or []),
+                })
+
+    if not matches:
+        return {
+            "status": "MISSING",
+            "family_ref": None,
+            "source": None,
+            "support_ladder": [],
+            "candidates": [],
+        }
+    if len(matches) != 1:
+        return {
+            "status": "AMBIGUOUS",
+            "family_ref": None,
+            "source": None,
+            "support_ladder": [],
+            "candidates": [row.get("family_ref") for row in matches],
+        }
+    return {"status": "RESOLVED", **matches[0], "candidates": [matches[0].get("family_ref")]}
+
+
+def resolve_support(requested: str, family_context: dict) -> dict:
+    """Resolve requested support only against declared active-family availability."""
+    status = family_context.get("status")
+    if status != "RESOLVED":
+        point = (
+            "LEARNING_ROUTER_SUPPORT_FAMILY_AMBIGUOUS"
+            if status == "AMBIGUOUS"
+            else "LEARNING_ROUTER_SUPPORT_FAMILY_MISSING"
+        )
+        return {
+            "requested_support": requested,
+            "starting_support": None,
+            "support_status": "WITHHELD",
+            "finding": {
+                "point": point,
+                "detail": (
+                    "active family support authority is ambiguous; support is withheld"
+                    if status == "AMBIGUOUS"
+                    else "active family support authority is missing; support is withheld"
+                ),
+                "candidates": list(family_context.get("candidates") or []),
+            },
+        }
+
+    declared = [
+        row.get("level")
+        for row in family_context.get("support_ladder", []) or []
+        if isinstance(row, dict) and isinstance(row.get("level"), str)
+    ]
+    if requested not in declared:
+        return {
+            "requested_support": requested,
+            "starting_support": None,
+            "support_status": "WITHHELD",
+            "finding": {
+                "point": "LEARNING_ROUTER_SUPPORT_UNDECLARED",
+                "detail": (
+                    f"{family_context.get('family_ref')} does not declare requested "
+                    f"support level {requested}; support is withheld"
+                ),
+                "family_ref": family_context.get("family_ref"),
+                "requested_support": requested,
+                "declared_levels": declared,
+            },
+        }
+
+    return {
+        "requested_support": requested,
+        "starting_support": requested,
+        "support_status": "RESOLVED",
+        "finding": None,
+    }
+
+
 def decision(learner_state: dict) -> dict:
-    """Project evidence into one inspectable session routing decision."""
+    """Project evidence into posture and a requested, not yet authorized, support level."""
     posture = posture_for(learner_state)
     return {
         "routing_posture": posture,
-        "starting_support": starting_support(posture),
+        "requested_support": requested_support(posture),
+        "starting_support": None,
+        "support_status": "UNRESOLVED",
         "evidence_basis": {
             "state": learner_state.get("state", "UNOBSERVED"),
             "source": learner_state.get("source"),
@@ -70,6 +171,8 @@ def decision(learner_state: dict) -> dict:
             "when": learner_state.get("when"),
             "help": learner_state.get("help"),
             "error_stage": learner_state.get("error_stage"),
+            "independence_proven": learner_state.get("independence_proven") is True,
+            "independence_basis": learner_state.get("independence_basis"),
         },
         "persistence": "NOT_WRITTEN",
     }
@@ -88,11 +191,12 @@ def _question_candidates(records: dict, capability_ref: str, core: str) -> list[
     )
 
 
-def visual_decision(records: dict, microtopic_refs: list[str], support: str) -> dict:
+def visual_decision(records: dict, microtopic_refs: list[str], support: str | None) -> dict:
     """Resolve one canonical representation, its initial stage and existing explorers.
 
     Zero representations is a valid no-visual result. More than one is deliberately not
-    guessed: the caller gets a finding instead of an arbitrary visual choice.
+    guessed. If starting support is withheld, the representation may still resolve but
+    no initial support stage is selected.
     """
     representation_refs = []
     for ref in microtopic_refs:
@@ -136,6 +240,20 @@ def visual_decision(records: dict, microtopic_refs: list[str], support: str) -> 
             },
         }
 
+    explorers = []
+    for resource_ref in representation.get("interactive_resource_refs", []) or []:
+        resource = records.get(resource_ref)
+        if resource and resource.get("_collection") == "resources" and "ACTIVITY" in (resource.get("role") or []):
+            explorers.append(resource_ref)
+
+    if support is None:
+        return {
+            "representation_ref": rep_ref,
+            "visual_stage_ref": None,
+            "interactive_resource_refs": explorers,
+            "finding": None,
+        }
+
     stage_ref = next(
         (
             row.get("visual_stage_ref")
@@ -144,12 +262,6 @@ def visual_decision(records: dict, microtopic_refs: list[str], support: str) -> 
         ),
         None,
     )
-    explorers = []
-    for resource_ref in representation.get("interactive_resource_refs", []) or []:
-        resource = records.get(resource_ref)
-        if resource and resource.get("_collection") == "resources" and "ACTIVITY" in (resource.get("role") or []):
-            explorers.append(resource_ref)
-
     return {
         "representation_ref": rep_ref,
         "visual_stage_ref": stage_ref,
@@ -208,10 +320,13 @@ def route_decision(
     microtopic_refs: list[str],
     records: dict,
     prerequisites_ready: bool,
+    repo: Path = REPO,
 ) -> dict:
-    """Combine evidence, canonical visuals and exercise demand into one disposable route."""
+    """Combine evidence, family-authorized support, visuals and exercise demand."""
     routed = decision(learner_state)
-    visual = visual_decision(records, microtopic_refs, routed["starting_support"])
+    family_context = family_support_context(microtopic_refs, repo)
+    support = resolve_support(routed["requested_support"], family_context)
+    visual = visual_decision(records, microtopic_refs, support["starting_support"])
     exercise = exercise_decision(
         routed["routing_posture"],
         capability_ref,
@@ -219,8 +334,17 @@ def route_decision(
         prerequisites_ready=prerequisites_ready,
     )
     explorers = list(visual.get("interactive_resource_refs") or [])
+    findings = []
+    if support.get("finding"):
+        findings.append(support["finding"])
+    if visual.get("finding"):
+        findings.append(visual["finding"])
     return {
         **routed,
+        "starting_support": support["starting_support"],
+        "support_status": support["support_status"],
+        "support_family_ref": family_context.get("family_ref"),
+        "support_family_source": family_context.get("source"),
         "initial_visual": {
             "representation_ref": visual.get("representation_ref"),
             "visual_stage_ref": visual.get("visual_stage_ref"),
@@ -234,5 +358,5 @@ def route_decision(
         "exercise_demand": exercise["demand"],
         "exercise_question_ref": exercise["question_ref"],
         "exercise_reason": exercise["reason"],
-        "routing_findings": [visual["finding"]] if visual.get("finding") else [],
+        "routing_findings": findings,
     }
