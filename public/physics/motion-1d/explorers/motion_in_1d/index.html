@@ -40,14 +40,20 @@
       contain: paint;
       width: 100% !important;
       max-width: 100% !important;
+      min-width: 0;
       display: block;
+      box-sizing: border-box;
     }
     .canvas-container {
       position: relative;
       min-width: 0;
       width: 100%;
       overflow: hidden;
+      contain: layout paint;
       border-radius: 0.75rem;
+    }
+    main .grid > * {
+      min-width: 0;
     }
     
     /* Touch Target & Tablet Optimization */
@@ -1057,16 +1063,8 @@
         }
       });
 
-      // Resize active canvas on tab switch
-      setTimeout(() => {
-        if (tabId === 'tab-disp-dist') { resizeDisp(); drawDisp(); }
-        else if (tabId === 'tab-balloon') { resizeBalloon(); drawBalloon(); }
-        else if (tabId === 'tab-graph-vx') { resizeVx(); drawVx(); }
-        else if (tabId === 'tab-drops') { resizeDrops(); drawDrops(); }
-        else if (tabId === 'tab-braking') { resizeBraking(); drawBraking(); }
-        else if (tabId === 'tab-relative') { resizeRel(); drawRel(); }
-        else if (tabId === 'tab-sandbox') { resizeSb(); drawSb(); }
-      }, 50);
+      // Draw once after the tab becomes measurable. Each draw owns its backing-store resize.
+      setTimeout(drawCurrentTab, 50);
     }
 
     function setDepth(tab, depth) {
@@ -1084,23 +1082,73 @@
       if (tab === 'disp-dist') drawDisp();
     }
 
-    // Helper: Canvas High-DPI setup that NEVER causes layout blowouts
+    // Helper: stable high-DPI canvas setup. The logical CSS height is captured once
+    // and never re-read from canvas.height after the backing store has been scaled.
     function setupCanvas(canvas) {
-      const parent = canvas.parentElement;
-      const rect = parent.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      const width = Math.floor(rect.width);
-      const height = canvas.getAttribute('height') ? parseInt(canvas.getAttribute('height')) : 240;
+      if (!canvas) return { ctx: null, width: 1, height: 1 };
 
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
+      const parent = canvas.parentElement;
+      if (!canvas.dataset.logicalHeight) {
+        const initialHeight = Number.parseFloat(canvas.getAttribute('height'));
+        canvas.dataset.logicalHeight = String(Number.isFinite(initialHeight) && initialHeight > 0 ? initialHeight : 240);
+      }
+
+      const logicalHeight = Number.parseFloat(canvas.dataset.logicalHeight) || 240;
+      const styles = parent ? getComputedStyle(parent) : null;
+      const padX = styles
+        ? (Number.parseFloat(styles.paddingLeft) || 0) + (Number.parseFloat(styles.paddingRight) || 0)
+        : 0;
+      const parentWidth = parent ? parent.clientWidth : canvas.clientWidth;
+      const logicalWidth = Math.max(1, Math.floor(parentWidth - padX));
+      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+
+      canvas.style.width = '100%';
+      canvas.style.height = logicalHeight + 'px';
+
+      const pixelWidth = Math.max(1, Math.round(logicalWidth * dpr));
+      const pixelHeight = Math.max(1, Math.round(logicalHeight * dpr));
+      if (canvas.width !== pixelWidth) canvas.width = pixelWidth;
+      if (canvas.height !== pixelHeight) canvas.height = pixelHeight;
 
       const ctx = canvas.getContext('2d');
-      ctx.resetTransform();
-      ctx.scale(dpr, dpr);
-      return { ctx, width, height };
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: logicalWidth, height: logicalHeight };
+    }
+
+    function paddedBounds(values, minSpan = 10, paddingFraction = 0.12) {
+      const finite = values.filter(Number.isFinite);
+      if (!finite.length) return { min: -minSpan / 2, max: minSpan / 2 };
+      let min = Math.min(...finite);
+      let max = Math.max(...finite);
+      if (max - min < minSpan) {
+        const mid = (min + max) / 2;
+        min = mid - minSpan / 2;
+        max = mid + minSpan / 2;
+      }
+      const pad = Math.max((max - min) * paddingFraction, minSpan * 0.04);
+      return { min: min - pad, max: max + pad };
+    }
+
+    function niceStep(span, targetTicks = 8) {
+      const raw = Math.max(span, 1e-9) / Math.max(2, targetTicks);
+      const power = 10 ** Math.floor(Math.log10(raw));
+      const scaled = raw / power;
+      const nice = scaled <= 1 ? 1 : (scaled <= 2 ? 2 : (scaled <= 5 ? 5 : 10));
+      return nice * power;
+    }
+
+    function clampNumber(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function drawCurrentTab() {
+      if (currentTab === 'tab-disp-dist') drawDisp();
+      else if (currentTab === 'tab-balloon') drawBalloon();
+      else if (currentTab === 'tab-graph-vx') drawVx();
+      else if (currentTab === 'tab-drops') drawDrops();
+      else if (currentTab === 'tab-braking') drawBraking();
+      else if (currentTab === 'tab-relative') drawRel();
+      else if (currentTab === 'tab-sandbox') drawSb();
     }
 
     // =========================================================================
@@ -1322,10 +1370,7 @@
       if (dispState.isPlaying) requestAnimationFrame(dispLoop);
     }
 
-    function resizeDisp() {
-      setupCanvas(document.getElementById('canvasDispTrack'));
-      setupCanvas(document.getElementById('canvasDispGraph'));
-    }
+    function resizeDisp() { drawDisp(); }
 
     function drawDisp() {
       const cTrack = document.getElementById('canvasDispTrack');
@@ -1596,9 +1641,7 @@
       if (balloonState.isPlaying) requestAnimationFrame(balloonLoop);
     }
 
-    function resizeBalloon() {
-      setupCanvas(document.getElementById('canvasBalloon'));
-    }
+    function resizeBalloon() { drawBalloon(); }
 
     function drawBalloon() {
       const canvas = document.getElementById('canvasBalloon');
@@ -1755,10 +1798,7 @@
       drawVx();
     }
 
-    function resizeVx() {
-      setupCanvas(document.getElementById('canvasVx'));
-      setupCanvas(document.getElementById('canvasAx'));
-    }
+    function resizeVx() { drawVx(); }
 
     function drawVx() {
       const cVx = document.getElementById('canvasVx');
@@ -1957,9 +1997,7 @@
       if (dropsState.isPlaying) requestAnimationFrame(dropsLoop);
     }
 
-    function resizeDrops() {
-      setupCanvas(document.getElementById('canvasDrops'));
-    }
+    function resizeDrops() { drawDrops(); }
 
     function drawDrops() {
       const canvas = document.getElementById('canvasDrops');
@@ -2087,9 +2125,7 @@
       if (brakingState.isPlaying) requestAnimationFrame(brakingLoop);
     }
 
-    function resizeBraking() {
-      setupCanvas(document.getElementById('canvasBraking'));
-    }
+    function resizeBraking() { drawBraking(); }
 
     function drawBraking() {
       const canvas = document.getElementById('canvasBraking');
@@ -2259,10 +2295,7 @@
       if (relState.isPlaying) requestAnimationFrame(relLoop);
     }
 
-    function resizeRel() {
-      setupCanvas(document.getElementById('canvasRelative'));
-      setupCanvas(document.getElementById('canvasRelGap'));
-    }
+    function resizeRel() { drawRel(); }
 
     function drawRel() {
       const cRel = document.getElementById('canvasRelative');
@@ -2435,9 +2468,7 @@
       if (sbState.isPlaying) requestAnimationFrame(sbLoop);
     }
 
-    function resizeSb() {
-      setupCanvas(document.getElementById('canvasSandbox'));
-    }
+    function resizeSb() { drawSb(); }
 
     function drawSb() {
       const canvas = document.getElementById('canvasSandbox');
@@ -2683,14 +2714,10 @@
       switchTab('tab-disp-dist');
     });
 
+    let canvasResizeRaf = 0;
     window.addEventListener('resize', () => {
-      if (currentTab === 'tab-disp-dist') resizeDisp();
-      else if (currentTab === 'tab-balloon') resizeBalloon();
-      else if (currentTab === 'tab-graph-vx') resizeVx();
-      else if (currentTab === 'tab-drops') resizeDrops();
-      else if (currentTab === 'tab-braking') resizeBraking();
-      else if (currentTab === 'tab-relative') resizeRel();
-      else if (currentTab === 'tab-sandbox') resizeSb();
+      cancelAnimationFrame(canvasResizeRaf);
+      canvasResizeRaf = requestAnimationFrame(drawCurrentTab);
     });
   </script>
 </body>
