@@ -42,13 +42,23 @@ POSTURE_SUPPORT = {
 PROCEDURAL_ERROR_STAGES = {"EXECUTION", "CARELESS"}
 
 
+def _independence_proven(learner_state: dict) -> bool:
+    """Accept explicit derived proof, or the equivalent explicit legacy provenance pair."""
+    if "independence_proven" in learner_state:
+        return learner_state.get("independence_proven") is True
+    return (
+        learner_state.get("source") == "DIRECT_ATTEMPT"
+        and learner_state.get("help") == "NONE"
+    )
+
+
 def posture_for(learner_state: dict) -> str:
     """Return the Owner-defined, non-persisted routing posture for one capability."""
     state = learner_state.get("state", "UNOBSERVED")
     error_stage = learner_state.get("error_stage")
 
     if state == "DEMONSTRATED":
-        return READY if learner_state.get("independence_proven") is True else REINFORCE
+        return READY if _independence_proven(learner_state) else REINFORCE
     if state == "MISSING":
         if error_stage in PROCEDURAL_ERROR_STAGES:
             return REINFORCE
@@ -171,8 +181,15 @@ def decision(learner_state: dict) -> dict:
             "when": learner_state.get("when"),
             "help": learner_state.get("help"),
             "error_stage": learner_state.get("error_stage"),
-            "independence_proven": learner_state.get("independence_proven") is True,
-            "independence_basis": learner_state.get("independence_basis"),
+            "independence_proven": _independence_proven(learner_state),
+            "independence_basis": (
+                learner_state.get("independence_basis")
+                or (
+                    "DIRECT_ATTEMPT_WITH_NO_HELP"
+                    if _independence_proven(learner_state)
+                    else "NOT_PROVEN"
+                )
+            ),
         },
         "persistence": "NOT_WRITTEN",
     }
