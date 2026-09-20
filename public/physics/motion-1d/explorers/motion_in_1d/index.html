@@ -13,7 +13,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 
   <!-- High-Yield Question Bank -->
-  <script src="jee_questions_data.js"></script>
+  <script src="jee_questions_data.js" onerror="window.__MOTION1D_BANK_LOAD_ERROR__ = true;"></script>
 
   <script>
     tailwind.config = {
@@ -40,14 +40,20 @@
       contain: paint;
       width: 100% !important;
       max-width: 100% !important;
+      min-width: 0;
       display: block;
+      box-sizing: border-box;
     }
     .canvas-container {
       position: relative;
       min-width: 0;
       width: 100%;
       overflow: hidden;
+      contain: layout paint;
       border-radius: 0.75rem;
+    }
+    main .grid > * {
+      min-width: 0;
     }
     
     /* Touch Target & Tablet Optimization */
@@ -114,7 +120,7 @@
             <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
               IIT-JEE Mechanics · 1D Invariant Rig
             </span>
-            <span class="text-xs text-slate-400 font-mono">18 audited diagnostics · live corpus 123 PYQs</span>
+            <span id="headerAuditSummary" class="text-xs text-slate-400 font-mono">18 solved diagnostics · source provenance shown per item · live corpus 123 PYQs</span>
           </div>
           <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
             Motion in One Dimension &middot; Master Suite
@@ -994,7 +1000,7 @@
               <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub</h2>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-              18 audited diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
+              18 locally solved diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Source provenance is shown per item; simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
             </p>
           </div>
 
@@ -1057,16 +1063,8 @@
         }
       });
 
-      // Resize active canvas on tab switch
-      setTimeout(() => {
-        if (tabId === 'tab-disp-dist') { resizeDisp(); drawDisp(); }
-        else if (tabId === 'tab-balloon') { resizeBalloon(); drawBalloon(); }
-        else if (tabId === 'tab-graph-vx') { resizeVx(); drawVx(); }
-        else if (tabId === 'tab-drops') { resizeDrops(); drawDrops(); }
-        else if (tabId === 'tab-braking') { resizeBraking(); drawBraking(); }
-        else if (tabId === 'tab-relative') { resizeRel(); drawRel(); }
-        else if (tabId === 'tab-sandbox') { resizeSb(); drawSb(); }
-      }, 50);
+      // Draw once after the tab becomes measurable. Each draw owns its backing-store resize.
+      setTimeout(drawCurrentTab, 50);
     }
 
     function setDepth(tab, depth) {
@@ -1084,23 +1082,73 @@
       if (tab === 'disp-dist') drawDisp();
     }
 
-    // Helper: Canvas High-DPI setup that NEVER causes layout blowouts
+    // Helper: stable high-DPI canvas setup. The logical CSS height is captured once
+    // and never re-read from canvas.height after the backing store has been scaled.
     function setupCanvas(canvas) {
-      const parent = canvas.parentElement;
-      const rect = parent.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      const width = Math.floor(rect.width);
-      const height = canvas.getAttribute('height') ? parseInt(canvas.getAttribute('height')) : 240;
+      if (!canvas) return { ctx: null, width: 1, height: 1 };
 
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
+      const parent = canvas.parentElement;
+      if (!canvas.dataset.logicalHeight) {
+        const initialHeight = Number.parseFloat(canvas.getAttribute('height'));
+        canvas.dataset.logicalHeight = String(Number.isFinite(initialHeight) && initialHeight > 0 ? initialHeight : 240);
+      }
+
+      const logicalHeight = Number.parseFloat(canvas.dataset.logicalHeight) || 240;
+      const styles = parent ? getComputedStyle(parent) : null;
+      const padX = styles
+        ? (Number.parseFloat(styles.paddingLeft) || 0) + (Number.parseFloat(styles.paddingRight) || 0)
+        : 0;
+      const parentWidth = parent ? parent.clientWidth : canvas.clientWidth;
+      const logicalWidth = Math.max(1, Math.floor(parentWidth - padX));
+      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+
+      canvas.style.width = '100%';
+      canvas.style.height = logicalHeight + 'px';
+
+      const pixelWidth = Math.max(1, Math.round(logicalWidth * dpr));
+      const pixelHeight = Math.max(1, Math.round(logicalHeight * dpr));
+      if (canvas.width !== pixelWidth) canvas.width = pixelWidth;
+      if (canvas.height !== pixelHeight) canvas.height = pixelHeight;
 
       const ctx = canvas.getContext('2d');
-      ctx.resetTransform();
-      ctx.scale(dpr, dpr);
-      return { ctx, width, height };
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: logicalWidth, height: logicalHeight };
+    }
+
+    function paddedBounds(values, minSpan = 10, paddingFraction = 0.12) {
+      const finite = values.filter(Number.isFinite);
+      if (!finite.length) return { min: -minSpan / 2, max: minSpan / 2 };
+      let min = Math.min(...finite);
+      let max = Math.max(...finite);
+      if (max - min < minSpan) {
+        const mid = (min + max) / 2;
+        min = mid - minSpan / 2;
+        max = mid + minSpan / 2;
+      }
+      const pad = Math.max((max - min) * paddingFraction, minSpan * 0.04);
+      return { min: min - pad, max: max + pad };
+    }
+
+    function niceStep(span, targetTicks = 8) {
+      const raw = Math.max(span, 1e-9) / Math.max(2, targetTicks);
+      const power = 10 ** Math.floor(Math.log10(raw));
+      const scaled = raw / power;
+      const nice = scaled <= 1 ? 1 : (scaled <= 2 ? 2 : (scaled <= 5 ? 5 : 10));
+      return nice * power;
+    }
+
+    function clampNumber(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function drawCurrentTab() {
+      if (currentTab === 'tab-disp-dist') drawDisp();
+      else if (currentTab === 'tab-balloon') drawBalloon();
+      else if (currentTab === 'tab-graph-vx') drawVx();
+      else if (currentTab === 'tab-drops') drawDrops();
+      else if (currentTab === 'tab-braking') drawBraking();
+      else if (currentTab === 'tab-relative') drawRel();
+      else if (currentTab === 'tab-sandbox') drawSb();
     }
 
     // =========================================================================
@@ -1111,6 +1159,62 @@
       if (fidelity === 'CONSTRAINT_FAITHFUL') return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
       if (fidelity === 'CONCEPT_ONLY') return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
       return 'bg-slate-800 border-slate-600 text-slate-300';
+    }
+
+    function answerAuditClass(status) {
+      return status === 'PASS'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-rose-500/15 border-rose-500/40 text-rose-300';
+    }
+
+    function sourceAuditClass(status) {
+      return status === 'SOURCE_ITEM_VERIFIED'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-amber-500/15 border-amber-500/40 text-amber-300';
+    }
+
+    function sourceAuditLabel(status) {
+      return status === 'SOURCE_ITEM_VERIFIED' ? 'SOURCE VERIFIED' : 'SOURCE PENDING';
+    }
+
+    function validateQuestionBank() {
+      const data = window.JEE_QUESTIONS_DATA;
+      const problems = [];
+      const required = ['id','q','options','correct','formula','steps','ans','trap','teacherCheck','takeaway','answerAudit','sourceAudit','simFidelity','targetTab'];
+
+      if (!Array.isArray(data)) {
+        problems.push('Question data did not load.');
+      } else {
+        data.forEach(q => {
+          const missing = required.filter(k => {
+            const v = q[k];
+            return v == null || v === '' || (Array.isArray(v) && v.length === 0);
+          });
+          if (missing.length) problems.push(`${q.id || '?'} missing ${missing.join(', ')}`);
+        });
+      }
+
+      const old = document.getElementById('motion1dIntegrityBanner');
+      if (old) old.remove();
+
+      if (window.__MOTION1D_BANK_LOAD_ERROR__ || problems.length) {
+        const banner = document.createElement('div');
+        banner.id = 'motion1dIntegrityBanner';
+        banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-xs text-rose-100 shadow-2xl';
+        const details = problems.length ? problems : ['jee_questions_data.js could not be loaded.'];
+        banner.innerHTML = `<div class="font-black text-rose-300 mb-1">Motion1D data integrity failure</div>
+          <div>The question hub is not being represented as complete while required data is unavailable.</div>
+          <div class="mt-1 font-mono text-[10px]">${details.slice(0,6).join(' · ')}</div>`;
+        document.body.appendChild(banner);
+        return false;
+      }
+
+      const verified = data.filter(q => q.sourceAudit === 'SOURCE_ITEM_VERIFIED').length;
+      const summary = document.getElementById('headerAuditSummary');
+      if (summary) summary.textContent = `${data.length} solved diagnostics · source provenance ${verified}/${data.length} verified · live corpus 123 PYQs`;
+      const qCount = document.getElementById('headerQCount');
+      if (qCount) qCount.textContent = `${data.length} Qs`;
+      return true;
     }
 
     function simulatorActionLabel(q) {
@@ -1322,10 +1426,7 @@
       if (dispState.isPlaying) requestAnimationFrame(dispLoop);
     }
 
-    function resizeDisp() {
-      setupCanvas(document.getElementById('canvasDispTrack'));
-      setupCanvas(document.getElementById('canvasDispGraph'));
-    }
+    function resizeDisp() { drawDisp(); }
 
     function drawDisp() {
       const cTrack = document.getElementById('canvasDispTrack');
@@ -1338,93 +1439,91 @@
       const t = dispState.t;
       const v0 = dispState.v0;
       const a = dispState.a;
-
-      // Kinematic integrals
-      const x = v0 * t + 0.5 * a * t * t;
+      const horizon = Number.parseFloat(document.getElementById('sliderDispTime')?.max) || 10;
+      const xAt = s => v0 * s + 0.5 * a * s * s;
+      const x = xAt(t);
       const v = v0 + a * t;
-      const tTurn = (a !== 0) ? -v0 / a : -1;
-      
+      const tTurn = a !== 0 ? -v0 / a : -1;
+
       let dist = 0;
       if (tTurn > 0 && t > tTurn) {
-        const xTurn = v0 * tTurn + 0.5 * a * tTurn * tTurn;
+        const xTurn = xAt(tTurn);
         dist = Math.abs(xTurn) + Math.abs(x - xTurn);
       } else {
         dist = Math.abs(x);
       }
 
-      // Update Telemetry
       document.getElementById('dispLiveClock').textContent = `t = ${t.toFixed(2)} s`;
-      document.getElementById('dispLiveVel').textContent = `v = ${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
-      document.getElementById('telemetryDisp').textContent = `${(x >= 0 ? '+' : '')}${x.toFixed(2)} m`;
+      document.getElementById('dispLiveVel').textContent = `v = ${v >= 0 ? '+' : ''}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryDisp').textContent = `${x >= 0 ? '+' : ''}${x.toFixed(2)} m`;
       document.getElementById('telemetryDist').textContent = `${dist.toFixed(2)} m`;
-      document.getElementById('telemetryV').textContent = `${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryV').textContent = `${v >= 0 ? '+' : ''}${v.toFixed(2)} m/s`;
       document.getElementById('telemetryVavg').textContent = t > 0 ? `${(x/t).toFixed(2)} m/s` : '0.00 m/s';
 
-      // 1. Draw Pneumatic Track (cTrack)
       ctxT.fillStyle = '#050811';
       ctxT.fillRect(0, 0, wT, hT);
 
+      const xCandidates = [0, x, xAt(horizon)];
+      if (tTurn >= 0 && tTurn <= horizon) xCandidates.push(xAt(tTurn));
+      const xBounds = paddedBounds(xCandidates, 20, 0.16);
+      const left = 44;
+      const right = Math.max(left + 1, wT - 18);
+      const xToPx = xv => left + ((xv - xBounds.min) / (xBounds.max - xBounds.min)) * (right - left);
+      const xOrigin = xToPx(0);
       const yMid = hT * 0.55;
-      const xOrigin = wT * 0.35;
-      const scaleX = wT / 60;
 
       ctxT.strokeStyle = '#1e293b';
       ctxT.lineWidth = 4;
       ctxT.beginPath();
-      ctxT.moveTo(20, yMid);
-      ctxT.lineTo(wT - 20, yMid);
+      ctxT.moveTo(left, yMid);
+      ctxT.lineTo(right, yMid);
       ctxT.stroke();
 
-      ctxT.fillStyle = '#64748b';
+      const tickStep = niceStep(xBounds.max - xBounds.min, 9);
       ctxT.font = '10px monospace';
       ctxT.textAlign = 'center';
-      for (let xm = -20; xm <= 40; xm += 5) {
-        const px = xOrigin + xm * scaleX;
-        if (px >= 20 && px <= wT - 20) {
-          ctxT.strokeStyle = (xm === 0) ? '#38bdf8' : '#334155';
-          ctxT.lineWidth = (xm === 0) ? 2 : 1;
-          ctxT.beginPath();
-          ctxT.moveTo(px, yMid - 6);
-          ctxT.lineTo(px, yMid + 6);
-          ctxT.stroke();
-          ctxT.fillText((xm >= 0 ? '+' : '') + xm + 'm', px, yMid + 18);
-        }
+      for (let xm = Math.ceil(xBounds.min / tickStep) * tickStep; xm <= xBounds.max + 1e-9; xm += tickStep) {
+        const px = xToPx(xm);
+        ctxT.strokeStyle = Math.abs(xm) < tickStep * 1e-6 ? '#38bdf8' : '#334155';
+        ctxT.lineWidth = Math.abs(xm) < tickStep * 1e-6 ? 2 : 1;
+        ctxT.beginPath();
+        ctxT.moveTo(px, yMid - 6);
+        ctxT.lineTo(px, yMid + 6);
+        ctxT.stroke();
+        ctxT.fillStyle = '#64748b';
+        ctxT.fillText(`${xm >= 0 ? '+' : ''}${Number(xm.toFixed(2))}m`, px, yMid + 18);
       }
 
-      if (tTurn > 0) {
-        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
-        const pTurnX = xOrigin + xTurnM * scaleX;
-        if (pTurnX >= 20 && pTurnX <= wT - 20) {
-          ctxT.strokeStyle = '#f59e0b';
-          ctxT.setLineDash([4, 4]);
-          ctxT.beginPath();
-          ctxT.moveTo(pTurnX, yMid - 30);
-          ctxT.lineTo(pTurnX, yMid + 30);
-          ctxT.stroke();
-          ctxT.setLineDash([]);
-          ctxT.fillStyle = '#f59e0b';
-          ctxT.fillText('Turning Point (v=0)', pTurnX, yMid - 34);
-        }
+      if (tTurn >= 0 && tTurn <= horizon) {
+        const pTurnX = xToPx(xAt(tTurn));
+        ctxT.strokeStyle = '#f59e0b';
+        ctxT.setLineDash([4, 4]);
+        ctxT.beginPath();
+        ctxT.moveTo(pTurnX, yMid - 30);
+        ctxT.lineTo(pTurnX, yMid + 30);
+        ctxT.stroke();
+        ctxT.setLineDash([]);
+        ctxT.fillStyle = '#f59e0b';
+        ctxT.fillText('Turning Point (v=0)', clampNumber(pTurnX, 80, Math.max(80, wT - 80)), yMid - 34);
       }
 
-      const pCurrentX = xOrigin + x * scaleX;
-      
+      const pCurrentX = xToPx(x);
       ctxT.strokeStyle = '#0284c7';
       ctxT.lineWidth = 3;
       ctxT.beginPath();
       ctxT.moveTo(xOrigin, yMid - 10);
-      if (tTurn > 0 && t > tTurn) {
-        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
-        ctxT.lineTo(xOrigin + xTurnM * scaleX, yMid - 10);
+      if (tTurn >= 0 && tTurn <= t) {
+        ctxT.lineTo(xToPx(xAt(tTurn)), yMid - 10);
         ctxT.lineTo(pCurrentX, yMid - 14);
       } else {
         ctxT.lineTo(pCurrentX, yMid - 10);
       }
       ctxT.stroke();
 
+      const markerX = clampNumber(pCurrentX, left, right);
       ctxT.fillStyle = '#38bdf8';
       ctxT.beginPath();
-      ctxT.arc(pCurrentX, yMid, 8, 0, Math.PI * 2);
+      ctxT.arc(markerX, yMid, 8, 0, Math.PI * 2);
       ctxT.fill();
       ctxT.strokeStyle = '#ffffff';
       ctxT.lineWidth = 1.5;
@@ -1432,89 +1531,76 @@
 
       const depth = currentDepth['disp-dist'] || 'G1';
       if (depth === 'G2' || depth === 'G3') {
-        const vLen = v * 2.5;
+        const vLen = clampNumber(v * 2.5, -62, 62);
         ctxT.strokeStyle = '#f59e0b';
         ctxT.lineWidth = 2.5;
         ctxT.beginPath();
-        ctxT.moveTo(pCurrentX, yMid - 18);
-        ctxT.lineTo(pCurrentX + vLen, yMid - 18);
+        ctxT.moveTo(markerX, yMid - 18);
+        ctxT.lineTo(markerX + vLen, yMid - 18);
         ctxT.stroke();
-        ctxT.fillStyle = '#f59e0b';
-        ctxT.beginPath();
-        const headDir = vLen >= 0 ? 1 : -1;
-        ctxT.moveTo(pCurrentX + vLen, yMid - 18);
-        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 22);
-        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 14);
-        ctxT.closePath();
-        ctxT.fill();
 
-        const aLen = a * 5;
+        const aLen = clampNumber(a * 5, -52, 52);
         ctxT.strokeStyle = '#ef4444';
         ctxT.lineWidth = 2;
         ctxT.beginPath();
-        ctxT.moveTo(pCurrentX, yMid + 22);
-        ctxT.lineTo(pCurrentX + aLen, yMid + 22);
+        ctxT.moveTo(markerX, yMid + 22);
+        ctxT.lineTo(markerX + aLen, yMid + 22);
         ctxT.stroke();
       }
 
-      // 2. Draw v-t Graph (cGraph)
       ctxG.fillStyle = '#050811';
       ctxG.fillRect(0, 0, wG, hG);
 
-      const gOriginX = 40;
-      const gOriginY = hG * 0.5;
-      const gScaleT = (wG - 60) / 10;
-      const gScaleV = (hG * 0.4) / 25;
+      const vBounds = paddedBounds([0, v0, v0 + a * horizon, v], 10, 0.14);
+      const gLeft = 42, gRight = Math.max(gLeft + 1, wG - 12);
+      const gTop = 14, gBottom = Math.max(gTop + 1, hG - 24);
+      const tToX = s => gLeft + (s / horizon) * (gRight - gLeft);
+      const vToY = vv => gBottom - ((vv - vBounds.min) / (vBounds.max - vBounds.min)) * (gBottom - gTop);
+      const zeroY = vToY(0);
 
       ctxG.strokeStyle = '#334155';
       ctxG.lineWidth = 1.5;
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
-      ctxG.moveTo(gOriginX, 10);
-      ctxG.lineTo(gOriginX, hG - 10);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
+      ctxG.moveTo(gLeft, gTop);
+      ctxG.lineTo(gLeft, gBottom);
       ctxG.stroke();
 
       ctxG.fillStyle = '#64748b';
       ctxG.font = '9px monospace';
-      ctxG.fillText('t (s)', wG - 25, gOriginY + 14);
-      ctxG.fillText('v (m/s)', gOriginX + 5, 16);
+      ctxG.fillText('t (s)', gRight - 18, clampNumber(zeroY + 14, gTop + 10, gBottom - 2));
+      ctxG.fillText('v (m/s)', gLeft + 5, gTop + 4);
 
       ctxG.strokeStyle = '#475569';
       ctxG.lineWidth = 1;
       ctxG.beginPath();
-      for (let s = 0; s <= 10; s += 0.2) {
-        const vel = v0 + a * s;
-        const px = gOriginX + s * gScaleT;
-        const py = gOriginY - vel * gScaleV;
-        if (s === 0) ctxG.moveTo(px, py);
-        else ctxG.lineTo(px, py);
+      for (let s = 0; s <= horizon + 1e-9; s += horizon / 120) {
+        const px = tToX(s);
+        const py = vToY(v0 + a * s);
+        if (s === 0) ctxG.moveTo(px, py); else ctxG.lineTo(px, py);
       }
       ctxG.stroke();
 
+      const clampedT = clampNumber(t, 0, horizon);
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      for (let s = 0; s <= t; s += 0.1) {
-        const vel = v0 + a * s;
-        const px = gOriginX + s * gScaleT;
-        const py = gOriginY - vel * gScaleV;
-        ctxG.lineTo(px, py);
+      ctxG.moveTo(tToX(0), zeroY);
+      for (let s = 0; s <= clampedT + 1e-9; s += Math.max(0.02, horizon / 180)) {
+        ctxG.lineTo(tToX(s), vToY(v0 + a * s));
       }
-      const curPx = gOriginX + t * gScaleT;
-      ctxG.lineTo(curPx, gOriginY);
+      ctxG.lineTo(tToX(clampedT), zeroY);
       ctxG.closePath();
-      
-      const grad = ctxG.createLinearGradient(0, gOriginY - 40, 0, gOriginY + 40);
+
+      const grad = ctxG.createLinearGradient(0, gTop, 0, gBottom);
       grad.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
       grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.1)');
       grad.addColorStop(1, 'rgba(239, 68, 68, 0.4)');
       ctxG.fillStyle = grad;
       ctxG.fill();
 
-      const curPy = gOriginY - v * gScaleV;
       ctxG.fillStyle = '#f59e0b';
       ctxG.beginPath();
-      ctxG.arc(curPx, curPy, 4.5, 0, Math.PI * 2);
+      ctxG.arc(tToX(clampedT), vToY(v), 4.5, 0, Math.PI * 2);
       ctxG.fill();
     }
 
@@ -1542,7 +1628,24 @@
         bF.className = 'px-2.5 py-1 rounded font-semibold text-white bg-red-600/40 border border-red-500/50';
         bC.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
       }
+      syncBalloonHorizon();
       drawBalloon();
+    }
+
+    function balloonImpactTime() {
+      const uStone = balloonState.mode === 'correct' ? balloonState.v0 : 0;
+      return (uStone + Math.sqrt(uStone * uStone + 2 * balloonState.g * balloonState.h0)) / balloonState.g;
+    }
+
+    function syncBalloonHorizon() {
+      const slider = document.getElementById('sliderBalloonTime');
+      if (!slider) return;
+      const impact = balloonImpactTime();
+      slider.max = Math.max(1, Math.ceil(impact * 20) / 20);
+      if (balloonState.t > impact) {
+        balloonState.t = impact;
+        slider.value = impact;
+      }
     }
 
     function updateBalloonParams() {
@@ -1552,6 +1655,7 @@
       document.getElementById('valBalloonH').textContent = balloonState.h0 + ' m';
       document.getElementById('valBalloonV').textContent = balloonState.v0 + ' m/s';
       document.getElementById('valBalloonG').textContent = balloonState.g + ' m/s²';
+      syncBalloonHorizon();
       drawBalloon();
     }
 
@@ -1586,8 +1690,9 @@
       const dt = Math.min((ts - balloonState.lastTs) / 1000, 0.05);
       balloonState.lastTs = ts;
       balloonState.t += dt;
-      if (balloonState.t > 8) {
-        balloonState.t = 8;
+      const tImpact = balloonImpactTime();
+      if (balloonState.t > tImpact) {
+        balloonState.t = tImpact;
         balloonState.isPlaying = false;
         document.getElementById('balloonPlayIcon').textContent = '▶';
       }
@@ -1596,9 +1701,7 @@
       if (balloonState.isPlaying) requestAnimationFrame(balloonLoop);
     }
 
-    function resizeBalloon() {
-      setupCanvas(document.getElementById('canvasBalloon'));
-    }
+    function resizeBalloon() { drawBalloon(); }
 
     function drawBalloon() {
       const canvas = document.getElementById('canvasBalloon');
@@ -1612,24 +1715,25 @@
       const h0 = balloonState.h0;
       const vb = balloonState.v0;
       const g = balloonState.g;
-      const uStone = (balloonState.mode === 'correct') ? vb : 0;
+      const uStone = balloonState.mode === 'correct' ? vb : 0;
 
       const yBalloon = h0 + vb * t;
       const yStone = Math.max(0, h0 + uStone * t - 0.5 * g * t * t);
-      const vStone = (yStone > 0) ? (uStone - g * t) : 0;
-
-      const tImpact = (uStone + Math.sqrt(uStone * uStone + 2 * g * h0)) / g;
+      const vStone = yStone > 0 ? (uStone - g * t) : 0;
+      const tImpact = balloonImpactTime();
       const hBalloonAtImpact = h0 + vb * tImpact;
 
       document.getElementById('balloonClock').textContent = `t = ${t.toFixed(2)} s`;
       document.getElementById('telemetryBalloonH').textContent = `${yBalloon.toFixed(1)} m`;
       document.getElementById('telemetryStoneH').textContent = `${yStone.toFixed(1)} m`;
-      document.getElementById('telemetryStoneV').textContent = `${(vStone >= 0 ? '+' : '')}${vStone.toFixed(1)} m/s`;
+      document.getElementById('telemetryStoneV').textContent = `${vStone >= 0 ? '+' : ''}${vStone.toFixed(1)} m/s`;
       document.getElementById('telemetryStoneLanding').textContent = `t = ${tImpact.toFixed(2)} s (Balloon: ${hBalloonAtImpact.toFixed(1)} m)`;
 
-      const maxH = 160;
+      const stoneApex = h0 + Math.max(0, uStone * uStone / (2 * g));
+      const maxH = Math.max(20, h0, yBalloon, hBalloonAtImpact, stoneApex) * 1.12;
       const groundY = h - 30;
-      const scaleY = (groundY - 30) / maxH;
+      const topY = 24;
+      const scaleY = (groundY - topY) / maxH;
 
       ctx.fillStyle = '#1e293b';
       ctx.fillRect(0, groundY, w, 30);
@@ -1640,16 +1744,17 @@
       ctx.lineTo(w, groundY);
       ctx.stroke();
 
-      ctx.fillStyle = '#64748b';
+      const hStep = niceStep(maxH, 6);
       ctx.font = '9px monospace';
-      for (let hm = 0; hm <= maxH; hm += 25) {
+      for (let hm = 0; hm <= maxH + 1e-9; hm += hStep) {
         const py = groundY - hm * scaleY;
         ctx.strokeStyle = '#1e293d';
         ctx.beginPath();
         ctx.moveTo(40, py);
         ctx.lineTo(w - 20, py);
         ctx.stroke();
-        ctx.fillText(hm + 'm', 12, py + 3);
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`${Number(hm.toFixed(1))}m`, 8, py + 3);
       }
 
       const pRelY = groundY - h0 * scaleY;
@@ -1661,11 +1766,10 @@
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = '#f59e0b';
-      ctx.fillText(`Release Height = ${h0}m`, w * 0.55, pRelY - 6);
+      ctx.fillText(`Release Height = ${h0}m`, Math.min(w - 150, w * 0.55), pRelY - 6);
 
       const bx = w * 0.35;
       const by = groundY - yBalloon * scaleY;
-      
       ctx.fillStyle = '#f59e0b';
       ctx.beginPath();
       ctx.arc(bx, by, 18, 0, Math.PI * 2);
@@ -1683,24 +1787,22 @@
 
       ctx.fillStyle = '#fde68a';
       ctx.font = '10px sans-serif';
-      ctx.fillText(`Balloon (+${vb}m/s)`, bx + 24, by + 5);
+      ctx.fillText(`Balloon (+${vb}m/s)`, Math.min(w - 120, bx + 24), clampNumber(by + 5, 12, groundY - 8));
 
       const sx = w * 0.48;
       const sy = groundY - yStone * scaleY;
-
-      ctx.strokeStyle = (balloonState.mode === 'correct') ? 'rgba(56, 189, 248, 0.4)' : 'rgba(239, 68, 68, 0.4)';
+      ctx.strokeStyle = balloonState.mode === 'correct' ? 'rgba(56, 189, 248, 0.4)' : 'rgba(239, 68, 68, 0.4)';
       ctx.lineWidth = 2;
       ctx.beginPath();
-      for (let st = 0; st <= Math.min(t, tImpact); st += 0.05) {
-        const py = h0 + uStone * st - 0.5 * g * st * st;
-        const cpx = sx;
-        const cpy = groundY - py * scaleY;
-        if (st === 0) ctx.moveTo(cpx, cpy);
-        else ctx.lineTo(cpx, cpy);
+      const pathEnd = Math.min(t, tImpact);
+      for (let st = 0; st <= pathEnd + 1e-9; st += Math.max(0.02, tImpact / 140)) {
+        const pyM = Math.max(0, h0 + uStone * st - 0.5 * g * st * st);
+        const cpy = groundY - pyM * scaleY;
+        if (st === 0) ctx.moveTo(sx, cpy); else ctx.lineTo(sx, cpy);
       }
       ctx.stroke();
 
-      ctx.fillStyle = (yStone === 0) ? '#ef4444' : '#38bdf8';
+      ctx.fillStyle = yStone === 0 ? '#ef4444' : '#38bdf8';
       ctx.beginPath();
       ctx.arc(sx, sy, 7, 0, Math.PI * 2);
       ctx.fill();
@@ -1709,8 +1811,8 @@
       ctx.stroke();
 
       if (yStone > 0) {
-        const svLen = vStone * 1.5;
-        ctx.strokeStyle = (vStone >= 0) ? '#10b981' : '#ef4444';
+        const svLen = clampNumber(vStone * 1.5, -70, 70);
+        ctx.strokeStyle = vStone >= 0 ? '#10b981' : '#ef4444';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(sx + 14, sy);
@@ -1745,7 +1847,11 @@
       vxState.x0 = parseFloat(document.getElementById('sliderVxX0').value);
       document.getElementById('vxV0Val').textContent = vxState.v0 + ' m/s';
       document.getElementById('vxX0Val').textContent = vxState.x0 + ' m';
-      document.getElementById('sliderProbeX').max = vxState.x0;
+      const probeSlider = document.getElementById('sliderProbeX');
+      probeSlider.max = vxState.x0;
+      vxState.probeX = Math.min(vxState.probeX, vxState.x0);
+      probeSlider.value = vxState.probeX;
+      document.getElementById('probeXVal').textContent = 'x = ' + vxState.probeX.toFixed(2) + ' m';
       drawVx();
     }
 
@@ -1755,10 +1861,7 @@
       drawVx();
     }
 
-    function resizeVx() {
-      setupCanvas(document.getElementById('canvasVx'));
-      setupCanvas(document.getElementById('canvasAx'));
-    }
+    function resizeVx() { drawVx(); }
 
     function drawVx() {
       const cVx = document.getElementById('canvasVx');
@@ -1957,9 +2060,7 @@
       if (dropsState.isPlaying) requestAnimationFrame(dropsLoop);
     }
 
-    function resizeDrops() {
-      setupCanvas(document.getElementById('canvasDrops'));
-    }
+    function resizeDrops() { drawDrops(); }
 
     function drawDrops() {
       const canvas = document.getElementById('canvasDrops');
@@ -2037,6 +2138,29 @@
       lastTs: null
     };
 
+    function brakingMetrics() {
+      const h1 = brakingState.h1;
+      const aB = Math.max(1e-9, brakingState.aBrake);
+      const vL = brakingState.vLand;
+      const g = brakingState.g;
+      const v1 = Math.sqrt(2 * g * h1);
+      const t1 = Math.sqrt(2 * h1 / g);
+      const h2 = Math.max(0, (v1 * v1 - vL * vL) / (2 * aB));
+      const t2 = Math.max(0, (v1 - vL) / aB);
+      return { v1, t1, h2, t2, hTotal: h1 + h2, tTotal: t1 + t2 };
+    }
+
+    function syncBrakingHorizon() {
+      const slider = document.getElementById('sliderBrakingTime');
+      if (!slider) return;
+      const { tTotal } = brakingMetrics();
+      slider.max = Math.max(1, Math.ceil(tTotal * 10) / 10);
+      if (brakingState.t > tTotal) {
+        brakingState.t = tTotal;
+        slider.value = tTotal;
+      }
+    }
+
     function updateParaParams() {
       brakingState.h1 = parseFloat(document.getElementById('sliderParaH1').value);
       brakingState.aBrake = parseFloat(document.getElementById('sliderParaA').value);
@@ -2044,6 +2168,7 @@
       document.getElementById('paraH1Val').textContent = brakingState.h1 + ' m';
       document.getElementById('paraAVal').textContent = brakingState.aBrake.toFixed(1) + ' m/s²';
       document.getElementById('paraVlandVal').textContent = brakingState.vLand.toFixed(1) + ' m/s';
+      syncBrakingHorizon();
       drawBraking();
     }
 
@@ -2077,8 +2202,9 @@
       const dt = Math.min((ts - brakingState.lastTs) / 1000, 0.05);
       brakingState.lastTs = ts;
       brakingState.t += dt;
-      if (brakingState.t > 20) {
-        brakingState.t = 20;
+      const { tTotal } = brakingMetrics();
+      if (brakingState.t > tTotal) {
+        brakingState.t = tTotal;
         brakingState.isPlaying = false;
         document.getElementById('brakingPlayIcon').textContent = '▶';
       }
@@ -2087,9 +2213,7 @@
       if (brakingState.isPlaying) requestAnimationFrame(brakingLoop);
     }
 
-    function resizeBraking() {
-      setupCanvas(document.getElementById('canvasBraking'));
-    }
+    function resizeBraking() { drawBraking(); }
 
     function drawBraking() {
       const canvas = document.getElementById('canvasBraking');
@@ -2099,28 +2223,19 @@
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const h1 = brakingState.h1;
+      const t = brakingState.t;
       const aB = brakingState.aBrake;
       const vL = brakingState.vLand;
-      const g = brakingState.g;
-      const t = brakingState.t;
-
-      const v1 = Math.sqrt(2 * g * h1);
-      const t1 = Math.sqrt(2 * h1 / g);
-      const h2 = (v1 * v1 - vL * vL) / (2 * aB);
-      const t2 = (v1 - vL) / aB;
-      const hTotal = h1 + h2;
-      const tTotal = t1 + t2;
+      const { v1, t1, h2, hTotal, tTotal } = brakingMetrics();
 
       let curY = 0, curV = 0, isPhase1 = true;
       if (t <= t1) {
-        curY = hTotal - 0.5 * g * t * t;
-        curV = g * t;
-        isPhase1 = true;
+        curY = hTotal - 0.5 * brakingState.g * t * t;
+        curV = brakingState.g * t;
       } else if (t <= tTotal) {
         const dt2 = t - t1;
-        curY = (hTotal - h1) - (v1 * dt2 - 0.5 * aB * dt2 * dt2);
-        curV = v1 - aB * dt2;
+        curY = Math.max(0, h2 - (v1 * dt2 - 0.5 * aB * dt2 * dt2));
+        curV = Math.max(vL, v1 - aB * dt2);
         isPhase1 = false;
       } else {
         curY = 0;
@@ -2135,7 +2250,7 @@
       document.getElementById('telParaHtotal').textContent = `${hTotal.toFixed(1)} m`;
 
       const groundY = h - 30;
-      const scaleY = (groundY - 30) / Math.max(300, hTotal);
+      const scaleY = (groundY - 30) / Math.max(30, hTotal * 1.08);
 
       ctx.fillStyle = '#1e293b';
       ctx.fillRect(0, groundY, w, 30);
@@ -2146,7 +2261,7 @@
       ctx.lineTo(w, groundY);
       ctx.stroke();
 
-      const chuteOpenY = groundY - (hTotal - h1) * scaleY;
+      const chuteOpenY = groundY - h2 * scaleY;
       ctx.strokeStyle = '#f59e0b';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -2156,11 +2271,10 @@
       ctx.setLineDash([]);
       ctx.fillStyle = '#f59e0b';
       ctx.font = '10px monospace';
-      ctx.fillText(`Parachute Deploys (h = ${(hTotal - h1).toFixed(1)}m, v = ${v1.toFixed(1)}m/s)`, 50, chuteOpenY - 6);
+      ctx.fillText(`Parachute Deploys (h = ${h2.toFixed(1)}m, v = ${v1.toFixed(1)}m/s)`, 50, clampNumber(chuteOpenY - 6, 12, groundY - 8));
 
       const px = w * 0.45;
       const py = groundY - curY * scaleY;
-
       if (!isPhase1 && curY > 0) {
         ctx.fillStyle = '#ef4444';
         ctx.beginPath();
@@ -2183,7 +2297,7 @@
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '10px monospace';
-      ctx.fillText(`v = ${curV.toFixed(1)} m/s`, px + 12, py + 4);
+      ctx.fillText(`v = ${curV.toFixed(1)} m/s`, Math.min(w - 100, px + 12), clampNumber(py + 4, 12, groundY - 4));
     }
 
     // =========================================================================
@@ -2207,6 +2321,51 @@
       drawRel();
     }
 
+    function relativeMetricsAt(t) {
+      const vA = relState.vA;
+      const vB = relState.vB;
+      const d0 = relState.d0;
+      const aB = Math.max(1e-9, relState.aB);
+      const xA = vA * t;
+      const tStopB = vB / aB;
+      let xB, curVB;
+      if (t <= tStopB) {
+        xB = d0 + vB * t - 0.5 * aB * t * t;
+        curVB = Math.max(0, vB - aB * t);
+      } else {
+        xB = d0 + (vB * vB) / (2 * aB);
+        curVB = 0;
+      }
+      return { xA, xB, gap: xB - xA, curVB, tStopB };
+    }
+
+    function relativeEventTime() {
+      const vA = relState.vA;
+      const vB = relState.vB;
+      const d0 = relState.d0;
+      const aB = Math.max(1e-9, relState.aB);
+      const tStopB = vB / aB;
+      const A = 0.5 * aB;
+      const B = vA - vB;
+      const disc = B * B + 4 * A * d0;
+      const root = (-B + Math.sqrt(Math.max(0, disc))) / (2 * A);
+      if (root >= 0 && root <= tStopB) return root;
+      const xBStop = d0 + (vB * vB) / (2 * aB);
+      return xBStop / Math.max(1e-9, vA);
+    }
+
+    function syncRelativeHorizon() {
+      const slider = document.getElementById('sliderRelTime');
+      if (!slider) return;
+      const eventTime = relativeEventTime();
+      const horizon = Math.max(5, Math.ceil(eventTime * 1.15 * 10) / 10);
+      slider.max = horizon;
+      if (relState.t > horizon) {
+        relState.t = horizon;
+        slider.value = horizon;
+      }
+    }
+
     function updateRelParams() {
       relState.vA = parseFloat(document.getElementById('sliderRelVA').value);
       relState.vB = parseFloat(document.getElementById('sliderRelVB').value);
@@ -2216,6 +2375,7 @@
       document.getElementById('relVBVal').textContent = relState.vB + ' m/s';
       document.getElementById('relD0Val').textContent = relState.d0 + ' m';
       document.getElementById('relABVal').textContent = relState.aB.toFixed(1) + ' m/s²';
+      syncRelativeHorizon();
       drawRel();
     }
 
@@ -2249,8 +2409,9 @@
       const dt = Math.min((ts - relState.lastTs) / 1000, 0.05);
       relState.lastTs = ts;
       relState.t += dt;
-      if (relState.t > 15) {
-        relState.t = 15;
+      const horizon = Number.parseFloat(document.getElementById('sliderRelTime')?.max) || 15;
+      if (relState.t > horizon) {
+        relState.t = horizon;
         relState.isPlaying = false;
         document.getElementById('relPlayIcon').textContent = '▶';
       }
@@ -2259,10 +2420,7 @@
       if (relState.isPlaying) requestAnimationFrame(relLoop);
     }
 
-    function resizeRel() {
-      setupCanvas(document.getElementById('canvasRelative'));
-      setupCanvas(document.getElementById('canvasRelGap'));
-    }
+    function resizeRel() { drawRel(); }
 
     function drawRel() {
       const cRel = document.getElementById('canvasRelative');
@@ -2278,36 +2436,28 @@
       ctxG.fillRect(0, 0, wG, hG);
 
       const t = relState.t;
-      const vA = relState.vA;
-      const vB = relState.vB;
-      const d0 = relState.d0;
-      const aB = relState.aB;
-
-      const xA = vA * t;
-      const tStopB = vB / aB;
-      let xB = 0, curVB = 0;
-      if (t <= tStopB) {
-        xB = d0 + vB * t - 0.5 * aB * t * t;
-        curVB = vB - aB * t;
-      } else {
-        xB = d0 + (vB * vB) / (2 * aB);
-        curVB = 0;
-      }
-      const gap = xB - xA;
+      const horizon = Number.parseFloat(document.getElementById('sliderRelTime')?.max) || 15;
+      const cur = relativeMetricsAt(t);
+      const end = relativeMetricsAt(horizon);
+      const gap = cur.gap;
 
       document.getElementById('relLiveClock').textContent = `t = ${t.toFixed(2)} s`;
       document.getElementById('relLiveGap').textContent = `Gap = ${gap.toFixed(1)} m`;
-      document.getElementById('telRelXA').textContent = `${xA.toFixed(1)} m`;
-      document.getElementById('telRelXB').textContent = `${xB.toFixed(1)} m`;
-      document.getElementById('telRelSep').textContent = `${(gap >= 0 ? '+' : '')}${gap.toFixed(1)} m`;
-      document.getElementById('telRelVrel').textContent = `${(curVB - vA).toFixed(1)} m/s`;
+      document.getElementById('telRelXA').textContent = `${cur.xA.toFixed(1)} m`;
+      document.getElementById('telRelXB').textContent = `${cur.xB.toFixed(1)} m`;
+      document.getElementById('telRelSep').textContent = `${gap >= 0 ? '+' : ''}${gap.toFixed(1)} m`;
+      document.getElementById('telRelVrel').textContent = `${(cur.curVB - relState.vA).toFixed(1)} m/s`;
 
       const yRoad = hR * 0.5;
-      const scaleX = (wR - 80) / 250;
-      const originX = (relState.frame === 'ground') ? 40 : (wR * 0.2);
+      const left = 34, right = Math.max(left + 1, wR - 22);
+      const roadValues = relState.frame === 'ground'
+        ? [0, relState.d0, cur.xA, cur.xB, end.xA, end.xB]
+        : [0, relState.d0, gap, end.gap];
+      const roadBounds = paddedBounds(roadValues, 80, 0.14);
+      const roadToPx = xv => left + ((xv - roadBounds.min)/(roadBounds.max-roadBounds.min))*(right-left);
 
       ctxR.fillStyle = '#0f172a';
-      ctxR.fillRect(20, yRoad - 25, wR - 40, 50);
+      ctxR.fillRect(20, yRoad - 25, Math.max(1, wR - 40), 50);
       ctxR.strokeStyle = '#334155';
       ctxR.setLineDash([8, 8]);
       ctxR.beginPath();
@@ -2316,61 +2466,63 @@
       ctxR.stroke();
       ctxR.setLineDash([]);
 
-      const pxA = (relState.frame === 'ground') ? (originX + xA * scaleX) : originX;
-      const pxB = (relState.frame === 'ground') ? (originX + xB * scaleX) : (originX + gap * scaleX);
+      const pxA = relState.frame === 'ground' ? roadToPx(cur.xA) : roadToPx(0);
+      const pxB = relState.frame === 'ground' ? roadToPx(cur.xB) : roadToPx(gap);
 
       ctxR.fillStyle = '#38bdf8';
       ctxR.fillRect(pxA - 15, yRoad - 20, 30, 16);
       ctxR.fillStyle = '#ffffff';
       ctxR.font = '10px monospace';
-      ctxR.fillText('Car A', pxA - 14, yRoad - 24);
+      ctxR.fillText('Car A', clampNumber(pxA - 14, 4, Math.max(4,wR - 45)), yRoad - 24);
 
       ctxR.fillStyle = '#f59e0b';
       ctxR.fillRect(pxB - 15, yRoad + 4, 30, 16);
       ctxR.fillStyle = '#ffffff';
-      ctxR.fillText('Car B', pxB - 14, yRoad + 32);
+      ctxR.fillText('Car B', clampNumber(pxB - 14, 4, Math.max(4,wR - 45)), yRoad + 32);
 
-      const gOriginX = 35;
-      const gOriginY = hG - 25;
-      const gScaleT = (wG - 50) / 15;
-      const gScaleGap = (hG - 40) / (d0 * 1.2);
+      const gLeft = 36, gRight = Math.max(gLeft + 1, wG - 10);
+      const gTop = 10, gBottom = Math.max(gTop + 1, hG - 24);
+      const gapSamples = [];
+      for (let st = 0; st <= horizon + 1e-9; st += Math.max(0.05, horizon / 150)) {
+        gapSamples.push(relativeMetricsAt(st).gap);
+      }
+      const gapBounds = paddedBounds([0, ...gapSamples], 40, 0.14);
+      const tToX = st => gLeft + (st / horizon) * (gRight - gLeft);
+      const gapToY = gv => gBottom - ((gv-gapBounds.min)/(gapBounds.max-gapBounds.min))*(gBottom-gTop);
+      const zeroY = gapToY(0);
 
       ctxG.strokeStyle = '#334155';
       ctxG.lineWidth = 1;
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
-      ctxG.moveTo(gOriginX, 10);
-      ctxG.lineTo(gOriginX, gOriginY);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
+      ctxG.moveTo(gLeft, gTop);
+      ctxG.lineTo(gLeft, gBottom);
       ctxG.stroke();
 
       ctxG.strokeStyle = '#ef4444';
       ctxG.setLineDash([4, 4]);
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
       ctxG.stroke();
       ctxG.setLineDash([]);
 
       ctxG.strokeStyle = '#c084fc';
       ctxG.lineWidth = 2;
       ctxG.beginPath();
-      for (let st = 0; st <= 15; st += 0.2) {
-        let gVal = 0;
-        if (st <= tStopB) gVal = (d0 + vB * st - 0.5 * aB * st * st) - vA * st;
-        else gVal = (d0 + (vB * vB)/(2*aB)) - vA * st;
-        const gx = gOriginX + st * gScaleT;
-        const gy = gOriginY - gVal * gScaleGap;
-        if (st === 0) ctxG.moveTo(gx, gy);
-        else ctxG.lineTo(gx, gy);
+      let first = true;
+      for (let st = 0; st <= horizon + 1e-9; st += Math.max(0.05, horizon / 150)) {
+        const p = relativeMetricsAt(st);
+        const gx = tToX(st);
+        const gy = gapToY(p.gap);
+        if (first) { ctxG.moveTo(gx, gy); first = false; } else ctxG.lineTo(gx, gy);
       }
       ctxG.stroke();
 
-      const curGx = gOriginX + t * gScaleT;
-      const curGy = gOriginY - gap * gScaleGap;
       ctxG.fillStyle = '#f59e0b';
       ctxG.beginPath();
-      ctxG.arc(curGx, curGy, 4, 0, Math.PI * 2);
+      ctxG.arc(tToX(clampNumber(t,0,horizon)), gapToY(gap), 4, 0, Math.PI * 2);
       ctxG.fill();
     }
 
@@ -2435,9 +2587,7 @@
       if (sbState.isPlaying) requestAnimationFrame(sbLoop);
     }
 
-    function resizeSb() {
-      setupCanvas(document.getElementById('canvasSandbox'));
-    }
+    function resizeSb() { drawSb(); }
 
     function drawSb() {
       const canvas = document.getElementById('canvasSandbox');
@@ -2446,35 +2596,36 @@
 
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
-
       document.getElementById('sbClock').textContent = `t = ${sbState.t.toFixed(2)} s`;
 
       const yMid = h * 0.5;
-      const xOrigin = w * 0.5;
-      const scaleX = w / 60;
+      const bounds = paddedBounds([0, sbState.x0, sbState.x], 60, 0.16);
+      const left = 30, right = Math.max(left + 1, w - 20);
+      const xToPx = xv => left + ((xv-bounds.min)/(bounds.max-bounds.min))*(right-left);
 
       ctx.strokeStyle = '#1e293b';
       ctx.lineWidth = 4;
       ctx.beginPath();
-      ctx.moveTo(20, yMid);
-      ctx.lineTo(w - 20, yMid);
+      ctx.moveTo(left, yMid);
+      ctx.lineTo(right, yMid);
       ctx.stroke();
 
+      const tickStep = niceStep(bounds.max - bounds.min, 9);
       ctx.fillStyle = '#64748b';
       ctx.font = '10px monospace';
-      for (let xm = -25; xm <= 25; xm += 5) {
-        const px = xOrigin + xm * scaleX;
-        if (px >= 20 && px <= w - 20) {
-          ctx.strokeStyle = (xm === 0) ? '#f59e0b' : '#334155';
-          ctx.beginPath();
-          ctx.moveTo(px, yMid - 6);
-          ctx.lineTo(px, yMid + 6);
-          ctx.stroke();
-          ctx.fillText(xm + 'm', px - 8, yMid + 20);
-        }
+      ctx.textAlign = 'center';
+      for (let xm = Math.ceil(bounds.min/tickStep)*tickStep; xm <= bounds.max + 1e-9; xm += tickStep) {
+        const pxTick = xToPx(xm);
+        ctx.strokeStyle = Math.abs(xm) < tickStep*1e-6 ? '#f59e0b' : '#334155';
+        ctx.beginPath();
+        ctx.moveTo(pxTick, yMid - 6);
+        ctx.lineTo(pxTick, yMid + 6);
+        ctx.stroke();
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`${Number(xm.toFixed(2))}m`, pxTick, yMid + 20);
       }
 
-      const px = xOrigin + sbState.x * scaleX;
+      const px = xToPx(sbState.x);
       ctx.fillStyle = '#f59e0b';
       ctx.beginPath();
       ctx.arc(px, yMid, 10, 0, Math.PI * 2);
@@ -2483,15 +2634,17 @@
       ctx.lineWidth = 2;
       ctx.stroke();
 
+      const vLen = clampNumber(sbState.v * 2, -80, 80);
       ctx.strokeStyle = '#38bdf8';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(px, yMid - 16);
-      ctx.lineTo(px + sbState.v * 2, yMid - 16);
+      ctx.lineTo(px + vLen, yMid - 16);
       ctx.stroke();
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '11px monospace';
+      ctx.textAlign = 'left';
       ctx.fillText(`x = ${sbState.x.toFixed(2)}m  v = ${sbState.v.toFixed(2)}m/s`, 25, 30);
     }
 
@@ -2550,9 +2703,15 @@
                 </span>
                 <span class="text-xs font-semibold text-slate-300">${q.source}</span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
                 <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
                   ${q.subtabName}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${answerAuditClass(q.answerAudit)}">
+                  ANSWER ${q.answerAudit}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${sourceAuditClass(q.sourceAudit)}">
+                  ${sourceAuditLabel(q.sourceAudit)}
                 </span>
                 <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
                   ${q.simFidelity}
@@ -2567,6 +2726,12 @@
             <!-- Question Stem -->
             <div class="text-sm text-slate-200 leading-relaxed font-sans">
               ${q.q}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono">
+              ${(q.helperTags || []).includes('TRAP_ALERT') ? '<span class="px-2 py-1 rounded border border-amber-500/30 bg-amber-500/10 text-amber-300">⚠ Trap diagnosis</span>' : ''}
+              ${(q.helperTags || []).includes('INDEPENDENT_CHECK') ? '<span class="px-2 py-1 rounded border border-sky-500/30 bg-sky-500/10 text-sky-300">🧑‍🏫 Independent check</span>' : ''}
+              ${(q.helperTags || []).includes('TRANSFER_TAKEAWAY') ? '<span class="px-2 py-1 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">↗ Transfer rule</span>' : ''}
             </div>
 
             <!-- Options Grid -->
@@ -2592,9 +2757,10 @@
               </button>
               <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
                 <div class="text-xs font-mono text-purple-300">
-                  <span class="text-slate-400">Governing Formula:</span> ${q.formula}
+                  <span class="text-slate-400">1 · Governing model:</span> ${q.formula}
                 </div>
                 <div class="space-y-1 text-xs text-slate-300 font-sans">
+                  <div class="text-[10px] font-black uppercase tracking-wider text-slate-500 mb-1">2 · Question-specific derivation</div>
                   ${(q.steps || []).map((step, idx) => `
                     <div class="flex items-start gap-2">
                       <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
@@ -2602,23 +2768,25 @@
                     </div>
                   `).join('')}
                 </div>
-                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
-                  <strong class="text-amber-400 block mb-1">⚠️ Examiner Trap Analysis:</strong>
-                  ${q.trap}
-                </div>
-                <div class="text-xs font-mono text-emerald-400 font-bold">
-                  Final Result: ${q.ans}
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                  <strong class="text-emerald-300 block mb-1">3 · Final Result / Answer Audit</strong>
+                  <span class="font-mono font-bold">${q.ans}</span>
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit}</div>
                 </div>
                 <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
-                  <strong class="text-sky-300 block mb-1">🧑‍🏫 Teacher's Chalkboard · Independent Check</strong>
+                  <strong class="text-sky-300 block mb-1">4 · 🧑‍🏫 Independent Teacher Check</strong>
                   ${q.teacherCheck}
                 </div>
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                  <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis</strong>
+                  ${q.trap}
+                </div>
                 <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
-                  <strong class="text-emerald-300 block mb-1">↗ Transfer Takeaway</strong>
+                  <strong class="text-emerald-300 block mb-1">6 · ↗ Transfer Takeaway / Rule</strong>
                   ${q.takeaway}
                 </div>
                 <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
-                  <strong class="block mb-1">Simulator Fidelity · ${q.simFidelity}</strong>
+                  <strong class="block mb-1">7 · Simulator Fidelity · ${q.simFidelity}</strong>
                   ${q.simFidelityNote}
                   <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
                 </div>
@@ -2672,6 +2840,7 @@
     }
 
     window.addEventListener('load', () => {
+      validateQuestionBank();
       renderQuestions();
       updateDispParams();
       updateBalloonParams();
@@ -2683,14 +2852,10 @@
       switchTab('tab-disp-dist');
     });
 
+    let canvasResizeRaf = 0;
     window.addEventListener('resize', () => {
-      if (currentTab === 'tab-disp-dist') resizeDisp();
-      else if (currentTab === 'tab-balloon') resizeBalloon();
-      else if (currentTab === 'tab-graph-vx') resizeVx();
-      else if (currentTab === 'tab-drops') resizeDrops();
-      else if (currentTab === 'tab-braking') resizeBraking();
-      else if (currentTab === 'tab-relative') resizeRel();
-      else if (currentTab === 'tab-sandbox') resizeSb();
+      cancelAnimationFrame(canvasResizeRaf);
+      canvasResizeRaf = requestAnimationFrame(drawCurrentTab);
     });
   </script>
 </body>
