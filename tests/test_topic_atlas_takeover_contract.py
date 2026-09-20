@@ -82,6 +82,8 @@ class TopicAtlasTakeoverContractTest(unittest.TestCase):
         self.assertNotIn("syncKnowledgeToSkillProgress", source)
         self.assertNotIn("markAllLeaves", source)
         self.assertNotIn("cycleLeafStatus", source)
+        self.assertNotIn("markRungAll", source)
+        self.assertNotIn("toggleLeafDimension", source)
         for page in ATLAS_PAGES:
             html = page.read_text(encoding="utf-8")
             self.assertNotIn("Sync Knowledge with Leaf Progress", html)
