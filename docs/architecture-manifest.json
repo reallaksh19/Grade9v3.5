@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 190,
-  "relation_count": 244,
+  "relation_count": 246,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 48,
     "WEB": 6
   },
-  "digest": "sha256:11ef56b8b627c3a4ba81533013f3aa9bd48d921aa6eaea3cbf9c55aef22eb53e",
+  "digest": "sha256:ec6e804c2da2558fb5a288f62b7429161a8dcb1a9f1236beceece2f33decde6e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -540,8 +540,8 @@
       "path": "Shared/tools/learning_router.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 2277,
-      "sha256": "bcd113d16eada458556875880499f87c4b7959e8b4ed8123bf52bd1bd98c2966"
+      "bytes": 8284,
+      "sha256": "4219886fac9e1184e7a34225341bae172fe50acd455a4f7fdfab8c69ab27bf17"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -701,8 +701,8 @@
       "path": "Shared/tools/worksheet_study_plan.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 23553,
-      "sha256": "af5af8cbfc9e1150e850225a5c79a168b433791dbeeba4c796ca09c7dd3446f9"
+      "bytes": 25099,
+      "sha256": "de4ce0c395962cbe97f1b2e8b95b48dda997aae13cba360102acf4c3e539594e"
     },
     {
       "path": "tests/fixtures/agent_path_stress/cases.json",
@@ -1114,8 +1114,8 @@
       "path": "tests/test_learning_router.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3323,
-      "sha256": "aa39e925dda60b1048ac167f09cc05b2ab6ae50c7bd880c0327c3adc6a8e3023"
+      "bytes": 6813,
+      "sha256": "f1004946e210bcec13333daaf51987bf499e25ab279d808a74d979867f30bfdb"
     },
     {
       "path": "tests/test_library.py",
@@ -1992,6 +1992,11 @@
     },
     {
       "from": "Shared/tools/worksheet_study_plan.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/worksheet_study_plan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -2268,6 +2273,11 @@
     {
       "from": "tests/test_import_sil.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_learning_router.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
