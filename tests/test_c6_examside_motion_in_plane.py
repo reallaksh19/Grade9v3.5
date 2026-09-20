@@ -217,5 +217,62 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
         ))
 
 
+class Motion2DExplorerRegression(unittest.TestCase):
+    """Protect the learner-visible Motion2D question-bank and simulator contract."""
+
+    MOTION_DIR = REPO / "public/physics/motion-in-2d/explorers/motions_in_2d"
+
+    def bank(self):
+        text = (self.MOTION_DIR / "jee_questions_data.js").read_text(encoding="utf-8")
+        return json.loads(text[text.index("["): text.rindex("]") + 1])
+
+    def html(self):
+        return (self.MOTION_DIR / "index.html").read_text(encoding="utf-8")
+
+    def test_question_bank_is_complete_and_has_no_known_placeholder_answers(self):
+        bank = self.bank()
+        self.assertEqual(len(bank), 104)
+        self.assertEqual(len({row["id"] for row in bank}), 104)
+        placeholders = {
+            "Direct application of projectile formulas",
+            "Evaluate from coordinate kinematic equations",
+            "Complementary symmetry verified",
+            "Computed from asymmetric boundary kinematics",
+            "River-boat kinematic decomposition",
+            "Galilean vector subtraction",
+            "Compare with trajectory standard form",
+        }
+        required = {"ans", "formula", "steps", "takeaway", "trap", "teacherCheck", "audit", "simulation"}
+        for row in bank:
+            with self.subTest(question=row["id"]):
+                self.assertTrue(required.issubset(row))
+                self.assertNotIn(row["ans"].strip(), placeholders)
+                self.assertTrue(row["steps"])
+
+    def test_known_motion2d_content_regressions_are_fixed(self):
+        by_id = {row["id"]: row for row in self.bank()}
+        self.assertEqual(by_id["EXAM-04"]["ans"], "x = √3")
+        self.assertEqual(by_id["EXAM-32"]["ans"], "30 ĵ cm/s²")
+        self.assertIn("53.13° North of East", by_id["PDF-12"]["ans"])
+        self.assertIn("tan φ is linear", by_id["PDF-04"]["ans"])
+        self.assertEqual(by_id["EXAM-20"]["audit"]["status"], "source-inconsistent")
+        self.assertEqual(by_id["EXAM-20"]["simulation"]["fidelity"], "unavailable")
+
+    def test_simulator_does_not_fabricate_parameters_or_hide_topic_questions(self):
+        html = self.html()
+        self.assertIn("function openQuestionChalkboard", html)
+        self.assertIn("function validateQuestionBank", html)
+        self.assertIn("Apply only parameters explicitly declared", html)
+        self.assertNotIn("filtered.slice(0, 6)", html)
+        self.assertNotIn("If no explicit numbers were found, assign category-specific custom values", html)
+        self.assertNotIn("d²φ/dt² ≈ 0 · LINEAR STEADY RISE", html)
+
+    def test_static_dom_ids_are_unique(self):
+        html = self.html()
+        ids = [piece.split('"', 1)[0] for piece in html.split('id="')[1:]]
+        duplicates = sorted({item for item in ids if ids.count(item) > 1})
+        self.assertEqual(duplicates, [])
+
+
 if __name__ == "__main__":
     unittest.main()
