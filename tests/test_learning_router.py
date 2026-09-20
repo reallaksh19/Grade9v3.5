@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from Shared.contracts import load
 from Shared.library.resolve import build_index, load_packages
 from Shared.tools import learner_evidence, learning_router, worksheet_study_plan
 
@@ -407,6 +408,87 @@ class LearningRouterTest(unittest.TestCase):
         self.assertNotIn("GRID-A1", rendered)
         self.assertNotIn("'x': 42", rendered)
         self.assertNotIn("arbitrary-renderer-frame", rendered)
+
+    def test_nlm_r3_body_ownership_witness(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        matrix = load(REPO / "Physics/matrices/phy-nlm-first-law.rungs.json")
+        support = {row["level"]: row["handed_over"] for row in matrix["family"]["support_ladder"]}
+        self.assertIn("target body", support["high"].lower())
+        self.assertIn("target body", support["medium"].lower())
+        self.assertIn("physical situation", support["low"].lower())
+
+        uncertain = learning_router.route_decision(
+            {"state": "UNCERTAIN", "independence_proven": False},
+            capability_ref="CAP-NLM-FBD-BODY-OWNERSHIP",
+            microtopic_refs=["MIC-PHY-NLM-FBD-BODY-OWNERSHIP"],
+            records=records,
+            prerequisites_ready=True,
+            repo=REPO,
+        )
+        self.assertEqual(uncertain["routing_posture"], learning_router.REINFORCE)
+        self.assertEqual(uncertain["starting_support"], "medium")
+        self.assertEqual(uncertain["initial_visual"]["visual_stage_ref"], "VIS-NLM-FBD-V1")
+
+        independent = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "independence_proven": True},
+            capability_ref="CAP-NLM-FBD-BODY-OWNERSHIP",
+            microtopic_refs=["MIC-PHY-NLM-FBD-BODY-OWNERSHIP"],
+            records=records,
+            prerequisites_ready=True,
+            repo=REPO,
+        )
+        self.assertEqual(independent["routing_posture"], learning_router.READY)
+        self.assertEqual(independent["starting_support"], "low")
+        self.assertEqual(independent["initial_visual"]["visual_stage_ref"], "VIS-NLM-FBD-V0")
+
+        rep = records["REP-NLM-FBD-BODY-OWNERSHIP"]
+        stages = {row["id"]: row for row in rep["reveal_stages"]}
+        self.assertIn("chosen body", stages["VIS-NLM-FBD-V1"]["visible_elements"])
+        self.assertNotIn("force arrows", stages["VIS-NLM-FBD-V1"]["visible_elements"])
+        self.assertIn("external agents", stages["VIS-NLM-FBD-V2"]["visible_elements"])
+        self.assertNotIn("force arrows", stages["VIS-NLM-FBD-V2"]["visible_elements"])
+
+        transfer = next(
+            row for row in matrix["transfer"]
+            if row["repair_to"] == "R3" and row["dimension"] == "representation_translation"
+        )
+        self.assertIn("which interactions act", transfer["information_not_handed_over"])
+        self.assertFalse(independent["transfer_eligible"])
+        self.assertEqual(independent["exercise_demand"], learning_router.PRACTICE)
+
+    def test_nlm_r8_quantitative_friction_witness(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        matrix = load(REPO / "Physics/matrices/phy-nlm-first-law.rungs.json")
+        support = {row["level"]: row["handed_over"] for row in matrix["family"]["support_ladder"]}
+        self.assertIn("candidate interactions", support["high"].lower())
+        self.assertIn("coordinate directions", support["medium"].lower())
+        self.assertNotIn("candidate interactions", support["medium"].lower())
+        self.assertIn("physical situation", support["low"].lower())
+        self.assertNotIn("coordinate directions", support["low"].lower())
+
+        rep = records["REP-NLM-FRICTION-THRESHOLD"]
+        stages = {row["id"]: row for row in rep["reveal_stages"]}
+        self.assertIn("contact surface", stages["VIS-NLM-FRICTION-V1"]["visible_elements"])
+        self.assertNotIn("normal-force arrow", stages["VIS-NLM-FRICTION-V1"]["visible_elements"])
+        self.assertIn("normal-force arrow", stages["VIS-NLM-FRICTION-V2"]["visible_elements"])
+        self.assertNotIn("contact-state label", stages["VIS-NLM-FRICTION-V2"]["visible_elements"])
+        self.assertIn("contact-state label", stages["VIS-NLM-FRICTION-V3"]["visible_elements"])
+        self.assertIn("friction-demand/limit comparison", stages["VIS-NLM-FRICTION-V3"]["visible_elements"])
+
+        transfer = records["Q-PHY-NLM-2B-FRICTION-STATE-01"]
+        self.assertEqual(transfer["transfer"]["dimension"], "model_choice")
+        matrix_transfer = next(
+            row for row in matrix["transfer"]
+            if row["repair_to"] == "R8" and row["dimension"] == "model_choice"
+        )
+        self.assertIn("whether the contact is static", matrix_transfer["information_not_handed_over"])
+        self.assertTrue(all(hint["reveals"] == "CONCEPT" for hint in transfer["hints"]))
+        self.assertTrue(all("already sliding" not in hint["text"].lower() for hint in transfer["hints"]))
+
 
     def test_routing_does_not_consume_question_hints(self):
         records = build_index(load_packages([

@@ -849,6 +849,58 @@ class StudySessionRunner(unittest.TestCase):
         self.assertEqual(repaired["review"]["next_review"], "2026-09-21")
 
 
+    def test_nlm_r3_persistent_difficulty_routes_to_existing_narrow_repair(self):
+        mapping = {
+            "worksheet_id": "WS-NLM-R3-WITNESS",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+                "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "secondary_capability_refs": ["CAP-VEC-ANGLE-DECOMPOSITION"],
+                "mapping_basis": "CANONICAL_QUESTION",
+                "canonical_question_ref": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+            }],
+        }
+        report = study_session.attempt(
+            mapping,
+            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+            result="INCORRECT",
+            when="2026-09-20",
+            failed_capability_ref="CAP-NLM-FBD-BODY-OWNERSHIP",
+            error_stage="CONCEPT",
+            attempt_number=3,
+            shown_hint_indices=[0, 1],
+            attempted_question_refs=["Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05"],
+            response_summary="Counted weight and its components as separate forces.",
+        )
+        self.assertTrue(report["passed"], report.get("findings"))
+        self.assertEqual(report["next_action"], "REPAIR")
+        self.assertEqual(report["repair"]["repair_ref"], "NLM3-4")
+        self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
+
+    def test_nlm_r8_helped_success_stays_uncertain_and_requires_fresh_verification(self):
+        mapping = self.nlm_friction_mapping()
+        report = study_session.attempt(
+            mapping,
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            result="CORRECT",
+            when="2026-09-20",
+            error_stage="UNKNOWN",
+            help_used="HINT",
+            attempted_question_refs=["Q-PHY-NLM-2A-FRICTION-STATIC-09"],
+            response_summary="Solved after a concept hint.",
+        )
+        self.assertTrue(report["passed"], report.get("findings"))
+        self.assertEqual(report["observation_draft"]["result"], "UNCERTAIN")
+        self.assertEqual(report["observation_draft"]["help"], "HINT")
+        self.assertEqual(report["next_action"], "VERIFY")
+        self.assertIsNotNone(report["verification"])
+        self.assertNotEqual(
+            report["verification"].get("question_ref"),
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+        )
+
+
     def test_question_not_in_supplied_worksheet_is_refused(self):
         report = study_session.attempt(
             self.mapping(),
