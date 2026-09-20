@@ -460,8 +460,7 @@ def readable(report: dict) -> str:
     if report.get("findings"):
         out += ["## Refused", ""]
         out += [f'  {f["point"]:46} {f["where"]}' for f in report["findings"]] + [""]
-    return "
-".join(out)
+    return "\n".join(out)
 
 
 def briefs(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> str:
@@ -497,8 +496,7 @@ def briefs(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> 
             out += author_brief.required_content(core["core"])
             out += ["## Green before done", ""]
             out += [f'  {g}' for g in author_brief.gates()] + ["", "-" * 78, ""]
-    return "
-".join(x if isinstance(x, str) else str(x) for x in out)
+    return "\n".join(x if isinstance(x, str) else str(x) for x in out)
 
 
 def main() -> int:
