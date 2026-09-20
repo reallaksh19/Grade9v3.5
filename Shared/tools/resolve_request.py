@@ -41,7 +41,8 @@ if __package__ in (None, ""):
 from Shared.contracts import load  # noqa: E402
 from Shared.library.practice_inventory import questions_for_core  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
-from Shared.tools import (atlas_need, capability_graph, core_focus, focus_inventory,\n                          learner_evidence)  # noqa: E402
+from Shared.tools import (atlas_need, capability_graph, core_focus, focus_inventory,
+                          learner_evidence)  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/request.schema.json"
@@ -459,7 +460,8 @@ def readable(report: dict) -> str:
     if report.get("findings"):
         out += ["## Refused", ""]
         out += [f'  {f["point"]:46} {f["where"]}' for f in report["findings"]] + [""]
-    return "\n".join(out)
+    return "
+".join(out)
 
 
 def briefs(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> str:
@@ -495,7 +497,8 @@ def briefs(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> 
             out += author_brief.required_content(core["core"])
             out += ["## Green before done", ""]
             out += [f'  {g}' for g in author_brief.gates()] + ["", "-" * 78, ""]
-    return "\n".join(x if isinstance(x, str) else str(x) for x in out)
+    return "
+".join(x if isinstance(x, str) else str(x) for x in out)
 
 
 def main() -> int:
