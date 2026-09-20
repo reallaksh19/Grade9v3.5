@@ -296,6 +296,118 @@ class LearningRouterTest(unittest.TestCase):
         self.assertFalse(routed["transfer_eligible"])
         self.assertEqual(routed["exercise_demand"], learning_router.PRACTICE)
 
+    def test_presentation_keeps_visual_checkpoint_and_injections_independent(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        routed = learning_router.route_decision(
+            {"state": "MISSING", "error_stage": "CONCEPT"},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=False,
+            repo=REPO,
+        )
+        presentation = routed["presentation"]
+        self.assertEqual(presentation["representation_ref"], "REP-NLM-FRICTION-THRESHOLD")
+        self.assertEqual(presentation["visual_stage_ref"], "VIS-NLM-FRICTION-V2")
+        self.assertIsNone(presentation["scene_ref"])
+        self.assertIsNone(presentation["initial_scene_step"])
+        self.assertEqual(
+            presentation["checkpoint_ref"],
+            "MIC-PHY-NLM-FRICTION-QUANT#exit_task",
+        )
+        self.assertIn("Static contact is possible", records["MIC-PHY-NLM-FRICTION-QUANT"]["exit_task"]["answer"]["summary"])
+        self.assertTrue(presentation["checkpoint_prompt"])
+        self.assertEqual(
+            presentation["pedagogy_injection_refs"],
+            ["NLM8-1", "NLM8-2", "NLM8-3", "NLM8-4"],
+        )
+        self.assertTrue(presentation["static_fallback"])
+        self.assertFalse(presentation["interaction_policy"]["events_are_evidence"])
+        self.assertTrue(presentation["interaction_policy"]["direct_attempt_required_for_evidence"])
+        self.assertFalse(
+            presentation["interaction_policy"]["guided_reconstruction_is_independent_evidence"]
+        )
+        self.assertNotIn("scene", presentation.get("checkpoint_prompt", "").lower())
+
+    def test_checkpoint_can_exist_without_visual_and_visual_without_checkpoint(self):
+        checkpoint_records = {
+            "MIC-X": {
+                "_collection": "microtopics",
+                "id": "MIC-X",
+                "representation_refs": [],
+                "exit_task": {"prompt": "Explain the invariant in words."},
+            }
+        }
+        visual = learning_router.visual_decision(checkpoint_records, ["MIC-X"], "medium")
+        checkpoint_only = learning_router.presentation_decision(
+            checkpoint_records, ["MIC-X"], visual, learning_router.REINFORCE
+        )
+        self.assertIsNone(checkpoint_only["representation_ref"])
+        self.assertEqual(checkpoint_only["checkpoint_ref"], "MIC-X#exit_task")
+        self.assertEqual(checkpoint_only["checkpoint_prompt"], "Explain the invariant in words.")
+
+        visual_records = {
+            "MIC-Y": {
+                "_collection": "microtopics",
+                "id": "MIC-Y",
+                "representation_refs": ["REP-Y"],
+            },
+            "REP-Y": {
+                "_collection": "representations",
+                "id": "REP-Y",
+                "scene_instances": [],
+                "interactive_resource_refs": [],
+                "support_stage_map": [
+                    {"support_level": "medium", "visual_stage_ref": "VIS-Y-1"}
+                ],
+            },
+        }
+        visual = learning_router.visual_decision(visual_records, ["MIC-Y"], "medium")
+        visual_only = learning_router.presentation_decision(
+            visual_records, ["MIC-Y"], visual, learning_router.REINFORCE
+        )
+        self.assertEqual(visual_only["representation_ref"], "REP-Y")
+        self.assertEqual(visual_only["visual_stage_ref"], "VIS-Y-1")
+        self.assertIsNone(visual_only["checkpoint_ref"])
+        self.assertIsNone(visual_only["checkpoint_prompt"])
+
+    def test_scene_selection_uses_only_canonical_scene_ids_and_never_geometry(self):
+        records = {
+            "MIC-S": {
+                "_collection": "microtopics",
+                "id": "MIC-S",
+                "representation_refs": ["REP-S"],
+            },
+            "REP-S": {
+                "_collection": "representations",
+                "id": "REP-S",
+                "support_stage_map": [],
+                "interactive_resource_refs": [],
+                "scene_instances": [{
+                    "id": "SCENE-S-1",
+                    "microtopic_ref": "MIC-S",
+                    "scene": {
+                        "kind": "SYNTHETIC",
+                        "frame": "arbitrary-renderer-frame",
+                        "caption": "Renderer-owned geometry stays behind the ref.",
+                        "x": 42,
+                        "cell_id": "GRID-A1",
+                    },
+                }],
+            },
+        }
+        visual = learning_router.visual_decision(records, ["MIC-S"], None)
+        presentation = learning_router.presentation_decision(
+            records, ["MIC-S"], visual, learning_router.READY
+        )
+        self.assertEqual(presentation["scene_ref"], "SCENE-S-1")
+        rendered = str(presentation)
+        self.assertNotIn("GRID-A1", rendered)
+        self.assertNotIn("'x': 42", rendered)
+        self.assertNotIn("arbitrary-renderer-frame", rendered)
+
     def test_routing_does_not_consume_question_hints(self):
         records = build_index(load_packages([
             REPO / "Physics/library/phy-nlm-first-law.v1.json"

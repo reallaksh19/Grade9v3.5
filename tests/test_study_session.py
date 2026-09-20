@@ -771,6 +771,13 @@ class StudySessionRunner(unittest.TestCase):
             "VIS-NLM-FBD-V0",
         )
         self.assertEqual(step["routing_persistence"], "NOT_WRITTEN")
+        self.assertEqual(
+            step["presentation"]["checkpoint_ref"],
+            "MIC-PHY-NLM-FBD-BODY-OWNERSHIP#exit_task",
+        )
+        self.assertTrue(step["presentation"]["checkpoint_prompt"])
+        self.assertTrue(step["presentation"]["static_fallback"])
+        self.assertFalse(step["presentation"]["interaction_policy"]["events_are_evidence"])
 
     def test_starting_visual_does_not_consume_hint_ladder_and_repair_rejoins_verification(self):
         mapping = self.nlm_friction_mapping()
@@ -783,6 +790,11 @@ class StudySessionRunner(unittest.TestCase):
             friction["initial_visual"]["visual_stage_ref"],
             "VIS-NLM-FRICTION-V1",
         )
+        self.assertEqual(
+            friction["presentation"]["checkpoint_ref"],
+            "MIC-PHY-NLM-FRICTION-QUANT#exit_task",
+        )
+        self.assertEqual(friction["presentation"]["pedagogy_injection_refs"], [])
 
         first = study_session.attempt(
             mapping,

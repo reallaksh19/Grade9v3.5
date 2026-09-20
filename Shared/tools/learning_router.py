@@ -370,6 +370,80 @@ def visual_decision(records: dict, microtopic_refs: list[str], support: str | No
     }
 
 
+def presentation_decision(
+    records: dict,
+    microtopic_refs: list[str],
+    visual: dict,
+    posture: str,
+) -> dict:
+    """Project canonical presentation refs without owning renderer or academic truth."""
+    finding = None
+    representation_ref = visual.get("representation_ref")
+    representation = records.get(representation_ref, {}) if representation_ref else {}
+
+    scene_refs = []
+    for scene in representation.get("scene_instances", []) or []:
+        if scene.get("microtopic_ref") in microtopic_refs and scene.get("id"):
+            scene_refs.append(scene["id"])
+    scene_ref = None
+    if len(scene_refs) == 1:
+        scene_ref = scene_refs[0]
+    elif len(scene_refs) > 1:
+        finding = {
+            "point": "LEARNING_ROUTER_SCENE_AMBIGUOUS",
+            "detail": "more than one canonical scene matches the active microtopic; no scene is guessed",
+            "candidates": scene_refs,
+        }
+
+    checkpoint_rows = []
+    injection_refs = []
+    for microtopic_ref in microtopic_refs:
+        microtopic = records.get(microtopic_ref, {})
+        exit_task = microtopic.get("exit_task") or {}
+        prompt = exit_task.get("prompt")
+        if prompt:
+            checkpoint_rows.append({
+                "checkpoint_ref": f"{microtopic_ref}#exit_task",
+                "checkpoint_prompt": prompt,
+            })
+        for row in ((microtopic.get("elicitation") or {}).get("reconstruct") or {}).get("route", []) or []:
+            step_ref = row.get("from_step_ref")
+            if step_ref and step_ref not in injection_refs:
+                injection_refs.append(step_ref)
+
+    checkpoint_ref = None
+    checkpoint_prompt = None
+    if len(checkpoint_rows) == 1:
+        checkpoint_ref = checkpoint_rows[0]["checkpoint_ref"]
+        checkpoint_prompt = checkpoint_rows[0]["checkpoint_prompt"]
+    elif len(checkpoint_rows) > 1 and finding is None:
+        finding = {
+            "point": "LEARNING_ROUTER_CHECKPOINT_AMBIGUOUS",
+            "detail": "more than one canonical exit checkpoint matches the active route; no checkpoint is guessed",
+            "candidates": [row["checkpoint_ref"] for row in checkpoint_rows],
+        }
+
+    explorers = list(visual.get("interactive_resource_refs") or [])
+    return {
+        "representation_ref": representation_ref,
+        "visual_stage_ref": visual.get("visual_stage_ref"),
+        "scene_ref": scene_ref,
+        "initial_scene_step": None,
+        "checkpoint_ref": checkpoint_ref,
+        "checkpoint_prompt": checkpoint_prompt,
+        "pedagogy_injection_refs": injection_refs if posture == REBUILD else [],
+        "interaction_policy": {
+            "resource_refs": explorers,
+            "mode": "OPTIONAL" if explorers else "NONE",
+            "events_are_evidence": False,
+            "direct_attempt_required_for_evidence": True,
+            "guided_reconstruction_is_independent_evidence": False,
+        },
+        "static_fallback": True,
+        "finding": finding,
+    }
+
+
 def exercise_decision(
     posture: str,
     capability_ref: str,
@@ -486,6 +560,12 @@ def route_decision(
     family_context = family_support_context(microtopic_refs, repo)
     support = resolve_support(routed["requested_support"], family_context)
     visual = visual_decision(records, microtopic_refs, support["starting_support"])
+    presentation = presentation_decision(
+        records,
+        microtopic_refs,
+        visual,
+        routed["routing_posture"],
+    )
     exercise = exercise_decision(
         routed["routing_posture"],
         capability_ref,
@@ -501,6 +581,8 @@ def route_decision(
         findings.append(support["finding"])
     if visual.get("finding"):
         findings.append(visual["finding"])
+    if presentation.get("finding"):
+        findings.append(presentation["finding"])
     if exercise.get("finding"):
         findings.append(exercise["finding"])
     return {
@@ -513,6 +595,17 @@ def route_decision(
             "representation_ref": visual.get("representation_ref"),
             "visual_stage_ref": visual.get("visual_stage_ref"),
             "interactive_resource_refs": explorers,
+        },
+        "presentation": {
+            "representation_ref": presentation.get("representation_ref"),
+            "visual_stage_ref": presentation.get("visual_stage_ref"),
+            "scene_ref": presentation.get("scene_ref"),
+            "initial_scene_step": presentation.get("initial_scene_step"),
+            "checkpoint_ref": presentation.get("checkpoint_ref"),
+            "checkpoint_prompt": presentation.get("checkpoint_prompt"),
+            "pedagogy_injection_refs": presentation.get("pedagogy_injection_refs", []),
+            "interaction_policy": presentation.get("interaction_policy"),
+            "static_fallback": presentation.get("static_fallback", True),
         },
         "recommended_explorer_ref": (
             explorers[0]
