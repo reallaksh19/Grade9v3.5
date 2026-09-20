@@ -41,7 +41,22 @@
     "id": null,
     "path": null
   },
-  "takeover_admissions": [],
+  "takeover_admissions": [
+    {
+      "route_key": "SERIAL:EP-TA-003",
+      "candidate": {
+        "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+      },
+      "discovery_receipt": {
+        "id": "DISC-TA-004",
+        "path": "agents/relay/certifications/discovery/DISC-TA-004.yaml"
+      },
+      "certification": {
+        "id": "TC-TA-004",
+        "path": "agents/relay/certifications/takeover/TC-TA-004.yaml"
+      }
+    }
+  ],
   "progress": {
     "overall_percent": 45,
     "phase_percent": 45,
@@ -53,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the RM-0006 reconciliation on the exact PR head, obtain fresh candidate discovery/takeover certification for EP-TA-003 on the current route basis, then publish the formal quality review/checkpoint and advance to Grade-9 Physics scope closure."
+      "next_action": "Validate the RM-0006 reconciliation and fresh DISC-TA-004/TC-TA-004 admission on the exact PR head, then publish the formal EP-TA-003 quality review/checkpoint and advance to Grade-9 Physics scope closure."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -105,7 +120,7 @@
     "handover_ready": true,
     "reasons": [
       "The RM-0006 baton is repository-reconstructable and projection is not required.",
-      "No candidate is currently admitted after the RM-0006 revision; a future executing candidate must obtain fresh DISC/TC on the current route basis.",
+      "Fresh repository-only DISC-TA-004 / TC-TA-004 records bind the current logical candidate to RM-0006 without reusing the stale RM-0005 admission.",
       "Exact-head validation and the formal EP-TA-003 quality review remain evidence/quality work, not baton-readiness blockers."
     ]
   },
