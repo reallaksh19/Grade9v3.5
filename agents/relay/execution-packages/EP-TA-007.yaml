@@ -1,0 +1,1175 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-007",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "201d939a354b0736ee7580c2c4b8b3fa0f765d94",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-005",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+    "base_branch": "main",
+    "base_observed_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": "agents/relay/drift/DRIFT-TA-007.yaml"
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0007",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-104",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "NLM body-ownership and friction become visually teachable through canonical representations that can be reused by static figures, interactive explorers and staged hints.",
+      "The prior 25-question expansion is removed; three existing NLM questions serve as smoke fixtures, so question quantity no longer masquerades as learner-loop completeness."
+    ],
+    "engineering": [
+      "Add only the minimal representation/hint schema fields required for interactive-resource binding, authored reveal stages, support-to-stage mapping and hint-to-stage references.",
+      "Populate NLM R3/R8 representation content and validate cross-references while keeping the FREE_BODY_DIAGRAM renderer status honest."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Make visual Physics support a first-class reusable academic layer before building evidence-driven routing.",
+    "roadmap_position": "WP-TA-104 — canonical representations and staged visual help",
+    "why_this_work_exists": "Owner corrected the previous question-inventory interpretation. NLM already has rungs, support ladders, questions and three interactive activities, but representations are empty, microtopic representation_refs are empty, hints cannot name visual stages, and explorers are not explicitly tied to canonical representations.",
+    "current_architecture": "The package schema already owns representation meaning, scene instances and microtopic representation refs. Resources already model ACTIVITY explorers and questions already own ordered text hints. FREE_BODY_DIAGRAM is declared PROPOSED, so a representation may be authored without falsely claiming a static renderer exists.",
+    "prior_owner_decisions": [
+      "Questions exercise a capability; question count is not a completion denominator.",
+      "Interactive webpage, canonical representation, hint and exercise remain separate objects.",
+      "Starting support and failure escalation are separate mechanisms.",
+      "Use a small schema extension rather than another large visual architecture."
+    ],
+    "current_implementation_state": "NLM has three ACTIVITY explorers with capability bindings but zero representation records. R3 and R8 representation_refs are empty. question.hints supports only text + CONCEPT/METHOD/ANSWER. EP-TA-006 added 25 questions under a now-invalidated closure assumption.",
+    "known_problems": [
+      "No canonical NLM free-body/friction representation defines required visual elements or explorer binding.",
+      "No authorable reveal stages or support-level-to-initial-stage mapping exists.",
+      "No question hint can reference a canonical visual stage.",
+      "The 25-question EP-TA-006 expansion should be removed rather than retained as artificial coverage."
+    ],
+    "deliberate_non_goals": [
+      "Do not implement the evidence-to-support router in this EP; WP-TA-107 owns that behavior.",
+      "Do not mark FREE_BODY_DIAGRAM IMPLEMENTED unless a renderer is actually built and validated.",
+      "Do not create another visual schema or duplicate academic truth inside HTML.",
+      "Do not add new questions for coverage; use three existing NLM questions as smoke fixtures."
+    ],
+    "terminology": {
+      "canonical representation": "Academic visual meaning: required elements, correspondences, constraints and reusable stages.",
+      "interactive explorer": "An ACTIVITY resource implementing/manipulating a canonical representation.",
+      "starting support": "What is visible before the attempt, governed by matrix.family.support_ladder.",
+      "hint depth": "What is revealed after difficulty, governed by ordered question.hints and optional visual-stage refs."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA7-001",
+      "action": "INSPECT",
+      "targets": [
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Physics/matrices/phy-nlm-first-law.rungs.json"
+      ],
+      "question": "What NLM visual/support/explorer structures already exist and where are the representation gaps?",
+      "expected_outputs": [
+        "NLM representation inventory",
+        "R3/R8 representation bindings",
+        "NLM ACTIVITY explorer bindings",
+        "support ladder"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop rather than invent a parallel visual model."
+    },
+    {
+      "id": "DSTEP-TA7-002",
+      "action": "INSPECT",
+      "targets": [
+        "Shared/library/package.schema.json",
+        "Shared/library/resolve.py",
+        "Shared/library/depiction.py"
+      ],
+      "question": "What can the current representation/scene/reference system already express and what is the smallest missing schema surface?",
+      "expected_outputs": [
+        "existing representation contract",
+        "existing scene binding contract",
+        "missing reveal-stage fields",
+        "missing hint visual refs"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not change schema without a concrete unrepresentable need."
+    },
+    {
+      "id": "DSTEP-TA7-003",
+      "action": "VERIFY",
+      "targets": [
+        "EP-TA-006 question additions",
+        "three existing NLM smoke questions"
+      ],
+      "question": "Which question additions belong only to the invalidated count-based closure assumption and which existing questions can exercise staged visual hints?",
+      "expected_outputs": [
+        "removable EP-TA-006 question set",
+        "three existing smoke fixtures",
+        "no required question-count denominator"
+      ],
+      "receipt_required": true,
+      "on_failure": "Keep any uncertain question untouched until provenance/ownership is clear."
+    },
+    {
+      "id": "DSTEP-TA7-004",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the branch/base/material basis still satisfy EP-TA-007 before schema/content writes?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile Git drift before writes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA7-001",
+      "name": "Owner visual-learning architecture",
+      "description": "Owner-directed separation of rung/capability, representation, explorer, support, hints, exercise demand, evidence and router.",
+      "authority": "OWNER",
+      "source": "ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE",
+      "resolution_method": "Implement only the WP-TA-104 representation/staged-hint portion; defer routing to WP-TA-107.",
+      "type": "owner architecture",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA7-001",
+        "STEP-TA7-002",
+        "STEP-TA7-003",
+        "AC-TA7-001",
+        "AC-TA7-002",
+        "AC-TA7-003"
+      ],
+      "validation": [
+        "RM-0007 applies the Owner intent mutation."
+      ],
+      "stale_if": [
+        "Owner changes the representation/router architecture."
+      ]
+    },
+    {
+      "id": "INPUT-TA7-002",
+      "name": "Existing representation contract",
+      "description": "Current representation, scene_instance, resource and microtopic reference schema.",
+      "authority": "SHARED_SCHEMA",
+      "source": "Shared/library/package.schema.json; Shared/library/resolve.py; Shared/library/depiction.py",
+      "resolution_method": "Extend only optional fields that current schema cannot express.",
+      "type": "schema contract",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA7-001",
+        "AC-TA7-001",
+        "AC-TA7-004"
+      ],
+      "validation": [
+        "representation already owns academic visual meaning and scene instances; generic resolver supports *_ref/*_refs including nested ids."
+      ],
+      "stale_if": [
+        "Package schema or reference resolver changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA7-003",
+      "name": "NLM canonical content and explorers",
+      "description": "R3/R8 microtopics plus existing connected-block and friction ACTIVITY resources.",
+      "authority": "CANONICAL_PHYSICS",
+      "source": "Physics/library/phy-nlm-first-law.v1.json",
+      "resolution_method": "Author representation records and bindings without changing the underlying Physics claims.",
+      "type": "academic content",
+      "units": "2 pilot representations / 2 existing explorer resources",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "OWNER_EDITABLE_READY",
+      "consumers": [
+        "STEP-TA7-002",
+        "STEP-TA7-003",
+        "AC-TA7-002",
+        "AC-TA7-003"
+      ],
+      "validation": [
+        "R3/R8 currently have empty representation_refs; ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW and ACT-NLM-FRICTION-THRESHOLD already support the relevant capabilities."
+      ],
+      "stale_if": [
+        "NLM library changes before write."
+      ]
+    },
+    {
+      "id": "INPUT-TA7-004",
+      "name": "Three existing smoke questions",
+      "description": "Existing canonical NLM questions used only to prove visual-hint linkage across practice and transfer.",
+      "authority": "CANONICAL_PHYSICS",
+      "source": "Q-PHY-NLM-2A-COV-03; Q-PHY-NLM-2A-FRICTION-STATIC-09; Q-PHY-NLM-2B-FRICTION-STATE-01",
+      "resolution_method": "Add optional visual refs to existing hints; do not author new questions.",
+      "type": "test fixtures",
+      "units": "3 questions",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA7-003",
+        "AC-TA7-003",
+        "AC-TA7-004"
+      ],
+      "validation": [
+        "All three already exist in the NLM package and exercise R3/R8 practice/transfer behavior."
+      ],
+      "stale_if": [
+        "Any fixture question is retired or materially changed."
+      ]
+    },
+    {
+      "id": "INPUT-TA7-005",
+      "name": "Invalidated EP-TA-006 additions",
+      "description": "Questions tagged grade9v3:closure_ep=EP-TA-006 plus count-based focused test/derived audit assumptions.",
+      "authority": "OWNER_CORRECTION",
+      "source": "ODR-0004; branch material after EP-TA-006",
+      "resolution_method": "Remove only records identifiable as EP-TA-006 closure additions and clean family refs/generated derivatives.",
+      "type": "rollback set",
+      "units": "25 authored questions",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA7-001",
+        "AC-TA7-001"
+      ],
+      "validation": [
+        "Records are explicitly tagged with the invalidated EP identifier."
+      ],
+      "stale_if": [
+        "Those tags or records change before cleanup."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA7-001",
+      "name": "Separation of visual concerns",
+      "purpose": "Prevent canonical representation, explorer and hint from collapsing into one object.",
+      "source": "ODR-0004",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": {
+        "representation": "academic visual truth",
+        "explorer": "ACTIVITY implementation",
+        "hint": "ordered post-failure reveal pointer",
+        "support": "pre-attempt visibility"
+      },
+      "expected": "NLM pilot has distinct records/refs for each concern; no HTML becomes academic authority.",
+      "tolerance": null,
+      "independence": "Owner architecture is independent of the implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA7-001",
+        "AC-TA7-002",
+        "TEST-TA7-001"
+      ],
+      "stale_if": [
+        "ODR-0004 is superseded or the separation of representation, explorer, support and hint responsibilities changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA7-002",
+      "name": "Minimal schema extension",
+      "purpose": "Prevent a parallel visual subsystem.",
+      "source": "Current package schema",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "representation interactive_resource_refs",
+        "representation reveal_stages",
+        "representation support_stage_map",
+        "question hint visual_ref",
+        "question hint visual_stage_ref"
+      ],
+      "expected": "Only these optional fields plus minimal validation are added; existing scene/representation/question semantics remain compatible.",
+      "tolerance": null,
+      "independence": "The missing fields are derived from an explicit source-level gap against existing schema.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA7-001",
+        "TEST-TA7-001",
+        "TEST-TA7-002"
+      ],
+      "stale_if": [
+        "Shared/library/package.schema.json changes the representation/question visual-support contract before implementation."
+      ]
+    },
+    {
+      "id": "BENCH-TA7-003",
+      "name": "Three-question smoke boundary",
+      "purpose": "Prevent renewed question-count expansion.",
+      "source": "ODR-0004",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": [
+        "Q-PHY-NLM-2A-COV-03",
+        "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+        "Q-PHY-NLM-2B-FRICTION-STATE-01"
+      ],
+      "expected": "These three existing questions demonstrate visual-hint references; no EP-TA-006 closure question remains required or retained for coverage.",
+      "tolerance": null,
+      "independence": "The fixtures predate the owner correction and are already canonical.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA7-003",
+        "TEST-TA7-003"
+      ],
+      "stale_if": [
+        "Any of the three named NLM smoke questions is retired or materially changes its capability/exposure ownership."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Shared/library/package.schema.json",
+        "reason": "Minimal optional visual-stage/explorer/hint fields."
+      },
+      {
+        "path": "Shared/library/resolve.py",
+        "reason": "Only if needed for type/ownership validation; generic ref resolution is otherwise reused."
+      },
+      {
+        "path": "Shared/library/visual_support.py",
+        "reason": "Small subject-neutral validator for visual-stage/ref integrity."
+      },
+      {
+        "path": "Physics/library/phy-nlm-first-law.v1.json",
+        "reason": "Author two canonical NLM representations, bindings and three smoke visual hints."
+      },
+      {
+        "path": "Physics/library/phy-grav-universal-law.v1.json",
+        "reason": "Remove only EP-TA-006-tagged over-authored questions."
+      },
+      {
+        "path": "Physics/library/phy-work-energy-power.v1.json",
+        "reason": "Remove only EP-TA-006-tagged over-authored questions."
+      },
+      {
+        "path": "Physics/library/phy-sound.v1.json",
+        "reason": "Remove only EP-TA-006-tagged over-authored questions."
+      },
+      {
+        "path": "Physics/library/phy-simple-machines.v1.json",
+        "reason": "Remove only EP-TA-006-tagged over-authored questions."
+      },
+      {
+        "path": "tests/test_grade9_physics_learner_loop.py",
+        "reason": "Replace count-based closure assertions with three-question visual architecture smoke tests."
+      },
+      {
+        "path": "tests/test_library.py",
+        "reason": "Schema/reference validation tests for optional visual fields."
+      },
+      {
+        "path": "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "reason": "Rewrite derived audit around architecture rather than question counts."
+      },
+      {
+        "path": "docs/grade9/grade9-physics-learner-loop.json",
+        "reason": "Rewrite machine-derived audit around representation/routing gaps."
+      },
+      {
+        "path": "tools/data.js",
+        "reason": "Mechanical regeneration after canonical content changes."
+      },
+      {
+        "path": "public/data/data.js",
+        "reason": "Mechanical regeneration after canonical content changes."
+      },
+      {
+        "path": "docs/architecture-manifest.json",
+        "reason": "Mechanical regeneration after schema/test/tool changes."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "Owner-change, execution, quality and checkpoint state."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Physics/matrices/phy-nlm-first-law.rungs.json",
+        "reason": "Read support ladder and controlled-variation authority."
+      },
+      {
+        "path": "Physics/adapter/CoreContracts.json",
+        "reason": "Keep FREE_BODY_DIAGRAM renderer status honest."
+      },
+      {
+        "path": "Shared/roles/",
+        "reason": "Preserve Core visual/question semantics."
+      },
+      {
+        "path": "public/physics/nlm/explorers/",
+        "reason": "Read existing explorer implementations; no UI rewrite in this EP."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Question count is not a Grade-9 completion denominator.",
+        "reason": "Owner explicitly corrected this failure mode."
+      },
+      {
+        "invariant": "Starting support and hint depth stay separate.",
+        "reason": "They answer different learner-time questions."
+      },
+      {
+        "invariant": "Canonical representation remains academic truth; explorer/HTML is an implementation.",
+        "reason": "Prevents UI from becoming curriculum authority."
+      },
+      {
+        "invariant": "FREE_BODY_DIAGRAM stays PROPOSED unless a renderer is separately implemented and validated.",
+        "reason": "Representation authoring must not fabricate renderer capability."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Evidence-to-support runtime router",
+        "reason": "WP-TA-107 owns the routing layer after this representation foundation."
+      },
+      {
+        "domain": "New question inventory for coverage",
+        "reason": "Use three existing smoke questions only."
+      },
+      {
+        "domain": "New mastery/learner-state schema",
+        "reason": "Not needed for visual representation work."
+      },
+      {
+        "domain": "Grade-10/11 content",
+        "reason": "Current work remains Grade-9 learner-loop foundation."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA7-001",
+        "restriction": "Do not keep the 25 EP-TA-006 questions merely because they have already been authored.",
+        "reason": "Owner explicitly invalidated the count-based requirement."
+      },
+      {
+        "id": "ADR-TA7-002",
+        "restriction": "Do not encode V0-V4 as a global compulsory ladder.",
+        "reason": "Reveal stages are authorable per representation."
+      },
+      {
+        "id": "ADR-TA7-003",
+        "restriction": "Do not merge support level with hint position.",
+        "reason": "One is pre-attempt context; the other is post-failure escalation."
+      },
+      {
+        "id": "ADR-TA7-004",
+        "restriction": "Do not mark FREE_BODY_DIAGRAM implemented to make the pilot look complete.",
+        "reason": "The static renderer is still not implemented."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA7-001",
+        "condition": "NLM package/matrix or package schema changes before write.",
+        "effect": "RECONCILE",
+        "rationale": "Representation and hint bindings must use current ids/contracts."
+      },
+      {
+        "id": "STALE-TA7-002",
+        "condition": "Owner changes the representation/router separation.",
+        "effect": "OWNER_REVIEW",
+        "rationale": "The current roadmap split derives directly from the Owner architecture."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA7-001",
+      "objective": "Remove the invalidated 25-question closure expansion and replace its count test/audit assumption with three existing NLM smoke fixtures.",
+      "targets": [
+        "four EP-TA-006-affected libraries",
+        "focused learner-loop test",
+        "derived audit"
+      ],
+      "reads": [
+        "ODR-0004",
+        "EP-TA-006-tagged records"
+      ],
+      "writes": [
+        "four affected libraries",
+        "tests/test_grade9_physics_learner_loop.py",
+        "derived audit"
+      ],
+      "inputs": [
+        "INPUT-TA7-001",
+        "INPUT-TA7-004",
+        "INPUT-TA7-005"
+      ],
+      "acceptance": [
+        "AC-TA7-001",
+        "AC-TA7-003"
+      ],
+      "tests": [
+        "TEST-TA7-003",
+        "TEST-TA7-004"
+      ],
+      "expected_state": "No EP-TA-006 closure question remains; three pre-existing NLM questions are the only smoke fixtures.",
+      "stop_conditions": [
+        "Stop if any tagged question has independent source/owner authority unrelated to EP-TA-006."
+      ]
+    },
+    {
+      "id": "STEP-TA7-002",
+      "objective": "Add the minimal reusable visual-support schema fields and integrity validation.",
+      "targets": [
+        "package schema",
+        "visual-support validator/tests"
+      ],
+      "reads": [
+        "current representation/question/resource contracts"
+      ],
+      "writes": [
+        "Shared/library/package.schema.json",
+        "Shared/library/visual_support.py",
+        "tests/test_library.py"
+      ],
+      "inputs": [
+        "INPUT-TA7-001",
+        "INPUT-TA7-002"
+      ],
+      "acceptance": [
+        "AC-TA7-001",
+        "AC-TA7-004"
+      ],
+      "tests": [
+        "TEST-TA7-001",
+        "TEST-TA7-002"
+      ],
+      "expected_state": "Existing packages remain valid; optional staged visuals and explorer/hint refs become expressible and checkable.",
+      "stop_conditions": [
+        "Stop if the change requires a second representation or question schema."
+      ]
+    },
+    {
+      "id": "STEP-TA7-003",
+      "objective": "Author and bind canonical NLM R3/R8 representations, explorer refs, support-stage maps and visual hints on the three smoke questions.",
+      "targets": [
+        "NLM library"
+      ],
+      "reads": [
+        "NLM support ladder",
+        "existing NLM ACTIVITY resources",
+        "R3/R8 microtopics"
+      ],
+      "writes": [
+        "Physics/library/phy-nlm-first-law.v1.json"
+      ],
+      "inputs": [
+        "INPUT-TA7-003",
+        "INPUT-TA7-004"
+      ],
+      "acceptance": [
+        "AC-TA7-002",
+        "AC-TA7-003"
+      ],
+      "tests": [
+        "TEST-TA7-001",
+        "TEST-TA7-003"
+      ],
+      "expected_state": "R3/R8 visual academic truth is canonical and reusable; explorer and hint bindings reference it rather than duplicating it.",
+      "stop_conditions": [
+        "Stop if a visual stage would assert a Physics element not already supported by the microtopic/relation content."
+      ]
+    },
+    {
+      "id": "STEP-TA7-004",
+      "objective": "Regenerate derived artifacts and run focused plus full repository/V2.5 validation.",
+      "targets": [
+        "generated data",
+        "manifest",
+        "guardrails",
+        "relay"
+      ],
+      "reads": [
+        "all EP-TA-007 outputs"
+      ],
+      "writes": [
+        "generated artifacts",
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA7-002",
+        "INPUT-TA7-003"
+      ],
+      "acceptance": [
+        "AC-TA7-004"
+      ],
+      "tests": [
+        "TEST-TA7-001",
+        "TEST-TA7-002",
+        "TEST-TA7-003",
+        "TEST-TA7-004"
+      ],
+      "expected_state": "Representation foundation is green and WP-TA-104 can checkpoint before router work starts.",
+      "stop_conditions": [
+        "Stop on schema/reference/depiction/regression failure."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Remove the invalidated EP-TA-006 question expansion and rebase the focused learner-loop test on three existing NLM questions.",
+        "targets": [
+          "four affected libraries",
+          "focused test",
+          "derived audit"
+        ],
+        "inputs": [
+          "INPUT-TA7-004",
+          "INPUT-TA7-005"
+        ],
+        "tests": [
+          "TEST-TA7-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA7-003"
+        ],
+        "acceptance": [
+          "AC-TA7-001",
+          "AC-TA7-003"
+        ],
+        "expected_result": "Question inventory is no longer a completion proxy.",
+        "stop_if": [
+          "A tagged question has authority outside EP-TA-006."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Extend the existing representation/question schema minimally for staged visual support and explorer binding.",
+        "targets": [
+          "package schema",
+          "visual-support validator/tests"
+        ],
+        "inputs": [
+          "INPUT-TA7-001",
+          "INPUT-TA7-002"
+        ],
+        "tests": [
+          "TEST-TA7-001",
+          "TEST-TA7-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA7-001",
+          "BENCH-TA7-002"
+        ],
+        "acceptance": [
+          "AC-TA7-001",
+          "AC-TA7-004"
+        ],
+        "expected_result": "The current schema can express the Owner architecture without a parallel visual model.",
+        "stop_if": [
+          "A broader schema redesign appears necessary."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Populate NLM R3/R8 canonical representations and wire existing explorers plus three existing question hint ladders to authored reveal stages.",
+        "targets": [
+          "NLM library"
+        ],
+        "inputs": [
+          "INPUT-TA7-003",
+          "INPUT-TA7-004"
+        ],
+        "tests": [
+          "TEST-TA7-001",
+          "TEST-TA7-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA7-001",
+          "BENCH-TA7-003"
+        ],
+        "acceptance": [
+          "AC-TA7-002",
+          "AC-TA7-003"
+        ],
+        "expected_result": "Representation, explorer, starting support and post-failure visual hints are distinct but linked.",
+        "stop_if": [
+          "The pilot would require pretending a static FBD renderer exists."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Regenerate derived artifacts and run full guardrails/relay quality before handing to WP-TA-107.",
+        "targets": [
+          "generated artifacts",
+          "guardrails",
+          "relay checkpoint"
+        ],
+        "inputs": [
+          "INPUT-TA7-002",
+          "INPUT-TA7-003"
+        ],
+        "tests": [
+          "TEST-TA7-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA7-001"
+        ],
+        "acceptance": [
+          "AC-TA7-004"
+        ],
+        "expected_result": "WP-TA-104 is evidence-backed complete and router work can begin.",
+        "stop_if": [
+          "Any protected-boundary or exact-head validation fails."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "This EP refines the representation/explorer/hint ownership seam.",
+        "review_focus": [
+          "single source of visual truth",
+          "minimal optional schema",
+          "support vs hint separation"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "A small shared schema validator may be added.",
+        "review_focus": [
+          "reference integrity",
+          "backward compatibility",
+          "no parallel model"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Schema/back-reference and owner-correction behavior need focused regression coverage.",
+        "review_focus": [
+          "25-question rollback",
+          "three fixtures",
+          "stage refs",
+          "explorer refs",
+          "full guardrails"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Visual-support metadata can silently turn HTML or hints into academic authority if ownership is wrong.",
+        "review_focus": [
+          "canonical representation authority",
+          "renderer honesty",
+          "cross-ref correctness"
+        ]
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "Canonical representations carry accessibility requirements and staged reveals must remain understandable without relying on hidden visual-only meaning.",
+        "review_focus": [
+          "stage semantics",
+          "text alternatives",
+          "representation accessibility"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Owner-intent mutation and active EP replacement must remain auditable in the governed draft PR.",
+        "review_focus": [
+          "ODR/RM continuity",
+          "invalidated EP",
+          "exact-head validation",
+          "PR correlation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "ui-ux",
+        "reason": "Existing explorer webpages are not redesigned in this EP."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No numerical algorithm changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Small metadata/schema changes are not performance-sensitive."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Optional backward-compatible fields require no persisted learner-data migration."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA7-001",
+      "description": "The owner correction is reflected in code and governance: EP-TA-006's 25 count-driven questions are removed, question count is no longer learner-loop acceptance, and existing visual/question contracts remain the foundation.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA7-003",
+        "TEST-TA7-004",
+        "BENCH-TA7-001",
+        "BENCH-TA7-003"
+      ]
+    },
+    {
+      "id": "AC-TA7-002",
+      "description": "NLM R3 and R8 each have a canonical representation bound from the microtopic and explicitly linked to the existing ACTIVITY explorer that implements/manipulates it, without claiming a static FBD renderer exists.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA7-001",
+        "BENCH-TA7-001"
+      ]
+    },
+    {
+      "id": "AC-TA7-003",
+      "description": "Representation reveal stages and support-stage mappings are authorable per representation; three existing NLM questions use optional visual refs on their ordered hint ladders while starting support remains matrix-owned.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA7-001",
+        "TEST-TA7-003",
+        "BENCH-TA7-002",
+        "BENCH-TA7-003"
+      ]
+    },
+    {
+      "id": "AC-TA7-004",
+      "description": "The minimal schema is backward compatible, all visual/explorer/stage refs resolve with correct ownership, accessibility constraints remain explicit, generated artifacts are current and full repository/V2.5 guardrails pass.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA7-001",
+        "TEST-TA7-002",
+        "TEST-TA7-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA7-001",
+      "class": "MUST_PASS",
+      "method": "Validate package schema/library refs and visual-support ownership: microtopic representation refs name representations; interactive refs name ACTIVITY resources; support-stage refs name stages in the same representation; hint visual_stage_ref belongs to hint visual_ref.",
+      "proves": [
+        "AC-TA7-002",
+        "AC-TA7-003",
+        "AC-TA7-004"
+      ]
+    },
+    {
+      "id": "TEST-TA7-002",
+      "class": "MUST_PASS",
+      "method": "Run existing library/depiction/compiler tests plus new backward-compatibility fixtures proving packages without visual stages still validate and FREE_BODY_DIAGRAM remains PROPOSED with no scene_instance requirement fabricated.",
+      "proves": [
+        "AC-TA7-001",
+        "AC-TA7-004"
+      ]
+    },
+    {
+      "id": "TEST-TA7-003",
+      "class": "MUST_PASS",
+      "method": "Assert no canonical question retains grade9v3:closure_ep=EP-TA-006 and exactly the three named existing NLM questions carry the staged-visual smoke bindings.",
+      "proves": [
+        "AC-TA7-001",
+        "AC-TA7-003"
+      ]
+    },
+    {
+      "id": "TEST-TA7-004",
+      "class": "MUST_PASS",
+      "method": "Regenerate web data/manifest, diff protected domains, then run full repository guardrails and V2.5 exact-head validation.",
+      "proves": [
+        "AC-TA7-001",
+        "AC-TA7-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

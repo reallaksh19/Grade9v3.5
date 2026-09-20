@@ -1,0 +1,75 @@
+name: v25-relay
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Grade9V3 execution branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Make current main available as a local ref
+        run: git fetch origin main:refs/heads/main
+
+      - name: Checkout pinned Common V2.5 protocol
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: d9b84069683977b5c370f536f1c50095de926338
+          path: _common
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install relay validator dependencies
+        run: pip install --quiet pyyaml jsonschema
+
+      - name: V2.5 protocol unit suite
+        working-directory: _common/skills/engineering-pr-delivery-v2.5
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: V2.5 protocol stress suite
+        working-directory: _common/skills/engineering-pr-delivery-v2.5
+        run: python3 -m unittest discover -s tests/stress -p "test_*.py" -v
+
+      - name: Relay semantic conformance
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_relay_conformance.py .
+
+      - name: Cold-start reconstructability
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/cold_start_check.py .
+
+      - name: Baton readiness
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_baton_readiness.py .
+
+      - name: Discovery receipt validity
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_discovery_receipt.py .
+
+      - name: Takeover certification validity
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_takeover_certification.py .
+
+      - name: Resolve execution route
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/resolve_execution_route.py .
+
+      - name: Inspect live Git context
+        shell: bash
+        run: |
+          set +e
+          python3 _common/skills/engineering-pr-delivery-v2.5/scripts/inspect_git_context.py .
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
+            exit "$status"
+          fi
+
+      - name: Material write gate
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id chatgpt-sol-topic-atlas-20260920

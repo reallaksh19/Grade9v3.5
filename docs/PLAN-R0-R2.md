@@ -1,5 +1,9 @@
 # Execution plan: R0, R1, R2
 
+> **Authority / status:** Historical execution plan. This records the R0–R2 execution reasoning and falsifiers used at that stage. It is retained for engineering provenance, not as a current task package.
+>
+> **Current engineering execution authority:** start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow its [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`. Do not execute work from this document merely because it contains a phase or task sequence.
+
 The roadmap in [ROADMAP-LEARNER-READY.md](ROADMAP-LEARNER-READY.md) says what and why. This says how, at the level an agent executes from: exact files, exact rules, exact falsifiers, exact commit boundaries.
 
 R0–R2 are planned in full because they are tightly coupled — R1's conformance gate names the fields R2 needs, and R0's composition fixes are inherited by both. R3 onward is planned at start-ready detail only, because what R1 measures will change it.

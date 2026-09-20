@@ -1,0 +1,189 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-005",
+  "ep_id": "EP-TA-005",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0006"
+  },
+  "execution_basis": {
+    "material_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+    "validated_implementation_head": "9e18e26a8633cac664f75653ac9f874bc36f14a3"
+  },
+  "implementation_result": {
+    "summary": "Completed the learner-loop evidence/falsifier slice without runtime or canonical Physics edits. The audit proved existing evidence/repair/verification/review mechanics and isolated a bounded canonical question backlog outside EP-TA-005's academic write authority.",
+    "completed_steps": [
+      "STEP-TA5-001",
+      "STEP-TA5-002",
+      "STEP-TA5-003",
+      "STEP-TA5-004"
+    ],
+    "files_changed": [
+      "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+      "docs/grade9/grade9-physics-learner-loop.json"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA5-001",
+      "status": "PASS",
+      "basis": [
+        "Six-matrix learner-loop audit at 9e18e26a8633cac664f75653ac9f874bc36f14a3",
+        "30/30 teaching/repair/exit surfaces accounted for",
+        "academic question gaps explicitly visible"
+      ]
+    },
+    {
+      "id": "AC-TA5-002",
+      "status": "PASS",
+      "basis": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/study_session.py",
+        "existing green learner evidence/feedback tests"
+      ]
+    },
+    {
+      "id": "AC-TA5-003",
+      "status": "PASS",
+      "basis": [
+        "Shared/roles/CORE2A.md",
+        "Shared/roles/CORE2B.md",
+        "matrix transfer rows",
+        "compiler unsupported-product behavior"
+      ]
+    },
+    {
+      "id": "AC-TA5-004",
+      "status": "FAIL",
+      "basis": [
+        "QF-TA5-001",
+        "7 Core2A + 18 Core2B canonical question backlog remains before learner-loop closure"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA5-001",
+      "status": "PASS",
+      "basis_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+      "evidence": [
+        "Derived audit enumerates all six required matrices and 30 required/prerequisite actions with teaching, repair, exit, practice and transfer inventory status."
+      ]
+    },
+    {
+      "id": "TEST-TA5-002",
+      "status": "PASS",
+      "basis_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+      "evidence": [
+        "Existing learner_evidence/feedback/session tests pass under guardrails 35503442514; helped DEMONSTRATED is downgraded, ambiguous multi-capability failure is not guessed, and repair requests fresh verification."
+      ]
+    },
+    {
+      "id": "TEST-TA5-003",
+      "status": "PASS",
+      "basis_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+      "evidence": [
+        "Core2A/Core2B role contracts and current canonical transfer items preserve same-family practice versus specified changed-demand transfer semantics."
+      ]
+    },
+    {
+      "id": "TEST-TA5-004",
+      "status": "PASS",
+      "basis_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+      "evidence": [
+        "Material diff changed only learner-loop audit docs plus relay status; guardrails 35503442514 and V2.5 relay 35503442558 passed."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-005",
+    "path": "agents/relay/quality/QRV-TA-005.yaml",
+    "digest": "sha256:797b21dc08091f69f0d4515734532575a3aeed670a36032338b4e6d8217013a4"
+  },
+  "quality_findings": [
+    {
+      "id": "QF-TA5-001",
+      "statement": "Canonical Grade-9 practice/transfer question inventory remains incomplete for WP-TA-104.",
+      "basis": [
+        "QRV-TA-005",
+        "learner-loop audit"
+      ]
+    }
+  ],
+  "known_limitations": [
+    {
+      "statement": "EP-TA-005 does not close WP-TA-104 because it intentionally lacks authority to edit canonical Physics questions.",
+      "basis": [
+        "EP-TA-005 scope",
+        "QF-TA5-001"
+      ]
+    },
+    {
+      "statement": "The 25-item successor backlog is bounded by existing required capabilities and core matrix transfer specifications; it is not permission to add new capabilities or extension content.",
+      "basis": [
+        "docs/grade9/grade9-physics-learner-loop.json"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "Shared learner evidence, feedback, study-session and review mechanisms already satisfy the required evidence-honesty/orchestration semantics.",
+      "basis": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/review_schedule.py"
+      ]
+    },
+    {
+      "statement": "The academic backlog is exact at the current material head: 7 missing direct Core2A practice items and 18 missing executable Core2B items from existing core transfer specifications.",
+      "basis": [
+        "docs/grade9/grade9-physics-learner-loop.json"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-104 remains ACTIVE; EP-TA-005 completed its bounded evidence/falsifier slice but did not close the work package.",
+        "basis": [
+          "QF-TA5-001",
+          "CP-TA-005"
+        ]
+      },
+      {
+        "statement": "The next serial EP remains on WP-TA-104 and is restricted to the discovered academic question inventory gap.",
+        "basis": [
+          "learner-loop audit",
+          "RM-0006 WP-TA-104"
+        ]
+      },
+      {
+        "statement": "RM-0007 Owner intent supersedes the previously named EP-TA-006 successor; CP-TA-005 now hands the same WP-TA-104 frontier to EP-TA-007.",
+        "basis": [
+          "ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE",
+          "RM-0007"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "Author exactly 7 missing direct Core2A practice questions in the affected required Grade-9 libraries.",
+    "Author exactly 18 Core2B questions from existing core transfer specifications in Gravitation, Work/Energy/Power, Sound and Simple Machines.",
+    "Rerun the six-matrix learner-loop audit and full repository guardrails; only then decide whether WP-TA-104 is complete."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-104",
+    "ep_id": "EP-TA-007",
+    "parallel_plan": null,
+    "join_id": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}

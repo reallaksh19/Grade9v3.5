@@ -1544,6 +1544,31 @@
           },
           "minItems": 0,
           "description": "The representation bridge. required_elements says what the picture must contain and the relation's symbols say what the algebra means, but nothing bound one to the other, so the correspondence a learner must make was asserted rather than held. Naming all three legs is what makes it explicit in both directions rather than a caption pointing one way."
+        },
+        "interactive_resource_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "description": "ACTIVITY resources that implement or manipulate this canonical representation. The representation remains academic authority."
+        },
+        "reveal_stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/visual_stage"
+          },
+          "minItems": 0,
+          "description": "Ordered author-defined reveal states for progressive visual support. No global stage count is imposed."
+        },
+        "support_stage_map": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/support_stage_binding"
+          },
+          "minItems": 0,
+          "description": "Optional mapping from matrix pre-attempt support level to initial representation stage."
         }
       },
       "required": [
@@ -2045,12 +2070,30 @@
                   "ANSWER"
                 ],
                 "description": "How far this hint goes. Declared rather than inferred, so that a hint handing over the answer is detectable: an ANSWER hint before the last position defeats the question it is attached to, and for a transfer task a hint revealing the model choice defeats the task itself."
+              },
+              "visual_ref": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Optional canonical representation used by this hint."
+              },
+              "visual_stage_ref": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Optional reveal-stage id within visual_ref; controls how much of canonical visual truth is shown after difficulty."
               }
             },
             "required": [
               "text",
               "reveals"
-            ]
+            ],
+            "dependentRequired": {
+              "visual_ref": [
+                "visual_stage_ref"
+              ],
+              "visual_stage_ref": [
+                "visual_ref"
+              ]
+            }
           },
           "minItems": 0,
           "description": "The ladder of hints, in order. Order is meaning here -- Core2 preserves the source's ordering, and the other two products depend on a hint not arriving before the one that should precede it -- so this is a list and never a set."
@@ -2713,6 +2756,61 @@
         "variation_dimensions",
         "task_objectives",
         "scope_limits"
+      ]
+    },
+    "visual_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One author-defined reveal state of a canonical representation. Array order is escalation order; ids are addressable so hints and support mappings can reference stages without copying visual truth.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visible_elements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "purpose",
+        "visible_elements"
+      ]
+    },
+    "support_stage_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Maps one matrix starting-support level to the representation stage visible before the learner attempts. This remains separate from post-failure hint depth.",
+      "properties": {
+        "support_level": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "visual_stage_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "support_level",
+        "visual_stage_ref"
       ]
     }
   }

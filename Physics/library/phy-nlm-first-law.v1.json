@@ -781,7 +781,9 @@
         }
       ],
       "relation_refs": [],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-NLM-FBD-BODY-OWNERSHIP"
+      ],
       "question_family_refs": [
         "FAM-PHY-NLM-INCLINE-MODELLING"
       ],
@@ -817,7 +819,7 @@
           "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
         }
       },
-      "research_contribution": "Author-created body-ownership construction. A drawable FREE_BODY_DIAGRAM representation is intentionally not authored in this track.",
+      "research_contribution": "Author-created body-ownership construction with a canonical FREE_BODY_DIAGRAM representation and an existing interactive connected-block implementation. The static FREE_BODY_DIAGRAM renderer remains PROPOSED; canonical visual truth is not delegated to the webpage.",
       "prerequisite_refs": [],
       "lineage": [],
       "elicitation": {
@@ -1540,7 +1542,9 @@
         "REL-NLM-STATIC-FRICTION-BOUND",
         "REL-NLM-KINETIC-FRICTION"
       ],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-NLM-FRICTION-THRESHOLD"
+      ],
       "question_family_refs": [
         "FAM-PHY-NLM-PRACTICE",
         "FAM-PHY-NLM-INCLINE-MODELLING"
@@ -2500,7 +2504,307 @@
       "gate_relation_ref": "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
     }
   ],
-  "representations": [],
+  "representations": [
+    {
+      "id": "REP-NLM-FBD-BODY-OWNERSHIP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Make force ownership visible for one chosen body: identify the body and external agents first, then represent only forces acting on that body; resolved components remain a coordinate representation of one physical force.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "coordinate axes",
+        "external agents",
+        "system boundary",
+        "force arrows",
+        "force labels",
+        "component representation"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "external agents",
+        "system boundary",
+        "force arrows",
+        "force labels",
+        "coordinate axes",
+        "component representation"
+      ],
+      "instance_constraints": [
+        "Exactly one chosen body owns the free-body diagram at a time.",
+        "Every force arrow represents an external interaction acting on the chosen body.",
+        "Third-law partner forces acting on another body do not belong on the chosen body's diagram.",
+        "Resolved components may replace the original vector in axis equations but are not additional physical forces."
+      ],
+      "accessibility": [
+        "Do not rely on colour alone to distinguish the chosen body, agents or force arrows.",
+        "Every force arrow requires a text label naming the acting agent and receiver.",
+        "A text alternative states the chosen body, external agents and each force direction."
+      ],
+      "misleading_alternatives": [
+        "Putting equal-and-opposite partner forces on one body's diagram and cancelling them.",
+        "Drawing the original weight vector and its resolved components as three separate forces."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [
+        "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-FBD-V0",
+          "label": "Problem only",
+          "purpose": "Show the physical situation without visual help about ownership.",
+          "visible_elements": [
+            "physical situation"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBD-V1",
+          "label": "Orientation",
+          "purpose": "Identify the chosen body and coordinate frame without naming forces.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBD-V2",
+          "label": "Interaction structure",
+          "purpose": "Reveal external agents and system boundary while leaving force arrows for the learner.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "external agents",
+            "system boundary"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBD-V3",
+          "label": "Force mechanism",
+          "purpose": "Show owned force arrows and labels without resolving components.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "external agents",
+            "system boundary",
+            "force arrows",
+            "force labels"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBD-V4",
+          "label": "Reconstruction",
+          "purpose": "Show the complete owned-force representation including coordinate components when needed.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "external agents",
+            "system boundary",
+            "force arrows",
+            "force labels",
+            "component representation"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-FBD-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-FBD-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-FBD-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-FRICTION-THRESHOLD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Make static friction a responsive contact force rather than an automatic mu N value: construct the chosen-body force account, determine the no-slip demand, compare it with the static limit, and switch to the kinetic model only after sliding.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "coordinate axes",
+        "contact surface",
+        "applied-force arrow",
+        "normal-force arrow",
+        "weight arrow",
+        "static-friction arrow",
+        "kinetic-friction arrow",
+        "contact-state label",
+        "friction-demand/limit comparison"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "contact surface",
+        "coordinate axes",
+        "applied-force arrow",
+        "weight arrow",
+        "normal-force arrow",
+        "contact-state label",
+        "static-friction arrow",
+        "friction-demand/limit comparison",
+        "kinetic-friction arrow"
+      ],
+      "instance_constraints": [
+        "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+        "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+        "The equality |f_s| = mu_s N is shown only at impending slip.",
+        "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+      ],
+      "accessibility": [
+        "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+        "Force arrows require labels and text alternatives describing direction.",
+        "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+      ],
+      "misleading_alternatives": [
+        "Showing static friction fixed at mu_s N for every applied force.",
+        "Assuming the normal reaction always equals mg.",
+        "Choosing kinetic friction merely because mu_k is supplied."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "normal-force arrow",
+          "symbol": "N",
+          "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+        },
+        {
+          "element": "static-friction arrow",
+          "symbol": "f_s",
+          "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+        },
+        {
+          "element": "kinetic-friction arrow",
+          "symbol": "f_k",
+          "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-NLM-FRICTION-THRESHOLD"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-FRICTION-V0",
+          "label": "Problem only",
+          "purpose": "Show only the physical situation and applied action.",
+          "visible_elements": [
+            "physical situation",
+            "applied-force arrow"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRICTION-V1",
+          "label": "Orientation",
+          "purpose": "Identify the chosen body, axes and contact without deciding the friction model.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "contact surface",
+            "applied-force arrow"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRICTION-V2",
+          "label": "Force structure",
+          "purpose": "Reveal the non-friction force inventory while leaving friction value/state to the learner.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "contact surface",
+            "applied-force arrow",
+            "normal-force arrow",
+            "weight arrow"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRICTION-V3",
+          "label": "Friction mechanism",
+          "purpose": "Reveal the required-friction versus static-limit mechanism without collapsing the final calculation.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "contact surface",
+            "applied-force arrow",
+            "normal-force arrow",
+            "weight arrow",
+            "static-friction arrow",
+            "contact-state label",
+            "friction-demand/limit comparison"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRICTION-V4",
+          "label": "Reconstruction",
+          "purpose": "Show the complete contact-state representation, including the kinetic branch once sliding is established.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "coordinate axes",
+            "contact surface",
+            "applied-force arrow",
+            "normal-force arrow",
+            "weight arrow",
+            "static-friction arrow",
+            "kinetic-friction arrow",
+            "contact-state label",
+            "friction-demand/limit comparison"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+        }
+      ]
+    }
+  ],
   "question_families": [
     {
       "id": "FAM-PHY-NLM-PRACTICE",
@@ -2897,11 +3201,15 @@
       "hints": [
         {
           "text": "Start by asking: Which single body are you describing first?",
-          "reveals": "CONCEPT"
+          "reveals": "CONCEPT",
+          "visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "visual_stage_ref": "VIS-NLM-FBD-V1"
         },
         {
           "text": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen.",
-          "reveals": "METHOD"
+          "reveals": "METHOD",
+          "visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "visual_stage_ref": "VIS-NLM-FBD-V2"
         }
       ]
     },
@@ -3490,11 +3798,15 @@
       "hints": [
         {
           "text": "The presence of mu_s and mu_k does not tell you which one to use. What contact state would you test first?",
-          "reveals": "CONCEPT"
+          "reveals": "CONCEPT",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
           "text": "Before deciding the friction model, ask whether the vertical component of the pull changes the normal reaction.",
-          "reveals": "CONCEPT"
+          "reveals": "CONCEPT",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         }
       ],
       "transfer": {
@@ -4001,11 +4313,15 @@
       "hints": [
         {
           "text": "Because the block remains at rest, what horizontal force must friction balance?",
-          "reveals": "CONCEPT"
+          "reveals": "CONCEPT",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         },
         {
           "text": "Find the required static friction first; compare it with mu_s N only afterward.",
-          "reveals": "METHOD"
+          "reveals": "METHOD",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V3"
         }
       ],
       "repair_ref": "NLM8-2"

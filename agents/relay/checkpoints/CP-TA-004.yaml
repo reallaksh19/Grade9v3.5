@@ -1,0 +1,189 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-004",
+  "ep_id": "EP-TA-004",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0006"
+  },
+  "execution_basis": {
+    "material_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+    "validated_implementation_head": "4e85a4657de8c2a422e9f60a611b750e08ee359e"
+  },
+  "implementation_result": {
+    "summary": "Completed a derived Grade-9 Physics scope audit that accounts for every current Physics matrix exactly once while preserving curriculum, preparation-demand and learner-evidence authority boundaries.",
+    "completed_steps": [
+      "STEP-TA4-001",
+      "STEP-TA4-002",
+      "STEP-TA4-003",
+      "STEP-TA4-004"
+    ],
+    "files_changed": [
+      "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+      "docs/grade9/grade9-physics-scope-coverage.json"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA4-001",
+      "status": "PASS",
+      "basis": [
+        "material head 4e85a4657de8c2a422e9f60a611b750e08ee359e",
+        "guardrails run 35502723024 PASS",
+        "V2.5 relay run 35502723048 PASS",
+        "QRV-TA-004"
+      ]
+    },
+    {
+      "id": "AC-TA4-002",
+      "status": "PASS",
+      "basis": [
+        "material head 4e85a4657de8c2a422e9f60a611b750e08ee359e",
+        "guardrails run 35502723024 PASS",
+        "V2.5 relay run 35502723048 PASS",
+        "QRV-TA-004"
+      ]
+    },
+    {
+      "id": "AC-TA4-003",
+      "status": "PASS",
+      "basis": [
+        "material head 4e85a4657de8c2a422e9f60a611b750e08ee359e",
+        "guardrails run 35502723024 PASS",
+        "V2.5 relay run 35502723048 PASS",
+        "QRV-TA-004"
+      ]
+    },
+    {
+      "id": "AC-TA4-004",
+      "status": "PASS",
+      "basis": [
+        "material head 4e85a4657de8c2a422e9f60a611b750e08ee359e",
+        "guardrails run 35502723024 PASS",
+        "V2.5 relay run 35502723048 PASS",
+        "QRV-TA-004"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA4-001",
+      "status": "PASS",
+      "basis_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+      "evidence": [
+        "Live tree/readback: 20 Physics matrix JSON files; derived coverage has 20 unique matrix ids/paths; zero missing or extra paths."
+      ]
+    },
+    {
+      "id": "TEST-TA4-002",
+      "status": "PASS",
+      "basis_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+      "evidence": [
+        "Derived roles preserve the governing six-core baseline, support-only vectors, non-blocking relative-motion extension and explicitly deferred higher/broader families."
+      ]
+    },
+    {
+      "id": "TEST-TA4-003",
+      "status": "PASS",
+      "basis_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+      "evidence": [
+        "Terminal-1 chapter demand, school micro-demand and approved ExamSIDE preparation demand remain distinct fields; current chapter-internal school micro-demand remains MICRO_TO_CONFIRM."
+      ]
+    },
+    {
+      "id": "TEST-TA4-004",
+      "status": "PASS",
+      "basis_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+      "evidence": [
+        "Predecessor-to-material diff changed only the two derived scope artifacts and relay status; guardrails run 35502723024 passed."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-004",
+    "path": "agents/relay/quality/QRV-TA-004.yaml",
+    "digest": "sha256:bc204be9214dd4dff00bf7238a2548596188d9facecac6766ca294e67c0b49a0"
+  },
+  "quality_findings": [],
+  "known_limitations": [
+    {
+      "statement": "The scope view is matrix-level; individual rungs may still be non-default extensions inside a core matrix.",
+      "basis": [
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "QRV-TA-004"
+      ]
+    },
+    {
+      "statement": "Learner-specific Pinnacle school micro-demand remains unconfirmed where no school-issued microtopic evidence exists.",
+      "basis": [
+        "docs/grade9/grade9-physics-scope-coverage.json",
+        "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md"
+      ]
+    },
+    {
+      "statement": "Scope coverage is not learner exit evidence; learner-loop behavior and independent verification still need to be proven for required Grade-9 capabilities.",
+      "basis": [
+        "RM-0006 WP-TA-104",
+        "QRV-TA-004"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "The repository already contains the learner-loop primitives needed by the next package: evidence precedence and assisted-evidence downgrade, worksheet/session orchestration, targeted feedback/repair, fresh verification routing and delayed review scheduling.",
+      "basis": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py"
+      ]
+    },
+    {
+      "statement": "The six ordinary Grade-9 matrices already have saved route/stress evidence, so WP-TA-104 should begin with cross-matrix falsifiers rather than new architecture.",
+      "basis": [
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md",
+        "benchmarks/agent-path/"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-103 is complete at the derived scope/evidence boundary.",
+        "basis": [
+          "EP-TA-004",
+          "QRV-TA-004",
+          "guardrails 35502723024",
+          "v25-relay 35502723048"
+        ]
+      },
+      {
+        "statement": "WP-TA-104 is the next serial frontier: prove/close the required Grade-9 learner loop using existing Shared mechanisms before adding architecture.",
+        "basis": [
+          "RM-0006",
+          "Shared/tools/learner_evidence.py",
+          "Shared/tools/study_session.py",
+          "Shared/tools/feedback.py",
+          "Shared/tools/review_schedule.py"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "WP-TA-104: prove and minimally close the required Grade-9 learner loop across the six core matrices.",
+    "WP-TA-105: derive Grade-9 exit readiness and the Grade-10 transition from canonical scope plus learner evidence."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-104",
+    "ep_id": "EP-TA-005",
+    "parallel_plan": null,
+    "join_id": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "relay-v2.5-drift",
+  "from_base": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+  "to_base": "194791528cd3a69b30aced1480aee3254293dfe0",
+  "classification": "DISJOINT",
+  "changed_paths": [
+    ".github/workflows/guardrails.yml",
+    "Physics/library/phy-kin-2d-motion.v1.json",
+    "Shared/library/explorer_design_contract.schema.json",
+    "Shared/library/gcdr_diagnostic_item.schema.json",
+    "Shared/library/gcdr_helper_contract.schema.json",
+    "Shared/library/gcdr_suite_contract.schema.json",
+    "Shared/tools/explorer_design_guard.py",
+    "Shared/tools/gcdr_suite_guard.py",
+    "docs/GCDR-MASTER-SUITES-AUDIT-2026-09-20.md",
+    "docs/GCDR-QUALITY-AUDIT-CHECKLIST.md",
+    "docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md",
+    "docs/MOTION1D-RCA-2026-09-20.md",
+    "docs/MOTION2D-RCA-2026-09-20.md",
+    "docs/architecture-manifest.json",
+    "docs/gcdr-master-suite-helper-registry.json",
+    "docs/gcdr-suites/motion-1d.json",
+    "docs/gcdr-suites/vector-algebra-3d.json",
+    "public/data/data.js",
+    "public/mathematics/vectors/explorers/vector_algebra/index.html",
+    "public/mathematics/vectors/explorers/vector_algebra/jee_questions_data.js",
+    "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+    "public/physics/motion-1d/explorers/motion_in_1d/jee_questions_data.js",
+    "standalone/motion-in-1d-master-suite.html",
+    "standalone/motion-in-2d-master-suite.html",
+    "standalone/vector-algebra-3d-master-suite.html",
+    "tests/test_explorer_design_contract.py",
+    "tests/test_gcdr_v13_contracts.py",
+    "tests/test_master_suites_gcdr_audit.py",
+    "tools/data.js"
+  ],
+  "affected_scope": [],
+  "rationale": "The base movement changes GCDR/explorer contracts, Motion2D content and related generated projections/tests. EP-TA-007's semantic material authority is the general package visual-support fields plus NLM R3/R8 representation bindings and rollback of EP-TA-006-tagged questions. No changed main source path defines those semantics. Generated data/manifest filenames appear in the drift only as projections; EP-TA-007 will regenerate them mechanically from its own branch inputs after the bounded material change, so they are not treated as semantic overlap.",
+  "qualification": {
+    "basis": [
+      "RM-0007",
+      "EP-TA-007 scope/protected invariants",
+      "Git drift path list"
+    ],
+    "confirmation": "NOT_REQUIRED",
+    "confirmation_basis": []
+  }
+}

@@ -1,5 +1,9 @@
 # Grade9V3 program plan
 
+> **Authority / status:** Product/architecture programme context — not the live V2.5 execution roadmap. Its phase/status tables preserve the programme state and decisions established when this plan was authored; they are context, not a second current-state store.
+>
+> **Current engineering execution authority:** start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow its [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`. Do not execute work from this document merely because it contains a phase or task sequence.
+
 Scope: **Physics, Mathematics and Chemistry**, **CBSE grades 9–11**, six learner products per subtopic bucket, with a front-end topic library and run builder.
 
 This plan extends the R0–R7 roadmap in the V3B core system guide (`reallaksh19/Common`, PR #364) rather than replacing it; the R-stage each phase serves is named in the table below.

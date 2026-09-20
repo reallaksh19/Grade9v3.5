@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/diagnostic-gap-envelope.schema.json",
+  "title": "External diagnostic gap envelope",
+  "description": "Transient answer-sheet diagnostic input. It carries only observed gaps and optional semantic repair precision; it is not a learner mastery record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "version",
+    "diagnostic_id",
+    "matrix_id",
+    "subject",
+    "when",
+    "provenance",
+    "evidence_kind",
+    "rows"
+  ],
+  "properties": {
+    "format": {
+      "const": "GRADE9V3_EXTERNAL_DIAGNOSTIC_GAP_ENVELOPE"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "diagnostic_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "matrix_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtopic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "when": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "const": "HISTORICAL_IMPORT"
+    },
+    "evidence_kind": {
+      "const": "PRIOR_DIAGNOSTIC"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_ref",
+          "result",
+          "observed"
+        ],
+        "properties": {
+          "question_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "capability_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rung_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "repair_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "enum": [
+              "MISSING",
+              "UNCERTAIN"
+            ]
+          },
+          "error_stage": {
+            "enum": [
+              "CONCEPT",
+              "SETUP",
+              "EXECUTION",
+              "CARELESS",
+              "UNKNOWN"
+            ]
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-001",
+  "ep_id": "EP-TA-001",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0002"
+  },
+  "execution_basis": {
+    "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "validated_implementation_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf"
+  },
+  "implementation_result": {
+    "summary": "Completed the generic Topic Atlas browser-correctness slice: fail-closed diagnostic intake, truthful fallback addresses, two-input-only learner flow, non-authoritative browser Core preview, plan-level request export, corrected measurement/diagnostic handoff, and durable webpage gap analysis.",
+    "completed_steps": [
+      "STEP-TA-001",
+      "STEP-TA-002",
+      "STEP-TA-003",
+      "STEP-TA-004"
+    ],
+    "files_changed": [
+      "public/js/topic-atlas.js",
+      "public/physics/nlm/index.html",
+      "public/physics/motion-2d/index.html",
+      "tests/test_topic_atlas_takeover_contract.py",
+      "webpageGAPanalysis.md",
+      "docs/architecture-manifest.json",
+      ".github/workflows/v25-relay.yml"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA-001",
+      "status": "PASS",
+      "basis": [
+        "implementation head fab9bb82d9feca668516a02d3ffff697454e8bbf",
+        "guardrails run 35487996163 PASS",
+        "V2.5 relay run 35487996167 PASS"
+      ]
+    },
+    {
+      "id": "AC-TA-002",
+      "status": "PASS",
+      "basis": [
+        "implementation head fab9bb82d9feca668516a02d3ffff697454e8bbf",
+        "guardrails run 35487996163 PASS",
+        "V2.5 relay run 35487996167 PASS"
+      ]
+    },
+    {
+      "id": "AC-TA-003",
+      "status": "PASS",
+      "basis": [
+        "implementation head fab9bb82d9feca668516a02d3ffff697454e8bbf",
+        "guardrails run 35487996163 PASS",
+        "V2.5 relay run 35487996167 PASS"
+      ]
+    },
+    {
+      "id": "AC-TA-004",
+      "status": "PASS",
+      "basis": [
+        "implementation head fab9bb82d9feca668516a02d3ffff697454e8bbf",
+        "guardrails run 35487996163 PASS",
+        "V2.5 relay run 35487996167 PASS"
+      ]
+    },
+    {
+      "id": "AC-TA-005",
+      "status": "PASS",
+      "basis": [
+        "implementation head fab9bb82d9feca668516a02d3ffff697454e8bbf",
+        "guardrails run 35487996163 PASS",
+        "V2.5 relay run 35487996167 PASS"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA-001",
+      "status": "PASS",
+      "basis_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "validated_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+      "evidence": [
+        "Full unittest suite within guardrails run 35487996163 PASS, including tests/test_topic_atlas_takeover_contract.py and tests/test_topic_atlas_contract.py."
+      ]
+    },
+    {
+      "id": "TEST-TA-002",
+      "status": "PASS",
+      "basis_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "validated_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+      "evidence": [
+        "JavaScript syntax and guardrails passed at fab9bb82d9feca668516a02d3ffff697454e8bbf."
+      ]
+    },
+    {
+      "id": "TEST-TA-003",
+      "status": "PASS",
+      "basis_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "validated_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+      "evidence": [
+        "Node-executed browser request fixtures validate against Shared/library/authoring-request.schema.json."
+      ]
+    },
+    {
+      "id": "TEST-TA-004",
+      "status": "PASS",
+      "basis_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "validated_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+      "evidence": [
+        "Generated architecture manifest check passed in guardrails run 35487996163."
+      ]
+    },
+    {
+      "id": "TEST-TA-005",
+      "status": "PASS",
+      "basis_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "validated_head": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+      "evidence": [
+        "Repository guardrails run 35487996163 PASS."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-001",
+    "path": "agents/relay/quality/QRV-TA-001.yaml",
+    "digest": "sha256:b422379e868bf4d85ebc6f924fd768bd54dc8520a2002b172c699d41a5e4d551"
+  },
+  "quality_findings": [],
+  "known_limitations": [
+    {
+      "statement": "Measurement Pack generation and semantic need/Core focus authority are still browser-side or absent from Shared; this is the next governed work package.",
+      "basis": [
+        "WP-TA-102",
+        "webpageGAPanalysis.md"
+      ]
+    },
+    {
+      "statement": "Missing Atlas pages and remaining academic inventory closure are intentionally deferred to WP-TA-103 and WP-TA-104.",
+      "basis": [
+        "RM-0002"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "Current main added a manual leaf-progress/mastery path; it conflicted with the owner-defined two-input flow and was removed from the normal Atlas path.",
+      "basis": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ]
+    },
+    {
+      "statement": "R5/R8 canonical question bindings are now more precise than the earlier prototype audit; Shared inventory work must inspect current repair_ref bindings rather than reuse stale assumptions.",
+      "basis": [
+        "Physics/library/phy-nlm-first-law.v1.json"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TAKEOVER-RECONCILE is complete.",
+        "basis": [
+          "EP-TA-001",
+          "QRV-TA-001",
+          "guardrails run 35487996163"
+        ]
+      },
+      {
+        "statement": "WP-TA-102 becomes the next serial frontier.",
+        "basis": [
+          "RM-0002"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "WP-TA-102: Shared diagnostic envelope, Measurement Pack, semantic need resolver, Core emphasis and focus inventory.",
+    "WP-TA-103: missing Atlas surfaces and justified exact resource bindings.",
+    "WP-TA-104: grounded academic inventory closure.",
+    "WP-TA-105: cross-subject acceptance and evidence-based GCDR closure."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-102",
+    "ep_id": "EP-TA-002",
+    "parallel_plan": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}

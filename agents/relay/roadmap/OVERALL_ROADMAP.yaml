@@ -1,22 +1,155 @@
-schema_version: relay-v2.5
-roadmap:
-  id: RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER
-  revision: RM-0001
-  title: Topic Atlas and Core completion takeover
-objectives:
-- id: OBJ-TOPIC-ATLAS-COMPLETE
-  title: Complete grounded cross-subject Topic Atlas and Core integration
-  state: ACTIVE
-  definition: PARTIALLY_DEFINED
-  phases:
-  - id: PHASE-TAKEOVER-RECONCILIATION
-    title: Reconcile Agent A, Agent B, and Shared Core gaps
-    state: PLANNED
-    definition: OWNER_REVIEW_REQUIRED
-    work_packages:
-    - id: WP-TAKEOVER-RECONCILE
-      title: Establish V2.5 authority and exact completion frontier
-      state: PLANNED
-      definition: OWNER_REVIEW_REQUIRED
-      execution_status: WAITING
-      depends_on: []
+{
+  "schema_version": "relay-v2.5",
+  "roadmap": {
+    "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0008",
+    "title": "Grade 9 Physics learner independence and progression",
+    "revision_record": "agents/relay/roadmap/revisions/RM-0008.yaml",
+    "owner_outcome": "Make the learner increasingly capable of deciding what she knows, discovering with little external steering what she does not know, repairing the right Physics gap, and independently verifying a solution.",
+    "progression_order": [
+      "PHYSICS_GRADE_9",
+      "PHYSICS_GRADE_10",
+      "PHYSICS_GRADE_11"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "OBJ-TOPIC-ATLAS-COMPLETE",
+      "title": "Make Grade 9 Physics independently navigable, repairable, verifiable, and transition-ready",
+      "state": "ACTIVE",
+      "definition": "DEFINED",
+      "weight": 100,
+      "phases": [
+        {
+          "id": "PHASE-TAKEOVER-RECONCILIATION",
+          "title": "Grade 9 Physics self-study completion and governed Grade 10 transition",
+          "state": "ACTIVE",
+          "definition": "DETAILED",
+          "weight": 100,
+          "work_packages": [
+            {
+              "id": "WP-TAKEOVER-RECONCILE",
+              "title": "Correct Topic Atlas browser input, fallback, request, and handoff semantics",
+              "state": "COMPLETE",
+              "definition": "DETAILED",
+              "execution_status": "TERMINAL",
+              "weight": 20,
+              "depends_on": [],
+              "issue": "ISSUE-118"
+            },
+            {
+              "id": "WP-TA-102",
+              "title": "Move diagnostic need resolution and Core focus authority into Shared",
+              "state": "COMPLETE",
+              "definition": "DETAILED",
+              "execution_status": "TERMINAL",
+              "weight": 25,
+              "depends_on": [
+                "WP-TAKEOVER-RECONCILE"
+              ]
+            },
+            {
+              "id": "WP-TA-106",
+              "title": "Make the governed roadmap the repository first-read agent entry point",
+              "state": "COMPLETE",
+              "definition": "DETAILED",
+              "execution_status": "TERMINAL",
+              "weight": 5,
+              "depends_on": [
+                "WP-TA-102"
+              ]
+            },
+            {
+              "id": "WP-TA-103",
+              "title": "Freeze the Grade-9 Physics scope and capability boundary",
+              "state": "COMPLETE",
+              "definition": "DETAILED",
+              "execution_status": "TERMINAL",
+              "weight": 10,
+              "depends_on": [
+                "WP-TA-106"
+              ],
+              "outcome": "Every represented Physics capability/matrix relevant to the current programme is explicitly classified as required Grade-9 Physics, genuine prerequisite, question-driven addition, deliberate enrichment, or later-grade sophistication; connected material does not become Grade 9 merely because it is useful.",
+              "exit_evidence": [
+                "A source-grounded Grade-9 Physics coverage map identifies required capabilities and any true syllabus holes.",
+                "Prerequisites are separated from current-grade requirements and can be checked locally rather than globally recertified.",
+                "Enrichment and later-grade material cannot silently gate Grade-9 completion.",
+                "Unknown evidence remains UNKNOWN; rough knowledge percentages remain routing priors and never certify a capability."
+              ]
+            },
+            {
+              "id": "WP-TA-104",
+              "title": "Make canonical representations and staged visual help first-class",
+              "state": "COMPLETE",
+              "definition": "DETAILED",
+              "execution_status": "TERMINAL",
+              "weight": 10,
+              "depends_on": [
+                "WP-TA-103"
+              ],
+              "outcome": "The learner can see a Physics capability through one canonical academic representation, optionally manipulate that same representation through an explorer, start with support appropriate to the route, and receive staged visual hints after difficulty without duplicating visual truth inside questions or webpages.",
+              "exit_evidence": [
+                "NLM R3 body-ownership and R8 friction-threshold microtopics bind to canonical representation records rather than leaving representation_refs empty.",
+                "Existing NLM ACTIVITY explorers are explicitly bound to the canonical representations they implement; the webpage remains an implementation, not academic truth.",
+                "Representation records can author ordered reveal stages and map LOW/MEDIUM/HIGH starting support to an initial visual stage without requiring every representation to use a global four-stage template.",
+                "Question hints can optionally reference a canonical representation and one reveal stage while retaining text/reveals semantics.",
+                "Starting support from matrix.family.support_ladder remains distinct from post-failure hint depth.",
+                "Three existing NLM questions are sufficient smoke fixtures; learner-loop closure is not measured by question-count coverage."
+              ]
+            },
+            {
+              "id": "WP-TA-107",
+              "title": "Route learner evidence into support, visual state, exercise demand and a closed session loop",
+              "state": "ACTIVE",
+              "definition": "DETAILED",
+              "execution_status": "ACTIVE",
+              "weight": 15,
+              "depends_on": [
+                "WP-TA-104"
+              ],
+              "outcome": "For a required subtopic/capability, sparse learner evidence produces an honest session route: a bounded diagnostic gateway when needed; a derived posture; only declared starting support; optional renderer-neutral representation/scene/checkpoint support; family-aware practice/transfer demand; and an existing feedback/repair/fresh-verification/review loop. The route must remain useful with no estimate and must never manufacture mastery or transfer readiness.",
+              "exit_evidence": [
+                "Only explicitly independent DEMONSTRATED evidence may route to READY; helped, unknown-independence, UNCERTAIN and unobserved evidence remain conservative.",
+                "READY/REINFORCE/REBUILD are session-only postures and no mastery percentage/probability or second learner ontology is persisted.",
+                "Starting support is resolved through matrix.family.support_ladder. If the requested level is undeclared—including minimum competition support—it is withheld and reported rather than guessed or aliased.",
+                "With no owner estimate, the subtopic gateway can choose a small representative set over uncertain/unobserved capabilities instead of requiring every capability to be checked.",
+                "Starting support and question.hints[] remain independent; planning does not mutate shown_hint_indices and feedback.py owns post-attempt escalation, repair, fresh verification and review.",
+                "CONCEPT/SETUP evidence may drive reconstruction/model-building while EXECUTION/CARELESS evidence does not automatically cause conceptual rebuilding.",
+                "Transfer eligibility is separate from READY and requires stable independent same-family performance plus prerequisite readiness and a compatible canonical transfer candidate.",
+                "Exercise choice respects capability, family and existing demand dimensions such as model_choice, representation_translation, reasoning_steps and novelty; question-id ordering is not pedagogical authority.",
+                "Representation/scene refs describe what is shown, checkpoint refs describe what the learner must decide/verify, and pedagogy injection refs describe when/how support is introduced; none is allowed to masquerade as another.",
+                "Interaction events and guided reconstruction are not independent mastery evidence unless an explicit exercise contract turns them into a direct attempt.",
+                "NLM R3 body-ownership and R8 friction-threshold witnesses separately prove support declaration, staged help, repair, fresh independent verification and protected transfer information.",
+                "Canonical Physics/library/matrix/schema content remains read-only; sparse question inventory is reported honestly rather than synthesized at runtime."
+              ],
+              "issue": "ISSUE-159"
+            },
+            {
+              "id": "WP-TA-105",
+              "title": "Prove Grade-9 Physics exit readiness and Grade-10 transition",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 15,
+              "depends_on": [
+                "WP-TA-107"
+              ],
+              "outcome": "Derive an auditable Grade-9 exit view from canonical scope plus learner evidence so Grade 10 starts when it is the next productive place to learn, without demanding perfection or hiding foundational holes.",
+              "exit_evidence": [
+                "All required Grade-9 domains have coverage evidence; chapter-name coverage alone is insufficient.",
+                "Important concepts have some independent evidence and, where relevant, changed-representation or transfer evidence.",
+                "Known prerequisite blockers and major unresolved misconceptions are visible and progression-relevant.",
+                "States distinguish secure, usable-but-fragile, known gap and insufficient/unknown evidence without a mastery percentage.",
+                "Non-blocking enrichment, optional improvement and future evidence remain visible but do not block transition.",
+                "A parent/agent can understand what was demonstrated, what remains uncertain, what was repaired and what should be rechecked without reading raw internal state.",
+                "Grade 10 inherits explicit transition evidence rather than either a blanket recertification of Grade 9 or a silent assumption of mastery."
+              ]
+            }
+          ],
+          "outcome": "Preserve proven Shared/Atlas machinery, then make the Grade-9 learner loop representation-aware and evidence-routed before deriving Grade-9 exit readiness."
+        }
+      ],
+      "outcome": "Grade 9 is complete enough when required Physics is covered as capability, canonical representations make important models inspectable, support/hints route from honest evidence without becoming mastery claims, foundational prerequisites are closed or explicit, important success is independently verified, and remaining gaps are honestly classified."
+    }
+  ]
+}

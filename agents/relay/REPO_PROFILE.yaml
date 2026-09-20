@@ -1,8 +1,65 @@
-schema_version: relay-v2.5
-repository_type: application
-default_branch: main
-important_paths: {}
-commands: {}
-protected_domains: []
-generated_paths: []
-repository_rules: []
+{
+  "schema_version": "relay-v2.5",
+  "repository_type": "application",
+  "default_branch": "main",
+  "important_paths": {
+    "source": [
+      "Shared/",
+      "Physics/",
+      "Mathematics/",
+      "public/",
+      "tools/"
+    ],
+    "tests": [
+      "tests/"
+    ],
+    "documentation": [
+      "docs/"
+    ],
+    "engineering_specs": [
+      "Shared/library/",
+      "Shared/vocabularies/",
+      "agents/relay/"
+    ]
+  },
+  "commands": {
+    "unit_test": "python3 -m unittest discover -s tests -p \"test_*.py\" -v",
+    "e2e_test": "python3 Shared/tools/plan_request.py --audit --enforce && python3 Shared/tools/compile_execution_packet.py --audit --enforce",
+    "lint": "node --check public/js/topic-atlas.js",
+    "typecheck": "",
+    "build": "python3 Shared/tools/build_manifest.py --check"
+  },
+  "protected_domains": [
+    {
+      "domain": "canonical subject truth",
+      "paths": [
+        "Physics/library/",
+        "Physics/matrices/",
+        "Mathematics/library/",
+        "Mathematics/matrices/"
+      ],
+      "rule": "Do not change canonical academic meaning unless the active EP explicitly authorizes subject-content work."
+    },
+    {
+      "domain": "generated projections",
+      "paths": [
+        "tools/data.js",
+        "public/data/data.js",
+        "docs/architecture-manifest.json"
+      ],
+      "rule": "Regenerate through canonical builders; never hand-edit generated projections."
+    }
+  ],
+  "generated_paths": [
+    "tools/data.js",
+    "public/data/data.js",
+    "docs/architecture-manifest.json"
+  ],
+  "repository_rules": [
+    "Reuse existing Shared contracts and tools before adding schema or routing concepts.",
+    "Knowledge percentage is a routing coordinate only and never learner evidence.",
+    "Invalid or ambiguous diagnostic references fail closed; do not fuzzy-map curriculum identity.",
+    "Do not add a seventh Core, per-step capabilities, physical R5.x.y matrix rows, or mastery probabilities.",
+    "Run the repository guardrail workflow obligations before claiming a material slice complete."
+  ]
+}

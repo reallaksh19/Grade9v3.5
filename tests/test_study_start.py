@@ -62,16 +62,22 @@ class StudyStartOverlay(unittest.TestCase):
         rendered = json.dumps(quick)
         self.assertNotIn('"DEMONSTRATED"', rendered)
         for row in quick:
-            self.assertTrue(row["estimate_basis"]["not_evidence"])
+            basis = row.get("estimate_basis") or row.get("gateway_basis")
+            self.assertIsNotNone(basis)
+            self.assertTrue(basis["not_evidence"])
 
-    def test_no_estimate_means_study_not_guess(self):
+    def test_no_estimate_uses_a_bounded_local_gateway_not_mastery(self):
         report = study_start.resolve(self.mapping(), [])
         self.assertTrue(report["passed"], report["findings"])
         self.assertTrue(report["route"])
-        self.assertEqual(
-            {row["learner_action"] for row in report["route"]},
-            {"STUDY"},
-        )
+        quick = [row for row in report["route"] if row["learner_action"] == "QUICK_CHECK"]
+        study = [row for row in report["route"] if row["learner_action"] == "STUDY"]
+        self.assertTrue(quick)
+        self.assertTrue(study)
+        self.assertTrue(report["gateway_decisions"])
+        self.assertTrue(all(len(row["capability_refs"]) <= 1 for row in report["gateway_decisions"]))
+        self.assertTrue(all(row["gateway_basis"]["not_evidence"] for row in quick))
+        self.assertNotIn('"DEMONSTRATED"', json.dumps(report["gateway_decisions"]))
 
     def test_estimate_below_first_teaching_point_starts_at_first_teaching_point(self):
         report = study_start.resolve(self.mapping(), [{

@@ -1,26 +1,781 @@
-schema_version: relay-v2.5
-progress_basis:
-  id: PB-0001
-  roadmap_revision: RM-0001
-overall:
-  earned_weight: 0
-  total_weight: 0
-  percent: 0
-objectives:
-- id: OBJ-TOPIC-ATLAS-COMPLETE
-  earned_weight: 0
-  total_weight: 0
-  percent: 0
-phases:
-- id: PHASE-TAKEOVER-RECONCILIATION
-  earned_weight: 0
-  total_weight: 0
-  percent: 0
-work_packages:
-- id: WP-TAKEOVER-RECONCILE
-  earned_weight: 0
-  total_weight: 0
-  percent: 0
-execution_packages: []
-implementation_steps: []
-acceptance_criteria: []
+{
+  "schema_version": "relay-v2.5",
+  "progress_basis": {
+    "id": "PB-0006",
+    "roadmap_revision": "RM-0008"
+  },
+  "overall": {
+    "earned_weight": 73.75,
+    "total_weight": 100,
+    "percent": 73.75
+  },
+  "objectives": [
+    {
+      "id": "OBJ-TOPIC-ATLAS-COMPLETE",
+      "earned_weight": 73.75,
+      "total_weight": 100,
+      "percent": 73.75
+    }
+  ],
+  "phases": [
+    {
+      "id": "PHASE-TAKEOVER-RECONCILIATION",
+      "earned_weight": 73.75,
+      "total_weight": 100,
+      "percent": 73.75
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WP-TAKEOVER-RECONCILE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "WP-TA-102",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "WP-TA-106",
+      "earned_weight": 5,
+      "total_weight": 5,
+      "percent": 100
+    },
+    {
+      "id": "WP-TA-103",
+      "earned_weight": 10,
+      "total_weight": 10,
+      "percent": 100
+    },
+    {
+      "id": "WP-TA-104",
+      "earned_weight": 10,
+      "total_weight": 10,
+      "percent": 100
+    },
+    {
+      "id": "WP-TA-107",
+      "earned_weight": 3.75,
+      "total_weight": 15,
+      "percent": 25
+    },
+    {
+      "id": "WP-TA-105",
+      "earned_weight": 0,
+      "total_weight": 15,
+      "percent": 0
+    }
+  ],
+  "execution_packages": [
+    {
+      "id": "EP-TA-001",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-002",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-003",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-004",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-005",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-006",
+      "earned_weight": 0,
+      "total_weight": 100,
+      "percent": 0
+    },
+    {
+      "id": "EP-TA-007",
+      "earned_weight": 100,
+      "total_weight": 100,
+      "percent": 100
+    },
+    {
+      "id": "EP-TA-008",
+      "earned_weight": 25,
+      "total_weight": 100,
+      "percent": 25
+    }
+  ],
+  "implementation_steps": [
+    {
+      "id": "STEP-TA-001",
+      "ep_id": "EP-TA-001",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA-002",
+      "ep_id": "EP-TA-001",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA-003",
+      "ep_id": "EP-TA-001",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA-004",
+      "ep_id": "EP-TA-001",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA2-001",
+      "ep_id": "EP-TA-002",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA2-002",
+      "ep_id": "EP-TA-002",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA2-003",
+      "ep_id": "EP-TA-002",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA2-004",
+      "ep_id": "EP-TA-002",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA2-005",
+      "ep_id": "EP-TA-002",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA3-001",
+      "ep_id": "EP-TA-003",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA3-002",
+      "ep_id": "EP-TA-003",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA3-003",
+      "ep_id": "EP-TA-003",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA3-004",
+      "ep_id": "EP-TA-003",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA4-001",
+      "ep_id": "EP-TA-004",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA4-002",
+      "ep_id": "EP-TA-004",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA4-003",
+      "ep_id": "EP-TA-004",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA4-004",
+      "ep_id": "EP-TA-004",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA5-001",
+      "ep_id": "EP-TA-005",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA5-002",
+      "ep_id": "EP-TA-005",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA5-003",
+      "ep_id": "EP-TA-005",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA5-004",
+      "ep_id": "EP-TA-005",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA6-001",
+      "ep_id": "EP-TA-006",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA6-002",
+      "ep_id": "EP-TA-006",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA6-003",
+      "ep_id": "EP-TA-006",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA6-004",
+      "ep_id": "EP-TA-006",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA7-001",
+      "ep_id": "EP-TA-007",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA7-002",
+      "ep_id": "EP-TA-007",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA7-003",
+      "ep_id": "EP-TA-007",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA7-004",
+      "ep_id": "EP-TA-007",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA8-001",
+      "ep_id": "EP-TA-008",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100
+    },
+    {
+      "id": "STEP-TA8-002",
+      "ep_id": "EP-TA-008",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA8-003",
+      "ep_id": "EP-TA-008",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    },
+    {
+      "id": "STEP-TA8-004",
+      "ep_id": "EP-TA-008",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-TA-001",
+      "ep_id": "EP-TA-001",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-001",
+        "QRV-TA-001",
+        "guardrails 35487996163"
+      ]
+    },
+    {
+      "id": "AC-TA-002",
+      "ep_id": "EP-TA-001",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-001",
+        "QRV-TA-001",
+        "guardrails 35487996163"
+      ]
+    },
+    {
+      "id": "AC-TA-003",
+      "ep_id": "EP-TA-001",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-001",
+        "QRV-TA-001",
+        "guardrails 35487996163"
+      ]
+    },
+    {
+      "id": "AC-TA-004",
+      "ep_id": "EP-TA-001",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-001",
+        "QRV-TA-001",
+        "guardrails 35487996163"
+      ]
+    },
+    {
+      "id": "AC-TA-005",
+      "ep_id": "EP-TA-001",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-001",
+        "QRV-TA-001",
+        "guardrails 35487996163"
+      ]
+    },
+    {
+      "id": "AC-TA2-001",
+      "ep_id": "EP-TA-002",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-002",
+        "QRV-TA-002",
+        "guardrails 35494364057"
+      ]
+    },
+    {
+      "id": "AC-TA2-002",
+      "ep_id": "EP-TA-002",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-002",
+        "QRV-TA-002",
+        "guardrails 35494364057"
+      ]
+    },
+    {
+      "id": "AC-TA2-003",
+      "ep_id": "EP-TA-002",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-002",
+        "QRV-TA-002",
+        "guardrails 35494364057"
+      ]
+    },
+    {
+      "id": "AC-TA2-004",
+      "ep_id": "EP-TA-002",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-002",
+        "QRV-TA-002",
+        "guardrails 35494364057"
+      ]
+    },
+    {
+      "id": "AC-TA2-005",
+      "ep_id": "EP-TA-002",
+      "status": "COMPLETE",
+      "earned_weight": 20,
+      "total_weight": 20,
+      "percent": 100,
+      "basis": [
+        "CP-TA-002",
+        "QRV-TA-002",
+        "guardrails 35494364057"
+      ]
+    },
+    {
+      "id": "AC-TA3-001",
+      "ep_id": "EP-TA-003",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-003",
+        "QRV-TA-003",
+        "guardrails 35500312698",
+        "v25-relay 35500312700"
+      ]
+    },
+    {
+      "id": "AC-TA3-002",
+      "ep_id": "EP-TA-003",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-003",
+        "QRV-TA-003",
+        "guardrails 35500312698",
+        "v25-relay 35500312700"
+      ]
+    },
+    {
+      "id": "AC-TA3-003",
+      "ep_id": "EP-TA-003",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-003",
+        "QRV-TA-003",
+        "guardrails 35500312698",
+        "v25-relay 35500312700"
+      ]
+    },
+    {
+      "id": "AC-TA3-004",
+      "ep_id": "EP-TA-003",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-003",
+        "QRV-TA-003",
+        "guardrails 35500312698",
+        "v25-relay 35500312700"
+      ]
+    },
+    {
+      "id": "AC-TA4-001",
+      "ep_id": "EP-TA-004",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-004",
+        "QRV-TA-004",
+        "guardrails 35502723024",
+        "v25-relay 35502723048"
+      ]
+    },
+    {
+      "id": "AC-TA4-002",
+      "ep_id": "EP-TA-004",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-004",
+        "QRV-TA-004",
+        "guardrails 35502723024",
+        "v25-relay 35502723048"
+      ]
+    },
+    {
+      "id": "AC-TA4-003",
+      "ep_id": "EP-TA-004",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-004",
+        "QRV-TA-004",
+        "guardrails 35502723024",
+        "v25-relay 35502723048"
+      ]
+    },
+    {
+      "id": "AC-TA4-004",
+      "ep_id": "EP-TA-004",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-004",
+        "QRV-TA-004",
+        "guardrails 35502723024",
+        "v25-relay 35502723048"
+      ]
+    },
+    {
+      "id": "AC-TA5-001",
+      "ep_id": "EP-TA-005",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-005",
+        "QRV-TA-005"
+      ]
+    },
+    {
+      "id": "AC-TA5-002",
+      "ep_id": "EP-TA-005",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-005",
+        "QRV-TA-005"
+      ]
+    },
+    {
+      "id": "AC-TA5-003",
+      "ep_id": "EP-TA-005",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-005",
+        "QRV-TA-005"
+      ]
+    },
+    {
+      "id": "AC-TA5-004",
+      "ep_id": "EP-TA-005",
+      "status": "FAILED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": [
+        "CP-TA-005",
+        "QF-TA5-001"
+      ]
+    },
+    {
+      "id": "AC-TA6-001",
+      "ep_id": "EP-TA-006",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA6-002",
+      "ep_id": "EP-TA-006",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA6-003",
+      "ep_id": "EP-TA-006",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA6-004",
+      "ep_id": "EP-TA-006",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA7-001",
+      "ep_id": "EP-TA-007",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-007",
+        "QRV-TA-007",
+        "guardrails 35507415230",
+        "v25-relay 35507415307"
+      ]
+    },
+    {
+      "id": "AC-TA7-002",
+      "ep_id": "EP-TA-007",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-007",
+        "QRV-TA-007",
+        "guardrails 35507415230",
+        "v25-relay 35507415307"
+      ]
+    },
+    {
+      "id": "AC-TA7-003",
+      "ep_id": "EP-TA-007",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-007",
+        "QRV-TA-007",
+        "guardrails 35507415230",
+        "v25-relay 35507415307"
+      ]
+    },
+    {
+      "id": "AC-TA7-004",
+      "ep_id": "EP-TA-007",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "CP-TA-007",
+        "QRV-TA-007",
+        "guardrails 35507415230",
+        "v25-relay 35507415307"
+      ]
+    },
+    {
+      "id": "AC-TA8-001",
+      "ep_id": "EP-TA-008",
+      "status": "COMPLETE",
+      "earned_weight": 25,
+      "total_weight": 25,
+      "percent": 100,
+      "basis": [
+        "EVIDENCE-TA8-001-STEP1",
+        "guardrails:35524871649:PASS@993d49ad9c0f84388d83306b762cc756f02cea71",
+        "v25-relay:35524871647:conformance+cold-start+baton+route+git PASS; normal candidate write gate FAIL by documented Owner exception",
+        "BENCH-TA8-001",
+        "BENCH-TA8-002"
+      ]
+    },
+    {
+      "id": "AC-TA8-002",
+      "ep_id": "EP-TA-008",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA8-003",
+      "ep_id": "EP-TA-008",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    },
+    {
+      "id": "AC-TA8-004",
+      "ep_id": "EP-TA-008",
+      "status": "NOT_STARTED",
+      "earned_weight": 0,
+      "total_weight": 25,
+      "percent": 0,
+      "basis": []
+    }
+  ]
+}

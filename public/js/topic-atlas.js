@@ -19,12 +19,10 @@
     validation_report: null,     // Import audit report
     overlay_active: true,
     selected_target: null,       // Focus target (e.g. "R5.1.0")
-    leaf_progress: {},           // Step mastery map: { [stepId]: { status: 'PENDING'|'MASTERED'|'GAP', dimension: 'CONCEPT'|null } }
     request_config: {
       cores: ['CORE1A', 'CORE1B', 'CORE2A'],
       core2a_purpose: 'PRACTICE',
-      core2b_purpose: null,      // null = required input if CORE2B selected
-      placement_mode: 'AUTO'     // 'AUTO' | 'OWNER_ENTRY' | 'OWNER_ESTIMATE'
+      core2b_purpose: null       // null = planner may request purpose if CORE2B selected
     }
   };
 
@@ -83,9 +81,6 @@
         state.knowledge_percentage = parsed.knowledge_percentage !== undefined ? parsed.knowledge_percentage : null;
         state.diagnostic_rows = Array.isArray(parsed.diagnostic_rows) ? parsed.diagnostic_rows : [];
         state.overlay_active = parsed.overlay_active !== undefined ? parsed.overlay_active : true;
-        if (parsed.leaf_progress && typeof parsed.leaf_progress === 'object') {
-          state.leaf_progress = parsed.leaf_progress;
-        }
         if (parsed.request_config) {
           state.request_config = Object.assign(state.request_config, parsed.request_config);
         }
@@ -101,7 +96,6 @@
         knowledge_percentage: state.knowledge_percentage,
         diagnostic_rows: state.diagnostic_rows,
         overlay_active: state.overlay_active,
-        leaf_progress: state.leaf_progress,
         request_config: state.request_config
       };
       localStorage.setItem(getStorageKey(), JSON.stringify(payload));
@@ -142,259 +136,152 @@
     return Boolean(stepId && (activity.teaching_step_refs || []).includes(stepId));
   }
 
-  // --- Need Resolver & Fallback Ladder (GAP-WEB-010) ---
-  function resolveNeedTargets() {
-    const rungs = state.matrix.rungs;
+  const DIAGNOSTIC_STAGES = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
+  const GAP_RESULTS = ['MISSING', 'UNCERTAIN'];
+
+  function diagnosticDimensionIndex(stage) {
+    const map = { CONCEPT: 0, SETUP: 1, EXECUTION: 2, CARELESS: 3, UNKNOWN: 99 };
+    return Object.prototype.hasOwnProperty.call(map, stage) ? map[stage] : 99;
+  }
+
+  function deriveAtlasAddress(rungId, stepIdx, stage) {
+    const dimIdx = diagnosticDimensionIndex(stage);
+    if (stepIdx === 99) return rungId + '.99';
+    if (dimIdx === 99) return rungId + '.' + stepIdx + '.99';
+    return rungId + '.' + stepIdx + '.' + dimIdx;
+  }
+
+  function validateDiagnosticRow(rungs, row, index) {
+    const raw = row || {};
+    const capRef = raw.capability_ref;
+    if (!capRef) return { error: 'capability_ref is required; no fuzzy mapping is allowed' };
+
+    const matchedRung = rungs.find(rg => rg.capability && rg.capability.id === capRef);
+    if (!matchedRung) return { error: "Unknown capability ref '" + capRef + "' in matrix" };
+
+    if (raw.rung_ref && raw.rung_ref !== matchedRung.rung) {
+      return { error: "rung_ref '" + raw.rung_ref + "' conflicts with capability_ref '" + capRef + "' (" + matchedRung.rung + ')' };
+    }
+
+    if (!GAP_RESULTS.includes(raw.result)) {
+      return { error: 'result must be MISSING or UNCERTAIN for a diagnostic gap row' };
+    }
+
+    const stage = raw.error_stage ? String(raw.error_stage).toUpperCase() : 'UNKNOWN';
+    if (!DIAGNOSTIC_STAGES.includes(stage)) {
+      return { error: "error_stage '" + raw.error_stage + "' is not in the diagnostic vocabulary" };
+    }
+
+    let score = null;
+    if (raw.score !== undefined && raw.score !== null) {
+      if (typeof raw.score !== 'number' || !Number.isFinite(raw.score) || raw.score < 0 || raw.score > 100) {
+        return { error: 'score, when supplied, must be a numeric value from 0 to 100' };
+      }
+      score = raw.score;
+    }
+
+    if (typeof raw.observed !== 'string' || !raw.observed.trim()) {
+      return { error: 'observed is required and must contain the answer-sheet evidence used for this gap' };
+    }
+
+    const tpath = (matchedRung.microtopic && matchedRung.microtopic.teaching_path) || [];
+    let repairRef = null;
+    let warning = null;
+    if (raw.repair_ref) {
+      const step = tpath.find(s => s.id === raw.repair_ref);
+      if (step) repairRef = step.id;
+      else warning = 'Row ' + (index + 1) + ": Unrecognized repair_ref '" + raw.repair_ref + "' on " + matchedRung.rung + '; kept the capability-level gap and discarded only the unsupported narrow target.';
+    }
+
+    return {
+      accepted: {
+        question_ref: raw.question_ref || null,
+        capability_ref: capRef,
+        rung_ref: matchedRung.rung,
+        repair_ref: repairRef,
+        result: raw.result,
+        error_stage: stage,
+        score,
+        observed: raw.observed.trim()
+      },
+      warning
+    };
+  }
+
+  function resolveNeedTargetsFor(matrix, knowledgePercentage, diagnosticRows) {
+    const rungs = (matrix && matrix.rungs) || [];
     const defaultRungs = rungs.filter(r => r.default_entry_eligible);
     const sortedDefault = [...defaultRungs].sort((a, b) => a.ladder_position - b.ladder_position);
-
     const targets = [];
 
-    // Step 1: Process external diagnostic gap rows
-    if (state.diagnostic_rows && state.diagnostic_rows.length > 0) {
-      state.diagnostic_rows.forEach(row => {
-        // Find matching rung
-        const matchedRung = rungs.find(r => 
-          (r.capability && r.capability.id === row.capability_ref) ||
-          r.rung === row.rung_ref
-        );
+    (diagnosticRows || []).forEach((row, index) => {
+      const checked = validateDiagnosticRow(rungs, row, index);
+      if (checked.error) return;
+      const clean = checked.accepted;
+      const matchedRung = rungs.find(r => r.capability && r.capability.id === clean.capability_ref);
+      if (!matchedRung) return;
 
-        if (!matchedRung) return;
+      const tpath = (matchedRung.microtopic && matchedRung.microtopic.teaching_path) || [];
+      const rawStepIdx = clean.repair_ref ? tpath.findIndex(s => s.id === clean.repair_ref) : -1;
+      const stepIdx = rawStepIdx >= 0 ? rawStepIdx : 99;
+      const matchedStep = rawStepIdx >= 0 ? tpath[rawStepIdx] : null;
+      let fallbackLevel = 'EXACT_LEAF_DIMENSION';
+      if (stepIdx === 99) fallbackLevel = 'CAPABILITY_ONLY_FALLBACK';
+      else if (clean.error_stage === 'UNKNOWN') fallbackLevel = 'LEAF_UNKNOWN_DIMENSION_FALLBACK';
 
-        const capId = matchedRung.capability ? matchedRung.capability.id : row.capability_ref;
-        const tpath = (matchedRung.microtopic && matchedRung.microtopic.teaching_path) || [];
-        
-        let stepIdx = 99; // fallback level: capability only
-        let matchedStep = null;
-        if (row.repair_ref) {
-          const sIndex = tpath.findIndex(s => s.id === row.repair_ref);
-          if (sIndex !== -1) {
-            stepIdx = sIndex;
-            matchedStep = tpath[sIndex];
-          }
-        }
-
-        // Diagnostic Dimension mapping
-        const dimMap = {
-          'CONCEPT': 0,
-          'SETUP': 1,
-          'EXECUTION': 2,
-          'CARELESS': 3,
-          'UNKNOWN': 99
-        };
-        const stage = row.error_stage || 'UNKNOWN';
-        const dimIdx = dimMap[stage] !== undefined ? dimMap[stage] : 99;
-
-        // Derived presentation address (GAP-WEB-008)
-        const address = `${matchedRung.rung}.${stepIdx}.${dimIdx}`;
-
-        // Fallback level receipt
-        let fallbackLevel = "EXACT_LEAF_DIMENSION";
-        if (stepIdx === 99) fallbackLevel = "CAPABILITY_ONLY_FALLBACK";
-        else if (dimIdx === 99) fallbackLevel = "LEAF_UNKNOWN_DIMENSION_FALLBACK";
-
-        targets.push({
-          address,
-          rung: matchedRung.rung,
-          rung_obj: matchedRung,
-          capability_ref: capId,
-          repair_ref: row.repair_ref || (matchedStep ? matchedStep.id : null),
-          error_stage: stage,
-          score: row.score !== undefined ? row.score : null,
-          observed: row.observed || "Diagnostic gap identified from external assessment",
-          result: row.result || "MISSING",
-          fallback_level: fallbackLevel,
-          step_action: matchedStep ? matchedStep.action : null,
-          why: `Scanned gap on ${capId}${row.repair_ref ? ' step ' + row.repair_ref : ''} at stage ${stage}`
-        });
+      targets.push({
+        address: deriveAtlasAddress(matchedRung.rung, stepIdx, clean.error_stage),
+        rung: matchedRung.rung,
+        rung_obj: matchedRung,
+        capability_ref: clean.capability_ref,
+        repair_ref: clean.repair_ref,
+        error_stage: clean.error_stage,
+        score: clean.score,
+        observed: clean.observed,
+        result: clean.result,
+        fallback_level: fallbackLevel,
+        step_action: matchedStep ? matchedStep.action : null,
+        why: 'Scanned gap on ' + clean.capability_ref + (clean.repair_ref ? ' step ' + clean.repair_ref : '') + ' at stage ' + clean.error_stage
       });
-    }
+    });
 
-    // Step 2: If no gap rows, fall back to Knowledge Percentage (GAP-WEB-004)
     let estimateEntryRung = null;
     let quickCheckRungs = [];
-
-    if (targets.length === 0 && state.knowledge_percentage !== null && !isNaN(state.knowledge_percentage)) {
-      const pct = state.knowledge_percentage;
+    if (typeof knowledgePercentage === 'number' && Number.isFinite(knowledgePercentage) && sortedDefault.length > 0) {
+      const pct = Math.max(0, Math.min(100, knowledgePercentage));
       const eligible = sortedDefault.filter(r => r.ladder_position <= pct);
       estimateEntryRung = eligible.length > 0 ? eligible[eligible.length - 1] : sortedDefault[0];
-      quickCheckRungs = eligible.map(r => r.rung);
+      quickCheckRungs = eligible.filter(r => r.rung !== estimateEntryRung.rung).map(r => r.rung);
 
-      targets.push({
-        address: `${estimateEntryRung.rung}.99.99`,
-        rung: estimateEntryRung.rung,
-        rung_obj: estimateEntryRung,
-        capability_ref: estimateEntryRung.capability ? estimateEntryRung.capability.id : null,
-        repair_ref: null,
-        error_stage: 'UNKNOWN',
-        score: null,
-        observed: `Selected via owner knowledge estimate of ${pct}% (Ladder position ${estimateEntryRung.ladder_position})`,
-        result: 'UNCERTAIN',
-        fallback_level: 'KNOWLEDGE_ESTIMATE_FALLBACK',
-        step_action: null,
-        why: `Knowledge estimate ${pct}% maps to tentative start coordinate ${estimateEntryRung.rung}`
-      });
-    }
-
-    // Step 3: If neither present, neutral default canonical route
-    if (targets.length === 0) {
-      const defaultEntry = sortedDefault[0];
-      targets.push({
-        address: `${defaultEntry.rung}.0.99`,
-        rung: defaultEntry.rung,
-        rung_obj: defaultEntry,
-        capability_ref: defaultEntry.capability ? defaultEntry.capability.id : null,
-        repair_ref: null,
-        error_stage: 'UNKNOWN',
-        score: null,
-        observed: "Canonical baseline: no estimate or gap table supplied",
-        result: 'UNCERTAIN',
-        fallback_level: 'CANONICAL_DEFAULT_ROUTE',
-        step_action: null,
-        why: "Default curriculum entry; browsing full canonical atlas"
-      });
+      if (targets.length === 0) {
+        targets.push({
+          address: estimateEntryRung.rung,
+          rung: estimateEntryRung.rung,
+          rung_obj: estimateEntryRung,
+          capability_ref: estimateEntryRung.capability ? estimateEntryRung.capability.id : null,
+          repair_ref: null,
+          error_stage: 'UNKNOWN',
+          score: null,
+          observed: 'Owner supplied rough knowledge estimate: ' + pct + '%',
+          result: 'UNCERTAIN',
+          fallback_level: 'KNOWLEDGE_ESTIMATE_COORDINATE',
+          step_action: null,
+          why: 'Knowledge estimate ' + pct + '% selects tentative start coordinate ' + estimateEntryRung.rung + '; it does not prove prior rungs mastered.'
+        });
+      }
     }
 
     return {
       targets,
-      primary_target: targets[0],
+      primary_target: targets[0] || null,
       estimateEntryRung,
-      quickCheckRungs
+      quickCheckRungs,
+      canonicalDefaultEntry: sortedDefault[0] || null
     };
   }
 
-  // --- Leaf Mastery & Skill Matrix Progress Computation ---
-  function getLeafStatus(stepId, rungNum) {
-    if (state.leaf_progress && state.leaf_progress[stepId]) {
-      return state.leaf_progress[stepId];
-    }
-    const gapRow = (state.diagnostic_rows || []).find(r => r.repair_ref === stepId);
-    if (gapRow) {
-      return {
-        status: 'GAP',
-        dimension: gapRow.error_stage || 'CONCEPT'
-      };
-    }
-    return { status: 'PENDING', dimension: null };
-  }
-
-  function computeSkillMatrixProgress() {
-    if (!state.matrix || !state.matrix.rungs) {
-      return { total: 0, mastered: 0, gaps: 0, pending: 0, percentage: 0 };
-    }
-    let total = 0;
-    let mastered = 0;
-    let gaps = 0;
-    state.matrix.rungs.forEach(r => {
-      if (r.microtopic && Array.isArray(r.microtopic.teaching_path)) {
-        r.microtopic.teaching_path.forEach(step => {
-          total++;
-          const st = getLeafStatus(step.id, r.rung);
-          if (st.status === 'MASTERED') mastered++;
-          else if (st.status === 'GAP') gaps++;
-        });
-      }
-    });
-    const pending = Math.max(0, total - mastered - gaps);
-    const percentage = total > 0 ? Math.round((mastered / total) * 100) : 0;
-    return { total, mastered, gaps, pending, percentage };
-  }
-
-  function updateSkillMatrixProgressUI() {
-    const stats = computeSkillMatrixProgress();
-    const valEl = document.getElementById('statMatrixProgressVal');
-    const barEl = document.getElementById('statMatrixProgressBar');
-    const detEl = document.getElementById('statMatrixProgressDetail');
-    if (valEl) valEl.textContent = `${stats.percentage}%`;
-    if (barEl) {
-      barEl.style.width = `${stats.percentage}%`;
-      if (stats.percentage === 100) {
-        barEl.style.background = 'var(--chip-ok-border)';
-      } else if (stats.percentage > 0) {
-        barEl.style.background = 'linear-gradient(90deg, #38bdf8, #3fb950)';
-      } else {
-        barEl.style.background = 'transparent';
-      }
-    }
-    if (detEl) {
-      detEl.textContent = `${stats.mastered} of ${stats.total} Leaves Mastered${stats.gaps > 0 ? ' · ' + stats.gaps + ' Gap(s)' : ''}`;
-    }
-
-    const headerPill = document.getElementById('headerProgressPill');
-    if (headerPill) {
-      headerPill.textContent = `${stats.percentage}% Mastered (${stats.mastered}/${stats.total})`;
-      headerPill.className = `badge ${stats.percentage === 100 ? 'ok' : stats.percentage > 0 ? 'warn' : 'neutral'}`;
-    }
-  }
-
-  function cycleLeafStatus(stepId, rungNum, evt) {
-    if (evt) evt.stopPropagation();
-    const current = getLeafStatus(stepId, rungNum);
-    let nextStatus = 'MASTERED';
-    let nextDim = null;
-    if (current.status === 'PENDING') {
-      nextStatus = 'MASTERED';
-    } else if (current.status === 'MASTERED') {
-      nextStatus = 'GAP';
-      nextDim = 'CONCEPT';
-    } else if (current.status === 'GAP') {
-      nextStatus = 'PENDING';
-      nextDim = null;
-    }
-    state.leaf_progress[stepId] = { status: nextStatus, dimension: nextDim };
-    saveLocalStorageState();
-    renderMultiResolutionCards();
-    updateSkillMatrixProgressUI();
-  }
-
-  function toggleLeafDimension(stepId, rungNum, dim, evt) {
-    if (evt) evt.stopPropagation();
-    const current = getLeafStatus(stepId, rungNum);
-    if (current.status === 'GAP' && current.dimension === dim) {
-      state.leaf_progress[stepId] = { status: 'PENDING', dimension: null };
-    } else {
-      state.leaf_progress[stepId] = { status: 'GAP', dimension: dim };
-    }
-    saveLocalStorageState();
-    renderMultiResolutionCards();
-    updateSkillMatrixProgressUI();
-  }
-
-  function markRungAll(rungNum, targetStatus, evt) {
-    if (evt) evt.stopPropagation();
-    const rung = (state.matrix.rungs || []).find(r => r.rung === rungNum);
-    if (!rung || !rung.microtopic || !Array.isArray(rung.microtopic.teaching_path)) return;
-    rung.microtopic.teaching_path.forEach(step => {
-      state.leaf_progress[step.id] = { status: targetStatus, dimension: null };
-    });
-    saveLocalStorageState();
-    renderMultiResolutionCards();
-    updateSkillMatrixProgressUI();
-  }
-
-  function markAllLeaves(targetStatus) {
-    (state.matrix.rungs || []).forEach(r => {
-      if (r.microtopic && Array.isArray(r.microtopic.teaching_path)) {
-        r.microtopic.teaching_path.forEach(step => {
-          state.leaf_progress[step.id] = { status: targetStatus, dimension: null };
-        });
-      }
-    });
-    saveLocalStorageState();
-    renderMultiResolutionCards();
-    updateSkillMatrixProgressUI();
-  }
-
-  function syncKnowledgeToSkillProgress() {
-    const stats = computeSkillMatrixProgress();
-    state.knowledge_percentage = stats.percentage;
-    saveLocalStorageState();
-    renderInputDrawer();
-    renderProgressionLane();
-    renderMultiResolutionCards();
-    renderNeedMap();
-    renderCoreBuilder();
-    updateStorageStatusBadge(`⚡ Synced Knowledge Estimate to ${stats.percentage}%`);
+  function resolveNeedTargets() {
+    return resolveNeedTargetsFor(state.matrix, state.knowledge_percentage, state.diagnostic_rows);
   }
 
   // --- Header Renderer ---
@@ -430,8 +317,6 @@
     const qStat = document.getElementById('statQuestionCount');
     if (qStat) qStat.textContent = `${qCount} Canonical Items`;
 
-    // Update Skill Matrix Progress in Summary Strip
-    updateSkillMatrixProgressUI();
   }
 
   // --- Input Drawer Renderer (GAP-WEB-002, GAP-WEB-003, GAP-WEB-004) ---
@@ -447,7 +332,7 @@
 
     if (statusTxt) {
       if (state.knowledge_percentage === null) {
-        statusTxt.textContent = "No estimate supplied → neutral/default canonical route";
+        statusTxt.textContent = "No estimate supplied → canonical browse mode (no learner placement)";
         statusTxt.style.color = "var(--text-muted)";
       } else {
         statusTxt.textContent = `Active estimate: ${state.knowledge_percentage}% (Ladder coordinate, not mastery)`;
@@ -589,9 +474,6 @@
       } else if (target.result === 'UNCERTAIN') {
         nodeClass += ' has-uncertain';
         badgeHtml = `<span class="badge warn">UNCERTAIN</span>`;
-      } else if (target.result === 'DEMONSTRATED') {
-        nodeClass += ' has-demonstrated';
-        badgeHtml = `<span class="badge ok">✓ DEMONSTRATED</span>`;
       }
     } else if (state.overlay_active && isQuickCheck) {
       nodeClass += ' is-quick-check';
@@ -627,35 +509,10 @@
       const micro = r.microtopic || {};
       const tpath = micro.teaching_path || [];
 
-      // Rung-level mastery statistics
-      const rungTotal = tpath.length;
-      let rungMastered = 0;
-      let rungGaps = 0;
-      tpath.forEach(step => {
-        const st = getLeafStatus(step.id, r.rung);
-        if (st.status === 'MASTERED') rungMastered++;
-        else if (st.status === 'GAP') rungGaps++;
-      });
-      const rungPct = rungTotal > 0 ? Math.round((rungMastered / rungTotal) * 100) : 0;
 
       // Level 2 & 3: Semantic Leaves & Diagnostic Dimension Cells
       let semanticLeavesHtml = tpath.map((step, idx) => {
-        const stepTarget = resolved.targets.find(t => t.rung === r.rung && t.repair_ref === step.id);
-        const leafSt = getLeafStatus(step.id, r.rung);
-
-        let toggleClass = 'outline';
-        let toggleIcon = '○';
-        let toggleText = 'Pending';
-        if (leafSt.status === 'MASTERED') {
-          toggleClass = 'ok';
-          toggleIcon = '✓';
-          toggleText = 'Mastered';
-        } else if (leafSt.status === 'GAP') {
-          toggleClass = 'hold';
-          toggleIcon = '⚠';
-          toggleText = 'Gap Detected';
-        }
-
+        const stepTargets = resolved.targets.filter(t => t.rung === r.rung && t.repair_ref === step.id);
         const stepActivities = (r.activities || []).filter(act => activityMatchesStep(act, step.id));
         const stepActivitiesHtml = stepActivities.map(act => {
           const gcdr = act.support_route && act.support_route.kind === 'GCDR';
@@ -688,38 +545,31 @@
           `;
         }).join('');
         
-        // Level 3 Dimensions
-        const dimensions = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
+        // Level 3 dimensions remain independent; never average them into a rung score.
+        const dimensions = [...DIAGNOSTIC_STAGES];
         const dimCellsHtml = dimensions.map(dim => {
-          const isCurrentDim = (leafSt.status === 'GAP' && leafSt.dimension === dim) ||
-                               (stepTarget && stepTarget.error_stage === dim);
-          let cellStyle = "padding: 3px 8px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s ease;";
+          const dimTargets = stepTargets.filter(t => t.error_stage === dim);
+          const isCurrentDim = dimTargets.length > 0;
+          let cellStyle = "padding: 3px 8px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--border);";
           if (isCurrentDim) {
             cellStyle += " background: var(--chip-hold-bg); border-color: var(--chip-hold-border); color: var(--chip-hold-text); font-weight: 700;";
           } else {
             cellStyle += " background: var(--bg); color: var(--text-muted);";
           }
-          const scoreText = (isCurrentDim && stepTarget && stepTarget.score !== null) ? ` (${stepTarget.score}%)` : '';
-          return `<button type="button" onclick="window.ATLAS.toggleLeafDimension('${step.id}', '${r.rung}', '${dim}', event)" style="${cellStyle}" title="Toggle ${dim} diagnostic dimension for ${step.id}">${dim}${scoreText}</button>`;
+          const scores = dimTargets.filter(t => t.score !== null).map(t => t.score + '%');
+          const scoreText = scores.length ? ' (' + scores.join(', ') + ')' : '';
+          return '<span style="' + cellStyle + '">' + dim + scoreText + '</span>';
         }).join(' ');
 
         return `
-          <div style="background: var(--bg-card); border: 1px solid ${leafSt.status === 'MASTERED' ? 'rgba(63, 185, 80, 0.4)' : leafSt.status === 'GAP' ? 'rgba(218, 54, 51, 0.4)' : 'var(--border)'}; border-radius: 6px; padding: 10px; margin-bottom: 8px; transition: border-color 0.2s;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="badge phy" style="font-weight: 700;">Leaf ${r.rung}.${idx}</span>
                 <code style="color: var(--accent); font-weight: 600;">${step.id}</code>
                 <span style="font-size: 12px; font-weight: 600;">${step.action}</span>
               </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <button type="button" class="btn ${toggleClass}"
-                        onclick="window.ATLAS.cycleLeafStatus('${step.id}', '${r.rung}', event)"
-                        style="padding: 3px 8px; font-size: 11px; font-weight: 700; border-radius: 4px;"
-                        title="Click to cycle: Pending → Mastered → Gap Detected">
-                  ${toggleIcon} ${toggleText}
-                </button>
-                <span class="badge neutral">${step.role || 'TRANSFORM'}</span>
-              </div>
+              <span class="badge neutral">${step.role || 'TRANSFORM'}</span>
             </div>
             <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5;">
               <strong>Validity Rationale:</strong> ${step.why_valid}
@@ -786,7 +636,7 @@
           <div class="quote-box misconception">
             <strong>Wrong Idea:</strong> "${m.wrong_idea}"
           </div>
-          ${m.diagnostic ? `<div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> ${m.diagnostic}</div>` : ''}
+          ${m.diagnostic_prompt ? `<div style="font-size: 12px; color: var(--text-dim); margin: 4px 0 2px 0;"><strong>Diagnostic:</strong> ${m.diagnostic_prompt}</div>` : ''}
           <div class="quote-box repair" style="margin-top: 4px;">
             <strong>Repair:</strong> ${m.repair}
           </div>
@@ -807,9 +657,6 @@
             </div>
             <div class="summary-right">
               ${target && state.overlay_active ? `<span class="badge ${target.result === 'MISSING' ? 'hold' : 'warn'}">${target.address} ${target.result}</span>` : ''}
-              <span class="badge ${rungPct === 100 ? 'ok' : rungPct > 0 ? 'warn' : 'neutral'}" title="Rung Mastery: ${rungMastered} of ${rungTotal} leaves mastered">
-                ${rungMastered}/${rungTotal} (${rungPct}%)
-              </span>
               <span class="badge ${isDef ? 'ok' : 'purple'}">${isDef ? 'Default Lane' : 'Branch Extension'}</span>
               <span class="badge ${micro.intrinsic_badge === 'HARD' ? 'hold' : 'warn'}">${micro.intrinsic_badge || 'MEDIUM'}</span>
               <span style="color: var(--text-dim); font-size: 12px;">Pos: ${r.ladder_position}</span>
@@ -843,16 +690,9 @@
                 <h4 style="font-size: 13px; font-weight: 700; color: var(--accent); margin: 0;">
                   🌿 Level 2 Semantic Leaves &amp; Level 3 Diagnostic Cells:
                 </h4>
-                <div style="display: flex; gap: 6px;">
-                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
-                          onclick="window.ATLAS.markRungAll('${r.rung}', 'MASTERED', event)" title="Mark all leaves in ${r.rung} as mastered">
-                    ✓ Mark Rung Mastered
-                  </button>
-                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
-                          onclick="window.ATLAS.markRungAll('${r.rung}', 'PENDING', event)" title="Reset leaves in ${r.rung} to pending">
-                    ↺ Reset Rung
-                  </button>
-                </div>
+                <span style="font-size: 11px; color: var(--text-dim);">
+                  Diagnostic cells are read-only projections of imported answer-sheet evidence.
+                </span>
               </div>
               ${semanticLeavesHtml || '<p style="font-size: 12px; color: var(--text-muted);">No distinct teaching-path steps recorded.</p>'}
             </div>
@@ -901,7 +741,6 @@
       `;
     }).join('');
 
-    updateSkillMatrixProgressUI();
   }
 
   // --- Need Map Renderer (GAP-WEB-010) ---
@@ -910,11 +749,33 @@
     if (!needBox) return;
 
     const resolved = resolveNeedTargets();
+    if (resolved.targets.length === 0) {
+      needBox.innerHTML = `
+        <div class="section-title">
+          <span>🎯 Active Need Map & Focus Targets</span>
+          <span class="count">Canonical Browse Mode</span>
+        </div>
+        <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 24px;">
+          <strong>No learner focus supplied.</strong>
+          <p style="font-size: 12px; color: var(--text-muted); margin: 6px 0 0 0;">
+            The Atlas remains a canonical map. No rung is claimed as learner placement,
+            no prerequisite is claimed held, and absence from a gap table is not DEMONSTRATED.
+          </p>
+        </div>
+      `;
+      return;
+    }
     needBox.innerHTML = `
       <div class="section-title">
         <span>🎯 Active Need Map & Focus Targets</span>
         <span class="count">${resolved.targets.length} Identified Need(s)</span>
       </div>
+      ${resolved.estimateEntryRung ? `
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+          Broad owner-estimate route: <strong>${resolved.estimateEntryRung.rung}</strong>.
+          This is a routing prior only; imported answer-sheet gaps remain the local focus.
+        </div>
+      ` : ''}
       <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
         ${resolved.targets.map((t, idx) => {
           const exactActivities = ((t.rung_obj && t.rung_obj.activities) || [])
@@ -953,6 +814,37 @@
     `;
   }
 
+  function buildAuthoringRequest(matrix, requestConfig, knowledgePercentage, requestId) {
+    const cores = Array.isArray(requestConfig.cores) ? [...requestConfig.cores] : [];
+    if (cores.length === 0) return null;
+
+    const requestDoc = {
+      request_id: requestId,
+      subject: matrix.subject,
+      subtopic: matrix.subtopic,
+      bucket_id: matrix.bucket_id,
+      requested_cores: cores
+    };
+
+    if (typeof knowledgePercentage === 'number' && Number.isFinite(knowledgePercentage)) {
+      requestDoc.learner = {
+        owner_estimate: {
+          knowledge_percentage: Math.max(0, Math.min(100, Math.round(knowledgePercentage))),
+          by: 'Topic Atlas owner input',
+          instruction: 'Rough starting coordinate only; not evidence of prerequisite mastery'
+        }
+      };
+    }
+
+    const practice = {};
+    if (cores.includes('CORE2A')) practice.CORE2A = { purpose: requestConfig.core2a_purpose };
+    if (cores.includes('CORE2B') && requestConfig.core2b_purpose) {
+      practice.CORE2B = { purpose: requestConfig.core2b_purpose };
+    }
+    if (Object.keys(practice).length > 0) requestDoc.practice = practice;
+    return requestDoc;
+  }
+
   // --- Core Request Builder & Planner Preview (GAP-WEB-013, GAP-WEB-014, GAP-WEB-015, GAP-WEB-016) ---
   function renderCoreBuilder() {
     const builderBox = document.getElementById('coreBuilderContainer');
@@ -962,7 +854,7 @@
     const primary = resolved.primary_target;
 
     // Default suggestions based on failure stage (GAP-WEB-014)
-    let suggestedEmphasis = "Core1B reconstruction + Core1A concept grounding";
+    let suggestedEmphasis = primary ? "Core1B reconstruction + Core1A concept grounding" : "No learner-specific emphasis until optional learner input is supplied";
     if (primary && primary.error_stage === 'SETUP') suggestedEmphasis = "Core1B setup reconstruction + scaffolded Core2A";
     else if (primary && primary.error_stage === 'EXECUTION') suggestedEmphasis = "Core2A targeted practice (no broad Core1A reteach)";
     else if (primary && primary.error_stage === 'CARELESS') suggestedEmphasis = "Short Core2A / revision checking loop";
@@ -971,34 +863,35 @@
     const isCore2B = state.request_config.cores.includes('CORE2B');
     const isCore2BPurposeMissing = isCore2B && !state.request_config.core2b_purpose;
 
-    // Planner state preview (GAP-WEB-015)
+    // Local selection preview only. Shared planning remains authoritative for readiness,
+    // prerequisite closure, bridges, source custody and transfer legality.
     const coreStates = {};
     state.request_config.cores.forEach(c => {
       if (c === 'CORE2B') {
-        if (state.request_config.core2a_purpose === 'STARTER') {
-          coreStates[c] = { state: 'WITHHELD', reason: 'STARTER purpose does not route transfer' };
-        } else if (!state.request_config.core2b_purpose) {
-          coreStates[c] = { state: 'WAITING', reason: 'WAITING_FOR_PURPOSE' };
+        if (!state.request_config.core2b_purpose) {
+          coreStates[c] = { state: 'WAITING', reason: 'purpose required for planning' };
+        } else if (state.request_config.core2b_purpose === 'NONE') {
+          coreStates[c] = { state: 'WITHHELD', reason: 'owner selected NONE' };
         } else {
-          coreStates[c] = { state: 'READY', reason: 'Transfer inventory available' };
+          coreStates[c] = { state: 'SELECTED', reason: 'purpose: ' + state.request_config.core2b_purpose };
         }
       } else if (c === 'CORE2A') {
-        coreStates[c] = { state: 'READY', reason: `Purpose: ${state.request_config.core2a_purpose}` };
+        coreStates[c] = { state: 'SELECTED', reason: 'purpose: ' + state.request_config.core2a_purpose };
       } else {
-        coreStates[c] = { state: 'READY', reason: 'Intrinsic canonical construction' };
+        coreStates[c] = { state: 'SELECTED', reason: 'send to planner for readiness' };
       }
     });
 
     builderBox.innerHTML = `
       <div class="section-title">
-        <span>⚡ Authoritative Core Request Builder & Planner Preview</span>
-        <span class="badge ok">Shared request.schema.json Compliant</span>
+        <span>⚡ Core Request Builder · Local Selection Preview</span>
+        <span class="badge warn">Authoritative planner not executed in browser</span>
       </div>
 
       <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 24px;">
         <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);">
           <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px;">
-            Target Need: <code>${primary.address}</code> (${primary.rung} · ${primary.capability_ref})
+            Target Need: ${primary ? `<code>${primary.address}</code> (${primary.rung} · ${primary.capability_ref})` : 'No learner focus supplied — canonical browse mode'}
           </h4>
           <p style="font-size: 13px; color: var(--text-muted); margin: 0;">
             Suggested Routing Emphasis: <strong style="color: var(--accent);">${suggestedEmphasis}</strong>
@@ -1048,10 +941,10 @@
           ` : ''}
         </div>
 
-        <!-- Deterministic Planner Preview (GAP-WEB-015) -->
+        <!-- Local selection preview; authoritative planning runs outside the browser. -->
         <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; margin-bottom: 16px;">
           <h5 style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">
-            Deterministic Planner Preview:
+            Local Selection Preview:
           </h5>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
             ${state.request_config.cores.map(c => {
@@ -1063,9 +956,12 @@
             }).join('')}
           </div>
           <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
-            <strong>Entry Rung:</strong> ${primary.rung} &middot; 
-            <strong>Prerequisite Status:</strong> Cleared via ${primary.fallback_level} &middot;
-            <strong>Targeted Teaching Steps:</strong> ${primary.repair_ref || 'Full rung sequence'}
+            <strong>Entry Basis:</strong> ${primary ? primary.fallback_level : 'NOT SUPPLIED'} &middot;
+            <strong>Prerequisite Evidence:</strong> NOT ESTABLISHED BY ATLAS INPUT &middot;
+            <strong>Targeted Teaching Steps:</strong> ${primary ? (primary.repair_ref || 'Capability / parent-level focus') : 'None'}
+          </p>
+          <p style="font-size: 11px; color: var(--text-dim); margin: 6px 0 0 0;">
+            Product readiness, prerequisite closure and source/transfer holds are computed only after this request is handed to the repository planner.
           </p>
         </div>
 
@@ -1073,14 +969,14 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <button type="button" class="btn primary-phy" onclick="window.ATLAS.exportCoreRequest()">
-              💾 Export Core Request JSON
+              💾 Export Authoring Request JSON
             </button>
-            <a href="../../tools/run-builder/index.html" class="btn outline" target="_blank">
+            <a href="../../../tools/run-builder/index.html" class="btn outline" target="_blank">
               Open Run Builder ↗
             </a>
           </div>
           <div style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">
-            CLI: <code>python Shared/tools/resolve_request.py [request.json]</code>
+            CLI: <code>python3 Shared/tools/plan_request.py --plan &lt;authoring-request.json&gt;</code>
           </div>
         </div>
       </div>
@@ -1096,52 +992,20 @@
         const accepted = [];
         const rejected = [];
         const warnings = [];
+        const rows = Array.isArray(doc.rows)
+          ? doc.rows
+          : (Array.isArray(doc.observations) ? doc.observations : null);
+        if (!rows) throw new Error('Diagnostic document must contain rows[] or observations[].');
 
-        if (doc.knowledge_percentage !== undefined && doc.knowledge_percentage !== null) {
-          const num = parseInt(doc.knowledge_percentage, 10);
-          if (!isNaN(num) && num >= 0 && num <= 100) {
-            state.knowledge_percentage = num;
-          }
-        }
-
-        const rows = doc.rows || doc.observations || [];
-        const rungs = state.matrix.rungs;
-
-        rows.forEach((r, idx) => {
-          const capRef = r.capability_ref;
-          const matchedRung = rungs.find(rg => (rg.capability && rg.capability.id === capRef) || rg.rung === r.rung_ref);
-
-          if (!matchedRung) {
-            rejected.push({ index: idx, raw: r, reason: `Unknown capability ref '${capRef}' in matrix` });
+        const rungs = state.matrix.rungs || [];
+        rows.forEach((row, idx) => {
+          const checked = validateDiagnosticRow(rungs, row, idx);
+          if (checked.error) {
+            rejected.push({ index: idx, raw: row, reason: checked.error });
             return;
           }
-
-          // Check repair ref if present
-          let validRepair = null;
-          if (r.repair_ref) {
-            const tpath = (matchedRung.microtopic && matchedRung.microtopic.teaching_path) || [];
-            const step = tpath.find(s => s.id === r.repair_ref);
-            if (step) {
-              validRepair = step.id;
-            } else {
-              warnings.push(`Row ${idx + 1}: Unrecognized repair_ref '${r.repair_ref}' on ${matchedRung.rung}; fell back to capability-level target.`);
-            }
-          }
-
-          // Validate error stage
-          const validStages = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
-          const stage = (r.error_stage && validStages.includes(r.error_stage.toUpperCase())) ? r.error_stage.toUpperCase() : 'UNKNOWN';
-
-          accepted.push({
-            question_ref: r.question_ref || null,
-            capability_ref: matchedRung.capability ? matchedRung.capability.id : capRef,
-            rung_ref: matchedRung.rung,
-            repair_ref: validRepair,
-            result: r.result === 'UNCERTAIN' ? 'UNCERTAIN' : 'MISSING',
-            error_stage: stage,
-            score: r.score !== undefined ? r.score : null,
-            observed: r.observed || `Observed gap on ${matchedRung.rung}`
-          });
+          accepted.push(checked.accepted);
+          if (checked.warning) warnings.push(checked.warning);
         });
 
         state.diagnostic_rows = accepted;
@@ -1149,7 +1013,7 @@
           accepted,
           rejected,
           warnings,
-          provenance: "HISTORICAL_IMPORT (PRIOR_DIAGNOSTIC)" // Honest separation (GAP-WEB-006)
+          provenance: 'HISTORICAL_IMPORT (PRIOR_DIAGNOSTIC)'
         };
 
         saveLocalStorageState();
@@ -1158,111 +1022,134 @@
         renderMultiResolutionCards();
         renderNeedMap();
         renderCoreBuilder();
-        updateStorageStatusBadge(`📂 Imported: ${accepted.length} accepted, ${rejected.length} isolated`);
+        updateStorageStatusBadge('📂 Imported: ' + accepted.length + ' accepted, ' + rejected.length + ' isolated');
       } catch (err) {
-        alert("JSON Parse Error: " + err.message);
+        alert('Diagnostic Import Error: ' + err.message);
       }
     };
     reader.readAsText(file);
   }
 
-  // --- Measurement Pack Exporter (GAP-WEB-011) ---
-  function exportMeasurementPack() {
-    const m = state.matrix;
-    const pack = {
-      $schema: "https://grade9v3.local/measurement-pack.schema.json",
-      generator: "Grade9V3 Topic Atlas",
-      matrix_id: m.matrix_id,
-      subject: m.subject,
-      topic: m.topic,
-      subtopic: m.subtopic,
-      exported_at: new Date().toISOString(),
-      allowed_diagnostic_vocabulary: ["CONCEPT", "SETUP", "EXECUTION", "CARELESS", "UNKNOWN"],
-      measurement_obligations: m.rungs.map(r => {
+  function buildMeasurementPack(matrix, exportedAt) {
+    return {
+      format: 'GRADE9V3_TOPIC_ATLAS_MEASUREMENT_PROJECTION',
+      version: '0.1.0',
+      authority_note: 'Transient browser projection from canonical web data; scanner must use only supplied canonical targets.',
+      generator: 'Grade9V3 Topic Atlas',
+      matrix_id: matrix.matrix_id,
+      subject: matrix.subject,
+      topic: matrix.topic,
+      subtopic: matrix.subtopic,
+      exported_at: exportedAt,
+      diagnostic_contract: {
+        result_values: [...GAP_RESULTS],
+        error_stage_values: [...DIAGNOSTIC_STAGES],
+        score: {
+          optional: true,
+          minimum: 0,
+          maximum: 100,
+          rule: 'Display-only exact-target score; no automatic mastery threshold or averaging is applied.'
+        },
+        rules: [
+          'Report only what the written answer-sheet evidence supports.',
+          'Absence from the gap list is not DEMONSTRATED.',
+          'Do not recalculate canonical difficulty or prerequisites.',
+          'Do not invent a repair_ref that is not present in this pack.'
+        ]
+      },
+      targets: (matrix.rungs || []).map(r => {
         const cap = r.capability || {};
         const micro = r.microtopic || {};
         const tpath = micro.teaching_path || [];
         return {
-          rung: r.rung,
-          ladder_position: r.ladder_position,
-          default_entry_eligible: r.default_entry_eligible,
-          capability_ref: cap.id,
-          success_criterion: cap.success_criterion,
-          prerequisites: cap.prerequisite_refs || [],
-          intrinsic_difficulty: micro.intrinsic_badge,
-          difficulty_reason: micro.badge_reason,
-          semantic_actions: tpath.map(s => ({
-            id: s.id,
-            role: s.role,
-            action: s.action,
-            why_valid: s.why_valid
-          })),
-          misconceptions: (micro.misconceptions || []).map(misc => ({
-            wrong_idea: misc.wrong_idea,
-            diagnostic: misc.diagnostic,
-            repair: misc.repair
-          }))
+          measurement: {
+            capability_ref: cap.id,
+            capability_action: cap.action,
+            success_criterion: cap.success_criterion,
+            microtopic_ref: micro.id,
+            microtopic_title: micro.title,
+            semantic_actions: tpath.map(s => ({
+              id: s.id,
+              role: s.role,
+              action: s.action,
+              why_valid: s.why_valid
+            })),
+            misconceptions: (micro.misconceptions || []).map(misc => ({
+              wrong_idea: misc.wrong_idea,
+              diagnostic_prompt: misc.diagnostic_prompt,
+              repair: misc.repair
+            })),
+            questions: (r.questions || []).map(q => ({
+              id: q.id,
+              family_ref: q.family_ref || null,
+              repair_ref: q.repair_ref || null,
+              stem: q.stem || null
+            }))
+          },
+          routing_context: {
+            rung: r.rung,
+            ladder_position: r.ladder_position,
+            default_entry_eligible: r.default_entry_eligible,
+            prerequisites: cap.prerequisite_refs || [],
+            intrinsic_difficulty: micro.intrinsic_badge,
+            difficulty_reason: micro.badge_reason
+          }
         };
       })
     };
+  }
 
-    downloadJSON(pack, `measurement_pack_${m.matrix_id}.json`);
+  function buildDiagnosticEnvelope(matrix, diagnosticRows, when, diagnosticId) {
+    return {
+      format: 'GRADE9V3_EXTERNAL_DIAGNOSTIC_GAP_ENVELOPE',
+      version: '0.1.0',
+      diagnostic_id: diagnosticId,
+      matrix_id: matrix.matrix_id,
+      subject: matrix.subject,
+      subtopic: matrix.subtopic,
+      when,
+      provenance: 'HISTORICAL_IMPORT',
+      evidence_kind: 'PRIOR_DIAGNOSTIC',
+      rows: diagnosticRows || []
+    };
+  }
+
+  // --- Measurement Pack Exporter (GAP-WEB-011) ---
+  function exportMeasurementPack() {
+    const m = state.matrix;
+    downloadJSON(buildMeasurementPack(m, new Date().toISOString()), 'measurement_pack_' + m.matrix_id + '.json');
   }
 
   // --- Core Request Exporter (GAP-WEB-005, GAP-WEB-013) ---
   function exportCoreRequest() {
-    const resolved = resolveNeedTargets();
-    const primary = resolved.primary_target;
     const m = state.matrix;
-
-    const requestDoc = {
-      $schema: "https://grade9v3.local/request.schema.json",
-      request_id: `REQ-${m.matrix_id}-${Date.now()}`,
-      subject: m.subject,
-      bucket_id: m.bucket_id || `BUCKET-${m.matrix_id}`,
-      label: `Topic Atlas Build Request for ${m.subtopic}`,
-      cores: state.request_config.cores,
-      learner: {
-        owner_entry: {
-          rung: primary.rung,
-          by: "Topic Atlas Need Resolver",
-          instruction: `Entry selected via ${primary.fallback_level}: ${primary.why}`
-        }
-      },
-      practice: {
-        CORE2A: {
-          purpose: state.request_config.core2a_purpose,
-          note: `Selected for ${m.subtopic} practice run`
-        }
-      }
-    };
-
-    if (state.request_config.cores.includes('CORE2B') && state.request_config.core2b_purpose) {
-      requestDoc.practice.CORE2B = {
-        purpose: state.request_config.core2b_purpose,
-        note: `Selected for ${m.subtopic} transfer run`
-      };
+    const requestDoc = buildAuthoringRequest(
+      m,
+      state.request_config,
+      state.knowledge_percentage,
+      'REQ-' + m.matrix_id + '-' + Date.now()
+    );
+    if (!requestDoc) {
+      alert('Select at least one Core before exporting an authoring request.');
+      return;
     }
 
-    downloadJSON(requestDoc, `request_${m.matrix_id}.json`);
+    // Diagnostic focus remains a separate envelope until the Shared resolver consumes it.
+    // Do not rewrite diagnostic-derived focus as owner_entry.
+    downloadJSON(requestDoc, 'authoring_request_' + m.matrix_id + '.json');
   }
 
   // --- Diagnostic Gap Envelope Exporter (GAP-WEB-005) ---
   function exportDiagnosticEnvelope() {
     const m = state.matrix;
-    const envelope = {
-      matrix_id: m.matrix_id,
-      subject: m.subject,
-      subtopic: m.subtopic,
-      knowledge_percentage: state.knowledge_percentage,
-      exported_at: new Date().toISOString(),
-      provenance: "HISTORICAL_IMPORT",
-      evidence_kind: "PRIOR_DIAGNOSTIC",
-      rows: state.diagnostic_rows,
-      leaf_progress: state.leaf_progress
-    };
-
-    downloadJSON(envelope, `diagnostic_gap_envelope_${m.matrix_id}.json`);
+    const now = new Date().toISOString();
+    const envelope = buildDiagnosticEnvelope(
+      m,
+      state.diagnostic_rows,
+      now,
+      'DG-' + m.matrix_id + '-' + Date.now()
+    );
+    downloadJSON(envelope, 'diagnostic_gap_envelope_' + m.matrix_id + '.json');
   }
 
   function downloadJSON(obj, filename) {
@@ -1278,6 +1165,14 @@
   // --- Global Window Bridge ---
   window.ATLAS = {
     init: initAtlas,
+    __test: {
+      validateDiagnosticRow,
+      deriveAtlasAddress,
+      resolveNeedTargetsFor,
+      buildAuthoringRequest,
+      buildMeasurementPack,
+      buildDiagnosticEnvelope
+    },
     openRung: function(rungId) {
       const el = document.getElementById('card-' + rungId);
       if (el) {
@@ -1285,12 +1180,6 @@
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     },
-    cycleLeafStatus: cycleLeafStatus,
-    toggleLeafDimension: toggleLeafDimension,
-    markRungAll: markRungAll,
-    markAllLeaves: markAllLeaves,
-    syncKnowledgeToSkillProgress: syncKnowledgeToSkillProgress,
-    computeSkillMatrixProgress: computeSkillMatrixProgress,
     setKnowledgeSlider: function(val) {
       const num = parseInt(val, 10);
       state.knowledge_percentage = isNaN(num) ? null : num;
@@ -1367,14 +1256,6 @@
         score: [25, 20, 40][idx] || 30,
         observed: "Demo gap generated from the active matrix for Topic Atlas routing validation."
       }));
-      // Sync into leaf_progress
-      eligible.forEach((rung, idx) => {
-        const stepId = rung.microtopic.teaching_path[0].id;
-        state.leaf_progress[stepId] = {
-          status: "GAP",
-          dimension: idx === 2 ? "SETUP" : "CONCEPT"
-        };
-      });
       state.validation_report = {
         accepted: state.diagnostic_rows,
         rejected: [],
@@ -1393,14 +1274,12 @@
       localStorage.removeItem(getStorageKey());
       state.knowledge_percentage = null;
       state.diagnostic_rows = [];
-      state.leaf_progress = {};
       state.validation_report = null;
       state.overlay_active = true;
       state.request_config = {
         cores: ['CORE1A', 'CORE1B', 'CORE2A'],
         core2a_purpose: 'PRACTICE',
-        core2b_purpose: null,
-        placement_mode: 'AUTO'
+        core2b_purpose: null
       };
       renderInputDrawer();
       renderProgressionLane();

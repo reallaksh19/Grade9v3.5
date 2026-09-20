@@ -1,0 +1,179 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-015",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-007",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-007",
+    "ep_id": "EP-TA-007",
+    "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0007",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "201d939a354b0736ee7580c2c4b8b3fa0f765d94",
+    "ep_contract_digest": "sha256:602facc7885e16eec313b7f9f163cf61e993d7fba048138aafbf385d9c417d4d",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-005",
+      "path": "agents/relay/checkpoints/CP-TA-005.yaml",
+      "digest": "sha256:a6d787052c00234f0b62d7664c2a2a83e6d314d0ff64510a5c78a0c07f73e6fe"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA7-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "NLM representation inventory",
+          "value": "NLM package currently has zero representation records and every microtopic representation_refs list is empty.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        },
+        {
+          "name": "R3/R8 representation bindings",
+          "value": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP and MIC-PHY-NLM-FRICTION-QUANT both currently have empty representation_refs.",
+          "basis": [
+            "NLM library"
+          ]
+        },
+        {
+          "name": "NLM ACTIVITY explorer bindings",
+          "value": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW supports CAP-NLM-FBD-BODY-OWNERSHIP; ACT-NLM-FRICTION-THRESHOLD supports CAP-NLM-FRICTION and CAP-NLM-FRICTION-QUANT.",
+          "basis": [
+            "NLM resources"
+          ]
+        },
+        {
+          "name": "support ladder",
+          "value": "Matrix family support ladder already defines HIGH = body+axes+candidate interactions, MEDIUM = body+axes, LOW = physical situation only.",
+          "basis": [
+            "Physics/matrices/phy-nlm-first-law.rungs.json"
+          ]
+        }
+      ],
+      "basis": [
+        "current NLM library/matrix"
+      ]
+    },
+    {
+      "id": "DSTEP-TA7-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "existing representation contract",
+          "value": "representation already owns purpose, required elements, correspondence, accessibility, rendered assets and scene_instances.",
+          "basis": [
+            "Shared/library/package.schema.json"
+          ]
+        },
+        {
+          "name": "existing scene binding contract",
+          "value": "scene_instance already binds a concrete scene to exactly a microtopic or question; generic refs also resolve nested ids.",
+          "basis": [
+            "package schema",
+            "Shared/library/resolve.py"
+          ]
+        },
+        {
+          "name": "missing reveal-stage fields",
+          "value": "representation has no ordered reveal stages, no support-level-to-stage map and no explicit interactive ACTIVITY refs.",
+          "basis": [
+            "package schema"
+          ]
+        },
+        {
+          "name": "missing hint visual refs",
+          "value": "question.hints currently allows only text and reveals; it cannot reference a representation or reveal stage.",
+          "basis": [
+            "package schema"
+          ]
+        }
+      ],
+      "basis": [
+        "current Shared schema/resolver"
+      ]
+    },
+    {
+      "id": "DSTEP-TA7-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "removable EP-TA-006 question set",
+          "value": "The over-authored closure questions are explicitly tagged grade9v3:closure_ep=EP-TA-006 and were created solely to satisfy the invalidated 7+18 coverage contract.",
+          "basis": [
+            "four affected Physics libraries",
+            "EP-TA-006"
+          ]
+        },
+        {
+          "name": "three existing smoke fixtures",
+          "value": "Q-PHY-NLM-2A-COV-03, Q-PHY-NLM-2A-FRICTION-STATIC-09 and Q-PHY-NLM-2B-FRICTION-STATE-01 already exist and exercise R3/R8 practice/transfer.",
+          "basis": [
+            "NLM library"
+          ]
+        },
+        {
+          "name": "no required question-count denominator",
+          "value": "ODR-0004 explicitly replaces count closure with representation and routing architecture.",
+          "basis": [
+            "ODR-0004"
+          ]
+        }
+      ],
+      "basis": [
+        "Owner correction",
+        "canonical NLM questions"
+      ]
+    },
+    {
+      "id": "DSTEP-TA7-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 provider readback"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Owner-change successor basis is 201d939a354b0736ee7580c2c4b8b3fa0f765d94; this coordination commit descends from it.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "201d939a354b0736ee7580c2c4b8b3fa0f765d94 contains the superseded EP-TA-006 work and is the exact basis for rollback/reconciliation.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "PR base observed as d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59; EP-TA-007 records that current base and requires recheck before material writes.",
+          "basis": [
+            "PR #148 provider readback"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub provider readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

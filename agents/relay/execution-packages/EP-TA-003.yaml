@@ -1,0 +1,1007 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-003",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-002",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
+    "base_branch": "main",
+    "base_observed_ref": "194791528cd3a69b30aced1480aee3254293dfe0",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-106",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "README makes the governed RM-0006 roadmap and Owner outcome the first planning reads for a zero-context agent, then points to the machine bootstrap and progress source for deterministic execution state.",
+      "Existing roadmap-like documents are explicitly classified as current authority, historical/product context, learner-readiness predecessor, prior execution plan, or evidence-gated ideas."
+    ],
+    "engineering": [
+      "There remains exactly one current machine-authoritative execution roadmap at agents/relay/roadmap/OVERALL_ROADMAP.yaml, reached through the repository relay bootstrap file.",
+      "Roadmap discoverability is source-linked rather than duplicated into a second current plan."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Make current Grade9V3 programme intent and execution authority reconstructable from README without chat history or roadmap-name guesswork.",
+    "roadmap_position": "OBJ-TOPIC-ATLAS-COMPLETE / PHASE-TAKEOVER-RECONCILIATION / WP-TA-106",
+    "why_this_work_exists": "The Owner explicitly requested that any agent entering the repository read the engineering-pr-delivery V2.5 roadmap first. Repository search found multiple roadmap-like documents, while README currently points only to docs/PROGRAM-PLAN.md and does not expose REPO_STATE/OVERALL_ROADMAP as current execution authority.",
+    "current_architecture": "README exposes the current programme roadmap/Owner outcome first; deterministic V2.5 execution still bootstraps through REPO_STATE → OVERALL_ROADMAP/PROGRESS → active EP. Older roadmap-like documents remain classified background/history/future context.",
+    "prior_owner_decisions": [
+      "Use engineering-pr-delivery V2.5 for governed delivery.",
+      "Update the existing roadmap rather than inventing a parallel roadmap.",
+      "Link the roadmap from README so a zero-context agent reads it first.",
+      "Improve or revamp overlapping roadmap documentation where needed."
+    ],
+    "current_implementation_state": "The README first-read entry, authority notices and RM-0006 Grade-9 Physics owner-outcome reconciliation are implemented and repository/relay validated on material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23.",
+    "known_problems": [
+      "Older roadmap documents intentionally retain historical counts, statuses and task sequences; their authority notices prevent those snapshots from being mistaken for current execution state.",
+      "README links structured authority rather than copying live progress or active execution identifiers, so current execution details must be followed through the linked machine bootstrap and progress source.",
+      "PR #148 remains a draft and its eventual merge/readiness decision is separate from this bounded roadmap-first slice."
+    ],
+    "deliberate_non_goals": [
+      "Do not create another current roadmap file.",
+      "Do not rewrite historical technical claims merely to make old plans look current.",
+      "Do not change learner/product semantics, canonical academic content, Core contracts or runtime behavior.",
+      "Do not move V2.5 authority out of agents/relay."
+    ],
+    "terminology": {
+      "current execution roadmap": "agents/relay/roadmap/OVERALL_ROADMAP.yaml; first planning read in README, with REPO_STATE as deterministic execution bootstrap",
+      "program plan": "historical/product architecture context in docs/PROGRAM-PLAN.md",
+      "learner-ready roadmap": "conceptual learner-readiness gap/sequence document, not current V2.5 execution authority",
+      "future road plan": "evidence-gated ideas/guardrails; RM-0006-promoted Grade-9 scope/exit work now lives in the authoritative roadmap"
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA3-001",
+      "action": "INSPECT",
+      "targets": [
+        "README.md",
+        "docs/PROGRAM-PLAN.md",
+        "docs/ROADMAP-LEARNER-READY.md",
+        "docs/FUTURE-ROAD-PLAN.md",
+        "docs/PLAN-R0-R2.md",
+        "docs/PLAN-R3-R4.md"
+      ],
+      "question": "Which roadmap-like entry points exist and what authority does each currently imply to a zero-context agent?",
+      "expected_outputs": [
+        "README current roadmap link behavior",
+        "roadmap-like document inventory",
+        "ambiguous/stale authority wording"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop; do not add another roadmap until existing entry points are classified."
+    },
+    {
+      "id": "DSTEP-TA3-002",
+      "action": "VERIFY",
+      "targets": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/roadmap/PROGRESS.yaml"
+      ],
+      "question": "What files are the current V2.5 repository/execution/progress authorities and how must an agent locate the active EP?",
+      "expected_outputs": [
+        "repository bootstrap path",
+        "current roadmap path/revision",
+        "progress authority",
+        "active EP locator rule"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop and reconcile relay authority before changing documentation."
+    },
+    {
+      "id": "DSTEP-TA3-003",
+      "action": "COMPARE",
+      "targets": [
+        "docs/PROGRAM-PLAN.md",
+        "docs/ROADMAP-LEARNER-READY.md",
+        "docs/FUTURE-ROAD-PLAN.md",
+        "docs/PLAN-R0-R2.md",
+        "docs/PLAN-R3-R4.md"
+      ],
+      "question": "Which documents should be retained as background, conceptual roadmap, historical execution plan, or future ideas instead of current execution authority?",
+      "expected_outputs": [
+        "classification per document",
+        "minimal banner/cross-link changes",
+        "no-delete rationale"
+      ],
+      "receipt_required": true,
+      "on_failure": "Preserve documents unchanged and report ambiguity rather than guessing."
+    },
+    {
+      "id": "DSTEP-TA3-004",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the checked-out branch/material/base state still satisfy EP-TA-003 git_basis before README/docs writes?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Drop WRITE authority and reconcile drift before documentation changes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA3-001",
+      "name": "Owner roadmap-first requirement",
+      "description": "Owner-required repository entry behavior for zero-context agents.",
+      "authority": "OWNER",
+      "source": "ODR-0002-ROADMAP-FIRST-READ",
+      "value": "README must route agents to the V2.5 roadmap first and overlapping roadmap docs must be improved/revamped only as needed.",
+      "type": "owner requirement",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA3-001",
+        "STEP-TA3-002",
+        "STEP-TA3-003"
+      ],
+      "validation": [
+        "ODR-0002 is APPLIED and RM-0004/RM-0005 retain WP-TA-106."
+      ],
+      "stale_if": [
+        "Owner supersedes the roadmap-entry requirement."
+      ]
+    },
+    {
+      "id": "INPUT-TA3-002",
+      "name": "Current V2.5 authority chain",
+      "description": "Repository-only bootstrap path that README must expose without duplicating authority.",
+      "authority": "V2.5 relay state",
+      "source": "agents/relay/REPO_STATE.yaml; agents/relay/roadmap/OVERALL_ROADMAP.yaml; agents/relay/roadmap/PROGRESS.yaml",
+      "resolution_method": "Read current paths/revision/current_position/active_ep from REPO_STATE and structured roadmap/progress.",
+      "type": "repository authority",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA3-001",
+        "STEP-TA3-003"
+      ],
+      "validation": [
+        "REPO_STATE points to the current OVERALL_ROADMAP and active EP; PROGRESS basis matches roadmap revision."
+      ],
+      "stale_if": [
+        "Relay layout or bootstrap path changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA3-003",
+      "name": "Existing roadmap-like documents",
+      "description": "Current README and planning documents to classify without erasing useful history.",
+      "authority": "Repository files",
+      "source": "README.md; docs/PROGRAM-PLAN.md; docs/ROADMAP-LEARNER-READY.md; docs/FUTURE-ROAD-PLAN.md; docs/PLAN-R0-R2.md; docs/PLAN-R3-R4.md",
+      "resolution_method": "Repository search/readback on current branch.",
+      "type": "documentation corpus",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "OWNER_EDITABLE_READY",
+      "consumers": [
+        "STEP-TA3-001",
+        "STEP-TA3-002"
+      ],
+      "validation": [
+        "No new current roadmap is created; each changed document retains its substantive historical/product content."
+      ],
+      "stale_if": [
+        "Any target document changes before this EP writes it."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA3-001",
+      "name": "Zero-context README reconstruction",
+      "purpose": "Prove an incoming agent can find current execution authority without chat or guessing a roadmap filename.",
+      "source": "README.md plus existing V2.5 relay layout",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "Start at repository README only.",
+        "Locate the current OVERALL_ROADMAP and Owner outcome.",
+        "Locate REPO_STATE and PROGRESS for deterministic execution/progress state.",
+        "From REPO_STATE locate active_ep.",
+        "Distinguish current programme/execution authority from historical/future plans."
+      ],
+      "expected": "The roadmap/Owner outcome is an explicit first planning read, and REPO_STATE/PROGRESS/active_ep remain explicit deterministic execution sources; no conversational context is required.",
+      "tolerance": null,
+      "independence": "The reconstruction begins from the same public entry point a replacement agent sees and does not use prior chat.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA3-001",
+        "AC-TA3-003",
+        "TEST-TA3-001"
+      ],
+      "stale_if": [
+        "README entry structure or relay bootstrap paths change."
+      ]
+    },
+    {
+      "id": "BENCH-TA3-002",
+      "name": "Roadmap authority uniqueness",
+      "purpose": "Prevent a documentation cleanup from creating multiple current roadmaps.",
+      "source": "Repository search for roadmap/program-plan/future-plan references",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "OVERALL_ROADMAP is current machine authority.",
+        "PROGRAM-PLAN is product/architecture context.",
+        "ROADMAP-LEARNER-READY is conceptual/historical learner-readiness context.",
+        "PLAN-R0-R2 and PLAN-R3-R4 are prior execution plans.",
+        "FUTURE-ROAD-PLAN is evidence-gated future ideas."
+      ],
+      "expected": "Every roadmap-like document either is the V2.5 authority or explicitly points to it while declaring a non-authoritative role.",
+      "tolerance": null,
+      "independence": "Classification is derived from existing document purpose/content and V2.5 authority chain, not a new parallel roadmap.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA3-002",
+        "AC-TA3-003",
+        "TEST-TA3-002"
+      ],
+      "stale_if": [
+        "A new roadmap-like document is added or one of these documents materially changes role."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "README.md",
+        "reason": "Owner requested the repository entry point link the current V2.5 roadmap first."
+      },
+      {
+        "path": "docs/PROGRAM-PLAN.md",
+        "reason": "Clarify product/architecture-plan status versus current execution authority."
+      },
+      {
+        "path": "docs/ROADMAP-LEARNER-READY.md",
+        "reason": "Clarify conceptual/historical learner-readiness roadmap status and current relay link."
+      },
+      {
+        "path": "docs/FUTURE-ROAD-PLAN.md",
+        "reason": "Add direct current-roadmap navigation while retaining its future-ideas disclaimer."
+      },
+      {
+        "path": "docs/PLAN-R0-R2.md",
+        "reason": "Mark prior execution plan as historical and route agents to current V2.5 roadmap."
+      },
+      {
+        "path": "docs/PLAN-R3-R4.md",
+        "reason": "Mark prior execution plan as historical and route agents to current V2.5 roadmap."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "V2.5 execution, quality, checkpoint, progress and successor coordination."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "agents/relay/REPO_STATE.yaml",
+        "reason": "Canonical repository bootstrap locator."
+      },
+      {
+        "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "reason": "Current execution-roadmap authority."
+      },
+      {
+        "path": "agents/relay/roadmap/PROGRESS.yaml",
+        "reason": "Current calculated progress authority."
+      },
+      {
+        "path": "Common@d9b84069683977b5c370f536f1c50095de926338/skills/engineering-pr-delivery-v2.5",
+        "reason": "Pinned delivery protocol defining authority/reconstruction semantics."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "There is exactly one current execution roadmap authority and it remains the V2.5 relay roadmap.",
+        "reason": "Avoid split-brain programme control."
+      },
+      {
+        "invariant": "Historical/product/future planning content remains available and is not silently rewritten as current truth.",
+        "reason": "Preserve durable context and auditability."
+      },
+      {
+        "invariant": "No learner-facing runtime, academic content, Core contract or canonical matrix semantics change.",
+        "reason": "This is a repository-governance/documentation slice only."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Shared runtime/planner code",
+        "reason": "No runtime change is needed to make roadmap authority discoverable."
+      },
+      {
+        "domain": "Subject academic libraries and matrices",
+        "reason": "Roadmap discoverability does not authorize academic mutation."
+      },
+      {
+        "domain": "New competing roadmap document",
+        "reason": "Owner asked to reuse/improve the existing roadmap."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA3-001",
+        "restriction": "Do not rewrite old roadmap metrics/statuses to look current; label their authority instead.",
+        "reason": "Historical truth is more useful than retroactive editing."
+      },
+      {
+        "id": "ADR-TA3-002",
+        "restriction": "Do not copy live progress/active-EP values into README as static truth.",
+        "reason": "README must link to current structured authority rather than create another stale mirror."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA3-001",
+        "condition": "README or target roadmap-like docs change on the execution branch before write.",
+        "effect": "RECONCILE",
+        "rationale": "Documentation classification must be based on current repository text."
+      },
+      {
+        "id": "STALE-TA3-002",
+        "condition": "V2.5 bootstrap paths or roadmap authority change.",
+        "effect": "STALE",
+        "rationale": "The first-read links would target obsolete authority."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA3-001",
+      "objective": "Make README the zero-context entry to the current governed roadmap/Owner outcome while preserving REPO_STATE as the deterministic execution bootstrap.",
+      "targets": [
+        "README.md"
+      ],
+      "reads": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/roadmap/PROGRESS.yaml"
+      ],
+      "writes": [
+        "README.md"
+      ],
+      "inputs": [
+        "INPUT-TA3-001",
+        "INPUT-TA3-002",
+        "INPUT-TA3-003"
+      ],
+      "acceptance": [
+        "AC-TA3-001",
+        "AC-TA3-003"
+      ],
+      "tests": [
+        "TEST-TA3-001"
+      ],
+      "expected_state": "README prominently links OVERALL_ROADMAP and ODR-0003 before background plans, then links REPO_STATE/PROGRESS and instructs agents to follow active_ep from REPO_STATE.",
+      "stop_conditions": [
+        "Stop if the relay paths are not current or a competing current roadmap already exists."
+      ]
+    },
+    {
+      "id": "STEP-TA3-002",
+      "objective": "Classify existing roadmap-like documents without erasing useful historical/product context.",
+      "targets": [
+        "docs/PROGRAM-PLAN.md",
+        "docs/ROADMAP-LEARNER-READY.md",
+        "docs/FUTURE-ROAD-PLAN.md",
+        "docs/PLAN-R0-R2.md",
+        "docs/PLAN-R3-R4.md"
+      ],
+      "reads": [
+        "same target documents"
+      ],
+      "writes": [
+        "same target documents"
+      ],
+      "inputs": [
+        "INPUT-TA3-001",
+        "INPUT-TA3-003"
+      ],
+      "acceptance": [
+        "AC-TA3-002",
+        "AC-TA3-003"
+      ],
+      "tests": [
+        "TEST-TA3-002"
+      ],
+      "expected_state": "Each roadmap-like document has an explicit authority/status notice and direct link to the current V2.5 roadmap/bootstrap.",
+      "stop_conditions": [
+        "Stop rather than delete/rewrite content if a document's historical role cannot be established from repository text."
+      ]
+    },
+    {
+      "id": "STEP-TA3-003",
+      "objective": "Verify zero-context navigation and authority uniqueness by repository readback.",
+      "targets": [
+        "README.md",
+        "docs/*.md",
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+      ],
+      "reads": [
+        "all changed docs",
+        "relay authority files"
+      ],
+      "writes": [],
+      "inputs": [
+        "INPUT-TA3-001",
+        "INPUT-TA3-002",
+        "INPUT-TA3-003"
+      ],
+      "acceptance": [
+        "AC-TA3-001",
+        "AC-TA3-002",
+        "AC-TA3-003"
+      ],
+      "tests": [
+        "TEST-TA3-001",
+        "TEST-TA3-002",
+        "TEST-TA3-003"
+      ],
+      "expected_state": "A replacement agent can reconstruct current roadmap and active EP from README alone and repository search exposes no second current authority.",
+      "stop_conditions": [
+        "Stop if any changed link is dangling or any document still claims current execution authority ambiguously."
+      ]
+    },
+    {
+      "id": "STEP-TA3-004",
+      "objective": "Run repository regression/delivery checks and preserve the docs-only boundary.",
+      "targets": [
+        "repository guardrails",
+        "PR #148 correlation"
+      ],
+      "reads": [
+        "changed docs",
+        "CI evidence",
+        "PR readback"
+      ],
+      "writes": [
+        "agents/relay/",
+        "GitHub PR description only when correlation requires current EP"
+      ],
+      "inputs": [
+        "INPUT-TA3-001",
+        "INPUT-TA3-002"
+      ],
+      "acceptance": [
+        "AC-TA3-004"
+      ],
+      "tests": [
+        "TEST-TA3-004"
+      ],
+      "expected_state": "Guardrails remain green and PR correlation reflects the current governed EP without product/runtime changes.",
+      "stop_conditions": [
+        "Stop if documentation changes cause generated-artifact/runtime regressions or delivery correlation cannot be verified."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Keep the README first-read block aligned to RM-0006: roadmap and Owner outcome first for programme intent, then the machine bootstrap, progress source and active execution locator.",
+        "targets": [
+          "README.md"
+        ],
+        "inputs": [
+          "INPUT-TA3-001",
+          "INPUT-TA3-002",
+          "INPUT-TA3-003"
+        ],
+        "tests": [
+          "TEST-TA3-001"
+        ],
+        "benchmarks": [
+          "BENCH-TA3-001"
+        ],
+        "acceptance": [
+          "AC-TA3-001",
+          "AC-TA3-003"
+        ],
+        "expected_result": "README exposes current programme and execution authority without static progress duplication.",
+        "stop_if": [
+          "Relay paths changed or README target changed materially."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Add authority/status notices and current-roadmap links to existing roadmap-like docs.",
+        "targets": [
+          "docs/PROGRAM-PLAN.md",
+          "docs/ROADMAP-LEARNER-READY.md",
+          "docs/FUTURE-ROAD-PLAN.md",
+          "docs/PLAN-R0-R2.md",
+          "docs/PLAN-R3-R4.md"
+        ],
+        "inputs": [
+          "INPUT-TA3-001",
+          "INPUT-TA3-003"
+        ],
+        "tests": [
+          "TEST-TA3-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA3-002"
+        ],
+        "acceptance": [
+          "AC-TA3-002",
+          "AC-TA3-003"
+        ],
+        "expected_result": "Old/current/future planning layers are distinguishable without losing history.",
+        "stop_if": [
+          "A document cannot be truthfully classified from repository evidence."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Read back links/authority and run repository regression checks.",
+        "targets": [
+          "README.md",
+          "roadmap-like docs",
+          "repository guardrails"
+        ],
+        "inputs": [
+          "INPUT-TA3-002",
+          "INPUT-TA3-003"
+        ],
+        "tests": [
+          "TEST-TA3-001",
+          "TEST-TA3-002",
+          "TEST-TA3-003",
+          "TEST-TA3-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA3-001",
+          "BENCH-TA3-002"
+        ],
+        "acceptance": [
+          "AC-TA3-001",
+          "AC-TA3-002",
+          "AC-TA3-003",
+          "AC-TA3-004"
+        ],
+        "expected_result": "Zero-context reconstruction succeeds and repository tests stay green.",
+        "stop_if": [
+          "Any link is unresolved, a second current roadmap appears, or guardrails fail."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "This slice changes repository information architecture and the discoverability boundary between current authority and background plans.",
+        "review_focus": [
+          "single current authority",
+          "zero-context discoverability",
+          "no stale mirror"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Roadmap links and authority classifications require explicit repository readback and regression evidence.",
+        "review_focus": [
+          "link targets",
+          "zero-context reconstruction",
+          "guardrails"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Documentation changes can create false authority or stale operational instructions even without code changes.",
+        "review_focus": [
+          "authority wording",
+          "historical truth preservation",
+          "scope discipline"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "The active EP is delivered on PR #148 and must remain correlated to Issue #118/current roadmap custody.",
+        "review_focus": [
+          "Issue↔WP↔EP correlation",
+          "current head/readback",
+          "successor handoff"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "coding",
+        "reason": "No production code change is authorized."
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No application user interface or learner journey changes."
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No application interaction or rendered learner artifact changes."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No numerical/scientific computation changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "No performance-sensitive behavior changes."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted schema/data migration changes."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA3-001",
+      "description": "README prominently makes the current OVERALL_ROADMAP and Owner outcome the first planning reads, then exposes REPO_STATE/PROGRESS and active_ep as the deterministic execution path before background plans.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA3-001",
+        "BENCH-TA3-001"
+      ]
+    },
+    {
+      "id": "AC-TA3-002",
+      "description": "Existing roadmap-like documents are truthfully classified and cross-link the current V2.5 roadmap without deleting useful historical/product/future context.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA3-002",
+        "BENCH-TA3-002"
+      ]
+    },
+    {
+      "id": "AC-TA3-003",
+      "description": "The V2.5 relay remains the only current execution-roadmap authority; README/docs do not duplicate live progress or active-EP state as static truth.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA3-001",
+        "TEST-TA3-002",
+        "TEST-TA3-003",
+        "BENCH-TA3-001",
+        "BENCH-TA3-002"
+      ]
+    },
+    {
+      "id": "AC-TA3-004",
+      "description": "Documentation/governance changes do not alter learner/runtime/academic behavior and repository guardrails plus PR correlation remain valid.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA3-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA3-001",
+      "class": "MUST_PASS",
+      "method": "Repository readback: from README only, follow the current OVERALL_ROADMAP and ODR-0003 first, then REPO_STATE/PROGRESS and active_ep; verify background plans are classified separately.",
+      "proves": [
+        "AC-TA3-001",
+        "AC-TA3-003"
+      ]
+    },
+    {
+      "id": "TEST-TA3-002",
+      "class": "MUST_PASS",
+      "method": "Repository readback of PROGRAM-PLAN, ROADMAP-LEARNER-READY, FUTURE-ROAD-PLAN, PLAN-R0-R2 and PLAN-R3-R4 confirms each status/authority notice links to current V2.5 relay.",
+      "proves": [
+        "AC-TA3-002",
+        "AC-TA3-003"
+      ]
+    },
+    {
+      "id": "TEST-TA3-003",
+      "class": "MUST_PASS",
+      "method": "Repository search for roadmap/program-plan/future-plan shows no second document claiming current execution authority.",
+      "proves": [
+        "AC-TA3-003"
+      ]
+    },
+    {
+      "id": "TEST-TA3-004",
+      "class": "MUST_PASS",
+      "method": "GitHub guardrails workflow must pass on the final documentation material head; PR #148 correlation is read back against the current EP.",
+      "proves": [
+        "AC-TA3-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

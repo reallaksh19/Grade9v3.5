@@ -30,10 +30,8 @@ class WorksheetStudyPlan(unittest.TestCase):
         self.assertEqual(report["profile_id"], None)
         self.assertTrue(report["questions"])
         self.assertTrue(report["route"])
-        self.assertEqual(
-            {row["recommended_action"] for row in report["route"]},
-            {"STUDY"},
-        )
+        self.assertIn("QUICK_CHECK", {row["recommended_action"] for row in report["route"]})
+        self.assertIn("STUDY", {row["recommended_action"] for row in report["route"]})
         self.assertEqual(report["questions"][0]["learner_state"], "UNOBSERVED")
         self.assertIn("first attempt", report["questions"][0]["why_extra_attention"])
 

@@ -1,0 +1,87 @@
+{
+  "schema_version": "relay-v2.5-evidence-note",
+  "id": "EVIDENCE-TA8-001-STEP1",
+  "kind": "BOUNDED_ACCEPTANCE_EVIDENCE",
+  "repository": "reallaksh19/Grade9V3",
+  "branch": "takeover/topic-atlas-browser-correctness",
+  "roadmap_revision": "RM-0008",
+  "work_package": "WP-TA-107",
+  "execution_package": "EP-TA-008",
+  "implementation_step": "STEP-TA8-001",
+  "acceptance": [
+    "AC-TA8-001"
+  ],
+  "validation": [
+    "TEST-TA8-001"
+  ],
+  "material_basis": {
+    "runtime_repair_commit": "c0fbbb43bdcbc72a3bb35c62f11b3a99283f2bb3",
+    "compatibility_commit": "5e747b63ba4af4d16a2c25a1715c95977fed776a",
+    "regenerated_manifest_commit": "ee327b389dfeda032301750ea3b8aed2af4477ff",
+    "exact_validation_head": "993d49ad9c0f84388d83306b762cc756f02cea71"
+  },
+  "owner_exception": {
+    "decision": "ODR-0006-OWNER-QUALIFICATION-OVERRIDE",
+    "effect": "Owner authorized direct STEP-TA8-001 execution without independent candidate admission.",
+    "protocol_truth": "Normal V2.5 candidate-specific material-write gate remains FAIL; no DISC/QUAL/TC was fabricated and no takeover certification is claimed."
+  },
+  "observed": {
+    "guardrails": {
+      "run_id": 35524871649,
+      "status": "PASS",
+      "basis_ref": "993d49ad9c0f84388d83306b762cc756f02cea71",
+      "evidence": [
+        "generated-artifact drift check PASS",
+        "full repository test suite PASS",
+        "all JSON parses PASS"
+      ]
+    },
+    "v25": {
+      "run_id": 35524871647,
+      "status": "PARTIAL_BY_DESIGN",
+      "basis_ref": "993d49ad9c0f84388d83306b762cc756f02cea71",
+      "pass": [
+        "protocol unit suite",
+        "protocol stress suite",
+        "relay semantic conformance",
+        "cold-start reconstructability",
+        "baton readiness",
+        "discovery receipt validity",
+        "takeover certification validity",
+        "route resolution",
+        "live Git inspection"
+      ],
+      "fail": [
+        "candidate-specific material write gate: no independent candidate admission"
+      ]
+    }
+  },
+  "falsifiers": [
+    "bare DEMONSTRATED does not route READY",
+    "unknown-help DEMONSTRATED does not route READY",
+    "helped/profile DEMONSTRATED does not route READY",
+    "explicit DIRECT_ATTEMPT + help NONE routes READY",
+    "MISSING EXECUTION/CARELESS does not route conceptual REBUILD",
+    "NLM high/medium/low support resolves only as declared",
+    "minimum against NLM high/medium/low is withheld as undeclared",
+    "missing/ambiguous family support fails closed",
+    "starting support routing does not mutate question hints or shown_hint_indices"
+  ],
+  "protected_invariants": {
+    "learner_state_persisted": false,
+    "physics_matrix_or_library_mutated": false,
+    "new_mastery_model": false,
+    "support_hint_depth_merged": false
+  },
+  "disposition": {
+    "test_ta8_001": "PASS",
+    "ac_ta8_001": "COMPLETE",
+    "step_ta8_001": "COMPLETE",
+    "remaining_acceptance": [
+      "AC-TA8-002",
+      "AC-TA8-003",
+      "AC-TA8-004"
+    ],
+    "programme_progress": "73.75/100"
+  }
+}

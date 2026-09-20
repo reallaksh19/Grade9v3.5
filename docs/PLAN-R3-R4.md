@@ -1,5 +1,9 @@
 # Execution plan: R3 and R4
 
+> **Authority / status:** Historical execution plan. This records the R3–R4 execution reasoning and measured reorderings from that stage. It is retained for engineering provenance, not as a current task package.
+>
+> **Current engineering execution authority:** start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow its [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`. Do not execute work from this document merely because it contains a phase or task sequence.
+
 Written after R0–R2 landed, and after two measurements that reorder what the roadmap said to do next. The roadmap's R3 list was drawn up before R1's schema work and before R3.0's depiction audit; both changed what is buildable.
 
 ## Two findings that reorder the batch

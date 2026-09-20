@@ -1,0 +1,204 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-006",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-003",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-003",
+    "ep_id": "EP-TA-003",
+    "ep_path": "agents/relay/execution-packages/EP-TA-003.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
+    "ep_contract_digest": "sha256:b5b180be8036cf9c1e26e13ab7dc850f2d8894a05ad5e33310f45c53a9cfa640",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-002",
+      "path": "agents/relay/checkpoints/CP-TA-002.yaml",
+      "digest": "sha256:61c1f93b9bd7b08c18e593d2f2c19543496d6a359efae54e92b73d69e2e8ad63"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA3-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "README current roadmap link behavior",
+          "value": "README now opens with the Physics Grade 9 -> 10 -> 11 owner sequence and a mandatory first-read block linking OVERALL_ROADMAP, ODR-0003, REPO_STATE and PROGRESS before older planning documents.",
+          "basis": [
+            "README.md"
+          ]
+        },
+        {
+          "name": "roadmap-like document inventory",
+          "value": "The principal planning surfaces remain OVERALL_ROADMAP plus docs/PROGRAM-PLAN.md, docs/ROADMAP-LEARNER-READY.md, docs/FUTURE-ROAD-PLAN.md, docs/PLAN-R0-R2.md and docs/PLAN-R3-R4.md.",
+          "basis": [
+            "README.md",
+            "docs/",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        },
+        {
+          "name": "ambiguous/stale authority wording",
+          "value": "README classifies historical/concept/future plans against current relay authority; FUTURE-ROAD-PLAN explicitly notes the RM-0006 promotion of Grade-9 scope/exit work while remaining non-authoritative for execution.",
+          "basis": [
+            "README.md",
+            "docs/FUTURE-ROAD-PLAN.md",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        }
+      ],
+      "basis": [
+        "README.md",
+        "docs/"
+      ],
+      "conversation_context_used": false
+    },
+    {
+      "id": "DSTEP-TA3-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "repository bootstrap path",
+          "value": "agents/relay/REPO_STATE.yaml remains the deterministic V2.5 machine bootstrap locator.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "Common engineering-pr-delivery-v2.5 SKILL.md"
+          ]
+        },
+        {
+          "name": "current roadmap path/revision",
+          "value": "REPO_STATE points to agents/relay/roadmap/OVERALL_ROADMAP.yaml at RM-0006; EP-TA-003 is now directly reconciled to RM-0006.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+            "agents/relay/roadmap/continuity/RC-TA-003.yaml"
+          ]
+        },
+        {
+          "name": "progress authority",
+          "value": "agents/relay/roadmap/PROGRESS.yaml is the calculated progress authority at PB-0004 and preserves 45/100 accepted enabling progress.",
+          "basis": [
+            "agents/relay/roadmap/PROGRESS.yaml"
+          ]
+        },
+        {
+          "name": "active EP locator rule",
+          "value": "The active EP is resolved through REPO_STATE.active_ep; README does not duplicate a live EP identifier as a second state store.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "README.md"
+          ]
+        }
+      ],
+      "basis": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/roadmap/PROGRESS.yaml",
+        "agents/relay/roadmap/continuity/RC-TA-003.yaml"
+      ]
+    },
+    {
+      "id": "DSTEP-TA3-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "classification per document",
+          "value": "OVERALL_ROADMAP = current machine authority; PROGRAM-PLAN = product/architecture context; ROADMAP-LEARNER-READY = learner-readiness conceptual/historical predecessor; PLAN-R0-R2 and PLAN-R3-R4 = prior execution plans; FUTURE-ROAD-PLAN = evidence-gated ideas/guardrails with RM-0006-promoted Grade-9 scope/exit items explicitly called out.",
+          "basis": [
+            "README.md",
+            "docs/PROGRAM-PLAN.md",
+            "docs/ROADMAP-LEARNER-READY.md",
+            "docs/FUTURE-ROAD-PLAN.md",
+            "docs/PLAN-R0-R2.md",
+            "docs/PLAN-R3-R4.md",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        },
+        {
+          "name": "minimal banner/cross-link changes",
+          "value": "Existing documents are retained; current authority is exposed by README/status banners and direct relay links instead of creating another roadmap.",
+          "basis": [
+            "README.md",
+            "docs/PROGRAM-PLAN.md",
+            "docs/ROADMAP-LEARNER-READY.md",
+            "docs/FUTURE-ROAD-PLAN.md",
+            "docs/PLAN-R0-R2.md",
+            "docs/PLAN-R3-R4.md"
+          ]
+        },
+        {
+          "name": "no-delete rationale",
+          "value": "Historical plans preserve durable architecture and decision context; classifying them is safer than deleting or retroactively rewriting their old metrics/task sequences.",
+          "basis": [
+            "docs/PROGRAM-PLAN.md",
+            "docs/ROADMAP-LEARNER-READY.md",
+            "docs/PLAN-R0-R2.md",
+            "docs/PLAN-R3-R4.md"
+          ]
+        }
+      ],
+      "basis": [
+        "docs/PROGRAM-PLAN.md",
+        "docs/ROADMAP-LEARNER-READY.md",
+        "docs/FUTURE-ROAD-PLAN.md",
+        "docs/PLAN-R0-R2.md",
+        "docs/PLAN-R3-R4.md"
+      ]
+    },
+    {
+      "id": "DSTEP-TA3-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 branch readback",
+            "agents/relay/execution-packages/EP-TA-003.yaml"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Fresh RM-0006 discovery was performed on branch head 4266fb8a5d45c057ba780a2f55e9fbb9e218c85d; the receipt/certification commit necessarily descends from this observed head.",
+          "basis": [
+            "GitHub branch/PR readback at 4266fb8a5d45c057ba780a2f55e9fbb9e218c85d"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "EP-TA-003 material_ref 13d81af36a3042a67f0af78870f823d2fc267543 remains an ancestor of the current execution branch.",
+          "basis": [
+            "agents/relay/execution-packages/EP-TA-003.yaml",
+            "Git history"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "main is 194791528cd3a69b30aced1480aee3254293dfe0, exactly matching EP-TA-003 base_observed_ref; no drift receipt is required.",
+          "basis": [
+            "GitHub branches/main readback",
+            "agents/relay/execution-packages/EP-TA-003.yaml"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub repository/branch/PR readback",
+        "agents/relay/execution-packages/EP-TA-003.yaml"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

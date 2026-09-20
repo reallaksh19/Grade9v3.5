@@ -1,0 +1,85 @@
+{
+  "schema_version": "relay-v2.5-github-projection",
+  "generation": {
+    "id": "GHGEN-HO-03943C0B50F7",
+    "repository": "reallaksh19/Grade9V3",
+    "roadmap_revision": "RM-0008",
+    "issue_graph_revision": "IG-0003",
+    "execution_ref": "EP-TA-008",
+    "state": "SUPERSEDED",
+    "supersedes_generation": "GHGEN-HO-79E29CBD0F01",
+    "basis": [
+      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "agents/relay/roadmap/owner-decisions/ODR-0005-ISSUE159-MOTHER-CONTRACT.yaml",
+      "agents/relay/roadmap/revisions/RM-0008.yaml",
+      "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+      "handover-key:sha256:03943c0b50f7dceee40ddff57d0391c6c3e1ac5e9df170e0952d53ccea514024"
+    ]
+  },
+  "operations": [
+    {
+      "id": "GHOP-HO-03943C0B50F7",
+      "kind": "CREATE",
+      "state": "VERIFIED",
+      "idempotency_key": "relay:GHGEN-HO-03943C0B50F7:GHOP-HO-03943C0B50F7",
+      "depends_on": [],
+      "subject": {
+        "issue_node": "HANDOVER-ISS159-03943C0B50F7",
+        "related_nodes": [
+          "ISSUE-159"
+        ]
+      },
+      "preconditions": {
+        "repository_issue_state": "ABSENT",
+        "work_state": "ACTIVE",
+        "handover_key": "sha256:03943c0b50f7dceee40ddff57d0391c6c3e1ac5e9df170e0952d53ccea514024"
+      },
+      "desired": {
+        "body_marker": "<!-- relay-operation:GHOP-HO-03943C0B50F7 -->",
+        "body_projection": "<!-- relay-operation:GHOP-HO-03943C0B50F7 -->\n<!-- relay-handover-key:sha256:03943c0b50f7dceee40ddff57d0391c6c3e1ac5e9df170e0952d53ccea514024 -->\n# Engineering handover intent\n\n## Source work\n- Selection: **GITHUB_ISSUE**\n- Source identity: **ISSUE-159**\n- Work package: **WP-TA-107**\n- Source GitHub issue: #159\n- Source URL: https://github.com/reallaksh19/Grade9V3/issues/159\n\n## Reconciliation state\n- Accepted programme progress remains **70/100**.\n- EP-TA-008 has **0 acceptance credit**.\n- The landed router implementation was audited at `2feac6ce98ded98cd6aa4ff8fd0b179ee2e2dcd0`.\n- Audit record: `agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml`.\n- The current route is **RECONCILING / READ_ONLY** until the mother contract is converted into a refreshed semantic EP and independently requalified.\n\n## Material audit findings\n- READY is currently too permissive when independence is missing/unknown.\n- Starting support is hard-coded instead of validated against `matrix.family.support_ladder`.\n- Transfer can currently unlock after one READY result rather than stable same-family independent evidence.\n- Transfer candidate selection ignores family/demand metadata and falls back to question-id ordering.\n- A bounded no-estimate subtopic gateway is not yet proved.\n- NLM R3 is not proved to the same depth as the R8 friction witness.\n- Current Issue #159 renderer-neutral scene/checkpoint/pedagogy-injection refinements are not represented in EP-TA-008.\n- PR #148 still carries stale RM/WP/EP correlation.\n\n## Retained good work\n- error_stage is exposed without a second learner ontology.\n- EXECUTION/CARELESS is protected from automatic conceptual REBUILD.\n- canonical visual resolution fails closed instead of guessing.\n- starting support does not consume hint progression; feedback.py remains authoritative after an attempt.\n- routing posture is NOT_WRITTEN and sparse question inventory is not synthesized.\n\n## Required next contract\n1. Refresh EP-TA-008 from Issue #159 and this audit; do not rewrite already-correct bounded work.\n2. Require proven-independent DEMONSTRATED for READY.\n3. Resolve support from the active family ladder and explicitly withhold undeclared minimum/competition support.\n4. Add a bounded no-estimate subtopic gateway.\n5. Separate READY from transfer eligibility; require stable same-family evidence and family/demand-compatible transfer.\n6. Keep representation/scene/checkpoint/pedagogy-injection concerns renderer-neutral and independent.\n7. Prove NLM R3 and R8 separately, preserve feedback/review ownership, and keep Physics/matrix/schema truth read-only.\n8. Run fresh QSET/QUAL/TC and exact-head guardrails/V2.5 before any acceptance/checkpoint.\n9. Publish QRV-TA-008 and CP-TA-008 only if the reconciled acceptance contract passes; otherwise retain the exact residual gap.\n10. Refresh Issue #159 / PR #148 correlation from repository truth.\n\n## Owner requirements\n- Question count is not a completion denominator.\n- Representation, explorer, starting support, hint depth, exercise demand, evidence and router remain separate concerns.\n- No mastery percentage/probability and no persisted READY/REINFORCE/REBUILD learner state.\n- Optional learner evidence must improve specificity but never become mandatory for useful study.\n- Issue #159 is the mother document; audit previous work before continuation.\n\n## Completion test\nWP-TA-107 is complete only when the current mother-contract acceptance/evidence, quality review, exact-head validation, checkpoint and calculated progress all agree. Green CI or existing code alone is insufficient.\n",
+        "github_state": "OPEN",
+        "title": "Engineering handover — Issue #159 / WP-TA-107",
+        "source_issue_number": 159
+      },
+      "publication": {
+        "attempt_count": 1,
+        "receipt": "github-issue-create:https://github.com/reallaksh19/Grade9V3/issues/164",
+        "last_error": null,
+        "last_attempt_basis": [
+          "prewrite-journal-head:770ed5931572e8f2f3b64b66a8e3338a14a97df2",
+          "audit:agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+          "source-issue:https://github.com/reallaksh19/Grade9V3/issues/159"
+        ]
+      },
+      "verification": {
+        "status": "PASS",
+        "observed_issue_number": 164,
+        "observed_issue_id": 5518649343,
+        "observed_github_state": "OPEN",
+        "observed_relationships": [
+          "verified reciprocal reference from Issue #159 comment 5750665728"
+        ],
+        "basis": [
+          "GitHub create response for https://github.com/reallaksh19/Grade9V3/issues/164",
+          "GitHub provider readback https://api.github.com/repos/reallaksh19/Grade9V3/issues/164",
+          "Verified relay-operation marker GHOP-HO-03943C0B50F7",
+          "Verified mother-issue reference comment 5750665728 on Issue #159"
+        ],
+        "recovered_without_connector_receipt": false
+      },
+      "reconciliation": {
+        "issue_graph_effects": [
+          {
+            "node": "HANDOVER-ISS159-03943C0B50F7",
+            "set_github_state": "OPEN"
+          }
+        ],
+        "complete_when": [
+          "issue identity verified",
+          "relay-operation marker verified"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": "relay-v2.5-quality-review",
+  "quality_review_id": "QRV-TA-005",
+  "ep": {
+    "id": "EP-TA-005",
+    "path": "agents/relay/execution-packages/EP-TA-005.yaml",
+    "contract_digest": "sha256:e033b84251f10aced162f4a524d455ca7e0739064422843afe5efcad5e9f5228"
+  },
+  "roadmap_revision": "RM-0006",
+  "material_ref": "9e18e26a8633cac664f75653ac9f874bc36f14a3",
+  "reviewer": {
+    "type": "AGENT",
+    "identity": "chatgpt-sol-grade9-learner-loop-20260920-quality-pass"
+  },
+  "router_snapshot": {
+    "applicable": [
+      {
+        "blueprint": "code-review",
+        "reason": "Learner-loop changes can silently convert help into mastery or broad reteaching if evidence/repair boundaries drift.",
+        "review_focus": [
+          "independent evidence",
+          "unknown preservation",
+          "local repair",
+          "non-blocking scope"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "A minimal Shared runtime repair is permitted only if a concrete cross-matrix falsifier proves it necessary.",
+        "review_focus": [
+          "minimal patch",
+          "deterministic behavior",
+          "no new state model"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "The package remains on the governed draft PR branch and must preserve checkpoint/PR custody.",
+        "review_focus": [
+          "checkpoint continuity",
+          "exact-head validation",
+          "PR correlation"
+        ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "The package validates orchestration across existing learner evidence, feedback, review and canonical-content seams.",
+        "review_focus": [
+          "reuse before architecture",
+          "evidence boundaries",
+          "subject-neutral ownership"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "The work package succeeds primarily by falsifying the learner loop across six required matrices.",
+        "review_focus": [
+          "six-matrix coverage",
+          "assisted-evidence downgrade",
+          "repair/fresh verification",
+          "real transfer"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing interaction surface is being changed in this package.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical algorithm changes are planned.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner/schema migration is authorized.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The learner-loop data and six-matrix audit are not performance-sensitive.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No browser/UI redesign is authorized.",
+        "review_focus": []
+      }
+    ]
+  },
+  "procedure_results": [
+    {
+      "blueprint": "software-design",
+      "result": "CLEAR",
+      "evidence": [
+        "The audit demonstrates that existing Shared evidence/session/feedback/review seams already model the required orchestration; no new learner-state or Core architecture is justified.",
+        "Scope remains the six required Grade-9 matrices from CP-TA-004; non-core content stays non-blocking."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "coding",
+      "result": "CLEAR",
+      "evidence": [
+        "No Shared runtime code was changed because the concrete falsifier did not expose a runtime defect.",
+        "Exact-head guardrails run 35503442514 and V2.5 relay run 35503442558 passed."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "testing",
+      "result": "FINDINGS",
+      "evidence": [
+        "The derived audit accounts for 30 required/prerequisite actions: 30/30 teaching paths, 30/30 misconception repairs, 30/30 exit tasks, but only 23/30 direct Core2A practice and four required matrices with zero canonical Core2B inventory.",
+        "The compiler contract explicitly reports Core2B unsupported when no canonical question is exposed to it; matrix transfer rows are specifications, not executable questions."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "code-review",
+      "result": "CLEAR",
+      "evidence": [
+        "The material diff is documentation/relay only; Physics libraries, matrices, schemas and Shared runtime remain unchanged.",
+        "The bounded successor backlog is tied to existing required capabilities and core matrix transfer specifications rather than inferred curriculum expansion."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "github-delivery",
+      "result": "CLEAR",
+      "evidence": [
+        "PR #148 remains the governed draft delivery vehicle on the expected branch.",
+        "Exact-head relay validation passed semantic conformance, cold-start reconstruction, baton readiness, takeover certification, Git inspection and write gating."
+      ],
+      "reason": null,
+      "cause": null
+    }
+  ],
+  "findings": [
+    {
+      "id": "QF-TA5-001",
+      "blueprint": "testing",
+      "classification": "TEST_GAP",
+      "severity": "MEDIUM",
+      "disposition": "DEFERRED",
+      "statement": "The six-matrix learner loop cannot yet satisfy the roadmap's executable practice/transfer expectation because canonical question inventory is missing: 7 required direct Core2A items and 18 Core2B items corresponding to existing core transfer specifications.",
+      "evidence": [
+        "docs/grade9/grade9-physics-learner-loop.json",
+        "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "Shared/library/compile_inputs.py",
+        "guardrails run 35503442514",
+        "V2.5 relay run 35503442558"
+      ],
+      "blocks_execution": false,
+      "hard_stop": null
+    }
+  ],
+  "overall_state": "NEEDS_ATTENTION",
+  "execution_effect": {
+    "blocks_execution": false,
+    "blocking_findings": []
+  },
+  "owner_report": {
+    "summary": "The Grade-9 learner-loop architecture is already present and evidence-safe. The remaining blocker is bounded academic question inventory, not a runtime or learner-model defect.",
+    "visible_risks": [
+      "Authoring transfer questions without the existing changed-demand specifications could create fake Core2B variants; the successor is therefore limited to current core transfer rows.",
+      "The four affected libraries must remain CANDIDATE/source-honest and must not pull extension-only or later-grade content into ordinary Grade 9."
+    ],
+    "decisions_required": []
+  },
+  "successor_handover": {
+    "unresolved_findings": [
+      "QF-TA5-001"
+    ],
+    "follow_up": [
+      "Open a separately bounded WP-TA-104 academic package that adds exactly the 7 missing Core2A direct-practice items and 18 Core2B questions derived from existing core transfer specifications, then rerun the learner-loop audit."
+    ]
+  }
+}

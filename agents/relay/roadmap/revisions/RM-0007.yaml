@@ -1,0 +1,52 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0007",
+    "from_revision": "RM-0006",
+    "to_revision": "RM-0007",
+    "classification": "OWNER_INTENT_MUTATION",
+    "trigger": {
+      "type": "OWNER_DECISION",
+      "path": "agents/relay/roadmap/owner-decisions/ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE.yaml"
+    }
+  },
+  "changes": {
+    "added": [
+      "WP-TA-107"
+    ],
+    "removed": [],
+    "changed": [
+      "OBJ-TOPIC-ATLAS-COMPLETE",
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TA-104",
+      "WP-TA-105",
+      "WP-TA-107"
+    ],
+    "unaffected": [
+      "WP-TAKEOVER-RECONCILE",
+      "WP-TA-102",
+      "WP-TA-106",
+      "WP-TA-103"
+    ]
+  },
+  "invalidated_execution_packages": [
+    "EP-TA-006"
+  ],
+  "issue_graph_reconciled": false,
+  "progress_basis_change": {
+    "old_basis": "PB-0004",
+    "new_basis": "PB-0005",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TA-107"
+  ],
+  "notes": [
+    "Owner rejected question-count closure and made representation/explorer/staged-hint separation plus evidence-derived support routing explicit.",
+    "The 25-question EP-TA-006 expansion is not retained as required programme work; a three-existing-question smoke set replaces it.",
+    "Completed work remains accepted at 60/100. Remaining 40 weight is now WP-TA-104=10, WP-TA-107=15 and WP-TA-105=15.",
+    "No new Issue #118 relationship is created.",
+    "After WP-TA-104 reached terminal acceptance, frontier_after is advanced to the currently computed WP-TA-107 frontier; WP-TA-107 is explicitly classified as changed so the active successor is not left UNCLASSIFIED."
+  ]
+}

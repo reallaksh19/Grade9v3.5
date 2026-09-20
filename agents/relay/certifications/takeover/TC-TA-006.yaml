@@ -1,0 +1,69 @@
+{
+  "schema_version": "relay-v2.5-takeover-certification",
+  "id": "TC-TA-006",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "evaluated_by": {
+    "type": "DETERMINISTIC_VALIDATOR",
+    "identity": "validate_takeover_certification.py",
+    "basis": [
+      "Common d9b84069683977b5c370f536f1c50095de926338 semantic takeover validators",
+      "DISC-TA-006 repository-only evidence",
+      "RM-0006 directly reconciled EP-TA-003 contract with owner-safe next-work wording",
+      "CP-TA-002 predecessor baton",
+      "EP-TA-003 current route basis"
+    ]
+  },
+  "self_certification": {
+    "allowed": false
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-003",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-003",
+    "ep_id": "EP-TA-003",
+    "ep_path": "agents/relay/execution-packages/EP-TA-003.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
+    "ep_contract_digest": "sha256:b5b180be8036cf9c1e26e13ab7dc850f2d8894a05ad5e33310f45c53a9cfa640",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-002",
+      "path": "agents/relay/checkpoints/CP-TA-002.yaml",
+      "digest": "sha256:61c1f93b9bd7b08c18e593d2f2c19543496d6a359efae54e92b73d69e2e8ad63"
+    }
+  },
+  "discovery_receipt": {
+    "id": "DISC-TA-006",
+    "path": "agents/relay/certifications/discovery/DISC-TA-006.yaml"
+  },
+  "qualification": {
+    "required": false,
+    "status": "NOT_REQUIRED",
+    "receipt_id": null,
+    "receipt_path": null,
+    "receipt_digest": null
+  },
+  "checks": {
+    "baton_semantics": "PASS",
+    "repository_discovery": "PASS",
+    "route_grounding": "PASS",
+    "input_oracle_readiness": "PASS",
+    "scope_understood": "PASS",
+    "report_successor_contract": "PASS"
+  },
+  "result": "PASS",
+  "conversation_context_used": false
+}

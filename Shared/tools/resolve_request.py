@@ -41,7 +41,8 @@ if __package__ in (None, ""):
 from Shared.contracts import load  # noqa: E402
 from Shared.library.practice_inventory import questions_for_core  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
-from Shared.tools import capability_graph, learner_evidence  # noqa: E402
+from Shared.tools import (atlas_need, capability_graph, core_focus, focus_inventory,
+                          learner_evidence)  # noqa: E402
 from Shared.tools.author_brief import capability_chain, rung_state  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/request.schema.json"
@@ -177,7 +178,7 @@ def resolve_owner_estimate(rows: list, position: int, caps: dict, mics: dict) ->
     }
 
 
-def plan(request: dict, repo: Path = REPO) -> dict:
+def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
     """The build plan and every finding against it. Never raises on content."""
     found: list[dict] = []
 
@@ -363,10 +364,38 @@ def plan(request: dict, repo: Path = REPO) -> dict:
                           else "AUTHOR_THE_PRODUCT"})
         built.append({"core": core, "state": "READY", "segment": steps})
 
+    diagnostic_focus = (
+        atlas_need.resolve(
+            diagnostic,
+            repo,
+            expected_subject=subject,
+            expected_matrix_id=board["matrix_id"],
+        )
+        if diagnostic is not None
+        else {
+            "state": "NOT_SUPPLIED",
+            "passed": True,
+            "matrix_id": board["matrix_id"],
+            "subject": subject,
+            "targets": [],
+            "rejected": [],
+            "warnings": [],
+            "errors": [],
+            "rule": "no external diagnostic supplied; strict request semantics are unchanged",
+        }
+    )
+    focus_targets = list(diagnostic_focus.get("targets") or [])
+    core_emphasis = core_focus.for_cores(cores, focus_targets)
+    focused_inventory = focus_inventory.for_cores(
+        subject, bucket_id, cores, focus_targets, repo
+    )
+
     return {"request": request.get("request_id"), "subject": subject,
             "bucket": bucket_id, "matrix": board["_path"],
             "entry": {**entry, "provenance": provenance}, "segment": segment,
-            "cores": built, "findings": found, "passed": not found}
+            "cores": built, "diagnostic_focus": diagnostic_focus,
+            "core_focus": core_emphasis, "focus_inventory": focused_inventory,
+            "findings": found, "passed": not found}
 
 
 def audit(repo: Path = REPO) -> dict:
@@ -434,7 +463,7 @@ def readable(report: dict) -> str:
     return "\n".join(out)
 
 
-def briefs(request: dict, repo: Path = REPO) -> str:
+def briefs(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> str:
     """Every brief the plan calls for, in build order. One command, one request.
 
     The teaching cores get one brief per rung of the segment -- a ladder segment, not a
@@ -477,12 +506,15 @@ def main() -> int:
     parser.add_argument("--plan", help="print one request's plan as text")
     parser.add_argument("--briefs",
                         help="print every authoring brief the plan calls for")
+    parser.add_argument("--diagnostic",
+                        help="optional external diagnostic gap envelope; never replaces learner placement")
     args = parser.parse_args()
+    diagnostic = load(Path(args.diagnostic)) if args.diagnostic else None
     if args.plan:
-        print(readable(plan(load(Path(args.plan)))))
+        print(readable(plan(load(Path(args.plan)), diagnostic=diagnostic)))
         return 0
     if args.briefs:
-        print(briefs(load(Path(args.briefs))))
+        print(briefs(load(Path(args.briefs)), diagnostic=diagnostic))
         return 0
     report = audit()
     print(json.dumps(report, indent=2))

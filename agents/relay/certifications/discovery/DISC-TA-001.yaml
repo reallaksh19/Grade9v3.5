@@ -1,0 +1,211 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-001",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-001",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-001",
+    "ep_id": "EP-TA-001",
+    "ep_path": "agents/relay/execution-packages/EP-TA-001.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0002",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "ep_contract_digest": "sha256:3b9a7a940905bb007cb0491a458075738c5789a1c6a4a64de1e2f793d3516714",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "NONE",
+      "id": "NONE",
+      "path": null,
+      "digest": null
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "active EP id and path",
+          "value": "EP-TA-001 at agents/relay/execution-packages/EP-TA-001.yaml",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/execution-packages/EP-TA-001.yaml"
+          ]
+        },
+        {
+          "name": "roadmap revision",
+          "value": "RM-0002",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        },
+        {
+          "name": "current work package",
+          "value": "WP-TAKEOVER-RECONCILE",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        }
+      ],
+      "basis": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/execution-packages/EP-TA-001.yaml"
+      ]
+    },
+    {
+      "id": "DSTEP-TA-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "GitHub branch takeover/topic-atlas-browser-correctness",
+            "agents/relay/execution-packages/EP-TA-001.yaml"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Final material implementation validated at fab9bb82d9feca668516a02d3ffff697454e8bbf; later coordination commits are descendants only.",
+          "basis": [
+            "GitHub commit fab9bb82d9feca668516a02d3ffff697454e8bbf",
+            "guardrails run 35487996163",
+            "v25-relay run 35487996167"
+          ]
+        },
+        {
+          "name": "material-ref ancestry result",
+          "value": "PASS: final material_ref fab9bb82d9feca668516a02d3ffff697454e8bbf is the reviewed implementation commit and is an ancestor of closure coordination commits.",
+          "basis": [
+            "GitHub commit fab9bb82d9feca668516a02d3ffff697454e8bbf"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "DISJOINT and reconciled by DRIFT-TA-001 through current main 78d8185852ee467b5a3fa064477e68553a4acca8; no EP material/protected path overlaps.",
+          "basis": [
+            "agents/relay/checkpoints/DRIFT-TA-001.yaml",
+            "GitHub compare d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59..78d8185852ee467b5a3fa064477e68553a4acca8"
+          ]
+        }
+      ],
+      "basis": [
+        "agents/relay/execution-packages/EP-TA-001.yaml",
+        "GitHub current main observation",
+        "GitHub current branch observation"
+      ]
+    },
+    {
+      "id": "DSTEP-TA-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "browser state owner",
+          "value": "public/js/topic-atlas.js local state object owns optional knowledge_percentage, diagnostic_rows, overlay state, and local request controls",
+          "basis": [
+            "public/js/topic-atlas.js"
+          ]
+        },
+        {
+          "name": "diagnostic import function",
+          "value": "handleDiagnosticImport(file) in public/js/topic-atlas.js",
+          "basis": [
+            "public/js/topic-atlas.js"
+          ]
+        },
+        {
+          "name": "request export function",
+          "value": "exportCoreRequest() in public/js/topic-atlas.js",
+          "basis": [
+            "public/js/topic-atlas.js"
+          ]
+        },
+        {
+          "name": "authoritative planning contract",
+          "value": "Shared/library/authoring-request.schema.json for incomplete plan-level requests; Shared/tools/plan_request.py for authoritative planning",
+          "basis": [
+            "Shared/library/authoring-request.schema.json",
+            "Shared/tools/plan_request.py"
+          ]
+        },
+        {
+          "name": "Run Builder target",
+          "value": "tools/run-builder/index.html",
+          "basis": [
+            "tools/run-builder/index.html"
+          ]
+        }
+      ],
+      "basis": [
+        "public/js/topic-atlas.js",
+        "Shared/library/authoring-request.schema.json",
+        "Shared/vocabularies/purpose.json",
+        "Shared/tools/plan_request.py",
+        "tools/run-builder/index.html"
+      ]
+    },
+    {
+      "id": "DSTEP-TA-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "current defect set",
+          "value": "Fail-open capability/rung matching; coercive result handling; unbounded score; diagnostic/estimate conflation; pseudo learner fallback; fabricated owner_entry/readiness claims; mixed Measurement Pack fields; stale handoff; plus main's manual leaf mastery/knowledge-sync path.",
+          "basis": [
+            "public/js/topic-atlas.js",
+            "public/physics/nlm/index.html",
+            "public/physics/motion-2d/index.html",
+            "Issue #118"
+          ]
+        },
+        {
+          "name": "retained Issue #118 requirements",
+          "value": "Optional two-input model, derived semantic diagnostic addressing, fail-closed import, no score averaging, canonical-neutral no-input use, existing Core/purpose reuse, static authoritative-planner handoff, cross-subject behavior.",
+          "basis": [
+            "Issue #118"
+          ]
+        },
+        {
+          "name": "upstream leaf-progress conflict",
+          "value": "Main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 adds leaf_progress, manual Mastered/Gap controls and Sync Knowledge with Leaf Progress; these cannot remain a normal learner-state path under the Owner's two-input requirement.",
+          "basis": [
+            "public/js/topic-atlas.js@d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+            "public/physics/nlm/index.html@d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+            "public/physics/motion-2d/index.html@d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59"
+          ]
+        },
+        {
+          "name": "superseded assumptions",
+          "value": "PR #117 is superseded; active material basis is d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 and includes the latest GCDR master-suite hardening.",
+          "basis": [
+            "GitHub main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+            "PR #117",
+            "PR #140",
+            "PR #141",
+            "PR #142",
+            "PR #143"
+          ]
+        }
+      ],
+      "basis": [
+        "public/js/topic-atlas.js",
+        "Issue #118",
+        "current main history"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

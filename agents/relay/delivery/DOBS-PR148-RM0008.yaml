@@ -1,0 +1,81 @@
+{
+  "schema_version": "relay-v2.5-delivery-observation",
+  "id": "DOBS-PR148-RM0008",
+  "provider": "GITHUB",
+  "repository": "reallaksh19/Grade9V3",
+  "vehicle": {
+    "kind": "PULL_REQUEST",
+    "number": 148,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/148",
+    "lifecycle": "DRAFT",
+    "head": {
+      "ref": "takeover/topic-atlas-browser-correctness",
+      "sha": "3898aeedadf3130caf0878221061b7d950307e93"
+    },
+    "base": {
+      "ref": "main",
+      "sha": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59"
+    }
+  },
+  "mergeability": {
+    "state": "UNKNOWN"
+  },
+  "checks": {
+    "state": "FAIL",
+    "head_sha": "3898aeedadf3130caf0878221061b7d950307e93",
+    "required": [
+      "guardrails",
+      "v25-relay"
+    ],
+    "observations": [
+      {
+        "name": "guardrails",
+        "run_id": 35522174309,
+        "status": "PASS",
+        "basis": "completed/success on observed PR head"
+      },
+      {
+        "name": "v25-relay",
+        "run_id": 35522174342,
+        "status": "FAIL",
+        "basis": "all semantic/cold-start/baton/route/Git steps passed; material_write_ready failed because no fresh candidate admission exists for EP-TA-008"
+      }
+    ]
+  },
+  "review": {
+    "state": "CLEAR",
+    "unresolved_threads": 0,
+    "change_requests": 0
+  },
+  "description_contract": {
+    "marker": "<!-- relay-pr-correlation:v1 -->",
+    "marker_present": true,
+    "body_digest": "sha256:31b92be261422cc19c3fb67f854c0a41daaeebb92e6e147a3aae3a10ce908651",
+    "correlations": [
+      {
+        "issue_node": "ISSUE-159",
+        "issue_number": 159,
+        "ep_id": "EP-TA-008",
+        "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+        "work_package": "WP-TA-107",
+        "relationship": "IMPLEMENTS",
+        "meaning": "EP-TA-008 delivers the authorized work for WP-TA-107 owned by GitHub issue #159."
+      },
+      {
+        "issue_node": "ISSUE-160",
+        "issue_number": 160,
+        "ep_id": "EP-TA-007",
+        "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+        "work_package": "WP-TA-104",
+        "relationship": "IMPLEMENTS",
+        "meaning": "EP-TA-007 delivers the authorized work for WP-TA-104 owned by GitHub issue #160."
+      }
+    ]
+  },
+  "readback_basis": [
+    "GitHub provider readback for PR #148 after description update at head 3898aeedadf3130caf0878221061b7d950307e93",
+    "GitHub Actions guardrails run 35522174309 completed/success",
+    "GitHub Actions v25-relay run 35522174342 completed/failure only at candidate-specific material write gate",
+    "GitHub provider review readback: zero reviews and zero unresolved review threads"
+  ]
+}

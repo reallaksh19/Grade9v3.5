@@ -1,0 +1,158 @@
+{
+  "schema_version": "relay-v2.5-qualification",
+  "id": "QUAL-TA-008",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "question_set": {
+    "id": "QSET-TA-008",
+    "path": "agents/relay/certifications/questions/QSET-TA-008.yaml"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-008",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-008",
+    "ep_id": "EP-TA-008",
+    "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null,
+    "roadmap_revision": "RM-0007",
+    "work_package": "WP-TA-107",
+    "ep_contract_digest": "sha256:d51262c52b05f0f5cb00be7c8a9dbd34ed20b4096e9ddc801b6063a79ef20a88"
+  },
+  "answers": [
+    {
+      "id": "Q1",
+      "response": "Repository tracing shows worksheet_study_plan.resolve supplies route rows to study_session.plan; learner_evidence.effective_state owns evidence resolution and RM-0007/ODR-0004 plus canonical records govern routing semantics.",
+      "outputs": {
+        "production_entrypoint": "Shared/tools/worksheet_study_plan.resolve -> Shared/tools/study_session.plan",
+        "state_owner": "Shared/tools/learner_evidence.effective_state",
+        "authority_source": "ODR-0004 + RM-0007 WP-TA-107 + canonical subject records",
+        "downstream_consumer": "study_session route/next_step projection for the learner"
+      },
+      "evidence": [
+        "Shared/tools/worksheet_study_plan.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/learner_evidence.py",
+        "RM-0007 WP-TA-107"
+      ]
+    },
+    {
+      "id": "Q2",
+      "response": "The router is a pure annotation layer: evidence -> derived posture -> support -> canonical visual/explorer -> exercise preference, while feedback.py remains the post-attempt state machine.",
+      "outputs": {
+        "reconstruction_steps": [
+          "Resolve effective learner evidence using existing precedence and helped-success downgrade.",
+          "Derive READY/REINFORCE/REBUILD without persisting it.",
+          "Map posture to low/medium/high starting support.",
+          "Resolve microtopic representation support_stage_map and interactive_resource_refs when present.",
+          "Choose guided reconstruction/practice/transfer preference from posture plus prerequisite readiness and available canonical questions."
+        ],
+        "intermediate_result": "A session-only route row carrying evidence basis, posture, starting support, optional visual stage/explorer refs and exercise-demand preference.",
+        "expected_result": "Initial learner routing is deterministic and canonical while feedback.py remains the sole post-attempt hint/repair/verification owner."
+      },
+      "evidence": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py",
+        "Physics/library/phy-nlm-first-law.v1.json"
+      ]
+    },
+    {
+      "id": "Q3",
+      "response": "The safe mutation adds session-only routing annotations. It must never manufacture READY from weak evidence, conflate execution slips with conceptual gaps, or consume hint progression before failure.",
+      "outputs": {
+        "mutation_effect": "Add derived route annotations and expose existing observation error_stage; do not change academic content or persisted learner state.",
+        "protected_invariant": "Only independent DEMONSTRATED evidence can produce READY; starting support never consumes the question hint ladder.",
+        "falsifier": "Any owner estimate/unobserved/assisted evidence producing READY, any EXECUTION/CARELESS case forcing conceptual REBUILD, or any starting-support decision mutating shown_hint_indices fails the slice."
+      },
+      "evidence": [
+        "ODR-0004",
+        "RM-0007 WP-TA-107",
+        "Shared/tools/feedback.py"
+      ]
+    },
+    {
+      "id": "Q4",
+      "response": "Use the EP's frozen truth tables and canonical NLM fixtures as independent oracles, then require the repository and V2.5 exact-head suites to remain green.",
+      "outputs": {
+        "independent_method": "Run focused router/session falsifiers plus the full repository guardrail and V2.5 suites against the exact implementation head.",
+        "predicted_result": "Truth-table, NLM visual-stage/explorer mapping, prerequisite-gated transfer and existing feedback/review behavior all pass with protected Physics/matrix/schema domains unchanged.",
+        "tolerance_or_exactness": "Exact enum/id mappings and zero protected-domain semantic edits; full suites must pass."
+      },
+      "evidence": [
+        "BENCH-TA8-001",
+        "BENCH-TA8-002",
+        "BENCH-TA8-003",
+        "TEST-TA8-004"
+      ]
+    },
+    {
+      "id": "Q5",
+      "response": "Start with the pure routing truth table plus error-stage exposure, falsify it, then integrate visual/exercise annotations only after that boundary is proven.",
+      "outputs": {
+        "first_change": "Add a small Shared/tools/learning_router.py pure derived-policy module and expose chosen observation error_stage from learner_evidence.effective_state.",
+        "predicted_before": "Worksheet route has learner_state and recommended_action but no routing_posture, starting_support, canonical initial visual stage/explorer recommendation or exercise-demand preference.",
+        "predicted_after": "The same route gains deterministic non-persisted routing annotations while canonical content and feedback escalation remain unchanged.",
+        "verification": "TEST-TA8-001 first, then TEST-TA8-002/003 and full TEST-TA8-004 before checkpoint."
+      },
+      "evidence": [
+        "STEP-TA8-001",
+        "TEST-TA8-001",
+        "AC-TA8-001"
+      ]
+    }
+  ],
+  "evaluated_by": {
+    "type": "DETERMINISTIC_VALIDATOR",
+    "identity": "validate_qualification_receipt.py",
+    "basis": [
+      "QSET-TA-008 deterministic_expected outputs",
+      "EP-TA-008 exact contract digest",
+      "current repository source paths named in each answer"
+    ]
+  },
+  "evaluations": [
+    {
+      "id": "Q1",
+      "status": "PASS",
+      "basis": [
+        "Outputs exactly match QSET-TA-008.Q1 deterministic_expected."
+      ]
+    },
+    {
+      "id": "Q2",
+      "status": "PASS",
+      "basis": [
+        "Outputs exactly match QSET-TA-008.Q2 deterministic_expected."
+      ]
+    },
+    {
+      "id": "Q3",
+      "status": "PASS",
+      "basis": [
+        "Outputs exactly match QSET-TA-008.Q3 deterministic_expected."
+      ]
+    },
+    {
+      "id": "Q4",
+      "status": "PASS",
+      "basis": [
+        "Outputs exactly match QSET-TA-008.Q4 deterministic_expected."
+      ]
+    },
+    {
+      "id": "Q5",
+      "status": "PASS",
+      "basis": [
+        "Outputs exactly match QSET-TA-008.Q5 deterministic_expected."
+      ]
+    }
+  ],
+  "self_evaluation": {
+    "allowed": false
+  },
+  "result": "PASS",
+  "conversation_context_used": false
+}

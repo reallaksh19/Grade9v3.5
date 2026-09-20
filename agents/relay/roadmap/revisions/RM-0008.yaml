@@ -1,0 +1,48 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0008",
+    "from_revision": "RM-0007",
+    "to_revision": "RM-0008",
+    "classification": "OWNER_INTENT_MUTATION",
+    "trigger": {
+      "type": "OWNER_DECISION",
+      "path": "agents/relay/roadmap/owner-decisions/ODR-0005-ISSUE159-MOTHER-CONTRACT.yaml"
+    }
+  },
+  "changes": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      "OBJ-TOPIC-ATLAS-COMPLETE",
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TA-107",
+      "WP-TA-105"
+    ],
+    "unaffected": [
+      "WP-TAKEOVER-RECONCILE",
+      "WP-TA-102",
+      "WP-TA-106",
+      "WP-TA-103",
+      "WP-TA-104"
+    ]
+  },
+  "invalidated_execution_packages": [],
+  "issue_graph_reconciled": true,
+  "progress_basis_change": {
+    "old_basis": "PB-0005",
+    "new_basis": "PB-0006",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TA-107"
+  ],
+  "notes": [
+    "Issue #159 is now the durable mother contract for WP-TA-107.",
+    "AUDIT-TA-008-MOTHER-CONTRACT found material gaps in the landed implementation; no EP-TA-008 acceptance credit is awarded.",
+    "EP-TA-008 remains the CP-TA-007 serial successor for custody continuity but enters RECONCILING/READ_ONLY through RC-TA-008 until a refreshed semantic EP/qualification is issued.",
+    "Later Issue #159 renderer/checkpoint refinements are distinguished from defects in the earlier implementation; both are now part of the current contract.",
+    "Programme progress remains 70/100 under PB-0006."
+  ]
+}

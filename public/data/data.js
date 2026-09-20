@@ -6108,7 +6108,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 137,
+          "record_count": 141,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6123,6 +6123,16 @@ window.GRADE9V3 = {
             "questions": 38,
             "obligations": 15,
             "authoring_requirements": [
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FBD-BODY-OWNERSHIP",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FRICTION-THRESHOLD",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",

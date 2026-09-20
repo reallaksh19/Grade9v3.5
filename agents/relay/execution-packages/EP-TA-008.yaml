@@ -1,0 +1,1335 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-008",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "e6ac56a2e6568129bf4dd7126ee5cf837317f88a",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-007",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "e6ac56a2e6568129bf4dd7126ee5cf837317f88a",
+    "base_branch": "main",
+    "base_observed_ref": "5037c193c8db017eb2cde383b913fd408e48fc6b",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0008",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-107",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "Sparse learner evidence yields an honest next study action inside one subtopic: representative checks when needed, only declared starting support, practice or transfer demand that respects current evidence, and existing repair/fresh-verification behavior.",
+      "The learner gets useful study even with no owner estimate, while optional evidence improves specificity without becoming a mastery score or a mandatory prerequisite."
+    ],
+    "engineering": [
+      "Repair the existing subject-neutral router so READY requires proven independent evidence, support is resolved from the active matrix family, and transfer eligibility is separate from a single READY result.",
+      "Add bounded no-estimate gateway and renderer-independent presentation/checkpoint references while keeping feedback.py/review_schedule.py authoritative after an attempt and persisting no routing posture."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Make the subtopic session runtime choose the next useful study action from sparse evidence without inventing mastery or duplicating curriculum truth.",
+    "roadmap_position": "WP-TA-107 under RM-0008 — Issue #159 mother contract",
+    "why_this_work_exists": "The landed EP-TA-008 slice proved useful composition seams but the takeover audit found that READY independence, support-ladder authority, transfer stability/family demand, no-estimate gateway, R3 proof depth and renderer-independent checkpoint/presentation boundaries were incomplete.",
+    "current_architecture": "learner_evidence.effective_state owns current evidence; study_start owns rough-estimate tentative entry; worksheet_study_plan/study_session project the learner route; feedback.py and review_schedule.py own post-attempt escalation/repair/fresh verification/review; canonical matrices/libraries own family support, representations, questions and transfer metadata. learning_router.py is a derived session-only annotation layer.",
+    "prior_owner_decisions": [
+      "Issue #159 is the mother contract for WP-TA-107.",
+      "READY/REINFORCE/REBUILD are disposable routing outcomes, never persisted learner states.",
+      "Question count is not a completion denominator and sparse question availability must be reported honestly.",
+      "Representation, explorer, starting support, hint depth, exercise demand, evidence and router stay separate.",
+      "Reasoning checkpoint, visual representation/scene and pedagogy injection are independent output concerns."
+    ],
+    "current_implementation_state": "The branch already contains learning_router.py, error_stage exposure, canonical NLM staged visual resolution, worksheet/session annotations and feedback-owned repair integration. Audit AUDIT-TA-008-MOTHER-CONTRACT identifies exact remaining defects; retained behavior must be repaired in place rather than rewritten.",
+    "known_problems": [
+      "A DEMONSTRATED state with missing/unknown independence can currently become READY.",
+      "Starting support is currently hard-coded instead of resolved against matrix.family.support_ladder.",
+      "One READY state plus prerequisites can currently unlock transfer without stable same-family independent performance.",
+      "Question selection currently ignores family/demand authority and can fall back to question-id order.",
+      "No-estimate representative subtopic gateway and complete R3/R8 witness coverage are not yet proved.",
+      "Current session output does not yet model scene/checkpoint/pedagogy-injection refs as independent renderer-neutral concerns."
+    ],
+    "deliberate_non_goals": [
+      "Do not create a mastery percentage/probability or persist READY/REINFORCE/REBUILD.",
+      "Do not create a second learner store, curriculum graph, question taxonomy or cross-subtopic adaptive ladder.",
+      "Do not synthesize missing questions, support levels, repairs or subject truth at runtime.",
+      "Do not encode renderer geometry, SceneGrid cells, DOM mechanics or workbench internals in Shared academic routing.",
+      "Do not replace feedback.py or review_schedule.py with a second post-attempt state machine."
+    ],
+    "terminology": {
+      "routing posture": "Session-only READY/REINFORCE/REBUILD derived from current evidence.",
+      "requested support": "low/medium/high/minimum intent before checking whether the active family actually declares it.",
+      "resolved support": "A support level explicitly declared by the active family, or a visible withheld/undeclared result.",
+      "transfer eligibility": "A separate decision requiring stable independent same-family performance; READY alone is insufficient.",
+      "checkpoint": "A reasoning decision/verification prompt that may exist with or without a visual scene.",
+      "presentation refs": "Canonical representation/scene/pedagogy references only; no renderer geometry."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA8-001",
+      "action": "TRACE",
+      "targets": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/study_start.py",
+        "Shared/tools/worksheet_study_plan.py",
+        "Shared/tools/study_session.py"
+      ],
+      "question": "Where do coarse evidence, optional owner estimate and no-estimate routing enter one subtopic session, and what facts are actually strong enough to prove independence?",
+      "expected_outputs": [
+        "evidence precedence",
+        "independence provenance",
+        "owner-estimate boundary",
+        "no-estimate gateway seam",
+        "session projection seam"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not alter evidence semantics or invent a second learner model."
+    },
+    {
+      "id": "DSTEP-TA8-002",
+      "action": "INSPECT",
+      "targets": [
+        "Physics/matrices/phy-nlm-first-law.rungs.json",
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Shared/tools/learning_router.py"
+      ],
+      "question": "How do capability family, support_ladder, question family and transfer-demand metadata constrain starting support and practice/transfer selection?",
+      "expected_outputs": [
+        "family resolution path",
+        "declared support levels",
+        "practice/transfer candidate family refs",
+        "transfer demand dimensions",
+        "protected-information boundaries"
+      ],
+      "receipt_required": true,
+      "on_failure": "Withhold unresolved support or candidate selection rather than guessing."
+    },
+    {
+      "id": "DSTEP-TA8-003",
+      "action": "TRACE",
+      "targets": [
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py",
+        "Shared/tools/study_session.py",
+        "Shared/library/package.schema.json"
+      ],
+      "question": "Which existing contracts own hints, repair, fresh verification, review and renderer-neutral representation/scene/checkpoint data?",
+      "expected_outputs": [
+        "hint owner",
+        "repair owner",
+        "fresh verification owner",
+        "review owner",
+        "presentation reference surface",
+        "checkpoint separation boundary"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not create duplicate feedback or renderer-specific academic state."
+    },
+    {
+      "id": "DSTEP-TA8-004",
+      "action": "VERIFY",
+      "targets": [
+        "tests/test_learning_router.py",
+        "tests/test_study_session.py",
+        "AUDIT-TA-008-MOTHER-CONTRACT"
+      ],
+      "question": "Which landed behaviors are retained and which exact audit falsifiers still fail?",
+      "expected_outputs": [
+        "retained passing seams",
+        "independence defect",
+        "support-authority defect",
+        "transfer defect",
+        "gateway gap",
+        "R3/R8 proof gap"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not rewrite already-correct behavior without a failing mother-contract falsifier."
+    },
+    {
+      "id": "DSTEP-TA8-005",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the branch/material/main drift basis permit the first Shared runtime write after fresh qualification?",
+      "expected_outputs": [
+        "checked-out branch",
+        "HEAD",
+        "material-ref ancestry",
+        "current main",
+        "drift classification",
+        "write disposition"
+      ],
+      "receipt_required": true,
+      "on_failure": "Keep material authority READ_ONLY until drift is reconciled."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA8-001",
+      "name": "Owner mother contract",
+      "description": "Current Issue #159 plus ODR-0005/RM-0008 requirements for subtopic gateway, evidence honesty, declared support, demand escalation, repair, renderer independence and checkpoint separation.",
+      "authority": "OWNER",
+      "source": "GitHub Issue #159; ODR-0005-ISSUE159-MOTHER-CONTRACT; RM-0008 WP-TA-107",
+      "resolution_method": "Treat Issue #159 as the product/architecture mother contract and RM-0008 as durable roadmap authority.",
+      "type": "owner/runtime contract",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA8-001",
+        "STEP-TA8-002",
+        "STEP-TA8-003",
+        "STEP-TA8-004",
+        "AC-TA8-001",
+        "AC-TA8-002",
+        "AC-TA8-003",
+        "AC-TA8-004"
+      ],
+      "validation": [
+        "Issue #159 is mapped to WP-TA-107 in ISSUE_GRAPH and RM-0008 applies ODR-0005."
+      ],
+      "stale_if": [
+        "Owner materially edits Issue #159 routing/presentation contract or supersedes ODR-0005."
+      ]
+    },
+    {
+      "id": "INPUT-TA8-002",
+      "name": "Takeover audit",
+      "description": "Concrete defects and retained-good-work inventory from the landed novice implementation.",
+      "authority": "REPOSITORY_AUDIT",
+      "source": "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+      "resolution_method": "Use each audit finding as a repair target and each retained-good-work item as a no-regression constraint.",
+      "type": "implementation audit",
+      "units": "8 findings / 8 improvements",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA8-001",
+        "STEP-TA8-002",
+        "STEP-TA8-003",
+        "STEP-TA8-004",
+        "AC-TA8-004"
+      ],
+      "validation": [
+        "Audit is committed and explicitly withholds WP-TA-107/EP-TA-008 acceptance credit."
+      ],
+      "stale_if": [
+        "A later audit supersedes AUDIT-TA-008-MOTHER-CONTRACT."
+      ]
+    },
+    {
+      "id": "INPUT-TA8-003",
+      "name": "Current learner/session runtime",
+      "description": "Existing evidence precedence, owner-estimate routing, worksheet/session composition and post-attempt feedback/review owners.",
+      "authority": "SHARED_RUNTIME",
+      "source": "Shared/tools/learner_evidence.py; Shared/tools/study_start.py; Shared/tools/worksheet_study_plan.py; Shared/tools/study_session.py; Shared/tools/feedback.py; Shared/tools/review_schedule.py",
+      "resolution_method": "Repair composition seams only; preserve existing state owners and post-attempt ownership.",
+      "type": "runtime contracts",
+      "units": "evidence / start / plan / session / feedback / review",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA8-001",
+        "STEP-TA8-002",
+        "STEP-TA8-003",
+        "AC-TA8-001",
+        "AC-TA8-002",
+        "AC-TA8-003"
+      ],
+      "validation": [
+        "Current branch contains the audited router/session implementation and feedback/review regressions."
+      ],
+      "stale_if": [
+        "Any named Shared runtime contract changes before write."
+      ]
+    },
+    {
+      "id": "INPUT-TA8-004",
+      "name": "Canonical family/support/demand truth",
+      "description": "NLM matrix/library records used as read-only proof fixtures for family support levels, representations, question families, repair and transfer demand.",
+      "authority": "CANONICAL_PHYSICS",
+      "source": "Physics/matrices/phy-nlm-first-law.rungs.json; Physics/library/phy-nlm-first-law.v1.json",
+      "resolution_method": "Read only; resolve ids and declared metadata, never rewrite Physics truth in this runtime EP.",
+      "type": "academic authority",
+      "units": "matrix families / support ladder / representations / questions / transfer metadata",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA8-001",
+        "STEP-TA8-002",
+        "STEP-TA8-003",
+        "STEP-TA8-004",
+        "AC-TA8-001",
+        "AC-TA8-002",
+        "AC-TA8-003"
+      ],
+      "validation": [
+        "NLM R3/R8 already declare support-stage maps and family/question metadata from WP-TA-104."
+      ],
+      "stale_if": [
+        "NLM matrix/library changes before implementation or validation."
+      ]
+    },
+    {
+      "id": "INPUT-TA8-005",
+      "name": "Renderer-independent presentation boundary",
+      "description": "Issue #159 Redox/workbench revision requiring representation/scene, reasoning checkpoint and pedagogy injection to remain independent public references.",
+      "authority": "OWNER",
+      "source": "Issue #159 revision after Redox visual-builder proof; dependencies #162 and #163",
+      "resolution_method": "Emit only stable semantic refs from the router; keep workbench internals and renderer mechanics out of Shared academic decisions.",
+      "type": "presentation boundary",
+      "units": "representation_ref / scene_ref / checkpoint_ref / pedagogy_injection_ref",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA8-003",
+        "AC-TA8-003"
+      ],
+      "validation": [
+        "Issue #159 explicitly requires text/static fallback and checkpoint/visual independence."
+      ],
+      "stale_if": [
+        "Owner changes the renderer/workbench boundary in Issue #159."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA8-001",
+      "name": "Independent-evidence posture oracle",
+      "purpose": "Prevent unsupported READY promotion and over-remediation.",
+      "source": "Issue #159 coarse checkpoint rules + existing evidence precedence",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "independent_DIRECT_ATTEMPT_DEMONSTRATED": "READY",
+        "helped_DEMONSTRATED": "REINFORCE",
+        "unknown_independence_DEMONSTRATED": "REINFORCE",
+        "profile_DEMONSTRATED": "REINFORCE",
+        "UNCERTAIN_or_UNOBSERVED": "REINFORCE",
+        "MISSING_CONCEPT_or_SETUP": "REBUILD",
+        "MISSING_EXECUTION_or_CARELESS": "REINFORCE"
+      },
+      "expected": "Only explicitly proven independent direct evidence reaches READY; routing posture stays non-persisted.",
+      "tolerance": null,
+      "independence": "Issue #159 and learner evidence semantics predate the repair.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA8-001",
+        "TEST-TA8-001"
+      ],
+      "stale_if": [
+        "Issue #159 changes the coarse checkpoint decision contract."
+      ]
+    },
+    {
+      "id": "BENCH-TA8-002",
+      "name": "Declared-support authority oracle",
+      "purpose": "Prevent support invention or low/minimum aliasing.",
+      "source": "Issue #159 support rules + active matrix family support_ladder",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": {
+        "READY_requested": "low",
+        "REINFORCE_requested": "medium",
+        "REBUILD_requested": "high",
+        "availability_rule": "requested support must exist in active family.support_ladder",
+        "missing_rule": "WITHHELD/UNDECLARED_SUPPORT",
+        "minimum_rule": "minimum is distinct from low"
+      },
+      "expected": "Router returns only declared support; undeclared levels are visible findings and never guessed.",
+      "tolerance": null,
+      "independence": "Matrix support_ladder is canonical data independent of router implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA8-001",
+        "TEST-TA8-001"
+      ],
+      "stale_if": [
+        "Support-ladder schema or Issue #159 support policy changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA8-003",
+      "name": "Gateway and transfer oracle",
+      "purpose": "Keep no-estimate study useful while preventing premature/cross-family transfer.",
+      "source": "Issue #159 subtopic gateway and demand-escalation rules",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "No estimate -> small deterministic representative quick-check set over uncertain/unobserved capabilities in one subtopic.",
+        "Rough estimate -> tentative entry/breadth only; never DEMONSTRATED.",
+        "One READY result -> insufficient by itself for transfer.",
+        "Transfer -> stable independent same-family performance + prerequisites + compatible canonical candidate.",
+        "Selection uses existing model_choice/representation_translation/reasoning_steps/novelty metadata."
+      ],
+      "expected": "Gateway stays bounded/local and transfer is evidence-stable, family-aware and honest about missing candidates.",
+      "tolerance": null,
+      "independence": "Rules are specified by Issue #159 rather than derived from the implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA8-002",
+        "TEST-TA8-002"
+      ],
+      "stale_if": [
+        "Issue #159 changes gateway or transfer eligibility."
+      ]
+    },
+    {
+      "id": "BENCH-TA8-004",
+      "name": "Presentation and feedback ownership oracle",
+      "purpose": "Keep renderer semantics, reasoning checkpoint and post-attempt feedback independent.",
+      "source": "Issue #159 renderer-independent revision; Shared/tools/feedback.py; Shared/tools/review_schedule.py",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "representation_ref/scene_ref describe showable/manipulable canonical content",
+        "checkpoint_ref describes a learner decision/verification and may exist without a visual",
+        "pedagogy_injection_ref describes when/how support is introduced",
+        "starting support never consumes shown_hint_indices",
+        "guided reconstruction/help remains non-independent until fresh verification",
+        "interaction telemetry is not evidence without an explicit DIRECT_ATTEMPT contract"
+      ],
+      "expected": "Router emits semantic refs only and reuses feedback/repair/verification/review owners.",
+      "tolerance": null,
+      "independence": "Owner contract and existing feedback functions are independent of router implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA8-003",
+        "TEST-TA8-003"
+      ],
+      "stale_if": [
+        "Issue #159 presentation boundary or feedback/review ownership changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA8-005",
+      "name": "NLM R3/R8 witness oracle",
+      "purpose": "Require both named proof cases instead of allowing R8-only depth.",
+      "source": "Issue #159 NLM proof section; canonical NLM matrix/library",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": [
+        "R3 FBD body ownership",
+        "R8 quantitative friction"
+      ],
+      "expected": "Both witnesses prove declared support, staged help, protected transfer information, repair and fresh independent verification without Physics-specific Shared policy.",
+      "tolerance": null,
+      "independence": "Witness fixtures are canonical subject data; Shared policy remains subject-neutral.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA8-004",
+        "TEST-TA8-004"
+      ],
+      "stale_if": [
+        "NLM R3/R8 canonical fixtures change."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Shared/tools/learning_router.py",
+        "reason": "Repair derived evidence/support/transfer/presentation policy."
+      },
+      {
+        "path": "Shared/tools/learner_evidence.py",
+        "reason": "Expose explicit independence provenance only if required without changing evidence vocabulary/precedence."
+      },
+      {
+        "path": "Shared/tools/study_start.py",
+        "reason": "Add bounded no-estimate subtopic gateway using existing matrix route data."
+      },
+      {
+        "path": "Shared/tools/worksheet_study_plan.py",
+        "reason": "Carry family/evidence/gateway/router annotations into learner route."
+      },
+      {
+        "path": "Shared/tools/study_session.py",
+        "reason": "Surface renderer-neutral next-step refs while preserving feedback ownership."
+      },
+      {
+        "path": "tests/test_learning_router.py",
+        "reason": "Evidence/support/transfer/presentation falsifiers and NLM witness fixtures."
+      },
+      {
+        "path": "tests/test_study_start.py",
+        "reason": "No-estimate and rough-estimate gateway falsifiers."
+      },
+      {
+        "path": "tests/test_worksheet_study_plan.py",
+        "reason": "Route integration and family/support authority tests."
+      },
+      {
+        "path": "tests/test_study_session.py",
+        "reason": "Support-vs-hint, repair, fresh verification and checkpoint/presentation separation tests."
+      },
+      {
+        "path": "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "reason": "Derived closure evidence only after implementation."
+      },
+      {
+        "path": "docs/grade9/grade9-physics-learner-loop.json",
+        "reason": "Machine-readable derived closure evidence."
+      },
+      {
+        "path": "docs/architecture-manifest.json",
+        "reason": "Mechanical regeneration after Shared/test changes."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "Qualification, quality, checkpoint, progress and delivery coordination."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Shared/library/package.schema.json",
+        "reason": "Inspect existing canonical representation/scene/ref semantics; schema write is not authorized by default."
+      },
+      {
+        "path": "Physics/library/phy-nlm-first-law.v1.json",
+        "reason": "Read-only R3/R8 representations/questions/repair witnesses."
+      },
+      {
+        "path": "Physics/matrices/phy-nlm-first-law.rungs.json",
+        "reason": "Read-only family support and transfer-demand authority."
+      },
+      {
+        "path": "Learners/",
+        "reason": "Use existing profile/observation fixtures through established loaders only."
+      },
+      {
+        "domain": "GitHub Issue #159 / #162 / #163",
+        "reason": "Read Owner/router/workbench boundary; do not modify workbench internals from this EP."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Learner evidence remains DEMONSTRATED/UNCERTAIN/MISSING/UNOBSERVED and READY/REINFORCE/REBUILD are never persisted.",
+        "reason": "Avoid a second mastery model."
+      },
+      {
+        "invariant": "knowledge_percentage and Atlas leaf progress may influence tentative routing only and never create canonical evidence.",
+        "reason": "Rough priors/UI toggles cannot certify capability."
+      },
+      {
+        "invariant": "matrix.family.support_ladder is support availability authority; missing levels are withheld/reported.",
+        "reason": "Prevent invented support and low/minimum aliasing."
+      },
+      {
+        "invariant": "question.hints[] and feedback.py own post-failure escalation; starting support never marks hints shown.",
+        "reason": "Support and hint depth are independent."
+      },
+      {
+        "invariant": "Transfer eligibility is separate from READY and respects same-family stable evidence plus canonical demand metadata.",
+        "reason": "Prevent premature/cross-family transfer."
+      },
+      {
+        "invariant": "Representation/scene, reasoning checkpoint and pedagogy injection remain independent semantic refs.",
+        "reason": "Keep router renderer-independent."
+      },
+      {
+        "invariant": "Physics matrices/libraries are read-only academic truth for this runtime EP.",
+        "reason": "Router consumes rather than rewrites subject truth."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Physics/library or Physics/matrices edits",
+        "reason": "WP-TA-107 is Shared runtime routing, not content authoring."
+      },
+      {
+        "domain": "Observation/profile schema vocabulary changes",
+        "reason": "Existing evidence states are sufficient; independence is derived provenance."
+      },
+      {
+        "domain": "Mastery percentages/probabilities or persisted routing posture",
+        "reason": "Explicit Owner non-goal."
+      },
+      {
+        "domain": "New question/difficulty taxonomy or synthesized runtime questions",
+        "reason": "Use existing family/demand metadata and report sparse availability honestly."
+      },
+      {
+        "domain": "Renderer geometry, DOM/SceneGrid IDs, drag/drop mechanics or subject transformation graphs",
+        "reason": "Issue #159 requires portable renderer-independent outputs."
+      },
+      {
+        "domain": "Duplicate hint/repair/review state machine",
+        "reason": "feedback.py/review_schedule.py remain authoritative."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA8-001",
+        "restriction": "Do not infer READY from owner estimate, profile familiarity, helped success or unknown independence.",
+        "reason": "Only proven independent evidence may route READY."
+      },
+      {
+        "id": "ADR-TA8-002",
+        "restriction": "Do not return a support level absent from the active family support_ladder or alias low to minimum.",
+        "reason": "Support availability is canonical family truth."
+      },
+      {
+        "id": "ADR-TA8-003",
+        "restriction": "Do not unlock transfer from one READY result or select another-family/incompatible transfer by id order.",
+        "reason": "Transfer requires stable same-family evidence and canonical demand compatibility."
+      },
+      {
+        "id": "ADR-TA8-004",
+        "restriction": "Do not mutate shown_hint_indices or feedback state while choosing starting support.",
+        "reason": "Pre-attempt support and post-failure escalation are separate."
+      },
+      {
+        "id": "ADR-TA8-005",
+        "restriction": "Do not encode checkpoint reasoning as a visual stage or renderer geometry.",
+        "reason": "Checkpoint, representation/scene and pedagogy injection are independent."
+      },
+      {
+        "id": "ADR-TA8-006",
+        "restriction": "Do not add Physics-specific ids or policy branches to Shared runtime.",
+        "reason": "Issue #159 is reusable Core architecture."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA8-001",
+        "condition": "Issue #159 is materially revised again.",
+        "effect": "RECONCILE",
+        "rationale": "Mother-contract authority changed."
+      },
+      {
+        "id": "STALE-TA8-002",
+        "condition": "learner_evidence/study_start/feedback/session semantics change before write.",
+        "effect": "RECONCILE",
+        "rationale": "Production composition seam changed."
+      },
+      {
+        "id": "STALE-TA8-003",
+        "condition": "NLM matrix/library family/support/transfer fixtures change.",
+        "effect": "RECONCILE",
+        "rationale": "Canonical proof authority changed."
+      },
+      {
+        "id": "STALE-TA8-004",
+        "condition": "Current main overlaps allowed Shared/test write domains after qualification.",
+        "effect": "RECONCILE",
+        "rationale": "Git drift may invalidate the qualified implementation boundary."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA8-001",
+      "objective": "Repair evidence independence and resolve starting support only through the active family support_ladder.",
+      "targets": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/learning_router.py",
+        "tests/test_learning_router.py"
+      ],
+      "reads": [
+        "effective observation/profile provenance",
+        "matrix family support_ladder",
+        "AUDIT findings 001/002"
+      ],
+      "writes": [
+        "derived evidence provenance/support resolution and focused tests"
+      ],
+      "inputs": [
+        "INPUT-TA8-001",
+        "INPUT-TA8-002",
+        "INPUT-TA8-003",
+        "INPUT-TA8-004"
+      ],
+      "acceptance": [
+        "AC-TA8-001"
+      ],
+      "tests": [
+        "TEST-TA8-001"
+      ],
+      "expected_state": "Only proven independent evidence routes READY, and requested support is returned only when the active family declares it; otherwise support is visibly withheld.",
+      "stop_conditions": [
+        "Stop if independence would require a new persisted evidence state.",
+        "Stop rather than guess when active family/support authority is ambiguous."
+      ]
+    },
+    {
+      "id": "STEP-TA8-002",
+      "objective": "Add a bounded no-estimate gateway and make practice/transfer selection family- and demand-aware with transfer stability separate from READY.",
+      "targets": [
+        "Shared/tools/study_start.py",
+        "Shared/tools/learning_router.py",
+        "Shared/tools/worksheet_study_plan.py",
+        "tests/test_study_start.py",
+        "tests/test_learning_router.py",
+        "tests/test_worksheet_study_plan.py"
+      ],
+      "reads": [
+        "local matrix route",
+        "effective capability evidence",
+        "question family refs",
+        "transfer dimensions"
+      ],
+      "writes": [
+        "gateway and exercise-demand annotations only"
+      ],
+      "inputs": [
+        "INPUT-TA8-001",
+        "INPUT-TA8-002",
+        "INPUT-TA8-003",
+        "INPUT-TA8-004"
+      ],
+      "acceptance": [
+        "AC-TA8-002"
+      ],
+      "tests": [
+        "TEST-TA8-002"
+      ],
+      "expected_state": "No estimate still yields a small local diagnostic gateway; transfer requires stable independent same-family evidence and a compatible canonical candidate.",
+      "stop_conditions": [
+        "Stop if the design requires cross-subtopic mastery ordering.",
+        "Return candidate unavailable rather than synthesize a question or second demand taxonomy."
+      ]
+    },
+    {
+      "id": "STEP-TA8-003",
+      "objective": "Make session presentation renderer-independent and keep reasoning checkpoint, visual scene and pedagogy injection refs separate while preserving feedback-owned escalation.",
+      "targets": [
+        "Shared/tools/learning_router.py",
+        "Shared/tools/study_session.py",
+        "tests/test_learning_router.py",
+        "tests/test_study_session.py"
+      ],
+      "reads": [
+        "existing representation/scene refs",
+        "Issue #159 presentation boundary",
+        "feedback/review outputs"
+      ],
+      "writes": [
+        "session-only semantic refs and tests"
+      ],
+      "inputs": [
+        "INPUT-TA8-001",
+        "INPUT-TA8-003",
+        "INPUT-TA8-005"
+      ],
+      "acceptance": [
+        "AC-TA8-003"
+      ],
+      "tests": [
+        "TEST-TA8-003"
+      ],
+      "expected_state": "Checkpoint may exist without visual, visual may exist without checkpoint, support/hints remain independent and interaction telemetry does not bypass evidence precedence.",
+      "stop_conditions": [
+        "Stop if workbench internals, renderer geometry or subject transformation mutation appears necessary.",
+        "Stop if a second hint/repair/review engine appears necessary."
+      ]
+    },
+    {
+      "id": "STEP-TA8-004",
+      "objective": "Prove separate R3 and R8 witnesses, run full exact-head validation/quality, and reconcile delivery/progress only from accepted evidence.",
+      "targets": [
+        "tests/test_learning_router.py",
+        "tests/test_study_session.py",
+        "docs/grade9/",
+        "docs/architecture-manifest.json",
+        "agents/relay/",
+        "PR #148 correlation"
+      ],
+      "reads": [
+        "all repaired outputs",
+        "canonical R3/R8 fixtures",
+        "V2.5 validation results"
+      ],
+      "writes": [
+        "tests/derived docs/quality/checkpoint/progress/delivery coordination only after evidence"
+      ],
+      "inputs": [
+        "INPUT-TA8-001",
+        "INPUT-TA8-002",
+        "INPUT-TA8-003",
+        "INPUT-TA8-004",
+        "INPUT-TA8-005"
+      ],
+      "acceptance": [
+        "AC-TA8-004"
+      ],
+      "tests": [
+        "TEST-TA8-004"
+      ],
+      "expected_state": "Both witnesses pass, full repository and V2.5 checks are green on the exact accepted head, QRV/CP/progress/PR correlation agree, and only then WP-TA-105 may become frontier.",
+      "stop_conditions": [
+        "Stop on any mother-contract falsifier, protected-domain semantic edit, unresolved quality finding mapped to an acceptance/protected invariant, or exact-head regression."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Repair and falsify independent-evidence posture plus declared-support resolution.",
+        "targets": [
+          "Shared/tools/learner_evidence.py",
+          "Shared/tools/learning_router.py",
+          "tests/test_learning_router.py"
+        ],
+        "inputs": [
+          "INPUT-TA8-001",
+          "INPUT-TA8-002",
+          "INPUT-TA8-003",
+          "INPUT-TA8-004"
+        ],
+        "tests": [
+          "TEST-TA8-001"
+        ],
+        "benchmarks": [
+          "BENCH-TA8-001",
+          "BENCH-TA8-002"
+        ],
+        "acceptance": [
+          "AC-TA8-001"
+        ],
+        "expected_result": "Evidence honesty and family support authority are correct before any transfer/gateway change.",
+        "stop_if": [
+          "Fresh qualification/write readiness is absent.",
+          "Independence or support authority is ambiguous."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Implement bounded no-estimate gateway and stable same-family demand escalation.",
+        "targets": [
+          "Shared/tools/study_start.py",
+          "Shared/tools/learning_router.py",
+          "Shared/tools/worksheet_study_plan.py"
+        ],
+        "inputs": [
+          "INPUT-TA8-001",
+          "INPUT-TA8-003",
+          "INPUT-TA8-004"
+        ],
+        "tests": [
+          "TEST-TA8-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA8-003"
+        ],
+        "acceptance": [
+          "AC-TA8-002"
+        ],
+        "expected_result": "Useful local study works without estimate and transfer no longer follows from one READY state.",
+        "stop_if": [
+          "Cross-subtopic ordering or synthesized question demand would be required."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Separate renderer-neutral presentation refs from reasoning checkpoint while preserving feedback-owned hint/repair/verification/review.",
+        "targets": [
+          "Shared/tools/learning_router.py",
+          "Shared/tools/study_session.py"
+        ],
+        "inputs": [
+          "INPUT-TA8-001",
+          "INPUT-TA8-003",
+          "INPUT-TA8-005"
+        ],
+        "tests": [
+          "TEST-TA8-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA8-004"
+        ],
+        "acceptance": [
+          "AC-TA8-003"
+        ],
+        "expected_result": "Scene, checkpoint and pedagogy injection are independently expressible with static fallback and no evidence bypass.",
+        "stop_if": [
+          "Renderer/workbench internals or duplicate feedback state become necessary."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run R3/R8 witnesses, full exact-head validation/quality and delivery/progress reconciliation.",
+        "targets": [
+          "tests/",
+          "docs/grade9/",
+          "docs/architecture-manifest.json",
+          "agents/relay/",
+          "PR #148"
+        ],
+        "inputs": [
+          "INPUT-TA8-001",
+          "INPUT-TA8-002",
+          "INPUT-TA8-003",
+          "INPUT-TA8-004",
+          "INPUT-TA8-005"
+        ],
+        "tests": [
+          "TEST-TA8-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA8-005"
+        ],
+        "acceptance": [
+          "AC-TA8-004"
+        ],
+        "expected_result": "WP-TA-107 is either evidence-backed complete or retains an exact residual gap; no credit is awarded from activity alone.",
+        "stop_if": [
+          "Any acceptance/quality/exact-head/delivery correlation requirement is unresolved."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": true,
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "PROTECTED_INVARIANT",
+      "INPUT_AUTHORITY",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "Issue #159 is now the mother contract and adds no-estimate gateway, declared-support authority, stable same-family transfer and renderer-independent checkpoint/presentation requirements.",
+      "Input authority now explicitly includes matrix.family.support_ladder and family/demand metadata rather than a hard-coded support/transfer policy.",
+      "Protected invariants now include proven independence, undeclared-support withholding and checkpoint/visual separation.",
+      "Verification now requires separate R3 and R8 witnesses plus gateway/transfer/presentation falsifiers."
+    ],
+    "question_set": {
+      "id": "QSET-TA-009",
+      "path": "agents/relay/certifications/questions/QSET-TA-009.yaml"
+    }
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The router must be a derived orchestration layer over existing evidence/content/feedback owners.",
+        "review_focus": [
+          "single state owner",
+          "no mastery model",
+          "support vs hint separation",
+          "canonical refs"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Shared runtime functions and one new routing module change learner-facing execution decisions.",
+        "review_focus": [
+          "determinism",
+          "small API",
+          "error-stage handling",
+          "fallback honesty"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Truth tables and closed-loop behavior are the primary correctness proof.",
+        "review_focus": [
+          "unknown/assisted/missing states",
+          "execution-slip falsifier",
+          "visual stage mapping",
+          "transfer prerequisites",
+          "feedback reuse"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "A routing annotation can silently overclaim learner knowledge or duplicate academic/runtime ownership.",
+        "review_focus": [
+          "evidence basis",
+          "no mutation",
+          "no duplicated feedback engine",
+          "question sparsity"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "This material-boundary transition requires qualified repository custody and exact-head handoff.",
+        "review_focus": [
+          "QSET/QUAL/TC",
+          "checkpoint continuity",
+          "PR custody",
+          "exact-head validation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing rendering/widget is changed; router emits semantic ids/data already governed by canonical accessibility contracts."
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No UI layout/interaction surface is modified."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical method changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Small in-memory routing over current worksheet/profile/library records is not performance-sensitive."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner or academic schema is changed."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA8-001",
+      "description": "Only proven independent evidence may route READY; conceptual/setup vs execution/careless distinctions remain honest; starting support is requested from posture but returned only when declared by the active family, with undeclared/minimum mismatch visibly withheld.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA8-001",
+        "BENCH-TA8-001",
+        "BENCH-TA8-002"
+      ]
+    },
+    {
+      "id": "AC-TA8-002",
+      "description": "The router works with no owner estimate through a bounded same-subtopic gateway, and practice/transfer selection is capability+family+demand aware; transfer requires stable independent same-family performance rather than one READY result.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA8-002",
+        "BENCH-TA8-003"
+      ]
+    },
+    {
+      "id": "AC-TA8-003",
+      "description": "Renderer-independent session output keeps representation/scene refs, reasoning checkpoint refs and pedagogy-injection refs independent; starting support remains separate from hints and existing feedback/repair/fresh-verification/review ownership is preserved.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA8-003",
+        "BENCH-TA8-004"
+      ]
+    },
+    {
+      "id": "AC-TA8-004",
+      "description": "Separate NLM R3 and R8 witnesses pass without Physics-specific Shared policy; no routing/mastery state is persisted, protected Physics/matrix truth is unchanged, exact-head full validation/quality pass, and PR #148 correlation reflects Issue #159/WP-TA-107/EP-TA-008 before checkpoint credit.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA8-001",
+        "TEST-TA8-002",
+        "TEST-TA8-003",
+        "TEST-TA8-004",
+        "BENCH-TA8-005"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA8-001",
+      "class": "MUST_PASS",
+      "method": "Falsify evidence/support truth: bare or helped/profile DEMONSTRATED cannot produce READY; proven independent DIRECT_ATTEMPT DEMONSTRATED can; EXECUTION/CARELESS MISSING does not cause conceptual REBUILD; requested low/medium/high must resolve through the active family support_ladder; undeclared minimum/support is visibly withheld.",
+      "proves": [
+        "AC-TA8-001",
+        "AC-TA8-004"
+      ]
+    },
+    {
+      "id": "TEST-TA8-002",
+      "class": "MUST_PASS",
+      "method": "With and without owner estimate, prove a bounded local gateway never marks capability mastery; prove one READY result is insufficient for transfer; prove practice/transfer candidates stay in the relevant capability/family and respect existing model_choice/representation_translation/reasoning_steps/novelty metadata, reporting honest unavailability when no compatible item exists.",
+      "proves": [
+        "AC-TA8-002",
+        "AC-TA8-004"
+      ]
+    },
+    {
+      "id": "TEST-TA8-003",
+      "class": "MUST_PASS",
+      "method": "Prove session output can emit checkpoint-without-visual and visual-without-checkpoint; representation/scene/checkpoint/pedagogy refs contain no renderer geometry; starting support does not mutate shown_hint_indices; guided/helped work remains non-independent and repair rejoins existing fresh-verification/review behavior.",
+      "proves": [
+        "AC-TA8-003",
+        "AC-TA8-004"
+      ]
+    },
+    {
+      "id": "TEST-TA8-004",
+      "class": "MUST_PASS",
+      "method": "Run separate NLM R3 FBD-ownership and R8 friction witnesses plus full repository guardrails, V2.5 conformance/cold-start/qualification/takeover/write checks, applicable QRV procedures, protected-domain diff and canonical PR-correlation validation on the exact accepted head.",
+      "proves": [
+        "AC-TA8-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "relay-v2.5-takeover-certification",
+  "id": "TC-TA-015",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "evaluated_by": {
+    "type": "DETERMINISTIC_VALIDATOR",
+    "identity": "validate_takeover_certification.py",
+    "basis": [
+      "Pinned V2.5 semantic validators",
+      "DISC-TA-015 repository-only evidence",
+      "CP-TA-005 predecessor baton",
+      "RM-0007 owner-intent mutation",
+      "EP-TA-007 route basis"
+    ]
+  },
+  "self_certification": {
+    "allowed": false
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-007",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-007",
+    "ep_id": "EP-TA-007",
+    "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0007",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "201d939a354b0736ee7580c2c4b8b3fa0f765d94",
+    "ep_contract_digest": "sha256:602facc7885e16eec313b7f9f163cf61e993d7fba048138aafbf385d9c417d4d",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-005",
+      "path": "agents/relay/checkpoints/CP-TA-005.yaml",
+      "digest": "sha256:a6d787052c00234f0b62d7664c2a2a83e6d314d0ff64510a5c78a0c07f73e6fe"
+    }
+  },
+  "discovery_receipt": {
+    "id": "DISC-TA-015",
+    "path": "agents/relay/certifications/discovery/DISC-TA-015.yaml"
+  },
+  "qualification": {
+    "required": false,
+    "status": "NOT_REQUIRED",
+    "receipt_id": null,
+    "receipt_path": null,
+    "receipt_digest": null
+  },
+  "checks": {
+    "baton_semantics": "PASS",
+    "repository_discovery": "PASS",
+    "route_grounding": "PASS",
+    "input_oracle_readiness": "PASS",
+    "scope_understood": "PASS",
+    "report_successor_contract": "PASS"
+  },
+  "result": "PASS",
+  "conversation_context_used": false
+}

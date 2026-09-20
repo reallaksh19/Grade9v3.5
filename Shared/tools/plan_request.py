@@ -16,7 +16,8 @@ from Shared.contracts import ContractError, load
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import academic_readiness, capability_graph, learner_evidence, resolve_request, source_receipts
+from Shared.tools import (academic_readiness, atlas_need, capability_graph, core_focus,
+                          focus_inventory, learner_evidence, resolve_request, source_receipts)
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
@@ -211,7 +212,7 @@ def lifecycle_handoff(report: dict) -> dict:
     }
 
 
-def plan(request: dict, repo: Path = REPO) -> dict:
+def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
     board, findings = resolve_board(request, repo)
     requested = list(request.get("requested_cores", []))
     if board is None:
@@ -230,6 +231,32 @@ def plan(request: dict, repo: Path = REPO) -> dict:
     practice = practice_coverage(records, board["bucket_id"])
     learner_route = _learner_route(request, board, caps, mics, repo)
     purposes = resolve_request.purposes()
+
+    diagnostic_focus = (
+        atlas_need.resolve(
+            diagnostic,
+            repo,
+            expected_subject=subject,
+            expected_matrix_id=board["matrix_id"],
+        )
+        if diagnostic is not None
+        else {
+            "state": "NOT_SUPPLIED",
+            "passed": True,
+            "matrix_id": board["matrix_id"],
+            "subject": subject,
+            "targets": [],
+            "rejected": [],
+            "warnings": [],
+            "errors": [],
+            "rule": "no external diagnostic supplied; planner readiness remains canonical",
+        }
+    )
+    focus_targets = list(diagnostic_focus.get("targets") or [])
+    core_emphasis = core_focus.for_cores(requested, focus_targets)
+    focused_inventory = focus_inventory.for_cores(
+        subject, board["bucket_id"], requested, focus_targets, repo
+    )
 
     owner_inputs = []
     if any(c in LEARNER_ROUTED for c in requested) and not request.get("learner"):
@@ -361,6 +388,9 @@ def plan(request: dict, repo: Path = REPO) -> dict:
             "resource_refs": receipt.get("resource_refs", []),
         },
         "practice_inventory": practice,
+        "diagnostic_focus": diagnostic_focus,
+        "core_focus": core_emphasis,
+        "focus_inventory": focused_inventory,
         "compiler_supported": sorted(supported),
         "products": products,
         "required_owner_inputs": owner_inputs,
@@ -407,10 +437,13 @@ def audit(repo: Path = REPO) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--plan", type=Path)
+    parser.add_argument("--diagnostic", type=Path,
+                        help="optional external diagnostic gap envelope kept separate from learner placement")
     parser.add_argument("--audit", action="store_true")
     parser.add_argument("--enforce", action="store_true")
     args = parser.parse_args()
-    report = plan(load(args.plan)) if args.plan else audit()
+    diagnostic = load(args.diagnostic) if args.diagnostic else None
+    report = plan(load(args.plan), diagnostic=diagnostic) if args.plan else audit()
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 1 if args.enforce and not report.get("passed", False) else 0
 

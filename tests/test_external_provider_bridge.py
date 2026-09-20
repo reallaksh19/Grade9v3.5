@@ -132,7 +132,8 @@ class ExternalProviderBridge(unittest.TestCase):
         self.assertTrue(report["passed"], report["findings"])
         rows = {row["capability_ref"]: row for row in report["route"]}
         self.assertEqual(rows["CAP-EXT"]["learner_action"], "BRIDGE")
-        self.assertEqual(rows["CAP-MAIN"]["learner_action"], "STUDY")
+        self.assertEqual(rows["CAP-MAIN"]["learner_action"], "QUICK_CHECK")
+        self.assertTrue(rows["CAP-MAIN"]["gateway_basis"]["not_evidence"])
 
     def test_learner_facing_plan_names_provider_and_continues(self):
         tmp, root, mapping = self.fixture()
@@ -147,7 +148,7 @@ class ExternalProviderBridge(unittest.TestCase):
         self.assertEqual(rows["CAP-EXT"]["recommended_action"], "BRIDGE")
         self.assertIn("Mathematics", rows["CAP-EXT"]["action_reason"])
         self.assertIn("External bridge: Mathematics", rendered)
-        self.assertEqual(rows["CAP-MAIN"]["recommended_action"], "STUDY")
+        self.assertEqual(rows["CAP-MAIN"]["recommended_action"], "QUICK_CHECK")
 
 
 if __name__ == "__main__":

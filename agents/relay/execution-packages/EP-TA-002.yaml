@@ -1,0 +1,1345 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-002",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-001",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+    "base_branch": "main",
+    "base_observed_ref": "78d8185852ee467b5a3fa064477e68553a4acca8",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0003",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-102",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "The same validated scanned-gap semantics and Measurement Pack become reusable Shared contracts instead of browser-only logic.",
+      "Core planning can receive optional diagnostic focus without treating it as learner mastery or changing canonical coverage."
+    ],
+    "engineering": [
+      "Shared owns transient diagnostic validation, semantic need resolution, Measurement Pack generation, Core-specific emphasis, and focus-aware existing-inventory ranking.",
+      "plan_request, resolve_request, and execution packets expose the same focus semantics without duplicating subject-specific routing logic."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Move Topic Atlas diagnostic and Core focus authority into Shared while preserving the owner-defined optional two-input model and current canonical curriculum.",
+    "roadmap_position": "OBJ-TOPIC-ATLAS-COMPLETE / PHASE-TAKEOVER-RECONCILIATION / WP-TA-102",
+    "why_this_work_exists": "EP-TA-001 made the browser truthful, but diagnostic validation, Measurement Pack generation and semantic focus are not yet reusable Shared authorities. Issue #118 requires these contracts to drive Core planning across subjects.",
+    "current_architecture": "Canonical packages/matrices own academic truth. Existing Shared authoring-request, request, observation, study_start, practice_inventory, plan_request, resolve_request and execution-packet paths own planning/evidence mechanics. The browser projects canonical web data but must not remain the only implementation of diagnostic semantics.",
+    "prior_owner_decisions": [
+      "Normal learner inputs are optional rough subtopic knowledge estimate and latest scanned-answer diagnostic only.",
+      "Knowledge percentage routes a starting coordinate and is never evidence.",
+      "Diagnostic stages reuse CONCEPT, SETUP, EXECUTION, CARELESS and UNKNOWN.",
+      "Derived Rn.x.y addresses are projection aliases over existing rung/step/stage identities; do not create physical sub-rungs or capability proliferation.",
+      "Complete remaining pieces by reusing existing Grade9V3 contracts before adding schema."
+    ],
+    "current_implementation_state": "EP-TA-002 Shared implementation is complete on material head b11fbe93399d5c29cb4a43d04f5e55132f294f11. The transient diagnostic envelope, canonical need resolver, Measurement Pack exporter, Core emphasis, focus inventory, planner/strict-resolver integration and execution-packet diagnostic pinning are implemented and green.",
+    "known_problems": [
+      "The static browser cannot execute Shared Python directly; its exported diagnostic envelope is consumed by the authoritative Shared tools outside file:// runtime.",
+      "Current canonical activity resources remain capability-level unless teaching_step_refs explicitly bind them; Shared focus inventory reports that fallback rather than inventing exact leaf support.",
+      "Math linear-equation practice inventory is legitimately broader where current canonical questions have no repair_ref."
+    ],
+    "deliberate_non_goals": [
+      "Do not add repair_ref to observation.schema.json unless implementation proves a blocker; keep narrow diagnostic targeting transient first.",
+      "Do not change canonical Physics/Mathematics capabilities, teaching steps, matrices, questions or resources.",
+      "Do not add new learner mastery fields, per-stage mastery percentages, confidence, topic health, or question-answer flags.",
+      "Do not infer diagnostic stage from question wording.",
+      "Do not make browser JavaScript the authoritative Shared planner.",
+      "Do not add missing Atlas topic pages; that is WP-TA-103."
+    ],
+    "terminology": {
+      "diagnostic envelope": "Transient external answer-sheet gap payload validated against canonical matrix/capability/step identity.",
+      "focus target": "Validated canonical capability plus optional stable repair step and existing diagnostic stage; may carry a display-only score.",
+      "semantic inventory precision": "EXACT_REPAIR_REF when existing question/resource binds the same stable step, otherwise explicit capability-level fallback.",
+      "routing-only context": "Canonical difficulty, prerequisites and ladder location used by Grade9V3, not values external scanners may redefine."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA2-001",
+      "action": "VERIFY",
+      "targets": [
+        "Shared/library/observation.schema.json",
+        "Shared/library/authoring-request.schema.json",
+        "Shared/tools/study_start.py",
+        "Shared/tools/plan_request.py",
+        "Shared/tools/resolve_request.py",
+        "Shared/tools/compile_execution_packet.py"
+      ],
+      "question": "Which existing contracts already own learner evidence, optional plan input, estimate routing and authoritative Core planning, and which fields must remain unchanged?",
+      "expected_outputs": [
+        "observation evidence vocabulary",
+        "plan-level learner optionality",
+        "owner-estimate routing semantics",
+        "planner integration seams"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop and re-scope before adding duplicate learner/planner contracts."
+    },
+    {
+      "id": "DSTEP-TA2-002",
+      "action": "VERIFY",
+      "targets": [
+        "Shared/library/practice_inventory.py",
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Mathematics/library/linear-equations.v1.json"
+      ],
+      "question": "What exact existing question/resource bindings are available for focus inventory in NLM and Math?",
+      "expected_outputs": [
+        "NLM R5/R8 repair-bound examples",
+        "Math capability-level fallback example",
+        "activity binding precision"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not invent exact inventory matches."
+    },
+    {
+      "id": "DSTEP-TA2-003",
+      "action": "INSPECT",
+      "targets": [
+        "Shared/tools/",
+        "Shared/library/"
+      ],
+      "question": "Do equivalent Shared modules or a transient diagnostic envelope already exist under different names?",
+      "expected_outputs": [
+        "existing-module search result",
+        "schema reuse decision"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reuse the existing implementation rather than creating duplicate modules."
+    },
+    {
+      "id": "DSTEP-TA2-004",
+      "action": "COMPARE",
+      "targets": [
+        "https://github.com/reallaksh19/Grade9V3/issues/118",
+        "webpageGAPanalysis.md"
+      ],
+      "question": "Does the planned Shared contract preserve Issue #118 fallback, two-input and cross-subject requirements without expanding learner state?",
+      "expected_outputs": [
+        "retained requirements",
+        "explicit non-goals",
+        "cross-subject golden cases"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile scope before material Shared writes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA2-001",
+      "name": "Validated EP-TA-002 material basis",
+      "description": "Exact material commit containing the completed Shared diagnostic/Core authority implementation and green repository evidence.",
+      "authority": "Git history",
+      "source": "git:b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "value": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "type": "git commit SHA",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA2-001",
+        "STEP-TA2-002",
+        "STEP-TA2-003",
+        "STEP-TA2-004",
+        "STEP-TA2-005"
+      ],
+      "validation": [
+        "material_ref equals the exact green implementation commit",
+        "material_ref remains an ancestor of later coordination/checkpoint commits",
+        "compare main against base_observed_ref before any further material write"
+      ],
+      "stale_if": [
+        "main changes overlapping Shared planner/contracts scope without a reconciled drift receipt"
+      ]
+    },
+    {
+      "id": "INPUT-TA2-002",
+      "name": "Existing evidence and diagnostic vocabulary",
+      "description": "Current observation/evidence contract whose result/error-stage values are reused but not widened.",
+      "authority": "Shared library contract",
+      "source": "Shared/library/observation.schema.json",
+      "resolution_method": "Load current schema from execution checkout.",
+      "type": "JSON Schema",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA2-001",
+        "STEP-TA2-003"
+      ],
+      "validation": [
+        "Reuse CONCEPT/SETUP/EXECUTION/CARELESS/UNKNOWN and existing provenance/evidence-kind terms; no mastery extension."
+      ],
+      "stale_if": [
+        "observation.schema.json changes materially"
+      ]
+    },
+    {
+      "id": "INPUT-TA2-003",
+      "name": "Owner-estimate routing contract",
+      "description": "Existing conservative coordinate selection that excludes non-default rungs and never creates mastery evidence.",
+      "authority": "Shared routing tool",
+      "source": "Shared/tools/study_start.py; Shared/tools/resolve_request.py",
+      "resolution_method": "Reuse existing routing semantics and default-entry eligibility.",
+      "type": "repository contract",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA2-001",
+        "STEP-TA2-003"
+      ],
+      "validation": [
+        "100% NLM estimate may not auto-select non-default R4; prior rungs remain quick-check/evidence-unknown."
+      ],
+      "stale_if": [
+        "study_start.py or resolve_request.py estimate semantics change"
+      ]
+    },
+    {
+      "id": "INPUT-TA2-004",
+      "name": "Canonical NLM and Math packages",
+      "description": "Cross-subject golden truth for semantic-step identity and existing inventory bindings.",
+      "authority": "Subject canonical library/matrices",
+      "source": "Physics/library/phy-nlm-first-law.v1.json; Physics/matrices/phy-nlm-first-law.rungs.json; Mathematics/library/linear-equations.v1.json; Mathematics/matrices/linear-equations.rungs.json",
+      "resolution_method": "Read stable capabilities, teaching step IDs, questions, repair_ref and resources from current checkout.",
+      "type": "canonical data",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA2-001",
+        "STEP-TA2-002",
+        "STEP-TA2-003",
+        "STEP-TA2-004"
+      ],
+      "validation": [
+        "NLM NLM5-2 and NLM8-2 exist; Math ME-1 exists; inventory precision must match actual repair_ref/resource bindings."
+      ],
+      "stale_if": [
+        "these canonical packages/matrices change on execution branch"
+      ]
+    },
+    {
+      "id": "INPUT-TA2-005",
+      "name": "Plan and execution authority",
+      "description": "Current Shared planner/strict resolver/execution packet interfaces that receive focus as an overlay rather than a replacement learner model.",
+      "authority": "Shared tools",
+      "source": "Shared/tools/plan_request.py; Shared/tools/resolve_request.py; Shared/tools/compile_execution_packet.py",
+      "resolution_method": "Inspect current function signatures and packet schema before integration.",
+      "type": "repository interfaces",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA2-003",
+        "STEP-TA2-004"
+      ],
+      "validation": [
+        "Existing readiness, prerequisite, source-custody and Core-purpose states remain authoritative and unchanged by focus overlay."
+      ],
+      "stale_if": [
+        "planner/resolver/packet interfaces materially change"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA2-001",
+      "name": "NLM semantic diagnostic golden cases",
+      "purpose": "Prove exact and fallback diagnostic addressing on current canonical Physics data.",
+      "source": "Physics NLM canonical package and matrix",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": [
+        "CAP-NLM-FRICTION + NLM5-2 + CONCEPT -> derived R5.1.0",
+        "same leaf + SETUP -> R5.1.1",
+        "invalid repair_ref -> valid capability target R5.99 with warning",
+        "100% estimate never selects non-default R4"
+      ],
+      "expected": "All cases resolve deterministically without new capability/rung identity or mastery inference.",
+      "tolerance": null,
+      "independence": "Canonical NLM data pre-exists this Shared implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA2-001",
+        "AC-TA2-003",
+        "TEST-TA2-001"
+      ],
+      "stale_if": [
+        "NLM stable step IDs or matrix ladder positions change"
+      ]
+    },
+    {
+      "id": "BENCH-TA2-002",
+      "name": "Cross-subject Math semantic case",
+      "purpose": "Falsify Physics-specific routing logic.",
+      "source": "Mathematics linear-equations canonical package and matrix",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": [
+        "CAP-MATH-ISOLATE + ME-1 + SETUP -> R2.0.1",
+        "Q-MATH-LINEAR-01 remains capability-level inventory fallback because repair_ref is absent"
+      ],
+      "expected": "Same Shared resolver and inventory code handles Math without subject branches.",
+      "tolerance": null,
+      "independence": "Math package is independently authored canonical data.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA2-001",
+        "AC-TA2-002",
+        "AC-TA2-004",
+        "TEST-TA2-001"
+      ],
+      "stale_if": [
+        "Math stable step IDs/question binding changes"
+      ]
+    },
+    {
+      "id": "BENCH-TA2-003",
+      "name": "Current NLM inventory precision",
+      "purpose": "Ensure focus inventory reports exact current bindings instead of stale assumptions.",
+      "source": "Physics/library/phy-nlm-first-law.v1.json",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": [
+        "NLM5-2 CORE2A exact question Q-PHY-NLM-2A-COV-04",
+        "NLM8-2 CORE2B exact question Q-PHY-NLM-2B-FRICTION-STATE-01",
+        "ACT-NLM-FRICTION-THRESHOLD remains capability-level because it has no teaching_step_refs"
+      ],
+      "expected": "Question ranking returns exact repair-bound items first; activity precision remains capability-level unless canonical teaching_step_refs explicitly say otherwise.",
+      "tolerance": null,
+      "independence": "Bindings are subject-authored canonical records, not generated by focus_inventory.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA2-004",
+        "TEST-TA2-002"
+      ],
+      "stale_if": [
+        "NLM question/resource bindings change"
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Shared/library/diagnostic-gap-envelope.schema.json",
+        "reason": "Transient scanner-gap contract required by Issue #118; does not persist learner mastery."
+      },
+      {
+        "path": "Shared/tools/atlas_need.py",
+        "reason": "Subject-neutral validated semantic need resolver."
+      },
+      {
+        "path": "Shared/tools/measurement_pack.py",
+        "reason": "Canonical scanner-instruction exporter."
+      },
+      {
+        "path": "Shared/tools/core_focus.py",
+        "reason": "Core-specific emphasis overlay over existing diagnostic stages."
+      },
+      {
+        "path": "Shared/tools/focus_inventory.py",
+        "reason": "Rank existing canonical questions/resources by focus precision."
+      },
+      {
+        "path": "Shared/tools/plan_request.py",
+        "reason": "Plan-level integration of optional diagnostic focus without changing readiness authority."
+      },
+      {
+        "path": "Shared/tools/resolve_request.py",
+        "reason": "Strict authoring-plan integration of focus/emphasis/inventory."
+      },
+      {
+        "path": "Shared/tools/compile_execution_packet.py",
+        "reason": "Carry validated focus/emphasis/inventory into governed work orders."
+      },
+      {
+        "path": "Shared/library/execution-packet.schema.json",
+        "reason": "May be minimally extended only if packet structure validation requires explicit focus fields."
+      },
+      {
+        "path": "tests/test_shared_topic_atlas_core.py",
+        "reason": "Cross-subject and integration falsifiers for this Shared slice."
+      },
+      {
+        "path": "docs/architecture-manifest.json",
+        "reason": "Regenerated through canonical manifest builder after new Shared/test files."
+      },
+      {
+        "path": "tools/data.js",
+        "reason": "Generated projection only if canonical builder output changes as a consequence of authorized source changes."
+      },
+      {
+        "path": "public/data/data.js",
+        "reason": "Generated projection mirror only if canonical builder output changes."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "V2.5 custody, evidence, progress, quality and checkpoint state."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Shared/library/observation.schema.json",
+        "reason": "Reuse evidence/result/error-stage vocabulary; avoid unnecessary learner-model change."
+      },
+      {
+        "path": "Shared/library/authoring-request.schema.json",
+        "reason": "Preserve optional plan-level learner input."
+      },
+      {
+        "path": "Shared/library/request.schema.json",
+        "reason": "Preserve strict request semantics."
+      },
+      {
+        "path": "Shared/library/practice_inventory.py",
+        "reason": "Reuse existing Core exposure selection."
+      },
+      {
+        "path": "Shared/tools/study_start.py",
+        "reason": "Reuse owner-estimate routing semantics."
+      },
+      {
+        "path": "Shared/tools/capability_graph.py",
+        "reason": "Preserve prerequisite authority."
+      },
+      {
+        "path": "Physics/library/phy-nlm-first-law.v1.json",
+        "reason": "Physics golden semantic/inventory data."
+      },
+      {
+        "path": "Physics/matrices/phy-nlm-first-law.rungs.json",
+        "reason": "Physics ladder/default-entry truth."
+      },
+      {
+        "path": "Mathematics/library/linear-equations.v1.json",
+        "reason": "Math cross-subject golden semantic/inventory data."
+      },
+      {
+        "path": "Mathematics/matrices/linear-equations.rungs.json",
+        "reason": "Math ladder truth."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Canonical subject packages, matrices, capabilities, teaching steps, questions and resources remain unchanged.",
+        "reason": "This work package creates Shared interpretation/projection logic, not new academic truth."
+      },
+      {
+        "invariant": "observation.schema.json remains unchanged unless a proven integration blocker is documented and EP scope is reconciled.",
+        "reason": "Narrow repair_ref can remain transient and should not silently expand persisted learner state."
+      },
+      {
+        "invariant": "Knowledge percentage never marks capability demonstrated or clears prerequisites.",
+        "reason": "Existing estimate semantics are routing-only."
+      },
+      {
+        "invariant": "Existing Core identities, purpose vocabulary, source custody and readiness rules remain authoritative.",
+        "reason": "Diagnostic focus changes emphasis, not product identity/coverage authority."
+      },
+      {
+        "invariant": "Generated files are updated only through canonical builders.",
+        "reason": "Repository drift guard requires deterministic projections."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "subject academic authoring",
+        "reason": "Owned by later WP-TA-104."
+      },
+      {
+        "domain": "new Atlas web pages or graphical explorers",
+        "reason": "Owned by WP-TA-103/WP-TA-105."
+      },
+      {
+        "domain": "mastery probability or per-stage learner state",
+        "reason": "Outside owner-defined input/evidence model."
+      },
+      {
+        "domain": "diagnostic stage inference from free-form question text",
+        "reason": "Current question contract does not encode stage applicability."
+      }
+    ],
+    "owner_reserved": [
+      {
+        "decision": "Any expansion beyond the two normal optional learner inputs.",
+        "reason": "Changes product operating model."
+      },
+      {
+        "decision": "Any new capability, diagnostic stage, Core type or persisted mastery field.",
+        "reason": "Changes canonical/learner semantics."
+      },
+      {
+        "decision": "Merge of the completion PR.",
+        "reason": "Delivery authorization remains separate from material execution."
+      }
+    ]
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA2-001",
+        "restriction": "Do not duplicate plan_request readiness/prerequisite/source-custody decisions inside atlas_need or core_focus.",
+        "reason": "Focus is an overlay, not a second planner."
+      },
+      {
+        "id": "ADR-TA2-002",
+        "restriction": "Do not turn score into mastery thresholds, average scores across dimensions, or convert missing gaps into demonstrated states.",
+        "reason": "No calibrated mastery model exists."
+      },
+      {
+        "id": "ADR-TA2-003",
+        "restriction": "Do not call a question/resource exact to a semantic leaf unless an existing repair_ref or teaching_step_refs binding establishes that precision.",
+        "reason": "Inventory precision must be grounded."
+      },
+      {
+        "id": "ADR-TA2-004",
+        "restriction": "Do not modify canonical subject content to make Shared tests pass.",
+        "reason": "Tests must reflect current content truth, including legitimate fallback gaps."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA2-001",
+        "condition": "main changes Shared planner/contracts or the NLM/Math golden canonical files in an overlapping way.",
+        "effect": "RECONCILE",
+        "rationale": "Resolver/inventory authority or golden truth changed."
+      },
+      {
+        "id": "STALE-TA2-002",
+        "condition": "RM-0002 changes WP-TA-102 scope or dependencies.",
+        "effect": "STALE",
+        "rationale": "EP no longer matches roadmap frontier."
+      },
+      {
+        "id": "STALE-TA2-003",
+        "condition": "Owner changes the two-input model or requests persisted per-leaf mastery.",
+        "effect": "OWNER_REVIEW",
+        "rationale": "Current transient focus architecture would need re-authorization."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA2-001",
+      "objective": "Create the transient diagnostic envelope contract and subject-neutral semantic need resolver by reusing current diagnostic vocabulary and estimate-routing semantics.",
+      "targets": [
+        "Shared/library/diagnostic-gap-envelope.schema.json",
+        "Shared/tools/atlas_need.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "reads": [
+        "Shared/library/observation.schema.json",
+        "Shared/tools/study_start.py",
+        "Shared/tools/resolve_request.py",
+        "Physics/matrices/phy-nlm-first-law.rungs.json",
+        "Mathematics/matrices/linear-equations.rungs.json"
+      ],
+      "writes": [
+        "Shared/library/diagnostic-gap-envelope.schema.json",
+        "Shared/tools/atlas_need.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "inputs": [
+        "INPUT-TA2-002",
+        "INPUT-TA2-003",
+        "INPUT-TA2-004"
+      ],
+      "acceptance": [
+        "AC-TA2-001",
+        "AC-TA2-003"
+      ],
+      "tests": [
+        "TEST-TA2-001"
+      ],
+      "expected_state": "External gap rows fail closed on canonical identity/result/stage/score, invalid narrow repair degrades to capability-level only, multiple dimensions remain separate, and estimate remains a non-evidence route prior.",
+      "stop_conditions": [
+        "Stop if exact capability/step identity cannot be resolved from current canonical package+matrix without fuzzy matching.",
+        "Stop if implementation requires persisted per-leaf learner state."
+      ]
+    },
+    {
+      "id": "STEP-TA2-002",
+      "objective": "Create a canonical Shared Measurement Pack exporter with measurement-critical and routing-only sections.",
+      "targets": [
+        "Shared/tools/measurement_pack.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "reads": [
+        "Shared/library/package.schema.json",
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Mathematics/library/linear-equations.v1.json"
+      ],
+      "writes": [
+        "Shared/tools/measurement_pack.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "inputs": [
+        "INPUT-TA2-002",
+        "INPUT-TA2-004"
+      ],
+      "acceptance": [
+        "AC-TA2-002"
+      ],
+      "tests": [
+        "TEST-TA2-001",
+        "TEST-TA2-002"
+      ],
+      "expected_state": "NLM and Math export capability action/success, stable steps, misconceptions/diagnostic prompts, question anchors and allowed stages separately from ladder/difficulty/prerequisite routing context.",
+      "stop_conditions": [
+        "Stop rather than invent a field absent from current canonical package data."
+      ]
+    },
+    {
+      "id": "STEP-TA2-003",
+      "objective": "Implement Core emphasis and focus-aware existing-inventory ranking without changing Core readiness or inventing diagnostic-stage question labels.",
+      "targets": [
+        "Shared/tools/core_focus.py",
+        "Shared/tools/focus_inventory.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "reads": [
+        "Shared/library/practice_inventory.py",
+        "Shared/vocabularies/purpose.json",
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Mathematics/library/linear-equations.v1.json"
+      ],
+      "writes": [
+        "Shared/tools/core_focus.py",
+        "Shared/tools/focus_inventory.py",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "inputs": [
+        "INPUT-TA2-002",
+        "INPUT-TA2-004",
+        "INPUT-TA2-005"
+      ],
+      "acceptance": [
+        "AC-TA2-004"
+      ],
+      "tests": [
+        "TEST-TA2-001",
+        "TEST-TA2-002"
+      ],
+      "expected_state": "Existing questions rank exact repair_ref before capability fallback and respect Core exposure; activities report exact step support only when canonical teaching_step_refs exists; error_stage alters Core emphasis only.",
+      "stop_conditions": [
+        "Stop if a proposed match depends on interpreting free-form question text instead of canonical bindings."
+      ]
+    },
+    {
+      "id": "STEP-TA2-004",
+      "objective": "Integrate optional diagnostic focus into authoritative plan, strict resolver and execution packet while preserving existing readiness/prerequisite/source custody semantics.",
+      "targets": [
+        "Shared/tools/plan_request.py",
+        "Shared/tools/resolve_request.py",
+        "Shared/tools/compile_execution_packet.py",
+        "Shared/library/execution-packet.schema.json",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "reads": [
+        "Shared/library/authoring-request.schema.json",
+        "Shared/library/request.schema.json",
+        "Shared/tools/capability_graph.py"
+      ],
+      "writes": [
+        "Shared/tools/plan_request.py",
+        "Shared/tools/resolve_request.py",
+        "Shared/tools/compile_execution_packet.py",
+        "Shared/library/execution-packet.schema.json",
+        "tests/test_shared_topic_atlas_core.py"
+      ],
+      "inputs": [
+        "INPUT-TA2-003",
+        "INPUT-TA2-004",
+        "INPUT-TA2-005"
+      ],
+      "acceptance": [
+        "AC-TA2-003",
+        "AC-TA2-004",
+        "AC-TA2-005"
+      ],
+      "tests": [
+        "TEST-TA2-001",
+        "TEST-TA2-003"
+      ],
+      "expected_state": "Same request produces the same product readiness with or without diagnostic focus; focus/emphasis/inventory are additional governed targets carried into work orders, not a replacement learner route.",
+      "stop_conditions": [
+        "Stop if diagnostic focus would clear prerequisites, change canonical segment coverage, or bypass existing owner/source requirements."
+      ]
+    },
+    {
+      "id": "STEP-TA2-005",
+      "objective": "Run cross-subject, manifest, planner/packet and full repository regressions; publish Shared authority boundaries for successor page integration.",
+      "targets": [
+        "tests/test_shared_topic_atlas_core.py",
+        "docs/architecture-manifest.json",
+        "agents/relay/"
+      ],
+      "reads": [
+        "webpageGAPanalysis.md",
+        "Shared/tools/build_manifest.py"
+      ],
+      "writes": [
+        "tests/test_shared_topic_atlas_core.py",
+        "docs/architecture-manifest.json",
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA2-001",
+        "INPUT-TA2-004",
+        "INPUT-TA2-005"
+      ],
+      "acceptance": [
+        "AC-TA2-001",
+        "AC-TA2-002",
+        "AC-TA2-003",
+        "AC-TA2-004",
+        "AC-TA2-005"
+      ],
+      "tests": [
+        "TEST-TA2-001",
+        "TEST-TA2-002",
+        "TEST-TA2-003",
+        "TEST-TA2-004",
+        "TEST-TA2-005"
+      ],
+      "expected_state": "Shared slice is green on NLM and Math, generated manifest is fresh, existing planner audits remain green, and no subject content/generated file was hand-edited.",
+      "stop_conditions": [
+        "Stop on any MUST_PASS failure or protected-invariant violation."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Create the transient diagnostic envelope contract and subject-neutral semantic need resolver by reusing current diagnostic vocabulary and estimate-routing semantics.",
+        "targets": [
+          "Shared/library/diagnostic-gap-envelope.schema.json",
+          "Shared/tools/atlas_need.py",
+          "tests/test_shared_topic_atlas_core.py"
+        ],
+        "inputs": [
+          "INPUT-TA2-002",
+          "INPUT-TA2-003",
+          "INPUT-TA2-004"
+        ],
+        "tests": [
+          "TEST-TA2-001"
+        ],
+        "benchmarks": [
+          "BENCH-TA2-001",
+          "BENCH-TA2-002"
+        ],
+        "acceptance": [
+          "AC-TA2-001",
+          "AC-TA2-003"
+        ],
+        "expected_result": "External gap rows fail closed on canonical identity/result/stage/score, invalid narrow repair degrades to capability-level only, multiple dimensions remain separate, and estimate remains a non-evidence route prior.",
+        "stop_if": [
+          "Stop if exact capability/step identity cannot be resolved from current canonical package+matrix without fuzzy matching.",
+          "Stop if implementation requires persisted per-leaf learner state."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 2,
+        "action": "Create a canonical Shared Measurement Pack exporter with measurement-critical and routing-only sections.",
+        "targets": [
+          "Shared/tools/measurement_pack.py",
+          "tests/test_shared_topic_atlas_core.py"
+        ],
+        "inputs": [
+          "INPUT-TA2-002",
+          "INPUT-TA2-004"
+        ],
+        "tests": [
+          "TEST-TA2-001",
+          "TEST-TA2-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA2-001",
+          "BENCH-TA2-002"
+        ],
+        "acceptance": [
+          "AC-TA2-002"
+        ],
+        "expected_result": "NLM and Math export capability action/success, stable steps, misconceptions/diagnostic prompts, question anchors and allowed stages separately from ladder/difficulty/prerequisite routing context.",
+        "stop_if": [
+          "Stop rather than invent a field absent from current canonical package data."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 3,
+        "action": "Implement Core emphasis and focus-aware existing-inventory ranking without changing Core readiness or inventing diagnostic-stage question labels.",
+        "targets": [
+          "Shared/tools/core_focus.py",
+          "Shared/tools/focus_inventory.py",
+          "tests/test_shared_topic_atlas_core.py"
+        ],
+        "inputs": [
+          "INPUT-TA2-002",
+          "INPUT-TA2-004",
+          "INPUT-TA2-005"
+        ],
+        "tests": [
+          "TEST-TA2-001",
+          "TEST-TA2-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA2-002",
+          "BENCH-TA2-003"
+        ],
+        "acceptance": [
+          "AC-TA2-004"
+        ],
+        "expected_result": "Existing questions rank exact repair_ref before capability fallback and respect Core exposure; activities report exact step support only when canonical teaching_step_refs exists; error_stage alters Core emphasis only.",
+        "stop_if": [
+          "Stop if a proposed match depends on interpreting free-form question text instead of canonical bindings."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 4,
+        "action": "Integrate optional diagnostic focus into authoritative plan, strict resolver and execution packet while preserving existing readiness/prerequisite/source custody semantics.",
+        "targets": [
+          "Shared/tools/plan_request.py",
+          "Shared/tools/resolve_request.py",
+          "Shared/tools/compile_execution_packet.py",
+          "Shared/library/execution-packet.schema.json",
+          "tests/test_shared_topic_atlas_core.py"
+        ],
+        "inputs": [
+          "INPUT-TA2-003",
+          "INPUT-TA2-004",
+          "INPUT-TA2-005"
+        ],
+        "tests": [
+          "TEST-TA2-001",
+          "TEST-TA2-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA2-001",
+          "BENCH-TA2-002",
+          "BENCH-TA2-003"
+        ],
+        "acceptance": [
+          "AC-TA2-003",
+          "AC-TA2-004",
+          "AC-TA2-005"
+        ],
+        "expected_result": "Same request produces the same product readiness with or without diagnostic focus; focus/emphasis/inventory are additional governed targets carried into work orders, not a replacement learner route.",
+        "stop_if": [
+          "Stop if diagnostic focus would clear prerequisites, change canonical segment coverage, or bypass existing owner/source requirements."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 5,
+        "action": "Run cross-subject, manifest, planner/packet and full repository regressions; publish Shared authority boundaries for successor page integration.",
+        "targets": [
+          "tests/test_shared_topic_atlas_core.py",
+          "docs/architecture-manifest.json",
+          "agents/relay/"
+        ],
+        "inputs": [
+          "INPUT-TA2-001",
+          "INPUT-TA2-004",
+          "INPUT-TA2-005"
+        ],
+        "tests": [
+          "TEST-TA2-001",
+          "TEST-TA2-002",
+          "TEST-TA2-003",
+          "TEST-TA2-004",
+          "TEST-TA2-005"
+        ],
+        "benchmarks": [
+          "BENCH-TA2-001",
+          "BENCH-TA2-002",
+          "BENCH-TA2-003"
+        ],
+        "acceptance": [
+          "AC-TA2-001",
+          "AC-TA2-002",
+          "AC-TA2-003",
+          "AC-TA2-004",
+          "AC-TA2-005"
+        ],
+        "expected_result": "Shared slice is green on NLM and Math, generated manifest is fresh, existing planner audits remain green, and no subject content/generated file was hand-edited.",
+        "stop_if": [
+          "Stop on any MUST_PASS failure or protected-invariant violation."
+        ],
+        "execution_requirement": null
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [],
+    "basis": [
+      "EP-TA-002 is a serial successor inside the same roadmap phase. CP-TA-001 is the predecessor baton; no phase/material-boundary qualification is required."
+    ],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "Moves diagnostic/focus authority from browser-only logic into Shared planning seams.",
+        "review_focus": [
+          "single ownership",
+          "transient vs persisted evidence",
+          "planner authority boundaries"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Adds Shared Python modules/schema and modifies production planners.",
+        "review_focus": [
+          "fail-closed validation",
+          "deterministic resolution",
+          "minimal schema surface"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Cross-subject semantic/fallback/integration cases are required to falsify Physics-specific or mastery-producing behavior.",
+        "review_focus": [
+          "NLM golden cases",
+          "Math falsifier",
+          "readiness invariance",
+          "inventory precision"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Touches authoritative planning and execution packet surfaces.",
+        "review_focus": [
+          "prerequisite/source-custody invariants",
+          "API compatibility",
+          "data provenance"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Work remains correlated to the Topic Atlas completion programme and Issue #118 delivery vehicle.",
+        "review_focus": [
+          "EP/checkpoint continuity",
+          "head-bound validation",
+          "PR correlation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "ui-ux",
+        "reason": "No browser UI change is authorized in this Shared-only work package."
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing UI interaction is changed."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical solver or canonical calculation algorithm changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Data volumes are small canonical matrices; no performance-sensitive target is introduced."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Diagnostic focus is transient and observation persistence schema is intentionally unchanged."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA2-001",
+      "description": "Shared diagnostic envelope/resolver validates canonical capability/rung/result/stage/score, degrades invalid narrow repair only to capability-level, preserves independent dimensions, and derives exact Rn.x.y/Rn.x.99/Rn.99 addresses.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA2-001",
+        "BENCH-TA2-001",
+        "BENCH-TA2-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-002",
+      "description": "Shared Measurement Pack is derived from current canonical Physics/Math data and separates scanner measurement obligations from Grade9V3 routing-only context.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA2-001",
+        "TEST-TA2-002",
+        "BENCH-TA2-001",
+        "BENCH-TA2-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-003",
+      "description": "Knowledge estimate remains a non-evidence starting coordinate and diagnostic focus cannot create DEMONSTRATED state, clear prerequisites, or alter canonical coverage/readiness.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA2-001",
+        "TEST-TA2-003",
+        "BENCH-TA2-001"
+      ]
+    },
+    {
+      "id": "AC-TA2-004",
+      "description": "Core emphasis and focus inventory reuse existing Core exposure and canonical repair/resource bindings, reporting exact versus capability fallback truthfully and never inferring stage from question text.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA2-001",
+        "TEST-TA2-002",
+        "BENCH-TA2-002",
+        "BENCH-TA2-003"
+      ]
+    },
+    {
+      "id": "AC-TA2-005",
+      "description": "plan_request, resolve_request and execution packets expose optional focus/emphasis/inventory without regressing existing request readiness, source custody, prerequisite safety, schemas or full repository tests.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA2-003",
+        "TEST-TA2-004",
+        "TEST-TA2-005"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA2-001",
+      "class": "MUST_PASS",
+      "method": "python3 -m unittest tests.test_shared_topic_atlas_core -v",
+      "proves": [
+        "AC-TA2-001",
+        "AC-TA2-002",
+        "AC-TA2-003",
+        "AC-TA2-004"
+      ]
+    },
+    {
+      "id": "TEST-TA2-002",
+      "class": "MUST_PASS",
+      "method": "python3 Shared/tools/measurement_pack.py --subject Physics --matrix MATRIX-PHY-NLM-FIRST-LAW > /tmp/nlm-measurement.json && python3 Shared/tools/measurement_pack.py --subject Mathematics --matrix MATRIX-MATH-LINEAR-EQUATIONS > /tmp/math-measurement.json",
+      "proves": [
+        "AC-TA2-002",
+        "AC-TA2-004"
+      ]
+    },
+    {
+      "id": "TEST-TA2-003",
+      "class": "MUST_PASS",
+      "method": "python3 Shared/tools/plan_request.py --audit --enforce && python3 Shared/tools/compile_execution_packet.py --audit --enforce",
+      "proves": [
+        "AC-TA2-003",
+        "AC-TA2-005"
+      ]
+    },
+    {
+      "id": "TEST-TA2-004",
+      "class": "MUST_PASS",
+      "method": "python3 Shared/tools/build_manifest.py --check",
+      "proves": [
+        "AC-TA2-005"
+      ]
+    },
+    {
+      "id": "TEST-TA2-005",
+      "class": "MUST_PASS",
+      "method": "python3 -m unittest discover -s tests -p \"test_*.py\" -v",
+      "proves": [
+        "AC-TA2-001",
+        "AC-TA2-002",
+        "AC-TA2-003",
+        "AC-TA2-004",
+        "AC-TA2-005"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

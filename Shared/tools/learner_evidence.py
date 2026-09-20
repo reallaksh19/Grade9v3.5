@@ -45,6 +45,14 @@ EVIDENCE_PRIORITY = {
 NONINDEPENDENT_HELP = {"HINT", "WORKED_EXAMPLE", "SOLUTION"}
 
 
+def _independence_proven(observation: dict) -> bool:
+    """Only an explicit no-help direct attempt proves independent performance."""
+    return (
+        observation.get("evidence_kind") == "DIRECT_ATTEMPT"
+        and observation.get("help") == "NONE"
+    )
+
+
 def capabilities(repo: Path = REPO) -> set[str]:
     return {cap["id"] for path in sorted(repo.glob("*/library/*.json"))
             if path.name != "package.schema.json"
@@ -103,6 +111,13 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
             "observation_ref": chosen["observation_id"],
             "when": chosen.get("when"),
             "help": chosen.get("help"),
+            "error_stage": chosen.get("error_stage"),
+            "independence_proven": _independence_proven(chosen),
+            "independence_basis": (
+                "DIRECT_ATTEMPT_WITH_NO_HELP"
+                if _independence_proven(chosen)
+                else "NOT_PROVEN"
+            ),
         }
 
     if capability_ref in profile.get("held", {}):
@@ -112,6 +127,9 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
             "observation_ref": None,
             "when": None,
             "help": None,
+            "error_stage": None,
+            "independence_proven": False,
+            "independence_basis": "PROFILE_SNAPSHOT_NOT_PROOF",
         }
 
     return {
@@ -120,6 +138,9 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
         "observation_ref": None,
         "when": None,
         "help": None,
+        "error_stage": None,
+        "independence_proven": False,
+        "independence_basis": "UNOBSERVED",
     }
 
 

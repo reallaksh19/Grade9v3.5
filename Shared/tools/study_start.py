@@ -23,7 +23,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_delivery, study_map, study_route  # noqa: E402
+from Shared.tools import capability_delivery, learner_evidence, study_map, study_route  # noqa: E402
 
 
 def _boards(subject: str, repo: Path = REPO) -> dict[str, dict]:
@@ -124,8 +124,47 @@ def _select_start(rows: list[dict], percentage: float) -> dict | None:
     return eligible[-1] if eligible else rows[0]
 
 
+GATEWAY_CHECKS_PER_MATRIX = 1
+
+
+def _gateway_representatives(route_rows: list[dict], profile: dict | None,
+                             repo: Path) -> dict[str, list[str]]:
+    """Choose a bounded local quick-check sample without manufacturing evidence."""
+    by_matrix: dict[str, list[tuple[float, str]]] = {}
+    for row in route_rows:
+        locations = row.get("locations") or []
+        if row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
+            continue
+        if row.get("state") != "RESOLVED" or len(locations) != 1:
+            continue
+        capability_ref = row.get("capability_ref")
+        state = (
+            learner_evidence.effective_state(profile, capability_ref, repo)["state"]
+            if profile is not None
+            else "UNOBSERVED"
+        )
+        if state not in {"UNOBSERVED", "UNCERTAIN"}:
+            continue
+        location = locations[0]
+        matrix_id = location.get("matrix_id")
+        if not matrix_id:
+            continue
+        by_matrix.setdefault(matrix_id, []).append((
+            float(location.get("ladder_position") or 0),
+            capability_ref,
+        ))
+
+    selected = {}
+    for matrix_id, rows in by_matrix.items():
+        ordered = sorted(rows, key=lambda item: (item[0], item[1]))
+        selected[matrix_id] = [
+            capability for _, capability in ordered[:GATEWAY_CHECKS_PER_MATRIX]
+        ]
+    return selected
+
+
 def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
-            repo: Path = REPO) -> dict:
+            repo: Path = REPO, *, profile: dict | None = None) -> dict:
     """Return the generic route plus a per-capability learner start action."""
     route = study_route.resolve(mapping, repo)
     findings = list(route.get("findings", []))
@@ -195,6 +234,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
             ),
         }
 
+    gateway = _gateway_representatives(route.get("route", []), profile, repo)
     learner_route = []
     for row in route.get("route", []):
         item = dict(row)
@@ -202,19 +242,30 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         if row.get("delivery_state") == capability_delivery.EXTERNAL_BRIDGE:
             item["learner_action"] = "BRIDGE"
             item["estimate_basis"] = None
+            item["gateway_basis"] = None
             learner_route.append(item)
             continue
         if row.get("state") != "RESOLVED" or len(locations) != 1:
             item["learner_action"] = "UNRESOLVED"
             item["estimate_basis"] = None
+            item["gateway_basis"] = None
             learner_route.append(item)
             continue
 
         location = locations[0]
         decision = decisions.get(location["matrix_id"])
         if decision is None:
-            item["learner_action"] = "STUDY"
+            selected = row.get("capability_ref") in gateway.get(location["matrix_id"], [])
+            item["learner_action"] = "QUICK_CHECK" if selected else "STUDY"
             item["estimate_basis"] = None
+            item["gateway_basis"] = (
+                {
+                    "matrix_id": location["matrix_id"],
+                    "reason": "bounded representative check over uncertain/unobserved local capability",
+                    "not_evidence": True,
+                }
+                if selected else None
+            )
         else:
             position = float(location.get("ladder_position") or 0)
             start = float(decision["selected_position"])
@@ -224,6 +275,7 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
                 item["learner_action"] = "START_HERE"
             else:
                 item["learner_action"] = "STUDY"
+            item["gateway_basis"] = None
             item["estimate_basis"] = {
                 "matrix_id": decision["matrix_id"],
                 "knowledge_percentage": decision["knowledge_percentage"],
@@ -241,6 +293,16 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "start_decisions": [
             decisions[mid] for mid in sorted(decisions)
         ],
+        "gateway_decisions": [
+            {
+                "matrix_id": matrix_id,
+                "capability_refs": list(gateway[matrix_id]),
+                "max_checks": GATEWAY_CHECKS_PER_MATRIX,
+                "not_evidence": True,
+            }
+            for matrix_id in sorted(gateway)
+            if matrix_id not in decisions and gateway[matrix_id]
+        ],
         "route": learner_route,
         "findings": findings,
         "warnings": warnings,
@@ -250,8 +312,9 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         "ready": valid and not blockers,
         "passed": valid,
         "rule": (
-            "Subtopic estimates choose local starting attempts only. QUICK_CHECK is not "
-            "mastery evidence; cross-matrix order still comes only from prerequisites."
+            "Subtopic estimates choose local starting attempts only. Without an estimate, "
+            "each matrix gets at most one representative uncertain/unobserved QUICK_CHECK. "
+            "QUICK_CHECK is not mastery evidence; cross-matrix order still comes only from prerequisites."
         ),
     }
 

@@ -1,0 +1,41 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0005",
+    "from_revision": "RM-0004",
+    "to_revision": "RM-0005",
+    "classification": "EXECUTION_DERIVED_STATUS",
+    "trigger": {
+      "type": "CHECKPOINT",
+      "ref": "CP-TA-002"
+    }
+  },
+  "changes": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      "WP-TA-102",
+      "WP-TA-106"
+    ],
+    "unaffected": [
+      "WP-TA-103",
+      "WP-TA-104",
+      "WP-TA-105"
+    ]
+  },
+  "invalidated_execution_packages": [],
+  "issue_graph_reconciled": false,
+  "progress_basis_change": {
+    "old_basis": "PB-0003",
+    "new_basis": "PB-0003",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TA-106"
+  ],
+  "notes": [
+    "CP-TA-002 completed Shared diagnostic/Core authority work.",
+    "WP-TA-106 is the sole next serial frontier before remaining Atlas surface work."
+  ]
+}

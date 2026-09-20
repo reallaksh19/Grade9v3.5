@@ -1,0 +1,191 @@
+{
+  "schema_version": "relay-v2.5-quality-review",
+  "quality_review_id": "QRV-TA-001",
+  "ep": {
+    "id": "EP-TA-001",
+    "path": "agents/relay/execution-packages/EP-TA-001.yaml",
+    "contract_digest": "sha256:3b9a7a940905bb007cb0491a458075738c5789a1c6a4a64de1e2f793d3516714"
+  },
+  "roadmap_revision": "RM-0002",
+  "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+  "reviewer": {
+    "type": "AGENT",
+    "identity": "chatgpt-sol-topic-atlas-20260920-quality-pass"
+  },
+  "router_snapshot": {
+    "applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "Interactive static browser controls and status text are learner/owner facing.",
+        "review_focus": [
+          "labels",
+          "status communication",
+          "keyboard-safe existing interactions"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "The patch affects evidence semantics and planning handoff, so an independent review pass is material.",
+        "review_focus": [
+          "false authority claims",
+          "schema/export drift",
+          "edge cases"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Production JavaScript behavior changes.",
+        "review_focus": [
+          "deterministic fallbacks",
+          "input validation",
+          "maintainability"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "This executable slice is delivered through a tracked GitHub PR and Issue #118 correlation.",
+        "review_focus": [
+          "Issue↔WP↔EP correlation",
+          "head-bound checks",
+          "unmerged PR carry-forward"
+        ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "The slice changes ownership boundaries between browser preview and Shared planning authority.",
+        "review_focus": [
+          "state ownership",
+          "fail-closed input semantics",
+          "no duplicate planning authority"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Known failure paths require executable falsifiers and regression coverage.",
+        "review_focus": [
+          "invalid rows",
+          "multi-dimension rendering",
+          "cross-subject regressions",
+          "no-input behavior"
+        ]
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "Learner/owner-facing need map and planner-preview semantics change.",
+        "review_focus": [
+          "truthful labels",
+          "optional-input clarity",
+          "fallback visibility"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "This EP does not change numerical physics/math algorithms or scientific model calculations.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner data, canonical schema migration, or storage format change is authorized in this EP.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "No performance-sensitive algorithm, data volume, or latency target is changed in this bounded browser-contract slice.",
+        "review_focus": []
+      }
+    ]
+  },
+  "procedure_results": [
+    {
+      "blueprint": "software-design",
+      "result": "CLEAR",
+      "evidence": [
+        "Issue #118 two-input architecture compared against public/js/topic-atlas.js at material head fab9bb82d9feca668516a02d3ffff697454e8bbf.",
+        "Browser now delegates authoritative readiness/prerequisite decisions to Shared/tools/plan_request.py and keeps diagnostic focus separate from owner estimate."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "coding",
+      "result": "CLEAR",
+      "evidence": [
+        "Repository guardrails run 35487996163 PASS at material head fab9bb82d9feca668516a02d3ffff697454e8bbf.",
+        "Topic Atlas Node-executed falsifiers and full unittest suite pass; no syntax residue remains."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "ui-ux",
+      "result": "CLEAR",
+      "evidence": [
+        "NLM and Motion2D input drawers expose only optional knowledge estimate and diagnostic import; manual mastery/sync controls were removed.",
+        "No-input state renders canonical browse mode and diagnostic dimensions are read-only evidence projections."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "testing",
+      "result": "CLEAR",
+      "evidence": [
+        "tests/test_topic_atlas_takeover_contract.py covers fail-closed identity/result/stage/score validation, fallback addresses, no-input behavior, request schema validation, measurement/routing separation and two-input enforcement.",
+        "Full repository guardrails run 35487996163 PASS."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "code-review",
+      "result": "CLEAR",
+      "evidence": [
+        "Final material diff was checked against EP protected invariants: no canonical Physics/Mathematics package or matrix semantics changed in EP-TA-001.",
+        "Topic-independence guard, generated-artifact drift check and existing Topic Atlas regression suite all pass."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "accessibility",
+      "result": "CLEAR",
+      "evidence": [
+        "Diagnostic dimension cells are passive text spans rather than hidden state-changing controls; owner actions remain native input/button/select controls with visible labels.",
+        "No new custom keyboard-only interaction or inaccessible graphical control was introduced by this slice."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "github-delivery",
+      "result": "CLEAR",
+      "evidence": [
+        "PR #148 is correlated to Issue #118 and EP-TA-001/WP-TAKEOVER-RECONCILE.",
+        "V2.5 relay run 35487996167 and repository guardrails run 35487996163 both PASS on the final material head."
+      ],
+      "reason": null,
+      "cause": null
+    }
+  ],
+  "findings": [],
+  "overall_state": "CLEAR",
+  "execution_effect": {
+    "blocks_execution": false,
+    "blocking_findings": []
+  },
+  "owner_report": {
+    "summary": "Browser-correctness slice is green: external gaps fail closed, the two optional learner inputs remain separate, no-input browsing is non-diagnostic, and browser Core status is explicitly non-authoritative.",
+    "visible_risks": [
+      "Measurement Pack and diagnostic/Core focus authority are still browser-side/transient until the next Shared-Core work package; the UI labels this boundary rather than claiming completion."
+    ],
+    "decisions_required": []
+  },
+  "successor_handover": {
+    "unresolved_findings": [],
+    "follow_up": [
+      "Move diagnostic-envelope validation, Measurement Pack generation, semantic need resolution, Core emphasis and focus-aware inventory into Shared under WP-TA-102."
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-002",
+  "ep_id": "EP-TA-002",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0004"
+  },
+  "execution_basis": {
+    "material_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+    "validated_implementation_head": "b11fbe93399d5c29cb4a43d04f5e55132f294f11"
+  },
+  "implementation_result": {
+    "summary": "Completed the Shared Topic Atlas diagnostic/Core authority slice: transient diagnostic schema and canonical resolver, Measurement Pack exporter, Core emphasis overlay, focus-aware inventory ranking, planner/strict-resolver integration, execution-packet diagnostic pinning, and cross-subject Physics/Mathematics falsifiers.",
+    "completed_steps": [
+      "STEP-TA2-001",
+      "STEP-TA2-002",
+      "STEP-TA2-003",
+      "STEP-TA2-004",
+      "STEP-TA2-005"
+    ],
+    "files_changed": [
+      "Shared/library/diagnostic-gap-envelope.schema.json",
+      "Shared/tools/atlas_need.py",
+      "Shared/tools/measurement_pack.py",
+      "Shared/tools/core_focus.py",
+      "Shared/tools/focus_inventory.py",
+      "Shared/tools/plan_request.py",
+      "Shared/tools/resolve_request.py",
+      "Shared/tools/compile_execution_packet.py",
+      "tests/test_shared_topic_atlas_core.py",
+      "docs/architecture-manifest.json"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA2-001",
+      "status": "PASS",
+      "basis": [
+        "material head b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+        "guardrails run 35494364057 PASS",
+        "V2.5 relay run 35494364063 PASS",
+        "QRV-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-002",
+      "status": "PASS",
+      "basis": [
+        "material head b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+        "guardrails run 35494364057 PASS",
+        "V2.5 relay run 35494364063 PASS",
+        "QRV-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-003",
+      "status": "PASS",
+      "basis": [
+        "material head b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+        "guardrails run 35494364057 PASS",
+        "V2.5 relay run 35494364063 PASS",
+        "QRV-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-004",
+      "status": "PASS",
+      "basis": [
+        "material head b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+        "guardrails run 35494364057 PASS",
+        "V2.5 relay run 35494364063 PASS",
+        "QRV-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA2-005",
+      "status": "PASS",
+      "basis": [
+        "material head b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+        "guardrails run 35494364057 PASS",
+        "V2.5 relay run 35494364063 PASS",
+        "QRV-TA-002"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA2-001",
+      "status": "PASS",
+      "basis_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "evidence": [
+        "Full unittest suite in guardrails run 35494364057 passed, including tests/test_shared_topic_atlas_core.py."
+      ]
+    },
+    {
+      "id": "TEST-TA2-002",
+      "status": "PASS",
+      "basis_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "evidence": [
+        "Cross-subject Measurement Pack CLI execution is covered by test_measurement_pack_cli_runs_for_physics_and_mathematics in the passing full suite."
+      ]
+    },
+    {
+      "id": "TEST-TA2-003",
+      "status": "PASS",
+      "basis_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "evidence": [
+        "plan_request and compile_execution_packet audits passed inside guardrails run 35494364057."
+      ]
+    },
+    {
+      "id": "TEST-TA2-004",
+      "status": "PASS",
+      "basis_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "evidence": [
+        "Generated architecture manifest check passed inside guardrails run 35494364057."
+      ]
+    },
+    {
+      "id": "TEST-TA2-005",
+      "status": "PASS",
+      "basis_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "evidence": [
+        "Full repository unittest suite passed inside guardrails run 35494364057."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-002",
+    "path": "agents/relay/quality/QRV-TA-002.yaml",
+    "digest": "sha256:35fb8972fa1b9e48779bdedfb5a7c8e94c9214d146bd48fba52d5ad411c6f4c1"
+  },
+  "quality_findings": [],
+  "known_limitations": [
+    {
+      "statement": "Static Atlas pages cannot execute Shared Python under file://; they export canonical request/diagnostic payloads for authoritative Shared tooling.",
+      "basis": [
+        "EP-TA-002",
+        "QRV-TA-002"
+      ]
+    },
+    {
+      "statement": "Fine-grained resource/question focus remains only as precise as current canonical repair_ref/teaching_step_refs bindings.",
+      "basis": [
+        "Shared/tools/focus_inventory.py",
+        "QRV-TA-002"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "The transient diagnostic contract is sufficient for repair_ref precision; observation.schema.json did not need a learner-model expansion.",
+      "basis": [
+        "Shared/library/diagnostic-gap-envelope.schema.json",
+        "Shared/library/observation.schema.json"
+      ]
+    },
+    {
+      "statement": "Cross-subject Math proves the same resolver while honestly falling back to capability-level inventory where repair_ref is absent.",
+      "basis": [
+        "tests/test_shared_topic_atlas_core.py",
+        "Mathematics/library/linear-equations.v1.json"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-102 is complete.",
+        "basis": [
+          "EP-TA-002",
+          "QRV-TA-002",
+          "guardrails run 35494364057"
+        ]
+      },
+      {
+        "statement": "WP-TA-106 becomes the next serial frontier under the Owner-applied RM-0004 roadmap change.",
+        "basis": [
+          "RM-0004",
+          "ODR-0002-ROADMAP-FIRST-READ"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "WP-TA-106: make the governed V2.5 roadmap the repository first-read agent entry and classify older roadmap-like docs.",
+    "WP-TA-103: add missing Atlas surfaces and justified exact resource bindings.",
+    "WP-TA-104: close grounded Agent A academic and semantic-inventory gaps.",
+    "WP-TA-105: complete cross-subject acceptance and evidence-based GCDR release closure."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-106",
+    "ep_id": "EP-TA-003",
+    "parallel_plan": null,
+    "join_id": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}
