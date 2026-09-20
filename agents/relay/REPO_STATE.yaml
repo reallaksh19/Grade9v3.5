@@ -100,12 +100,13 @@
     "observations": []
   },
   "relay_readiness": {
-    "baton_ready": false,
+    "baton_ready": true,
     "projection_ready": true,
-    "handover_ready": false,
+    "handover_ready": true,
     "reasons": [
-      "RM-0006 Owner-intent/README reconciliation requires exact-head validation before checkpoint/handover.",
-      "The prior RM-0005 candidate admission is no longer live after the roadmap revision; subsequent EP execution requires fresh repository-only discovery/takeover certification on RM-0006."
+      "The RM-0006 baton is repository-reconstructable and projection is not required.",
+      "No candidate is currently admitted after the RM-0006 revision; a future executing candidate must obtain fresh DISC/TC on the current route basis.",
+      "Exact-head validation and the formal EP-TA-003 quality review remain evidence/quality work, not baton-readiness blockers."
     ]
   },
   "chat_context_required": false
