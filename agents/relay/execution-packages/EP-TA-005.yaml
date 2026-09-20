@@ -1,0 +1,1183 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-005",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-004",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "4e85a4657de8c2a422e9f60a611b750e08ee359e",
+    "base_branch": "main",
+    "base_observed_ref": "194791528cd3a69b30aced1480aee3254293dfe0",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-104",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "Required Grade-9 Physics capabilities can follow one practical learner loop: diagnose the smallest gap, repair it narrowly, practise, transfer the idea, verify independently, and schedule later review.",
+      "Hints, worked examples and solutions help learning without being misreported as independent evidence, and broad reteaching is avoided when the failure is local."
+    ],
+    "engineering": [
+      "Cross-matrix falsifiers prove the existing learner-evidence, session, feedback and review contracts across the six required Grade-9 core matrices.",
+      "Only a behavior that a concrete falsifier shows missing may justify a minimal Shared orchestration fix; no new learner-state model, seventh Core or canonical Physics rewrite is allowed in this package."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Close the required Grade-9 Physics learner loop using the repository's existing practical self-study machinery, with the smallest possible repairs.",
+    "roadmap_position": "Grade-9 Physics self-study completion / required learner-loop closure",
+    "why_this_work_exists": "Scope is now frozen, but repository coverage alone does not prove that a learner can enter with partial knowledge, receive targeted diagnosis/repair, practise, transfer and produce fresh independent evidence across every required Grade-9 domain.",
+    "current_architecture": "Shared already composes worksheet mapping, prerequisite closure, learner evidence, study-session routing, feedback/repair, observation drafts and delayed review. Canonical Physics packages own teaching paths, misconceptions, exit tasks and question/transfer metadata. The next job is to falsify this loop across the six required Grade-9 matrices before changing architecture.",
+    "prior_owner_decisions": [
+      "Use existing learner/session mechanisms before adding architecture.",
+      "Knowledge percentages are routing coordinates only, not mastery evidence.",
+      "Assisted success does not prove independent mastery.",
+      "Grade 9 stays first; non-blocking enrichment must not delay the later Grade-10 transition."
+    ],
+    "current_implementation_state": "The ordinary Grade-9 scope is six required matrices. Shared learner_evidence.py downgrades hinted/worked/solution DEMONSTRATED evidence for routing; feedback.py owns progressive hint/retry/repair policy; study_session.py composes the practical loop; review_schedule.py supplies deterministic later checks.",
+    "known_problems": [
+      "Existing mechanisms have broad tests, but the RM-0006 outcome requires one explicit Grade-9 cross-matrix proof that the six required domains all support the intended learner loop.",
+      "Some learner failures are model/concept errors while others are setup, execution or careless slips; a single 'wrong' state would over-teach or misdiagnose.",
+      "Transfer must change representation/context/model choice/reasoning demand, not merely numbers or story dressing."
+    ],
+    "deliberate_non_goals": [
+      "Do not create a mastery probability, knowledge score, grade-state database or second learner model.",
+      "Do not add a seventh Core or rewrite the six Core product semantics.",
+      "Do not change canonical Physics academic meaning in this learner-loop package.",
+      "Do not make question-demand extensions or deferred matrices ordinary Grade-9 completion blockers."
+    ],
+    "terminology": {
+      "independent evidence": "A learner result recorded without hint, worked-example or solution help.",
+      "assisted evidence": "A successful result reached with hint/worked example/solution; useful for routing but not independent demonstration.",
+      "repair": "The narrowest existing canonical misconception or teaching-step route that addresses the diagnosed failure.",
+      "transfer": "A task that changes a meaningful demand dimension such as representation, context, model choice or reasoning direction rather than only numbers."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA5-001",
+      "action": "INSPECT",
+      "targets": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py"
+      ],
+      "question": "Which existing Shared contracts already implement evidence precedence, assisted-evidence downgrade, targeted feedback/repair, fresh verification and delayed review?",
+      "expected_outputs": [
+        "existing learner-loop stages",
+        "assisted versus independent evidence rule",
+        "review scheduling rule",
+        "missing behavior, if any"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop; do not add a new learner model before existing mechanisms are understood."
+    },
+    {
+      "id": "DSTEP-TA5-002",
+      "action": "COMPARE",
+      "targets": [
+        "MATRIX-PHY-KIN-1D-MOTION",
+        "MATRIX-PHY-NLM-FIRST-LAW",
+        "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+        "MATRIX-PHY-WORK-ENERGY-POWER",
+        "MATRIX-PHY-SOUND",
+        "MATRIX-PHY-SIMPLE-MACHINES"
+      ],
+      "question": "Across all six required Grade-9 matrices, do current canonical packages expose teaching, misconception/repair, independent checks, practice and transfer evidence needed by the learner loop?",
+      "expected_outputs": [
+        "six-matrix coverage table",
+        "real missing loop elements",
+        "age/depth boundary observations"
+      ],
+      "receipt_required": true,
+      "on_failure": "Record the exact matrix/capability gap; do not generalize one local gap into an architecture rewrite."
+    },
+    {
+      "id": "DSTEP-TA5-003",
+      "action": "VERIFY",
+      "targets": [
+        "tests/",
+        "benchmarks/agent-path/",
+        "benchmarks/question-study-map/"
+      ],
+      "question": "Which existing tests/stress fixtures already falsify unknown learner state, prior evidence precedence, prerequisite routes, session readiness, feedback repair and transfer semantics?",
+      "expected_outputs": [
+        "reusable falsifiers",
+        "coverage gaps across the six required matrices",
+        "smallest missing cross-matrix regression test"
+      ],
+      "receipt_required": true,
+      "on_failure": "Use a new focused test only for an uncovered required behavior."
+    },
+    {
+      "id": "DSTEP-TA5-004",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the branch/material/base state still satisfy EP-TA-005 before any learner-loop writes?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile Git drift before material writes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA5-001",
+      "name": "Required Grade-9 scope",
+      "description": "The six matrix-level ordinary Grade-9 completion targets established by the completed scope audit.",
+      "authority": "DERIVED_SCOPE",
+      "source": "docs/grade9/grade9-physics-scope-coverage.json",
+      "resolution_method": "Select rows whose role is REQUIRED_CORE and preserve all other roles as non-blocking unless separately demanded.",
+      "type": "scope evidence",
+      "units": "6 required matrices",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA5-001",
+        "STEP-TA5-002",
+        "AC-TA5-001",
+        "AC-TA5-004"
+      ],
+      "validation": [
+        "Exactly six REQUIRED_CORE rows exist and the scope audit is checkpointed by CP-TA-004."
+      ],
+      "stale_if": [
+        "The Grade-9 scope audit or governing roadmap changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA5-002",
+      "name": "Existing learner evidence contract",
+      "description": "Current deterministic evidence precedence and assisted-evidence downgrade semantics.",
+      "authority": "SHARED_RUNTIME",
+      "source": "Shared/tools/learner_evidence.py; Shared/library/observation.schema.json",
+      "resolution_method": "Inspect effective observation routing and observation schema; do not infer new states.",
+      "type": "learner evidence",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA5-001",
+        "STEP-TA5-003",
+        "AC-TA5-002"
+      ],
+      "validation": [
+        "A DEMONSTRATED result with HINT, WORKED_EXAMPLE or SOLUTION is effectively UNCERTAIN for routing; direct/current evidence precedence is deterministic."
+      ],
+      "stale_if": [
+        "Learner evidence or observation contracts change."
+      ]
+    },
+    {
+      "id": "INPUT-TA5-003",
+      "name": "Existing study and feedback loop",
+      "description": "Current orchestration from mapped question through readiness, plan, feedback/repair and observation draft.",
+      "authority": "SHARED_RUNTIME",
+      "source": "Shared/tools/study_session.py; Shared/tools/feedback.py; Shared/tools/review_schedule.py",
+      "resolution_method": "Trace executable functions/tests for attempt feedback, repair, fresh verification and later review.",
+      "type": "self-study runtime",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA5-001",
+        "STEP-TA5-003",
+        "AC-TA5-001",
+        "AC-TA5-002",
+        "AC-TA5-003"
+      ],
+      "validation": [
+        "study_session composes existing contracts; feedback policy starts from independent attempt and avoids premature answer reveal; review policy keeps assisted and transfer outcomes distinct."
+      ],
+      "stale_if": [
+        "Any named Shared learner-loop tool changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA5-004",
+      "name": "Core academic learner actions",
+      "description": "Canonical teaching/misconception/exit/practice/transfer content for the six required Grade-9 matrices.",
+      "authority": "CANONICAL_PHYSICS",
+      "source": "Physics/library/; Physics/matrices/ for the six REQUIRED_CORE matrix ids",
+      "resolution_method": "Inspect only; use current content to prove learner-loop coverage without changing academic meaning.",
+      "type": "canonical academic content",
+      "units": "6 matrices",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA5-002",
+        "AC-TA5-001",
+        "AC-TA5-003",
+        "AC-TA5-004"
+      ],
+      "validation": [
+        "Current Grade-9 authoring audits and saved stress checkpoints exist for all six matrices."
+      ],
+      "stale_if": [
+        "Any of the six required matrix/library packages change."
+      ]
+    },
+    {
+      "id": "INPUT-TA5-005",
+      "name": "Existing regression evidence",
+      "description": "Current study-route, practical learner-evidence, feedback, session and agent-path tests/benchmarks to reuse before adding new coverage.",
+      "authority": "REPOSITORY_TESTS",
+      "source": "tests/; benchmarks/agent-path/; benchmarks/question-study-map/",
+      "resolution_method": "Locate existing falsifiers and add only the smallest cross-matrix gap test if needed.",
+      "type": "test evidence",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA5-003",
+        "STEP-TA5-004",
+        "AC-TA5-004"
+      ],
+      "validation": [
+        "Repository guardrails currently execute the relevant tests and are green at the predecessor material head."
+      ],
+      "stale_if": [
+        "Relevant tests/benchmarks or guardrail workflow change."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA5-001",
+      "name": "Assisted evidence never becomes independent mastery",
+      "purpose": "Falsify any learner-loop change that treats hinted/worked/solution success as independent demonstration.",
+      "source": "Shared/tools/learner_evidence.py",
+      "oracle_class": "INDEPENDENT_IMPLEMENTATION",
+      "payload": {
+        "input": {
+          "result": "DEMONSTRATED",
+          "help": [
+            "HINT",
+            "WORKED_EXAMPLE",
+            "SOLUTION"
+          ]
+        },
+        "effective_routing_state": "UNCERTAIN"
+      },
+      "expected": "All non-independent help modes prevent DEMONSTRATED from acting as independent held evidence for routing.",
+      "tolerance": null,
+      "independence": "The oracle is the pre-existing learner-evidence rule, separate from any new cross-matrix test.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA5-002",
+        "TEST-TA5-002"
+      ],
+      "stale_if": [
+        "The learner-evidence contract intentionally changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA5-002",
+      "name": "Progressive repair loop",
+      "purpose": "Preserve the practical self-study sequence without broad reteaching or premature answer reveal.",
+      "source": "Shared/tools/feedback.py; docs/CORE-IMPLEMENTATION-PLAN-WORKSHEET-STUDY-FEEDBACK.md",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": [
+        "independent attempt",
+        "small non-answer hint",
+        "retry",
+        "narrow canonical repair",
+        "fresh verification",
+        "observation draft",
+        "later review"
+      ],
+      "expected": "A diagnosed local failure routes to the narrowest existing repair and a fresh verification path; ambiguous multi-capability failure stays unresolved until diagnosed.",
+      "tolerance": null,
+      "independence": "The expected loop predates this Grade-9 cross-matrix audit and is implemented in Shared feedback/session code.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA5-001",
+        "AC-TA5-002",
+        "TEST-TA5-001",
+        "TEST-TA5-002"
+      ],
+      "stale_if": [
+        "The approved self-study feedback concept changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA5-003",
+      "name": "Practice is not transfer",
+      "purpose": "Prevent same-family number/story variants from satisfying the roadmap's transfer requirement.",
+      "source": "Shared/roles/CORE2B.md",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": {
+        "not_transfer": [
+          "number-only change",
+          "cover-story-only change"
+        ],
+        "transfer_dimensions": [
+          "representation",
+          "context with changed learner demand",
+          "model_choice",
+          "reasoning_steps",
+          "direction of reasoning"
+        ]
+      },
+      "expected": "Cross-matrix evidence counts transfer only when a meaningful demand dimension changes; same-family practice remains Core2A.",
+      "tolerance": null,
+      "independence": "The Core2B role contract is pre-existing and subject-neutral.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA5-003",
+        "TEST-TA5-003"
+      ],
+      "stale_if": [
+        "Core2B transfer semantics change."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "reason": "Human-readable six-matrix learner-loop evidence and gap report."
+      },
+      {
+        "path": "docs/grade9/grade9-physics-learner-loop.json",
+        "reason": "Machine-readable derived learner-loop coverage view; not learner state."
+      },
+      {
+        "path": "tests/test_grade9_physics_learner_loop.py",
+        "reason": "Focused cross-matrix falsifiers if existing tests do not cover an RM-0006 exit condition."
+      },
+      {
+        "path": "Shared/tools/learner_evidence.py",
+        "reason": "Only a minimal fix if a concrete required cross-matrix falsifier exposes a defect in evidence routing."
+      },
+      {
+        "path": "Shared/tools/study_session.py",
+        "reason": "Only a minimal orchestration fix if a required learner-loop step is demonstrably missing."
+      },
+      {
+        "path": "Shared/tools/feedback.py",
+        "reason": "Only a minimal repair/verification fix if a concrete falsifier exposes missing safe feedback behavior."
+      },
+      {
+        "path": "Shared/tools/review_schedule.py",
+        "reason": "Only a minimal delayed-review fix if the required evidence lifecycle cannot be represented."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "Governed execution, quality, checkpoint, progress and successor coordination."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Physics/library/",
+        "reason": "Read canonical content for the six required Grade-9 matrices."
+      },
+      {
+        "path": "Physics/matrices/",
+        "reason": "Read required matrix/rung structure, independent checks and transfer rows."
+      },
+      {
+        "path": "benchmarks/",
+        "reason": "Reuse saved agent-path and question-study-map evidence."
+      },
+      {
+        "path": "tests/",
+        "reason": "Reuse current learner/session/feedback falsifiers before adding new tests."
+      },
+      {
+        "path": "docs/grade9/",
+        "reason": "Read Grade-9 audits and the completed scope view."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Canonical Physics academic meaning and matrix structure remain unchanged in this orchestration/evidence package.",
+        "reason": "WP-TA-104 should first reuse existing teaching/repair/transfer content and only expose a separately justified subject-content gap."
+      },
+      {
+        "invariant": "Assisted success never becomes independent demonstration.",
+        "reason": "Hints and solutions are learning support, not mastery evidence."
+      },
+      {
+        "invariant": "Unknown or ambiguous learner failure remains unknown until a diagnostic distinguishes it.",
+        "reason": "Guessing the failed capability can cause wrong reteaching and false evidence."
+      },
+      {
+        "invariant": "Non-core question-demand/extension/deferred matrices do not become ordinary Grade-9 completion blockers.",
+        "reason": "WP-TA-103 already froze the scope boundary."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Physics/library or Physics/matrices academic edits",
+        "reason": "Any subject-content gap found here must be handed to a separately bounded academic-authoring package."
+      },
+      {
+        "domain": "New learner-state/mastery schema or probability model",
+        "reason": "Existing observation/profile semantics are sufficient unless an Owner-approved architecture change says otherwise."
+      },
+      {
+        "domain": "Seventh Core or rewritten Core semantics",
+        "reason": "The learner loop orchestrates the existing six products."
+      },
+      {
+        "domain": "Grade-10/11 content expansion",
+        "reason": "The current phase remains Grade-9 closure."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA5-001",
+        "restriction": "Do not add learner architecture merely because a cross-matrix report is convenient.",
+        "reason": "Existing Shared contracts must be exhausted first."
+      },
+      {
+        "id": "ADR-TA5-002",
+        "restriction": "Do not treat successful help-assisted work as independent verification.",
+        "reason": "That would corrupt progression evidence."
+      },
+      {
+        "id": "ADR-TA5-003",
+        "restriction": "Do not count number/story variation as transfer.",
+        "reason": "Transfer requires a changed learner demand."
+      },
+      {
+        "id": "ADR-TA5-004",
+        "restriction": "Do not repair a local missing Physics learner action by editing canonical content inside this orchestration package.",
+        "reason": "Subject academic changes need their own explicit scope and review."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA5-001",
+        "condition": "Any of the six required core matrix/library packages changes before the learner-loop audit is materialized.",
+        "effect": "RECONCILE",
+        "rationale": "Cross-matrix coverage must reflect current canonical content."
+      },
+      {
+        "id": "STALE-TA5-002",
+        "condition": "Shared learner evidence, study session, feedback or review scheduling behavior changes.",
+        "effect": "RECONCILE",
+        "rationale": "The learner-loop proof is bound to those runtime contracts."
+      },
+      {
+        "id": "STALE-TA5-003",
+        "condition": "The Grade-9 scope audit changes the REQUIRED_CORE set.",
+        "effect": "RECONCILE",
+        "rationale": "WP-TA-104 applies only to the current six required matrices."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA5-001",
+      "objective": "Trace the existing practical learner loop end-to-end and encode its required Grade-9 invariants without creating new learner state.",
+      "targets": [
+        "Shared learner-loop tools",
+        "Grade-9 learner-loop audit outputs"
+      ],
+      "reads": [
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py"
+      ],
+      "writes": [
+        "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "docs/grade9/grade9-physics-learner-loop.json"
+      ],
+      "inputs": [
+        "INPUT-TA5-001",
+        "INPUT-TA5-002",
+        "INPUT-TA5-003"
+      ],
+      "acceptance": [
+        "AC-TA5-001",
+        "AC-TA5-002"
+      ],
+      "tests": [
+        "TEST-TA5-001",
+        "TEST-TA5-002"
+      ],
+      "expected_state": "The end-to-end loop is explicit from partial/unknown evidence through targeted repair, practice/transfer, fresh independent verification and later review.",
+      "stop_conditions": [
+        "Stop if a required stage has no existing contract; record the exact gap before proposing code."
+      ]
+    },
+    {
+      "id": "STEP-TA5-002",
+      "objective": "Audit the six REQUIRED_CORE Physics matrices for the content surfaces the learner loop needs.",
+      "targets": [
+        "six required Physics matrix/library packages",
+        "Grade-9 learner-loop audit outputs"
+      ],
+      "reads": [
+        "Physics/library/",
+        "Physics/matrices/",
+        "Grade-9 authoring audits"
+      ],
+      "writes": [
+        "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "docs/grade9/grade9-physics-learner-loop.json"
+      ],
+      "inputs": [
+        "INPUT-TA5-001",
+        "INPUT-TA5-004"
+      ],
+      "acceptance": [
+        "AC-TA5-001",
+        "AC-TA5-003",
+        "AC-TA5-004"
+      ],
+      "tests": [
+        "TEST-TA5-001",
+        "TEST-TA5-003"
+      ],
+      "expected_state": "For each required matrix, teaching/repair/independent check/practice/transfer coverage is explicit, with any missing learner action named rather than inferred.",
+      "stop_conditions": [
+        "Stop and hand off any canonical academic-content gap instead of editing subject content in this package."
+      ]
+    },
+    {
+      "id": "STEP-TA5-003",
+      "objective": "Add the smallest cross-matrix falsifiers and only repair Shared orchestration behavior that those falsifiers prove missing.",
+      "targets": [
+        "existing learner-loop tests",
+        "optional focused Grade-9 learner-loop test",
+        "bounded Shared tools"
+      ],
+      "reads": [
+        "tests/",
+        "benchmarks/agent-path/",
+        "benchmarks/question-study-map/"
+      ],
+      "writes": [
+        "tests/test_grade9_physics_learner_loop.py",
+        "Shared/tools/learner_evidence.py",
+        "Shared/tools/study_session.py",
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py"
+      ],
+      "inputs": [
+        "INPUT-TA5-002",
+        "INPUT-TA5-003",
+        "INPUT-TA5-005"
+      ],
+      "acceptance": [
+        "AC-TA5-002",
+        "AC-TA5-003",
+        "AC-TA5-004"
+      ],
+      "tests": [
+        "TEST-TA5-002",
+        "TEST-TA5-003",
+        "TEST-TA5-004"
+      ],
+      "expected_state": "Required cross-matrix behavior is falsified by tests; any Shared change is minimal, subject-neutral and directly tied to a failing case.",
+      "stop_conditions": [
+        "Stop if the needed fix requires a new schema, learner model, Core or subject-content edit."
+      ]
+    },
+    {
+      "id": "STEP-TA5-004",
+      "objective": "Run the six-matrix learner-loop proof and full repository regression suite.",
+      "targets": [
+        "learner-loop audit outputs",
+        "focused/existing tests",
+        "repository guardrails"
+      ],
+      "reads": [
+        "all EP-TA-005 outputs and validation evidence"
+      ],
+      "writes": [
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA5-005"
+      ],
+      "acceptance": [
+        "AC-TA5-004"
+      ],
+      "tests": [
+        "TEST-TA5-001",
+        "TEST-TA5-002",
+        "TEST-TA5-003",
+        "TEST-TA5-004"
+      ],
+      "expected_state": "All required Grade-9 matrices have explicit learner-loop evidence, protected boundaries hold and the repository is green.",
+      "stop_conditions": [
+        "Stop on any unresolved required matrix gap or regression; do not claim Grade-9 learner-loop closure."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Trace the existing evidence → diagnosis/repair → practice/transfer → independent verification → later-review loop and record its invariants.",
+        "targets": [
+          "Shared learner-loop tools",
+          "Grade-9 learner-loop audit"
+        ],
+        "inputs": [
+          "INPUT-TA5-001",
+          "INPUT-TA5-002",
+          "INPUT-TA5-003"
+        ],
+        "tests": [
+          "TEST-TA5-001",
+          "TEST-TA5-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA5-001",
+          "BENCH-TA5-002"
+        ],
+        "acceptance": [
+          "AC-TA5-001",
+          "AC-TA5-002"
+        ],
+        "expected_result": "The required learner loop is explicit without adding learner-state architecture.",
+        "stop_if": [
+          "A required stage has no current contract."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Cross-check all six ordinary Grade-9 Physics matrices for teaching, misconception repair, independent checks, practice and genuine transfer surfaces.",
+        "targets": [
+          "six REQUIRED_CORE matrices",
+          "learner-loop coverage outputs"
+        ],
+        "inputs": [
+          "INPUT-TA5-001",
+          "INPUT-TA5-004"
+        ],
+        "tests": [
+          "TEST-TA5-001",
+          "TEST-TA5-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA5-002",
+          "BENCH-TA5-003"
+        ],
+        "acceptance": [
+          "AC-TA5-001",
+          "AC-TA5-003",
+          "AC-TA5-004"
+        ],
+        "expected_result": "Every required matrix has an evidence-backed learner-loop coverage result and exact gaps remain visible.",
+        "stop_if": [
+          "A canonical content gap is found; do not edit subject content inside this package."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Reuse existing tests and add only the smallest cross-matrix falsifier needed to prove assisted-evidence, local-repair and transfer semantics.",
+        "targets": [
+          "tests/",
+          "optional Grade-9 learner-loop test",
+          "bounded Shared tools"
+        ],
+        "inputs": [
+          "INPUT-TA5-002",
+          "INPUT-TA5-003",
+          "INPUT-TA5-005"
+        ],
+        "tests": [
+          "TEST-TA5-002",
+          "TEST-TA5-003",
+          "TEST-TA5-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA5-001",
+          "BENCH-TA5-002",
+          "BENCH-TA5-003"
+        ],
+        "acceptance": [
+          "AC-TA5-002",
+          "AC-TA5-003",
+          "AC-TA5-004"
+        ],
+        "expected_result": "Any runtime repair is minimal and driven by a failing falsifier; otherwise existing architecture remains unchanged.",
+        "stop_if": [
+          "The fix would require schema expansion, a new learner model, a seventh Core or academic-content mutation."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run focused learner-loop validation plus full repository guardrails and publish the quality/checkpoint evidence.",
+        "targets": [
+          "learner-loop outputs",
+          "guardrails",
+          "relay checkpoint"
+        ],
+        "inputs": [
+          "INPUT-TA5-005"
+        ],
+        "tests": [
+          "TEST-TA5-001",
+          "TEST-TA5-002",
+          "TEST-TA5-003",
+          "TEST-TA5-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA5-001",
+          "BENCH-TA5-002",
+          "BENCH-TA5-003"
+        ],
+        "acceptance": [
+          "AC-TA5-001",
+          "AC-TA5-002",
+          "AC-TA5-003",
+          "AC-TA5-004"
+        ],
+        "expected_result": "WP-TA-104 is either evidence-backed complete or stopped on a concrete unresolved learner-loop gap.",
+        "stop_if": [
+          "Any must-pass falsifier or repository guardrail fails."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The package validates orchestration across existing learner evidence, feedback, review and canonical-content seams.",
+        "review_focus": [
+          "reuse before architecture",
+          "evidence boundaries",
+          "subject-neutral ownership"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "A minimal Shared runtime repair is permitted only if a concrete cross-matrix falsifier proves it necessary.",
+        "review_focus": [
+          "minimal patch",
+          "deterministic behavior",
+          "no new state model"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "The work package succeeds primarily by falsifying the learner loop across six required matrices.",
+        "review_focus": [
+          "six-matrix coverage",
+          "assisted-evidence downgrade",
+          "repair/fresh verification",
+          "real transfer"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Learner-loop changes can silently convert help into mastery or broad reteaching if evidence/repair boundaries drift.",
+        "review_focus": [
+          "independent evidence",
+          "unknown preservation",
+          "local repair",
+          "non-blocking scope"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "The package remains on the governed draft PR branch and must preserve checkpoint/PR custody.",
+        "review_focus": [
+          "checkpoint continuity",
+          "exact-head validation",
+          "PR correlation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "ui-ux",
+        "reason": "No browser/UI redesign is authorized."
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing interaction surface is being changed in this package."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical algorithm changes are planned."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The learner-loop data and six-matrix audit are not performance-sensitive."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner/schema migration is authorized."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA5-001",
+      "description": "Each of the six required Grade-9 Physics matrices has an explicit learner-loop path from partial/unknown evidence through the smallest needed teaching/repair to practice, fresh verification and later review, with real gaps visible.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA5-001",
+        "BENCH-TA5-002"
+      ]
+    },
+    {
+      "id": "AC-TA5-002",
+      "description": "Assisted success, ambiguous failure and misconception repair preserve evidence honesty: help does not become independent demonstration, ambiguity is not guessed, and repair is followed by fresh falsifying verification.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA5-002",
+        "BENCH-TA5-001",
+        "BENCH-TA5-002"
+      ]
+    },
+    {
+      "id": "AC-TA5-003",
+      "description": "Practice and transfer remain distinct: same-family stabilization does not satisfy transfer, while changed representation/model-choice/reasoning demand can provide separate transfer evidence.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA5-003",
+        "BENCH-TA5-003"
+      ]
+    },
+    {
+      "id": "AC-TA5-004",
+      "description": "The learner-loop closure reuses existing Shared mechanisms, preserves the six-matrix scope boundary and canonical Physics meaning, and passes focused plus full repository guardrails.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA5-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA5-001",
+      "class": "MUST_PASS",
+      "method": "Generate/read back the six-matrix learner-loop coverage view and verify every REQUIRED_CORE matrix has teaching, diagnosis/repair, independent-check, practice/transfer and review/verification evidence or an explicit blocking gap.",
+      "proves": [
+        "AC-TA5-001",
+        "AC-TA5-004"
+      ]
+    },
+    {
+      "id": "TEST-TA5-002",
+      "class": "MUST_PASS",
+      "method": "Exercise existing learner_evidence/feedback/session behavior with independent, hinted/worked/solution, ambiguous failure and diagnosed misconception cases; prove assisted results do not become independent evidence and repair routes to fresh verification.",
+      "proves": [
+        "AC-TA5-001",
+        "AC-TA5-002"
+      ]
+    },
+    {
+      "id": "TEST-TA5-003",
+      "class": "MUST_PASS",
+      "method": "Across representative required matrices, compare same-family practice with a true changed-demand transfer case and prove Core2B/transfer semantics are not satisfied by numbers or cover-story changes alone.",
+      "proves": [
+        "AC-TA5-003"
+      ]
+    },
+    {
+      "id": "TEST-TA5-004",
+      "class": "MUST_PASS",
+      "method": "Diff the slice for protected Physics/schema boundaries and run focused learner-loop tests plus the full repository guardrail workflow on the final material head.",
+      "proves": [
+        "AC-TA5-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}
