@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "GCDR-SUITE-MOLE-CONCEPT",
+  "title": "Some Basic Concepts of Chemistry · Mole Concept Master Suite",
+  "scope_contract": {
+    "canonical_binding_status": "UNBOUND_EXTENSION",
+    "canonical_capability_refs": [],
+    "instructional_depth": "JEE_EXTENSION",
+    "extension_reason": "This master suite is a JEE-depth diagnostic/visual extension extracted from PR #144; it is not bound to the current Grade-9 canonical Chemistry capability spine.",
+    "certification_scope": "Implementation, answer, helper, simulator-fidelity and delivery contracts may be audited, but canonical GCDR certification is blocked until explicit reviewed Chemistry capability bindings exist."
+  },
+  "external_corpus": {
+    "provider": "ExamSIDE",
+    "topic": "JEE Main Chemistry · Some Basic Concepts of Chemistry",
+    "snapshot_date": "2026-09-20",
+    "live_count": 245,
+    "embedded_item_count": 20,
+    "coverage_claim": "CURATED_SLICE_AUDITED"
+  },
+  "diagnostic_source": {
+    "locator": "public/chemistry/some-basic-concepts/explorers/mole_concept/jee_questions_data.js",
+    "format": "WINDOW_JEE_QUESTIONS_DATA_JS",
+    "contract_schema": "Shared/library/gcdr_diagnostic_item.schema.json"
+  },
+  "helper_contracts": [
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TEACHERS_CHALKBOARD",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "formula",
+        "steps",
+        "ans",
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "governing_model",
+        "state_specific_derivation",
+        "result_or_disposition",
+        "independent_check"
+      ],
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRAP_ALERT",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "trap",
+        "distractorTraps"
+      ],
+      "required_outputs": [
+        "tempting_wrong_model",
+        "why_it_fails_here"
+      ],
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "INDEPENDENT_CHECK",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "check_method",
+        "residual_or_confirmation"
+      ],
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRANSFER_TAKEAWAY",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "takeaway"
+      ],
+      "required_outputs": [
+        "decision_rule",
+        "when_to_use"
+      ],
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "EXACTNESS_BADGE",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "answerAudit",
+        "sourceAudit",
+        "simFidelity",
+        "simFidelityNote"
+      ],
+      "required_outputs": [
+        "fidelity",
+        "binding_coverage",
+        "missing_bindings"
+      ],
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    }
+  ],
+  "delivery_artifacts": [
+    {
+      "locator": "public/chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+      "profile": "REPO_BUNDLE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    },
+    {
+      "locator": "standalone/chemistry-mole-concept-master-suite.html",
+      "profile": "SINGLE_FILE_ONLINE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    }
+  ],
+  "audit_evidence_ref": "tests/test_chemistry_master_suites_audit.py",
+  "representation_invariants": [
+    {
+      "id": "STOICHIOMETRIC-EXTENT-CONSERVATION",
+      "views": [
+        "MOLE_LEDGER",
+        "LIMITING_REAGENT_RIG"
+      ],
+      "relation": "reaction extent computed from the limiting reagent conserves stoichiometric amount and reproduces product plus excess-reactant ledgers",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+    }
+  ],
+  "geometry_truth_contract": {
+    "verification_status": "DECLARED",
+    "oracle_method": "PROPERTY_TEST",
+    "governed_geometry": [
+      "MOLE_SCALE",
+      "LIMITING_REAGENT_PARTICLE_LEDGER",
+      "SEQUENTIAL_YIELD_FLOW",
+      "CONCENTRATION_FLASK",
+      "EUDIOMETRY_VOLUME_LEDGER"
+    ],
+    "evidence_ref": "tests/test_chemistry_master_suites_audit.py"
+  }
+}

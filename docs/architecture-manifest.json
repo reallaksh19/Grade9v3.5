@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 184,
-  "relation_count": 232,
+  "component_count": 185,
+  "relation_count": 234,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 32,
-    "TEST": 83,
+    "TEST": 84,
     "TOOLING": 44,
     "WEB": 6
   },
-  "digest": "sha256:e5e721091efb74c6f109b4c9ef78861841f766bd06bf3a6e5d55631ce6fc1f9e",
+  "digest": "sha256:ecaabeae2b46a08203e5ed05bce52239f7db1311c2ef6d7f7b70f813a41cfc3a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -512,8 +512,8 @@
       "path": "Shared/tools/gcdr_suite_guard.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13831,
-      "sha256": "2c2dd463d8345d00e701a3cd5d88f5ad1ef2248906601d0871501a9b83206337"
+      "bytes": 14340,
+      "sha256": "8e40c31e255ae798c9775edb79667456b9a830415c8802c42657d9d76c057d28"
     },
     {
       "path": "Shared/tools/import_study_observations.py",
@@ -836,6 +836,13 @@
       "role_description": "Executable checks",
       "bytes": 2529,
       "sha256": "ed11e2123aa54f0acc9bc0299249d5145c8514a769b442f161942ec6518a087d"
+    },
+    {
+      "path": "tests/test_chemistry_master_suites_audit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 19825,
+      "sha256": "84369a80da26a73e78db6e995397bb4e92b866e4291b24b89fa3a32ff7d94789"
     },
     {
       "path": "tests/test_core_issue19_integration.py",
@@ -1955,6 +1962,16 @@
     },
     {
       "from": "tests/test_capability_delivery.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_chemistry_master_suites_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_chemistry_master_suites_audit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

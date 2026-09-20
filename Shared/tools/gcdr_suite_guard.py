@@ -41,10 +41,14 @@ def load_bank(path: Path, fmt: str) -> list[dict]:
     if fmt == "JSON":
         data = json.loads(text)
     elif fmt == "WINDOW_JEE_QUESTIONS_DATA_JS":
-        match = re.search(r"window\.JEE_QUESTIONS_DATA\s*=\s*(\[.*?\])\s*;", text, re.S)
+        match = re.search(r"window\.JEE_QUESTIONS_DATA\s*=\s*", text)
         if not match:
-            raise ValueError("cannot parse window.JEE_QUESTIONS_DATA")
-        data = json.loads(match.group(1))
+            raise ValueError("cannot locate window.JEE_QUESTIONS_DATA assignment")
+        payload = text[match.end():].lstrip()
+        try:
+            data, _ = json.JSONDecoder().raw_decode(payload)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"cannot parse window.JEE_QUESTIONS_DATA: {exc}") from exc
     else:
         raise ValueError(f"unsupported diagnostic source format {fmt!r}")
     if not isinstance(data, list):
@@ -107,7 +111,16 @@ def _evidence_ref_exists(repo: Path, ref: str | None) -> bool:
 
 
 def _external_dependencies(text: str) -> set[str]:
-    return set(re.findall(r'(?:src|href)="(https?://[^"]+)"', text))
+    """Return remote runtime dependencies, not ordinary navigation/source links."""
+    out: set[str] = set()
+    pattern = re.compile(
+        r'<script\b[^>]*\bsrc="(https?://[^"]+)"[^>]*>'
+        r'|<link\b[^>]*\bhref="(https?://[^"]+)"[^>]*>',
+        re.I,
+    )
+    for match in pattern.finditer(text):
+        out.add(match.group(1) or match.group(2))
+    return out
 
 
 def _local_resource_dependencies(text: str) -> list[str]:
