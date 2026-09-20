@@ -1,49 +1,49 @@
 {
   "schema_version": "relay-v2.5-owner-publication",
   "publication": {
-    "id": "PUB-0001",
-    "sequence": 1,
-    "event_class": "INITIAL_SNAPSHOT",
+    "id": "PUB-0002",
+    "sequence": 2,
+    "event_class": "EVIDENCE_PROGRESS",
     "changed_dimensions": [
       "task",
-      "implementation",
       "evidence",
       "quality",
       "delivery_or_custody",
       "execution",
       "roadmap",
       "next_work",
+      "issues",
       "owner_decisions"
     ],
-    "owner_view_digest": "sha256:b9e4c0e4bf51df4f5c5f3fa78a0c59639a5272b25b9899f6259e3bd333173a0e",
-    "report_projection_digest": "sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328",
-    "normalized_report_digest": "sha256:5e432c7a5defd2250fbaac13e81b2e75bc2449223881590b2e93fb9a2ac8945e"
+    "owner_view_digest": "sha256:0c524c0ba008821856f02f2a2d94b9b3cda8c6ca58307831dcdcb413cc896c53",
+    "report_projection_digest": "sha256:b68f5ab94887fdb95fce725d787272c837334fe664aa1d494f06f26496491bfe",
+    "normalized_report_digest": "sha256:5adc8b1bf7a667b99d35f1e21f1c0c054ec3699f2f6be692ad92c83e8e05ce3f"
   },
   "source": {
     "report_sources": {
-      "roadmap_revision": "RM-0007",
-      "progress_basis": "PB-0005",
-      "repo_state_digest": "sha256:66d9c711f468a3fd7dc3ad31614ffec9f6fdf8eedaa5f781104ba53af1520d69",
-      "roadmap_digest": "sha256:0f489b2561d2d1e67ace585e9859484d27a681fad521fbfe81645da930734e52",
-      "progress_digest": "sha256:74b97234140df6b357af48e46304045bedc318ee57c37bcc641b1ee0e0297faa",
-      "issue_graph_digest": "sha256:e2bd73bae3d0fb1b2ccabe185104e545dea788769e20b961d28f4368ac7dd1ab",
-      "owner_decisions_digest": "sha256:a998b8f11e52b449d851ae168b757971a45a35d33f111c811c8b24a2279429e7",
+      "roadmap_revision": "RM-0008",
+      "progress_basis": "PB-0006",
+      "repo_state_digest": "sha256:2fd919965eeb287461aa163898650f517d243d86b4f0c003beb17c384a669641",
+      "roadmap_digest": "sha256:56a48d8972b9b5c019290dec44d790c0079d23ed018a07492de403e93ae901d3",
+      "progress_digest": "sha256:52744e03ca99e4852ae623524b1d2370b8fde77f7bc8e6ae92cf6bcdf6ff2b89",
+      "issue_graph_digest": "sha256:aef56ce8e6c25b6be593d587764bf007fb38a3f1442208921ef0f3df40ae49b4",
+      "owner_decisions_digest": "sha256:2464bdef0932fb9aa983663b389f94b7f0777195214f06708fee795f6946baf5",
       "ep_id": "EP-TA-008",
-      "ep_digest": "sha256:d51262c52b05f0f5cb00be7c8a9dbd34ed20b4096e9ddc801b6063a79ef20a88",
+      "ep_digest": "sha256:a6c1f884808feacb5e97414073cccfd8488f061cf64e0be9ce9ea466dd8ec191",
       "checkpoint_id": "CP-TA-007",
-      "checkpoint_digest": "sha256:b4e6dec568213a2c16418dd21c5c6db40cf65198a8114fd923aa9154f215fe30",
+      "checkpoint_digest": "sha256:106b3c485ca604c7a13c03263e5817b7796c9fec5538d1f8df9b8c5d65bed822",
       "quality_review_id": "QRV-TA-007",
-      "quality_review_digest": "sha256:71b7bc211bc42e7cf4155a56dac2b52aa60c760f3d0124707a56f28930e668e5",
-      "delivery_observation_id": null,
-      "delivery_observation_digest": null
+      "quality_review_digest": "sha256:8a17531fea943008ed91c0bce0ac6321e7847201ec2b19394655db55c22ef39b",
+      "delivery_observation_id": "DOBS-PR148-RM0008",
+      "delivery_observation_digest": "sha256:3a504febecc81706437001c10370aae6ecd1c4f5b627fb34c632e85641dd19c9"
     },
-    "roadmap_revision": "RM-0007",
-    "progress_basis": "PB-0005",
+    "roadmap_revision": "RM-0008",
+    "progress_basis": "PB-0006",
     "checkpoint_id": "CP-TA-007",
     "ep_id": "EP-TA-008"
   },
   "baseline": {
-    "digest": "sha256:5e432c7a5defd2250fbaac13e81b2e75bc2449223881590b2e93fb9a2ac8945e",
+    "digest": "sha256:5adc8b1bf7a667b99d35f1e21f1c0c054ec3699f2f6be692ad92c83e8e05ce3f",
     "report": {
       "task": {
         "acceptance": [
@@ -73,8 +73,8 @@
           }
         ],
         "progress_basis": {
-          "id": "PB-0005",
-          "roadmap_revision": "RM-0007"
+          "id": "PB-0006",
+          "roadmap_revision": "RM-0008"
         },
         "overall_percent": 70,
         "phase_percent": 70,
@@ -110,12 +110,17 @@
       "evidence": {
         "plane": {
           "state": "PARTIAL",
-          "summary": "WP-TA-104 is accepted at its checkpoint and programme progress is 70/100. EP-TA-008 has repository-only discovery plus deterministic qualification/takeover evidence; its material router implementation has not run.",
+          "summary": "Mother-contract audit and prior green implementation evidence exist, but the reconciled RM-0008 EP has not yet been freshly qualified or executed.",
           "not_run": [
             {
-              "id": "TEST-TA8-001..004",
-              "reason": "EP-TA-008 material implementation has not yet executed.",
-              "cause": "NOT_SCHEDULED"
+              "id": "QUAL/TC for QSET-TA-009",
+              "reason": "Fresh candidate qualification has not yet been produced for the reconciled EP digest.",
+              "cause": "DEPENDENCY_WAIT"
+            },
+            {
+              "id": "TEST-TA8-001..004 reconciled contract",
+              "reason": "Runtime writes are withheld until fresh takeover certification and live write readiness.",
+              "cause": "DEPENDENCY_WAIT"
             }
           ]
         },
@@ -158,7 +163,8 @@
         "plane": {
           "state": "NEEDS_ATTENTION",
           "findings": [
-            "WP-TA-104 is quality-clear. EP-TA-008 changes the Shared learner-session runtime and must prove its qualified truth-table/closed-loop contract before checkpoint."
+            "AUDIT-TA-008-MOTHER-CONTRACT findings remain open until the reconciled EP implementation and tests close them.",
+            "No EP-TA-008 acceptance credit is earned by contract reconciliation alone."
           ]
         },
         "findings": [],
@@ -182,72 +188,320 @@
       },
       "delivery_or_custody": {
         "projection": {
-          "required": false,
-          "state": "NOT_REQUIRED",
-          "operation_id": null,
-          "target": null,
-          "roadmap_revision": "RM-0007",
+          "required": true,
+          "state": "IN_SYNC",
+          "operation_id": "GHGEN-HO-159160-R2",
+          "target": "github:reallaksh19/Grade9V3:issues",
+          "adapter": "GITHUB_ISSUES",
+          "plan": "agents/relay/projection/generations/GHGEN-HO-159160-R2.yaml",
+          "roadmap_revision": "RM-0008",
           "execution_ref": "EP-TA-008",
-          "receipt": null,
-          "basis": []
+          "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+            "agents/relay/execution-packages/EP-TA-008.yaml",
+            "agents/relay/certifications/questions/QSET-TA-009.yaml",
+            "handover-generation:GHGEN-HO-159160-R2"
+          ],
+          "superseded_operations": [
+            {
+              "operation_id": "GHGEN-HO-79E29CBD0F01",
+              "target": "github:reallaksh19/Grade9V3:issues",
+              "roadmap_revision": "RM-0007",
+              "execution_ref": "EP-TA-008",
+              "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
+              "superseded_by": "GHGEN-HO-03943C0B50F7",
+              "receipt": "github-generation:GHGEN-HO-79E29CBD0F01",
+              "basis": [
+                "Issue #159 is now the mapped mother contract for WP-TA-107; the prior handover source was the active EP because no source issue was mapped."
+              ]
+            },
+            {
+              "operation_id": "GHGEN-HO-03943C0B50F7",
+              "target": "github:reallaksh19/Grade9V3:issues",
+              "roadmap_revision": "RM-0008",
+              "execution_ref": "EP-TA-008",
+              "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
+              "superseded_by": "GHGEN-HO-159160-R2",
+              "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
+              "basis": [
+                "Issue graph advanced to IG-0004 after verifying Issue #160 as WP-TA-104 owner; handover body must be revised to current Phase-1/QSET-TA-009 state."
+              ]
+            }
+          ],
+          "observed": {
+            "operation_id": "GHGEN-HO-159160-R2",
+            "target": "github:reallaksh19/Grade9V3:issues",
+            "roadmap_revision": "RM-0008",
+            "execution_ref": "EP-TA-008",
+            "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
+            "basis": [
+              "Issue #164 provider readback",
+              "relay-operation:GHOP-HO-159160-REVISE",
+              "ISSUE_GRAPH IG-0004"
+            ]
+          }
         },
         "relay_readiness": {
           "baton_ready": true,
           "projection_ready": true,
           "handover_ready": true,
-          "reasons": []
+          "reasons": [
+            "RM-0008 EP-TA-008 has a current semantic contract and fresh QSET-TA-009.",
+            "Issue #164 handover projection is verified in sync with ISSUE_GRAPH IG-0004, including #160 checkpoint ownership and #159 current ownership."
+          ]
         },
-        "takeover_admissions": [
-          {
-            "route_key": "SERIAL:EP-TA-008",
-            "candidate": {
-              "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
-            },
-            "discovery_receipt": {
-              "id": "DISC-TA-018",
-              "path": "agents/relay/certifications/discovery/DISC-TA-018.yaml"
-            },
-            "certification": {
-              "id": "TC-TA-018",
-              "path": "agents/relay/certifications/takeover/TC-TA-018.yaml"
-            }
-          }
-        ],
+        "takeover_admissions": [],
         "delivery": {
-          "applicability": "NOT_APPLICABLE",
-          "provider": null,
-          "observation_id": null,
-          "observation_path": null,
-          "vehicle": null,
+          "applicability": "APPLICABLE",
+          "provider": "GITHUB",
+          "repository": "reallaksh19/Grade9V3",
+          "observation_id": "DOBS-PR148-RM0008",
+          "observation_path": "agents/relay/delivery/DOBS-PR148-RM0008.yaml",
+          "vehicle": {
+            "kind": "PULL_REQUEST",
+            "number": 148,
+            "url": "https://github.com/reallaksh19/Grade9V3/pull/148",
+            "lifecycle": "DRAFT",
+            "head": {
+              "ref": "takeover/topic-atlas-browser-correctness",
+              "sha": "3898aeedadf3130caf0878221061b7d950307e93"
+            },
+            "base": {
+              "ref": "main",
+              "sha": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59"
+            }
+          },
           "mergeability": {
-            "state": "NOT_APPLICABLE"
+            "state": "UNKNOWN"
           },
           "checks": {
-            "state": "NOT_APPLICABLE"
+            "state": "FAIL",
+            "head_sha": "3898aeedadf3130caf0878221061b7d950307e93",
+            "required": [
+              "guardrails",
+              "v25-relay"
+            ],
+            "observations": [
+              {
+                "name": "guardrails",
+                "run_id": 35522174309,
+                "status": "PASS",
+                "basis": "completed/success on observed PR head"
+              },
+              {
+                "name": "v25-relay",
+                "run_id": 35522174342,
+                "status": "FAIL",
+                "basis": "all semantic/cold-start/baton/route/Git steps passed; material_write_ready failed because no fresh candidate admission exists for EP-TA-008"
+              }
+            ]
           },
           "review": {
-            "state": "NOT_APPLICABLE"
+            "state": "CLEAR",
+            "unresolved_threads": 0,
+            "change_requests": 0
           },
+          "description_contract": {
+            "marker": "<!-- relay-pr-correlation:v1 -->",
+            "marker_present": true,
+            "body_digest": "sha256:31b92be261422cc19c3fb67f854c0a41daaeebb92e6e147a3aae3a10ce908651",
+            "correlations": [
+              {
+                "issue_node": "ISSUE-159",
+                "issue_number": 159,
+                "ep_id": "EP-TA-008",
+                "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+                "work_package": "WP-TA-107",
+                "relationship": "IMPLEMENTS",
+                "meaning": "EP-TA-008 delivers the authorized work for WP-TA-107 owned by GitHub issue #159."
+              },
+              {
+                "issue_node": "ISSUE-160",
+                "issue_number": 160,
+                "ep_id": "EP-TA-007",
+                "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+                "work_package": "WP-TA-104",
+                "relationship": "IMPLEMENTS",
+                "meaning": "EP-TA-007 delivers the authorized work for WP-TA-104 owned by GitHub issue #160."
+              }
+            ]
+          },
+          "correlations": [
+            {
+              "issue_node": "ISSUE-159",
+              "issue_number": 159,
+              "ep_id": "EP-TA-008",
+              "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+              "work_package": "WP-TA-107",
+              "relationship": "IMPLEMENTS",
+              "meaning": "EP-TA-008 delivers the authorized work for WP-TA-107 owned by GitHub issue #159."
+            },
+            {
+              "issue_node": "ISSUE-160",
+              "issue_number": 160,
+              "ep_id": "EP-TA-007",
+              "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+              "work_package": "WP-TA-104",
+              "relationship": "IMPLEMENTS",
+              "meaning": "EP-TA-007 delivers the authorized work for WP-TA-104 owned by GitHub issue #160."
+            }
+          ],
+          "readback_basis": [
+            "GitHub provider readback for PR #148 after description update at head 3898aeedadf3130caf0878221061b7d950307e93",
+            "GitHub Actions guardrails run 35522174309 completed/success",
+            "GitHub Actions v25-relay run 35522174342 completed/failure only at candidate-specific material write gate",
+            "GitHub provider review readback: zero reviews and zero unresolved review threads"
+          ],
           "ready_for_review": {
-            "state": "NOT_APPLICABLE",
-            "reason": "No PR delivery vehicle is required."
+            "state": "NO",
+            "reason": "The pull request is still draft."
           },
           "technical_ready_to_merge": {
-            "state": "NOT_APPLICABLE",
-            "reasons": []
+            "state": "NO",
+            "reasons": [
+              "current acceptance criteria are not complete",
+              "engineering evidence is PARTIAL",
+              "pull request lifecycle is DRAFT",
+              "exact-head checks are FAIL",
+              "mergeability is unknown"
+            ]
           },
           "merge_authorization": {
-            "state": "NOT_APPLICABLE",
+            "state": "NOT_GRANTED",
             "basis": [],
-            "reason": "No PR delivery vehicle is required."
-          }
+            "reason": "No applied Owner merge authorization is bound to this exact PR/head."
+          },
+          "unmerged_prs": [
+            {
+              "provider": "GITHUB",
+              "repository": "reallaksh19/Grade9V3",
+              "observation_id": "DOBS-PR148-RM0008",
+              "observation_path": "agents/relay/delivery/DOBS-PR148-RM0008.yaml",
+              "vehicle": {
+                "kind": "PULL_REQUEST",
+                "number": 148,
+                "url": "https://github.com/reallaksh19/Grade9V3/pull/148",
+                "lifecycle": "DRAFT",
+                "head": {
+                  "ref": "takeover/topic-atlas-browser-correctness",
+                  "sha": "3898aeedadf3130caf0878221061b7d950307e93"
+                },
+                "base": {
+                  "ref": "main",
+                  "sha": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59"
+                }
+              },
+              "mergeability": {
+                "state": "UNKNOWN"
+              },
+              "checks": {
+                "state": "FAIL",
+                "head_sha": "3898aeedadf3130caf0878221061b7d950307e93",
+                "required": [
+                  "guardrails",
+                  "v25-relay"
+                ],
+                "observations": [
+                  {
+                    "name": "guardrails",
+                    "run_id": 35522174309,
+                    "status": "PASS",
+                    "basis": "completed/success on observed PR head"
+                  },
+                  {
+                    "name": "v25-relay",
+                    "run_id": 35522174342,
+                    "status": "FAIL",
+                    "basis": "all semantic/cold-start/baton/route/Git steps passed; material_write_ready failed because no fresh candidate admission exists for EP-TA-008"
+                  }
+                ]
+              },
+              "review": {
+                "state": "CLEAR",
+                "unresolved_threads": 0,
+                "change_requests": 0
+              },
+              "description_contract": {
+                "marker": "<!-- relay-pr-correlation:v1 -->",
+                "marker_present": true,
+                "body_digest": "sha256:31b92be261422cc19c3fb67f854c0a41daaeebb92e6e147a3aae3a10ce908651",
+                "correlations": [
+                  {
+                    "issue_node": "ISSUE-159",
+                    "issue_number": 159,
+                    "ep_id": "EP-TA-008",
+                    "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+                    "work_package": "WP-TA-107",
+                    "relationship": "IMPLEMENTS",
+                    "meaning": "EP-TA-008 delivers the authorized work for WP-TA-107 owned by GitHub issue #159."
+                  },
+                  {
+                    "issue_node": "ISSUE-160",
+                    "issue_number": 160,
+                    "ep_id": "EP-TA-007",
+                    "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+                    "work_package": "WP-TA-104",
+                    "relationship": "IMPLEMENTS",
+                    "meaning": "EP-TA-007 delivers the authorized work for WP-TA-104 owned by GitHub issue #160."
+                  }
+                ]
+              },
+              "correlations": [
+                {
+                  "issue_node": "ISSUE-159",
+                  "issue_number": 159,
+                  "ep_id": "EP-TA-008",
+                  "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+                  "work_package": "WP-TA-107",
+                  "relationship": "IMPLEMENTS",
+                  "meaning": "EP-TA-008 delivers the authorized work for WP-TA-107 owned by GitHub issue #159."
+                },
+                {
+                  "issue_node": "ISSUE-160",
+                  "issue_number": 160,
+                  "ep_id": "EP-TA-007",
+                  "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+                  "work_package": "WP-TA-104",
+                  "relationship": "IMPLEMENTS",
+                  "meaning": "EP-TA-007 delivers the authorized work for WP-TA-104 owned by GitHub issue #160."
+                }
+              ],
+              "readback_basis": [
+                "GitHub provider readback for PR #148 after description update at head 3898aeedadf3130caf0878221061b7d950307e93",
+                "GitHub Actions guardrails run 35522174309 completed/success",
+                "GitHub Actions v25-relay run 35522174342 completed/failure only at candidate-specific material write gate",
+                "GitHub provider review readback: zero reviews and zero unresolved review threads"
+              ],
+              "ready_for_review": {
+                "state": "NO",
+                "reason": "The pull request is still draft."
+              },
+              "technical_ready_to_merge": {
+                "state": "NO",
+                "reasons": [
+                  "current acceptance criteria are not complete",
+                  "engineering evidence is PARTIAL",
+                  "pull request lifecycle is DRAFT",
+                  "exact-head checks are FAIL",
+                  "mergeability is unknown"
+                ]
+              },
+              "merge_authorization": {
+                "state": "NOT_GRANTED",
+                "basis": [],
+                "reason": "No applied Owner merge authorization is bound to this exact PR/head."
+              }
+            }
+          ]
         }
       },
       "execution": {
         "state": "READY",
         "can_continue": true,
         "material_authority": "WRITE",
-        "next_action": "Run exact-head V2.5 admission/write gating for EP-TA-008, then implement the derived evidence-to-posture/support/visual/exercise router without adding persisted mastery state."
+        "next_action": "Fresh candidate must complete repository-only DISC + QSET-TA-009/QUAL + TC; then material_write_ready must pass for that candidate before STEP-TA8-001 runtime writes."
       },
       "stop": {
         "active": false,
@@ -258,7 +512,7 @@
       "roadmap": {
         "summary": {
           "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-          "revision": "RM-0007",
+          "revision": "RM-0008",
           "title": "Grade 9 Physics learner independence and progression"
         },
         "reconciliation": {
@@ -289,13 +543,16 @@
         "steps": [
           {
             "order": 1,
-            "action": "Implement and falsify the evidence-to-posture/support truth table.",
+            "action": "Repair and falsify independent-evidence posture plus declared-support resolution.",
             "targets": [
+              "Shared/tools/learner_evidence.py",
               "Shared/tools/learning_router.py",
-              "Shared/tools/learner_evidence.py"
+              "tests/test_learning_router.py"
             ],
             "inputs": [
               "INPUT-TA8-001",
+              "INPUT-TA8-002",
+              "INPUT-TA8-003",
               "INPUT-TA8-004"
             ],
             "tests": [
@@ -308,92 +565,108 @@
             "acceptance": [
               "AC-TA8-001"
             ],
-            "expected_result": "Derived posture/support is deterministic and non-persisted.",
+            "expected_result": "Evidence honesty and family support authority are correct before any transfer/gateway change.",
             "stop_if": [
-              "A new mastery state becomes necessary."
+              "Fresh qualification/write readiness is absent.",
+              "Independence or support authority is ambiguous."
             ]
           },
           {
             "order": 2,
-            "action": "Resolve canonical visual stage/explorer and exercise demand into worksheet route annotations.",
+            "action": "Implement bounded no-estimate gateway and stable same-family demand escalation.",
             "targets": [
+              "Shared/tools/study_start.py",
               "Shared/tools/learning_router.py",
               "Shared/tools/worksheet_study_plan.py"
             ],
             "inputs": [
-              "INPUT-TA8-002",
+              "INPUT-TA8-001",
+              "INPUT-TA8-003",
               "INPUT-TA8-004"
             ],
             "tests": [
               "TEST-TA8-002"
             ],
             "benchmarks": [
-              "BENCH-TA8-002"
+              "BENCH-TA8-003"
             ],
             "acceptance": [
               "AC-TA8-002"
             ],
-            "expected_result": "Route starts with the right support/visual/demand using canonical refs.",
+            "expected_result": "Useful local study works without estimate and transfer no longer follows from one READY state.",
             "stop_if": [
-              "Canonical mapping is ambiguous and would require guessing."
+              "Cross-subtopic ordering or synthesized question demand would be required."
             ]
           },
           {
             "order": 3,
-            "action": "Prove the same session preserves feedback-owned hint/repair/verification/review after the initial route.",
+            "action": "Separate renderer-neutral presentation refs from reasoning checkpoint while preserving feedback-owned hint/repair/verification/review.",
             "targets": [
-              "Shared/tools/study_session.py",
-              "tests/test_study_session.py"
+              "Shared/tools/learning_router.py",
+              "Shared/tools/study_session.py"
             ],
             "inputs": [
-              "INPUT-TA8-003"
+              "INPUT-TA8-001",
+              "INPUT-TA8-003",
+              "INPUT-TA8-005"
             ],
             "tests": [
               "TEST-TA8-003"
             ],
             "benchmarks": [
-              "BENCH-TA8-003"
+              "BENCH-TA8-004"
             ],
             "acceptance": [
               "AC-TA8-003"
             ],
-            "expected_result": "Closed loop works without a duplicate post-attempt state machine.",
+            "expected_result": "Scene, checkpoint and pedagogy injection are independently expressible with static fallback and no evidence bypass.",
             "stop_if": [
-              "Existing feedback output cannot carry the staged visual hint refs safely."
+              "Renderer/workbench internals or duplicate feedback state become necessary."
             ]
           },
           {
             "order": 4,
-            "action": "Update derived audit/manifest and run full guardrails/V2.5 before checkpointing WP-TA-107.",
+            "action": "Run R3/R8 witnesses, full exact-head validation/quality and delivery/progress reconciliation.",
             "targets": [
+              "tests/",
               "docs/grade9/",
               "docs/architecture-manifest.json",
-              "agents/relay/"
+              "agents/relay/",
+              "PR #148"
             ],
             "inputs": [
               "INPUT-TA8-001",
               "INPUT-TA8-002",
               "INPUT-TA8-003",
-              "INPUT-TA8-004"
+              "INPUT-TA8-004",
+              "INPUT-TA8-005"
             ],
             "tests": [
               "TEST-TA8-004"
             ],
             "benchmarks": [
-              "BENCH-TA8-001",
-              "BENCH-TA8-003"
+              "BENCH-TA8-005"
             ],
             "acceptance": [
               "AC-TA8-004"
             ],
-            "expected_result": "WP-TA-107 is complete and WP-TA-105 becomes frontier.",
+            "expected_result": "WP-TA-107 is either evidence-backed complete or retains an exact residual gap; no credit is awarded from activity alone.",
             "stop_if": [
-              "Any protected invariant or exact-head regression fails."
+              "Any acceptance/quality/exact-head/delivery correlation requirement is unresolved."
             ]
           }
         ]
       },
-      "issues": [],
+      "issues": [
+        {
+          "id": "ISSUE-159",
+          "engineering_state": "ACTIVE",
+          "github_state": "OPEN",
+          "issue_number": 159,
+          "issue_id": 5517410594,
+          "url": "https://github.com/reallaksh19/Grade9V3/issues/159"
+        }
+      ],
       "owner_decisions": [
         {
           "id": "ODR-0001-TOPIC-ATLAS-COMPLETION",
@@ -438,6 +711,18 @@
           "kind": "INTENT_MUTATION",
           "statement": "Make the remaining Grade-9 learner-loop work representation-first and routing-first. Questions are sparse exercises/fixtures, not a completeness denominator. Keep canonical representations separate from interactive explorers and from questions; keep starting support separate from post-failure hint depth; add only the minimum schema needed for staged visual hints and explicit representation/explorer binding; derive support/exercise routing from learner evidence without creating a mastery model.",
           "source": "Owner architecture instruction in the active Grade9V3 engineering session on 2026-09-20.",
+          "requirement_disposition": "NOT_APPLICABLE",
+          "grants_material_write_authority": false,
+          "pending_items": [],
+          "delivery_authorization": null
+        },
+        {
+          "id": "ODR-0005-ISSUE159-MOTHER-CONTRACT",
+          "path": "agents/relay/roadmap/owner-decisions/ODR-0005-ISSUE159-MOTHER-CONTRACT.yaml",
+          "status": "APPLIED",
+          "kind": "INTENT_MUTATION",
+          "statement": "Treat GitHub Issue #159 as the mother contract for WP-TA-107. Audit the already-landed EP-TA-008 implementation before further learner-runtime work, retain useful bounded implementation only as unaccepted evidence, and reconcile every router/support/transfer/presentation decision to the Issue #159 contract before acceptance.",
+          "source": "Owner instruction in the active Grade9V3 engineering session on 2026-09-20: https://github.com/reallaksh19/Grade9V3/issues/159 is the mother document and the previous agent's work must be audited before continuation.",
           "requirement_disposition": "NOT_APPLICABLE",
           "grants_material_write_authority": false,
           "pending_items": [],
