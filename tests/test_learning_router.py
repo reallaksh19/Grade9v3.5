@@ -55,6 +55,16 @@ class LearningRouterTest(unittest.TestCase):
         self.assertEqual(state["error_stage"], "EXECUTION")
         self.assertEqual(learning_router.posture_for(state), "REINFORCE")
 
+    def test_profile_snapshot_demonstration_cannot_become_ready(self):
+        routed = learning_router.decision({
+            "state": "DEMONSTRATED",
+            "source": "PROFILE_DIAGNOSTIC",
+            "help": None,
+            "error_stage": None,
+        })
+        self.assertEqual(routed["routing_posture"], "REINFORCE")
+        self.assertEqual(routed["starting_support"], "medium")
+
     def test_hinted_demonstration_cannot_become_ready(self):
         observation = {
             "observation_id": "OBS-ROUTER-2",

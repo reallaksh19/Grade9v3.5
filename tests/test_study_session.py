@@ -19,6 +19,19 @@ class StudySessionRunner(unittest.TestCase):
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
 
+    def nlm_friction_mapping(self):
+        return {
+            "worksheet_id": "WS-NLM-FRICTION-ROUTER",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+                "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+                "secondary_capability_refs": ["CAP-NLM-SECOND-LAW"],
+                "mapping_basis": "CANONICAL_QUESTION",
+                "canonical_question_ref": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            }],
+        }
+
     def test_human_subtopic_estimate_resolves_to_canonical_matrix(self):
         estimates, findings = study_session.resolve_estimates(
             "Physics",
@@ -716,6 +729,99 @@ class StudySessionRunner(unittest.TestCase):
         self.assertEqual(report["observation_draft"]["capability_ref"], "CAP-RELATIVE-V")
         self.assertEqual(report["review"]["next_review"], "2026-09-25")
         self.assertEqual(report["persistence"], "NOT_WRITTEN")
+
+    def test_session_next_step_surfaces_router_without_persisting_it(self):
+        independent = {
+            "state": "DEMONSTRATED",
+            "source": "DIRECT_ATTEMPT",
+            "observation_ref": "OBS-INDEPENDENT",
+            "when": "2026-09-20T12:00:00Z",
+            "help": "NONE",
+            "error_stage": None,
+        }
+        with patch.object(
+            study_session.worksheet_study_plan.learner_evidence,
+            "effective_state",
+            return_value=independent,
+        ):
+            report = study_session.plan(self.nlm_friction_mapping())
+
+        self.assertTrue(report["passed"], report["findings"])
+        step = report["next_step"]
+        self.assertEqual(step["capability_ref"], "CAP-NLM-FRICTION-QUANT")
+        self.assertEqual(step["routing_posture"], "READY")
+        self.assertEqual(step["starting_support"], "low")
+        self.assertEqual(step["exercise_demand"], "TRANSFER")
+        self.assertEqual(
+            step["initial_visual"]["visual_stage_ref"],
+            "VIS-NLM-FRICTION-V0",
+        )
+        self.assertEqual(step["routing_persistence"], "NOT_WRITTEN")
+
+    def test_starting_visual_does_not_consume_hint_ladder_and_repair_rejoins_verification(self):
+        mapping = self.nlm_friction_mapping()
+        plan = study_session.plan(mapping)
+        route = {row["capability_ref"]: row for row in plan["route"]}
+        friction = route["CAP-NLM-FRICTION-QUANT"]
+        self.assertEqual(friction["routing_posture"], "REINFORCE")
+        self.assertEqual(friction["starting_support"], "medium")
+        self.assertEqual(
+            friction["initial_visual"]["visual_stage_ref"],
+            "VIS-NLM-FRICTION-V1",
+        )
+
+        first = study_session.attempt(
+            mapping,
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            result="INCORRECT",
+            when="2026-09-20",
+            failed_capability_ref="CAP-NLM-FRICTION-QUANT",
+            error_stage="CONCEPT",
+            attempt_number=1,
+            shown_hint_indices=[],
+            response_summary="Used mu_s N immediately instead of finding required static friction.",
+        )
+        self.assertEqual(first["next_action"], "RETRY")
+        self.assertEqual(first["hint"]["index"], 0)
+        self.assertEqual(first["hint"]["visual_stage_ref"], "VIS-NLM-FRICTION-V2")
+        self.assertEqual(first["review"]["next_review"], "2026-09-21")
+
+        second = study_session.attempt(
+            mapping,
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            result="INCORRECT",
+            when="2026-09-20",
+            failed_capability_ref="CAP-NLM-FRICTION-QUANT",
+            error_stage="CONCEPT",
+            attempt_number=2,
+            shown_hint_indices=[0],
+            response_summary="Still treated the limiting value as the actual friction.",
+        )
+        self.assertEqual(second["next_action"], "RETRY")
+        self.assertEqual(second["hint"]["index"], 1)
+        self.assertEqual(second["hint"]["visual_stage_ref"], "VIS-NLM-FRICTION-V3")
+
+        repaired = study_session.attempt(
+            mapping,
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            result="INCORRECT",
+            when="2026-09-20",
+            failed_capability_ref="CAP-NLM-FRICTION-QUANT",
+            error_stage="CONCEPT",
+            attempt_number=3,
+            shown_hint_indices=[0, 1],
+            attempted_question_refs=["Q-PHY-NLM-2A-FRICTION-STATIC-09"],
+            response_summary="Needs reconstruction of the static-friction condition.",
+        )
+        self.assertEqual(repaired["next_action"], "REPAIR")
+        self.assertEqual(repaired["repair"]["repair_ref"], "NLM8-2")
+        self.assertEqual(repaired["after_repair"]["next_action"], "VERIFY")
+        self.assertNotEqual(
+            repaired["after_repair"]["verification"]["question_ref"],
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+        )
+        self.assertEqual(repaired["review"]["next_review"], "2026-09-21")
+
 
     def test_question_not_in_supplied_worksheet_is_refused(self):
         report = study_session.attempt(

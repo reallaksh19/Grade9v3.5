@@ -40,6 +40,10 @@ def posture_for(learner_state: dict) -> str:
     error_stage = learner_state.get("error_stage")
 
     if state == "DEMONSTRATED":
+        source = str(learner_state.get("source") or "")
+        help_used = learner_state.get("help")
+        if source.startswith("PROFILE_") or help_used not in {None, "NONE"}:
+            return REINFORCE
         return READY
     if state == "MISSING":
         if error_stage in PROCEDURAL_ERROR_STAGES:

@@ -554,6 +554,14 @@ def _next_step(study_plan: dict) -> dict | None:
             "reason": row.get("action_reason"),
             "external_provider": row.get("external_provider"),
             "acceptance_status": row.get("acceptance_status"),
+            "routing_posture": row.get("routing_posture"),
+            "starting_support": row.get("starting_support"),
+            "initial_visual": row.get("initial_visual"),
+            "recommended_explorer_ref": row.get("recommended_explorer_ref"),
+            "exercise_demand": row.get("exercise_demand"),
+            "exercise_question_ref": row.get("exercise_question_ref"),
+            "exercise_reason": row.get("exercise_reason"),
+            "routing_persistence": row.get("routing_persistence"),
         }
     return None
 
@@ -1043,6 +1051,22 @@ def readable_plan(report: dict) -> str:
         )
         if step.get("reason"):
             out.append(f'   {step["reason"]}')
+        if step.get("routing_posture"):
+            out.append(
+                f'   route: {step["routing_posture"]} / '
+                f'support {step.get("starting_support") or "unspecified"} / '
+                f'demand {step.get("exercise_demand") or "unspecified"}'
+            )
+        visual = step.get("initial_visual") or {}
+        if visual.get("representation_ref"):
+            out.append(
+                f'   visual: {visual.get("representation_ref")} -> '
+                f'{visual.get("visual_stage_ref") or "no initial stage"}'
+            )
+        if step.get("recommended_explorer_ref"):
+            out.append(f'   explorer: {step["recommended_explorer_ref"]}')
+        if step.get("exercise_question_ref"):
+            out.append(f'   exercise: {step["exercise_question_ref"]}')
 
     out += ["", "## Ordered study route", ""]
     for row in report.get("route", []):
