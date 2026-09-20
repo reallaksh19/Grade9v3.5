@@ -1,0 +1,212 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-008",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-004",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-004",
+    "ep_id": "EP-TA-004",
+    "ep_path": "agents/relay/execution-packages/EP-TA-004.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "4897e8983e5249e2daf0a8df7fe7022b05e8b834",
+    "ep_contract_digest": "sha256:5fce54781e855d2aaff032c96bbc92e0c3df383d16a2c8f718ed5cbf1a1516fb",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-003",
+      "path": "agents/relay/checkpoints/CP-TA-003.yaml",
+      "digest": "sha256:24a6e501c3a01ec490f29dcc4e4f908afebf3f19304fa83fb896ac35d2cc0210"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA4-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "ordinary Grade-9 production boundary",
+          "value": "Six ordinary production slices are explicit: 1D Motion, Force/Laws, Gravitation, Work-Energy-Power, Sound and Simple Machines. Vector material is support-only by default; relative motion is question-demand/declared extension; broader higher-grade families are deferred by default.",
+          "basis": [
+            "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+            "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+          ]
+        },
+        {
+          "name": "learner-specific school-demand boundary",
+          "value": "Pinnacle Terminal-1 confirms Vectors, Motion 1 D, Motion in 2 D and NLM at chapter level only. The machine micro-scope keeps chapter-internal school demand at MICRO_TO_CONFIRM unless school-issued evidence confirms the learner action.",
+          "basis": [
+            "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md",
+            "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+          ]
+        },
+        {
+          "name": "scope classification vocabulary",
+          "value": "Existing planning authority uses SYLLABUS_REQUIREMENT, QUESTION_DEMAND, PREREQUISITE, DECLARED_EXTENSION and DEFER; school-demand planning separately uses CHAPTER_CONFIRMED/MICRO_TO_CONFIRM and LOCAL_* capability states.",
+          "basis": [
+            "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+            "docs/grade9/TERMINAL1-PINNACLE-PHYSICS-MICRO-SCOPE.md"
+          ]
+        }
+      ],
+      "basis": [
+        "current Grade-9 scope and Terminal-1 planning docs"
+      ],
+      "conversation_context_used": false
+    },
+    {
+      "id": "DSTEP-TA4-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "matrix and library inventory counts",
+          "value": "Repository tree readback at the execution basis contains 20 Physics matrix JSON files and 20 Physics library package JSON files.",
+          "basis": [
+            "GitHub tree readback at 4897e8983e5249e2daf0a8df7fe7022b05e8b834"
+          ]
+        },
+        {
+          "name": "scope candidates from existing evidence",
+          "value": "Current evidence already identifies the six ordinary Grade-9 matrices; vector representation/add-sub as support, relative motion as extension/question-demand, Motion2D/NLM preparation as demand-gated where school micro-scope is unconfirmed, and electricity/magnetism/optics/thermo/rotation/SHM/broad fluids as later/deferred by default.",
+          "basis": [
+            "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+            "docs/grade9/terminal1-pinnacle-physics.micro-scope.json",
+            "Physics/matrices/"
+          ]
+        },
+        {
+          "name": "unclassified or conflicting entries",
+          "value": "No automatic grade classification exists for all 20 matrices, by design. The key reconciliation cases are locally prepared Motion2D/NLM extensions whose external question demand is confirmed while school micro-demand remains unconfirmed; the derived audit must keep both facts.",
+          "basis": [
+            "docs/grade9/terminal1-pinnacle-physics.micro-scope.json",
+            "docs/grade9/G9-PINNACLE-MOTION2D-EXAMSIDE-AUTHORING-AUDIT.md"
+          ]
+        }
+      ],
+      "basis": [
+        "Physics/matrices/",
+        "Physics/library/",
+        "Grade-9 scope docs"
+      ]
+    },
+    {
+      "id": "DSTEP-TA4-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "core prerequisite baseline",
+          "value": "Per-slice audits and current matrices already remove several false broad dependencies and require prerequisite refs to be justified locally; a single consolidated six-slice closure does not yet exist and is an intended output of this work package.",
+          "basis": [
+            "docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md",
+            "docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md",
+            "Physics/matrices/"
+          ]
+        },
+        {
+          "name": "support versus extension edges",
+          "value": "Vector capabilities are support/prerequisite or question-demand; relative motion and pseudo-force/momentum-transfer style capabilities are non-default or explicit-demand paths. They must not become ordinary completion blockers without evidence.",
+          "basis": [
+            "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+            "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+          ]
+        },
+        {
+          "name": "unresolved prerequisite questions",
+          "value": "The successor must consolidate prerequisite closure across all six ordinary slices and retain any unknown/ambiguous ownership explicitly; no unresolved dependency is assumed demonstrated or required during takeover.",
+          "basis": [
+            "RM-0006 WP-TA-103 exit evidence",
+            "current matrix/library corpus"
+          ]
+        }
+      ],
+      "basis": [
+        "Grade-9 audits",
+        "Physics/matrices/",
+        "Physics/library/"
+      ]
+    },
+    {
+      "id": "DSTEP-TA4-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "source-backed scope claims",
+          "value": "The current scope document and per-slice audits carry explicit source/curriculum evidence where available; Simple Machines is explicitly described as direct current Grade-9 scope, while the Terminal-1 portion transcription is chapter-level authority only.",
+          "basis": [
+            "docs/grade9/G9-6-SIMPLE-MACHINES-AUTHORING-AUDIT.md",
+            "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md"
+          ]
+        },
+        {
+          "name": "question-demand-only claims",
+          "value": "Owner-approved ExamSIDE slices justify bounded preparation capabilities such as vector decomposition and Motion2D/projectile modelling without changing Pinnacle school_micro_demand.",
+          "basis": [
+            "docs/grade9/G9-PINNACLE-MOTION2D-EXAMSIDE-AUTHORING-AUDIT.md",
+            "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+          ]
+        },
+        {
+          "name": "claims that remain unknown or deferred",
+          "value": "Unprinted school microtopics remain MICRO_TO_CONFIRM; broader higher-grade Physics and unverified connected content stay deferred unless a current source, approved question demand or true prerequisite provides a bounded basis.",
+          "basis": [
+            "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+            "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md"
+          ]
+        }
+      ],
+      "basis": [
+        "Grade-9 source/demand/audit docs",
+        "Sources/receipts/"
+      ]
+    },
+    {
+      "id": "DSTEP-TA4-005",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 provider readback"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Successor discovery observed 4897e8983e5249e2daf0a8df7fe7022b05e8b834; the coordination commit containing this receipt descends from that head.",
+          "basis": [
+            "PR #148/Git history"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "4897e8983e5249e2daf0a8df7fe7022b05e8b834 is the successor material basis and is an ancestor of the coordination commit.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "main remains 194791528cd3a69b30aced1480aee3254293dfe0, matching the successor base_observed_ref; no drift receipt is required at takeover.",
+          "basis": [
+            "GitHub main branch readback",
+            "successor Git basis"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub branch/PR/main readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

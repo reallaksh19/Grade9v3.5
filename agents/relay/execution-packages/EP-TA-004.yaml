@@ -1,0 +1,1171 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-004",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "4897e8983e5249e2daf0a8df7fe7022b05e8b834",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-003",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "4897e8983e5249e2daf0a8df7fe7022b05e8b834",
+    "base_branch": "main",
+    "base_observed_ref": "194791528cd3a69b30aced1480aee3254293dfe0",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-103",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "A single derived Grade-9 Physics scope view shows what is required now, what is only a prerequisite or question-driven extension, what belongs later, and what evidence is still missing.",
+      "Grade-9 completion can be discussed without treating repository breadth, chapter names, rough percentages or local readiness as learner mastery."
+    ],
+    "engineering": [
+      "Every current Physics matrix/library area relevant to Grade-9 progression is classified against existing scope authority with an explicit basis.",
+      "The audit reuses current source/demand/prerequisite contracts and does not change canonical Physics content, learner state, or matrix schemas."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Make the Grade-9 Physics boundary auditable before any learner-loop or Grade-10 transition work.",
+    "roadmap_position": "Grade-9 Physics self-study completion / scope and capability boundary audit",
+    "why_this_work_exists": "The ordinary Grade-9 authoring pass is complete, but the repository contains broader Physics material and a learner-specific Terminal-1 overlay. The next step is to distinguish required Grade-9 scope, genuine prerequisites, question-driven additions, enrichment, later-grade content and unknown school micro-demand without inventing curriculum truth.",
+    "current_architecture": "Canonical Physics capability/library records and rung matrices already exist. Grade/course authority is carried by source, curriculum-mapping, supplied-syllabus and planning layers; matrices are pedagogical structures, not curriculum authority. The Terminal-1 overlay separately tracks school demand and local capability state.",
+    "prior_owner_decisions": [
+      "Physics progression is Grade 9, then Grade 10, then Grade 11; Grade 9 remains first.",
+      "Use existing learner/session machinery before adding architecture.",
+      "Unknown evidence stays unknown; rough knowledge percentages are routing coordinates only.",
+      "Do not require optional enrichment or later-grade sophistication before a justified Grade-10 transition."
+    ],
+    "current_implementation_state": "The repository has 20 Physics matrix files and 20 Physics library packages. Existing Grade-9 authority documents identify six ordinary production slices, support-only vector material, question-demand/extension routes and deferred higher-grade areas; the Pinnacle Terminal-1 layer confirms four chapter labels while preserving unconfirmed micro-demand.",
+    "known_problems": [
+      "Repository breadth spans multiple grades and advanced preparation; existence or connectivity does not make a capability required Grade 9.",
+      "The standard Grade-9 authoring pass being complete is not learner mastery or Grade-exit evidence.",
+      "Pinnacle Terminal-1 chapter names are confirmed, but many chapter-internal school micro-demands remain unconfirmed even where local teaching or external question-demand preparation exists."
+    ],
+    "deliberate_non_goals": [
+      "Do not add grade/class fields or new curriculum-authority enums to canonical matrix schemas.",
+      "Do not edit canonical Physics academic meaning in this scope-audit work package.",
+      "Do not infer learner mastery from scope coverage, local readiness or rough percentages.",
+      "Do not begin Grade-10 authoring or pull higher-grade Physics downward for completeness."
+    ],
+    "terminology": {
+      "required Grade-9 scope": "A learner action supported by verified Grade-9 source/syllabus authority for the active programme.",
+      "question-driven addition": "A bounded learner action justified by a real approved question source without being misreported as school curriculum.",
+      "genuine prerequisite": "A capability actually required to perform a Grade-9 learner action, checked locally at the point of need.",
+      "later or deferred": "Connected material that lacks current Grade-9 scope, prerequisite or approved question-demand authority."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA4-001",
+      "action": "INSPECT",
+      "targets": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md",
+        "docs/grade9/TERMINAL1-PINNACLE-PHYSICS-MICRO-SCOPE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json",
+        "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md"
+      ],
+      "question": "What Grade-9 production, school-demand and authority boundaries are already explicit in repository evidence?",
+      "expected_outputs": [
+        "ordinary Grade-9 production boundary",
+        "learner-specific school-demand boundary",
+        "scope classification vocabulary"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop; do not invent a Grade-9 boundary if the existing authority documents cannot be reconciled."
+    },
+    {
+      "id": "DSTEP-TA4-002",
+      "action": "LOCATE",
+      "targets": [
+        "Physics/matrices/",
+        "Physics/library/"
+      ],
+      "question": "What Physics matrices and canonical packages exist, and which are already clearly core, support, extension or later/deferred candidates under current scope evidence?",
+      "expected_outputs": [
+        "matrix and library inventory counts",
+        "scope candidates from existing evidence",
+        "unclassified or conflicting entries"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop; produce the inventory before claiming coverage completeness."
+    },
+    {
+      "id": "DSTEP-TA4-003",
+      "action": "TRACE",
+      "targets": [
+        "Physics/matrices/",
+        "Physics/library/",
+        "docs/grade9/G9-*-AUTHORING-AUDIT.md"
+      ],
+      "question": "What prerequisite/support edges serve the six ordinary Grade-9 slices, and which connected edges are extension-only or still unresolved?",
+      "expected_outputs": [
+        "core prerequisite baseline",
+        "support versus extension edges",
+        "unresolved prerequisite questions"
+      ],
+      "receipt_required": true,
+      "on_failure": "Keep unresolved prerequisite questions visible instead of treating them as held or required."
+    },
+    {
+      "id": "DSTEP-TA4-004",
+      "action": "VERIFY",
+      "targets": [
+        "docs/grade9/",
+        "Sources/receipts/",
+        "Physics/library/"
+      ],
+      "question": "Which scope claims are source-backed, which are only approved question demand, and which must remain unknown/deferred?",
+      "expected_outputs": [
+        "source-backed scope claims",
+        "question-demand-only claims",
+        "claims that remain unknown or deferred"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not promote a scope claim without its evidence class and basis."
+    },
+    {
+      "id": "DSTEP-TA4-005",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the execution branch and base still satisfy this package's Git basis before derived scope files are written?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile branch/base drift before material writes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA4-001",
+      "name": "Owner Grade-9-first progression outcome",
+      "description": "Programme outcome and progression order already applied to the current roadmap.",
+      "authority": "OWNER",
+      "source": "current roadmap Owner decision",
+      "value": "Complete enough Grade-9 Physics scope/evidence first; Grade 10 follows only after a justified transition basis.",
+      "type": "owner requirement",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA4-001",
+        "STEP-TA4-003",
+        "AC-TA4-001",
+        "AC-TA4-003"
+      ],
+      "validation": [
+        "Current roadmap states Physics Grade 9 -> Grade 10 -> Grade 11 and Grade 9 first."
+      ],
+      "stale_if": [
+        "Owner changes the progression order or completion outcome."
+      ]
+    },
+    {
+      "id": "INPUT-TA4-002",
+      "name": "Current Grade-9 Physics authoring scope",
+      "description": "Existing repository authority for ordinary Grade-9 production categories and anti-drift rules.",
+      "authority": "REPOSITORY_SCOPE",
+      "source": "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+      "resolution_method": "Read current scope vocabulary, six production slices, support/extension boundaries and completion conditions.",
+      "type": "scope authority",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA4-001",
+        "STEP-TA4-002",
+        "AC-TA4-001",
+        "AC-TA4-002"
+      ],
+      "validation": [
+        "Scope document explicitly distinguishes syllabus requirement, question demand, prerequisite, declared extension and defer; matrices are not curriculum authority."
+      ],
+      "stale_if": [
+        "The Grade-9 scope document changes before the audit is materialized."
+      ]
+    },
+    {
+      "id": "INPUT-TA4-003",
+      "name": "Current Physics canonical corpus",
+      "description": "Current Physics library packages and rung matrices whose scope placement must be audited without changing their academic meaning.",
+      "authority": "CANONICAL_REPOSITORY",
+      "source": "Physics/library/; Physics/matrices/",
+      "resolution_method": "Enumerate all current JSON package/matrix files and inspect capability/prerequisite/source metadata.",
+      "type": "canonical content inventory",
+      "units": "20 matrix files / 20 library packages observed at takeover",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA4-001",
+        "STEP-TA4-002",
+        "STEP-TA4-004",
+        "AC-TA4-001",
+        "AC-TA4-004"
+      ],
+      "validation": [
+        "Repository tree readback found 20 Physics matrices and 20 Physics library packages at the execution basis."
+      ],
+      "stale_if": [
+        "Physics/library or Physics/matrices changes before the audit is written."
+      ]
+    },
+    {
+      "id": "INPUT-TA4-004",
+      "name": "Learner-specific Terminal-1 demand evidence",
+      "description": "School chapter boundary plus local planning crosswalk that intentionally separates school demand from local readiness/question-demand.",
+      "authority": "OWNER_SUPPLIED_SCHOOL_EVIDENCE",
+      "source": "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md; docs/grade9/terminal1-pinnacle-physics.micro-scope.json",
+      "resolution_method": "Use CHAPTER_CONFIRMED versus MICRO_TO_CONFIRM separately from LOCAL_* and external question-demand fields.",
+      "type": "school demand evidence",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA4-003",
+        "AC-TA4-003"
+      ],
+      "validation": [
+        "Portion transcription names Vectors, Motion 1 D, Motion in 2 D and NLM only; the micro-scope preserves chapter-internal demand as unconfirmed unless school evidence exists."
+      ],
+      "stale_if": [
+        "New school workbook, revision sheet, sample paper or teacher topic evidence is added."
+      ]
+    },
+    {
+      "id": "INPUT-TA4-005",
+      "name": "Repository engineering constraints",
+      "description": "Existing protected domains and rules that prevent scope auditing from mutating canonical academic truth or learner evidence.",
+      "authority": "REPOSITORY_PROFILE",
+      "source": "agents/relay/REPO_PROFILE.yaml",
+      "resolution_method": "Apply protected-domain and repository-rule constraints to every proposed write.",
+      "type": "engineering guardrails",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA4-004",
+        "AC-TA4-004"
+      ],
+      "validation": [
+        "Canonical subject truth is protected unless explicitly authorized; knowledge percentage remains routing-only."
+      ],
+      "stale_if": [
+        "Repository profile protected domains or rules change."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA4-001",
+      "name": "Frozen Grade-9 scope baseline",
+      "purpose": "Falsify any derived coverage view that broadens ordinary Grade-9 scope merely because content exists.",
+      "source": "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md; Grade-9 authoring audits",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "ordinary_core": [
+          "MATRIX-PHY-KIN-1D-MOTION",
+          "MATRIX-PHY-NLM-FIRST-LAW",
+          "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "MATRIX-PHY-WORK-ENERGY-POWER",
+          "MATRIX-PHY-SOUND",
+          "MATRIX-PHY-SIMPLE-MACHINES"
+        ],
+        "support_only": [
+          "MATRIX-PHY-VECTOR-REPRESENTATION",
+          "MATRIX-PHY-VEC-ADD-SUB"
+        ],
+        "extension_or_question_demand": [
+          "MATRIX-PHY-RELATIVE-MOTION"
+        ],
+        "defer_by_default": [
+          "rotation",
+          "thermodynamics",
+          "SHM/waves",
+          "electricity",
+          "magnetism",
+          "optics",
+          "broad fluids/Bernoulli"
+        ]
+      },
+      "expected": "The derived scope view preserves these default boundaries unless a more specific current source, approved real-question demand or true prerequisite provides an explicit contrary basis.",
+      "tolerance": null,
+      "independence": "The baseline comes from the existing Grade-9 scope freeze and per-slice audits, not from the new derived output.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA4-001",
+        "AC-TA4-002",
+        "TEST-TA4-001",
+        "TEST-TA4-002"
+      ],
+      "stale_if": [
+        "The governing Grade-9 scope freeze or per-slice audit authority changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA4-002",
+      "name": "Chapter title is not micro-scope",
+      "purpose": "Prevent learner-specific school chapter confirmation from being expanded into invented subtopic requirements.",
+      "source": "Terminal-1 portion transcription and machine-readable micro-scope",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "chapters": [
+          "Vectors",
+          "Motion 1 D",
+          "Motion in 2 D",
+          "NLM"
+        ],
+        "school_demand": "CHAPTER_CONFIRMED",
+        "default_micro_demand": "MICRO_TO_CONFIRM"
+      },
+      "expected": "Local readiness or external question-demand preparation may be recorded, but school micro-demand remains unconfirmed until school-issued evidence explicitly names the learner action.",
+      "tolerance": null,
+      "independence": "The school portion transcription is separate from local capability/readiness state.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA4-003",
+        "TEST-TA4-003"
+      ],
+      "stale_if": [
+        "New school-issued microtopic evidence is added."
+      ]
+    },
+    {
+      "id": "BENCH-TA4-003",
+      "name": "Connected higher-grade content stays out",
+      "purpose": "Prevent dependency/ontology connectedness from pulling later Physics into Grade 9.",
+      "source": "Current Grade-9 scope anti-drift rules plus broader Physics matrix inventory",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "payload": [
+        "electricity",
+        "magnetism",
+        "optics",
+        "thermodynamics",
+        "rigid-body rotation",
+        "SHM/waves",
+        "broad Bernoulli/fluid material"
+      ],
+      "expected": "Each remains later/deferred unless the audit records a specific current Grade-9 source, approved question demand, or genuine prerequisite basis for a bounded slice.",
+      "tolerance": null,
+      "independence": "The falsifier starts from broader repository content specifically listed outside the ordinary Grade-9 queue.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA4-001",
+        "AC-TA4-002",
+        "TEST-TA4-002"
+      ],
+      "stale_if": [
+        "A verified current Grade-9 source or real approved demand promotes one of these bounded areas."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "reason": "Human-readable derived scope/coverage audit for the current Grade-9 boundary."
+      },
+      {
+        "path": "docs/grade9/grade9-physics-scope-coverage.json",
+        "reason": "Machine-readable derived classification/evidence view; not curriculum or learner-state authority."
+      },
+      {
+        "path": "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "reason": "Only correct an inconsistency discovered during reconciliation; do not broaden curriculum claims."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "Governed execution, quality, checkpoint, progress and successor coordination."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Physics/library/",
+        "reason": "Read canonical capability, prerequisite and source metadata without changing academic meaning."
+      },
+      {
+        "path": "Physics/matrices/",
+        "reason": "Read current matrix/rung placement and prerequisite edges."
+      },
+      {
+        "path": "docs/grade9/",
+        "reason": "Read Grade-9 authoring audits, school-demand planning and source-boundary evidence."
+      },
+      {
+        "path": "Sources/receipts/",
+        "reason": "Check source-custody evidence where a scope claim depends on a current source."
+      },
+      {
+        "path": "agents/relay/roadmap/",
+        "reason": "Read the current programme outcome and progress basis."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Canonical Physics academic meaning in Physics/library and Physics/matrices remains unchanged.",
+        "reason": "This work package classifies existing content; it does not authorize subject-content mutation."
+      },
+      {
+        "invariant": "School demand, approved external question demand, local capability readiness and learner evidence remain separate evidence domains.",
+        "reason": "Combining them would fabricate curriculum or mastery claims."
+      },
+      {
+        "invariant": "Unknown or missing scope evidence remains unknown/deferred.",
+        "reason": "Coverage pressure must not silently convert absence of evidence into required scope or mastery."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Shared learner/runtime/schema changes",
+        "reason": "The scope audit should reuse existing contracts and must not become a new adaptive-learning architecture."
+      },
+      {
+        "domain": "Grade-10 or Grade-11 authoring",
+        "reason": "The Owner sequence keeps Grade 9 first until the transition basis is justified."
+      },
+      {
+        "domain": "New mastery percentage, grade-state or curriculum-authority database",
+        "reason": "The result is a derived evidence view, not a second truth store."
+      },
+      {
+        "domain": "Canonical Physics library/matrix edits",
+        "reason": "Any academic-content change requires a separately justified bounded execution package."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA4-001",
+        "restriction": "Do not classify all 20 Physics matrices/packages as Grade 9 because they exist or connect to Grade-9 topics.",
+        "reason": "Repository breadth spans multiple grades and extensions."
+      },
+      {
+        "id": "ADR-TA4-002",
+        "restriction": "Do not turn CHAPTER_CONFIRMED, local readiness or approved external question demand into school-confirmed micro-scope.",
+        "reason": "The Terminal-1 planning layer intentionally separates those evidence classes."
+      },
+      {
+        "id": "ADR-TA4-003",
+        "restriction": "Do not create or edit canonical capabilities to make the scope table look complete.",
+        "reason": "A real gap must remain visible for a later content-authoring decision."
+      },
+      {
+        "id": "ADR-TA4-004",
+        "restriction": "Do not infer learner mastery or Grade-9 exit readiness from scope coverage.",
+        "reason": "Learner observations and independent verification are separate later evidence."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA4-001",
+        "condition": "Physics/library, Physics/matrices or the governing Grade-9 scope document changes before the derived audit is written.",
+        "effect": "RECONCILE",
+        "rationale": "Classification must use the current canonical/source corpus."
+      },
+      {
+        "id": "STALE-TA4-002",
+        "condition": "New school-issued Terminal-1 microtopic evidence arrives.",
+        "effect": "RECONCILE",
+        "rationale": "School-demand classifications must incorporate the new direct evidence."
+      },
+      {
+        "id": "STALE-TA4-003",
+        "condition": "Owner changes the Grade-9-first progression outcome.",
+        "effect": "OWNER_REVIEW",
+        "rationale": "The audit boundary is defined by the current Owner programme sequence."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA4-001",
+      "objective": "Inventory current Physics scope and produce one derived classification view with explicit evidence basis.",
+      "targets": [
+        "Physics/matrices/",
+        "Physics/library/",
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "reads": [
+        "Physics/matrices/",
+        "Physics/library/",
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md"
+      ],
+      "writes": [
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "inputs": [
+        "INPUT-TA4-001",
+        "INPUT-TA4-002",
+        "INPUT-TA4-003"
+      ],
+      "acceptance": [
+        "AC-TA4-001",
+        "AC-TA4-002"
+      ],
+      "tests": [
+        "TEST-TA4-001",
+        "TEST-TA4-002"
+      ],
+      "expected_state": "Every current Physics matrix/package area relevant to Grade-9 progression has one explicit classification and basis, with unclassified/unknown rows visible.",
+      "stop_conditions": [
+        "Stop if a classification cannot be supported by existing scope/source/question/prerequisite evidence; record it as unknown instead."
+      ]
+    },
+    {
+      "id": "STEP-TA4-002",
+      "objective": "Audit true prerequisite/support edges for the six ordinary Grade-9 slices without treating extensions as completion blockers.",
+      "targets": [
+        "six ordinary Grade-9 matrices",
+        "support vector/relative-motion routes",
+        "derived scope coverage files"
+      ],
+      "reads": [
+        "Physics/matrices/",
+        "Physics/library/",
+        "docs/grade9/G9-*-AUTHORING-AUDIT.md"
+      ],
+      "writes": [
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "inputs": [
+        "INPUT-TA4-002",
+        "INPUT-TA4-003"
+      ],
+      "acceptance": [
+        "AC-TA4-002",
+        "AC-TA4-003"
+      ],
+      "tests": [
+        "TEST-TA4-002",
+        "TEST-TA4-003"
+      ],
+      "expected_state": "Required Grade-9 capabilities, genuine prerequisites, support-only material and non-blocking extensions/later-grade content are separable in the derived view.",
+      "stop_conditions": [
+        "Stop and expose any unresolved prerequisite reference or ambiguous ownership instead of assuming the dependency is satisfied."
+      ]
+    },
+    {
+      "id": "STEP-TA4-003",
+      "objective": "Reconcile learner-specific Terminal-1 school demand with local readiness and approved external question-demand evidence without conflation.",
+      "targets": [
+        "Terminal-1 portion/micro-scope files",
+        "derived scope coverage files"
+      ],
+      "reads": [
+        "docs/grade9/sources/TERMINAL1-PORTION-SHEET-2026-27.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json",
+        "docs/grade9/*EXAMSIDE*"
+      ],
+      "writes": [
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "inputs": [
+        "INPUT-TA4-001",
+        "INPUT-TA4-004"
+      ],
+      "acceptance": [
+        "AC-TA4-001",
+        "AC-TA4-003"
+      ],
+      "tests": [
+        "TEST-TA4-001",
+        "TEST-TA4-003"
+      ],
+      "expected_state": "Chapter-confirmed, school-micro-confirmed, approved external question demand, local capability state and unknown evidence remain separately visible.",
+      "stop_conditions": [
+        "Stop if a row would promote school micro-demand without school-issued evidence."
+      ]
+    },
+    {
+      "id": "STEP-TA4-004",
+      "objective": "Verify the audit is derived-only, complete against the current corpus, and regression-safe.",
+      "targets": [
+        "derived scope coverage files",
+        "git diff",
+        "repository guardrails"
+      ],
+      "reads": [
+        "all audit inputs",
+        "current diff",
+        "validation evidence"
+      ],
+      "writes": [
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA4-003",
+        "INPUT-TA4-005"
+      ],
+      "acceptance": [
+        "AC-TA4-004"
+      ],
+      "tests": [
+        "TEST-TA4-001",
+        "TEST-TA4-004"
+      ],
+      "expected_state": "The scope evidence is internally consistent, every current matrix is accounted for, protected academic/runtime files are untouched and repository checks are green.",
+      "stop_conditions": [
+        "Stop if the audit requires canonical content/schema changes; open a later bounded work package instead of widening this one."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Build the derived Grade-9 Physics scope inventory from the current scope documents and all current Physics matrix/library records.",
+        "targets": [
+          "Grade-9 scope coverage report",
+          "machine-readable scope coverage"
+        ],
+        "inputs": [
+          "INPUT-TA4-001",
+          "INPUT-TA4-002",
+          "INPUT-TA4-003"
+        ],
+        "tests": [
+          "TEST-TA4-001",
+          "TEST-TA4-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA4-001",
+          "BENCH-TA4-003"
+        ],
+        "acceptance": [
+          "AC-TA4-001",
+          "AC-TA4-002"
+        ],
+        "expected_result": "Every relevant Physics area has one evidence-backed Grade-9/prerequisite/question-demand/extension/later-or-unknown classification.",
+        "stop_if": [
+          "A row cannot be classified from current evidence; keep it unknown rather than infer scope."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Audit prerequisite and support edges for the six ordinary Grade-9 slices so extensions and later-grade material cannot become hidden completion blockers.",
+        "targets": [
+          "six ordinary Grade-9 slices",
+          "support and extension edges",
+          "scope coverage outputs"
+        ],
+        "inputs": [
+          "INPUT-TA4-002",
+          "INPUT-TA4-003"
+        ],
+        "tests": [
+          "TEST-TA4-002",
+          "TEST-TA4-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA4-001",
+          "BENCH-TA4-003"
+        ],
+        "acceptance": [
+          "AC-TA4-002",
+          "AC-TA4-003"
+        ],
+        "expected_result": "True prerequisites are explicit and local; support-only, extension and later-grade material are visibly non-blocking unless current evidence says otherwise.",
+        "stop_if": [
+          "A prerequisite is unresolved or ambiguously owned; expose the uncertainty instead of assuming it."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Reconcile the learner-specific Terminal-1 chapter boundary without promoting unconfirmed school microtopics.",
+        "targets": [
+          "school-demand evidence",
+          "scope coverage outputs"
+        ],
+        "inputs": [
+          "INPUT-TA4-001",
+          "INPUT-TA4-004"
+        ],
+        "tests": [
+          "TEST-TA4-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA4-002"
+        ],
+        "acceptance": [
+          "AC-TA4-003"
+        ],
+        "expected_result": "School demand, approved question demand and local readiness stay distinct, with unknown micro-demand still visible.",
+        "stop_if": [
+          "A school-scope claim lacks school-issued evidence."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run the scope falsifiers and full repository guardrails, confirming the work stayed derived-only.",
+        "targets": [
+          "scope coverage outputs",
+          "protected-file diff",
+          "repository guardrails"
+        ],
+        "inputs": [
+          "INPUT-TA4-003",
+          "INPUT-TA4-005"
+        ],
+        "tests": [
+          "TEST-TA4-001",
+          "TEST-TA4-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA4-001",
+          "BENCH-TA4-002",
+          "BENCH-TA4-003"
+        ],
+        "acceptance": [
+          "AC-TA4-004"
+        ],
+        "expected_result": "All current Physics matrices are accounted for, protected academic/runtime files are unchanged, and the repository remains green.",
+        "stop_if": [
+          "Validation fails or completing the audit would require academic/schema mutation."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The slice defines a derived scope/evidence boundary across existing curriculum, question-demand and prerequisite sources.",
+        "review_focus": [
+          "single derived view",
+          "authority separation",
+          "no second truth store"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Coverage completeness and anti-promotion rules need falsifiers across all current Physics matrices.",
+        "review_focus": [
+          "20-matrix inventory",
+          "scope baseline",
+          "chapter-title falsifier",
+          "protected-file diff"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "A documentation/data audit can still fabricate curriculum authority or hidden completion blockers if classifications are not grounded.",
+        "review_focus": [
+          "basis per classification",
+          "unknown preservation",
+          "prerequisite versus extension"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "The successor stays on the governed draft PR branch and must preserve checkpoint/PR custody without inventing a new Issue ownership edge.",
+        "review_focus": [
+          "checkpoint continuity",
+          "exact-head checks",
+          "no false Issue correlation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "coding",
+        "reason": "No production code change is authorized.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No application user interface or learner interaction changes.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No rendered learner UI is changed.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical solver or calculation algorithm changes.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The derived scope corpus is small and no performance-sensitive path changes.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted runtime schema or learner-data migration is allowed.",
+        "review_focus": []
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA4-001",
+      "description": "Every current Physics matrix/package area relevant to Grade-9 progression is represented in one derived scope view with an explicit classification, evidence class and basis; unknowns are visible.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA4-001",
+        "BENCH-TA4-001",
+        "BENCH-TA4-003"
+      ]
+    },
+    {
+      "id": "AC-TA4-002",
+      "description": "The six ordinary Grade-9 Physics slices and their genuine prerequisites/support are separated from question-driven extensions, enrichment and later/deferred content so non-required material cannot gate Grade-9 completion.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA4-002",
+        "BENCH-TA4-001",
+        "BENCH-TA4-003"
+      ]
+    },
+    {
+      "id": "AC-TA4-003",
+      "description": "School chapter confirmation, school micro-demand, approved external question demand, local capability state and learner evidence remain distinct; no missing evidence is converted into scope or mastery.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA4-003",
+        "BENCH-TA4-002"
+      ]
+    },
+    {
+      "id": "AC-TA4-004",
+      "description": "The work is derived-only: canonical Physics library/matrix meaning, Shared runtime/schema and learner state are unchanged, and repository guardrails pass.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA4-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA4-001",
+      "class": "MUST_PASS",
+      "method": "Parse the machine-readable scope coverage and verify every current Physics matrix id is accounted for exactly once with classification/evidence/basis fields; compare inventory count with the live Physics/matrices directory.",
+      "proves": [
+        "AC-TA4-001",
+        "AC-TA4-004"
+      ]
+    },
+    {
+      "id": "TEST-TA4-002",
+      "class": "MUST_PASS",
+      "method": "Cross-check the six ordinary Grade-9 matrices, support vector routes, relative-motion extension and deferred higher-grade families against the governing scope document; trace prerequisite refs and flag unknown/ambiguous ownership rather than promoting it.",
+      "proves": [
+        "AC-TA4-001",
+        "AC-TA4-002"
+      ]
+    },
+    {
+      "id": "TEST-TA4-003",
+      "class": "MUST_PASS",
+      "method": "Verify Terminal-1 rows preserve separate school-demand, external-question-demand and local-capability dimensions; CHAPTER_CONFIRMED plus local readiness must not change MICRO_TO_CONFIRM without school-issued evidence.",
+      "proves": [
+        "AC-TA4-003"
+      ]
+    },
+    {
+      "id": "TEST-TA4-004",
+      "class": "MUST_PASS",
+      "method": "Diff the slice to prove there are no Physics/library, Physics/matrices, Shared runtime/schema or learner-state changes, then run the full repository guardrail workflow on the final head.",
+      "proves": [
+        "AC-TA4-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

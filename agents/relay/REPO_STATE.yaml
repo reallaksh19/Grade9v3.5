@@ -17,21 +17,21 @@
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TA-106",
+    "work_package": "WP-TA-103",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-003",
-    "path": "agents/relay/execution-packages/EP-TA-003.yaml",
+    "id": "EP-TA-004",
+    "path": "agents/relay/execution-packages/EP-TA-004.yaml",
     "state": "EXECUTABLE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-002",
-    "path": "agents/relay/checkpoints/CP-TA-002.yaml"
+    "id": "CP-TA-003",
+    "path": "agents/relay/checkpoints/CP-TA-003.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -43,23 +43,23 @@
   },
   "takeover_admissions": [
     {
-      "route_key": "SERIAL:EP-TA-003",
+      "route_key": "SERIAL:EP-TA-004",
       "candidate": {
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-007",
-        "path": "agents/relay/certifications/discovery/DISC-TA-007.yaml"
+        "id": "DISC-TA-008",
+        "path": "agents/relay/certifications/discovery/DISC-TA-008.yaml"
       },
       "certification": {
-        "id": "TC-TA-007",
-        "path": "agents/relay/certifications/takeover/TC-TA-007.yaml"
+        "id": "TC-TA-008",
+        "path": "agents/relay/certifications/takeover/TC-TA-008.yaml"
       }
     }
   ],
   "progress": {
-    "overall_percent": 45,
-    "phase_percent": 45,
+    "overall_percent": 50,
+    "phase_percent": 50,
     "ep_percent": 0,
     "basis_revision": "PB-0004"
   },
@@ -68,21 +68,21 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the owner-safe roadmap-first contract on the exact metadata head, then publish the quality review and checkpoint this slice."
+      "next_action": "Execute the Grade-9 Physics scope evidence audit: inventory current Physics content, classify it against existing Grade-9 authority, audit true prerequisites, and keep unconfirmed school micro-demand unknown."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "The formal EP-TA-003 quality review remains to be published before checkpoint."
+        "The new Grade-9 Physics scope-audit slice has not yet undergone its required quality review."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "The repository test suite is green for the roadmap-first changes. The active contract has been normalized so owner-visible purpose, risks and next work use plain language; exact-head V2.5 validation remains before checkpoint.",
+      "summary": "The roadmap-first slice is checkpointed complete. The Grade-9 Physics scope audit has fresh repository-only takeover evidence but its material validation has not yet run.",
       "not_run": [
         {
-          "id": "EP-TA-003-OWNER-VIEW-FINAL",
-          "reason": "The final owner-safe active contract and fresh candidate certification have not yet been observed by exact-head V2.5 validation.",
+          "id": "TEST-TA4-001..004",
+          "reason": "The Grade-9 Physics scope audit has not yet produced its derived coverage artifacts or final validation evidence.",
           "cause": "NOT_SCHEDULED"
         }
       ]
@@ -100,7 +100,7 @@
     "operation_id": null,
     "target": null,
     "roadmap_revision": "RM-0006",
-    "execution_ref": "EP-TA-003",
+    "execution_ref": "EP-TA-004",
     "receipt": null,
     "basis": []
   },
@@ -117,11 +117,7 @@
     "baton_ready": true,
     "projection_ready": true,
     "handover_ready": true,
-    "reasons": [
-      "The RM-0006 baton is repository-reconstructable and projection is not required.",
-      "DISC-TA-005 / TC-TA-005 bind the current logical candidate to the directly reconciled RM-0006 EP-TA-003 contract.",
-      "Material behavior is already green on 22f0139b6cf04f86aa90345af3d7a14d022a6b23; exact-head relay validation of the reconciled metadata remains before quality checkpoint."
-    ]
+    "reasons": []
   },
   "chat_context_required": false
 }
