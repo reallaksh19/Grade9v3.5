@@ -1303,19 +1303,27 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
                 self.assertIn(point, [f["point"] for f in
                                       depiction.findings(records, {"VECTOR": "IMPLEMENTED"})])
 
-    def test_no_unbuilt_kind_has_anything_waiting_on_it_today(self):
-        """The result, and it is a finding rather than a formality.
+    def test_unbuilt_kind_backlog_is_reported_without_claiming_a_renderer(self):
+        """Canonical visual truth may legitimately arrive before its static renderer.
 
-        R3.1 closed every FIGURE_AUTHORING, so no PROPOSED kind has a representation
-        waiting. Which renderer is worth building next is therefore decided by what the
-        next import brings in, not by the roadmap's list order -- and a renderer built
-        now could only be proven against a hand-authored fixture, which the figure layer
-        refuses.
+        Grade-9 NLM now owns two FREE_BODY_DIAGRAM representations that are implemented
+        by interactive ACTIVITY resources and staged hints, while the static depiction
+        contract still says FREE_BODY_DIAGRAM is PROPOSED. The priority report must make
+        that renderer backlog visible rather than forcing representation authoring to wait
+        or pretending a renderer exists.
         """
+        expected = {
+            "Physics": [{
+                "kind": "FREE_BODY_DIAGRAM",
+                "status": "PROPOSED",
+                "representations_waiting": 2,
+                "buckets_waiting": 1,
+            }],
+        }
         for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):
             report = depiction.audit(path.parent.parent)
             with self.subTest(subject=report["subject"]):
-                self.assertEqual(report["next_renderers"], [])
+                self.assertEqual(report["next_renderers"], expected.get(report["subject"], []))
 
     def test_the_report_ranks_by_what_is_waiting_not_by_name(self):
         # Reproduces, on a fixture, the judgement that had to be made by hand to choose
