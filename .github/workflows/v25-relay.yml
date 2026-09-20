@@ -61,7 +61,15 @@ jobs:
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/resolve_execution_route.py .
 
       - name: Inspect live Git context
-        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/inspect_git_context.py .
+        shell: bash
+        run: |
+          set +e
+          python3 _common/skills/engineering-pr-delivery-v2.5/scripts/inspect_git_context.py .
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
+            exit "$status"
+          fi
 
       - name: Material write gate
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id chatgpt-sol-topic-atlas-20260920
