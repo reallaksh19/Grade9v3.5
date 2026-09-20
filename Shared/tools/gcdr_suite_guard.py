@@ -99,6 +99,13 @@ def _schema_errors(instance: Any, schema: dict) -> list[str]:
     ]
 
 
+def _evidence_ref_exists(repo: Path, ref: str | None) -> bool:
+    if not ref:
+        return False
+    path_text = ref.split("#", 1)[0]
+    return bool(path_text) and (repo / path_text).is_file()
+
+
 def _external_dependencies(text: str) -> set[str]:
     return set(re.findall(r'(?:src|href)="(https?://[^"]+)"', text))
 
@@ -143,6 +150,25 @@ def findings(repo: Path = REPO) -> list[dict]:
         if any(row["suite"] == suite_id and row["point"] == "SUITE_SCHEMA_INVALID" for row in result):
             continue
 
+        if not _evidence_ref_exists(repo, suite["audit_evidence_ref"]):
+            add(suite_id, "MISSING_SUITE_AUDIT_EVIDENCE", suite["audit_evidence_ref"])
+
+        for invariant in suite["representation_invariants"]:
+            if not _evidence_ref_exists(repo, invariant["evidence_ref"]):
+                add(
+                    suite_id,
+                    "MISSING_REPRESENTATION_EVIDENCE",
+                    f"{invariant['id']}: {invariant['evidence_ref']}",
+                )
+
+        geometry = suite["geometry_truth_contract"]
+        if not _evidence_ref_exists(repo, geometry["evidence_ref"]):
+            add(
+                suite_id,
+                "MISSING_GEOMETRY_EVIDENCE",
+                geometry["evidence_ref"],
+            )
+
         helper_ids: set[str] = set()
         for helper in suite["helper_contracts"]:
             helper_id = helper.get("helper_id", "<missing>")
@@ -151,6 +177,14 @@ def findings(repo: Path = REPO) -> list[dict]:
             if helper_id in helper_ids:
                 add(suite_id, "DUPLICATE_HELPER_CONTRACT", helper_id)
             helper_ids.add(helper_id)
+            if helper.get("activation_status") == "AUDITED" and not _evidence_ref_exists(
+                repo, helper.get("evidence_ref")
+            ):
+                add(
+                    suite_id,
+                    "MISSING_HELPER_AUDIT_EVIDENCE",
+                    f"{helper_id}: {helper.get('evidence_ref')}",
+                )
 
         source = suite["diagnostic_source"]
         bank_path = repo / source["locator"]
