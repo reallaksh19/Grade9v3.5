@@ -38,7 +38,7 @@ def load_bank(path: Path, fmt: str) -> list[dict]:
     if fmt == "JSON":
         data = json.loads(text)
     elif fmt == "WINDOW_JEE_QUESTIONS_DATA_JS":
-        match = re.search(r"window\.JEE_QUESTIONS_DATA\s*=\s*(\[.*\])\s*;\s*$", text, re.S)
+        match = re.search(r"window\.JEE_QUESTIONS_DATA\s*=\s*(\[.*?\])\s*;", text, re.S)
         if not match:
             raise ValueError("cannot parse window.JEE_QUESTIONS_DATA")
         data = json.loads(match.group(1))
