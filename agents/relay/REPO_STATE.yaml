@@ -48,12 +48,12 @@
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-013",
-        "path": "agents/relay/certifications/discovery/DISC-TA-013.yaml"
+        "id": "DISC-TA-014",
+        "path": "agents/relay/certifications/discovery/DISC-TA-014.yaml"
       },
       "certification": {
-        "id": "TC-TA-013",
-        "path": "agents/relay/certifications/takeover/TC-TA-013.yaml"
+        "id": "TC-TA-014",
+        "path": "agents/relay/certifications/takeover/TC-TA-014.yaml"
       }
     }
   ],
@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the exact 25-question Grade-9 academic patch, then regenerate the learner-loop audit and close WP-TA-104 only if focused and full repository checks are green."
+      "next_action": "Validate the regenerated learner-loop audit, exact 7+18 question closure, generated artifacts and full repository suite; if green, quality-review/checkpoint WP-TA-104 and open Grade-9 exit-readiness work."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-006 has authored exactly 25 bounded canonical Grade-9 questions (7 Core2A + 18 Core2B) and added focused regression coverage. Exact-head package/compiler/full guardrail validation remains before learner-loop closure.",
+      "summary": "Post-patch readback shows 30/30 direct Core2A coverage and all 18 previously missing core transfer specifications executable. Generated web data is refreshed. Exact-head guardrails and V2.5 validation remain before checkpoint.",
       "not_run": [
         {
-          "id": "TEST-TA6-001..004",
-          "reason": "The newly authored canonical questions have not yet completed exact-head validation.",
+          "id": "EP-TA-006-FINAL-EXACT-HEAD",
+          "reason": "The regenerated learner-loop evidence and expanded generated-artifact scope have not yet been observed by exact-head checks.",
           "cause": "NOT_SCHEDULED"
         }
       ]

@@ -1,27 +1,72 @@
 {
   "schema_version": "grade9v3-grade9-physics-learner-loop-v1",
-  "status": "DERIVED_AUDIT",
+  "status": "LEARNER_LOOP_INVENTORY_CLOSED",
   "generated_from": {
     "repository": "reallaksh19/Grade9V3",
-    "material_basis": "ab6c3443b531bd92b22bfd1c91d93dd38fb4f05f",
+    "material_basis": "ffa7ac323c3e63ad5b89d05aaec661ec1812bef1",
     "roadmap_revision": "RM-0006",
-    "execution_package": "EP-TA-005"
+    "execution_package": "EP-TA-006"
   },
   "authority_boundary": {
-    "statement": "Derived learner-loop evidence only; this file does not create learner state, mastery probabilities, curriculum authority or canonical questions.",
-    "assisted_evidence": "DEMONSTRATED with HINT, WORKED_EXAMPLE or SOLUTION remains effectively UNCERTAIN for routing until independent verification.",
-    "ambiguity": "Multi-capability failure is not attributed until diagnosis distinguishes the failed capability.",
-    "repair": "Use the narrowest existing canonical teaching step or misconception repair, followed by a fresh verification item when available.",
-    "transfer": "Matrix transfer rows are authoring specifications for changed demand; they are not learner-executable Core2B questions by themselves."
+    "statement": "This is a derived system-capability audit. It proves the Grade-9 self-study loop can be executed from canonical content; it does not claim that a particular learner has demonstrated any capability.",
+    "assisted_evidence": "Help-assisted success remains weaker than independent demonstration under the existing learner-evidence contract.",
+    "transfer": "Transfer evidence requires changed demand; direct Core2B coverage is expected only where an authored transfer specification calls for it."
   },
   "totals": {
     "required_or_prerequisite_actions": 30,
     "with_teaching_path": 30,
     "with_misconception_repair": 30,
     "with_independent_exit_task": 30,
-    "with_direct_core2a_primary_practice": 23,
-    "with_direct_core2b_primary_transfer": 5
+    "with_direct_core2a_primary_practice": 30,
+    "previously_missing_core_transfer_specs_now_executable": 18,
+    "newly_authored_questions": 25,
+    "new_core2a_questions": 7,
+    "new_core2b_questions": 18
   },
+  "matrix_status": [
+    {
+      "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+      "required_actions": 5,
+      "direct_core2a": "5/5",
+      "canonical_core2b_questions": 5,
+      "transfer_status": "PREEXISTING_EXECUTABLE_BASELINE"
+    },
+    {
+      "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+      "required_actions": 6,
+      "direct_core2a": "6/6",
+      "canonical_core2b_questions": 16,
+      "transfer_status": "PREEXISTING_EXECUTABLE_BASELINE"
+    },
+    {
+      "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+      "required_actions": 4,
+      "direct_core2a": "4/4",
+      "canonical_core2b_questions": 4,
+      "transfer_status": "4/4 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
+    },
+    {
+      "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+      "required_actions": 7,
+      "direct_core2a": "7/7",
+      "canonical_core2b_questions": 6,
+      "transfer_status": "6/6 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
+    },
+    {
+      "matrix_id": "MATRIX-PHY-SOUND",
+      "required_actions": 5,
+      "direct_core2a": "5/5",
+      "canonical_core2b_questions": 5,
+      "transfer_status": "5/5 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
+    },
+    {
+      "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+      "required_actions": 3,
+      "direct_core2a": "3/3",
+      "canonical_core2b_questions": 3,
+      "transfer_status": "3/3 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
+    }
+  ],
   "runtime_findings": {
     "learner_evidence": "CLEAR_EXISTING_MECHANISM",
     "targeted_feedback_repair": "CLEAR_EXISTING_MECHANISM",
@@ -29,361 +74,13 @@
     "delayed_review": "CLEAR_EXISTING_MECHANISM",
     "learner_state_architecture_change_required": false
   },
-  "gaps": {
-    "direct_core2a_practice_count": 7,
-    "direct_core2a_practice": [
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "rung": "R2",
-        "capability_ref": "CAP-PHY-GRAV-INVERSE-SQUARE"
-      },
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "rung": "R3",
-        "capability_ref": "CAP-PHY-GRAV-FREE-FALL-G"
-      },
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "rung": "R3W",
-        "capability_ref": "CAP-PHY-GRAV-MASS-WEIGHT"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "rung": "R4",
-        "capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "rung": "R5",
-        "capability_ref": "CAP-SOUND-REFLECTION"
-      },
-      {
-        "matrix": "MATRIX-PHY-SIMPLE-MACHINES",
-        "rung": "R1",
-        "capability_ref": "CAP-MACHINE-TRADEOFF"
-      },
-      {
-        "matrix": "MATRIX-PHY-SIMPLE-MACHINES",
-        "rung": "R3",
-        "capability_ref": "CAP-MACHINE-COMPARE"
-      }
-    ],
-    "missing_executable_core2b_for_existing_core_transfer_specs_count": 18,
-    "missing_executable_core2b_for_existing_core_transfer_specs": [
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "repair_to": "R2",
-        "capability_ref": "CAP-PHY-GRAV-INVERSE-SQUARE",
-        "dimension": "model_choice",
-        "changed_demand": "A spherical source is shown with the receiver outside it, but the problem labels altitude above the surface instead of centre distance.",
-        "information_not_handed_over": "that the simple external Newtonian relation requires centre-to-centre r rather than altitude alone"
-      },
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "repair_to": "R1",
-        "capability_ref": "CAP-PHY-GRAV-R1",
-        "dimension": "representation_translation",
-        "changed_demand": "A projectile is moving upward near the same source: determine the gravitational-force direction without using its velocity direction.",
-        "information_not_handed_over": "that gravity direction follows source-receiver geometry and persists during upward motion"
-      },
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "repair_to": "R3",
-        "capability_ref": "CAP-PHY-GRAV-FREE-FALL-G",
-        "dimension": "model_choice",
-        "changed_demand": "Two different test masses are placed at the same point; compare local g and gravitational force before either is released.",
-        "information_not_handed_over": "that local g is source/location dependent while force additionally scales with the chosen test mass"
-      },
-      {
-        "matrix": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-        "repair_to": "R3W",
-        "capability_ref": "CAP-PHY-GRAV-MASS-WEIGHT",
-        "dimension": "reasoning_steps",
-        "changed_demand": "The same object has half the weight at a second location; infer the local-g ratio without changing the object's mass.",
-        "information_not_handed_over": "that W = m g permits solving for the g ratio while mass stays fixed"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R4",
-        "capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
-        "dimension": "model_choice",
-        "changed_demand": "A rough track replaces a frictionless one and the learner must decide whether simple mechanical-energy conservation still applies.",
-        "information_not_handed_over": "whether non-conservative work vanishes"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R1",
-        "capability_ref": "CAP-WEP-WORK-DIRECTION",
-        "dimension": "representation_translation",
-        "changed_demand": "A force-and-path diagram must be translated into signed work contributions before an energy balance can be written.",
-        "information_not_handed_over": "which force components are along the actual displacement"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R4",
-        "capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
-        "dimension": "reasoning_steps",
-        "changed_demand": "A moving support does work through its contact force, so the learner must include that external transfer before solving for the final kinetic energy.",
-        "information_not_handed_over": "whether the contact point itself moves along the force direction"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R5",
-        "capability_ref": "CAP-WEP-POWER-RATES",
-        "dimension": "novelty",
-        "changed_demand": "Two machines perform the same task with different time profiles and the learner must separate total work from average and instantaneous power.",
-        "information_not_handed_over": "which reported rate is tied to the whole interval rather than a single instant"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R6",
-        "capability_ref": "CAP-WEP-GRADE9-QUANT",
-        "dimension": "model_choice",
-        "changed_demand": "A numerical energy problem includes friction and the learner must decide whether to use mechanical-energy conservation alone or include an explicit transfer term.",
-        "information_not_handed_over": "whether the chosen K + U account is closed"
-      },
-      {
-        "matrix": "MATRIX-PHY-WORK-ENERGY-POWER",
-        "repair_to": "R5D",
-        "capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
-        "dimension": "reasoning_steps",
-        "changed_demand": "Instead of being given K = 0.5 m v^2 or Delta U_g = m g h, the learner must reconstruct each expression from previously authored work, force and motion relations.",
-        "information_not_handed_over": "which already-owned mechanics relations must be chained to derive the two energy expressions"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "repair_to": "R2",
-        "capability_ref": "CAP-SOUND-LONGITUDINAL",
-        "dimension": "representation_translation",
-        "changed_demand": "A compression/rarefaction description must be translated into local particle motion and propagation direction without drawing particles travelling with the wave.",
-        "information_not_handed_over": "which motion belongs to particles and which belongs to the disturbance"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "repair_to": "R4",
-        "capability_ref": "CAP-SOUND-PERCEPTION",
-        "dimension": "model_choice",
-        "changed_demand": "Frequency, amplitude and wavelength are all changed in a comparison, requiring separate pitch, loudness and speed reasoning rather than one 'bigger wave' judgment.",
-        "information_not_handed_over": "which physical quantity controls each percept/propagation relation"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "repair_to": "R5",
-        "capability_ref": "CAP-SOUND-REFLECTION",
-        "dimension": "novelty",
-        "changed_demand": "A cave-mapping or animal echolocation problem must be recognized as an ordinary reflected-sound round-trip timing problem.",
-        "information_not_handed_over": "that the measured delay contains both outward and return paths"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "repair_to": "R3",
-        "capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
-        "dimension": "representation_translation",
-        "changed_demand": "A sampled sound graph must be identified as spatial or temporal before the learner can decide whether horizontal repeat spacing means wavelength or period.",
-        "information_not_handed_over": "whether the horizontal axis is position or time"
-      },
-      {
-        "matrix": "MATRIX-PHY-SOUND",
-        "repair_to": "R4",
-        "capability_ref": "CAP-SOUND-PERCEPTION",
-        "dimension": "model_choice",
-        "changed_demand": "A frequency just outside the approximate human audible band must be classified using the Grade 9 hearing-range model without treating 20 Hz and 20,000 Hz as exact personal hearing thresholds.",
-        "information_not_handed_over": "that the quoted audible band is an approximate usual human-hearing model rather than a universal biological cutoff"
-      },
-      {
-        "matrix": "MATRIX-PHY-SIMPLE-MACHINES",
-        "repair_to": "R1",
-        "capability_ref": "CAP-MACHINE-TRADEOFF",
-        "dimension": "novelty",
-        "changed_demand": "An unfamiliar workshop tool must be analysed as a generic effort/load machine without being named as a lever, pulley or incline.",
-        "information_not_handed_over": "which familiar simple-machine label applies"
-      },
-      {
-        "matrix": "MATRIX-PHY-SIMPLE-MACHINES",
-        "repair_to": "R3",
-        "capability_ref": "CAP-MACHINE-COMPARE",
-        "dimension": "model_choice",
-        "changed_demand": "A fixed pulley changes force direction but not magnitude, requiring the learner to reject the assumption that all useful machines have MA > 1.",
-        "information_not_handed_over": "whether usefulness requires force multiplication"
-      },
-      {
-        "matrix": "MATRIX-PHY-SIMPLE-MACHINES",
-        "repair_to": "R1",
-        "capability_ref": "CAP-MACHINE-TRADEOFF",
-        "dimension": "reasoning_steps",
-        "changed_demand": "A force advantage is given and the learner must infer the compensating distance tradeoff before calculating or claiming an energy gain.",
-        "information_not_handed_over": "which input/output distances complete the work ledger"
-      }
-    ],
-    "bounded_academic_question_backlog": 25
+  "scope_guards": {
+    "gravitation_extension_transfer_rows_added": 0,
+    "motion_or_nlm_modified_for_closure": false,
+    "new_capabilities_or_microtopics": 0,
+    "new_matrix_rungs": 0,
+    "external_exam_identity_fabricated": false
   },
-  "matrices": [
-    {
-      "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
-      "required_capabilities": [
-        "CAP-KIN-DISTANCE-DISPLACEMENT",
-        "CAP-KIN-AVERAGE-RATES",
-        "CAP-KIN-MOTION-GRAPHS",
-        "CAP-KIN-CONSTANT-ACCELERATION",
-        "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
-      ],
-      "teaching": 5,
-      "repair": 5,
-      "exit": 5,
-      "practice": 5,
-      "transfer_primary": 2,
-      "missing_practice": [],
-      "missing_transfer_primary": [
-        "CAP-KIN-DISTANCE-DISPLACEMENT",
-        "CAP-KIN-AVERAGE-RATES",
-        "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
-      ],
-      "core_transfer_specs": 5,
-      "canonical_core2b_questions": 5,
-      "status": "EXECUTABLE_BASELINE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
-      "required_capabilities": [
-        "CAP-NLM-NET-ZERO-MOTION",
-        "CAP-NLM-FORCES-SUM-ZERO",
-        "CAP-NLM-FBD-BODY-OWNERSHIP",
-        "CAP-NLM-FRICTION",
-        "CAP-NLM-SECOND-LAW",
-        "CAP-NLM-THIRD-LAW"
-      ],
-      "teaching": 6,
-      "repair": 6,
-      "exit": 6,
-      "practice": 6,
-      "transfer_primary": 3,
-      "missing_practice": [],
-      "missing_transfer_primary": [
-        "CAP-NLM-NET-ZERO-MOTION",
-        "CAP-NLM-FORCES-SUM-ZERO",
-        "CAP-NLM-THIRD-LAW"
-      ],
-      "core_transfer_specs": 3,
-      "canonical_core2b_questions": 16,
-      "status": "EXECUTABLE_BASELINE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-      "required_capabilities": [
-        "CAP-PHY-GRAV-R1",
-        "CAP-PHY-GRAV-INVERSE-SQUARE",
-        "CAP-PHY-GRAV-FREE-FALL-G",
-        "CAP-PHY-GRAV-MASS-WEIGHT"
-      ],
-      "teaching": 4,
-      "repair": 4,
-      "exit": 4,
-      "practice": 1,
-      "transfer_primary": 0,
-      "missing_practice": [
-        "CAP-PHY-GRAV-INVERSE-SQUARE",
-        "CAP-PHY-GRAV-FREE-FALL-G",
-        "CAP-PHY-GRAV-MASS-WEIGHT"
-      ],
-      "missing_transfer_primary": [
-        "CAP-PHY-GRAV-R1",
-        "CAP-PHY-GRAV-INVERSE-SQUARE",
-        "CAP-PHY-GRAV-FREE-FALL-G",
-        "CAP-PHY-GRAV-MASS-WEIGHT"
-      ],
-      "core_transfer_specs": 4,
-      "canonical_core2b_questions": 0,
-      "status": "ACADEMIC_INVENTORY_GAP"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
-      "required_capabilities": [
-        "CAP-WEP-WORK-DIRECTION",
-        "CAP-WEP-NET-WORK-SIGN",
-        "CAP-WEP-POTENTIAL-ELIGIBILITY",
-        "CAP-WEP-MECH-ENERGY-CONDITION",
-        "CAP-WEP-POWER-RATES",
-        "CAP-WEP-ENERGY-DERIVATIONS",
-        "CAP-WEP-GRADE9-QUANT"
-      ],
-      "teaching": 7,
-      "repair": 7,
-      "exit": 7,
-      "practice": 6,
-      "transfer_primary": 0,
-      "missing_practice": [
-        "CAP-WEP-MECH-ENERGY-CONDITION"
-      ],
-      "missing_transfer_primary": [
-        "CAP-WEP-WORK-DIRECTION",
-        "CAP-WEP-NET-WORK-SIGN",
-        "CAP-WEP-POTENTIAL-ELIGIBILITY",
-        "CAP-WEP-MECH-ENERGY-CONDITION",
-        "CAP-WEP-POWER-RATES",
-        "CAP-WEP-ENERGY-DERIVATIONS",
-        "CAP-WEP-GRADE9-QUANT"
-      ],
-      "core_transfer_specs": 6,
-      "canonical_core2b_questions": 0,
-      "status": "ACADEMIC_INVENTORY_GAP"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-SOUND",
-      "required_capabilities": [
-        "CAP-SOUND-SOURCE-MEDIUM",
-        "CAP-SOUND-LONGITUDINAL",
-        "CAP-SOUND-WAVE-QUANTITIES",
-        "CAP-SOUND-PERCEPTION",
-        "CAP-SOUND-REFLECTION"
-      ],
-      "teaching": 5,
-      "repair": 5,
-      "exit": 5,
-      "practice": 4,
-      "transfer_primary": 0,
-      "missing_practice": [
-        "CAP-SOUND-REFLECTION"
-      ],
-      "missing_transfer_primary": [
-        "CAP-SOUND-SOURCE-MEDIUM",
-        "CAP-SOUND-LONGITUDINAL",
-        "CAP-SOUND-WAVE-QUANTITIES",
-        "CAP-SOUND-PERCEPTION",
-        "CAP-SOUND-REFLECTION"
-      ],
-      "core_transfer_specs": 5,
-      "canonical_core2b_questions": 0,
-      "status": "ACADEMIC_INVENTORY_GAP"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
-      "required_capabilities": [
-        "CAP-MACHINE-TRADEOFF",
-        "CAP-MACHINE-MA",
-        "CAP-MACHINE-COMPARE"
-      ],
-      "teaching": 3,
-      "repair": 3,
-      "exit": 3,
-      "practice": 1,
-      "transfer_primary": 0,
-      "missing_practice": [
-        "CAP-MACHINE-TRADEOFF",
-        "CAP-MACHINE-COMPARE"
-      ],
-      "missing_transfer_primary": [
-        "CAP-MACHINE-TRADEOFF",
-        "CAP-MACHINE-MA",
-        "CAP-MACHINE-COMPARE"
-      ],
-      "core_transfer_specs": 3,
-      "canonical_core2b_questions": 0,
-      "status": "ACADEMIC_INVENTORY_GAP"
-    }
-  ],
-  "decision": {
-    "current_ep_disposition": "STOP_BEFORE_CANONICAL_ACADEMIC_EDITS",
-    "reason": "Remaining blockers are canonical question inventory while EP-TA-005 prohibits Physics academic edits.",
-    "successor_scope": "Separately bounded academic authoring: exactly 7 missing direct Core2A practice items plus 18 Core2B items from existing core transfer specifications, followed by the six-matrix learner-loop proof."
-  }
+  "remaining_system_gap": null,
+  "next_boundary": "WP-TA-105 must derive learner-specific Grade-9 exit readiness from current scope plus real learner evidence; absent evidence remains unknown and may block an actual learner transition even though the study system is now capable of collecting it."
 }

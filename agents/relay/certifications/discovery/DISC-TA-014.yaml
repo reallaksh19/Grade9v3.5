@@ -1,0 +1,193 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-014",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-006",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-006",
+    "ep_id": "EP-TA-006",
+    "ep_path": "agents/relay/execution-packages/EP-TA-006.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "7bb84873caeb01b9941450398a708224748cfc9e",
+    "ep_contract_digest": "sha256:51b26a4c0b1d5172902af0356c59ee3cbfcb32671968dcf4f2ece530466ecc71",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-005",
+      "path": "agents/relay/checkpoints/CP-TA-005.yaml",
+      "digest": "sha256:a6d787052c00234f0b62d7664c2a2a83e6d314d0ff64510a5c78a0c07f73e6fe"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA6-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "7 direct Core2A gaps",
+          "value": "Gravitation: inverse-square, free-fall/local-g, mass-vs-weight; WEP: mechanical-energy condition; Sound: reflection; Simple Machines: tradeoff and compare.",
+          "basis": [
+            "learner-loop audit",
+            "CP-TA-005"
+          ]
+        },
+        {
+          "name": "18 core-transfer Core2B gaps",
+          "value": "Gravitation 4, WEP 6, Sound 5, Simple Machines 3; Gravitation R4/R5 extensions excluded.",
+          "basis": [
+            "learner-loop audit",
+            "affected matrix transfer rows"
+          ]
+        },
+        {
+          "name": "four affected libraries",
+          "value": "Gravitation, WEP, Sound and Simple Machines canonical libraries only.",
+          "basis": [
+            "QF-TA5-001"
+          ]
+        },
+        {
+          "name": "excluded extension rows",
+          "value": "Gravitation R4/R5 orbital transfer rows, all non-core matrices, Motion and NLM.",
+          "basis": [
+            "scope audit",
+            "G9-3 authoring audit"
+          ]
+        }
+      ],
+      "basis": [
+        "CP-TA-005",
+        "learner-loop audit"
+      ]
+    },
+    {
+      "id": "DSTEP-TA6-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Core2A fields",
+          "value": "Existing canonical source/origin, primary capability, family/exposure, answer reasoning/check and hints as needed.",
+          "basis": [
+            "CORE2A role",
+            "canonical exemplars"
+          ]
+        },
+        {
+          "name": "Core2B transfer fields",
+          "value": "transfer dimension/statement/builds_on, safe hints, answer/rubric, repair_ref and exposure lineage.",
+          "basis": [
+            "CORE2B role",
+            "Motion/NLM exemplars"
+          ]
+        },
+        {
+          "name": "AUTHORED provenance pattern",
+          "value": "Use the existing package-local author source/origin ref, AUTHORED origin, CANDIDATE status and new local identifier.",
+          "basis": [
+            "affected library exemplars"
+          ]
+        },
+        {
+          "name": "repair-ref pattern",
+          "value": "Resolve the transfer row repair_to rung to an existing teaching-step repair_ref.",
+          "basis": [
+            "affected matrices/libraries"
+          ]
+        }
+      ],
+      "basis": [
+        "current role contracts",
+        "canonical exemplars"
+      ]
+    },
+    {
+      "id": "DSTEP-TA6-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "capability map",
+          "value": "All authorized gaps bind to existing required/prerequisite capabilities already present in the four libraries.",
+          "basis": [
+            "learner-loop audit"
+          ]
+        },
+        {
+          "name": "family/source map",
+          "value": "Each affected library already has local author source and question-family conventions; no new provenance system is needed.",
+          "basis": [
+            "affected libraries"
+          ]
+        },
+        {
+          "name": "repair-ref map",
+          "value": "Must be resolved from current microtopic teaching paths before each Core2B write; no synthetic repair ids allowed.",
+          "basis": [
+            "affected libraries"
+          ]
+        },
+        {
+          "name": "no extension leakage",
+          "value": "Gravitation R4/R5 are excluded from authorized transfer backlog.",
+          "basis": [
+            "G9-3 audit",
+            "learner-loop audit"
+          ]
+        }
+      ],
+      "basis": [
+        "affected matrix/library readback"
+      ]
+    },
+    {
+      "id": "DSTEP-TA6-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "Fresh successor discovery observed generated-artifact head ffa7ac323c3e63ad5b89d05aaec661ec1812bef1; this receipt's coordination commit descends from it.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "7bb84873caeb01b9941450398a708224748cfc9e is the EP-TA-006 base/material ref and descends from validated EP-TA-005 material 9e18e26a8633cac664f75653ac9f874bc36f14a3.",
+          "basis": [
+            "Git history",
+            "CP-TA-005"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "PR base main is d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 at takeover and is recorded in EP-TA-006.",
+          "basis": [
+            "PR readback",
+            "EP-TA-006 git basis"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub provider readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}
