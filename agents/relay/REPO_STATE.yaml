@@ -11,7 +11,7 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0007",
+    "revision": "RM-0008",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
@@ -26,8 +26,8 @@
   "active_ep": {
     "id": "EP-TA-008",
     "path": "agents/relay/execution-packages/EP-TA-008.yaml",
-    "state": "EXECUTABLE",
-    "continuity_receipt": null
+    "state": "RECONCILING",
+    "continuity_receipt": "agents/relay/roadmap/continuity/RC-TA-008.yaml"
   },
   "last_checkpoint": {
     "id": "CP-TA-007",
@@ -41,49 +41,35 @@
     "id": null,
     "path": null
   },
-  "takeover_admissions": [
-    {
-      "route_key": "SERIAL:EP-TA-008",
-      "candidate": {
-        "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
-      },
-      "discovery_receipt": {
-        "id": "DISC-TA-018",
-        "path": "agents/relay/certifications/discovery/DISC-TA-018.yaml"
-      },
-      "certification": {
-        "id": "TC-TA-018",
-        "path": "agents/relay/certifications/takeover/TC-TA-018.yaml"
-      }
-    }
-  ],
+  "takeover_admissions": [],
   "progress": {
     "overall_percent": 70,
     "phase_percent": 70,
     "ep_percent": 0,
-    "basis_revision": "PB-0005"
+    "basis_revision": "PB-0006"
   },
   "status_planes": {
     "execution": {
-      "state": "READY",
+      "state": "RECONCILING",
       "can_continue": true,
-      "material_authority": "WRITE",
-      "next_action": "Run exact-head V2.5 admission/write gating for EP-TA-008, then implement the derived evidence-to-posture/support/visual/exercise router without adding persisted mastery state."
+      "material_authority": "READ_ONLY",
+      "next_action": "Reconcile EP-TA-008 to Issue #159 and AUDIT-TA-008-MOTHER-CONTRACT, then require fresh repository-only qualification/takeover before any further learner-runtime material write."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "WP-TA-104 is quality-clear. EP-TA-008 changes the Shared learner-session runtime and must prove its qualified truth-table/closed-loop contract before checkpoint."
+        "AUDIT-TA-008-MOTHER-CONTRACT found evidence-honesty, support-authority, transfer-eligibility/selection, gateway and proof-coverage gaps against Issue #159.",
+        "Issue #159 also contains newer renderer-neutral scene/checkpoint/pedagogy-injection requirements that must be reconciled without blaming the earlier implementation for later scope additions."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "WP-TA-104 is accepted at its checkpoint and programme progress is 70/100. EP-TA-008 has repository-only discovery plus deterministic qualification/takeover evidence; its material router implementation has not run.",
+      "summary": "Exact-head repository guardrails and V2.5 were green for the audited implementation, but EP-TA-008 remains unaccepted because the mother contract is broader than its current acceptance/oracle boundary.",
       "not_run": [
         {
-          "id": "TEST-TA8-001..004",
-          "reason": "EP-TA-008 material implementation has not yet executed.",
-          "cause": "NOT_SCHEDULED"
+          "id": "TEST-TA8-001..004 (reconciled mother-contract form)",
+          "reason": "The active EP contract must be refreshed and independently requalified before these tests can serve as acceptance evidence.",
+          "cause": "CONTRACT_RECONCILIATION_REQUIRED"
         }
       ]
     },
@@ -96,24 +82,35 @@
   },
   "projection": {
     "required": true,
-    "state": "IN_SYNC",
-    "operation_id": "GHGEN-HO-79E29CBD0F01",
+    "state": "PENDING",
+    "operation_id": "GHGEN-HO-03943C0B50F7",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-HO-79E29CBD0F01.yaml",
-    "roadmap_revision": "RM-0007",
+    "plan": "agents/relay/projection/generations/GHGEN-HO-03943C0B50F7.yaml",
+    "roadmap_revision": "RM-0008",
     "execution_ref": "EP-TA-008",
-    "receipt": "github-generation:GHGEN-HO-79E29CBD0F01",
+    "receipt": null,
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
-      "handover-plan:sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328",
-      "owner-publication:PUB-0001",
-      "handover-generation:GHGEN-HO-79E29CBD0F01",
-      "prewrite-journal-head:03e2be1e11c3196064cf90e14fef034fe804e15a",
-      "GitHub create response for https://github.com/reallaksh19/Grade9V3/issues/161",
-      "GitHub provider readback https://api.github.com/repos/reallaksh19/Grade9V3/issues/161",
-      "Verified relay-operation marker GHOP-HO-79E29CBD0F01"
+      "agents/relay/roadmap/owner-decisions/ODR-0005-ISSUE159-MOTHER-CONTRACT.yaml",
+      "agents/relay/roadmap/revisions/RM-0008.yaml",
+      "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+      "handover-generation:GHGEN-HO-03943C0B50F7"
+    ],
+    "superseded_operations": [
+      {
+        "operation_id": "GHGEN-HO-79E29CBD0F01",
+        "target": "github:reallaksh19/Grade9V3:issues",
+        "roadmap_revision": "RM-0007",
+        "execution_ref": "EP-TA-008",
+        "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
+        "superseded_by": "GHGEN-HO-03943C0B50F7",
+        "receipt": "github-generation:GHGEN-HO-79E29CBD0F01",
+        "basis": [
+          "Issue #159 is now the mapped mother contract for WP-TA-107; the prior handover source was the active EP because no source issue was mapped."
+        ]
+      }
     ]
   },
   "delivery": {
@@ -127,9 +124,11 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": true,
-    "handover_ready": true,
-    "reasons": []
+    "projection_ready": false,
+    "handover_ready": false,
+    "reasons": [
+      "Issue #159-derived handover projection is pending provider publication/readback."
+    ]
   },
   "chat_context_required": false
 }

@@ -1,0 +1,27 @@
+{
+  "schema_version": "relay-v2.5-roadmap-continuity",
+  "id": "RC-TA-008",
+  "ep_id": "EP-TA-008",
+  "work_package": "WP-TA-107",
+  "from_revision": "RM-0007",
+  "to_revision": "RM-0008",
+  "revision_chain": [
+    {
+      "path": "agents/relay/roadmap/revisions/RM-0008.yaml"
+    }
+  ],
+  "disposition": "RECONCILE_REQUIRED",
+  "impact_checks": {
+    "work_package_definition_changed": true,
+    "dependencies_changed": false,
+    "acceptance_changed": true,
+    "scope_authority_changed": true,
+    "protected_invariants_changed": true
+  },
+  "basis": [
+    "ODR-0005-ISSUE159-MOTHER-CONTRACT",
+    "RM-0008",
+    "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+    "Issue #159 mother contract materially exceeds the current EP-TA-008 acceptance/oracle boundary."
+  ]
+}

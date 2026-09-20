@@ -2,9 +2,9 @@
   "schema_version": "relay-v2.5",
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0007",
+    "revision": "RM-0008",
     "title": "Grade 9 Physics learner independence and progression",
-    "revision_record": "agents/relay/roadmap/revisions/RM-0007.yaml",
+    "revision_record": "agents/relay/roadmap/revisions/RM-0008.yaml",
     "owner_outcome": "Make the learner increasingly capable of deciding what she knows, discovering with little external steering what she does not know, repairing the right Physics gap, and independently verifying a solution.",
     "progression_order": [
       "PHYSICS_GRADE_9",
@@ -107,17 +107,22 @@
               "depends_on": [
                 "WP-TA-104"
               ],
-              "outcome": "For a required capability, current learner evidence determines a routing posture and starting support; support chooses an initial visual state; post-failure hints escalate independently; exercise demand rises only after evidence warrants it; repair rejoins a fresh verification and later review path.",
+              "outcome": "For a required subtopic/capability, sparse learner evidence produces an honest session route: a bounded diagnostic gateway when needed; a derived posture; only declared starting support; optional renderer-neutral representation/scene/checkpoint support; family-aware practice/transfer demand; and an existing feedback/repair/fresh-verification/review loop. The route must remain useful with no estimate and must never manufacture mastery or transfer readiness.",
               "exit_evidence": [
-                "Independent DEMONSTRATED evidence routes to READY; MISSING routes to REBUILD; UNCERTAIN or unobserved evidence routes conservatively to REINFORCE without claiming mastery.",
-                "READY, REINFORCE and REBUILD are derived routing postures, not persisted learner states or mastery probabilities.",
-                "Routing posture maps to LOW/MEDIUM/HIGH starting support and, when a representation supplies it, to a declared initial visual stage.",
-                "REBUILD can surface a bound interactive explorer and guided task; REINFORCE prefers standard practice with hints available; READY can lower support and prefer higher reasoning demand/transfer when prerequisites allow.",
-                "Post-failure hint depth remains governed by question.hints[] and does not overwrite the starting-support decision.",
-                "CONCEPT/SETUP failures may route to reconstruction/representation repair, while EXECUTION/CARELESS failures do not automatically trigger conceptual reteaching.",
-                "The closed loop returns from repair to fresh independent verification and delayed review using existing feedback/review contracts.",
-                "No new mastery score, probabilistic learner model, or grade-state database is introduced."
-              ]
+                "Only explicitly independent DEMONSTRATED evidence may route to READY; helped, unknown-independence, UNCERTAIN and unobserved evidence remain conservative.",
+                "READY/REINFORCE/REBUILD are session-only postures and no mastery percentage/probability or second learner ontology is persisted.",
+                "Starting support is resolved through matrix.family.support_ladder. If the requested level is undeclared—including minimum competition support—it is withheld and reported rather than guessed or aliased.",
+                "With no owner estimate, the subtopic gateway can choose a small representative set over uncertain/unobserved capabilities instead of requiring every capability to be checked.",
+                "Starting support and question.hints[] remain independent; planning does not mutate shown_hint_indices and feedback.py owns post-attempt escalation, repair, fresh verification and review.",
+                "CONCEPT/SETUP evidence may drive reconstruction/model-building while EXECUTION/CARELESS evidence does not automatically cause conceptual rebuilding.",
+                "Transfer eligibility is separate from READY and requires stable independent same-family performance plus prerequisite readiness and a compatible canonical transfer candidate.",
+                "Exercise choice respects capability, family and existing demand dimensions such as model_choice, representation_translation, reasoning_steps and novelty; question-id ordering is not pedagogical authority.",
+                "Representation/scene refs describe what is shown, checkpoint refs describe what the learner must decide/verify, and pedagogy injection refs describe when/how support is introduced; none is allowed to masquerade as another.",
+                "Interaction events and guided reconstruction are not independent mastery evidence unless an explicit exercise contract turns them into a direct attempt.",
+                "NLM R3 body-ownership and R8 friction-threshold witnesses separately prove support declaration, staged help, repair, fresh independent verification and protected transfer information.",
+                "Canonical Physics/library/matrix/schema content remains read-only; sparse question inventory is reported honestly rather than synthesized at runtime."
+              ],
+              "issue": "ISSUE-159"
             },
             {
               "id": "WP-TA-105",
