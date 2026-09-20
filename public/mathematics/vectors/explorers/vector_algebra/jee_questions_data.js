@@ -66,7 +66,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q02",
@@ -130,6 +131,11 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.theta_deg",
+      "simParams.magA",
+      "simParams.magB"
     ]
   },
   {
@@ -193,7 +199,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q04",
@@ -261,7 +268,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q05",
@@ -302,9 +310,7 @@ window.JEE_QUESTIONS_DATA = [
     "trap": "A parallelogram has equal diagonals if and only if it is a rectangle (vectors are orthogonal)!",
     "targetTab": "tab-dot",
     "simParams": {
-      "theta_deg": 90,
-      "magA": 3,
-      "magB": 4
+      "theta_deg": 90
     },
     "simSummary": [
       "|a + b| = |a - b|",
@@ -313,8 +319,8 @@ window.JEE_QUESTIONS_DATA = [
     ],
     "answerAudit": "PASS",
     "sourceAudit": "SOURCE_PROVENANCE_PENDING",
-    "simFidelity": "EXACT",
-    "simFidelityNote": "The dot rig binds the implied orthogonal state θ=90°; the chosen nonzero magnitudes do not affect the conclusion.",
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The dot rig binds the implied orthogonality constraint θ=90°. Vector magnitudes are not specified by the source and remain illustrative, so this is not an exact full-state mapping.",
     "teacherCheck": "Square both norms: equality cancels |a|² and |b|² and leaves 4a·b=0.",
     "takeaway": "Equal |a+b| and |a-b| is an orthogonality test for nonzero vectors.",
     "helperTags": [
@@ -323,6 +329,9 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.theta_deg"
     ]
   },
   {
@@ -390,7 +399,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q07",
@@ -454,7 +464,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q08",
@@ -517,7 +528,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q09",
@@ -581,7 +593,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q10",
@@ -646,7 +659,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q11",
@@ -712,7 +726,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "VEC-Q12",
@@ -751,8 +766,7 @@ window.JEE_QUESTIONS_DATA = [
     "trap": "Cross product is NOT associative: a × (b × c) lies in the plane of b and c, while (a × b) × c lies in the plane of a and b!",
     "targetTab": "tab-baccab",
     "simParams": {
-      "theta_ac": 60,
-      "theta_ab": 90
+      "theta_ac": 60
     },
     "simSummary": [
       "BAC-CAB rule: a × (b × c) = (a·c)b - (a·b)c",
@@ -762,7 +776,7 @@ window.JEE_QUESTIONS_DATA = [
     "answerAudit": "PASS",
     "sourceAudit": "SOURCE_PROVENANCE_PENDING",
     "simFidelity": "CONSTRAINT_FAITHFUL",
-    "simFidelityNote": "The VTP rig represents the BAC-CAB plane relation and the required 60° a–c condition, but not a full arbitrary non-coplanar vector triple.",
+    "simFidelityNote": "The VTP rig binds the required 60° a–c condition and demonstrates the BAC-CAB plane relation; the full source vector state is not reproduced.",
     "teacherCheck": "BAC-CAB gives coefficients along independent b and c: a·c=1/2 and a·b=0; unit vectors imply θac=60°.",
     "takeaway": "Cross product is non-associative; preserve parentheses before applying BAC-CAB.",
     "helperTags": [
@@ -771,6 +785,9 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.theta_ac"
     ]
   },
   {
@@ -831,6 +848,7 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   }
 ];

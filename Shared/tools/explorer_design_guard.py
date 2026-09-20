@@ -127,7 +127,32 @@ def findings(repo: Path = REPO) -> list[dict]:
                 add(path, rid, "SEQUENCE_DRIFT",
                     "interaction_sequence must use the canonical GCDR sequence in order")
 
+            scope = contract["scope_contract"]
+            scoped_caps = scope["canonical_capability_refs"]
+            for cap in scoped_caps:
+                if cap not in capability_ids:
+                    add(path, rid, "UNKNOWN_SCOPE_CAPABILITY", cap)
+                if cap not in claims:
+                    add(path, rid, "SCOPE_OUTSIDE_RESOURCE_BINDING",
+                        f"scope capability {cap} is not present in supports_claims")
+            if scope["canonical_binding_status"] == "BOUND" and set(scoped_caps) != set(claims):
+                add(path, rid, "INCOMPLETE_BOUND_SCOPE",
+                    "BOUND scope must name exactly the resource supports_claims capability set")
+            if scope["canonical_binding_status"] == "UNBOUND_EXTENSION" and claims:
+                add(path, rid, "UNBOUND_SCOPE_WITH_CANONICAL_CLAIMS",
+                    "UNBOUND_EXTENSION cannot simultaneously advertise canonical supports_claims")
+
+            invariants = contract["representation_invariants"]
+            invariant_ids = [row["id"] for row in invariants]
+            if len(invariant_ids) != len(set(invariant_ids)):
+                add(path, rid, "DUPLICATE_REPRESENTATION_INVARIANT",
+                    "representation_invariants ids must be unique")
+
             locator = resource.get("locator", "")
+            delivery = contract["delivery_profile"]
+            if delivery["artifact_locator"] != locator:
+                add(path, rid, "DELIVERY_LOCATOR_MISMATCH",
+                    "delivery_profile.artifact_locator must equal the resource implementation locator")
             if locator.startswith("public/") and not (repo / locator).is_file():
                 add(path, rid, "MISSING_IMPLEMENTATION", locator)
 

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:gcdr-helper-contract:1.0.0",
+  "title": "GCDR Helper Activation Contract",
+  "description": "Governs whether a helper is merely declared, actually consumes governed item/state content, or has audit evidence. Registry presence alone is not implementation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "helper_id",
+    "activation_status",
+    "mode",
+    "state_paths",
+    "required_outputs",
+    "evidence_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "helper_id": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "activation_status": {
+      "enum": [
+        "DECLARED",
+        "IMPLEMENTED",
+        "AUDITED"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "STATE_DRIVEN",
+        "ITEM_DRIVEN",
+        "STATIC_REFERENCE"
+      ]
+    },
+    "state_paths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidence_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "activation_status": {
+            "enum": [
+              "IMPLEMENTED",
+              "AUDITED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "state_paths": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "activation_status": {
+            "const": "AUDITED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence_ref": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "STATIC_REFERENCE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "activation_status": {
+            "const": "DECLARED"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -70,7 +70,7 @@ class MasterSuiteAuditTest(unittest.TestCase):
         self.assertEqual(len(self.motion), 18)
         self.assertEqual(len(self.vector), 13)
         self.assertIn("live corpus 123 PYQs", self.motion_html)
-        self.assertIn("live corpus 282 PYQs", self.vector_html)
+        self.assertIn("live corpus snapshot 282 PYQs", self.vector_html)
         self.assertNotIn("124 PYQ ExamSIDE Foundation", self.motion_html)
         self.assertNotIn("283 PYQ ExamSIDE Foundation", self.vector_html)
 
@@ -80,6 +80,16 @@ class MasterSuiteAuditTest(unittest.TestCase):
                 self.assertEqual(q["answerAudit"], "PASS")
                 self.assertIn(q["simFidelity"], ALLOWED_FIDELITY)
                 self.assertTrue(q["simFidelityNote"].strip())
+                self.assertIsInstance(q.get("simBindingRefs"), list)
+                if q["simFidelity"] in {"EXACT", "CONSTRAINT_FAITHFUL"}:
+                    self.assertTrue(q["simBindingRefs"], q["id"])
+                    self.assertEqual(
+                        set(q["simBindingRefs"]),
+                        {f"simParams.{key}" for key in (q.get("simParams") or {})},
+                        q["id"],
+                    )
+                else:
+                    self.assertEqual(q["simBindingRefs"], [], q["id"])
                 self.assertTrue(q["teacherCheck"].strip())
                 self.assertTrue(q["takeaway"].strip())
                 self.assertTrue(q["trap"].strip())
@@ -255,8 +265,11 @@ class MasterSuiteAuditTest(unittest.TestCase):
         self.assertAlmostEqual(dot(aperp,b), 0)
         self.assertEqual(q["VEC-Q04"]["correct"], "A")
 
-        # Q05 equal diagonal norms -> dot zero
+        # Q05 equal diagonal norms -> dot zero. Only the orthogonality
+        # constraint is source-determined, so simulator fidelity is constraint-faithful.
         self.assertEqual(q["VEC-Q05"]["correct"], "C")
+        self.assertEqual(q["VEC-Q05"]["simFidelity"], "CONSTRAINT_FAITHFUL")
+        self.assertEqual(q["VEC-Q05"]["simBindingRefs"], ["simParams.theta_deg"])
 
         # Q06 triangle area squared
         a, b = (2,3,3), (6,3,3)
@@ -308,6 +321,36 @@ class MasterSuiteAuditTest(unittest.TestCase):
         distance = abs(dot(connector,n))/norm(n)
         self.assertAlmostEqual(distance, 1/math.sqrt(6))
         self.assertEqual(q["VEC-Q13"]["correct"], "A")
+
+    def test_vector_representation_invariants(self):
+        # Side-vector and diagonal descriptions of one parallelogram must preserve area.
+        for a, b in (
+            ((3, 1, -2), (1, -3, 4)),
+            ((5, 0, 0), (2, 4, 0)),
+            ((2, 3, 3), (6, 3, 3)),
+        ):
+            d1 = tuple(a[i] + b[i] for i in range(3))
+            d2 = tuple(a[i] - b[i] for i in range(3))
+            self.assertAlmostEqual(
+                norm(cross(a, b)),
+                0.5 * norm(cross(d1, d2)),
+                places=12,
+            )
+
+        # Projection + rejection reconstructs a, and the rejection is orthogonal to b.
+        a, b = (2, 3, -1), (1, -2, 2)
+        coeff = dot(a, b) / dot(b, b)
+        parallel = tuple(coeff * x for x in b)
+        rejection = tuple(a[i] - parallel[i] for i in range(3))
+        reconstructed = tuple(parallel[i] + rejection[i] for i in range(3))
+        self.assertTrue(all(abs(x-y) < 1e-12 for x, y in zip(reconstructed, a)))
+        self.assertAlmostEqual(dot(rejection, b), 0.0, places=12)
+
+        # Direct VTP and BAC-CAB reconstruction must be the same vector.
+        a, b, c = (2, -1, 3), (4, 2, -2), (1, 5, 2)
+        direct = cross(a, cross(b, c))
+        rhs = tuple(dot(a, c) * b[i] - dot(a, b) * c[i] for i in range(3))
+        self.assertEqual(direct, rhs)
 
     def test_repaired_simulator_math_signatures_are_present(self):
         self.assertIn("v² = v₀²(1 - x/x₀)", self.motion_html)

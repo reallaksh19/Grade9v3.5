@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:gcdr-suite-contract:1.0.0",
+  "title": "GCDR Master Suite Contract",
+  "description": "Suite-level governance for canonical scope, external corpus snapshot, item-contract source, helper activation and delivery artifacts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "suite_id",
+    "title",
+    "scope_contract",
+    "external_corpus",
+    "diagnostic_source",
+    "helper_contracts",
+    "delivery_artifacts",
+    "audit_evidence_ref",
+    "representation_invariants",
+    "geometry_truth_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "suite_id": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5
+    },
+    "scope_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_binding_status",
+        "canonical_capability_refs",
+        "instructional_depth",
+        "extension_reason",
+        "certification_scope"
+      ],
+      "properties": {
+        "canonical_binding_status": {
+          "enum": [
+            "BOUND",
+            "PARTIAL",
+            "UNBOUND_EXTENSION"
+          ]
+        },
+        "canonical_capability_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "instructional_depth": {
+          "enum": [
+            "FOUNDATION",
+            "SCHOOL_CORE",
+            "ADVANCED",
+            "JEE_EXTENSION"
+          ]
+        },
+        "extension_reason": {
+          "type": "string",
+          "minLength": 5
+        },
+        "certification_scope": {
+          "type": "string",
+          "minLength": 8
+        }
+      }
+    },
+    "external_corpus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "topic",
+        "snapshot_date",
+        "live_count",
+        "embedded_item_count",
+        "coverage_claim"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 2
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 3
+        },
+        "snapshot_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "live_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "embedded_item_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage_claim": {
+          "enum": [
+            "FULL_CORPUS_AUDITED",
+            "CURATED_SLICE_AUDITED",
+            "DEMAND_RECONNAISSANCE_ONLY"
+          ]
+        }
+      }
+    },
+    "diagnostic_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locator",
+        "format",
+        "contract_schema"
+      ],
+      "properties": {
+        "locator": {
+          "type": "string",
+          "minLength": 3
+        },
+        "format": {
+          "enum": [
+            "WINDOW_JEE_QUESTIONS_DATA_JS",
+            "JSON"
+          ]
+        },
+        "contract_schema": {
+          "const": "Shared/library/gcdr_diagnostic_item.schema.json"
+        }
+      }
+    },
+    "helper_contracts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "delivery_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locator",
+          "profile",
+          "remote_dependencies_declared"
+        ],
+        "properties": {
+          "locator": {
+            "type": "string",
+            "minLength": 3
+          },
+          "profile": {
+            "enum": [
+              "REPO_BUNDLE",
+              "SINGLE_FILE_ONLINE",
+              "SINGLE_FILE_OFFLINE"
+            ]
+          },
+          "remote_dependencies_declared": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        }
+      }
+    },
+    "audit_evidence_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "representation_invariants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "views",
+          "relation",
+          "tolerance",
+          "evidence_method",
+          "evidence_ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 3,
+            "pattern": "^[A-Z0-9_-]+$"
+          },
+          "views": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
+          },
+          "relation": {
+            "type": "string",
+            "minLength": 8
+          },
+          "tolerance": {
+            "type": "number",
+            "minimum": 0
+          },
+          "evidence_method": {
+            "enum": [
+              "PROPERTY_TEST",
+              "ANALYTIC_ORACLE",
+              "STATE_ASSERTION"
+            ]
+          },
+          "evidence_ref": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "geometry_truth_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verification_status",
+        "oracle_method",
+        "governed_geometry",
+        "evidence_ref"
+      ],
+      "properties": {
+        "verification_status": {
+          "enum": [
+            "DECLARED",
+            "AUDITED"
+          ]
+        },
+        "oracle_method": {
+          "enum": [
+            "PROPERTY_TEST",
+            "ANALYTIC_ORACLE",
+            "STATE_ASSERTION"
+          ]
+        },
+        "governed_geometry": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    }
+  }
+}

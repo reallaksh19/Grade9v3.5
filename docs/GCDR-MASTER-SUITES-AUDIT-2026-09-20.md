@@ -48,7 +48,9 @@ records not individually source-verified remain explicitly `SOURCE_PROVENANCE_PE
 
 ## Question → simulator fidelity audit
 
-The old universal “Load in Simulator” contract was rejected. A load action now uses one of:
+The old universal “Load in Simulator” contract was rejected. Active parameter bindings are now explicit per item through `simBindingRefs`; an EXACT or CONSTRAINT_FAITHFUL mapping must name only parameters that the governed loader actually consumes.
+
+A load action now uses one of:
 
 - `EXACT` — every governing state required by the represented problem is actually bound;
 - `CONSTRAINT_FAITHFUL` — the mapped constraints are genuine, but the rig does not claim a
@@ -69,8 +71,8 @@ The old universal “Load in Simulator” contract was rejected. A load action n
 
 | Fidelity | Questions |
 | --- | --- |
-| EXACT | Q02, Q05 |
-| CONSTRAINT_FAITHFUL | Q12 |
+| EXACT | Q02 |
+| CONSTRAINT_FAITHFUL | Q05, Q12 |
 | CONCEPT_ONLY | Q01, Q03, Q04, Q06, Q07, Q08, Q09, Q10, Q11 |
 | UNAVAILABLE | Q13 |
 
@@ -202,3 +204,42 @@ The skew-line shortest-distance diagnostic also has no current simulator rig and
 The correct next governance step is to bind only the already-canonical Motion concepts, then
 author/review a separate advanced capability spine before attempting certification of the
 calculus/drag and full Mathematics Vector Algebra portions.
+
+
+## Governance response — GCDR v1.3
+
+The defects found in these two suites are now reflected in the architecture rather than being
+left as page-specific lessons.
+
+GCDR v1.3 keeps the existing cognitive route unchanged and adds four boundaries around it:
+
+1. **Explorer contract** — canonical scope, representation invariants, rendered-geometry truth,
+   state fidelity and delivery profile.
+2. **Diagnostic-item contract** — source provenance, answer/derivation evidence, item-specific
+   teaching support and simulator fidelity for every bank item.
+3. **Helper activation contract** — registry presence is separated from
+   `DECLARED → IMPLEMENTED → AUDITED` activation evidence.
+4. **Suite contract** — corpus snapshot, coverage claim, diagnostic source and release artifacts
+   are governed as a coherent package.
+
+The corresponding schemas are:
+
+- `Shared/library/explorer_design_contract.schema.json` v1.3;
+- `Shared/library/gcdr_diagnostic_item.schema.json`;
+- `Shared/library/gcdr_helper_contract.schema.json`;
+- `Shared/library/gcdr_suite_contract.schema.json`.
+
+`Shared/tools/gcdr_suite_guard.py` now enforces the Motion-1D and Vector Algebra suite
+contracts. It normalizes all 31 local question records through the diagnostic-item schema,
+rejects generic/filler final answers, verifies helper contracts, checks corpus embedded counts,
+checks declared remote dependencies, and verifies that standalone builds embed the same question
+bank as the canonical suite source.
+
+The suite declarations intentionally preserve the audit limitations found above:
+
+- Motion-1D is `PARTIAL` canonical binding at `JEE_EXTENSION` depth;
+- Vector Algebra is `UNBOUND_EXTENSION` at `JEE_EXTENSION` depth;
+- both external corpora are `CURATED_SLICE_AUDITED`, not full-corpus audits;
+- both standalone artifacts are `SINGLE_FILE_ONLINE`, not offline bundles.
+
+This converts the audit's wording corrections into release-testable contracts.

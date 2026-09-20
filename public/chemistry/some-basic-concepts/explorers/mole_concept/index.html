@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IIT-JEE Chemistry · Some Basic Concepts &amp; Mole Concept Master Suite</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- KaTeX for mathematical typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+  <!-- Question Bank -->
+  <script src="jee_questions_data.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#070b14',
+            card: '#0f172a',
+            border: '#1e293b',
+            primary: '#10b981',
+            accent: '#f59e0b',
+            chem: '#06b6d4'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict Canvas Immunitization & Layout Stability */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    canvas {
+      contain: paint;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block;
+      box-sizing: border-box;
+    }
+    .canvas-container {
+      position: relative;
+      min-width: 0 !important;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      box-sizing: border-box;
+    }
+    /* Scrollbar Concealment for Navigation Tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .slider-highlight {
+      animation: pulse-border 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-border {
+      0%, 100% { outline: 2px solid rgba(16, 185, 129, 0.2); }
+      50% { outline: 2px solid rgba(16, 185, 129, 0.9); }
+    }
+    .tab-btn-active {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border-bottom: 2px solid #10b981;
+      font-weight: 700;
+    }
+    .tab-btn-inactive {
+      color: #94a3b8;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn-inactive:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+<body class="bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-200">
+
+  <!-- HEADER & APP NAVIGATION -->
+  <header class="border-b border-border bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="../../../index.html" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1">
+          <span>&larr;</span> <span>Chemistry Hub</span>
+        </a>
+        <span class="text-slate-600">|</span>
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🧪</span>
+          <div>
+            <h1 class="text-sm md:text-base font-extrabold text-white tracking-tight flex items-center gap-2">
+              <span>Some Basic Concepts of Chemistry</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold border border-emerald-500/30">JEE MASTER SUITE</span>
+            </h1>
+            <p class="text-[11px] text-slate-400">Mole Concept &middot; Stoichiometric Ratios &middot; Concentration Invariants</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Telemetry Badges -->
+      <div class="flex items-center gap-2 text-xs font-mono">
+        <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-emerald-400 font-bold">N_A = 6.022&times;10&sup2;&sup3;</span>
+        <span class="px-2.5 py-1 rounded bg-slate-900 border border-border text-sky-400 font-bold">V_m = 22.4 L/mol (STP)</span>
+      </div>
+    </div>
+
+    <!-- 8 MASTER TABS -->
+    <div class="max-w-7xl mx-auto px-4 flex items-center gap-1 overflow-x-auto text-xs font-medium border-t border-slate-900/60 pt-1 no-scrollbar">
+      <button onclick="switchTab('tab-mole')" id="btn-tab-mole" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        1. The Mole Scale
+      </button>
+      <button onclick="switchTab('tab-limiting')" id="btn-tab-limiting" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        2. Limiting Reagent
+      </button>
+      <button onclick="switchTab('tab-sequential')" id="btn-tab-sequential" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        3. Sequential Yield
+      </button>
+      <button onclick="switchTab('tab-concentration')" id="btn-tab-concentration" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        4. Concentration Invariants
+      </button>
+      <button onclick="switchTab('tab-eudiometry')" id="btn-tab-eudiometry" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        5. Eudiometry Tube
+      </button>
+      <button onclick="switchTab('tab-empirical')" id="btn-tab-empirical" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        6. Empirical Formula
+      </button>
+      <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[9px] font-bold text-amber-400">Draft</span>
+        <span>7. Master Sandbox</span>
+      </button>
+      <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
+        <span>⭐ 8. IIT-JEE Question Hub</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+    <!-- FLOATING TOAST -->
+    <div id="simToast" class="hidden fixed bottom-6 right-6 z-50 max-w-md bg-slate-900/95 border border-emerald-500/60 rounded-xl p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 transition-all duration-300 transform translate-y-4">
+      <div class="text-2xl">🚀</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold uppercase text-emerald-400 font-mono" id="simToastTitle">Active Problem Loaded</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-xs">&times;</button>
+        </div>
+        <p class="text-xs text-slate-300 mt-1" id="simToastDesc">Parameters injected from ExamSIDE question.</p>
+        <div class="mt-2 text-[11px] font-mono text-emerald-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: THE MOLE SCALE & PARTICLE COUNTER                          -->
+    <!-- ================================================================= -->
+    <section id="tab-mole" class="space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h2 class="font-bold text-base text-white">The Mole Scale &middot; Mass to Particle Transformation Engine</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Visualizes the macroscopic mass <span class="text-emerald-300 font-mono font-semibold">m</span> converting to moles <span class="text-sky-300 font-mono font-semibold">n = m/M</span> and absolute particle count <span class="text-purple-300 font-mono font-semibold">N = n &times; N_A</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Canvas Left Rig -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>MOLECULAR LATTICE / GAS ENSEMBLE VIEW</span>
+                <span id="moleLiveCount">N = 6.022 &times; 10²³ molecules</span>
+              </div>
+              <canvas id="canvasMoleScale" height="260"></canvas>
+            </div>
+
+            <!-- Molar Mass Selector Buttons -->
+            <div class="flex flex-wrap items-center gap-2 bg-slate-900/60 p-3 rounded-xl border border-border text-xs">
+              <span class="text-slate-400 font-semibold mr-1">Compound:</span>
+              <button onclick="setMoleCompound('H2', 2, 2)" id="btnCmpH2" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">H₂ (M=2)</button>
+              <button onclick="setMoleCompound('H2O', 18, 3)" id="btnCmpH2O" class="px-2.5 py-1 rounded bg-emerald-600/30 border border-emerald-500/50 text-emerald-300 font-mono font-semibold">H₂O (M=18)</button>
+              <button onclick="setMoleCompound('CO2', 44, 3)" id="btnCmpCO2" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">CO₂ (M=44)</button>
+              <button onclick="setMoleCompound('C6H12O6', 180, 24)" id="btnCmpGlucose" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold">Glucose (M=180)</button>
+            </div>
+          </div>
+
+          <!-- Controls & Telemetry -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Stoichiometric Telemetry</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400">Sample Mass:</span>
+                  <span id="telMoleMass" class="text-emerald-400 font-bold">18.00 g</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400">Mole Quantity (n):</span>
+                  <span id="telMoleN" class="text-sky-400 font-bold">1.000 mol</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400">Total Molecules:</span>
+                  <span id="telMoleMolecules" class="text-purple-400 font-bold">6.022 &times; 10²³</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400">Total Constituent Atoms:</span>
+                  <span id="telMoleAtoms" class="text-amber-400 font-bold">1.807 &times; 10²⁴</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400">Volume at STP (Gas):</span>
+                  <span id="telMoleVolSTP" class="text-teal-400 font-bold">22.40 L</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mass Slider -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-300">Adjust Mass (grams):</span>
+                <span id="valMoleMassSlider" class="font-mono text-emerald-400 font-bold">18.0 g</span>
+              </div>
+              <input type="range" id="sliderMoleMass" min="1" max="100" step="1" value="18" oninput="updateMoleScale()" class="w-full accent-emerald-400 cursor-pointer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: LIMITING REAGENT MOLECULAR ASSEMBLY                        -->
+    <!-- ================================================================= -->
+    <section id="tab-limiting" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+              <h2 class="font-bold text-base text-white">Limiting Reagent &middot; Lock-and-Key Reaction Assembly</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Grounded on <span class="text-cyan-300 font-semibold">JEE Main 2026 (Haber Process: N₂ + 3H₂ &rarr; 2NH₃)</span>. Visualizes why the reagent with smaller moles / stoichiometric coefficient governs product yield.
+            </p>
+          </div>
+        </div>
+
+        <!-- Banner -->
+        <div id="banner-limiting" class="hidden my-3 p-2.5 bg-cyan-950/40 border border-cyan-500/40 rounded-xl text-xs flex items-center justify-between">
+          <span class="text-cyan-300" id="banner-text-limiting">Active Simulation</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>REACTION VESSEL &middot; DISCRETE MOLECULAR ASSEMBLY &amp; EXCESS BOUNCE</span>
+                <span id="lrLiveStatus" class="text-cyan-400 font-bold">H₂ is Limiting</span>
+              </div>
+              <canvas id="canvasLimiting" height="300"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Reaction Yield Ledger</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">N₂ Moles (Initial):</span>
+                  <span id="telLRMolA" class="text-sky-400 font-bold">2.00 mol (56.0 g)</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">H₂ Moles (Initial):</span>
+                  <span id="telLRMolB" class="text-amber-400 font-bold">5.00 mol (10.0 g)</span>
+                </div>
+                <div class="flex justify-between bg-cyan-500/10 p-2.5 rounded border border-cyan-500/30">
+                  <span class="text-cyan-300 font-bold">Limiting Reagent:</span>
+                  <span id="telLRLimiting" class="text-cyan-300 font-bold">H₂ (Ratio: 5/3 = 1.67)</span>
+                </div>
+                <div class="flex justify-between bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30">
+                  <span class="text-emerald-300 font-bold">NH₃ Formed:</span>
+                  <span id="telLRYield" class="text-emerald-400 font-bold">3.33 mol (56.7 g)</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Unreacted N₂:</span>
+                  <span id="telLRExcess" class="text-purple-400 font-bold">0.33 mol (9.3 g)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sliders -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">N₂ Mass (g):</span>
+                  <span id="valLRMassN2" class="font-mono text-sky-400 font-bold">56 g</span>
+                </div>
+                <input type="range" id="sliderLRMassN2" min="14" max="140" step="14" value="56" oninput="updateLimitingRig()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">H₂ Mass (g):</span>
+                  <span id="valLRMassH2" class="font-mono text-amber-400 font-bold">10 g</span>
+                </div>
+                <input type="range" id="sliderLRMassH2" min="2" max="30" step="2" value="10" oninput="updateLimitingRig()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: SEQUENTIAL & PARALLEL REACTIONS                            -->
+    <!-- ================================================================= -->
+    <section id="tab-sequential" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="border-b border-border pb-4">
+          <h2 class="font-bold text-base text-white">Sequential Reactions &middot; Multi-Step Yield Multiplication Engine</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Grounded on <span class="text-amber-300 font-semibold">JEE Main 2025</span>: Demonstrates why overall yield is multiplicative: <span class="font-mono text-emerald-300">Y_overall = Y₁ &times; Y₂</span>, never additive!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>PIPELINE CONVERSION FLOW &middot; A &rarr; C (80%) &rarr; E (75%)</span>
+                <span id="seqLiveYield" class="text-emerald-400 font-bold">Overall Yield = 60.0%</span>
+              </div>
+              <canvas id="canvasSequential" height="260"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Stepwise Moles</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Initial Feed A:</span>
+                  <span id="telSeqFeed" class="text-sky-400 font-bold">5.00 mol</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Intermediate C:</span>
+                  <span id="telSeqInter" class="text-amber-400 font-bold">4.00 mol</span>
+                </div>
+                <div class="flex justify-between bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30">
+                  <span class="text-emerald-300 font-bold">Final Product E:</span>
+                  <span id="telSeqProduct" class="text-emerald-400 font-bold">3.00 mol</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Step 1 Yield (%):</span>
+                  <span id="valSeqY1" class="font-mono text-sky-400 font-bold">80%</span>
+                </div>
+                <input type="range" id="sliderSeqY1" min="20" max="100" step="5" value="80" oninput="updateSeqRig()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Step 2 Yield (%):</span>
+                  <span id="valSeqY2" class="font-mono text-amber-400 font-bold">75%</span>
+                </div>
+                <input type="range" id="sliderSeqY2" min="20" max="100" step="5" value="75" oninput="updateSeqRig()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: CONCENTRATION TERMS & TEMPERATURE INVARIANCE               -->
+    <!-- ================================================================= -->
+    <section id="tab-concentration" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="border-b border-border pb-4">
+          <h2 class="font-bold text-base text-white">Concentration Invariants &middot; Thermal Expansion vs Mass Preservation</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Grounded on <span class="text-emerald-300 font-semibold">JEE Main 2025</span>: Proves why <span class="text-emerald-300 font-mono font-bold">Molality (m)</span> and <span class="text-purple-300 font-mono font-bold">Mole Fraction (X)</span> remain strictly invariant with temperature, while <span class="text-red-300 font-mono font-bold">Molarity (M)</span> decays as solution volume expands!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>VOLUMETRIC FLASK HEATING &middot; EXPANDING MENISCUS vs SOLID SOLUTE</span>
+                <span id="concLiveTemp">T = 25 &deg;C</span>
+              </div>
+              <canvas id="canvasConcFlask" height="280"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Thermal Metrics</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Solution Volume V(T):</span>
+                  <span id="telConcVol" class="text-sky-400 font-bold">1.000 L</span>
+                </div>
+                <div class="flex justify-between bg-red-500/10 p-2.5 rounded border border-red-500/30">
+                  <span class="text-red-300 font-bold">Molarity M = n/V(T):</span>
+                  <span id="telConcMolarity" class="text-red-400 font-bold">1.000 M</span>
+                </div>
+                <div class="flex justify-between bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30">
+                  <span class="text-emerald-300 font-bold">Molality m = n/m_solv:</span>
+                  <span id="telConcMolality" class="text-emerald-400 font-bold">1.000 m (INVARIANT)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Temperature Slider -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-300">Solution Temperature:</span>
+                <span id="valConcTemp" class="font-mono text-amber-400 font-bold">25 &deg;C</span>
+              </div>
+              <input type="range" id="sliderConcTemp" min="10" max="90" step="5" value="25" oninput="updateConcRig()" class="w-full accent-amber-400 cursor-pointer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: EUDIOMETRY & GAS VOLUME CONTRACTION                        -->
+    <!-- ================================================================= -->
+    <section id="tab-eudiometry" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="border-b border-border pb-4">
+          <h2 class="font-bold text-base text-white">Eudiometry Tube &middot; Gas Combustion &amp; Alkaline Absorption</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Grounded on <span class="text-teal-300 font-semibold">JEE Main 2026</span>: Burning hydrocarbons over mercury, observing liquid water condensation, and measuring CO₂ absorption in aqueous KOH.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>EUDIOMETER TUBE GRADUATION &middot; GAS MENISCUS OVER MERCURY</span>
+                <span id="eudioLivePhase">Phase: Initial Mixture</span>
+              </div>
+              <canvas id="canvasEudiometry" height="280"></canvas>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="triggerEudioSpark()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition">⚡ Spark &amp; Explode</button>
+              <button onclick="triggerEudioKOH()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl transition">🧪 Add Aqueous KOH</button>
+              <button onclick="resetEudio()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-xl border border-border">Reset</button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Gas Volume Telemetry</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Hydrocarbon C₄H₁₀:</span>
+                  <span class="text-sky-400 font-bold">10 mL</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Oxygen Added:</span>
+                  <span class="text-amber-400 font-bold">80 mL</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">CO₂ Produced:</span>
+                  <span id="telEudioCO2" class="text-teal-400 font-bold">40 mL (10 &times; x)</span>
+                </div>
+                <div class="flex justify-between bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30">
+                  <span class="text-emerald-300 font-bold">Resolved Formula:</span>
+                  <span class="text-emerald-400 font-bold">C₄H₁₀ (Butane)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: EMPIRICAL & MOLECULAR FORMULA MATRIX                       -->
+    <!-- ================================================================= -->
+    <section id="tab-empirical" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="border-b border-border pb-4">
+          <h2 class="font-bold text-base text-white">Empirical &amp; Molecular Formula &middot; Integer Ratio Deconstruction</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Grounded on <span class="text-purple-300 font-semibold">JEE Main 2025</span>: Transforming percentage elemental composition into simplest integer mole ratios and scaling via Vapour Density.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>ELEMENTAL MOLE BAR GRAPH &middot; RATIO REDUCTION</span>
+                <span class="text-purple-400 font-bold">Empirical: CH₂O &rarr; Molecular: C₂H₄O₂</span>
+              </div>
+              <canvas id="canvasEmpirical" height="260"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Formula Resolution</h3>
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Carbon (% / 12):</span>
+                  <span class="text-sky-400 font-bold">3.33 mol (Ratio 1)</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Hydrogen (% / 1):</span>
+                  <span class="text-amber-400 font-bold">6.70 mol (Ratio 2)</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Oxygen (% / 16):</span>
+                  <span class="text-teal-400 font-bold">3.33 mol (Ratio 1)</span>
+                </div>
+                <div class="flex justify-between bg-purple-500/10 p-2.5 rounded border border-purple-500/30">
+                  <span class="text-purple-300 font-bold">Factor n = 2 &times; VD / Mass:</span>
+                  <span class="text-purple-400 font-bold">60 / 30 = 2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 7: MASTER SANDBOX [DRAFT]                                     -->
+    <!-- ================================================================= -->
+    <section id="tab-sandbox" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex items-center justify-between border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">DRAFT SANDBOX</span>
+              <h2 class="font-bold text-base text-white">Universal Stoichiometry Laboratory</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">Free-form sandbox to balance custom reactions and analyze mass conservation.</p>
+          </div>
+        </div>
+        <div class="canvas-container bg-slate-950 border border-border p-2 mt-4">
+          <canvas id="canvasSandbox" height="300"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 8: IIT-JEE DIAGNOSTIC HUB (EXAMSIDE QUESTION REGISTRY)        -->
+    <!-- ================================================================= -->
+    <section id="tab-quiz" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⭐</span>
+              <h2 class="font-bold text-base text-white">IIT-JEE Diagnostic Question Hub &middot; Locally Audited Diagnostic Slice</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Source labels are attributed to <a href="https://questions.examside.com/past-years/jee/jee-main/chemistry/some-basic-concepts-of-chemistry" target="_blank" class="text-emerald-400 underline hover:text-emerald-300">ExamSIDE Some Basic Concepts of Chemistry</a>.
+            </p>
+          </div>
+
+          <!-- Search Filter -->
+          <div class="w-full md:w-72">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search by topic, formula, year..." class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-border text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Subtab Category Filters -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">All Questions</button>
+          <button onclick="filterSubTab(1)" id="btnQFilter1" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">1. Mole Scale</button>
+          <button onclick="filterSubTab(2)" id="btnQFilter2" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">2. Limiting Reagent</button>
+          <button onclick="filterSubTab(3)" id="btnQFilter3" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">3. Sequential Yield</button>
+          <button onclick="filterSubTab(4)" id="btnQFilter4" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">4. Concentration Invariants</button>
+          <button onclick="filterSubTab(5)" id="btnQFilter5" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">5. Eudiometry</button>
+          <button onclick="filterSubTab(6)" id="btnQFilter6" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">6. Empirical Formula</button>
+        </div>
+
+        <!-- Dynamic Questions Container -->
+        <div id="questionsContainer" class="space-y-4 pt-2"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // LIFECYCLE CONTROLLER & SAFE CANVAS IMMUNITIZATION
+    // =========================================================================
+    let currentTab = 'tab-mole';
+    let currentSubTabFilter = 'all';
+
+    function stopAllSimulations() {
+      // Clean tab switches
+    }
+
+    function switchTab(tabId) {
+      stopAllSimulations();
+      currentTab = tabId;
+      const tabs = ['tab-mole', 'tab-limiting', 'tab-sequential', 'tab-concentration', 'tab-eudiometry', 'tab-empirical', 'tab-sandbox', 'tab-quiz'];
+      
+      tabs.forEach(t => {
+        const el = document.getElementById(t);
+        const btn = document.getElementById(`btn-${t}`);
+        if (el) el.classList.toggle('hidden', t !== tabId);
+        if (btn) {
+          btn.className = (t === tabId) ? 'tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap' : 'tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap';
+        }
+      });
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (tabId === 'tab-mole') drawMoleScale();
+          else if (tabId === 'tab-limiting') drawLimiting();
+          else if (tabId === 'tab-sequential') drawSequential();
+          else if (tabId === 'tab-concentration') drawConc();
+          else if (tabId === 'tab-eudiometry') drawEudiometry();
+          else if (tabId === 'tab-empirical') drawEmpirical();
+          else if (tabId === 'tab-sandbox') drawSandbox();
+        }, 50);
+      });
+    }
+
+    function setupCanvas(canvas) {
+      if (!canvas) return { ctx: null, width: 0, height: 0 };
+      const parent = canvas.parentElement;
+      if (!parent) return { ctx: null, width: 0, height: 0 };
+
+      if (!canvas.dataset.logicalHeight) {
+        canvas.dataset.logicalHeight = canvas.getAttribute('height') || '280';
+      }
+      const logicalHeight = Math.max(120, parseInt(canvas.dataset.logicalHeight, 10) || 280);
+
+      const style = window.getComputedStyle(parent);
+      const horizontalPadding = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0);
+      const measured = Math.floor(parent.clientWidth - horizontalPadding);
+      const width = measured > 50 ? measured : (parseInt(canvas.dataset.logicalWidth || '0', 10) || 600);
+      if (width < 50) return { ctx: null, width: 0, height: 0 };
+      canvas.dataset.logicalWidth = String(width);
+
+      const dpr = Math.min(2, Math.max(1, window.devicePixelRatio || 1));
+      canvas.style.width = '100%';
+      canvas.style.height = logicalHeight + 'px';
+      canvas.style.boxSizing = 'border-box';
+
+      const targetW = Math.round(width * dpr);
+      const targetH = Math.round(logicalHeight * dpr);
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+
+      const ctx = canvas.getContext('2d');
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width, height: logicalHeight };
+    }
+    function setSliderWithEvent(id, val) {
+      const el = document.getElementById(id);
+      if (el && val !== undefined) {
+        el.value = val;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        highlightSlider(id);
+      }
+    }
+
+    function highlightSlider(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('slider-highlight');
+        setTimeout(() => el.classList.remove('slider-highlight'), 3000);
+      }
+    }
+
+    function showToast(q) {
+      const toast = document.getElementById('simToast');
+      document.getElementById('simToastTitle').textContent = `Loaded ${q.id} (${q.year})`;
+      document.getElementById('simToastDesc').textContent = q.q.slice(0, 100) + '...';
+      document.getElementById('simToastParams').textContent = `${q.simFidelity}: ${q.simFidelityNote} | ${(q.simSummary || []).join(' | ')}`;
+      toast.classList.remove('hidden');
+      toast.classList.remove('translate-y-4');
+      setTimeout(() => closeSimToast(), 6000);
+    }
+
+    function closeSimToast() {
+      const toast = document.getElementById('simToast');
+      toast.classList.add('translate-y-4');
+      setTimeout(() => toast.classList.add('hidden'), 300);
+    }
+
+    // =========================================================================
+    // "LOAD IN SIMULATOR" ENGINE
+    // =========================================================================
+    function loadQuestionIntoSimulator(qId) {
+      const questions = window.JEE_QUESTIONS_DATA || [];
+      const q = questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const fidelity = q.simFidelity || 'CONCEPT_ONLY';
+      if (fidelity === 'UNAVAILABLE') {
+        showToast(q);
+        return;
+      }
+
+      const targetTab = q.targetTab || 'tab-mole';
+      switchTab(targetTab);
+      if (fidelity === 'CONCEPT_ONLY') {
+        setTimeout(() => showToast(q), 70);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+        return;
+      }
+
+      const p = q.simParams || {};
+      const bound = key => (q.simBindingRefs || []).includes(`simParams.${key}`);
+      setTimeout(() => {
+        if (targetTab === 'tab-mole') {
+          if (bound('massG') && p.massG !== undefined) setSliderWithEvent('sliderMoleMass', p.massG);
+        } else if (targetTab === 'tab-limiting') {
+          if (bound('massN2') && p.massN2 !== undefined) setSliderWithEvent('sliderLRMassN2', p.massN2);
+          if (bound('massH2') && p.massH2 !== undefined) setSliderWithEvent('sliderLRMassH2', p.massH2);
+        } else if (targetTab === 'tab-sequential') {
+          if (bound('yield1') && p.yield1 !== undefined) setSliderWithEvent('sliderSeqY1', p.yield1);
+          if (bound('yield2') && p.yield2 !== undefined) setSliderWithEvent('sliderSeqY2', p.yield2);
+        } else if (targetTab === 'tab-concentration') {
+          if (bound('tempC') && p.tempC !== undefined) setSliderWithEvent('sliderConcTemp', p.tempC);
+        }
+        showToast(q);
+      }, 70);
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+    function setMoleCompound(name, M, atomicity) {
+      currentCompound = { name, M, atomicity };
+      ['H2', 'H2O', 'CO2', 'Glucose'].forEach(c => {
+        const btn = document.getElementById(`btnCmp${c}`);
+        if (btn) {
+          const match = (c === 'H2' && name === 'H₂') || (c === 'H2O' && name === 'H₂O') || (c === 'CO2' && name === 'CO₂') || (c === 'Glucose' && name === 'C6H12O6');
+          btn.className = match ? 'px-2.5 py-1 rounded bg-emerald-600/30 border border-emerald-500/50 text-emerald-300 font-mono font-semibold' : 'px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono font-semibold';
+        }
+      });
+      updateMoleScale();
+    }
+
+    function updateMoleScale() {
+      const mass = parseFloat(document.getElementById('sliderMoleMass').value);
+      document.getElementById('valMoleMassSlider').textContent = mass.toFixed(1) + ' g';
+
+      const moles = mass / currentCompound.M;
+      const molecules = moles * 6.022;
+      const atoms = molecules * currentCompound.atomicity;
+      const volSTP = moles * 22.4;
+
+      document.getElementById('telMoleMass').textContent = mass.toFixed(2) + ' g';
+      document.getElementById('telMoleN').textContent = moles.toFixed(3) + ' mol';
+      document.getElementById('telMoleMolecules').textContent = molecules.toFixed(3) + ' \u00d7 10\u00b2\u00b3';
+      document.getElementById('telMoleAtoms').textContent = atoms.toFixed(3) + ' \u00d7 10\u00b2\u00b3';
+      document.getElementById('telMoleVolSTP').textContent = volSTP.toFixed(2) + ' L';
+
+      drawMoleScale();
+    }
+
+    function drawMoleScale() {
+      const canvas = document.getElementById('canvasMoleScale');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      // Particle grid
+      const mass = parseFloat(document.getElementById('sliderMoleMass').value);
+      const moles = mass / currentCompound.M;
+      const particleCount = Math.min(180, Math.max(10, Math.floor(moles * 40)));
+
+      ctx.fillStyle = '#10b981';
+      for (let i = 0; i < particleCount; i++) {
+        const px = 40 + (i * 29) % (w - 80);
+        const py = 30 + (Math.floor((i * 29) / (w - 80)) * 26) % (h - 60);
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '11px monospace';
+      ctx.fillText(`Displaying ${particleCount} representative particles (Scale: 1 particle = ${(moles/particleCount * 6.022).toFixed(2)} \u00d7 10\u00b2\u00b3 molecules)`, 30, h - 15);
+    }
+
+    // =========================================================================
+    // TAB 2: LIMITING REAGENT RIG
+    // =========================================================================
+    function updateLimitingRig() {
+      const massN2 = parseFloat(document.getElementById('sliderLRMassN2').value);
+      const massH2 = parseFloat(document.getElementById('sliderLRMassH2').value);
+      document.getElementById('valLRMassN2').textContent = massN2 + ' g';
+      document.getElementById('valLRMassH2').textContent = massH2 + ' g';
+
+      const molN2 = massN2 / 28;
+      const molH2 = massH2 / 2;
+
+      // N₂ + 3H₂ → 2NH₃
+      const ratioN2 = molN2 / 1;
+      const ratioH2 = molH2 / 3;
+
+      let lr = '';
+      let yieldNH3 = 0;
+      let excessN2 = 0;
+      let excessH2 = 0;
+
+      if (ratioH2 <= ratioN2) {
+        lr = 'H₂ (Limiting)';
+        yieldNH3 = molH2 * (2 / 3);
+        excessN2 = molN2 - (molH2 / 3);
+      } else {
+        lr = 'N₂ (Limiting)';
+        yieldNH3 = molN2 * 2;
+        excessH2 = molH2 - (molN2 * 3);
+      }
+
+      document.getElementById('telLRMolA').textContent = `${molN2.toFixed(2)} mol (${massN2} g)`;
+      document.getElementById('telLRMolB').textContent = `${molH2.toFixed(2)} mol (${massH2} g)`;
+      document.getElementById('telLRLimiting').textContent = lr;
+      document.getElementById('telLRYield').textContent = `${yieldNH3.toFixed(2)} mol (${(yieldNH3 * 17).toFixed(1)} g)`;
+      document.getElementById('telLRExcess').textContent = (lr.startsWith('H₂')) ? `${excessN2.toFixed(2)} mol N₂ (${(excessN2 * 28).toFixed(1)} g)` : `${excessH2.toFixed(2)} mol H₂ (${(excessH2 * 2).toFixed(1)} g)`;
+      document.getElementById('lrLiveStatus').textContent = lr;
+
+      drawLimiting();
+    }
+
+    function drawLimiting() {
+      const canvas = document.getElementById('canvasLimiting');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw Reactant bars vs Product bar
+      const massN2 = parseFloat(document.getElementById('sliderLRMassN2').value);
+      const massH2 = parseFloat(document.getElementById('sliderLRMassH2').value);
+      const molN2 = massN2 / 28;
+      const molH2 = massH2 / 2;
+      const yieldNH3 = Math.min(molN2 * 2, molH2 * (2 / 3));
+
+      const barW = Math.min(80, w * 0.15);
+      const maxMol = 10;
+      const scaleY = (h - 100) / maxMol;
+
+      // N2 Bar
+      const hN2 = molN2 * scaleY;
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(w * 0.15, h - 40 - hN2, barW, hN2);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '11px monospace';
+      ctx.fillText(`N₂: ${molN2.toFixed(1)}m`, w * 0.15, h - 45 - hN2);
+
+      // H2 Bar
+      const hH2 = molH2 * scaleY;
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillRect(w * 0.40, h - 40 - hH2, barW, hH2);
+      ctx.fillText(`H₂: ${molH2.toFixed(1)}m`, w * 0.40, h - 45 - hH2);
+
+      // NH3 Formed Bar
+      const hNH3 = yieldNH3 * scaleY;
+      ctx.fillStyle = '#10b981';
+      ctx.fillRect(w * 0.70, h - 40 - hNH3, barW, hNH3);
+      ctx.fillText(`NH₃: ${yieldNH3.toFixed(1)}m`, w * 0.70, h - 45 - hNH3);
+
+      // Base line
+      ctx.strokeStyle = '#334155';
+      ctx.beginPath();
+      ctx.moveTo(w * 0.05, h - 40);
+      ctx.lineTo(w * 0.95, h - 40);
+      ctx.stroke();
+    }
+
+    // =========================================================================
+    // TAB 3: SEQUENTIAL RIG
+    // =========================================================================
+    function updateSeqRig() {
+      const y1 = parseFloat(document.getElementById('sliderSeqY1').value);
+      const y2 = parseFloat(document.getElementById('sliderSeqY2').value);
+      document.getElementById('valSeqY1').textContent = y1 + '%';
+      document.getElementById('valSeqY2').textContent = y2 + '%';
+
+      const feed = 5.0;
+      const inter = feed * (y1 / 100);
+      const product = inter * (y2 / 100);
+      const overallY = (y1 * y2) / 100;
+
+      document.getElementById('telSeqFeed').textContent = feed.toFixed(2) + ' mol';
+      document.getElementById('telSeqInter').textContent = inter.toFixed(2) + ' mol';
+      document.getElementById('telSeqProduct').textContent = product.toFixed(2) + ' mol';
+      document.getElementById('seqLiveYield').textContent = `Overall Yield = ${overallY.toFixed(1)}%`;
+
+      drawSequential();
+    }
+
+    function drawSequential() {
+      const canvas = document.getElementById('canvasSequential');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const y1 = parseFloat(document.getElementById('sliderSeqY1').value) / 100;
+      const y2 = parseFloat(document.getElementById('sliderSeqY2').value) / 100;
+
+      // Pipe visualization
+      const midY = h * 0.5;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.moveTo(40, midY);
+      ctx.lineTo(w * 0.45, midY);
+      ctx.stroke();
+
+      // Leak 1
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 14 * (1 - y1);
+      ctx.beginPath();
+      ctx.moveTo(w * 0.45, midY);
+      ctx.lineTo(w * 0.45, h - 30);
+      ctx.stroke();
+
+      // Pipe 2
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 14 * y1;
+      ctx.beginPath();
+      ctx.moveTo(w * 0.45, midY);
+      ctx.lineTo(w * 0.85, midY);
+      ctx.stroke();
+
+      // Final Product Tank
+      ctx.fillStyle = '#10b981';
+      ctx.fillRect(w * 0.85, midY - 30, 40, 60);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '10px monospace';
+      ctx.fillText('Tank E', w * 0.85 - 2, midY + 45);
+    }
+
+    // =========================================================================
+    // TAB 4: CONCENTRATION INVARIANTS RIG
+    // =========================================================================
+    function updateConcRig() {
+      const tempC = parseFloat(document.getElementById('sliderConcTemp').value);
+      document.getElementById('valConcTemp').textContent = tempC + ' \u00b0C';
+      document.getElementById('concLiveTemp').textContent = `T = ${tempC} \u00b0C`;
+
+      // Thermal expansion of water: gamma ~ 0.0003 /°C
+      const expansion = 1 + 0.00035 * (tempC - 25);
+      const vol = 1.000 * expansion;
+      const molarity = 1.000 / vol;
+      const molality = 1.000; // STRICTLY INVARIANT
+
+      document.getElementById('telConcVol').textContent = vol.toFixed(3) + ' L';
+      document.getElementById('telConcMolarity').textContent = molarity.toFixed(3) + ' M';
+      document.getElementById('telConcMolality').textContent = molality.toFixed(3) + ' m (INVARIANT)';
+
+      drawConc();
+    }
+
+    function drawConc() {
+      const canvas = document.getElementById('canvasConcFlask');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const tempC = parseFloat(document.getElementById('sliderConcTemp').value);
+      const expansion = 1 + 0.00035 * (tempC - 25);
+
+      // Flask outline
+      const centerX = w * 0.35;
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(centerX - 30, 40);
+      ctx.lineTo(centerX - 30, 100);
+      ctx.lineTo(centerX - 70, h - 40);
+      ctx.lineTo(centerX + 70, h - 40);
+      ctx.lineTo(centerX + 30, 100);
+      ctx.lineTo(centerX + 30, 40);
+      ctx.stroke();
+
+      // Liquid level (rises with T)
+      const liquidTop = 90 - (expansion - 1) * 60;
+      ctx.fillStyle = 'rgba(6, 182, 212, 0.4)';
+      ctx.beginPath();
+      ctx.moveTo(centerX - 30, liquidTop);
+      ctx.lineTo(centerX - 68, h - 42);
+      ctx.lineTo(centerX + 68, h - 42);
+      ctx.lineTo(centerX + 30, liquidTop);
+      ctx.closePath();
+      ctx.fill();
+
+      // Comparative curves on right side
+      const graphX = w * 0.65;
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(graphX, 50);
+      ctx.lineTo(graphX, h - 50);
+      ctx.lineTo(w - 30, h - 50);
+      ctx.stroke();
+
+      // Flat molality green line
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(graphX, h * 0.45);
+      ctx.lineTo(w - 30, h * 0.45);
+      ctx.stroke();
+      ctx.fillStyle = '#10b981';
+      ctx.font = '11px monospace';
+      ctx.fillText('Molality m (Flat / Constant)', graphX + 10, h * 0.45 - 8);
+
+      // Dropping Molarity red line
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(graphX, h * 0.45);
+      ctx.lineTo(w - 30, h * 0.65);
+      ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText('Molarity M = n/V(T) (Decays)', graphX + 10, h * 0.65 + 18);
+    }
+
+    // =========================================================================
+    // TAB 5: EUDIOMETRY RIG
+    // =========================================================================
+    let eudioPhase = 0; // 0: Init, 1: Exploded, 2: KOH absorbed
+
+    function triggerEudioSpark() {
+      eudioPhase = 1;
+      document.getElementById('eudioLivePhase').textContent = 'Phase: Sparked (Residual: 65 mL CO₂ + Excess O₂)';
+      drawEudiometry();
+    }
+
+    function triggerEudioKOH() {
+      eudioPhase = 2;
+      document.getElementById('eudioLivePhase').textContent = 'Phase: KOH Added (CO₂ Absorbed: 40 mL contracted)';
+      drawEudiometry();
+    }
+
+    function resetEudio() {
+      eudioPhase = 0;
+      document.getElementById('eudioLivePhase').textContent = 'Phase: Initial Mixture (10 mL C₄H₁₀ + 80 mL O₂)';
+      drawEudiometry();
+    }
+
+    function drawEudiometry() {
+      const canvas = document.getElementById('canvasEudiometry');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      // Eudiometer tube
+      const tubeW = 80;
+      const tubeX = w * 0.4;
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(tubeX, 30, tubeW, h - 60);
+
+      // Gas volume height
+      let gasH = 90;
+      if (eudioPhase === 1) gasH = 65;
+      else if (eudioPhase === 2) gasH = 25;
+
+      ctx.fillStyle = (eudioPhase === 0) ? 'rgba(56, 189, 248, 0.4)' : (eudioPhase === 1 ? 'rgba(245, 158, 11, 0.4)' : 'rgba(16, 185, 129, 0.4)');
+      ctx.fillRect(tubeX + 3, 33, tubeW - 6, gasH * 1.8);
+
+      // Mercury level below
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillRect(tubeX + 3, 33 + gasH * 1.8, tubeW - 6, (h - 60) - gasH * 1.8);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '11px monospace';
+      ctx.fillText(`Gas Volume: ${eudioPhase === 0 ? '90 mL' : (eudioPhase === 1 ? '65 mL' : '25 mL')}`, tubeX + tubeW + 20, 80);
+    }
+
+    // =========================================================================
+    // TAB 6: EMPIRICAL FORMULA RIG
+    // =========================================================================
+    function drawEmpirical() {
+      const canvas = document.getElementById('canvasEmpirical');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      // 3 Bars: C, H, O
+      const elements = [
+        { sym: 'C (40%)', moles: 3.33, ratio: 1, col: '#38bdf8' },
+        { sym: 'H (6.7%)', moles: 6.70, ratio: 2, col: '#f59e0b' },
+        { sym: 'O (53.3%)', moles: 3.33, ratio: 1, col: '#10b981' }
+      ];
+
+      const barW = Math.min(80, w * 0.18);
+      elements.forEach((el, idx) => {
+        const bx = w * 0.2 + idx * (barW + 35);
+        const bh = el.moles * 24;
+        ctx.fillStyle = el.col;
+        ctx.fillRect(bx, h - 50 - bh, barW, bh);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '11px monospace';
+        ctx.fillText(el.sym, bx, h - 30);
+        ctx.fillText(`${el.moles}m`, bx + 5, h - 55 - bh);
+        ctx.fillStyle = '#a855f7';
+        ctx.fillText(`Ratio: ${el.ratio}`, bx + 5, h - 50 - bh * 0.5);
+      });
+    }
+
+    // =========================================================================
+    // TAB 7: SANDBOX RIG
+    // =========================================================================
+    function drawSandbox() {
+      const canvas = document.getElementById('canvasSandbox');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+      if (!ctx || w < 50) return;
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = '13px monospace';
+      ctx.fillText('🧪 Stoichiometry Sandbox [Draft Mode Active]', 30, 40);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('Select any arbitrary reactant coefficients and test limiting yield in real-time.', 30, 70);
+    }
+
+    // =========================================================================
+    // TAB 8: IIT-JEE QUESTION HUB & MASTER CHALKBOARD
+    // =========================================================================
+    function filterSubTab(st) {
+      currentSubTabFilter = st;
+      const filters = ['all', 1, 2, 3, 4, 5, 6];
+      filters.forEach(f => {
+        const btn = document.getElementById(f === 'all' ? 'btnQFilterAll' : `btnQFilter${f}`);
+        if (btn) {
+          btn.className = (f === st) ? 'px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold' : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold';
+        }
+      });
+      renderQuestions();
+    }
+
+    function filterQuestions() {
+      renderQuestions();
+    }
+
+    function validateQuestionBank() {
+      const bank = window.JEE_QUESTIONS_DATA || [];
+      const errors = [];
+      const seen = new Set();
+      const required = ['id','q','options','formula','steps','ans','trap','teacherCheck','takeaway','helperTags','answerAudit','answerAuditNote','sourceAudit','sourceAuditNote','simFidelity','simFidelityNote','targetTab','simBindingRefs'];
+      bank.forEach(q => {
+        required.forEach(key => {
+          if (q[key] === undefined || q[key] === null || q[key] === '') errors.push(`${q.id || '<missing>'}: missing ${key}`);
+        });
+        if (seen.has(q.id)) errors.push(`${q.id}: duplicate id`);
+        seen.add(q.id);
+        if (!document.getElementById(q.targetTab)) errors.push(`${q.id}: target tab ${q.targetTab} does not exist`);
+        if (q.answerAudit === 'PASS' && !(q.options || []).some(o => o.key === q.correct)) errors.push(`${q.id}: PASS answer key not present in options`);
+        if (['EXACT','CONSTRAINT_FAITHFUL'].includes(q.simFidelity) && !(q.simBindingRefs || []).length) errors.push(`${q.id}: mapped simulator state has no binding refs`);
+        if (['CONCEPT_ONLY','UNAVAILABLE'].includes(q.simFidelity) && (q.simBindingRefs || []).length) errors.push(`${q.id}: concept/unavailable mapping must not inject bindings`);
+      });
+      if (errors.length) {
+        const banner = document.createElement('div');
+        banner.id = 'questionBankIntegrityError';
+        banner.className = 'fixed left-3 right-3 bottom-3 z-[100] p-3 rounded-xl bg-red-950 border border-red-500 text-red-100 text-xs shadow-2xl';
+        banner.textContent = `Question-bank integrity failure (${errors.length}): ${errors.slice(0,4).join(' | ')}`;
+        document.body.appendChild(banner);
+      }
+      return errors;
+    }
+
+    function auditBadge(q) {
+      const answer = q.answerAudit === 'PASS'
+        ? '<span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono">ANSWER PASS</span>'
+        : `<span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[10px] font-mono">ANSWER ${q.answerAudit || 'PENDING'}</span>`;
+      const sourceState = q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'SOURCE UNVERIFIED' : 'SOURCE PENDING';
+      const sourceClass = q.sourceAudit === 'SOURCE_UNVERIFIED'
+        ? 'bg-red-500/10 border-red-500/40 text-red-300'
+        : 'bg-slate-800 border-slate-600 text-slate-300';
+      const source = `<span class="px-2 py-0.5 rounded border text-[10px] font-mono ${sourceClass}" title="${q.sourceAuditNote || ''}">${sourceState}</span>`;
+      const fidelity = `<span class="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 text-[10px] font-mono">${q.simFidelity}</span>`;
+      return answer + source + fidelity;
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      if (!container || !window.JEE_QUESTIONS_DATA) return;
+
+      const query = (document.getElementById('qSearchInput').value || '').toLowerCase();
+      let list = window.JEE_QUESTIONS_DATA;
+
+      if (currentSubTabFilter !== 'all') {
+        list = list.filter(q => q.subtab === currentSubTabFilter);
+      }
+
+      if (query.trim()) {
+        list = list.filter(q => 
+          q.q.toLowerCase().includes(query) || 
+          q.source.toLowerCase().includes(query) || 
+          q.subtabName.toLowerCase().includes(query) ||
+          q.formula.toLowerCase().includes(query)
+        );
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400">No questions found matching the filter.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(q => {
+        return `
+          <div class="bg-slate-900/90 border border-border rounded-xl p-5 space-y-4 hover:border-slate-700 transition" id="qcard-${q.id}">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold text-xs border border-emerald-500/30">
+                  ${q.id}
+                </span>
+                <span class="text-xs font-semibold text-slate-300">${q.source}</span>
+                <span class="flex flex-wrap gap-1">${auditBadge(q)}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                  ${q.subtabName}
+                </span>
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-300 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                  <span>🚀</span>
+                  <span>${q.simFidelity === 'CONCEPT_ONLY' ? 'Open Concept Simulator' : 'Load Bound Constraints'}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Question Stem -->
+            <div class="text-sm text-slate-200 leading-relaxed font-sans">
+              ${q.q}
+            </div>
+
+            <!-- Options Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${(q.options || []).map(opt => `
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-xs text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    ${opt.key}
+                  </span>
+                  <span>${opt.text}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Feedback Alert -->
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-xs"></div>
+
+            <!-- Master Teacher Chalkboard & Derivation Slate -->
+            <div class="pt-3 border-t border-slate-800">
+              <button onclick="toggleSolution('${q.id}')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 hover:bg-emerald-950/50 transition text-left text-xs font-semibold text-emerald-300">
+                <div class="flex items-center gap-2">
+                  <span>🏫</span>
+                  <span>Teacher Chalkboard &amp; Step-by-Step Derivation</span>
+                </div>
+                <span id="solIcon-${q.id}" class="text-xs text-emerald-400 font-mono">▶ View Chalkboard</span>
+              </button>
+              
+              <div id="solContent-${q.id}" class="hidden mt-3 p-4 rounded-xl border border-emerald-500/40 bg-[#12221a] text-slate-100 shadow-2xl font-sans space-y-4">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-500/30 pb-2.5 text-[11px] font-mono text-emerald-300">
+                  <span class="flex items-center gap-1.5 font-bold"><span>📋</span> TEACHER CHALKBOARD &middot; PEDAGOGICAL RESOLUTION</span>
+                  <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">${q.formula}</span>
+                </div>
+
+                <!-- Step 1: Model & Ratios -->
+                <div class="space-y-1">
+                  <div class="text-[11px] font-bold text-amber-300 font-mono uppercase tracking-wider">Step 1 &middot; Chemical Setup &amp; Molar Basis</div>
+                  <div class="text-xs text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 font-mono">
+                    ${q.steps && q.steps[0] ? q.steps[0] : 'Convert initial grams into moles and identify stoichiometry.'}
+                  </div>
+                </div>
+
+                <!-- Step 2: Derivation Steps -->
+                <div class="space-y-1">
+                  <div class="text-[11px] font-bold text-sky-300 font-mono uppercase tracking-wider">Step 2 &middot; Stoichiometric Resolution &amp; Yield Calculations</div>
+                  <div class="text-xs text-slate-200 bg-black/40 p-2.5 rounded-lg border border-emerald-500/20 space-y-1.5 font-mono">
+                    ${(q.steps || []).slice(1).map((st, i) => `<div class="flex items-start gap-2"><span class="text-sky-400 text-[10px]">${i + 2}.</span><span>${st}</span></div>`).join('')}
+                  </div>
+                </div>
+
+                <!-- Step 3: Red Chalk Trap Critique -->
+                <div class="p-3 bg-red-950/50 border border-red-500/50 rounded-lg text-xs space-y-1">
+                  <div class="flex items-center gap-1.5 text-red-400 font-bold font-mono">
+                    <span>⚠️</span>
+                    <span>EXAMINER TRAP &amp; FALLACY CRITIQUE (RED PEN):</span>
+                  </div>
+                  <div class="text-red-200 leading-relaxed font-sans">
+                    ${q.trap}
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                  <div class="p-3 bg-sky-950/40 border border-sky-500/35 rounded-lg text-xs space-y-1">
+                    <div class="text-sky-300 font-bold font-mono">INDEPENDENT CHECK</div>
+                    <div class="text-slate-200 leading-relaxed">${q.teacherCheck}</div>
+                  </div>
+                  <div class="p-3 bg-violet-950/40 border border-violet-500/35 rounded-lg text-xs space-y-1">
+                    <div class="text-violet-300 font-bold font-mono">TRANSFER TAKEAWAY</div>
+                    <div class="text-slate-200 leading-relaxed">${q.takeaway}</div>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-slate-950/50 border border-slate-700 rounded-lg text-[11px] space-y-1.5 font-mono">
+                  <div><span class="text-slate-400">SOURCE AUDIT:</span> <span class="${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'text-red-300' : 'text-slate-200'}">${q.sourceAudit}</span></div>
+                  <div class="text-slate-400">${q.sourceAuditNote}</div>
+                  <div><span class="text-slate-400">SIMULATOR FIDELITY:</span> <span class="text-sky-300">${q.simFidelity}</span></div>
+                  <div class="text-slate-400">${q.simFidelityNote}</div>
+                </div>
+
+                <!-- Step 4: Official Invariant -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-emerald-500/30 text-xs">
+                  <span class="font-mono text-slate-400">${q.sourceAudit === 'SOURCE_UNVERIFIED' ? 'Local audited key' : 'Attributed exam key'}: <strong class="text-white">${q.correct ? `Option (${q.correct})` : 'WITHHELD'}</strong></span>
+                  <span class="font-mono font-bold ${q.answerAudit === 'PASS' ? 'text-emerald-400 bg-emerald-500/20 border-emerald-500/40' : 'text-amber-300 bg-amber-500/10 border-amber-500/40'} px-2.5 py-1 rounded border">Answer Audit ${q.answerAudit}: ${q.ans}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function checkQuestionOption(qId, selectedKey) {
+      const q = (window.JEE_QUESTIONS_DATA || []).find(item => item.id === qId);
+      if (!q) return;
+
+      const fb = document.getElementById(`feedback-${qId}`);
+      if (q.answerAudit !== 'PASS' || !q.correct) {
+        if (fb) {
+          fb.classList.remove('hidden');
+          fb.className = 'p-3.5 rounded-xl text-xs bg-amber-950/60 border border-amber-500/60 text-amber-100 space-y-1.5';
+          fb.innerHTML = `<div><strong>⚠️ Withheld from scoring · Answer audit ${q.answerAudit || 'PENDING'}.</strong></div><div>${q.answerAuditNote || 'This item requires review.'}</div><div class="font-mono text-amber-300">${q.ans || ''}</div>`;
+        }
+        return;
+      }
+
+      const isCorrect = (selectedKey === q.correct);
+      (q.options || []).forEach(opt => {
+        const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
+        if (!btn) return;
+        if (opt.key === q.correct) {
+          btn.className = 'text-left p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/90 text-xs text-emerald-200 transition flex items-start gap-2.5 shadow-md shadow-emerald-950/50';
+        } else if (opt.key === selectedKey && !isCorrect) {
+          btn.className = 'text-left p-3 rounded-xl bg-red-950/60 border border-red-500/90 text-xs text-red-200 transition flex items-start gap-2.5 shadow-md shadow-red-950/50';
+        } else {
+          btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/40 text-xs text-slate-500 transition flex items-start gap-2.5';
+        }
+      });
+
+      if (fb) {
+        fb.classList.remove('hidden');
+        if (isCorrect) {
+          fb.className = 'p-3.5 rounded-xl text-xs bg-emerald-950/60 border border-emerald-500/60 text-emerald-200 space-y-1';
+          fb.innerHTML = `<div><strong>✅ Correct Option (${q.correct}).</strong></div><div class="text-[11px] text-emerald-300 font-mono">${q.ans}</div>`;
+        } else {
+          fb.className = 'p-3.5 rounded-xl text-xs bg-red-950/60 border border-red-500/60 text-red-200 space-y-1.5';
+          fb.innerHTML = `<div><strong>❌ Option (${selectedKey}) is incorrect.</strong> The locally audited answer is <strong>Option (${q.correct})</strong>.</div><div class="text-amber-300 font-semibold">⚠️ Trap Insight: ${q.trap}</div>`;
+        }
+      }
+    }
+    function toggleSolution(qId) {
+      const el = document.getElementById(`solContent-${qId}`);
+      const icon = document.getElementById(`solIcon-${qId}`);
+      if (el) {
+        const isHidden = el.classList.contains('hidden');
+        el.classList.toggle('hidden', !isHidden);
+        if (icon) icon.textContent = isHidden ? '▼ Close Chalkboard' : '▶ View Chalkboard';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      validateQuestionBank();
+      renderQuestions();
+      updateMoleScale();
+      updateLimitingRig();
+      updateSeqRig();
+      updateConcRig();
+      resetEudio();
+      drawEmpirical();
+      drawSandbox();
+      switchTab('tab-mole');
+    });
+
+    window.addEventListener('resize', () => {
+      if (currentTab === 'tab-mole') drawMoleScale();
+      else if (currentTab === 'tab-limiting') drawLimiting();
+      else if (currentTab === 'tab-sequential') drawSequential();
+      else if (currentTab === 'tab-concentration') drawConc();
+      else if (currentTab === 'tab-eudiometry') drawEudiometry();
+      else if (currentTab === 'tab-empirical') drawEmpirical();
+      else if (currentTab === 'tab-sandbox') drawSandbox();
+    });
+  </script>
+</body>
+</html>

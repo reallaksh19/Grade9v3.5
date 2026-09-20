@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "GCDR-SUITE-VECTOR-ALGEBRA-3D",
+  "title": "Vector Algebra · 3D Master Suite",
+  "scope_contract": {
+    "canonical_binding_status": "UNBOUND_EXTENSION",
+    "canonical_capability_refs": [],
+    "instructional_depth": "JEE_EXTENSION",
+    "extension_reason": "The repository does not yet contain a canonical Mathematics Vector Algebra spine for general dot product, cross product, scalar/vector triple products and vector equations.",
+    "certification_scope": "The suite may be audited as an implementation and diagnostic system, but canonical GCDR certification is blocked until a reviewed Mathematics Vector Algebra capability spine exists."
+  },
+  "external_corpus": {
+    "provider": "ExamSIDE",
+    "topic": "JEE Main Mathematics · Vector Algebra",
+    "snapshot_date": "2026-09-20",
+    "live_count": 282,
+    "embedded_item_count": 13,
+    "coverage_claim": "CURATED_SLICE_AUDITED"
+  },
+  "diagnostic_source": {
+    "locator": "public/mathematics/vectors/explorers/vector_algebra/jee_questions_data.js",
+    "format": "WINDOW_JEE_QUESTIONS_DATA_JS",
+    "contract_schema": "Shared/library/gcdr_diagnostic_item.schema.json"
+  },
+  "helper_contracts": [
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TEACHERS_CHALKBOARD",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "formula",
+        "steps",
+        "ans",
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "governing_model",
+        "state_specific_derivation",
+        "result_or_disposition",
+        "independent_check",
+        "boundary_note"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRAP_ALERT",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "trap"
+      ],
+      "required_outputs": [
+        "tempting_wrong_model",
+        "why_it_fails_here",
+        "observable_contradiction"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "INDEPENDENT_CHECK",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "check_method",
+        "residual_or_confirmation"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRANSFER_TAKEAWAY",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "takeaway"
+      ],
+      "required_outputs": [
+        "decision_rule",
+        "when_to_use",
+        "when_not_to_use"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "EXACTNESS_BADGE",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "answerAudit",
+        "sourceAudit",
+        "simFidelity",
+        "simFidelityNote"
+      ],
+      "required_outputs": [
+        "fidelity",
+        "binding_coverage",
+        "missing_bindings"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    }
+  ],
+  "delivery_artifacts": [
+    {
+      "locator": "public/mathematics/vectors/explorers/vector_algebra/index.html",
+      "profile": "REPO_BUNDLE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    },
+    {
+      "locator": "standalone/vector-algebra-3d-master-suite.html",
+      "profile": "SINGLE_FILE_ONLINE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    }
+  ],
+  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py",
+  "representation_invariants": [
+    {
+      "id": "PARALLELOGRAM-AREA-SIDE-DIAGONAL",
+      "views": [
+        "SIDE_VECTOR_MODE",
+        "DIAGONAL_MODE"
+      ],
+      "relation": "norm(cross(a,b)) equals one half norm(cross(a+b,a-b))",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "id": "PROJECTION-REJECTION-RECONSTRUCTION",
+      "views": [
+        "VECTOR_VIEW",
+        "PROJECTION_REJECTION_VIEW"
+      ],
+      "relation": "parallel projection plus orthogonal rejection reconstructs the original vector and the rejection is orthogonal to the projection axis",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "id": "BAC-CAB-VECTOR-TRIPLE-PRODUCT",
+      "views": [
+        "DIRECT_CROSS_PRODUCT_VIEW",
+        "BAC_CAB_RECONSTRUCTION_VIEW"
+      ],
+      "relation": "direct vector triple product equals the BAC-CAB algebraic reconstruction for the governed vectors",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    }
+  ],
+  "geometry_truth_contract": {
+    "verification_status": "DECLARED",
+    "oracle_method": "PROPERTY_TEST",
+    "governed_geometry": [
+      "3D_VECTORS",
+      "PARALLELOGRAM_AND_DIAGONALS",
+      "PARALLELEPIPED",
+      "VECTOR_TRIPLE_PRODUCT_PLANES"
+    ],
+    "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+  }
+}

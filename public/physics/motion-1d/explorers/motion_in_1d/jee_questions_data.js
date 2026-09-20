@@ -70,7 +70,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q02",
@@ -114,8 +115,7 @@ window.JEE_QUESTIONS_DATA = [
     "targetTab": "tab-disp-dist",
     "simParams": {
       "v0": 6,
-      "a": -2,
-      "t_stop": 5
+      "a": -2
     },
     "simSummary": [
       "Velocity law: v = 6 - 2t m/s",
@@ -134,6 +134,10 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.v0",
+      "simParams.a"
     ]
   },
   {
@@ -197,7 +201,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q04",
@@ -259,7 +264,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q05",
@@ -321,7 +327,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q06",
@@ -365,7 +372,6 @@ window.JEE_QUESTIONS_DATA = [
     "trap": "Negative v-x slope produces a POSITIVE a-x slope because (-m) × (-m) = +m²!",
     "targetTab": "tab-graph-vx",
     "simParams": {
-      "m": 1.5,
       "v0": 15,
       "x_max": 10,
       "profile": "linear_down"
@@ -387,6 +393,11 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.profile",
+      "simParams.v0",
+      "simParams.x_max"
     ]
   },
   {
@@ -428,9 +439,6 @@ window.JEE_QUESTIONS_DATA = [
     "trap": "Forgetting the factor of 2: the slope of v²-x is 2a, NOT a!",
     "targetTab": "tab-graph-vx",
     "simParams": {
-      "u2": 100,
-      "x_stop": 25,
-      "a": -2,
       "v0": 10,
       "x_max": 25,
       "profile": "constant_accel"
@@ -452,6 +460,11 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.profile",
+      "simParams.v0",
+      "simParams.x_max"
     ]
   },
   {
@@ -515,7 +528,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q09",
@@ -579,7 +593,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q10",
@@ -643,6 +658,11 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.v_balloon",
+      "simParams.h_release",
+      "simParams.g"
     ]
   },
   {
@@ -686,9 +706,7 @@ window.JEE_QUESTIONS_DATA = [
     "targetTab": "tab-drops",
     "simParams": {
       "total_h": 5,
-      "num_drops": 6,
-      "target_drop": 4,
-      "g": 10
+      "num_drops": 6
     },
     "simSummary": [
       "Tap height = 5.0 m",
@@ -698,7 +716,7 @@ window.JEE_QUESTIONS_DATA = [
     "answerAudit": "PASS",
     "sourceAudit": "SOURCE_ITEM_VERIFIED",
     "simFidelity": "EXACT",
-    "simFidelityNote": "Tap height and drop count map directly to the stroboscopic drop rig; the target is the fourth drop when the sixth is released.",
+    "simFidelityNote": "Tap height and drop count map directly to the stroboscopic drop rig; the rig's fixed g=10 m/s² and fourth-drop highlight match this question.",
     "teacherCheck": "Check the clock indexing: first drop has 5 intervals, fourth has 2; Δt=0.2 s and the fourth is 4.2 m above the floor.",
     "takeaway": "For equally timed releases, index elapsed intervals from the release event before using s∝t².",
     "helperTags": [
@@ -707,6 +725,10 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.total_h",
+      "simParams.num_drops"
     ]
   },
   {
@@ -750,7 +772,6 @@ window.JEE_QUESTIONS_DATA = [
     "targetTab": "tab-braking",
     "simParams": {
       "h1": 50,
-      "g": 9.8,
       "a_brake": 2,
       "v_land": 3
     },
@@ -762,7 +783,7 @@ window.JEE_QUESTIONS_DATA = [
     "answerAudit": "PASS",
     "sourceAudit": "SOURCE_PROVENANCE_PENDING",
     "simFidelity": "EXACT",
-    "simFidelityNote": "Free-fall distance, parachute deceleration and landing speed map directly to the two-phase braking rig.",
+    "simFidelityNote": "Free-fall distance, parachute deceleration and landing speed map directly to the two-phase braking rig; its fixed g=9.8 m/s² matches the question.",
     "teacherCheck": "State continuity check: v1²=2gh1=980; the same v1 enters phase 2, giving h2=242.75 m and H=292.75 m.",
     "takeaway": "At a phase boundary, terminal position and velocity become the next phase's initial state.",
     "helperTags": [
@@ -771,6 +792,11 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.h1",
+      "simParams.a_brake",
+      "simParams.v_land"
     ]
   },
   {
@@ -833,7 +859,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q14",
@@ -896,7 +923,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q15",
@@ -957,7 +985,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q16",
@@ -1003,7 +1032,7 @@ window.JEE_QUESTIONS_DATA = [
       "vA": 20,
       "vB": 10,
       "d0": 100,
-      "aB": -1
+      "aB": 1
     },
     "simSummary": [
       "Car A: 20 m/s steady",
@@ -1013,7 +1042,7 @@ window.JEE_QUESTIONS_DATA = [
     "answerAudit": "PASS",
     "sourceAudit": "SOURCE_ITEM_VERIFIED",
     "simFidelity": "EXACT",
-    "simFidelityNote": "vA, vB, initial gap and B's deceleration map directly to the relative-pursuit rig.",
+    "simFidelityNote": "vA, vB, initial gap and B's 1 m/s² deceleration magnitude map directly to the relative-pursuit rig.",
     "teacherCheck": "Solve 100-10t-½t²=0 and independently check t=7.32 s is before B's 10 s stopping time.",
     "takeaway": "After solving a relative-motion event, verify that every body's assumed motion law is still valid at that event time.",
     "helperTags": [
@@ -1022,6 +1051,12 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
+    ],
+    "simBindingRefs": [
+      "simParams.vA",
+      "simParams.vB",
+      "simParams.d0",
+      "simParams.aB"
     ]
   },
   {
@@ -1084,7 +1119,8 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   },
   {
     "id": "1D-Q18",
@@ -1149,6 +1185,7 @@ window.JEE_QUESTIONS_DATA = [
       "INDEPENDENT_CHECK",
       "TRANSFER_TAKEAWAY",
       "EXACTNESS_BADGE"
-    ]
+    ],
+    "simBindingRefs": []
   }
 ];
