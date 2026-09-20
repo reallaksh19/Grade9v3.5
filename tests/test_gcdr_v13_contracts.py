@@ -44,7 +44,7 @@ class GcdrV13ContractsTest(unittest.TestCase):
             self.assertIn(key, schema["required"])
 
     def test_generic_filler_final_answers_are_release_blocked(self):
-        for value in ("apply formula", "Evaluate", "use the equation", "Solve"):
+        for value in ("apply formula", "Evaluate", "use the equation", "Solve", "symmetry verified", "identity holds", "as required"):
             with self.subTest(value=value):
                 self.assertTrue(gcdr_suite_guard.is_generic_final_answer(value))
         for value in ("44", "13 m (Option C)", "π/3 (Option B)"):
@@ -58,6 +58,10 @@ class GcdrV13ContractsTest(unittest.TestCase):
         self.assertEqual(vector["scope_contract"]["canonical_binding_status"], "UNBOUND_EXTENSION")
         self.assertEqual(motion["external_corpus"]["coverage_claim"], "CURATED_SLICE_AUDITED")
         self.assertEqual(vector["external_corpus"]["coverage_claim"], "CURATED_SLICE_AUDITED")
+        self.assertTrue(motion["representation_invariants"])
+        self.assertGreaterEqual(len(vector["representation_invariants"]), 3)
+        self.assertEqual(motion["geometry_truth_contract"]["verification_status"], "DECLARED")
+        self.assertEqual(vector["geometry_truth_contract"]["verification_status"], "DECLARED")
         self.assertEqual(
             {row["profile"] for row in motion["delivery_artifacts"]},
             {"REPO_BUNDLE", "SINGLE_FILE_ONLINE"},
