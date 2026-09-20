@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Standalone single-file build from Grade9V3 commit d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59. Local question data is inlined; CDN libraries remain remote. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IIT-JEE Vector Algebra · 3D Master Suite & Question Hub</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- KaTeX for crisp mathematical typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+  <!-- High-Yield Question Bank -->
+  <script>
+/* Inlined question registry for single-file standalone build. */
+/**
+ * Vector Algebra Master Question Registry & Step-by-Step Solutions Database
+ * 13 locally audited diagnostic records selected from the live ExamSIDE JEE Main Mathematics Vector Algebra corpus.
+ * Live source snapshot (2026-09-20): 282 questions, 2002-2026.
+ * External question text is retained here only where already authored in this PR; source-corpus count is not a claim that all 282 questions are embedded locally.
+ */
+window.JEE_QUESTIONS_DATA = [
+  {
+    "id": "VEC-Q01",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 5th April Evening Shift",
+    "subtab": 1,
+    "subtabName": "Basics & Linear Combinations",
+    "year": "2026",
+    "q": "Let O be the origin, vector OP = a and vector OQ = b. If R is a point on OP such that OP = 5 OR, and M is a point such that OQ = 5 RM, then the vector PM expressed in terms of a and b is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "PM = ⅕ b - ⅘ a"
+      },
+      {
+        "key": "B",
+        "text": "PM = ⅘ a + ⅕ b"
+      },
+      {
+        "key": "C",
+        "text": "PM = ⅕ b - a"
+      },
+      {
+        "key": "D",
+        "text": "PM = b - ⅘ a"
+      }
+    ],
+    "correct": "A",
+    "formula": "PM = OM - OP,  OR = ⅕ a,  RM = ⅕ b ⇒ OM = OR + RM = ⅕ a + ⅕ b",
+    "steps": [
+      "Given: vector OP = a ⇒ R is on OP with OP = 5 OR ⇒ vector OR = ⅕ a.",
+      "Given: vector OQ = b with OQ = 5 RM ⇒ vector RM = ⅕ b.",
+      "Find position vector of M: vector OM = vector OR + vector RM = ⅕ a + ⅕ b.",
+      "Compute vector PM = vector OM - vector OP = (⅕ a + ⅕ b) - a.",
+      "Combine like terms: PM = (⅕ - 1) a + ⅕ b = -⅘ a + ⅕ b = ⅕ b - ⅘ a."
+    ],
+    "ans": "PM = ⅕ b - ⅘ a (Option A)",
+    "trap": "Always track the origin of displacement vectors! Vector RM is relative to R, not O; OM = OR + RM.",
+    "targetTab": "tab-basis",
+    "simParams": {
+      "ax": 5,
+      "ay": 0,
+      "bx": 0,
+      "by": 5
+    },
+    "simSummary": [
+      "Vector a = [5, 0, 0]",
+      "Vector b = [0, 5, 0]",
+      "PM = [1/5 b - 4/5 a]"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The basis rig can display vectors, but it does not represent the points O,P,Q,R,M or the affine construction in the question.",
+    "teacherCheck": "Reconstruct OM=OR+RM=(a+b)/5, then subtract OP=a; the residual is PM=b/5-4a/5.",
+    "takeaway": "With position vectors, first put every point relative to one origin before subtracting endpoints.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q02",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 24th January Morning Shift",
+    "subtab": 1,
+    "subtabName": "Basics & Linear Combinations",
+    "year": "2025",
+    "q": "If a and b are unit vectors such that |a + b| = √3, then the value of (2a - 5b) · (3a + b) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "-11/2"
+      },
+      {
+        "key": "B",
+        "text": "-7/2"
+      },
+      {
+        "key": "C",
+        "text": "+5/2"
+      },
+      {
+        "key": "D",
+        "text": "-9/2"
+      }
+    ],
+    "correct": "A",
+    "formula": "|a + b|² = |a|² + |b|² + 2(a · b) = 3 ⇒ 1 + 1 + 2(a · b) = 3 ⇒ a · b = ½",
+    "steps": [
+      "Given: |a| = 1, |b| = 1, and |a + b|² = 3.",
+      "Expand norm squared: |a + b|² = |a|² + |b|² + 2(a · b) = 1 + 1 + 2(a · b) = 2 + 2(a · b).",
+      "Set 2 + 2(a · b) = 3 ⇒ 2(a · b) = 1 ⇒ a · b = ½ (which corresponds to θ = 60°).",
+      "Expand target dot product:",
+      "E = (2a - 5b) · (3a + b) = 6|a|² + 2(a · b) - 15(a · b) - 5|b|².",
+      "E = 6(1) - 13(a · b) - 5(1) = 1 - 13(a · b).",
+      "Substitute a · b = ½: E = 1 - 13(½) = 1 - 6.5 = -5.5 = -11/2."
+    ],
+    "ans": "-11/2 (Option A)",
+    "trap": "Do not treat vectors as scalars! The cross terms 2(a·b) - 15(b·a) combine to -13(a·b).",
+    "targetTab": "tab-dot",
+    "simParams": {
+      "theta_deg": 60,
+      "magA": 1,
+      "magB": 1
+    },
+    "simSummary": [
+      "Unit vectors: |a| = 1, |b| = 1",
+      "Angle θ = 60° (a · b = 0.5)",
+      "Target dot product = -11/2 = -5.5"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "EXACT",
+    "simFidelityNote": "The dot-product rig exactly binds |a|=|b|=1 and θ=60°, which is the state implied by |a+b|=√3.",
+    "teacherCheck": "Check |a+b|²=2+2cos60°=3, then independently expand the target dot product to -11/2.",
+    "takeaway": "Convert norm information into a dot product before expanding linear combinations.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q03",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 30th January Morning Shift",
+    "subtab": 1,
+    "subtabName": "Basics & Linear Combinations",
+    "year": "2024",
+    "q": "If a unit vector u makes angles π/3 with i, π/4 with j, and an acute angle θ with k, then the value of θ is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "π/6"
+      },
+      {
+        "key": "B",
+        "text": "π/3"
+      },
+      {
+        "key": "C",
+        "text": "π/4"
+      },
+      {
+        "key": "D",
+        "text": "5π/12"
+      }
+    ],
+    "correct": "B",
+    "formula": "cos² α + cos² β + cos² γ = 1",
+    "steps": [
+      "Direction cosines of unit vector u are: l = cos(π/3), m = cos(π/4), n = cos θ.",
+      "We have l = ½, m = 1/√2, n = cos θ.",
+      "Apply fundamental identity: l² + m² + n² = 1.",
+      "(½)² + (1/√2)² + cos² θ = 1 ⇒ ¼ + ½ + cos² θ = 1.",
+      "¾ + cos² θ = 1 ⇒ cos² θ = ¼.",
+      "Since θ is an acute angle: cos θ = +½ ⇒ θ = π/3 (60°)."
+    ],
+    "ans": "π/3 (Option B)",
+    "trap": "Direction cosines satisfy cos²α + cos²β + cos²γ = 1 (sum of squares = 1, NOT sum of angles = 180°!).",
+    "targetTab": "tab-basis",
+    "simParams": {
+      "alpha_deg": 60,
+      "beta_deg": 45,
+      "gamma_deg": 60
+    },
+    "simSummary": [
+      "Direction angles: α = 60°, β = 45°",
+      "Sum of squared cosines: 0.25 + 0.5 + 0.25 = 1.0",
+      "γ = 60°"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The basis rig demonstrates direction cosines, but the loader does not bind all three direction-angle constraints as the question's exact state.",
+    "teacherCheck": "Verify cos²60°+cos²45°+cos²60°=1.",
+    "takeaway": "Direction cosines obey a sum-of-squares identity; direction angles do not generally sum to 180°.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q04",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 24th January Evening Shift",
+    "subtab": 2,
+    "subtabName": "Dot Product & Projections",
+    "year": "2026",
+    "q": "Let a = 2i + 3j - k and b = i - 2j + 2k. The vector component of a orthogonal (perpendicular) to b is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "⅓ (8i + 5j + k)"
+      },
+      {
+        "key": "B",
+        "text": "⅑ (24i + 15j - 3k)"
+      },
+      {
+        "key": "C",
+        "text": "⅔ (2i + 3j - k)"
+      },
+      {
+        "key": "D",
+        "text": "⅓ (5i + 11j - 7k)"
+      }
+    ],
+    "correct": "A",
+    "formula": "a_perp = a - a_parallel = a - [(a · b) / |b|²] b",
+    "steps": [
+      "Compute dot product: a · b = (2)(1) + (3)(-2) + (-1)(2) = 2 - 6 - 2 = -6.",
+      "Compute magnitude squared |b|² = 1² + (-2)² + 2² = 1 + 4 + 4 = 9.",
+      "Parallel projection along b: a_parallel = [(a · b) / |b|²] b = (-6 / 9) b = -⅔ (i - 2j + 2k).",
+      "Perpendicular rejection: a_perp = a - a_parallel = (2i + 3j - k) - (-⅔ i + ⁴/₃ j - ⁴/₃ k).",
+      "x-component: 2 + ⅔ = ⁸/₃.",
+      "y-component: 3 - ⁴/₃ = ⁵/₃.",
+      "z-component: -1 + ⁴/₃ = +⅓.",
+      "Combine: a_perp = ⅓ (8i + 5j + k)."
+    ],
+    "ans": "⅓ (8i + 5j + k) (Option A)",
+    "trap": "Remember a_perp = a - a_parallel! Verify orthogonality: (8)(1) + (5)(-2) + (1)(2) = 8 - 10 + 2 = 0.",
+    "targetTab": "tab-dot",
+    "simParams": {
+      "ax": 2,
+      "ay": 3,
+      "az": -1,
+      "bx": 1,
+      "by": -2,
+      "bz": 2
+    },
+    "simSummary": [
+      "Vector a = 2i + 3j - k",
+      "Vector b = i - 2j + 2k",
+      "Orthogonal Rejection: a_perp · b = 0"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The projection rig shows parallel/rejection geometry but does not load the question's component vectors a and b.",
+    "teacherCheck": "After computing a⊥=(8,5,1)/3, dot it with b=(1,-2,2): (8-10+2)/3=0.",
+    "takeaway": "A rejection vector should be checked by a zero dot product with the projection direction.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q05",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 8th April Evening Shift",
+    "subtab": 2,
+    "subtabName": "Dot Product & Projections",
+    "year": "2025",
+    "q": "Let a and b be two non-zero vectors such that |a + b| = |a - b|. The angle between a and b is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "0°"
+      },
+      {
+        "key": "B",
+        "text": "45°"
+      },
+      {
+        "key": "C",
+        "text": "90°"
+      },
+      {
+        "key": "D",
+        "text": "180°"
+      }
+    ],
+    "correct": "C",
+    "formula": "|a + b|² = |a - b|² ⇔ 4(a · b) = 0 ⇔ a ⊥ b",
+    "steps": [
+      "Square both sides: |a + b|² = |a - b|².",
+      "Expand LHS: |a|² + |b|² + 2(a · b).",
+      "Expand RHS: |a|² + |b|² - 2(a · b).",
+      "Equate and cancel norms: 2(a · b) = -2(a · b) ⇒ 4(a · b) = 0.",
+      "Since a and b are non-zero: a · b = 0 ⇒ cos θ = 0 ⇒ θ = 90° (π/2 radians)."
+    ],
+    "ans": "90° (Option C)",
+    "trap": "A parallelogram has equal diagonals if and only if it is a rectangle (vectors are orthogonal)!",
+    "targetTab": "tab-dot",
+    "simParams": {
+      "theta_deg": 90,
+      "magA": 3,
+      "magB": 4
+    },
+    "simSummary": [
+      "|a + b| = |a - b|",
+      "Dot product a · b = 0",
+      "Angle θ = 90° (orthogonal)"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "EXACT",
+    "simFidelityNote": "The dot rig binds the implied orthogonal state θ=90°; the chosen nonzero magnitudes do not affect the conclusion.",
+    "teacherCheck": "Square both norms: equality cancels |a|² and |b|² and leaves 4a·b=0.",
+    "takeaway": "Equal |a+b| and |a-b| is an orthogonality test for nonzero vectors.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q06",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 6th April Evening Shift",
+    "subtab": 3,
+    "subtabName": "Cross Product & Areas",
+    "year": "2026",
+    "q": "Let a = 2i + 3j + 3k and b = 6i + 3j + 3k. The square of the area of the triangle with adjacent sides determined by vectors (2a + 3b) and (a - b) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "225"
+      },
+      {
+        "key": "B",
+        "text": "450"
+      },
+      {
+        "key": "C",
+        "text": "900"
+      },
+      {
+        "key": "D",
+        "text": "1800"
+      }
+    ],
+    "correct": "D",
+    "formula": "Area = ½ |(2a + 3b) × (a - b)| = ⁵/₂ |a × b|",
+    "steps": [
+      "Let u = 2a + 3b and v = a - b.",
+      "Expand cross product: u × v = -2(a × b) + 3(b × a) = -5(a × b).",
+      "Area of triangle = ½ |u × v| = ⁵/₂ |a × b|.",
+      "Compute a × b = 0i + 12j - 12k ⇒ |a × b| = √(144 + 144) = 12√2.",
+      "Area of triangle = ⁵/₂ (12√2) = 30√2.",
+      "Square of area = (30√2)² = 900 × 2 = 1800."
+    ],
+    "ans": "1800 (Option D)",
+    "trap": "Cross product is anti-commutative: 3(b × a) = -3(a × b), so the coefficients add to -5, not +1!",
+    "targetTab": "tab-cross",
+    "simParams": {
+      "ax": 2,
+      "ay": 3,
+      "az": 3,
+      "bx": 6,
+      "by": 3,
+      "bz": 3
+    },
+    "simSummary": [
+      "Vector a = 2i + 3j + 3k",
+      "Vector b = 6i + 3j + 3k",
+      "Cross product |a × b| = 12√2",
+      "Area² = 1800"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The cross-product rig demonstrates triangle area and anti-commutativity but cannot bind the supplied 3D component vectors.",
+    "teacherCheck": "Expand (2a+3b)×(a-b)=-5a×b and verify |a×b|=12√2; half its magnitude is 30√2.",
+    "takeaway": "Expand cross products bilinearly before computing components; b×a=-a×b.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q07",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 7th April Shift",
+    "subtab": 3,
+    "subtabName": "Cross Product & Areas",
+    "year": "2026",
+    "q": "The diagonals of a parallelogram are given by vectors d₁ = 3i + j - 2k and d₂ = i - 3j + 4k. The area of the parallelogram is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "5√3"
+      },
+      {
+        "key": "B",
+        "text": "10√3"
+      },
+      {
+        "key": "C",
+        "text": "5√5"
+      },
+      {
+        "key": "D",
+        "text": "20√3"
+      }
+    ],
+    "correct": "A",
+    "formula": "Area of Parallelogram with Diagonals = ½ |d₁ × d₂|",
+    "steps": [
+      "When diagonals are given, Area = ½ |d₁ × d₂|.",
+      "Compute d₁ × d₂ = -2i - 14j - 10k.",
+      "Magnitude: |d₁ × d₂| = √(4 + 196 + 100) = √300 = 10√3.",
+      "Area = ½ (10√3) = 5√3."
+    ],
+    "ans": "5√3 (Option A)",
+    "trap": "When diagonals are given, always multiply by ½! The formula Area = |a × b| applies ONLY when a and b are adjacent sides.",
+    "targetTab": "tab-cross",
+    "simParams": {
+      "d1x": 3,
+      "d1y": 1,
+      "d1z": -2,
+      "d2x": 1,
+      "d2y": -3,
+      "d2z": 4
+    },
+    "simSummary": [
+      "Diagonal d₁ = 3i + j - 2k",
+      "Diagonal d₂ = i - 3j + 4k",
+      "|d₁ × d₂| = 10√3 ⇒ Area = 5√3"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The diagonal-area mode teaches the exact ½ factor, but the current rig cannot load d1 and d2 component vectors.",
+    "teacherCheck": "Compute d1×d2=(-2,-14,-10), whose magnitude is 10√3; halve it to obtain 5√3.",
+    "takeaway": "If the given vectors are diagonals rather than adjacent sides, parallelogram area is ½|d1×d2|.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q08",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 27th January Evening Shift",
+    "subtab": 3,
+    "subtabName": "Cross Product & Areas",
+    "year": "2024",
+    "q": "For any two vectors a and b, if |a| = 10, |b| = 2, and a · b = 12, then the magnitude of the cross product |a × b| is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "16"
+      },
+      {
+        "key": "B",
+        "text": "8"
+      },
+      {
+        "key": "C",
+        "text": "12"
+      },
+      {
+        "key": "D",
+        "text": "10"
+      }
+    ],
+    "correct": "A",
+    "formula": "Lagrange's Identity: |a × b|² + (a · b)² = |a|² |b|²",
+    "steps": [
+      "Apply Lagrange's Identity: |a × b|² = |a|² |b|² - (a · b)².",
+      "Substitute values: |a|² = 10² = 100, |b|² = 2² = 4.",
+      "Product of squared norms: |a|² |b|² = 100 × 4 = 400.",
+      "Squared dot product: (a · b)² = 12² = 144.",
+      "|a × b|² = 400 - 144 = 256.",
+      "Take square root: |a × b| = √256 = 16."
+    ],
+    "ans": "16 (Option A)",
+    "trap": "Lagrange's Identity is instantaneous and avoids converting back and forth through trigonometric angles: |a×b|² + (a·b)² ≡ |a|²|b|²!",
+    "targetTab": "tab-cross",
+    "simParams": {
+      "magA": 10,
+      "magB": 2,
+      "dotVal": 12
+    },
+    "simSummary": [
+      "|a| = 10, |b| = 2",
+      "a · b = 12",
+      "Lagrange Identity: |a × b| = √256 = 16"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The cross rig exposes Lagrange's identity but cannot independently bind |a|=10, |b|=2 and a·b=12.",
+    "teacherCheck": "Residual check: 16²+12²=256+144=400=(10²)(2²).",
+    "takeaway": "Lagrange's identity is often the shortest route when norms and a dot product are given.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q09",
+    "num": "JEE Main 2019",
+    "source": "JEE Main 2019 (Online) 12th January Morning Shift",
+    "subtab": 4,
+    "subtabName": "Triple Products & Volume",
+    "year": "2019",
+    "q": "If the vectors μi + j + k, i + μj + k and i + j + μk are coplanar, then the sum of the distinct real values of μ is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "-1"
+      },
+      {
+        "key": "B",
+        "text": "0"
+      },
+      {
+        "key": "C",
+        "text": "1"
+      },
+      {
+        "key": "D",
+        "text": "3"
+      }
+    ],
+    "correct": "A",
+    "formula": "Coplanarity ⇔ det([[μ,1,1],[1,μ,1],[1,1,μ]]) = 0 = (μ-1)²(μ+2)",
+    "steps": [
+      "Three vectors are coplanar exactly when their scalar triple product is zero.",
+      "Form the determinant det([[μ,1,1],[1,μ,1],[1,1,μ]]).",
+      "Expanding gives μ³ - 3μ + 2 = 0.",
+      "Factor: μ³ - 3μ + 2 = (μ - 1)²(μ + 2).",
+      "The distinct real values are μ = 1 and μ = -2.",
+      "Their sum is 1 + (-2) = -1."
+    ],
+    "ans": "-1 (Option A)",
+    "trap": "Zero scalar triple product means zero spanned volume/coplanarity; repeated roots still count once when the question asks for distinct real values.",
+    "targetTab": "tab-triple",
+    "simParams": {
+      "mu_values": [
+        1,
+        -2
+      ]
+    },
+    "simSummary": [
+      "Coplanarity condition: scalar triple product = 0",
+      "Distinct real roots: μ = 1 and μ = -2",
+      "Sum = -1"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_ITEM_VERIFIED",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The triple-product rig visualizes coplanarity collapse, but it does not encode the symmetric μ-dependent vectors.",
+    "teacherCheck": "Substitute each root into (μ-1)²(μ+2): μ=1 and μ=-2 both give zero determinant.",
+    "takeaway": "Coplanarity is zero scalar triple product; distinguish distinct roots from algebraic multiplicity.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q10",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 1st February Evening Shift",
+    "subtab": 4,
+    "subtabName": "Triple Products & Volume",
+    "year": "2024",
+    "q": "The volume of the parallelepiped whose coterminous edges are represented by vectors a = 2i - 3j + 4k, b = i + 2j - k, and c = 3i - j + 2k is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "7 cubic units"
+      },
+      {
+        "key": "B",
+        "text": "14 cubic units"
+      },
+      {
+        "key": "C",
+        "text": "21 cubic units"
+      },
+      {
+        "key": "D",
+        "text": "28 cubic units"
+      }
+    ],
+    "correct": "A",
+    "formula": "Volume V = | [a b c] | = | det(a, b, c) |",
+    "steps": [
+      "Set up determinant of coordinate matrix: det = 2(3) - (-3)(5) + 4(-7) = 6 + 15 - 28 = -7.",
+      "Volume is absolute value: V = |-7| = 7 cubic units."
+    ],
+    "ans": "7 cubic units (Option A)",
+    "trap": "Volume must be positive; always take the absolute value of the determinant!",
+    "targetTab": "tab-triple",
+    "simParams": {
+      "ax": 2,
+      "ay": -3,
+      "az": 4,
+      "bx": 1,
+      "by": 2,
+      "bz": -1,
+      "cx": 3,
+      "cy": -1,
+      "cz": 2
+    },
+    "simSummary": [
+      "Edges: a, b, c",
+      "STP det = -7",
+      "Volume = 7"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The volume rig demonstrates scalar-triple-product volume but uses a fixed illustrative parallelepiped, not the question's component vectors.",
+    "teacherCheck": "Direct determinant check gives -7; geometric volume is its absolute value, 7.",
+    "takeaway": "Scalar triple product carries orientation; physical volume uses its absolute value.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q11",
+    "num": "JEE Main 2026",
+    "source": "JEE Main 2026 (Online) 5th April Morning Shift",
+    "subtab": 5,
+    "subtabName": "Vector Equations",
+    "year": "2026",
+    "q": "Let a = √7 i + j - k and b = j + 2k. If r is a vector such that r × a + a × b = 0 and r · a = 0, then the value of |3r|² is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "44"
+      },
+      {
+        "key": "B",
+        "text": "54"
+      },
+      {
+        "key": "C",
+        "text": "86"
+      },
+      {
+        "key": "D",
+        "text": "132"
+      }
+    ],
+    "correct": "A",
+    "formula": "r × a + a × b = 0 ⇔ (r - b) × a = 0 ⇔ r - b = λ a ⇔ r = b + λ a",
+    "steps": [
+      "Rewrite r × a + a × b = 0 using a × b = -(b × a): (r - b) × a = 0.",
+      "Therefore r - b is parallel to a, so r = b + λa.",
+      "Use r · a = 0: (b + λa) · a = 0, hence λ = -(a · b)/|a|².",
+      "Here |a|² = 7 + 1 + 1 = 9 and a · b = (1)(1) + (-1)(2) = -1, so λ = 1/9.",
+      "Then |r|² = |b|² + 2λ(a · b) + λ²|a|² = 5 - 2/9 + 1/9 = 44/9.",
+      "Therefore |3r|² = 9|r|² = 44."
+    ],
+    "ans": "44 (Option A)",
+    "trap": "Never attempt to 'divide' by vector a! Factor (r - b) × a = 0 into collinear line r = b + λ a.",
+    "targetTab": "tab-equations",
+    "simParams": {
+      "ax": 2.645,
+      "ay": 1,
+      "az": -1,
+      "bx": 0,
+      "by": 1,
+      "bz": 2
+    },
+    "simSummary": [
+      "Solution family before dot constraint: r = b + λa",
+      "Auxiliary condition gives λ = 1/9",
+      "|3r|² = 44"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_ITEM_VERIFIED",
+    "simFidelity": "CONCEPT_ONLY",
+    "simFidelityNote": "The equation-solver rig currently uses a fixed illustrative a and particular solution; it does not load this question's a,b pair.",
+    "teacherCheck": "Substitute λ=1/9 into r=b+λa and verify both residuals: (r-b)×a=0 and r·a=0; then |3r|²=44.",
+    "takeaway": "A vector cross equation usually leaves a free component parallel to the crossed vector; an auxiliary constraint fixes it.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q12",
+    "num": "JEE Main 2024",
+    "source": "JEE Main 2024 (Online) 29th January Evening Shift",
+    "subtab": 5,
+    "subtabName": "Vector Equations",
+    "year": "2024",
+    "q": "For any three vectors a, b, c, the vector triple product a × (b × c) is equal to (a · c) b - (a · b) c. If a × (b × c) = ½ b, where a, b, c are non-coplanar unit vectors, the angle between a and c is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "30°"
+      },
+      {
+        "key": "B",
+        "text": "45°"
+      },
+      {
+        "key": "C",
+        "text": "60°"
+      },
+      {
+        "key": "D",
+        "text": "90°"
+      }
+    ],
+    "correct": "C",
+    "formula": "a × (b × c) = (a · c) b - (a · b) c = ½ b + 0 c",
+    "steps": [
+      "Apply BAC-CAB identity: a × (b × c) = (a · c) b - (a · b) c.",
+      "Equating components along non-coplanar vectors b and c gives a · c = ½.",
+      "Since a and c are unit vectors: cos θ = ½ ⇒ θ = 60°."
+    ],
+    "ans": "60° (Option C)",
+    "trap": "Cross product is NOT associative: a × (b × c) lies in the plane of b and c, while (a × b) × c lies in the plane of a and b!",
+    "targetTab": "tab-baccab",
+    "simParams": {
+      "theta_ac": 60,
+      "theta_ab": 90
+    },
+    "simSummary": [
+      "BAC-CAB rule: a × (b × c) = (a·c)b - (a·b)c",
+      "a · c = 1/2 ⇒ θ = 60°",
+      "a · b = 0 ⇒ orthogonal"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "CONSTRAINT_FAITHFUL",
+    "simFidelityNote": "The VTP rig represents the BAC-CAB plane relation and the required 60° a–c condition, but not a full arbitrary non-coplanar vector triple.",
+    "teacherCheck": "BAC-CAB gives coefficients along independent b and c: a·c=1/2 and a·b=0; unit vectors imply θac=60°.",
+    "takeaway": "Cross product is non-associative; preserve parentheses before applying BAC-CAB.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  },
+  {
+    "id": "VEC-Q13",
+    "num": "JEE Main 2025",
+    "source": "JEE Main 2025 (Online) 23rd January Morning Shift",
+    "subtab": 6,
+    "subtabName": "3D Spatial Geometry",
+    "year": "2025",
+    "q": "The shortest distance between the two skew lines r₁ = (i + 2j + 3k) + λ (2i + 3j + 4k) and r₂ = (2i + 4j + 5k) + μ (3i + 4j + 5k) is:",
+    "options": [
+      {
+        "key": "A",
+        "text": "1 / √6"
+      },
+      {
+        "key": "B",
+        "text": "2 / √6"
+      },
+      {
+        "key": "C",
+        "text": "1 / √3"
+      },
+      {
+        "key": "D",
+        "text": "0 (intersecting)"
+      }
+    ],
+    "correct": "A",
+    "formula": "d = | (a₂ - a₁) · (b₁ × b₂) | / | b₁ × b₂ |",
+    "steps": [
+      "a₂ - a₁ = i + 2j + 2k.",
+      "b₁ × b₂ = -i + 2j - k ⇒ |b₁ × b₂| = √6.",
+      "(a₂ - a₁) · (b₁ × b₂) = (1)(-1) + (2)(2) + (2)(-1) = 1.",
+      "Shortest distance d = 1 / √6."
+    ],
+    "ans": "1 / √6 (Option A)",
+    "trap": "Shortest distance between skew lines is the projection of the connector vector onto the common normal unit vector!",
+    "targetTab": "tab-quiz",
+    "simParams": {
+      "dist": 0.408,
+      "normal_mag": 2.449
+    },
+    "simSummary": [
+      "Skew line 1: dir [2, 3, 4]",
+      "Skew line 2: dir [3, 4, 5]",
+      "Shortest distance d = 1/√6 ≈ 0.408"
+    ],
+    "answerAudit": "PASS",
+    "sourceAudit": "SOURCE_PROVENANCE_PENDING",
+    "simFidelity": "UNAVAILABLE",
+    "simFidelityNote": "No current tab implements skew-line shortest distance; the stored target tab did not exist.",
+    "teacherCheck": "Use n=b1×b2=(-1,2,-1), then project a2-a1=(1,2,2) onto n: |1|/√6.",
+    "takeaway": "Shortest distance of skew lines is the connector's scalar projection on the common normal.",
+    "helperTags": [
+      "TEACHERS_CHALKBOARD",
+      "TRAP_ALERT",
+      "INDEPENDENT_CHECK",
+      "TRANSFER_TAKEAWAY",
+      "EXACTNESS_BADGE"
+    ]
+  }
+];
+
+</script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#090d16',
+            card: '#111827',
+            border: '#1f293d',
+            primary: '#38bdf8',
+            accent: '#f59e0b',
+            success: '#10b981',
+            danger: '#ef4444'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict Canvas Immunitization (Zero Blowout on High DPI / Sliders) */
+    canvas {
+      contain: paint;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block;
+    }
+    .canvas-container {
+      position: relative;
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+    }
+    
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f293d;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+
+    @keyframes sliderFlash {
+      0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8); }
+      50% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0.4); }
+      100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+    .slider-highlight {
+      animation: sliderFlash 1.5s ease-out 2;
+      border-color: #38bdf8 !important;
+    }
+
+    .tab-btn-active {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-bottom: 2px solid #38bdf8;
+    }
+    .tab-btn-inactive {
+      color: #94a3b8;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn-inactive:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+<body class="bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-sky-500/30">
+
+  <!-- TOP APP BAR -->
+  <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-border px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="/mathematics/index.html" class="p-2 rounded-lg bg-slate-900 border border-border hover:border-sky-500/50 text-slate-300 hover:text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+              IIT-JEE Mathematics · 3D Vector Geometry
+            </span>
+            <span class="text-xs text-slate-400 font-mono">13 audited diagnostics · live corpus 282 PYQs</span>
+          </div>
+          <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
+            Vector Algebra &middot; 3D Master Suite
+          </h1>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="switchTab('tab-quiz')" class="touch-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600/30 to-indigo-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 text-xs font-bold transition flex items-center gap-2">
+          <span>📚</span>
+          <span>IIT-JEE Question Hub</span>
+          <span class="px-1.5 py-0.2 rounded bg-purple-500/30 text-[10px] font-mono text-purple-300" id="headerQCount">13 Qs</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION (8 Tabs - Tablet Optimized Horizontal Scroll) -->
+    <div class="max-w-7xl mx-auto mt-2 overflow-x-auto no-scrollbar flex items-center gap-1 text-xs font-semibold border-t border-border/50 pt-1">
+      <button onclick="switchTab('tab-basis')" id="btn-tab-basis" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        1. 3D Basis &amp; Cosines
+      </button>
+      <button onclick="switchTab('tab-dot')" id="btn-tab-dot" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        2. Dot &amp; Gram-Schmidt
+      </button>
+      <button onclick="switchTab('tab-cross')" id="btn-tab-cross" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        3. Cross Product &amp; Areas
+      </button>
+      <button onclick="switchTab('tab-triple')" id="btn-tab-triple" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        4. STP &amp; Parallelepiped
+      </button>
+      <button onclick="switchTab('tab-baccab')" id="btn-tab-baccab" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        5. VTP (BAC-CAB Rule)
+      </button>
+      <button onclick="switchTab('tab-equations')" id="btn-tab-equations" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        6. Vector Equations Solver
+      </button>
+      <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[9px] font-bold text-amber-400">Draft</span>
+        <span>7. 3D Master Sandbox</span>
+      </button>
+      <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
+        <span>⭐ 8. IIT-JEE Diagnostic Hub</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+    <!-- FLOATING QUESTION SIMULATION TOAST -->
+    <div id="simToast" class="hidden fixed bottom-6 right-6 z-50 max-w-md bg-slate-900/95 border border-sky-500/60 rounded-xl p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 transition-all duration-300 transform translate-y-4">
+      <div class="text-2xl">🚀</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold uppercase text-sky-400 font-mono" id="simToastTitle">Active Question Mode</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-xs">&times;</button>
+        </div>
+        <p class="text-xs text-slate-300 mt-1" id="simToastDesc">Parameters loaded from JEE Question.</p>
+        <div class="mt-2 text-[11px] font-mono text-amber-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: 3D VECTOR BASIS, UNIT VECTORS & DIRECTION COSINES          -->
+    <!-- ================================================================= -->
+    <section id="tab-basis" class="space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-400"></span>
+              <h2 class="font-bold text-base text-white">3D Vector Basis · Free Vectors &amp; Direction Cosines</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Drag on canvas to orbit in 3D! Interactive vector <span class="font-mono text-sky-400 font-bold">v = xi + yj + zk</span> with live direction cosines satisfying <span class="font-mono text-emerald-400 font-bold">l² + m² + n² = 1</span>.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            Orbit: Drag Left Mouse / Touch
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- 3D Canvas Left (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>3D EUCLIDEAN CO-ORDINATE RIG &middot; ROTATABLE VIEWPORT</span>
+                <span id="basisViewAngles">Azimuth: 35° | Elevation: 25°</span>
+              </div>
+              <canvas id="canvasBasis" height="340"></canvas>
+            </div>
+
+            <!-- Coordinate Sliders -->
+            <div class="grid grid-cols-3 gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">v_x:</span>
+                  <span id="valBasisX" class="font-mono text-red-400 font-bold">4.0</span>
+                </div>
+                <input type="range" id="sliderBasisX" min="-10" max="10" step="0.5" value="4" oninput="updateBasisVector()" class="w-full accent-red-400 cursor-pointer">
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">v_y:</span>
+                  <span id="valBasisY" class="font-mono text-emerald-400 font-bold">3.0</span>
+                </div>
+                <input type="range" id="sliderBasisY" min="-10" max="10" step="0.5" value="3" oninput="updateBasisVector()" class="w-full accent-emerald-400 cursor-pointer">
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-400">v_z:</span>
+                  <span id="valBasisZ" class="font-mono text-sky-400 font-bold">5.0</span>
+                </div>
+                <input type="range" id="sliderBasisZ" min="-10" max="10" step="0.5" value="5" oninput="updateBasisVector()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mathematical Telemetry (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Vector Invariants</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Magnitude |v|:</span>
+                  <span id="telBasisMag" class="font-mono font-bold text-sky-400">7.07</span>
+                </div>
+
+                <div class="bg-black/30 p-2.5 rounded border border-border space-y-1">
+                  <span class="text-slate-400 block text-[10px]">Direction Cosines (l, m, n):</span>
+                  <div class="font-mono text-slate-200 flex justify-between">
+                    <span>l = cos α: <strong id="telBasisL" class="text-red-400">0.57</strong></span>
+                    <span>m = cos β: <strong id="telBasisM" class="text-emerald-400">0.42</strong></span>
+                    <span>n = cos γ: <strong id="telBasisN" class="text-sky-400">0.71</strong></span>
+                  </div>
+                </div>
+
+                <div class="bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30 flex justify-between">
+                  <span class="text-slate-300">Sum of Squares l² + m² + n²:</span>
+                  <span id="telBasisSumSq" class="font-mono font-bold text-emerald-400">1.000</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-800 rounded border border-border text-[11px] text-slate-300">
+                <span class="text-sky-400 font-bold block mb-1">Unit Vector Director:</span>
+                <div class="font-mono text-white" id="telBasisUnitVec">u = 0.57 i + 0.42 j + 0.71 k</div>
+              </div>
+            </div>
+
+            <!-- Angle Card -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-2 text-xs">
+              <h4 class="font-bold text-slate-300">Direction Angles with Coordinate Axes</h4>
+              <div class="flex justify-between py-1 border-b border-border/50">
+                <span class="text-red-400">α (with X-axis):</span>
+                <span id="telBasisAlpha" class="font-mono font-bold">55.6°</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-border/50">
+                <span class="text-emerald-400">β (with Y-axis):</span>
+                <span id="telBasisBeta" class="font-mono font-bold">64.9°</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-sky-400">γ (with Z-axis):</span>
+                <span id="telBasisGamma" class="font-mono font-bold">45.0°</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: DOT PRODUCT & GRAM-SCHMIDT ORTHOGONAL SPLIT                -->
+    <!-- ================================================================= -->
+    <section id="tab-dot" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h2 class="font-bold text-base text-white">Dot Product &amp; Gram-Schmidt Decomposition</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Decompose vector <span class="font-mono text-sky-400 font-bold">a</span> along <span class="font-mono text-amber-400 font-bold">b</span>: <span class="font-mono text-emerald-400 font-bold">a = a_parallel + a_perp</span> with Pythagorean invariant <span class="font-mono text-white">|a|² = |a_parallel|² + |a_perp|²</span>.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            a_parallel = (a · b / |b|²) b &amp; a_perp = a - a_parallel
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>ORTHOGONAL PROJECTION CANVAS (GREEN: PROJECTION, RED: REJECTION)</span>
+                <span id="dotAngleDisplay">θ = 45.0°</span>
+              </div>
+              <canvas id="canvasDot" height="340"></canvas>
+            </div>
+
+            <!-- Angle & Magnitude Sliders -->
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Angle Between Vectors (θ):</span>
+                  <span id="valDotTheta" class="font-mono text-emerald-400 font-bold">45.0°</span>
+                </div>
+                <input type="range" id="sliderDotTheta" min="0" max="180" step="1" value="45" oninput="updateDotRig()" class="w-full accent-emerald-400 cursor-pointer">
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 pt-1">
+                <div class="space-y-1">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Magnitude |a|:</span>
+                    <span id="valDotMagA" class="font-mono text-sky-400 font-bold">6.0</span>
+                  </div>
+                  <input type="range" id="sliderDotMagA" min="2" max="10" step="0.5" value="6" oninput="updateDotRig()" class="w-full accent-sky-400 cursor-pointer">
+                </div>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Magnitude |b|:</span>
+                    <span id="valDotMagB" class="font-mono text-amber-400 font-bold">7.0</span>
+                  </div>
+                  <input type="range" id="sliderDotMagB" min="2" max="10" step="0.5" value="7" oninput="updateDotRig()" class="w-full accent-amber-400 cursor-pointer">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemetry -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Decomposition Metrics</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Scalar Dot Product a · b:</span>
+                  <span id="telDotProduct" class="font-mono font-bold text-emerald-400">+29.70</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Scalar Projection on b:</span>
+                  <span id="telDotScalarProj" class="font-mono font-bold text-sky-400">4.24</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Perpendicular Norm |a_perp|:</span>
+                  <span id="telDotPerpNorm" class="font-mono font-bold text-red-400">4.24</span>
+                </div>
+                <div class="bg-purple-500/10 p-2.5 rounded border border-purple-500/30 flex justify-between">
+                  <span class="text-purple-300 font-bold">Pythagorean Check:</span>
+                  <span id="telDotPythagoras" class="font-mono font-bold text-purple-300">18.0 + 18.0 = 36.0</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-800 rounded border border-border text-[11px] text-slate-300 space-y-1">
+                <span class="text-amber-400 font-bold block">JEE Invariant Condition:</span>
+                <div>When θ = 90°: <span class="font-mono text-emerald-400 font-bold">a · b = 0 (Pure Orthogonality)</span></div>
+                <div>When θ = 0°: <span class="font-mono text-sky-400">Collinear parallel (a_perp = 0)</span></div>
+                <div>When θ = 180°: <span class="font-mono text-red-400">Anti-parallel (a · b = -|a||b|)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: CROSS PRODUCT, NORMAL VECTOR & SIDES VS DIAGONALS          -->
+    <!-- ================================================================= -->
+    <section id="tab-cross" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <h2 class="font-bold text-base text-white">Cross Product · Normal Vector &amp; Geometric Areas</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Right-hand rule visualization! Normal vector <span class="font-mono text-amber-400 font-bold">n = a × b</span>. Toggle between Parallelogram Sides vs Diagonals to deconstruct the <span class="font-mono text-red-400 font-bold">factor of ½</span> trap.
+            </p>
+          </div>
+          <!-- Sides vs Diagonals Mode -->
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+            <button onclick="setCrossAreaMode('sides')" id="btnCrossSides" class="px-2.5 py-1 rounded font-semibold text-white bg-amber-600/40 border border-amber-500/50">Adjacent Sides (Area = |a×b|)</button>
+            <button onclick="setCrossAreaMode('diagonals')" id="btnCrossDiags" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">Diagonals (Area = ½ |d₁×d₂|)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>3D CROSS PRODUCT VIEWPORT (YELLOW ARROW: NORMAL VECTOR a × b)</span>
+                <span id="crossLiveArea">Area = 25.46 sq units</span>
+              </div>
+              <canvas id="canvasCross" height="340"></canvas>
+            </div>
+
+            <!-- Cross Product Controls -->
+            <div class="grid grid-cols-2 gap-4 bg-slate-900/60 p-4 rounded-xl border border-border">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Angle Between Vectors (θ):</span>
+                  <span id="valCrossTheta" class="font-mono text-amber-400 font-bold">45.0°</span>
+                </div>
+                <input type="range" id="sliderCrossTheta" min="5" max="175" step="1" value="45" oninput="updateCrossRig()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Vector a Length:</span>
+                  <span id="valCrossMagA" class="font-mono text-sky-400 font-bold">6.0</span>
+                </div>
+                <input type="range" id="sliderCrossMagA" min="2" max="10" step="0.5" value="6" oninput="updateCrossRig()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Cross Product Telemetry -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Lagrange &amp; Area Telemetry</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Cross Norm |a × b|:</span>
+                  <span id="telCrossNorm" class="font-mono font-bold text-amber-400">25.46</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Triangle Area (½ |a×b|):</span>
+                  <span id="telCrossTriArea" class="font-mono font-bold text-emerald-400">12.73</span>
+                </div>
+                <div class="bg-amber-500/10 p-2.5 rounded border border-amber-500/30 space-y-1">
+                  <span class="text-amber-300 font-bold block">Lagrange's Identity:</span>
+                  <div class="font-mono text-white text-[11px]" id="telLagrangeProof">
+                    |a×b|² + (a·b)² ≡ |a|²|b|²
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+                <span class="font-bold text-red-400 block">⚠️ The Examiner Trap:</span>
+                <p>When given diagonals d₁ and d₂, students write Area = |d₁ × d₂|.</p>
+                <p class="text-amber-200">
+                  Proof: d₁ × d₂ = (a+b) × (a-b) = -2(a × b).
+                  Thus <span class="font-mono font-bold text-white">Area = ½ |d₁ × d₂|</span>!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: SCALAR TRIPLE PRODUCT & PARALLELEPIPED VOLUME              -->
+    <!-- ================================================================= -->
+    <section id="tab-triple" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">Triple Products · Parallelepiped Volume &amp; Coplanarity Collapse</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Volume of 3D box <span class="font-mono text-purple-400 font-bold">V = |[a b c]|</span>. Adjust Vector c elevation to witness the 3D volume collapse into a 2D coplanar sheet when <span class="font-mono text-red-400 font-bold">[a b c] = 0</span>.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            STP: [a b c] = a · (b × c) = det([a; b; c])
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>3D PARALLELEPIPED WIREFRAME &middot; COPLANARITY ENGINE</span>
+                <span id="tripleStatusText">Volume Active</span>
+              </div>
+              <canvas id="canvasTriple" height="340"></canvas>
+            </div>
+
+            <!-- Elevation & Skew Sliders -->
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Vector c Height / Elevation Above Plane (z_c):</span>
+                  <span id="valTripleZc" class="font-mono text-purple-400 font-bold">4.0</span>
+                </div>
+                <input type="range" id="sliderTripleZc" min="-6" max="6" step="0.2" value="4" oninput="updateTripleRig()" class="w-full accent-purple-400 cursor-pointer">
+              </div>
+
+              <div class="flex items-center justify-between text-xs pt-1">
+                <button onclick="setCoplanarZero()" class="px-3 py-1.5 rounded-lg bg-red-600/30 border border-red-500/40 text-red-200 font-bold hover:bg-red-600/50 transition">
+                  Collapse to Coplanar ([a b c] = 0)
+                </button>
+                <button onclick="resetTripleRig()" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-border text-slate-300 hover:text-white transition">
+                  Restore 3D Volume
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Geometric Invariants</h3>
+
+              <div class="space-y-2 text-xs font-mono">
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Base Area |a × b|:</span>
+                  <span id="telTripleBaseArea" class="text-sky-400 font-bold">20.0 sq units</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Prism Altitude h:</span>
+                  <span id="telTripleHeight" class="text-amber-400 font-bold">4.0 units</span>
+                </div>
+                <div class="bg-purple-500/10 p-2.5 rounded border border-purple-500/30 flex justify-between">
+                  <span class="text-purple-300 font-bold">Parallelepiped Volume:</span>
+                  <span id="telTripleVolume" class="text-purple-300 font-bold text-sm">80.0</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border flex justify-between">
+                  <span class="text-slate-400">Tetrahedron Vol (⅙ V):</span>
+                  <span id="telTripleTetra" class="text-emerald-400 font-bold">13.33</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-800 rounded border border-border text-[11px] text-slate-300 space-y-1">
+                <span class="text-sky-400 font-bold block">Cyclic Permutation Invariance:</span>
+                <div class="font-mono text-white">[a b c] = [b c a] = [c a b]</div>
+                <div class="font-mono text-red-400">[a b c] = -[b a c] = -[a c b]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: VECTOR TRIPLE PRODUCT (BAC-CAB NON-ASSOCIATIVITY)          -->
+    <!-- ================================================================= -->
+    <section id="tab-baccab" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+              <h2 class="font-bold text-base text-white">Vector Triple Product · The BAC-CAB Non-Associativity Rig</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Visual proof that <span class="font-mono text-red-400 font-bold">a × (b × c) ≠ (a × b) × c</span>! Observe which 2D plane each resulting vector lies in.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-cyan-300 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            Identity: a × (b × c) = (a · c) b - (a · b) c
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>DUAL-PLANE 3D PROJECTION (BLUE: PLANE OF b &amp; c | ORANGE: PLANE OF a &amp; b)</span>
+                <span id="baccabStatus">Non-Associative</span>
+              </div>
+              <canvas id="canvasBaccab" height="340"></canvas>
+            </div>
+
+            <!-- Controls -->
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-2">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-300">Vector a Orientation Angle:</span>
+                <span id="valBaccabAngle" class="font-mono text-cyan-400 font-bold">60.0°</span>
+              </div>
+              <input type="range" id="sliderBaccabAngle" min="0" max="180" step="2" value="60" oninput="updateBaccabRig()" class="w-full accent-cyan-400 cursor-pointer">
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Plane Membership Audit</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="p-2.5 rounded bg-blue-500/10 border border-blue-500/30">
+                  <div class="font-bold text-blue-400">VTP 1: a × (b × c)</div>
+                  <div class="text-[11px] text-slate-300 mt-0.5">
+                    Lies completely in the <strong class="text-white">plane of b and c</strong>!
+                  </div>
+                  <div class="font-mono text-blue-300 text-[10px] mt-1" id="telVtp1Coeffs">
+                    = (a·c) b - (a·b) c
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded bg-amber-500/10 border border-amber-500/30">
+                  <div class="font-bold text-amber-400">VTP 2: (a × b) × c</div>
+                  <div class="text-[11px] text-slate-300 mt-0.5">
+                    Lies completely in the <strong class="text-white">plane of a and b</strong>!
+                  </div>
+                  <div class="font-mono text-amber-300 text-[10px] mt-1" id="telVtp2Coeffs">
+                    = (a·c) b - (b·c) a
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-xs text-red-200">
+                <strong class="text-red-400 block mb-1">Conclusion:</strong>
+                They obey different span constraints and are generally unequal. Special vector choices can make them coincide, but cross product is <strong class="text-white">NON-ASSOCIATIVE</strong> in general.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: VECTOR EQUATIONS SOLVER (r × a = b)                        -->
+    <!-- ================================================================= -->
+    <section id="tab-equations" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h2 class="font-bold text-base text-white">Vector Equations Deconstruction · r × a = b &amp; r · c = d</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Visual geometric construction of the solution line <span class="font-mono text-emerald-400 font-bold">r = λ a + (a × b)/|a|²</span> and its unique intersection point with plane <span class="font-mono text-white">r · c = d</span>.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            General Sol: r = λ a + r_particular
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>GEOMETRIC SOLUTION SPACE (LINE INTERSECTING CONSTRAINT PLANE)</span>
+                <span id="eqStatus">Unique Sol Found</span>
+              </div>
+              <canvas id="canvasEquations" height="340"></canvas>
+            </div>
+
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-2">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-300">Free Parameter λ (Slides along Solution Line):</span>
+                <span id="valEqLambda" class="font-mono text-emerald-400 font-bold">λ = 1.00</span>
+              </div>
+              <input type="range" id="sliderEqLambda" min="-3" max="3" step="0.1" value="1.0" oninput="updateEqRig()" class="w-full accent-emerald-400 cursor-pointer">
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Solution Coordinates</h3>
+
+              <div class="space-y-2 text-xs font-mono">
+                <div class="bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400 block text-[10px]">Particular Solution r_p (⊥ a):</span>
+                  <span id="telEqRp" class="text-sky-400 font-bold">[0.0, 1.0, -1.0]</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-400 block text-[10px]">Current Solution Vector r:</span>
+                  <span id="telEqR" class="text-emerald-400 font-bold">[2.0, 2.0, 0.0]</span>
+                </div>
+                <div class="bg-emerald-500/10 p-2.5 rounded border border-emerald-500/30">
+                  <span class="text-emerald-300 font-bold block text-[10px]">Verification: r × a = b</span>
+                  <span id="telEqVerify" class="text-white text-xs">Exact Match</span>
+                </div>
+                <div class="bg-purple-500/10 p-2.5 rounded border border-purple-500/30">
+                  <span class="text-purple-300 font-bold block text-[10px]">Auxiliary Constraint: r · c = 4, c=[1,1,0]</span>
+                  <span id="telEqConstraint" class="text-white text-xs">r·c = 4.00; residual = 0.00</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-800 rounded border border-border text-[11px] text-slate-300">
+                <span class="text-amber-400 font-bold block mb-1">Why Vector Division is Impossible:</span>
+                Because <span class="font-mono text-white">r × a = 0</span> has an infinite line of solutions <span class="font-mono text-emerald-300">r = λ a</span>, you cannot divide by a vector. A second dot-product constraint is mandatory to fix λ!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 7: 3D VECTOR MASTER SANDBOX (FREE-FORM LABORATORY - DRAFT)    -->
+    <!-- ================================================================= -->
+    <section id="tab-sandbox" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div class="flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-xs border border-amber-500/30 uppercase tracking-wide">
+              Draft Sandbox
+            </span>
+            <h2 class="font-bold text-base text-white">3D Vector Master Sandbox · Multi-Vector Laboratory</h2>
+          </div>
+          <span class="text-xs text-slate-400 font-mono">Free-form 3D vector construction laboratory</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>ROTATABLE 3D MULTI-HANDLE PLAYGROUND</span>
+                <span id="sbVecCount">3 Vectors Active</span>
+              </div>
+              <canvas id="canvasVecSandbox" height="340"></canvas>
+            </div>
+
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border text-xs">
+              <span>Orbit view by dragging anywhere on the 3D canvas.</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Sandbox Physical Controls</h3>
+              <p class="text-xs text-slate-300">
+                Experiment freely with arbitrary 3D vectors. Use this draft sandbox to test custom linear combinations and dot/cross properties.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 8: IIT-JEE DIAGNOSTIC QUESTION HUB (AUTHENTIC EXAMSIDE BANK)  -->
+    <!-- ================================================================= -->
+    <section id="tab-quiz" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub · Vector Algebra</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              13 audited diagnostics selected from the live ExamSIDE Mathematics Vector Algebra corpus (282 questions, 2002–2026). Each simulator action is explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
+            </p>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-64">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search questions, years, concepts..." class="w-full bg-slate-900 border border-border rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <!-- Sub-Tab Category Filters -->
+        <div class="flex flex-wrap gap-2 pt-2 border-b border-border/50 pb-3 text-xs">
+          <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold">
+            All (13)
+          </button>
+          <button onclick="filterSubTab(1)" id="btnQFilter1" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            1. Basics &amp; Combos
+          </button>
+          <button onclick="filterSubTab(2)" id="btnQFilter2" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            2. Dot &amp; Projections
+          </button>
+          <button onclick="filterSubTab(3)" id="btnQFilter3" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            3. Cross &amp; Areas
+          </button>
+          <button onclick="filterSubTab(4)" id="btnQFilter4" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            4. STP &amp; Volume
+          </button>
+          <button onclick="filterSubTab(5)" id="btnQFilter5" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            5. Vector Equations
+          </button>
+          <button onclick="filterSubTab(6)" id="btnQFilter6" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            6. 3D Spatial
+          </button>
+        </div>
+
+        <!-- Questions List Render Container -->
+        <div id="questionsContainer" class="space-y-4 pt-2">
+          <!-- Dynamically populated via renderQuestions() -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPTS & 3D INTERACTIVE ENGINES -->
+  <script>
+    // =========================================================================
+    // 3D PERSPECTIVE ENGINE & ORBIT CONTROLS
+    // =========================================================================
+    let viewAzimuth = 35 * Math.PI / 180;
+    let viewElevation = 25 * Math.PI / 180;
+    let isDragging = false;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    function setupOrbit(canvas, onOrbit) {
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastMouseX;
+        const dy = e.clientY - lastMouseY;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        viewAzimuth += dx * 0.01;
+        viewElevation = Math.max(-1.4, Math.min(1.4, viewElevation - dy * 0.01));
+        if (onOrbit) onOrbit();
+      });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      // Touch support
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          lastMouseX = e.touches[0].clientX;
+          lastMouseY = e.touches[0].clientY;
+        }
+      });
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        const dx = e.touches[0].clientX - lastMouseX;
+        const dy = e.touches[0].clientY - lastMouseY;
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+        viewAzimuth += dx * 0.01;
+        viewElevation = Math.max(-1.4, Math.min(1.4, viewElevation - dy * 0.01));
+        if (onOrbit) onOrbit();
+      });
+      window.addEventListener('touchend', () => { isDragging = false; });
+    }
+
+    // 3D Point to 2D Screen projection
+    function project3D(x, y, z, cx, cy, scale) {
+      // Rotation around Z (Azimuth)
+      const cosA = Math.cos(viewAzimuth), sinA = Math.sin(viewAzimuth);
+      const x1 = x * cosA - y * sinA;
+      const y1 = x * sinA + y * cosA;
+      const z1 = z;
+
+      // Rotation around X (Elevation)
+      const cosE = Math.cos(viewElevation), sinE = Math.sin(viewElevation);
+      const y2 = y1 * cosE - z1 * sinE;
+      const z2 = y1 * sinE + z1 * cosE;
+      const x2 = x1;
+
+      // Perspective projection
+      const cameraDist = 25;
+      const factor = cameraDist / (cameraDist + y2);
+      const px = cx + x2 * scale * factor;
+      const py = cy - z2 * scale * factor; // flip Y for screen coordinates
+      return { px, py, depth: y2 };
+    }
+
+    function draw3DVector(ctx, from, to, color, label, lineWidth = 2.5) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lineWidth;
+      ctx.beginPath();
+      ctx.moveTo(from.px, from.py);
+      ctx.lineTo(to.px, to.py);
+      ctx.stroke();
+
+      // Arrowhead cone
+      const angle = Math.atan2(to.py - from.py, to.px - from.px);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(to.px, to.py);
+      ctx.lineTo(to.px - 10 * Math.cos(angle - Math.PI / 7), to.py - 10 * Math.sin(angle - Math.PI / 7));
+      ctx.lineTo(to.px - 10 * Math.cos(angle + Math.PI / 7), to.py - 10 * Math.sin(angle + Math.PI / 7));
+      ctx.closePath();
+      ctx.fill();
+
+      if (label) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px monospace';
+        ctx.fillText(label, to.px + 8, to.py - 6);
+      }
+    }
+
+    function setupCanvas(canvas) {
+      const parent = canvas.parentElement;
+      const rect = parent.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.floor(rect.width);
+      const height = canvas.getAttribute('height') ? parseInt(canvas.getAttribute('height')) : 340;
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+
+      const ctx = canvas.getContext('2d');
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      return { ctx, width, height };
+    }
+
+    // =========================================================================
+    // GLOBAL STATE & TAB NAVIGATION
+    // =========================================================================
+    let currentTab = 'tab-basis';
+    let currentSubTabFilter = 'all';
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      const tabs = ['tab-basis', 'tab-dot', 'tab-cross', 'tab-triple', 'tab-baccab', 'tab-equations', 'tab-sandbox', 'tab-quiz'];
+      
+      tabs.forEach(t => {
+        const el = document.getElementById(t);
+        const btn = document.getElementById(`btn-${t}`);
+        if (el) el.classList.toggle('hidden', t !== tabId);
+        if (btn) {
+          btn.className = (t === tabId) ? 'tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap' : 'tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap';
+        }
+      });
+
+      setTimeout(() => {
+        if (tabId === 'tab-basis') { resizeBasis(); drawBasis(); }
+        else if (tabId === 'tab-dot') { resizeDot(); drawDot(); }
+        else if (tabId === 'tab-cross') { resizeCross(); drawCross(); }
+        else if (tabId === 'tab-triple') { resizeTriple(); drawTriple(); }
+        else if (tabId === 'tab-baccab') { resizeBaccab(); drawBaccab(); }
+        else if (tabId === 'tab-equations') { resizeEquations(); drawEquations(); }
+        else if (tabId === 'tab-sandbox') { resizeSb(); drawSb(); }
+      }, 50);
+    }
+
+    // =========================================================================
+    // "LOAD IN 3D SIMULATOR" ENGINE
+    // =========================================================================
+    function fidelityClass(fidelity) {
+      if (fidelity === 'EXACT') return 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300';
+      if (fidelity === 'CONSTRAINT_FAITHFUL') return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
+      if (fidelity === 'CONCEPT_ONLY') return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
+      return 'bg-slate-800 border-slate-600 text-slate-300';
+    }
+
+    function simulatorActionLabel(q) {
+      if (q.simFidelity === 'EXACT') return 'Load exact state';
+      if (q.simFidelity === 'CONSTRAINT_FAITHFUL') return 'Load constraints';
+      if (q.simFidelity === 'CONCEPT_ONLY') return 'Open concept rig';
+      return 'Simulator unavailable';
+    }
+
+    function loadQuestionIntoSimulator(qId) {
+      const questions = window.JEE_QUESTIONS_DATA || [];
+      const q = questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const fidelity = q.simFidelity || 'UNAVAILABLE';
+      if (fidelity === 'UNAVAILABLE') {
+        showToast(q, false);
+        return;
+      }
+
+      const targetTab = q.targetTab || 'tab-basis';
+      switchTab(targetTab);
+
+      if (fidelity === 'CONCEPT_ONLY') {
+        showToast(q, false);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+        return;
+      }
+
+      const p = q.simParams || {};
+      if (targetTab === 'tab-basis') {
+        if (p.ax !== undefined) document.getElementById('sliderBasisX').value = p.ax;
+        if (p.ay !== undefined) document.getElementById('sliderBasisY').value = p.ay;
+        if (p.az !== undefined) document.getElementById('sliderBasisZ').value = p.az;
+        updateBasisVector();
+        highlightSlider('sliderBasisX');
+      } else if (targetTab === 'tab-dot') {
+        if (p.theta_deg !== undefined) document.getElementById('sliderDotTheta').value = p.theta_deg;
+        if (p.magA !== undefined) document.getElementById('sliderDotMagA').value = p.magA;
+        if (p.magB !== undefined) document.getElementById('sliderDotMagB').value = p.magB;
+        updateDotRig();
+        highlightSlider('sliderDotTheta');
+      } else if (targetTab === 'tab-baccab') {
+        if (p.theta_ac !== undefined) document.getElementById('sliderBaccabAngle').value = p.theta_ac;
+        updateBaccabRig();
+        highlightSlider('sliderBaccabAngle');
+      }
+
+      showToast(q, true);
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function highlightSlider(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('slider-highlight');
+        setTimeout(() => el.classList.remove('slider-highlight'), 3000);
+      }
+    }
+
+    function showToast(q, stateWasInjected) {
+      const toast = document.getElementById('simToast');
+      const fidelity = q.simFidelity || 'UNAVAILABLE';
+      document.getElementById('simToastTitle').textContent = `${fidelity} · ${q.id} (${q.year})`;
+      document.getElementById('simToastDesc').textContent = q.simFidelityNote || q.q.slice(0, 100);
+      document.getElementById('simToastParams').textContent = stateWasInjected
+        ? (q.simSummary || []).join(' | ')
+        : (fidelity === 'CONCEPT_ONLY'
+            ? 'Concept rig opened; no question-specific vector state was invented.'
+            : 'No simulator state was changed.');
+      toast.classList.remove('hidden');
+      toast.classList.remove('translate-y-4');
+      setTimeout(() => closeSimToast(), 7000);
+    }
+
+    function closeSimToast() {
+      const toast = document.getElementById('simToast');
+      toast.classList.add('translate-y-4');
+      setTimeout(() => toast.classList.add('hidden'), 300);
+    }
+
+    // =========================================================================
+    // TAB 1: 3D BASIS RIG
+    // =========================================================================
+    let basisVector = { x: 4, y: 3, z: 5 };
+
+    function updateBasisVector() {
+      basisVector.x = parseFloat(document.getElementById('sliderBasisX').value);
+      basisVector.y = parseFloat(document.getElementById('sliderBasisY').value);
+      basisVector.z = parseFloat(document.getElementById('sliderBasisZ').value);
+      document.getElementById('valBasisX').textContent = basisVector.x.toFixed(1);
+      document.getElementById('valBasisY').textContent = basisVector.y.toFixed(1);
+      document.getElementById('valBasisZ').textContent = basisVector.z.toFixed(1);
+      drawBasis();
+    }
+
+    function resizeBasis() {
+      setupCanvas(document.getElementById('canvasBasis'));
+    }
+
+    function drawBasis() {
+      const canvas = document.getElementById('canvasBasis');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.55;
+      const scale = 22;
+
+      // Draw Grid / Coordinate Axes
+      const o = project3D(0, 0, 0, cx, cy, scale);
+      const axX = project3D(8, 0, 0, cx, cy, scale);
+      const axY = project3D(0, 8, 0, cx, cy, scale);
+      const axZ = project3D(0, 0, 8, cx, cy, scale);
+
+      draw3DVector(ctx, o, axX, '#ef4444', '+X (i)', 1.5);
+      draw3DVector(ctx, o, axY, '#10b981', '+Y (j)', 1.5);
+      draw3DVector(ctx, o, axZ, '#38bdf8', '+Z (k)', 1.5);
+
+      // Draw Vector v
+      const vEnd = project3D(basisVector.x, basisVector.y, basisVector.z, cx, cy, scale);
+      draw3DVector(ctx, o, vEnd, '#f59e0b', 'v', 3.5);
+
+      // Projections (Shadows on XY, YZ, ZX planes)
+      const shadowXY = project3D(basisVector.x, basisVector.y, 0, cx, cy, scale);
+      ctx.strokeStyle = '#475569';
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(vEnd.px, vEnd.py);
+      ctx.lineTo(shadowXY.px, shadowXY.py);
+      ctx.lineTo(o.px, o.py);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Telemetry
+      const mag = Math.sqrt(basisVector.x ** 2 + basisVector.y ** 2 + basisVector.z ** 2);
+      const l = mag > 0 ? (basisVector.x / mag) : 0;
+      const m = mag > 0 ? (basisVector.y / mag) : 0;
+      const n = mag > 0 ? (basisVector.z / mag) : 0;
+
+      document.getElementById('telBasisMag').textContent = mag.toFixed(2);
+      document.getElementById('telBasisL').textContent = l.toFixed(2);
+      document.getElementById('telBasisM').textContent = m.toFixed(2);
+      document.getElementById('telBasisN').textContent = n.toFixed(2);
+      document.getElementById('telBasisSumSq').textContent = (l*l + m*m + n*n).toFixed(3);
+      document.getElementById('telBasisUnitVec').textContent = `u = ${l.toFixed(2)} i + ${m.toFixed(2)} j + ${n.toFixed(2)} k`;
+
+      document.getElementById('telBasisAlpha').textContent = (Math.acos(Math.max(-1, Math.min(1, l))) * 180 / Math.PI).toFixed(1) + '°';
+      document.getElementById('telBasisBeta').textContent = (Math.acos(Math.max(-1, Math.min(1, m))) * 180 / Math.PI).toFixed(1) + '°';
+      document.getElementById('telBasisGamma').textContent = (Math.acos(Math.max(-1, Math.min(1, n))) * 180 / Math.PI).toFixed(1) + '°';
+    }
+
+    // =========================================================================
+    // TAB 2: DOT PRODUCT RIG
+    // =========================================================================
+    let dotRig = { theta: 45, magA: 6, magB: 7 };
+
+    function updateDotRig() {
+      dotRig.theta = parseFloat(document.getElementById('sliderDotTheta').value);
+      dotRig.magA = parseFloat(document.getElementById('sliderDotMagA').value);
+      dotRig.magB = parseFloat(document.getElementById('sliderDotMagB').value);
+      document.getElementById('valDotTheta').textContent = dotRig.theta.toFixed(1) + '°';
+      document.getElementById('valDotMagA').textContent = dotRig.magA.toFixed(1);
+      document.getElementById('valDotMagB').textContent = dotRig.magB.toFixed(1);
+      drawDot();
+    }
+
+    function resizeDot() {
+      setupCanvas(document.getElementById('canvasDot'));
+    }
+
+    function drawDot() {
+      const canvas = document.getElementById('canvasDot');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.45;
+      const cy = h * 0.6;
+      const scale = 22;
+
+      const rad = dotRig.theta * Math.PI / 180;
+      const ax = dotRig.magA * Math.cos(rad);
+      const ay = dotRig.magA * Math.sin(rad);
+      const bx = dotRig.magB;
+      const by = 0;
+
+      // Project onto b (along x-axis)
+      const projX = ax;
+      const perpY = ay;
+
+      const o = { px: cx, py: cy };
+      const ptB = { px: cx + bx * scale, py: cy };
+      const ptA = { px: cx + ax * scale, py: cy - ay * scale };
+      const ptProj = { px: cx + projX * scale, py: cy };
+
+      // Reference Vector b (Amber)
+      draw3DVector(ctx, o, ptB, '#f59e0b', 'b', 3);
+      // Vector a (Cyan)
+      draw3DVector(ctx, o, ptA, '#38bdf8', 'a', 3);
+
+      // Parallel component a_parallel (Green)
+      draw3DVector(ctx, o, ptProj, '#10b981', 'a_parallel', 3.5);
+
+      // Orthogonal Rejection a_perp (Red dashed drop)
+      ctx.strokeStyle = '#ef4444';
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(ptA.px, ptA.py);
+      ctx.lineTo(ptProj.px, ptProj.py);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#ef4444';
+      ctx.font = 'bold 10px monospace';
+      ctx.fillText('a_perp', ptProj.px + 4, (ptA.py + ptProj.py) * 0.5);
+
+      // Angle arc
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 30, -rad, 0);
+      ctx.stroke();
+
+      // Telemetry
+      const dotProduct = dotRig.magA * dotRig.magB * Math.cos(rad);
+      const scalarProj = dotRig.magA * Math.cos(rad);
+      const perpNorm = dotRig.magA * Math.sin(rad);
+
+      document.getElementById('dotAngleDisplay').textContent = `θ = ${dotRig.theta.toFixed(1)}°`;
+      document.getElementById('telDotProduct').textContent = (dotProduct >= 0 ? '+' : '') + dotProduct.toFixed(2);
+      document.getElementById('telDotScalarProj').textContent = scalarProj.toFixed(2);
+      document.getElementById('telDotPerpNorm').textContent = Math.abs(perpNorm).toFixed(2);
+      document.getElementById('telDotPythagoras').textContent = `${(scalarProj**2).toFixed(1)} + ${(perpNorm**2).toFixed(1)} = ${(dotRig.magA**2).toFixed(1)}`;
+    }
+
+    // =========================================================================
+    // TAB 3: CROSS PRODUCT RIG
+    // =========================================================================
+    let crossRig = { theta: 45, magA: 6, mode: 'sides' };
+
+    function setCrossAreaMode(m) {
+      crossRig.mode = m;
+      document.getElementById('btnCrossSides').className = (m === 'sides') ? 'px-2.5 py-1 rounded font-semibold text-white bg-amber-600/40 border border-amber-500/50' : 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      document.getElementById('btnCrossDiags').className = (m === 'diagonals') ? 'px-2.5 py-1 rounded font-semibold text-white bg-amber-600/40 border border-amber-500/50' : 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      drawCross();
+    }
+
+    function updateCrossRig() {
+      crossRig.theta = parseFloat(document.getElementById('sliderCrossTheta').value);
+      crossRig.magA = parseFloat(document.getElementById('sliderCrossMagA').value);
+      document.getElementById('valCrossTheta').textContent = crossRig.theta.toFixed(1) + '°';
+      document.getElementById('valCrossMagA').textContent = crossRig.magA.toFixed(1);
+      drawCross();
+    }
+
+    function resizeCross() {
+      setupCanvas(document.getElementById('canvasCross'));
+    }
+
+    function drawCross() {
+      const canvas = document.getElementById('canvasCross');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.45;
+      const cy = h * 0.6;
+      const scale = 20;
+      const rad = crossRig.theta * Math.PI / 180;
+      const magB = 6;
+      const a = [crossRig.magA * Math.cos(rad), crossRig.magA * Math.sin(rad), 0];
+      const b = [magB, 0, 0];
+
+      const o = project3D(0, 0, 0, cx, cy, scale);
+      const ptA = project3D(a[0], a[1], 0, cx, cy, scale);
+      const ptB = project3D(b[0], b[1], 0, cx, cy, scale);
+      const ptCorner = project3D(a[0] + b[0], a[1] + b[1], 0, cx, cy, scale);
+
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
+      ctx.beginPath();
+      ctx.moveTo(o.px, o.py);
+      ctx.lineTo(ptB.px, ptB.py);
+      ctx.lineTo(ptCorner.px, ptCorner.py);
+      ctx.lineTo(ptA.px, ptA.py);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      const sideCrossMag = Math.abs(a[0] * b[1] - a[1] * b[0]);
+      const diagCrossMag = 2 * sideCrossMag;
+
+      if (crossRig.mode === 'sides') {
+        draw3DVector(ctx, o, ptB, '#f59e0b', 'b', 2.5);
+        draw3DVector(ctx, o, ptA, '#38bdf8', 'a', 2.5);
+      } else {
+        // d1 = a+b goes from one vertex to its opposite; d2 = a-b is the
+        // other diagonal vector and may be drawn from endpoint b to endpoint a.
+        draw3DVector(ctx, o, ptCorner, '#f59e0b', 'd₁ = a+b', 2.5);
+        draw3DVector(ctx, ptB, ptA, '#38bdf8', 'd₂ = a-b', 2.5);
+      }
+
+      const normalLength = Math.min(7, Math.max(1.5, sideCrossMag * 0.18));
+      const ptNormal = project3D(0, 0, normalLength, cx, cy, scale);
+      draw3DVector(ctx, o, ptNormal, '#fbbf24', 'normal', 3.5);
+
+      const area = sideCrossMag;
+      document.getElementById('crossLiveArea').textContent = crossRig.mode === 'sides'
+        ? `Area = ${area.toFixed(2)} = |a×b|`
+        : `Area = ${area.toFixed(2)} = ½|d₁×d₂| (|d₁×d₂|=${diagCrossMag.toFixed(2)})`;
+      document.getElementById('telCrossNorm').textContent = sideCrossMag.toFixed(2);
+      document.getElementById('telCrossTriArea').textContent = (0.5 * sideCrossMag).toFixed(2);
+
+      const dot = crossRig.magA * magB * Math.cos(rad);
+      document.getElementById('telLagrangeProof').textContent =
+        `${(sideCrossMag**2).toFixed(1)} + ${(dot**2).toFixed(1)} ≡ ${((crossRig.magA*magB)**2).toFixed(1)}`;
+    }
+
+    // =========================================================================
+    // TAB 4: TRIPLE PRODUCT & PARALLELEPIPED VOLUME
+    // =========================================================================
+    let tripleRig = { zc: 4.0 };
+
+    function updateTripleRig() {
+      tripleRig.zc = parseFloat(document.getElementById('sliderTripleZc').value);
+      document.getElementById('valTripleZc').textContent = tripleRig.zc.toFixed(1);
+      drawTriple();
+    }
+
+    function setCoplanarZero() {
+      document.getElementById('sliderTripleZc').value = 0;
+      updateTripleRig();
+    }
+
+    function resetTripleRig() {
+      document.getElementById('sliderTripleZc').value = 4.0;
+      updateTripleRig();
+    }
+
+    function resizeTriple() {
+      setupCanvas(document.getElementById('canvasTriple'));
+    }
+
+    function drawTriple() {
+      const canvas = document.getElementById('canvasTriple');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.45;
+      const cy = h * 0.65;
+      const scale = 20;
+
+      // Box edge vectors: a=[5, 0, 0], b=[2, 4, 0], c=[1, 1, tripleRig.zc]
+      const ax = 5, ay = 0, az = 0;
+      const bx = 2, by = 4, bz = 0;
+      const cx_vec = 1, cy_vec = 1, cz_vec = tripleRig.zc;
+
+      // 8 Vertices of Parallelepiped
+      const v000 = project3D(0, 0, 0, cx, cy, scale);
+      const v100 = project3D(ax, ay, az, cx, cy, scale);
+      const v010 = project3D(bx, by, bz, cx, cy, scale);
+      const v110 = project3D(ax + bx, ay + by, az + bz, cx, cy, scale);
+
+      const v001 = project3D(cx_vec, cy_vec, cz_vec, cx, cy, scale);
+      const v101 = project3D(ax + cx_vec, ay + cy_vec, az + cz_vec, cx, cy, scale);
+      const v011 = project3D(bx + cx_vec, by + cy_vec, bz + cz_vec, cx, cy, scale);
+      const v111 = project3D(ax + bx + cx_vec, ay + by + cy_vec, az + bz + cz_vec, cx, cy, scale);
+
+      // Shaded faces
+      ctx.fillStyle = (Math.abs(tripleRig.zc) < 0.1) ? 'rgba(239, 68, 68, 0.3)' : 'rgba(168, 85, 247, 0.15)';
+      ctx.beginPath();
+      ctx.moveTo(v000.px, v000.py);
+      ctx.lineTo(v100.px, v100.py);
+      ctx.lineTo(v110.px, v110.py);
+      ctx.lineTo(v010.px, v010.py);
+      ctx.closePath();
+      ctx.fill();
+
+      // Top face
+      ctx.beginPath();
+      ctx.moveTo(v001.px, v001.py);
+      ctx.lineTo(v101.px, v101.py);
+      ctx.lineTo(v111.px, v111.py);
+      ctx.lineTo(v011.px, v011.py);
+      ctx.closePath();
+      ctx.fill();
+
+      // Connecting edges
+      ctx.strokeStyle = (Math.abs(tripleRig.zc) < 0.1) ? '#ef4444' : '#a855f7';
+      ctx.lineWidth = 1.5;
+      const edges = [
+        [v000, v100], [v100, v110], [v110, v010], [v010, v000],
+        [v001, v101], [v101, v111], [v111, v011], [v011, v001],
+        [v000, v001], [v100, v101], [v110, v111], [v010, v011]
+      ];
+      edges.forEach(([p1, p2]) => {
+        ctx.beginPath();
+        ctx.moveTo(p1.px, p1.py);
+        ctx.lineTo(p2.px, p2.py);
+        ctx.stroke();
+      });
+
+      // Vectors a, b, c
+      draw3DVector(ctx, v000, v100, '#38bdf8', 'a', 2.5);
+      draw3DVector(ctx, v000, v010, '#f59e0b', 'b', 2.5);
+      draw3DVector(ctx, v000, v001, '#c084fc', 'c', 3);
+
+      // Telemetry
+      const baseArea = 5 * 4; // 20
+      const vol = Math.abs(baseArea * tripleRig.zc);
+      document.getElementById('telTripleBaseArea').textContent = `${baseArea.toFixed(1)} sq units`;
+      document.getElementById('telTripleHeight').textContent = `${Math.abs(tripleRig.zc).toFixed(1)} units`;
+      document.getElementById('telTripleVolume').textContent = vol.toFixed(1);
+      document.getElementById('telTripleTetra').textContent = (vol / 6).toFixed(2);
+      document.getElementById('tripleStatusText').textContent = (vol < 0.5) ? 'COPLANAR COLLAPSE ([a b c] = 0)' : '3D Volume Active';
+    }
+
+    // =========================================================================
+    // TAB 5: BAC-CAB VTP RIG
+    // =========================================================================
+    let baccabRig = { angle: 60 };
+
+    function updateBaccabRig() {
+      baccabRig.angle = parseFloat(document.getElementById('sliderBaccabAngle').value);
+      document.getElementById('valBaccabAngle').textContent = baccabRig.angle.toFixed(1) + '°';
+      drawBaccab();
+    }
+
+    function resizeBaccab() {
+      setupCanvas(document.getElementById('canvasBaccab'));
+    }
+
+    function drawBaccab() {
+      const canvas = document.getElementById('canvasBaccab');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.45;
+      const cy = h * 0.6;
+      const scale = 20;
+      const rad = baccabRig.angle * Math.PI / 180;
+
+      const a = [5 * Math.cos(rad), 0, 5 * Math.sin(rad)];
+      const b = [6, 0, 0];
+      const cVec = [0, 5, 2];
+
+      const dot = (u, v) => u[0]*v[0] + u[1]*v[1] + u[2]*v[2];
+      const cross = (u, v) => [
+        u[1]*v[2] - u[2]*v[1],
+        u[2]*v[0] - u[0]*v[2],
+        u[0]*v[1] - u[1]*v[0]
+      ];
+      const add = (u, v) => [u[0]+v[0], u[1]+v[1], u[2]+v[2]];
+      const norm = v => Math.hypot(v[0], v[1], v[2]);
+      const displayVector = v => {
+        const n = norm(v);
+        if (n < 1e-9) return [0,0,0];
+        const k = Math.min(6, 0.18*n) / n;
+        return [v[0]*k, v[1]*k, v[2]*k];
+      };
+      const point = v => project3D(v[0],v[1],v[2],cx,cy,scale);
+      const o = point([0,0,0]);
+
+      // Plane span(b,c)
+      const bcCorner = point(add(b,cVec));
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.13)';
+      ctx.beginPath();
+      ctx.moveTo(o.px,o.py);
+      const pb=point(b), pc=point(cVec);
+      ctx.lineTo(pb.px,pb.py); ctx.lineTo(bcCorner.px,bcCorner.py); ctx.lineTo(pc.px,pc.py);
+      ctx.closePath(); ctx.fill();
+
+      // Plane span(a,b)
+      const abCorner = point(add(a,b));
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.10)';
+      const pa=point(a);
+      ctx.beginPath();
+      ctx.moveTo(o.px,o.py);
+      ctx.lineTo(pb.px,pb.py); ctx.lineTo(abCorner.px,abCorner.py); ctx.lineTo(pa.px,pa.py);
+      ctx.closePath(); ctx.fill();
+
+      draw3DVector(ctx, o, pa, '#f59e0b', 'a', 2.5);
+      draw3DVector(ctx, o, pb, '#38bdf8', 'b', 2.5);
+      draw3DVector(ctx, o, pc, '#10b981', 'c', 2.5);
+
+      const vtp1 = cross(a, cross(b, cVec));
+      const vtp2 = cross(cross(a, b), cVec);
+      const d1 = displayVector(vtp1);
+      const d2 = displayVector(vtp2);
+      draw3DVector(ctx, o, point(d1), '#ec4899', 'a×(b×c)', 3.5);
+      draw3DVector(ctx, o, point(d2), '#f97316', '(a×b)×c', 3.5);
+
+      const ac = dot(a,cVec), ab = dot(a,b), bc = dot(b,cVec);
+      document.getElementById('telVtp1Coeffs').textContent =
+        `= (${ac.toFixed(2)}) b - (${ab.toFixed(2)}) c`;
+      document.getElementById('telVtp2Coeffs').textContent =
+        `= (${ac.toFixed(2)}) b - (${bc.toFixed(2)}) a`;
+    }
+
+    // =========================================================================
+    // TAB 6: VECTOR EQUATIONS SOLVER RIG
+    // =========================================================================
+    let eqRig = { lambda: 1.0 };
+
+    function updateEqRig() {
+      eqRig.lambda = parseFloat(document.getElementById('sliderEqLambda').value);
+      document.getElementById('valEqLambda').textContent = 'λ = ' + eqRig.lambda.toFixed(2);
+      drawEquations();
+    }
+
+    function resizeEquations() {
+      setupCanvas(document.getElementById('canvasEquations'));
+    }
+
+    function drawEquations() {
+      const canvas = document.getElementById('canvasEquations');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.45;
+      const cy = h * 0.6;
+      const scale = 22;
+      const project = v => project3D(v[0],v[1],v[2],cx,cy,scale);
+      const o = project([0,0,0]);
+
+      // Governed illustrative equation:
+      // a=[2,1,1], b=[2,-2,-2], r×a=b.
+      // r_p=(a×b)/|a|²=[0,1,-1], so r=r_p+λa.
+      // Auxiliary plane: c=[1,1,0], d=4, which fixes λ=1.
+      const a = [2,1,1];
+      const b = [2,-2,-2];
+      const rp = [0,1,-1];
+      const cVec = [1,1,0];
+      const d = 4;
+
+      const rpP = project(rp);
+      draw3DVector(ctx, o, rpP, '#38bdf8', 'r_p = (a×b)/|a|²', 2.5);
+
+      const at = lam => [rp[0]+lam*a[0], rp[1]+lam*a[1], rp[2]+lam*a[2]];
+      const lineStart = project(at(-3));
+      const lineEnd = project(at(3));
+      ctx.strokeStyle = '#10b981';
+      ctx.setLineDash([4,4]);
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(lineStart.px,lineStart.py); ctx.lineTo(lineEnd.px,lineEnd.py); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Plane x+y=4 (r·c=d).
+      const planePts = [[4,0,-4],[0,4,-4],[0,4,4],[4,0,4]].map(project);
+      ctx.fillStyle = 'rgba(168,85,247,0.12)';
+      ctx.strokeStyle = '#a855f7';
+      ctx.beginPath();
+      ctx.moveTo(planePts[0].px,planePts[0].py);
+      planePts.slice(1).forEach(p=>ctx.lineTo(p.px,p.py));
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+
+      const r = at(eqRig.lambda);
+      draw3DVector(ctx, o, project(r), '#f59e0b', 'r(λ)', 3.5);
+
+      const crossRA = [
+        r[1]*a[2]-r[2]*a[1],
+        r[2]*a[0]-r[0]*a[2],
+        r[0]*a[1]-r[1]*a[0]
+      ];
+      const crossResidual = Math.hypot(crossRA[0]-b[0],crossRA[1]-b[1],crossRA[2]-b[2]);
+      const dotConstraint = r[0]*cVec[0]+r[1]*cVec[1]+r[2]*cVec[2];
+      const planeResidual = dotConstraint-d;
+
+      document.getElementById('telEqRp').textContent = '[0.0, 1.0, -1.0]';
+      document.getElementById('telEqR').textContent =
+        `[${r[0].toFixed(1)}, ${r[1].toFixed(1)}, ${r[2].toFixed(1)}]`;
+      document.getElementById('telEqVerify').textContent =
+        `cross residual = ${crossResidual.toExponential(1)}`;
+      const constraintEl = document.getElementById('telEqConstraint');
+      if (constraintEl) constraintEl.textContent =
+        `r·c = ${dotConstraint.toFixed(2)}; residual = ${planeResidual.toFixed(2)}`;
+      document.getElementById('eqStatus').textContent = Math.abs(planeResidual) < 1e-9
+        ? 'Unique intersection · λ = 1'
+        : `Cross equation valid · plane residual ${planeResidual.toFixed(2)}`;
+    }
+
+    // =========================================================================
+    // TAB 7: 3D MASTER SANDBOX RIG
+    // =========================================================================
+    function resizeSb() {
+      setupCanvas(document.getElementById('canvasVecSandbox'));
+    }
+
+    function drawSb() {
+      const canvas = document.getElementById('canvasVecSandbox');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w * 0.5;
+      const cy = h * 0.55;
+      const scale = 20;
+
+      const o = project3D(0, 0, 0, cx, cy, scale);
+      const v1 = project3D(5, 2, 3, cx, cy, scale);
+      const v2 = project3D(-2, 4, 1, cx, cy, scale);
+      const v3 = project3D(1, -3, 4, cx, cy, scale);
+
+      draw3DVector(ctx, o, v1, '#38bdf8', 'v₁', 2.5);
+      draw3DVector(ctx, o, v2, '#10b981', 'v₂', 2.5);
+      draw3DVector(ctx, o, v3, '#f59e0b', 'v₃', 2.5);
+    }
+
+    // =========================================================================
+    // TAB 8: IIT-JEE QUESTION HUB
+    // =========================================================================
+    function filterSubTab(st) {
+      currentSubTabFilter = st;
+      const filters = ['all', 1, 2, 3, 4, 5, 6];
+      filters.forEach(f => {
+        const btn = document.getElementById(f === 'all' ? 'btnQFilterAll' : `btnQFilter${f}`);
+        if (btn) {
+          btn.className = (f === st) ? 'px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold' : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold';
+        }
+      });
+      renderQuestions();
+    }
+
+    function filterQuestions() {
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      if (!container || !window.JEE_QUESTIONS_DATA) return;
+
+      const query = (document.getElementById('qSearchInput').value || '').toLowerCase();
+      let list = window.JEE_QUESTIONS_DATA;
+
+      if (currentSubTabFilter !== 'all') {
+        list = list.filter(q => q.subtab === currentSubTabFilter);
+      }
+
+      if (query.trim()) {
+        list = list.filter(q => 
+          q.q.toLowerCase().includes(query) || 
+          q.source.toLowerCase().includes(query) || 
+          q.subtabName.toLowerCase().includes(query) ||
+          q.formula.toLowerCase().includes(query)
+        );
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400">No questions found matching the selected filter.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(q => {
+        return `
+          <div class="bg-slate-900/90 border border-border rounded-xl p-5 space-y-4 hover:border-slate-700 transition" id="qcard-${q.id}">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-xs border border-purple-500/30">
+                  ${q.id}
+                </span>
+                <span class="text-xs font-semibold text-slate-300">${q.source}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                  ${q.subtabName}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
+                  ${q.simFidelity}
+                </span>
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 border rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm ${fidelityClass(q.simFidelity)}">
+                  <span>🚀</span>
+                  <span>${simulatorActionLabel(q)}</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="text-sm text-slate-200 leading-relaxed font-sans">
+              ${q.q}
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${(q.options || []).map(opt => `
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-xs text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    ${opt.key}
+                  </span>
+                  <span>${opt.text}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-xs"></div>
+
+            <div class="pt-2 border-t border-border/40">
+              <button onclick="toggleSolution('${q.id}')" class="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                <span id="solIcon-${q.id}">▶</span>
+                <span>Teacher's Chalkboard · Derivation, Check, Trap &amp; Transfer</span>
+              </button>
+              <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
+                <div class="text-xs font-mono text-purple-300">
+                  <span class="text-slate-400">Governing Formula:</span> ${q.formula}
+                </div>
+                <div class="space-y-1 text-xs text-slate-300 font-sans">
+                  ${(q.steps || []).map((step, idx) => `
+                    <div class="flex items-start gap-2">
+                      <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
+                      <span>${step}</span>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                  <strong class="text-amber-400 block mb-1">⚠️ Examiner Trap Analysis:</strong>
+                  ${q.trap}
+                </div>
+                <div class="text-xs font-mono text-emerald-400 font-bold">
+                  Final Result: ${q.ans}
+                </div>
+                <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
+                  <strong class="text-sky-300 block mb-1">🧑‍🏫 Teacher's Chalkboard · Independent Check</strong>
+                  ${q.teacherCheck}
+                </div>
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                  <strong class="text-emerald-300 block mb-1">↗ Transfer Takeaway</strong>
+                  ${q.takeaway}
+                </div>
+                <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
+                  <strong class="block mb-1">Simulator Fidelity · ${q.simFidelity}</strong>
+                  ${q.simFidelityNote}
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function checkQuestionOption(qId, selectedKey) {
+      const q = (window.JEE_QUESTIONS_DATA || []).find(item => item.id === qId);
+      if (!q) return;
+
+      const fb = document.getElementById(`feedback-${qId}`);
+      const isCorrect = (selectedKey === q.correct);
+
+      (q.options || []).forEach(opt => {
+        const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
+        if (btn) {
+          if (opt.key === q.correct) {
+            btn.className = 'text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/80 text-xs text-emerald-200 transition flex items-start gap-2.5';
+          } else if (opt.key === selectedKey && !isCorrect) {
+            btn.className = 'text-left p-3 rounded-xl bg-red-950/40 border border-red-500/80 text-xs text-red-200 transition flex items-start gap-2.5';
+          } else {
+            btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/50 text-xs text-slate-500 transition flex items-start gap-2.5';
+          }
+        }
+      });
+
+      if (fb) {
+        fb.classList.remove('hidden');
+        if (isCorrect) {
+          fb.className = 'p-3 rounded-xl text-xs bg-emerald-500/20 border border-emerald-500/40 text-emerald-200';
+          fb.innerHTML = `<strong>✅ Correct!</strong> ${q.ans}. Expand solution below to inspect the mathematical steps.`;
+        } else {
+          fb.className = 'p-3 rounded-xl text-xs bg-red-500/20 border border-red-500/40 text-red-200';
+          fb.innerHTML = `<strong>❌ Incorrect.</strong> Correct answer is Option ${q.correct}. See Examiner Trap analysis below.`;
+        }
+      }
+    }
+
+    function toggleSolution(qId) {
+      const el = document.getElementById(`solContent-${qId}`);
+      const icon = document.getElementById(`solIcon-${qId}`);
+      if (el) {
+        const isHidden = el.classList.contains('hidden');
+        el.classList.toggle('hidden', !isHidden);
+        if (icon) icon.textContent = isHidden ? '▼' : '▶';
+      }
+    }
+
+    // =========================================================================
+    // INITIALIZATION ON LOAD & WINDOW RESIZE
+    // =========================================================================
+    window.addEventListener('load', () => {
+      renderQuestions();
+      setupOrbit(document.getElementById('canvasBasis'), drawBasis);
+      setupOrbit(document.getElementById('canvasCross'), drawCross);
+      setupOrbit(document.getElementById('canvasTriple'), drawTriple);
+      setupOrbit(document.getElementById('canvasBaccab'), drawBaccab);
+      setupOrbit(document.getElementById('canvasEquations'), drawEquations);
+      setupOrbit(document.getElementById('canvasVecSandbox'), drawSb);
+
+      updateBasisVector();
+      updateDotRig();
+      updateCrossRig();
+      updateTripleRig();
+      updateBaccabRig();
+      updateEqRig();
+      switchTab('tab-basis');
+    });
+
+    window.addEventListener('resize', () => {
+      if (currentTab === 'tab-basis') resizeBasis();
+      else if (currentTab === 'tab-dot') resizeDot();
+      else if (currentTab === 'tab-cross') resizeCross();
+      else if (currentTab === 'tab-triple') resizeTriple();
+      else if (currentTab === 'tab-baccab') resizeBaccab();
+      else if (currentTab === 'tab-equations') resizeEquations();
+      else if (currentTab === 'tab-sandbox') resizeSb();
+    });
+  </script>
+</body>
+</html>
