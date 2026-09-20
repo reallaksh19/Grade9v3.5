@@ -139,6 +139,30 @@ class SharedTopicAtlasCoreTest(unittest.TestCase):
                          pack["diagnostic_contract"]["result_values"])
         self.assertIn("UNKNOWN", pack["diagnostic_contract"]["error_stage_values"])
 
+    def test_measurement_pack_cli_runs_for_physics_and_mathematics(self):
+        for subject, matrix_id in (
+            ("Physics", NLM_MATRIX),
+            ("Mathematics", MATH_MATRIX),
+        ):
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    "Shared/tools/measurement_pack.py",
+                    "--subject",
+                    subject,
+                    "--matrix",
+                    matrix_id,
+                ],
+                cwd=REPO,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(completed.stdout)
+            self.assertEqual(matrix_id, payload["matrix_id"])
+            self.assertEqual(subject, payload["subject"])
+            self.assertTrue(payload["targets"])
+
     def test_math_uses_same_resolver_and_keeps_inventory_fallback_truthful(self):
         report = atlas_need.resolve(math_envelope([{
             "capability_ref": "CAP-MATH-ISOLATE",
