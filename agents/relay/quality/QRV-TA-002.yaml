@@ -1,0 +1,172 @@
+{
+  "schema_version": "relay-v2.5-quality-review",
+  "quality_review_id": "QRV-TA-002",
+  "ep": {
+    "id": "EP-TA-002",
+    "path": "agents/relay/execution-packages/EP-TA-002.yaml",
+    "contract_digest": "sha256:9e2f8fc18b1d8682c59274b6483bc56a4114134c2c7b769c034b3d29c58c3afa"
+  },
+  "roadmap_revision": "RM-0004",
+  "material_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+  "reviewer": {
+    "type": "AGENT",
+    "identity": "chatgpt-sol-topic-atlas-20260920-quality-pass"
+  },
+  "router_snapshot": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "Moves diagnostic/focus authority from browser-only logic into Shared planning seams.",
+        "review_focus": [
+          "single ownership",
+          "transient vs persisted evidence",
+          "planner authority boundaries"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Adds Shared Python modules/schema and modifies production planners.",
+        "review_focus": [
+          "fail-closed validation",
+          "deterministic resolution",
+          "minimal schema surface"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Cross-subject semantic/fallback/integration cases are required to falsify Physics-specific or mastery-producing behavior.",
+        "review_focus": [
+          "NLM golden cases",
+          "Math falsifier",
+          "readiness invariance",
+          "inventory precision"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Touches authoritative planning and execution packet surfaces.",
+        "review_focus": [
+          "prerequisite/source-custody invariants",
+          "API compatibility",
+          "data provenance"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Work remains correlated to the Topic Atlas completion programme and Issue #118 delivery vehicle.",
+        "review_focus": [
+          "EP/checkpoint continuity",
+          "head-bound validation",
+          "PR correlation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "ui-ux",
+        "reason": "No browser UI change is authorized in this Shared-only work package."
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing UI interaction is changed."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical solver or canonical calculation algorithm changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Data volumes are small canonical matrices; no performance-sensitive target is introduced."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Diagnostic focus is transient and observation persistence schema is intentionally unchanged."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "procedure_results": [
+    {
+      "blueprint": "software-design",
+      "result": "CLEAR",
+      "evidence": [
+        "The implementation keeps scanned diagnostic focus transient and separate from learner placement/mastery; plan_request and resolve_request readiness outputs are regression-compared with and without diagnostic focus.",
+        "Shared ownership is explicit: atlas_need validates semantic targets, measurement_pack exports scanner instructions, core_focus supplies emphasis only, and focus_inventory reports exact versus capability-level inventory precision."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "coding",
+      "result": "CLEAR",
+      "evidence": [
+        "Repository guardrails run 35494364057 passed on exact material head b11fbe93399d5c29cb4a43d04f5e55132f294f11.",
+        "Topic-independence, schemas, planner audits, execution-packet audits, generated-artifact checks and the full unittest suite all passed on that material head."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "testing",
+      "result": "CLEAR",
+      "evidence": [
+        "tests/test_shared_topic_atlas_core.py proves NLM exact/fallback addresses, Math cross-subject reuse, no fuzzy mapping, Measurement Pack separation, planner/readiness invariance and execution-packet diagnostic pinning.",
+        "The cross-subject Measurement Pack CLI is executed from the test suite for Physics and Mathematics; full repository guardrails run 35494364057 passed."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "code-review",
+      "result": "CLEAR",
+      "evidence": [
+        "Review against EP protected invariants found no canonical subject-package/matrix edits, no observation-schema mastery expansion, no seventh Core and no diagnostic-stage inference from question text.",
+        "Focus inventory deliberately reports ACT-NLM-FRICTION-THRESHOLD as capability-level because current canonical resource data has no teaching_step_refs."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "github-delivery",
+      "result": "CLEAR",
+      "evidence": [
+        "PR #148 was read back after correlation update and now names RM-0004, WP-TA-102 and EP-TA-002, with Issue #118 ↔ EP-TA-002 ↔ WP-TA-102 correlation.",
+        "V2.5 relay/write-gate run 35494364063 passed on the exact material implementation head."
+      ],
+      "reason": null,
+      "cause": null
+    }
+  ],
+  "findings": [],
+  "overall_state": "CLEAR",
+  "execution_effect": {
+    "blocks_execution": false,
+    "blocking_findings": []
+  },
+  "owner_report": {
+    "summary": "Shared diagnostic/Core authority is green: scanned gaps resolve only against canonical identities, optional scores stay display/evidence-only, planner readiness is unchanged by diagnostic focus, and Physics/Math use the same subject-neutral implementation.",
+    "visible_risks": [
+      "Static file:// Atlas pages still export the diagnostic envelope rather than executing Shared Python directly; authoritative planning remains an external/local tool step.",
+      "Exact inventory claims remain limited by existing canonical repair/resource bindings; capability-level fallback is reported instead of guessed precision."
+    ],
+    "decisions_required": []
+  },
+  "successor_handover": {
+    "unresolved_findings": [],
+    "follow_up": [
+      "Execute WP-TA-106 so README becomes the first-read V2.5 roadmap entry and older roadmap-like documents are clearly classified before remaining Atlas surface work."
+    ]
+  }
+}

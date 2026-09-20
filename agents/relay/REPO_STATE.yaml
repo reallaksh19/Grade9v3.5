@@ -11,27 +11,27 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0004",
+    "revision": "RM-0005",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TA-102",
+    "work_package": "WP-TA-106",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-002",
-    "path": "agents/relay/execution-packages/EP-TA-002.yaml",
+    "id": "EP-TA-003",
+    "path": "agents/relay/execution-packages/EP-TA-003.yaml",
     "state": "EXECUTABLE",
-    "continuity_receipt": "agents/relay/roadmap/continuity/RC-TA-002.yaml"
+    "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-001",
-    "path": "agents/relay/checkpoints/CP-TA-001.yaml"
+    "id": "CP-TA-002",
+    "path": "agents/relay/checkpoints/CP-TA-002.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -43,23 +43,23 @@
   },
   "takeover_admissions": [
     {
-      "route_key": "SERIAL:EP-TA-002",
+      "route_key": "SERIAL:EP-TA-003",
       "candidate": {
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-002",
-        "path": "agents/relay/certifications/discovery/DISC-TA-002.yaml"
+        "id": "DISC-TA-003",
+        "path": "agents/relay/certifications/discovery/DISC-TA-003.yaml"
       },
       "certification": {
-        "id": "TC-TA-002",
-        "path": "agents/relay/certifications/takeover/TC-TA-002.yaml"
+        "id": "TC-TA-003",
+        "path": "agents/relay/certifications/takeover/TC-TA-003.yaml"
       }
     }
   ],
   "progress": {
-    "overall_percent": 20,
-    "phase_percent": 20,
+    "overall_percent": 45,
+    "phase_percent": 45,
     "ep_percent": 0,
     "basis_revision": "PB-0003"
   },
@@ -68,18 +68,24 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Publish the formal quality review for completed EP-TA-002, checkpoint WP-TA-102, then execute WP-TA-106 so README becomes the first-read V2.5 roadmap entry before remaining Atlas surface work."
+      "next_action": "Run the candidate-specific V2.5 material-write gate for EP-TA-003, then add the README first-read roadmap entry and authority notices to existing roadmap-like docs."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "The required formal EP-TA-002 quality review is the remaining checkpoint prerequisite."
+        "EP-TA-003 documentation/governance changes have not yet undergone their required quality review."
       ]
     },
     "evidence": {
-      "state": "COMPLETE",
-      "summary": "EP-TA-002 material head b11fbe93399d5c29cb4a43d04f5e55132f294f11 passed repository guardrails run 35494364057 and V2.5 relay/write-gate run 35494364063. All planned material validation is represented in the full test/guardrail run.",
-      "not_run": []
+      "state": "PARTIAL",
+      "summary": "EP-TA-002 is checkpointed complete on green material head b11fbe93399d5c29cb4a43d04f5e55132f294f11. EP-TA-003 has repository-only discovery/takeover evidence but documentation validation has not run yet.",
+      "not_run": [
+        {
+          "id": "TEST-TA3-001..004",
+          "reason": "EP-TA-003 material documentation changes have not been executed yet.",
+          "cause": "NOT_SCHEDULED"
+        }
+      ]
     },
     "stop": {
       "active": false,
@@ -93,8 +99,8 @@
     "state": "NOT_REQUIRED",
     "operation_id": null,
     "target": null,
-    "roadmap_revision": "RM-0004",
-    "execution_ref": "EP-TA-002",
+    "roadmap_revision": "RM-0005",
+    "execution_ref": "EP-TA-003",
     "receipt": null,
     "basis": []
   },

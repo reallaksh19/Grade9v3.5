@@ -1,0 +1,189 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-003",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-003",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-003",
+    "ep_id": "EP-TA-003",
+    "ep_path": "agents/relay/execution-packages/EP-TA-003.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0005",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "a11d96b0087929f79aba9a77b39c58e834f46805",
+    "ep_contract_digest": "sha256:3e7eb15fd3069a70b61d3e4eeaecb2c2677103bd0cbd85884e844ab4f179f0cf",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-002",
+      "path": "agents/relay/checkpoints/CP-TA-002.yaml",
+      "digest": "sha256:aaf1e332d2692b6e94a359f36b5e2470e711dce83c7c7cd9eaaf519ae3e6fe68"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA3-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "README current roadmap link behavior",
+          "value": "README links docs/PROGRAM-PLAN.md from Status but does not expose REPO_STATE, OVERALL_ROADMAP, PROGRESS or active_ep as the current V2.5 entry path.",
+          "basis": [
+            "README.md"
+          ]
+        },
+        {
+          "name": "roadmap-like document inventory",
+          "value": "Repository search found OVERALL_ROADMAP plus docs/PROGRAM-PLAN.md, docs/ROADMAP-LEARNER-READY.md, docs/FUTURE-ROAD-PLAN.md, docs/PLAN-R0-R2.md and docs/PLAN-R3-R4.md as the principal roadmap/plan entry documents.",
+          "basis": [
+            "GitHub repository search: roadmap; PROGRAM-PLAN"
+          ]
+        },
+        {
+          "name": "ambiguous/stale authority wording",
+          "value": "PROGRAM-PLAN is linked as the phased plan, while learner-ready and older execution plans lack a current V2.5 authority banner; FUTURE-ROAD-PLAN disclaims implementation authority but does not link the live relay.",
+          "basis": [
+            "README.md",
+            "docs/PROGRAM-PLAN.md",
+            "docs/ROADMAP-LEARNER-READY.md",
+            "docs/FUTURE-ROAD-PLAN.md",
+            "docs/PLAN-R0-R2.md",
+            "docs/PLAN-R3-R4.md"
+          ]
+        }
+      ],
+      "basis": [
+        "README.md",
+        "docs/"
+      ],
+      "conversation_context_used": false
+    },
+    {
+      "id": "DSTEP-TA3-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "repository bootstrap path",
+          "value": "agents/relay/REPO_STATE.yaml is the deterministic V2.5 bootstrap locator.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "Common engineering-pr-delivery-v2.5 SKILL.md"
+          ]
+        },
+        {
+          "name": "current roadmap path/revision",
+          "value": "REPO_STATE points to agents/relay/roadmap/OVERALL_ROADMAP.yaml; successor coordination advances it to RM-0005.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+          ]
+        },
+        {
+          "name": "progress authority",
+          "value": "agents/relay/roadmap/PROGRESS.yaml is the calculated progress authority.",
+          "basis": [
+            "agents/relay/roadmap/PROGRESS.yaml",
+            "Common engineering-pr-delivery-v2.5 SKILL.md"
+          ]
+        },
+        {
+          "name": "active EP locator rule",
+          "value": "Read active_ep.id/path from REPO_STATE rather than copying a static EP identifier into README.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml"
+          ]
+        }
+      ],
+      "basis": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/roadmap/PROGRESS.yaml"
+      ]
+    },
+    {
+      "id": "DSTEP-TA3-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "classification per document",
+          "value": "PROGRAM-PLAN = product/architecture programme history; ROADMAP-LEARNER-READY = learner-readiness conceptual/historical roadmap; FUTURE-ROAD-PLAN = evidence-gated future ideas; PLAN-R0-R2 and PLAN-R3-R4 = prior execution plans; OVERALL_ROADMAP = current V2.5 execution authority.",
+          "basis": [
+            "document titles/intros and V2.5 authority chain"
+          ]
+        },
+        {
+          "name": "minimal banner/cross-link changes",
+          "value": "Retain document bodies; add explicit status/authority notices at the top and direct links to REPO_STATE/OVERALL_ROADMAP where appropriate.",
+          "basis": [
+            "same documents"
+          ]
+        },
+        {
+          "name": "no-delete rationale",
+          "value": "Older plans contain durable architecture decisions, gap analyses and historical execution rationale that remain useful when clearly labelled.",
+          "basis": [
+            "docs/PROGRAM-PLAN.md",
+            "docs/ROADMAP-LEARNER-READY.md",
+            "docs/PLAN-R0-R2.md",
+            "docs/PLAN-R3-R4.md"
+          ]
+        }
+      ],
+      "basis": [
+        "docs/PROGRAM-PLAN.md",
+        "docs/ROADMAP-LEARNER-READY.md",
+        "docs/FUTURE-ROAD-PLAN.md",
+        "docs/PLAN-R0-R2.md",
+        "docs/PLAN-R3-R4.md"
+      ]
+    },
+    {
+      "id": "DSTEP-TA3-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "checked-out branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 branch readback"
+          ]
+        },
+        {
+          "name": "current HEAD",
+          "value": "successor coordination commit containing EP-TA-003 will descend from a11d96b0087929f79aba9a77b39c58e834f46805",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "material-ref ancestry",
+          "value": "a11d96b0087929f79aba9a77b39c58e834f46805 is the predecessor material basis for this newly created EP and will be an ancestor of its execution head.",
+          "basis": [
+            "Git history"
+          ]
+        },
+        {
+          "name": "base drift result",
+          "value": "EP-TA-003 records current main 194791528cd3a69b30aced1480aee3254293dfe0 as base_observed_ref; material writes must recheck before execution.",
+          "basis": [
+            "GitHub main head readback"
+          ]
+        }
+      ],
+      "basis": [
+        "Git history",
+        "main@194791528cd3a69b30aced1480aee3254293dfe0"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}
