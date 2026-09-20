@@ -132,5 +132,28 @@
       ]
     }
   ],
-  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py",
+  "representation_invariants": [
+    {
+      "id": "SIGNED-AREA-DISPLACEMENT-VS-ABSOLUTE-AREA-DISTANCE",
+      "views": [
+        "VELOCITY_TIME_GRAPH",
+        "DISTANCE_DISPLACEMENT_READOUT"
+      ],
+      "relation": "displacement equals signed velocity-time area while distance equals the corresponding absolute area",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    }
+  ],
+  "geometry_truth_contract": {
+    "verification_status": "DECLARED",
+    "oracle_method": "PROPERTY_TEST",
+    "governed_geometry": [
+      "KINEMATIC_TRACK_MARKERS",
+      "VELOCITY_TIME_GRAPH",
+      "RELATIVE_GAP_GRAPH"
+    ],
+    "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+  }
 }
