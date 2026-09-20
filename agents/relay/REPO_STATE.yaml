@@ -96,18 +96,24 @@
   },
   "projection": {
     "required": true,
-    "state": "PENDING",
+    "state": "IN_SYNC",
     "operation_id": "GHGEN-HO-79E29CBD0F01",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-HO-79E29CBD0F01.yaml",
     "roadmap_revision": "RM-0007",
     "execution_ref": "EP-TA-008",
-    "receipt": null,
+    "receipt": "github-generation:GHGEN-HO-79E29CBD0F01",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
-      "handover-plan:sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328"
+      "handover-plan:sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328",
+      "owner-publication:PUB-0001",
+      "handover-generation:GHGEN-HO-79E29CBD0F01",
+      "prewrite-journal-head:03e2be1e11c3196064cf90e14fef034fe804e15a",
+      "GitHub create response for https://github.com/reallaksh19/Grade9V3/issues/161",
+      "GitHub provider readback https://api.github.com/repos/reallaksh19/Grade9V3/issues/161",
+      "Verified relay-operation marker GHOP-HO-79E29CBD0F01"
     ]
   },
   "delivery": {
@@ -121,8 +127,8 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": false,
-    "handover_ready": false,
+    "projection_ready": true,
+    "handover_ready": true,
     "reasons": []
   },
   "chat_context_required": false

@@ -17,12 +17,201 @@
       "role": "HANDOVER",
       "handover_key": "sha256:111e27dfeeec921abda5a158cecc82eeb8d7abd068101205b65dd0d41b2de385",
       "state": "ACTIVE",
-      "github_state": "ABSENT",
-      "github": {},
+      "github_state": "OPEN",
+      "github": {
+        "issue_number": 161,
+        "issue_id": 5518205742,
+        "url": "https://github.com/reallaksh19/Grade9V3/issues/161"
+      },
       "source_contract": {
         "kind": "ACTIVE_TASK",
         "id": "EP-TA-008",
         "work_package": "WP-TA-107"
+      },
+      "published_handover_snapshot": {
+        "source_report_digest": "sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328",
+        "intent": [
+          {
+            "id": "AC:AC-TA8-001",
+            "kind": "ACCEPTANCE",
+            "source_id": "AC-TA8-001",
+            "what_remains": "Existing learner evidence deterministically yields session-only READY/REINFORCE/REBUILD plus LOW/MEDIUM/HIGH starting support, with independent DEMONSTRATED as the only READY path and execution/careless slips protected from automatic conceptual rebuild.",
+            "why_it_remains": "Current acceptance state is NOT_STARTED at 0%.",
+            "basis": [],
+            "done_when": "AC-TA8-001 is COMPLETE on durable acceptance/evidence basis."
+          },
+          {
+            "id": "AC:AC-TA8-002",
+            "kind": "ACCEPTANCE",
+            "source_id": "AC-TA8-002",
+            "what_remains": "Route annotations resolve canonical representation support stages and explorer refs where available, and prefer GUIDED_RECONSTRUCTION/PRACTICE/TRANSFER demand based on posture plus prerequisite readiness without editing academic truth.",
+            "why_it_remains": "Current acceptance state is NOT_STARTED at 0%.",
+            "basis": [],
+            "done_when": "AC-TA8-002 is COMPLETE on durable acceptance/evidence basis."
+          },
+          {
+            "id": "AC:AC-TA8-003",
+            "kind": "ACCEPTANCE",
+            "source_id": "AC-TA8-003",
+            "what_remains": "Starting support is independent of post-failure hints; existing feedback remains authoritative for hint escalation, targeted repair, fresh independent verification and delayed review, including staged visual hint refs.",
+            "why_it_remains": "Current acceptance state is NOT_STARTED at 0%.",
+            "basis": [],
+            "done_when": "AC-TA8-003 is COMPLETE on durable acceptance/evidence basis."
+          },
+          {
+            "id": "AC:AC-TA8-004",
+            "kind": "ACCEPTANCE",
+            "source_id": "AC-TA8-004",
+            "what_remains": "No routing/mastery state is persisted, no canonical Physics/matrix/schema content changes, derived audits/manifests are current and focused plus full repository/V2.5 validation pass.",
+            "why_it_remains": "Current acceptance state is NOT_STARTED at 0%.",
+            "basis": [],
+            "done_when": "AC-TA8-004 is COMPLETE on durable acceptance/evidence basis."
+          },
+          {
+            "id": "EVIDENCE:TEST-TA8-001..004",
+            "kind": "EVIDENCE",
+            "source_id": "TEST-TA8-001..004",
+            "what_remains": "Produce the missing evidence for TEST-TA8-001..004.",
+            "why_it_remains": "EP-TA-008 material implementation has not yet executed.",
+            "cause": "NOT_SCHEDULED",
+            "basis": [],
+            "done_when": "TEST-TA8-001..004 has a terminal evidence disposition on the required material basis."
+          },
+          {
+            "id": "NEXT:EP-TA-008:1",
+            "kind": "NEXT_WORK",
+            "source_id": 1,
+            "what_remains": "Implement and falsify the evidence-to-posture/support truth table.",
+            "why_it_remains": "This is part of the current EP successor/current next-work contract.",
+            "basis": [
+              "EP:EP-TA-008"
+            ],
+            "done_when": "Derived posture/support is deterministic and non-persisted.",
+            "targets": [
+              "Shared/tools/learning_router.py",
+              "Shared/tools/learner_evidence.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-001",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-001"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-001",
+              "BENCH-TA8-002"
+            ],
+            "acceptance": [
+              "AC-TA8-001"
+            ]
+          },
+          {
+            "id": "NEXT:EP-TA-008:2",
+            "kind": "NEXT_WORK",
+            "source_id": 2,
+            "what_remains": "Resolve canonical visual stage/explorer and exercise demand into worksheet route annotations.",
+            "why_it_remains": "This is part of the current EP successor/current next-work contract.",
+            "basis": [
+              "EP:EP-TA-008"
+            ],
+            "done_when": "Route starts with the right support/visual/demand using canonical refs.",
+            "targets": [
+              "Shared/tools/learning_router.py",
+              "Shared/tools/worksheet_study_plan.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-002",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-002"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-002"
+            ],
+            "acceptance": [
+              "AC-TA8-002"
+            ]
+          },
+          {
+            "id": "NEXT:EP-TA-008:3",
+            "kind": "NEXT_WORK",
+            "source_id": 3,
+            "what_remains": "Prove the same session preserves feedback-owned hint/repair/verification/review after the initial route.",
+            "why_it_remains": "This is part of the current EP successor/current next-work contract.",
+            "basis": [
+              "EP:EP-TA-008"
+            ],
+            "done_when": "Closed loop works without a duplicate post-attempt state machine.",
+            "targets": [
+              "Shared/tools/study_session.py",
+              "tests/test_study_session.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-003"
+            ],
+            "tests": [
+              "TEST-TA8-003"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-003"
+            ],
+            "acceptance": [
+              "AC-TA8-003"
+            ]
+          },
+          {
+            "id": "NEXT:EP-TA-008:4",
+            "kind": "NEXT_WORK",
+            "source_id": 4,
+            "what_remains": "Update derived audit/manifest and run full guardrails/V2.5 before checkpointing WP-TA-107.",
+            "why_it_remains": "This is part of the current EP successor/current next-work contract.",
+            "basis": [
+              "EP:EP-TA-008"
+            ],
+            "done_when": "WP-TA-107 is complete and WP-TA-105 becomes frontier.",
+            "targets": [
+              "docs/grade9/",
+              "docs/architecture-manifest.json",
+              "agents/relay/"
+            ],
+            "inputs": [
+              "INPUT-TA8-001",
+              "INPUT-TA8-002",
+              "INPUT-TA8-003",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-004"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-001",
+              "BENCH-TA8-003"
+            ],
+            "acceptance": [
+              "AC-TA8-004"
+            ]
+          },
+          {
+            "id": "CHECKPOINT_REMAINING:1",
+            "kind": "REMAINING_WORK",
+            "source_id": 1,
+            "what_remains": "Implement WP-TA-107 as a subject-neutral derived router over existing evidence/session/feedback contracts.",
+            "why_it_remains": "The last checkpoint retained this item as remaining work.",
+            "basis": [],
+            "done_when": "The retained work is completed or explicitly dispositioned by current authority."
+          },
+          {
+            "id": "CHECKPOINT_REMAINING:2",
+            "kind": "REMAINING_WORK",
+            "source_id": 2,
+            "what_remains": "After WP-TA-107, derive the Grade-9 exit and Grade-10 transition view in WP-TA-105.",
+            "why_it_remains": "The last checkpoint retained this item as remaining work.",
+            "basis": [],
+            "done_when": "The retained work is completed or explicitly dispositioned by current authority."
+          }
+        ]
       }
     }
   ],
