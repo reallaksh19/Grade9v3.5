@@ -18,8 +18,8 @@
     "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
     "roadmap_revision": "RM-0002",
     "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
-    "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
-    "ep_contract_digest": "sha256:8527ae1d4909e665f9ef5feaebc5099fdb59dbdd438861c69bb3f6fb148cfa10",
+    "material_ref": "fab9bb82d9feca668516a02d3ffff697454e8bbf",
+    "ep_contract_digest": "sha256:bf49fd8b1709eb73e5ce39e7a86e2eb2511d46022d6f505406d5dcd1df1e3370",
     "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
     "predecessor_baton": {
       "type": "NONE",
@@ -78,17 +78,18 @@
         },
         {
           "name": "current HEAD",
-          "value": "Execution branch is reconstructed from current main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 before material execution resumes.",
+          "value": "Final material implementation validated at fab9bb82d9feca668516a02d3ffff697454e8bbf; later coordination commits are descendants only.",
           "basis": [
-            "GitHub current main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
-            "EP-TA-001 git_basis"
+            "GitHub commit fab9bb82d9feca668516a02d3ffff697454e8bbf",
+            "guardrails run 35487996163",
+            "v25-relay run 35487996167"
           ]
         },
         {
           "name": "material-ref ancestry result",
-          "value": "PASS by construction: rebased execution commit has material ref d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 as parent.",
+          "value": "PASS: final material_ref fab9bb82d9feca668516a02d3ffff697454e8bbf is the reviewed implementation commit and is an ancestor of closure coordination commits.",
           "basis": [
-            "rebased branch parent d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59"
+            "GitHub commit fab9bb82d9feca668516a02d3ffff697454e8bbf"
           ]
         },
         {

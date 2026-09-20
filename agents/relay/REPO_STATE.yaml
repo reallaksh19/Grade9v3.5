@@ -68,24 +68,18 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run the V2.5 candidate write gate against current main 78d8185852ee467b5a3fa064477e68553a4acca8; if green, regenerate docs/architecture-manifest.json through Shared/tools/build_manifest.py and re-run the full guardrail suite."
+      "next_action": "Publish QRV-TA-001 against material ref fab9bb82d9feca668516a02d3ffff697454e8bbf, checkpoint EP-TA-001, reconcile progress, and create the serial successor EP for WP-TA-102."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "Main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 introduced a manual leaf-progress/mastery path in the generic Atlas. It conflicts with the Owner's two-input normal learner model and has been reconciled into EP-TA-001 before product writes resume."
+        "Formal QRV-TA-001 is required before checkpoint publication; no unresolved implementation test failure remains at material ref fab9bb82d9feca668516a02d3ffff697454e8bbf."
       ]
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "EP-TA-001 material behavior and falsifier tests are implemented; V2.5 remained green on the prior head. The current guardrail blocker is generated architecture-manifest drift caused by the new takeover test, and main drift through 78d8185852ee467b5a3fa064477e68553a4acca8 is disjoint under DRIFT-TA-001.",
-      "not_run": [
-        {
-          "id": "TEST-TA-001..005",
-          "reason": "Material implementation has not started; candidate takeover admission and live write gate are being verified first.",
-          "cause": "NOT_SCHEDULED"
-        }
-      ]
+      "state": "VERIFIED",
+      "summary": "EP-TA-001 material implementation at fab9bb82d9feca668516a02d3ffff697454e8bbf passed repository guardrails and the V2.5 relay/write gate. Remaining actions are quality review, checkpoint/progress publication, and successor creation.",
+      "not_run": []
     },
     "stop": {
       "active": false,
