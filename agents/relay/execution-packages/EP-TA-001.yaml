@@ -1,0 +1,1194 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-001",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "NONE",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "base_branch": "main",
+    "base_observed_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0002",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TAKEOVER-RECONCILE",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "Topic Atlas accepts only truthful optional learner inputs, remains useful in canonical browse mode, and exports a plan-level request without fabricating learner placement or prerequisite mastery.",
+      "The browser presents semantic diagnostic dimensions independently and preserves precise fallback addresses without averaging scores."
+    ],
+    "engineering": [
+      "The static browser contract fails closed on invalid capability/rung/result/stage/score combinations.",
+      "Authoritative planning ownership remains in Shared; browser copy and exports no longer claim that local JavaScript has run the Python planner."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Make the generic Topic Atlas a trustworthy static/offline front end for canonical topic exploration, optional owner estimate, optional scanned-answer diagnostic intake, and governed Core-request handoff.",
+    "roadmap_position": "OBJ-TOPIC-ATLAS-COMPLETE / PHASE-TAKEOVER-RECONCILIATION / WP-TAKEOVER-RECONCILE",
+    "why_this_work_exists": "Current main contains a strong data-driven Atlas and newer GCDR work, but the browser still has verified fail-open diagnostic mappings, conflated optional inputs, pseudo learner placement in no-input mode, and local readiness claims that must be corrected before Shared Core integration.",
+    "current_architecture": "Canonical subject packages and matrices project through Shared/tools/build_web_data.py to public/data/data.js. public/js/topic-atlas.js renders NLM, Motion2D, and Math linear-equation pages and performs local input/import/export behavior. Python Shared planners remain the authoritative Core planning path.",
+    "prior_owner_decisions": [
+      "Use only rough subtopic knowledge estimate and latest external scanned-answer gaps as normal optional learner inputs.",
+      "Reuse current Grade9V3 capabilities, diagnostic stages, six Core products, purpose vocabulary, and Run Builder; do not create a second curriculum or learner model.",
+      "Complete the missing Agent A, Agent B, and Shared Core pieces under V2.5 delivery."
+    ],
+    "current_implementation_state": "Main advanced through d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 with GCDR master-suite hardening and an overlapping Topic Atlas leaf-progress change. The GCDR work is retained. Manual leaf-progress/mastery and knowledge-sync controls conflict with the Owner's two-input normal operating model and are now explicit correctness targets in this EP.",
+    "known_problems": [
+      "Current main adds leaf_progress, manual Mastered/Gap controls, and knowledge-sync from those controls; this creates a third normal learner-state input path outside the Owner's two-input model.",
+      "Diagnostic import can use rung_ref to rescue an invalid capability_ref.",
+      "Diagnostic score and result validation are fail-open or coercive.",
+      "Knowledge percentage is embedded in diagnostic import/export rather than being a separate optional input.",
+      "One semantic leaf can display only the first diagnostic dimension target.",
+      "No-input mode creates a pseudo learner target and Core export fabricates owner_entry.",
+      "Browser preview claims authoritative readiness/prerequisite clearance without running Shared planner.",
+      "Measurement Pack browser export mixes measurement-critical and routing-only fields and uses the wrong misconception diagnostic field name."
+    ],
+    "deliberate_non_goals": [
+      "Do not implement Shared atlas_need/Core-focus authority in this EP; that is WP-TA-102.",
+      "Do not change canonical Physics or Mathematics academic content in this EP.",
+      "Do not create new Atlas topic pages in this EP.",
+      "Do not promote any GCDR conformance/certification state.",
+      "Do not add mastery probabilities, learner difficulty scores, physical R5.x.y rows, or new Core types."
+    ],
+    "terminology": {
+      "canonical browse mode": "Atlas use with no learner-specific estimate or diagnostic; it is not learner placement.",
+      "repair_ref": "Existing stable teaching-path step identifier used to narrow a capability-level diagnostic when valid.",
+      "derived Atlas address": "Presentation address such as R5.1.0 formed from canonical rung, teaching-step index, and diagnostic dimension; never a stored matrix rung."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA-001",
+      "action": "VERIFY",
+      "target": "agents/relay/REPO_STATE.yaml",
+      "question": "Does repository state route to EP-TA-001 on RM-0002 and the browser-correctness work package?",
+      "expected_outputs": [
+        "active EP id and path",
+        "roadmap revision",
+        "current work package"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile relay routing before material browser writes."
+    },
+    {
+      "id": "DSTEP-TA-002",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Is the live checkout on takeover/topic-atlas-browser-correctness with material ref d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 as an ancestor and main still at the observed base or covered by an accepted drift receipt?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry result",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Withhold WRITE and reconcile Git drift."
+    },
+    {
+      "id": "DSTEP-TA-003",
+      "action": "TRACE",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "Shared/library/authoring-request.schema.json",
+        "Shared/vocabularies/purpose.json",
+        "Shared/tools/plan_request.py",
+        "tools/run-builder/index.html"
+      ],
+      "question": "Which current browser paths own diagnostic import, fallback addressing, request export, preview copy, and Run Builder handoff, and which existing Shared contracts own authoritative planning semantics?",
+      "expected_outputs": [
+        "browser state owner",
+        "diagnostic import function",
+        "request export function",
+        "authoritative planning contract",
+        "Run Builder target"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop browser mutation until current ownership paths are identified without guessing."
+    },
+    {
+      "id": "DSTEP-TA-004",
+      "action": "COMPARE",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "https://github.com/reallaksh19/Grade9V3/issues/118"
+      ],
+      "question": "Do the verified browser defects, Owner two-input invariant, new leaf_progress conflict, and Issue #118 acceptance requirements describe the current material basis?",
+      "expected_outputs": [
+        "current defect set",
+        "retained Issue #118 requirements",
+        "upstream leaf-progress conflict",
+        "superseded assumptions"
+      ],
+      "receipt_required": true,
+      "on_failure": "Re-scope EP before implementation."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA-001",
+      "name": "Current material basis",
+      "description": "Exact repository basis from which the browser correctness slice starts.",
+      "authority": "GitHub current main plus merged V2.5 bootstrap",
+      "source": "git:d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "value": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+      "type": "git commit SHA",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA-001",
+        "STEP-TA-002",
+        "STEP-TA-003",
+        "STEP-TA-004"
+      ],
+      "validation": [
+        "Verify material ref is ancestor of branch HEAD and compare base branch before each material write."
+      ],
+      "stale_if": [
+        "main changes files inside this EP's allowed or protected browser/contracts scope without a reconciled drift receipt.",
+        "EP roadmap revision or Issue #118 contract changes materially."
+      ]
+    },
+    {
+      "id": "INPUT-TA-002",
+      "name": "Owner operating model",
+      "description": "Normal learner inputs are optional rough subtopic knowledge estimate and latest external scanned-answer diagnostic only.",
+      "authority": "Owner intent captured in ODR-0001-TOPIC-ATLAS-COMPLETION and Issue #118",
+      "source": "agents/relay/roadmap/owner-decisions/ODR-0001-TOPIC-ATLAS-COMPLETION.yaml",
+      "value": {
+        "knowledge_estimate": "optional 0-100 routing coordinate only",
+        "diagnostic": "optional external gap rows",
+        "absence": "canonical browse mode; no learner placement claim"
+      },
+      "type": "product requirement",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA-001",
+        "STEP-TA-002",
+        "STEP-TA-003"
+      ],
+      "validation": [
+        "Compare browser behavior and exports against ODR and Issue #118; no extra learner telemetry may be required."
+      ],
+      "stale_if": [
+        "Owner changes the two-input operating model or makes either input mandatory."
+      ]
+    },
+    {
+      "id": "INPUT-TA-003",
+      "name": "Existing plan-level request contract",
+      "description": "Schema for incomplete third-agent planning requests where learner placement may be absent and missing decisions are surfaced rather than guessed.",
+      "authority": "Shared library schema",
+      "source": "Shared/library/authoring-request.schema.json",
+      "resolution_method": "Load the schema from the current material checkout and validate exported fixtures against it.",
+      "type": "JSON Schema",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA-003"
+      ],
+      "validation": [
+        "Use only schema-declared fields and current Core/purpose enums."
+      ],
+      "stale_if": [
+        "authoring-request.schema.json changes on the material branch."
+      ]
+    },
+    {
+      "id": "INPUT-TA-004",
+      "name": "Current purpose vocabulary and Shared planner boundary",
+      "description": "Existing Core practice purpose vocabulary and Python planner authority that browser preview must not duplicate or overclaim.",
+      "authority": "Shared vocabulary and planner",
+      "source": "Shared/vocabularies/purpose.json; Shared/tools/plan_request.py",
+      "resolution_method": "Load both files on the current checkout and use their current enums/authority semantics.",
+      "type": "repository contracts",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA-003",
+        "STEP-TA-004"
+      ],
+      "validation": [
+        "No new purpose vocabulary; local preview text must explicitly defer readiness/prerequisite authority to Shared."
+      ],
+      "stale_if": [
+        "purpose.json or plan_request.py changes materially before this EP completes."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA-001",
+      "name": "Issue #118 browser falsifiers",
+      "purpose": "Independently verify the corrected browser against the owner-approved acceptance and non-goals rather than implementation convenience.",
+      "source": "https://github.com/reallaksh19/Grade9V3/issues/118",
+      "oracle_class": "EXTERNAL_STANDARD",
+      "payload": [
+        "invalid capability is isolated and never fuzzy-mapped",
+        "no estimate is distinct from 0%",
+        "multiple diagnostic dimensions remain independent",
+        "no reported gap becomes DEMONSTRATED",
+        "all optional learner inputs may be absent truthfully"
+      ],
+      "expected": "Every listed falsifier is encoded by tests or source assertions and passes on the final EP head.",
+      "tolerance": null,
+      "independence": "Issue #118 predates this takeover EP and states the external product contract independently of the patch implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA-001",
+        "AC-TA-002",
+        "AC-TA-003",
+        "TEST-TA-001"
+      ],
+      "stale_if": [
+        "Issue #118 is materially revised by Owner authority."
+      ]
+    },
+    {
+      "id": "BENCH-TA-002",
+      "name": "Existing cross-subject projection contract",
+      "purpose": "Ensure browser corrections do not regress current NLM, Motion2D, or Math canonical projection behavior.",
+      "source": "tests/test_topic_atlas_contract.py",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": "Run existing TopicAtlasContractTest on the final EP head together with the takeover falsifier suite.",
+      "expected": "Existing Topic Atlas contract tests remain PASS and new falsifiers PASS.",
+      "tolerance": null,
+      "independence": "The existing regression suite was authored before this takeover slice and covers canonical projection/default-entry/cross-subject behavior.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA-002",
+        "AC-TA-004",
+        "AC-TA-005",
+        "TEST-TA-001",
+        "TEST-TA-004"
+      ],
+      "stale_if": [
+        "the existing Topic Atlas contract is intentionally revised through a later roadmap decision."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "public/js/topic-atlas.js",
+        "reason": "Owns the generic browser import, fallback, preview, and export behavior being corrected."
+      },
+      {
+        "path": "tests/test_topic_atlas_takeover_contract.py",
+        "reason": "New falsifier suite for verified browser correctness defects."
+      },
+      {
+        "path": "tests/test_topic_atlas_contract.py",
+        "reason": "May be minimally extended only where an existing cross-subject contract needs a regression for corrected generic behavior."
+      },
+      {
+        "path": "webpageGAPanalysis.md",
+        "reason": "Owner previously requested a durable webpage gap analysis; current main still lacks it and this EP can record the now-grounded findings."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "V2.5 custody, evidence, progress, quality, and checkpoint files for this active slice."
+      },
+      {
+        "path": ".github/workflows/v25-relay.yml",
+        "reason": "Branch-safe V2.5 relay validation and material-write gate needed to prove execution authority."
+      },
+      {
+        "path": "public/physics/nlm/index.html",
+        "reason": "Current main adds normal-flow manual mastery/sync controls that must be removed to preserve the two-input operating model."
+      },
+      {
+        "path": "public/physics/motion-2d/index.html",
+        "reason": "Current main adds normal-flow manual mastery/sync controls that must be removed to preserve the two-input operating model."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Shared/library/authoring-request.schema.json",
+        "reason": "Existing plan-level request schema is the intended browser export contract when learner inputs are optional."
+      },
+      {
+        "path": "Shared/library/request.schema.json",
+        "reason": "Strict execution request remains a comparison boundary; browser must not fabricate its required learner entry."
+      },
+      {
+        "path": "Shared/vocabularies/purpose.json",
+        "reason": "Existing practice-purpose vocabulary must be reused exactly."
+      },
+      {
+        "path": "Shared/tools/plan_request.py",
+        "reason": "Authoritative plan semantics remain in Python Shared tooling."
+      },
+      {
+        "path": "Shared/tools/build_web_data.py",
+        "reason": "Confirms browser canonical projection ownership and generated-data boundary."
+      },
+      {
+        "path": "tools/run-builder/index.html",
+        "reason": "Existing Run Builder must be linked/reused rather than duplicated."
+      },
+      {
+        "path": "public/data/data.js",
+        "reason": "Generated canonical projection consumed by the Atlas; read-only in this EP."
+      },
+      {
+        "path": "Physics/library/phy-nlm-first-law.v1.json",
+        "reason": "Grounded NLM semantic example and activity bindings; read-only in this EP."
+      },
+      {
+        "path": "Mathematics/library/linear-equations.v1.json",
+        "reason": "Cross-subject semantic example; read-only in this EP."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "Canonical subject packages and matrices are not changed by browser-correctness work.",
+        "reason": "Academic meaning belongs to subject-owned canonical data and later Agent A work package."
+      },
+      {
+        "invariant": "Knowledge percentage remains a routing coordinate and never proves mastery or prerequisite closure.",
+        "reason": "Current learner/request contracts explicitly separate estimates from evidence."
+      },
+      {
+        "invariant": "Six Core identities and current purpose vocabulary remain unchanged.",
+        "reason": "Issue #118 forbids a seventh Core or invented purpose vocabulary."
+      },
+      {
+        "invariant": "Generated data/manifest files are not hand-edited.",
+        "reason": "Repository guardrails require builder-derived deterministic artifacts."
+      },
+      {
+        "invariant": "Current GCDR audit/conformance status is preserved.",
+        "reason": "This EP does not own graphical-route certification."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Shared need/Core resolver implementation",
+        "reason": "Owned by successor WP-TA-102 after browser truthfulness is corrected."
+      },
+      {
+        "domain": "Physics or Mathematics academic authoring",
+        "reason": "Owned by WP-TA-104 and must be demand-grounded."
+      },
+      {
+        "domain": "new Atlas topic pages",
+        "reason": "Owned by WP-TA-103 after Shared focus authority is stable."
+      },
+      {
+        "domain": "GCDR conformance promotion",
+        "reason": "Requires its own evidence closure in WP-TA-105."
+      }
+    ],
+    "owner_reserved": [
+      {
+        "decision": "Any expansion of normal learner inputs beyond rough knowledge estimate plus latest external scanned diagnostic.",
+        "reason": "Would change the owner-defined product operating model."
+      },
+      {
+        "decision": "Any new canonical capability, Core type, diagnostic stage, or mastery model.",
+        "reason": "Would change canonical product/learner semantics rather than implement this slice."
+      },
+      {
+        "decision": "Merge of the material product PR.",
+        "reason": "Delivery merge authorization is separate from material write authority under V2.5."
+      }
+    ]
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA-001",
+        "restriction": "Do not solve browser convenience by duplicating canonical academic data or Python planner logic in JavaScript.",
+        "reason": "Atlas must remain a projection/handoff surface, not a second curriculum or Core compiler."
+      },
+      {
+        "id": "ADR-TA-002",
+        "restriction": "Do not infer missing learner facts, convert no-input browse mode into owner_entry, or treat absence of a gap as DEMONSTRATED.",
+        "reason": "These are known false-evidence paths the EP exists to remove."
+      },
+      {
+        "id": "ADR-TA-003",
+        "restriction": "Do not modify subject academic content, Shared schemas, or generated artifacts in this EP.",
+        "reason": "Keep the first slice bounded to verified browser-contract defects."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA-001",
+        "condition": "main changes public/js/topic-atlas.js, authoring-request.schema.json, purpose.json, plan_request.py, or Issue #118 in a materially overlapping way.",
+        "effect": "RECONCILE",
+        "rationale": "The implementation or authority boundary being corrected has changed."
+      },
+      {
+        "id": "STALE-TA-002",
+        "condition": "RM-0002 changes this work package scope, acceptance, protected invariants, or dependency topology.",
+        "effect": "STALE",
+        "rationale": "The EP no longer matches roadmap authority."
+      },
+      {
+        "id": "STALE-TA-003",
+        "condition": "Owner changes the normal two-input optional learner operating model.",
+        "effect": "OWNER_REVIEW",
+        "rationale": "Browser semantics must be re-derived from new Owner intent before writing."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA-001",
+      "objective": "Make diagnostic import fail closed and keep owner estimate separate from the diagnostic envelope.",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py",
+        "public/physics/nlm/index.html",
+        "public/physics/motion-2d/index.html"
+      ],
+      "reads": [
+        "Shared/library/observation.schema.json",
+        "Issue #118 diagnostic contract"
+      ],
+      "writes": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py",
+        "public/physics/nlm/index.html",
+        "public/physics/motion-2d/index.html"
+      ],
+      "inputs": [
+        "INPUT-TA-001",
+        "INPUT-TA-002"
+      ],
+      "acceptance": [
+        "AC-TA-001",
+        "AC-TA-003"
+      ],
+      "tests": [
+        "TEST-TA-001",
+        "TEST-TA-002"
+      ],
+      "expected_state": "Unknown capability, capability/rung conflict, invalid result/stage/score are rejected; diagnostic JSON neither imports nor exports knowledge_percentage; manual leaf mastery/sync controls do not create a third normal learner-input path.",
+      "stop_conditions": [
+        "Stop if current canonical browser projection lacks exact capability identity needed for validation.",
+        "Stop if Shared contracts materially change the accepted diagnostic vocabulary during execution."
+      ]
+    },
+    {
+      "id": "STEP-TA-002",
+      "objective": "Correct derived address/fallback behavior and preserve multiple diagnostic dimensions on one semantic leaf without fabricating no-input learner state.",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "reads": [
+        "public/data/data.js",
+        "tests/test_topic_atlas_contract.py"
+      ],
+      "writes": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "inputs": [
+        "INPUT-TA-001",
+        "INPUT-TA-002"
+      ],
+      "acceptance": [
+        "AC-TA-002",
+        "AC-TA-003"
+      ],
+      "tests": [
+        "TEST-TA-001",
+        "TEST-TA-002"
+      ],
+      "expected_state": "Exact, unknown-dimension, and capability-only addresses follow Rn.x.y / Rn.x.99 / Rn.99; canonical browse mode carries no learner target; every observed dimension for one step can render independently.",
+      "stop_conditions": [
+        "Stop if an address would require inventing a stable canonical ID not present in projected teaching_path.",
+        "Stop if a proposed fallback would convert uncertainty into demonstrated learner state."
+      ]
+    },
+    {
+      "id": "STEP-TA-003",
+      "objective": "Make Core request export and local preview truthful about optional input and Shared planner authority.",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "reads": [
+        "Shared/library/authoring-request.schema.json",
+        "Shared/vocabularies/purpose.json",
+        "Shared/tools/plan_request.py"
+      ],
+      "writes": [
+        "public/js/topic-atlas.js",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "inputs": [
+        "INPUT-TA-002",
+        "INPUT-TA-003",
+        "INPUT-TA-004"
+      ],
+      "acceptance": [
+        "AC-TA-003",
+        "AC-TA-004",
+        "AC-TA-005"
+      ],
+      "tests": [
+        "TEST-TA-001",
+        "TEST-TA-003"
+      ],
+      "expected_state": "Exported plan request uses authoring-request fields, includes learner owner_estimate only when supplied, includes practice blocks only for selected practice Cores, and browser copy explicitly defers readiness/prerequisite authority to Shared.",
+      "stop_conditions": [
+        "Stop if current authoring-request schema cannot represent a no-learner-input plan without guessing.",
+        "Stop if browser implementation would require duplicating Python planner readiness logic."
+      ]
+    },
+    {
+      "id": "STEP-TA-004",
+      "objective": "Correct Measurement Pack field projection/handoff copy, Run Builder path/CLI, and record the durable webpage gap analysis.",
+      "targets": [
+        "public/js/topic-atlas.js",
+        "webpageGAPanalysis.md",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "reads": [
+        "Shared/tools/build_web_data.py",
+        "tools/run-builder/index.html",
+        "Issue #118"
+      ],
+      "writes": [
+        "public/js/topic-atlas.js",
+        "webpageGAPanalysis.md",
+        "tests/test_topic_atlas_takeover_contract.py"
+      ],
+      "inputs": [
+        "INPUT-TA-001",
+        "INPUT-TA-004"
+      ],
+      "acceptance": [
+        "AC-TA-005"
+      ],
+      "tests": [
+        "TEST-TA-001",
+        "TEST-TA-002",
+        "TEST-TA-004"
+      ],
+      "expected_state": "Browser Measurement Pack projection separates measurement fields from routing context and uses diagnostic_prompt; handoff points to current Run Builder and plan_request CLI; webpageGAPanalysis.md records remaining Shared/page/content work after this slice.",
+      "stop_conditions": [
+        "Stop if a Measurement Pack field is not actually present in canonical projected data.",
+        "Stop if Run Builder path/CLI cannot be proven from current repository files."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Implement fail-closed diagnostic import and separation of knowledge estimate from diagnostic envelope.",
+        "targets": [
+          "public/js/topic-atlas.js",
+          "tests/test_topic_atlas_takeover_contract.py"
+        ],
+        "inputs": [
+          "INPUT-TA-001",
+          "INPUT-TA-002"
+        ],
+        "tests": [
+          "TEST-TA-001",
+          "TEST-TA-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA-001"
+        ],
+        "acceptance": [
+          "AC-TA-001",
+          "AC-TA-003"
+        ],
+        "expected_result": "Invalid diagnostic identity/result/stage/score rows are isolated, valid rows remain usable, and diagnostic payloads no longer mutate the owner estimate.",
+        "stop_if": [
+          "Git drift overlaps browser/contracts scope.",
+          "Current repository contradicts the two-input contract or accepted diagnostic vocabulary."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 2,
+        "action": "Implement correct derived fallback addressing, canonical browse mode, and multi-dimension leaf rendering.",
+        "targets": [
+          "public/js/topic-atlas.js",
+          "tests/test_topic_atlas_takeover_contract.py"
+        ],
+        "inputs": [
+          "INPUT-TA-001",
+          "INPUT-TA-002"
+        ],
+        "tests": [
+          "TEST-TA-001",
+          "TEST-TA-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA-001",
+          "BENCH-TA-002"
+        ],
+        "acceptance": [
+          "AC-TA-002",
+          "AC-TA-003"
+        ],
+        "expected_result": "R5.1.0/R5.1.99/R5.99 semantics are truthful, no-input state is non-diagnostic, and multiple observed dimensions on one leaf remain visible.",
+        "stop_if": [
+          "Addressing would require new canonical curriculum identity.",
+          "Existing Topic Atlas cross-subject projection test regresses."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 3,
+        "action": "Replace fabricated strict learner entry/readiness claims with plan-level request export and explicit Shared planner handoff.",
+        "targets": [
+          "public/js/topic-atlas.js",
+          "tests/test_topic_atlas_takeover_contract.py"
+        ],
+        "inputs": [
+          "INPUT-TA-002",
+          "INPUT-TA-003",
+          "INPUT-TA-004"
+        ],
+        "tests": [
+          "TEST-TA-001",
+          "TEST-TA-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA-001"
+        ],
+        "acceptance": [
+          "AC-TA-003",
+          "AC-TA-004",
+          "AC-TA-005"
+        ],
+        "expected_result": "Browser export validates conceptually against authoring-request schema, optional learner input stays optional, and local preview no longer claims prerequisite/readiness authority.",
+        "stop_if": [
+          "Plan-level schema cannot represent owner intent without inventing a field.",
+          "Shared planner authority would need to be cloned in JavaScript."
+        ],
+        "execution_requirement": null
+      },
+      {
+        "order": 4,
+        "action": "Finish browser handoff corrections and durable webpage gap analysis, then run focused and full repository regressions.",
+        "targets": [
+          "public/js/topic-atlas.js",
+          "webpageGAPanalysis.md",
+          "tests/test_topic_atlas_takeover_contract.py"
+        ],
+        "inputs": [
+          "INPUT-TA-001",
+          "INPUT-TA-004"
+        ],
+        "tests": [
+          "TEST-TA-001",
+          "TEST-TA-002",
+          "TEST-TA-003",
+          "TEST-TA-004",
+          "TEST-TA-005"
+        ],
+        "benchmarks": [
+          "BENCH-TA-001",
+          "BENCH-TA-002"
+        ],
+        "acceptance": [
+          "AC-TA-001",
+          "AC-TA-002",
+          "AC-TA-003",
+          "AC-TA-004",
+          "AC-TA-005"
+        ],
+        "expected_result": "Browser-correctness slice is fully evidenced without modifying canonical content or generated artifacts by hand, and successor Shared-Core work is explicitly documented.",
+        "stop_if": [
+          "Any MUST_PASS validation fails.",
+          "Generated-artifact drift appears that cannot be explained by authorized source changes.",
+          "Quality review finds a protected-invariant or authority violation."
+        ],
+        "execution_requirement": null
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [
+      "This is the first executable EP after a generic INITIALIZING bootstrap; there is no prior executable production boundary or qualification receipt to reuse or compare. The phase identifier is retained and no prior material EP is being handed across a phase boundary."
+    ],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The slice changes ownership boundaries between browser preview and Shared planning authority.",
+        "review_focus": [
+          "state ownership",
+          "fail-closed input semantics",
+          "no duplicate planning authority"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Production JavaScript behavior changes.",
+        "review_focus": [
+          "deterministic fallbacks",
+          "input validation",
+          "maintainability"
+        ]
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "Learner/owner-facing need map and planner-preview semantics change.",
+        "review_focus": [
+          "truthful labels",
+          "optional-input clarity",
+          "fallback visibility"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Known failure paths require executable falsifiers and regression coverage.",
+        "review_focus": [
+          "invalid rows",
+          "multi-dimension rendering",
+          "cross-subject regressions",
+          "no-input behavior"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "The patch affects evidence semantics and planning handoff, so an independent review pass is material.",
+        "review_focus": [
+          "false authority claims",
+          "schema/export drift",
+          "edge cases"
+        ]
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "Interactive static browser controls and status text are learner/owner facing.",
+        "review_focus": [
+          "labels",
+          "status communication",
+          "keyboard-safe existing interactions"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "This executable slice is delivered through a tracked GitHub PR and Issue #118 correlation.",
+        "review_focus": [
+          "Issue↔WP↔EP correlation",
+          "head-bound checks",
+          "unmerged PR carry-forward"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "This EP does not change numerical physics/math algorithms or scientific model calculations."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "No performance-sensitive algorithm, data volume, or latency target is changed in this bounded browser-contract slice."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner data, canonical schema migration, or storage format change is authorized in this EP."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA-001",
+      "description": "Diagnostic import rejects unknown capability, capability/rung conflict, unsupported result/stage, and out-of-range/non-numeric score while retaining valid rows and capability-level fallback for invalid narrow repair_ref.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA-001",
+        "BENCH-TA-001"
+      ]
+    },
+    {
+      "id": "AC-TA-002",
+      "description": "Derived addresses distinguish exact leaf+dimension, leaf+unknown dimension, and capability-only fallback; multiple observed dimensions on one leaf remain independent; 100% estimate still cannot select non-default R4.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA-001",
+        "TEST-TA-002",
+        "BENCH-TA-001",
+        "BENCH-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA-003",
+      "description": "Knowledge estimate and diagnostic envelope are the only normal learner inputs; no-input mode stays canonical browse without learner placement, DEMONSTRATED inference, prerequisite-clearance claim, manual mastery ledger, or knowledge synchronization from browser leaf controls.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA-001",
+        "BENCH-TA-001"
+      ]
+    },
+    {
+      "id": "AC-TA-004",
+      "description": "Core export is a plan-level authoring request using existing Core/purpose vocabulary, emits learner owner_estimate only when supplied, and emits practice intents only for selected practice Cores.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA-001",
+        "TEST-TA-003",
+        "BENCH-TA-002"
+      ]
+    },
+    {
+      "id": "AC-TA-005",
+      "description": "Browser labels its planner state as local preview, directs authority to Shared, uses the current Run Builder/plan CLI handoff, and separates Measurement Pack measurement fields from routing context using canonical diagnostic_prompt.",
+      "weight": 20,
+      "verification": [
+        "TEST-TA-001",
+        "TEST-TA-002",
+        "TEST-TA-004",
+        "BENCH-TA-002"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA-001",
+      "class": "MUST_PASS",
+      "method": "python3 -m unittest tests.test_topic_atlas_takeover_contract tests.test_topic_atlas_contract -v",
+      "proves": [
+        "AC-TA-001",
+        "AC-TA-002",
+        "AC-TA-003",
+        "AC-TA-004",
+        "AC-TA-005"
+      ]
+    },
+    {
+      "id": "TEST-TA-002",
+      "class": "MUST_PASS",
+      "method": "node --check public/js/topic-atlas.js",
+      "proves": [
+        "AC-TA-001",
+        "AC-TA-002",
+        "AC-TA-003",
+        "AC-TA-005"
+      ]
+    },
+    {
+      "id": "TEST-TA-003",
+      "class": "MUST_PASS",
+      "method": "Validate an exported no-estimate and estimate-present request fixture against Shared/library/authoring-request.schema.json in the takeover unittest suite.",
+      "proves": [
+        "AC-TA-003",
+        "AC-TA-004"
+      ]
+    },
+    {
+      "id": "TEST-TA-004",
+      "class": "MUST_PASS",
+      "method": "python3 Shared/tools/build_manifest.py --check",
+      "proves": [
+        "AC-TA-002",
+        "AC-TA-005"
+      ]
+    },
+    {
+      "id": "TEST-TA-005",
+      "class": "MUST_PASS",
+      "method": "python3 -m unittest discover -s tests -p \"test_*.py\" -v",
+      "proves": [
+        "AC-TA-001",
+        "AC-TA-002",
+        "AC-TA-003",
+        "AC-TA-004",
+        "AC-TA-005"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0002",
+    "from_revision": "RM-0001",
+    "to_revision": "RM-0002",
+    "classification": "OWNER_INTENT_MUTATION",
+    "trigger": {
+      "type": "OWNER_DECISION",
+      "path": "agents/relay/roadmap/owner-decisions/ODR-0001-TOPIC-ATLAS-COMPLETION.yaml"
+    }
+  },
+  "changes": {
+    "added": [
+      "WP-TA-102",
+      "WP-TA-103",
+      "WP-TA-104",
+      "WP-TA-105"
+    ],
+    "removed": [],
+    "changed": [
+      "OBJ-TOPIC-ATLAS-COMPLETE",
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TAKEOVER-RECONCILE"
+    ],
+    "unaffected": []
+  },
+  "invalidated_execution_packages": [],
+  "issue_graph_reconciled": true,
+  "progress_basis_change": {
+    "old_basis": "PB-0001",
+    "new_basis": "PB-0002",
+    "old_total_weight": 0,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TAKEOVER-RECONCILE"
+  ],
+  "notes": [
+    "RM-0001 was a generic INITIALIZING scaffold with no executable material work.",
+    "RM-0002 converts the owner-approved completion requirement into five serial work packages while preserving the bootstrap phase identity to avoid inventing a historical phase transition.",
+    "The first executable EP is prepared on the exact post-bootstrap main basis."
+  ]
+}

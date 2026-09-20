@@ -1,0 +1,67 @@
+{
+  "schema_version": "relay-v2.5-takeover-certification",
+  "id": "TC-TA-001",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "evaluated_by": {
+    "type": "DETERMINISTIC_VALIDATOR",
+    "identity": "validate_takeover_certification.py",
+    "basis": [
+      "Common d9b84069683977b5c370f536f1c50095de926338 semantic takeover validators",
+      "DISC-TA-001 repository-only evidence",
+      "EP-TA-001 and current route basis"
+    ]
+  },
+  "self_certification": {
+    "allowed": false
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-001",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-001",
+    "ep_id": "EP-TA-001",
+    "ep_path": "agents/relay/execution-packages/EP-TA-001.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0002",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "ep_contract_digest": "sha256:768f3361fc80265458afcc9d521580592fab6b31e8b351f202136a7d70d57b60",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "NONE",
+      "id": "NONE",
+      "path": null,
+      "digest": null
+    }
+  },
+  "discovery_receipt": {
+    "id": "DISC-TA-001",
+    "path": "agents/relay/certifications/discovery/DISC-TA-001.yaml"
+  },
+  "qualification": {
+    "required": false,
+    "status": "NOT_REQUIRED",
+    "receipt_id": null,
+    "receipt_path": null,
+    "receipt_digest": null
+  },
+  "checks": {
+    "baton_semantics": "PASS",
+    "repository_discovery": "PASS",
+    "route_grounding": "PASS",
+    "input_oracle_readiness": "PASS",
+    "scope_understood": "PASS",
+    "report_successor_contract": "PASS"
+  },
+  "result": "PASS",
+  "conversation_context_used": false
+}

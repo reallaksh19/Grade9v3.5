@@ -1,22 +1,83 @@
-schema_version: relay-v2.5
-roadmap:
-  id: RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER
-  revision: RM-0001
-  title: Topic Atlas and Core completion takeover
-objectives:
-- id: OBJ-TOPIC-ATLAS-COMPLETE
-  title: Complete grounded cross-subject Topic Atlas and Core integration
-  state: ACTIVE
-  definition: PARTIALLY_DEFINED
-  phases:
-  - id: PHASE-TAKEOVER-RECONCILIATION
-    title: Reconcile Agent A, Agent B, and Shared Core gaps
-    state: PLANNED
-    definition: OWNER_REVIEW_REQUIRED
-    work_packages:
-    - id: WP-TAKEOVER-RECONCILE
-      title: Establish V2.5 authority and exact completion frontier
-      state: PLANNED
-      definition: OWNER_REVIEW_REQUIRED
-      execution_status: WAITING
-      depends_on: []
+{
+  "schema_version": "relay-v2.5",
+  "roadmap": {
+    "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0002",
+    "title": "Grounded Topic Atlas and Core completion",
+    "revision_record": "agents/relay/roadmap/revisions/RM-0002.yaml"
+  },
+  "objectives": [
+    {
+      "id": "OBJ-TOPIC-ATLAS-COMPLETE",
+      "title": "Complete grounded cross-subject Topic Atlas and Core integration",
+      "state": "ACTIVE",
+      "definition": "DEFINED",
+      "weight": 100,
+      "phases": [
+        {
+          "id": "PHASE-TAKEOVER-RECONCILIATION",
+          "title": "Topic Atlas completion and governed takeover",
+          "state": "ACTIVE",
+          "definition": "DETAILED",
+          "weight": 100,
+          "work_packages": [
+            {
+              "id": "WP-TAKEOVER-RECONCILE",
+              "title": "Correct Topic Atlas browser input, fallback, request, and handoff semantics",
+              "state": "ACTIVE",
+              "definition": "DETAILED",
+              "execution_status": "ACTIVE",
+              "weight": 20,
+              "depends_on": [],
+              "issue": "ISSUE-118"
+            },
+            {
+              "id": "WP-TA-102",
+              "title": "Move diagnostic need resolution and Core focus authority into Shared",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 25,
+              "depends_on": [
+                "WP-TAKEOVER-RECONCILE"
+              ]
+            },
+            {
+              "id": "WP-TA-103",
+              "title": "Add missing Atlas surfaces and justified exact resource bindings",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 15,
+              "depends_on": [
+                "WP-TA-102"
+              ]
+            },
+            {
+              "id": "WP-TA-104",
+              "title": "Close grounded Agent A academic and semantic-inventory gaps",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 25,
+              "depends_on": [
+                "WP-TA-103"
+              ]
+            },
+            {
+              "id": "WP-TA-105",
+              "title": "Complete cross-subject acceptance and evidence-based GCDR release closure",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 15,
+              "depends_on": [
+                "WP-TA-104"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
