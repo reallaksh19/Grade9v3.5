@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 180,
-  "relation_count": 230,
+  "component_count": 186,
+  "relation_count": 240,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 29,
-    "TEST": 83,
-    "TOOLING": 43,
+    "LIBRARY": 30,
+    "TEST": 84,
+    "TOOLING": 47,
     "WEB": 6
   },
-  "digest": "sha256:46414d0e8d2d86b064aa7cfdccb08005ec594cbd92b34f3bb3fc91e13e399da4",
+  "digest": "sha256:7c4a2094881e74c3614e42366b3f85a21f5a55cd1327f8b0a97aa40058d2ba5a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -73,6 +73,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 12493,
       "sha256": "983c00ac1d87bb71f7e9687a8a5702e3dca43bb45ba451ad817986d4d4533d31"
+    },
+    {
+      "path": "Shared/library/diagnostic-gap-envelope.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2813,
+      "sha256": "20ddc3e0a2c83471bb984763072915cdb7959f93364cb9f015e7d1ee802a5922"
     },
     {
       "path": "Shared/library/differentiation.py",
@@ -376,6 +383,13 @@
       "sha256": "724af2879bf50b53a24d66ccf70fac31dc4083b1f0f7a2bdc1a965f37e34f7b1"
     },
     {
+      "path": "Shared/tools/atlas_need.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 11120,
+      "sha256": "a4c68b35fd747493d34d02441a7a891bce8bae3eea91fa0e430fc1401e1fb8c0"
+    },
+    {
       "path": "Shared/tools/author_brief.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -442,8 +456,15 @@
       "path": "Shared/tools/compile_execution_packet.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 15747,
-      "sha256": "832eea60bb54bb3f139571db046dddf385f30aee379c7b21d4eda7b4160fe8dc"
+      "bytes": 17192,
+      "sha256": "440cbd94065a7837fd8b7daf4b8b2e2c7e77fabf451fcd44c1d6a98ba37166fd"
+    },
+    {
+      "path": "Shared/tools/core_focus.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 1761,
+      "sha256": "1a64cf4c915fdee15391ca43b5b543254d7830a2f4ab21b65236c9d22f3cc69d"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -472,6 +493,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 19910,
       "sha256": "6db1e691cb6bf9c1a69488d54a54f02e88de1f4dcefcf802c278a429cc84133e"
+    },
+    {
+      "path": "Shared/tools/focus_inventory.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4556,
+      "sha256": "c118ab0a6f85fd0b2791fe593a220ef89cd5704191891cae35b6fca894ba1c07"
     },
     {
       "path": "Shared/tools/gcdr_runtime_audit.py",
@@ -509,11 +537,18 @@
       "sha256": "b0d032a87564cf43e9e1d0a26b84cd75f23766bbf9ba350b3ac7fa7d4df3fbe9"
     },
     {
+      "path": "Shared/tools/measurement_pack.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5989,
+      "sha256": "50161d23d57fa015341e3e9282367fd2f20c7927757eee7f2cd5e0405ab0396b"
+    },
+    {
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20320,
-      "sha256": "e099b932ec339ebf6dd7d9a4684c875abda1555ee0026604bd59bec0eab149ea"
+      "bytes": 21662,
+      "sha256": "776c166ebf480451c940a8455f4ff08e13c731bd665baf477bea7e83406ba94e"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -547,8 +582,8 @@
       "path": "Shared/tools/resolve_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 23946,
-      "sha256": "17ae7aa1f99a1ec0e4e6105bea16c48f573d15e994e40de2e364b78b6ec03a2d"
+      "bytes": 25321,
+      "sha256": "097acdc19bbd952c07269863d38bbd7ca08224d11ab52ee03c54203f59dfd5d3"
     },
     {
       "path": "Shared/tools/review_authority.py",
@@ -1139,6 +1174,13 @@
       "sha256": "885403eaf77e1790d7843f905834e3cd2a045fdc7e672406cb5b986c7c2b7dad"
     },
     {
+      "path": "tests/test_shared_topic_atlas_core.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11022,
+      "sha256": "f970306dba99b0b5ff2af0ea578d3084c4c641e505e6ab29f76c8100466f34c6"
+    },
+    {
       "path": "tests/test_source_pipeline.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1446,6 +1488,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/atlas_need.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/atlas_need.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/author_brief.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1616,6 +1668,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/focus_inventory.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/focus_inventory.py",
+      "to": "Shared.library.practice_inventory",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/focus_inventory.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/learner_evidence.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -1628,6 +1695,21 @@
     {
       "from": "Shared/tools/matrix_conformance.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/measurement_pack.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/measurement_pack.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/measurement_pack.py",
+      "to": "Shared.tools.atlas_need",
       "kind": "IMPORTS"
     },
     {
@@ -2307,6 +2389,16 @@
     },
     {
       "from": "tests/test_session_readiness.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_shared_topic_atlas_core.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_shared_topic_atlas_core.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
