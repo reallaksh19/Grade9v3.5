@@ -62,7 +62,9 @@ class StudyStartOverlay(unittest.TestCase):
         rendered = json.dumps(quick)
         self.assertNotIn('"DEMONSTRATED"', rendered)
         for row in quick:
-            self.assertTrue(row["estimate_basis"]["not_evidence"])
+            basis = row.get("estimate_basis") or row.get("gateway_basis")
+            self.assertIsNotNone(basis)
+            self.assertTrue(basis["not_evidence"])
 
     def test_no_estimate_uses_a_bounded_local_gateway_not_mastery(self):
         report = study_start.resolve(self.mapping(), [])

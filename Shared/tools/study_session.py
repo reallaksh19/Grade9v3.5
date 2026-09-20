@@ -561,6 +561,10 @@ def _next_step(study_plan: dict) -> dict | None:
             "exercise_demand": row.get("exercise_demand"),
             "exercise_question_ref": row.get("exercise_question_ref"),
             "exercise_reason": row.get("exercise_reason"),
+            "exercise_family_ref": row.get("exercise_family_ref"),
+            "transfer_eligible": row.get("transfer_eligible", False),
+            "transfer_dimension": row.get("transfer_dimension"),
+            "transfer_evidence": row.get("transfer_evidence", []),
             "routing_persistence": row.get("routing_persistence"),
         }
     return None
