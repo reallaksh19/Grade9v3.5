@@ -68,17 +68,17 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Publish QRV-TA-001 against material ref fab9bb82d9feca668516a02d3ffff697454e8bbf, checkpoint EP-TA-001, reconcile progress, and create the serial successor EP for WP-TA-102."
+      "next_action": "Publish the required quality review, checkpoint the completed browser-correctness slice, reconcile progress, and prepare the next Shared-Core execution package."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "Formal QRV-TA-001 is required before checkpoint publication; no unresolved implementation test failure remains at material ref fab9bb82d9feca668516a02d3ffff697454e8bbf."
+        "The required formal quality review has not yet been published; implementation tests are green."
       ]
     },
     "evidence": {
-      "state": "VERIFIED",
-      "summary": "EP-TA-001 material implementation at fab9bb82d9feca668516a02d3ffff697454e8bbf passed repository guardrails and the V2.5 relay/write gate. Remaining actions are quality review, checkpoint/progress publication, and successor creation.",
+      "state": "COMPLETE",
+      "summary": "The browser-correctness implementation is complete. Material head fab9bb82d9feca668516a02d3ffff697454e8bbf passed the full repository guardrails and the V2.5 execution gate; no planned validation remains unrun.",
       "not_run": []
     },
     "stop": {
