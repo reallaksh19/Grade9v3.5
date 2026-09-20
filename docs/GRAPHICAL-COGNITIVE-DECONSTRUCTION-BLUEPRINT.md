@@ -146,7 +146,9 @@ is shown in more than one form. Examples include:
 - BAC–CAB algebra = the rendered vector-triple-product result.
 
 Representation invariants require an analytic oracle, property test or explicit state assertion.
-A visually plausible second representation is not evidence of equivalence.
+A visually plausible second representation is not evidence of equivalence. When an invariant spans
+tabs or modes of a master suite rather than one canonical explorer, it is declared at suite level
+under `gcdr_suite_contract.schema.json` so the exact failure mode remains governed.
 
 ## Rendered-geometry truth
 
@@ -217,9 +219,11 @@ The item contract separates four concerns:
 3. **teaching contract** — trap, transfer rule, Chalkboard check and declared helpers;
 4. **simulation contract** — fidelity, target activity, active binding references and fidelity note.
 
-Generic/filler final answers such as “apply formula”, “evaluate” or “use the equation” are
-release-blocking findings. `EXACT` and `CONSTRAINT_FAITHFUL` diagnostic mappings require
-explicit active binding references; `CONCEPT_ONLY` and `UNAVAILABLE` carry none.
+Generic/filler final answers such as “apply formula”, “evaluate”, “symmetry verified” or
+“use the equation” are release-blocking findings. `EXACT` and `CONSTRAINT_FAITHFUL`
+diagnostic mappings require explicit `simBindingRefs` naming only parameters the governed loader
+actually consumes; `CONCEPT_ONLY` and `UNAVAILABLE` carry none. An ignored convenience
+parameter cannot be counted as an active binding.
 
 Answer audit and source audit are separate axes. A mathematically correct item is not thereby
 source-verified.
