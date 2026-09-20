@@ -309,6 +309,36 @@ class MasterSuiteAuditTest(unittest.TestCase):
         self.assertAlmostEqual(distance, 1/math.sqrt(6))
         self.assertEqual(q["VEC-Q13"]["correct"], "A")
 
+    def test_vector_representation_invariants(self):
+        # Side-vector and diagonal descriptions of one parallelogram must preserve area.
+        for a, b in (
+            ((3, 1, -2), (1, -3, 4)),
+            ((5, 0, 0), (2, 4, 0)),
+            ((2, 3, 3), (6, 3, 3)),
+        ):
+            d1 = tuple(a[i] + b[i] for i in range(3))
+            d2 = tuple(a[i] - b[i] for i in range(3))
+            self.assertAlmostEqual(
+                norm(cross(a, b)),
+                0.5 * norm(cross(d1, d2)),
+                places=12,
+            )
+
+        # Projection + rejection reconstructs a, and the rejection is orthogonal to b.
+        a, b = (2, 3, -1), (1, -2, 2)
+        coeff = dot(a, b) / dot(b, b)
+        parallel = tuple(coeff * x for x in b)
+        rejection = tuple(a[i] - parallel[i] for i in range(3))
+        reconstructed = tuple(parallel[i] + rejection[i] for i in range(3))
+        self.assertTrue(all(abs(x-y) < 1e-12 for x, y in zip(reconstructed, a)))
+        self.assertAlmostEqual(dot(rejection, b), 0.0, places=12)
+
+        # Direct VTP and BAC-CAB reconstruction must be the same vector.
+        a, b, c = (2, -1, 3), (4, 2, -2), (1, 5, 2)
+        direct = cross(a, cross(b, c))
+        rhs = tuple(dot(a, c) * b[i] - dot(a, b) * c[i] for i in range(3))
+        self.assertEqual(direct, rhs)
+
     def test_repaired_simulator_math_signatures_are_present(self):
         self.assertIn("v² = v₀²(1 - x/x₀)", self.motion_html)
         self.assertIn("const a = -(v0 * v0) / (2 * x0)", self.motion_html)
