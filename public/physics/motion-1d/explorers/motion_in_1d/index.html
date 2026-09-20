@@ -13,7 +13,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 
   <!-- High-Yield Question Bank -->
-  <script src="jee_questions_data.js"></script>
+  <script src="jee_questions_data.js" onerror="window.__MOTION1D_BANK_LOAD_ERROR__ = true;"></script>
 
   <script>
     tailwind.config = {
@@ -120,7 +120,7 @@
             <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
               IIT-JEE Mechanics · 1D Invariant Rig
             </span>
-            <span class="text-xs text-slate-400 font-mono">18 audited diagnostics · live corpus 123 PYQs</span>
+            <span id="headerAuditSummary" class="text-xs text-slate-400 font-mono">18 solved diagnostics · source provenance shown per item · live corpus 123 PYQs</span>
           </div>
           <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
             Motion in One Dimension &middot; Master Suite
@@ -1000,7 +1000,7 @@
               <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub</h2>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-              18 audited diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
+              18 locally solved diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Source provenance is shown per item; simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
             </p>
           </div>
 
@@ -1159,6 +1159,62 @@
       if (fidelity === 'CONSTRAINT_FAITHFUL') return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
       if (fidelity === 'CONCEPT_ONLY') return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
       return 'bg-slate-800 border-slate-600 text-slate-300';
+    }
+
+    function answerAuditClass(status) {
+      return status === 'PASS'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-rose-500/15 border-rose-500/40 text-rose-300';
+    }
+
+    function sourceAuditClass(status) {
+      return status === 'SOURCE_ITEM_VERIFIED'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-amber-500/15 border-amber-500/40 text-amber-300';
+    }
+
+    function sourceAuditLabel(status) {
+      return status === 'SOURCE_ITEM_VERIFIED' ? 'SOURCE VERIFIED' : 'SOURCE PENDING';
+    }
+
+    function validateQuestionBank() {
+      const data = window.JEE_QUESTIONS_DATA;
+      const problems = [];
+      const required = ['id','q','options','correct','formula','steps','ans','trap','teacherCheck','takeaway','answerAudit','sourceAudit','simFidelity','targetTab'];
+
+      if (!Array.isArray(data)) {
+        problems.push('Question data did not load.');
+      } else {
+        data.forEach(q => {
+          const missing = required.filter(k => {
+            const v = q[k];
+            return v == null || v === '' || (Array.isArray(v) && v.length === 0);
+          });
+          if (missing.length) problems.push(`${q.id || '?'} missing ${missing.join(', ')}`);
+        });
+      }
+
+      const old = document.getElementById('motion1dIntegrityBanner');
+      if (old) old.remove();
+
+      if (window.__MOTION1D_BANK_LOAD_ERROR__ || problems.length) {
+        const banner = document.createElement('div');
+        banner.id = 'motion1dIntegrityBanner';
+        banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-xs text-rose-100 shadow-2xl';
+        const details = problems.length ? problems : ['jee_questions_data.js could not be loaded.'];
+        banner.innerHTML = `<div class="font-black text-rose-300 mb-1">Motion1D data integrity failure</div>
+          <div>The question hub is not being represented as complete while required data is unavailable.</div>
+          <div class="mt-1 font-mono text-[10px]">${details.slice(0,6).join(' · ')}</div>`;
+        document.body.appendChild(banner);
+        return false;
+      }
+
+      const verified = data.filter(q => q.sourceAudit === 'SOURCE_ITEM_VERIFIED').length;
+      const summary = document.getElementById('headerAuditSummary');
+      if (summary) summary.textContent = `${data.length} solved diagnostics · source provenance ${verified}/${data.length} verified · live corpus 123 PYQs`;
+      const qCount = document.getElementById('headerQCount');
+      if (qCount) qCount.textContent = `${data.length} Qs`;
+      return true;
     }
 
     function simulatorActionLabel(q) {
@@ -2647,9 +2703,15 @@
                 </span>
                 <span class="text-xs font-semibold text-slate-300">${q.source}</span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
                 <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
                   ${q.subtabName}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${answerAuditClass(q.answerAudit)}">
+                  ANSWER ${q.answerAudit}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${sourceAuditClass(q.sourceAudit)}">
+                  ${sourceAuditLabel(q.sourceAudit)}
                 </span>
                 <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
                   ${q.simFidelity}
@@ -2664,6 +2726,12 @@
             <!-- Question Stem -->
             <div class="text-sm text-slate-200 leading-relaxed font-sans">
               ${q.q}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono">
+              ${(q.helperTags || []).includes('TRAP_ALERT') ? '<span class="px-2 py-1 rounded border border-amber-500/30 bg-amber-500/10 text-amber-300">⚠ Trap diagnosis</span>' : ''}
+              ${(q.helperTags || []).includes('INDEPENDENT_CHECK') ? '<span class="px-2 py-1 rounded border border-sky-500/30 bg-sky-500/10 text-sky-300">🧑‍🏫 Independent check</span>' : ''}
+              ${(q.helperTags || []).includes('TRANSFER_TAKEAWAY') ? '<span class="px-2 py-1 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">↗ Transfer rule</span>' : ''}
             </div>
 
             <!-- Options Grid -->
@@ -2689,9 +2757,10 @@
               </button>
               <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
                 <div class="text-xs font-mono text-purple-300">
-                  <span class="text-slate-400">Governing Formula:</span> ${q.formula}
+                  <span class="text-slate-400">1 · Governing model:</span> ${q.formula}
                 </div>
                 <div class="space-y-1 text-xs text-slate-300 font-sans">
+                  <div class="text-[10px] font-black uppercase tracking-wider text-slate-500 mb-1">2 · Question-specific derivation</div>
                   ${(q.steps || []).map((step, idx) => `
                     <div class="flex items-start gap-2">
                       <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
@@ -2700,22 +2769,22 @@
                   `).join('')}
                 </div>
                 <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
-                  <strong class="text-amber-400 block mb-1">⚠️ Examiner Trap Analysis:</strong>
+                  <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis:</strong>
                   ${q.trap}
                 </div>
                 <div class="text-xs font-mono text-emerald-400 font-bold">
-                  Final Result: ${q.ans}
+                  3 · Final Result: ${q.ans}
                 </div>
                 <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
-                  <strong class="text-sky-300 block mb-1">🧑‍🏫 Teacher's Chalkboard · Independent Check</strong>
+                  <strong class="text-sky-300 block mb-1">4 · 🧑‍🏫 Independent Teacher Check</strong>
                   ${q.teacherCheck}
                 </div>
                 <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
-                  <strong class="text-emerald-300 block mb-1">↗ Transfer Takeaway</strong>
+                  <strong class="text-emerald-300 block mb-1">6 · ↗ Transfer Rule</strong>
                   ${q.takeaway}
                 </div>
                 <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
-                  <strong class="block mb-1">Simulator Fidelity · ${q.simFidelity}</strong>
+                  <strong class="block mb-1">7 · Simulator Fidelity · ${q.simFidelity}</strong>
                   ${q.simFidelityNote}
                   <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
                 </div>
@@ -2769,6 +2838,7 @@
     }
 
     window.addEventListener('load', () => {
+      validateQuestionBank();
       renderQuestions();
       updateDispParams();
       updateBalloonParams();
