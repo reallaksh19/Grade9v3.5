@@ -16,7 +16,8 @@ from Shared.contracts import ContractError, load
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import (academic_readiness, atlas_need, capability_graph, core_focus,\n                          focus_inventory, learner_evidence, resolve_request, source_receipts)
+from Shared.tools import (academic_readiness, atlas_need, capability_graph, core_focus,
+                          focus_inventory, learner_evidence, resolve_request, source_receipts)
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
