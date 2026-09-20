@@ -3,7 +3,7 @@
   "identity": {
     "ep_id": "EP-TA-003",
     "branch": "takeover/topic-atlas-browser-correctness",
-    "base_ref": "a11d96b0087929f79aba9a77b39c58e834f46805",
+    "base_ref": "13d81af36a3042a67f0af78870f823d2fc267543",
     "execution_state": "EXECUTABLE",
     "previous_checkpoint": "CP-TA-002",
     "previous_join": null,
@@ -12,7 +12,7 @@
   "replan_inheritance": null,
   "git_basis": {
     "expected_branch": "takeover/topic-atlas-browser-correctness",
-    "material_ref": "a11d96b0087929f79aba9a77b39c58e834f46805",
+    "material_ref": "13d81af36a3042a67f0af78870f823d2fc267543",
     "base_branch": "main",
     "base_observed_ref": "194791528cd3a69b30aced1480aee3254293dfe0",
     "drift_policy": "RECHECK_BEFORE_WRITE",
@@ -47,12 +47,11 @@
       "Link the roadmap from README so a zero-context agent reads it first.",
       "Improve or revamp overlapping roadmap documentation where needed."
     ],
-    "current_implementation_state": "RM-0004 schedules WP-TA-106 directly after completed Shared-Core work. README still lacks the V2.5 first-read contract and older roadmap-like docs are not consistently labelled against current relay authority.",
+    "current_implementation_state": "The README first-read entry and roadmap-document authority notices are implemented on exact material head 13d81af36a3042a67f0af78870f823d2fc267543. Guardrails run 35496750141 and V2.5 relay/material-write run 35496750091 both passed on that head.",
     "known_problems": [
-      "README's Status section links docs/PROGRAM-PLAN.md as the phased plan but not the live V2.5 execution roadmap.",
-      "docs/ROADMAP-LEARNER-READY.md contains historical metrics and an R-stage execution narrative that can be mistaken for current work.",
-      "docs/PLAN-R0-R2.md and docs/PLAN-R3-R4.md are old execution plans without an explicit current-authority banner.",
-      "docs/FUTURE-ROAD-PLAN.md already says it is not an implementation plan, but does not directly route agents to the live relay."
+      "Older roadmap documents intentionally retain historical counts, statuses and task sequences; their new authority banners prevent those snapshots from being mistaken for current execution state.",
+      "README links current structured authority instead of copying live progress or active execution identifiers, so readers must follow the linked relay files for current state.",
+      "PR #148 remains a draft and its mergeability must be evaluated separately from this documentation slice."
     ],
     "deliberate_non_goals": [
       "Do not create another current roadmap file.",

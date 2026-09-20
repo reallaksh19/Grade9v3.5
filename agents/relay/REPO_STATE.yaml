@@ -68,24 +68,18 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run the candidate-specific V2.5 material-write gate for EP-TA-003, then add the README first-read roadmap entry and authority notices to existing roadmap-like docs."
+      "next_action": "Publish the formal quality review for the completed roadmap-first documentation slice, checkpoint WP-TA-106, and advance the governed serial frontier."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "EP-TA-003 documentation/governance changes have not yet undergone their required quality review."
+        "The formal EP-TA-003 quality review remains to be published before checkpoint."
       ]
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "EP-TA-002 is checkpointed complete on green material head b11fbe93399d5c29cb4a43d04f5e55132f294f11. EP-TA-003 has repository-only discovery/takeover evidence but documentation validation has not run yet.",
-      "not_run": [
-        {
-          "id": "TEST-TA3-001..004",
-          "reason": "EP-TA-003 material documentation changes have not been executed yet.",
-          "cause": "NOT_SCHEDULED"
-        }
-      ]
+      "state": "COMPLETE",
+      "summary": "The roadmap-first documentation material head 13d81af36a3042a67f0af78870f823d2fc267543 passed repository guardrails run 35496750141 and V2.5 relay/material-write validation run 35496750091.",
+      "not_run": []
     },
     "stop": {
       "active": false,
