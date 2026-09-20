@@ -1,0 +1,49 @@
+{
+  "schema_version": "relay-v2.5-evidence-note",
+  "id": "EVIDENCE-TA8-003-STEP3",
+  "kind": "BOUNDED_ACCEPTANCE_EVIDENCE",
+  "repository": "reallaksh19/Grade9V3",
+  "roadmap_revision": "RM-0008",
+  "work_package": "WP-TA-107",
+  "execution_package": "EP-TA-008",
+  "implementation_step": "STEP-TA8-003",
+  "acceptance": [
+    "AC-TA8-003"
+  ],
+  "validation": [
+    "TEST-TA8-003"
+  ],
+  "material_basis": "6376b5e3846f9eb0a6ce7033c5d51f62cf6146e3",
+  "observed": {
+    "guardrails": {
+      "run_id": 35534255457,
+      "status": "PASS",
+      "basis_ref": "6376b5e3846f9eb0a6ce7033c5d51f62cf6146e3"
+    },
+    "falsifiers": [
+      "reasoning checkpoint can exist with no visual representation",
+      "visual representation can exist with no checkpoint prompt",
+      "checkpoint and visual can be paired without conflation",
+      "scene selection emits only canonical scene ids and does not expose renderer geometry",
+      "NLM presentation remains valid with scene_ref null and static_fallback true",
+      "REBUILD pedagogy injections are existing teaching-step refs rather than duplicated scenes",
+      "interaction events are declared non-evidence unless an explicit DIRECT_ATTEMPT contract exists",
+      "guided reconstruction is explicitly not independent evidence",
+      "starting support does not consume question hints",
+      "existing feedback repair rejoins a fresh verification question"
+    ]
+  },
+  "protected_invariants": {
+    "package_schema_mutated": false,
+    "physics_library_mutated": false,
+    "physics_matrix_mutated": false,
+    "renderer_geometry_emitted": false,
+    "duplicate_feedback_engine": false
+  },
+  "disposition": {
+    "test_ta8_003": "PASS",
+    "ac_ta8_003": "COMPLETE",
+    "step_ta8_003": "COMPLETE",
+    "programme_progress": "81.25/100"
+  }
+}
