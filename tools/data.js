@@ -2781,17 +2781,21 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A",
-              "CORE2B"
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 8,
+            "questions": 1,
             "obligations": 8,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -6104,7 +6108,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 137,
+          "record_count": 141,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6119,6 +6123,16 @@ window.GRADE9V3 = {
             "questions": 38,
             "obligations": 15,
             "authoring_requirements": [
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FBD-BODY-OWNERSHIP",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FRICTION-THRESHOLD",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -8662,36 +8676,6 @@ window.GRADE9V3 = {
               "answer": "MA = 3. It tells you the force ratio, not the efficiency or whether the machine creates energy."
             },
             {
-              "id": "Q-PHY-MACHINE-2A-COMPARE-03",
-              "stem": "Machine A is an ideal fixed pulley that lets you pull downward to raise a load with the same force magnitude. Machine B lifts a 120 N load with a 40 N effort. Compare their mechanical advantages and state a useful effect of each setup.",
-              "origin": "AUTHORED",
-              "answer": "Machine A has MA = 1 and is useful mainly for changing effort direction; Machine B has MA = 3 and gives force multiplication."
-            },
-            {
-              "id": "Q-PHY-MACHINE-2A-TRADEOFF-02",
-              "stem": "In an ideal machine, a 60 N effort moves 5.0 m while raising a 200 N load. How far does the load rise, and why does the machine not create energy?",
-              "origin": "AUTHORED",
-              "answer": "The load rises 1.5 m; the larger load force is balanced by a smaller load distance so ideal input and output work are equal."
-            },
-            {
-              "id": "Q-PHY-MACHINE-2B-R1-DISTANCE-03",
-              "stem": "An ideal machine gives a force advantage of 3: a 100 N effort lifts a 300 N load. If the load rises 0.40 m, how far must the effort point move? Use the work ledger to test whether any energy has been gained.",
-              "origin": "AUTHORED",
-              "answer": "The effort point must move 1.20 m; input and output work are both 120 J, so there is no energy gain."
-            },
-            {
-              "id": "Q-PHY-MACHINE-2B-R1-UNFAMILIAR-01",
-              "stem": "An unfamiliar workshop device is not named. During one ideal operation, a worker pushes with 50 N through 0.60 m while the device raises a 150 N load through 0.20 m. Identify the effort side and load side, and explain the force-distance tradeoff without assigning the device a lever, pulley or incline label.",
-              "origin": "AUTHORED",
-              "answer": "The 50 N, 0.60 m input is the effort side and the 150 N, 0.20 m output is the load side; both represent 30 J in the ideal account, so the threefold force advantage is balanced by a threefold distance reduction."
-            },
-            {
-              "id": "Q-PHY-MACHINE-2B-R3-FIXED-PULLEY-02",
-              "stem": "An ideal fixed pulley lets a worker pull downward with 100 N to lift a 100 N load upward. A student says the pulley is useless because its mechanical advantage is 1. Evaluate that claim and identify what useful change the pulley provides.",
-              "origin": "AUTHORED",
-              "answer": "The claim is false: MA = 1, but the fixed pulley is useful because it changes the direction of the effort."
-            },
-            {
               "id": "Q-PHY-MACHINE-PRACTICAL-11",
               "stem": "Plan a lever experiment to calculate mechanical advantage. State how you measure load and effort for one balanced/steady lever setting, how you calculate M.A., and one control needed for a fair comparison across settings.",
               "origin": "AUTHORED",
@@ -8790,7 +8774,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 82,
+          "record_count": 77,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -8798,13 +8782,17 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A",
-              "CORE2B"
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 7,
+            "questions": 2,
             "obligations": 7,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -9469,42 +9457,6 @@ window.GRADE9V3 = {
               "answer": "10 Hz is below the usual audible band, 1,000 Hz is within it, and 25,000 Hz is above it. For audible tones, higher frequency corresponds to higher pitch under comparable conditions."
             },
             {
-              "id": "Q-PHY-SOUND-2A-REFLECTION-05",
-              "stem": "A person hears an echo 0.40 s after a sharp sound. Take the sound speed as 340 m/s and assume a stationary reflecting wall. How far away is the wall?",
-              "origin": "AUTHORED",
-              "answer": "The wall is 68 m away."
-            },
-            {
-              "id": "Q-PHY-SOUND-2B-R2-DOTS-01",
-              "stem": "A snapshot of air along a horizontal tube shows alternating crowded and spread-out particle regions, and the compression pattern is moving to the right. Describe how one marked air particle moves as the pattern passes and distinguish that motion from the motion of the disturbance.",
-              "origin": "AUTHORED",
-              "answer": "The marked air particle oscillates locally back and forth mainly along the tube, while the compression-rarefaction disturbance travels to the right through the medium."
-            },
-            {
-              "id": "Q-PHY-SOUND-2B-R3-AXIS-04",
-              "stem": "Graph X shows a sound signal against time at one fixed location, with horizontal repeat spacing 0.004 s. Graph Y shows the same wave at one instant against position, with horizontal repeat spacing 1.36 m. Identify which spacing is the period and which is the wavelength, then find the frequency and speed.",
-              "origin": "AUTHORED",
-              "answer": "T = 0.004 s, lambda = 1.36 m, f = 250 Hz and v = 340 m/s."
-            },
-            {
-              "id": "Q-PHY-SOUND-2B-R4-AUDIBLE-05",
-              "stem": "Using the Grade-9 approximation that the usual human audible range is about 20 Hz to 20,000 Hz, classify tones at 19 Hz and 20,050 Hz. Then explain why those two boundary numbers should not be treated as exact personal hearing-test cutoffs.",
-              "origin": "AUTHORED",
-              "answer": "19 Hz is just below the approximate usual range and 20,050 Hz is just above it; the 20 Hz–20 kHz range is an approximate population model, not an exact universal biological cutoff."
-            },
-            {
-              "id": "Q-PHY-SOUND-2B-R4-SEPARATE-02",
-              "stem": "Two tones travel through the same air. Tone A has frequency 500 Hz and larger amplitude; Tone B has frequency 1000 Hz and smaller amplitude. In the Grade-9 model, compare pitch and likely loudness, and state whether the frequency difference alone means the two tones travel at different speeds in the same air.",
-              "origin": "AUTHORED",
-              "answer": "Tone B has higher pitch; Tone A is likely louder for comparable conditions because of its larger amplitude/intensity; the frequency difference alone does not require different sound speeds in the same medium model."
-            },
-            {
-              "id": "Q-PHY-SOUND-2B-R5-BAT-03",
-              "stem": "A bat emits a short sound pulse and receives the reflected pulse from a wall 0.012 s later. Taking the sound speed as 340 m/s, estimate the wall distance from the bat.",
-              "origin": "AUTHORED",
-              "answer": "The wall is about 2.04 m away."
-            },
-            {
               "id": "Q-PHY-SOUND-PRACTICAL-10",
               "stem": "Design an experiment to determine the speed of one pulse along a stretched string or slinky. State the measured path length and time, the speed calculation, and how you would reduce timing error.",
               "origin": "AUTHORED",
@@ -9609,7 +9561,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 110,
+          "record_count": 104,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -9617,13 +9569,17 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A",
-              "CORE2B"
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 11,
+            "questions": 5,
             "obligations": 9,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -11743,48 +11699,6 @@ window.GRADE9V3 = {
               "answer": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh."
             },
             {
-              "id": "Q-PHY-WEP-2A-MECH-COND-06",
-              "stem": "A block starts from rest at the same height on two tracks. One track is smooth; the other is rough. For a block-plus-Earth mechanical-energy account, state on which track K + U can remain constant and what must be added to the account on the rough track.",
-              "origin": "AUTHORED",
-              "answer": "K + U can remain constant on the smooth track; on the rough track an explicit non-mechanical transfer, such as thermal/internal energy from friction, must be accounted for."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R1-DIAGRAM-02",
-              "stem": "A crate moves horizontally to the right. Three forces act during the displacement: a pull directed up-and-right, kinetic friction to the left, and the normal force upward. Classify the sign of the work done by each force before writing any energy equation.",
-              "origin": "AUTHORED",
-              "answer": "The pull does positive work, friction does negative work, and the normal force does zero work."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R4-MOVING-SUPPORT-03",
-              "stem": "A 2 kg box starts from rest on a motor-driven platform. Over a 3 m upward displacement the platform exerts a constant 25 N upward normal force. Take g = 10 N/kg and ignore other forces. Find the box's final kinetic energy and explain why the support force must appear in the energy account.",
-              "origin": "AUTHORED",
-              "answer": "The final kinetic energy is 15 J; the moving support does +75 J of work while gravity does -60 J."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R4-ROUGH-01",
-              "stem": "A cart rolls from the same starting height to the same lower height. On trial 1 the track is effectively frictionless; on trial 2 the track is rough. Before calculating any speed, decide whether K + U can be set equal between endpoints in each trial and identify the extra transfer in trial 2.",
-              "origin": "AUTHORED",
-              "answer": "K+U may be conserved in the frictionless trial; in the rough trial frictional/non-mechanical transfer must be included, so simple mechanical-energy conservation alone is not valid."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R5-TIME-PROFILES-04",
-              "stem": "Machine A transfers 600 J in 3 s at a steady rate. Machine B transfers the same 600 J in 6 s, but a meter reads 200 W at one instant during the run. Compare the average powers and explain why the single 200 W reading does not equal Machine B's average power.",
-              "origin": "AUTHORED",
-              "answer": "Machine A averages 200 W; Machine B averages 100 W; the 200 W meter reading is an instantaneous rate, not the whole-interval average."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R5D-DERIVE-06",
-              "stem": "Without quoting the final energy formulas at the start, show that constant net force along a displacement changes kinetic energy by 1/2 m(v^2-u^2), using W_net=F_net s, F_net=ma and v^2-u^2=2as. Then use a slow vertical lift to reconstruct the change in gravitational potential energy.",
-              "origin": "AUTHORED",
-              "answer": "The chains give W_net = 1/2 m(v^2-u^2)=Delta K and, for a slow lift through h, Delta U_g = mgh."
-            },
-            {
-              "id": "Q-PHY-WEP-2B-R6-FRICTION-NUMERIC-05",
-              "stem": "A 2 kg block starts from rest and descends through a vertical height of 5 m. During the motion friction transfers 30 J out of the block-Earth mechanical account. Take g = 10 N/kg. Find the final kinetic energy and state why K_i+U_i=K_f+U_f alone is not valid.",
-              "origin": "AUTHORED",
-              "answer": "The final kinetic energy is 70 J."
-            },
-            {
               "id": "Q-PHY-WEP-PRACTICAL-09",
               "stem": "Design a simple-pendulum investigation of mechanical-energy conservation. State what quantities you would compare between release and the lowest point, what ideal relation you expect, and how real losses would appear in the data.",
               "origin": "AUTHORED",
@@ -11901,7 +11815,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 101,
+          "record_count": 94,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -11909,13 +11823,17 @@ window.GRADE9V3 = {
               "CORE2",
               "CORE1A",
               "CORE1B",
-              "CORE2A",
-              "CORE2B"
+              "CORE2A"
             ],
             "atoms": 76,
-            "questions": 14,
+            "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -14040,14 +13958,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-GRAV-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-GRAV-2B-R1-UPWARD-02",
-                  "stem": "A stone has just been thrown upward near Earth and is still moving upward. Draw or describe the direction of the gravitational force on the stone at that instant, and explain why its upward velocity does not change that force direction.",
-                  "answer": "The gravitational force points toward Earth's centre, downward in the local picture, even while the stone's velocity is upward.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": "GRAV-R1-3"
                 }
               ],
               "activities": []
@@ -14246,24 +14156,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-GRAV-2A-R2-02",
-                  "stem": "The same two spherical bodies are compared at centre-to-centre separations r and 2r, with their masses unchanged. By what factor does the gravitational-force magnitude change, and what distance must be used in the inverse-square model?",
-                  "answer": "At 2r the force is one quarter of its value at r, and r means centre-to-centre separation.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-GRAV-2B-R2-ALTITUDE-01",
-                  "stem": "A spherical planet has radius R. A small receiver is at altitude R above the surface. Compared with the same receiver just above the surface, by what factor is the gravitational-force magnitude changed? State the distance used in each calculation.",
-                  "answer": "The force is one quarter as large at altitude R because the centre distance changes from R to 2R.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": "GRAV-R2-1"
-                }
-              ],
+              "questions": [],
               "activities": []
             },
             {
@@ -14454,24 +14347,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-GRAV-2A-R3-03",
-                  "stem": "For the same spherical source, point B is twice as far from the centre as point A. Compare the local gravitational acceleration g at B with that at A. Would changing the test mass placed at B change the local g?",
-                  "answer": "g_B = g_A/4, and changing the test mass does not change the local g in this model.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-GRAV-2B-R3-TWO-MASSES-03",
-                  "stem": "Two small test bodies of masses m and 4m are placed side by side at the same point outside a spherical source and released ideally. Compare (a) the local gravitational acceleration of the two bodies and (b) the gravitational-force magnitudes on them.",
-                  "answer": "They have the same local gravitational acceleration g, while the 4m body has four times the gravitational force.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": "GRAV-R3-1"
-                }
-              ],
+              "questions": [],
               "activities": []
             },
             {
@@ -14637,24 +14513,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-GRAV-2A-R3W-04",
-                  "stem": "A 4 kg object is taken from a place where g = 10 N/kg to a place where g = 2.5 N/kg. Find its weight at each location and state what happens to its mass.",
-                  "answer": "Its weights are 40 N and 10 N; its mass remains 4 kg.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-GRAV-2B-R3W-WEIGHT-RATIO-04",
-                  "stem": "The same object weighs 72 N at location A and 36 N at location B. Without finding the object's mass, determine g_B/g_A and state what happens to the object's mass.",
-                  "answer": "g_B/g_A = 1/2, and the object's mass is unchanged.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-GRAV-PRACTICE",
-                  "repair_ref": "GRAV-R3W-2"
-                }
-              ],
+              "questions": [],
               "activities": []
             },
             {
@@ -23822,32 +23681,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-MACHINE-2A-TRADEOFF-02",
-                  "stem": "In an ideal machine, a 60 N effort moves 5.0 m while raising a 200 N load. How far does the load rise, and why does the machine not create energy?",
-                  "answer": "The load rises 1.5 m; the larger load force is balanced by a smaller load distance so ideal input and output work are equal.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SIMPLE-MACHINES",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-MACHINE-2B-R1-UNFAMILIAR-01",
-                  "stem": "An unfamiliar workshop device is not named. During one ideal operation, a worker pushes with 50 N through 0.60 m while the device raises a 150 N load through 0.20 m. Identify the effort side and load side, and explain the force-distance tradeoff without assigning the device a lever, pulley or incline label.",
-                  "answer": "The 50 N, 0.60 m input is the effort side and the 150 N, 0.20 m output is the load side; both represent 30 J in the ideal account, so the threefold force advantage is balanced by a threefold distance reduction.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SIMPLE-MACHINES",
-                  "repair_ref": "SM1-1"
-                },
-                {
-                  "id": "Q-PHY-MACHINE-2B-R1-DISTANCE-03",
-                  "stem": "An ideal machine gives a force advantage of 3: a 100 N effort lifts a 300 N load. If the load rises 0.40 m, how far must the effort point move? Use the work ledger to test whether any energy has been gained.",
-                  "answer": "The effort point must move 1.20 m; input and output work are both 120 J, so there is no energy gain.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SIMPLE-MACHINES",
-                  "repair_ref": "SM1-3"
-                }
-              ],
+              "questions": [],
               "activities": []
             },
             {
@@ -24223,24 +24057,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-MACHINE-2A-COMPARE-03",
-                  "stem": "Machine A is an ideal fixed pulley that lets you pull downward to raise a load with the same force magnitude. Machine B lifts a 120 N load with a 40 N effort. Compare their mechanical advantages and state a useful effect of each setup.",
-                  "answer": "Machine A has MA = 1 and is useful mainly for changing effort direction; Machine B has MA = 3 and gives force multiplication.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SIMPLE-MACHINES",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-MACHINE-2B-R3-FIXED-PULLEY-02",
-                  "stem": "An ideal fixed pulley lets a worker pull downward with 100 N to lift a 100 N load upward. A student says the pulley is useless because its mechanical advantage is 1. Evaluate that claim and identify what useful change the pulley provides.",
-                  "answer": "The claim is false: MA = 1, but the fixed pulley is useful because it changes the direction of the effort.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SIMPLE-MACHINES",
-                  "repair_ref": "SM3-3"
-                }
-              ],
+              "questions": [],
               "activities": []
             }
           ]
@@ -24629,14 +24446,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-SOUND-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-SOUND-2B-R2-DOTS-01",
-                  "stem": "A snapshot of air along a horizontal tube shows alternating crowded and spread-out particle regions, and the compression pattern is moving to the right. Describe how one marked air particle moves as the pattern passes and distinguish that motion from the motion of the disturbance.",
-                  "answer": "The marked air particle oscillates locally back and forth mainly along the tube, while the compression-rarefaction disturbance travels to the right through the medium.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": "SOUND2-4"
                 }
               ],
               "activities": []
@@ -24853,14 +24662,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-SOUND-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-SOUND-2B-R3-AXIS-04",
-                  "stem": "Graph X shows a sound signal against time at one fixed location, with horizontal repeat spacing 0.004 s. Graph Y shows the same wave at one instant against position, with horizontal repeat spacing 1.36 m. Identify which spacing is the period and which is the wavelength, then find the frequency and speed.",
-                  "answer": "T = 0.004 s, lambda = 1.36 m, f = 250 Hz and v = 340 m/s.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": "SOUND3-1"
                 }
               ],
               "activities": []
@@ -25051,22 +24852,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-SOUND-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-SOUND-2B-R4-SEPARATE-02",
-                  "stem": "Two tones travel through the same air. Tone A has frequency 500 Hz and larger amplitude; Tone B has frequency 1000 Hz and smaller amplitude. In the Grade-9 model, compare pitch and likely loudness, and state whether the frequency difference alone means the two tones travel at different speeds in the same air.",
-                  "answer": "Tone B has higher pitch; Tone A is likely louder for comparable conditions because of its larger amplitude/intensity; the frequency difference alone does not require different sound speeds in the same medium model.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": "SOUND4-3"
-                },
-                {
-                  "id": "Q-PHY-SOUND-2B-R4-AUDIBLE-05",
-                  "stem": "Using the Grade-9 approximation that the usual human audible range is about 20 Hz to 20,000 Hz, classify tones at 19 Hz and 20,050 Hz. Then explain why those two boundary numbers should not be treated as exact personal hearing-test cutoffs.",
-                  "answer": "19 Hz is just below the approximate usual range and 20,050 Hz is just above it; the 20 Hz–20 kHz range is an approximate population model, not an exact universal biological cutoff.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": "SOUND4-4"
                 }
               ],
               "activities": []
@@ -25253,24 +25038,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-SOUND-2A-REFLECTION-05",
-                  "stem": "A person hears an echo 0.40 s after a sharp sound. Take the sound speed as 340 m/s and assume a stationary reflecting wall. How far away is the wall?",
-                  "answer": "The wall is 68 m away.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-SOUND-2B-R5-BAT-03",
-                  "stem": "A bat emits a short sound pulse and receives the reflected pulse from a wall 0.012 s later. Taking the sound speed as 340 m/s, estimate the wall distance from the bat.",
-                  "answer": "The wall is about 2.04 m away.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-SOUND-PRACTICE",
-                  "repair_ref": "SOUND5-4"
-                }
-              ],
+              "questions": [],
               "activities": []
             }
           ]
@@ -27510,14 +27278,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-WEP-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R1-DIAGRAM-02",
-                  "stem": "A crate moves horizontally to the right. Three forces act during the displacement: a pull directed up-and-right, kinetic friction to the left, and the normal force upward. Classify the sign of the work done by each force before writing any energy equation.",
-                  "answer": "The pull does positive work, friction does negative work, and the normal force does zero work.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP1-2"
                 }
               ],
               "activities": []
@@ -28038,32 +27798,7 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [
-                {
-                  "id": "Q-PHY-WEP-2A-MECH-COND-06",
-                  "stem": "A block starts from rest at the same height on two tracks. One track is smooth; the other is rough. For a block-plus-Earth mechanical-energy account, state on which track K + U can remain constant and what must be added to the account on the rough track.",
-                  "answer": "K + U can remain constant on the smooth track; on the rough track an explicit non-mechanical transfer, such as thermal/internal energy from friction, must be accounted for.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R4-ROUGH-01",
-                  "stem": "A cart rolls from the same starting height to the same lower height. On trial 1 the track is effectively frictionless; on trial 2 the track is rough. Before calculating any speed, decide whether K + U can be set equal between endpoints in each trial and identify the extra transfer in trial 2.",
-                  "answer": "K+U may be conserved in the frictionless trial; in the rough trial frictional/non-mechanical transfer must be included, so simple mechanical-energy conservation alone is not valid.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP4-3"
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R4-MOVING-SUPPORT-03",
-                  "stem": "A 2 kg box starts from rest on a motor-driven platform. Over a 3 m upward displacement the platform exerts a constant 25 N upward normal force. Take g = 10 N/kg and ignore other forces. Find the box's final kinetic energy and explain why the support force must appear in the energy account.",
-                  "answer": "The final kinetic energy is 15 J; the moving support does +75 J of work while gravity does -60 J.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP4-0"
-                }
-              ],
+              "questions": [],
               "activities": []
             },
             {
@@ -28248,14 +27983,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-WEP-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R5-TIME-PROFILES-04",
-                  "stem": "Machine A transfers 600 J in 3 s at a steady rate. Machine B transfers the same 600 J in 6 s, but a meter reads 200 W at one instant during the run. Compare the average powers and explain why the single 200 W reading does not equal Machine B's average power.",
-                  "answer": "Machine A averages 200 W; Machine B averages 100 W; the 200 W meter reading is an instantaneous rate, not the whole-interval average.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP5-2"
                 }
               ],
               "activities": []
@@ -28471,14 +28198,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-WEP-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R5D-DERIVE-06",
-                  "stem": "Without quoting the final energy formulas at the start, show that constant net force along a displacement changes kinetic energy by 1/2 m(v^2-u^2), using W_net=F_net s, F_net=ma and v^2-u^2=2as. Then use a slow vertical lift to reconstruct the change in gravitational potential energy.",
-                  "answer": "The chains give W_net = 1/2 m(v^2-u^2)=Delta K and, for a slow lift through h, Delta U_g = mgh.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP7-2"
                 }
               ],
               "activities": []
@@ -28688,14 +28407,6 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-WEP-PRACTICE",
                   "repair_ref": null
-                },
-                {
-                  "id": "Q-PHY-WEP-2B-R6-FRICTION-NUMERIC-05",
-                  "stem": "A 2 kg block starts from rest and descends through a vertical height of 5 m. During the motion friction transfers 30 J out of the block-Earth mechanical account. Take g = 10 N/kg. Find the final kinetic energy and state why K_i+U_i=K_f+U_f alone is not valid.",
-                  "answer": "The final kinetic energy is 70 J.",
-                  "origin": "AUTHORED",
-                  "family_ref": "FAM-PHY-WEP-PRACTICE",
-                  "repair_ref": "WEP6-4"
                 }
               ],
               "activities": []

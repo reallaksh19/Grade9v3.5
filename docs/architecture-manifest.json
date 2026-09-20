@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 187,
-  "relation_count": 241,
+  "component_count": 188,
+  "relation_count": 243,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 30,
+    "LIBRARY": 31,
     "TEST": 85,
     "TOOLING": 47,
     "WEB": 6
   },
-  "digest": "sha256:bad3282de17da330ee1536ec9ad48b1f3724ea47478ac281d523202c8938dbaf",
+  "digest": "sha256:4b0ad3ffd83b3362571278a3d16ab0b0fa30c327af4f11d0a673dcdd5eca1453",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -148,8 +148,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 73597,
-      "sha256": "019dcb64a80f5f6ff5bb5bc474661a5b82859afdcb11b4890a4923e2d3393ff8"
+      "bytes": 76704,
+      "sha256": "55cd9fe2c2ec37cb30781063c24b5037e3f0b87597500b6bbec3535cb7b52bff"
     },
     {
       "path": "Shared/library/practice_inventory.py",
@@ -234,6 +234,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 11099,
       "sha256": "06a0b67d60a9cd22134217bd22436b4b9179af0726c005cab9031bb32435d965"
+    },
+    {
+      "path": "Shared/library/visual_support.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4241,
+      "sha256": "16d351803f61833028f1abb119e1e6c403f701ca4cbbe40ef5865bfacbe3740d"
     },
     {
       "path": "Shared/library/worksheet-map.schema.json",
@@ -1037,8 +1044,8 @@
       "path": "tests/test_grade9_physics_learner_loop.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4935,
-      "sha256": "8ee74e7e56639b2422fdf598375429c5db4130aa6f8f8d2b77434e3a90f76508"
+      "bytes": 3927,
+      "sha256": "ddcb2d6599001686eeba9f0101e6c7ac94adaa5d428bac2a01310565d4819ceb"
     },
     {
       "path": "tests/test_grade9_simple_machines_scope.py",
@@ -1296,8 +1303,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 1881677,
-      "sha256": "4789f74f7147a40dcb1f76eb8843023c1d2e92dac1fdafd2d6361c0ff6d17cb7"
+      "bytes": 1857167,
+      "sha256": "28354c407c4b5ecc0bcfe4e4cee95fb9dfc6b719d2a6fc77ce5166f7a687c1f1"
     },
     {
       "path": "tools/index.html",
@@ -2197,6 +2204,16 @@
     {
       "from": "tests/test_grade9_nlm_momentum_transfer_agent_a_atlas.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_physics_learner_loop.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_grade9_physics_learner_loop.py",
+      "to": "Shared.library.visual_support",
       "kind": "IMPORTS"
     },
     {
