@@ -53,24 +53,24 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Owner ODR-0006 authorizes this agent to execute STEP-TA8-001 as an explicit V2.5 protocol exception; do not claim candidate certification or MATERIAL_WRITE_READY."
+      "next_action": "The Owner explicitly authorized this agent to implement the first bounded evidence/support repair despite the missing independent replacement-agent certification. Do not claim the normal replacement-agent write gate passed."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
         "AUDIT-TA-008-MOTHER-CONTRACT findings remain open until the reconciled EP implementation and tests close them.",
         "No EP-TA-008 acceptance credit is earned by contract reconciliation alone.",
-        "ODR-0006 explicitly overrides the independent-candidate execution gate for STEP-TA8-001 only; V2.5 MATERIAL_WRITE_READY remains false and must not be misreported as PASS."
+        "The Owner authorized a one-slice execution exception; the normal independent replacement-agent write gate remains unmet and must not be reported as passed."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Mother-contract audit and prior implementation evidence exist. ODR-0006 authorizes direct STEP-TA8-001 execution as an explicit protocol exception; fresh QSET-TA-009 candidate qualification remains absent.",
+      "summary": "Mother-contract audit and prior implementation evidence exist. The Owner authorized direct execution of the first bounded repair as an explicit exception; independent replacement-agent qualification is still absent.",
       "not_run": [
         {
-          "id": "QUAL/TC for QSET-TA-009",
-          "reason": "Fresh candidate qualification has not yet been produced for the reconciled EP digest.",
-          "cause": "DEPENDENCY_WAIT"
+          "id": "fresh independent replacement-agent qualification",
+          "reason": "A separate replacement agent has not completed the normal independent qualification/certification path.",
+          "cause": "OWNER_OVERRIDE"
         },
         {
           "id": "TEST-TA8-001..004 reconciled contract",
