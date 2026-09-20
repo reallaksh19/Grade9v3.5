@@ -52,8 +52,8 @@
     "execution": {
       "state": "READY",
       "can_continue": true,
-      "material_authority": "READ_ONLY",
-      "next_action": "Use QSET-TA-009 for fresh repository-only candidate qualification/takeover, then recheck live Git/main drift; only a certified candidate with MATERIAL_WRITE_READY may begin STEP-TA8-001."
+      "material_authority": "WRITE",
+      "next_action": "Fresh candidate must complete repository-only DISC + QSET-TA-009/QUAL + TC; then material_write_ready must pass for that candidate before STEP-TA8-001 runtime writes."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
