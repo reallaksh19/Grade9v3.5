@@ -50,6 +50,11 @@ SUBJECT_NAME = re.compile(r"\b(?:Physics|Mathematics|Chemistry)\b")
 JS_STRING = re.compile(r"""(['"])((?:\\.|(?!\1)[^\\\n])*)\1""")
 PY_SUFFIXES = {".py"}
 JS_SUFFIXES = {".js", ".mjs", ".cjs"}
+QUESTION_DATA_NAME = "jee_questions_data.js"
+QUESTION_DATA_WRAPPER = re.compile(
+    r"^\s*(?:/\*[\s\S]*?\*/\s*)?"
+    r"window\.JEE_QUESTIONS_DATA\s*=\s*(\[[\s\S]*\])\s*;\s*$"
+)
 
 
 class Violation:
@@ -121,9 +126,27 @@ def scan_python(path: Path, entries: list[dict]) -> list[Violation]:
     return found
 
 
+def _declarative_question_data(text: str) -> bool:
+    """Return true only for a parseable JSON array in the legacy one-assignment wrapper."""
+    match = QUESTION_DATA_WRAPPER.fullmatch(text)
+    if not match:
+        return False
+    try:
+        payload = json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return False
+    return isinstance(payload, list) and all(isinstance(row, dict) for row in payload)
+
+
 def scan_javascript(path: Path, entries: list[dict]) -> list[Violation]:
+    text = path.read_text(encoding="utf-8")
+    # Question banks are governed data despite the legacy .js wrapper. Exempt only the
+    # exact one-assignment shape; any extra executable statement is scanned normally.
+    if path.name == QUESTION_DATA_NAME and _declarative_question_data(text):
+        return []
+
     found = []
-    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for number, line in enumerate(text.splitlines(), 1):
         for match in JS_STRING.finditer(line):
             literal = match.group(2)
             reason = check_literal(literal)
@@ -172,7 +195,7 @@ def scan(roots: list[Path]) -> tuple[list[Violation], int]:
 
 
 def selftest() -> int:
-    """Prove the guard detects a planted violation; a guard that scans nothing passes vacuously."""
+    """Prove identifiers are caught while pure declarative question data stays data."""
     with tempfile.TemporaryDirectory() as temp:
         planted = Path(temp) / "planted.py"
         planted.write_text(
@@ -184,14 +207,35 @@ def selftest() -> int:
             '    if bucket_id == "Mathematics":\n'
             "        return 2\n"
             '    return "generic_value"\n',
-            encoding="utf-8")
+            encoding="utf-8",
+        )
         found = scan_python(planted, [])
         literals = sorted(v.literal for v in found)
         if literals != ["Mathematics", "PHY-M2D"]:
             print(f"SELFTEST FAIL: expected ['Mathematics', 'PHY-M2D'], detected {literals}")
             return 1
-    print("SELFTEST PASS: planted identifier and subject literals detected; "
-          "docstring and comment mentions correctly ignored.")
+
+        data_file = Path(temp) / QUESTION_DATA_NAME
+        data_file.write_text(
+            'window.JEE_QUESTIONS_DATA = [{"id":"VEC-Q01","subject":"Mathematics"}];\n',
+            encoding="utf-8",
+        )
+        if scan_javascript(data_file, []):
+            print("SELFTEST FAIL: pure declarative question data was treated as engine code")
+            return 1
+
+        data_file.write_text(
+            'window.JEE_QUESTIONS_DATA = [{"id":"VEC-Q01"}];\n'
+            'const leaked = "Mathematics";\n',
+            encoding="utf-8",
+        )
+        leaked = scan_javascript(data_file, [])
+        if not any(v.literal == "Mathematics" for v in leaked):
+            print("SELFTEST FAIL: executable code hidden beside question data was not detected")
+            return 1
+
+    print("SELFTEST PASS: governed literals detected; comments/docstrings ignored; "
+          "pure question-data wrappers exempted; executable additions still scanned.")
     return 0
 
 

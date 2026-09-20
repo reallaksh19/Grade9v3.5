@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer #128 · Independent Components, One Shared Clock</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #090d16;
+      --card: #131b2e;
+      --card-hover: #1a253e;
+      --border: #23304d;
+      --border-focus: #3b82f6;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+      --primary: #3b82f6;
+      --accent: #06b6d4;
+      --accent-warm: #f59e0b;
+      --accent-danger: #ef4444;
+      --accent-success: #10b981;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      user-select: none;
+    }
+    input[type=range] {
+      accent-color: #3b82f6;
+    }
+    .ghost-pulse {
+      animation: ghostGlow 1.6s infinite ease-in-out;
+    }
+    @keyframes ghostGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(239, 68, 68, 1));
+        transform: scale(1.08);
+      }
+    }
+    .real-pulse {
+      animation: realGlow 2s infinite ease-in-out;
+    }
+    @keyframes realGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.7));
+      }
+      50% {
+        filter: drop-shadow(0 0 14px rgba(16, 185, 129, 1));
+      }
+    }
+    .tab-active {
+      background-color: #3b82f6;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    }
+    .tab-inactive {
+      background-color: #131b2e;
+      color: #94a3b8;
+      border: 1px solid #23304d;
+    }
+    .tab-inactive:hover {
+      background-color: #1a253e;
+      color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center">
+
+  <div class="w-full max-w-6xl space-y-6">
+
+    <!-- MASTER HEADER -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-purple-500/20 text-purple-400 border border-purple-500/30">
+              Grade 9 Physics &middot; Issue #128
+            </span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">2D Projectile Invariants &middot; Spacetime Constraints</span>
+          </div>
+          <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
+            INDEPENDENT COMPONENTS, ONE SHARED CLOCK
+          </h1>
+          <p class="text-sm md:text-base text-slate-400 mt-1">
+            Perpendicular motions use separate 1D equations, but they are bound to <strong class="text-amber-400">one synchronized event clock</strong>.
+          </p>
+        </div>
+
+        <!-- MODE SELECTOR TABS -->
+        <div class="flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-xl border border-[var(--border)] self-start md:self-auto">
+          <button id="btnModeUncoupled" onclick="setClockMode('uncoupled')" class="tab-active px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-400"></span>
+            Uncoupled (Ghost State Lab)
+          </button>
+          <button id="btnModeSync" onclick="setClockMode('sync')" class="tab-inactive px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Synchronized Clock
+          </button>
+        </div>
+      </div>
+
+      <!-- INVARIANT BANNER -->
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold">INVARIANT</span>
+          <span class="text-slate-300">Spacetime reality enforces <strong class="text-amber-300 font-mono">t&#8339; &equiv; t&#7522; &equiv; t&#7523;&#7512;&#7527;&#7515;</strong>. There is only ONE clock.</span>
+        </div>
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold">MISCONCEPTION</span>
+          <span class="text-slate-300">Evaluating <strong class="text-red-300 font-mono">(x(t&#8321;), y(t&#8322;))</strong> with t&#8321; &ne; t&#8322; creates an <strong class="text-red-300">impossible ghost state</strong>.</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ================================================================= -->
+    <!-- MAIN WORKBENCH: 2D TRAJECTORY CANVAS & DUAL-CLOCK CONTROLS        -->
+    <!-- ================================================================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT: INTERACTIVE SIMULATION & TRAJECTORY CANVAS (7 cols) -->
+      <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 flex flex-col justify-between shadow-lg relative">
+        <div class="flex flex-wrap items-center justify-between border-b border-[var(--border)] pb-3 mb-3 gap-2">
+          <div>
+            <h3 class="font-bold text-base text-white tracking-wide flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+              2D TRAJECTORY & SHADOW DECOMPOSITION
+            </h3>
+            <span class="text-xs text-slate-400">Watch horizontal &amp; vertical shadows project onto coordinates</span>
+          </div>
+
+          <!-- STATUS BADGE -->
+          <div id="stateBadge" class="px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+            GHOST STATE (t&#8339; &ne; t&#7522;)
+          </div>
+        </div>
+
+        <!-- SVG CANVAS -->
+        <div class="w-full flex-1 flex items-center justify-center min-h-[380px] relative bg-slate-950/80 rounded-xl border border-slate-800 p-2 overflow-hidden select-none">
+          <svg id="trajectorySvg" viewBox="0 0 520 380" class="w-full h-full max-h-[380px]">
+            <defs>
+              <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+              </pattern>
+              <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M 0 0 L 6 3 L 0 6 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrowVx" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M 0 0 L 6 3 L 0 6 z" fill="#06b6d4"/>
+              </marker>
+              <marker id="arrowVy" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M 0 0 L 6 3 L 0 6 z" fill="#a855f7"/>
+              </marker>
+            </defs>
+
+            <!-- Background Grid -->
+            <rect x="50" y="20" width="450" height="300" fill="url(#gridPattern)" />
+
+            <!-- Coordinate Axes -->
+            <!-- Y-Axis (Vertical Motion Wall) -->
+            <line x1="50" y1="20" x2="50" y2="320" stroke="#64748b" stroke-width="2"/>
+            <text x="40" y="30" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">y (m)</text>
+
+            <!-- X-Axis (Horizontal Motion Floor) -->
+            <line x1="50" y1="320" x2="500" y2="320" stroke="#64748b" stroke-width="2"/>
+            <text x="495" y="335" fill="#94a3b8" font-size="10" font-family="monospace">x (m)</text>
+
+            <!-- Origin Label -->
+            <text x="42" y="335" fill="#64748b" font-size="10" font-family="monospace">(0,0)</text>
+
+            <!-- Real Physical Trajectory Curve (Solid Path) -->
+            <path id="svgTrajectoryPath" d="" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="none" opacity="0.85"/>
+
+            <!-- Guideline Projections -->
+            <!-- From X-shadow up to point -->
+            <line id="guideLineX" x1="50" y1="320" x2="50" y2="320" stroke="#06b6d4" stroke-dasharray="4,4" stroke-width="1.5"/>
+            <!-- From Y-shadow right to point -->
+            <line id="guideLineY" x1="50" y1="320" x2="50" y2="320" stroke="#a855f7" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+            <!-- Horizontal Shadow (Floor Slider x(tx)) -->
+            <g id="shadowXGroup" transform="translate(50, 320)">
+              <rect x="-14" y="-8" width="28" height="16" rx="3" fill="#083344" stroke="#06b6d4" stroke-width="2"/>
+              <text x="0" y="4" fill="#67e8f9" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">x(t&#8339;)</text>
+              <line x1="0" y1="8" x2="0" y2="18" stroke="#06b6d4" stroke-width="1.5"/>
+              <text id="svgXLabel" x="0" y="28" fill="#67e8f9" font-size="8" font-family="monospace" text-anchor="middle">0.0 m</text>
+            </g>
+
+            <!-- Vertical Shadow (Wall Slider y(ty)) -->
+            <g id="shadowYGroup" transform="translate(50, 320)">
+              <rect x="-18" y="-14" width="36" height="28" rx="3" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+              <text x="0" y="4" fill="#d8b4fe" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">y(t&#7522;)</text>
+              <line x1="-18" y1="0" x2="-28" y2="0" stroke="#a855f7" stroke-width="1.5"/>
+              <text id="svgYLabel" x="-32" y="3" fill="#d8b4fe" font-size="8" font-family="monospace" text-anchor="end">0.0 m</text>
+            </g>
+
+            <!-- GHOST STATE POINT (Rendered when tx != ty) -->
+            <g id="ghostPointGroup" transform="translate(50, 320)" class="ghost-pulse">
+              <circle cx="0" cy="0" r="14" fill="#ef4444" fill-opacity="0.25" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
+              <circle cx="0" cy="0" r="5" fill="#f87171"/>
+              <!-- Ghost Icon / Marker -->
+              <text x="0" y="-18" fill="#fca5a5" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">👻 GHOST STATE</text>
+              <text id="ghostCoordText" x="0" y="28" fill="#fca5a5" font-size="9" font-family="monospace" text-anchor="middle">(x(t&#8339;), y(t&#7522;))</text>
+            </g>
+
+            <!-- REAL PHYSICAL STATE POINT (Rendered when tx == ty) -->
+            <g id="realPointGroup" transform="translate(50, 320)" class="hidden real-pulse">
+              <circle cx="0" cy="0" r="12" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="2"/>
+              <circle cx="0" cy="0" r="6" fill="#34d399"/>
+              <text x="0" y="-16" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">&check; REAL STATE (t)</text>
+
+              <!-- Velocity Vector Arrows -->
+              <g id="velocityVectors">
+                <!-- vx arrow -->
+                <line id="arrowVxLine" x1="0" y1="0" x2="35" y2="0" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowVx)"/>
+                <!-- vy arrow -->
+                <line id="arrowVyLine" x1="0" y1="0" x2="0" y2="-30" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrowVy)"/>
+                <!-- total v arrow -->
+                <line id="arrowVLine" x1="0" y1="0" x2="35" y2="-30" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrowHead)"/>
+              </g>
+            </g>
+
+            <!-- Apex Marker -->
+            <g id="apexGroup" opacity="0.6">
+              <circle id="apexDot" cx="0" cy="0" r="3.5" fill="#f59e0b"/>
+              <text id="apexText" x="0" y="0" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">APEX (vy=0)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- TELEMETRY READOUT BAR -->
+        <div class="mt-3 grid grid-cols-4 gap-2 text-center text-xs font-mono">
+          <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
+            <span class="text-slate-400 block text-[10px]">X-CLOCK (t&#8339;)</span>
+            <span id="telemetryTx" class="font-bold text-cyan-400 text-sm">2.00 s</span>
+          </div>
+          <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
+            <span class="text-slate-400 block text-[10px]">Y-CLOCK (t&#7522;)</span>
+            <span id="telemetryTy" class="font-bold text-purple-400 text-sm">3.00 s</span>
+          </div>
+          <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
+            <span class="text-slate-400 block text-[10px]">CLOCK DELTA &Delta;t</span>
+            <span id="telemetryDt" class="font-bold text-red-400 text-sm">1.00 s (OFF)</span>
+          </div>
+          <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
+            <span class="text-slate-400 block text-[10px]">TRAJECTORY STATUS</span>
+            <span id="telemetryState" class="font-bold text-red-400 text-sm">UNPHYSICAL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: CLOCK CONTROLS & PEDAGOGICAL DIAGNOSTIC (5 cols) -->
+      <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 flex flex-col justify-between shadow-lg space-y-4">
+        <div>
+          <!-- CLOCK CONTROLLER HEADER -->
+          <div class="flex items-center justify-between border-b border-[var(--border)] pb-3 mb-3">
+            <h3 class="font-bold text-base text-white tracking-wide flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+              TIME CLOCK LAB
+            </h3>
+            <span id="clockModePill" class="text-xs font-mono text-red-400 bg-red-950/60 px-2 py-0.5 rounded border border-red-800">
+              DESYNCHRONIZED
+            </span>
+          </div>
+
+          <!-- UNCOUPLED CLOCKS PANEL -->
+          <div id="panelUncoupled" class="space-y-4">
+            <div class="p-3 bg-red-950/30 border border-red-500/40 rounded-xl text-xs text-red-200 leading-relaxed">
+              <strong class="text-red-300 block mb-1">Constructing the Impossible "Ghost State":</strong>
+              Move <span class="font-mono text-cyan-300 font-bold">t&#8339;</span> and <span class="font-mono text-purple-300 font-bold">t&#7522;</span> independently. Notice how evaluating <span class="font-mono font-bold text-white">(x(t&#8339;), y(t&#7522;))</span> creates a point that <em>floats completely off the projectile's trajectory!</em>
+            </div>
+
+            <!-- SLIDER 1: HORIZONTAL CLOCK tx -->
+            <div class="bg-slate-950 p-3.5 rounded-xl border border-cyan-500/30 space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-semibold text-cyan-400 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Horizontal Clock: t&#8339;
+                </span>
+                <span id="valTx" class="font-mono font-bold text-cyan-300 text-sm">2.00 s</span>
+              </div>
+              <input type="range" id="rangeTx" min="0" max="4.0" step="0.05" value="2.00" class="w-full cursor-pointer accent-cyan-400" oninput="onTxChange(this.value)">
+              <div class="flex justify-between text-[11px] font-mono text-slate-400">
+                <span>x(t&#8339;) = v&#8320;&#8339; &times; t&#8339;</span>
+                <span id="calcXVal" class="text-cyan-300 font-bold">30.0 m</span>
+              </div>
+            </div>
+
+            <!-- SLIDER 2: VERTICAL CLOCK ty -->
+            <div class="bg-slate-950 p-3.5 rounded-xl border border-purple-500/30 space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-semibold text-purple-400 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-purple-400"></span> Vertical Clock: t&#7522;
+                </span>
+                <span id="valTy" class="font-mono font-bold text-purple-300 text-sm">3.00 s</span>
+              </div>
+              <input type="range" id="rangeTy" min="0" max="4.0" step="0.05" value="3.00" class="w-full cursor-pointer accent-purple-400" oninput="onTyChange(this.value)">
+              <div class="flex justify-between text-[11px] font-mono text-slate-400">
+                <span>y(t&#7522;) = v&#8320;&#7522;t&#7522; &minus; &frac12;gt&#7522;&sup2;</span>
+                <span id="calcYVal" class="text-purple-300 font-bold">15.9 m</span>
+              </div>
+            </div>
+
+            <!-- QUICK PRESET BUTTONS FOR GHOST STATES -->
+            <div class="flex items-center gap-2 pt-1">
+              <span class="text-xs text-slate-400">Try Presets:</span>
+              <button onclick="setUncoupledPreset(2.0, 3.0)" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-mono text-red-300 border border-slate-700">t&#8339;=2s, t&#7522;=3s</button>
+              <button onclick="setUncoupledPreset(3.5, 1.0)" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-mono text-red-300 border border-slate-700">t&#8339;=3.5s, t&#7522;=1s</button>
+              <button onclick="syncClocksNow()" class="px-2.5 py-1 rounded bg-emerald-950 hover:bg-emerald-900 text-xs font-mono text-emerald-300 border border-emerald-700 font-bold">&check; Snap Sync</button>
+            </div>
+          </div>
+
+          <!-- SYNCHRONIZED CLOCK PANEL (HIDDEN BY DEFAULT) -->
+          <div id="panelSync" class="space-y-4 hidden">
+            <div class="p-3 bg-emerald-950/30 border border-emerald-500/40 rounded-xl text-xs text-emerald-200 leading-relaxed">
+              <strong class="text-emerald-300 block mb-1">One Shared Clock (t&#8339; = t&#7522; = t):</strong>
+              Both coordinates sample the exact same instant of time. The ghost state collapses onto the legitimate physical trajectory.
+            </div>
+
+            <!-- MASTER TIME SLIDER -->
+            <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/40 space-y-2">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Master Time: t
+                </span>
+                <span id="valMasterT" class="font-mono font-bold text-emerald-300 text-base">1.50 s</span>
+              </div>
+              <input type="range" id="rangeMasterT" min="0" max="4.0" step="0.02" value="1.50" class="w-full cursor-pointer accent-emerald-400" oninput="onMasterTChange(this.value)">
+              <div class="flex justify-between text-[11px] font-mono text-slate-400">
+                <span>x = <span id="syncXReadout" class="text-white font-bold">22.5 m</span></span>
+                <span>y = <span id="syncYReadout" class="text-white font-bold">18.9 m</span></span>
+              </div>
+            </div>
+
+            <!-- PLAYBACK CONTROLS -->
+            <div class="grid grid-cols-3 gap-2">
+              <button id="btnPlaySync" onclick="togglePlaySync()" class="py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                <svg id="syncPlayIcon" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><polygon points="5 3 19 10 5 17 5 3"></polygon></svg>
+                <span id="syncPlayText">PLAY</span>
+              </button>
+              <button onclick="stepSync(-0.1)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700">
+                &larr; -0.1s
+              </button>
+              <button onclick="stepSync(0.1)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700">
+                +0.1s &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- LAUNCH PARAMETERS ACCORDION -->
+          <div class="mt-4 pt-3 border-t border-[var(--border)]">
+            <div class="flex items-center justify-between text-xs text-slate-300 mb-2 font-semibold">
+              <span>INITIAL CONDITIONS</span>
+              <span class="font-mono text-slate-500">g = 9.81 m/s&sup2;</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-slate-950 p-2 rounded border border-slate-800">
+                <span class="text-slate-400 block text-[10px]">SPEED v&#8320;</span>
+                <div class="flex items-center justify-between">
+                  <input type="range" id="paramV0" min="15" max="35" step="1" value="25" class="w-20" oninput="updateInitialParams()">
+                  <span id="valV0Label" class="font-mono font-bold text-white">25 m/s</span>
+                </div>
+              </div>
+              <div class="bg-slate-950 p-2 rounded border border-slate-800">
+                <span class="text-slate-400 block text-[10px]">ANGLE &theta;</span>
+                <div class="flex items-center justify-between">
+                  <input type="range" id="paramAngle" min="20" max="75" step="1" value="53" class="w-20" oninput="updateInitialParams()">
+                  <span id="valAngleLabel" class="font-mono font-bold text-white">53&deg;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CORE PEDAGOGICAL TAKEAWAY -->
+        <div id="diagnosticCard" class="p-3.5 rounded-xl border text-xs leading-relaxed bg-red-950/40 border-red-500/30 text-red-200">
+          <span class="font-bold text-white flex items-center gap-1.5 mb-1">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> WHY THE GHOST STATE IS UNPHYSICAL
+          </span>
+          <p>
+            You evaluated horizontal motion at <span class="font-mono text-cyan-300">t = 2.0 s</span> and vertical motion at <span class="font-mono text-purple-300">t = 3.0 s</span>. A physical object cannot have its x-coordinate in the present while its y-coordinate is one second in the future!
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- ROW 2: EVENT SYNCHRONIZATION STUDIO ("FINDING WHEN vs WHERE")      -->
+    <!-- ================================================================= -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-lg space-y-4">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+        <div class="flex items-center gap-2">
+          <div class="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 font-bold text-xs font-mono">SYNCHRONIZATION</div>
+          <h3 class="font-bold text-lg text-white">EVENT SYNCHRONIZATION STUDIO &middot; ONE EVENT OWNS THE TIME</h3>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Vertical finds WHEN &harr; Horizontal finds WHERE</span>
+      </div>
+
+      <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+        In physics problem-solving, <strong>one component determines the event time <span class="font-mono text-amber-400">t*</span></strong>, and the other component <strong>samples that exact same time</strong>. Select an event below to inspect the transfer:
+      </p>
+
+      <!-- EVENT PRESET TABS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <button onclick="selectEvent('landing')" id="btnEventLanding" class="p-3 rounded-xl border border-amber-500/40 bg-amber-950/20 text-left hover:bg-amber-950/40 transition">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-xs text-amber-300">EVENT 1: GROUND IMPACT</span>
+            <span class="font-mono text-[10px] text-slate-400">y(t*) = 0</span>
+          </div>
+          <p class="text-[11px] text-slate-300">Vertical motion sets flight time; horizontal motion calculates total range.</p>
+        </button>
+
+        <button onclick="selectEvent('apex')" id="btnEventApex" class="p-3 rounded-xl border border-slate-800 bg-slate-900/60 text-left hover:bg-slate-800 transition">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-xs text-purple-300">EVENT 2: APEX (PEAK)</span>
+            <span class="font-mono text-[10px] text-slate-400">v_y(t*) = 0</span>
+          </div>
+          <p class="text-[11px] text-slate-300">Vertical velocity reaches zero; horizontal motion finds location of peak.</p>
+        </button>
+
+        <button onclick="selectEvent('wall')" id="btnEventWall" class="p-3 rounded-xl border border-slate-800 bg-slate-900/60 text-left hover:bg-slate-800 transition">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-xs text-cyan-300">EVENT 3: TARGET WALL</span>
+            <span class="font-mono text-[10px] text-slate-400">x(t*) = d</span>
+          </div>
+          <p class="text-[11px] text-slate-300">Horizontal distance sets arrival time; vertical motion finds clearing height.</p>
+        </button>
+      </div>
+
+      <!-- EVENT DETAIL STEPPER -->
+      <div id="eventDetailBox" class="bg-slate-950 p-4 rounded-xl border border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+        <div class="space-y-1 p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">STEP 1: FIND "WHEN"</span>
+          <span id="eventStep1Formula" class="text-amber-300 font-bold block">y(t*) = 0 &rArr; t* = 2v&#8320;&#7522; / g</span>
+          <span id="eventStep1Val" class="text-slate-200">t* = 4.07 s</span>
+        </div>
+
+        <div class="space-y-1 p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">STEP 2: ONE SHARED CLOCK TRANSFER</span>
+          <span class="text-emerald-300 font-bold block">t&#8339; = t&#7522; = t*</span>
+          <span class="text-slate-200">Both components sample t* = 4.07 s</span>
+        </div>
+
+        <div class="space-y-1 p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">STEP 3: FIND "WHERE"</span>
+          <span id="eventStep3Formula" class="text-cyan-300 font-bold block">x(t*) = v&#8320;&#8339; &times; t*</span>
+          <span id="eventStep3Val" class="text-slate-200">Range R = 61.3 m</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- DIAGNOSTIC SECTION: "CHECK YOUR MODEL"                             -->
+    <!-- ================================================================= -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">?</div>
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR MODEL &middot; DIAGNOSTIC CHECKPOINTS</h2>
+            <p class="text-xs text-slate-400">Targeting the "separate equations mean separate clocks" misconception</p>
+          </div>
+        </div>
+        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+          Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
+        </div>
+      </div>
+
+      <!-- QUESTIONS -->
+      <div class="space-y-6">
+
+        <!-- QUESTION 1 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              A student computes x(2 s) = 30 m and y(3 s) = 15 m, then plots the coordinate (30 m, 15 m). Can the projectile ever be at this point?
+            </span>
+            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Yes, because the x and y motions are independent.
+            </button>
+            <button onclick="answerQuiz(1, 'B')" class="q-btn-1-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> No, this is an impossible ghost state with two different times.
+            </button>
+            <button onclick="answerQuiz(1, 'C')" class="q-btn-1-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Yes, if air resistance slows down the horizontal motion.
+            </button>
+          </div>
+
+          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              What is the ONLY physical link that couples the horizontal and vertical equations of motion?
+            </span>
+            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Acceleration due to gravity g
+            </button>
+            <button onclick="answerQuiz(2, 'B')" class="q-btn-2-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Time parameter t (the shared clock of reality)
+            </button>
+            <button onclick="answerQuiz(2, 'C')" class="q-btn-2-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Newton's Third Law action-reaction force
+            </button>
+          </div>
+
+          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              When finding the horizontal range of a projectile fired from ground to ground, why can you substitute t = 2v_0y / g into x(t)?
+            </span>
+            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Because the ground impact event owns a single time sampled by both x and y
+            </button>
+            <button onclick="answerQuiz(3, 'B')" class="q-btn-3-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Because horizontal velocity converts into vertical velocity over time
+            </button>
+            <button onclick="answerQuiz(3, 'C')" class="q-btn-3-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Because range is always proportional to the square of flight time
+            </button>
+          </div>
+
+          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+      Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #128: Independent Components, One Shared Clock
+    </footer>
+
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- JAVASCRIPT LOGIC & ENGINE                                         -->
+  <!-- ================================================================= -->
+  <script>
+    const g = 9.81;
+
+    // Simulation Parameters
+    let sim = {
+      v0: 25.0,
+      angleDeg: 53.0,
+      v0x: 0,
+      v0y: 0,
+      tFlight: 0,
+      tApex: 0,
+      range: 0,
+      hMax: 0,
+      // Current Times
+      clockMode: 'uncoupled', // 'uncoupled' or 'sync'
+      tx: 2.0,
+      ty: 3.0,
+      masterT: 1.5,
+      isPlaying: false,
+      lastTimestamp: 0,
+      animId: null,
+      // SVG Coordinate transformation scale
+      originX: 50,
+      originY: 320,
+      scaleX: 6.8, // pixels per meter
+      scaleY: 11.5
+    };
+
+    // Quiz State
+    let quizAnswers = { 1: null, 2: null, 3: null };
+
+    // --- INITIAL PARAMETERS CALCULATION ---
+    function updateInitialParams() {
+      sim.v0 = parseFloat(document.getElementById('paramV0').value);
+      sim.angleDeg = parseFloat(document.getElementById('paramAngle').value);
+
+      document.getElementById('valV0Label').textContent = `${sim.v0} m/s`;
+      document.getElementById('valAngleLabel').textContent = `${sim.angleDeg}°`;
+
+      const rad = sim.angleDeg * Math.PI / 180;
+      sim.v0x = sim.v0 * Math.cos(rad);
+      sim.v0y = sim.v0 * Math.sin(rad);
+
+      sim.tApex = sim.v0y / g;
+      sim.tFlight = (2 * sim.v0y) / g;
+      sim.range = sim.v0x * sim.tFlight;
+      sim.hMax = (sim.v0y * sim.v0y) / (2 * g);
+
+      // Adjust slider max to flight time
+      const maxT = Math.ceil(sim.tFlight * 1.05 * 10) / 10;
+      document.getElementById('rangeTx').max = maxT;
+      document.getElementById('rangeTy').max = maxT;
+      document.getElementById('rangeMasterT').max = maxT;
+
+      // Fit coordinate scaling
+      sim.scaleX = 440 / Math.max(sim.range, 30);
+      sim.scaleY = 280 / Math.max(sim.hMax * 1.25, 20);
+
+      renderTrajectoryCurve();
+      updateScene();
+      selectEvent('landing');
+    }
+
+    // --- RENDER STATIC PARABOLIC TRAJECTORY ---
+    function renderTrajectoryCurve() {
+      const steps = 60;
+      let dStr = `M ${sim.originX} ${sim.originY}`;
+      for (let i = 1; i <= steps; i++) {
+        const t = (i / steps) * sim.tFlight;
+        const x = sim.v0x * t;
+        const y = Math.max(0, sim.v0y * t - 0.5 * g * t * t);
+        const px = sim.originX + x * sim.scaleX;
+        const py = sim.originY - y * sim.scaleY;
+        dStr += ` L ${px.toFixed(1)} ${py.toFixed(1)}`;
+      }
+      document.getElementById('svgTrajectoryPath').setAttribute('d', dStr);
+
+      // Apex marker
+      const apexPx = sim.originX + (sim.v0x * sim.tApex) * sim.scaleX;
+      const apexPy = sim.originY - sim.hMax * sim.scaleY;
+      document.getElementById('apexDot').setAttribute('cx', apexPx);
+      document.getElementById('apexDot').setAttribute('cy', apexPy);
+      document.getElementById('apexText').setAttribute('x', apexPx);
+      document.getElementById('apexText').setAttribute('y', apexPy - 8);
+    }
+
+    // --- MODE SWITCHER ---
+    function setClockMode(mode) {
+      sim.clockMode = mode;
+      const btnUncoupled = document.getElementById('btnModeUncoupled');
+      const btnSync = document.getElementById('btnModeSync');
+      const panelUncoupled = document.getElementById('panelUncoupled');
+      const panelSync = document.getElementById('panelSync');
+      const clockPill = document.getElementById('clockModePill');
+
+      if (mode === 'uncoupled') {
+        pauseSync();
+        btnUncoupled.className = 'tab-active px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2';
+        btnSync.className = 'tab-inactive px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2';
+        panelUncoupled.classList.remove('hidden');
+        panelSync.classList.add('hidden');
+        clockPill.className = 'text-xs font-mono text-red-400 bg-red-950/60 px-2 py-0.5 rounded border border-red-800';
+        clockPill.textContent = 'DESYNCHRONIZED';
+      } else {
+        btnSync.className = 'tab-active px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2';
+        btnUncoupled.className = 'tab-inactive px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex items-center gap-2';
+        panelSync.classList.remove('hidden');
+        panelUncoupled.classList.add('hidden');
+        clockPill.className = 'text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800';
+        clockPill.textContent = 'SYNCHRONIZED';
+        // sync tx and ty to masterT
+        sim.tx = sim.masterT;
+        sim.ty = sim.masterT;
+      }
+      updateScene();
+    }
+
+    function onTxChange(val) {
+      sim.tx = parseFloat(val);
+      updateScene();
+    }
+
+    function onTyChange(val) {
+      sim.ty = parseFloat(val);
+      updateScene();
+    }
+
+    function setUncoupledPreset(txVal, tyVal) {
+      sim.tx = txVal;
+      sim.ty = tyVal;
+      document.getElementById('rangeTx').value = txVal;
+      document.getElementById('rangeTy').value = tyVal;
+      updateScene();
+    }
+
+    function syncClocksNow() {
+      sim.masterT = sim.tx;
+      document.getElementById('rangeMasterT').value = sim.masterT;
+      setClockMode('sync');
+    }
+
+    function onMasterTChange(val) {
+      sim.masterT = parseFloat(val);
+      sim.tx = sim.masterT;
+      sim.ty = sim.masterT;
+      updateScene();
+    }
+
+    function stepSync(delta) {
+      let newT = Math.max(0, Math.min(sim.tFlight, sim.masterT + delta));
+      document.getElementById('rangeMasterT').value = newT.toFixed(2);
+      onMasterTChange(newT);
+    }
+
+    function togglePlaySync() {
+      if (sim.isPlaying) {
+        pauseSync();
+      } else {
+        startPlaySync();
+      }
+    }
+
+    function startPlaySync() {
+      if (sim.masterT >= sim.tFlight) {
+        sim.masterT = 0;
+      }
+      sim.isPlaying = true;
+      sim.lastTimestamp = performance.now();
+      document.getElementById('syncPlayText').textContent = 'PAUSE';
+      document.getElementById('syncPlayIcon').innerHTML = '<rect x="4" y="4" width="4" height="12"></rect><rect x="12" y="4" width="4" height="12"></rect>';
+      sim.animId = requestAnimationFrame(animateMasterSync);
+    }
+
+    function pauseSync() {
+      sim.isPlaying = false;
+      if (sim.animId) cancelAnimationFrame(sim.animId);
+      document.getElementById('syncPlayText').textContent = 'PLAY';
+      document.getElementById('syncPlayIcon').innerHTML = '<polygon points="5 3 19 10 5 17 5 3"></polygon>';
+    }
+
+    function animateMasterSync(timestamp) {
+      if (!sim.isPlaying) return;
+      const dt = Math.min((timestamp - sim.lastTimestamp) / 1000, 0.05);
+      sim.lastTimestamp = timestamp;
+
+      sim.masterT += dt;
+      if (sim.masterT >= sim.tFlight) {
+        sim.masterT = sim.tFlight;
+        pauseSync();
+      }
+
+      document.getElementById('rangeMasterT').value = sim.masterT.toFixed(2);
+      sim.tx = sim.masterT;
+      sim.ty = sim.masterT;
+      updateScene();
+
+      if (sim.isPlaying) {
+        sim.animId = requestAnimationFrame(animateMasterSync);
+      }
+    }
+
+    // --- MAIN SCENE UPDATE & GHOST STATE LOGIC ---
+    function updateScene() {
+      // Calculate coordinates from component clocks
+      const xVal = sim.v0x * sim.tx;
+      const yVal = Math.max(-10, sim.v0y * sim.ty - 0.5 * g * sim.ty * sim.ty);
+
+      // Scaled SVG coordinates
+      const pxX = sim.originX + xVal * sim.scaleX;
+      const pyY = sim.originY - yVal * sim.scaleY;
+
+      // Update Sliders labels
+      document.getElementById('valTx').textContent = `${sim.tx.toFixed(2)} s`;
+      document.getElementById('valTy').textContent = `${sim.ty.toFixed(2)} s`;
+      document.getElementById('calcXVal').textContent = `${xVal.toFixed(1)} m`;
+      document.getElementById('calcYVal').textContent = `${yVal.toFixed(1)} m`;
+      document.getElementById('valMasterT').textContent = `${sim.masterT.toFixed(2)} s`;
+      document.getElementById('syncXReadout').textContent = `${xVal.toFixed(1)} m`;
+      document.getElementById('syncYReadout').textContent = `${yVal.toFixed(1)} m`;
+
+      // Update Horizontal & Vertical Shadows
+      document.getElementById('shadowXGroup').setAttribute('transform', `translate(${pxX}, ${sim.originY})`);
+      document.getElementById('svgXLabel').textContent = `${xVal.toFixed(1)} m`;
+
+      document.getElementById('shadowYGroup').setAttribute('transform', `translate(${sim.originX}, ${pyY})`);
+      document.getElementById('svgYLabel').textContent = `${yVal.toFixed(1)} m`;
+
+      // Update Projection Guidelines
+      document.getElementById('guideLineX').setAttribute('x1', pxX);
+      document.getElementById('guideLineX').setAttribute('y1', sim.originY);
+      document.getElementById('guideLineX').setAttribute('x2', pxX);
+      document.getElementById('guideLineX').setAttribute('y2', pyY);
+
+      document.getElementById('guideLineY').setAttribute('x1', sim.originX);
+      document.getElementById('guideLineY').setAttribute('y1', pyY);
+      document.getElementById('guideLineY').setAttribute('x2', pxX);
+      document.getElementById('guideLineY').setAttribute('y2', pyY);
+
+      // Check Clock Delta
+      const dt = Math.abs(sim.tx - sim.ty);
+      const isSynchronized = dt < 0.01;
+
+      // Telemetry
+      document.getElementById('telemetryTx').textContent = `${sim.tx.toFixed(2)} s`;
+      document.getElementById('telemetryTy').textContent = `${sim.ty.toFixed(2)} s`;
+
+      const ghostGroup = document.getElementById('ghostPointGroup');
+      const realGroup = document.getElementById('realPointGroup');
+      const stateBadge = document.getElementById('stateBadge');
+      const diagCard = document.getElementById('diagnosticCard');
+
+      if (isSynchronized) {
+        // SYNCHRONIZED PHYSICAL STATE
+        ghostGroup.classList.add('hidden');
+        realGroup.classList.remove('hidden');
+        realGroup.setAttribute('transform', `translate(${pxX}, ${pyY})`);
+
+        stateBadge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-emerald-950/80 text-emerald-300 border-emerald-600/50';
+        stateBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span> PHYSICAL STATE (t&#8339; = t&#7522;)';
+
+        document.getElementById('telemetryDt').textContent = '0.00 s (LOCKED)';
+        document.getElementById('telemetryDt').className = 'font-bold text-emerald-400 text-sm';
+        document.getElementById('telemetryState').textContent = 'VALID TRAJECTORY';
+        document.getElementById('telemetryState').className = 'font-bold text-emerald-400 text-sm';
+
+        // Calculate velocity vector components
+        const curVx = sim.v0x;
+        const curVy = sim.v0y - g * sim.tx;
+        const arrowScale = 2.0;
+        document.getElementById('arrowVxLine').setAttribute('x2', curVx * arrowScale);
+        document.getElementById('arrowVyLine').setAttribute('y2', -curVy * arrowScale);
+        document.getElementById('arrowVLine').setAttribute('x2', curVx * arrowScale);
+        document.getElementById('arrowVLine').setAttribute('y2', -curVy * arrowScale);
+
+        diagCard.className = 'p-3.5 rounded-xl border text-xs leading-relaxed bg-emerald-950/40 border-emerald-500/30 text-emerald-200';
+        diagCard.innerHTML = `
+          <span class="font-bold text-white flex items-center gap-1.5 mb-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> REAL PHYSICAL STATE CONFIRMED
+          </span>
+          <p>
+            Both components sample the exact same timeline instant (<span class="font-mono text-emerald-300 font-bold">t = ${sim.tx.toFixed(2)} s</span>). The position <span class="font-mono text-white">(${xVal.toFixed(1)} m, ${yVal.toFixed(1)} m)</span> lies exactly on the continuous parabolic trajectory.
+          </p>
+        `;
+      } else {
+        // GHOST STATE UNPHYSICAL
+        realGroup.classList.add('hidden');
+        ghostGroup.classList.remove('hidden');
+        ghostGroup.setAttribute('transform', `translate(${pxX}, ${pyY})`);
+        document.getElementById('ghostCoordText').textContent = `(${xVal.toFixed(1)}m, ${yVal.toFixed(1)}m)`;
+
+        stateBadge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50';
+        stateBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> GHOST STATE (t&#8339; &ne; t&#7522;)';
+
+        document.getElementById('telemetryDt').textContent = `${dt.toFixed(2)} s (OFF)`;
+        document.getElementById('telemetryDt').className = 'font-bold text-red-400 text-sm';
+        document.getElementById('telemetryState').textContent = 'UNPHYSICAL';
+        document.getElementById('telemetryState').className = 'font-bold text-red-400 text-sm';
+
+        diagCard.className = 'p-3.5 rounded-xl border text-xs leading-relaxed bg-red-950/40 border-red-500/30 text-red-200';
+        diagCard.innerHTML = `
+          <span class="font-bold text-white flex items-center gap-1.5 mb-1">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> WHY THE GHOST STATE IS UNPHYSICAL
+          </span>
+          <p>
+            You evaluated horizontal motion at <span class="font-mono text-cyan-300 font-bold">t = ${sim.tx.toFixed(2)} s</span> and vertical motion at <span class="font-mono text-purple-300 font-bold">t = ${sim.ty.toFixed(2)} s</span>. A single projectile cannot have its x-coordinate in one moment while its y-coordinate is ${dt.toFixed(2)} seconds away!
+          </p>
+        `;
+      }
+    }
+
+    // --- EVENT SYNCHRONIZATION STUDIO LOGIC ---
+    function selectEvent(ev) {
+      const bLanding = document.getElementById('btnEventLanding');
+      const bApex = document.getElementById('btnEventApex');
+      const bWall = document.getElementById('btnEventWall');
+
+      [bLanding, bApex, bWall].forEach(b => {
+        b.className = 'p-3 rounded-xl border border-slate-800 bg-slate-900/60 text-left hover:bg-slate-800 transition';
+      });
+
+      if (ev === 'landing') {
+        bLanding.className = 'p-3 rounded-xl border border-amber-500/60 bg-amber-950/30 text-left transition';
+        document.getElementById('eventStep1Formula').innerHTML = 'y(t*) = 0 &rArr; t* = 2v&#8320;&#7522; / g';
+        document.getElementById('eventStep1Val').textContent = `t* = ${sim.tFlight.toFixed(2)} s`;
+        document.getElementById('eventStep3Formula').innerHTML = 'x(t*) = v&#8320;&#8339; &times; t*';
+        document.getElementById('eventStep3Val').textContent = `Total Range R = ${sim.range.toFixed(1)} m`;
+      } else if (ev === 'apex') {
+        bApex.className = 'p-3 rounded-xl border border-purple-500/60 bg-purple-950/30 text-left transition';
+        document.getElementById('eventStep1Formula').innerHTML = 'v_y(t*) = 0 &rArr; t* = v&#8320;&#7522; / g';
+        document.getElementById('eventStep1Val').textContent = `t* = ${sim.tApex.toFixed(2)} s`;
+        document.getElementById('eventStep3Formula').innerHTML = 'x(t*) = v&#8320;&#8339; &times; t*';
+        document.getElementById('eventStep3Val').textContent = `Apex x = ${(sim.v0x * sim.tApex).toFixed(1)} m, y = ${sim.hMax.toFixed(1)} m`;
+      } else if (ev === 'wall') {
+        bWall.className = 'p-3 rounded-xl border border-cyan-500/60 bg-cyan-950/30 text-left transition';
+        const dWall = sim.range * 0.6;
+        const tWall = dWall / sim.v0x;
+        const hWall = sim.v0y * tWall - 0.5 * g * tWall * tWall;
+        document.getElementById('eventStep1Formula').innerHTML = `x(t*) = ${dWall.toFixed(1)}m &rArr; t* = d / v&#8320;&#8339;`;
+        document.getElementById('eventStep1Val').textContent = `t* = ${tWall.toFixed(2)} s`;
+        document.getElementById('eventStep3Formula').innerHTML = 'y(t*) = v&#8320;&#7522;t* &minus; &frac12;gt*&sup2;';
+        document.getElementById('eventStep3Val').textContent = `Clearing Height y = ${hWall.toFixed(1)} m`;
+      }
+    }
+
+    // =========================================================================
+    // DIAGNOSTIC QUIZ ENGINE
+    // =========================================================================
+    const quizData = {
+      1: {
+        correct: 'B',
+        textB: `<strong>&check; Correct! (Target Invariant)</strong> Coordinates (30 m, 15 m) evaluated at t&#8339;=2s and t&#7522;=3s form an unphysical "ghost state". An object only possesses one location in spacetime at any given instant. At t = 2s, y is actually y(2s), not y(3s)!`,
+        textA: `<strong>&cross; False Independence Assumption:</strong> Mathematical independence of perpendicular force/acceleration components does NOT mean independence of time! Both components share one physical clock.`,
+        textC: `<strong>&cross; Incorrect:</strong> External forces like air drag still operate on the single shared clock of reality.`
+      },
+      2: {
+        correct: 'B',
+        textB: `<strong>&check; Correct!</strong> Time t is the universal coupling scalar. Because horizontal acceleration is zero and vertical acceleration is &minus;g, the two spatial dimensions share no forces; they are tied together solely because they happen simultaneously on the same timeline.`,
+        textA: `<strong>&cross; Misconception:</strong> Gravity g acts purely in the vertical direction; it has zero component horizontally (a&#8339; = 0). It does not directly couple the axes.`,
+        textC: `<strong>&cross; Misconception:</strong> Newton's Third Law governs forces between two different objects, not between perpendicular coordinate axes of one object.`
+      },
+      3: {
+        correct: 'A',
+        textA: `<strong>&check; Correct!</strong> Ground impact is a single synchronized event. The vertical condition (y = 0) tells us <em>when</em> the collision occurs (t*). Because the ball hits the ground at that exact same instant, the horizontal displacement must be evaluated at that exact same t*.`,
+        textB: `<strong>&cross; Misconception:</strong> In ideal projectile motion, horizontal and vertical velocities never convert into each other (v&#8339; remains constant throughout).`,
+        textC: `<strong>&cross; Misconception:</strong> Range is linear in time (x = v&#8320;&#8339; &times; t), not quadratic.`
+      }
+    };
+
+    function answerQuiz(qNum, choice) {
+      quizAnswers[qNum] = choice;
+      const data = quizData[qNum];
+      const isCorrect = choice === data.correct;
+
+      ['A', 'B', 'C'].forEach(opt => {
+        const btn = document.querySelector(`.q-btn-${qNum}-${opt}`);
+        btn.classList.remove('bg-emerald-950', 'bg-red-950', 'border-emerald-500', 'border-red-500', 'font-bold');
+        btn.classList.add('bg-slate-900', 'border-slate-800');
+      });
+
+      const selBtn = document.querySelector(`.q-btn-${qNum}-${choice}`);
+      if (isCorrect) {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-emerald-950', 'border-emerald-500', 'font-bold');
+      } else {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-red-950', 'border-red-500', 'font-bold');
+      }
+
+      const badge = document.getElementById(`badgeQ${qNum}`);
+      if (isCorrect) {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.textContent = 'CORRECT';
+      } else {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.textContent = 'TRY AGAIN';
+      }
+
+      const explDiv = document.getElementById(`explQ${qNum}`);
+      explDiv.classList.remove('hidden');
+      if (isCorrect) {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      } else {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        if (quizAnswers[i] === quizData[i].correct) score++;
+      }
+      document.getElementById('quizScore').textContent = `${score} / 3`;
+    }
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      updateInitialParams();
+    });
+  </script>
+</body>
+</html>

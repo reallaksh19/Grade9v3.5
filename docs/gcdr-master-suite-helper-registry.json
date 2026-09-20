@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "GCDR-MASTER-SUITE-HELPERS",
+  "status": "GOVERNED_DESIGN_REGISTRY",
+  "purpose": "Reusable helper vocabulary for Graphical Cognitive Deconstruction activities. A helper is only counted as present when it reads the governed current state and performs its declared job; static filler text does not satisfy the contract.",
+  "core_helpers": [
+    {
+      "id": "TEACHERS_CHALKBOARD",
+      "job": "State-specific worked reasoning",
+      "required_outputs": ["governing_model", "state_specific_derivation", "result_or_disposition", "independent_check", "boundary_note"]
+    },
+    {
+      "id": "TRAP_ALERT",
+      "job": "Concrete misconception diagnosis",
+      "required_outputs": ["tempting_wrong_model", "why_it_fails_here", "observable_contradiction"]
+    },
+    {
+      "id": "TRANSFER_TAKEAWAY",
+      "job": "Reusable decision rule for a fresh problem",
+      "required_outputs": ["decision_rule", "when_to_use", "when_not_to_use"]
+    },
+    {
+      "id": "PREDICTION_GATE",
+      "job": "Prediction before reveal",
+      "required_outputs": ["prediction_prompt", "commit_state", "reveal_after_commit"]
+    },
+    {
+      "id": "WRONG_MODEL_COMPARATOR",
+      "job": "Execute and contrast the misconception model",
+      "required_outputs": ["wrong_model_state", "correct_model_state", "difference_signal"]
+    },
+    {
+      "id": "INDEPENDENT_CHECK",
+      "job": "Verify by a second route",
+      "required_outputs": ["check_method", "residual_or_confirmation"]
+    },
+    {
+      "id": "BOUNDARY_ALERT",
+      "job": "Expose validity limits",
+      "required_outputs": ["valid_when", "fails_when"]
+    },
+    {
+      "id": "INVARIANT_MONITOR",
+      "job": "Live invariant or residual",
+      "required_outputs": ["quantity", "expected_relation", "live_residual"]
+    },
+    {
+      "id": "ASSUMPTION_BANNER",
+      "job": "Declare model assumptions",
+      "required_outputs": ["frame_or_basis", "sign_or_orientation_convention", "constants", "idealizations"]
+    },
+    {
+      "id": "EVENT_MARKER",
+      "job": "Mark a named physical or mathematical event",
+      "required_outputs": ["event_name", "event_condition", "event_state"]
+    },
+    {
+      "id": "STATE_INSPECTOR",
+      "job": "Expose canonical state",
+      "required_outputs": ["state_paths", "current_values", "provenance"]
+    },
+    {
+      "id": "REPRESENTATION_LINKER",
+      "job": "Synchronize physical, graphical and algebraic views",
+      "required_outputs": ["source_representation", "target_representation", "shared_state_key"]
+    },
+    {
+      "id": "FORMULA_ELIGIBILITY_GATE",
+      "job": "Decide whether a formula/model is valid in the current state",
+      "required_outputs": ["candidate_formula", "required_assumptions", "eligibility"]
+    },
+    {
+      "id": "EXACTNESS_BADGE",
+      "job": "Disclose external-task fidelity",
+      "required_outputs": ["fidelity", "binding_coverage", "missing_bindings"]
+    },
+    {
+      "id": "QUESTION_LOADER",
+      "job": "Govern source-to-state loading",
+      "required_outputs": ["bindings", "loaded_state", "fidelity", "no_invented_defaults"]
+    },
+    {
+      "id": "RESET",
+      "job": "Restore the complete documented initial state",
+      "required_outputs": ["documented_initial_state", "all_views_restored"]
+    },
+    {
+      "id": "AUDIT_BADGE",
+      "job": "Expose quality status",
+      "required_outputs": ["audit_status", "pending_checks", "failed_checks", "open_findings"]
+    },
+    {
+      "id": "HINT_LADDER",
+      "job": "Progressive assistance without answer dumping",
+      "required_outputs": ["concept_hint", "representation_hint", "equation_hint"]
+    },
+    {
+      "id": "ACCESSIBILITY_HELPER",
+      "job": "Provide nonvisual and keyboard-equivalent operation",
+      "required_outputs": ["accessible_names", "keyboard_path", "non_color_state_cues", "reduced_motion_path"]
+    }
+  ],
+  "motion_1d_helpers": [
+    "DUAL_ODOMETER",
+    "TURNING_POINT_MARKER",
+    "PHASE_SPACE_HELPER",
+    "GRAPH_CALCULUS_HELPER",
+    "TANGENT_HELPER",
+    "EVENT_CLOCK",
+    "STROBOSCOPE",
+    "FRAME_BADGE",
+    "PHASE_TIMELINE"
+  ],
+  "vector_algebra_helpers": [
+    "SOLUTION_LOCUS_HELPER",
+    "BAC_CAB_HELPER",
+    "DUAL_PLANE_3D",
+    "DIAGONAL_SIDE_TOGGLE",
+    "AREA_DECOMPOSITION_HELPER",
+    "ORTHOGONAL_DROP_HELPER",
+    "PROJECTION_REJECTION_RIG",
+    "RIGHT_ANGLE_MARKER",
+    "PYTHAGOREAN_MONITOR",
+    "PARALLELEPIPED_COLLAPSE",
+    "DETERMINANT_HELPER",
+    "VOLUME_MONITOR",
+    "RESIDUAL_CHECK"
+  ],
+  "fidelity_vocabulary": ["EXACT", "CONSTRAINT_FAITHFUL", "CONCEPT_ONLY", "UNAVAILABLE"],
+  "hard_rules": [
+    "Missing parameters are never invented and labelled EXACT.",
+    "CONCEPT_ONLY may open a mechanism but must not inject defaults as if they came from the question.",
+    "UNAVAILABLE changes no simulator state.",
+    "Teacher's Chalkboard content is question/state specific.",
+    "Trap Alert identifies a concrete wrong model and contradiction.",
+    "Transfer Takeaway is a decision rule, not a summary slogan."
+  ]
+}

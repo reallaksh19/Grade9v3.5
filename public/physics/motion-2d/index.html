@@ -461,6 +461,54 @@
     .rung-node.is-quick-check {
       border: 1px dashed #38bdf8 !important;
     }
+
+    /* Interactive Leaf Mastery & Diagnostic Dimension Styles */
+    .dim-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .dim-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .dim-btn.active {
+      background: var(--chip-hold-bg);
+      border-color: var(--chip-hold-border);
+      color: var(--chip-hold-text);
+      font-weight: 700;
+    }
+    .btn.ok {
+      background: var(--chip-ok-bg);
+      border: 1px solid var(--chip-ok-border);
+      color: var(--chip-ok-text);
+    }
+    .btn.ok:hover {
+      background: rgba(63, 185, 80, 0.25);
+    }
+    .btn.hold {
+      background: var(--chip-hold-bg);
+      border: 1px solid var(--chip-hold-border);
+      color: var(--chip-hold-text);
+    }
+    .btn.hold:hover {
+      background: rgba(218, 54, 51, 0.25);
+    }
+    .btn.warn {
+      background: var(--chip-warn-bg);
+      border: 1px solid var(--chip-warn-border);
+      color: var(--chip-warn-text);
+    }
+    .btn.warn:hover {
+      background: rgba(210, 153, 34, 0.25);
+    }
   </style>
 </head>
 <body>
@@ -470,6 +518,7 @@
     <div class="header-title">
       <span id="atlasTopicTitle">Topic Atlas</span>
       <span class="badge purple">Canonical Projection</span>
+      <span id="headerProgressPill" class="badge neutral" title="Skill Matrix Progression %">0% Mastered</span>
     </div>
     <div class="header-subtitle" id="atlasSubtopicSubtitle">Loading canonical data...</div>
   </div>
@@ -549,7 +598,16 @@
             📂 Import Diagnostic Gap Table
           </button>
           <input type="file" id="fileImportInput" accept=".json" style="display: none;" onchange="window.ATLAS.handleFileImport(event)">
-          <button type="button" class="btn outline" onclick="window.ATLAS.resetCanonical()" title="Clear estimate and gaps; view canonical atlas">
+          <button type="button" class="btn outline" onclick="window.ATLAS.syncKnowledgeToSkillProgress()" title="Sync Macro Knowledge Estimate with Skill Matrix Progress %">
+            ⚡ Sync Knowledge with Leaf Progress
+          </button>
+          <button type="button" class="btn outline" onclick="window.ATLAS.markAllLeaves('MASTERED')" title="Mark all semantic leaves as mastered">
+            ✓ Master All Leaves
+          </button>
+          <button type="button" class="btn outline" onclick="window.ATLAS.markAllLeaves('PENDING')" title="Reset all leaf mastery states">
+            ↺ Reset Leaves
+          </button>
+          <button type="button" class="btn outline" onclick="window.ATLAS.resetCanonical()" title="Clear estimate, gaps, and leaf progress; view canonical atlas">
             ↺ Reset to Canonical
           </button>
         </div>
@@ -591,6 +649,14 @@
         <div class="stat-label">Practice &amp; Transfer Items</div>
         <div class="stat-value" id="statQuestionCount">18 Items</div>
         <div class="stat-detail">Core2A Practice &amp; Core2B Transfer items</div>
+      </div>
+      <div class="stat-card" id="statMatrixProgressCard" style="border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(180deg, rgba(56,189,248,0.06), rgba(22,27,34,0.95));">
+        <div class="stat-label">Skill Matrix Progress</div>
+        <div class="stat-value" id="statMatrixProgressVal" style="color: #38bdf8;">0%</div>
+        <div style="width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; height: 8px; margin: 6px 0; overflow: hidden;">
+          <div id="statMatrixProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #3fb950); transition: width 0.3s ease;"></div>
+        </div>
+        <div class="stat-detail" id="statMatrixProgressDetail">0 of 0 Semantic Leaves Mastered</div>
       </div>
     </div>
   </section>

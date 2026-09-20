@@ -19,6 +19,7 @@
     validation_report: null,     // Import audit report
     overlay_active: true,
     selected_target: null,       // Focus target (e.g. "R5.1.0")
+    leaf_progress: {},           // Step mastery map: { [stepId]: { status: 'PENDING'|'MASTERED'|'GAP', dimension: 'CONCEPT'|null } }
     request_config: {
       cores: ['CORE1A', 'CORE1B', 'CORE2A'],
       core2a_purpose: 'PRACTICE',
@@ -82,6 +83,9 @@
         state.knowledge_percentage = parsed.knowledge_percentage !== undefined ? parsed.knowledge_percentage : null;
         state.diagnostic_rows = Array.isArray(parsed.diagnostic_rows) ? parsed.diagnostic_rows : [];
         state.overlay_active = parsed.overlay_active !== undefined ? parsed.overlay_active : true;
+        if (parsed.leaf_progress && typeof parsed.leaf_progress === 'object') {
+          state.leaf_progress = parsed.leaf_progress;
+        }
         if (parsed.request_config) {
           state.request_config = Object.assign(state.request_config, parsed.request_config);
         }
@@ -97,6 +101,7 @@
         knowledge_percentage: state.knowledge_percentage,
         diagnostic_rows: state.diagnostic_rows,
         overlay_active: state.overlay_active,
+        leaf_progress: state.leaf_progress,
         request_config: state.request_config
       };
       localStorage.setItem(getStorageKey(), JSON.stringify(payload));
@@ -258,6 +263,140 @@
     };
   }
 
+  // --- Leaf Mastery & Skill Matrix Progress Computation ---
+  function getLeafStatus(stepId, rungNum) {
+    if (state.leaf_progress && state.leaf_progress[stepId]) {
+      return state.leaf_progress[stepId];
+    }
+    const gapRow = (state.diagnostic_rows || []).find(r => r.repair_ref === stepId);
+    if (gapRow) {
+      return {
+        status: 'GAP',
+        dimension: gapRow.error_stage || 'CONCEPT'
+      };
+    }
+    return { status: 'PENDING', dimension: null };
+  }
+
+  function computeSkillMatrixProgress() {
+    if (!state.matrix || !state.matrix.rungs) {
+      return { total: 0, mastered: 0, gaps: 0, pending: 0, percentage: 0 };
+    }
+    let total = 0;
+    let mastered = 0;
+    let gaps = 0;
+    state.matrix.rungs.forEach(r => {
+      if (r.microtopic && Array.isArray(r.microtopic.teaching_path)) {
+        r.microtopic.teaching_path.forEach(step => {
+          total++;
+          const st = getLeafStatus(step.id, r.rung);
+          if (st.status === 'MASTERED') mastered++;
+          else if (st.status === 'GAP') gaps++;
+        });
+      }
+    });
+    const pending = Math.max(0, total - mastered - gaps);
+    const percentage = total > 0 ? Math.round((mastered / total) * 100) : 0;
+    return { total, mastered, gaps, pending, percentage };
+  }
+
+  function updateSkillMatrixProgressUI() {
+    const stats = computeSkillMatrixProgress();
+    const valEl = document.getElementById('statMatrixProgressVal');
+    const barEl = document.getElementById('statMatrixProgressBar');
+    const detEl = document.getElementById('statMatrixProgressDetail');
+    if (valEl) valEl.textContent = `${stats.percentage}%`;
+    if (barEl) {
+      barEl.style.width = `${stats.percentage}%`;
+      if (stats.percentage === 100) {
+        barEl.style.background = 'var(--chip-ok-border)';
+      } else if (stats.percentage > 0) {
+        barEl.style.background = 'linear-gradient(90deg, #38bdf8, #3fb950)';
+      } else {
+        barEl.style.background = 'transparent';
+      }
+    }
+    if (detEl) {
+      detEl.textContent = `${stats.mastered} of ${stats.total} Leaves Mastered${stats.gaps > 0 ? ' · ' + stats.gaps + ' Gap(s)' : ''}`;
+    }
+
+    const headerPill = document.getElementById('headerProgressPill');
+    if (headerPill) {
+      headerPill.textContent = `${stats.percentage}% Mastered (${stats.mastered}/${stats.total})`;
+      headerPill.className = `badge ${stats.percentage === 100 ? 'ok' : stats.percentage > 0 ? 'warn' : 'neutral'}`;
+    }
+  }
+
+  function cycleLeafStatus(stepId, rungNum, evt) {
+    if (evt) evt.stopPropagation();
+    const current = getLeafStatus(stepId, rungNum);
+    let nextStatus = 'MASTERED';
+    let nextDim = null;
+    if (current.status === 'PENDING') {
+      nextStatus = 'MASTERED';
+    } else if (current.status === 'MASTERED') {
+      nextStatus = 'GAP';
+      nextDim = 'CONCEPT';
+    } else if (current.status === 'GAP') {
+      nextStatus = 'PENDING';
+      nextDim = null;
+    }
+    state.leaf_progress[stepId] = { status: nextStatus, dimension: nextDim };
+    saveLocalStorageState();
+    renderMultiResolutionCards();
+    updateSkillMatrixProgressUI();
+  }
+
+  function toggleLeafDimension(stepId, rungNum, dim, evt) {
+    if (evt) evt.stopPropagation();
+    const current = getLeafStatus(stepId, rungNum);
+    if (current.status === 'GAP' && current.dimension === dim) {
+      state.leaf_progress[stepId] = { status: 'PENDING', dimension: null };
+    } else {
+      state.leaf_progress[stepId] = { status: 'GAP', dimension: dim };
+    }
+    saveLocalStorageState();
+    renderMultiResolutionCards();
+    updateSkillMatrixProgressUI();
+  }
+
+  function markRungAll(rungNum, targetStatus, evt) {
+    if (evt) evt.stopPropagation();
+    const rung = (state.matrix.rungs || []).find(r => r.rung === rungNum);
+    if (!rung || !rung.microtopic || !Array.isArray(rung.microtopic.teaching_path)) return;
+    rung.microtopic.teaching_path.forEach(step => {
+      state.leaf_progress[step.id] = { status: targetStatus, dimension: null };
+    });
+    saveLocalStorageState();
+    renderMultiResolutionCards();
+    updateSkillMatrixProgressUI();
+  }
+
+  function markAllLeaves(targetStatus) {
+    (state.matrix.rungs || []).forEach(r => {
+      if (r.microtopic && Array.isArray(r.microtopic.teaching_path)) {
+        r.microtopic.teaching_path.forEach(step => {
+          state.leaf_progress[step.id] = { status: targetStatus, dimension: null };
+        });
+      }
+    });
+    saveLocalStorageState();
+    renderMultiResolutionCards();
+    updateSkillMatrixProgressUI();
+  }
+
+  function syncKnowledgeToSkillProgress() {
+    const stats = computeSkillMatrixProgress();
+    state.knowledge_percentage = stats.percentage;
+    saveLocalStorageState();
+    renderInputDrawer();
+    renderProgressionLane();
+    renderMultiResolutionCards();
+    renderNeedMap();
+    renderCoreBuilder();
+    updateStorageStatusBadge(`⚡ Synced Knowledge Estimate to ${stats.percentage}%`);
+  }
+
   // --- Header Renderer ---
   function renderHeader() {
     const m = state.matrix;
@@ -290,6 +429,9 @@
     const qCount = rungs.reduce((acc, r) => acc + (r.questions ? r.questions.length : 0), 0);
     const qStat = document.getElementById('statQuestionCount');
     if (qStat) qStat.textContent = `${qCount} Canonical Items`;
+
+    // Update Skill Matrix Progress in Summary Strip
+    updateSkillMatrixProgressUI();
   }
 
   // --- Input Drawer Renderer (GAP-WEB-002, GAP-WEB-003, GAP-WEB-004) ---
@@ -485,9 +627,35 @@
       const micro = r.microtopic || {};
       const tpath = micro.teaching_path || [];
 
+      // Rung-level mastery statistics
+      const rungTotal = tpath.length;
+      let rungMastered = 0;
+      let rungGaps = 0;
+      tpath.forEach(step => {
+        const st = getLeafStatus(step.id, r.rung);
+        if (st.status === 'MASTERED') rungMastered++;
+        else if (st.status === 'GAP') rungGaps++;
+      });
+      const rungPct = rungTotal > 0 ? Math.round((rungMastered / rungTotal) * 100) : 0;
+
       // Level 2 & 3: Semantic Leaves & Diagnostic Dimension Cells
       let semanticLeavesHtml = tpath.map((step, idx) => {
         const stepTarget = resolved.targets.find(t => t.rung === r.rung && t.repair_ref === step.id);
+        const leafSt = getLeafStatus(step.id, r.rung);
+
+        let toggleClass = 'outline';
+        let toggleIcon = '○';
+        let toggleText = 'Pending';
+        if (leafSt.status === 'MASTERED') {
+          toggleClass = 'ok';
+          toggleIcon = '✓';
+          toggleText = 'Mastered';
+        } else if (leafSt.status === 'GAP') {
+          toggleClass = 'hold';
+          toggleIcon = '⚠';
+          toggleText = 'Gap Detected';
+        }
+
         const stepActivities = (r.activities || []).filter(act => activityMatchesStep(act, step.id));
         const stepActivitiesHtml = stepActivities.map(act => {
           const gcdr = act.support_route && act.support_route.kind === 'GCDR';
@@ -523,26 +691,35 @@
         // Level 3 Dimensions
         const dimensions = ['CONCEPT', 'SETUP', 'EXECUTION', 'CARELESS', 'UNKNOWN'];
         const dimCellsHtml = dimensions.map(dim => {
-          const isCurrentDim = stepTarget && stepTarget.error_stage === dim;
-          let cellStyle = "padding: 3px 6px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--border);";
+          const isCurrentDim = (leafSt.status === 'GAP' && leafSt.dimension === dim) ||
+                               (stepTarget && stepTarget.error_stage === dim);
+          let cellStyle = "padding: 3px 8px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s ease;";
           if (isCurrentDim) {
             cellStyle += " background: var(--chip-hold-bg); border-color: var(--chip-hold-border); color: var(--chip-hold-text); font-weight: 700;";
           } else {
             cellStyle += " background: var(--bg); color: var(--text-muted);";
           }
-          const scoreText = isCurrentDim && stepTarget.score !== null ? ` (${stepTarget.score}%)` : '';
-          return `<span style="${cellStyle}">${dim}${scoreText}</span>`;
+          const scoreText = (isCurrentDim && stepTarget && stepTarget.score !== null) ? ` (${stepTarget.score}%)` : '';
+          return `<button type="button" onclick="window.ATLAS.toggleLeafDimension('${step.id}', '${r.rung}', '${dim}', event)" style="${cellStyle}" title="Toggle ${dim} diagnostic dimension for ${step.id}">${dim}${scoreText}</button>`;
         }).join(' ');
 
         return `
-          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px;">
+          <div style="background: var(--bg-card); border: 1px solid ${leafSt.status === 'MASTERED' ? 'rgba(63, 185, 80, 0.4)' : leafSt.status === 'GAP' ? 'rgba(218, 54, 51, 0.4)' : 'var(--border)'}; border-radius: 6px; padding: 10px; margin-bottom: 8px; transition: border-color 0.2s;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="badge phy" style="font-weight: 700;">Leaf ${r.rung}.${idx}</span>
-                <code style="color: var(--accent);">${step.id}</code>
+                <code style="color: var(--accent); font-weight: 600;">${step.id}</code>
                 <span style="font-size: 12px; font-weight: 600;">${step.action}</span>
               </div>
-              <span class="badge neutral">${step.role || 'TRANSFORM'}</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button type="button" class="btn ${toggleClass}"
+                        onclick="window.ATLAS.cycleLeafStatus('${step.id}', '${r.rung}', event)"
+                        style="padding: 3px 8px; font-size: 11px; font-weight: 700; border-radius: 4px;"
+                        title="Click to cycle: Pending → Mastered → Gap Detected">
+                  ${toggleIcon} ${toggleText}
+                </button>
+                <span class="badge neutral">${step.role || 'TRANSFORM'}</span>
+              </div>
             </div>
             <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5;">
               <strong>Validity Rationale:</strong> ${step.why_valid}
@@ -630,6 +807,9 @@
             </div>
             <div class="summary-right">
               ${target && state.overlay_active ? `<span class="badge ${target.result === 'MISSING' ? 'hold' : 'warn'}">${target.address} ${target.result}</span>` : ''}
+              <span class="badge ${rungPct === 100 ? 'ok' : rungPct > 0 ? 'warn' : 'neutral'}" title="Rung Mastery: ${rungMastered} of ${rungTotal} leaves mastered">
+                ${rungMastered}/${rungTotal} (${rungPct}%)
+              </span>
               <span class="badge ${isDef ? 'ok' : 'purple'}">${isDef ? 'Default Lane' : 'Branch Extension'}</span>
               <span class="badge ${micro.intrinsic_badge === 'HARD' ? 'hold' : 'warn'}">${micro.intrinsic_badge || 'MEDIUM'}</span>
               <span style="color: var(--text-dim); font-size: 12px;">Pos: ${r.ladder_position}</span>
@@ -659,9 +839,21 @@
 
             <!-- Level 2 & 3: Semantic Leaves & Diagnostic Matrix -->
             <div style="margin: 12px 0;">
-              <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--accent);">
-                🌿 Level 2 Semantic Leaves & Level 3 Diagnostic Cells:
-              </h4>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <h4 style="font-size: 13px; font-weight: 700; color: var(--accent); margin: 0;">
+                  🌿 Level 2 Semantic Leaves &amp; Level 3 Diagnostic Cells:
+                </h4>
+                <div style="display: flex; gap: 6px;">
+                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
+                          onclick="window.ATLAS.markRungAll('${r.rung}', 'MASTERED', event)" title="Mark all leaves in ${r.rung} as mastered">
+                    ✓ Mark Rung Mastered
+                  </button>
+                  <button type="button" class="btn outline" style="font-size: 10.5px; padding: 2px 8px;"
+                          onclick="window.ATLAS.markRungAll('${r.rung}', 'PENDING', event)" title="Reset leaves in ${r.rung} to pending">
+                    ↺ Reset Rung
+                  </button>
+                </div>
+              </div>
               ${semanticLeavesHtml || '<p style="font-size: 12px; color: var(--text-muted);">No distinct teaching-path steps recorded.</p>'}
             </div>
 
@@ -690,8 +882,15 @@
                 ${micro.exit_task ? `
                   <div class="block-subcard">
                     <div class="subcard-heading">🏁 Exit Task & Criterion</div>
-                    <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">${micro.exit_task.task || ''}</div>
-                    <div class="quote-box repair" style="font-size: 12px;"><strong>Success:</strong> ${micro.exit_task.success_criterion || ''}</div>
+                    ${(micro.exit_task.task || micro.exit_task.prompt) ? `<div style="font-size: 13px; font-weight: 600; margin-bottom: 6px; line-height: 1.5;">${micro.exit_task.task || micro.exit_task.prompt}</div>` : ''}
+                    <div class="quote-box repair" style="font-size: 12px; line-height: 1.5;">
+                      <strong>Success:</strong> ${
+                        micro.exit_task.success_criterion ||
+                        (micro.exit_task.answer && (micro.exit_task.answer.summary || (typeof micro.exit_task.answer === 'string' ? micro.exit_task.answer : ''))) ||
+                        cap.success_criterion ||
+                        'Complete task demonstrating criterion.'
+                      }
+                    </div>
                   </div>
                 ` : ''}
                 ${activitiesHtml}
@@ -701,6 +900,8 @@
         </details>
       `;
     }).join('');
+
+    updateSkillMatrixProgressUI();
   }
 
   // --- Need Map Renderer (GAP-WEB-010) ---
@@ -1057,7 +1258,8 @@
       exported_at: new Date().toISOString(),
       provenance: "HISTORICAL_IMPORT",
       evidence_kind: "PRIOR_DIAGNOSTIC",
-      rows: state.diagnostic_rows
+      rows: state.diagnostic_rows,
+      leaf_progress: state.leaf_progress
     };
 
     downloadJSON(envelope, `diagnostic_gap_envelope_${m.matrix_id}.json`);
@@ -1083,6 +1285,12 @@
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     },
+    cycleLeafStatus: cycleLeafStatus,
+    toggleLeafDimension: toggleLeafDimension,
+    markRungAll: markRungAll,
+    markAllLeaves: markAllLeaves,
+    syncKnowledgeToSkillProgress: syncKnowledgeToSkillProgress,
+    computeSkillMatrixProgress: computeSkillMatrixProgress,
     setKnowledgeSlider: function(val) {
       const num = parseInt(val, 10);
       state.knowledge_percentage = isNaN(num) ? null : num;
@@ -1159,6 +1367,14 @@
         score: [25, 20, 40][idx] || 30,
         observed: "Demo gap generated from the active matrix for Topic Atlas routing validation."
       }));
+      // Sync into leaf_progress
+      eligible.forEach((rung, idx) => {
+        const stepId = rung.microtopic.teaching_path[0].id;
+        state.leaf_progress[stepId] = {
+          status: "GAP",
+          dimension: idx === 2 ? "SETUP" : "CONCEPT"
+        };
+      });
       state.validation_report = {
         accepted: state.diagnostic_rows,
         rejected: [],
@@ -1177,6 +1393,7 @@
       localStorage.removeItem(getStorageKey());
       state.knowledge_percentage = null;
       state.diagnostic_rows = [];
+      state.leaf_progress = {};
       state.validation_report = null;
       state.overlay_active = true;
       state.request_config = {

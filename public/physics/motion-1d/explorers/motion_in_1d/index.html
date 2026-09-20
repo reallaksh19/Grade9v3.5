@@ -1,0 +1,2697 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IIT-JEE Motion in One Dimension · Master Suite & Question Hub</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- KaTeX for crisp mathematical typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+  <!-- High-Yield Question Bank -->
+  <script src="jee_questions_data.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#090d16',
+            card: '#111827',
+            border: '#1f293d',
+            primary: '#38bdf8',
+            accent: '#f59e0b',
+            success: '#10b981',
+            danger: '#ef4444'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict Canvas Immunitization (Zero Blowout on High DPI / Sliders) */
+    canvas {
+      contain: paint;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block;
+    }
+    .canvas-container {
+      position: relative;
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+    }
+    
+    /* Touch Target & Tablet Optimization */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f293d;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+
+    /* Slider Flash Animation */
+    @keyframes sliderFlash {
+      0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8); }
+      50% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0.4); }
+      100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+    .slider-highlight {
+      animation: sliderFlash 1.5s ease-out 2;
+      border-color: #38bdf8 !important;
+    }
+
+    .tab-btn-active {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-bottom: 2px solid #38bdf8;
+    }
+    .tab-btn-inactive {
+      color: #94a3b8;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn-inactive:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+<body class="bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-sky-500/30">
+
+  <!-- TOP APP BAR -->
+  <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-border px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="/physics/index.html" class="p-2 rounded-lg bg-slate-900 border border-border hover:border-sky-500/50 text-slate-300 hover:text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">
+              IIT-JEE Mechanics · 1D Invariant Rig
+            </span>
+            <span class="text-xs text-slate-400 font-mono">18 audited diagnostics · live corpus 123 PYQs</span>
+          </div>
+          <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
+            Motion in One Dimension &middot; Master Suite
+          </h1>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="switchTab('tab-quiz')" class="touch-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600/30 to-indigo-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 text-xs font-bold transition flex items-center gap-2">
+          <span>📚</span>
+          <span>IIT-JEE Question Hub</span>
+          <span class="px-1.5 py-0.2 rounded bg-purple-500/30 text-[10px] font-mono text-purple-300" id="headerQCount">18 Qs</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION (8 Tabs - Tablet Optimized Horizontal Scroll) -->
+    <div class="max-w-7xl mx-auto mt-2 overflow-x-auto no-scrollbar flex items-center gap-1 text-xs font-semibold border-t border-border/50 pt-1">
+      <button onclick="switchTab('tab-disp-dist')" id="btn-tab-disp-dist" class="tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        1. Disp vs Distance
+      </button>
+      <button onclick="switchTab('tab-balloon')" id="btn-tab-balloon" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        2. Balloon Platform
+      </button>
+      <button onclick="switchTab('tab-graph-vx')" id="btn-tab-graph-vx" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        3. v-x → a-x Calculus
+      </button>
+      <button onclick="switchTab('tab-drops')" id="btn-tab-drops" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        4. Stroboscopic Drops
+      </button>
+      <button onclick="switchTab('tab-braking')" id="btn-tab-braking" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        5. Multi-Phase Braking
+      </button>
+      <button onclick="switchTab('tab-relative')" id="btn-tab-relative" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap">
+        6. 1D Relative Pursuit
+      </button>
+      <button onclick="switchTab('tab-sandbox')" id="btn-tab-sandbox" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-amber-300/80">
+        <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[9px] font-bold text-amber-400">Draft</span>
+        <span>7. Master Sandbox</span>
+      </button>
+      <button onclick="switchTab('tab-quiz')" id="btn-tab-quiz" class="tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap flex items-center gap-1.5 text-purple-300">
+        <span>⭐ 8. IIT-JEE Diagnostic Hub</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+    <!-- FLOATING QUESTION SIMULATION TOAST -->
+    <div id="simToast" class="hidden fixed bottom-6 right-6 z-50 max-w-md bg-slate-900/95 border border-sky-500/60 rounded-xl p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 transition-all duration-300 transform translate-y-4">
+      <div class="text-2xl">🚀</div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold uppercase text-sky-400 font-mono" id="simToastTitle">Active Question Mode</span>
+          <button onclick="closeSimToast()" class="text-slate-400 hover:text-white text-xs">&times;</button>
+        </div>
+        <p class="text-xs text-slate-300 mt-1" id="simToastDesc">Parameters loaded from JEE Question.</p>
+        <div class="mt-2 text-[11px] font-mono text-amber-300 bg-black/40 px-2 py-1 rounded" id="simToastParams"></div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: DISPLACEMENT VS DISTANCE & TURNING POINT DECONSTRUCTION    -->
+    <!-- ================================================================= -->
+    <section id="tab-disp-dist" class="space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-400"></span>
+              <h2 class="font-bold text-base text-white">Displacement vs Distance · Odometer & Turning Point Engine</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Deconstructs the #1 JEE trap: <span class="text-sky-300 font-mono font-semibold">Distance S = ∫|v|dt</span> vs <span class="text-emerald-300 font-mono font-semibold">Displacement Δx = ∫v dt</span>. Observe velocity sign reversal!
+            </p>
+          </div>
+          <!-- G1/G2/G3 Toggle -->
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+            <button onclick="setDepth('disp-dist', 'G1')" id="btn-depth-disp-dist-G1" class="px-2.5 py-1 rounded font-semibold text-white bg-sky-600/40 border border-sky-500/50">G1: Phenomenon</button>
+            <button onclick="setDepth('disp-dist', 'G2')" id="btn-depth-disp-dist-G2" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">G2: Mechanism</button>
+            <button onclick="setDepth('disp-dist', 'G3')" id="btn-depth-disp-dist-G3" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">G3: Invariants</button>
+          </div>
+        </div>
+
+        <!-- Active Sim Banner -->
+        <div id="banner-disp-dist" class="hidden my-3 p-2.5 bg-sky-950/40 border border-sky-500/40 rounded-xl text-xs flex items-center justify-between">
+          <span class="text-sky-300" id="banner-text-disp-dist">Simulating Question</span>
+          <button onclick="resetTabControls('disp-dist')" class="text-[10px] text-slate-400 hover:text-white underline">Reset Defaults</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Canvas Left Rig (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>1D PNEUMATIC TRACK &amp; ODOMETER</span>
+                <span id="dispLiveClock">t = 0.00 s</span>
+              </div>
+              <canvas id="canvasDispTrack" height="180"></canvas>
+            </div>
+
+            <!-- Synchronized v-t Graph with Signed Area Strips -->
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>v(t) PHASE ACCUMULATION (GREEN = POSITIVE AREA, RED = NEGATIVE AREA)</span>
+                <span id="dispLiveVel">v = +12.0 m/s</span>
+              </div>
+              <canvas id="canvasDispGraph" height="180"></canvas>
+            </div>
+
+            <!-- Playback & Scrub Bar -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnDispPlay" onclick="toggleDispPlay()" class="touch-target px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="dispPlayIcon">▶</span> <span id="dispPlayText">Play Motion</span>
+              </button>
+              <button onclick="resetDispSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+              <div class="flex-1 flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Time Scrub:</span>
+                <input type="range" id="sliderDispTime" min="0" max="10" step="0.05" value="0" oninput="scrubDispTime(this.value)" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls & Mathematical Telemetry (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <!-- Telemetry Cards -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Real-Time Invariants</h3>
+              
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="bg-black/30 p-2.5 rounded-lg border border-border">
+                  <span class="text-slate-400 block text-[10px]">Displacement Δx</span>
+                  <span id="telemetryDisp" class="font-mono text-base font-bold text-emerald-400">+0.00 m</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded-lg border border-border">
+                  <span class="text-slate-400 block text-[10px]">Total Distance S</span>
+                  <span id="telemetryDist" class="font-mono text-base font-bold text-sky-400">0.00 m</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded-lg border border-border">
+                  <span class="text-slate-400 block text-[10px]">Instantaneous v</span>
+                  <span id="telemetryV" class="font-mono text-base font-bold text-amber-400">+12.00 m/s</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded-lg border border-border">
+                  <span class="text-slate-400 block text-[10px]">Average Velocity</span>
+                  <span id="telemetryVavg" class="font-mono text-base font-bold text-purple-400">0.00 m/s</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-[11px] text-slate-300">
+                <span class="font-bold text-sky-400 block mb-0.5">💡 Mathematical Invariant:</span>
+                Distance is always ≥ |Displacement|:
+                <span class="font-mono text-white block mt-1">S = ∫ |v(t)| dt ≥ |∫ v(t) dt| = |Δx|</span>
+                Equality holds <em>if and only if</em> velocity does not reverse sign!
+              </div>
+            </div>
+
+            <!-- Interactive Parameters -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Kinematic Law Controls</h3>
+              
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Initial Velocity (v₀):</span>
+                  <span id="valDispV0" class="font-mono text-sky-400 font-bold">+12 m/s</span>
+                </div>
+                <input type="range" id="sliderDispV0" min="-20" max="25" step="1" value="12" oninput="updateDispParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Constant Acceleration (a):</span>
+                  <span id="valDispA" class="font-mono text-amber-400 font-bold">-4.0 m/s²</span>
+                </div>
+                <input type="range" id="sliderDispA" min="-10" max="10" step="0.5" value="-4" oninput="updateDispParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+
+              <div class="p-2 bg-black/40 rounded border border-border text-[11px] font-mono text-slate-300">
+                <div>Turning Point (v = 0): <span id="dispTurnCalc" class="text-amber-400 font-bold">t = 3.00 s</span></div>
+                <div>Max Distance Forward: <span id="dispMaxX" class="text-emerald-400 font-bold">x = +18.0 m</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: MOVING PLATFORM INHERITANCE (RISING BALLOON & STONE DROP)  -->
+    <!-- ================================================================= -->
+    <section id="tab-balloon" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <h2 class="font-bold text-base text-white">Moving Platform Inheritance · Rising Balloon &amp; Stone Ejection</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Grounded on <span class="text-amber-300 font-semibold">JEE Main 2026 (8th April Evening)</span>: A stone released from a rising vehicle inherits the vehicle's instantaneous velocity <span class="font-mono text-sky-400">u_stone = +v_balloon</span>, NOT zero!
+            </p>
+          </div>
+          <!-- Dual-Mode Comparative Toggle -->
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+            <button onclick="setBalloonMode('correct')" id="btnBalloonCorrect" class="px-2.5 py-1 rounded font-semibold text-white bg-emerald-600/40 border border-emerald-500/50">Physics Reality (u = +v)</button>
+            <button onclick="setBalloonMode('fallacy')" id="btnBalloonFallacy" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">Exam Fallacy (u = 0)</button>
+          </div>
+        </div>
+
+        <!-- Active Sim Banner -->
+        <div id="banner-balloon" class="hidden my-3 p-2.5 bg-amber-950/40 border border-amber-500/40 rounded-xl text-xs flex items-center justify-between">
+          <span class="text-amber-300" id="banner-text-balloon">Simulating Question</span>
+          <button onclick="resetTabControls('balloon')" class="text-[10px] text-slate-400 hover:text-white underline">Reset Defaults</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Canvas Rig (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>VERTICAL ELEVATION RIG &middot; BALLOON vs EJECTED STONE</span>
+                <span id="balloonClock">t = 0.00 s</span>
+              </div>
+              <canvas id="canvasBalloon" height="360"></canvas>
+            </div>
+
+            <!-- Controls Bar -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnBalloonPlay" onclick="toggleBalloonPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="balloonPlayIcon">▶</span> <span id="balloonPlayText">Release &amp; Track</span>
+              </button>
+              <button onclick="resetBalloonSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+              <div class="flex-1 flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Time Scrub:</span>
+                <input type="range" id="sliderBalloonTime" min="0" max="8" step="0.05" value="0" oninput="scrubBalloonTime(this.value)" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Theoretical Telemetry & Solvers (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Live Heights &amp; Velocities</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between items-center bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-300">Balloon Height:</span>
+                  <span id="telemetryBalloonH" class="font-mono text-amber-400 font-bold">75.0 m</span>
+                </div>
+                <div class="flex justify-between items-center bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-300">Stone Height:</span>
+                  <span id="telemetryStoneH" class="font-mono text-sky-400 font-bold">75.0 m</span>
+                </div>
+                <div class="flex justify-between items-center bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-300">Stone Velocity:</span>
+                  <span id="telemetryStoneV" class="font-mono text-emerald-400 font-bold">+10.0 m/s</span>
+                </div>
+                <div class="flex justify-between items-center bg-black/30 p-2.5 rounded border border-border">
+                  <span class="text-slate-300">Stone Ground Landing:</span>
+                  <span id="telemetryStoneLanding" class="font-mono text-purple-400 font-bold">t = 5.00 s</span>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+                <span class="font-bold text-amber-400 block">JEE Main 2026 Analytical Solution:</span>
+                <div>Quadratic: <span class="font-mono text-white">y(t) = 75 + 10t - 5t² = 0</span></div>
+                <div>Roots: <span class="font-mono text-white">(t - 5)(t + 3) = 0 ⇒ t = 5.0 s</span></div>
+                <div>Balloon at t=5s: <span class="font-mono text-amber-300 font-bold">75 + 10(5) = 125 m</span></div>
+              </div>
+            </div>
+
+            <!-- Parameter Sliders -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-4">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Launch Parameters</h3>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Release Height (h₀):</span>
+                  <span id="valBalloonH" class="font-mono text-amber-400 font-bold">75 m</span>
+                </div>
+                <input type="range" id="sliderBalloonH" min="20" max="120" step="5" value="75" oninput="updateBalloonParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Balloon Ascent Speed (v_b):</span>
+                  <span id="valBalloonV" class="font-mono text-sky-400 font-bold">10 m/s</span>
+                </div>
+                <input type="range" id="sliderBalloonV" min="0" max="30" step="1" value="10" oninput="updateBalloonParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Gravity (g):</span>
+                  <span id="valBalloonG" class="font-mono text-red-400 font-bold">10 m/s²</span>
+                </div>
+                <input type="range" id="sliderBalloonG" min="8" max="12" step="0.2" value="10" oninput="updateBalloonParams()" class="w-full accent-red-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: GRAPH TRANSFORMS (v-x -> a-x CALCULUS ENGINE)              -->
+    <!-- ================================================================= -->
+    <section id="tab-graph-vx" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h2 class="font-bold text-base text-white">Graph Transformations · v-x to a-x Spatial Calculus Rig</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Based on <span class="text-emerald-300 font-semibold">JEE Main 2026 (24th Jan)</span>: Transforming non-standard kinematic curves using <span class="font-mono text-emerald-400 font-semibold">a = v (dv/dx)</span>.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            Differential Identity: a = v &times; (dv/dx)
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Dual Graphs Left (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- v-x Graph -->
+              <div class="canvas-container bg-slate-950 border border-border p-2">
+                <div class="flex items-center justify-between px-2 py-1 text-[11px] font-mono text-slate-400 border-b border-border/50">
+                  <span class="text-sky-400 font-bold">1. v-x CURVE (INPUT)</span>
+                  <span id="vxTangentVal">dv/dx = -1.50</span>
+                </div>
+                <canvas id="canvasVx" height="220"></canvas>
+              </div>
+
+              <!-- Derived a-x Graph -->
+              <div class="canvas-container bg-slate-950 border border-border p-2">
+                <div class="flex items-center justify-between px-2 py-1 text-[11px] font-mono text-slate-400 border-b border-border/50">
+                  <span class="text-emerald-400 font-bold">2. a-x CURVE (DERIVED)</span>
+                  <span id="axSlopeVal">Slope = +2.25</span>
+                </div>
+                <canvas id="canvasAx" height="220"></canvas>
+              </div>
+            </div>
+
+            <!-- Interactive Position Probe Scrubber -->
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-border space-y-2">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-300 font-semibold">Probe Position x:</span>
+                <span id="probeXVal" class="font-mono text-sky-400 font-bold">x = 4.00 m</span>
+              </div>
+              <input type="range" id="sliderProbeX" min="0" max="10" step="0.1" value="4" oninput="updateVxProbe(this.value)" class="w-full accent-emerald-400 cursor-pointer">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
+                <span>At x = 4.0 m: v = +9.00 m/s</span>
+                <span>dv/dx = -1.50 s⁻¹</span>
+                <span class="text-emerald-400 font-bold">a = 9.0 &times; (-1.5) = -13.50 m/s²</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls & Cognitive Breakdown (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Curve Profile Selection</h3>
+              
+              <div class="grid grid-cols-1 gap-2">
+                <button onclick="setVxProfile('linear_down')" id="btnVxLinearDown" class="text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-xs font-semibold text-sky-200">
+                  A. Linear Line (Negative Slope)
+                  <span class="block text-[10px] font-normal text-slate-400">v = -mx + v₀ ⇒ a = m²x - mv₀ (Positive Slope a-x)</span>
+                </button>
+                <button onclick="setVxProfile('parabola')" id="btnVxParabola" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600">
+                  B. Parabolic Curve
+                  <span class="block text-[10px] font-normal text-slate-400">v² = v₀²(1-x/x₀) ⇒ constant negative acceleration</span>
+                </button>
+                <button onclick="setVxProfile('circle')" id="btnVxCircle" class="text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600">
+                  C. Elliptic Quarter-Circle
+                  <span class="block text-[10px] font-normal text-slate-400">v²/v₀² + x²/x₀² = 1 ⇒ a = -(v₀²/x₀²) x (SHM law)</span>
+                </button>
+              </div>
+
+              <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-slate-300 space-y-1.5">
+                <span class="font-bold text-emerald-400 block">The Cognitive Conflict:</span>
+                <p>When students see a downward line in <span class="text-white font-mono">v-x</span>, they reflexively pick a downward line in <span class="text-white font-mono">a-x</span>.</p>
+                <p class="text-amber-300">
+                  Proof of Trap: <span class="font-mono">a = v(x) · v'(x) = (-mx + v₀)(-m) = +m² x - m v₀</span>.
+                  The slope of a-x is <span class="font-mono font-bold">+m² &gt; 0</span> (strictly POSITIVE)!
+                </p>
+              </div>
+            </div>
+
+            <!-- Numerical Parameters -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Initial Velocity v₀:</span>
+                  <span id="vxV0Val" class="font-mono text-sky-400 font-bold">15 m/s</span>
+                </div>
+                <input type="range" id="sliderVxV0" min="5" max="30" step="1" value="15" oninput="updateVxParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Stopping Displacement x₀:</span>
+                  <span id="vxX0Val" class="font-mono text-emerald-400 font-bold">10 m</span>
+                </div>
+                <input type="range" id="sliderVxX0" min="4" max="40" step="1" value="10" oninput="updateVxParams()" class="w-full accent-emerald-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: STROBOSCOPIC WATER DROPS (GALILEO'S RATIOS)                -->
+    <!-- ================================================================= -->
+    <section id="tab-drops" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+              <h2 class="font-bold text-base text-white">Stroboscopic Spacing · Galileo's Odd-Number Invariant</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Based on <span class="text-cyan-300 font-semibold">JEE Main 2026 (28th Jan Morning)</span>: Water drops falling from a tap 5 m high. Fall distance <span class="font-mono text-cyan-400 font-semibold">s ∝ t²</span> vs interval gap <span class="font-mono text-amber-400 font-semibold">Δs ∝ 1:3:5:7:9</span>.
+            </p>
+          </div>
+          <button onclick="freezeTapStrobe()" id="btnTapFreeze" class="px-3 py-1.5 rounded-lg bg-cyan-600/30 border border-cyan-500/40 text-cyan-200 text-xs font-bold hover:bg-cyan-600/50 transition">
+            📸 Freeze-Frame Flash
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Drops Canvas Left (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>STROBOSCOPIC TUBE &middot; 6 CONSECUTIVE DROPS IN FLIGHT</span>
+                <span id="dropsLiveStatus">Flow Active</span>
+              </div>
+              <canvas id="canvasDrops" height="360"></canvas>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnDropsPlay" onclick="toggleDropsPlay()" class="touch-target px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="dropsPlayIcon">⏸</span> <span id="dropsPlayText">Pause Tap</span>
+              </button>
+              <button onclick="resetDropsSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+              <div class="flex-1 flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Interval Scrub:</span>
+                <input type="range" id="sliderDropPhase" min="0" max="1" step="0.01" value="0" oninput="scrubDropPhase(this.value)" class="w-full accent-cyan-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Heights Breakdown & Galileo Ratios (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Instant When Drop 1 Hits Floor</h3>
+
+              <!-- Table of Heights for all 6 Drops -->
+              <div class="space-y-1 text-[11px] font-mono">
+                <div class="flex justify-between py-1 border-b border-border/50 text-slate-400 font-bold">
+                  <span>Drop #</span>
+                  <span>Time Falling</span>
+                  <span>Height from Floor</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-slate-300">
+                  <span>Drop 6 (Tap)</span>
+                  <span>0.00 s (0 Δt)</span>
+                  <span class="text-cyan-400 font-bold">5.00 m</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-slate-300">
+                  <span>Drop 5</span>
+                  <span>0.20 s (1 Δt)</span>
+                  <span class="text-cyan-400 font-bold">4.80 m</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-emerald-400 font-bold bg-emerald-500/10 px-1 rounded">
+                  <span>⭐ Drop 4 (JEE Target)</span>
+                  <span>0.40 s (2 Δt)</span>
+                  <span class="text-emerald-300 font-bold">4.20 m</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-slate-300">
+                  <span>Drop 3</span>
+                  <span>0.60 s (3 Δt)</span>
+                  <span class="text-cyan-400 font-bold">3.20 m</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-slate-300">
+                  <span>Drop 2</span>
+                  <span>0.80 s (4 Δt)</span>
+                  <span class="text-cyan-400 font-bold">1.80 m</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-slate-300">
+                  <span>Drop 1 (Floor)</span>
+                  <span>1.00 s (5 Δt)</span>
+                  <span class="text-red-400 font-bold">0.00 m</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+                <span class="font-bold text-cyan-400 block">Galileo's Ratios Verification:</span>
+                <div>Fallen Distances: <span class="font-mono text-white">0 : 1 : 4 : 9 : 16 : 25</span> units</div>
+                <div>Incremental Spacings: <span class="font-mono text-amber-400">1 : 3 : 5 : 7 : 9</span> units</div>
+                <div>Drop 4 fell <span class="font-mono text-emerald-300">4/25 × 5 m = 0.80 m</span></div>
+                <div>Height from floor = <span class="font-mono text-emerald-300 font-bold">5 - 0.80 = 4.20 m</span></div>
+              </div>
+            </div>
+
+            <!-- Parameters -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Tap Height (H):</span>
+                  <span id="tapHeightVal" class="font-mono text-cyan-400 font-bold">5.0 m</span>
+                </div>
+                <input type="range" id="sliderTapH" min="2" max="15" step="0.5" value="5" oninput="updateTapParams()" class="w-full accent-cyan-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Total Drops in Interval:</span>
+                  <span id="tapDropsCountVal" class="font-mono text-amber-400 font-bold">6 Drops</span>
+                </div>
+                <input type="range" id="sliderTapCount" min="3" max="8" step="1" value="6" oninput="updateTapParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: MULTI-PHASE BRAKING (PARATROOPER & PIECEWISE MOTION)       -->
+    <!-- ================================================================= -->
+    <section id="tab-braking" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <h2 class="font-bold text-base text-white">Multi-Phase Braking · Paratrooper &amp; Piecewise Boundary Matcher</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Grounded on <span class="text-red-300 font-semibold">JEE Main 2025 (4th April)</span>: Free-fall phase transitions to parachute braking phase. Continuity of state vector <span class="font-mono text-red-400 font-semibold">[y, v]</span> at boundary!
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded border border-border">
+            State Boundary: v₁² = 2gh₁ &amp; v₂² = v₁² - 2ah₂
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Canvas Left (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>PARATROOPER DESCENT (BLUE: FREE FALL, ORANGE: PARACHUTE BRAKING)</span>
+                <span id="paratrooperClock">t = 0.00 s</span>
+              </div>
+              <canvas id="canvasBraking" height="340"></canvas>
+            </div>
+
+            <!-- Controls Bar -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnBrakingPlay" onclick="toggleBrakingPlay()" class="touch-target px-4 py-2 bg-red-500 hover:bg-red-400 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="brakingPlayIcon">▶</span> <span id="brakingPlayText">Drop Paratrooper</span>
+              </button>
+              <button onclick="resetBrakingSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+              <div class="flex-1 flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Scrub Time:</span>
+                <input type="range" id="sliderBrakingTime" min="0" max="20" step="0.1" value="0" oninput="scrubBrakingTime(this.value)" class="w-full accent-red-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemetry & Calculus (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Piecewise State Vectors</h3>
+
+              <div class="space-y-2 text-xs">
+                <div class="bg-black/30 p-2.5 rounded border border-border">
+                  <div class="text-sky-400 font-bold text-[11px]">Phase 1: Free Fall (h₁ = 50 m)</div>
+                  <div class="flex justify-between text-slate-300 mt-1">
+                    <span>Opening Velocity v₁:</span>
+                    <span id="telParaV1" class="font-mono font-bold text-sky-300">31.3 m/s</span>
+                  </div>
+                </div>
+
+                <div class="bg-black/30 p-2.5 rounded border border-border">
+                  <div class="text-amber-400 font-bold text-[11px]">Phase 2: Deceleration (a = 2.0 m/s²)</div>
+                  <div class="flex justify-between text-slate-300 mt-1">
+                    <span>Braking Drop h₂:</span>
+                    <span id="telParaH2" class="font-mono font-bold text-amber-300">242.8 m</span>
+                  </div>
+                  <div class="flex justify-between text-slate-300 mt-1">
+                    <span>Landing Speed v_land:</span>
+                    <span id="telParaVland" class="font-mono font-bold text-emerald-300">3.0 m/s</span>
+                  </div>
+                </div>
+
+                <div class="bg-red-500/10 p-2.5 rounded border border-red-500/30">
+                  <div class="flex justify-between text-white font-bold">
+                    <span>Total Bailout Height H:</span>
+                    <span id="telParaHtotal" class="font-mono text-red-400 text-sm">292.8 m ≈ 293 m</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-slate-800 rounded border border-border text-[11px] text-slate-300">
+                <span class="text-red-300 font-bold">JEE Mathematical Oracle:</span>
+                <div>v₁² = 2 &times; 9.8 &times; 50 = 980 (m/s)²</div>
+                <div>3² = 980 - 2(2) h₂ ⇒ 4 h₂ = 971 ⇒ h₂ = 242.75 m</div>
+                <div>H = 50 + 242.75 = <span class="text-emerald-400 font-bold font-mono">292.75 m</span></div>
+              </div>
+            </div>
+
+            <!-- Param Sliders -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Free Fall Distance (h₁):</span>
+                  <span id="paraH1Val" class="font-mono text-sky-400 font-bold">50 m</span>
+                </div>
+                <input type="range" id="sliderParaH1" min="10" max="100" step="5" value="50" oninput="updateParaParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Chute Deceleration (a):</span>
+                  <span id="paraAVal" class="font-mono text-amber-400 font-bold">2.0 m/s²</span>
+                </div>
+                <input type="range" id="sliderParaA" min="1" max="5" step="0.2" value="2.0" oninput="updateParaParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Touchdown Speed (v_land):</span>
+                  <span id="paraVlandVal" class="font-mono text-emerald-400 font-bold">3.0 m/s</span>
+                </div>
+                <input type="range" id="sliderParaVland" min="1" max="10" step="0.5" value="3.0" oninput="updateParaParams()" class="w-full accent-emerald-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: 1D RELATIVE PURSUIT & COLLISION AVOIDANCE                  -->
+    <!-- ================================================================= -->
+    <section id="tab-relative" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">1D Relative Pursuit · Collinear Chases &amp; Crash Invariant</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Grounded on <span class="text-purple-300 font-semibold">JEE Main 2026 (4th April)</span>: Solving complex two-body motion effortlessly by shifting into the relative coordinate frame <span class="font-mono text-purple-400 font-semibold">x_rel, v_rel, a_rel</span>.
+            </p>
+          </div>
+          <!-- Frame Switcher -->
+          <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-border text-xs">
+            <button onclick="setRelativeFrame('ground')" id="btnFrameGround" class="px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50">Ground Frame</button>
+            <button onclick="setRelativeFrame('carA')" id="btnFrameCarA" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white">Car A Frame</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <!-- Canvas Left (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>TWO-CAR HIGHWAY PURSUIT RIG (CAR A PURSUING BRAKING CAR B)</span>
+                <span id="relLiveClock">t = 0.00 s</span>
+              </div>
+              <canvas id="canvasRelative" height="240"></canvas>
+            </div>
+
+            <!-- Relative Distance Bar -->
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>RELATIVE GAP x_B - x_A OVER TIME (OVERTAKE OCCURS AT GAP = 0)</span>
+                <span id="relLiveGap">Gap = +100.0 m</span>
+              </div>
+              <canvas id="canvasRelGap" height="150"></canvas>
+            </div>
+
+            <!-- Controls Bar -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnRelPlay" onclick="toggleRelPlay()" class="touch-target px-4 py-2 bg-purple-500 hover:bg-purple-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="relPlayIcon">▶</span> <span id="relPlayText">Start Chase</span>
+              </button>
+              <button onclick="resetRelSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+              <div class="flex-1 flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Scrub Time:</span>
+                <input type="range" id="sliderRelTime" min="0" max="15" step="0.1" value="0" oninput="scrubRelTime(this.value)" class="w-full accent-purple-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Theoretical Telemetry & Invariants (4 Cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Relative Frame Coordinates</h3>
+
+              <div class="space-y-2 text-xs font-mono">
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Car A Position x_A:</span>
+                  <span id="telRelXA" class="text-sky-400 font-bold">0.0 m</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Car B Position x_B:</span>
+                  <span id="telRelXB" class="text-amber-400 font-bold">100.0 m</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Separation Gap Δx:</span>
+                  <span id="telRelSep" class="text-emerald-400 font-bold">+100.0 m</span>
+                </div>
+                <div class="flex justify-between bg-black/30 p-2 rounded border border-border">
+                  <span class="text-slate-400">Relative Velocity v_rel:</span>
+                  <span id="telRelVrel" class="text-purple-400 font-bold">-10.0 m/s</span>
+                </div>
+              </div>
+
+              <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg text-[11px] text-slate-300 space-y-1">
+                <span class="font-bold text-purple-400 block">Relative Overtake Condition:</span>
+                <div>Equation: <span class="font-mono text-white">100 - 10t - 0.5 t² = 0</span></div>
+                <div>Quadratic Solution: <span class="font-mono text-white">t = -10 + 10√3 ≈ 7.32 s</span></div>
+                <div>Car B stops at: <span class="font-mono text-amber-300">t_stop = 10 / 1 = 10.0 s</span></div>
+                <div class="text-emerald-400 font-bold">Overtake happens at t = 7.32 s!</div>
+              </div>
+            </div>
+
+            <!-- Parameters -->
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Car A Speed (v_A):</span>
+                  <span id="relVAVal" class="font-mono text-sky-400 font-bold">20 m/s</span>
+                </div>
+                <input type="range" id="sliderRelVA" min="10" max="35" step="1" value="20" oninput="updateRelParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Car B Initial Speed (v_B):</span>
+                  <span id="relVBVal" class="font-mono text-amber-400 font-bold">10 m/s</span>
+                </div>
+                <input type="range" id="sliderRelVB" min="5" max="25" step="1" value="10" oninput="updateRelParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Initial Head Start (d₀):</span>
+                  <span id="relD0Val" class="font-mono text-emerald-400 font-bold">100 m</span>
+                </div>
+                <input type="range" id="sliderRelD0" min="20" max="200" step="10" value="100" oninput="updateRelParams()" class="w-full accent-emerald-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Car B Deceleration (a_B):</span>
+                  <span id="relABVal" class="font-mono text-red-400 font-bold">1.0 m/s²</span>
+                </div>
+                <input type="range" id="sliderRelAB" min="0.2" max="3.0" step="0.2" value="1.0" oninput="updateRelParams()" class="w-full accent-red-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 7: 1D MASTER SANDBOX (FREE-FORM LABORATORY - DRAFT / MOVED)   -->
+    <!-- ================================================================= -->
+    <section id="tab-sandbox" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div class="flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-xs border border-amber-500/30 uppercase tracking-wide">
+              Draft Sandbox
+            </span>
+            <h2 class="font-bold text-base text-white">1D Kinematic Master Sandbox · Arbitrary Particle Rig</h2>
+          </div>
+          <span class="text-xs text-slate-400 font-mono">Free-form experimentation laboratory</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4">
+          <div class="lg:col-span-8 space-y-4">
+            <div class="canvas-container bg-slate-950 border border-border p-2">
+              <div class="flex items-center justify-between px-3 py-1.5 border-b border-border/50 text-[11px] font-mono text-slate-400">
+                <span>FREE-FORM PARTICLE WITH SPRING/DRAG/CONSTANT FORCE FORCES</span>
+                <span id="sbClock">t = 0.00 s</span>
+              </div>
+              <canvas id="canvasSandbox" height="300"></canvas>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-border">
+              <button id="btnSbPlay" onclick="toggleSbPlay()" class="touch-target px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl font-bold text-xs flex items-center gap-1.5 transition">
+                <span id="sbPlayIcon">▶</span> <span id="sbPlayText">Run Sandbox</span>
+              </button>
+              <button onclick="resetSbSim()" class="touch-target px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-border transition">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-slate-900/80 border border-border rounded-xl p-4 space-y-3">
+              <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Sandbox Physical Controls</h3>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Initial Position (x₀):</span>
+                  <span id="sbX0Val" class="font-mono text-sky-400 font-bold">0 m</span>
+                </div>
+                <input type="range" id="sliderSbX0" min="-20" max="20" step="1" value="0" oninput="updateSbParams()" class="w-full accent-sky-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Initial Velocity (v₀):</span>
+                  <span id="sbV0Val" class="font-mono text-amber-400 font-bold">15 m/s</span>
+                </div>
+                <input type="range" id="sliderSbV0" min="-25" max="25" step="1" value="15" oninput="updateSbParams()" class="w-full accent-amber-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Constant Force / Accel (a₀):</span>
+                  <span id="sbA0Val" class="font-mono text-red-400 font-bold">-2.0 m/s²</span>
+                </div>
+                <input type="range" id="sliderSbA0" min="-10" max="10" step="0.5" value="-2.0" oninput="updateSbParams()" class="w-full accent-red-400 cursor-pointer">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-300">Air Drag Coefficient (k):</span>
+                  <span id="sbKVal" class="font-mono text-purple-400 font-bold">0.05</span>
+                </div>
+                <input type="range" id="sliderSbK" min="0" max="0.3" step="0.01" value="0.05" oninput="updateSbParams()" class="w-full accent-purple-400 cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 8: IIT-JEE DIAGNOSTIC QUESTION HUB (AUTHENTIC EXAMSIDE BANK)  -->
+    <!-- ================================================================= -->
+    <section id="tab-quiz" class="hidden space-y-6">
+      <div class="bg-card border border-border rounded-2xl p-5 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              18 audited diagnostics selected from the live ExamSIDE Motion-in-a-Straight-Line corpus (123 questions, 2002–2026). Simulator actions are explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
+            </p>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-64">
+            <input type="text" id="qSearchInput" oninput="filterQuestions()" placeholder="Search questions, years, concepts..." class="w-full bg-slate-900 border border-border rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <!-- Sub-Tab Category Filters -->
+        <div class="flex flex-wrap gap-2 pt-2 border-b border-border/50 pb-3 text-xs">
+          <button onclick="filterSubTab('all')" id="btnQFilterAll" class="px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold">
+            All (18)
+          </button>
+          <button onclick="filterSubTab(1)" id="btnQFilter1" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            1. Disp &amp; Distance
+          </button>
+          <button onclick="filterSubTab(2)" id="btnQFilter2" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            2. Kinematic Graphs
+          </button>
+          <button onclick="filterSubTab(3)" id="btnQFilter3" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            3. Vertical &amp; Balloons
+          </button>
+          <button onclick="filterSubTab(4)" id="btnQFilter4" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            4. Calculus &amp; Drag
+          </button>
+          <button onclick="filterSubTab(5)" id="btnQFilter5" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold">
+            5. 1D Relative Pursuit
+          </button>
+        </div>
+
+        <!-- Questions List Render Container -->
+        <div id="questionsContainer" class="space-y-4 pt-2">
+          <!-- Dynamically populated via renderQuestions() -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPTS & INTERACTIVE ENGINES -->
+  <script>
+    // =========================================================================
+    // GLOBAL STATE & TAB NAVIGATION
+    // =========================================================================
+    let currentTab = 'tab-disp-dist';
+    let currentDepth = { 'disp-dist': 'G1', 'balloon': 'G1' };
+    let currentSubTabFilter = 'all';
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      const tabs = ['tab-disp-dist', 'tab-balloon', 'tab-graph-vx', 'tab-drops', 'tab-braking', 'tab-relative', 'tab-sandbox', 'tab-quiz'];
+      
+      tabs.forEach(t => {
+        const el = document.getElementById(t);
+        const btn = document.getElementById(`btn-${t}`);
+        if (el) el.classList.toggle('hidden', t !== tabId);
+        if (btn) {
+          btn.className = (t === tabId) ? 'tab-btn-active px-3 py-2 rounded-t-lg transition whitespace-nowrap' : 'tab-btn-inactive px-3 py-2 rounded-t-lg transition whitespace-nowrap';
+        }
+      });
+
+      // Resize active canvas on tab switch
+      setTimeout(() => {
+        if (tabId === 'tab-disp-dist') { resizeDisp(); drawDisp(); }
+        else if (tabId === 'tab-balloon') { resizeBalloon(); drawBalloon(); }
+        else if (tabId === 'tab-graph-vx') { resizeVx(); drawVx(); }
+        else if (tabId === 'tab-drops') { resizeDrops(); drawDrops(); }
+        else if (tabId === 'tab-braking') { resizeBraking(); drawBraking(); }
+        else if (tabId === 'tab-relative') { resizeRel(); drawRel(); }
+        else if (tabId === 'tab-sandbox') { resizeSb(); drawSb(); }
+      }, 50);
+    }
+
+    function setDepth(tab, depth) {
+      currentDepth[tab] = depth;
+      ['G1', 'G2', 'G3'].forEach(d => {
+        const btn = document.getElementById(`btn-depth-${tab}-${d}`);
+        if (btn) {
+          if (d === depth) {
+            btn.className = 'px-2.5 py-1 rounded font-semibold text-white bg-sky-600/40 border border-sky-500/50';
+          } else {
+            btn.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+          }
+        }
+      });
+      if (tab === 'disp-dist') drawDisp();
+    }
+
+    // Helper: Canvas High-DPI setup that NEVER causes layout blowouts
+    function setupCanvas(canvas) {
+      const parent = canvas.parentElement;
+      const rect = parent.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.floor(rect.width);
+      const height = canvas.getAttribute('height') ? parseInt(canvas.getAttribute('height')) : 240;
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+
+      const ctx = canvas.getContext('2d');
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      return { ctx, width, height };
+    }
+
+    // =========================================================================
+    // "LOAD IN SIMULATOR" ENGINE (USER EXPLICIT REQUIREMENT)
+    // =========================================================================
+    function fidelityClass(fidelity) {
+      if (fidelity === 'EXACT') return 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300';
+      if (fidelity === 'CONSTRAINT_FAITHFUL') return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
+      if (fidelity === 'CONCEPT_ONLY') return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
+      return 'bg-slate-800 border-slate-600 text-slate-300';
+    }
+
+    function simulatorActionLabel(q) {
+      if (q.simFidelity === 'EXACT') return 'Load exact state';
+      if (q.simFidelity === 'CONSTRAINT_FAITHFUL') return 'Load constraints';
+      if (q.simFidelity === 'CONCEPT_ONLY') return 'Open concept rig';
+      return 'Simulator unavailable';
+    }
+
+    function loadQuestionIntoSimulator(qId) {
+      const questions = window.JEE_QUESTIONS_DATA || [];
+      const q = questions.find(item => item.id === qId);
+      if (!q) return;
+
+      const fidelity = q.simFidelity || 'UNAVAILABLE';
+      if (fidelity === 'UNAVAILABLE') {
+        showToast(q, false);
+        return;
+      }
+
+      const targetTab = q.targetTab || 'tab-disp-dist';
+      switchTab(targetTab);
+
+      if (fidelity === 'CONCEPT_ONLY') {
+        showSimulationBanner(q, targetTab);
+        showToast(q, false);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+        return;
+      }
+
+      const p = q.simParams || {};
+      if (targetTab === 'tab-disp-dist') {
+        if (p.v0 !== undefined) document.getElementById('sliderDispV0').value = p.v0;
+        if (p.a !== undefined || p.a_reverse !== undefined) {
+          document.getElementById('sliderDispA').value = p.a !== undefined ? p.a : p.a_reverse;
+        }
+        updateDispParams();
+        highlightSlider('sliderDispV0');
+        highlightSlider('sliderDispA');
+      } else if (targetTab === 'tab-balloon') {
+        if (p.h_release !== undefined) document.getElementById('sliderBalloonH').value = p.h_release;
+        if (p.v_balloon !== undefined) document.getElementById('sliderBalloonV').value = p.v_balloon;
+        if (p.g !== undefined) document.getElementById('sliderBalloonG').value = p.g;
+        updateBalloonParams();
+        highlightSlider('sliderBalloonH');
+        highlightSlider('sliderBalloonV');
+      } else if (targetTab === 'tab-graph-vx') {
+        if (p.profile) setVxProfile(p.profile === 'constant_accel' ? 'parabola' : p.profile);
+        if (p.v0 !== undefined) document.getElementById('sliderVxV0').value = p.v0;
+        if (p.x_max !== undefined) document.getElementById('sliderVxX0').value = p.x_max;
+        updateVxParams();
+        highlightSlider('sliderVxV0');
+        highlightSlider('sliderVxX0');
+      } else if (targetTab === 'tab-drops') {
+        if (p.total_h !== undefined) document.getElementById('sliderTapH').value = p.total_h;
+        if (p.num_drops !== undefined) document.getElementById('sliderTapCount').value = p.num_drops;
+        updateTapParams();
+        highlightSlider('sliderTapH');
+        highlightSlider('sliderTapCount');
+      } else if (targetTab === 'tab-braking') {
+        if (p.h1 !== undefined) document.getElementById('sliderParaH1').value = p.h1;
+        if (p.a_brake !== undefined) document.getElementById('sliderParaA').value = p.a_brake;
+        if (p.v_land !== undefined) document.getElementById('sliderParaVland').value = p.v_land;
+        updateParaParams();
+        highlightSlider('sliderParaH1');
+        highlightSlider('sliderParaA');
+      } else if (targetTab === 'tab-relative') {
+        if (p.vA !== undefined) document.getElementById('sliderRelVA').value = p.vA;
+        if (p.vB !== undefined) document.getElementById('sliderRelVB').value = Math.abs(p.vB);
+        if (p.d0 !== undefined) document.getElementById('sliderRelD0').value = p.d0;
+        if (p.aB !== undefined) document.getElementById('sliderRelAB').value = Math.abs(p.aB);
+        updateRelParams();
+        highlightSlider('sliderRelVA');
+        highlightSlider('sliderRelVB');
+      }
+
+      showSimulationBanner(q, targetTab);
+      showToast(q, true);
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function showSimulationBanner(q, targetTab) {
+      const banner = document.getElementById(`banner-${targetTab.replace('tab-', '')}`);
+      const bannerText = document.getElementById(`banner-text-${targetTab.replace('tab-', '')}`);
+      if (!banner || !bannerText) return;
+      banner.classList.remove('hidden');
+      const verb = q.simFidelity === 'EXACT'
+        ? 'Exact question state'
+        : (q.simFidelity === 'CONSTRAINT_FAITHFUL' ? 'Question constraints' : 'Concept demonstration');
+      bannerText.innerHTML = `⚡ <strong>${verb} · ${q.id}:</strong> ${q.simFidelityNote}`;
+    }
+
+    function highlightSlider(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('slider-highlight');
+        setTimeout(() => el.classList.remove('slider-highlight'), 3000);
+      }
+    }
+
+    function showToast(q, stateWasInjected) {
+      const toast = document.getElementById('simToast');
+      const fidelity = q.simFidelity || 'UNAVAILABLE';
+      document.getElementById('simToastTitle').textContent = `${fidelity} · ${q.id} (${q.year})`;
+      document.getElementById('simToastDesc').textContent = q.simFidelityNote || q.q.slice(0, 100);
+      document.getElementById('simToastParams').textContent = stateWasInjected
+        ? (q.simSummary || []).join(' | ')
+        : (fidelity === 'CONCEPT_ONLY'
+            ? 'Concept rig opened; no question-specific defaults were invented.'
+            : 'No simulator state was changed.');
+      toast.classList.remove('hidden');
+      toast.classList.remove('translate-y-4');
+      setTimeout(() => closeSimToast(), 7000);
+    }
+
+    function closeSimToast() {
+      const toast = document.getElementById('simToast');
+      toast.classList.add('translate-y-4');
+      setTimeout(() => toast.classList.add('hidden'), 300);
+    }
+
+    function resetTabControls(tabName) {
+      const banner = document.getElementById(`banner-${tabName}`);
+      if (banner) banner.classList.add('hidden');
+      if (tabName === 'disp-dist') {
+        document.getElementById('sliderDispV0').value = 12;
+        document.getElementById('sliderDispA').value = -4;
+        updateDispParams();
+      } else if (tabName === 'balloon') {
+        document.getElementById('sliderBalloonH').value = 75;
+        document.getElementById('sliderBalloonV').value = 10;
+        document.getElementById('sliderBalloonG').value = 10;
+        updateBalloonParams();
+      }
+    }
+
+    // =========================================================================
+    // TAB 1 RIG: DISPLACEMENT VS DISTANCE
+    // =========================================================================
+    let dispState = {
+      v0: 12,
+      a: -4,
+      t: 0,
+      tMax: 6,
+      isPlaying: false,
+      lastTs: null
+    };
+
+    function updateDispParams() {
+      dispState.v0 = parseFloat(document.getElementById('sliderDispV0').value);
+      dispState.a = parseFloat(document.getElementById('sliderDispA').value);
+      document.getElementById('valDispV0').textContent = (dispState.v0 >= 0 ? '+' : '') + dispState.v0.toFixed(0) + ' m/s';
+      document.getElementById('valDispA').textContent = (dispState.a >= 0 ? '+' : '') + dispState.a.toFixed(1) + ' m/s²';
+
+      const tTurn = dispState.a !== 0 ? -dispState.v0 / dispState.a : 0;
+      const turnEl = document.getElementById('dispTurnCalc');
+      const maxDistEl = document.getElementById('dispMaxX');
+      if (tTurn > 0 && tTurn <= 10) {
+        turnEl.textContent = 't = ' + tTurn.toFixed(2) + ' s';
+        const xTurn = dispState.v0 * tTurn + 0.5 * dispState.a * tTurn * tTurn;
+        maxDistEl.textContent = 'x = ' + (xTurn >= 0 ? '+' : '') + xTurn.toFixed(1) + ' m';
+      } else {
+        turnEl.textContent = 'No reversal in 10s';
+        maxDistEl.textContent = 'Monotonic';
+      }
+      drawDisp();
+    }
+
+    function toggleDispPlay() {
+      dispState.isPlaying = !dispState.isPlaying;
+      document.getElementById('dispPlayIcon').textContent = dispState.isPlaying ? '⏸' : '▶';
+      document.getElementById('dispPlayText').textContent = dispState.isPlaying ? 'Pause' : 'Play Motion';
+      if (dispState.isPlaying) {
+        dispState.lastTs = performance.now();
+        requestAnimationFrame(dispLoop);
+      }
+    }
+
+    function resetDispSim() {
+      dispState.isPlaying = false;
+      dispState.t = 0;
+      document.getElementById('dispPlayIcon').textContent = '▶';
+      document.getElementById('dispPlayText').textContent = 'Play Motion';
+      document.getElementById('sliderDispTime').value = 0;
+      drawDisp();
+    }
+
+    function scrubDispTime(val) {
+      dispState.t = parseFloat(val);
+      dispState.isPlaying = false;
+      document.getElementById('dispPlayIcon').textContent = '▶';
+      document.getElementById('dispPlayText').textContent = 'Play Motion';
+      drawDisp();
+    }
+
+    function dispLoop(ts) {
+      if (!dispState.isPlaying) return;
+      const dt = Math.min((ts - dispState.lastTs) / 1000, 0.05);
+      dispState.lastTs = ts;
+      dispState.t += dt;
+      if (dispState.t > 10) {
+        dispState.t = 10;
+        dispState.isPlaying = false;
+        document.getElementById('dispPlayIcon').textContent = '▶';
+        document.getElementById('dispPlayText').textContent = 'Replay';
+      }
+      document.getElementById('sliderDispTime').value = dispState.t;
+      drawDisp();
+      if (dispState.isPlaying) requestAnimationFrame(dispLoop);
+    }
+
+    function resizeDisp() {
+      setupCanvas(document.getElementById('canvasDispTrack'));
+      setupCanvas(document.getElementById('canvasDispGraph'));
+    }
+
+    function drawDisp() {
+      const cTrack = document.getElementById('canvasDispTrack');
+      const cGraph = document.getElementById('canvasDispGraph');
+      if (!cTrack || !cGraph) return;
+
+      const { ctx: ctxT, width: wT, height: hT } = setupCanvas(cTrack);
+      const { ctx: ctxG, width: wG, height: hG } = setupCanvas(cGraph);
+
+      const t = dispState.t;
+      const v0 = dispState.v0;
+      const a = dispState.a;
+
+      // Kinematic integrals
+      const x = v0 * t + 0.5 * a * t * t;
+      const v = v0 + a * t;
+      const tTurn = (a !== 0) ? -v0 / a : -1;
+      
+      let dist = 0;
+      if (tTurn > 0 && t > tTurn) {
+        const xTurn = v0 * tTurn + 0.5 * a * tTurn * tTurn;
+        dist = Math.abs(xTurn) + Math.abs(x - xTurn);
+      } else {
+        dist = Math.abs(x);
+      }
+
+      // Update Telemetry
+      document.getElementById('dispLiveClock').textContent = `t = ${t.toFixed(2)} s`;
+      document.getElementById('dispLiveVel').textContent = `v = ${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryDisp').textContent = `${(x >= 0 ? '+' : '')}${x.toFixed(2)} m`;
+      document.getElementById('telemetryDist').textContent = `${dist.toFixed(2)} m`;
+      document.getElementById('telemetryV').textContent = `${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryVavg').textContent = t > 0 ? `${(x/t).toFixed(2)} m/s` : '0.00 m/s';
+
+      // 1. Draw Pneumatic Track (cTrack)
+      ctxT.fillStyle = '#050811';
+      ctxT.fillRect(0, 0, wT, hT);
+
+      const yMid = hT * 0.55;
+      const xOrigin = wT * 0.35;
+      const scaleX = wT / 60;
+
+      ctxT.strokeStyle = '#1e293b';
+      ctxT.lineWidth = 4;
+      ctxT.beginPath();
+      ctxT.moveTo(20, yMid);
+      ctxT.lineTo(wT - 20, yMid);
+      ctxT.stroke();
+
+      ctxT.fillStyle = '#64748b';
+      ctxT.font = '10px monospace';
+      ctxT.textAlign = 'center';
+      for (let xm = -20; xm <= 40; xm += 5) {
+        const px = xOrigin + xm * scaleX;
+        if (px >= 20 && px <= wT - 20) {
+          ctxT.strokeStyle = (xm === 0) ? '#38bdf8' : '#334155';
+          ctxT.lineWidth = (xm === 0) ? 2 : 1;
+          ctxT.beginPath();
+          ctxT.moveTo(px, yMid - 6);
+          ctxT.lineTo(px, yMid + 6);
+          ctxT.stroke();
+          ctxT.fillText((xm >= 0 ? '+' : '') + xm + 'm', px, yMid + 18);
+        }
+      }
+
+      if (tTurn > 0) {
+        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
+        const pTurnX = xOrigin + xTurnM * scaleX;
+        if (pTurnX >= 20 && pTurnX <= wT - 20) {
+          ctxT.strokeStyle = '#f59e0b';
+          ctxT.setLineDash([4, 4]);
+          ctxT.beginPath();
+          ctxT.moveTo(pTurnX, yMid - 30);
+          ctxT.lineTo(pTurnX, yMid + 30);
+          ctxT.stroke();
+          ctxT.setLineDash([]);
+          ctxT.fillStyle = '#f59e0b';
+          ctxT.fillText('Turning Point (v=0)', pTurnX, yMid - 34);
+        }
+      }
+
+      const pCurrentX = xOrigin + x * scaleX;
+      
+      ctxT.strokeStyle = '#0284c7';
+      ctxT.lineWidth = 3;
+      ctxT.beginPath();
+      ctxT.moveTo(xOrigin, yMid - 10);
+      if (tTurn > 0 && t > tTurn) {
+        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
+        ctxT.lineTo(xOrigin + xTurnM * scaleX, yMid - 10);
+        ctxT.lineTo(pCurrentX, yMid - 14);
+      } else {
+        ctxT.lineTo(pCurrentX, yMid - 10);
+      }
+      ctxT.stroke();
+
+      ctxT.fillStyle = '#38bdf8';
+      ctxT.beginPath();
+      ctxT.arc(pCurrentX, yMid, 8, 0, Math.PI * 2);
+      ctxT.fill();
+      ctxT.strokeStyle = '#ffffff';
+      ctxT.lineWidth = 1.5;
+      ctxT.stroke();
+
+      const depth = currentDepth['disp-dist'] || 'G1';
+      if (depth === 'G2' || depth === 'G3') {
+        const vLen = v * 2.5;
+        ctxT.strokeStyle = '#f59e0b';
+        ctxT.lineWidth = 2.5;
+        ctxT.beginPath();
+        ctxT.moveTo(pCurrentX, yMid - 18);
+        ctxT.lineTo(pCurrentX + vLen, yMid - 18);
+        ctxT.stroke();
+        ctxT.fillStyle = '#f59e0b';
+        ctxT.beginPath();
+        const headDir = vLen >= 0 ? 1 : -1;
+        ctxT.moveTo(pCurrentX + vLen, yMid - 18);
+        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 22);
+        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 14);
+        ctxT.closePath();
+        ctxT.fill();
+
+        const aLen = a * 5;
+        ctxT.strokeStyle = '#ef4444';
+        ctxT.lineWidth = 2;
+        ctxT.beginPath();
+        ctxT.moveTo(pCurrentX, yMid + 22);
+        ctxT.lineTo(pCurrentX + aLen, yMid + 22);
+        ctxT.stroke();
+      }
+
+      // 2. Draw v-t Graph (cGraph)
+      ctxG.fillStyle = '#050811';
+      ctxG.fillRect(0, 0, wG, hG);
+
+      const gOriginX = 40;
+      const gOriginY = hG * 0.5;
+      const gScaleT = (wG - 60) / 10;
+      const gScaleV = (hG * 0.4) / 25;
+
+      ctxG.strokeStyle = '#334155';
+      ctxG.lineWidth = 1.5;
+      ctxG.beginPath();
+      ctxG.moveTo(gOriginX, gOriginY);
+      ctxG.lineTo(wG - 10, gOriginY);
+      ctxG.moveTo(gOriginX, 10);
+      ctxG.lineTo(gOriginX, hG - 10);
+      ctxG.stroke();
+
+      ctxG.fillStyle = '#64748b';
+      ctxG.font = '9px monospace';
+      ctxG.fillText('t (s)', wG - 25, gOriginY + 14);
+      ctxG.fillText('v (m/s)', gOriginX + 5, 16);
+
+      ctxG.strokeStyle = '#475569';
+      ctxG.lineWidth = 1;
+      ctxG.beginPath();
+      for (let s = 0; s <= 10; s += 0.2) {
+        const vel = v0 + a * s;
+        const px = gOriginX + s * gScaleT;
+        const py = gOriginY - vel * gScaleV;
+        if (s === 0) ctxG.moveTo(px, py);
+        else ctxG.lineTo(px, py);
+      }
+      ctxG.stroke();
+
+      ctxG.beginPath();
+      ctxG.moveTo(gOriginX, gOriginY);
+      for (let s = 0; s <= t; s += 0.1) {
+        const vel = v0 + a * s;
+        const px = gOriginX + s * gScaleT;
+        const py = gOriginY - vel * gScaleV;
+        ctxG.lineTo(px, py);
+      }
+      const curPx = gOriginX + t * gScaleT;
+      ctxG.lineTo(curPx, gOriginY);
+      ctxG.closePath();
+      
+      const grad = ctxG.createLinearGradient(0, gOriginY - 40, 0, gOriginY + 40);
+      grad.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+      grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.1)');
+      grad.addColorStop(1, 'rgba(239, 68, 68, 0.4)');
+      ctxG.fillStyle = grad;
+      ctxG.fill();
+
+      const curPy = gOriginY - v * gScaleV;
+      ctxG.fillStyle = '#f59e0b';
+      ctxG.beginPath();
+      ctxG.arc(curPx, curPy, 4.5, 0, Math.PI * 2);
+      ctxG.fill();
+    }
+
+    // =========================================================================
+    // TAB 2 RIG: BALLOON PLATFORM INHERITANCE
+    // =========================================================================
+    let balloonState = {
+      h0: 75,
+      v0: 10,
+      g: 10,
+      t: 0,
+      isPlaying: false,
+      mode: 'correct',
+      lastTs: null
+    };
+
+    function setBalloonMode(m) {
+      balloonState.mode = m;
+      const bC = document.getElementById('btnBalloonCorrect');
+      const bF = document.getElementById('btnBalloonFallacy');
+      if (m === 'correct') {
+        bC.className = 'px-2.5 py-1 rounded font-semibold text-white bg-emerald-600/40 border border-emerald-500/50';
+        bF.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      } else {
+        bF.className = 'px-2.5 py-1 rounded font-semibold text-white bg-red-600/40 border border-red-500/50';
+        bC.className = 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      }
+      drawBalloon();
+    }
+
+    function updateBalloonParams() {
+      balloonState.h0 = parseFloat(document.getElementById('sliderBalloonH').value);
+      balloonState.v0 = parseFloat(document.getElementById('sliderBalloonV').value);
+      balloonState.g = parseFloat(document.getElementById('sliderBalloonG').value);
+      document.getElementById('valBalloonH').textContent = balloonState.h0 + ' m';
+      document.getElementById('valBalloonV').textContent = balloonState.v0 + ' m/s';
+      document.getElementById('valBalloonG').textContent = balloonState.g + ' m/s²';
+      drawBalloon();
+    }
+
+    function toggleBalloonPlay() {
+      balloonState.isPlaying = !balloonState.isPlaying;
+      document.getElementById('balloonPlayIcon').textContent = balloonState.isPlaying ? '⏸' : '▶';
+      document.getElementById('balloonPlayText').textContent = balloonState.isPlaying ? 'Pause' : 'Release & Track';
+      if (balloonState.isPlaying) {
+        balloonState.lastTs = performance.now();
+        requestAnimationFrame(balloonLoop);
+      }
+    }
+
+    function resetBalloonSim() {
+      balloonState.isPlaying = false;
+      balloonState.t = 0;
+      document.getElementById('balloonPlayIcon').textContent = '▶';
+      document.getElementById('balloonPlayText').textContent = 'Release & Track';
+      document.getElementById('sliderBalloonTime').value = 0;
+      drawBalloon();
+    }
+
+    function scrubBalloonTime(val) {
+      balloonState.t = parseFloat(val);
+      balloonState.isPlaying = false;
+      document.getElementById('balloonPlayIcon').textContent = '▶';
+      drawBalloon();
+    }
+
+    function balloonLoop(ts) {
+      if (!balloonState.isPlaying) return;
+      const dt = Math.min((ts - balloonState.lastTs) / 1000, 0.05);
+      balloonState.lastTs = ts;
+      balloonState.t += dt;
+      if (balloonState.t > 8) {
+        balloonState.t = 8;
+        balloonState.isPlaying = false;
+        document.getElementById('balloonPlayIcon').textContent = '▶';
+      }
+      document.getElementById('sliderBalloonTime').value = balloonState.t;
+      drawBalloon();
+      if (balloonState.isPlaying) requestAnimationFrame(balloonLoop);
+    }
+
+    function resizeBalloon() {
+      setupCanvas(document.getElementById('canvasBalloon'));
+    }
+
+    function drawBalloon() {
+      const canvas = document.getElementById('canvasBalloon');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const t = balloonState.t;
+      const h0 = balloonState.h0;
+      const vb = balloonState.v0;
+      const g = balloonState.g;
+      const uStone = (balloonState.mode === 'correct') ? vb : 0;
+
+      const yBalloon = h0 + vb * t;
+      const yStone = Math.max(0, h0 + uStone * t - 0.5 * g * t * t);
+      const vStone = (yStone > 0) ? (uStone - g * t) : 0;
+
+      const tImpact = (uStone + Math.sqrt(uStone * uStone + 2 * g * h0)) / g;
+      const hBalloonAtImpact = h0 + vb * tImpact;
+
+      document.getElementById('balloonClock').textContent = `t = ${t.toFixed(2)} s`;
+      document.getElementById('telemetryBalloonH').textContent = `${yBalloon.toFixed(1)} m`;
+      document.getElementById('telemetryStoneH').textContent = `${yStone.toFixed(1)} m`;
+      document.getElementById('telemetryStoneV').textContent = `${(vStone >= 0 ? '+' : '')}${vStone.toFixed(1)} m/s`;
+      document.getElementById('telemetryStoneLanding').textContent = `t = ${tImpact.toFixed(2)} s (Balloon: ${hBalloonAtImpact.toFixed(1)} m)`;
+
+      const maxH = 160;
+      const groundY = h - 30;
+      const scaleY = (groundY - 30) / maxH;
+
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(0, groundY, w, 30);
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(w, groundY);
+      ctx.stroke();
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = '9px monospace';
+      for (let hm = 0; hm <= maxH; hm += 25) {
+        const py = groundY - hm * scaleY;
+        ctx.strokeStyle = '#1e293d';
+        ctx.beginPath();
+        ctx.moveTo(40, py);
+        ctx.lineTo(w - 20, py);
+        ctx.stroke();
+        ctx.fillText(hm + 'm', 12, py + 3);
+      }
+
+      const pRelY = groundY - h0 * scaleY;
+      ctx.strokeStyle = '#f59e0b';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(40, pRelY);
+      ctx.lineTo(w - 20, pRelY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText(`Release Height = ${h0}m`, w * 0.55, pRelY - 6);
+
+      const bx = w * 0.35;
+      const by = groundY - yBalloon * scaleY;
+      
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(bx, by, 18, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#78350f';
+      ctx.fillRect(bx - 6, by + 22, 12, 10);
+      ctx.strokeStyle = '#d97706';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(bx - 12, by + 12);
+      ctx.lineTo(bx - 4, by + 22);
+      ctx.moveTo(bx + 12, by + 12);
+      ctx.lineTo(bx + 4, by + 22);
+      ctx.stroke();
+
+      ctx.fillStyle = '#fde68a';
+      ctx.font = '10px sans-serif';
+      ctx.fillText(`Balloon (+${vb}m/s)`, bx + 24, by + 5);
+
+      const sx = w * 0.48;
+      const sy = groundY - yStone * scaleY;
+
+      ctx.strokeStyle = (balloonState.mode === 'correct') ? 'rgba(56, 189, 248, 0.4)' : 'rgba(239, 68, 68, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let st = 0; st <= Math.min(t, tImpact); st += 0.05) {
+        const py = h0 + uStone * st - 0.5 * g * st * st;
+        const cpx = sx;
+        const cpy = groundY - py * scaleY;
+        if (st === 0) ctx.moveTo(cpx, cpy);
+        else ctx.lineTo(cpx, cpy);
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = (yStone === 0) ? '#ef4444' : '#38bdf8';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      if (yStone > 0) {
+        const svLen = vStone * 1.5;
+        ctx.strokeStyle = (vStone >= 0) ? '#10b981' : '#ef4444';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(sx + 14, sy);
+        ctx.lineTo(sx + 14, sy - svLen);
+        ctx.stroke();
+      }
+    }
+
+    // =========================================================================
+    // TAB 3 RIG: v-x -> a-x CALCULUS ENGINE
+    // =========================================================================
+    let vxState = {
+      v0: 15,
+      x0: 10,
+      probeX: 4,
+      profile: 'linear_down'
+    };
+
+    function setVxProfile(p) {
+      vxState.profile = p;
+      ['linear_down', 'parabola', 'circle'].forEach(prof => {
+        const btn = document.getElementById(prof === 'linear_down' ? 'btnVxLinearDown' : (prof === 'parabola' ? 'btnVxParabola' : 'btnVxCircle'));
+        if (btn) {
+          btn.className = (prof === p) ? 'text-left p-2.5 rounded-lg bg-sky-500/20 border border-sky-500/40 text-xs font-semibold text-sky-200' : 'text-left p-2.5 rounded-lg bg-slate-800 border border-border text-xs font-semibold text-slate-300 hover:border-slate-600';
+        }
+      });
+      drawVx();
+    }
+
+    function updateVxParams() {
+      vxState.v0 = parseFloat(document.getElementById('sliderVxV0').value);
+      vxState.x0 = parseFloat(document.getElementById('sliderVxX0').value);
+      document.getElementById('vxV0Val').textContent = vxState.v0 + ' m/s';
+      document.getElementById('vxX0Val').textContent = vxState.x0 + ' m';
+      document.getElementById('sliderProbeX').max = vxState.x0;
+      drawVx();
+    }
+
+    function updateVxProbe(val) {
+      vxState.probeX = parseFloat(val);
+      document.getElementById('probeXVal').textContent = 'x = ' + vxState.probeX.toFixed(2) + ' m';
+      drawVx();
+    }
+
+    function resizeVx() {
+      setupCanvas(document.getElementById('canvasVx'));
+      setupCanvas(document.getElementById('canvasAx'));
+    }
+
+    function drawVx() {
+      const cVx = document.getElementById('canvasVx');
+      const cAx = document.getElementById('canvasAx');
+      if (!cVx || !cAx) return;
+
+      const { ctx: ctxV, width: wV, height: hV } = setupCanvas(cVx);
+      const { ctx: ctxA, width: wA, height: hA } = setupCanvas(cAx);
+
+      ctxV.fillStyle = '#050811';
+      ctxV.fillRect(0, 0, wV, hV);
+      ctxA.fillStyle = '#050811';
+      ctxA.fillRect(0, 0, wA, hA);
+
+      const v0 = vxState.v0;
+      const x0 = vxState.x0;
+      const px = Math.max(0, Math.min(x0, vxState.probeX));
+
+      function profileAt(x) {
+        const sx = Math.max(0, Math.min(x0, x));
+        if (vxState.profile === 'linear_down') {
+          const m = v0 / x0;
+          const v = v0 - m * sx;
+          return { v, dvdx: -m, a: -m * v };
+        }
+        if (vxState.profile === 'parabola') {
+          // Constant-acceleration stopping law: v² = v₀²(1 - x/x₀).
+          const inside = Math.max(0, 1 - sx / x0);
+          const v = v0 * Math.sqrt(inside);
+          const a = -(v0 * v0) / (2 * x0);
+          return { v, dvdx: v > 1e-9 ? a / v : Number.NEGATIVE_INFINITY, a };
+        }
+        // Elliptic quarter-circle: v²/v₀² + x²/x₀² = 1.
+        const inside = Math.max(0, 1 - (sx * sx) / (x0 * x0));
+        const v = v0 * Math.sqrt(inside);
+        const a = -(v0 * v0 * sx) / (x0 * x0);
+        return { v, dvdx: v > 1e-9 ? a / v : Number.NEGATIVE_INFINITY, a };
+      }
+
+      const originX = 35;
+      const originY = hV - 30;
+      const scaleX = (wV - 50) / x0;
+      const scaleV = (hV - 50) / v0;
+
+      ctxV.strokeStyle = '#334155';
+      ctxV.lineWidth = 1.5;
+      ctxV.beginPath();
+      ctxV.moveTo(originX, originY);
+      ctxV.lineTo(wV - 10, originY);
+      ctxV.moveTo(originX, originY);
+      ctxV.lineTo(originX, 15);
+      ctxV.stroke();
+
+      ctxV.fillStyle = '#64748b';
+      ctxV.font = '9px monospace';
+      ctxV.fillText('x (m)', wV - 25, originY + 16);
+      ctxV.fillText('v (m/s)', originX + 5, 18);
+
+      ctxV.strokeStyle = '#38bdf8';
+      ctxV.lineWidth = 2.5;
+      ctxV.beginPath();
+      let first = true;
+      for (let x = 0; x <= x0 + 1e-9; x += Math.max(0.05, x0 / 180)) {
+        const { v } = profileAt(x);
+        const cx = originX + x * scaleX;
+        const cy = originY - v * scaleV;
+        if (first) { ctxV.moveTo(cx, cy); first = false; }
+        else ctxV.lineTo(cx, cy);
+      }
+      ctxV.stroke();
+
+      const probe = profileAt(px);
+      const probeCx = originX + px * scaleX;
+      const probeCy = originY - probe.v * scaleV;
+
+      ctxV.fillStyle = '#f59e0b';
+      ctxV.beginPath();
+      ctxV.arc(probeCx, probeCy, 5, 0, Math.PI * 2);
+      ctxV.fill();
+
+      if (Number.isFinite(probe.dvdx)) {
+        ctxV.strokeStyle = '#f59e0b';
+        ctxV.setLineDash([3, 3]);
+        ctxV.beginPath();
+        ctxV.moveTo(probeCx - 30, probeCy - 30 * (-probe.dvdx * scaleV / scaleX));
+        ctxV.lineTo(probeCx + 30, probeCy + 30 * (-probe.dvdx * scaleV / scaleX));
+        ctxV.stroke();
+        ctxV.setLineDash([]);
+      }
+
+      document.getElementById('vxTangentVal').textContent = Number.isFinite(probe.dvdx)
+        ? `dv/dx = ${probe.dvdx.toFixed(2)}`
+        : 'dv/dx → -∞ at v = 0';
+
+      // Derived a-x graph from a = v dv/dx, evaluated in a form that remains
+      // finite at endpoints even when dv/dx itself becomes singular.
+      const aOriginY = hA * 0.55;
+      const aScaleDen = Math.max(1e-9, v0 * v0 / x0);
+      const scaleA = (hA * 0.4) / aScaleDen;
+
+      ctxA.strokeStyle = '#334155';
+      ctxA.lineWidth = 1.5;
+      ctxA.beginPath();
+      ctxA.moveTo(originX, aOriginY);
+      ctxA.lineTo(wA - 10, aOriginY);
+      ctxA.moveTo(originX, 15);
+      ctxA.lineTo(originX, hA - 15);
+      ctxA.stroke();
+
+      ctxA.fillStyle = '#64748b';
+      ctxA.font = '9px monospace';
+      ctxA.fillText('x (m)', wA - 25, aOriginY + 16);
+      ctxA.fillText('a (m/s²)', originX + 5, 18);
+
+      ctxA.strokeStyle = '#10b981';
+      ctxA.lineWidth = 2.5;
+      ctxA.beginPath();
+      first = true;
+      for (let x = 0; x <= x0 + 1e-9; x += Math.max(0.05, x0 / 180)) {
+        const aVal = profileAt(x).a;
+        const cax = originX + x * scaleX;
+        const cay = aOriginY - aVal * scaleA;
+        if (first) { ctxA.moveTo(cax, cay); first = false; }
+        else ctxA.lineTo(cax, cay);
+      }
+      ctxA.stroke();
+
+      const probeAx = originX + px * scaleX;
+      const probeAy = aOriginY - probe.a * scaleA;
+      ctxA.fillStyle = '#10b981';
+      ctxA.beginPath();
+      ctxA.arc(probeAx, probeAy, 5, 0, Math.PI * 2);
+      ctxA.fill();
+
+      const relation = vxState.profile === 'linear_down'
+        ? `a(x) slope = +${((v0/x0)**2).toFixed(2)}`
+        : (vxState.profile === 'parabola'
+            ? `a = ${(-(v0*v0)/(2*x0)).toFixed(2)} m/s²`
+            : `a(x) slope = ${(-(v0*v0)/(x0*x0)).toFixed(2)}`);
+      document.getElementById('axSlopeVal').textContent = relation;
+    }
+
+    // =========================================================================
+    // TAB 4 RIG: STROBOSCOPIC WATER DROPS (GALILEO)
+    // =========================================================================
+    let dropsState = {
+      H: 5.0,
+      nDrops: 6,
+      phase: 0,
+      isPlaying: true,
+      lastTs: null
+    };
+
+    function updateTapParams() {
+      dropsState.H = parseFloat(document.getElementById('sliderTapH').value);
+      dropsState.nDrops = parseInt(document.getElementById('sliderTapCount').value);
+      document.getElementById('tapHeightVal').textContent = dropsState.H.toFixed(1) + ' m';
+      document.getElementById('tapDropsCountVal').textContent = dropsState.nDrops + ' Drops';
+      drawDrops();
+    }
+
+    function toggleDropsPlay() {
+      dropsState.isPlaying = !dropsState.isPlaying;
+      document.getElementById('dropsPlayIcon').textContent = dropsState.isPlaying ? '⏸' : '▶';
+      document.getElementById('dropsPlayText').textContent = dropsState.isPlaying ? 'Pause Tap' : 'Run Tap';
+      if (dropsState.isPlaying) {
+        dropsState.lastTs = performance.now();
+        requestAnimationFrame(dropsLoop);
+      }
+    }
+
+    function resetDropsSim() {
+      dropsState.phase = 0;
+      drawDrops();
+    }
+
+    function scrubDropPhase(val) {
+      dropsState.phase = parseFloat(val);
+      drawDrops();
+    }
+
+    function freezeTapStrobe() {
+      dropsState.isPlaying = false;
+      dropsState.phase = 0;
+      document.getElementById('dropsPlayIcon').textContent = '▶';
+      document.getElementById('dropsPlayText').textContent = 'Unfreeze';
+      drawDrops();
+    }
+
+    function dropsLoop(ts) {
+      if (!dropsState.isPlaying) return;
+      const dt = Math.min((ts - dropsState.lastTs) / 1000, 0.05);
+      dropsState.lastTs = ts;
+      dropsState.phase = (dropsState.phase + dt * 0.8) % 1.0;
+      drawDrops();
+      if (dropsState.isPlaying) requestAnimationFrame(dropsLoop);
+    }
+
+    function resizeDrops() {
+      setupCanvas(document.getElementById('canvasDrops'));
+    }
+
+    function drawDrops() {
+      const canvas = document.getElementById('canvasDrops');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const H = dropsState.H;
+      const N = dropsState.nDrops;
+      const phase = dropsState.phase;
+
+      const groundY = h - 35;
+      const tapY = 40;
+      const scaleY = (groundY - tapY) / H;
+
+      ctx.fillStyle = '#64748b';
+      ctx.fillRect(w * 0.45 - 15, tapY - 20, 30, 20);
+      ctx.fillRect(w * 0.45 - 6, tapY, 12, 10);
+
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(0, groundY, w, 35);
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(w, groundY);
+      ctx.stroke();
+
+      const T = Math.sqrt(2 * H / 10);
+      const dtInterval = T / (N - 1);
+
+      for (let i = 0; i < N; i++) {
+        const dropIntervals = (i + phase);
+        if (dropIntervals <= (N - 1)) {
+          const tDrop = dropIntervals * dtInterval;
+          const yFallen = 0.5 * 10 * tDrop * tDrop;
+          const py = tapY + yFallen * scaleY;
+          const dropNum = N - i;
+
+          if (py <= groundY) {
+            ctx.fillStyle = (dropNum === 4) ? '#10b981' : '#38bdf8';
+            ctx.beginPath();
+            ctx.arc(w * 0.45, py, 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = (dropNum === 4) ? '#34d399' : '#94a3b8';
+            ctx.font = '10px monospace';
+            const hFromGround = Math.max(0, H - yFallen);
+            ctx.fillText(`Drop ${dropNum}: ${hFromGround.toFixed(2)}m`, w * 0.45 + 16, py + 4);
+
+            ctx.strokeStyle = '#334155';
+            ctx.setLineDash([2, 2]);
+            ctx.beginPath();
+            ctx.moveTo(w * 0.25, py);
+            ctx.lineTo(w * 0.45 - 10, py);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+      }
+    }
+
+    // =========================================================================
+    // TAB 5 RIG: MULTI-PHASE BRAKING (PARATROOPER)
+    // =========================================================================
+    let brakingState = {
+      h1: 50,
+      aBrake: 2.0,
+      vLand: 3.0,
+      g: 9.8,
+      t: 0,
+      isPlaying: false,
+      lastTs: null
+    };
+
+    function updateParaParams() {
+      brakingState.h1 = parseFloat(document.getElementById('sliderParaH1').value);
+      brakingState.aBrake = parseFloat(document.getElementById('sliderParaA').value);
+      brakingState.vLand = parseFloat(document.getElementById('sliderParaVland').value);
+      document.getElementById('paraH1Val').textContent = brakingState.h1 + ' m';
+      document.getElementById('paraAVal').textContent = brakingState.aBrake.toFixed(1) + ' m/s²';
+      document.getElementById('paraVlandVal').textContent = brakingState.vLand.toFixed(1) + ' m/s';
+      drawBraking();
+    }
+
+    function toggleBrakingPlay() {
+      brakingState.isPlaying = !brakingState.isPlaying;
+      document.getElementById('brakingPlayIcon').textContent = brakingState.isPlaying ? '⏸' : '▶';
+      document.getElementById('brakingPlayText').textContent = brakingState.isPlaying ? 'Pause' : 'Drop Paratrooper';
+      if (brakingState.isPlaying) {
+        brakingState.lastTs = performance.now();
+        requestAnimationFrame(brakingLoop);
+      }
+    }
+
+    function resetBrakingSim() {
+      brakingState.isPlaying = false;
+      brakingState.t = 0;
+      document.getElementById('brakingPlayIcon').textContent = '▶';
+      document.getElementById('sliderBrakingTime').value = 0;
+      drawBraking();
+    }
+
+    function scrubBrakingTime(val) {
+      brakingState.t = parseFloat(val);
+      brakingState.isPlaying = false;
+      document.getElementById('brakingPlayIcon').textContent = '▶';
+      drawBraking();
+    }
+
+    function brakingLoop(ts) {
+      if (!brakingState.isPlaying) return;
+      const dt = Math.min((ts - brakingState.lastTs) / 1000, 0.05);
+      brakingState.lastTs = ts;
+      brakingState.t += dt;
+      if (brakingState.t > 20) {
+        brakingState.t = 20;
+        brakingState.isPlaying = false;
+        document.getElementById('brakingPlayIcon').textContent = '▶';
+      }
+      document.getElementById('sliderBrakingTime').value = brakingState.t;
+      drawBraking();
+      if (brakingState.isPlaying) requestAnimationFrame(brakingLoop);
+    }
+
+    function resizeBraking() {
+      setupCanvas(document.getElementById('canvasBraking'));
+    }
+
+    function drawBraking() {
+      const canvas = document.getElementById('canvasBraking');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      const h1 = brakingState.h1;
+      const aB = brakingState.aBrake;
+      const vL = brakingState.vLand;
+      const g = brakingState.g;
+      const t = brakingState.t;
+
+      const v1 = Math.sqrt(2 * g * h1);
+      const t1 = Math.sqrt(2 * h1 / g);
+      const h2 = (v1 * v1 - vL * vL) / (2 * aB);
+      const t2 = (v1 - vL) / aB;
+      const hTotal = h1 + h2;
+      const tTotal = t1 + t2;
+
+      let curY = 0, curV = 0, isPhase1 = true;
+      if (t <= t1) {
+        curY = hTotal - 0.5 * g * t * t;
+        curV = g * t;
+        isPhase1 = true;
+      } else if (t <= tTotal) {
+        const dt2 = t - t1;
+        curY = (hTotal - h1) - (v1 * dt2 - 0.5 * aB * dt2 * dt2);
+        curV = v1 - aB * dt2;
+        isPhase1 = false;
+      } else {
+        curY = 0;
+        curV = vL;
+        isPhase1 = false;
+      }
+
+      document.getElementById('paratrooperClock').textContent = `t = ${t.toFixed(2)} s (${isPhase1 ? 'Phase 1: Free Fall' : 'Phase 2: Decelerating'})`;
+      document.getElementById('telParaV1').textContent = `${v1.toFixed(1)} m/s (at t = ${t1.toFixed(2)}s)`;
+      document.getElementById('telParaH2').textContent = `${h2.toFixed(1)} m`;
+      document.getElementById('telParaVland').textContent = `${vL.toFixed(1)} m/s`;
+      document.getElementById('telParaHtotal').textContent = `${hTotal.toFixed(1)} m`;
+
+      const groundY = h - 30;
+      const scaleY = (groundY - 30) / Math.max(300, hTotal);
+
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(0, groundY, w, 30);
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY);
+      ctx.lineTo(w, groundY);
+      ctx.stroke();
+
+      const chuteOpenY = groundY - (hTotal - h1) * scaleY;
+      ctx.strokeStyle = '#f59e0b';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(40, chuteOpenY);
+      ctx.lineTo(w - 20, chuteOpenY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = '10px monospace';
+      ctx.fillText(`Parachute Deploys (h = ${(hTotal - h1).toFixed(1)}m, v = ${v1.toFixed(1)}m/s)`, 50, chuteOpenY - 6);
+
+      const px = w * 0.45;
+      const py = groundY - curY * scaleY;
+
+      if (!isPhase1 && curY > 0) {
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(px, py - 20, 22, Math.PI, 0);
+        ctx.fill();
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(px - 20, py - 20);
+        ctx.lineTo(px, py);
+        ctx.moveTo(px + 20, py - 20);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = isPhase1 ? '#38bdf8' : '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(px, py, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '10px monospace';
+      ctx.fillText(`v = ${curV.toFixed(1)} m/s`, px + 12, py + 4);
+    }
+
+    // =========================================================================
+    // TAB 6 RIG: 1D RELATIVE PURSUIT
+    // =========================================================================
+    let relState = {
+      vA: 20,
+      vB: 10,
+      d0: 100,
+      aB: 1.0,
+      t: 0,
+      frame: 'ground',
+      isPlaying: false,
+      lastTs: null
+    };
+
+    function setRelativeFrame(f) {
+      relState.frame = f;
+      document.getElementById('btnFrameGround').className = (f === 'ground') ? 'px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50' : 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      document.getElementById('btnFrameCarA').className = (f === 'carA') ? 'px-2.5 py-1 rounded font-semibold text-white bg-purple-600/40 border border-purple-500/50' : 'px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white';
+      drawRel();
+    }
+
+    function updateRelParams() {
+      relState.vA = parseFloat(document.getElementById('sliderRelVA').value);
+      relState.vB = parseFloat(document.getElementById('sliderRelVB').value);
+      relState.d0 = parseFloat(document.getElementById('sliderRelD0').value);
+      relState.aB = parseFloat(document.getElementById('sliderRelAB').value);
+      document.getElementById('relVAVal').textContent = relState.vA + ' m/s';
+      document.getElementById('relVBVal').textContent = relState.vB + ' m/s';
+      document.getElementById('relD0Val').textContent = relState.d0 + ' m';
+      document.getElementById('relABVal').textContent = relState.aB.toFixed(1) + ' m/s²';
+      drawRel();
+    }
+
+    function toggleRelPlay() {
+      relState.isPlaying = !relState.isPlaying;
+      document.getElementById('relPlayIcon').textContent = relState.isPlaying ? '⏸' : '▶';
+      document.getElementById('relPlayText').textContent = relState.isPlaying ? 'Pause' : 'Start Chase';
+      if (relState.isPlaying) {
+        relState.lastTs = performance.now();
+        requestAnimationFrame(relLoop);
+      }
+    }
+
+    function resetRelSim() {
+      relState.isPlaying = false;
+      relState.t = 0;
+      document.getElementById('relPlayIcon').textContent = '▶';
+      document.getElementById('sliderRelTime').value = 0;
+      drawRel();
+    }
+
+    function scrubRelTime(val) {
+      relState.t = parseFloat(val);
+      relState.isPlaying = false;
+      document.getElementById('relPlayIcon').textContent = '▶';
+      drawRel();
+    }
+
+    function relLoop(ts) {
+      if (!relState.isPlaying) return;
+      const dt = Math.min((ts - relState.lastTs) / 1000, 0.05);
+      relState.lastTs = ts;
+      relState.t += dt;
+      if (relState.t > 15) {
+        relState.t = 15;
+        relState.isPlaying = false;
+        document.getElementById('relPlayIcon').textContent = '▶';
+      }
+      document.getElementById('sliderRelTime').value = relState.t;
+      drawRel();
+      if (relState.isPlaying) requestAnimationFrame(relLoop);
+    }
+
+    function resizeRel() {
+      setupCanvas(document.getElementById('canvasRelative'));
+      setupCanvas(document.getElementById('canvasRelGap'));
+    }
+
+    function drawRel() {
+      const cRel = document.getElementById('canvasRelative');
+      const cGap = document.getElementById('canvasRelGap');
+      if (!cRel || !cGap) return;
+
+      const { ctx: ctxR, width: wR, height: hR } = setupCanvas(cRel);
+      const { ctx: ctxG, width: wG, height: hG } = setupCanvas(cGap);
+
+      ctxR.fillStyle = '#050811';
+      ctxR.fillRect(0, 0, wR, hR);
+      ctxG.fillStyle = '#050811';
+      ctxG.fillRect(0, 0, wG, hG);
+
+      const t = relState.t;
+      const vA = relState.vA;
+      const vB = relState.vB;
+      const d0 = relState.d0;
+      const aB = relState.aB;
+
+      const xA = vA * t;
+      const tStopB = vB / aB;
+      let xB = 0, curVB = 0;
+      if (t <= tStopB) {
+        xB = d0 + vB * t - 0.5 * aB * t * t;
+        curVB = vB - aB * t;
+      } else {
+        xB = d0 + (vB * vB) / (2 * aB);
+        curVB = 0;
+      }
+      const gap = xB - xA;
+
+      document.getElementById('relLiveClock').textContent = `t = ${t.toFixed(2)} s`;
+      document.getElementById('relLiveGap').textContent = `Gap = ${gap.toFixed(1)} m`;
+      document.getElementById('telRelXA').textContent = `${xA.toFixed(1)} m`;
+      document.getElementById('telRelXB').textContent = `${xB.toFixed(1)} m`;
+      document.getElementById('telRelSep').textContent = `${(gap >= 0 ? '+' : '')}${gap.toFixed(1)} m`;
+      document.getElementById('telRelVrel').textContent = `${(curVB - vA).toFixed(1)} m/s`;
+
+      const yRoad = hR * 0.5;
+      const scaleX = (wR - 80) / 250;
+      const originX = (relState.frame === 'ground') ? 40 : (wR * 0.2);
+
+      ctxR.fillStyle = '#0f172a';
+      ctxR.fillRect(20, yRoad - 25, wR - 40, 50);
+      ctxR.strokeStyle = '#334155';
+      ctxR.setLineDash([8, 8]);
+      ctxR.beginPath();
+      ctxR.moveTo(20, yRoad);
+      ctxR.lineTo(wR - 20, yRoad);
+      ctxR.stroke();
+      ctxR.setLineDash([]);
+
+      const pxA = (relState.frame === 'ground') ? (originX + xA * scaleX) : originX;
+      const pxB = (relState.frame === 'ground') ? (originX + xB * scaleX) : (originX + gap * scaleX);
+
+      ctxR.fillStyle = '#38bdf8';
+      ctxR.fillRect(pxA - 15, yRoad - 20, 30, 16);
+      ctxR.fillStyle = '#ffffff';
+      ctxR.font = '10px monospace';
+      ctxR.fillText('Car A', pxA - 14, yRoad - 24);
+
+      ctxR.fillStyle = '#f59e0b';
+      ctxR.fillRect(pxB - 15, yRoad + 4, 30, 16);
+      ctxR.fillStyle = '#ffffff';
+      ctxR.fillText('Car B', pxB - 14, yRoad + 32);
+
+      const gOriginX = 35;
+      const gOriginY = hG - 25;
+      const gScaleT = (wG - 50) / 15;
+      const gScaleGap = (hG - 40) / (d0 * 1.2);
+
+      ctxG.strokeStyle = '#334155';
+      ctxG.lineWidth = 1;
+      ctxG.beginPath();
+      ctxG.moveTo(gOriginX, gOriginY);
+      ctxG.lineTo(wG - 10, gOriginY);
+      ctxG.moveTo(gOriginX, 10);
+      ctxG.lineTo(gOriginX, gOriginY);
+      ctxG.stroke();
+
+      ctxG.strokeStyle = '#ef4444';
+      ctxG.setLineDash([4, 4]);
+      ctxG.beginPath();
+      ctxG.moveTo(gOriginX, gOriginY);
+      ctxG.lineTo(wG - 10, gOriginY);
+      ctxG.stroke();
+      ctxG.setLineDash([]);
+
+      ctxG.strokeStyle = '#c084fc';
+      ctxG.lineWidth = 2;
+      ctxG.beginPath();
+      for (let st = 0; st <= 15; st += 0.2) {
+        let gVal = 0;
+        if (st <= tStopB) gVal = (d0 + vB * st - 0.5 * aB * st * st) - vA * st;
+        else gVal = (d0 + (vB * vB)/(2*aB)) - vA * st;
+        const gx = gOriginX + st * gScaleT;
+        const gy = gOriginY - gVal * gScaleGap;
+        if (st === 0) ctxG.moveTo(gx, gy);
+        else ctxG.lineTo(gx, gy);
+      }
+      ctxG.stroke();
+
+      const curGx = gOriginX + t * gScaleT;
+      const curGy = gOriginY - gap * gScaleGap;
+      ctxG.fillStyle = '#f59e0b';
+      ctxG.beginPath();
+      ctxG.arc(curGx, curGy, 4, 0, Math.PI * 2);
+      ctxG.fill();
+    }
+
+    // =========================================================================
+    // TAB 7 RIG: 1D MASTER SANDBOX
+    // =========================================================================
+    let sbState = {
+      x0: 0,
+      v0: 15,
+      a0: -2.0,
+      k: 0.05,
+      t: 0,
+      x: 0,
+      v: 15,
+      isPlaying: false,
+      lastTs: null
+    };
+
+    function updateSbParams() {
+      sbState.x0 = parseFloat(document.getElementById('sliderSbX0').value);
+      sbState.v0 = parseFloat(document.getElementById('sliderSbV0').value);
+      sbState.a0 = parseFloat(document.getElementById('sliderSbA0').value);
+      sbState.k = parseFloat(document.getElementById('sliderSbK').value);
+      document.getElementById('sbX0Val').textContent = sbState.x0 + ' m';
+      document.getElementById('sbV0Val').textContent = sbState.v0 + ' m/s';
+      document.getElementById('sbA0Val').textContent = sbState.a0.toFixed(1) + ' m/s²';
+      document.getElementById('sbKVal').textContent = sbState.k.toFixed(2);
+      resetSbSim();
+    }
+
+    function toggleSbPlay() {
+      sbState.isPlaying = !sbState.isPlaying;
+      document.getElementById('sbPlayIcon').textContent = sbState.isPlaying ? '⏸' : '▶';
+      document.getElementById('sbPlayText').textContent = sbState.isPlaying ? 'Pause' : 'Run Sandbox';
+      if (sbState.isPlaying) {
+        sbState.lastTs = performance.now();
+        requestAnimationFrame(sbLoop);
+      }
+    }
+
+    function resetSbSim() {
+      sbState.isPlaying = false;
+      sbState.t = 0;
+      sbState.x = sbState.x0;
+      sbState.v = sbState.v0;
+      document.getElementById('sbPlayIcon').textContent = '▶';
+      document.getElementById('sbPlayText').textContent = 'Run Sandbox';
+      drawSb();
+    }
+
+    function sbLoop(ts) {
+      if (!sbState.isPlaying) return;
+      const dt = Math.min((ts - sbState.lastTs) / 1000, 0.03);
+      sbState.lastTs = ts;
+      
+      const a = sbState.a0 - sbState.k * sbState.v;
+      sbState.v += a * dt;
+      sbState.x += sbState.v * dt;
+      sbState.t += dt;
+
+      drawSb();
+      if (sbState.isPlaying) requestAnimationFrame(sbLoop);
+    }
+
+    function resizeSb() {
+      setupCanvas(document.getElementById('canvasSandbox'));
+    }
+
+    function drawSb() {
+      const canvas = document.getElementById('canvasSandbox');
+      if (!canvas) return;
+      const { ctx, width: w, height: h } = setupCanvas(canvas);
+
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      document.getElementById('sbClock').textContent = `t = ${sbState.t.toFixed(2)} s`;
+
+      const yMid = h * 0.5;
+      const xOrigin = w * 0.5;
+      const scaleX = w / 60;
+
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(20, yMid);
+      ctx.lineTo(w - 20, yMid);
+      ctx.stroke();
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = '10px monospace';
+      for (let xm = -25; xm <= 25; xm += 5) {
+        const px = xOrigin + xm * scaleX;
+        if (px >= 20 && px <= w - 20) {
+          ctx.strokeStyle = (xm === 0) ? '#f59e0b' : '#334155';
+          ctx.beginPath();
+          ctx.moveTo(px, yMid - 6);
+          ctx.lineTo(px, yMid + 6);
+          ctx.stroke();
+          ctx.fillText(xm + 'm', px - 8, yMid + 20);
+        }
+      }
+
+      const px = xOrigin + sbState.x * scaleX;
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(px, yMid, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(px, yMid - 16);
+      ctx.lineTo(px + sbState.v * 2, yMid - 16);
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '11px monospace';
+      ctx.fillText(`x = ${sbState.x.toFixed(2)}m  v = ${sbState.v.toFixed(2)}m/s`, 25, 30);
+    }
+
+    // =========================================================================
+    // TAB 8: IIT-JEE QUESTION HUB RENDERING & INTERACTIVE CHECKING
+    // =========================================================================
+    function filterSubTab(st) {
+      currentSubTabFilter = st;
+      const filters = ['all', 1, 2, 3, 4, 5];
+      filters.forEach(f => {
+        const btn = document.getElementById(f === 'all' ? 'btnQFilterAll' : `btnQFilter${f}`);
+        if (btn) {
+          btn.className = (f === st) ? 'px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold' : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-border hover:border-slate-600 font-semibold';
+        }
+      });
+      renderQuestions();
+    }
+
+    function filterQuestions() {
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      if (!container || !window.JEE_QUESTIONS_DATA) return;
+
+      const query = (document.getElementById('qSearchInput').value || '').toLowerCase();
+      let list = window.JEE_QUESTIONS_DATA;
+
+      if (currentSubTabFilter !== 'all') {
+        list = list.filter(q => q.subtab === currentSubTabFilter);
+      }
+
+      if (query.trim()) {
+        list = list.filter(q => 
+          q.q.toLowerCase().includes(query) || 
+          q.source.toLowerCase().includes(query) || 
+          q.subtabName.toLowerCase().includes(query) ||
+          q.formula.toLowerCase().includes(query)
+        );
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400">No questions found matching the selected filter.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(q => {
+        return `
+          <div class="bg-slate-900/90 border border-border rounded-xl p-5 space-y-4 hover:border-slate-700 transition" id="qcard-${q.id}">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/50 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono font-bold text-xs border border-purple-500/30">
+                  ${q.id}
+                </span>
+                <span class="text-xs font-semibold text-slate-300">${q.source}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                  ${q.subtabName}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
+                  ${q.simFidelity}
+                </span>
+                <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1 border rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm ${fidelityClass(q.simFidelity)}">
+                  <span>🚀</span>
+                  <span>${simulatorActionLabel(q)}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Question Stem -->
+            <div class="text-sm text-slate-200 leading-relaxed font-sans">
+              ${q.q}
+            </div>
+
+            <!-- Options Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${(q.options || []).map(opt => `
+                <button onclick="checkQuestionOption('${q.id}', '${opt.key}')" id="btnOpt-${q.id}-${opt.key}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-border hover:border-slate-600 text-xs text-slate-300 transition flex items-start gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 border border-border flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    ${opt.key}
+                  </span>
+                  <span>${opt.text}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Feedback Alert (Hidden by default) -->
+            <div id="feedback-${q.id}" class="hidden p-3 rounded-xl text-xs"></div>
+
+            <!-- Solution & Examiner Trap Accordion -->
+            <div class="pt-2 border-t border-border/40">
+              <button onclick="toggleSolution('${q.id}')" class="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                <span id="solIcon-${q.id}">▶</span>
+                <span>Teacher's Chalkboard · Derivation, Check, Trap &amp; Transfer</span>
+              </button>
+              <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
+                <div class="text-xs font-mono text-purple-300">
+                  <span class="text-slate-400">Governing Formula:</span> ${q.formula}
+                </div>
+                <div class="space-y-1 text-xs text-slate-300 font-sans">
+                  ${(q.steps || []).map((step, idx) => `
+                    <div class="flex items-start gap-2">
+                      <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
+                      <span>${step}</span>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                  <strong class="text-amber-400 block mb-1">⚠️ Examiner Trap Analysis:</strong>
+                  ${q.trap}
+                </div>
+                <div class="text-xs font-mono text-emerald-400 font-bold">
+                  Final Result: ${q.ans}
+                </div>
+                <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
+                  <strong class="text-sky-300 block mb-1">🧑‍🏫 Teacher's Chalkboard · Independent Check</strong>
+                  ${q.teacherCheck}
+                </div>
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                  <strong class="text-emerald-300 block mb-1">↗ Transfer Takeaway</strong>
+                  ${q.takeaway}
+                </div>
+                <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
+                  <strong class="block mb-1">Simulator Fidelity · ${q.simFidelity}</strong>
+                  ${q.simFidelityNote}
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function checkQuestionOption(qId, selectedKey) {
+      const q = (window.JEE_QUESTIONS_DATA || []).find(item => item.id === qId);
+      if (!q) return;
+
+      const fb = document.getElementById(`feedback-${qId}`);
+      const isCorrect = (selectedKey === q.correct);
+
+      (q.options || []).forEach(opt => {
+        const btn = document.getElementById(`btnOpt-${qId}-${opt.key}`);
+        if (btn) {
+          if (opt.key === q.correct) {
+            btn.className = 'text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/80 text-xs text-emerald-200 transition flex items-start gap-2.5';
+          } else if (opt.key === selectedKey && !isCorrect) {
+            btn.className = 'text-left p-3 rounded-xl bg-red-950/40 border border-red-500/80 text-xs text-red-200 transition flex items-start gap-2.5';
+          } else {
+            btn.className = 'text-left p-3 rounded-xl bg-slate-950/40 border border-border/50 text-xs text-slate-500 transition flex items-start gap-2.5';
+          }
+        }
+      });
+
+      if (fb) {
+        fb.classList.remove('hidden');
+        if (isCorrect) {
+          fb.className = 'p-3 rounded-xl text-xs bg-emerald-500/20 border border-emerald-500/40 text-emerald-200';
+          fb.innerHTML = `<strong>✅ Correct!</strong> ${q.ans}. Expand solution below to inspect the mathematical steps.`;
+        } else {
+          fb.className = 'p-3 rounded-xl text-xs bg-red-500/20 border border-red-500/40 text-red-200';
+          fb.innerHTML = `<strong>❌ Incorrect.</strong> Correct answer is Option ${q.correct}. See Examiner Trap analysis below.`;
+        }
+      }
+    }
+
+    function toggleSolution(qId) {
+      const el = document.getElementById(`solContent-${qId}`);
+      const icon = document.getElementById(`solIcon-${qId}`);
+      if (el) {
+        const isHidden = el.classList.contains('hidden');
+        el.classList.toggle('hidden', !isHidden);
+        if (icon) icon.textContent = isHidden ? '▼' : '▶';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      renderQuestions();
+      updateDispParams();
+      updateBalloonParams();
+      updateVxParams();
+      updateTapParams();
+      updateParaParams();
+      updateRelParams();
+      updateSbParams();
+      switchTab('tab-disp-dist');
+    });
+
+    window.addEventListener('resize', () => {
+      if (currentTab === 'tab-disp-dist') resizeDisp();
+      else if (currentTab === 'tab-balloon') resizeBalloon();
+      else if (currentTab === 'tab-graph-vx') resizeVx();
+      else if (currentTab === 'tab-drops') resizeDrops();
+      else if (currentTab === 'tab-braking') resizeBraking();
+      else if (currentTab === 'tab-relative') resizeRel();
+      else if (currentTab === 'tab-sandbox') resizeSb();
+    });
+  </script>
+</body>
+</html>
