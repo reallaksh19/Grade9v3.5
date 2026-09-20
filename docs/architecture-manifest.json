@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 186,
-  "relation_count": 240,
+  "component_count": 187,
+  "relation_count": 241,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 30,
-    "TEST": 84,
+    "TEST": 85,
     "TOOLING": 47,
     "WEB": 6
   },
-  "digest": "sha256:d0119eb22500cdc710dc1c0012b29effdef0a5091813553a7c73870cce4771cd",
+  "digest": "sha256:bad3282de17da330ee1536ec9ad48b1f3724ea47478ac281d523202c8938dbaf",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1034,6 +1034,13 @@
       "sha256": "d4424ea231746de12a9e45143fcfe085bc48ca7f41e067cc36ea21ebf658fe3a"
     },
     {
+      "path": "tests/test_grade9_physics_learner_loop.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4935,
+      "sha256": "8ee74e7e56639b2422fdf598375429c5db4130aa6f8f8d2b77434e3a90f76508"
+    },
+    {
       "path": "tests/test_grade9_simple_machines_scope.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1289,8 +1296,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 1856593,
-      "sha256": "7ccc90f42ceaf8e9cfd60b28d84d51372ef1f4f7006848ee1a71cbd9f7265cc8"
+      "bytes": 1881677,
+      "sha256": "4789f74f7147a40dcb1f76eb8843023c1d2e92dac1fdafd2d6361c0ff6d17cb7"
     },
     {
       "path": "tools/index.html",
@@ -1680,6 +1687,11 @@
     {
       "from": "Shared/tools/focus_inventory.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/gcdr_runtime_audit.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -2093,6 +2105,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_gcdr_runtime_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_gcdr_state_binding.py",
+      "to": "Shared.tools.gcdr_state_binding",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_grade10_optics_reflection_scope.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -2494,16 +2516,6 @@
     },
     {
       "from": "tests/test_topic_atlas_contract.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_topic_atlas_takeover_contract.py",
-      "to": "Shared.contracts",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_topic_atlas_takeover_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
