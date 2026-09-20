@@ -155,8 +155,8 @@ def _write_scope(action: str, core: str) -> dict:
     return {"mode": "NO_WRITE", "collections": [], "note": "This work order is held or withheld."}
 
 
-def compile_packet(request: dict, repo: Path = REPO) -> dict:
-    plan = plan_request.plan(request, repo)
+def compile_packet(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
+    plan = plan_request.plan(request, repo, diagnostic)
     subject = plan.get("subject") or request.get("subject")
     library_files, library_digest = _subject_library(subject, repo)
     packet = {
@@ -178,12 +178,17 @@ def compile_packet(request: dict, repo: Path = REPO) -> dict:
                 }
                 if plan.get("source", {}).get("receipt_ref") else None
             ),
+            "diagnostic": (
+                {"digest": digest(diagnostic)}
+                if diagnostic is not None else None
+            ),
         },
         "canonical": {
             "rungs": plan.get("canonical_rungs", []),
             "selected_segment": _segment(plan),
             "learner_route": plan.get("learner_route"),
             "practice_inventory": plan.get("practice_inventory"),
+            "diagnostic_focus": plan.get("diagnostic_focus"),
             "source": plan.get("source"),
         },
         "owner_decisions": {
@@ -214,6 +219,8 @@ def compile_packet(request: dict, repo: Path = REPO) -> dict:
                 plan.get("practice_inventory", {}).get(core, [])
                 if core in {"CORE2A", "CORE2B"} else []
             ),
+            "diagnostic_focus": (plan.get("core_focus") or {}).get(core),
+            "focus_inventory": (plan.get("focus_inventory") or {}).get(core),
         }
         packet["work_orders"].append({
             "core": core,
@@ -271,7 +278,7 @@ def _schema_findings(packet: dict, repo: Path = REPO) -> list[dict]:
     ]
 
 
-def verify(packet: dict, request: dict, repo: Path = REPO) -> dict:
+def verify(packet: dict, request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
     found = list(_schema_findings(packet, repo))
     def fail(point: str, where: str, detail: str) -> None:
         found.append({"point": point, "where": where, "detail": detail})
@@ -310,6 +317,18 @@ def verify(packet: dict, request: dict, repo: Path = REPO) -> dict:
                  receipt_pin.get("receipt_id", ""),
                  "source receipt changed after this packet was compiled")
 
+    diagnostic_pin = packet.get("pins", {}).get("diagnostic")
+    if diagnostic_pin:
+        if diagnostic is None:
+            fail("EXECUTION_PACKET_DIAGNOSTIC_MISSING", packet.get("request_id", ""),
+                 "packet was compiled with a diagnostic envelope but none was supplied for verification")
+        elif diagnostic_pin.get("digest") != digest(diagnostic):
+            fail("EXECUTION_PACKET_DIAGNOSTIC_STALE", packet.get("request_id", ""),
+                 "diagnostic envelope changed after this packet was compiled")
+    elif diagnostic is not None:
+        fail("EXECUTION_PACKET_DIAGNOSTIC_STALE", packet.get("request_id", ""),
+             "verification supplied a diagnostic envelope to a packet compiled without one")
+
     for order in packet.get("work_orders", []):
         role = order.get("role", {})
         path = repo / role.get("path", "")
@@ -318,7 +337,7 @@ def verify(packet: dict, request: dict, repo: Path = REPO) -> dict:
             fail("EXECUTION_PACKET_ROLE_STALE", order.get("core", ""),
                  f'{role.get("path")} changed after this packet was compiled')
 
-    fresh = compile_packet(request, repo)
+    fresh = compile_packet(request, repo, diagnostic)
     current_orders = {
         row["core"]: (row["product_state"], row["authoring_action"], row["blockers"])
         for row in fresh.get("work_orders", [])
@@ -357,16 +376,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--request", type=Path)
     parser.add_argument("--verify", type=Path)
+    parser.add_argument("--diagnostic", type=Path,
+                        help="optional external diagnostic envelope pinned into the packet")
     parser.add_argument("--audit", action="store_true")
     parser.add_argument("--enforce", action="store_true")
     args = parser.parse_args()
+    diagnostic = load(args.diagnostic) if args.diagnostic else None
 
     if args.verify:
         if not args.request:
             parser.error("--verify requires --request")
-        report = verify(load(args.verify), load(args.request))
+        report = verify(load(args.verify), load(args.request), diagnostic=diagnostic)
     elif args.request:
-        report = compile_packet(load(args.request))
+        report = compile_packet(load(args.request), diagnostic=diagnostic)
     else:
         report = audit()
     print(json.dumps(report, indent=2, ensure_ascii=False))
