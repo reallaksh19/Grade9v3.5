@@ -53,18 +53,19 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Fresh candidate must complete repository-only DISC + QSET-TA-009/QUAL + TC; then material_write_ready must pass for that candidate before STEP-TA8-001 runtime writes."
+      "next_action": "Owner ODR-0006 authorizes this agent to execute STEP-TA8-001 as an explicit V2.5 protocol exception; do not claim candidate certification or MATERIAL_WRITE_READY."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
         "AUDIT-TA-008-MOTHER-CONTRACT findings remain open until the reconciled EP implementation and tests close them.",
-        "No EP-TA-008 acceptance credit is earned by contract reconciliation alone."
+        "No EP-TA-008 acceptance credit is earned by contract reconciliation alone.",
+        "ODR-0006 explicitly overrides the independent-candidate execution gate for STEP-TA8-001 only; V2.5 MATERIAL_WRITE_READY remains false and must not be misreported as PASS."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Mother-contract audit and prior green implementation evidence exist, but the reconciled RM-0008 EP has not yet been freshly qualified or executed.",
+      "summary": "Mother-contract audit and prior implementation evidence exist. ODR-0006 authorizes direct STEP-TA8-001 execution as an explicit protocol exception; fresh QSET-TA-009 candidate qualification remains absent.",
       "not_run": [
         {
           "id": "QUAL/TC for QSET-TA-009",

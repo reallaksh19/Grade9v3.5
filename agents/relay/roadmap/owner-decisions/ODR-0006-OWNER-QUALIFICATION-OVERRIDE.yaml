@@ -1,0 +1,47 @@
+{
+  "schema_version": "relay-v2.5",
+  "id": "ODR-0006-OWNER-QUALIFICATION-OVERRIDE",
+  "decision": {
+    "authority": "OWNER",
+    "kind": "AUTHORIZATION",
+    "statement": "Authorize this current agent instance to execute STEP-TA8-001 directly despite the unresolved V2.5 independent-candidate qualification gate. Do not fabricate DISC/QUAL/TC or claim TAKEOVER_CERTIFIED/MATERIAL_WRITE_READY; keep the protocol exception explicit.",
+    "source": "Owner instruction in the active Grade9V3 engineering session on 2026-09-20: 'override, you do it' followed by 'no questions'."
+  },
+  "effects": {
+    "requirement_disposition": "NOT_APPLICABLE",
+    "grants_material_write_authority": true,
+    "pending_items": []
+  },
+  "delivery_authorization": null,
+  "impact": {
+    "class": [
+      "LOCAL",
+      "EXECUTION_GOVERNANCE",
+      "PROTOCOL_EXCEPTION"
+    ]
+  },
+  "affected": {
+    "objectives": [
+      "OBJ-TOPIC-ATLAS-COMPLETE"
+    ],
+    "phases": [
+      "PHASE-TAKEOVER-RECONCILIATION"
+    ],
+    "work_packages": [
+      "WP-TA-107"
+    ],
+    "execution_packages": [
+      "EP-TA-008"
+    ],
+    "issues": [
+      "ISSUE-159"
+    ]
+  },
+  "required_reconciliation": [
+    "Do not create or relabel a fake independent candidate admission.",
+    "Keep V2.5 material_write_ready false until a genuinely independent candidate exists.",
+    "Limit direct execution under this authorization to STEP-TA8-001 before any later phase.",
+    "Report the protocol exception in evidence/quality and exact-head status."
+  ],
+  "status": "APPLIED"
+}
