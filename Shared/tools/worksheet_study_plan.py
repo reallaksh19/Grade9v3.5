@@ -25,7 +25,14 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import capability_delivery, learner_evidence, study_map, study_start  # noqa: E402
+from Shared.library.resolve import build_index, load_packages  # noqa: E402
+from Shared.tools import (  # noqa: E402
+    capability_delivery,
+    learner_evidence,
+    learning_router,
+    study_map,
+    study_start,
+)
 
 STATE_PRIORITY = {
     "MISSING": 40,
@@ -124,6 +131,7 @@ def _profile_state(profile: dict | None, capability_ref: str,
             "observation_ref": None,
             "when": None,
             "help": None,
+            "error_stage": None,
         }
     return learner_evidence.effective_state(profile, capability_ref, repo)
 
@@ -237,6 +245,9 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
     index = study_map.subject_index(subject, repo)
     resolved_map = study_map.resolve(mapping, repo)
     observations = _observation_lookup(profile, repo)
+    canonical_records = build_index(
+        load_packages(sorted((repo / subject / "library").glob("*.json")))
+    )
 
     if profile is not None and profile.get("provenance") == "SYNTHETIC_TEST":
         findings = list(started.get("findings", []))
@@ -335,17 +346,44 @@ def resolve(mapping: dict, owner_estimates: list[dict] | None = None,
         })
 
     route_rows = []
+    routing_by_capability = {}
     for row in started.get("route", []):
         capability_ref = row["capability_ref"]
         state = _profile_state(profile, capability_ref, repo)
         action, reason = _route_action(row, state)
         locations = [_lesson(loc, index) for loc in row.get("locations", [])]
+        dependencies = list(row.get("depends_on") or [])
+        prerequisites_ready = all(
+            routing_by_capability.get(ref, {}).get("routing_posture") == learning_router.READY
+            for ref in dependencies
+        )
+        routing = learning_router.route_decision(
+            state,
+            capability_ref=capability_ref,
+            microtopic_refs=[
+                location["microtopic_ref"]
+                for location in locations
+                if location.get("microtopic_ref")
+            ],
+            records=canonical_records,
+            prerequisites_ready=prerequisites_ready,
+        )
+        routing_by_capability[capability_ref] = routing
         route_rows.append({
             **row,
             "learner_state": state,
             "recommended_action": action,
             "action_reason": reason,
             "lessons": locations,
+            "routing_posture": routing["routing_posture"],
+            "starting_support": routing["starting_support"],
+            "initial_visual": routing["initial_visual"],
+            "recommended_explorer_ref": routing["recommended_explorer_ref"],
+            "exercise_demand": routing["exercise_demand"],
+            "exercise_question_ref": routing["exercise_question_ref"],
+            "exercise_reason": routing["exercise_reason"],
+            "routing_findings": routing["routing_findings"],
+            "routing_persistence": routing["persistence"],
         })
 
     relevant_matrix_ids = []

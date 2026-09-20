@@ -2,9 +2,13 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
-from Shared.tools import learner_evidence, learning_router
+from Shared.library.resolve import build_index, load_packages
+from Shared.tools import learner_evidence, learning_router, worksheet_study_plan
+
+REPO = Path(__file__).resolve().parents[1]
 
 
 class LearningRouterTest(unittest.TestCase):
@@ -70,6 +74,84 @@ class LearningRouterTest(unittest.TestCase):
             state = learner_evidence.effective_state(profile, "CAP-X")
         self.assertEqual(state["state"], "UNCERTAIN")
         self.assertEqual(learning_router.posture_for(state), "REINFORCE")
+
+    def test_nlm_friction_visual_and_exercise_routing_is_canonical(self):
+        records = build_index(load_packages([
+            REPO / "Physics/library/phy-nlm-first-law.v1.json"
+        ]))
+        rebuild = learning_router.route_decision(
+            {"state": "MISSING", "error_stage": "CONCEPT"},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=False,
+        )
+        self.assertEqual(rebuild["starting_support"], "high")
+        self.assertEqual(
+            rebuild["initial_visual"]["visual_stage_ref"],
+            "VIS-NLM-FRICTION-V2",
+        )
+        self.assertEqual(
+            rebuild["recommended_explorer_ref"],
+            "ACT-NLM-FRICTION-THRESHOLD",
+        )
+        self.assertEqual(
+            rebuild["exercise_demand"],
+            learning_router.GUIDED_RECONSTRUCTION,
+        )
+
+        ready = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "error_stage": None},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=True,
+        )
+        self.assertEqual(ready["starting_support"], "low")
+        self.assertEqual(
+            ready["initial_visual"]["visual_stage_ref"],
+            "VIS-NLM-FRICTION-V0",
+        )
+        self.assertEqual(ready["exercise_demand"], learning_router.TRANSFER)
+        self.assertTrue(ready["exercise_question_ref"].startswith("Q-PHY-NLM-"))
+
+        gated = learning_router.route_decision(
+            {"state": "DEMONSTRATED", "error_stage": None},
+            capability_ref="CAP-NLM-FRICTION-QUANT",
+            microtopic_refs=["MIC-PHY-NLM-FRICTION-QUANT"],
+            records=records,
+            prerequisites_ready=False,
+        )
+        self.assertEqual(gated["exercise_demand"], learning_router.PRACTICE)
+
+    def test_worksheet_route_receives_session_only_router_annotations(self):
+        mapping = {
+            "worksheet_id": "WS-NLM-ROUTER",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+                "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+                "secondary_capability_refs": ["CAP-NLM-SECOND-LAW"],
+                "mapping_basis": "CANONICAL_QUESTION",
+                "canonical_question_ref": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+            }],
+        }
+        report = worksheet_study_plan.resolve(mapping, repo=REPO)
+        self.assertTrue(report["passed"], report["findings"])
+        route = {row["capability_ref"]: row for row in report["route"]}
+        friction = route["CAP-NLM-FRICTION-QUANT"]
+        self.assertEqual(friction["routing_posture"], "REINFORCE")
+        self.assertEqual(friction["starting_support"], "medium")
+        self.assertEqual(
+            friction["initial_visual"]["representation_ref"],
+            "REP-NLM-FRICTION-THRESHOLD",
+        )
+        self.assertEqual(
+            friction["initial_visual"]["visual_stage_ref"],
+            "VIS-NLM-FRICTION-V1",
+        )
+        self.assertEqual(friction["exercise_demand"], learning_router.PRACTICE)
+        self.assertEqual(friction["routing_persistence"], "NOT_WRITTEN")
 
 
 if __name__ == "__main__":
