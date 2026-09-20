@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0008",
     "issue_graph_revision": "IG-0003",
     "execution_ref": "EP-TA-008",
-    "state": "PREPARED",
+    "state": "PUBLISHING",
     "supersedes_generation": "GHGEN-HO-79E29CBD0F01",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -21,7 +21,7 @@
     {
       "id": "GHOP-HO-03943C0B50F7",
       "kind": "CREATE",
-      "state": "PREPARED",
+      "state": "ATTEMPTED_UNCONFIRMED",
       "idempotency_key": "relay:GHGEN-HO-03943C0B50F7:GHOP-HO-03943C0B50F7",
       "depends_on": [],
       "subject": {
@@ -43,9 +43,14 @@
         "source_issue_number": 159
       },
       "publication": {
-        "attempt_count": 0,
+        "attempt_count": 1,
         "receipt": null,
-        "last_error": null
+        "last_error": null,
+        "last_attempt_basis": [
+          "prewrite-journal-head:770ed5931572e8f2f3b64b66a8e3338a14a97df2",
+          "audit:agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+          "source-issue:https://github.com/reallaksh19/Grade9V3/issues/159"
+        ]
       },
       "verification": {
         "status": "NOT_RUN",
