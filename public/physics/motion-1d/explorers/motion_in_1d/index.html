@@ -2768,16 +2768,18 @@
                     </div>
                   `).join('')}
                 </div>
-                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
-                  <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis:</strong>
-                  ${q.trap}
-                </div>
-                <div class="text-xs font-mono text-emerald-400 font-bold">
-                  3 · Final Result: ${q.ans}
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                  <strong class="text-emerald-300 block mb-1">3 · Final Result / Answer Audit</strong>
+                  <span class="font-mono font-bold">${q.ans}</span>
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit}</div>
                 </div>
                 <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
                   <strong class="text-sky-300 block mb-1">4 · 🧑‍🏫 Independent Teacher Check</strong>
                   ${q.teacherCheck}
+                </div>
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                  <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis</strong>
+                  ${q.trap}
                 </div>
                 <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
                   <strong class="text-emerald-300 block mb-1">6 · ↗ Transfer Rule</strong>
