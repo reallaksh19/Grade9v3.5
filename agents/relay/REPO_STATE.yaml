@@ -68,25 +68,18 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the RM-0006 reconciliation and fresh DISC-TA-004/TC-TA-004 admission on the exact PR head, then publish the formal EP-TA-003 quality review/checkpoint and advance to Grade-9 Physics scope closure."
+      "next_action": "Publish the formal EP-TA-003 quality review, checkpoint WP-TA-106, then advance the governed serial frontier to WP-TA-103 Grade-9 Physics scope closure."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "The formal EP-TA-003 quality review remains to be published before checkpoint.",
-        "RM-0006 changes programme intent and README entry semantics; exact-head repository/V2.5 validation is required before checkpoint."
+        "The formal EP-TA-003 quality review remains to be published before checkpoint."
       ]
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "The prior roadmap-first documentation material head 13d81af36a3042a67f0af78870f823d2fc267543 passed guardrails/V2.5 validation. RM-0006 preserves that implementation, changes Owner programme intent and README navigation, and requires exact-head validation.",
-      "not_run": [
-        {
-          "id": "RM-0006-EXACT-HEAD",
-          "reason": "Exact-head CI must validate the RM-0006 Owner-intent and README reconciliation before checkpoint/handover.",
-          "cause": "NOT_SCHEDULED"
-        }
-      ]
+      "state": "COMPLETE",
+      "summary": "RM-0006 Owner-intent/README reconciliation plus fresh DISC-TA-004/TC-TA-004 admission passed V2.5 relay run 35498815822 and repository guardrails run 35498815800 on material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23.",
+      "not_run": []
     },
     "stop": {
       "active": false,
@@ -120,8 +113,8 @@
     "handover_ready": true,
     "reasons": [
       "The RM-0006 baton is repository-reconstructable and projection is not required.",
-      "Fresh repository-only DISC-TA-004 / TC-TA-004 records bind the current logical candidate to RM-0006 without reusing the stale RM-0005 admission.",
-      "Exact-head validation and the formal EP-TA-003 quality review remain evidence/quality work, not baton-readiness blockers."
+      "Fresh repository-only DISC-TA-004 / TC-TA-004 bind the current logical candidate to RM-0006.",
+      "Exact-head V2.5 relay and repository guardrails are green on 22f0139b6cf04f86aa90345af3d7a14d022a6b23; only the formal EP-TA-003 quality review/checkpoint remains before advancing."
     ]
   },
   "chat_context_required": false
