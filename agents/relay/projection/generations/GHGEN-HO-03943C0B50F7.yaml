@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0008",
     "issue_graph_revision": "IG-0003",
     "execution_ref": "EP-TA-008",
-    "state": "PUBLISHING",
+    "state": "IN_SYNC",
     "supersedes_generation": "GHGEN-HO-79E29CBD0F01",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -21,7 +21,7 @@
     {
       "id": "GHOP-HO-03943C0B50F7",
       "kind": "CREATE",
-      "state": "ATTEMPTED_UNCONFIRMED",
+      "state": "VERIFIED",
       "idempotency_key": "relay:GHGEN-HO-03943C0B50F7:GHOP-HO-03943C0B50F7",
       "depends_on": [],
       "subject": {
@@ -44,7 +44,7 @@
       },
       "publication": {
         "attempt_count": 1,
-        "receipt": null,
+        "receipt": "github-issue-create:https://github.com/reallaksh19/Grade9V3/issues/164",
         "last_error": null,
         "last_attempt_basis": [
           "prewrite-journal-head:770ed5931572e8f2f3b64b66a8e3338a14a97df2",
@@ -53,8 +53,20 @@
         ]
       },
       "verification": {
-        "status": "NOT_RUN",
-        "basis": []
+        "status": "PASS",
+        "observed_issue_number": 164,
+        "observed_issue_id": 5518649343,
+        "observed_github_state": "OPEN",
+        "observed_relationships": [
+          "verified reciprocal reference from Issue #159 comment 5750665728"
+        ],
+        "basis": [
+          "GitHub create response for https://github.com/reallaksh19/Grade9V3/issues/164",
+          "GitHub provider readback https://api.github.com/repos/reallaksh19/Grade9V3/issues/164",
+          "Verified relay-operation marker GHOP-HO-03943C0B50F7",
+          "Verified mother-issue reference comment 5750665728 on Issue #159"
+        ],
+        "recovered_without_connector_receipt": false
       },
       "reconciliation": {
         "issue_graph_effects": [

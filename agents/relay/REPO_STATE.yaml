@@ -82,14 +82,14 @@
   },
   "projection": {
     "required": true,
-    "state": "PENDING",
+    "state": "IN_SYNC",
     "operation_id": "GHGEN-HO-03943C0B50F7",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-HO-03943C0B50F7.yaml",
     "roadmap_revision": "RM-0008",
     "execution_ref": "EP-TA-008",
-    "receipt": null,
+    "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
@@ -111,7 +111,19 @@
           "Issue #159 is now the mapped mother contract for WP-TA-107; the prior handover source was the active EP because no source issue was mapped."
         ]
       }
-    ]
+    ],
+    "observed": {
+      "operation_id": "GHGEN-HO-03943C0B50F7",
+      "target": "github:reallaksh19/Grade9V3:issues",
+      "roadmap_revision": "RM-0008",
+      "execution_ref": "EP-TA-008",
+      "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
+      "basis": [
+        "Issue #164 provider readback",
+        "relay-operation:GHOP-HO-03943C0B50F7",
+        "Issue #159 comment 5750665728 reciprocal reference"
+      ]
+    }
   },
   "delivery": {
     "required": false,
@@ -124,10 +136,11 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": false,
-    "handover_ready": false,
+    "projection_ready": true,
+    "handover_ready": true,
     "reasons": [
-      "Issue #159-derived handover projection is pending provider publication/readback."
+      "Baton is semantically reconstructable.",
+      "Issue #159-derived handover projection is verified in sync at Issue #164."
     ]
   },
   "chat_context_required": false
