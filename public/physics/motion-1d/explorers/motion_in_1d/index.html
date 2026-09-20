@@ -1791,7 +1791,11 @@
       vxState.x0 = parseFloat(document.getElementById('sliderVxX0').value);
       document.getElementById('vxV0Val').textContent = vxState.v0 + ' m/s';
       document.getElementById('vxX0Val').textContent = vxState.x0 + ' m';
-      document.getElementById('sliderProbeX').max = vxState.x0;
+      const probeSlider = document.getElementById('sliderProbeX');
+      probeSlider.max = vxState.x0;
+      vxState.probeX = Math.min(vxState.probeX, vxState.x0);
+      probeSlider.value = vxState.probeX;
+      document.getElementById('probeXVal').textContent = 'x = ' + vxState.probeX.toFixed(2) + ' m';
       drawVx();
     }
 
@@ -2078,6 +2082,29 @@
       lastTs: null
     };
 
+    function brakingMetrics() {
+      const h1 = brakingState.h1;
+      const aB = Math.max(1e-9, brakingState.aBrake);
+      const vL = brakingState.vLand;
+      const g = brakingState.g;
+      const v1 = Math.sqrt(2 * g * h1);
+      const t1 = Math.sqrt(2 * h1 / g);
+      const h2 = Math.max(0, (v1 * v1 - vL * vL) / (2 * aB));
+      const t2 = Math.max(0, (v1 - vL) / aB);
+      return { v1, t1, h2, t2, hTotal: h1 + h2, tTotal: t1 + t2 };
+    }
+
+    function syncBrakingHorizon() {
+      const slider = document.getElementById('sliderBrakingTime');
+      if (!slider) return;
+      const { tTotal } = brakingMetrics();
+      slider.max = Math.max(1, Math.ceil(tTotal * 10) / 10);
+      if (brakingState.t > tTotal) {
+        brakingState.t = tTotal;
+        slider.value = tTotal;
+      }
+    }
+
     function updateParaParams() {
       brakingState.h1 = parseFloat(document.getElementById('sliderParaH1').value);
       brakingState.aBrake = parseFloat(document.getElementById('sliderParaA').value);
@@ -2085,6 +2112,7 @@
       document.getElementById('paraH1Val').textContent = brakingState.h1 + ' m';
       document.getElementById('paraAVal').textContent = brakingState.aBrake.toFixed(1) + ' m/s²';
       document.getElementById('paraVlandVal').textContent = brakingState.vLand.toFixed(1) + ' m/s';
+      syncBrakingHorizon();
       drawBraking();
     }
 
@@ -2118,8 +2146,9 @@
       const dt = Math.min((ts - brakingState.lastTs) / 1000, 0.05);
       brakingState.lastTs = ts;
       brakingState.t += dt;
-      if (brakingState.t > 20) {
-        brakingState.t = 20;
+      const { tTotal } = brakingMetrics();
+      if (brakingState.t > tTotal) {
+        brakingState.t = tTotal;
         brakingState.isPlaying = false;
         document.getElementById('brakingPlayIcon').textContent = '▶';
       }
@@ -2138,28 +2167,19 @@
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const h1 = brakingState.h1;
+      const t = brakingState.t;
       const aB = brakingState.aBrake;
       const vL = brakingState.vLand;
-      const g = brakingState.g;
-      const t = brakingState.t;
-
-      const v1 = Math.sqrt(2 * g * h1);
-      const t1 = Math.sqrt(2 * h1 / g);
-      const h2 = (v1 * v1 - vL * vL) / (2 * aB);
-      const t2 = (v1 - vL) / aB;
-      const hTotal = h1 + h2;
-      const tTotal = t1 + t2;
+      const { v1, t1, h2, hTotal, tTotal } = brakingMetrics();
 
       let curY = 0, curV = 0, isPhase1 = true;
       if (t <= t1) {
-        curY = hTotal - 0.5 * g * t * t;
-        curV = g * t;
-        isPhase1 = true;
+        curY = hTotal - 0.5 * brakingState.g * t * t;
+        curV = brakingState.g * t;
       } else if (t <= tTotal) {
         const dt2 = t - t1;
-        curY = (hTotal - h1) - (v1 * dt2 - 0.5 * aB * dt2 * dt2);
-        curV = v1 - aB * dt2;
+        curY = Math.max(0, h2 - (v1 * dt2 - 0.5 * aB * dt2 * dt2));
+        curV = Math.max(vL, v1 - aB * dt2);
         isPhase1 = false;
       } else {
         curY = 0;
@@ -2174,7 +2194,7 @@
       document.getElementById('telParaHtotal').textContent = `${hTotal.toFixed(1)} m`;
 
       const groundY = h - 30;
-      const scaleY = (groundY - 30) / Math.max(300, hTotal);
+      const scaleY = (groundY - 30) / Math.max(30, hTotal * 1.08);
 
       ctx.fillStyle = '#1e293b';
       ctx.fillRect(0, groundY, w, 30);
@@ -2185,7 +2205,7 @@
       ctx.lineTo(w, groundY);
       ctx.stroke();
 
-      const chuteOpenY = groundY - (hTotal - h1) * scaleY;
+      const chuteOpenY = groundY - h2 * scaleY;
       ctx.strokeStyle = '#f59e0b';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -2195,11 +2215,10 @@
       ctx.setLineDash([]);
       ctx.fillStyle = '#f59e0b';
       ctx.font = '10px monospace';
-      ctx.fillText(`Parachute Deploys (h = ${(hTotal - h1).toFixed(1)}m, v = ${v1.toFixed(1)}m/s)`, 50, chuteOpenY - 6);
+      ctx.fillText(`Parachute Deploys (h = ${h2.toFixed(1)}m, v = ${v1.toFixed(1)}m/s)`, 50, clampNumber(chuteOpenY - 6, 12, groundY - 8));
 
       const px = w * 0.45;
       const py = groundY - curY * scaleY;
-
       if (!isPhase1 && curY > 0) {
         ctx.fillStyle = '#ef4444';
         ctx.beginPath();
@@ -2222,7 +2241,7 @@
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '10px monospace';
-      ctx.fillText(`v = ${curV.toFixed(1)} m/s`, px + 12, py + 4);
+      ctx.fillText(`v = ${curV.toFixed(1)} m/s`, Math.min(w - 100, px + 12), clampNumber(py + 4, 12, groundY - 4));
     }
 
     // =========================================================================
@@ -2246,6 +2265,51 @@
       drawRel();
     }
 
+    function relativeMetricsAt(t) {
+      const vA = relState.vA;
+      const vB = relState.vB;
+      const d0 = relState.d0;
+      const aB = Math.max(1e-9, relState.aB);
+      const xA = vA * t;
+      const tStopB = vB / aB;
+      let xB, curVB;
+      if (t <= tStopB) {
+        xB = d0 + vB * t - 0.5 * aB * t * t;
+        curVB = Math.max(0, vB - aB * t);
+      } else {
+        xB = d0 + (vB * vB) / (2 * aB);
+        curVB = 0;
+      }
+      return { xA, xB, gap: xB - xA, curVB, tStopB };
+    }
+
+    function relativeEventTime() {
+      const vA = relState.vA;
+      const vB = relState.vB;
+      const d0 = relState.d0;
+      const aB = Math.max(1e-9, relState.aB);
+      const tStopB = vB / aB;
+      const A = 0.5 * aB;
+      const B = vA - vB;
+      const disc = B * B + 4 * A * d0;
+      const root = (-B + Math.sqrt(Math.max(0, disc))) / (2 * A);
+      if (root >= 0 && root <= tStopB) return root;
+      const xBStop = d0 + (vB * vB) / (2 * aB);
+      return xBStop / Math.max(1e-9, vA);
+    }
+
+    function syncRelativeHorizon() {
+      const slider = document.getElementById('sliderRelTime');
+      if (!slider) return;
+      const eventTime = relativeEventTime();
+      const horizon = Math.max(5, Math.ceil(eventTime * 1.15 * 10) / 10);
+      slider.max = horizon;
+      if (relState.t > horizon) {
+        relState.t = horizon;
+        slider.value = horizon;
+      }
+    }
+
     function updateRelParams() {
       relState.vA = parseFloat(document.getElementById('sliderRelVA').value);
       relState.vB = parseFloat(document.getElementById('sliderRelVB').value);
@@ -2255,6 +2319,7 @@
       document.getElementById('relVBVal').textContent = relState.vB + ' m/s';
       document.getElementById('relD0Val').textContent = relState.d0 + ' m';
       document.getElementById('relABVal').textContent = relState.aB.toFixed(1) + ' m/s²';
+      syncRelativeHorizon();
       drawRel();
     }
 
@@ -2288,8 +2353,9 @@
       const dt = Math.min((ts - relState.lastTs) / 1000, 0.05);
       relState.lastTs = ts;
       relState.t += dt;
-      if (relState.t > 15) {
-        relState.t = 15;
+      const horizon = Number.parseFloat(document.getElementById('sliderRelTime')?.max) || 15;
+      if (relState.t > horizon) {
+        relState.t = horizon;
         relState.isPlaying = false;
         document.getElementById('relPlayIcon').textContent = '▶';
       }
@@ -2314,36 +2380,28 @@
       ctxG.fillRect(0, 0, wG, hG);
 
       const t = relState.t;
-      const vA = relState.vA;
-      const vB = relState.vB;
-      const d0 = relState.d0;
-      const aB = relState.aB;
-
-      const xA = vA * t;
-      const tStopB = vB / aB;
-      let xB = 0, curVB = 0;
-      if (t <= tStopB) {
-        xB = d0 + vB * t - 0.5 * aB * t * t;
-        curVB = vB - aB * t;
-      } else {
-        xB = d0 + (vB * vB) / (2 * aB);
-        curVB = 0;
-      }
-      const gap = xB - xA;
+      const horizon = Number.parseFloat(document.getElementById('sliderRelTime')?.max) || 15;
+      const cur = relativeMetricsAt(t);
+      const end = relativeMetricsAt(horizon);
+      const gap = cur.gap;
 
       document.getElementById('relLiveClock').textContent = `t = ${t.toFixed(2)} s`;
       document.getElementById('relLiveGap').textContent = `Gap = ${gap.toFixed(1)} m`;
-      document.getElementById('telRelXA').textContent = `${xA.toFixed(1)} m`;
-      document.getElementById('telRelXB').textContent = `${xB.toFixed(1)} m`;
-      document.getElementById('telRelSep').textContent = `${(gap >= 0 ? '+' : '')}${gap.toFixed(1)} m`;
-      document.getElementById('telRelVrel').textContent = `${(curVB - vA).toFixed(1)} m/s`;
+      document.getElementById('telRelXA').textContent = `${cur.xA.toFixed(1)} m`;
+      document.getElementById('telRelXB').textContent = `${cur.xB.toFixed(1)} m`;
+      document.getElementById('telRelSep').textContent = `${gap >= 0 ? '+' : ''}${gap.toFixed(1)} m`;
+      document.getElementById('telRelVrel').textContent = `${(cur.curVB - relState.vA).toFixed(1)} m/s`;
 
       const yRoad = hR * 0.5;
-      const scaleX = (wR - 80) / 250;
-      const originX = (relState.frame === 'ground') ? 40 : (wR * 0.2);
+      const left = 34, right = Math.max(left + 1, wR - 22);
+      const roadValues = relState.frame === 'ground'
+        ? [0, relState.d0, cur.xA, cur.xB, end.xA, end.xB]
+        : [0, relState.d0, gap, end.gap];
+      const roadBounds = paddedBounds(roadValues, 80, 0.14);
+      const roadToPx = xv => left + ((xv - roadBounds.min)/(roadBounds.max-roadBounds.min))*(right-left);
 
       ctxR.fillStyle = '#0f172a';
-      ctxR.fillRect(20, yRoad - 25, wR - 40, 50);
+      ctxR.fillRect(20, yRoad - 25, Math.max(1, wR - 40), 50);
       ctxR.strokeStyle = '#334155';
       ctxR.setLineDash([8, 8]);
       ctxR.beginPath();
@@ -2352,61 +2410,63 @@
       ctxR.stroke();
       ctxR.setLineDash([]);
 
-      const pxA = (relState.frame === 'ground') ? (originX + xA * scaleX) : originX;
-      const pxB = (relState.frame === 'ground') ? (originX + xB * scaleX) : (originX + gap * scaleX);
+      const pxA = relState.frame === 'ground' ? roadToPx(cur.xA) : roadToPx(0);
+      const pxB = relState.frame === 'ground' ? roadToPx(cur.xB) : roadToPx(gap);
 
       ctxR.fillStyle = '#38bdf8';
       ctxR.fillRect(pxA - 15, yRoad - 20, 30, 16);
       ctxR.fillStyle = '#ffffff';
       ctxR.font = '10px monospace';
-      ctxR.fillText('Car A', pxA - 14, yRoad - 24);
+      ctxR.fillText('Car A', clampNumber(pxA - 14, 4, Math.max(4,wR - 45)), yRoad - 24);
 
       ctxR.fillStyle = '#f59e0b';
       ctxR.fillRect(pxB - 15, yRoad + 4, 30, 16);
       ctxR.fillStyle = '#ffffff';
-      ctxR.fillText('Car B', pxB - 14, yRoad + 32);
+      ctxR.fillText('Car B', clampNumber(pxB - 14, 4, Math.max(4,wR - 45)), yRoad + 32);
 
-      const gOriginX = 35;
-      const gOriginY = hG - 25;
-      const gScaleT = (wG - 50) / 15;
-      const gScaleGap = (hG - 40) / (d0 * 1.2);
+      const gLeft = 36, gRight = Math.max(gLeft + 1, wG - 10);
+      const gTop = 10, gBottom = Math.max(gTop + 1, hG - 24);
+      const gapSamples = [];
+      for (let st = 0; st <= horizon + 1e-9; st += Math.max(0.05, horizon / 150)) {
+        gapSamples.push(relativeMetricsAt(st).gap);
+      }
+      const gapBounds = paddedBounds([0, ...gapSamples], 40, 0.14);
+      const tToX = st => gLeft + (st / horizon) * (gRight - gLeft);
+      const gapToY = gv => gBottom - ((gv-gapBounds.min)/(gapBounds.max-gapBounds.min))*(gBottom-gTop);
+      const zeroY = gapToY(0);
 
       ctxG.strokeStyle = '#334155';
       ctxG.lineWidth = 1;
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
-      ctxG.moveTo(gOriginX, 10);
-      ctxG.lineTo(gOriginX, gOriginY);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
+      ctxG.moveTo(gLeft, gTop);
+      ctxG.lineTo(gLeft, gBottom);
       ctxG.stroke();
 
       ctxG.strokeStyle = '#ef4444';
       ctxG.setLineDash([4, 4]);
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
       ctxG.stroke();
       ctxG.setLineDash([]);
 
       ctxG.strokeStyle = '#c084fc';
       ctxG.lineWidth = 2;
       ctxG.beginPath();
-      for (let st = 0; st <= 15; st += 0.2) {
-        let gVal = 0;
-        if (st <= tStopB) gVal = (d0 + vB * st - 0.5 * aB * st * st) - vA * st;
-        else gVal = (d0 + (vB * vB)/(2*aB)) - vA * st;
-        const gx = gOriginX + st * gScaleT;
-        const gy = gOriginY - gVal * gScaleGap;
-        if (st === 0) ctxG.moveTo(gx, gy);
-        else ctxG.lineTo(gx, gy);
+      let first = true;
+      for (let st = 0; st <= horizon + 1e-9; st += Math.max(0.05, horizon / 150)) {
+        const p = relativeMetricsAt(st);
+        const gx = tToX(st);
+        const gy = gapToY(p.gap);
+        if (first) { ctxG.moveTo(gx, gy); first = false; } else ctxG.lineTo(gx, gy);
       }
       ctxG.stroke();
 
-      const curGx = gOriginX + t * gScaleT;
-      const curGy = gOriginY - gap * gScaleGap;
       ctxG.fillStyle = '#f59e0b';
       ctxG.beginPath();
-      ctxG.arc(curGx, curGy, 4, 0, Math.PI * 2);
+      ctxG.arc(tToX(clampNumber(t,0,horizon)), gapToY(gap), 4, 0, Math.PI * 2);
       ctxG.fill();
     }
 
@@ -2480,35 +2540,36 @@
 
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
-
       document.getElementById('sbClock').textContent = `t = ${sbState.t.toFixed(2)} s`;
 
       const yMid = h * 0.5;
-      const xOrigin = w * 0.5;
-      const scaleX = w / 60;
+      const bounds = paddedBounds([0, sbState.x0, sbState.x], 60, 0.16);
+      const left = 30, right = Math.max(left + 1, w - 20);
+      const xToPx = xv => left + ((xv-bounds.min)/(bounds.max-bounds.min))*(right-left);
 
       ctx.strokeStyle = '#1e293b';
       ctx.lineWidth = 4;
       ctx.beginPath();
-      ctx.moveTo(20, yMid);
-      ctx.lineTo(w - 20, yMid);
+      ctx.moveTo(left, yMid);
+      ctx.lineTo(right, yMid);
       ctx.stroke();
 
+      const tickStep = niceStep(bounds.max - bounds.min, 9);
       ctx.fillStyle = '#64748b';
       ctx.font = '10px monospace';
-      for (let xm = -25; xm <= 25; xm += 5) {
-        const px = xOrigin + xm * scaleX;
-        if (px >= 20 && px <= w - 20) {
-          ctx.strokeStyle = (xm === 0) ? '#f59e0b' : '#334155';
-          ctx.beginPath();
-          ctx.moveTo(px, yMid - 6);
-          ctx.lineTo(px, yMid + 6);
-          ctx.stroke();
-          ctx.fillText(xm + 'm', px - 8, yMid + 20);
-        }
+      ctx.textAlign = 'center';
+      for (let xm = Math.ceil(bounds.min/tickStep)*tickStep; xm <= bounds.max + 1e-9; xm += tickStep) {
+        const pxTick = xToPx(xm);
+        ctx.strokeStyle = Math.abs(xm) < tickStep*1e-6 ? '#f59e0b' : '#334155';
+        ctx.beginPath();
+        ctx.moveTo(pxTick, yMid - 6);
+        ctx.lineTo(pxTick, yMid + 6);
+        ctx.stroke();
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`${Number(xm.toFixed(2))}m`, pxTick, yMid + 20);
       }
 
-      const px = xOrigin + sbState.x * scaleX;
+      const px = xToPx(sbState.x);
       ctx.fillStyle = '#f59e0b';
       ctx.beginPath();
       ctx.arc(px, yMid, 10, 0, Math.PI * 2);
@@ -2517,15 +2578,17 @@
       ctx.lineWidth = 2;
       ctx.stroke();
 
+      const vLen = clampNumber(sbState.v * 2, -80, 80);
       ctx.strokeStyle = '#38bdf8';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(px, yMid - 16);
-      ctx.lineTo(px + sbState.v * 2, yMid - 16);
+      ctx.lineTo(px + vLen, yMid - 16);
       ctx.stroke();
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '11px monospace';
+      ctx.textAlign = 'left';
       ctx.fillText(`x = ${sbState.x.toFixed(2)}m  v = ${sbState.v.toFixed(2)}m/s`, 25, 30);
     }
 
