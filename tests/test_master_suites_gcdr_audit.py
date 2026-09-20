@@ -70,7 +70,7 @@ class MasterSuiteAuditTest(unittest.TestCase):
         self.assertEqual(len(self.motion), 18)
         self.assertEqual(len(self.vector), 13)
         self.assertIn("live corpus 123 PYQs", self.motion_html)
-        self.assertIn("live corpus 282 PYQs", self.vector_html)
+        self.assertIn("live corpus snapshot 282 PYQs", self.vector_html)
         self.assertNotIn("124 PYQ ExamSIDE Foundation", self.motion_html)
         self.assertNotIn("283 PYQ ExamSIDE Foundation", self.vector_html)
 
