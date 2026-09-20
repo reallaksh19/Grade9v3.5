@@ -1,0 +1,48 @@
+{
+  "schema_version": "relay-v2.5",
+  "id": "ODR-0007-OWNER-DIRECT-EXECUTION-CONTINUATION",
+  "decision": {
+    "authority": "OWNER",
+    "kind": "AUTHORIZATION",
+    "statement": "Continue executing the remaining EP-TA-008 slices sequentially in this agent instance under the Owner's explicit override. Preserve every normal V2.5 validation result honestly, do not fabricate independent-agent qualification, and do not claim the normal candidate-specific write gate passed.",
+    "source": "Owner instructions in the active Grade9V3 engineering session on 2026-09-20: 'override, you do it' and 'no questions', followed by 'proceed'."
+  },
+  "effects": {
+    "requirement_disposition": "NOT_APPLICABLE",
+    "grants_material_write_authority": true,
+    "pending_items": []
+  },
+  "delivery_authorization": null,
+  "impact": {
+    "class": [
+      "LOCAL",
+      "EXECUTION_GOVERNANCE",
+      "PROTOCOL_EXCEPTION"
+    ]
+  },
+  "affected": {
+    "objectives": [
+      "OBJ-TOPIC-ATLAS-COMPLETE"
+    ],
+    "phases": [
+      "PHASE-TAKEOVER-RECONCILIATION"
+    ],
+    "work_packages": [
+      "WP-TA-107"
+    ],
+    "execution_packages": [
+      "EP-TA-008"
+    ],
+    "issues": [
+      "ISSUE-159"
+    ]
+  },
+  "required_reconciliation": [
+    "Execute STEP-TA8-002, STEP-TA8-003 and STEP-TA8-004 in order; do not collapse acceptance across slices.",
+    "Do not create or relabel fake DISC/QUAL/TC evidence.",
+    "Keep the normal candidate-specific material-write gate visibly unmet until genuine independent evidence exists.",
+    "Run exact-head repository and relay validation after each material slice.",
+    "Do not advance WP-TA-105 or publish final checkpoint/quality credit unless the current acceptance contract actually passes."
+  ],
+  "status": "APPLIED"
+}
