@@ -48,12 +48,12 @@
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-016",
-        "path": "agents/relay/certifications/discovery/DISC-TA-016.yaml"
+        "id": "DISC-TA-017",
+        "path": "agents/relay/certifications/discovery/DISC-TA-017.yaml"
       },
       "certification": {
-        "id": "TC-TA-016",
-        "path": "agents/relay/certifications/takeover/TC-TA-016.yaml"
+        "id": "TC-TA-017",
+        "path": "agents/relay/certifications/takeover/TC-TA-017.yaml"
       }
     }
   ],
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "RM-0007 checkpoint linkage and EP-TA-007 benchmark invalidation semantics are reconciled. Exact-head V2.5 validation remains before representation/schema writes.",
+      "summary": "EP-TA-007 has a DISJOINT receipt for the observed main-base movement and refreshed takeover binding. Exact-head material-write validation remains before schema/NLM writes.",
       "not_run": [
         {
           "id": "EP-TA-007-WRITE-GATE",
-          "reason": "The reconciled CP-TA-005 successor and refreshed EP-TA-007 certification have not yet completed exact-head V2.5 validation.",
+          "reason": "DRIFT-TA-007 and the refreshed EP-TA-007 digest/certification have not yet completed exact-head V2.5 validation.",
           "cause": "NOT_SCHEDULED"
         }
       ]
