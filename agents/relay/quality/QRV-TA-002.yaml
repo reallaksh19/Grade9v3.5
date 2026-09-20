@@ -6,7 +6,7 @@
     "path": "agents/relay/execution-packages/EP-TA-002.yaml",
     "contract_digest": "sha256:9e2f8fc18b1d8682c59274b6483bc56a4114134c2c7b769c034b3d29c58c3afa"
   },
-  "roadmap_revision": "RM-0004",
+  "roadmap_revision": "RM-0003",
   "material_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
   "reviewer": {
     "type": "AGENT",
@@ -15,12 +15,12 @@
   "router_snapshot": {
     "applicable": [
       {
-        "blueprint": "software-design",
-        "reason": "Moves diagnostic/focus authority from browser-only logic into Shared planning seams.",
+        "blueprint": "code-review",
+        "reason": "Touches authoritative planning and execution packet surfaces.",
         "review_focus": [
-          "single ownership",
-          "transient vs persisted evidence",
-          "planner authority boundaries"
+          "prerequisite/source-custody invariants",
+          "API compatibility",
+          "data provenance"
         ]
       },
       {
@@ -33,6 +33,24 @@
         ]
       },
       {
+        "blueprint": "github-delivery",
+        "reason": "Work remains correlated to the Topic Atlas completion programme and Issue #118 delivery vehicle.",
+        "review_focus": [
+          "EP/checkpoint continuity",
+          "head-bound validation",
+          "PR correlation"
+        ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "Moves diagnostic/focus authority from browser-only logic into Shared planning seams.",
+        "review_focus": [
+          "single ownership",
+          "transient vs persisted evidence",
+          "planner authority boundaries"
+        ]
+      },
+      {
         "blueprint": "testing",
         "reason": "Cross-subject semantic/fallback/integration cases are required to falsify Physics-specific or mastery-producing behavior.",
         "review_focus": [
@@ -41,61 +59,35 @@
           "readiness invariance",
           "inventory precision"
         ]
-      },
-      {
-        "blueprint": "code-review",
-        "reason": "Touches authoritative planning and execution packet surfaces.",
-        "review_focus": [
-          "prerequisite/source-custody invariants",
-          "API compatibility",
-          "data provenance"
-        ]
-      },
-      {
-        "blueprint": "github-delivery",
-        "reason": "Work remains correlated to the Topic Atlas completion programme and Issue #118 delivery vehicle.",
-        "review_focus": [
-          "EP/checkpoint continuity",
-          "head-bound validation",
-          "PR correlation"
-        ]
       }
     ],
     "not_applicable": [
       {
-        "blueprint": "ui-ux",
-        "reason": "No browser UI change is authorized in this Shared-only work package."
-      },
-      {
         "blueprint": "accessibility",
-        "reason": "No learner-facing UI interaction is changed."
+        "reason": "No learner-facing UI interaction is changed.",
+        "review_focus": []
       },
       {
         "blueprint": "engineering-numerics",
-        "reason": "No scientific numerical solver or canonical calculation algorithm changes."
-      },
-      {
-        "blueprint": "performance",
-        "reason": "Data volumes are small canonical matrices; no performance-sensitive target is introduced."
+        "reason": "No scientific numerical solver or canonical calculation algorithm changes.",
+        "review_focus": []
       },
       {
         "blueprint": "migration",
-        "reason": "Diagnostic focus is transient and observation persistence schema is intentionally unchanged."
+        "reason": "Diagnostic focus is transient and observation persistence schema is intentionally unchanged.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Data volumes are small canonical matrices; no performance-sensitive target is introduced.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No browser UI change is authorized in this Shared-only work package.",
+        "review_focus": []
       }
-    ],
-    "review_contract": {
-      "required": true,
-      "required_before_checkpoint": true,
-      "receipt_namespace": "QRV-",
-      "required_outputs": [
-        "procedure_results",
-        "findings",
-        "owner_report",
-        "successor_handover"
-      ]
-    },
-    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
-    "ordinary_findings_are_hard_stops": false
+    ]
   },
   "procedure_results": [
     {
