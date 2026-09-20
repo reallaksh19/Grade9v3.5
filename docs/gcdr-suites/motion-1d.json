@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "GCDR-SUITE-MOTION-1D",
+  "title": "Motion in One Dimension · Master Suite",
+  "scope_contract": {
+    "canonical_binding_status": "PARTIAL",
+    "canonical_capability_refs": [
+      "CAP-KIN-DISTANCE-DISPLACEMENT",
+      "CAP-KIN-ZERO-V-NONZERO-A",
+      "CAP-KIN-AVERAGE-RATES",
+      "CAP-KIN-CONSTANT-ACCELERATION",
+      "CAP-KIN-MOTION-GRAPHS"
+    ],
+    "instructional_depth": "JEE_EXTENSION",
+    "extension_reason": "The suite includes canonical straight-line motion mechanisms plus JEE-depth calculus, drag and pursuit diagnostics that exceed the current Grade-9 canonical spine.",
+    "certification_scope": "Only diagnostics and mechanisms backed by existing canonical capability refs may be considered for canonical GCDR certification; advanced extensions remain outside that scope."
+  },
+  "external_corpus": {
+    "provider": "ExamSIDE",
+    "topic": "JEE Main Physics · Motion in a Straight Line",
+    "snapshot_date": "2026-09-20",
+    "live_count": 123,
+    "embedded_item_count": 18,
+    "coverage_claim": "CURATED_SLICE_AUDITED"
+  },
+  "diagnostic_source": {
+    "locator": "public/physics/motion-1d/explorers/motion_in_1d/jee_questions_data.js",
+    "format": "WINDOW_JEE_QUESTIONS_DATA_JS",
+    "contract_schema": "Shared/library/gcdr_diagnostic_item.schema.json"
+  },
+  "helper_contracts": [
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TEACHERS_CHALKBOARD",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "formula",
+        "steps",
+        "ans",
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "governing_model",
+        "state_specific_derivation",
+        "result_or_disposition",
+        "independent_check",
+        "boundary_note"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRAP_ALERT",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "trap"
+      ],
+      "required_outputs": [
+        "tempting_wrong_model",
+        "why_it_fails_here",
+        "observable_contradiction"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "INDEPENDENT_CHECK",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "teacherCheck"
+      ],
+      "required_outputs": [
+        "check_method",
+        "residual_or_confirmation"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "TRANSFER_TAKEAWAY",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "takeaway"
+      ],
+      "required_outputs": [
+        "decision_rule",
+        "when_to_use",
+        "when_not_to_use"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "schema_version": "1.0.0",
+      "helper_id": "EXACTNESS_BADGE",
+      "activation_status": "AUDITED",
+      "mode": "ITEM_DRIVEN",
+      "state_paths": [
+        "answerAudit",
+        "sourceAudit",
+        "simFidelity",
+        "simFidelityNote"
+      ],
+      "required_outputs": [
+        "fidelity",
+        "binding_coverage",
+        "missing_bindings"
+      ],
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    }
+  ],
+  "delivery_artifacts": [
+    {
+      "locator": "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+      "profile": "REPO_BUNDLE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    },
+    {
+      "locator": "standalone/motion-in-1d-master-suite.html",
+      "profile": "SINGLE_FILE_ONLINE",
+      "remote_dependencies_declared": [
+        "https://cdn.tailwindcss.com",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      ]
+    }
+  ],
+  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+}
