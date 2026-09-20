@@ -104,7 +104,7 @@ The current bank deliberately uses conservative Concept/Constraint mappings unle
 
 ## Regression protection
 
-Added `tests/test_motion2d_simulator_contract.py`, which checks:
+Extended the existing `tests/test_c6_examside_motion_in_plane.py` regression module with Motion2D explorer checks:
 
 - exactly 104 unique records;
 - required teaching/audit/simulator fields on every record;
