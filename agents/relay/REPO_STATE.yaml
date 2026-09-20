@@ -48,12 +48,12 @@
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-012",
-        "path": "agents/relay/certifications/discovery/DISC-TA-012.yaml"
+        "id": "DISC-TA-013",
+        "path": "agents/relay/certifications/discovery/DISC-TA-013.yaml"
       },
       "certification": {
-        "id": "TC-TA-012",
-        "path": "agents/relay/certifications/takeover/TC-TA-012.yaml"
+        "id": "TC-TA-013",
+        "path": "agents/relay/certifications/takeover/TC-TA-013.yaml"
       }
     }
   ],
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-005 is checkpointed; EP-TA-006 is the bounded academic successor. No academic question writes have occurred yet.",
+      "summary": "EP-TA-006 has a DISJOINT drift receipt for the observed main-base movement and fresh takeover binding. Exact-head validation remains before canonical writes.",
       "not_run": [
         {
-          "id": "TEST-TA6-001..004",
-          "reason": "EP-TA-006 academic authoring has not yet executed.",
+          "id": "EP-TA-006-WRITE-GATE",
+          "reason": "The new drift receipt and refreshed candidate binding have not yet been observed by exact-head V2.5 material-write validation.",
           "cause": "NOT_SCHEDULED"
         }
       ]
