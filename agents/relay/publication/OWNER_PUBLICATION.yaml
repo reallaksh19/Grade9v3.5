@@ -1,0 +1,449 @@
+{
+  "schema_version": "relay-v2.5-owner-publication",
+  "publication": {
+    "id": "PUB-0001",
+    "sequence": 1,
+    "event_class": "INITIAL_SNAPSHOT",
+    "changed_dimensions": [
+      "task",
+      "implementation",
+      "evidence",
+      "quality",
+      "delivery_or_custody",
+      "execution",
+      "roadmap",
+      "next_work",
+      "owner_decisions"
+    ],
+    "owner_view_digest": "sha256:b9e4c0e4bf51df4f5c5f3fa78a0c59639a5272b25b9899f6259e3bd333173a0e",
+    "report_projection_digest": "sha256:4c9b3dae53fbbf8587bded9ba72041ec12b60801034b9bdde1d44e250659b328",
+    "normalized_report_digest": "sha256:5e432c7a5defd2250fbaac13e81b2e75bc2449223881590b2e93fb9a2ac8945e"
+  },
+  "source": {
+    "report_sources": {
+      "roadmap_revision": "RM-0007",
+      "progress_basis": "PB-0005",
+      "repo_state_digest": "sha256:66d9c711f468a3fd7dc3ad31614ffec9f6fdf8eedaa5f781104ba53af1520d69",
+      "roadmap_digest": "sha256:0f489b2561d2d1e67ace585e9859484d27a681fad521fbfe81645da930734e52",
+      "progress_digest": "sha256:74b97234140df6b357af48e46304045bedc318ee57c37bcc641b1ee0e0297faa",
+      "issue_graph_digest": "sha256:e2bd73bae3d0fb1b2ccabe185104e545dea788769e20b961d28f4368ac7dd1ab",
+      "owner_decisions_digest": "sha256:a998b8f11e52b449d851ae168b757971a45a35d33f111c811c8b24a2279429e7",
+      "ep_id": "EP-TA-008",
+      "ep_digest": "sha256:d51262c52b05f0f5cb00be7c8a9dbd34ed20b4096e9ddc801b6063a79ef20a88",
+      "checkpoint_id": "CP-TA-007",
+      "checkpoint_digest": "sha256:b4e6dec568213a2c16418dd21c5c6db40cf65198a8114fd923aa9154f215fe30",
+      "quality_review_id": "QRV-TA-007",
+      "quality_review_digest": "sha256:71b7bc211bc42e7cf4155a56dac2b52aa60c760f3d0124707a56f28930e668e5",
+      "delivery_observation_id": null,
+      "delivery_observation_digest": null
+    },
+    "roadmap_revision": "RM-0007",
+    "progress_basis": "PB-0005",
+    "checkpoint_id": "CP-TA-007",
+    "ep_id": "EP-TA-008"
+  },
+  "baseline": {
+    "digest": "sha256:5e432c7a5defd2250fbaac13e81b2e75bc2449223881590b2e93fb9a2ac8945e",
+    "report": {
+      "task": {
+        "acceptance": [
+          {
+            "id": "AC-TA8-001",
+            "status": "NOT_STARTED",
+            "percent": 0,
+            "basis": []
+          },
+          {
+            "id": "AC-TA8-002",
+            "status": "NOT_STARTED",
+            "percent": 0,
+            "basis": []
+          },
+          {
+            "id": "AC-TA8-003",
+            "status": "NOT_STARTED",
+            "percent": 0,
+            "basis": []
+          },
+          {
+            "id": "AC-TA8-004",
+            "status": "NOT_STARTED",
+            "percent": 0,
+            "basis": []
+          }
+        ],
+        "progress_basis": {
+          "id": "PB-0005",
+          "roadmap_revision": "RM-0007"
+        },
+        "overall_percent": 70,
+        "phase_percent": 70,
+        "work_package_percent": 0,
+        "ep_percent": 0
+      },
+      "implementation": {
+        "checkpoint_id": "CP-TA-007",
+        "summary": "Completed the representation-first Grade-9 learner-loop foundation. Removed the invalidated 25-question count expansion, added minimal canonical reveal-stage/explorer bindings, authored NLM R3/R8 representations, bound three existing question hint ladders to visual stages, preserved the PROPOSED FBD renderer status, and regenerated projections.",
+        "completed_steps": [
+          "STEP-TA7-001",
+          "STEP-TA7-002",
+          "STEP-TA7-003",
+          "STEP-TA7-004"
+        ],
+        "files_changed": [
+          "Shared/library/package.schema.json",
+          "Shared/library/visual_support.py",
+          "Physics/library/phy-nlm-first-law.v1.json",
+          "Physics/library/phy-grav-universal-law.v1.json",
+          "Physics/library/phy-work-energy-power.v1.json",
+          "Physics/library/phy-sound.v1.json",
+          "Physics/library/phy-simple-machines.v1.json",
+          "tests/test_grade9_physics_learner_loop.py",
+          "tests/test_library.py",
+          "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+          "docs/grade9/grade9-physics-learner-loop.json",
+          "tools/data.js",
+          "public/data/data.js",
+          "docs/architecture-manifest.json"
+        ]
+      },
+      "evidence": {
+        "plane": {
+          "state": "PARTIAL",
+          "summary": "WP-TA-104 is accepted at its checkpoint and programme progress is 70/100. EP-TA-008 has repository-only discovery plus deterministic qualification/takeover evidence; its material router implementation has not run.",
+          "not_run": [
+            {
+              "id": "TEST-TA8-001..004",
+              "reason": "EP-TA-008 material implementation has not yet executed.",
+              "cause": "NOT_SCHEDULED"
+            }
+          ]
+        },
+        "validation_results": [
+          {
+            "id": "TEST-TA7-001",
+            "status": "PASS",
+            "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+            "evidence": [
+              "visual_support.py and focused learner-loop tests validate representation/explorer/support/hint ownership and stage membership."
+            ]
+          },
+          {
+            "id": "TEST-TA7-002",
+            "status": "PASS",
+            "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+            "evidence": [
+              "Full library/depiction/compiler suite passed; unbuilt FBD backlog is explicitly reported rather than hidden; no scene instance was fabricated."
+            ]
+          },
+          {
+            "id": "TEST-TA7-003",
+            "status": "PASS",
+            "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+            "evidence": [
+              "No question retains grade9v3:closure_ep=EP-TA-006; exactly three pre-existing NLM questions carry staged visual bindings."
+            ]
+          },
+          {
+            "id": "TEST-TA7-004",
+            "status": "PASS",
+            "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+            "evidence": [
+              "Generated artifacts are fresh; guardrails 35507415230 and V2.5 35507415307 both passed exact head."
+            ]
+          }
+        ]
+      },
+      "quality": {
+        "plane": {
+          "state": "NEEDS_ATTENTION",
+          "findings": [
+            "WP-TA-104 is quality-clear. EP-TA-008 changes the Shared learner-session runtime and must prove its qualified truth-table/closed-loop contract before checkpoint."
+          ]
+        },
+        "findings": [],
+        "known_limitations": [
+          {
+            "statement": "The static FREE_BODY_DIAGRAM renderer remains PROPOSED; canonical NLM representations can drive interactive explorers/staged support but do not claim a publishable static scene.",
+            "basis": [
+              "Physics/adapter/CoreContracts.json",
+              "depiction priority test",
+              "QRV-TA-007"
+            ]
+          },
+          {
+            "statement": "WP-TA-104 does not choose learner support from evidence; evidence-to-support/exercise routing is intentionally deferred to WP-TA-107.",
+            "basis": [
+              "RM-0007",
+              "EP-TA-007 deliberate_non_goals"
+            ]
+          }
+        ]
+      },
+      "delivery_or_custody": {
+        "projection": {
+          "required": false,
+          "state": "NOT_REQUIRED",
+          "operation_id": null,
+          "target": null,
+          "roadmap_revision": "RM-0007",
+          "execution_ref": "EP-TA-008",
+          "receipt": null,
+          "basis": []
+        },
+        "relay_readiness": {
+          "baton_ready": true,
+          "projection_ready": true,
+          "handover_ready": true,
+          "reasons": []
+        },
+        "takeover_admissions": [
+          {
+            "route_key": "SERIAL:EP-TA-008",
+            "candidate": {
+              "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+            },
+            "discovery_receipt": {
+              "id": "DISC-TA-018",
+              "path": "agents/relay/certifications/discovery/DISC-TA-018.yaml"
+            },
+            "certification": {
+              "id": "TC-TA-018",
+              "path": "agents/relay/certifications/takeover/TC-TA-018.yaml"
+            }
+          }
+        ],
+        "delivery": {
+          "applicability": "NOT_APPLICABLE",
+          "provider": null,
+          "observation_id": null,
+          "observation_path": null,
+          "vehicle": null,
+          "mergeability": {
+            "state": "NOT_APPLICABLE"
+          },
+          "checks": {
+            "state": "NOT_APPLICABLE"
+          },
+          "review": {
+            "state": "NOT_APPLICABLE"
+          },
+          "ready_for_review": {
+            "state": "NOT_APPLICABLE",
+            "reason": "No PR delivery vehicle is required."
+          },
+          "technical_ready_to_merge": {
+            "state": "NOT_APPLICABLE",
+            "reasons": []
+          },
+          "merge_authorization": {
+            "state": "NOT_APPLICABLE",
+            "basis": [],
+            "reason": "No PR delivery vehicle is required."
+          }
+        }
+      },
+      "execution": {
+        "state": "READY",
+        "can_continue": true,
+        "material_authority": "WRITE",
+        "next_action": "Run exact-head V2.5 admission/write gating for EP-TA-008, then implement the derived evidence-to-posture/support/visual/exercise router without adding persisted mastery state."
+      },
+      "stop": {
+        "active": false,
+        "category": "NONE",
+        "reason": "",
+        "basis": []
+      },
+      "roadmap": {
+        "summary": {
+          "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+          "revision": "RM-0007",
+          "title": "Grade 9 Physics learner independence and progression"
+        },
+        "reconciliation": {
+          "result": "STATUS_UPDATE",
+          "status_updates": [
+            {
+              "statement": "WP-TA-104 is complete and earns its 10/100 programme weight.",
+              "basis": [
+                "CP-TA-007",
+                "QRV-TA-007",
+                "guardrails 35507415230",
+                "V2.5 35507415307"
+              ]
+            },
+            {
+              "statement": "WP-TA-107 becomes the next serial frontier for derived learner-evidence routing and closed session orchestration.",
+              "basis": [
+                "RM-0007 dependency graph"
+              ]
+            }
+          ],
+          "proposals": [],
+          "owner_decisions_required": []
+        }
+      },
+      "next_work": {
+        "phase_transition": false,
+        "steps": [
+          {
+            "order": 1,
+            "action": "Implement and falsify the evidence-to-posture/support truth table.",
+            "targets": [
+              "Shared/tools/learning_router.py",
+              "Shared/tools/learner_evidence.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-001",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-001"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-001",
+              "BENCH-TA8-002"
+            ],
+            "acceptance": [
+              "AC-TA8-001"
+            ],
+            "expected_result": "Derived posture/support is deterministic and non-persisted.",
+            "stop_if": [
+              "A new mastery state becomes necessary."
+            ]
+          },
+          {
+            "order": 2,
+            "action": "Resolve canonical visual stage/explorer and exercise demand into worksheet route annotations.",
+            "targets": [
+              "Shared/tools/learning_router.py",
+              "Shared/tools/worksheet_study_plan.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-002",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-002"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-002"
+            ],
+            "acceptance": [
+              "AC-TA8-002"
+            ],
+            "expected_result": "Route starts with the right support/visual/demand using canonical refs.",
+            "stop_if": [
+              "Canonical mapping is ambiguous and would require guessing."
+            ]
+          },
+          {
+            "order": 3,
+            "action": "Prove the same session preserves feedback-owned hint/repair/verification/review after the initial route.",
+            "targets": [
+              "Shared/tools/study_session.py",
+              "tests/test_study_session.py"
+            ],
+            "inputs": [
+              "INPUT-TA8-003"
+            ],
+            "tests": [
+              "TEST-TA8-003"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-003"
+            ],
+            "acceptance": [
+              "AC-TA8-003"
+            ],
+            "expected_result": "Closed loop works without a duplicate post-attempt state machine.",
+            "stop_if": [
+              "Existing feedback output cannot carry the staged visual hint refs safely."
+            ]
+          },
+          {
+            "order": 4,
+            "action": "Update derived audit/manifest and run full guardrails/V2.5 before checkpointing WP-TA-107.",
+            "targets": [
+              "docs/grade9/",
+              "docs/architecture-manifest.json",
+              "agents/relay/"
+            ],
+            "inputs": [
+              "INPUT-TA8-001",
+              "INPUT-TA8-002",
+              "INPUT-TA8-003",
+              "INPUT-TA8-004"
+            ],
+            "tests": [
+              "TEST-TA8-004"
+            ],
+            "benchmarks": [
+              "BENCH-TA8-001",
+              "BENCH-TA8-003"
+            ],
+            "acceptance": [
+              "AC-TA8-004"
+            ],
+            "expected_result": "WP-TA-107 is complete and WP-TA-105 becomes frontier.",
+            "stop_if": [
+              "Any protected invariant or exact-head regression fails."
+            ]
+          }
+        ]
+      },
+      "issues": [],
+      "owner_decisions": [
+        {
+          "id": "ODR-0001-TOPIC-ATLAS-COMPLETION",
+          "path": "agents/relay/roadmap/owner-decisions/ODR-0001-TOPIC-ATLAS-COMPLETION.yaml",
+          "status": "APPLIED",
+          "kind": "INTENT_MUTATION",
+          "statement": "Complete the missing Agent A, Agent B, and Shared Core Topic Atlas pieces rather than leaving them as audit findings or detached patch suggestions.",
+          "source": "Owner instruction in the active Grade9V3 engineering session on 2026-09-20: 'you have to complete the missing pieces'",
+          "requirement_disposition": "NOT_APPLICABLE",
+          "grants_material_write_authority": false,
+          "pending_items": [],
+          "delivery_authorization": null
+        },
+        {
+          "id": "ODR-0002-ROADMAP-FIRST-READ",
+          "path": "agents/relay/roadmap/owner-decisions/ODR-0002-ROADMAP-FIRST-READ.yaml",
+          "status": "APPLIED",
+          "kind": "INTENT_MUTATION",
+          "statement": "Update the existing Grade9V3 roadmap under engineering-pr-delivery V2.5, make the governed roadmap discoverable from README so any agent reads it first, and improve or revamp overlapping roadmap documentation where required.",
+          "source": "Owner instruction in the active Grade9V3 engineering session on 2026-09-20: 'as per engg PR delivery v2.5 update existing roadmap, link it to readme (so that any agent using this repo, first reads it). search repo for existing roadmap, or improve it , revamp if required.'",
+          "requirement_disposition": "NOT_APPLICABLE",
+          "grants_material_write_authority": false,
+          "pending_items": [],
+          "delivery_authorization": null
+        },
+        {
+          "id": "ODR-0003-G9-PHYSICS-INDEPENDENCE",
+          "path": "agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml",
+          "status": "APPLIED",
+          "kind": "INTENT_MUTATION",
+          "statement": "Make Physics progression sequential Grade 9 -> Grade 10 -> Grade 11, with Grade 9 first. The current programme outcome is learner independence: the learner should increasingly decide what she knows, discover with little external steering what she does not know, repair the right gap, and verify Physics solutions without continuous parent/tutor steering.",
+          "source": "Owner instructions in the active Grade9V3 engineering session on 2026-09-20, following the first-principles Grade-9 Physics self-study design and repository ownership request.",
+          "requirement_disposition": "NOT_APPLICABLE",
+          "grants_material_write_authority": false,
+          "pending_items": [],
+          "delivery_authorization": null
+        },
+        {
+          "id": "ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE",
+          "path": "agents/relay/roadmap/owner-decisions/ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE.yaml",
+          "status": "APPLIED",
+          "kind": "INTENT_MUTATION",
+          "statement": "Make the remaining Grade-9 learner-loop work representation-first and routing-first. Questions are sparse exercises/fixtures, not a completeness denominator. Keep canonical representations separate from interactive explorers and from questions; keep starting support separate from post-failure hint depth; add only the minimum schema needed for staged visual hints and explicit representation/explorer binding; derive support/exercise routing from learner evidence without creating a mastery model.",
+          "source": "Owner architecture instruction in the active Grade9V3 engineering session on 2026-09-20.",
+          "requirement_disposition": "NOT_APPLICABLE",
+          "grants_material_write_authority": false,
+          "pending_items": [],
+          "delivery_authorization": null
+        }
+      ]
+    }
+  }
+}
