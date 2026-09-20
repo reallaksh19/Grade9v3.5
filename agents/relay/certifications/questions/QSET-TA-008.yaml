@@ -1,0 +1,167 @@
+{
+  "schema_version": "relay-v2.5-question-set",
+  "id": "QSET-TA-008",
+  "route": {
+    "route_key": "SERIAL:EP-TA-008",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-008",
+    "ep_id": "EP-TA-008",
+    "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null,
+    "roadmap_revision": "RM-0007",
+    "work_package": "WP-TA-107",
+    "ep_contract_digest": "sha256:d51262c52b05f0f5cb00be7c8a9dbd34ed20b4096e9ddc801b6063a79ef20a88"
+  },
+  "boundary": {
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "PROTECTED_INVARIANT",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "Incoming work changes the Shared learner-session production path.",
+      "The evidence-to-next-action invariant becomes material runtime behavior.",
+      "Verification moves to router truth-table and closed-loop session falsifiers."
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "focus": "PRODUCTION_PATH",
+      "anchors": [
+        "WP-TA-107",
+        "INPUT-TA8-001"
+      ],
+      "prompt": "Trace the actual learner-routing production path: name the entrypoint, learner-state owner, authority source and downstream consumer. Do not invent a new learner state owner.",
+      "required_output_keys": [
+        "production_entrypoint",
+        "state_owner",
+        "authority_source",
+        "downstream_consumer"
+      ],
+      "evidence_required": true,
+      "deterministic_expected": {
+        "production_entrypoint": "Shared/tools/worksheet_study_plan.resolve -> Shared/tools/study_session.plan",
+        "state_owner": "Shared/tools/learner_evidence.effective_state",
+        "authority_source": "ODR-0004 + RM-0007 WP-TA-107 + canonical subject records",
+        "downstream_consumer": "study_session route/next_step projection for the learner"
+      }
+    },
+    {
+      "id": "Q2",
+      "focus": "ENGINEERING_PROBLEM",
+      "anchors": [
+        "INPUT-TA8-001",
+        "INPUT-TA8-002",
+        "BENCH-TA8-001"
+      ],
+      "prompt": "Reconstruct how one route row should become an evidence-grounded support/visual/exercise decision while leaving post-attempt feedback ownership unchanged.",
+      "required_output_keys": [
+        "reconstruction_steps",
+        "intermediate_result",
+        "expected_result"
+      ],
+      "evidence_required": true,
+      "reconstruction_mode": "DESIGN_REASONING",
+      "payload": {
+        "source": "EP-TA-008 inputs/benchmarks and current Shared learner-session code"
+      },
+      "deterministic_expected": {
+        "reconstruction_steps": [
+          "Resolve effective learner evidence using existing precedence and helped-success downgrade.",
+          "Derive READY/REINFORCE/REBUILD without persisting it.",
+          "Map posture to low/medium/high starting support.",
+          "Resolve microtopic representation support_stage_map and interactive_resource_refs when present.",
+          "Choose guided reconstruction/practice/transfer preference from posture plus prerequisite readiness and available canonical questions."
+        ],
+        "intermediate_result": "A session-only route row carrying evidence basis, posture, starting support, optional visual stage/explorer refs and exercise-demand preference.",
+        "expected_result": "Initial learner routing is deterministic and canonical while feedback.py remains the sole post-attempt hint/repair/verification owner."
+      }
+    },
+    {
+      "id": "Q3",
+      "focus": "BOUNDARIES_INVARIANTS",
+      "anchors": [
+        "AC-TA8-001",
+        "AC-TA8-003"
+      ],
+      "prompt": "State the intended mutation, the protected evidence/support invariant and one exact falsifier that would prove the router unsafe.",
+      "required_output_keys": [
+        "mutation_effect",
+        "protected_invariant",
+        "falsifier"
+      ],
+      "evidence_required": true,
+      "mutation": {
+        "condition": "Add derived initial routing annotations only.",
+        "protected_invariant": "Only independent DEMONSTRATED can become READY and starting support stays separate from hint depth.",
+        "falsifier": "READY from weak evidence or support mutating hint progression."
+      },
+      "deterministic_expected": {
+        "mutation_effect": "Add derived route annotations and expose existing observation error_stage; do not change academic content or persisted learner state.",
+        "protected_invariant": "Only independent DEMONSTRATED evidence can produce READY; starting support never consumes the question hint ladder.",
+        "falsifier": "Any owner estimate/unobserved/assisted evidence producing READY, any EXECUTION/CARELESS case forcing conceptual REBUILD, or any starting-support decision mutating shown_hint_indices fails the slice."
+      }
+    },
+    {
+      "id": "Q4",
+      "focus": "VERIFICATION",
+      "anchors": [
+        "BENCH-TA8-001",
+        "BENCH-TA8-002",
+        "TEST-TA8-004"
+      ],
+      "prompt": "Define an independent verification method and the exact predicted result/tolerance for the router slice.",
+      "required_output_keys": [
+        "independent_method",
+        "predicted_result",
+        "tolerance_or_exactness"
+      ],
+      "evidence_required": true,
+      "oracle_refs": [
+        "BENCH-TA8-001",
+        "BENCH-TA8-002",
+        "BENCH-TA8-003"
+      ],
+      "independence_requirement": "Verification must exercise current repository tests/guardrails and canonical NLM fixtures, not assertions written only inside the router.",
+      "deterministic_expected": {
+        "independent_method": "Run focused router/session falsifiers plus the full repository guardrail and V2.5 suites against the exact implementation head.",
+        "predicted_result": "Truth-table, NLM visual-stage/explorer mapping, prerequisite-gated transfer and existing feedback/review behavior all pass with protected Physics/matrix/schema domains unchanged.",
+        "tolerance_or_exactness": "Exact enum/id mappings and zero protected-domain semantic edits; full suites must pass."
+      }
+    },
+    {
+      "id": "Q5",
+      "focus": "FIRST_SAFE_SLICE",
+      "anchors": [
+        "STEP-TA8-001",
+        "AC-TA8-001"
+      ],
+      "prompt": "Name the first bounded change, predicted before/after behavior and exact verification before proceeding to visual/exercise integration.",
+      "required_output_keys": [
+        "first_change",
+        "predicted_before",
+        "predicted_after",
+        "verification"
+      ],
+      "evidence_required": true,
+      "step_refs": [
+        "STEP-TA8-001"
+      ],
+      "deterministic_expected": {
+        "first_change": "Add a small Shared/tools/learning_router.py pure derived-policy module and expose chosen observation error_stage from learner_evidence.effective_state.",
+        "predicted_before": "Worksheet route has learner_state and recommended_action but no routing_posture, starting_support, canonical initial visual stage/explorer recommendation or exercise-demand preference.",
+        "predicted_after": "The same route gains deterministic non-persisted routing annotations while canonical content and feedback escalation remain unchanged.",
+        "verification": "TEST-TA8-001 first, then TEST-TA8-002/003 and full TEST-TA8-004 before checkpoint."
+      }
+    }
+  ],
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  }
+}

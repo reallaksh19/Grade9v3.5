@@ -1,0 +1,200 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-018",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-grade9-router-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-008",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-008",
+    "ep_id": "EP-TA-008",
+    "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0007",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+    "ep_contract_digest": "sha256:d51262c52b05f0f5cb00be7c8a9dbd34ed20b4096e9ddc801b6063a79ef20a88",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-007",
+      "path": "agents/relay/checkpoints/CP-TA-007.yaml",
+      "digest": "sha256:133a79c1560b9deed6c6e30dba2835962125b45d6ec15eccb08d2e4c5767b9d3"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA8-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "effective evidence precedence",
+          "value": "DIRECT_ATTEMPT > PRIOR_DIAGNOSTIC > PRIOR_STUDY_MAP > profile held state > unobserved; newest wins within evidence kind.",
+          "basis": [
+            "Shared/tools/learner_evidence.py"
+          ]
+        },
+        {
+          "name": "assisted-success downgrade",
+          "value": "DEMONSTRATED with HINT/WORKED_EXAMPLE/SOLUTION is effectively UNCERTAIN for routing.",
+          "basis": [
+            "learner_evidence._effective_observation_result"
+          ]
+        },
+        {
+          "name": "route annotation seam",
+          "value": "worksheet_study_plan.resolve already creates capability route rows with learner_state before study_session consumes them.",
+          "basis": [
+            "Shared/tools/worksheet_study_plan.py",
+            "Shared/tools/study_session.py"
+          ]
+        },
+        {
+          "name": "non-persistence boundary",
+          "value": "study_session explicitly returns observation drafts and does not persist learner state silently.",
+          "basis": [
+            "Shared/tools/study_session.py"
+          ]
+        }
+      ],
+      "basis": [
+        "current Shared learner evidence/session runtime"
+      ]
+    },
+    {
+      "id": "DSTEP-TA8-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "hint escalation owner",
+          "value": "feedback.next_safe_hint and feedback.run own safe ordered hints after difficulty.",
+          "basis": [
+            "Shared/tools/feedback.py"
+          ]
+        },
+        {
+          "name": "error-stage semantics",
+          "value": "CONCEPT/SETUP failures can draft MISSING while EXECUTION/CARELESS remain UNCERTAIN under current feedback rules.",
+          "basis": [
+            "Shared/tools/feedback.py"
+          ]
+        },
+        {
+          "name": "repair owner",
+          "value": "feedback.run selects narrow repair after safe hint exhaustion/diagnosis.",
+          "basis": [
+            "Shared/tools/feedback.py"
+          ]
+        },
+        {
+          "name": "fresh verification owner",
+          "value": "feedback.run/after_repair selects a fresh same-capability canonical question or microtopic exit task.",
+          "basis": [
+            "Shared/tools/feedback.py"
+          ]
+        },
+        {
+          "name": "review owner",
+          "value": "review_schedule owns the existing 1/3/7/14-day deterministic delayed-review policy.",
+          "basis": [
+            "Shared/tools/review_schedule.py"
+          ]
+        }
+      ],
+      "basis": [
+        "current feedback/review runtime"
+      ]
+    },
+    {
+      "id": "DSTEP-TA8-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "support levels",
+          "value": "NLM matrix declares low/medium/high starting support independently of question hints.",
+          "basis": [
+            "Physics/matrices/phy-nlm-first-law.rungs.json"
+          ]
+        },
+        {
+          "name": "support_stage_map",
+          "value": "WP-TA-104 representations map low/medium/high to canonical initial visual stages.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        },
+        {
+          "name": "representation refs",
+          "value": "NLM R3/R8 microtopics bind REP-NLM-FBD-BODY-OWNERSHIP and REP-NLM-FRICTION-THRESHOLD.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        },
+        {
+          "name": "interactive_resource_refs",
+          "value": "The two pilot representations bind existing ACTIVITY explorers, not duplicated webpage truth.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        },
+        {
+          "name": "three smoke questions",
+          "value": "Exactly three existing NLM questions carry visual hint-stage refs; no added coverage bank is required.",
+          "basis": [
+            "tests/test_grade9_physics_learner_loop.py"
+          ]
+        }
+      ],
+      "basis": [
+        "CP-TA-007 representation foundation"
+      ]
+    },
+    {
+      "id": "DSTEP-TA8-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "branch",
+          "value": "takeover/topic-atlas-browser-correctness",
+          "basis": [
+            "PR #148 provider readback"
+          ]
+        },
+        {
+          "name": "HEAD",
+          "value": "cca1c200fb68a72496943a31abcab68417d51b5c is the validated WP-TA-104 implementation head and EP-TA-008 material basis.",
+          "basis": [
+            "guardrails 35507415230",
+            "V2.5 35507415307"
+          ]
+        },
+        {
+          "name": "main base",
+          "value": "194791528cd3a69b30aced1480aee3254293dfe0",
+          "basis": [
+            "GitHub main ref readback"
+          ]
+        },
+        {
+          "name": "drift classification/write disposition",
+          "value": "EP-TA-008 records current main as its observed base; material writes still require exact-head V2.5 Git inspection after this coordination commit.",
+          "basis": [
+            "EP-TA-008 git_basis"
+          ]
+        }
+      ],
+      "basis": [
+        "GitHub provider readback",
+        "EP-TA-008"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

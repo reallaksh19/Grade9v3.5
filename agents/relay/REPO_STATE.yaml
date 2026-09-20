@@ -17,21 +17,21 @@
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TA-104",
+    "work_package": "WP-TA-107",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-007",
-    "path": "agents/relay/execution-packages/EP-TA-007.yaml",
+    "id": "EP-TA-008",
+    "path": "agents/relay/execution-packages/EP-TA-008.yaml",
     "state": "EXECUTABLE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-005",
-    "path": "agents/relay/checkpoints/CP-TA-005.yaml"
+    "id": "CP-TA-007",
+    "path": "agents/relay/checkpoints/CP-TA-007.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -43,23 +43,23 @@
   },
   "takeover_admissions": [
     {
-      "route_key": "SERIAL:EP-TA-007",
+      "route_key": "SERIAL:EP-TA-008",
       "candidate": {
-        "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+        "agent_instance_id": "chatgpt-sol-grade9-router-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-017",
-        "path": "agents/relay/certifications/discovery/DISC-TA-017.yaml"
+        "id": "DISC-TA-018",
+        "path": "agents/relay/certifications/discovery/DISC-TA-018.yaml"
       },
       "certification": {
-        "id": "TC-TA-017",
-        "path": "agents/relay/certifications/takeover/TC-TA-017.yaml"
+        "id": "TC-TA-018",
+        "path": "agents/relay/certifications/takeover/TC-TA-018.yaml"
       }
     }
   ],
   "progress": {
-    "overall_percent": 60,
-    "phase_percent": 60,
+    "overall_percent": 70,
+    "phase_percent": 70,
     "ep_percent": 0,
     "basis_revision": "PB-0005"
   },
@@ -68,21 +68,21 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate visual-support schema/reference integrity and the NLM R3/R8 pilot, regenerate data/manifest projections, then checkpoint WP-TA-104 only if exact-head guardrails are green."
+      "next_action": "Run exact-head V2.5 admission/write gating for EP-TA-008, then implement the derived evidence-to-posture/support/visual/exercise router without adding persisted mastery state."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "Owner correction invalidated EP-TA-006 question-count closure; representation/staged-hint foundation must now be validated before learner routing work."
+        "WP-TA-104 is quality-clear. EP-TA-008 changes the Shared learner-session runtime and must prove its qualified truth-table/closed-loop contract before checkpoint."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-007 material removes the invalidated 25-question expansion, adds optional visual-support schema fields, authors two canonical NLM representations bound to existing explorers, and binds staged visuals to three existing smoke questions. Exact-head validation and generated-artifact regeneration remain.",
+      "summary": "WP-TA-104 is accepted at CP-TA-007/QRV-TA-007 and programme progress is 70/100. EP-TA-008 has repository-only DISC plus deterministic qualification/takeover evidence; its material router implementation has not run.",
       "not_run": [
         {
-          "id": "TEST-TA7-001..004",
-          "reason": "The new representation/staged-hint material has not yet completed exact-head validation.",
+          "id": "TEST-TA8-001..004",
+          "reason": "EP-TA-008 material implementation has not yet executed.",
           "cause": "NOT_SCHEDULED"
         }
       ]
@@ -100,7 +100,7 @@
     "operation_id": null,
     "target": null,
     "roadmap_revision": "RM-0007",
-    "execution_ref": "EP-TA-007",
+    "execution_ref": "EP-TA-008",
     "receipt": null,
     "basis": []
   },

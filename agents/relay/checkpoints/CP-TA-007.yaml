@@ -1,0 +1,196 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-007",
+  "ep_id": "EP-TA-007",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0007"
+  },
+  "execution_basis": {
+    "material_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+    "validated_implementation_head": "cca1c200fb68a72496943a31abcab68417d51b5c"
+  },
+  "implementation_result": {
+    "summary": "Completed the representation-first Grade-9 learner-loop foundation. Removed the invalidated 25-question count expansion, added minimal canonical reveal-stage/explorer bindings, authored NLM R3/R8 representations, bound three existing question hint ladders to visual stages, preserved the PROPOSED FBD renderer status, and regenerated projections.",
+    "completed_steps": [
+      "STEP-TA7-001",
+      "STEP-TA7-002",
+      "STEP-TA7-003",
+      "STEP-TA7-004"
+    ],
+    "files_changed": [
+      "Shared/library/package.schema.json",
+      "Shared/library/visual_support.py",
+      "Physics/library/phy-nlm-first-law.v1.json",
+      "Physics/library/phy-grav-universal-law.v1.json",
+      "Physics/library/phy-work-energy-power.v1.json",
+      "Physics/library/phy-sound.v1.json",
+      "Physics/library/phy-simple-machines.v1.json",
+      "tests/test_grade9_physics_learner_loop.py",
+      "tests/test_library.py",
+      "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+      "docs/grade9/grade9-physics-learner-loop.json",
+      "tools/data.js",
+      "public/data/data.js",
+      "docs/architecture-manifest.json"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA7-001",
+      "status": "PASS",
+      "basis": [
+        "ODR-0004/RM-0007",
+        "25/25 EP-TA-006-tagged questions removed",
+        "three existing NLM smoke questions only",
+        "guardrails 35507415230"
+      ]
+    },
+    {
+      "id": "AC-TA7-002",
+      "status": "PASS",
+      "basis": [
+        "REP-NLM-FBD-BODY-OWNERSHIP",
+        "REP-NLM-FRICTION-THRESHOLD",
+        "existing ACTIVITY explorer refs",
+        "FREE_BODY_DIAGRAM remains PROPOSED"
+      ]
+    },
+    {
+      "id": "AC-TA7-003",
+      "status": "PASS",
+      "basis": [
+        "representation.reveal_stages/support_stage_map",
+        "question hint visual_ref/visual_stage_ref",
+        "NLM matrix support ladder remains unchanged",
+        "visual_support integrity tests"
+      ]
+    },
+    {
+      "id": "AC-TA7-004",
+      "status": "PASS",
+      "basis": [
+        "guardrails 35507415230 SUCCESS",
+        "V2.5 relay 35507415307 SUCCESS",
+        "generated projections current",
+        "933 repository tests PASS"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA7-001",
+      "status": "PASS",
+      "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+      "evidence": [
+        "visual_support.py and focused learner-loop tests validate representation/explorer/support/hint ownership and stage membership."
+      ]
+    },
+    {
+      "id": "TEST-TA7-002",
+      "status": "PASS",
+      "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+      "evidence": [
+        "Full library/depiction/compiler suite passed; unbuilt FBD backlog is explicitly reported rather than hidden; no scene instance was fabricated."
+      ]
+    },
+    {
+      "id": "TEST-TA7-003",
+      "status": "PASS",
+      "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+      "evidence": [
+        "No question retains grade9v3:closure_ep=EP-TA-006; exactly three pre-existing NLM questions carry staged visual bindings."
+      ]
+    },
+    {
+      "id": "TEST-TA7-004",
+      "status": "PASS",
+      "basis_ref": "cca1c200fb68a72496943a31abcab68417d51b5c",
+      "evidence": [
+        "Generated artifacts are fresh; guardrails 35507415230 and V2.5 35507415307 both passed exact head."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-007",
+    "path": "agents/relay/quality/QRV-TA-007.yaml",
+    "digest": "sha256:3c6f5b15aa6c6e2912e0fa91404b571c224659f7c3a7094d64f393910d873c96"
+  },
+  "quality_findings": [],
+  "known_limitations": [
+    {
+      "statement": "The static FREE_BODY_DIAGRAM renderer remains PROPOSED; canonical NLM representations can drive interactive explorers/staged support but do not claim a publishable static scene.",
+      "basis": [
+        "Physics/adapter/CoreContracts.json",
+        "depiction priority test",
+        "QRV-TA-007"
+      ]
+    },
+    {
+      "statement": "WP-TA-104 does not choose learner support from evidence; evidence-to-support/exercise routing is intentionally deferred to WP-TA-107.",
+      "basis": [
+        "RM-0007",
+        "EP-TA-007 deliberate_non_goals"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "The existing package model already owned representation meaning, resources and question hints; only optional reveal-stage/explorer/hint-ref fields were needed.",
+      "basis": [
+        "Shared/library/package.schema.json",
+        "Shared/library/visual_support.py"
+      ]
+    },
+    {
+      "statement": "Existing feedback already owns post-failure hint escalation, diagnosis, repair, fresh verification and delayed review, so the successor should compose rather than replace it.",
+      "basis": [
+        "Shared/tools/feedback.py",
+        "Shared/tools/review_schedule.py"
+      ]
+    },
+    {
+      "statement": "Question-count closure was unnecessary: three existing NLM questions are sufficient to falsify the staged-visual architecture.",
+      "basis": [
+        "ODR-0004",
+        "tests/test_grade9_physics_learner_loop.py"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-104 is complete and earns its 10/100 programme weight.",
+        "basis": [
+          "CP-TA-007",
+          "QRV-TA-007",
+          "guardrails 35507415230",
+          "V2.5 35507415307"
+        ]
+      },
+      {
+        "statement": "WP-TA-107 becomes the next serial frontier for derived learner-evidence routing and closed session orchestration.",
+        "basis": [
+          "RM-0007 dependency graph"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "Implement WP-TA-107 as a subject-neutral derived router over existing evidence/session/feedback contracts.",
+    "After WP-TA-107, derive the Grade-9 exit and Grade-10 transition view in WP-TA-105."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-107",
+    "ep_id": "EP-TA-008",
+    "parallel_plan": null,
+    "join_id": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}
