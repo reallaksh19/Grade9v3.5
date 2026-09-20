@@ -1,0 +1,434 @@
+{
+  "schema_version": "grade9v3-grade9-physics-scope-coverage-v1",
+  "status": "DERIVED_AUDIT",
+  "generated_from": {
+    "repository": "reallaksh19/Grade9V3",
+    "material_basis": "43f1321839f259a882b07a3189495ca372cb3abf",
+    "roadmap_revision": "RM-0006",
+    "execution_package": "EP-TA-004"
+  },
+  "authority_boundary": {
+    "statement": "This file is a derived planning/evidence view. It does not create curriculum authority, learner mastery state, or new runtime enums.",
+    "matrix_rule": "Matrices are pedagogical structures, not curriculum authority.",
+    "unknown_rule": "Missing school micro-demand remains unknown; local readiness or approved external preparation demand does not relabel it as school-issued scope.",
+    "completion_rule": "Only REQUIRED_CORE is an ordinary Grade-9 completion blocker at matrix level. Support, question-demand, extension and deferred roles do not gate ordinary Grade-9 completion unless a more specific current source or learner-demand contract says otherwise."
+  },
+  "classification_counts": {
+    "REQUIRED_CORE": 6,
+    "SUPPORT_ONLY": 2,
+    "QUESTION_DEMAND_NONBLOCKING": 3,
+    "DECLARED_EXTENSION_NONBLOCKING": 1,
+    "DEFERRED_LATER_OR_BROADER": 8
+  },
+  "total_matrices": 20,
+  "ordinary_grade9_core_count": 6,
+  "current_pinnacle_terminal1_chapters": [
+    "Vectors",
+    "Motion 1 D",
+    "Motion in 2 D",
+    "NLM"
+  ],
+  "matrices": [
+    {
+      "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+      "path": "Physics/matrices/phy-kin-1d-motion.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": "Motion 1 D",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-1-MOTION-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Core ordinary Grade-9 matrix. Individual retained diagnostic/extension rungs are not automatically required merely because they live in the matrix."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+      "path": "Physics/matrices/phy-nlm-first-law.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": "NLM",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md",
+        "docs/grade9/G9-PINNACLE-NLM-EXAMSIDE-RECONNAISSANCE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Core NLM spine is required; non-default frame-choice and broader connected/friction/pulley preparation remain demand-gated at learner-action depth."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+      "path": "Physics/matrices/phy-grav-universal-law.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-3-GRAVITATION-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Core ordinary Grade-9 matrix; orbital/energy depth retained in the matrix does not make every advanced rung an ordinary completion requirement."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+      "path": "Physics/matrices/phy-work-energy-power.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-4-WORK-ENERGY-POWER-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Core ordinary Grade-9 matrix; completion is bounded by the authored Grade-9 work/energy/power spine rather than every possible energy application."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-SOUND",
+      "path": "Physics/matrices/phy-sound.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-5-SOUND-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Core ordinary Grade-9 sound matrix."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+      "path": "Physics/matrices/phy-simple-machines.rungs.json",
+      "primary_scope_reason": "SYLLABUS_REQUIREMENT",
+      "role": "REQUIRED_CORE",
+      "ordinary_grade9_core": true,
+      "default_grade9_completion_blocker": true,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-6-SIMPLE-MACHINES-AUTHORING-AUDIT.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Current-source Grade-9 simple-machines slice; ordinary completion includes the bounded three-rung machine/MA/work-tradeoff spine."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+      "path": "Physics/matrices/vector-representation.rungs.json",
+      "primary_scope_reason": "PREREQUISITE",
+      "role": "SUPPORT_ONLY",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "Vectors",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-PINNACLE-VECTORS-EXAMSIDE-RECONNAISSANCE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Support/prerequisite vector representation is reused where a Grade-9 learner action needs it; the confirmed Vectors chapter does not by itself make every microtopic school-confirmed."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+      "path": "Physics/matrices/phy-vec-add-sub.rungs.json",
+      "primary_scope_reason": "PREREQUISITE",
+      "role": "SUPPORT_ONLY",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "Vectors",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/G9-PINNACLE-VECTORS-EXAMSIDE-RECONNAISSANCE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "The baseline role is support/prerequisite. Selected operations such as arbitrary-angle decomposition also have approved ExamSIDE preparation demand, but that does not promote the whole matrix to ordinary core."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+      "path": "Physics/matrices/phy-vector-direction-unit.rungs.json",
+      "primary_scope_reason": "QUESTION_DEMAND",
+      "role": "QUESTION_DEMAND_NONBLOCKING",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "Vectors",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/grade9/PINNACLE-EXAMSIDE-PREPARATION-AUTHORITY.md",
+        "docs/grade9/G9-PINNACLE-VECTORS-EXAMSIDE-RECONNAISSANCE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Direction recovery, i/j notation and 2-D unit direction are bounded preparation demands justified by approved external questions; they are not school-micro-confirmed or ordinary Grade-9 completion blockers."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+      "path": "Physics/matrices/phy-kin-2d-motion.rungs.json",
+      "primary_scope_reason": "QUESTION_DEMAND",
+      "role": "QUESTION_DEMAND_NONBLOCKING",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "Motion in 2 D",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/grade9/PINNACLE-EXAMSIDE-PREPARATION-AUTHORITY.md",
+        "docs/grade9/G9-PINNACLE-MOTION2D-EXAMSIDE-AUTHORING-AUDIT.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Independent x/y motion, 2-D constant acceleration and projectile modelling are locally authored from approved real question demand; school micro-demand remains unconfirmed."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER",
+      "path": "Physics/matrices/phy-nlm-momentum-transfer.rungs.json",
+      "primary_scope_reason": "QUESTION_DEMAND",
+      "role": "QUESTION_DEMAND_NONBLOCKING",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "NLM",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "CONFIRMED_EXAMSIDE"
+      },
+      "basis": [
+        "docs/grade9/PINNACLE-EXAMSIDE-PREPARATION-AUTHORITY.md",
+        "docs/grade9/G9-PINNACLE-NLM-EXAMSIDE-RECONNAISSANCE.md",
+        "docs/grade9/G9-NLM-MOMENTUM-TRANSFER-AGENT-A-SEMANTIC-ATLAS-AUDIT.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Explicit-demand, non-default discrete momentum-transfer force extension. It does not create a general Grade-9 momentum/collision curriculum."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+      "path": "Physics/matrices/relative-motion.rungs.json",
+      "primary_scope_reason": "DECLARED_EXTENSION",
+      "role": "DECLARED_EXTENSION_NONBLOCKING",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": "Motion in 2 D",
+        "chapter_demand": "CHAPTER_CONFIRMED",
+        "school_micro_demand": "MICRO_TO_CONFIRM",
+        "preparation_demand": "NOT_RECORDED_AS_CONFIRMED_IN_CURRENT_MICRO_SCOPE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/TERMINAL1-PINNACLE-PHYSICS-MICRO-SCOPE.md",
+        "docs/grade9/terminal1-pinnacle-physics.micro-scope.json"
+      ],
+      "note": "Visible extension/question-demand route, but not ordinary Grade-9 scope by default and not a completion blocker without a more specific current demand."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+      "path": "Physics/matrices/phy-elec-current-ohm.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Electricity is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+      "path": "Physics/matrices/phy-fluid-bernoulli-equation.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "The whole broad fluid/Bernoulli matrix is deferred. A separately verified Grade-9 pressure/buoyancy learner action may reuse a bounded capability without importing this matrix wholesale."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+      "path": "Physics/matrices/phy-mag-field-lorentz.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Magnetism is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+      "path": "Physics/matrices/phy-optics-reflection-mirrors.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Optics is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+      "path": "Physics/matrices/phy-optics-refraction-lenses.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Optics is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+      "path": "Physics/matrices/phy-osc-shm-waves.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "SHM/waves is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+      "path": "Physics/matrices/phy-rot-rigid-body.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Rigid-body rotation is explicitly deferred in the current Grade-9 authoring scope."
+    },
+    {
+      "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+      "path": "Physics/matrices/phy-thermo-first-second-law.rungs.json",
+      "primary_scope_reason": "DEFER",
+      "role": "DEFERRED_LATER_OR_BROADER",
+      "ordinary_grade9_core": false,
+      "default_grade9_completion_blocker": false,
+      "terminal1": {
+        "chapter": null,
+        "chapter_demand": "NOT_IN_CURRENT_PINNACLE_TERMINAL1_BOUNDARY",
+        "school_micro_demand": "NOT_APPLICABLE",
+        "preparation_demand": "NOT_APPLICABLE"
+      },
+      "basis": [
+        "docs/GRADE9-PHYSICS-MATRIX-AUTHORING-SCOPE.md",
+        "docs/grade9/GRADE9-PHYSICS-PASS-COMPLETE.md"
+      ],
+      "note": "Thermodynamics is explicitly deferred in the current Grade-9 authoring scope."
+    }
+  ],
+  "unresolved_evidence": [
+    "Pinnacle school micro-demand remains MICRO_TO_CONFIRM for chapter-internal learner actions unless school-issued workbook/classwork/revision/sample-paper evidence confirms them.",
+    "The learner's actual mastery/readiness remains outside this scope view and requires learner observations plus independent verification.",
+    "A matrix-level role does not make every retained rung inside that matrix mandatory; non-default/extension rung boundaries remain authoritative."
+  ]
+}
