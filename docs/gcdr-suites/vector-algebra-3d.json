@@ -126,5 +126,51 @@
       ]
     }
   ],
-  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+  "audit_evidence_ref": "tests/test_master_suites_gcdr_audit.py",
+  "representation_invariants": [
+    {
+      "id": "PARALLELOGRAM-AREA-SIDE-DIAGONAL",
+      "views": [
+        "SIDE_VECTOR_MODE",
+        "DIAGONAL_MODE"
+      ],
+      "relation": "norm(cross(a,b)) equals one half norm(cross(a+b,a-b))",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "id": "PROJECTION-REJECTION-RECONSTRUCTION",
+      "views": [
+        "VECTOR_VIEW",
+        "PROJECTION_REJECTION_VIEW"
+      ],
+      "relation": "parallel projection plus orthogonal rejection reconstructs the original vector and the rejection is orthogonal to the projection axis",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    },
+    {
+      "id": "BAC-CAB-VECTOR-TRIPLE-PRODUCT",
+      "views": [
+        "DIRECT_CROSS_PRODUCT_VIEW",
+        "BAC_CAB_RECONSTRUCTION_VIEW"
+      ],
+      "relation": "direct vector triple product equals the BAC-CAB algebraic reconstruction for the governed vectors",
+      "tolerance": 1e-9,
+      "evidence_method": "PROPERTY_TEST",
+      "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+    }
+  ],
+  "geometry_truth_contract": {
+    "verification_status": "DECLARED",
+    "oracle_method": "PROPERTY_TEST",
+    "governed_geometry": [
+      "3D_VECTORS",
+      "PARALLELOGRAM_AND_DIAGONALS",
+      "PARALLELEPIPED",
+      "VECTOR_TRIPLE_PRODUCT_PLANES"
+    ],
+    "evidence_ref": "tests/test_master_suites_gcdr_audit.py"
+  }
 }
