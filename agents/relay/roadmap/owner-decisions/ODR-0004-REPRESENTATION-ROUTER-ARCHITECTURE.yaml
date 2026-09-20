@@ -1,0 +1,76 @@
+{
+  "schema_version": "relay-v2.5",
+  "id": "ODR-0004-REPRESENTATION-ROUTER-ARCHITECTURE",
+  "decision": {
+    "authority": "OWNER",
+    "kind": "INTENT_MUTATION",
+    "statement": "Make the remaining Grade-9 learner-loop work representation-first and routing-first. Questions are sparse exercises/fixtures, not a completeness denominator. Keep canonical representations separate from interactive explorers and from questions; keep starting support separate from post-failure hint depth; add only the minimum schema needed for staged visual hints and explicit representation/explorer binding; derive support/exercise routing from learner evidence without creating a mastery model.",
+    "source": "Owner architecture instruction in the active Grade9V3 engineering session on 2026-09-20."
+  },
+  "effects": {
+    "requirement_disposition": "NOT_APPLICABLE",
+    "grants_material_write_authority": false,
+    "pending_items": []
+  },
+  "delivery_authorization": null,
+  "impact": {
+    "class": [
+      "LEARNER_ARCHITECTURE",
+      "PHYSICS_REPRESENTATION",
+      "SESSION_ROUTING",
+      "ROADMAP"
+    ]
+  },
+  "affected": {
+    "objectives": [
+      "OBJ-TOPIC-ATLAS-COMPLETE"
+    ],
+    "phases": [
+      "PHASE-TAKEOVER-RECONCILIATION"
+    ],
+    "work_packages": [
+      "WP-TA-104",
+      "WP-TA-105",
+      "WP-TA-107"
+    ],
+    "execution_packages": [
+      "EP-TA-006"
+    ],
+    "issues": []
+  },
+  "change_intake": {
+    "previous_concept": "WP-TA-104 was drifting toward closure by canonical-question inventory, including a 25-question 7-Core2A-plus-18-Core2B backlog, while existing representation/explorer/support/router gaps remained outside the active completion contract.",
+    "requested_concept": "Treat learner-loop closure as an architecture of capability/rung -> canonical representation -> optional interactive explorer -> sparse question family/question -> staged hints/visual reveals -> evidence-derived support and exercise routing. Questions sample and exercise capability; they do not prove architectural completeness by count.",
+    "retained_behavior": [
+      "Keep the six Core role semantics, existing question-family and transfer-demand contracts, and the distinction between Core2A practice and Core2B transfer.",
+      "Keep learner observations and assisted-versus-independent evidence semantics unchanged.",
+      "Keep matrix.family.support_ladder as starting-support authority.",
+      "Keep question.hints[] as post-failure reveal order and do not merge it with starting support.",
+      "Keep the existing representation, scene_instance, microtopic.representation_refs and ACTIVITY resource structures rather than replacing them.",
+      "Keep the Grade-9 scope freeze and the 60/100 already-earned programme progress."
+    ],
+    "invalidated_behavior": [
+      "Do not require one direct-practice or transfer question per required capability or transfer row as a Grade-9 learner-loop completion condition.",
+      "Do not treat the EP-TA-006 25-question expansion as required closure work; remove that expansion and use a tiny existing-question smoke set instead.",
+      "Do not conclude that Shared learner-loop architecture is complete merely because evidence, feedback and review primitives exist; evidence-to-support and support-to-exercise routing are still missing.",
+      "Do not make an interactive webpage, static figure, canonical representation or question hint the same object.",
+      "Do not infer READY/REINFORCE/REBUILD as persisted mastery states."
+    ],
+    "new_scope": [
+      "Author canonical NLM visual representations and bind them to R3 FBD-body-ownership and R8 friction-threshold microtopics.",
+      "Bind existing NLM ACTIVITY explorers explicitly to the canonical representations they implement.",
+      "Add small optional representation reveal-stage/support-stage fields and optional hint visual references; avoid a separate visual schema.",
+      "Use three existing NLM questions as smoke fixtures for staged visual hints rather than authoring broad question inventory.",
+      "Add a subject-neutral runtime policy that derives READY/REINFORCE/REBUILD routing posture, starting support, initial visual stage and exercise demand from current learner evidence without changing evidence truth.",
+      "Complete the session loop by keeping starting support, failure escalation, repair, fresh verification and later review as separate decisions."
+    ]
+  },
+  "required_reconciliation": [
+    "Invalidate EP-TA-006 as the current execution contract and remove its question-count closure criterion.",
+    "Revise WP-TA-104 to representation/staged-hint foundation work and reduce its weight from 25 to 10.",
+    "Add WP-TA-107 at weight 15 for evidence-derived support/exercise routing and closed session-loop orchestration.",
+    "Keep WP-TA-105 at weight 15, now depending on WP-TA-107.",
+    "Create PB-0005 while preserving 60/100 earned progress because completed work remains 60 weight and total programme weight remains 100."
+  ],
+  "status": "APPLIED"
+}

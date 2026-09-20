@@ -2,9 +2,9 @@
   "schema_version": "relay-v2.5",
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0006",
+    "revision": "RM-0007",
     "title": "Grade 9 Physics learner independence and progression",
-    "revision_record": "agents/relay/roadmap/revisions/RM-0006.yaml",
+    "revision_record": "agents/relay/roadmap/revisions/RM-0007.yaml",
     "owner_outcome": "Make the learner increasingly capable of deciding what she knows, discovering with little external steering what she does not know, repairing the right Physics gap, and independently verifying a solution.",
     "progression_order": [
       "PHYSICS_GRADE_9",
@@ -79,22 +79,44 @@
             },
             {
               "id": "WP-TA-104",
-              "title": "Close required Grade-9 Physics learner-loop gaps",
+              "title": "Make canonical representations and staged visual help first-class",
               "state": "ACTIVE",
               "definition": "DETAILED",
               "execution_status": "ACTIVE",
-              "weight": 25,
+              "weight": 10,
               "depends_on": [
                 "WP-TA-103"
               ],
-              "outcome": "For required Grade-9 capabilities, the real learner journey can enter with partial knowledge, diagnose the smallest supported gap, repair only what is needed, reconstruct the physical model, practise it, transfer it across representation/context, and obtain fresh independent verification.",
+              "outcome": "The learner can see a Physics capability through one canonical academic representation, optionally manipulate that same representation through an explorer, start with support appropriate to the route, and receive staged visual hints after difficulty without duplicating visual truth inside questions or webpages.",
               "exit_evidence": [
-                "Model understanding is distinguishable from formula execution and arithmetic/procedural slips.",
-                "Misconceptions route to diagnosis, repair and a fresh falsifying check rather than broad reteaching.",
-                "Hinted/worked success remains assisted evidence and triggers later unhinted verification.",
-                "Practice stabilises a capability while transfer changes representation, context, model choice or direction of reasoning.",
-                "Physics representations, assumptions, equations/conditions, diagrams, signs/directions, qualitative reasoning and quantitative verification are covered where age-appropriate.",
-                "Existing Shared learner-evidence, prerequisite, feedback and review mechanisms are reused before adding architecture."
+                "NLM R3 body-ownership and R8 friction-threshold microtopics bind to canonical representation records rather than leaving representation_refs empty.",
+                "Existing NLM ACTIVITY explorers are explicitly bound to the canonical representations they implement; the webpage remains an implementation, not academic truth.",
+                "Representation records can author ordered reveal stages and map LOW/MEDIUM/HIGH starting support to an initial visual stage without requiring every representation to use a global four-stage template.",
+                "Question hints can optionally reference a canonical representation and one reveal stage while retaining text/reveals semantics.",
+                "Starting support from matrix.family.support_ladder remains distinct from post-failure hint depth.",
+                "Three existing NLM questions are sufficient smoke fixtures; learner-loop closure is not measured by question-count coverage."
+              ]
+            },
+            {
+              "id": "WP-TA-107",
+              "title": "Route learner evidence into support, visual state, exercise demand and a closed session loop",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 15,
+              "depends_on": [
+                "WP-TA-104"
+              ],
+              "outcome": "For a required capability, current learner evidence determines a routing posture and starting support; support chooses an initial visual state; post-failure hints escalate independently; exercise demand rises only after evidence warrants it; repair rejoins a fresh verification and later review path.",
+              "exit_evidence": [
+                "Independent DEMONSTRATED evidence routes to READY; MISSING routes to REBUILD; UNCERTAIN or unobserved evidence routes conservatively to REINFORCE without claiming mastery.",
+                "READY, REINFORCE and REBUILD are derived routing postures, not persisted learner states or mastery probabilities.",
+                "Routing posture maps to LOW/MEDIUM/HIGH starting support and, when a representation supplies it, to a declared initial visual stage.",
+                "REBUILD can surface a bound interactive explorer and guided task; REINFORCE prefers standard practice with hints available; READY can lower support and prefer higher reasoning demand/transfer when prerequisites allow.",
+                "Post-failure hint depth remains governed by question.hints[] and does not overwrite the starting-support decision.",
+                "CONCEPT/SETUP failures may route to reconstruction/representation repair, while EXECUTION/CARELESS failures do not automatically trigger conceptual reteaching.",
+                "The closed loop returns from repair to fresh independent verification and delayed review using existing feedback/review contracts.",
+                "No new mastery score, probabilistic learner model, or grade-state database is introduced."
               ]
             },
             {
@@ -105,7 +127,7 @@
               "execution_status": "WAITING",
               "weight": 15,
               "depends_on": [
-                "WP-TA-104"
+                "WP-TA-107"
               ],
               "outcome": "Derive an auditable Grade-9 exit view from canonical scope plus learner evidence so Grade 10 starts when it is the next productive place to learn, without demanding perfection or hiding foundational holes.",
               "exit_evidence": [
@@ -119,10 +141,10 @@
               ]
             }
           ],
-          "outcome": "Preserve proven Shared/Atlas machinery, then use it to close Grade-9 Physics scope, learner-loop and exit-evidence gaps without expanding into a speculative adaptive-learning platform."
+          "outcome": "Preserve proven Shared/Atlas machinery, then make the Grade-9 learner loop representation-aware and evidence-routed before deriving Grade-9 exit readiness."
         }
       ],
-      "outcome": "Grade 9 is complete enough when required Physics is covered as capability, foundational prerequisites are closed or explicitly known, important success is independently verified, transfer/representation evidence exists where it matters, and remaining gaps are honestly classified as blocking, non-blocking, unknown, enrichment, or later-grade."
+      "outcome": "Grade 9 is complete enough when required Physics is covered as capability, canonical representations make important models inspectable, support/hints route from honest evidence without becoming mastery claims, foundational prerequisites are closed or explicit, important success is independently verified, and remaining gaps are honestly classified."
     }
   ]
 }
