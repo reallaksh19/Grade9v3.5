@@ -324,6 +324,10 @@
       {
         "path": "public/physics/motion-2d/index.html",
         "reason": "Current main adds normal-flow manual mastery/sync controls that must be removed to preserve the two-input operating model."
+      },
+      {
+        "path": "docs/architecture-manifest.json",
+        "reason": "Generated architecture index must be regenerated through Shared/tools/build_manifest.py after adding the takeover regression test; hand editing remains prohibited."
       }
     ],
     "allowed_reads": [
@@ -571,7 +575,8 @@
       "targets": [
         "public/js/topic-atlas.js",
         "webpageGAPanalysis.md",
-        "tests/test_topic_atlas_takeover_contract.py"
+        "tests/test_topic_atlas_takeover_contract.py",
+        "docs/architecture-manifest.json"
       ],
       "reads": [
         "Shared/tools/build_web_data.py",
@@ -581,7 +586,8 @@
       "writes": [
         "public/js/topic-atlas.js",
         "webpageGAPanalysis.md",
-        "tests/test_topic_atlas_takeover_contract.py"
+        "tests/test_topic_atlas_takeover_contract.py",
+        "docs/architecture-manifest.json"
       ],
       "inputs": [
         "INPUT-TA-001",
@@ -595,7 +601,7 @@
         "TEST-TA-002",
         "TEST-TA-004"
       ],
-      "expected_state": "Browser Measurement Pack projection separates measurement fields from routing context and uses diagnostic_prompt; handoff points to current Run Builder and plan_request CLI; webpageGAPanalysis.md records remaining Shared/page/content work after this slice.",
+      "expected_state": "Browser handoff corrections and webpage gap analysis are complete; generated architecture manifest is refreshed only via the canonical builder; focused and full repository regressions are green.",
       "stop_conditions": [
         "Stop if a Measurement Pack field is not actually present in canonical projected data.",
         "Stop if Run Builder path/CLI cannot be proven from current repository files."
