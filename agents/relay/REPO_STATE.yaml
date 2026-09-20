@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Re-run V2.5 takeover and material-write gates on current main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59; then implement EP-TA-001 including removal of the conflicting manual leaf-progress learner path."
+      "next_action": "Run the V2.5 candidate write gate against current main 78d8185852ee467b5a3fa064477e68553a4acca8; if green, regenerate docs/architecture-manifest.json through Shared/tools/build_manifest.py and re-run the full guardrail suite."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -78,7 +78,7 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Roadmap and EP were reconciled onto current main d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59 before material execution resumes; product acceptance remains not run on the rebased head.",
+      "summary": "EP-TA-001 material behavior and falsifier tests are implemented; V2.5 remained green on the prior head. The current guardrail blocker is generated architecture-manifest drift caused by the new takeover test, and main drift through 78d8185852ee467b5a3fa064477e68553a4acca8 is disjoint under DRIFT-TA-001.",
       "not_run": [
         {
           "id": "TEST-TA-001..005",
