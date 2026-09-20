@@ -19,6 +19,19 @@ class StudySessionRunner(unittest.TestCase):
     def mapping(self):
         return json.loads(self.FIXTURE.read_text(encoding="utf-8"))
 
+    def nlm_fbd_mapping(self):
+        return {
+            "worksheet_id": "WS-NLM-FBD-ROUTER",
+            "subject": "Physics",
+            "questions": [{
+                "question_id": "Q-PHY-NLM-2A-COV-03",
+                "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "secondary_capability_refs": [],
+                "mapping_basis": "CANONICAL_QUESTION",
+                "canonical_question_ref": "Q-PHY-NLM-2A-COV-03",
+            }],
+        }
+
     def nlm_friction_mapping(self):
         return {
             "worksheet_id": "WS-NLM-FRICTION-ROUTER",
@@ -744,17 +757,17 @@ class StudySessionRunner(unittest.TestCase):
             "effective_state",
             return_value=independent,
         ):
-            report = study_session.plan(self.nlm_friction_mapping())
+            report = study_session.plan(self.nlm_fbd_mapping())
 
         self.assertTrue(report["passed"], report["findings"])
         step = report["next_step"]
-        self.assertEqual(step["capability_ref"], "CAP-NLM-FRICTION-QUANT")
+        self.assertEqual(step["capability_ref"], "CAP-NLM-FBD-BODY-OWNERSHIP")
         self.assertEqual(step["routing_posture"], "READY")
         self.assertEqual(step["starting_support"], "low")
         self.assertEqual(step["exercise_demand"], "TRANSFER")
         self.assertEqual(
             step["initial_visual"]["visual_stage_ref"],
-            "VIS-NLM-FRICTION-V0",
+            "VIS-NLM-FBD-V0",
         )
         self.assertEqual(step["routing_persistence"], "NOT_WRITTEN")
 
