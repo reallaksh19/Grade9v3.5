@@ -3,7 +3,7 @@
   "identity": {
     "ep_id": "EP-TA-003",
     "branch": "takeover/topic-atlas-browser-correctness",
-    "base_ref": "13d81af36a3042a67f0af78870f823d2fc267543",
+    "base_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
     "execution_state": "EXECUTABLE",
     "previous_checkpoint": "CP-TA-002",
     "previous_join": null,
@@ -12,7 +12,7 @@
   "replan_inheritance": null,
   "git_basis": {
     "expected_branch": "takeover/topic-atlas-browser-correctness",
-    "material_ref": "13d81af36a3042a67f0af78870f823d2fc267543",
+    "material_ref": "22f0139b6cf04f86aa90345af3d7a14d022a6b23",
     "base_branch": "main",
     "base_observed_ref": "194791528cd3a69b30aced1480aee3254293dfe0",
     "drift_policy": "RECHECK_BEFORE_WRITE",
@@ -20,7 +20,7 @@
   },
   "roadmap_source": {
     "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "roadmap_revision": "RM-0005",
+    "roadmap_revision": "RM-0006",
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
     "work_package": "WP-TA-106",
@@ -28,8 +28,8 @@
   },
   "outcome": {
     "user_visible": [
-      "README tells any zero-context agent to read the V2.5 repository state and governed execution roadmap before older planning documents.",
-      "Existing roadmap-like documents are explicitly classified as current execution authority, historical/product context, learner-readiness concept roadmap, prior execution plan, or evidence-gated future ideas."
+      "README makes the governed RM-0006 roadmap and Owner outcome the first planning reads for a zero-context agent, then points to REPO_STATE/PROGRESS for deterministic execution state.",
+      "Existing roadmap-like documents are explicitly classified as current authority, historical/product context, learner-readiness predecessor, prior execution plan, or evidence-gated ideas."
     ],
     "engineering": [
       "There remains exactly one current machine-authoritative execution roadmap at agents/relay/roadmap/OVERALL_ROADMAP.yaml, reached through the repository relay bootstrap file.",
@@ -37,21 +37,21 @@
     ]
   },
   "context_capsule": {
-    "product_goal": "Make current Grade9V3 execution intent reconstructable from the repository entry point without chat history or roadmap-name guesswork.",
+    "product_goal": "Make current Grade9V3 programme intent and execution authority reconstructable from README without chat history or roadmap-name guesswork.",
     "roadmap_position": "OBJ-TOPIC-ATLAS-COMPLETE / PHASE-TAKEOVER-RECONCILIATION / WP-TA-106",
     "why_this_work_exists": "The Owner explicitly requested that any agent entering the repository read the engineering-pr-delivery V2.5 roadmap first. Repository search found multiple roadmap-like documents, while README currently points only to docs/PROGRAM-PLAN.md and does not expose REPO_STATE/OVERALL_ROADMAP as current execution authority.",
-    "current_architecture": "V2.5 authority is REPO_STATE → OVERALL_ROADMAP/PROGRESS → active EP. README is the natural repository entry point. docs/PROGRAM-PLAN.md, docs/ROADMAP-LEARNER-READY.md, docs/FUTURE-ROAD-PLAN.md, docs/PLAN-R0-R2.md and docs/PLAN-R3-R4.md contain useful but different historical/concept/future planning layers.",
+    "current_architecture": "README exposes the current programme roadmap/Owner outcome first; deterministic V2.5 execution still bootstraps through REPO_STATE → OVERALL_ROADMAP/PROGRESS → active EP. Older roadmap-like documents remain classified background/history/future context.",
     "prior_owner_decisions": [
       "Use engineering-pr-delivery V2.5 for governed delivery.",
       "Update the existing roadmap rather than inventing a parallel roadmap.",
       "Link the roadmap from README so a zero-context agent reads it first.",
       "Improve or revamp overlapping roadmap documentation where needed."
     ],
-    "current_implementation_state": "The README first-read entry and roadmap-document authority notices are implemented on exact material head 13d81af36a3042a67f0af78870f823d2fc267543. Guardrails run 35496750141 and V2.5 relay/material-write run 35496750091 both passed on that head.",
+    "current_implementation_state": "The README first-read entry, authority notices and RM-0006 Grade-9 Physics owner-outcome reconciliation are implemented and repository/relay validated on material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23.",
     "known_problems": [
-      "Older roadmap documents intentionally retain historical counts, statuses and task sequences; their new authority banners prevent those snapshots from being mistaken for current execution state.",
-      "README links current structured authority instead of copying live progress or active execution identifiers, so readers must follow the linked relay files for current state.",
-      "PR #148 remains a draft and its mergeability must be evaluated separately from this documentation slice."
+      "Older roadmap documents intentionally retain historical counts, statuses and task sequences; their authority notices prevent those snapshots from being mistaken for current execution state.",
+      "README links structured authority rather than copying live progress or active execution identifiers, so current execution details must be followed through REPO_STATE/PROGRESS.",
+      "PR #148 remains a draft and its eventual merge/readiness decision is separate from this bounded roadmap-first slice."
     ],
     "deliberate_non_goals": [
       "Do not create another current roadmap file.",
@@ -60,10 +60,10 @@
       "Do not move V2.5 authority out of agents/relay."
     ],
     "terminology": {
-      "current execution roadmap": "agents/relay/roadmap/OVERALL_ROADMAP.yaml referenced by REPO_STATE",
+      "current execution roadmap": "agents/relay/roadmap/OVERALL_ROADMAP.yaml; first planning read in README, with REPO_STATE as deterministic execution bootstrap",
       "program plan": "historical/product architecture context in docs/PROGRAM-PLAN.md",
       "learner-ready roadmap": "conceptual learner-readiness gap/sequence document, not current V2.5 execution authority",
-      "future road plan": "evidence-gated ideas, explicitly not implementation authority"
+      "future road plan": "evidence-gated ideas/guardrails; RM-0006-promoted Grade-9 scope/exit work now lives in the authoritative roadmap"
     }
   },
   "repository_discovery": [
@@ -220,11 +220,12 @@
       "oracle_class": "MANUAL_RECONSTRUCTION",
       "payload": [
         "Start at repository README only.",
-        "Locate REPO_STATE.",
-        "From REPO_STATE locate OVERALL_ROADMAP, PROGRESS and active EP.",
-        "Distinguish current execution authority from historical/future plans."
+        "Locate the current OVERALL_ROADMAP and Owner outcome.",
+        "Locate REPO_STATE and PROGRESS for deterministic execution/progress state.",
+        "From REPO_STATE locate active_ep.",
+        "Distinguish current programme/execution authority from historical/future plans."
       ],
-      "expected": "All four steps are explicit from README and repository links; no conversational context is required.",
+      "expected": "The roadmap/Owner outcome is an explicit first planning read, and REPO_STATE/PROGRESS/active_ep remain explicit deterministic execution sources; no conversational context is required.",
       "tolerance": null,
       "independence": "The reconstruction begins from the same public entry point a replacement agent sees and does not use prior chat.",
       "applicability": "CURRENT_EP_REQUIRED",
@@ -376,7 +377,7 @@
   "implementation_plan": [
     {
       "id": "STEP-TA3-001",
-      "objective": "Make README the zero-context entry to current V2.5 execution authority.",
+      "objective": "Make README the zero-context entry to the current governed roadmap/Owner outcome while preserving REPO_STATE as the deterministic execution bootstrap.",
       "targets": [
         "README.md"
       ],
@@ -400,7 +401,7 @@
       "tests": [
         "TEST-TA3-001"
       ],
-      "expected_state": "README contains a prominent first-read section that links REPO_STATE, OVERALL_ROADMAP and PROGRESS and instructs agents to follow active_ep from REPO_STATE.",
+      "expected_state": "README prominently links OVERALL_ROADMAP and ODR-0003 before background plans, then links REPO_STATE/PROGRESS and instructs agents to follow active_ep from REPO_STATE.",
       "stop_conditions": [
         "Stop if the relay paths are not current or a competing current roadmap already exists."
       ]
@@ -508,7 +509,7 @@
     "steps": [
       {
         "order": 1,
-        "action": "Add the README first-read V2.5 roadmap entry block.",
+        "action": "Keep the README first-read block aligned to RM-0006: roadmap/Owner outcome first for programme intent, then REPO_STATE/PROGRESS/active_ep for deterministic execution.",
         "targets": [
           "README.md"
         ],
@@ -527,7 +528,7 @@
           "AC-TA3-001",
           "AC-TA3-003"
         ],
-        "expected_result": "README exposes current V2.5 authority without static progress duplication.",
+        "expected_result": "README exposes current programme and execution authority without static progress duplication.",
         "stop_if": [
           "Relay paths changed or README target changed materially."
         ]
@@ -687,7 +688,7 @@
   "acceptance": [
     {
       "id": "AC-TA3-001",
-      "description": "README prominently instructs zero-context agents to start with REPO_STATE, then current OVERALL_ROADMAP/PROGRESS and the active EP locator before background plans.",
+      "description": "README prominently makes the current OVERALL_ROADMAP and Owner outcome the first planning reads, then exposes REPO_STATE/PROGRESS and active_ep as the deterministic execution path before background plans.",
       "weight": 25,
       "verification": [
         "TEST-TA3-001",
@@ -728,7 +729,7 @@
     {
       "id": "TEST-TA3-001",
       "class": "MUST_PASS",
-      "method": "Repository readback: from README only, follow links to agents/relay/REPO_STATE.yaml, current OVERALL_ROADMAP.yaml and PROGRESS.yaml, then locate active_ep through REPO_STATE.",
+      "method": "Repository readback: from README only, follow the current OVERALL_ROADMAP and ODR-0003 first, then REPO_STATE/PROGRESS and active_ep; verify background plans are classified separately.",
       "proves": [
         "AC-TA3-001",
         "AC-TA3-003"

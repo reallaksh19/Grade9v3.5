@@ -27,7 +27,7 @@
     "id": "EP-TA-003",
     "path": "agents/relay/execution-packages/EP-TA-003.yaml",
     "state": "EXECUTABLE",
-    "continuity_receipt": "agents/relay/roadmap/continuity/RC-TA-003.yaml"
+    "continuity_receipt": null
   },
   "last_checkpoint": {
     "id": "CP-TA-002",
@@ -48,12 +48,12 @@
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-004",
-        "path": "agents/relay/certifications/discovery/DISC-TA-004.yaml"
+        "id": "DISC-TA-005",
+        "path": "agents/relay/certifications/discovery/DISC-TA-005.yaml"
       },
       "certification": {
-        "id": "TC-TA-004",
-        "path": "agents/relay/certifications/takeover/TC-TA-004.yaml"
+        "id": "TC-TA-005",
+        "path": "agents/relay/certifications/takeover/TC-TA-005.yaml"
       }
     }
   ],
@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Publish the formal EP-TA-003 quality review, checkpoint WP-TA-106, then advance the governed serial frontier to WP-TA-103 Grade-9 Physics scope closure."
+      "next_action": "Validate the directly reconciled RM-0006 EP-TA-003 contract and fresh DISC-TA-005/TC-TA-005 on the exact metadata head, then publish QRV-TA-003 and checkpoint WP-TA-106."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -77,9 +77,15 @@
       ]
     },
     "evidence": {
-      "state": "COMPLETE",
-      "summary": "RM-0006 Owner-intent/README reconciliation plus fresh DISC-TA-004/TC-TA-004 admission passed V2.5 relay run 35498815822 and repository guardrails run 35498815800 on material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23.",
-      "not_run": []
+      "state": "PARTIAL",
+      "summary": "Repository guardrails and V2.5 relay were green on final material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23. EP-TA-003 has now been directly reconciled to RM-0006 and requires exact-head relay validation of its new contract/certification metadata before quality checkpoint.",
+      "not_run": [
+        {
+          "id": "EP-TA-003-RM0006-CONTRACT-VALIDATION",
+          "reason": "Direct RM-0006 EP contract and fresh candidate certification have not yet been observed by exact-head CI.",
+          "cause": "NOT_SCHEDULED"
+        }
+      ]
     },
     "stop": {
       "active": false,
@@ -113,8 +119,8 @@
     "handover_ready": true,
     "reasons": [
       "The RM-0006 baton is repository-reconstructable and projection is not required.",
-      "Fresh repository-only DISC-TA-004 / TC-TA-004 bind the current logical candidate to RM-0006.",
-      "Exact-head V2.5 relay and repository guardrails are green on 22f0139b6cf04f86aa90345af3d7a14d022a6b23; only the formal EP-TA-003 quality review/checkpoint remains before advancing."
+      "DISC-TA-005 / TC-TA-005 bind the current logical candidate to the directly reconciled RM-0006 EP-TA-003 contract.",
+      "Material behavior is already green on 22f0139b6cf04f86aa90345af3d7a14d022a6b23; exact-head relay validation of the reconciled metadata remains before quality checkpoint."
     ]
   },
   "chat_context_required": false
