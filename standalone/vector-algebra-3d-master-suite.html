@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <!-- Standalone single-file build from Grade9V3 commit d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59. Local question data is inlined; CDN libraries remain remote. -->
+  <!-- Standalone single-file review build. Local question data is inlined; CDN libraries remain remote. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>IIT-JEE Vector Algebra · 3D Master Suite & Question Hub</title>
+  <title>IIT-JEE Vector Algebra · 3D Master Suite · Standalone</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -880,14 +880,22 @@ window.JEE_QUESTIONS_DATA = [
       contain: paint;
       width: 100% !important;
       max-width: 100% !important;
+      min-width: 0;
       display: block;
+      box-sizing: border-box;
+      touch-action: none;
+      user-select: none;
     }
     .canvas-container {
       position: relative;
       min-width: 0;
       width: 100%;
       overflow: hidden;
+      contain: layout paint;
       border-radius: 0.75rem;
+    }
+    main .grid > * {
+      min-width: 0;
     }
     
     .touch-target {
@@ -951,7 +959,7 @@ window.JEE_QUESTIONS_DATA = [
             <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
               IIT-JEE Mathematics · 3D Vector Geometry
             </span>
-            <span class="text-xs text-slate-400 font-mono">13 audited diagnostics · live corpus 282 PYQs</span>
+            <span id="headerAuditSummary" class="text-xs text-slate-400 font-mono">13 solved diagnostics · source provenance shown per item · live corpus 282 PYQs</span>
           </div>
           <h1 class="text-lg md:text-xl font-black tracking-tight text-white flex items-center gap-2">
             Vector Algebra &middot; 3D Master Suite
@@ -1171,14 +1179,14 @@ window.JEE_QUESTIONS_DATA = [
                     <span class="text-slate-400">Magnitude |a|:</span>
                     <span id="valDotMagA" class="font-mono text-sky-400 font-bold">6.0</span>
                   </div>
-                  <input type="range" id="sliderDotMagA" min="2" max="10" step="0.5" value="6" oninput="updateDotRig()" class="w-full accent-sky-400 cursor-pointer">
+                  <input type="range" id="sliderDotMagA" min="1" max="10" step="0.5" value="6" oninput="updateDotRig()" class="w-full accent-sky-400 cursor-pointer">
                 </div>
                 <div class="space-y-1">
                   <div class="flex justify-between text-xs">
                     <span class="text-slate-400">Magnitude |b|:</span>
                     <span id="valDotMagB" class="font-mono text-amber-400 font-bold">7.0</span>
                   </div>
-                  <input type="range" id="sliderDotMagB" min="2" max="10" step="0.5" value="7" oninput="updateDotRig()" class="w-full accent-amber-400 cursor-pointer">
+                  <input type="range" id="sliderDotMagB" min="1" max="10" step="0.5" value="7" oninput="updateDotRig()" class="w-full accent-amber-400 cursor-pointer">
                 </div>
               </div>
             </div>
@@ -1594,7 +1602,7 @@ window.JEE_QUESTIONS_DATA = [
               <h2 class="font-bold text-base text-white">IIT-JEE Main Diagnostic Question Hub · Vector Algebra</h2>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-              13 audited diagnostics selected from the live ExamSIDE Mathematics Vector Algebra corpus (282 questions, 2002–2026). Each simulator action is explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
+              13 locally solved diagnostics selected from the live ExamSIDE Mathematics Vector Algebra corpus (282 questions, 2002–2026). Source provenance is shown per item; each simulator action is explicitly labelled EXACT, CONSTRAINT_FAITHFUL, CONCEPT_ONLY or UNAVAILABLE.
             </p>
           </div>
 
@@ -1645,45 +1653,47 @@ window.JEE_QUESTIONS_DATA = [
     // =========================================================================
     let viewAzimuth = 35 * Math.PI / 180;
     let viewElevation = 25 * Math.PI / 180;
-    let isDragging = false;
+    let activeOrbitCanvas = null;
+    let activeOrbitCallback = null;
+    let activePointerId = null;
     let lastMouseX = 0, lastMouseY = 0;
 
     function setupOrbit(canvas, onOrbit) {
-      canvas.addEventListener('mousedown', (e) => {
-        isDragging = true;
+      if (!canvas || canvas.dataset.orbitBound === '1') return;
+      canvas.dataset.orbitBound = '1';
+
+      canvas.addEventListener('pointerdown', (e) => {
+        activeOrbitCanvas = canvas;
+        activeOrbitCallback = onOrbit;
+        activePointerId = e.pointerId;
         lastMouseX = e.clientX;
         lastMouseY = e.clientY;
+        if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+        e.preventDefault();
       });
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+
+      canvas.addEventListener('pointermove', (e) => {
+        if (activeOrbitCanvas !== canvas || activePointerId !== e.pointerId) return;
         const dx = e.clientX - lastMouseX;
         const dy = e.clientY - lastMouseY;
         lastMouseX = e.clientX;
         lastMouseY = e.clientY;
         viewAzimuth += dx * 0.01;
         viewElevation = Math.max(-1.4, Math.min(1.4, viewElevation - dy * 0.01));
-        if (onOrbit) onOrbit();
+        if (activeOrbitCallback) activeOrbitCallback();
+        e.preventDefault();
       });
-      window.addEventListener('mouseup', () => { isDragging = false; });
-      // Touch support
-      canvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          isDragging = true;
-          lastMouseX = e.touches[0].clientX;
-          lastMouseY = e.touches[0].clientY;
-        }
-      });
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging || e.touches.length !== 1) return;
-        const dx = e.touches[0].clientX - lastMouseX;
-        const dy = e.touches[0].clientY - lastMouseY;
-        lastMouseX = e.touches[0].clientX;
-        lastMouseY = e.touches[0].clientY;
-        viewAzimuth += dx * 0.01;
-        viewElevation = Math.max(-1.4, Math.min(1.4, viewElevation - dy * 0.01));
-        if (onOrbit) onOrbit();
-      });
-      window.addEventListener('touchend', () => { isDragging = false; });
+
+      const finishOrbit = (e) => {
+        if (activeOrbitCanvas !== canvas) return;
+        if (e.pointerId !== undefined && activePointerId !== null && e.pointerId !== activePointerId) return;
+        activeOrbitCanvas = null;
+        activeOrbitCallback = null;
+        activePointerId = null;
+      };
+      canvas.addEventListener('pointerup', finishOrbit);
+      canvas.addEventListener('pointercancel', finishOrbit);
+      canvas.addEventListener('lostpointercapture', finishOrbit);
     }
 
     // 3D Point to 2D Screen projection
@@ -1708,6 +1718,10 @@ window.JEE_QUESTIONS_DATA = [
       return { px, py, depth: y2 };
     }
 
+    function clampNumber(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
     function draw3DVector(ctx, from, to, color, label, lineWidth = 2.5) {
       ctx.strokeStyle = color;
       ctx.lineWidth = lineWidth;
@@ -1716,7 +1730,6 @@ window.JEE_QUESTIONS_DATA = [
       ctx.lineTo(to.px, to.py);
       ctx.stroke();
 
-      // Arrowhead cone
       const angle = Math.atan2(to.py - from.py, to.px - from.px);
       ctx.fillStyle = color;
       ctx.beginPath();
@@ -1729,26 +1742,115 @@ window.JEE_QUESTIONS_DATA = [
       if (label) {
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 11px monospace';
-        ctx.fillText(label, to.px + 8, to.py - 6);
+        ctx.textAlign = 'left';
+        const logicalWidth = Number.parseFloat(ctx.canvas.dataset.logicalWidth) || ctx.canvas.clientWidth || 1;
+        const logicalHeight = Number.parseFloat(ctx.canvas.dataset.logicalHeight) || ctx.canvas.clientHeight || 1;
+        const textWidth = ctx.measureText(label).width;
+        const labelX = clampNumber(to.px + 8, 4, Math.max(4, logicalWidth - textWidth - 4));
+        const labelY = clampNumber(to.py - 6, 12, Math.max(12, logicalHeight - 4));
+        ctx.fillText(label, labelX, labelY);
       }
     }
 
     function setupCanvas(canvas) {
-      const parent = canvas.parentElement;
-      const rect = parent.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      const width = Math.floor(rect.width);
-      const height = canvas.getAttribute('height') ? parseInt(canvas.getAttribute('height')) : 340;
+      if (!canvas) return { ctx: null, width: 1, height: 1 };
 
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
+      const parent = canvas.parentElement;
+      if (!canvas.dataset.logicalHeight) {
+        const initialHeight = Number.parseFloat(canvas.getAttribute('height'));
+        canvas.dataset.logicalHeight = String(Number.isFinite(initialHeight) && initialHeight > 0 ? initialHeight : 340);
+      }
+
+      const logicalHeight = Number.parseFloat(canvas.dataset.logicalHeight) || 340;
+      const styles = parent ? getComputedStyle(parent) : null;
+      const padX = styles
+        ? (Number.parseFloat(styles.paddingLeft) || 0) + (Number.parseFloat(styles.paddingRight) || 0)
+        : 0;
+      const parentWidth = parent ? parent.clientWidth : canvas.clientWidth;
+      const logicalWidth = Math.max(1, Math.floor(parentWidth - padX));
+      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+
+      canvas.dataset.logicalWidth = String(logicalWidth);
+      canvas.style.width = '100%';
+      canvas.style.height = logicalHeight + 'px';
+
+      const pixelWidth = Math.max(1, Math.round(logicalWidth * dpr));
+      const pixelHeight = Math.max(1, Math.round(logicalHeight * dpr));
+      if (canvas.width !== pixelWidth) canvas.width = pixelWidth;
+      if (canvas.height !== pixelHeight) canvas.height = pixelHeight;
 
       const ctx = canvas.getContext('2d');
-      ctx.resetTransform();
-      ctx.scale(dpr, dpr);
-      return { ctx, width, height };
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: logicalWidth, height: logicalHeight };
+    }
+
+    function makeFittedProjector(points, width, height, cxFrac = 0.5, cyFrac = 0.55, padding = 52, maxScale = 26) {
+      const cx = width * cxFrac;
+      const cy = height * cyFrac;
+      const safePoints = (points || []).filter(p =>
+        Array.isArray(p) && p.length >= 3 && p.every(Number.isFinite)
+      );
+      const offsets = safePoints.map(p => project3D(p[0], p[1], p[2], 0, 0, 1));
+      const minX = Math.min(0, ...offsets.map(p => p.px));
+      const maxX = Math.max(0, ...offsets.map(p => p.px));
+      const minY = Math.min(0, ...offsets.map(p => p.py));
+      const maxY = Math.max(0, ...offsets.map(p => p.py));
+
+      const leftRoom = Math.max(1, cx - padding);
+      const rightRoom = Math.max(1, width - padding - cx);
+      const topRoom = Math.max(1, cy - padding);
+      const bottomRoom = Math.max(1, height - padding - cy);
+      const candidates = [maxScale];
+
+      if (maxX > 1e-9) candidates.push(rightRoom / maxX);
+      if (minX < -1e-9) candidates.push(leftRoom / -minX);
+      if (maxY > 1e-9) candidates.push(bottomRoom / maxY);
+      if (minY < -1e-9) candidates.push(topRoom / -minY);
+
+      const scale = Math.max(0.1, Math.min(...candidates.filter(Number.isFinite)));
+      return {
+        cx, cy, scale,
+        project: v => project3D(v[0], v[1], v[2], cx, cy, scale)
+      };
+    }
+
+    function makeFitted2DProjector(points, width, height, cxFrac = 0.45, cyFrac = 0.6, padding = 52, maxScale = 28) {
+      const cx = width * cxFrac;
+      const cy = height * cyFrac;
+      const safePoints = (points || []).filter(p =>
+        Array.isArray(p) && p.length >= 2 && p.every(Number.isFinite)
+      );
+      const minX = Math.min(0, ...safePoints.map(p => p[0]));
+      const maxX = Math.max(0, ...safePoints.map(p => p[0]));
+      const minY = Math.min(0, ...safePoints.map(p => -p[1]));
+      const maxY = Math.max(0, ...safePoints.map(p => -p[1]));
+
+      const leftRoom = Math.max(1, cx - padding);
+      const rightRoom = Math.max(1, width - padding - cx);
+      const topRoom = Math.max(1, cy - padding);
+      const bottomRoom = Math.max(1, height - padding - cy);
+      const candidates = [maxScale];
+
+      if (maxX > 1e-9) candidates.push(rightRoom / maxX);
+      if (minX < -1e-9) candidates.push(leftRoom / -minX);
+      if (maxY > 1e-9) candidates.push(bottomRoom / maxY);
+      if (minY < -1e-9) candidates.push(topRoom / -minY);
+
+      const scale = Math.max(0.1, Math.min(...candidates.filter(Number.isFinite)));
+      return {
+        cx, cy, scale,
+        project: v => ({ px: cx + v[0] * scale, py: cy - v[1] * scale })
+      };
+    }
+
+    function drawCurrentTab() {
+      if (currentTab === 'tab-basis') drawBasis();
+      else if (currentTab === 'tab-dot') drawDot();
+      else if (currentTab === 'tab-cross') drawCross();
+      else if (currentTab === 'tab-triple') drawTriple();
+      else if (currentTab === 'tab-baccab') drawBaccab();
+      else if (currentTab === 'tab-equations') drawEquations();
+      else if (currentTab === 'tab-sandbox') drawSb();
     }
 
     // =========================================================================
@@ -1770,15 +1872,7 @@ window.JEE_QUESTIONS_DATA = [
         }
       });
 
-      setTimeout(() => {
-        if (tabId === 'tab-basis') { resizeBasis(); drawBasis(); }
-        else if (tabId === 'tab-dot') { resizeDot(); drawDot(); }
-        else if (tabId === 'tab-cross') { resizeCross(); drawCross(); }
-        else if (tabId === 'tab-triple') { resizeTriple(); drawTriple(); }
-        else if (tabId === 'tab-baccab') { resizeBaccab(); drawBaccab(); }
-        else if (tabId === 'tab-equations') { resizeEquations(); drawEquations(); }
-        else if (tabId === 'tab-sandbox') { resizeSb(); drawSb(); }
-      }, 50);
+      setTimeout(drawCurrentTab, 50);
     }
 
     // =========================================================================
@@ -1789,6 +1883,67 @@ window.JEE_QUESTIONS_DATA = [
       if (fidelity === 'CONSTRAINT_FAITHFUL') return 'bg-sky-500/15 border-sky-500/40 text-sky-300';
       if (fidelity === 'CONCEPT_ONLY') return 'bg-amber-500/15 border-amber-500/40 text-amber-300';
       return 'bg-slate-800 border-slate-600 text-slate-300';
+    }
+
+    function answerAuditClass(status) {
+      return status === 'PASS'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-rose-500/15 border-rose-500/40 text-rose-300';
+    }
+
+    function sourceAuditClass(status) {
+      return status === 'SOURCE_ITEM_VERIFIED'
+        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+        : 'bg-amber-500/15 border-amber-500/40 text-amber-300';
+    }
+
+    function sourceAuditLabel(status) {
+      return status === 'SOURCE_ITEM_VERIFIED' ? 'SOURCE VERIFIED' : 'SOURCE PENDING';
+    }
+
+    function validateQuestionBank() {
+      const data = window.JEE_QUESTIONS_DATA;
+      const required = ['id','q','options','correct','formula','steps','ans','trap','teacherCheck','takeaway','answerAudit','sourceAudit','simFidelity','simFidelityNote','targetTab'];
+      const problems = [];
+
+      if (!Array.isArray(data)) {
+        problems.push('Question data is unavailable.');
+      } else {
+        const ids = new Set();
+        data.forEach(q => {
+          const missing = required.filter(k => {
+            const v = q[k];
+            return v == null || v === '' || (Array.isArray(v) && v.length === 0);
+          });
+          if (missing.length) problems.push(`${q.id || '?'} missing ${missing.join(', ')}`);
+          if (ids.has(q.id)) problems.push(`duplicate question id ${q.id}`);
+          ids.add(q.id);
+
+          const optionKeys = new Set((q.options || []).map(o => o.key));
+          if (!optionKeys.has(q.correct)) problems.push(`${q.id} correct option key is absent`);
+        });
+      }
+
+      const old = document.getElementById('vectorBankIntegrityBanner');
+      if (old) old.remove();
+
+      if (problems.length) {
+        const banner = document.createElement('div');
+        banner.id = 'vectorBankIntegrityBanner';
+        banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-xs text-rose-100 shadow-2xl';
+        banner.innerHTML = `<div class="font-black text-rose-300 mb-1">Vector Algebra data integrity failure</div>
+          <div>The question hub is not being represented as complete while required data is malformed.</div>
+          <div class="mt-1 font-mono text-[10px]">${problems.slice(0,6).join(' · ')}</div>`;
+        document.body.appendChild(banner);
+        return false;
+      }
+
+      const verified = data.filter(q => q.sourceAudit === 'SOURCE_ITEM_VERIFIED').length;
+      const summary = document.getElementById('headerAuditSummary');
+      if (summary) summary.textContent = `${data.length} solved diagnostics · source provenance ${verified}/${data.length} verified · live corpus 282 PYQs`;
+      const qCount = document.getElementById('headerQCount');
+      if (qCount) qCount.textContent = `${data.length} Qs`;
+      return true;
     }
 
     function simulatorActionLabel(q) {
@@ -1885,9 +2040,7 @@ window.JEE_QUESTIONS_DATA = [
       drawBasis();
     }
 
-    function resizeBasis() {
-      setupCanvas(document.getElementById('canvasBasis'));
-    }
+    function resizeBasis() { drawBasis(); }
 
     function drawBasis() {
       const canvas = document.getElementById('canvasBasis');
@@ -1897,26 +2050,26 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.5;
-      const cy = h * 0.55;
-      const scale = 22;
-
-      // Draw Grid / Coordinate Axes
-      const o = project3D(0, 0, 0, cx, cy, scale);
-      const axX = project3D(8, 0, 0, cx, cy, scale);
-      const axY = project3D(0, 8, 0, cx, cy, scale);
-      const axZ = project3D(0, 0, 8, cx, cy, scale);
+      const points = [
+        [0,0,0], [8,0,0], [0,8,0], [0,0,8],
+        [basisVector.x, basisVector.y, basisVector.z],
+        [basisVector.x, basisVector.y, 0]
+      ];
+      const fit = makeFittedProjector(points, w, h, 0.5, 0.55, 58, 24);
+      const p = fit.project;
+      const o = p([0,0,0]);
+      const axX = p([8,0,0]);
+      const axY = p([0,8,0]);
+      const axZ = p([0,0,8]);
 
       draw3DVector(ctx, o, axX, '#ef4444', '+X (i)', 1.5);
       draw3DVector(ctx, o, axY, '#10b981', '+Y (j)', 1.5);
       draw3DVector(ctx, o, axZ, '#38bdf8', '+Z (k)', 1.5);
 
-      // Draw Vector v
-      const vEnd = project3D(basisVector.x, basisVector.y, basisVector.z, cx, cy, scale);
+      const vEnd = p([basisVector.x, basisVector.y, basisVector.z]);
       draw3DVector(ctx, o, vEnd, '#f59e0b', 'v', 3.5);
 
-      // Projections (Shadows on XY, YZ, ZX planes)
-      const shadowXY = project3D(basisVector.x, basisVector.y, 0, cx, cy, scale);
+      const shadowXY = p([basisVector.x, basisVector.y, 0]);
       ctx.strokeStyle = '#475569';
       ctx.setLineDash([3, 3]);
       ctx.beginPath();
@@ -1926,7 +2079,6 @@ window.JEE_QUESTIONS_DATA = [
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Telemetry
       const mag = Math.sqrt(basisVector.x ** 2 + basisVector.y ** 2 + basisVector.z ** 2);
       const l = mag > 0 ? (basisVector.x / mag) : 0;
       const m = mag > 0 ? (basisVector.y / mag) : 0;
@@ -1959,9 +2111,7 @@ window.JEE_QUESTIONS_DATA = [
       drawDot();
     }
 
-    function resizeDot() {
-      setupCanvas(document.getElementById('canvasDot'));
-    }
+    function resizeDot() { drawDot(); }
 
     function drawDot() {
       const canvas = document.getElementById('canvasDot');
@@ -1971,34 +2121,26 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.45;
-      const cy = h * 0.6;
-      const scale = 22;
-
       const rad = dotRig.theta * Math.PI / 180;
       const ax = dotRig.magA * Math.cos(rad);
       const ay = dotRig.magA * Math.sin(rad);
       const bx = dotRig.magB;
-      const by = 0;
 
-      // Project onto b (along x-axis)
       const projX = ax;
-      const perpY = ay;
+      const fit = makeFitted2DProjector(
+        [[0,0],[bx,0],[ax,ay],[projX,0]],
+        w, h, 0.47, 0.62, 62, 28
+      );
+      const p = fit.project;
+      const o = p([0,0]);
+      const ptB = p([bx,0]);
+      const ptA = p([ax,ay]);
+      const ptProj = p([projX,0]);
 
-      const o = { px: cx, py: cy };
-      const ptB = { px: cx + bx * scale, py: cy };
-      const ptA = { px: cx + ax * scale, py: cy - ay * scale };
-      const ptProj = { px: cx + projX * scale, py: cy };
-
-      // Reference Vector b (Amber)
       draw3DVector(ctx, o, ptB, '#f59e0b', 'b', 3);
-      // Vector a (Cyan)
       draw3DVector(ctx, o, ptA, '#38bdf8', 'a', 3);
-
-      // Parallel component a_parallel (Green)
       draw3DVector(ctx, o, ptProj, '#10b981', 'a_parallel', 3.5);
 
-      // Orthogonal Rejection a_perp (Red dashed drop)
       ctx.strokeStyle = '#ef4444';
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 2;
@@ -2009,16 +2151,20 @@ window.JEE_QUESTIONS_DATA = [
       ctx.setLineDash([]);
       ctx.fillStyle = '#ef4444';
       ctx.font = 'bold 10px monospace';
-      ctx.fillText('a_perp', ptProj.px + 4, (ptA.py + ptProj.py) * 0.5);
+      ctx.textAlign = 'left';
+      const perpLabel = 'a_perp';
+      const labelWidth = ctx.measureText(perpLabel).width;
+      const lx = clampNumber(ptProj.px + 4, 4, Math.max(4, w - labelWidth - 4));
+      const ly = clampNumber((ptA.py + ptProj.py) * 0.5, 12, h - 4);
+      ctx.fillText(perpLabel, lx, ly);
 
-      // Angle arc
+      const arcRadius = Math.min(30, Math.max(16, fit.scale * Math.min(dotRig.magA, dotRig.magB) * 0.28));
       ctx.strokeStyle = '#f59e0b';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(cx, cy, 30, -rad, 0);
+      ctx.arc(o.px, o.py, arcRadius, -rad, 0);
       ctx.stroke();
 
-      // Telemetry
       const dotProduct = dotRig.magA * dotRig.magB * Math.cos(rad);
       const scalarProj = dotRig.magA * Math.cos(rad);
       const perpNorm = dotRig.magA * Math.sin(rad);
@@ -2050,9 +2196,7 @@ window.JEE_QUESTIONS_DATA = [
       drawCross();
     }
 
-    function resizeCross() {
-      setupCanvas(document.getElementById('canvasCross'));
-    }
+    function resizeCross() { drawCross(); }
 
     function drawCross() {
       const canvas = document.getElementById('canvasCross');
@@ -2062,18 +2206,26 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.45;
-      const cy = h * 0.6;
-      const scale = 20;
       const rad = crossRig.theta * Math.PI / 180;
       const magB = 6;
       const a = [crossRig.magA * Math.cos(rad), crossRig.magA * Math.sin(rad), 0];
       const b = [magB, 0, 0];
+      const corner = [a[0] + b[0], a[1] + b[1], 0];
 
-      const o = project3D(0, 0, 0, cx, cy, scale);
-      const ptA = project3D(a[0], a[1], 0, cx, cy, scale);
-      const ptB = project3D(b[0], b[1], 0, cx, cy, scale);
-      const ptCorner = project3D(a[0] + b[0], a[1] + b[1], 0, cx, cy, scale);
+      const sideCrossMag = Math.abs(a[0] * b[1] - a[1] * b[0]);
+      const diagCrossMag = 2 * sideCrossMag;
+      const normalLength = Math.min(7, Math.max(1.5, sideCrossMag * 0.18));
+      const normal = [0,0,normalLength];
+
+      const fit = makeFittedProjector(
+        [[0,0,0], a, b, corner, normal],
+        w, h, 0.47, 0.6, 58, 24
+      );
+      const p = fit.project;
+      const o = p([0,0,0]);
+      const ptA = p(a);
+      const ptB = p(b);
+      const ptCorner = p(corner);
 
       ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
       ctx.beginPath();
@@ -2087,22 +2239,15 @@ window.JEE_QUESTIONS_DATA = [
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      const sideCrossMag = Math.abs(a[0] * b[1] - a[1] * b[0]);
-      const diagCrossMag = 2 * sideCrossMag;
-
       if (crossRig.mode === 'sides') {
         draw3DVector(ctx, o, ptB, '#f59e0b', 'b', 2.5);
         draw3DVector(ctx, o, ptA, '#38bdf8', 'a', 2.5);
       } else {
-        // d1 = a+b goes from one vertex to its opposite; d2 = a-b is the
-        // other diagonal vector and may be drawn from endpoint b to endpoint a.
         draw3DVector(ctx, o, ptCorner, '#f59e0b', 'd₁ = a+b', 2.5);
         draw3DVector(ctx, ptB, ptA, '#38bdf8', 'd₂ = a-b', 2.5);
       }
 
-      const normalLength = Math.min(7, Math.max(1.5, sideCrossMag * 0.18));
-      const ptNormal = project3D(0, 0, normalLength, cx, cy, scale);
-      draw3DVector(ctx, o, ptNormal, '#fbbf24', 'normal', 3.5);
+      draw3DVector(ctx, o, p(normal), '#fbbf24', 'normal', 3.5);
 
       const area = sideCrossMag;
       document.getElementById('crossLiveArea').textContent = crossRig.mode === 'sides'
@@ -2137,9 +2282,7 @@ window.JEE_QUESTIONS_DATA = [
       updateTripleRig();
     }
 
-    function resizeTriple() {
-      setupCanvas(document.getElementById('canvasTriple'));
-    }
+    function resizeTriple() { drawTriple(); }
 
     function drawTriple() {
       const canvas = document.getElementById('canvasTriple');
@@ -2149,27 +2292,23 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.45;
-      const cy = h * 0.65;
-      const scale = 20;
+      const a = [5,0,0];
+      const b = [2,4,0];
+      const c = [1,1,tripleRig.zc];
+      const add = (...vs) => [
+        vs.reduce((s,v)=>s+v[0],0),
+        vs.reduce((s,v)=>s+v[1],0),
+        vs.reduce((s,v)=>s+v[2],0)
+      ];
+      const verts3 = [
+        [0,0,0], a, b, add(a,b),
+        c, add(a,c), add(b,c), add(a,b,c)
+      ];
 
-      // Box edge vectors: a=[5, 0, 0], b=[2, 4, 0], c=[1, 1, tripleRig.zc]
-      const ax = 5, ay = 0, az = 0;
-      const bx = 2, by = 4, bz = 0;
-      const cx_vec = 1, cy_vec = 1, cz_vec = tripleRig.zc;
+      const fit = makeFittedProjector(verts3, w, h, 0.47, 0.62, 58, 24);
+      const p = fit.project;
+      const [v000,v100,v010,v110,v001,v101,v011,v111] = verts3.map(p);
 
-      // 8 Vertices of Parallelepiped
-      const v000 = project3D(0, 0, 0, cx, cy, scale);
-      const v100 = project3D(ax, ay, az, cx, cy, scale);
-      const v010 = project3D(bx, by, bz, cx, cy, scale);
-      const v110 = project3D(ax + bx, ay + by, az + bz, cx, cy, scale);
-
-      const v001 = project3D(cx_vec, cy_vec, cz_vec, cx, cy, scale);
-      const v101 = project3D(ax + cx_vec, ay + cy_vec, az + cz_vec, cx, cy, scale);
-      const v011 = project3D(bx + cx_vec, by + cy_vec, bz + cz_vec, cx, cy, scale);
-      const v111 = project3D(ax + bx + cx_vec, ay + by + cy_vec, az + bz + cz_vec, cx, cy, scale);
-
-      // Shaded faces
       ctx.fillStyle = (Math.abs(tripleRig.zc) < 0.1) ? 'rgba(239, 68, 68, 0.3)' : 'rgba(168, 85, 247, 0.15)';
       ctx.beginPath();
       ctx.moveTo(v000.px, v000.py);
@@ -2179,7 +2318,6 @@ window.JEE_QUESTIONS_DATA = [
       ctx.closePath();
       ctx.fill();
 
-      // Top face
       ctx.beginPath();
       ctx.moveTo(v001.px, v001.py);
       ctx.lineTo(v101.px, v101.py);
@@ -2188,7 +2326,6 @@ window.JEE_QUESTIONS_DATA = [
       ctx.closePath();
       ctx.fill();
 
-      // Connecting edges
       ctx.strokeStyle = (Math.abs(tripleRig.zc) < 0.1) ? '#ef4444' : '#a855f7';
       ctx.lineWidth = 1.5;
       const edges = [
@@ -2196,20 +2333,18 @@ window.JEE_QUESTIONS_DATA = [
         [v001, v101], [v101, v111], [v111, v011], [v011, v001],
         [v000, v001], [v100, v101], [v110, v111], [v010, v011]
       ];
-      edges.forEach(([p1, p2]) => {
+      edges.forEach(([p1,p2]) => {
         ctx.beginPath();
-        ctx.moveTo(p1.px, p1.py);
-        ctx.lineTo(p2.px, p2.py);
+        ctx.moveTo(p1.px,p1.py);
+        ctx.lineTo(p2.px,p2.py);
         ctx.stroke();
       });
 
-      // Vectors a, b, c
       draw3DVector(ctx, v000, v100, '#38bdf8', 'a', 2.5);
       draw3DVector(ctx, v000, v010, '#f59e0b', 'b', 2.5);
       draw3DVector(ctx, v000, v001, '#c084fc', 'c', 3);
 
-      // Telemetry
-      const baseArea = 5 * 4; // 20
+      const baseArea = 20;
       const vol = Math.abs(baseArea * tripleRig.zc);
       document.getElementById('telTripleBaseArea').textContent = `${baseArea.toFixed(1)} sq units`;
       document.getElementById('telTripleHeight').textContent = `${Math.abs(tripleRig.zc).toFixed(1)} units`;
@@ -2229,9 +2364,7 @@ window.JEE_QUESTIONS_DATA = [
       drawBaccab();
     }
 
-    function resizeBaccab() {
-      setupCanvas(document.getElementById('canvasBaccab'));
-    }
+    function resizeBaccab() { drawBaccab(); }
 
     function drawBaccab() {
       const canvas = document.getElementById('canvasBaccab');
@@ -2241,11 +2374,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.45;
-      const cy = h * 0.6;
-      const scale = 20;
       const rad = baccabRig.angle * Math.PI / 180;
-
       const a = [5 * Math.cos(rad), 0, 5 * Math.sin(rad)];
       const b = [6, 0, 0];
       const cVec = [0, 5, 2];
@@ -2264,35 +2393,45 @@ window.JEE_QUESTIONS_DATA = [
         const k = Math.min(6, 0.18*n) / n;
         return [v[0]*k, v[1]*k, v[2]*k];
       };
-      const point = v => project3D(v[0],v[1],v[2],cx,cy,scale);
-      const o = point([0,0,0]);
-
-      // Plane span(b,c)
-      const bcCorner = point(add(b,cVec));
-      ctx.fillStyle = 'rgba(59, 130, 246, 0.13)';
-      ctx.beginPath();
-      ctx.moveTo(o.px,o.py);
-      const pb=point(b), pc=point(cVec);
-      ctx.lineTo(pb.px,pb.py); ctx.lineTo(bcCorner.px,bcCorner.py); ctx.lineTo(pc.px,pc.py);
-      ctx.closePath(); ctx.fill();
-
-      // Plane span(a,b)
-      const abCorner = point(add(a,b));
-      ctx.fillStyle = 'rgba(245, 158, 11, 0.10)';
-      const pa=point(a);
-      ctx.beginPath();
-      ctx.moveTo(o.px,o.py);
-      ctx.lineTo(pb.px,pb.py); ctx.lineTo(abCorner.px,abCorner.py); ctx.lineTo(pa.px,pa.py);
-      ctx.closePath(); ctx.fill();
-
-      draw3DVector(ctx, o, pa, '#f59e0b', 'a', 2.5);
-      draw3DVector(ctx, o, pb, '#38bdf8', 'b', 2.5);
-      draw3DVector(ctx, o, pc, '#10b981', 'c', 2.5);
 
       const vtp1 = cross(a, cross(b, cVec));
       const vtp2 = cross(cross(a, b), cVec);
       const d1 = displayVector(vtp1);
       const d2 = displayVector(vtp2);
+      const bcCornerV = add(b,cVec);
+      const abCornerV = add(a,b);
+
+      const fit = makeFittedProjector(
+        [[0,0,0],a,b,cVec,bcCornerV,abCornerV,d1,d2],
+        w, h, 0.47, 0.6, 62, 24
+      );
+      const point = fit.project;
+      const o = point([0,0,0]);
+      const pb = point(b), pc = point(cVec), pa = point(a);
+
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.13)';
+      ctx.beginPath();
+      ctx.moveTo(o.px,o.py);
+      const bcCorner = point(bcCornerV);
+      ctx.lineTo(pb.px,pb.py);
+      ctx.lineTo(bcCorner.px,bcCorner.py);
+      ctx.lineTo(pc.px,pc.py);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.10)';
+      const abCorner = point(abCornerV);
+      ctx.beginPath();
+      ctx.moveTo(o.px,o.py);
+      ctx.lineTo(pb.px,pb.py);
+      ctx.lineTo(abCorner.px,abCorner.py);
+      ctx.lineTo(pa.px,pa.py);
+      ctx.closePath();
+      ctx.fill();
+
+      draw3DVector(ctx, o, pa, '#f59e0b', 'a', 2.5);
+      draw3DVector(ctx, o, pb, '#38bdf8', 'b', 2.5);
+      draw3DVector(ctx, o, pc, '#10b981', 'c', 2.5);
       draw3DVector(ctx, o, point(d1), '#ec4899', 'a×(b×c)', 3.5);
       draw3DVector(ctx, o, point(d2), '#f97316', '(a×b)×c', 3.5);
 
@@ -2314,9 +2453,7 @@ window.JEE_QUESTIONS_DATA = [
       drawEquations();
     }
 
-    function resizeEquations() {
-      setupCanvas(document.getElementById('canvasEquations'));
-    }
+    function resizeEquations() { drawEquations(); }
 
     function drawEquations() {
       const canvas = document.getElementById('canvasEquations');
@@ -2326,44 +2463,45 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.45;
-      const cy = h * 0.6;
-      const scale = 22;
-      const project = v => project3D(v[0],v[1],v[2],cx,cy,scale);
-      const o = project([0,0,0]);
-
-      // Governed illustrative equation:
-      // a=[2,1,1], b=[2,-2,-2], r×a=b.
-      // r_p=(a×b)/|a|²=[0,1,-1], so r=r_p+λa.
-      // Auxiliary plane: c=[1,1,0], d=4, which fixes λ=1.
       const a = [2,1,1];
       const b = [2,-2,-2];
       const rp = [0,1,-1];
       const cVec = [1,1,0];
       const d = 4;
-
-      const rpP = project(rp);
-      draw3DVector(ctx, o, rpP, '#38bdf8', 'r_p = (a×b)/|a|²', 2.5);
-
       const at = lam => [rp[0]+lam*a[0], rp[1]+lam*a[1], rp[2]+lam*a[2]];
+      const plane3 = [[4,0,-4],[0,4,-4],[0,4,4],[4,0,4]];
+      const r = at(eqRig.lambda);
+
+      const fit = makeFittedProjector(
+        [[0,0,0],rp,at(-3),at(3),r,...plane3],
+        w, h, 0.47, 0.6, 70, 24
+      );
+      const project = fit.project;
+      const o = project([0,0,0]);
+
+      draw3DVector(ctx, o, project(rp), '#38bdf8', 'r_p = (a×b)/|a|²', 2.5);
+
       const lineStart = project(at(-3));
       const lineEnd = project(at(3));
       ctx.strokeStyle = '#10b981';
       ctx.setLineDash([4,4]);
       ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(lineStart.px,lineStart.py); ctx.lineTo(lineEnd.px,lineEnd.py); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(lineStart.px,lineStart.py);
+      ctx.lineTo(lineEnd.px,lineEnd.py);
+      ctx.stroke();
       ctx.setLineDash([]);
 
-      // Plane x+y=4 (r·c=d).
-      const planePts = [[4,0,-4],[0,4,-4],[0,4,4],[4,0,4]].map(project);
+      const planePts = plane3.map(project);
       ctx.fillStyle = 'rgba(168,85,247,0.12)';
       ctx.strokeStyle = '#a855f7';
       ctx.beginPath();
       ctx.moveTo(planePts[0].px,planePts[0].py);
-      planePts.slice(1).forEach(p=>ctx.lineTo(p.px,p.py));
-      ctx.closePath(); ctx.fill(); ctx.stroke();
+      planePts.slice(1).forEach(pt=>ctx.lineTo(pt.px,pt.py));
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
 
-      const r = at(eqRig.lambda);
       draw3DVector(ctx, o, project(r), '#f59e0b', 'r(λ)', 3.5);
 
       const crossRA = [
@@ -2391,9 +2529,7 @@ window.JEE_QUESTIONS_DATA = [
     // =========================================================================
     // TAB 7: 3D MASTER SANDBOX RIG
     // =========================================================================
-    function resizeSb() {
-      setupCanvas(document.getElementById('canvasVecSandbox'));
-    }
+    function resizeSb() { drawSb(); }
 
     function drawSb() {
       const canvas = document.getElementById('canvasVecSandbox');
@@ -2403,18 +2539,14 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#050811';
       ctx.fillRect(0, 0, w, h);
 
-      const cx = w * 0.5;
-      const cy = h * 0.55;
-      const scale = 20;
+      const vectors = [[5,2,3],[-2,4,1],[1,-3,4]];
+      const fit = makeFittedProjector([[0,0,0],...vectors], w, h, 0.5, 0.55, 60, 24);
+      const p = fit.project;
+      const o = p([0,0,0]);
 
-      const o = project3D(0, 0, 0, cx, cy, scale);
-      const v1 = project3D(5, 2, 3, cx, cy, scale);
-      const v2 = project3D(-2, 4, 1, cx, cy, scale);
-      const v3 = project3D(1, -3, 4, cx, cy, scale);
-
-      draw3DVector(ctx, o, v1, '#38bdf8', 'v₁', 2.5);
-      draw3DVector(ctx, o, v2, '#10b981', 'v₂', 2.5);
-      draw3DVector(ctx, o, v3, '#f59e0b', 'v₃', 2.5);
+      draw3DVector(ctx, o, p(vectors[0]), '#38bdf8', 'v₁', 2.5);
+      draw3DVector(ctx, o, p(vectors[1]), '#10b981', 'v₂', 2.5);
+      draw3DVector(ctx, o, p(vectors[2]), '#f59e0b', 'v₃', 2.5);
     }
 
     // =========================================================================
@@ -2471,9 +2603,15 @@ window.JEE_QUESTIONS_DATA = [
                 </span>
                 <span class="text-xs font-semibold text-slate-300">${q.source}</span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
                 <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
                   ${q.subtabName}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${answerAuditClass(q.answerAudit)}">
+                  ANSWER ${q.answerAudit}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${sourceAuditClass(q.sourceAudit)}">
+                  ${sourceAuditLabel(q.sourceAudit)}
                 </span>
                 <span class="text-[10px] px-2 py-0.5 rounded border font-mono font-bold ${fidelityClass(q.simFidelity)}">
                   ${q.simFidelity}
@@ -2487,6 +2625,12 @@ window.JEE_QUESTIONS_DATA = [
 
             <div class="text-sm text-slate-200 leading-relaxed font-sans">
               ${q.q}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono">
+              ${(q.helperTags || []).includes('TRAP_ALERT') ? '<span class="px-2 py-1 rounded border border-amber-500/30 bg-amber-500/10 text-amber-300">⚠ Trap diagnosis</span>' : ''}
+              ${(q.helperTags || []).includes('INDEPENDENT_CHECK') ? '<span class="px-2 py-1 rounded border border-sky-500/30 bg-sky-500/10 text-sky-300">🧑‍🏫 Independent check</span>' : ''}
+              ${(q.helperTags || []).includes('TRANSFER_TAKEAWAY') ? '<span class="px-2 py-1 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">↗ Transfer rule</span>' : ''}
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -2509,9 +2653,10 @@ window.JEE_QUESTIONS_DATA = [
               </button>
               <div id="solContent-${q.id}" class="hidden mt-3 space-y-3 p-4 bg-black/40 rounded-xl border border-border">
                 <div class="text-xs font-mono text-purple-300">
-                  <span class="text-slate-400">Governing Formula:</span> ${q.formula}
+                  <span class="text-slate-400">1 · Governing model:</span> ${q.formula}
                 </div>
                 <div class="space-y-1 text-xs text-slate-300 font-sans">
+                  <div class="text-[10px] font-black uppercase tracking-wider text-slate-500 mb-1">2 · Question-specific derivation</div>
                   ${(q.steps || []).map((step, idx) => `
                     <div class="flex items-start gap-2">
                       <span class="text-slate-500 font-mono text-[10px]">${idx + 1}.</span>
@@ -2519,25 +2664,27 @@ window.JEE_QUESTIONS_DATA = [
                     </div>
                   `).join('')}
                 </div>
-                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
-                  <strong class="text-amber-400 block mb-1">⚠️ Examiner Trap Analysis:</strong>
-                  ${q.trap}
-                </div>
-                <div class="text-xs font-mono text-emerald-400 font-bold">
-                  Final Result: ${q.ans}
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
+                  <strong class="text-emerald-300 block mb-1">3 · Final Result / Answer Audit</strong>
+                  <span class="font-mono font-bold">${q.ans}</span>
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit}</div>
                 </div>
                 <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-lg text-xs text-sky-100">
-                  <strong class="text-sky-300 block mb-1">🧑‍🏫 Teacher's Chalkboard · Independent Check</strong>
+                  <strong class="text-sky-300 block mb-1">4 · 🧑‍🏫 Independent Teacher Check</strong>
                   ${q.teacherCheck}
                 </div>
+                <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200">
+                  <strong class="text-amber-400 block mb-1">5 · ⚠️ Trap / Misconception Diagnosis</strong>
+                  ${q.trap}
+                </div>
                 <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-xs text-emerald-100">
-                  <strong class="text-emerald-300 block mb-1">↗ Transfer Takeaway</strong>
+                  <strong class="text-emerald-300 block mb-1">6 · ↗ Transfer Takeaway / Rule</strong>
                   ${q.takeaway}
                 </div>
                 <div class="p-3 border rounded-lg text-xs ${fidelityClass(q.simFidelity)}">
-                  <strong class="block mb-1">Simulator Fidelity · ${q.simFidelity}</strong>
+                  <strong class="block mb-1">7 · Simulator Fidelity · ${q.simFidelity}</strong>
                   ${q.simFidelityNote}
-                  <div class="mt-1 text-[10px] font-mono opacity-80">Answer audit: ${q.answerAudit} · Source audit: ${q.sourceAudit}</div>
+                  <div class="mt-1 text-[10px] font-mono opacity-80">Source audit: ${q.sourceAudit}</div>
                 </div>
               </div>
             </div>
@@ -2592,6 +2739,7 @@ window.JEE_QUESTIONS_DATA = [
     // INITIALIZATION ON LOAD & WINDOW RESIZE
     // =========================================================================
     window.addEventListener('load', () => {
+      validateQuestionBank();
       renderQuestions();
       setupOrbit(document.getElementById('canvasBasis'), drawBasis);
       setupOrbit(document.getElementById('canvasCross'), drawCross);
@@ -2609,14 +2757,10 @@ window.JEE_QUESTIONS_DATA = [
       switchTab('tab-basis');
     });
 
+    let canvasResizeRaf = 0;
     window.addEventListener('resize', () => {
-      if (currentTab === 'tab-basis') resizeBasis();
-      else if (currentTab === 'tab-dot') resizeDot();
-      else if (currentTab === 'tab-cross') resizeCross();
-      else if (currentTab === 'tab-triple') resizeTriple();
-      else if (currentTab === 'tab-baccab') resizeBaccab();
-      else if (currentTab === 'tab-equations') resizeEquations();
-      else if (currentTab === 'tab-sandbox') resizeSb();
+      cancelAnimationFrame(canvasResizeRaf);
+      canvasResizeRaf = requestAnimationFrame(drawCurrentTab);
     });
   </script>
 </body>
