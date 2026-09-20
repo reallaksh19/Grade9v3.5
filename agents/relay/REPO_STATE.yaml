@@ -50,7 +50,7 @@
   },
   "status_planes": {
     "execution": {
-      "state": "RECONCILING",
+      "state": "WAITING",
       "can_continue": true,
       "material_authority": "READ_ONLY",
       "next_action": "Reconcile EP-TA-008 to Issue #159 and AUDIT-TA-008-MOTHER-CONTRACT, then require fresh repository-only qualification/takeover before any further learner-runtime material write."
@@ -69,7 +69,7 @@
         {
           "id": "TEST-TA8-001..004 (reconciled mother-contract form)",
           "reason": "The active EP contract must be refreshed and independently requalified before these tests can serve as acceptance evidence.",
-          "cause": "CONTRACT_RECONCILIATION_REQUIRED"
+          "cause": "DEPENDENCY_WAIT"
         }
       ]
     },
