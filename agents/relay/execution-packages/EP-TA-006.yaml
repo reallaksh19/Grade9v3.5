@@ -1,0 +1,1102 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-006",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "7bb84873caeb01b9941450398a708224748cfc9e",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-005",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "7bb84873caeb01b9941450398a708224748cfc9e",
+    "base_branch": "main",
+    "base_observed_ref": "d67a9ccb49c2cf7fbfd72d736dafe3b86f4c6f59",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0006",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-104",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "The exact missing Grade-9 practice and transfer questions become learner-executable in the four affected core Physics libraries.",
+      "The academic patch does not add capabilities, extend the Grade-9 scope, or change learner-state/runtime architecture."
+    ],
+    "engineering": [
+      "Close QF-TA5-001 with exactly 7 direct Core2A questions and 18 Core2B questions derived from existing core transfer rows.",
+      "Preserve local AUTHORED provenance, existing capability/family ownership, repair lineage and Core2A/Core2B semantics."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Close the bounded canonical question-inventory gap blocking the required Grade-9 learner loop.",
+    "roadmap_position": "Grade-9 Physics / WP-TA-104 / bounded academic question authoring",
+    "why_this_work_exists": "EP-TA-005 proved the Shared learner loop is already sufficient but found 7 missing direct-practice questions and 18 missing executable transfer questions in four required Grade-9 libraries.",
+    "current_architecture": "Canonical Physics questions own practice/transfer execution. Matrix transfer rows specify changed demand but are not executable questions; the compiler correctly reports Core2B unsupported when a library has no exposed Core2B question.",
+    "prior_owner_decisions": [
+      "Use existing learner/session mechanisms before adding architecture.",
+      "Knowledge percentages are routing coordinates only, not mastery evidence.",
+      "Assisted success does not prove independent mastery.",
+      "Grade 9 stays first; non-blocking enrichment must not delay the later Grade-10 transition."
+    ],
+    "current_implementation_state": "The checkpointed learner-loop audit records 30/30 teaching/repair/exit surfaces, 23/30 direct Core2A coverage, and a 25-question bounded academic backlog.",
+    "known_problems": [
+      "Gravitation is missing 3 direct Core2A questions; WEP, Sound and Simple Machines are missing 1, 1 and 2 respectively.",
+      "Gravitation, WEP, Sound and Simple Machines need 4, 6, 5 and 3 executable Core2B items respectively from existing core transfer specs.",
+      "Extension-only Gravitation orbital transfer rows are excluded."
+    ],
+    "deliberate_non_goals": [
+      "No new capability, microtopic, matrix rung, grade field or curriculum mapping.",
+      "No Shared runtime or learner-state changes.",
+      "No Motion/NLM edits.",
+      "No external-exam provenance for locally authored gap-fill questions."
+    ],
+    "terminology": {
+      "direct Core2A gap": "Required capability has no question with matching primary_capability_ref and CORE2A exposure.",
+      "core transfer specification": "Existing matrix transfer row whose repair_to is a required/prerequisite Grade-9 rung.",
+      "executable Core2B": "Canonical CORE2B question implementing an existing changed-demand transfer specification with repair lineage."
+    }
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA6-001",
+      "action": "VERIFY",
+      "targets": [
+        "docs/grade9/grade9-physics-learner-loop.json",
+        "four affected Physics libraries"
+      ],
+      "question": "What exact question inventory is missing?",
+      "expected_outputs": [
+        "7 direct Core2A gaps",
+        "18 core-transfer Core2B gaps",
+        "four affected libraries",
+        "excluded extension rows"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop if current content no longer matches CP-TA-005."
+    },
+    {
+      "id": "DSTEP-TA6-002",
+      "action": "INSPECT",
+      "targets": [
+        "Shared/roles/CORE2A.md",
+        "Shared/roles/CORE2B.md",
+        "existing canonical question exemplars"
+      ],
+      "question": "What current question fields and semantics must the new items preserve?",
+      "expected_outputs": [
+        "Core2A fields",
+        "Core2B transfer fields",
+        "AUTHORED provenance pattern",
+        "repair-ref pattern"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not invent a new question representation."
+    },
+    {
+      "id": "DSTEP-TA6-003",
+      "action": "TRACE",
+      "targets": [
+        "four affected matrices",
+        "four affected libraries"
+      ],
+      "question": "Which capability, family, source and teaching-step repair owns each authorized item?",
+      "expected_outputs": [
+        "capability map",
+        "family/source map",
+        "repair-ref map",
+        "no extension leakage"
+      ],
+      "receipt_required": true,
+      "on_failure": "Do not write any item with ambiguous ownership."
+    },
+    {
+      "id": "DSTEP-TA6-004",
+      "action": "VERIFY_GIT",
+      "target": "live checkout",
+      "question": "Does the branch/base/material basis still match before academic writes?",
+      "expected_outputs": [
+        "checked-out branch",
+        "current HEAD",
+        "material-ref ancestry",
+        "base drift result"
+      ],
+      "receipt_required": true,
+      "on_failure": "Reconcile drift first."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA6-001",
+      "name": "Checkpointed question backlog",
+      "description": "Exact 25-item academic gap from CP-TA-005.",
+      "authority": "CHECKPOINTED_EVIDENCE",
+      "source": "CP-TA-005; docs/grade9/grade9-physics-learner-loop.json",
+      "resolution_method": "Use only the recorded 7 Core2A and 18 Core2B items.",
+      "type": "academic backlog",
+      "units": "25 questions",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA6-001",
+        "STEP-TA6-002",
+        "AC-TA6-001",
+        "AC-TA6-002"
+      ],
+      "validation": [
+        "QF-TA5-001 defines the exact gap."
+      ],
+      "stale_if": [
+        "Affected matrices/libraries change."
+      ]
+    },
+    {
+      "id": "INPUT-TA6-002",
+      "name": "Current question-role contracts",
+      "description": "Existing Core2A/Core2B semantics and canonical question shape.",
+      "authority": "CORE_ROLE",
+      "source": "Shared/roles/CORE2A.md; Shared/roles/CORE2B.md",
+      "resolution_method": "Reuse current canonical conventions and validators.",
+      "type": "role contract",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA6-001",
+        "STEP-TA6-002",
+        "STEP-TA6-003",
+        "AC-TA6-003"
+      ],
+      "validation": [
+        "Core2B requires real changed demand, exposure lineage and repair ownership."
+      ],
+      "stale_if": [
+        "Role contracts change."
+      ]
+    },
+    {
+      "id": "INPUT-TA6-003",
+      "name": "Affected canonical libraries",
+      "description": "Only Gravitation, WEP, Sound and Simple Machines libraries.",
+      "authority": "CANONICAL_PHYSICS",
+      "source": "Physics/library/phy-grav-universal-law.v1.json; Physics/library/phy-work-energy-power.v1.json; Physics/library/phy-sound.v1.json; Physics/library/phy-simple-machines.v1.json",
+      "resolution_method": "Add question records only.",
+      "type": "canonical content",
+      "units": "4 libraries",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "OWNER_EDITABLE_READY",
+      "consumers": [
+        "STEP-TA6-001",
+        "STEP-TA6-002",
+        "STEP-TA6-003",
+        "AC-TA6-001",
+        "AC-TA6-002",
+        "AC-TA6-004"
+      ],
+      "validation": [
+        "No capability/microtopic/source/matrix expansion."
+      ],
+      "stale_if": [
+        "Any affected file changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA6-004",
+      "name": "Current validators",
+      "description": "Schema/intake/compiler and repository guardrails.",
+      "authority": "REPOSITORY_TESTS",
+      "source": "Shared/library/package.schema.json; Shared/library/intake.py; Shared/library/compile_inputs.py; tests/",
+      "resolution_method": "Run focused and full validation.",
+      "type": "validation",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "consumers": [
+        "STEP-TA6-003",
+        "STEP-TA6-004",
+        "AC-TA6-003",
+        "AC-TA6-004"
+      ],
+      "validation": [
+        "Predecessor exact-head checks are green at material head."
+      ],
+      "stale_if": [
+        "Validators change."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA6-001",
+      "name": "Exact backlog cardinality",
+      "purpose": "Prevent over-authoring or incomplete closure.",
+      "source": "docs/grade9/grade9-physics-learner-loop.json",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "core2a": 7,
+        "core2b": 18,
+        "total": 25
+      },
+      "expected": "Exactly the checkpointed gaps are closed; no extension/later-grade additions.",
+      "tolerance": null,
+      "independence": "Checkpointed predecessor audit.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA6-001",
+        "AC-TA6-002",
+        "TEST-TA6-001"
+      ],
+      "stale_if": [
+        "CP-TA-005 is superseded."
+      ]
+    },
+    {
+      "id": "BENCH-TA6-002",
+      "name": "Transfer changed-demand integrity",
+      "purpose": "Prevent fake Core2B variants.",
+      "source": "Shared/roles/CORE2B.md; affected matrix transfer rows",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": [
+        "dimension",
+        "changed_demand",
+        "information_not_handed_over",
+        "repair_to"
+      ],
+      "expected": "Each Core2B item instantiates an existing core transfer row without adding untaught content.",
+      "tolerance": null,
+      "independence": "Pre-existing matrix and role contracts.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA6-002",
+        "TEST-TA6-002"
+      ],
+      "stale_if": [
+        "Core2B or transfer rows change."
+      ]
+    },
+    {
+      "id": "BENCH-TA6-003",
+      "name": "Local source honesty",
+      "purpose": "Prevent fabricated exam identity.",
+      "source": "Existing AUTHORED questions in affected libraries",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "origin": "AUTHORED",
+        "status": "CANDIDATE"
+      },
+      "expected": "New items use existing package-local author source/origin refs and new local identifiers.",
+      "tolerance": null,
+      "independence": "Existing canonical package convention.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA6-003",
+        "TEST-TA6-003"
+      ],
+      "stale_if": [
+        "Source registry/provenance schema changes."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Physics/library/phy-grav-universal-law.v1.json",
+        "reason": "Checkpointed question gaps only."
+      },
+      {
+        "path": "Physics/library/phy-work-energy-power.v1.json",
+        "reason": "Checkpointed question gaps only."
+      },
+      {
+        "path": "Physics/library/phy-sound.v1.json",
+        "reason": "Checkpointed question gaps only."
+      },
+      {
+        "path": "Physics/library/phy-simple-machines.v1.json",
+        "reason": "Checkpointed question gaps only."
+      },
+      {
+        "path": "docs/grade9/GRADE9-PHYSICS-LEARNER-LOOP-AUDIT.md",
+        "reason": "Regenerate derived learner-loop evidence."
+      },
+      {
+        "path": "docs/grade9/grade9-physics-learner-loop.json",
+        "reason": "Regenerate machine-readable learner-loop evidence."
+      },
+      {
+        "path": "tests/test_grade9_physics_learner_loop.py",
+        "reason": "Focused backlog/transfer falsifier if required."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "Governed execution/quality/checkpoint state."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Physics/matrices/",
+        "reason": "Read existing transfer specs only."
+      },
+      {
+        "path": "Shared/roles/",
+        "reason": "Read Core2A/Core2B contracts."
+      },
+      {
+        "path": "Shared/library/",
+        "reason": "Read schema/intake/compiler."
+      },
+      {
+        "path": "tests/",
+        "reason": "Reuse validations."
+      }
+    ],
+    "protected": [
+      {
+        "invariant": "No capability, microtopic, matrix rung, curriculum mapping or source authority is introduced.",
+        "reason": "Gap is question inventory only."
+      },
+      {
+        "invariant": "Motion and NLM remain unchanged.",
+        "reason": "They are not in QF-TA5-001 backlog."
+      },
+      {
+        "invariant": "Gravitation R4/R5 extension transfer rows remain excluded.",
+        "reason": "Not ordinary Grade-9 core."
+      },
+      {
+        "invariant": "Shared runtime/learner-state contracts remain unchanged.",
+        "reason": "EP-TA-005 showed no runtime defect."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "Physics/matrices edits",
+        "reason": "Transfer specs already exist."
+      },
+      {
+        "domain": "New external provenance",
+        "reason": "These are local authored gap-fill questions."
+      },
+      {
+        "domain": "Grade-10/11 expansion",
+        "reason": "Current WP is Grade-9 closure."
+      },
+      {
+        "domain": "New schemas/learner models/Core semantics",
+        "reason": "Existing contracts are sufficient."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "ADR-TA6-001",
+        "restriction": "Do not add more than the checkpointed 25 items.",
+        "reason": "Gap-driven closure only."
+      },
+      {
+        "id": "ADR-TA6-002",
+        "restriction": "Do not include Gravitation R4/R5 transfer rows.",
+        "reason": "Extension-only."
+      },
+      {
+        "id": "ADR-TA6-003",
+        "restriction": "Do not label number/story-only variants Core2B.",
+        "reason": "Transfer requires changed demand."
+      },
+      {
+        "id": "ADR-TA6-004",
+        "restriction": "Do not fabricate external source identity.",
+        "reason": "Source honesty."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA6-001",
+        "condition": "Affected matrix/library changes.",
+        "effect": "RECONCILE",
+        "rationale": "Backlog ownership may change."
+      },
+      {
+        "id": "STALE-TA6-002",
+        "condition": "Question schema/Core role changes.",
+        "effect": "RECONCILE",
+        "rationale": "New records must satisfy current contracts."
+      },
+      {
+        "id": "STALE-TA6-003",
+        "condition": "Grade-9 required scope changes.",
+        "effect": "RECONCILE",
+        "rationale": "Backlog is bound to current scope."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA6-001",
+      "objective": "Add exactly seven missing direct Core2A practice questions.",
+      "targets": [
+        "four affected libraries"
+      ],
+      "reads": [
+        "checkpointed backlog",
+        "existing Core2A exemplars"
+      ],
+      "writes": [
+        "four affected libraries"
+      ],
+      "inputs": [
+        "INPUT-TA6-001",
+        "INPUT-TA6-002",
+        "INPUT-TA6-003"
+      ],
+      "acceptance": [
+        "AC-TA6-001",
+        "AC-TA6-003"
+      ],
+      "tests": [
+        "TEST-TA6-001",
+        "TEST-TA6-003"
+      ],
+      "expected_state": "Every required/prerequisite action has direct Core2A practice.",
+      "stop_conditions": [
+        "Stop if an item requires a new capability or unsupported source claim."
+      ]
+    },
+    {
+      "id": "STEP-TA6-002",
+      "objective": "Add exactly eighteen Core2B questions from existing core transfer rows.",
+      "targets": [
+        "four affected libraries"
+      ],
+      "reads": [
+        "matrix transfer rows",
+        "Core2B contract"
+      ],
+      "writes": [
+        "four affected libraries"
+      ],
+      "inputs": [
+        "INPUT-TA6-001",
+        "INPUT-TA6-002",
+        "INPUT-TA6-003"
+      ],
+      "acceptance": [
+        "AC-TA6-002",
+        "AC-TA6-003"
+      ],
+      "tests": [
+        "TEST-TA6-001",
+        "TEST-TA6-002",
+        "TEST-TA6-003"
+      ],
+      "expected_state": "Each authorized core transfer spec is learner-executable.",
+      "stop_conditions": [
+        "Stop if repair ownership or changed demand is ambiguous."
+      ]
+    },
+    {
+      "id": "STEP-TA6-003",
+      "objective": "Validate exact counts, refs, provenance, schema and transfer semantics.",
+      "targets": [
+        "updated libraries",
+        "focused test"
+      ],
+      "reads": [
+        "schema/compiler/intake",
+        "updated libraries"
+      ],
+      "writes": [
+        "tests/test_grade9_physics_learner_loop.py"
+      ],
+      "inputs": [
+        "INPUT-TA6-004"
+      ],
+      "acceptance": [
+        "AC-TA6-001",
+        "AC-TA6-002",
+        "AC-TA6-003"
+      ],
+      "tests": [
+        "TEST-TA6-001",
+        "TEST-TA6-002",
+        "TEST-TA6-003"
+      ],
+      "expected_state": "Exactly 25 authorized additions pass all semantic checks.",
+      "stop_conditions": [
+        "Stop on any schema/ref/source/transfer failure."
+      ]
+    },
+    {
+      "id": "STEP-TA6-004",
+      "objective": "Regenerate learner-loop evidence and run full guardrails.",
+      "targets": [
+        "learner-loop audit",
+        "repository guardrails"
+      ],
+      "reads": [
+        "updated libraries",
+        "validation evidence"
+      ],
+      "writes": [
+        "learner-loop audit",
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA6-004"
+      ],
+      "acceptance": [
+        "AC-TA6-004"
+      ],
+      "tests": [
+        "TEST-TA6-004"
+      ],
+      "expected_state": "QF-TA5-001 is closed or WP-TA-104 remains active on an explicit residual gap.",
+      "stop_conditions": [
+        "Stop on any regression or remaining gap."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Fill the exact seven Core2A gaps.",
+        "targets": [
+          "four affected libraries"
+        ],
+        "inputs": [
+          "INPUT-TA6-001",
+          "INPUT-TA6-002",
+          "INPUT-TA6-003"
+        ],
+        "tests": [
+          "TEST-TA6-001",
+          "TEST-TA6-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA6-001",
+          "BENCH-TA6-003"
+        ],
+        "acceptance": [
+          "AC-TA6-001",
+          "AC-TA6-003"
+        ],
+        "expected_result": "Direct practice coverage is complete for required actions.",
+        "stop_if": [
+          "Scope or source honesty would be violated."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Fill the exact eighteen Core2B gaps from existing transfer specs.",
+        "targets": [
+          "four affected libraries"
+        ],
+        "inputs": [
+          "INPUT-TA6-001",
+          "INPUT-TA6-002",
+          "INPUT-TA6-003"
+        ],
+        "tests": [
+          "TEST-TA6-001",
+          "TEST-TA6-002",
+          "TEST-TA6-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA6-001",
+          "BENCH-TA6-002",
+          "BENCH-TA6-003"
+        ],
+        "acceptance": [
+          "AC-TA6-002",
+          "AC-TA6-003"
+        ],
+        "expected_result": "All authorized core transfer specs are executable.",
+        "stop_if": [
+          "Any transfer lacks exact repair or changed-demand lineage."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Run focused exact-backlog/source/transfer validation and regenerate the learner-loop audit.",
+        "targets": [
+          "updated libraries",
+          "focused test",
+          "learner-loop audit"
+        ],
+        "inputs": [
+          "INPUT-TA6-004"
+        ],
+        "tests": [
+          "TEST-TA6-001",
+          "TEST-TA6-002",
+          "TEST-TA6-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA6-001",
+          "BENCH-TA6-002",
+          "BENCH-TA6-003"
+        ],
+        "acceptance": [
+          "AC-TA6-001",
+          "AC-TA6-002",
+          "AC-TA6-003"
+        ],
+        "expected_result": "The checkpointed backlog is exactly closed.",
+        "stop_if": [
+          "Counts/refs/provenance/transfer semantics drift."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run full repository guardrails before closing WP-TA-104.",
+        "targets": [
+          "repository guardrails",
+          "relay quality/checkpoint"
+        ],
+        "inputs": [
+          "INPUT-TA6-004"
+        ],
+        "tests": [
+          "TEST-TA6-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA6-001"
+        ],
+        "acceptance": [
+          "AC-TA6-004"
+        ],
+        "expected_result": "WP-TA-104 is either evidence-backed complete or remains open on a concrete residual gap.",
+        "stop_if": [
+          "Any full-suite check fails."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": false,
+    "trigger": null,
+    "from_phase": null,
+    "to_phase": null,
+    "changed_dimensions": [],
+    "basis": [],
+    "question_set": null
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "testing",
+        "reason": "Exact backlog, transfer and regression proof are primary.",
+        "review_focus": [
+          "7+18 cardinality",
+          "refs",
+          "transfer semantics",
+          "full guardrails"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Canonical academic JSON can drift provenance/scope/repair semantics.",
+        "review_focus": [
+          "source honesty",
+          "question ownership",
+          "repair lineage",
+          "scope discipline"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Remain on governed PR with exact-head checkpoint continuity.",
+        "review_focus": [
+          "checkpoint",
+          "exact-head validation",
+          "successor handoff"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "No architecture changes."
+      },
+      {
+        "blueprint": "coding",
+        "reason": "No executable production code."
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No UI changes."
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "No interaction/rendering changes."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No numerical algorithm changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Small JSON content patch."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No runtime/learner schema migration."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA6-001",
+      "description": "Exactly seven direct Core2A gaps are closed with no scope expansion.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA6-001",
+        "TEST-TA6-003",
+        "BENCH-TA6-001",
+        "BENCH-TA6-003"
+      ]
+    },
+    {
+      "id": "AC-TA6-002",
+      "description": "Exactly eighteen existing core transfer specs become executable Core2B questions preserving changed-demand and repair lineage.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA6-001",
+        "TEST-TA6-002",
+        "BENCH-TA6-001",
+        "BENCH-TA6-002"
+      ]
+    },
+    {
+      "id": "AC-TA6-003",
+      "description": "All new questions are source-honest local CANDIDATE records with valid refs, answers/checks and safe hints.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA6-002",
+        "TEST-TA6-003",
+        "BENCH-TA6-003"
+      ]
+    },
+    {
+      "id": "AC-TA6-004",
+      "description": "Regenerated learner-loop evidence closes QF-TA5-001 without changing matrices/runtime/scope, and full guardrails pass.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA6-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA6-001",
+      "class": "MUST_PASS",
+      "method": "Recompute gap inventory and prove all 7 Core2A and 18 core-transfer Core2B gaps are closed exactly, with no extension additions.",
+      "proves": [
+        "AC-TA6-001",
+        "AC-TA6-002",
+        "AC-TA6-004"
+      ]
+    },
+    {
+      "id": "TEST-TA6-002",
+      "class": "MUST_PASS",
+      "method": "Validate every new Core2B item against the current matrix transfer row and Core2B contract, including dimension, changed demand, lineage, hints and repair_ref.",
+      "proves": [
+        "AC-TA6-002",
+        "AC-TA6-003"
+      ]
+    },
+    {
+      "id": "TEST-TA6-003",
+      "class": "MUST_PASS",
+      "method": "Run package/schema/intake/compiler validation and check unique local ids, existing author-source refs, AUTHORED/CANDIDATE provenance and no dangling refs.",
+      "proves": [
+        "AC-TA6-001",
+        "AC-TA6-003"
+      ]
+    },
+    {
+      "id": "TEST-TA6-004",
+      "class": "MUST_PASS",
+      "method": "Diff protected boundaries and run full repository guardrails on final material head.",
+      "proves": [
+        "AC-TA6-004"
+      ]
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}
