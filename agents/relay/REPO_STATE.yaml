@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Author exactly the 7 missing Core2A and 18 existing-core-transfer Core2B questions in the four affected Grade-9 Physics libraries, then rerun the learner-loop audit."
+      "next_action": "Validate the exact 25-question Grade-9 academic patch, then regenerate the learner-loop audit and close WP-TA-104 only if focused and full repository checks are green."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-006 has a DISJOINT drift receipt for the observed main-base movement and fresh takeover binding. Exact-head validation remains before canonical writes.",
+      "summary": "EP-TA-006 has authored exactly 25 bounded canonical Grade-9 questions (7 Core2A + 18 Core2B) and added focused regression coverage. Exact-head package/compiler/full guardrail validation remains before learner-loop closure.",
       "not_run": [
         {
-          "id": "EP-TA-006-WRITE-GATE",
-          "reason": "The new drift receipt and refreshed candidate binding have not yet been observed by exact-head V2.5 material-write validation.",
+          "id": "TEST-TA6-001..004",
+          "reason": "The newly authored canonical questions have not yet completed exact-head validation.",
           "cause": "NOT_SCHEDULED"
         }
       ]
