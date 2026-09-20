@@ -55,11 +55,7 @@ def load_bank(path: Path, fmt: str) -> list[dict]:
 def normalize_item(q: dict, suite: dict) -> dict:
     fidelity = q.get("simFidelity", "UNAVAILABLE")
     sim_params = q.get("simParams") or {}
-    binding_refs = (
-        [f"simParams.{key}" for key in sorted(sim_params)]
-        if fidelity in {"EXACT", "CONSTRAINT_FAITHFUL"}
-        else []
-    )
+    binding_refs = q.get("simBindingRefs") or []
     return {
         "schema_version": "1.0.0",
         "item_id": q.get("id"),
@@ -174,6 +170,16 @@ def findings(repo: Path = REPO) -> list[dict]:
                 f"manifest={suite['external_corpus']['embedded_item_count']} actual={len(bank)}",
             )
 
+        repo_bundle = next(
+            (row for row in suite["delivery_artifacts"] if row["profile"] == "REPO_BUNDLE"),
+            None,
+        )
+        repo_bundle_text = ""
+        if repo_bundle:
+            repo_bundle_path = repo / repo_bundle["locator"]
+            if repo_bundle_path.is_file():
+                repo_bundle_text = repo_bundle_path.read_text(encoding="utf-8")
+
         seen_items: set[str] = set()
         for q in bank:
             item = normalize_item(q, suite)
@@ -184,6 +190,31 @@ def findings(repo: Path = REPO) -> list[dict]:
 
             for err in _schema_errors(item, item_schema):
                 add(suite_id, "DIAGNOSTIC_SCHEMA_INVALID", err, item_id)
+
+            if not isinstance(q.get("simBindingRefs"), list):
+                add(suite_id, "MISSING_SIM_BINDING_REFS", "simBindingRefs must be an array", item_id)
+
+            fidelity = item["simulation_contract"]["fidelity"]
+            if fidelity in {"EXACT", "CONSTRAINT_FAITHFUL"}:
+                sim_params = q.get("simParams") or {}
+                expected_refs = {f"simParams.{key}" for key in sim_params}
+                actual_refs = set(item["simulation_contract"]["binding_refs"])
+                if actual_refs != expected_refs:
+                    add(
+                        suite_id,
+                        "ACTIVE_SIM_BINDING_DRIFT",
+                        f"simParams={sorted(expected_refs)} binding_refs={sorted(actual_refs)}",
+                        item_id,
+                    )
+                for ref in sorted(actual_refs):
+                    key = ref.removeprefix("simParams.")
+                    if not ref.startswith("simParams.") or f"p.{key}" not in repo_bundle_text:
+                        add(
+                            suite_id,
+                            "SIM_BINDING_NOT_CONSUMED",
+                            f"{ref} is not visibly consumed by the REPO_BUNDLE loader",
+                            item_id,
+                        )
 
             if is_generic_final_answer(item["answer_contract"]["final_answer"]):
                 add(
@@ -201,6 +232,21 @@ def findings(repo: Path = REPO) -> list[dict]:
                     ", ".join(missing_helpers),
                     item_id,
                 )
+            if suite["external_corpus"]["coverage_claim"] != "DEMAND_RECONNAISSANCE_ONLY":
+                helper_by_id = {row["helper_id"]: row for row in suite["helper_contracts"]}
+                unaudited = sorted(
+                    helper_id
+                    for helper_id in item["teaching_contract"]["helpers"]
+                    if helper_id in helper_by_id
+                    and helper_by_id[helper_id]["activation_status"] != "AUDITED"
+                )
+                if unaudited:
+                    add(
+                        suite_id,
+                        "UNAUDITED_HELPER_ACTIVATION",
+                        ", ".join(unaudited),
+                        item_id,
+                    )
 
         for artifact in suite["delivery_artifacts"]:
             locator = artifact["locator"]
