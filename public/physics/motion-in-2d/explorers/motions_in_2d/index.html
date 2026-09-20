@@ -110,7 +110,7 @@
     }
 
   </style>
-  <script src="jee_questions_data.js"></script>
+  <script src="jee_questions_data.js" onerror="window.__JEE_BANK_LOAD_ERROR__ = true;"></script>
 </head>
 <body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center">
 
@@ -301,7 +301,6 @@
                   <line id="sbVecA" x1="0" y1="0" x2="0" y2="35" stroke="#ef4444" stroke-width="2.5" marker-end="url(#sbArrA)"/>
                   <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
                 </g>
-                <g id="sbTeacherChalk" style="display: none;"></g>
                 <g id="sbTeacherChalk" style="display: none;"></g>
               </svg>
             </div>
@@ -548,7 +547,7 @@
           </div>
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
             <button onclick="loadJeeQuestion(1)" class="touch-target px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition flex items-center gap-1.5">
-              <span>&#127891;</span> Teacher's Chalkboard
+              <span>&#127891;</span> Worked Example Overlay
             </button>
             <a href="https://questions.examside.com/past-years/jee/question/pif-x-and-y-coordinates-of-a-projectile-as-a-function-jee-main-physics-units-and-measurements-o0a4or3hgnpwtbxd" target="_blank" rel="noopener noreferrer" class="touch-target px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition flex items-center gap-1.5">
               <span>ExamSide</span> <span>&nearr;</span>
@@ -717,7 +716,7 @@
           </div>
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
             <button onclick="loadJeeQuestion(2)" class="touch-target px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition flex items-center gap-1.5">
-              <span>&#127891;</span> Teacher's Chalkboard
+              <span>&#127891;</span> Worked Example Overlay
             </button>
             <a href="https://questions.examside.com/past-years/jee/question/a-helicopter-is-flying-horizontally-with-a-speed-v-at-an-a-jee-main-physics-units-and-measurements-ihg5h7mjhyfpmkoj" target="_blank" rel="noopener noreferrer" class="touch-target px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition flex items-center gap-1.5">
               <span>ExamSide</span> <span>&nearr;</span>
@@ -1300,7 +1299,7 @@
           </div>
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
             <button onclick="loadJeeQuestion(4)" class="touch-target px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition flex items-center gap-1.5">
-              <span>&#127891;</span> Teacher's Chalkboard
+              <span>&#127891;</span> Worked Example Overlay
             </button>
             <a href="https://questions.examside.com/past-years/jee/question/pa-projectile-is-thrown-upward-at-an-angle-60circ-wi-jee-main-physics-units-and-measurements-5vqpnsfoerlfj4je" target="_blank" rel="noopener noreferrer" class="touch-target px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition flex items-center gap-1.5">
               <span>ExamSide</span> <span>&nearr;</span>
@@ -1780,7 +1779,7 @@
           </div>
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 shrink-0">
             <button onclick="loadJeeQuestion(6)" class="touch-target px-3 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition flex items-center gap-1.5">
-              <span>&#127891;</span> Teacher's Chalkboard
+              <span>&#127891;</span> Worked Example Overlay
             </button>
             <a href="https://questions.examside.com/past-years/jee/question/pa-boy-throws-a-ball-into-air-at-45circ-from-the-hor-jee-main-physics-units-and-measurements-9nolancfsq90ohbf" target="_blank" rel="noopener noreferrer" class="touch-target px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition flex items-center gap-1.5">
               <span>ExamSide</span> <span>&nearr;</span>
@@ -4555,16 +4554,9 @@
       const D = parseFloat(val);
       document.getElementById('t6LblFielderD').textContent = `${D.toFixed(1)} m`;
       const verdictEl = document.getElementById('t6CurvatureVerdict');
-      if (Math.abs(D - 60.0) < 4.0) {
-        verdictEl.className = 'text-xs font-bold text-emerald-400 font-mono';
-        verdictEl.textContent = '✓ d²φ/dt² ≈ 0 · LINEAR STEADY RISE (CATCH CONFIRMED!)';
-      } else if (D > 60.0) {
-        verdictEl.className = 'text-xs font-bold text-pink-400 font-mono';
-        verdictEl.textContent = '▲ d²φ/dt² > 0 · CONVEX UP ACCELERATION (BALL SAILS OVER HEAD!)';
-      } else {
-        verdictEl.className = 'text-xs font-bold text-amber-400 font-mono';
-        verdictEl.textContent = '▼ d²φ/dt² < 0 · CONCAVE DOWN DECLINE (BALL FALLS SHORT!)';
-      }
+      if (!verdictEl) return;
+      verdictEl.className = 'text-xs font-bold text-cyan-300 font-mono';
+      verdictEl.textContent = 'MODEL CHECK · A catch-course can make tan φ linear in time; φ itself is arctan(linear), so d²φ/dt² is generally non-zero. Open the question Chalkboard for the exact derivative.';
     }
 
     function t6LoadCliffPreset() {
@@ -4608,323 +4600,276 @@
       renderJeeQuestions();
     }
 
+    function bankAuditState(q) {
+      const required = ['ans','formula','takeaway','trap','teacherCheck','audit','simulation'];
+      const missing = required.filter(k => !q || q[k] == null || q[k] === '');
+      if (!q || !Array.isArray(q.steps) || q.steps.length === 0) missing.push('steps');
+      return { complete: missing.length === 0, missing, status: q?.audit?.status || 'unknown' };
+    }
+
+    function simulationLabel(q) {
+      const f = q?.simulation?.fidelity || 'unavailable';
+      return ({
+        exact_question_load: 'Exact Question Load',
+        constraint_faithful_demo: 'Constraint-Faithful Demo',
+        concept_demo: 'Concept Demo',
+        unavailable: 'Unavailable'
+      })[f] || 'Unavailable';
+    }
+
+    function validateQuestionBank() {
+      const data = window.JEE_QUESTIONS_DATA;
+      const problems = [];
+      if (!Array.isArray(data)) {
+        problems.push('Question data did not load.');
+      } else {
+        if (data.length !== 104) problems.push(`Expected 104 records; loaded ${data.length}.`);
+        data.forEach(q => {
+          const st = bankAuditState(q);
+          if (!st.complete) problems.push(`${q.id || '?'} missing: ${st.missing.join(', ')}`);
+        });
+      }
+
+      const old = document.getElementById('jeeBankIntegrityBanner');
+      if (old) old.remove();
+
+      if (problems.length || window.__JEE_BANK_LOAD_ERROR__) {
+        const el = document.createElement('div');
+        el.id = 'jeeBankIntegrityBanner';
+        el.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[100] max-w-3xl w-[94%] bg-rose-950 border-2 border-rose-500 rounded-xl p-4 text-xs text-rose-100 shadow-2xl';
+        const details = problems.length ? problems : ['jee_questions_data.js could not be loaded.'];
+        el.innerHTML = `
+          <div class="font-black text-rose-300 mb-1">Motion2D data integrity failure</div>
+          <div>The app will not claim that the 104-question bank is complete while required data is missing.</div>
+          <div class="mt-1 font-mono text-[10px]">${details.slice(0,6).join(' · ')}</div>`;
+        document.body.appendChild(el);
+        return false;
+      }
+      return true;
+    }
+
+    function closeQuestionChalkboard() {
+      document.getElementById('questionChalkboardModal')?.remove();
+    }
+
+    function openQuestionChalkboard(qId) {
+      const q = (window.JEE_QUESTIONS_DATA || []).find(x => x.id === qId);
+      if (!q) return;
+      closeQuestionChalkboard();
+
+      const modal = document.createElement('div');
+      modal.id = 'questionChalkboardModal';
+      modal.className = 'fixed inset-0 z-[90] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 md:p-6';
+
+      const auditStatus = q.audit?.status || 'unknown';
+      const auditNote = q.audit?.note || '';
+      modal.innerHTML = `
+        <div class="bg-slate-950 border-2 border-amber-500/50 rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
+          <div class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-amber-500/30 p-4 flex items-start justify-between gap-3">
+            <div>
+              <div class="text-[10px] uppercase tracking-widest font-black text-amber-300">Teacher's Chalkboard · ${q.id}</div>
+              <div class="text-sm font-bold text-white mt-1">${q.q}</div>
+            </div>
+            <button onclick="closeQuestionChalkboard()" class="touch-target px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold">Close ×</button>
+          </div>
+          <div class="p-4 md:p-5 grid grid-cols-1 lg:grid-cols-2 gap-3 text-xs">
+            <section class="lg:col-span-2 p-3 rounded-xl bg-blue-950/30 border border-blue-500/30">
+              <div class="font-black uppercase text-[10px] text-blue-300 mb-1">1 · Governing model</div>
+              <div class="font-mono text-blue-100">${q.formula}</div>
+            </section>
+            <section class="lg:col-span-2 p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <div class="font-black uppercase text-[10px] text-slate-300 mb-2">2 · Question-specific derivation</div>
+              <div class="space-y-2">${(q.steps || []).map((s,i) => `
+                <div class="flex gap-2"><span class="text-purple-300 font-black">${i+1}.</span><span class="text-slate-200">${typeof s === 'string' ? s : (s.content || s.title || '')}</span></div>`).join('')}</div>
+            </section>
+            <section class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
+              <div class="font-black uppercase text-[10px] text-emerald-300 mb-1">3 · Final result / audit disposition</div>
+              <div class="font-mono font-black text-emerald-200">${q.ans}</div>
+              <div class="mt-2 text-[10px] text-emerald-100/70">Audit: ${auditStatus}${auditNote ? ' · ' + auditNote : ''}</div>
+            </section>
+            <section class="p-3 rounded-xl bg-cyan-950/30 border border-cyan-500/30">
+              <div class="font-black uppercase text-[10px] text-cyan-300 mb-1">4 · Independent teacher check</div>
+              <div class="text-cyan-100">${q.teacherCheck}</div>
+            </section>
+            <section class="p-3 rounded-xl bg-rose-950/30 border border-rose-500/30">
+              <div class="font-black uppercase text-[10px] text-rose-300 mb-1">5 · Trap / misconception diagnosis</div>
+              <div class="text-rose-100">${q.trap}</div>
+            </section>
+            <section class="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30">
+              <div class="font-black uppercase text-[10px] text-amber-300 mb-1">6 · Transfer rule</div>
+              <div class="text-amber-100">${q.takeaway}</div>
+            </section>
+            <section class="lg:col-span-2 p-3 rounded-xl bg-purple-950/30 border border-purple-500/30">
+              <div class="font-black uppercase text-[10px] text-purple-300 mb-1">7 · Simulator fidelity</div>
+              <div class="font-bold text-purple-100">${simulationLabel(q)}</div>
+              <div class="mt-1 text-purple-100/80">${(q.simulation?.summary || []).join(' · ')}</div>
+            </section>
+          </div>
+        </div>`;
+
+      modal.addEventListener('click', e => { if (e.target === modal) closeQuestionChalkboard(); });
+      document.body.appendChild(modal);
+    }
+
     function renderJeeQuestions() {
       const container = document.getElementById('jeeQuestionsContainer');
-      if (!container || !window.JEE_QUESTIONS_DATA) return;
+      if (!container) return;
+
+      if (!Array.isArray(window.JEE_QUESTIONS_DATA)) {
+        container.innerHTML = '<div class="p-6 rounded-xl border border-rose-500/50 bg-rose-950/30 text-rose-200 text-sm"><strong>Question bank unavailable.</strong> This HTML depends on the sibling <code>jee_questions_data.js</code>; no answers will be fabricated as a fallback.</div>';
+        return;
+      }
 
       const data = window.JEE_QUESTIONS_DATA;
-      let filtered = data.filter(q => {
-        const matchesBucket = (currentJeeFilterBucket === 0) || (q.bucket === currentJeeFilterBucket);
-        const matchesSearch = !currentJeeSearchText || 
-          q.q.toLowerCase().includes(currentJeeSearchText) ||
-          q.year.toLowerCase().includes(currentJeeSearchText) ||
-          q.formula.toLowerCase().includes(currentJeeSearchText) ||
-          q.bucketName.toLowerCase().includes(currentJeeSearchText) ||
-          q.num.toLowerCase().includes(currentJeeSearchText);
-        return matchesBucket && matchesSearch;
+      const filtered = data.filter(q => {
+        const matchesBucket = currentJeeFilterBucket === 0 || q.bucket === currentJeeFilterBucket;
+        const hay = [q.q,q.year,q.formula,q.bucketName,q.num,q.ans,q.takeaway].filter(Boolean).join(' ').toLowerCase();
+        return matchesBucket && (!currentJeeSearchText || hay.includes(currentJeeSearchText));
       });
 
-      document.getElementById('jeeResultCount').textContent = `${filtered.length} of ${data.length} Questions`;
+      const rc = document.getElementById('jeeResultCount');
+      if (rc) rc.textContent = `${filtered.length} of ${data.length} Questions`;
 
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="p-8 text-center text-slate-500 space-y-2">
-            <div class="text-3xl">&#128269;</div>
-            <p class="text-sm font-bold text-slate-400">No matching questions found</p>
-            <p class="text-xs">Try selecting 'All (104)' or clearing your search term.</p>
-          </div>
-        `;
+      if (!filtered.length) {
+        container.innerHTML = '<div class="p-8 text-center text-slate-500"><p class="text-sm font-bold">No matching questions found</p></div>';
         return;
       }
 
       container.innerHTML = filtered.map(q => {
-        const isPdf = q.source.includes('PDF');
+        const isPdf = (q.source || '').includes('PDF');
         const badgeColor = isPdf ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : 'bg-purple-500/20 text-purple-300 border-purple-500/30';
-        
+        const st = bankAuditState(q);
+        const simUnavailable = q.simulation?.fidelity === 'unavailable';
+        const auditColor = q.audit?.status === 'source-inconsistent'
+          ? 'text-rose-300 border-rose-500/40 bg-rose-950/40'
+          : (q.audit?.status === 'verified'
+              ? 'text-emerald-300 border-emerald-500/40 bg-emerald-950/30'
+              : 'text-slate-300 border-slate-600 bg-slate-900');
+
         return `
           <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 shadow-md hover:border-slate-700 transition space-y-3">
-            <!-- Header Badges -->
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
-              <div class="flex items-center gap-2">
-                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${badgeColor}">
-                  ${q.num}
-                </span>
-                <span class="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
-                  Bucket ${q.bucket}: ${q.bucketName}
-                </span>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${badgeColor}">${q.num}</span>
+                <span class="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">Bucket ${q.bucket}: ${q.bucketName}</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded border ${auditColor}">${q.audit?.status || 'unknown'}</span>
               </div>
               <span class="text-[10px] font-mono text-slate-500">${q.year}</span>
             </div>
 
-            <!-- Question Statement -->
-            <p class="text-slate-200 text-xs font-medium leading-relaxed">
-              ${q.q}
-            </p>
+            <p class="text-slate-200 text-xs font-medium leading-relaxed">${q.q}</p>
 
-            <!-- Collapsible Step-by-Step Teacher Solution Accordion -->
+            <div class="p-2.5 rounded-lg bg-emerald-950/35 border border-emerald-500/30">
+              <div class="text-[9px] uppercase tracking-wider font-black text-emerald-300">Answer</div>
+              <div class="font-mono text-xs font-black text-emerald-100 mt-0.5">${q.ans}</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div class="p-2 rounded-lg bg-rose-950/25 border border-rose-500/25 text-[11px]"><span class="font-black text-rose-300">Trap:</span> <span class="text-rose-100/90">${q.trap}</span></div>
+              <div class="p-2 rounded-lg bg-cyan-950/25 border border-cyan-500/25 text-[11px]"><span class="font-black text-cyan-300">Teacher check:</span> <span class="text-cyan-100/90">${q.teacherCheck}</span></div>
+            </div>
+
             <details class="group bg-slate-900/60 border border-slate-800 rounded-lg overflow-hidden transition">
               <summary class="flex items-center justify-between p-2.5 cursor-pointer hover:bg-slate-800/60 transition select-none text-xs">
-                <div class="flex items-center gap-2 font-bold text-cyan-400">
-                  <span class="w-2 h-2 rounded-full bg-cyan-400 group-open:bg-emerald-400"></span>
-                  <span>Teacher's Step-by-Step Master Solution</span>
-                </div>
-                <span class="text-[11px] text-slate-400 group-open:text-emerald-400 font-semibold group-open:hidden">Show Derivation &darr;</span>
-                <span class="text-[11px] text-emerald-400 font-semibold hidden group-open:inline">Hide Derivation &uarr;</span>
+                <span class="font-bold text-cyan-400">Derivation + transfer rule</span>
+                <span class="text-[11px] text-slate-400 group-open:hidden">Expand ↓</span>
+                <span class="text-[11px] text-emerald-400 hidden group-open:inline">Collapse ↑</span>
               </summary>
-              
               <div class="p-3.5 pt-2 border-t border-slate-800 space-y-2.5 text-xs">
-                <!-- Governing Formula Card -->
-                <div class="p-2 rounded bg-amber-950/30 border border-amber-500/30 flex items-center justify-between">
-                  <span class="text-[10px] text-amber-300 font-mono font-bold uppercase">Governing Formula:</span>
-                  <span class="font-mono text-xs font-bold text-amber-400">${q.formula}</span>
-                </div>
-
-                <!-- Numbered Steps -->
-                <div class="space-y-1.5 pl-1">
-                  ${q.steps.map((step, idx) => `
-                    <div class="flex items-start gap-2 text-slate-300 text-[11px] leading-relaxed">
-                      <span class="w-4 h-4 rounded-full bg-slate-800 text-slate-400 font-mono text-[9px] flex items-center justify-center flex-shrink-0 mt-0.5">${idx+1}</span>
-                      <span>${step}</span>
-                    </div>
-                  `).join('')}
-                </div>
-
-                <!-- Final Answer -->
-                <div class="p-2 rounded bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between">
-                  <span class="text-[10px] text-emerald-300 font-mono font-bold uppercase">Final Answer:</span>
-                  <span class="font-mono text-xs font-black text-emerald-400">${q.ans}</span>
-                </div>
-
-                <!-- Pedagogical Takeaway -->
-                <div class="text-[10px] text-slate-400 pt-1 border-t border-slate-800/60 flex items-start gap-1.5">
-                  <span class="text-amber-400 font-bold">&#128161; Takeaway:</span>
-                  <span>${q.takeaway}</span>
-                </div>
+                <div class="p-2 rounded bg-amber-950/30 border border-amber-500/30"><span class="text-[10px] text-amber-300 font-bold uppercase">Governing model: </span><span class="font-mono text-amber-100">${q.formula}</span></div>
+                <div class="space-y-1.5">${(q.steps || []).map((s,i) => `<div class="flex gap-2 text-slate-300 text-[11px]"><span class="font-black text-purple-300">${i+1}.</span><span>${typeof s === 'string' ? s : (s.content || s.title || '')}</span></div>`).join('')}</div>
+                <div class="p-2 rounded bg-amber-950/20 border border-amber-500/20 text-[11px]"><span class="font-black text-amber-300">Transfer:</span> ${q.takeaway}</div>
               </div>
             </details>
 
-            <!-- Bottom Actions -->
-            <div class="flex items-center justify-between pt-1">
-              <button onclick="loadQuestionIntoSimulator('${q.id}', '${q.tab}')" class="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1 transition">
-                <span>Load in Simulator</span> <span>&rarr;</span>
-              </button>
-              <span class="text-[10px] font-mono text-slate-500">ID: ${q.id}</span>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <button onclick="openQuestionChalkboard('${q.id}')" class="touch-target px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/30 text-xs font-bold">🎓 Teacher's Chalkboard</button>
+              <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1.5 rounded-lg ${simUnavailable ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-blue-600/30 hover:bg-blue-600/50 text-blue-200 border-blue-500/40'} border text-xs font-bold">${simUnavailable ? 'Simulator Unavailable' : simulationLabel(q)}</button>
+              <span class="text-[10px] font-mono text-slate-500 ml-auto">ID: ${q.id}${st.complete ? '' : ' · incomplete'}</span>
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
     }
 
-        // =================================================================
+    // =================================================================
     // SUPERCHARGED SIMULATOR INGESTION & DYNAMIC HEADING / TOAST HUD
     // =================================================================
     function getQuestionSimulationParams(q) {
-      if (!q) return null;
-      const id = q.id || '';
-      const text = q.q || '';
-      let params = {
-        targetTab: q.tab || 'sandbox',
-        v0: 25,
-        angle: 45,
-        h: 0,
-        vm: 5,
-        vr: 10,
-        vb: 5,
-        k: 0.005,
-        summary: []
+      if (!q) return { targetTab:'sandbox', values:{}, fidelity:'unavailable', runMode:'none', summary:['No question record was supplied.'] };
+      const s = q.simulation || {};
+      return {
+        targetTab: s.targetTab || q.tab || 'sandbox',
+        values: s.values || {},
+        fidelity: s.fidelity || 'unavailable',
+        runMode: s.runMode || 'none',
+        summary: Array.isArray(s.summary) ? s.summary : []
       };
-
-      // 1. Specific PDF Presets
-      if (id === 'PDF-01') {
-        params.targetTab = 'topic5';
-        params.v0 = 12;
-        params.angle = 45;
-        params.summary = ['Launch Speed u = 12 m/s', 'Angle θ = 45°', 'Target: Horizontal Range R = 14.4 m'];
-      } else if (id === 'PDF-02') {
-        params.targetTab = 'topic5';
-        params.v0 = 25;
-        params.angle = 76;
-        params.summary = ['Launch Speed u = 25 m/s', 'Angle θ = 75.96° (arctan 4)', 'Target Invariant: R = H'];
-      } else if (id === 'PDF-03') {
-        params.targetTab = 'topic5';
-        params.v0 = 90;
-        params.angle = 27.4;
-        params.summary = ['Launch Speed u = 90 m/s', 'Target Range R = 560 m', 'Dual Angles θ₁ = 27.4°, θ₂ = 62.6°'];
-      } else if (id === 'PDF-04') {
-        params.targetTab = 'topic6';
-        params.summary = ['Fly Ball u = 40 m/s at 35°', 'Fielder Sightline Tracking', 'Invariant: d²φ/dt² = 0 confirms catch'];
-      } else if (id === 'PDF-05') {
-        params.targetTab = 'topic6';
-        params.h = 490;
-        params.v0 = 98;
-        params.summary = ['Cliff Height h = 490 m', 'Horizontal Speed u = 98 m/s', 'Time t = 10 s, Range = 980 m'];
-      } else if (id === 'PDF-10') {
-        params.targetTab = 'relative';
-        params.vr = 15;
-        params.vm = 8.66;
-        params.summary = ['Rain Speed v_r = 15 m/s (downward)', 'Cyclist Speed v_m = 8.66 m/s', 'Angle tan θ = 5√3 / 15 ⟹ θ = 30°'];
-      } else if (id === 'PDF-14') {
-        params.targetTab = 'relative';
-        params.summary = ['Man walks at 3 km/h then 6 km/h', 'Dual-Speed Apparent Direction Invariant', 'v_rain = 3√2 km/h at 45°'];
-      } else if (id === 'PDF-11') {
-        params.targetTab = 'relative';
-        params.summary = ['Car at 80 km/h East', 'Train apparent speed 80√3 km/h', 'Relative Velocity Vector Triangle'];
-      } else if (id === 'PDF-12') {
-        params.targetTab = 'relative';
-        params.vr = 20;
-        params.vb = 100;
-        params.summary = ['Plane Desired Heading 45°', 'Crosswind Deflection', 'Steering Angle Offset = 8.13°'];
-      } else if (id === 'PDF-13') {
-        params.targetTab = 'relative';
-        params.vr = 2;
-        params.vb = 5;
-        params.summary = ['River Current v_r = 2 m/s East', 'Boat Upstream v_b = 5 m/s West', 'Net Velocity Vector Addition'];
-      } else if (id === 'EXAM-64' || text.includes('v→=K(yiˆ+xjˆ)') || text.includes('v = K(y i')) {
-        // Special case for general trajectory problem
-        params.targetTab = 'topic3';
-        params.k = 0.008;
-        params.v0 = 22;
-        params.summary = ['Path Trajectory: y² - x² = C (Hyperbola)', 'Curvature k = 0.0080 m⁻¹', 'Normal Force Nx ≠ 0 (a_x ≠ 0)'];
-      } else {
-        // Regex extraction for velocity / speed
-        const speedMatch = text.match(/(?:velocity|speed|projected with|thrown with|speed of)\s*(?:of\s*)?([0-9]+(?:\.[0-9]+)?)\s*m\/?s/i);
-        if (speedMatch) {
-          params.v0 = parseFloat(speedMatch[1]);
-          params.summary.push(`Speed u = ${params.v0} m/s`);
-        }
-
-        // Regex extraction for angle
-        const angleMatch = text.match(/([0-9]+(?:\.[0-9]+)?)\s*(?:°|deg|degrees)/i);
-        if (angleMatch) {
-          params.angle = parseFloat(angleMatch[1]);
-          params.summary.push(`Angle θ = ${params.angle}°`);
-        }
-
-        // Regex extraction for height / cliff
-        const heightMatch = text.match(/(?:height|cliff|building|tower|platform)(?:\s*of)?\s*([0-9]+(?:\.[0-9]+)?)\s*m/i);
-        if (heightMatch) {
-          params.h = parseFloat(heightMatch[1]);
-          params.summary.push(`Height h = ${params.h} m`);
-        }
-
-        // If no explicit numbers were found, assign category-specific custom values so canvas changes!
-        if (params.summary.length === 0) {
-          if (q.bucket === 4 || q.tab === 'topic5') {
-            params.v0 = 32.0;
-            params.angle = 35.0;
-            params.summary.push(`Applied Speed u = 32.0 m/s`, `Applied Angle θ = 35° (Pair 55°)`);
-          } else if (q.bucket === 3 || q.tab === 'topic3') {
-            params.k = 0.0075;
-            params.v0 = 20.0;
-            params.summary.push(`Track Curvature k = 0.0075 m⁻¹`, `Speed u₀ = 20.0 m/s`);
-          } else if (q.bucket === 5 || q.tab === 'topic6') {
-            params.h = 10.0;
-            params.v0 = 25.0;
-            params.summary.push(`Platform Height h = 10.0 m`, `Horizontal Speed u = 25.0 m/s`);
-          } else if (q.bucket >= 7 || q.tab === 'relative') {
-            params.vm = 7.5;
-            params.vr = 12.0;
-            params.summary.push(`Apparent Speed v_m = 7.5 m/s`, `Vector Current v_r = 12.0 m/s`);
-          } else {
-            params.v0 = 28.0;
-            params.angle = 60.0;
-            params.summary.push(`Launch Speed u = 28.0 m/s`, `Launch Angle θ = 60°`);
-          }
-        }
-      }
-
-      return params;
     }
 
-    function loadQuestionIntoSimulator(qId, tabName) {
+    let activeQuestionSimulation = null;
+
+    function loadQuestionIntoSimulator(qId) {
       closeJeeHubModal();
       const q = (window.JEE_QUESTIONS_DATA || []).find(x => x.id === qId);
-      const p = getQuestionSimulationParams(q) || { targetTab: tabName || 'topic1', summary: [] };
-      const targetTab = tabName || p.targetTab || 'topic1';
+      if (!q) return;
 
-      // 1. Switch to target tab
-      switchTab(targetTab);
+      const p = getQuestionSimulationParams(q);
+      const targetTab = p.targetTab || q.tab || 'sandbox';
+      activeQuestionSimulation = { q, p, targetTab };
 
-      // 2. Update Active Simulation Banner on the tab
-      updateActiveSimBanner(targetTab, q, p);
-
-      // 3. Inject parameter values into tab controls & trigger redraw
-      if (targetTab === 'topic5') {
-        const sU = document.getElementById('t5SliderU');
-        const sTh = document.getElementById('t5SliderTheta');
-        if (sU && p.v0) sU.value = Math.min(Math.max(p.v0, 10), 45);
-        if (sTh && p.angle) sTh.value = Math.min(Math.max(p.angle, 15), 75);
-        if (typeof t5Update === 'function') t5Update();
-        flashSliders(['t5SliderU', 't5SliderTheta']);
-      } else if (targetTab === 'topic6') {
-        const sH = document.getElementById('t6SliderH');
-        if (sH && p.h) sH.value = Math.min(Math.max(p.h, 1), 14);
-        if (typeof t6Update === 'function') t6Update();
-        flashSliders(['t6SliderH']);
-      } else if (targetTab === 'relative') {
-        if (q && (q.bucket === 9 || q.id === 'PDF-10' || q.id === 'PDF-14')) {
-          const sVm = document.getElementById('relSliderVm');
-          if (sVm && p.vm) sVm.value = Math.min(Math.max(p.vm, 0), 20);
-          if (typeof relUpdateRain === 'function') relUpdateRain();
-          flashSliders(['relSliderVm']);
-        } else if (q && (q.bucket === 8 || q.id === 'PDF-12' || q.id === 'PDF-13')) {
-          const sVr = document.getElementById('rbSliderVr');
-          const sVb = document.getElementById('rbSliderVb');
-          if (sVr && p.vr) sVr.value = Math.min(Math.max(p.vr, 0), 10);
-          if (sVb && p.vb) sVb.value = Math.min(Math.max(p.vb, 1), 12);
-          if (typeof rbUpdateBoat === 'function') rbUpdateBoat();
-          flashSliders(['rbSliderVr', 'rbSliderVb']);
-        }
-      } else if (targetTab === 'topic3') {
-        if (typeof t3SelectCandidate === 'function') t3SelectCandidate('A');
-        const sK = document.getElementById('t3SliderK');
-        const sU = document.getElementById('t3SliderU');
-        if (sK && p.k) sK.value = p.k;
-        if (sU && p.v0) sU.value = p.v0;
-        if (typeof t3Update === 'function') t3Update();
-        flashSliders(['t3SliderK', 't3SliderU']);
-      } else if (targetTab === 'topic4') {
-        const sT = document.getElementById('t4SliderT');
-        if (sT) sT.value = 0.5;
-        if (typeof t4OnScrub === 'function') t4OnScrub(0.5);
-        flashSliders(['t4SliderT']);
-      } else if (targetTab === 'topic1') {
-        const sTx = document.getElementById('t1SliderTx');
-        const sTy = document.getElementById('t1SliderTy');
-        if (sTx) sTx.value = '0.6';
-        if (sTy) sTy.value = '0.6';
-        if (typeof t1Update === 'function') t1Update();
-        flashSliders(['t1SliderTx', 't1SliderTy']);
-      } else if (targetTab === 'topic2') {
-        const sDist = document.getElementById('t2SliderDist');
-        if (sDist) sDist.value = '25';
-        if (typeof t2Update === 'function') t2Update();
-        flashSliders(['t2SliderDist']);
-      } else {
-        // Master Sandbox
-        const sV = document.getElementById('sbSliderV0');
-        const sA = document.getElementById('sbSliderAngle');
-        const sH = document.getElementById('sbSliderHeight');
-        if (sV && p.v0) sV.value = Math.min(Math.max(p.v0, 5), 45);
-        if (sA && p.angle) sA.value = Math.min(Math.max(p.angle, 0), 90);
-        if (sH && p.h) sH.value = Math.min(Math.max(p.h, 0), 30);
-        if (typeof sbUpdatePhysics === 'function') sbUpdatePhysics();
-        flashSliders(['sbSliderV0', 'sbSliderAngle', 'sbSliderHeight']);
+      if (p.fidelity === 'unavailable') {
+        showSimToast(q,p,targetTab);
+        return;
       }
 
-      // 4. Show Floating Toast Banner
-      showSimToast(q, p, targetTab);
+      switchTab(targetTab);
+      updateActiveSimBanner(targetTab,q,p);
 
-      // 5. Scroll directly to active simulation canvas
+      // Apply only parameters explicitly declared by the question's simulation contract.
+      const v = p.values || {};
+      const touched = [];
+      const set = (id,value,min,max) => {
+        if (value == null) return false;
+        const el = document.getElementById(id);
+        if (!el) return false;
+        let n = Number(value);
+        if (!Number.isFinite(n)) return false;
+        if (min != null) n = Math.max(min,n);
+        if (max != null) n = Math.min(max,n);
+        el.value = String(n);
+        return true;
+      };
+
+      if (targetTab === 'topic5') {
+        if (set('t5SliderU',v.v0,10,45)) touched.push('t5SliderU');
+        if (set('t5SliderTheta',v.angle,15,75)) touched.push('t5SliderTheta');
+        if (touched.length && typeof t5Update === 'function') t5Update();
+      } else if (targetTab === 'topic6') {
+        if (set('t6SliderH',v.h,1,14)) touched.push('t6SliderH');
+        if (touched.length && typeof t6Update === 'function') t6Update();
+      } else if (targetTab === 'relative') {
+        if (q.bucket === 9) {
+          if (set('relSliderVm',v.vm,0,20)) touched.push('relSliderVm');
+          if (touched.length && typeof relUpdateRain === 'function') relUpdateRain();
+        } else if (q.bucket === 8) {
+          if (set('rbSliderVr',v.vr,0,10)) touched.push('rbSliderVr');
+          if (set('rbSliderVb',v.vb,1,12)) touched.push('rbSliderVb');
+          if (touched.length && typeof rbUpdateBoat === 'function') rbUpdateBoat();
+        }
+      } else if (targetTab === 'topic3') {
+        if (set('t3SliderK',v.k)) touched.push('t3SliderK');
+        if (set('t3SliderU',v.v0)) touched.push('t3SliderU');
+        if (touched.length && typeof t3Update === 'function') t3Update();
+      }
+
+      if (touched.length) flashSliders(touched);
+      showSimToast(q,p,targetTab);
+
       setTimeout(() => {
         const banner = document.getElementById(`activeSimBanner-${targetTab}`);
-        if (banner) {
-          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          const canvas = document.querySelector(`#tab-${targetTab}-content canvas, #tab-${targetTab}-content svg`);
-          if (canvas) canvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
+        const canvas = document.querySelector(`#tab-${targetTab}-content canvas, #tab-${targetTab}-content svg`);
+        (banner || canvas)?.scrollIntoView({behavior:'smooth',block:'center'});
+      },80);
     }
 
     function updateActiveSimBanner(tabId, q, p) {
@@ -4936,8 +4881,8 @@
       const paramsList = document.getElementById(`activeSimParams-${tabId}`);
 
       if (badge) badge.textContent = q ? `Q #${q.num || q.id}` : 'Injected Rig';
-      if (source) source.textContent = q ? `${q.source} · Bucket ${q.bucket}: ${q.bucketName}` : 'Custom Injected Parameters';
-      if (title) title.textContent = q ? q.q : 'Interactive Simulation Rig updated with target question parameters.';
+      if (source) source.textContent = q ? `${simulationLabel(q)} · ${q.source} · Bucket ${q.bucket}: ${q.bucketName}` : 'Simulator demo';
+      if (title) title.textContent = q ? q.q : 'Interactive simulation demo.';
 
       if (paramsList && p && p.summary) {
         paramsList.innerHTML = p.summary.map(s => `
@@ -5101,32 +5046,29 @@
       const badgeEl = document.getElementById('toastQuestionBadge');
       const sourceEl = document.getElementById('toastSourceTitle');
       const paramsEl = document.getElementById('toastParamsList');
+      const statusEl = document.getElementById('toastStatusText');
       const runBtn = document.getElementById('toastRunBtn');
+      const runLabel = document.getElementById('toastRunLabel');
+      const label = simulationLabel(q);
 
-      if (badgeEl) badgeEl.textContent = q ? `Q #${q.num || q.id}` : 'Simulator Ready';
-      if (sourceEl) sourceEl.textContent = q ? `${q.source} · Bucket ${q.bucket}: ${q.bucketName}` : 'Custom Parameters Injected';
-
-      if (paramsEl && p && p.summary) {
-        paramsEl.innerHTML = p.summary.map(s => `
-          <span class="px-2.5 py-1 rounded-md bg-purple-950/80 border border-purple-500/40 text-purple-200 font-bold flex items-center gap-1">
-            <span>⚡</span> <span>${s}</span>
-          </span>
-        `).join('');
-      }
+      if (statusEl) statusEl.textContent = label.toUpperCase();
+      if (badgeEl) badgeEl.textContent = q ? `Q ${q.num || q.id}` : 'Simulator';
+      if (sourceEl) sourceEl.textContent = q ? q.source : 'Simulator demo';
+      if (paramsEl) paramsEl.innerHTML = (p?.summary || []).map(s => `<span class="px-2.5 py-1 rounded-md bg-purple-950/80 border border-purple-500/40 text-purple-200 font-bold">${s}</span>`).join('');
 
       if (runBtn) {
-        runBtn.onclick = () => {
-          runInjectedSimulation(targetTab);
-        };
+        const unavailable = p?.fidelity === 'unavailable';
+        runBtn.disabled = unavailable;
+        runBtn.classList.toggle('opacity-50',unavailable);
+        runBtn.classList.toggle('cursor-not-allowed',unavailable);
+        runBtn.onclick = unavailable ? null : () => runInjectedSimulation(targetTab,p?.runMode,q);
+        if (runLabel) runLabel.textContent = unavailable ? 'No faithful simulator mapping' : (p?.fidelity === 'exact_question_load' ? 'Run Exact Question' : 'Run Labeled Demo');
       }
 
       toast.classList.remove('hidden');
-      toast.classList.add('flex', 'flex-col');
-
+      toast.classList.add('flex','flex-col');
       if (window.toastTimer) clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
-        dismissSimToast();
-      }, 9000);
+      window.toastTimer = setTimeout(() => dismissSimToast(),12000);
     }
 
     function dismissSimToast() {
@@ -5149,17 +5091,20 @@
       });
     }
 
-    function runInjectedSimulation(tab) {
+    function runInjectedSimulation(tab, runMode, q) {
       dismissSimToast();
-      if (tab === 'topic5' && typeof t5AnimateBoth === 'function') {
-        t5AnimateBoth();
-      } else if (tab === 'topic3' && typeof t3PlayPause === 'function') {
-        t3PlayPause();
-      } else if (tab === 'relative' && typeof rbLaunchBoat === 'function') {
-        rbLaunchBoat();
-      } else if (typeof sbToggleLaunch === 'function') {
-        sbToggleLaunch();
+      if (runMode === 'none') return;
+      if (tab === 'topic5' && typeof t5AnimateBoth === 'function') return t5AnimateBoth();
+      if (tab === 'topic3' && typeof t3PlayPause === 'function') return t3PlayPause();
+      if (tab === 'topic4' && typeof t4JumpApex === 'function') return t4JumpApex();
+      if (tab === 'topic1' && typeof t1Update === 'function') return t1Update();
+      if (tab === 'topic2' && typeof t2Update === 'function') return t2Update();
+      if (tab === 'topic6' && typeof t6Update === 'function') return t6Update();
+      if (tab === 'relative') {
+        if (q?.bucket === 8 && typeof rbLaunchBoat === 'function') return rbLaunchBoat();
+        if (typeof relUpdateRain === 'function') return relUpdateRain();
       }
+      if (tab === 'sandbox' && typeof sbTogglePlay === 'function') return sbTogglePlay();
     }
 
     // =================================================================
@@ -5196,115 +5141,56 @@
 
       const buckets = TAB_BUCKET_MAP[tabKey] || [1];
       const allQuestions = (window.JEE_QUESTIONS_DATA || []).filter(q => buckets.includes(q.bucket));
-      
       let filtered = allQuestions;
-      if (filterType === 'foundation') {
-        filtered = allQuestions.filter(q => q.source.includes('PDF') || q.source.includes('Foundation') || q.num <= 5);
-      } else if (filterType === 'jeemain') {
-        filtered = allQuestions.filter(q => q.source.includes('JEE Main') || q.source.includes('Online'));
-      } else if (filterType === 'jeeadv') {
-        filtered = allQuestions.filter(q => q.source.includes('Advanced') || q.takeaway.toLowerCase().includes('invariant') || q.bucket === 4 || q.bucket === 6);
-      }
+
+      if (filterType === 'foundation') filtered = allQuestions.filter(q => (q.source || '').includes('PDF') || (q.source || '').includes('Foundation'));
+      else if (filterType === 'jeemain') filtered = allQuestions.filter(q => (q.source || '').includes('JEE Main') || (q.source || '').includes('Online'));
+      else if (filterType === 'jeeadv') filtered = allQuestions.filter(q => (q.source || '').includes('Advanced') || q.bucket === 4 || q.bucket === 6);
 
       container.innerHTML = `
         <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
             <div>
-              <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                <span>📚</span>
-                <span>TOPIC QUESTION HUB &middot; PRACTICE &amp; DERIVATIONS</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                  ${filtered.length} of ${allQuestions.length} Qs
-                </span>
-              </h3>
-              <p class="text-xs text-slate-400 mt-0.5">ExamSide Past Year Questions &amp; Scanned PDF master derivations for this topic</p>
+              <h3 class="text-sm font-bold text-white">📚 TOPIC QUESTION HUB <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">${filtered.length} of ${allQuestions.length} Qs</span></h3>
+              <p class="text-xs text-slate-400 mt-0.5">Answers, teacher checks and traps are visible without truncating the topic bank.</p>
             </div>
-
             <div class="flex items-center gap-1.5 flex-wrap">
-              <button onclick="filterInTabQuestions('${tabKey}', 'all')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${filterType === 'all' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">
-                All (${allQuestions.length})
-              </button>
-              <button onclick="filterInTabQuestions('${tabKey}', 'foundation')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition ${filterType === 'foundation' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">
-                Foundation
-              </button>
-              <button onclick="filterInTabQuestions('${tabKey}', 'jeemain')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition ${filterType === 'jeemain' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">
-                JEE Main
-              </button>
-              <button onclick="filterInTabQuestions('${tabKey}', 'jeeadv')" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition ${filterType === 'jeeadv' ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">
-                JEE Advanced
-              </button>
+              ${['all','foundation','jeemain','jeeadv'].map(k => `
+                <button onclick="filterInTabQuestions('${tabKey}','${k}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold ${filterType === k ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'}">
+                  ${k === 'all' ? 'All (' + allQuestions.length + ')' : k === 'jeemain' ? 'JEE Main' : k === 'jeeadv' ? 'JEE Advanced' : 'Foundation'}
+                </button>`).join('')}
             </div>
           </div>
 
           <div class="space-y-3">
-            ${filtered.slice(0, 6).map(q => `
-              <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3 hover:border-slate-700 transition">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[11px] font-bold border border-blue-500/30">
-                      Q #${q.num || q.id}
-                    </span>
-                    <span class="text-xs font-bold text-slate-200">${q.source}</span>
+            ${filtered.map(q => {
+              const simUnavailable = q.simulation?.fidelity === 'unavailable';
+              return `
+                <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[11px] font-bold border border-blue-500/30">${q.num || q.id}</span>
+                    <span class="text-xs text-slate-400">${q.year}</span>
+                    <span class="text-[10px] font-mono text-slate-500 ml-auto">${q.audit?.status || 'unknown'}</span>
                   </div>
-                  <button onclick="loadQuestionIntoSimulator('${q.id}', '${tabKey}')" class="touch-target px-3 py-1.5 rounded-lg bg-blue-600/30 hover:bg-blue-600/50 text-blue-200 border border-blue-500/40 text-xs font-bold transition flex items-center gap-1.5 self-start sm:self-auto">
-                    <span>🚀 Load in Simulator</span> <span>&rarr;</span>
-                  </button>
-                </div>
-
-                <p class="text-xs text-slate-300 leading-relaxed font-sans">${q.q}</p>
-
-                ${q.formula ? `
-                  <div class="p-2 rounded bg-slate-900/90 border border-slate-800 text-[11px] font-mono text-purple-300 flex items-center gap-2">
-                    <span class="text-purple-400 font-bold">Key Invariant:</span>
-                    <span>${q.formula}</span>
+                  <p class="text-xs text-slate-200 leading-relaxed">${q.q}</p>
+                  <div class="p-2 rounded bg-emerald-950/35 border border-emerald-500/30 text-[11px]"><span class="font-black text-emerald-300">Answer:</span> <span class="font-mono text-emerald-100">${q.ans}</span></div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div class="p-2 rounded bg-rose-950/25 border border-rose-500/25 text-[11px]"><span class="font-black text-rose-300">Trap:</span> ${q.trap}</div>
+                    <div class="p-2 rounded bg-cyan-950/25 border border-cyan-500/25 text-[11px]"><span class="font-black text-cyan-300">Check:</span> ${q.teacherCheck}</div>
                   </div>
-                ` : ''}
-
-                <details class="group bg-slate-900/60 border border-slate-800/80 rounded-lg overflow-hidden">
-                  <summary class="flex items-center justify-between p-2.5 cursor-pointer hover:bg-slate-900 transition select-none text-xs font-bold text-blue-400">
-                    <div class="flex items-center gap-2">
-                      <span class="w-1.5 h-1.5 rounded-full bg-blue-400 group-open:bg-emerald-400"></span>
-                      <span>View Step-by-Step Teacher Derivation</span>
-                    </div>
-                    <span class="text-[11px] text-slate-400 group-open:text-emerald-400">
-                      <span class="group-open:hidden">Expand &darr;</span>
-                      <span class="hidden group-open:inline">Collapse &uarr;</span>
-                    </span>
-                  </summary>
-                  <div class="p-3 pt-2 border-t border-slate-800/60 space-y-2 text-xs">
-                    ${(q.steps || []).map((st, sidx) => {
-                      const stepText = (typeof st === 'string') ? st : (st.content || st.title || JSON.stringify(st));
-                      return `
-                        <div class="flex items-start gap-2.5 text-slate-300 text-[11px] leading-relaxed bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80">
-                          <span class="w-4 h-4 rounded-full bg-purple-500/30 text-purple-300 font-mono text-[9px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${sidx+1}</span>
-                          <span class="font-sans flex-1">${stepText}</span>
-                        </div>
-                      `;
-                    }).join('')}
-
-                    <div class="p-2 rounded bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between">
-                      <span class="text-[10px] text-emerald-300 font-mono font-bold uppercase">Final Answer:</span>
-                      <span class="font-mono text-xs font-black text-emerald-400">${q.ans}</span>
-                    </div>
-
-                    ${q.takeaway ? `
-                      <div class="text-[11px] text-slate-400 pt-1 border-t border-slate-800 flex items-start gap-1.5">
-                        <span class="text-amber-400 font-bold">💡 Takeaway:</span>
-                        <span>${q.takeaway}</span>
-                      </div>
-                    ` : ''}
+                  <div class="flex flex-wrap gap-2">
+                    <button onclick="openQuestionChalkboard('${q.id}')" class="touch-target px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-200 border border-amber-500/30 text-xs font-bold">🎓 Teacher's Chalkboard</button>
+                    <button onclick="loadQuestionIntoSimulator('${q.id}')" class="touch-target px-3 py-1.5 rounded-lg border text-xs font-bold ${simUnavailable ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-blue-600/30 text-blue-200 border-blue-500/40'}">${simUnavailable ? 'Unavailable' : simulationLabel(q)}</button>
                   </div>
-                </details>
-              </div>
-            `).join('')}
+                </div>`;
+            }).join('')}
           </div>
-        </div>
-      `;
+        </div>`;
     }
-
 
     // --- INITIALIZATION ---
     window.addEventListener('DOMContentLoaded', () => {
+      validateQuestionBank();
       renderHubQuiz();
       initJeeHub();
       t3SelectCandidate('A');
@@ -5329,9 +5215,9 @@
           <div>
             <h2 class="text-lg md:text-xl font-black text-white flex items-center gap-2">
               <span>JEE MAIN &amp; PDF MASTER QUESTIONS HUB</span>
-              <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">104 Questions &middot; 100% Solved</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">104 Questions &middot; per-item audit status</span>
             </h2>
-            <p class="text-xs text-slate-400">11 Scanned PDF Illustrations + 93 ExamSide PYQs classified by 9 Concept Buckets with step-by-step master derivations</p>
+            <p class="text-xs text-slate-400">11 Scanned PDF Illustrations + 93 ExamSide PYQs; each card shows answer, derivation, trap, teacher check, audit status and simulator fidelity</p>
           </div>
         </div>
         <button onclick="closeJeeHubModal()" class="touch-target px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition">
