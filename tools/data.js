@@ -16319,7 +16319,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
@@ -16559,7 +16559,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
@@ -16896,7 +16896,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
@@ -16939,7 +16939,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
@@ -16982,7 +16982,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
@@ -17027,7 +17027,7 @@ window.GRADE9V3 = {
                     "quality_check_counts": {
                       "PASS": 8,
                       "FAIL": 0,
-                      "PENDING": 22,
+                      "PENDING": 28,
                       "NOT_APPLICABLE": 0
                     },
                     "audit_provenance_mode": "AUTOMATED",
