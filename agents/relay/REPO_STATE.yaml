@@ -43,9 +43,9 @@
   },
   "takeover_admissions": [],
   "progress": {
-    "overall_percent": 70,
-    "phase_percent": 70,
-    "ep_percent": 0,
+    "overall_percent": 73.75,
+    "phase_percent": 73.75,
+    "ep_percent": 25,
     "basis_revision": "PB-0006"
   },
   "status_planes": {
@@ -53,29 +53,29 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "The Owner explicitly authorized this agent to implement the first bounded evidence/support repair despite the missing independent replacement-agent certification. Do not claim the normal replacement-agent write gate passed."
+      "next_action": "Proceed to the next bounded router slice only under explicit Owner authorization, preserving the normal independent replacement-agent gate as unmet and keeping later acceptance separate from activity."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "AUDIT-TA-008-MOTHER-CONTRACT findings remain open until the reconciled EP implementation and tests close them.",
-        "No EP-TA-008 acceptance credit is earned by contract reconciliation alone.",
+        "AUDIT-TA-008-MOTHER-CONTRACT findings 003-007 remain open until later EP-TA-008 steps close them.",
+        "Audit findings 001/002 are technically remediated by STEP-TA8-001 evidence; final quality review has not yet been published.",
         "The Owner authorized a one-slice execution exception; the normal independent replacement-agent write gate remains unmet and must not be reported as passed."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Mother-contract audit and prior implementation evidence exist. The Owner authorized direct execution of the first bounded repair as an explicit exception; independent replacement-agent qualification is still absent.",
+      "summary": "The first bounded evidence/support repair is proven on repository tests and the frozen evidence/support oracles. Later gateway/transfer/presentation/witness evidence remains open, and normal independent replacement-agent certification remains absent under the documented Owner execution exception.",
       "not_run": [
         {
           "id": "fresh independent replacement-agent qualification",
-          "reason": "A separate replacement agent has not completed the normal independent qualification/certification path.",
+          "reason": "A separate replacement agent has not completed the normal independent qualification/certification path; the Owner explicitly authorized direct execution without fabricating that evidence.",
           "cause": "DEPENDENCY_WAIT"
         },
         {
-          "id": "TEST-TA8-001..004 reconciled contract",
-          "reason": "Runtime writes are withheld until fresh takeover certification and live write readiness.",
-          "cause": "DEPENDENCY_WAIT"
+          "id": "TEST-TA8-002..004",
+          "reason": "Gateway/transfer, presentation/feedback, separate witness and final exact-head close evidence have not yet been executed.",
+          "cause": "NOT_SCHEDULED"
         }
       ]
     },
