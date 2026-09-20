@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:grade9v3:graphical-cognitive-deconstruction:1.0.0",
+  "$id": "urn:grade9v3:graphical-cognitive-deconstruction:1.1.0",
   "title": "Graphical Cognitive Deconstruction Route Contract",
-  "description": "Governed design contract for heavy-graphical parallel support activities. It supplements, and never replaces, the canonical capability/rung/microtopic/teaching-step graph.",
+  "description": "Governed design and quality-audit contract for heavy-graphical parallel support activities. It supplements, and never replaces, the canonical capability/rung/microtopic/teaching-step graph.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -12,13 +12,15 @@
     "route_policy",
     "interaction_sequence",
     "graphical_contract",
+    "state_fidelity_contract",
     "boundary_contract",
     "exit_evidence",
-    "implementation_evidence"
+    "implementation_evidence",
+    "quality_audit"
   ],
   "properties": {
     "schema_version": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "conformance_status": {
       "enum": [
@@ -26,7 +28,7 @@
         "IMPLEMENTATION_PARTIAL",
         "CERTIFIED"
       ],
-      "description": "CERTIFIED means every implementation_evidence flag is true and the guard can verify the contract's structural prerequisites. Human scientific/pedagogical approval remains separate."
+      "description": "CERTIFIED requires every implementation_evidence flag true, quality_audit.audit_status=PASS, no unresolved findings, and every required quality-audit check PASS or explicitly waived as NOT_APPLICABLE. Human scientific/pedagogical approval remains separate."
     },
     "cognitive_target": {
       "type": "object",
@@ -358,6 +360,441 @@
         },
         "fresh_transfer_without_scaffold": {
           "type": "boolean"
+        }
+      }
+    },
+    "state_fidelity_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_of_truth",
+        "external_state_mapping",
+        "missing_parameter_policy",
+        "fidelity_labels",
+        "unit_constant_policy",
+        "reset_policy"
+      ],
+      "properties": {
+        "source_of_truth": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Authoritative activity state from which every visible representation and derived readout must be computed."
+        },
+        "external_state_mapping": {
+          "enum": [
+            "NOT_APPLICABLE",
+            "EXACT_REQUIRED",
+            "EXACT_OR_CONSTRAINT_FAITHFUL",
+            "CONCEPT_MAPPING_ALLOWED"
+          ],
+          "description": "Policy for loading an external question/task state into the activity."
+        },
+        "missing_parameter_policy": {
+          "const": "NEVER_INVENT_AS_EXACT"
+        },
+        "fidelity_labels": {
+          "const": [
+            "EXACT",
+            "CONSTRAINT_FAITHFUL",
+            "CONCEPT_ONLY",
+            "UNAVAILABLE"
+          ]
+        },
+        "unit_constant_policy": {
+          "type": "string",
+          "minLength": 10
+        },
+        "reset_policy": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "quality_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checklist_version",
+        "audit_status",
+        "last_audited",
+        "audit_1_canonical_truth_scope",
+        "audit_2_graphical_state_fidelity",
+        "audit_3_reconstruction_teaching_transfer",
+        "audit_4_runtime_release_integrity",
+        "audit_evidence_refs",
+        "unresolved_findings",
+        "waivers"
+      ],
+      "properties": {
+        "checklist_version": {
+          "const": "1.0.0"
+        },
+        "audit_status": {
+          "enum": [
+            "NOT_RUN",
+            "PARTIAL",
+            "PASS",
+            "BLOCKED"
+          ]
+        },
+        "last_audited": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "audit_1_canonical_truth_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_binding",
+            "assumptions_and_conventions",
+            "derivation_or_model_check",
+            "units_constants_parameters",
+            "boundary_limit_cases",
+            "source_claim_fidelity"
+          ],
+          "properties": {
+            "canonical_binding": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "assumptions_and_conventions": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "derivation_or_model_check": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "units_constants_parameters": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "boundary_limit_cases": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "source_claim_fidelity": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "audit_2_graphical_state_fidelity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "single_state_source",
+            "representation_synchronization",
+            "direct_manipulation_is_causal",
+            "counterfactual_is_honest",
+            "progressive_disclosure",
+            "control_state_mapping",
+            "no_invented_exact_parameters",
+            "interaction_fidelity_disclosed"
+          ],
+          "properties": {
+            "single_state_source": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "representation_synchronization": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "direct_manipulation_is_causal": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "counterfactual_is_honest": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "progressive_disclosure": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "control_state_mapping": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "no_invented_exact_parameters": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "interaction_fidelity_disclosed": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "audit_3_reconstruction_teaching_transfer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "answer_or_disposition_specific",
+            "derivation_specific",
+            "independent_check",
+            "misconception_trap_specific",
+            "transfer_takeaway_specific",
+            "boundary_recognition",
+            "scaffold_fade",
+            "fresh_transfer"
+          ],
+          "properties": {
+            "answer_or_disposition_specific": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "derivation_specific": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "independent_check": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "misconception_trap_specific": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "transfer_takeaway_specific": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "boundary_recognition": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "scaffold_fade": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "fresh_transfer": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "audit_4_runtime_release_integrity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "implementation_locator",
+            "static_syntax",
+            "handler_and_control_integrity",
+            "identifier_integrity",
+            "no_placeholder_or_undefined_output",
+            "deterministic_reset",
+            "runtime_smoke",
+            "accessibility_baseline"
+          ],
+          "properties": {
+            "implementation_locator": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "static_syntax": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "handler_and_control_integrity": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "identifier_integrity": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "no_placeholder_or_undefined_output": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "deterministic_reset": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "runtime_smoke": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "accessibility_baseline": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "PENDING",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "audit_evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unresolved_findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "severity",
+              "detail"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 3
+              },
+              "severity": {
+                "enum": [
+                  "CRITICAL",
+                  "HIGH",
+                  "MEDIUM",
+                  "LOW"
+                ]
+              },
+              "detail": {
+                "type": "string",
+                "minLength": 10
+              }
+            }
+          }
+        },
+        "waivers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 10
+          },
+          "description": "Map audit check id to a concrete rationale when that check is NOT_APPLICABLE."
         }
       }
     }

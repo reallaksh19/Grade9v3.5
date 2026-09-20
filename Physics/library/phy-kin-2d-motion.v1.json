@@ -62,7 +62,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner treats independent x- and y-component equations as if they may use unrelated clocks and still form one physical state.",
@@ -151,6 +151,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is the pair of component clock values, their synchronization status, x(t_x), y(t_y), and whether the reconstructed ordered pair is a valid simultaneous particle state.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Time units and the x(t), y(t) coordinate units must be shared by both component histories and the reconstructed particle readout; no representation may apply an independent conversion.",
+              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -196,7 +255,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner solves separate x- and y-times for what is actually one physical event such as impact, apex, or crossing a wall.",
@@ -285,6 +344,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is the selected named physical event and its solved t_event; the trajectory highlight and every component evaluation must sample that same event time.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "The event-time unit and the units used by every component function must agree, and any event marker must be recomputed from the same t_event rather than a separately stored display value.",
+              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -330,7 +448,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner classifies an object as an ideal projectile because it was launched or follows a curved path, without checking post-release interactions.",
@@ -419,6 +537,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is the active set of post-release interactions; it must drive the force view, model-status gate, component accelerations, trajectory assumptions, and whether projectile equations are unlocked.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Force, mass, gravitational-field and acceleration quantities must use one declared unit system, with the same gravity magnitude and sign convention feeding both the interaction audit and acceleration readouts.",
+              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -464,7 +641,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner interprets the highest point as a place where the projectile stops and gravity or acceleration becomes zero.",
@@ -554,6 +731,65 @@
               "boundary_stress": false,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is one projectile state at the scrubbed time t; trajectory position, v_x, v_y, acceleration, speed, and apex status must all be derived from that same instant.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "The same gravity value, time unit, coordinate scale, and velocity units must feed trajectory position, v_y evolution, speed magnitude and apex detection; no apex-only constant may diverge.",
+              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -599,7 +835,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner concludes that returning to the same height means returning to the same velocity or complete motion state.",
@@ -688,6 +924,65 @@
               "boundary_stress": false,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is the chosen ascent event plus its computed equal-height descent partner on the same ideal trajectory; both markers, signed components, resultant vectors and speed comparison derive from that pair.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Both paired events must share one coordinate and velocity unit system, and each speed magnitude must be recomputed from its displayed signed components rather than stored independently.",
+              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }
@@ -735,7 +1030,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner applies same-height projectile shortcuts or sets u_y=0 merely because the landing height differs from the launch height.",
@@ -825,6 +1120,65 @@
               "boundary_stress": true,
               "scaffold_fade": false,
               "fresh_transfer_without_scaffold": false
+            },
+            "state_fidelity_contract": {
+              "source_of_truth": "The authoritative state is the fixed launch state together with the movable landing-surface height; signed Δy, vertical event equation, impact time, impact marker and horizontal range all derive from those values.",
+              "external_state_mapping": "NOT_APPLICABLE",
+              "missing_parameter_policy": "NEVER_INVENT_AS_EXACT",
+              "fidelity_labels": [
+                "EXACT",
+                "CONSTRAINT_FAITHFUL",
+                "CONCEPT_ONLY",
+                "UNAVAILABLE"
+              ],
+              "unit_constant_policy": "Launch and landing heights, signed Δy, u_y, g, event time and horizontal range must use one declared unit/constant convention, with the same g feeding both the vertical event solver and trajectory.",
+              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry."
+            },
+            "quality_audit": {
+              "checklist_version": "1.0.0",
+              "audit_status": "PARTIAL",
+              "last_audited": null,
+              "audit_1_canonical_truth_scope": {
+                "canonical_binding": "PENDING",
+                "assumptions_and_conventions": "PENDING",
+                "derivation_or_model_check": "PENDING",
+                "units_constants_parameters": "PENDING",
+                "boundary_limit_cases": "PENDING",
+                "source_claim_fidelity": "PENDING"
+              },
+              "audit_2_graphical_state_fidelity": {
+                "single_state_source": "PENDING",
+                "representation_synchronization": "PENDING",
+                "direct_manipulation_is_causal": "PENDING",
+                "counterfactual_is_honest": "PENDING",
+                "progressive_disclosure": "PENDING",
+                "control_state_mapping": "PENDING",
+                "no_invented_exact_parameters": "PENDING",
+                "interaction_fidelity_disclosed": "PENDING"
+              },
+              "audit_3_reconstruction_teaching_transfer": {
+                "answer_or_disposition_specific": "PENDING",
+                "derivation_specific": "PENDING",
+                "independent_check": "PENDING",
+                "misconception_trap_specific": "PENDING",
+                "transfer_takeaway_specific": "PENDING",
+                "boundary_recognition": "PENDING",
+                "scaffold_fade": "PENDING",
+                "fresh_transfer": "PENDING"
+              },
+              "audit_4_runtime_release_integrity": {
+                "implementation_locator": "PENDING",
+                "static_syntax": "PENDING",
+                "handler_and_control_integrity": "PENDING",
+                "identifier_integrity": "PENDING",
+                "no_placeholder_or_undefined_output": "PENDING",
+                "deterministic_reset": "PENDING",
+                "runtime_smoke": "PENDING",
+                "accessibility_baseline": "PENDING"
+              },
+              "audit_evidence_refs": [],
+              "unresolved_findings": [],
+              "waivers": {}
             }
           }
         }

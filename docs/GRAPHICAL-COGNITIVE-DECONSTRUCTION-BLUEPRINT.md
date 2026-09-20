@@ -1,4 +1,4 @@
-# Graphical Cognitive Deconstruction Route (GCDR) — Blueprint v1.0
+# Graphical Cognitive Deconstruction Route (GCDR) — Blueprint v1.1
 
 ## Status
 
@@ -126,58 +126,73 @@ physical scene only
 fresh task without explorer
 ```
 
-## 3-Audit Universal Quality Gate
+## 4-Audit Universal Quality Gate
+
+The quality gate is now both a design checklist and a machine-bound audit record.
+
+The authoritative checklist is
+[`docs/GCDR-QUALITY-AUDIT-CHECKLIST.md`](GCDR-QUALITY-AUDIT-CHECKLIST.md), and every
+`gcdr_contract` carries its current status under `quality_audit`.
 
 ### Audit 1 — Canonical Truth & Scope
-Before implementation, verify:
 
-- exact capability and semantic leaf;
-- assumptions and sign/frame/system conventions;
-- primitive vs derived quantities;
-- hold/vary/notice structure;
-- invariant and conditional claims;
-- boundary/limit cases;
-- prerequisites.
+Verify the semantic/capability binding, assumptions and conventions, equations/model claims,
+units/constants/parameters, boundary cases, and source-claim fidelity.
 
 No visual may be more authoritative than the canonical academic records.
 
-### Audit 2 — Graphical Cognitive Deconstruction
-This is the hardest gate.
+### Audit 2 — Graphical Deconstruction & State Fidelity
 
-Ask:
+Verify that one authoritative state drives every view; all representations stay synchronized;
+manipulation changes real state rather than cosmetic labels; counterfactuals compute/render the
+wrong model honestly; progressive disclosure is preserved; externally loaded controls map to
+the variables that actually govern the model; and missing parameters are never invented and
+presented as an exact task load.
 
-- What is invisible in the ordinary explanation?
-- What can the learner manipulate?
-- Which prediction must be elicited before reveal?
-- What observation contradicts the wrong model?
-- Which mechanism must become visible?
-- Which representations must remain synchronized?
-- How does the equation emerge from the visual mechanism?
-- Which boundary case breaks an overgeneralized shortcut?
+External task mappings use only these learner-visible fidelity classes:
 
-**Fail Audit 2** if a paragraph + equation + decorative animation would provide essentially the same learning experience.
+- `EXACT`;
+- `CONSTRAINT_FAITHFUL`;
+- `CONCEPT_ONLY`;
+- `UNAVAILABLE`.
 
-### Audit 3 — Reconstruction & Transfer
-The learner must demonstrate:
+The mandatory policy is `NEVER_INVENT_AS_EXACT`.
 
-1. canonical reconstruction;
-2. representation transfer;
-3. boundary recognition;
-4. fresh transfer without the explorer.
+**Fail Audit 2** if a paragraph + equation + decorative animation would provide essentially
+the same learning experience, or if the activity can claim a successful load without proving
+that the governing state changed.
 
-A multiple-choice score alone is insufficient exit evidence.
+### Audit 3 — Reconstruction, Teaching Support & Transfer
+
+The implementation must provide a learner-facing or teacher/debug explanation layer that can
+show the governing model, task-specific derivation, final result/disposition, an independent
+check, the concrete misconception trap, the transferable takeaway, the boundary, and the
+interaction-fidelity disclosure.
+
+The learner must still demonstrate canonical reconstruction, representation transfer, boundary
+recognition, scaffold fade, and fresh transfer without the explorer. A multiple-choice score
+alone is insufficient exit evidence.
+
+### Audit 4 — Runtime & Release Integrity
+
+Before release, verify the implementation locator, executable/data syntax, handler/control
+wiring, identifier integrity, absence of placeholder/`undefined` output, deterministic reset,
+a supported-runtime smoke test, and an accessibility baseline.
+
+A blocked runtime smoke test must remain visible as a limitation; static checks may not be
+silently promoted to runtime proof.
 
 ## Entry and exit contracts
 
 Every GCDR activity is machine-bound through `resource.extensions.topic_atlas.gcdr_contract`.
 
-The contract declares route triggers, cognitive target, interaction sequence, graphical mechanism, boundary stress, and exit evidence.
+The contract declares route triggers, cognitive target, interaction sequence, graphical mechanism, state-fidelity policy, boundary stress, exit evidence, implementation evidence, and the quality-audit record.
 
 Conformance states:
 
 - `DESIGN_BOUND` — blueprint metadata exists;
 - `IMPLEMENTATION_PARTIAL` — some required interaction behaviours exist, but not all;
-- `CERTIFIED` — every implementation-evidence flag is true and CI validates structural/referential integrity.
+- `CERTIFIED` — every implementation-evidence flag is true, the quality audit is `PASS`, no unresolved audit findings remain, and CI validates structural/referential integrity.
 
 `CERTIFIED` does **not** imply human scientific or pedagogical approval; those remain separate review authorities.
 
@@ -193,6 +208,9 @@ Conformance states:
 - a boundary case breaks a shortcut;
 - scaffolds fade;
 - fresh transfer succeeds without the explorer;
+- every quality-audit check is `PASS` or explicitly waived as `NOT_APPLICABLE` with rationale;
+- at least one audit-evidence reference exists and no unresolved audit finding remains;
+- runtime smoke and accessibility-baseline checks are recorded rather than assumed;
 - the exit rejoins the same semantic leaf.
 
 ## Reference implementation lessons

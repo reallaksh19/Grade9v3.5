@@ -131,12 +131,75 @@ def findings(repo: Path = REPO) -> list[dict]:
                 add(path, rid, "MISSING_IMPLEMENTATION", locator)
 
             evidence = contract["implementation_evidence"]
+            quality = contract["quality_audit"]
+            audit_groups = (
+                "audit_1_canonical_truth_scope",
+                "audit_2_graphical_state_fidelity",
+                "audit_3_reconstruction_teaching_transfer",
+                "audit_4_runtime_release_integrity",
+            )
+            audit_checks = {
+                f"{group}.{name}": status
+                for group in audit_groups
+                for name, status in quality[group].items()
+            }
+
+            waivable_checks = {
+                "audit_2_graphical_state_fidelity.control_state_mapping",
+                "audit_2_graphical_state_fidelity.no_invented_exact_parameters",
+                "audit_2_graphical_state_fidelity.interaction_fidelity_disclosed",
+            }
+            external_mapping = contract["state_fidelity_contract"]["external_state_mapping"]
+
+            for check_id, status in audit_checks.items():
+                if status != "NOT_APPLICABLE":
+                    continue
+                if check_id not in quality["waivers"]:
+                    add(path, rid, "UNJUSTIFIED_NOT_APPLICABLE",
+                        f"{check_id} is NOT_APPLICABLE but has no waiver rationale")
+                if check_id not in waivable_checks:
+                    add(path, rid, "UNWAIVABLE_QUALITY_CHECK",
+                        f"{check_id} is a core GCDR quality check and cannot be waived")
+                elif external_mapping != "NOT_APPLICABLE":
+                    add(path, rid, "INVALID_EXTERNAL_MAPPING_WAIVER",
+                        f"{check_id} may be waived only when external_state_mapping=NOT_APPLICABLE")
+
+            for waived_id in quality["waivers"]:
+                if waived_id not in audit_checks:
+                    add(path, rid, "UNKNOWN_AUDIT_WAIVER",
+                        f"waiver references unknown quality check {waived_id}")
+                elif audit_checks[waived_id] != "NOT_APPLICABLE":
+                    add(path, rid, "STALE_AUDIT_WAIVER",
+                        f"waiver exists for {waived_id} but the check is not NOT_APPLICABLE")
+
+            if quality["audit_status"] == "PASS":
+                incomplete = [
+                    check_id for check_id, status in audit_checks.items()
+                    if status not in {"PASS", "NOT_APPLICABLE"}
+                ]
+                if incomplete:
+                    add(path, rid, "FALSE_AUDIT_PASS",
+                        "quality_audit PASS requires every check PASS or NOT_APPLICABLE: "
+                        + ", ".join(incomplete))
+                if quality["unresolved_findings"]:
+                    add(path, rid, "AUDIT_PASS_WITH_OPEN_FINDINGS",
+                        "quality_audit PASS cannot carry unresolved_findings")
+                if not quality["audit_evidence_refs"]:
+                    add(path, rid, "AUDIT_PASS_WITHOUT_EVIDENCE",
+                        "quality_audit PASS requires at least one audit_evidence_ref")
+
             if contract["conformance_status"] == "CERTIFIED":
                 missing = [name for name, present in evidence.items() if not present]
                 if missing:
                     add(path, rid, "FALSE_CERTIFICATION",
                         "CERTIFIED requires every implementation_evidence flag true: "
                         + ", ".join(missing))
+                if quality["audit_status"] != "PASS":
+                    add(path, rid, "FALSE_QUALITY_CERTIFICATION",
+                        "CERTIFIED requires quality_audit.audit_status=PASS")
+                if quality["unresolved_findings"]:
+                    add(path, rid, "FALSE_QUALITY_CERTIFICATION",
+                        "CERTIFIED cannot carry unresolved quality-audit findings")
 
     return result
 
