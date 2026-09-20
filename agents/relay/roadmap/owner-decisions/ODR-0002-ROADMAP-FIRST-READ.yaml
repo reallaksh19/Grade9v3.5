@@ -1,0 +1,63 @@
+{
+  "schema_version": "relay-v2.5",
+  "id": "ODR-0002-ROADMAP-FIRST-READ",
+  "decision": {
+    "authority": "OWNER",
+    "kind": "INTENT_MUTATION",
+    "statement": "Update the existing Grade9V3 roadmap under engineering-pr-delivery V2.5, make the governed roadmap discoverable from README so any agent reads it first, and improve or revamp overlapping roadmap documentation where required.",
+    "source": "Owner instruction in the active Grade9V3 engineering session on 2026-09-20: 'as per engg PR delivery v2.5 update existing roadmap, link it to readme (so that any agent using this repo, first reads it). search repo for existing roadmap, or improve it , revamp if required.'"
+  },
+  "effects": {
+    "requirement_disposition": "NOT_APPLICABLE",
+    "grants_material_write_authority": false,
+    "pending_items": []
+  },
+  "delivery_authorization": null,
+  "impact": {
+    "class": [
+      "PROGRAMME",
+      "DOCUMENTATION",
+      "REPOSITORY_GOVERNANCE"
+    ]
+  },
+  "affected": {
+    "objectives": [
+      "OBJ-TOPIC-ATLAS-COMPLETE"
+    ],
+    "phases": [
+      "PHASE-TAKEOVER-RECONCILIATION"
+    ],
+    "work_packages": [
+      "WP-TA-106",
+      "WP-TA-103"
+    ],
+    "execution_packages": [],
+    "issues": []
+  },
+  "change_intake": {
+    "previous_concept": "Grade9V3 has a live V2.5 execution roadmap under agents/relay, while README points agents to docs/PROGRAM-PLAN.md and several older roadmap-like documents can be mistaken for current execution authority.",
+    "requested_concept": "A zero-context agent entering through README must immediately discover the V2.5 repository state, current governed roadmap, progress and active EP; older program, learner-ready and future plans remain useful context but cannot masquerade as the live execution roadmap.",
+    "retained_behavior": [
+      "Keep agents/relay/roadmap/OVERALL_ROADMAP.yaml and REPO_STATE.yaml as structured V2.5 execution authority.",
+      "Keep docs/PROGRAM-PLAN.md, docs/ROADMAP-LEARNER-READY.md and docs/FUTURE-ROAD-PLAN.md as useful product/architecture/history context.",
+      "Keep the current Topic Atlas completion sequence and all already accepted progress."
+    ],
+    "invalidated_behavior": [
+      "Do not present docs/PROGRAM-PLAN.md as the only roadmap-like entry point for agents.",
+      "Do not let historical or future planning documents appear to outrank current V2.5 relay state.",
+      "Do not create a second competing current-execution roadmap."
+    ],
+    "new_scope": [
+      "Add a README first-read agent entry block linking REPO_STATE, OVERALL_ROADMAP, PROGRESS and the active EP locator contract.",
+      "Add authority/status notices and cross-links to existing roadmap-like documentation where needed.",
+      "Preserve one machine-authoritative V2.5 execution roadmap while making human context easier to navigate."
+    ]
+  },
+  "required_reconciliation": [
+    "Insert a bounded documentation/governance work package before the remaining Atlas surface work.",
+    "Reallocate only unearned future work-package weight so total programme weight remains 100.",
+    "Keep active WP-TA-102 unchanged and certify continuity across the roadmap revision.",
+    "Recompute Progress Basis and current frontier."
+  ],
+  "status": "APPLIED"
+}

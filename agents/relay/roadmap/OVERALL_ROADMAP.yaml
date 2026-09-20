@@ -2,9 +2,9 @@
   "schema_version": "relay-v2.5",
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0003",
+    "revision": "RM-0004",
     "title": "Grounded Topic Atlas and Core completion",
-    "revision_record": "agents/relay/roadmap/revisions/RM-0003.yaml"
+    "revision_record": "agents/relay/roadmap/revisions/RM-0004.yaml"
   },
   "objectives": [
     {
@@ -43,14 +43,26 @@
               ]
             },
             {
+              "id": "WP-TA-106",
+              "title": "Make the governed roadmap the repository first-read agent entry point",
+              "state": "PLANNED",
+              "definition": "DETAILED",
+              "execution_status": "WAITING",
+              "weight": 5,
+              "depends_on": [
+                "WP-TA-102"
+              ],
+              "issue": "ISSUE-118"
+            },
+            {
               "id": "WP-TA-103",
               "title": "Add missing Atlas surfaces and justified exact resource bindings",
               "state": "PLANNED",
               "definition": "DETAILED",
               "execution_status": "WAITING",
-              "weight": 15,
+              "weight": 10,
               "depends_on": [
-                "WP-TA-102"
+                "WP-TA-106"
               ]
             },
             {
