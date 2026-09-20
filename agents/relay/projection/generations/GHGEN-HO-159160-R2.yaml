@@ -1,0 +1,68 @@
+{
+  "schema_version": "relay-v2.5-github-projection",
+  "generation": {
+    "id": "GHGEN-HO-159160-R2",
+    "repository": "reallaksh19/Grade9V3",
+    "roadmap_revision": "RM-0008",
+    "issue_graph_revision": "IG-0004",
+    "execution_ref": "EP-TA-008",
+    "state": "PREPARED",
+    "supersedes_generation": "GHGEN-HO-03943C0B50F7",
+    "basis": [
+      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "agents/relay/execution-packages/EP-TA-008.yaml",
+      "agents/relay/certifications/questions/QSET-TA-009.yaml",
+      "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
+      "GitHub provider readback for Issue #160"
+    ]
+  },
+  "operations": [
+    {
+      "id": "GHOP-HO-159160-REVISE",
+      "kind": "REVISE",
+      "state": "PREPARED",
+      "idempotency_key": "relay:GHGEN-HO-159160-R2:GHOP-HO-159160-REVISE",
+      "depends_on": [],
+      "subject": {
+        "issue_node": "HANDOVER-ISS159-03943C0B50F7",
+        "related_nodes": [
+          "ISSUE-159",
+          "ISSUE-160"
+        ]
+      },
+      "preconditions": {
+        "repository_issue_state": "OPEN",
+        "work_state": "ACTIVE"
+      },
+      "desired": {
+        "body_marker": "<!-- relay-operation:GHOP-HO-159160-REVISE -->",
+        "body_projection": "<!-- relay-operation:GHOP-HO-159160-REVISE -->\n<!-- relay-handover-key:sha256:03943c0b50f7dceee40ddff57d0391c6c3e1ac5e9df170e0952d53ccea514024 -->\n# Engineering handover intent\n\n## Current governed state\n- Mother contract: #159\n- Roadmap: `RM-0008`\n- Work package: `WP-TA-107`\n- Active execution package: `EP-TA-008`\n- Predecessor checkpoint: `CP-TA-007 / EP-TA-007`\n- Accepted programme progress: **70/100**\n- EP-TA-008 acceptance credit: **0**\n- Route material authority: **WRITE**\n- Fresh candidate admission for QSET-TA-009: **not yet present**\n\n## Ownership correlation\n- #160 owns the completed NLM canonical-representation/staged-help slice delivered by `WP-TA-104 / EP-TA-007`.\n- #159 owns the current Shared subtopic-session router slice `WP-TA-107 / EP-TA-008`.\n- The takeover audit remains `agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml`.\n\n## Reconciliation already completed\n- EP-TA-008 has been reconciled from RM-0007 to the Issue #159 mother contract under RM-0008.\n- Fresh `QSET-TA-009` is bound to EP digest `sha256:6b043f8ab3430846ea99b9b4ea8d75c2f9e0b197cb879caa1eb0afce2f8fcccf`.\n- Exact-head relay conformance, cold-start reconstruction, baton readiness, route resolution and repository guardrails are green.\n- Live base drift was `UNCHANGED`.\n- The material gate is closed only because no fresh candidate has yet completed DISC/QUAL/TC for QSET-TA-009.\n\n## First authorized runtime slice after candidate certification\n1. Require proven-independent evidence for READY.\n2. Resolve requested support through the active family `support_ladder`.\n3. Withhold/report undeclared support; never alias low to minimum.\n4. Preserve the EXECUTION/CARELESS protection against conceptual REBUILD.\n5. Run focused TEST-TA8-001 before gateway/transfer/presentation edits.\n\n## Remaining mother-contract phases\n- bounded no-estimate gateway;\n- stable same-family transfer eligibility and family/demand-aware selection;\n- renderer-independent representation/scene vs checkpoint vs pedagogy-injection output;\n- feedback/repair/fresh-verification reuse;\n- separate NLM R3 and R8 proof witnesses;\n- exact-head QRV/checkpoint/progress/PR-delivery reconciliation.\n\n## Owner invariants\n- question count is not a completion denominator;\n- optional evidence improves specificity but is never mandatory for useful study;\n- no mastery percentage/probability;\n- READY/REINFORCE/REBUILD are never persisted learner states;\n- starting support never consumes `question.hints[]`;\n- canonical Physics/matrix truth remains read-only for WP-TA-107;\n- green CI alone never awards acceptance credit.\n\n## Candidate entry point\nRead this issue, #159, `REPO_STATE.yaml`, `EP-TA-008.yaml`, `QSET-TA-009.yaml`, CP-TA-007 and the audit. Produce fresh repository-only DISC/QUAL/TC, then require `material_write_ready: true` before any learner-runtime write.\n",
+        "github_state": "OPEN",
+        "title": "Engineering handover — Issue #159 / WP-TA-107",
+        "source_issue_number": 159
+      },
+      "publication": {
+        "attempt_count": 0,
+        "receipt": null,
+        "last_error": null
+      },
+      "verification": {
+        "status": "NOT_RUN",
+        "basis": []
+      },
+      "reconciliation": {
+        "issue_graph_effects": [
+          {
+            "node": "HANDOVER-ISS159-03943C0B50F7",
+            "set_github_state": "OPEN"
+          }
+        ],
+        "complete_when": [
+          "issue identity verified",
+          "relay-operation marker verified"
+        ]
+      }
+    }
+  ]
+}

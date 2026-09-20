@@ -1,6 +1,6 @@
 {
   "schema_version": "relay-v2.5",
-  "graph_revision": "IG-0003",
+  "graph_revision": "IG-0004",
   "nodes": [
     {
       "id": "ISSUE-118",
@@ -241,11 +241,27 @@
         "id": "ISSUE-159",
         "work_package": "WP-TA-107"
       }
+    },
+    {
+      "id": "ISSUE-160",
+      "state": "ACTIVE",
+      "github_state": "OPEN",
+      "github": {
+        "issue_number": 160,
+        "issue_id": 5517410730,
+        "url": "https://github.com/reallaksh19/Grade9V3/issues/160"
+      },
+      "roadmap_node": "WP-TA-104"
     }
   ],
   "relationships": [
     {
       "from": "HANDOVER-ISS159-03943C0B50F7",
+      "relation": "RELATES_TO",
+      "to": "ISSUE-159"
+    },
+    {
+      "from": "ISSUE-160",
       "relation": "RELATES_TO",
       "to": "ISSUE-159"
     }

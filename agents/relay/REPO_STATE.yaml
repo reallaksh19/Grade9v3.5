@@ -87,21 +87,20 @@
   },
   "projection": {
     "required": true,
-    "state": "IN_SYNC",
-    "operation_id": "GHGEN-HO-03943C0B50F7",
+    "state": "PENDING",
+    "operation_id": "GHGEN-HO-159160-R2",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-HO-03943C0B50F7.yaml",
+    "plan": "agents/relay/projection/generations/GHGEN-HO-159160-R2.yaml",
     "roadmap_revision": "RM-0008",
     "execution_ref": "EP-TA-008",
-    "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
+    "receipt": null,
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
-      "agents/relay/roadmap/owner-decisions/ODR-0005-ISSUE159-MOTHER-CONTRACT.yaml",
-      "agents/relay/roadmap/revisions/RM-0008.yaml",
-      "agents/relay/reports/AUDIT-TA-008-MOTHER-CONTRACT.yaml",
-      "handover-generation:GHGEN-HO-03943C0B50F7"
+      "agents/relay/execution-packages/EP-TA-008.yaml",
+      "agents/relay/certifications/questions/QSET-TA-009.yaml",
+      "handover-generation:GHGEN-HO-159160-R2"
     ],
     "superseded_operations": [
       {
@@ -115,6 +114,18 @@
         "basis": [
           "Issue #159 is now the mapped mother contract for WP-TA-107; the prior handover source was the active EP because no source issue was mapped."
         ]
+      },
+      {
+        "operation_id": "GHGEN-HO-03943C0B50F7",
+        "target": "github:reallaksh19/Grade9V3:issues",
+        "roadmap_revision": "RM-0008",
+        "execution_ref": "EP-TA-008",
+        "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
+        "superseded_by": "GHGEN-HO-159160-R2",
+        "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
+        "basis": [
+          "Issue graph advanced to IG-0004 after verifying Issue #160 as WP-TA-104 owner; handover body must be revised to current Phase-1/QSET-TA-009 state."
+        ]
       }
     ],
     "observed": {
@@ -125,8 +136,7 @@
       "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
       "basis": [
         "Issue #164 provider readback",
-        "relay-operation:GHOP-HO-03943C0B50F7",
-        "Issue #159 comment 5750665728 reciprocal reference"
+        "relay-operation:GHOP-HO-03943C0B50F7"
       ]
     }
   },
@@ -141,11 +151,11 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": true,
-    "handover_ready": true,
+    "projection_ready": false,
+    "handover_ready": false,
     "reasons": [
-      "RM-0008 EP-TA-008 has a current semantic contract and fresh QSET-TA-009.",
-      "Issue #159/#164 external projection is provider-verified; candidate-specific qualification is intentionally not part of BATON_READY."
+      "Baton is semantically reconstructable and QSET-TA-009 is current.",
+      "Successor handover projection is pending publication/readback after ISSUE_GRAPH IG-0004 added verified Issue #160 ownership."
     ]
   },
   "chat_context_required": false
