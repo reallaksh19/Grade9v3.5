@@ -48,12 +48,12 @@
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-006",
-        "path": "agents/relay/certifications/discovery/DISC-TA-006.yaml"
+        "id": "DISC-TA-007",
+        "path": "agents/relay/certifications/discovery/DISC-TA-007.yaml"
       },
       "certification": {
-        "id": "TC-TA-006",
-        "path": "agents/relay/certifications/takeover/TC-TA-006.yaml"
+        "id": "TC-TA-007",
+        "path": "agents/relay/certifications/takeover/TC-TA-007.yaml"
       }
     }
   ],
@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the owner-safe RM-0006 EP-TA-003 contract and fresh candidate certification on the exact metadata head, then publish the quality review and checkpoint the roadmap-first slice."
+      "next_action": "Validate the owner-safe roadmap-first contract on the exact metadata head, then publish the quality review and checkpoint this slice."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Repository guardrails and V2.5 relay were green on final material head 22f0139b6cf04f86aa90345af3d7a14d022a6b23. The direct RM-0006 EP contract was corrected to keep relay-internal file jargon out of owner-visible next-work wording and requires exact-head relay validation.",
+      "summary": "The repository test suite is green for the roadmap-first changes. The active contract has been normalized so owner-visible purpose, risks and next work use plain language; exact-head V2.5 validation remains before checkpoint.",
       "not_run": [
         {
-          "id": "EP-TA-003-RM0006-OWNER-VIEW-VALIDATION",
-          "reason": "The owner-safe EP contract and fresh candidate certification have not yet been observed by exact-head CI.",
+          "id": "EP-TA-003-OWNER-VIEW-FINAL",
+          "reason": "The final owner-safe active contract and fresh candidate certification have not yet been observed by exact-head V2.5 validation.",
           "cause": "NOT_SCHEDULED"
         }
       ]
