@@ -753,8 +753,8 @@ class StudySessionRunner(unittest.TestCase):
             "error_stage": None,
         }
         with patch.object(
-            study_session.worksheet_study_plan.learner_evidence,
-            "effective_state",
+            study_session.worksheet_study_plan,
+            "_profile_state",
             return_value=independent,
         ):
             report = study_session.plan(self.nlm_fbd_mapping())
