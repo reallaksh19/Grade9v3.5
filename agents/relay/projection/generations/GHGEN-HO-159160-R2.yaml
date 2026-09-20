@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0008",
     "issue_graph_revision": "IG-0004",
     "execution_ref": "EP-TA-008",
-    "state": "PUBLISHING",
+    "state": "IN_SYNC",
     "supersedes_generation": "GHGEN-HO-03943C0B50F7",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -21,7 +21,7 @@
     {
       "id": "GHOP-HO-159160-REVISE",
       "kind": "REVISE",
-      "state": "ATTEMPTED_UNCONFIRMED",
+      "state": "VERIFIED",
       "idempotency_key": "relay:GHGEN-HO-159160-R2:GHOP-HO-159160-REVISE",
       "depends_on": [],
       "subject": {
@@ -44,7 +44,7 @@
       },
       "publication": {
         "attempt_count": 1,
-        "receipt": null,
+        "receipt": "github-issue-update:https://github.com/reallaksh19/Grade9V3/issues/164",
         "last_error": null,
         "last_attempt_basis": [
           "prewrite-journal-head:d488a335afd489e72f71bce2895d65236e2b8d6f",
@@ -54,8 +54,19 @@
         ]
       },
       "verification": {
-        "status": "NOT_RUN",
-        "basis": []
+        "status": "PASS",
+        "observed_issue_number": 164,
+        "observed_issue_id": 5518649343,
+        "observed_github_state": "OPEN",
+        "observed_relationships": [
+          "Issue #164 body names #160 -> WP-TA-104/EP-TA-007 and #159 -> WP-TA-107/EP-TA-008"
+        ],
+        "basis": [
+          "GitHub update response for https://github.com/reallaksh19/Grade9V3/issues/164",
+          "GitHub provider readback https://api.github.com/repos/reallaksh19/Grade9V3/issues/164",
+          "Verified relay-operation marker GHOP-HO-159160-REVISE"
+        ],
+        "recovered_without_connector_receipt": false
       },
       "reconciliation": {
         "issue_graph_effects": [

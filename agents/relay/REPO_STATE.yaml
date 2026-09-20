@@ -87,14 +87,14 @@
   },
   "projection": {
     "required": true,
-    "state": "PENDING",
+    "state": "IN_SYNC",
     "operation_id": "GHGEN-HO-159160-R2",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-HO-159160-R2.yaml",
     "roadmap_revision": "RM-0008",
     "execution_ref": "EP-TA-008",
-    "receipt": null,
+    "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
@@ -129,14 +129,15 @@
       }
     ],
     "observed": {
-      "operation_id": "GHGEN-HO-03943C0B50F7",
+      "operation_id": "GHGEN-HO-159160-R2",
       "target": "github:reallaksh19/Grade9V3:issues",
       "roadmap_revision": "RM-0008",
       "execution_ref": "EP-TA-008",
-      "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
+      "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
       "basis": [
         "Issue #164 provider readback",
-        "relay-operation:GHOP-HO-03943C0B50F7"
+        "relay-operation:GHOP-HO-159160-REVISE",
+        "ISSUE_GRAPH IG-0004"
       ]
     }
   },
@@ -151,11 +152,11 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": false,
-    "handover_ready": false,
+    "projection_ready": true,
+    "handover_ready": true,
     "reasons": [
-      "Baton is semantically reconstructable and QSET-TA-009 is current.",
-      "Successor handover projection is pending publication/readback after ISSUE_GRAPH IG-0004 added verified Issue #160 ownership."
+      "RM-0008 EP-TA-008 has a current semantic contract and fresh QSET-TA-009.",
+      "Issue #164 handover projection is verified in sync with ISSUE_GRAPH IG-0004, including #160 checkpoint ownership and #159 current ownership."
     ]
   },
   "chat_context_required": false
