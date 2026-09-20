@@ -48,7 +48,9 @@ records not individually source-verified remain explicitly `SOURCE_PROVENANCE_PE
 
 ## Question → simulator fidelity audit
 
-The old universal “Load in Simulator” contract was rejected. A load action now uses one of:
+The old universal “Load in Simulator” contract was rejected. Active parameter bindings are now explicit per item through `simBindingRefs`; an EXACT or CONSTRAINT_FAITHFUL mapping must name only parameters that the governed loader actually consumes.
+
+A load action now uses one of:
 
 - `EXACT` — every governing state required by the represented problem is actually bound;
 - `CONSTRAINT_FAITHFUL` — the mapped constraints are genuine, but the rig does not claim a
@@ -69,8 +71,8 @@ The old universal “Load in Simulator” contract was rejected. A load action n
 
 | Fidelity | Questions |
 | --- | --- |
-| EXACT | Q02, Q05 |
-| CONSTRAINT_FAITHFUL | Q12 |
+| EXACT | Q02 |
+| CONSTRAINT_FAITHFUL | Q05, Q12 |
 | CONCEPT_ONLY | Q01, Q03, Q04, Q06, Q07, Q08, Q09, Q10, Q11 |
 | UNAVAILABLE | Q13 |
 
