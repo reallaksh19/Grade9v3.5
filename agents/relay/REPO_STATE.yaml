@@ -11,7 +11,7 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0002",
+    "revision": "RM-0003",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
@@ -43,20 +43,6 @@
   },
   "takeover_admissions": [
     {
-      "route_key": "SERIAL:EP-TA-001",
-      "candidate": {
-        "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
-      },
-      "discovery_receipt": {
-        "id": "DISC-TA-001",
-        "path": "agents/relay/certifications/discovery/DISC-TA-001.yaml"
-      },
-      "certification": {
-        "id": "TC-TA-001",
-        "path": "agents/relay/certifications/takeover/TC-TA-001.yaml"
-      }
-    },
-    {
       "route_key": "SERIAL:EP-TA-002",
       "candidate": {
         "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
@@ -82,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run the candidate-specific V2.5 write gate for EP-TA-002, then implement the Shared diagnostic/Core authority slice in the ordered execution plan."
+      "next_action": "Run the candidate-specific V2.5 material-write gate for EP-TA-002. If it passes, implement the Shared diagnostic/Core authority slice in the EP order."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -113,7 +99,7 @@
     "state": "NOT_REQUIRED",
     "operation_id": null,
     "target": null,
-    "roadmap_revision": "RM-0002",
+    "roadmap_revision": "RM-0003",
     "execution_ref": "EP-TA-002",
     "receipt": null,
     "basis": []
