@@ -1,4 +1,4 @@
-# Graphical Cognitive Deconstruction Route (GCDR) — Blueprint v1.1
+# Graphical Cognitive Deconstruction Route (GCDR) — Blueprint v1.2
 
 ## Status
 
@@ -156,7 +156,7 @@ External task mappings use only these learner-visible fidelity classes:
 - `CONCEPT_ONLY`;
 - `UNAVAILABLE`.
 
-The mandatory policy is `NEVER_INVENT_AS_EXACT`.
+The mandatory policy is `NEVER_INVENT_AS_EXACT`. Any activity that accepts an external task must declare parameter-level source→state bindings. `EXACT` is permitted only when every binding marked required-for-exact resolves; partial mappings remain explicitly `CONSTRAINT_FAITHFUL` or lower.
 
 **Fail Audit 2** if a paragraph + equation + decorative animation would provide essentially
 the same learning experience, or if the activity can claim a successful load without proving
@@ -180,13 +180,15 @@ wiring, identifier integrity, absence of placeholder/`undefined` output, determi
 a supported-runtime smoke test, and an accessibility baseline.
 
 A blocked runtime smoke test must remain visible as a limitation; static checks may not be
-silently promoted to runtime proof.
+silently promoted to runtime proof. The shared DOM-lite runtime auditor may establish executable
+control/reset evidence, but it explicitly does not claim visual-browser or assistive-technology
+proof. Subject-owned numerical/property sweeps remain separate from the generic GCDR layer.
 
 ## Entry and exit contracts
 
 Every GCDR activity is machine-bound through `resource.extensions.topic_atlas.gcdr_contract`.
 
-The contract declares route triggers, cognitive target, interaction sequence, graphical mechanism, state-fidelity policy, boundary stress, exit evidence, implementation evidence, and the quality-audit record.
+The contract declares route triggers, cognitive target, interaction sequence, graphical mechanism, parameter-level state-fidelity bindings, boundary stress, exit evidence, implementation evidence, per-check audit receipts/provenance, and the quality-audit record.
 
 Conformance states:
 
@@ -209,7 +211,7 @@ Conformance states:
 - scaffolds fade;
 - fresh transfer succeeds without the explorer;
 - every quality-audit check is `PASS` or explicitly waived as `NOT_APPLICABLE` with rationale;
-- at least one audit-evidence reference exists and no unresolved audit finding remains;
+- every asserted audit result has digest-bound per-check receipt evidence, audit provenance is recorded, and no unresolved audit finding remains;
 - runtime smoke and accessibility-baseline checks are recorded rather than assumed;
 - the exit rejoins the same semantic leaf.
 

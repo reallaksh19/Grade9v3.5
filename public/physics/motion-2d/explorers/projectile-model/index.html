@@ -14,7 +14,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}.meter{height:10px;ba
 <body><main><div class="top"><div><div class="eyebrow">GRADE9V3 · MOTION IN 2D · REPAIR EXPLORER</div><h1>Is It Really a Projectile?</h1><div class="sub">Select the model from interactions after release, not from a curved path or the fact that an object was launched.</div></div><a class="btn" href="../../index.html">← Topic Atlas</a></div>
 <div style="margin-top:12px"><span class="badge">R3</span><span class="badge">CAP-KIN-PROJECTILE-MODEL</span><span class="badge leaf">K2D3-1</span></div>
 <div class="grid"><section class="card"><h3>Post-release interactions</h3>
- <label><input id="gravity" type="checkbox" checked disabled> gravity</label><br><label><input id="thrust" type="checkbox"> thrust</label><br><label><input id="drag" type="checkbox"> significant drag</label><br><label><input id="contact" type="checkbox"> contact force</label></section>
+ <label><input id="gravity" type="checkbox" checked disabled> gravity</label><br><label><input id="thrust" type="checkbox"> thrust</label><br><label><input id="drag" type="checkbox"> significant drag</label><br><label><input id="contact" type="checkbox"> contact force</label><br><button class="secondary" id="reset">Reset</button></section>
  <section class="card"><h3>Model gate</h3><div id="model" class="value"></div><pre id="accel"></pre></section>
  <section class="card wide"><h3>Decision structure</h3><pre>after release
    ↓
@@ -26,4 +26,4 @@ yes        no
  ↓          ↓
 aₓ=0       use the more general model
 aᵧ=−g</pre></section></div></main><script>const ids=['thrust','drag','contact'];ids.forEach(id=>document.querySelector('#'+id).onchange=draw);
- function draw(){const extra=ids.filter(id=>document.querySelector('#'+id).checked);if(extra.length===0){model.innerHTML='<span class="ok">IDEAL PROJECTILE ✓</span>';accel.textContent='aₓ = 0\naᵧ = −g';}else{model.innerHTML='<span class="bad">IDEAL SPECIALIZATION INVALID</span>';accel.textContent='Retained interaction(s): '+extra.join(', ')+'\nDetermine acceleration from the actual interaction model.';}}draw();</script></body></html>
+ function draw(){const extra=ids.filter(id=>document.querySelector('#'+id).checked);if(extra.length===0){model.innerHTML='<span class="ok">IDEAL PROJECTILE ✓</span>';accel.textContent='aₓ = 0\naᵧ = −g';}else{model.innerHTML='<span class="bad">IDEAL SPECIALIZATION INVALID</span>';accel.textContent='Retained interaction(s): '+extra.join(', ')+'\nDetermine acceleration from the actual interaction model.';}}reset.onclick=()=>{ids.forEach(id=>document.querySelector('#'+id).checked=false);draw()};draw();</script></body></html>

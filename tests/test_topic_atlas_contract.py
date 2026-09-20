@@ -109,6 +109,15 @@ class TopicAtlasContractTest(unittest.TestCase):
                     self.assertEqual(activity["activity_kind"], "GRAPHICAL_COGNITIVE_DECONSTRUCTION")
                     self.assertEqual(activity["support_route"]["kind"], "GCDR")
                     self.assertEqual(activity["support_route"]["conformance_status"], "IMPLEMENTATION_PARTIAL")
+                    self.assertEqual(activity["support_route"]["quality_audit_status"], "PARTIAL")
+                    self.assertGreater(activity["support_route"]["quality_check_counts"]["PENDING"], 0)
+                    self.assertEqual(activity["support_route"]["quality_check_counts"]["FAIL"], 0)
+                    self.assertEqual(activity["support_route"]["external_state_mapping"], "NOT_APPLICABLE")
+                    self.assertEqual(activity["support_route"]["external_state_binding_count"], 0)
+                    self.assertEqual(
+                        activity["support_route"]["missing_parameter_policy"],
+                        "NEVER_INVENT_AS_EXACT",
+                    )
                     self.assertEqual(activity["support_route"]["auto_route_policy"], "RECOMMEND_ONLY")
                     self.assertTrue(activity["support_route"]["recommended_when"])
                     self.assertTrue(activity["support_route"]["learner_evidence_triggers"])

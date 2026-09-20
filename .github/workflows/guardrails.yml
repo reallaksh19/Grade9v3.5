@@ -33,6 +33,17 @@ jobs:
       - name: Graphical cognitive deconstruction contracts are valid
         run: python3 Shared/tools/explorer_design_guard.py --enforce
 
+      # Execute each governed explorer's inline JS in a DOM-lite Node runtime, mutate
+      # controls, verify causal handlers/reset behavior, and reject runtime claims that
+      # overstate what the artifact actually does. This is not visual/browser-layout proof.
+      - name: GCDR runtime integrity claims are honest
+        run: python3 Shared/tools/gcdr_runtime_audit.py --enforce
+
+      # Subject-owned numerical/model falsifiers remain separate from the generic GCDR
+      # tooling so shared governance never hard-codes projectile physics.
+      - name: Motion2D GCDR scientific invariants hold
+        run: python3 Physics/tools/motion2d_gcdr_properties.py --enforce
+
       # A role spec may not require content the schema has nowhere to keep. Enforcing:
       # the 68 findings this first reported are closed, 28 by correcting the spec's path
       # and 40 by adding the field. It is its own step rather than part of the subject

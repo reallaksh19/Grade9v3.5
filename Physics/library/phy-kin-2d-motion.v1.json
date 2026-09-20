@@ -62,7 +62,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/128",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner treats independent x- and y-component equations as if they may use unrelated clocks and still form one physical state.",
@@ -163,12 +163,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Time units and the x(t), y(t) coordinate units must be shared by both component histories and the reconstructed particle readout; no representation may apply an independent conversion.",
-              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state."
+              "reset_policy": "Reset must return both component clocks to the documented common initial instant, clear any ghost-state mismatch, and redraw the particle and both histories from that same state.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -198,18 +200,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "31f7b5c16cd7e5a8d0d6cffc46d4791e03472010287865250ba04c29eef2fb17",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }
@@ -255,7 +343,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/129",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner solves separate x- and y-times for what is actually one physical event such as impact, apex, or crossing a wall.",
@@ -356,12 +444,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "The event-time unit and the units used by every component function must agree, and any event marker must be recomputed from the same t_event rather than a separately stored display value.",
-              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors."
+              "reset_policy": "Reset must restore the default named event, recompute its event time, and resample both components from that one time instead of merely resetting visible selectors.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -391,18 +481,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "6862a2c1affd9626a081dc83b122b8c4a5dc2b1e08d2a58cbaaa211cd75c0c88",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }
@@ -448,7 +624,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/130",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner classifies an object as an ideal projectile because it was launched or follows a curved path, without checking post-release interactions.",
@@ -549,12 +725,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Force, mass, gravitational-field and acceleration quantities must use one declared unit system, with the same gravity magnitude and sign convention feeding both the interaction audit and acceleration readouts.",
-              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state."
+              "reset_policy": "Reset must restore the documented default interaction set and recompute model eligibility, force arrows, acceleration components, and equation visibility from that interaction state.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -584,18 +762,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2baf7aed6910155cf2f6eb9801cbabce1f5c200553a0d40fc3cb62bd65ce6278",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }
@@ -641,7 +905,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/131",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner interprets the highest point as a place where the projectile stops and gravity or acceleration becomes zero.",
@@ -743,12 +1007,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "The same gravity value, time unit, coordinate scale, and velocity units must feed trajectory position, v_y evolution, speed magnitude and apex detection; no apex-only constant may diverge.",
-              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time."
+              "reset_policy": "Reset must restore the documented launch state and scrub time, then recompute position, velocity components, acceleration, speed, and apex indicator from the reset time.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -778,18 +1044,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "79d3964598da7f3b54e6b27ce8cdd24af771c6b471f4ca4bac8b937bd228ddde",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }
@@ -835,7 +1187,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/132",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner concludes that returning to the same height means returning to the same velocity or complete motion state.",
@@ -936,12 +1288,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Both paired events must share one coordinate and velocity unit system, and each speed magnitude must be recomputed from its displayed signed components rather than stored independently.",
-              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states."
+              "reset_policy": "Reset must restore the documented ascent event, recompute the matching descent event, and rebuild both component/vector readouts and the equal-speed comparison from the paired states.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -971,18 +1325,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "99543c8a8a1fe4a78da942b76f4444e1f2559984d891d8cbdf0cc6d613ce6ba9",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }
@@ -1030,7 +1470,7 @@
           "design_issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/133",
           "delivery_mode": "HEAVY_GRAPHICAL",
           "gcdr_contract": {
-            "schema_version": "1.1.0",
+            "schema_version": "1.2.0",
             "conformance_status": "IMPLEMENTATION_PARTIAL",
             "cognitive_target": {
               "target_failure": "The learner applies same-height projectile shortcuts or sets u_y=0 merely because the landing height differs from the launch height.",
@@ -1132,12 +1572,14 @@
                 "UNAVAILABLE"
               ],
               "unit_constant_policy": "Launch and landing heights, signed Δy, u_y, g, event time and horizontal range must use one declared unit/constant convention, with the same g feeding both the vertical event solver and trajectory.",
-              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry."
+              "reset_policy": "Reset must restore the documented launch and landing heights, recompute signed Δy and event time, and redraw the impact and range from that recomputed geometry.",
+              "external_state_bindings": [],
+              "exactness_rule": "ALL_REQUIRED_BINDINGS_PRESENT"
             },
             "quality_audit": {
-              "checklist_version": "1.0.0",
+              "checklist_version": "1.1.0",
               "audit_status": "PARTIAL",
-              "last_audited": null,
+              "last_audited": "2026-09-19",
               "audit_1_canonical_truth_scope": {
                 "canonical_binding": "PENDING",
                 "assumptions_and_conventions": "PENDING",
@@ -1167,18 +1609,104 @@
                 "fresh_transfer": "PENDING"
               },
               "audit_4_runtime_release_integrity": {
-                "implementation_locator": "PENDING",
-                "static_syntax": "PENDING",
-                "handler_and_control_integrity": "PENDING",
-                "identifier_integrity": "PENDING",
-                "no_placeholder_or_undefined_output": "PENDING",
-                "deterministic_reset": "PENDING",
-                "runtime_smoke": "PENDING",
-                "accessibility_baseline": "PENDING"
+                "implementation_locator": "PASS",
+                "static_syntax": "PASS",
+                "handler_and_control_integrity": "PASS",
+                "identifier_integrity": "PASS",
+                "no_placeholder_or_undefined_output": "PASS",
+                "deterministic_reset": "PASS",
+                "runtime_smoke": "PASS",
+                "accessibility_baseline": "PASS"
               },
-              "audit_evidence_refs": [],
               "unresolved_findings": [],
-              "waivers": {}
+              "waivers": {},
+              "audit_provenance": {
+                "mode": "AUTOMATED",
+                "auditor": "Shared/tools/gcdr_runtime_audit.py",
+                "version": "1.0.0"
+              },
+              "audit_receipts": [
+                {
+                  "check_id": "audit_4_runtime_release_integrity.implementation_locator",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.static_syntax",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.handler_and_control_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.identifier_integrity",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.no_placeholder_or_undefined_output",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.deterministic_reset",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.runtime_smoke",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                },
+                {
+                  "check_id": "audit_4_runtime_release_integrity.accessibility_baseline",
+                  "outcome": "PASS",
+                  "method": "AUTOMATED",
+                  "evidence_ref": "github-actions:guardrails:35465893896:gcdr-runtime-integrity",
+                  "artifact_sha256": "2632f1866bfea176aa666bed42fb8bb07c29ab59e57127618234e877fc3cb408",
+                  "audited_at": "2026-09-19T19:57:00Z",
+                  "auditor": "Shared/tools/gcdr_runtime_audit.py@1.0.0",
+                  "note": "Measured PASS against the digest-bound explorer artifact in the DOM-lite runtime/static integrity audit."
+                }
+              ]
             }
           }
         }

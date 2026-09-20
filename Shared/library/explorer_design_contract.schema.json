@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:grade9v3:graphical-cognitive-deconstruction:1.1.0",
+  "$id": "urn:grade9v3:graphical-cognitive-deconstruction:1.2.0",
   "title": "Graphical Cognitive Deconstruction Route Contract",
-  "description": "Governed design and quality-audit contract for heavy-graphical parallel support activities. It supplements, and never replaces, the canonical capability/rung/microtopic/teaching-step graph.",
+  "description": "Governed design, state-binding, runtime and quality-audit contract for heavy-graphical parallel support activities. It supplements, and never replaces, the canonical capability/rung/microtopic/teaching-step graph.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -20,7 +20,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "1.1.0"
+      "const": "1.2.0"
     },
     "conformance_status": {
       "enum": [
@@ -28,7 +28,7 @@
         "IMPLEMENTATION_PARTIAL",
         "CERTIFIED"
       ],
-      "description": "CERTIFIED requires every implementation_evidence flag true, quality_audit.audit_status=PASS, no unresolved findings, and every required quality-audit check PASS or explicitly waived as NOT_APPLICABLE. Human scientific/pedagogical approval remains separate."
+      "description": "CERTIFIED requires every implementation_evidence flag true, quality_audit.audit_status=PASS, evidence-backed quality checks, no unresolved findings, and every required quality-audit check PASS or explicitly waived as NOT_APPLICABLE. Human scientific/pedagogical approval remains separate."
     },
     "cognitive_target": {
       "type": "object",
@@ -369,6 +369,8 @@
       "required": [
         "source_of_truth",
         "external_state_mapping",
+        "external_state_bindings",
+        "exactness_rule",
         "missing_parameter_policy",
         "fidelity_labels",
         "unit_constant_policy",
@@ -407,6 +409,106 @@
         "reset_policy": {
           "type": "string",
           "minLength": 10
+        },
+        "external_state_bindings": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "source_pointer",
+              "target_state_path",
+              "control_id",
+              "required_for_exact",
+              "source_unit",
+              "target_unit",
+              "transform",
+              "transform_note",
+              "missing_behavior"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Z0-9][A-Z0-9._-]{2,127}$"
+              },
+              "source_pointer": {
+                "type": "string",
+                "pattern": "^/.*",
+                "description": "RFC-6901-style pointer into the external task/question payload."
+              },
+              "target_state_path": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Canonical simulator/activity state path governed by this binding."
+              },
+              "control_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "required_for_exact": {
+                "type": "boolean"
+              },
+              "source_unit": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_unit": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transform": {
+                "enum": [
+                  "IDENTITY",
+                  "DEGREES_TO_RADIANS",
+                  "RADIANS_TO_DEGREES",
+                  "CUSTOM_DECLARED"
+                ]
+              },
+              "transform_note": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 10
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "missing_behavior": {
+                "enum": [
+                  "LEAVE_UNSPECIFIED",
+                  "MARK_UNAVAILABLE"
+                ]
+              }
+            }
+          }
+        },
+        "exactness_rule": {
+          "const": "ALL_REQUIRED_BINDINGS_PRESENT"
         }
       }
     },
@@ -417,17 +519,18 @@
         "checklist_version",
         "audit_status",
         "last_audited",
+        "audit_provenance",
         "audit_1_canonical_truth_scope",
         "audit_2_graphical_state_fidelity",
         "audit_3_reconstruction_teaching_transfer",
         "audit_4_runtime_release_integrity",
-        "audit_evidence_refs",
+        "audit_receipts",
         "unresolved_findings",
         "waivers"
       ],
       "properties": {
         "checklist_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "audit_status": {
           "enum": [
@@ -750,14 +853,6 @@
             }
           }
         },
-        "audit_evidence_refs": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
         "unresolved_findings": {
           "type": "array",
           "items": {
@@ -795,6 +890,105 @@
             "minLength": 10
           },
           "description": "Map audit check id to a concrete rationale when that check is NOT_APPLICABLE."
+        },
+        "audit_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "auditor",
+            "version"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "NOT_RUN",
+                "AUTOMATED",
+                "HUMAN",
+                "HYBRID"
+              ]
+            },
+            "auditor": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "audit_receipts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "check_id",
+              "outcome",
+              "method",
+              "evidence_ref",
+              "artifact_sha256",
+              "audited_at",
+              "auditor",
+              "note"
+            ],
+            "properties": {
+              "check_id": {
+                "type": "string",
+                "pattern": "^audit_[1-4]_[a-z0-9_]+\\.[a-z0-9_]+$"
+              },
+              "outcome": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "method": {
+                "enum": [
+                  "AUTOMATED",
+                  "HUMAN",
+                  "HYBRID"
+                ]
+              },
+              "evidence_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "audited_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "auditor": {
+                "type": "string",
+                "minLength": 2
+              },
+              "note": {
+                "type": "string",
+                "minLength": 10
+              }
+            }
+          }
         }
       }
     }

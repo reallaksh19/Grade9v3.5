@@ -1,4 +1,4 @@
-# GCDR Quality Audit Checklist v1.0
+# GCDR Quality Audit Checklist v1.1
 
 This checklist is the executable quality gate for the **Graphical Cognitive Deconstruction Route (GCDR)**.
 
@@ -18,7 +18,8 @@ Each check is one of:
 - `NOT_APPLICABLE` — genuinely outside this activity, with a mandatory waiver rationale. Core GCDR checks are non-waivable; this state is reserved for the three external-state mapping checks when `external_state_mapping=NOT_APPLICABLE`.
 
 `quality_audit.audit_status=PASS` is valid only when every check is `PASS` or justified
-`NOT_APPLICABLE`, at least one `audit_evidence_ref` is present, and
+`NOT_APPLICABLE`, every asserted PASS/FAIL is backed by a matching per-check `audit_receipt`,
+`audit_provenance` identifies how the audit was performed, `last_audited` is present, and
 `unresolved_findings` is empty.
 
 ## Audit 1 — Canonical Truth & Scope
@@ -74,6 +75,31 @@ The UI label may vary; the required reasoning jobs do not.
 | `runtime_smoke` | The core predict → manipulate → observe → reconstruct path has been executed in a supported runtime, with limitations recorded if it cannot be run. |
 | `accessibility_baseline` | Essential controls have labels/focus behavior and the activity remains operable without relying solely on color, hover, or animation. |
 
+## Runtime-audit evidence
+
+`Shared/tools/gcdr_runtime_audit.py` provides an automated Audit-4 falsifier. It checks the
+implementation locator, JavaScript syntax, control/handler integrity, identifier uniqueness,
+placeholder/`undefined` leakage, deterministic reset, a DOM-lite JavaScript smoke runtime, and
+a basic accessible-control-label baseline.
+
+The runtime harness executes inline JavaScript under Node with minimal DOM semantics and mutates
+controls to observe causal output/state changes. It is intentionally reported as
+`STATIC_PLUS_DOM_LITE_JS_RUNTIME_NOT_VISUAL_BROWSER_PROOF`: passing it does not prove CSS/layout,
+canvas geometry, animation timing, pointer hit targets, or full assistive-technology behavior.
+
+Subject-owned property sweeps complement the generic runtime audit. For Motion in 2D,
+`Physics/tools/motion2d_gcdr_properties.py` checks the numerical/model invariants used by the
+six current explorers without moving projectile physics into shared GCDR governance.
+
+### Per-check receipts and provenance
+
+Every asserted `PASS` or `FAIL` must have a matching `audit_receipt`. A receipt records the
+quality-check id, outcome, method (`AUTOMATED`, `HUMAN`, or `HYBRID`), evidence reference,
+artifact SHA-256, timestamp, auditor, and a short note. `audit_provenance` summarizes how the
+overall activity audit was produced.
+
+A stale receipt whose outcome no longer matches the recorded check status fails the guard.
+
 ## State-fidelity contract
 
 Every GCDR contract also carries `state_fidelity_contract`.
@@ -91,6 +117,28 @@ The learner-facing fidelity vocabulary is fixed:
 
 The mandatory missing-parameter policy is `NEVER_INVENT_AS_EXACT`.
 
+### Parameter-level state bindings
+
+When `external_state_mapping` is not `NOT_APPLICABLE`, the contract must declare
+`external_state_bindings`. Each binding identifies:
+
+- an external `source_pointer`;
+- the governed `target_state_path`;
+- the corresponding control id when one exists;
+- whether the value is required for `EXACT`;
+- source and target units;
+- an explicit transform;
+- and what happens when the source value is absent.
+
+The exactness rule is fixed as `ALL_REQUIRED_BINDINGS_PRESENT`. The shared resolver
+`Shared/tools/gcdr_state_binding.py` never fills a missing source with a convenient default.
+It yields `EXACT` only when every required binding resolves, `CONSTRAINT_FAITHFUL` when only
+a permitted subset resolves, `CONCEPT_ONLY` only under an explicitly concept-capable policy,
+and otherwise `UNAVAILABLE`.
+
+`CUSTOM_DECLARED` transforms require a subject-owned adapter; the shared resolver does not
+silently execute arbitrary conversion logic.
+
 Only `control_state_mapping`, `no_invented_exact_parameters`, and `interaction_fidelity_disclosed` may be `NOT_APPLICABLE`, and only when the activity declares `external_state_mapping=NOT_APPLICABLE`. A waiver for any other check is a guard failure; stale or unknown waiver keys also fail the guard.
 
 ## Certification rule
@@ -100,9 +148,10 @@ A GCDR activity may claim `CERTIFIED` only when:
 1. every legacy `implementation_evidence` flag is true;
 2. `quality_audit.audit_status` is `PASS`;
 3. every quality check is `PASS` or justified `NOT_APPLICABLE`;
-4. at least one audit evidence reference exists;
-5. there are no unresolved quality-audit findings; and
-6. the existing semantic-leaf, capability, sequence, and implementation-locator guards pass.
+4. every asserted PASS/FAIL has matching digest-bound audit receipt evidence;
+5. audit provenance and the audit date are recorded;
+6. there are no unresolved quality-audit findings; and
+7. the existing semantic-leaf, capability, sequence, runtime-honesty, and implementation-locator guards pass.
 
 This certification is structural and implementation-audit conformance only. Human scientific
 review, pedagogical review, empirical learner evidence, and learner-release authority remain

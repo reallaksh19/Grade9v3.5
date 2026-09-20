@@ -14,9 +14,9 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}.meter{height:10px;ba
 <body><main><div class="top"><div><div class="eyebrow">GRADE9V3 · MOTION IN 2D · REPAIR EXPLORER</div><h1>Independent Components, One Shared Clock</h1><div class="sub">Make the contradiction visible: x and y may use separate component equations, but a valid 2D state must sample both at the same physical instant.</div></div><a class="btn" href="../../index.html">← Topic Atlas</a></div>
 <div style="margin-top:12px"><span class="badge">R1</span><span class="badge">CAP-KIN-2D-INDEPENDENT-COMPONENTS</span><span class="badge leaf">K2D1-3</span><span class="badge leaf">K2D1-4</span></div>
 <div class="grid">
- <section class="card"><h3>Build a state</h3><label>x sample time <span id="txv" class="value"></span></label><input id="tx" type="range" min="0" max="4" step=".1" value="2">
- <label>y sample time <span id="tyv" class="value"></span></label><input id="ty" type="range" min="0" max="4" step=".1" value="3">
- <div class="row"><button id="sync">Use one master clock</button><button class="secondary" id="split">Split clocks</button></div></section>
+ <section class="card"><h3>Build a state</h3><label for="tx">x sample time <span id="txv" class="value"></span></label><input id="tx" type="range" min="0" max="4" step=".1" value="2">
+ <label for="ty">y sample time <span id="tyv" class="value"></span></label><input id="ty" type="range" min="0" max="4" step=".1" value="3">
+ <div class="row"><button id="sync">Use one master clock</button><button class="secondary" id="split">Split clocks</button><button class="secondary" id="reset">Reset</button></div></section>
  <section class="card"><h3>Component samples</h3><div>x(t)=4t → <span id="xv" class="value"></span> m</div><div>y(t)=10−2t² → <span id="yv" class="value"></span> m</div><hr><div id="verdict"></div></section>
  <section class="card wide"><h3>Reasoning invariant</h3><pre>separate equations  ≠  separate events
 
@@ -27,4 +27,4 @@ ghost state:   ( x(t₁), y(t₂) ) when t₁ ≠ t₂</pre><p id="stateText"></
  txv.textContent=a.toFixed(1)+' s';tyv.textContent=b.toFixed(1)+' s';xv.textContent=x.toFixed(1);yv.textContent=y.toFixed(1);
  const same=Math.abs(a-b)<1e-9;verdict.innerHTML=same?'<b class="ok">✓ VALID 2D STATE</b>':'<b class="bad">✕ GHOST STATE</b>';
  stateText.textContent=same?'Both components describe the particle at t='+a.toFixed(1)+' s.':'x('+a.toFixed(1)+') and y('+b.toFixed(1)+') are individually meaningful, but their pair was never one physical state.';}
- tx.oninput=draw;ty.oninput=()=>{locked=false;draw()};sync.onclick=()=>{locked=true;draw()};split.onclick=()=>{locked=false;ty.value=Math.min(4,+tx.value+1);draw()};draw();</script></body></html>
+ tx.oninput=draw;ty.oninput=()=>{locked=false;draw()};sync.onclick=()=>{locked=true;draw()};split.onclick=()=>{locked=false;ty.value=Math.min(4,+tx.value+1);draw()};reset.onclick=()=>{locked=false;tx.value=2;ty.value=3;draw()};draw();</script></body></html>

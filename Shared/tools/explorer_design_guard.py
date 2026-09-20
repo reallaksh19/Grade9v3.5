@@ -7,6 +7,7 @@ It does not grant scientific or pedagogical approval.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -149,7 +150,30 @@ def findings(repo: Path = REPO) -> list[dict]:
                 "audit_2_graphical_state_fidelity.no_invented_exact_parameters",
                 "audit_2_graphical_state_fidelity.interaction_fidelity_disclosed",
             }
-            external_mapping = contract["state_fidelity_contract"]["external_state_mapping"]
+            state_fidelity = contract["state_fidelity_contract"]
+            external_mapping = state_fidelity["external_state_mapping"]
+            bindings = state_fidelity["external_state_bindings"]
+
+            binding_ids = [row["id"] for row in bindings]
+            if len(binding_ids) != len(set(binding_ids)):
+                add(path, rid, "DUPLICATE_STATE_BINDING_ID",
+                    "state_fidelity_contract.external_state_bindings ids must be unique")
+
+            if external_mapping == "NOT_APPLICABLE" and bindings:
+                add(path, rid, "UNEXPECTED_STATE_BINDINGS",
+                    "external_state_bindings must be empty when external_state_mapping=NOT_APPLICABLE")
+            if external_mapping != "NOT_APPLICABLE" and not bindings:
+                add(path, rid, "MISSING_STATE_BINDINGS",
+                    "external state mapping requires at least one explicit source→state binding")
+            if external_mapping == "EXACT_REQUIRED" and bindings and not any(
+                row["required_for_exact"] for row in bindings
+            ):
+                add(path, rid, "EXACT_MAPPING_WITHOUT_REQUIRED_BINDING",
+                    "EXACT_REQUIRED needs at least one binding marked required_for_exact")
+            for row in bindings:
+                if row["transform"] == "CUSTOM_DECLARED" and not row["transform_note"]:
+                    add(path, rid, "CUSTOM_TRANSFORM_WITHOUT_NOTE",
+                        f"binding {row['id']} uses CUSTOM_DECLARED without transform_note")
 
             for check_id, status in audit_checks.items():
                 if status != "NOT_APPLICABLE":
@@ -172,6 +196,39 @@ def findings(repo: Path = REPO) -> list[dict]:
                     add(path, rid, "STALE_AUDIT_WAIVER",
                         f"waiver exists for {waived_id} but the check is not NOT_APPLICABLE")
 
+            receipts = quality["audit_receipts"]
+            implementation_digest = None
+            if locator.startswith("public/") and (repo / locator).is_file():
+                implementation_digest = hashlib.sha256((repo / locator).read_bytes()).hexdigest()
+
+            receipts_by_check: dict[str, list[dict]] = {}
+            for receipt in receipts:
+                check_id = receipt["check_id"]
+                if check_id not in audit_checks:
+                    add(path, rid, "UNKNOWN_AUDIT_RECEIPT_CHECK",
+                        f"audit receipt references unknown quality check {check_id}")
+                    continue
+                receipts_by_check.setdefault(check_id, []).append(receipt)
+                if receipt["outcome"] != audit_checks[check_id]:
+                    add(path, rid, "STALE_AUDIT_RECEIPT",
+                        f"{check_id} is {audit_checks[check_id]} but receipt says {receipt['outcome']}")
+                if (
+                    check_id.startswith("audit_4_runtime_release_integrity.")
+                    and implementation_digest is not None
+                    and receipt["artifact_sha256"] != implementation_digest
+                ):
+                    add(path, rid, "STALE_RUNTIME_AUDIT_RECEIPT",
+                        f"{check_id} receipt digest does not match current implementation {locator}")
+
+            for check_id, status in audit_checks.items():
+                if status in {"PASS", "FAIL"} and not any(
+                    receipt["outcome"] == status
+                    for receipt in receipts_by_check.get(check_id, [])
+                ):
+                    add(path, rid, "UNEVIDENCED_AUDIT_RESULT",
+                        f"{check_id}={status} requires a matching per-check audit receipt")
+
+            provenance = quality["audit_provenance"]
             if quality["audit_status"] == "PASS":
                 incomplete = [
                     check_id for check_id, status in audit_checks.items()
@@ -184,9 +241,15 @@ def findings(repo: Path = REPO) -> list[dict]:
                 if quality["unresolved_findings"]:
                     add(path, rid, "AUDIT_PASS_WITH_OPEN_FINDINGS",
                         "quality_audit PASS cannot carry unresolved_findings")
-                if not quality["audit_evidence_refs"]:
+                if not receipts:
                     add(path, rid, "AUDIT_PASS_WITHOUT_EVIDENCE",
-                        "quality_audit PASS requires at least one audit_evidence_ref")
+                        "quality_audit PASS requires per-check audit receipts")
+                if quality["last_audited"] is None:
+                    add(path, rid, "AUDIT_PASS_WITHOUT_DATE",
+                        "quality_audit PASS requires last_audited")
+                if provenance["mode"] == "NOT_RUN" or not provenance["auditor"] or not provenance["version"]:
+                    add(path, rid, "AUDIT_PASS_WITHOUT_PROVENANCE",
+                        "quality_audit PASS requires non-empty audit provenance")
 
             if contract["conformance_status"] == "CERTIFIED":
                 missing = [name for name, present in evidence.items() if not present]
