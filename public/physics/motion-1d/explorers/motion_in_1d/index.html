@@ -1383,93 +1383,91 @@
       const t = dispState.t;
       const v0 = dispState.v0;
       const a = dispState.a;
-
-      // Kinematic integrals
-      const x = v0 * t + 0.5 * a * t * t;
+      const horizon = Number.parseFloat(document.getElementById('sliderDispTime')?.max) || 10;
+      const xAt = s => v0 * s + 0.5 * a * s * s;
+      const x = xAt(t);
       const v = v0 + a * t;
-      const tTurn = (a !== 0) ? -v0 / a : -1;
-      
+      const tTurn = a !== 0 ? -v0 / a : -1;
+
       let dist = 0;
       if (tTurn > 0 && t > tTurn) {
-        const xTurn = v0 * tTurn + 0.5 * a * tTurn * tTurn;
+        const xTurn = xAt(tTurn);
         dist = Math.abs(xTurn) + Math.abs(x - xTurn);
       } else {
         dist = Math.abs(x);
       }
 
-      // Update Telemetry
       document.getElementById('dispLiveClock').textContent = `t = ${t.toFixed(2)} s`;
-      document.getElementById('dispLiveVel').textContent = `v = ${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
-      document.getElementById('telemetryDisp').textContent = `${(x >= 0 ? '+' : '')}${x.toFixed(2)} m`;
+      document.getElementById('dispLiveVel').textContent = `v = ${v >= 0 ? '+' : ''}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryDisp').textContent = `${x >= 0 ? '+' : ''}${x.toFixed(2)} m`;
       document.getElementById('telemetryDist').textContent = `${dist.toFixed(2)} m`;
-      document.getElementById('telemetryV').textContent = `${(v >= 0 ? '+' : '')}${v.toFixed(2)} m/s`;
+      document.getElementById('telemetryV').textContent = `${v >= 0 ? '+' : ''}${v.toFixed(2)} m/s`;
       document.getElementById('telemetryVavg').textContent = t > 0 ? `${(x/t).toFixed(2)} m/s` : '0.00 m/s';
 
-      // 1. Draw Pneumatic Track (cTrack)
       ctxT.fillStyle = '#050811';
       ctxT.fillRect(0, 0, wT, hT);
 
+      const xCandidates = [0, x, xAt(horizon)];
+      if (tTurn >= 0 && tTurn <= horizon) xCandidates.push(xAt(tTurn));
+      const xBounds = paddedBounds(xCandidates, 20, 0.16);
+      const left = 44;
+      const right = Math.max(left + 1, wT - 18);
+      const xToPx = xv => left + ((xv - xBounds.min) / (xBounds.max - xBounds.min)) * (right - left);
+      const xOrigin = xToPx(0);
       const yMid = hT * 0.55;
-      const xOrigin = wT * 0.35;
-      const scaleX = wT / 60;
 
       ctxT.strokeStyle = '#1e293b';
       ctxT.lineWidth = 4;
       ctxT.beginPath();
-      ctxT.moveTo(20, yMid);
-      ctxT.lineTo(wT - 20, yMid);
+      ctxT.moveTo(left, yMid);
+      ctxT.lineTo(right, yMid);
       ctxT.stroke();
 
-      ctxT.fillStyle = '#64748b';
+      const tickStep = niceStep(xBounds.max - xBounds.min, 9);
       ctxT.font = '10px monospace';
       ctxT.textAlign = 'center';
-      for (let xm = -20; xm <= 40; xm += 5) {
-        const px = xOrigin + xm * scaleX;
-        if (px >= 20 && px <= wT - 20) {
-          ctxT.strokeStyle = (xm === 0) ? '#38bdf8' : '#334155';
-          ctxT.lineWidth = (xm === 0) ? 2 : 1;
-          ctxT.beginPath();
-          ctxT.moveTo(px, yMid - 6);
-          ctxT.lineTo(px, yMid + 6);
-          ctxT.stroke();
-          ctxT.fillText((xm >= 0 ? '+' : '') + xm + 'm', px, yMid + 18);
-        }
+      for (let xm = Math.ceil(xBounds.min / tickStep) * tickStep; xm <= xBounds.max + 1e-9; xm += tickStep) {
+        const px = xToPx(xm);
+        ctxT.strokeStyle = Math.abs(xm) < tickStep * 1e-6 ? '#38bdf8' : '#334155';
+        ctxT.lineWidth = Math.abs(xm) < tickStep * 1e-6 ? 2 : 1;
+        ctxT.beginPath();
+        ctxT.moveTo(px, yMid - 6);
+        ctxT.lineTo(px, yMid + 6);
+        ctxT.stroke();
+        ctxT.fillStyle = '#64748b';
+        ctxT.fillText(`${xm >= 0 ? '+' : ''}${Number(xm.toFixed(2))}m`, px, yMid + 18);
       }
 
-      if (tTurn > 0) {
-        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
-        const pTurnX = xOrigin + xTurnM * scaleX;
-        if (pTurnX >= 20 && pTurnX <= wT - 20) {
-          ctxT.strokeStyle = '#f59e0b';
-          ctxT.setLineDash([4, 4]);
-          ctxT.beginPath();
-          ctxT.moveTo(pTurnX, yMid - 30);
-          ctxT.lineTo(pTurnX, yMid + 30);
-          ctxT.stroke();
-          ctxT.setLineDash([]);
-          ctxT.fillStyle = '#f59e0b';
-          ctxT.fillText('Turning Point (v=0)', pTurnX, yMid - 34);
-        }
+      if (tTurn >= 0 && tTurn <= horizon) {
+        const pTurnX = xToPx(xAt(tTurn));
+        ctxT.strokeStyle = '#f59e0b';
+        ctxT.setLineDash([4, 4]);
+        ctxT.beginPath();
+        ctxT.moveTo(pTurnX, yMid - 30);
+        ctxT.lineTo(pTurnX, yMid + 30);
+        ctxT.stroke();
+        ctxT.setLineDash([]);
+        ctxT.fillStyle = '#f59e0b';
+        ctxT.fillText('Turning Point (v=0)', clampNumber(pTurnX, 80, Math.max(80, wT - 80)), yMid - 34);
       }
 
-      const pCurrentX = xOrigin + x * scaleX;
-      
+      const pCurrentX = xToPx(x);
       ctxT.strokeStyle = '#0284c7';
       ctxT.lineWidth = 3;
       ctxT.beginPath();
       ctxT.moveTo(xOrigin, yMid - 10);
-      if (tTurn > 0 && t > tTurn) {
-        const xTurnM = v0 * tTurn + 0.5 * a * tTurn * tTurn;
-        ctxT.lineTo(xOrigin + xTurnM * scaleX, yMid - 10);
+      if (tTurn >= 0 && tTurn <= t) {
+        ctxT.lineTo(xToPx(xAt(tTurn)), yMid - 10);
         ctxT.lineTo(pCurrentX, yMid - 14);
       } else {
         ctxT.lineTo(pCurrentX, yMid - 10);
       }
       ctxT.stroke();
 
+      const markerX = clampNumber(pCurrentX, left, right);
       ctxT.fillStyle = '#38bdf8';
       ctxT.beginPath();
-      ctxT.arc(pCurrentX, yMid, 8, 0, Math.PI * 2);
+      ctxT.arc(markerX, yMid, 8, 0, Math.PI * 2);
       ctxT.fill();
       ctxT.strokeStyle = '#ffffff';
       ctxT.lineWidth = 1.5;
@@ -1477,89 +1475,76 @@
 
       const depth = currentDepth['disp-dist'] || 'G1';
       if (depth === 'G2' || depth === 'G3') {
-        const vLen = v * 2.5;
+        const vLen = clampNumber(v * 2.5, -62, 62);
         ctxT.strokeStyle = '#f59e0b';
         ctxT.lineWidth = 2.5;
         ctxT.beginPath();
-        ctxT.moveTo(pCurrentX, yMid - 18);
-        ctxT.lineTo(pCurrentX + vLen, yMid - 18);
+        ctxT.moveTo(markerX, yMid - 18);
+        ctxT.lineTo(markerX + vLen, yMid - 18);
         ctxT.stroke();
-        ctxT.fillStyle = '#f59e0b';
-        ctxT.beginPath();
-        const headDir = vLen >= 0 ? 1 : -1;
-        ctxT.moveTo(pCurrentX + vLen, yMid - 18);
-        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 22);
-        ctxT.lineTo(pCurrentX + vLen - 6 * headDir, yMid - 14);
-        ctxT.closePath();
-        ctxT.fill();
 
-        const aLen = a * 5;
+        const aLen = clampNumber(a * 5, -52, 52);
         ctxT.strokeStyle = '#ef4444';
         ctxT.lineWidth = 2;
         ctxT.beginPath();
-        ctxT.moveTo(pCurrentX, yMid + 22);
-        ctxT.lineTo(pCurrentX + aLen, yMid + 22);
+        ctxT.moveTo(markerX, yMid + 22);
+        ctxT.lineTo(markerX + aLen, yMid + 22);
         ctxT.stroke();
       }
 
-      // 2. Draw v-t Graph (cGraph)
       ctxG.fillStyle = '#050811';
       ctxG.fillRect(0, 0, wG, hG);
 
-      const gOriginX = 40;
-      const gOriginY = hG * 0.5;
-      const gScaleT = (wG - 60) / 10;
-      const gScaleV = (hG * 0.4) / 25;
+      const vBounds = paddedBounds([0, v0, v0 + a * horizon, v], 10, 0.14);
+      const gLeft = 42, gRight = Math.max(gLeft + 1, wG - 12);
+      const gTop = 14, gBottom = Math.max(gTop + 1, hG - 24);
+      const tToX = s => gLeft + (s / horizon) * (gRight - gLeft);
+      const vToY = vv => gBottom - ((vv - vBounds.min) / (vBounds.max - vBounds.min)) * (gBottom - gTop);
+      const zeroY = vToY(0);
 
       ctxG.strokeStyle = '#334155';
       ctxG.lineWidth = 1.5;
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      ctxG.lineTo(wG - 10, gOriginY);
-      ctxG.moveTo(gOriginX, 10);
-      ctxG.lineTo(gOriginX, hG - 10);
+      ctxG.moveTo(gLeft, zeroY);
+      ctxG.lineTo(gRight, zeroY);
+      ctxG.moveTo(gLeft, gTop);
+      ctxG.lineTo(gLeft, gBottom);
       ctxG.stroke();
 
       ctxG.fillStyle = '#64748b';
       ctxG.font = '9px monospace';
-      ctxG.fillText('t (s)', wG - 25, gOriginY + 14);
-      ctxG.fillText('v (m/s)', gOriginX + 5, 16);
+      ctxG.fillText('t (s)', gRight - 18, clampNumber(zeroY + 14, gTop + 10, gBottom - 2));
+      ctxG.fillText('v (m/s)', gLeft + 5, gTop + 4);
 
       ctxG.strokeStyle = '#475569';
       ctxG.lineWidth = 1;
       ctxG.beginPath();
-      for (let s = 0; s <= 10; s += 0.2) {
-        const vel = v0 + a * s;
-        const px = gOriginX + s * gScaleT;
-        const py = gOriginY - vel * gScaleV;
-        if (s === 0) ctxG.moveTo(px, py);
-        else ctxG.lineTo(px, py);
+      for (let s = 0; s <= horizon + 1e-9; s += horizon / 120) {
+        const px = tToX(s);
+        const py = vToY(v0 + a * s);
+        if (s === 0) ctxG.moveTo(px, py); else ctxG.lineTo(px, py);
       }
       ctxG.stroke();
 
+      const clampedT = clampNumber(t, 0, horizon);
       ctxG.beginPath();
-      ctxG.moveTo(gOriginX, gOriginY);
-      for (let s = 0; s <= t; s += 0.1) {
-        const vel = v0 + a * s;
-        const px = gOriginX + s * gScaleT;
-        const py = gOriginY - vel * gScaleV;
-        ctxG.lineTo(px, py);
+      ctxG.moveTo(tToX(0), zeroY);
+      for (let s = 0; s <= clampedT + 1e-9; s += Math.max(0.02, horizon / 180)) {
+        ctxG.lineTo(tToX(s), vToY(v0 + a * s));
       }
-      const curPx = gOriginX + t * gScaleT;
-      ctxG.lineTo(curPx, gOriginY);
+      ctxG.lineTo(tToX(clampedT), zeroY);
       ctxG.closePath();
-      
-      const grad = ctxG.createLinearGradient(0, gOriginY - 40, 0, gOriginY + 40);
+
+      const grad = ctxG.createLinearGradient(0, gTop, 0, gBottom);
       grad.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
       grad.addColorStop(0.5, 'rgba(56, 189, 248, 0.1)');
       grad.addColorStop(1, 'rgba(239, 68, 68, 0.4)');
       ctxG.fillStyle = grad;
       ctxG.fill();
 
-      const curPy = gOriginY - v * gScaleV;
       ctxG.fillStyle = '#f59e0b';
       ctxG.beginPath();
-      ctxG.arc(curPx, curPy, 4.5, 0, Math.PI * 2);
+      ctxG.arc(tToX(clampedT), vToY(v), 4.5, 0, Math.PI * 2);
       ctxG.fill();
     }
 
