@@ -22,9 +22,12 @@ ITEM_SCHEMA = REPO / "Shared" / "library" / "gcdr_diagnostic_item.schema.json"
 HELPER_SCHEMA = REPO / "Shared" / "library" / "gcdr_helper_contract.schema.json"
 
 GENERIC_FINAL_ANSWER = re.compile(
-    r"^\s*(?:apply|use|evaluate|solve|calculate|compute|derive|verify)"
+    r"^\s*(?:"
+    r"(?:apply|use|evaluate|solve|calculate|compute|derive|verify)"
     r"(?:\s+(?:the|a|given|standard))?(?:\s+(?:formula|equation|expression|relation|result))?"
-    r"[\s.:;!-]*$",
+    r"|(?:symmetry|identity|relation|equation|result)\s+(?:verified|holds|satisfied)"
+    r"|(?:as\s+required|as\s+shown)"
+    r")[\s.:;!-]*$",
     re.I,
 )
 
