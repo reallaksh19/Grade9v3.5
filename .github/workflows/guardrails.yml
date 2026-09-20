@@ -33,6 +33,11 @@ jobs:
       - name: Graphical cognitive deconstruction contracts are valid
         run: python3 Shared/tools/explorer_design_guard.py --enforce
 
+      # Master-suite scale is governed separately: per-item answer/source/fidelity
+      # contracts, helper activation and declared repo/standalone delivery profiles.
+      - name: GCDR master-suite contracts are valid
+        run: python3 Shared/tools/gcdr_suite_guard.py --enforce
+
       # Execute each governed explorer's inline JS in a DOM-lite Node runtime, mutate
       # controls, verify causal handlers/reset behavior, and reject runtime claims that
       # overstate what the artifact actually does. This is not visual/browser-layout proof.
