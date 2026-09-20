@@ -42,11 +42,11 @@ def envelope(subject: str, matrix_id: str, subtopic: str, rows: list[dict]) -> d
 
 
 def nlm_envelope(rows: list[dict]) -> dict:
-    return envelope("Physics", NLM_MATRIX, "Newton's laws and friction", rows)
+    return envelope("Physics", NLM_MATRIX, "Newton's first law and free-body diagrams", rows)
 
 
 def math_envelope(rows: list[dict]) -> dict:
-    return envelope("Mathematics", MATH_MATRIX, "Linear equations in one variable", rows)
+    return envelope("Mathematics", MATH_MATRIX, "One-unknown linear equations over the rationals", rows)
 
 
 class SharedTopicAtlasCoreTest(unittest.TestCase):
