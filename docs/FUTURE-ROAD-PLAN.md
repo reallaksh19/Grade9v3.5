@@ -5,6 +5,8 @@
 > This is **not** a new implementation plan and does not change the current learner flow.
 > The current architecture remains the authority until real learner use or the independent benchmark demonstrates a concrete limitation.
 
+> For **current engineering execution**, do not use this file as a task queue. Start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow the [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`.
+
 ## 1. Purpose
 
 Grade9V3 is a personal, self-paced learning system for one learner.

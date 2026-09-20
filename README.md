@@ -2,6 +2,26 @@
 
 Self-study learner-material production system for **Physics, Mathematics and Chemistry**, **CBSE grades 9–11** (with explicit IIT-JEE tier classification where applicable).
 
+## Agent start here — current execution authority
+
+If you are an agent or maintainer entering this repository without prior conversation context, **read these before planning or changing files**:
+
+1. [`agents/relay/REPO_STATE.yaml`](agents/relay/REPO_STATE.yaml) — V2.5 repository bootstrap. Use it to locate the current roadmap revision, current work package, and `active_ep.path`.
+2. [`agents/relay/roadmap/OVERALL_ROADMAP.yaml`](agents/relay/roadmap/OVERALL_ROADMAP.yaml) — the **current machine-authoritative engineering execution roadmap**.
+3. [`agents/relay/roadmap/PROGRESS.yaml`](agents/relay/roadmap/PROGRESS.yaml) — calculated roadmap/progress authority.
+4. Follow `active_ep.path` from the relay state and execute only that package after satisfying its V2.5 takeover/material-write requirements.
+
+The relay files above outrank README prose, issue summaries, PR descriptions, and older roadmap-like documents for **current execution state**. Do not copy the current percent, work package, or active EP into this README as a second state store; follow the structured sources instead.
+
+The other roadmap-like documents remain useful, but they have different roles:
+
+| Document | Role |
+|---|---|
+| [`docs/PROGRAM-PLAN.md`](docs/PROGRAM-PLAN.md) | Product/architecture programme context; not live execution authority |
+| [`docs/ROADMAP-LEARNER-READY.md`](docs/ROADMAP-LEARNER-READY.md) | Learner-readiness conceptual/historical roadmap; not live execution authority |
+| [`docs/PLAN-R0-R2.md`](docs/PLAN-R0-R2.md) and [`docs/PLAN-R3-R4.md`](docs/PLAN-R3-R4.md) | Prior execution plans retained as engineering history |
+| [`docs/FUTURE-ROAD-PLAN.md`](docs/FUTURE-ROAD-PLAN.md) | Evidence-gated future ideas; explicitly not an implementation plan |
+
 Six learner products per subtopic bucket:
 
 | Product | Purpose |
@@ -66,7 +86,7 @@ python3 Shared/tools/republish.py --write    # refresh them
 
 Two subjects publish end-to-end: Physics (relative motion, frozen as the port oracle) and Mathematics (linear equations, compiled from its library on demand). Chemistry has a contract but no library yet.
 
-See [docs/PROGRAM-PLAN.md](docs/PROGRAM-PLAN.md) for the phased plan and what is proven versus proposed. **Nothing here claims independent academic review, learner release or curriculum authority** — machine checks establish structure, custody and supported computation, not that an explanation teaches.
+For current engineering execution, use the V2.5 relay sources in **Agent start here** above. [docs/PROGRAM-PLAN.md](docs/PROGRAM-PLAN.md) remains product/architecture programme context and records what earlier phases established. **Nothing here claims independent academic review, learner release or curriculum authority** — machine checks establish structure, custody and supported computation, not that an explanation teaches.
 
 ## Provenance
 

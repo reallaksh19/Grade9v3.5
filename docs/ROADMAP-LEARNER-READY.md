@@ -1,5 +1,9 @@
 # From machine-honest to learner-ready
 
+> **Authority / status:** Learner-readiness conceptual/historical roadmap — not the live V2.5 execution roadmap. Counts, gap statements and R-stage ordering below are evidence snapshots and design reasoning from that roadmap pass. Keep them as history unless current governed work explicitly revalidates them.
+>
+> **Current engineering execution authority:** start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow its [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`. Do not execute work from this document merely because it contains a phase or task sequence.
+
 **Intent this serves.** A student in grades 9–11 understands the hard concepts of physics, mathematics and chemistry through pictorial, self-explanatory material, and works through question banks that prepare them for IIT-JEE. Every phase below is measured against that sentence, not against the architecture.
 
 **Where it stands.** The repository is machine-honest: 146 tests, nine fail-closed gates, two subjects publishing, a library that refuses teaching it has not checked. It is not yet learner-ready, and the distance is measurable. This document measures it, names the root cause, and orders the work.
