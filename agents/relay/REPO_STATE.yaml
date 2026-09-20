@@ -11,7 +11,7 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0005",
+    "revision": "RM-0006",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
@@ -27,7 +27,7 @@
     "id": "EP-TA-003",
     "path": "agents/relay/execution-packages/EP-TA-003.yaml",
     "state": "EXECUTABLE",
-    "continuity_receipt": null
+    "continuity_receipt": "agents/relay/roadmap/continuity/RC-TA-003.yaml"
   },
   "last_checkpoint": {
     "id": "CP-TA-002",
@@ -61,25 +61,32 @@
     "overall_percent": 45,
     "phase_percent": 45,
     "ep_percent": 0,
-    "basis_revision": "PB-0003"
+    "basis_revision": "PB-0004"
   },
   "status_planes": {
     "execution": {
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Publish the formal quality review for the completed roadmap-first documentation slice, checkpoint WP-TA-106, and advance the governed serial frontier."
+      "next_action": "Validate the RM-0006 Owner-intent/README reconciliation on the exact PR head, then publish the formal EP-TA-003 quality review/checkpoint and advance to Grade-9 Physics scope closure."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "The formal EP-TA-003 quality review remains to be published before checkpoint."
+        "The formal EP-TA-003 quality review remains to be published before checkpoint.",
+        "RM-0006 changes programme intent and README entry semantics; exact-head repository/V2.5 validation is required before checkpoint."
       ]
     },
     "evidence": {
-      "state": "COMPLETE",
-      "summary": "The roadmap-first documentation material head 13d81af36a3042a67f0af78870f823d2fc267543 passed repository guardrails run 35496750141 and V2.5 relay/material-write validation run 35496750091.",
-      "not_run": []
+      "state": "PARTIAL",
+      "summary": "The prior roadmap-first documentation material head 13d81af36a3042a67f0af78870f823d2fc267543 passed guardrails/V2.5 validation. RM-0006 preserves that implementation, changes Owner programme intent and README navigation, and requires exact-head validation.",
+      "not_run": [
+        {
+          "id": "RM-0006-EXACT-HEAD",
+          "reason": "Exact-head CI has not yet observed the RM-0006 Owner-intent and README reconciliation.",
+          "cause": "AWAITING_PROVIDER"
+        }
+      ]
     },
     "stop": {
       "active": false,
@@ -93,7 +100,7 @@
     "state": "NOT_REQUIRED",
     "operation_id": null,
     "target": null,
-    "roadmap_revision": "RM-0005",
+    "roadmap_revision": "RM-0006",
     "execution_ref": "EP-TA-003",
     "receipt": null,
     "basis": []
@@ -108,10 +115,12 @@
     "observations": []
   },
   "relay_readiness": {
-    "baton_ready": true,
+    "baton_ready": false,
     "projection_ready": true,
-    "handover_ready": true,
-    "reasons": []
+    "handover_ready": false,
+    "reasons": [
+      "RM-0006 Owner-intent/README reconciliation requires exact-head validation and EP-TA-003 quality review before checkpoint/handover."
+    ]
   },
   "chat_context_required": false
 }

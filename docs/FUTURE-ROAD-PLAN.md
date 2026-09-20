@@ -7,6 +7,8 @@
 
 > For **current engineering execution**, do not use this file as a task queue. Start at [`../agents/relay/REPO_STATE.yaml`](../agents/relay/REPO_STATE.yaml), then follow the [current V2.5 roadmap](../agents/relay/roadmap/OVERALL_ROADMAP.yaml), [progress source](../agents/relay/roadmap/PROGRESS.yaml), and `active_ep.path`.
 
+> **RM-0006 promotion note:** Grade-9 Physics scope classification, required learner-loop closure, and the derived Grade-9 exit/Grade-10 transition view are now part of the authoritative V2.5 roadmap (`WP-TA-103..105`). The design guardrails below still apply: reuse existing evidence, avoid mastery percentages/second state stores, and build only the smallest mechanism needed.
+
 ## 1. Purpose
 
 Grade9V3 is a personal, self-paced learning system for one learner.
@@ -314,7 +316,7 @@ This should be a view over existing evidence, not a second state store.
 
 **Status**
 
-Deferred. Do not implement this while the current learner/profile/observation model is sufficient.
+Promoted into the current V2.5 roadmap for Grade-9 Physics by `RM-0006`. Implement it as a derived scope/evidence view only when `WP-TA-105` becomes executable; do not create a second learner-state or mastery system.
 
 **Trigger**
 

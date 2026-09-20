@@ -2,25 +2,32 @@
 
 Self-study learner-material production system for **Physics, Mathematics and Chemistry**, **CBSE grades 9–11** (with explicit IIT-JEE tier classification where applicable).
 
-## Agent start here — current execution authority
+**Current Owner progression:** Physics is sequenced **Grade 9 → Grade 10 → Grade 11**, with **Grade 9 first**. Mathematics/Chemistry and cross-subject infrastructure remain available, but they are not the present completion target.
 
-If you are an agent or maintainer entering this repository without prior conversation context, **read these before planning or changing files**:
+**Learner outcome:** make the learner increasingly capable of deciding what she knows, discovering with little external steering what she does not know, repairing the right Physics gap, and independently verifying a solution. Grade 9 is complete enough when the foundation is usable for Grade 10—not when every optional extension is exhausted.
 
-1. [`agents/relay/REPO_STATE.yaml`](agents/relay/REPO_STATE.yaml) — V2.5 repository bootstrap. Use it to locate the current roadmap revision, current work package, and `active_ep.path`.
-2. [`agents/relay/roadmap/OVERALL_ROADMAP.yaml`](agents/relay/roadmap/OVERALL_ROADMAP.yaml) — the **current machine-authoritative engineering execution roadmap**.
-3. [`agents/relay/roadmap/PROGRESS.yaml`](agents/relay/roadmap/PROGRESS.yaml) — calculated roadmap/progress authority.
-4. Follow `active_ep.path` from the relay state and execute only that package after satisfying its V2.5 takeover/material-write requirements.
+## Agent start here — mandatory first reads
 
-The relay files above outrank README prose, issue summaries, PR descriptions, and older roadmap-like documents for **current execution state**. Do not copy the current percent, work package, or active EP into this README as a second state store; follow the structured sources instead.
+If you are an agent or maintainer entering this repository without prior conversation context, **do not plan from issue titles, old roadmap documents, or repository breadth**. Read these first:
+
+1. [`agents/relay/roadmap/OVERALL_ROADMAP.yaml`](agents/relay/roadmap/OVERALL_ROADMAP.yaml) — the **current machine-authoritative roadmap** and current Grade-9 Physics programme outcome.
+2. [`agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml`](agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml) — the Owner-intent mutation defining what “success” means and what must not be inferred.
+3. [`agents/relay/REPO_STATE.yaml`](agents/relay/REPO_STATE.yaml) — the V2.5 machine bootstrap for the current roadmap revision, work package and `active_ep.path`.
+4. [`agents/relay/roadmap/PROGRESS.yaml`](agents/relay/roadmap/PROGRESS.yaml) — calculated progress authority.
+5. Follow `active_ep.path` from `REPO_STATE.yaml` and execute only that package after satisfying its V2.5 takeover/material-write requirements.
+
+For deterministic V2.5 execution routing, `REPO_STATE.yaml` remains the bootstrap locator. The roadmap and Owner decision are first-read programme intent; they do **not** replace the active-EP/write-admission contract.
+
+These relay sources outrank README prose, issue summaries, PR descriptions, and older roadmap-like documents for current programme/execution truth. Do not copy the current percent, work package, or active EP into this README as a second state store; follow the structured sources instead.
 
 The other roadmap-like documents remain useful, but they have different roles:
 
 | Document | Role |
 |---|---|
 | [`docs/PROGRAM-PLAN.md`](docs/PROGRAM-PLAN.md) | Product/architecture programme context; not live execution authority |
-| [`docs/ROADMAP-LEARNER-READY.md`](docs/ROADMAP-LEARNER-READY.md) | Learner-readiness conceptual/historical roadmap; not live execution authority |
+| [`docs/ROADMAP-LEARNER-READY.md`](docs/ROADMAP-LEARNER-READY.md) | Learner-readiness conceptual/historical predecessor; current Grade-9 progression intent is the V2.5 roadmap + ODR-0003 |
 | [`docs/PLAN-R0-R2.md`](docs/PLAN-R0-R2.md) and [`docs/PLAN-R3-R4.md`](docs/PLAN-R3-R4.md) | Prior execution plans retained as engineering history |
-| [`docs/FUTURE-ROAD-PLAN.md`](docs/FUTURE-ROAD-PLAN.md) | Evidence-gated future ideas; explicitly not an implementation plan |
+| [`docs/FUTURE-ROAD-PLAN.md`](docs/FUTURE-ROAD-PLAN.md) | Evidence-gated ideas and anti-overarchitecture guardrails; the Grade-9 scope/exit items promoted by RM-0006 are no longer merely future ideas |
 
 Six learner products per subtopic bucket:
 
