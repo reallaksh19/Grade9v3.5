@@ -5,18 +5,18 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 188,
-  "relation_count": 243,
+  "component_count": 190,
+  "relation_count": 244,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 31,
-    "TEST": 85,
-    "TOOLING": 47,
+    "TEST": 86,
+    "TOOLING": 48,
     "WEB": 6
   },
-  "digest": "sha256:1fa4e3733d7ad472d183658dbc3475f858152a287ab31874fd98811505eed4d1",
+  "digest": "sha256:11ef56b8b627c3a4ba81533013f3aa9bd48d921aa6eaea3cbf9c55aef22eb53e",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -533,8 +533,15 @@
       "path": "Shared/tools/learner_evidence.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9316,
-      "sha256": "d684ae69a8ffed6a9d1b97ab602914dd4ca980bd30f6e912f7ec41d50ecd9d57"
+      "bytes": 9432,
+      "sha256": "ecf208ee15f86ba78a8f4a9b9f6f08bb3ea2350d951e41ce0eb3bcc19ca9c8f9"
+    },
+    {
+      "path": "Shared/tools/learning_router.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 2277,
+      "sha256": "bcd113d16eada458556875880499f87c4b7959e8b4ed8123bf52bd1bd98c2966"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -1102,6 +1109,13 @@
       "role_description": "Executable checks",
       "bytes": 13564,
       "sha256": "4f7dc434d2b382c14d4d5ace84426f44c1c3e9ef25b8da4a969c4f9b6701bd9f"
+    },
+    {
+      "path": "tests/test_learning_router.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3323,
+      "sha256": "aa39e925dda60b1048ac167f09cc05b2ab6ae50c7bd880c0327c3adc6a8e3023"
     },
     {
       "path": "tests/test_library.py",
@@ -2253,6 +2267,11 @@
     },
     {
       "from": "tests/test_import_sil.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_learning_router.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

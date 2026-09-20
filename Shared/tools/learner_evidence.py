@@ -103,6 +103,7 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
             "observation_ref": chosen["observation_id"],
             "when": chosen.get("when"),
             "help": chosen.get("help"),
+            "error_stage": chosen.get("error_stage"),
         }
 
     if capability_ref in profile.get("held", {}):
@@ -112,6 +113,7 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
             "observation_ref": None,
             "when": None,
             "help": None,
+            "error_stage": None,
         }
 
     return {
@@ -120,6 +122,7 @@ def effective_state(profile: dict, capability_ref: str, repo: Path = REPO) -> di
         "observation_ref": None,
         "when": None,
         "help": None,
+        "error_stage": None,
     }
 
 
