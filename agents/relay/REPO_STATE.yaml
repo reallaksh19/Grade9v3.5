@@ -68,24 +68,18 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run the candidate-specific V2.5 material-write gate for EP-TA-002. If it passes, implement the Shared diagnostic/Core authority slice in the EP order."
+      "next_action": "Publish the required quality review for the completed Shared diagnostic/Core authority slice, then checkpoint EP-TA-002 and advance the serial frontier."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "EP-TA-002 Shared implementation has not yet undergone its required quality review."
+        "The required formal EP-TA-002 quality review is the remaining checkpoint prerequisite."
       ]
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "EP-TA-001 is checkpointed complete. EP-TA-002 is admitted from repository-only discovery but its material tests have not run yet.",
-      "not_run": [
-        {
-          "id": "TEST-TA2-001..005",
-          "reason": "EP-TA-002 material implementation has not started; run after the candidate-specific write gate passes.",
-          "cause": "NOT_SCHEDULED"
-        }
-      ]
+      "state": "COMPLETE",
+      "summary": "EP-TA-002 material head b11fbe93399d5c29cb4a43d04f5e55132f294f11 passed repository guardrails run 35494364057 and V2.5 relay/write-gate run 35494364063. All planned material validation is represented in the full test/guardrail run.",
+      "not_run": []
     },
     "stop": {
       "active": false,

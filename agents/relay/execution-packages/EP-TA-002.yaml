@@ -3,7 +3,7 @@
   "identity": {
     "ep_id": "EP-TA-002",
     "branch": "takeover/topic-atlas-browser-correctness",
-    "base_ref": "e486ab69cb166a57a42c65371dd75c780b40e240",
+    "base_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
     "execution_state": "EXECUTABLE",
     "previous_checkpoint": "CP-TA-001",
     "previous_join": null,
@@ -12,7 +12,7 @@
   "replan_inheritance": null,
   "git_basis": {
     "expected_branch": "takeover/topic-atlas-browser-correctness",
-    "material_ref": "e486ab69cb166a57a42c65371dd75c780b40e240",
+    "material_ref": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
     "base_branch": "main",
     "base_observed_ref": "78d8185852ee467b5a3fa064477e68553a4acca8",
     "drift_policy": "RECHECK_BEFORE_WRITE",
@@ -48,13 +48,11 @@
       "Derived Rn.x.y addresses are projection aliases over existing rung/step/stage identities; do not create physical sub-rungs or capability proliferation.",
       "Complete remaining pieces by reusing existing Grade9V3 contracts before adding schema."
     ],
-    "current_implementation_state": "EP-TA-001 is checkpointed as browser-correctness complete. No Shared atlas_need, diagnostic-gap envelope schema, measurement_pack, core_focus or focus_inventory module exists yet. Current NLM library has exact repair_ref-bound R5/R8 questions; current Math linear-equation library has one broad capability question with no repair_ref.",
+    "current_implementation_state": "EP-TA-002 Shared implementation is complete on material head b11fbe93399d5c29cb4a43d04f5e55132f294f11. The transient diagnostic envelope, canonical need resolver, Measurement Pack exporter, Core emphasis, focus inventory, planner/strict-resolver integration and execution-packet diagnostic pinning are implemented and green.",
     "known_problems": [
-      "The browser can export a transient diagnostic envelope but Shared has no schema/tool that validates it against a canonical matrix.",
-      "Measurement Pack semantics exist only as browser projection, not a Shared exporter.",
-      "Authoritative plan_request/resolve_request cannot yet receive a diagnostic focus overlay.",
-      "Core authoring/execution packets cannot yet carry diagnostic emphasis or distinguish exact semantic inventory from capability fallback.",
-      "The current observation schema has no repair_ref; persisting narrow semantic focus there would require a learner-model change and is not necessary for this work package."
+      "The static browser cannot execute Shared Python directly; its exported diagnostic envelope is consumed by the authoritative Shared tools outside file:// runtime.",
+      "Current canonical activity resources remain capability-level unless teaching_step_refs explicitly bind them; Shared focus inventory reports that fallback rather than inventing exact leaf support.",
+      "Math linear-equation practice inventory is legitimately broader where current canonical questions have no repair_ref."
     ],
     "deliberate_non_goals": [
       "Do not add repair_ref to observation.schema.json unless implementation proves a blocker; keep narrow diagnostic targeting transient first.",
@@ -145,11 +143,11 @@
   "inputs": [
     {
       "id": "INPUT-TA2-001",
-      "name": "Successor material basis",
-      "description": "Exact branch head after EP-TA-001 quality publication and before EP-TA-002 coordination.",
+      "name": "Validated EP-TA-002 material basis",
+      "description": "Exact material commit containing the completed Shared diagnostic/Core authority implementation and green repository evidence.",
       "authority": "Git history",
-      "source": "git:e486ab69cb166a57a42c65371dd75c780b40e240",
-      "value": "e486ab69cb166a57a42c65371dd75c780b40e240",
+      "source": "git:b11fbe93399d5c29cb4a43d04f5e55132f294f11",
+      "value": "b11fbe93399d5c29cb4a43d04f5e55132f294f11",
       "type": "git commit SHA",
       "units": "NA",
       "editable": false,
@@ -163,7 +161,9 @@
         "STEP-TA2-005"
       ],
       "validation": [
-        "material_ref remains an ancestor of execution HEAD; compare main against base_observed_ref before every material write"
+        "material_ref equals the exact green implementation commit",
+        "material_ref remains an ancestor of later coordination/checkpoint commits",
+        "compare main against base_observed_ref before any further material write"
       ],
       "stale_if": [
         "main changes overlapping Shared planner/contracts scope without a reconciled drift receipt"
