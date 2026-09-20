@@ -1,63 +1,81 @@
-# Grade-9 Physics learner-loop audit
+# Grade-9 Physics learner-loop architecture audit
 
-> Status: **learner-loop inventory closed**
+> Roadmap: **RM-0007**
 >
-> Roadmap basis: **RM-0006 / WP-TA-104 / EP-TA-006**
+> Current foundation: **WP-TA-104 / canonical representations and staged visual help**
 >
-> Material basis: `ffa7ac323c3e63ad5b89d05aaec661ec1812bef1`
+> Machine-readable companion: `docs/grade9/grade9-physics-learner-loop.json`
 
-## What is now possible
+## Correction to the previous audit
 
-The required Grade-9 Physics study loop is executable across all six ordinary core matrices.
+Question inventory is **not** a Grade-9 completion denominator. The earlier 7-Core2A + 18-Core2B expansion converted a learner-loop architecture question into a coverage-count problem, so those EP-TA-006 additions are removed.
 
-- **30/30** required/prerequisite learner actions have canonical teaching paths.
-- **30/30** have misconception diagnosis and repair.
-- **30/30** have independent exit tasks.
-- **30/30** now have direct Core2A primary practice.
-- Motion and NLM retain their pre-existing executable Core2B inventory.
-- The **18** previously missing core transfer specifications in Gravitation, Work/Energy/Power, Sound and Simple Machines now each have learner-executable Core2B questions.
-- The closure added exactly **25** canonical questions: **7 Core2A + 18 Core2B**.
+Three already-existing NLM questions are sufficient smoke fixtures for the visual-support contract:
 
-## What this does *not* prove
+- `Q-PHY-NLM-2A-COV-03` — FBD body ownership;
+- `Q-PHY-NLM-2A-FRICTION-STATIC-09` — static-friction response;
+- `Q-PHY-NLM-2B-FRICTION-STATE-01` — transfer/model choice under unknown contact state.
 
-This closes a **system capability** gap, not a learner-mastery gap.
-
-It does not mean a learner has demonstrated all 30 actions. A rough knowledge percentage, repository coverage, completed authoring pass, hinted success, or a chapter label still cannot certify mastery.
-
-The existing evidence rule remains:
+## Architecture now enforced
 
 ```text
-independent direct evidence
-    > older diagnostic/study-map evidence
-    > profile estimate
-    > unobserved
-
-DEMONSTRATED + hint/worked example/solution
-    -> not independent demonstration
+RUNG / CAPABILITY
+  |
+  +--> CANONICAL REPRESENTATION
+  |       academic visual meaning
+  |       |
+  |       +--> static rendering, when a renderer exists
+  |       +--> ACTIVITY / interactive explorer
+  |       +--> author-defined reveal stages
+  |
+  +--> QUESTION FAMILY -> QUESTION
+          |
+          +--> starting support (matrix support ladder; before attempt)
+          +--> hints (ordered failure escalation; after difficulty)
+          |       +--> optional representation + reveal-stage refs
+          +--> practice / transfer demand
 ```
 
-## Learner journey now supported
+The webpage is not the representation. The question does not own the representation. A hint does not duplicate the representation; it only names which stage of canonical visual truth may be revealed.
 
-For a required Grade-9 action the system can now:
+## NLM pilot
 
-1. enter from unknown, partial, or prior evidence;
-2. diagnose a misconception or local execution gap without guessing ambiguous multi-capability failures;
-3. route to the narrowest canonical teaching/repair step;
-4. give same-family Core2A practice;
-5. request fresh independent verification;
-6. use changed-demand Core2B transfer where an authored transfer specification exists;
-7. record the observation honestly and schedule later review.
+Two canonical representations make previously implicit NLM visual truth explicit:
 
-## Scope discipline preserved
+1. `REP-NLM-FBD-BODY-OWNERSHIP` — bound to R3 and the existing connected-blocks explorer.
+2. `REP-NLM-FRICTION-THRESHOLD` — bound to R8 and the existing friction-threshold explorer.
 
-No new capability, microtopic, matrix rung, curriculum mapping, mastery model, learner-state schema, or Core was added.
+Both use `FREE_BODY_DIAGRAM` but deliberately carry no `scene_instances`, because the Physics adapter still declares the static FREE_BODY_DIAGRAM renderer **PROPOSED**, not implemented.
 
-Gravitation orbital extension rows remain outside ordinary Grade-9 closure. Motion/NLM were not expanded merely to equalize question counts. New gap-fill questions use local `AUTHORED` / `CANDIDATE` provenance rather than fabricated exam identity.
+Each representation owns its own reveal sequence. The schema does not impose a global V0–V4 template.
 
-## Next boundary
+## Starting support is not hint depth
 
-WP-TA-105 must answer a different question:
+The NLM matrix already owns LOW, MEDIUM and HIGH starting support. The canonical representations map those pre-attempt levels to an initial visual stage.
 
-> Given the intended Grade-9 scope and the learner's *actual evidence*, is Grade 9 complete enough for this learner to move into Grade 10?
+The question's ordered hints remain post-failure escalation. The three smoke questions demonstrate that a hint can reference a later canonical stage without changing the matrix's starting-support policy.
 
-That exit view must be derived from existing observations. If evidence is absent, the answer is **insufficient evidence**, not assumed mastery and not assumed failure.
+## Remaining work
+
+WP-TA-104 establishes the reusable visual foundation. It does not decide which support level a learner receives.
+
+That belongs to **WP-TA-107**, which must derive a routing posture from current learner evidence, choose starting support/initial visual state, choose appropriate exercise demand, and retain the existing hint → repair → fresh verification → delayed-review loop.
+
+The intended routing postures are derived decisions, not learner truth:
+
+```text
+independent DEMONSTRATED -> READY
+UNCERTAIN / unobserved    -> REINFORCE
+MISSING                   -> REBUILD
+```
+
+Error stage also matters: an execution or careless slip must not automatically trigger conceptual rebuilding.
+
+## Preserved boundaries
+
+- no mastery percentage or probabilistic learner model;
+- no question-count completion proxy;
+- no HTML/explorer as academic source of truth;
+- no conflation of pre-attempt support with post-failure hints;
+- no fake FREE_BODY_DIAGRAM renderer status;
+- no Grade-10 transition until WP-TA-107 and the Grade-9 exit-readiness package are complete.

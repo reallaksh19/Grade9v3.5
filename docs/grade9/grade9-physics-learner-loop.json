@@ -1,86 +1,46 @@
 {
-  "schema_version": "grade9v3-grade9-physics-learner-loop-v1",
-  "status": "LEARNER_LOOP_INVENTORY_CLOSED",
-  "generated_from": {
-    "repository": "reallaksh19/Grade9V3",
-    "material_basis": "ffa7ac323c3e63ad5b89d05aaec661ec1812bef1",
-    "roadmap_revision": "RM-0006",
-    "execution_package": "EP-TA-006"
+  "schema_version": "grade9v3-grade9-physics-learner-loop-v2",
+  "status": "REPRESENTATION_FOUNDATION_IN_PROGRESS",
+  "roadmap_revision": "RM-0007",
+  "material_basis": "fdae4069a38ff65ba5da1f3444ae8d633b376566",
+  "completion_model": {
+    "question_count_is_completion_metric": false,
+    "representation": "Canonical academic meaning of how a capability is seen.",
+    "explorer": "Reusable interactive ACTIVITY that implements or manipulates a canonical representation.",
+    "starting_support": "Pre-attempt information from matrix.family.support_ladder, optionally mapped to an initial representation stage.",
+    "hint_depth": "Post-failure escalation from ordered question.hints, optionally pointing to later stages of the same canonical representation.",
+    "routing": "WP-TA-107 will derive routing posture, support and exercise demand from learner evidence without creating mastery state."
   },
-  "authority_boundary": {
-    "statement": "This is a derived system-capability audit. It proves the Grade-9 self-study loop can be executed from canonical content; it does not claim that a particular learner has demonstrated any capability.",
-    "assisted_evidence": "Help-assisted success remains weaker than independent demonstration under the existing learner-evidence contract.",
-    "transfer": "Transfer evidence requires changed demand; direct Core2B coverage is expected only where an authored transfer specification calls for it."
+  "representation_pilot": {
+    "matrix": "MATRIX-PHY-NLM-FIRST-LAW",
+    "canonical_representations": [
+      "REP-NLM-FBD-BODY-OWNERSHIP",
+      "REP-NLM-FRICTION-THRESHOLD"
+    ],
+    "bound_microtopics": [
+      "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+      "MIC-PHY-NLM-FRICTION-QUANT"
+    ],
+    "existing_explorers": [
+      "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+      "ACT-NLM-FRICTION-THRESHOLD"
+    ],
+    "smoke_questions": [
+      "Q-PHY-NLM-2A-COV-03",
+      "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+      "Q-PHY-NLM-2B-FRICTION-STATE-01"
+    ]
   },
-  "totals": {
-    "required_or_prerequisite_actions": 30,
-    "with_teaching_path": 30,
-    "with_misconception_repair": 30,
-    "with_independent_exit_task": 30,
-    "with_direct_core2a_primary_practice": 30,
-    "previously_missing_core_transfer_specs_now_executable": 18,
-    "newly_authored_questions": 25,
-    "new_core2a_questions": 7,
-    "new_core2b_questions": 18
-  },
-  "matrix_status": [
-    {
-      "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
-      "required_actions": 5,
-      "direct_core2a": "5/5",
-      "canonical_core2b_questions": 5,
-      "transfer_status": "PREEXISTING_EXECUTABLE_BASELINE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
-      "required_actions": 6,
-      "direct_core2a": "6/6",
-      "canonical_core2b_questions": 16,
-      "transfer_status": "PREEXISTING_EXECUTABLE_BASELINE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
-      "required_actions": 4,
-      "direct_core2a": "4/4",
-      "canonical_core2b_questions": 4,
-      "transfer_status": "4/4 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
-      "required_actions": 7,
-      "direct_core2a": "7/7",
-      "canonical_core2b_questions": 6,
-      "transfer_status": "6/6 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-SOUND",
-      "required_actions": 5,
-      "direct_core2a": "5/5",
-      "canonical_core2b_questions": 5,
-      "transfer_status": "5/5 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
-    },
-    {
-      "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
-      "required_actions": 3,
-      "direct_core2a": "3/3",
-      "canonical_core2b_questions": 3,
-      "transfer_status": "3/3 CHECKPOINTED_CORE_TRANSFER_SPECS_EXECUTABLE"
-    }
+  "evidence_semantics_preserved": [
+    "Assisted DEMONSTRATED evidence remains weaker than independent demonstration.",
+    "Starting support is not hint depth.",
+    "Core2A practice and Core2B transfer remain distinct.",
+    "FREE_BODY_DIAGRAM renderer status remains PROPOSED; representation authoring does not fabricate renderer implementation."
   ],
-  "runtime_findings": {
-    "learner_evidence": "CLEAR_EXISTING_MECHANISM",
-    "targeted_feedback_repair": "CLEAR_EXISTING_MECHANISM",
-    "fresh_verification": "CLEAR_EXISTING_MECHANISM",
-    "delayed_review": "CLEAR_EXISTING_MECHANISM",
-    "learner_state_architecture_change_required": false
-  },
-  "scope_guards": {
-    "gravitation_extension_transfer_rows_added": 0,
-    "motion_or_nlm_modified_for_closure": false,
-    "new_capabilities_or_microtopics": 0,
-    "new_matrix_rungs": 0,
-    "external_exam_identity_fabricated": false
-  },
-  "remaining_system_gap": null,
-  "next_boundary": "WP-TA-105 must derive learner-specific Grade-9 exit readiness from current scope plus real learner evidence; absent evidence remains unknown and may block an actual learner transition even though the study system is now capable of collecting it."
+  "remaining_after_wp104": [
+    "WP-TA-107 must derive READY/REINFORCE/REBUILD routing posture from current evidence.",
+    "WP-TA-107 must map posture to LOW/MEDIUM/HIGH starting support and initial visual stage where available.",
+    "WP-TA-107 must keep error-stage diagnosis, hint escalation, repair, fresh verification and delayed review as separate decisions.",
+    "WP-TA-105 must derive Grade-9 exit readiness and Grade-10 transition after the closed learner loop exists."
+  ]
 }

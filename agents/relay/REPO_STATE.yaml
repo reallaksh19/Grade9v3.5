@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Remove the invalidated 25-question expansion, minimally extend representation/hint schema, and author NLM R3/R8 canonical representations with explorer and staged-hint bindings."
+      "next_action": "Validate visual-support schema/reference integrity and the NLM R3/R8 pilot, regenerate data/manifest projections, then checkpoint WP-TA-104 only if exact-head guardrails are green."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
@@ -78,11 +78,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-007 has a DISJOINT receipt for the observed main-base movement and refreshed takeover binding. Exact-head material-write validation remains before schema/NLM writes.",
+      "summary": "EP-TA-007 material removes the invalidated 25-question expansion, adds optional visual-support schema fields, authors two canonical NLM representations bound to existing explorers, and binds staged visuals to three existing smoke questions. Exact-head validation and generated-artifact regeneration remain.",
       "not_run": [
         {
-          "id": "EP-TA-007-WRITE-GATE",
-          "reason": "DRIFT-TA-007 and the refreshed EP-TA-007 digest/certification have not yet completed exact-head V2.5 validation.",
+          "id": "TEST-TA7-001..004",
+          "reason": "The new representation/staged-hint material has not yet completed exact-head validation.",
           "cause": "NOT_SCHEDULED"
         }
       ]
