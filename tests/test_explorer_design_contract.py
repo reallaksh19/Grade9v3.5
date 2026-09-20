@@ -31,9 +31,9 @@ class ExplorerDesignContractTest(unittest.TestCase):
                 atlas = row["extensions"]["topic_atlas"]
                 self.assertEqual(atlas["activity_kind"], "GRAPHICAL_COGNITIVE_DECONSTRUCTION")
                 contract = atlas["gcdr_contract"]
-                self.assertEqual(contract["schema_version"], "1.2.0")
+                self.assertEqual(contract["schema_version"], "1.3.0")
                 self.assertEqual(contract["conformance_status"], "IMPLEMENTATION_PARTIAL")
-                self.assertEqual(contract["quality_audit"]["checklist_version"], "1.1.0")
+                self.assertEqual(contract["quality_audit"]["checklist_version"], "1.2.0")
                 self.assertEqual(contract["quality_audit"]["audit_status"], "PARTIAL")
                 self.assertEqual(contract["quality_audit"]["audit_provenance"]["mode"], "AUTOMATED")
                 self.assertEqual(
@@ -41,10 +41,20 @@ class ExplorerDesignContractTest(unittest.TestCase):
                     "Shared/tools/gcdr_runtime_audit.py",
                 )
                 self.assertEqual(len(contract["quality_audit"]["audit_receipts"]), 8)
+                runtime_audit = contract["quality_audit"]["audit_4_runtime_release_integrity"]
+                self.assertEqual(runtime_audit["delivery_profile_integrity"], "PENDING")
                 self.assertTrue(all(
                     status == "PASS"
-                    for status in contract["quality_audit"]["audit_4_runtime_release_integrity"].values()
+                    for name, status in runtime_audit.items()
+                    if name != "delivery_profile_integrity"
                 ))
+                self.assertEqual(contract["scope_contract"]["canonical_binding_status"], "BOUND")
+                self.assertTrue(contract["representation_invariants"])
+                self.assertEqual(
+                    contract["geometry_truth_contract"]["verification_status"],
+                    "DECLARED",
+                )
+                self.assertEqual(contract["delivery_profile"]["profile"], "REPO_BUNDLE")
                 self.assertEqual(
                     contract["state_fidelity_contract"]["missing_parameter_policy"],
                     "NEVER_INVENT_AS_EXACT",
