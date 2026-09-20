@@ -1,0 +1,172 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-002",
+  "candidate": {
+    "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-002",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-002",
+    "ep_id": "EP-TA-002",
+    "ep_path": "agents/relay/execution-packages/EP-TA-002.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0002",
+    "relay_protocol_basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "e486ab69cb166a57a42c65371dd75c780b40e240",
+    "ep_contract_digest": "sha256:0d6bad71b5444f3ba21bdf623aa0f1514660bd1497f66cab69174cfa3b7b12ad",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-001",
+      "path": "agents/relay/checkpoints/CP-TA-001.yaml",
+      "digest": "sha256:55c2bff12ad0947745a98f7f47085a05831fed9a432bf54a3513c6e0f9df819b"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA2-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "observation evidence vocabulary",
+          "value": "observation.schema.json already owns PRIOR_DIAGNOSTIC and CONCEPT/SETUP/EXECUTION/CARELESS/UNKNOWN; it has no repair_ref and is kept unchanged.",
+          "basis": [
+            "Shared/library/observation.schema.json"
+          ]
+        },
+        {
+          "name": "plan-level learner optionality",
+          "value": "authoring-request.schema.json permits learner to be absent; missing owner decisions are legal planning state.",
+          "basis": [
+            "Shared/library/authoring-request.schema.json"
+          ]
+        },
+        {
+          "name": "owner-estimate routing semantics",
+          "value": "study_start.py and resolve_request.py choose conservative default-entry coordinates and explicitly do not mark earlier capabilities demonstrated.",
+          "basis": [
+            "Shared/tools/study_start.py",
+            "Shared/tools/resolve_request.py"
+          ]
+        },
+        {
+          "name": "planner integration seams",
+          "value": "plan_request.plan, resolve_request.plan and compile_execution_packet.compile_packet are the current authoritative plan/strict-plan/work-order seams.",
+          "basis": [
+            "Shared/tools/plan_request.py",
+            "Shared/tools/resolve_request.py",
+            "Shared/tools/compile_execution_packet.py"
+          ]
+        }
+      ],
+      "basis": [
+        "Shared/library/observation.schema.json",
+        "Shared/library/authoring-request.schema.json",
+        "Shared/tools/study_start.py",
+        "Shared/tools/plan_request.py",
+        "Shared/tools/resolve_request.py",
+        "Shared/tools/compile_execution_packet.py"
+      ]
+    },
+    {
+      "id": "DSTEP-TA2-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "NLM R5/R8 repair-bound examples",
+          "value": "R5 NLM5-2 has CORE2A Q-PHY-NLM-2A-COV-04 and CORE2B bindings; R8 NLM8-2 has CORE2B Q-PHY-NLM-2B-FRICTION-STATE-01 and other exact bindings.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        },
+        {
+          "name": "Math capability-level fallback example",
+          "value": "Q-MATH-LINEAR-01 primary CAP-MATH-ISOLATE has no repair_ref, so ME-1 focus can only claim capability-level question support.",
+          "basis": [
+            "Mathematics/library/linear-equations.v1.json"
+          ]
+        },
+        {
+          "name": "activity binding precision",
+          "value": "Current NLM ACTIVITY resources bind through supports_claims and carry no teaching_step_refs; they are capability-level support only.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json"
+          ]
+        }
+      ],
+      "basis": [
+        "Shared/library/practice_inventory.py",
+        "Physics/library/phy-nlm-first-law.v1.json",
+        "Mathematics/library/linear-equations.v1.json"
+      ]
+    },
+    {
+      "id": "DSTEP-TA2-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "existing-module search result",
+          "value": "No Shared/tools/atlas_need.py, measurement_pack.py, core_focus.py or focus_inventory.py and no Shared/library/diagnostic-gap-envelope.schema.json exist on the execution basis.",
+          "basis": [
+            "GitHub repository code search on Grade9V3 current branch basis"
+          ]
+        },
+        {
+          "name": "schema reuse decision",
+          "value": "Reuse observation result/error-stage vocabulary and authoring-request/planner contracts; add only a transient diagnostic envelope because no existing top-level contract represents scanner gap rows with optional repair_ref/score.",
+          "basis": [
+            "Shared/library/observation.schema.json",
+            "Shared/library/authoring-request.schema.json",
+            "Issue #118"
+          ]
+        }
+      ],
+      "basis": [
+        "Shared/tools/",
+        "Shared/library/"
+      ]
+    },
+    {
+      "id": "DSTEP-TA2-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "retained requirements",
+          "value": "Two optional inputs; fail-closed canonical mapping; repair_ref fallback only one level; independent dimensions; no DEMONSTRATED from absence; Shared Measurement Pack and planner reuse; Physics/Math reuse.",
+          "basis": [
+            "Issue #118",
+            "webpageGAPanalysis.md"
+          ]
+        },
+        {
+          "name": "explicit non-goals",
+          "value": "No seventh Core, physical sub-rungs, mastery probability, score averaging, fuzzy identity, learner-state expansion or subject-specific engine branches.",
+          "basis": [
+            "Issue #118",
+            "EP-TA-002"
+          ]
+        },
+        {
+          "name": "cross-subject golden cases",
+          "value": "NLM NLM5-2/NLM8-2 and Math ME-1 use the same resolver; Math broad question remains fallback where canonical repair_ref is absent.",
+          "basis": [
+            "Physics/library/phy-nlm-first-law.v1.json",
+            "Mathematics/library/linear-equations.v1.json"
+          ]
+        }
+      ],
+      "basis": [
+        "Issue #118",
+        "webpageGAPanalysis.md"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}

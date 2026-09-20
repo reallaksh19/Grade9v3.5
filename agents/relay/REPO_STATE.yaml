@@ -17,21 +17,21 @@
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TAKEOVER-RECONCILE",
+    "work_package": "WP-TA-102",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-001",
-    "path": "agents/relay/execution-packages/EP-TA-001.yaml",
+    "id": "EP-TA-002",
+    "path": "agents/relay/execution-packages/EP-TA-002.yaml",
     "state": "EXECUTABLE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "NONE",
-    "path": null
+    "id": "CP-TA-001",
+    "path": "agents/relay/checkpoints/CP-TA-001.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -55,11 +55,25 @@
         "id": "TC-TA-001",
         "path": "agents/relay/certifications/takeover/TC-TA-001.yaml"
       }
+    },
+    {
+      "route_key": "SERIAL:EP-TA-002",
+      "candidate": {
+        "agent_instance_id": "chatgpt-sol-topic-atlas-20260920"
+      },
+      "discovery_receipt": {
+        "id": "DISC-TA-002",
+        "path": "agents/relay/certifications/discovery/DISC-TA-002.yaml"
+      },
+      "certification": {
+        "id": "TC-TA-002",
+        "path": "agents/relay/certifications/takeover/TC-TA-002.yaml"
+      }
     }
   ],
   "progress": {
-    "overall_percent": 0,
-    "phase_percent": 0,
+    "overall_percent": 20,
+    "phase_percent": 20,
     "ep_percent": 0,
     "basis_revision": "PB-0002"
   },
@@ -68,16 +82,24 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Checkpoint the completed browser-correctness slice, reconcile progress, and prepare the next Shared-Core execution package."
+      "next_action": "Run the candidate-specific V2.5 write gate for EP-TA-002, then implement the Shared diagnostic/Core authority slice in the ordered execution plan."
     },
     "quality": {
-      "state": "CLEAR",
-      "findings": []
+      "state": "NEEDS_ATTENTION",
+      "findings": [
+        "EP-TA-002 Shared implementation has not yet undergone its required quality review."
+      ]
     },
     "evidence": {
-      "state": "COMPLETE",
-      "summary": "The browser-correctness implementation is complete. Material head fab9bb82d9feca668516a02d3ffff697454e8bbf passed the full repository guardrails and the V2.5 execution gate; no planned validation remains unrun.",
-      "not_run": []
+      "state": "PARTIAL",
+      "summary": "EP-TA-001 is checkpointed complete. EP-TA-002 is admitted from repository-only discovery but its material tests have not run yet.",
+      "not_run": [
+        {
+          "id": "TEST-TA2-001..005",
+          "reason": "EP-TA-002 material implementation has not started; run after the candidate-specific write gate passes.",
+          "cause": "NOT_SCHEDULED"
+        }
+      ]
     },
     "stop": {
       "active": false,
@@ -92,7 +114,7 @@
     "operation_id": null,
     "target": null,
     "roadmap_revision": "RM-0002",
-    "execution_ref": "EP-TA-001",
+    "execution_ref": "EP-TA-002",
     "receipt": null,
     "basis": []
   },
