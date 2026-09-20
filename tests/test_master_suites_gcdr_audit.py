@@ -80,6 +80,16 @@ class MasterSuiteAuditTest(unittest.TestCase):
                 self.assertEqual(q["answerAudit"], "PASS")
                 self.assertIn(q["simFidelity"], ALLOWED_FIDELITY)
                 self.assertTrue(q["simFidelityNote"].strip())
+                self.assertIsInstance(q.get("simBindingRefs"), list)
+                if q["simFidelity"] in {"EXACT", "CONSTRAINT_FAITHFUL"}:
+                    self.assertTrue(q["simBindingRefs"], q["id"])
+                    self.assertEqual(
+                        set(q["simBindingRefs"]),
+                        {f"simParams.{key}" for key in (q.get("simParams") or {})},
+                        q["id"],
+                    )
+                else:
+                    self.assertEqual(q["simBindingRefs"], [], q["id"])
                 self.assertTrue(q["teacherCheck"].strip())
                 self.assertTrue(q["takeaway"].strip())
                 self.assertTrue(q["trap"].strip())
@@ -255,8 +265,11 @@ class MasterSuiteAuditTest(unittest.TestCase):
         self.assertAlmostEqual(dot(aperp,b), 0)
         self.assertEqual(q["VEC-Q04"]["correct"], "A")
 
-        # Q05 equal diagonal norms -> dot zero
+        # Q05 equal diagonal norms -> dot zero. Only the orthogonality
+        # constraint is source-determined, so simulator fidelity is constraint-faithful.
         self.assertEqual(q["VEC-Q05"]["correct"], "C")
+        self.assertEqual(q["VEC-Q05"]["simFidelity"], "CONSTRAINT_FAITHFUL")
+        self.assertEqual(q["VEC-Q05"]["simBindingRefs"], ["simParams.theta_deg"])
 
         # Q06 triangle area squared
         a, b = (2,3,3), (6,3,3)
