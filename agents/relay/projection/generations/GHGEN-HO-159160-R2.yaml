@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0008",
     "issue_graph_revision": "IG-0004",
     "execution_ref": "EP-TA-008",
-    "state": "PREPARED",
+    "state": "PUBLISHING",
     "supersedes_generation": "GHGEN-HO-03943C0B50F7",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -21,7 +21,7 @@
     {
       "id": "GHOP-HO-159160-REVISE",
       "kind": "REVISE",
-      "state": "PREPARED",
+      "state": "ATTEMPTED_UNCONFIRMED",
       "idempotency_key": "relay:GHGEN-HO-159160-R2:GHOP-HO-159160-REVISE",
       "depends_on": [],
       "subject": {
@@ -43,9 +43,15 @@
         "source_issue_number": 159
       },
       "publication": {
-        "attempt_count": 0,
+        "attempt_count": 1,
         "receipt": null,
-        "last_error": null
+        "last_error": null,
+        "last_attempt_basis": [
+          "prewrite-journal-head:d488a335afd489e72f71bce2895d65236e2b8d6f",
+          "issue-graph:IG-0004",
+          "verified-owner:Issue #160 -> WP-TA-104",
+          "mother-contract:Issue #159 -> WP-TA-107"
+        ]
       },
       "verification": {
         "status": "NOT_RUN",
