@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:gcdr-diagnostic-item:1.0.0",
+  "title": "GCDR Diagnostic Item Contract",
+  "description": "Per-item governance for diagnostic questions embedded in GCDR master suites. Separates source provenance, answer correctness, teaching helpers and simulator fidelity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "item_id",
+    "source_provenance",
+    "answer_contract",
+    "teaching_contract",
+    "simulation_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "item_id": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "source_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "source_label",
+        "verification_status",
+        "source_snapshot_date"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 2
+        },
+        "source_label": {
+          "type": "string",
+          "minLength": 4
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "verification_status": {
+          "enum": [
+            "SOURCE_ITEM_VERIFIED",
+            "SOURCE_PROVENANCE_PENDING",
+            "SOURCE_UNVERIFIED"
+          ]
+        },
+        "source_snapshot_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "answer_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "final_answer",
+        "derivation_specific",
+        "derivation_steps",
+        "independent_check",
+        "audit_evidence_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "PENDING"
+          ]
+        },
+        "final_answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derivation_specific": {
+          "const": true
+        },
+        "derivation_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "independent_check": {
+          "type": "string",
+          "minLength": 8
+        },
+        "audit_evidence_ref": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "teaching_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trap_alert",
+        "transfer_takeaway",
+        "chalkboard_check",
+        "helpers"
+      ],
+      "properties": {
+        "trap_alert": {
+          "type": "string",
+          "minLength": 8
+        },
+        "transfer_takeaway": {
+          "type": "string",
+          "minLength": 8
+        },
+        "chalkboard_check": {
+          "type": "string",
+          "minLength": 8
+        },
+        "helpers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "simulation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fidelity",
+        "target_activity",
+        "binding_refs",
+        "fidelity_note"
+      ],
+      "properties": {
+        "fidelity": {
+          "enum": [
+            "EXACT",
+            "CONSTRAINT_FAITHFUL",
+            "CONCEPT_ONLY",
+            "UNAVAILABLE"
+          ]
+        },
+        "target_activity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "binding_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "fidelity_note": {
+          "type": "string",
+          "minLength": 8
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "fidelity": {
+                "const": "EXACT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fidelity": {
+                "const": "CONSTRAINT_FAITHFUL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fidelity": {
+                "enum": [
+                  "CONCEPT_ONLY",
+                  "UNAVAILABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding_refs": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
