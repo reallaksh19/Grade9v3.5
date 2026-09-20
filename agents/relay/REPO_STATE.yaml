@@ -26,8 +26,8 @@
   "active_ep": {
     "id": "EP-TA-008",
     "path": "agents/relay/execution-packages/EP-TA-008.yaml",
-    "state": "RECONCILING",
-    "continuity_receipt": "agents/relay/roadmap/continuity/RC-TA-008.yaml"
+    "state": "EXECUTABLE",
+    "continuity_receipt": null
   },
   "last_checkpoint": {
     "id": "CP-TA-007",
@@ -50,25 +50,30 @@
   },
   "status_planes": {
     "execution": {
-      "state": "WAITING",
+      "state": "READY",
       "can_continue": true,
       "material_authority": "READ_ONLY",
-      "next_action": "Reconcile EP-TA-008 to Issue #159 and AUDIT-TA-008-MOTHER-CONTRACT, then require fresh repository-only qualification/takeover before any further learner-runtime material write."
+      "next_action": "Use QSET-TA-009 for fresh repository-only candidate qualification/takeover, then recheck live Git/main drift; only a certified candidate with MATERIAL_WRITE_READY may begin STEP-TA8-001."
     },
     "quality": {
       "state": "NEEDS_ATTENTION",
       "findings": [
-        "AUDIT-TA-008-MOTHER-CONTRACT found evidence-honesty, support-authority, transfer-eligibility/selection, gateway and proof-coverage gaps against Issue #159.",
-        "Issue #159 also contains newer renderer-neutral scene/checkpoint/pedagogy-injection requirements that must be reconciled without blaming the earlier implementation for later scope additions."
+        "AUDIT-TA-008-MOTHER-CONTRACT findings remain open until the reconciled EP implementation and tests close them.",
+        "No EP-TA-008 acceptance credit is earned by contract reconciliation alone."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Exact-head repository guardrails and V2.5 were green for the audited implementation, but EP-TA-008 remains unaccepted because the mother contract is broader than its current acceptance/oracle boundary.",
+      "summary": "Mother-contract audit and prior green implementation evidence exist, but the reconciled RM-0008 EP has not yet been freshly qualified or executed.",
       "not_run": [
         {
-          "id": "TEST-TA8-001..004 (reconciled mother-contract form)",
-          "reason": "The active EP contract must be refreshed and independently requalified before these tests can serve as acceptance evidence.",
+          "id": "QUAL/TC for QSET-TA-009",
+          "reason": "Fresh candidate qualification has not yet been produced for the reconciled EP digest.",
+          "cause": "DEPENDENCY_WAIT"
+        },
+        {
+          "id": "TEST-TA8-001..004 reconciled contract",
+          "reason": "Runtime writes are withheld until fresh takeover certification and live write readiness.",
           "cause": "DEPENDENCY_WAIT"
         }
       ]
@@ -139,8 +144,8 @@
     "projection_ready": true,
     "handover_ready": true,
     "reasons": [
-      "Baton is semantically reconstructable.",
-      "Issue #159-derived handover projection is verified in sync at Issue #164."
+      "RM-0008 EP-TA-008 has a current semantic contract and fresh QSET-TA-009.",
+      "Issue #159/#164 external projection is provider-verified; candidate-specific qualification is intentionally not part of BATON_READY."
     ]
   },
   "chat_context_required": false

@@ -1,0 +1,175 @@
+{
+  "schema_version": "relay-v2.5-question-set",
+  "id": "QSET-TA-009",
+  "route": {
+    "route_key": "SERIAL:EP-TA-008",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-008",
+    "ep_id": "EP-TA-008",
+    "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null,
+    "roadmap_revision": "RM-0008",
+    "work_package": "WP-TA-107",
+    "ep_contract_digest": "sha256:6b043f8ab3430846ea99b9b4ea8d75c2f9e0b197cb879caa1eb0afce2f8fcccf"
+  },
+  "boundary": {
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "PROTECTED_INVARIANT",
+      "INPUT_AUTHORITY",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "Issue #159 is the mother contract for the current WP-TA-107 runtime slice.",
+      "Support/family/demand input authority replaces hard-coded availability and one-READY transfer assumptions.",
+      "Verification expands to no-estimate gateway, stable transfer, renderer-neutral checkpoint/presentation and separate R3/R8 witnesses."
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "focus": "PRODUCTION_PATH",
+      "anchors": [
+        "WP-TA-107",
+        "INPUT-TA8-003"
+      ],
+      "prompt": "Trace the current subtopic-session production path for both an owner-estimate start and a no-estimate start. Name the entrypoint, learner-state owner, academic/input authority and downstream consumer. Do not make the router a new state owner.",
+      "required_output_keys": [
+        "production_entrypoint",
+        "state_owner",
+        "authority_source",
+        "downstream_consumer"
+      ],
+      "evidence_required": true,
+      "deterministic_expected": {
+        "production_entrypoint": "Shared/tools/study_start.resolve -> Shared/tools/worksheet_study_plan.resolve -> Shared/tools/study_session.plan",
+        "state_owner": "Shared/tools/learner_evidence.effective_state",
+        "authority_source": "Issue #159 + RM-0008 WP-TA-107 + canonical matrix family/support/demand records + existing feedback/review contracts",
+        "downstream_consumer": "study_session route/next_step session projection; feedback.py remains post-attempt authority"
+      }
+    },
+    {
+      "id": "Q2",
+      "focus": "ENGINEERING_PROBLEM",
+      "anchors": [
+        "INPUT-TA8-003",
+        "INPUT-TA8-004",
+        "BENCH-TA8-003"
+      ],
+      "prompt": "Reconstruct the safe decision sequence from sparse evidence to one next learner action, including declared support and transfer stability, without duplicating learner state or feedback ownership.",
+      "required_output_keys": [
+        "reconstruction_steps",
+        "intermediate_result",
+        "expected_result"
+      ],
+      "evidence_required": true,
+      "reconstruction_mode": "DESIGN_REASONING",
+      "payload": {
+        "source": "Issue #159, AUDIT-TA-008-MOTHER-CONTRACT, current Shared router/session code, NLM matrix/library"
+      },
+      "deterministic_expected": {
+        "reconstruction_steps": [
+          "Resolve effective evidence and explicit independence provenance; owner estimate is only a tentative routing hint.",
+          "If no estimate exists, select a small representative same-subtopic gateway over uncertain/unobserved capabilities.",
+          "Derive READY/REINFORCE/REBUILD without persisting it.",
+          "Map posture to requested support, then resolve that level against the active matrix family support_ladder; withhold/report undeclared support.",
+          "Choose practice or transfer only from compatible capability+family candidates using existing demand metadata; transfer additionally requires stable independent same-family performance and prerequisites.",
+          "Emit optional renderer-neutral representation/scene/checkpoint/pedagogy refs, then leave post-attempt hint/repair/fresh-verification/review decisions to existing feedback/session contracts."
+        ],
+        "intermediate_result": "A session-only decision carrying evidence basis, routing posture, requested/resolved support, gateway or exercise candidate, transfer eligibility and independent presentation/checkpoint refs.",
+        "expected_result": "Useful study works with sparse or absent owner input while the router never manufactures mastery, support, transfer readiness, repair or renderer-specific academic truth."
+      }
+    },
+    {
+      "id": "Q3",
+      "focus": "BOUNDARIES_INVARIANTS",
+      "anchors": [
+        "AC-TA8-001",
+        "AC-TA8-002",
+        "AC-TA8-003"
+      ],
+      "prompt": "State the intended mutation, the protected mother-contract invariant and an exact falsifier that would prove the repair unsafe.",
+      "required_output_keys": [
+        "mutation_effect",
+        "protected_invariant",
+        "falsifier"
+      ],
+      "evidence_required": true,
+      "mutation": {
+        "condition": "Repair the derived session router only.",
+        "protected_invariant": "Evidence, support availability, demand, hint depth and presentation/checkpoint semantics remain separate authorities.",
+        "falsifier": "Any unsupported READY/support/transfer or visual-checkpoint conflation."
+      },
+      "deterministic_expected": {
+        "mutation_effect": "Repair existing Shared session-only routing and tests; do not change persisted learner state, canonical Physics truth or feedback/review ownership.",
+        "protected_invariant": "Only proven independent evidence reaches READY; support must be declared by the active family; transfer requires stable same-family evidence; starting support never consumes hints; checkpoint and visual/scene are independent semantic refs.",
+        "falsifier": "Any unknown/helped/profile evidence reaching READY, any undeclared support being guessed or low treated as minimum, any single READY unlocking transfer, any other-family/incompatible transfer selected by id order, any starting-support decision mutating shown_hint_indices, or any reasoning checkpoint encoded as renderer geometry fails the slice."
+      }
+    },
+    {
+      "id": "Q4",
+      "focus": "VERIFICATION",
+      "anchors": [
+        "BENCH-TA8-001",
+        "BENCH-TA8-002",
+        "BENCH-TA8-003",
+        "BENCH-TA8-004",
+        "BENCH-TA8-005",
+        "TEST-TA8-004"
+      ],
+      "prompt": "Define the independent verification method and exact predicted result/tolerance for the reconciled mother-contract slice.",
+      "required_output_keys": [
+        "independent_method",
+        "predicted_result",
+        "tolerance_or_exactness"
+      ],
+      "evidence_required": true,
+      "oracle_refs": [
+        "BENCH-TA8-001",
+        "BENCH-TA8-002",
+        "BENCH-TA8-003",
+        "BENCH-TA8-004",
+        "BENCH-TA8-005"
+      ],
+      "independence_requirement": "Verification must use current repository tests, canonical NLM fixtures and V2.5 exact-head validators rather than assertions embedded only in learning_router.py.",
+      "deterministic_expected": {
+        "independent_method": "Run focused evidence/support/gateway/transfer/presentation/session falsifiers, separate canonical NLM R3 and R8 witnesses, protected-domain diff, full repository guardrails and exact-head V2.5 validation/quality/delivery-correlation checks.",
+        "predicted_result": "All mother-contract truth tables and R3/R8 witnesses pass; protected Physics/matrix truth remains unchanged; no persisted routing/mastery state appears; PR #148 correlation matches Issue #159/WP-TA-107/EP-TA-008 before checkpoint credit.",
+        "tolerance_or_exactness": "Exact enum/id/family/support/ref behavior, zero unauthorized protected-domain semantic edits, and all MUST_PASS/full-suite/quality/correlation checks green on the accepted head."
+      }
+    },
+    {
+      "id": "Q5",
+      "focus": "FIRST_SAFE_SLICE",
+      "anchors": [
+        "STEP-TA8-001",
+        "AC-TA8-001"
+      ],
+      "prompt": "Name the first bounded runtime repair after certification, its predicted before/after behavior and exact verification before touching gateway, transfer or presentation behavior.",
+      "required_output_keys": [
+        "first_change",
+        "predicted_before",
+        "predicted_after",
+        "verification"
+      ],
+      "evidence_required": true,
+      "step_refs": [
+        "STEP-TA8-001"
+      ],
+      "deterministic_expected": {
+        "first_change": "Repair explicit independence handling and family support_ladder resolution in learner_evidence/learning_router, with focused falsifiers.",
+        "predicted_before": "Bare DEMONSTRATED can route READY and posture maps directly to low/medium/high without proving the active family declares that support.",
+        "predicted_after": "Only proven independent direct evidence routes READY; posture produces a requested support level that is returned only when the active family declares it, otherwise a visible undeclared-support finding is emitted.",
+        "verification": "TEST-TA8-001 plus BENCH-TA8-001/BENCH-TA8-002 must pass before any STEP-TA8-002 gateway/transfer edits."
+      }
+    }
+  ],
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-issue159-reconciler-20260920"
+  }
+}
