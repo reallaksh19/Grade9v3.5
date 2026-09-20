@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 196,
-  "relation_count": 250,
+  "relation_count": 251,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -16,7 +16,7 @@
     "TOOLING": 49,
     "WEB": 6
   },
-  "digest": "sha256:63643b348509e1575218e98e095d96b0da24eb004f261e8b9fd27be1ff39d5e6",
+  "digest": "sha256:88d14f5847d4384d7e5da0ce39e71d0655aff1856491e19bbb78c22193000de4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -2335,6 +2335,11 @@
     {
       "from": "tests/test_import_sil.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_learning_router.py",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
