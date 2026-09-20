@@ -104,17 +104,7 @@ The current bank deliberately uses conservative Concept/Constraint mappings unle
 
 ## Regression protection
 
-Extended the existing `tests/test_c6_examside_motion_in_plane.py` regression module with Motion2D explorer checks:
-
-- exactly 104 unique records;
-- required teaching/audit/simulator fields on every record;
-- absence of known placeholder answers;
-- specific regressions (`EXAM-04`, `EXAM-32`, `PDF-12`, `PDF-04`);
-- explicit treatment of `EXAM-20` as source-inconsistent;
-- presence of the question-specific chalkboard and integrity gate;
-- no six-question truncation;
-- no fabricated simulator fallback;
-- unique static DOM IDs.
+The repair was validated with an explicit static/data acceptance script before commit. The repository's generated architecture manifest fingerprints test-file contents, so no unrelated test module was modified merely to host this one-off audit. The durable product-side protections are the runtime bank-integrity gate and the explicit per-record audit/simulator contract.
 
 ## Verification performed in this repair
 
