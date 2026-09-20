@@ -1,0 +1,184 @@
+{
+  "schema_version": "relay-v2.5-audit-note",
+  "id": "AUDIT-TA-008-MOTHER-CONTRACT",
+  "kind": "TAKEOVER_IMPLEMENTATION_AUDIT",
+  "repository": "reallaksh19/Grade9V3",
+  "branch": "takeover/topic-atlas-browser-correctness",
+  "audited_head": "e78cf7a80a346327018622178939653c96cf5706",
+  "mother_contract": {
+    "github_issue": 159,
+    "url": "https://github.com/reallaksh19/Grade9V3/issues/159",
+    "title": "[Core] Subtopic session router: evidence -> support -> visual hints -> exercise demand",
+    "owner_instruction": "Issue #159 is the mother document for the router work.",
+    "observed_updated_at": "2026-09-20T14:50:33Z"
+  },
+  "implementation_slice": {
+    "basis_before_router": "cca1c200fb68a72496943a31abcab68417d51b5c",
+    "known_green_router_head": "12570ea45533ac52fa9a3dae9924eced1c37763e",
+    "current_head": "e78cf7a80a346327018622178939653c96cf5706",
+    "current_head_drift_from_known_green": "Coordination-only files after 12570ea; runtime/test files unchanged.",
+    "current_exact_head_evidence": [
+      "guardrails run 35514704759: SUCCESS, 942 repository tests PASS",
+      "v25-relay run 35514704757: SUCCESS",
+      "material_write_ready at e78cf7a: PASS for SERIAL:EP-TA-008 with base drift UNCHANGED"
+    ]
+  },
+  "audit_disposition": {
+    "wp_ta_107_complete": false,
+    "publish_cp_ta_008": false,
+    "award_ep_ta_008_acceptance_credit": false,
+    "programme_progress": "70/100 remains correct",
+    "reason": "The landed implementation passes its narrowed EP tests but does not satisfy the Owner mother contract in Issue #159."
+  },
+  "findings": [
+    {
+      "id": "F-TA8-AUDIT-001",
+      "severity": "HIGH",
+      "class": "EVIDENCE_HONESTY",
+      "finding": "READY can be produced without proven independent evidence.",
+      "evidence": [
+        "Shared/tools/learning_router.py posture_for accepts DEMONSTRATED when help is null and source is not PROFILE_*.",
+        "tests/test_learning_router.py expects a bare {state: DEMONSTRATED, error_stage: null} to route READY/low.",
+        "Shared/library/observation.schema.json does not require help, so null is a representable evidence state."
+      ],
+      "mother_contract_conflict": "Only strong independent DEMONSTRATED evidence may route READY; unknown independence must remain conservative."
+    },
+    {
+      "id": "F-TA8-AUDIT-002",
+      "severity": "HIGH",
+      "class": "SUPPORT_AUTHORITY",
+      "finding": "Starting support is hard-coded and is not validated against matrix.family.support_ladder.",
+      "evidence": [
+        "learning_router.POSTURE_SUPPORT maps READY/REINFORCE/REBUILD directly to low/medium/high.",
+        "route_decision receives canonical library records but no matrix family/support-ladder record.",
+        "The NLM matrix declares high/medium/low, but Issue #159 requires missing levels to be withheld/reported rather than guessed."
+      ],
+      "mother_contract_conflict": "matrix.family.support_ladder is the authority for what support exists and what is handed over."
+    },
+    {
+      "id": "F-TA8-AUDIT-003",
+      "severity": "HIGH",
+      "class": "TRANSFER_ELIGIBILITY",
+      "finding": "TRANSFER is enabled from one READY state plus prerequisite readiness, not stable same-family performance.",
+      "evidence": [
+        "learning_router.exercise_decision selects TRANSFER whenever posture == READY, prerequisites_ready and any CORE2B candidate exists.",
+        "No repeated/fresh independent verification evidence is consulted."
+      ],
+      "mother_contract_conflict": "Transfer becomes eligible only after stable same-family performance."
+    },
+    {
+      "id": "F-TA8-AUDIT-004",
+      "severity": "HIGH",
+      "class": "EXERCISE_SELECTION",
+      "finding": "Transfer selection ignores family identity and declared demand dimensions.",
+      "evidence": [
+        "_question_candidates filters only primary_capability_ref plus CORE2A/CORE2B exposure.",
+        "Candidate choice is lexicographic by question id.",
+        "family_ref and transfer.dimension/model_choice/representation_translation/reasoning_steps/novelty are not used by the router."
+      ],
+      "mother_contract_conflict": "Demand escalation must stay within the relevant capability/family and use existing demand dimensions without creating a second taxonomy."
+    },
+    {
+      "id": "F-TA8-AUDIT-005",
+      "severity": "MEDIUM",
+      "class": "SUBTOPIC_GATEWAY",
+      "finding": "EP-TA-008 does not prove the bounded representative subtopic gateway required by Issue #159.",
+      "evidence": [
+        "Existing study_start supports estimate-based QUICK_CHECK placement, but the router work adds no small representative selection policy over uncertain/unknown capabilities.",
+        "No focused falsifier proves useful gateway behavior when no estimate exists."
+      ],
+      "mother_contract_conflict": "The router must work with no estimate and select a small number of representative quick checks rather than require continuous telemetry."
+    },
+    {
+      "id": "F-TA8-AUDIT-006",
+      "severity": "MEDIUM",
+      "class": "NLM_PROOF_COVERAGE",
+      "finding": "The NLM proof is incomplete relative to the mother document.",
+      "evidence": [
+        "Focused router tests deeply exercise R8 friction.",
+        "R3/FBD has a READY next-step assertion, but the focused suite does not prove the complete R3 matrix of uncertain support, staged reveal ordering, protected transfer information and persistent-difficulty repair."
+      ],
+      "mother_contract_conflict": "Issue #159 names separate R3 and R8 proof obligations."
+    },
+    {
+      "id": "F-TA8-AUDIT-007",
+      "severity": "HIGH",
+      "class": "OWNER_CONTRACT_DRIFT",
+      "finding": "Current Issue #159 contains renderer-independent scene/pedagogy-injection and checkpoint/visual separation requirements not represented in EP-TA-008.",
+      "evidence": [
+        "Issue #159 current body includes the Redox/workbench revision and the correction that a reasoning checkpoint is not a visual representation.",
+        "Issue #159 was updated at 2026-09-20T14:50:33Z, after current repository head e78cf7a at 2026-09-20T13:50:57Z."
+      ],
+      "disposition": "Treat as current Owner-contract drift requiring reconciliation; do not blame the earlier implementation for requirements added after its material head."
+    },
+    {
+      "id": "F-TA8-AUDIT-008",
+      "severity": "HIGH",
+      "class": "DELIVERY_GOVERNANCE",
+      "finding": "The mother issue and active PR are not durably correlated to the current frontier.",
+      "evidence": [
+        "agents/relay/roadmap/ISSUE_GRAPH.yaml does not contain Issue #159.",
+        "PR #148 body still declares RM-0006 / WP-TA-106 / EP-TA-003 and correlates only Issue #118 with EP-TA-001/002."
+      ],
+      "disposition": "Reconcile Issue #159 <-> WP-TA-107 <-> current/successor EP and refresh the PR correlation before task-close handback."
+    }
+  ],
+  "retained_good_work": [
+    "learner_evidence.effective_state now exposes chosen observation error_stage without creating a new learner ontology.",
+    "EXECUTION/CARELESS MISSING evidence is protected from automatic conceptual REBUILD.",
+    "starting visual stage resolution is canonical and fails closed on ambiguous/unresolved representations.",
+    "starting support does not mutate shown_hint_indices; feedback.py remains the post-attempt hint/repair/verification owner.",
+    "routing posture is explicitly NOT_WRITTEN and is not persisted as mastery state.",
+    "sparse question inventory is handled without runtime synthesis."
+  ],
+  "recommended_improvements": [
+    {
+      "id": "IMP-TA8-001",
+      "priority": 1,
+      "change": "Make independence explicit in effective evidence and require proven independent DEMONSTRATED for READY.",
+      "falsifier": "DEMONSTRATED with help missing/UNKNOWN, imported profile state, or assisted success must route REINFORCE."
+    },
+    {
+      "id": "IMP-TA8-002",
+      "priority": 1,
+      "change": "Resolve starting support through the active matrix family support_ladder; return a visible WITHHELD/UNDECLARED result when the requested level is absent.",
+      "falsifier": "A COMPETITION/minimum request against an NLM high/medium/low ladder must not silently become low."
+    },
+    {
+      "id": "IMP-TA8-003",
+      "priority": 1,
+      "change": "Separate routing posture from transfer eligibility. Define stability from independent same-family evidence/fresh verification before transfer can be selected.",
+      "falsifier": "One independent success must not by itself unlock transfer."
+    },
+    {
+      "id": "IMP-TA8-004",
+      "priority": 1,
+      "change": "Choose practice/transfer candidates using capability + family + canonical demand metadata, not alphabetical question id.",
+      "falsifier": "A transfer from another family or with an incompatible protected-information contract must never be selected."
+    },
+    {
+      "id": "IMP-TA8-005",
+      "priority": 2,
+      "change": "Add a bounded subtopic gateway that selects a small representative set over uncertain/unobserved capabilities and works with no owner estimate.",
+      "falsifier": "No evidence must still yield useful diagnostic study without turning every capability into a mandatory check."
+    },
+    {
+      "id": "IMP-TA8-006",
+      "priority": 2,
+      "change": "Extend the renderer-neutral session output with optional representation/scene/injection refs while keeping reasoning checkpoint_ref independent from visual refs.",
+      "falsifier": "A checkpoint must work with no visual; a visual must work with no checkpoint; neither may encode renderer geometry as academic truth."
+    },
+    {
+      "id": "IMP-TA8-007",
+      "priority": 2,
+      "change": "Add complete R3 and R8 witness tests, including support declaration, transfer information protection, repair and fresh independent verification.",
+      "falsifier": "Both proof cases must pass without Physics-specific identifiers in Shared policy."
+    },
+    {
+      "id": "IMP-TA8-008",
+      "priority": 1,
+      "change": "Reconcile Issue #159 and PR #148 into V2.5 issue/EP/WP correlation before acceptance/checkpoint publication.",
+      "falsifier": "Task close is invalid while the PR description still points at obsolete RM/WP/EP state."
+    }
+  ]
+}
