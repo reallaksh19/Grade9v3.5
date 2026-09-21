@@ -1,0 +1,79 @@
+{
+  "schema_version": "relay-v2.5-github-projection",
+  "generation": {
+    "id": "GHGEN-WP105-ISS169-R1",
+    "repository": "reallaksh19/Grade9V3",
+    "roadmap_revision": "RM-0009",
+    "issue_graph_revision": "IG-0005",
+    "execution_ref": "EP-TA-009",
+    "state": "IN_SYNC",
+    "supersedes_generation": null,
+    "basis": [
+      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "agents/relay/execution-packages/EP-TA-009.yaml",
+      "agents/relay/certifications/questions/QSET-TA-010.yaml",
+      "Issue #169 provider readback"
+    ]
+  },
+  "operations": [
+    {
+      "id": "GHOP-WP105-ISSUE169-HANDOFF",
+      "kind": "UPDATE",
+      "state": "VERIFIED",
+      "idempotency_key": "relay:GHGEN-WP105-ISS169-R1:GHOP-WP105-ISSUE169-HANDOFF",
+      "depends_on": [],
+      "subject": {
+        "issue_node": "ISSUE-169",
+        "related_nodes": [
+          "ISSUE-159"
+        ]
+      },
+      "preconditions": {
+        "repository_issue_state": "OPEN",
+        "work_state": "ACTIVE",
+        "handover_key": "WP-TA-105"
+      },
+      "desired": {
+        "body_marker": "<!-- relay-operation:GHOP-WP105-ISSUE169-HANDOFF -->",
+        "body_projection": "<!-- relay-operation:GHOP-WP105-ISSUE169-HANDOFF -->\n# Grade-9 Physics exit readiness and Grade-10 transition\n\n## Roadmap ownership\n\n- roadmap: `RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER@RM-0008`\n- work package: `WP-TA-105`\n- predecessor: `WP-TA-107 / EP-TA-008` (Issue #159)\n- sequence: Physics Grade 9 → Grade 10 → Grade 11\n\n## Outcome\n\nDerive an auditable Grade-9 exit view from canonical Grade-9 scope plus existing learner evidence so Grade 10 begins when it is the next productive place to learn, without demanding perfection, hiding foundational holes, or creating a second mastery system.\n\n## Required evidence\n\n- All required Grade-9 domains have coverage evidence; chapter-name coverage alone is insufficient.\n- Important concepts have some independent evidence and, where relevant, changed-representation or transfer evidence.\n- Known prerequisite blockers and major unresolved misconceptions are visible and progression-relevant.\n- States distinguish **secure**, **usable-but-fragile**, **known gap**, and **insufficient/unknown evidence** without a mastery percentage.\n- Non-blocking enrichment, optional improvement and future evidence remain visible but do not block transition.\n- A parent/agent can understand what was demonstrated, what remains uncertain, what was repaired and what should be rechecked without reading raw internal state.\n- Grade 10 inherits explicit transition evidence rather than either a blanket recertification of Grade 9 or a silent assumption of mastery.\n\n## Authority and design constraints\n\nUse existing authority first:\n\n- `agents/relay/roadmap/OVERALL_ROADMAP.yaml`\n- `agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml`\n- `docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md`\n- `docs/grade9/grade9-physics-scope-coverage.json`\n- existing learner evidence/profile contracts\n- the closed session-loop/router behavior from WP-TA-107\n\nPrefer a **derived query/report/view** over existing scope and learner evidence. Add new persisted state only if a concrete repository falsifier proves the existing model cannot answer the progression question.\n\n## Protected invariants\n\n- No mastery percentage, probability, grade-state database or second learner truth store.\n- Unknown/missing evidence remains unknown; it is not converted into mastery or failure.\n- Required Grade-9 scope, genuine prerequisites, school demand, approved question demand, enrichment and later-grade material remain distinct.\n- Non-required enrichment must not become a Grade-9 completion blocker.\n- Canonical Physics library/matrix meaning remains protected unless a separately authorized bounded package proves a content defect.\n- Existing learner observations remain evidence; the exit view is derived from them rather than rewriting them.\n- Grade 10 should not require blanket Grade-9 recertification, nor should it silently assume mastery.\n\n## Initial execution shape\n\n1. Reconstruct the current Grade-9 required-scope inventory and the existing learner-evidence surfaces that can support an exit view.\n2. Define a derived capability/domain state projection using evidence categories, not percentages.\n3. Derive transition blockers/non-blockers from required scope, prerequisites, major misconceptions and evidence sufficiency.\n4. Produce a parent/agent-readable transition report and machine-readable projection.\n5. Falsify overclaiming: unknown evidence, enrichment, one-off assisted success, and non-required later-grade content must not produce a false Grade-10-ready conclusion.\n6. Run protected-domain diff, quality review, full repository guardrails and V2.5 validation before checkpoint credit.\n\n## Completion rule\n\nThis issue is complete only when the repository can explain, from existing authoritative scope and learner evidence, why Grade 10 is or is not the next productive place to learn—without a mastery score, without hiding unknowns, and without requiring optional perfection.\n\n\n## Predecessor closure\n\nThis work follows Issue #159 / `WP-TA-107 / EP-TA-008`. It must not reuse the predecessor's Owner execution exception as material-write authority.\n",
+        "github_state": "OPEN",
+        "relationships": []
+      },
+      "publication": {
+        "attempt_count": 1,
+        "last_attempt_basis": [
+          "Issue #169 update request with stable relay-operation marker"
+        ],
+        "receipt": "github-issue-update:https://github.com/reallaksh19/Grade9V3/issues/169",
+        "last_error": null
+      },
+      "verification": {
+        "status": "PASS",
+        "observed_issue_number": 169,
+        "observed_issue_id": 5522215316,
+        "observed_github_state": "OPEN",
+        "observed_relationships": [],
+        "basis": [
+          "Issue #169 provider readback after marker update",
+          "relay-operation marker present"
+        ]
+      },
+      "reconciliation": {
+        "issue_graph_effects": [
+          {
+            "node": "ISSUE-169",
+            "set_github_state": "OPEN",
+            "set_issue_number": 169,
+            "set_issue_id": 5522215316
+          }
+        ],
+        "complete_when": [
+          "Issue #169 identity verified",
+          "relay-operation marker verified",
+          "successor ownership mapped to WP-TA-105"
+        ]
+      }
+    }
+  ]
+}

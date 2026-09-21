@@ -1,0 +1,184 @@
+{
+  "schema_version": "relay-v2.5-quality-review",
+  "quality_review_id": "QRV-TA-008",
+  "ep": {
+    "id": "EP-TA-008",
+    "path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "contract_digest": "sha256:537037f390d4f29a6934e12418923d9063fbc2fe18c5620af384e84d345eae3a"
+  },
+  "roadmap_revision": "RM-0008",
+  "material_ref": "62a4868021a1e2b32b0836d8a3b97f7526108481",
+  "reviewer": {
+    "type": "AGENT",
+    "identity": "chatgpt-sol-issue159-reconciler-20260921-quality-close"
+  },
+  "router_snapshot": {
+    "applicable": [
+      {
+        "blueprint": "code-review",
+        "reason": "A routing annotation can silently overclaim learner knowledge or duplicate academic/runtime ownership.",
+        "review_focus": [
+          "evidence basis",
+          "no mutation",
+          "no duplicated feedback engine",
+          "question sparsity"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Shared runtime functions and one new routing module change learner-facing execution decisions.",
+        "review_focus": [
+          "determinism",
+          "small API",
+          "error-stage handling",
+          "fallback honesty"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "This material-boundary transition requires qualified repository custody and exact-head handoff.",
+        "review_focus": [
+          "QSET/QUAL/TC",
+          "checkpoint continuity",
+          "PR custody",
+          "exact-head validation"
+        ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "The router must be a derived orchestration layer over existing evidence/content/feedback owners.",
+        "review_focus": [
+          "single state owner",
+          "no mastery model",
+          "support vs hint separation",
+          "canonical refs"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Truth tables and closed-loop behavior are the primary correctness proof.",
+        "review_focus": [
+          "unknown/assisted/missing states",
+          "execution-slip falsifier",
+          "visual stage mapping",
+          "transfer prerequisites",
+          "feedback reuse"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner-facing rendering/widget is changed; router emits semantic ids/data already governed by canonical accessibility contracts.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical method changes.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner or academic schema is changed.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "Small in-memory routing over current worksheet/profile/library records is not performance-sensitive.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "No UI layout/interaction surface is modified.",
+        "review_focus": []
+      }
+    ]
+  },
+  "procedure_results": [
+    {
+      "blueprint": "software-design",
+      "result": "CLEAR",
+      "evidence": [
+        "Router remains a derived session-only orchestration layer over learner_evidence, canonical family/support/demand records and existing feedback/review owners.",
+        "READY/REINFORCE/REBUILD are not persisted and no mastery score/probability or second learner ontology is introduced."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "coding",
+      "result": "CLEAR",
+      "evidence": [
+        "Shared router code contains no Physics/NLM-specific identifiers and resolves canonical refs/families rather than embedding subject truth.",
+        "Current PR-head guardrails run 35554515663 passed."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "testing",
+      "result": "CLEAR",
+      "evidence": [
+        "Separate R3 and R8 witness tests cover support/reveal/transfer protection plus persistent repair/helped-success fresh-verification paths.",
+        "Implementation-head guardrails 35534575998 and PR-head guardrails 35554515663 passed; Physics protected-domain diff is empty."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "code-review",
+      "result": "CLEAR",
+      "evidence": [
+        "Starting support remains separate from question hints; transfer remains separate from READY; checkpoint/visual/scene/pedagogy refs remain independent.",
+        "No Physics-specific policy is present in Shared/tools/learning_router.py and no protected Physics file changed in the continuation diff."
+      ],
+      "reason": null,
+      "cause": null
+    },
+    {
+      "blueprint": "github-delivery",
+      "result": "FINDINGS",
+      "evidence": [
+        "PR #168 is the live correlated delivery vehicle for Issue #159 / EP-TA-008 / WP-TA-107.",
+        "V2.5 run 35554515658 passes protocol/conformance/cold-start/baton/discovery/takeover/route/Git steps and fails only the normal candidate-specific material-write gate; ODR-0006/ODR-0007 explicitly authorize direct EP-TA-008 execution while requiring that gate to remain reported as unmet."
+      ],
+      "reason": null,
+      "cause": null
+    }
+  ],
+  "findings": [
+    {
+      "id": "QF-TA8-001",
+      "blueprint": "github-delivery",
+      "classification": "AUTHORITY",
+      "severity": "MEDIUM",
+      "disposition": "REMEDIATED",
+      "statement": "The normal independent-candidate material-write gate is unmet for EP-TA-008, but the Owner explicitly authorized direct execution for this EP and required the missing gate evidence to remain visible rather than fabricated.",
+      "evidence": [
+        "ODR-0006-OWNER-QUALIFICATION-OVERRIDE",
+        "ODR-0007-OWNER-DIRECT-EXECUTION-CONTINUATION",
+        "v25-relay run 35554515658"
+      ],
+      "blocks_execution": false,
+      "hard_stop": null
+    }
+  ],
+  "overall_state": "CLEAR",
+  "execution_effect": {
+    "blocks_execution": false,
+    "blocking_findings": []
+  },
+  "owner_report": {
+    "summary": "EP-TA-008 meets the Issue #159 router contract on the accepted implementation basis: separate R3/R8 witnesses pass, Shared policy stays subject-neutral, protected Physics truth is unchanged, and the sole normal-gate exception is explicitly Owner-authorized and remains visible.",
+    "visible_risks": [
+      "No independent replacement-agent admission exists for EP-TA-008; this is an explicit Owner-authorized protocol exception, not evidence that the normal candidate-specific write gate passed."
+    ],
+    "decisions_required": []
+  },
+  "successor_handover": {
+    "unresolved_findings": [],
+    "follow_up": [
+      "Advance only to the WP-TA-105 planning/baton boundary. Do not reuse ODR-0006/ODR-0007 as material-write authority for a successor EP because those authorizations are scoped to WP-TA-107 / EP-TA-008."
+    ]
+  }
+}

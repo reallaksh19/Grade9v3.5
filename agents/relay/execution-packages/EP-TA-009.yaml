@@ -1,0 +1,1114 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-009",
+    "branch": "takeover/topic-atlas-browser-correctness",
+    "base_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-008",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "takeover/topic-atlas-browser-correctness",
+    "material_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+    "base_branch": "main",
+    "base_observed_ref": "843ec2d8d6faa2b8de15795ed1535905e4efc8a8",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0009",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-105",
+    "generated_from_frontier": true
+  },
+  "outcome": {
+    "user_visible": [
+      "A parent/agent can inspect a derived Grade-9 Physics exit view that distinguishes secure, usable-but-fragile, known-gap and insufficient/unknown evidence without a mastery percentage.",
+      "The transition view explains which required Grade-9 blockers matter for Grade 10 and which enrichment/optional improvements do not block progression."
+    ],
+    "engineering": [
+      "Derive exit/transition status from canonical Grade-9 scope plus existing learner evidence; do not create a second learner-state store.",
+      "Produce machine-readable and human-readable projections with explicit blocker/non-blocker basis and protected unknown evidence."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Decide when Grade 10 is the next productive Physics learning frontier from existing Grade-9 scope and learner evidence without demanding perfection or hiding foundational holes.",
+    "roadmap_position": "WP-TA-105 is the serial frontier after completed WP-TA-107; it carries the final 15/100 programme weight.",
+    "why_this_work_exists": "The repository can now route local sessions honestly, but it still needs a grade-exit view that aggregates required scope and evidence without inventing mastery.",
+    "current_architecture": "Canonical Grade-9 scope lives in existing coverage artifacts and Physics contracts; learner evidence remains owned by Shared learner-evidence/profile contracts; WP-TA-107 supplies local session routing but not grade-level certification.",
+    "current_implementation_state": "No authoritative Grade-9 exit/Grade-10 transition projection exists yet. Existing artifacts expose scope and evidence inputs that must be composed before any new persistence is considered."
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA9-001",
+      "action": "INSPECT",
+      "targets": [
+        "docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "question": "What is the current required Grade-9 Physics scope and how are prerequisites/enrichment/later-grade items separated?",
+      "expected_outputs": [
+        "Required-domain/capability inventory",
+        "Explicit non-blocking enrichment and later-grade classifications"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop: Grade-9 scope authority is insufficient for an exit view."
+    },
+    {
+      "id": "DSTEP-TA9-002",
+      "action": "TRACE",
+      "targets": [
+        "Shared/tools/learner_evidence.py",
+        "Learners/"
+      ],
+      "question": "Which existing evidence records can prove independent, helped, missing, uncertain or unobserved capability state without a new mastery store?",
+      "expected_outputs": [
+        "Evidence-source map",
+        "Independence/help/error provenance rules"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop: existing learner evidence cannot support the requested projection."
+    },
+    {
+      "id": "DSTEP-TA9-003",
+      "action": "INSPECT",
+      "targets": [
+        "agents/relay/checkpoints/CP-TA-008.yaml",
+        "agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml"
+      ],
+      "question": "Which predecessor invariants constrain grade-exit aggregation and transition decisions?",
+      "expected_outputs": [
+        "Protected independence rules",
+        "Predecessor closure basis"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop: predecessor or Owner authority is ambiguous."
+    },
+    {
+      "id": "DSTEP-TA9-004",
+      "action": "VERIFY_GIT",
+      "targets": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
+      ],
+      "question": "Is WP-TA-105 still the computed serial frontier on the exact branch/base pair before any material write?",
+      "expected_outputs": [
+        "Exact branch/head/base",
+        "Current frontier and route"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop and reconcile repository/frontier drift before material writes."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA9-001",
+      "name": "Grade-9 Physics scope coverage",
+      "description": "Canonical required-scope/prerequisite/enrichment/later-grade classification used to decide what may block Grade-9 exit.",
+      "authority": "Repository Grade-9 scope coverage artifacts governed by RM-0008/WP-TA-105.",
+      "source": "docs/grade9/grade9-physics-scope-coverage.json; docs/grade9/GRADE9-PHYSICS-SCOPE-COVERAGE.md",
+      "type": "CANONICAL_SCOPE",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "Existing Grade-9 scope coverage projection",
+      "consumers": [
+        "STEP-TA9-001",
+        "STEP-TA9-002",
+        "AC-TA9-001",
+        "AC-TA9-002",
+        "TEST-TA9-001",
+        "TEST-TA9-002"
+      ],
+      "validation": [
+        "Required scope, prerequisites, enrichment and later-grade classifications must remain distinguishable."
+      ],
+      "stale_if": [
+        "Grade-9 scope coverage artifacts materially change."
+      ]
+    },
+    {
+      "id": "INPUT-TA9-002",
+      "name": "Existing learner evidence",
+      "description": "Observation/profile evidence used to derive secure/fragile/gap/unknown views without persisting a new mastery state.",
+      "authority": "Shared learner evidence contracts and existing learner records.",
+      "source": "Shared/tools/learner_evidence.py; Learners/",
+      "type": "LEARNER_EVIDENCE",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "Existing evidence vocabulary and records",
+      "consumers": [
+        "STEP-TA9-001",
+        "STEP-TA9-002",
+        "STEP-TA9-003",
+        "AC-TA9-001",
+        "AC-TA9-003",
+        "TEST-TA9-001",
+        "TEST-TA9-003"
+      ],
+      "validation": [
+        "Independent/helped/uncertain/missing/unobserved evidence semantics must be preserved; unknown evidence cannot be promoted."
+      ],
+      "stale_if": [
+        "Learner evidence schema or precedence changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA9-003",
+      "name": "Closed session-loop predecessor",
+      "description": "WP-TA-107 evidence/checkpoint describing local session routing, repair and fresh-verification semantics.",
+      "authority": "CP-TA-008 / QRV-TA-008 / EP-TA-008.",
+      "source": "agents/relay/checkpoints/CP-TA-008.yaml; agents/relay/quality/QRV-TA-008.yaml",
+      "type": "PREDECESSOR_CONTRACT",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "WP-TA-107 closed contract",
+      "consumers": [
+        "STEP-TA9-002",
+        "STEP-TA9-003",
+        "AC-TA9-002",
+        "AC-TA9-003",
+        "TEST-TA9-002",
+        "TEST-TA9-003"
+      ],
+      "validation": [
+        "Grade-exit projection must not reinterpret session-only postures as persisted mastery."
+      ],
+      "stale_if": [
+        "CP-TA-008 or QRV-TA-008 is superseded."
+      ]
+    },
+    {
+      "id": "INPUT-TA9-004",
+      "name": "Grade-9 independence decision",
+      "description": "Owner decision that freezes independent-use Grade-9 Physics scope/transition philosophy and forbids percentage-based certification.",
+      "authority": "Owner decision ODR-0003-G9-PHYSICS-INDEPENDENCE.",
+      "source": "agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml",
+      "type": "OWNER_AUTHORITY",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "Existing Owner decision",
+      "consumers": [
+        "STEP-TA9-001",
+        "STEP-TA9-004",
+        "AC-TA9-004",
+        "TEST-TA9-004"
+      ],
+      "validation": [
+        "Owner constraints on independent evidence, unknowns and progression remain unchanged unless a new Owner decision supersedes them."
+      ],
+      "stale_if": [
+        "ODR-0003 is superseded by a later Owner decision."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA9-001",
+      "name": "Exit-state truth table",
+      "purpose": "Prevent unknown, helped-only or enrichment evidence from being misclassified as secure Grade-9 readiness.",
+      "source": "WP-TA-105 exit evidence + existing learner evidence semantics",
+      "independence": "Frozen cases are evaluated outside the implementation decision branch.",
+      "oracle_class": "FROZEN_GOLDEN",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "payload": {
+        "cases": [
+          "required capability with proven independent evidence",
+          "required capability with helped-only evidence",
+          "required capability with explicit missing evidence",
+          "required capability with no observation",
+          "enrichment capability with no evidence"
+        ]
+      },
+      "expected": [
+        "secure or usable state only when evidence supports it",
+        "helped-only is not secure independent evidence",
+        "known gap remains visible",
+        "unobserved remains insufficient/unknown",
+        "enrichment absence does not block required Grade-9 exit"
+      ],
+      "tolerance": null,
+      "verifies": [
+        "AC-TA9-001",
+        "TEST-TA9-001"
+      ],
+      "stale_if": [
+        "Evidence vocabulary or WP-TA-105 state labels change."
+      ]
+    },
+    {
+      "id": "BENCH-TA9-002",
+      "name": "Transition blocker boundary",
+      "purpose": "Prove only required-scope/prerequisite blockers and major unresolved misconceptions can block Grade-10 transition.",
+      "source": "Grade-9 scope coverage + WP-TA-105 exit evidence",
+      "independence": "Expected blocker classes are derived from canonical scope classification, not the exit implementation.",
+      "oracle_class": "REFERENCE_DATA",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "payload": {
+        "blocking": [
+          "required Grade-9 hole",
+          "genuine prerequisite blocker",
+          "major unresolved misconception"
+        ],
+        "non_blocking": [
+          "optional enrichment gap",
+          "later-grade sophistication",
+          "future improvement with usable evidence"
+        ]
+      },
+      "expected": "Every transition blocker/non-blocker must carry an explicit canonical-scope and evidence basis.",
+      "tolerance": null,
+      "verifies": [
+        "AC-TA9-002",
+        "TEST-TA9-002"
+      ],
+      "stale_if": [
+        "Grade-9 scope classifications change."
+      ]
+    },
+    {
+      "id": "BENCH-TA9-003",
+      "name": "Parent-readable transition report",
+      "purpose": "Ensure a human can understand demonstrated/uncertain/repaired/recheck state without reading raw internals.",
+      "source": "WP-TA-105 outcome and Issue #169",
+      "independence": "Manual reconstruction uses source evidence and report output, not implementation internals.",
+      "oracle_class": "MANUAL_RECONSTRUCTION",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "payload": {
+        "required_fields": [
+          "required domain/capability",
+          "derived evidence category",
+          "basis observations",
+          "blocker status",
+          "repair/recheck context",
+          "transition implication"
+        ]
+      },
+      "expected": "A parent/agent can explain why Grade 10 is or is not the next productive frontier and distinguish unknowns from known gaps.",
+      "tolerance": null,
+      "verifies": [
+        "AC-TA9-003",
+        "TEST-TA9-003"
+      ],
+      "stale_if": [
+        "Issue #169 completion contract changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA9-004",
+      "name": "No-second-mastery-store invariant",
+      "purpose": "Prove the exit view is derived and protected academic/evidence truth is not rewritten.",
+      "source": "ODR-0003 + WP-TA-105 protected invariants",
+      "independence": "Protected-domain diff and repository search are external to the projection logic.",
+      "oracle_class": "OBSERVATIONAL",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "payload": {
+        "forbidden": [
+          "mastery percentage/probability",
+          "persisted secure/fragile grade truth",
+          "blanket Grade-9 recertification",
+          "silent mastery assumption"
+        ]
+      },
+      "expected": "No forbidden persisted learner/grade truth is introduced and canonical Physics meaning changes only under separate authority.",
+      "tolerance": null,
+      "verifies": [
+        "AC-TA9-004",
+        "TEST-TA9-004"
+      ],
+      "stale_if": [
+        "Owner authority or protected-domain policy changes."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Shared/tools/",
+        "reason": "A small derived exit-readiness query/report module may be added if existing tooling cannot express the projection."
+      },
+      {
+        "path": "docs/grade9/",
+        "reason": "Derived Grade-9 exit/transition reports and machine-readable projections may be added."
+      },
+      {
+        "path": "tests/",
+        "reason": "Focused truth-table, blocker-boundary and report tests are required."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "EP evidence, quality, checkpoint, progress and handoff records are governed outputs."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "docs/grade9/",
+        "reason": "Read current Grade-9 scope coverage and audit artifacts."
+      },
+      {
+        "path": "Shared/tools/learner_evidence.py",
+        "reason": "Read evidence semantics without changing learner truth."
+      },
+      {
+        "path": "Learners/",
+        "reason": "Read existing learner evidence/profile fixtures where required for proof."
+      },
+      {
+        "path": "Physics/",
+        "reason": "Read canonical subject meaning and prerequisite/scope references; material edits require separate authority."
+      }
+    ],
+    "protected": [
+      {
+        "path": "Physics/library/",
+        "reason": "Canonical academic meaning is not authored by this derived exit-view slice."
+      },
+      {
+        "path": "Physics/matrices/",
+        "reason": "Matrix/rung scope and transfer semantics remain canonical subject truth."
+      },
+      {
+        "path": "Learners/",
+        "reason": "Existing evidence records are inputs; the exit view must not rewrite them into grade mastery."
+      },
+      {
+        "invariant": "Unknown/missing evidence remains unknown or explicitly missing rather than inferred secure.",
+        "reason": "Avoid false progression confidence."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "mastery_percentage_or_probability",
+        "reason": "WP-TA-105 is a categorical derived view, not a second mastery model."
+      },
+      {
+        "domain": "persisted_grade_readiness_truth_store",
+        "reason": "Transition state must be reproducible from existing scope and evidence."
+      },
+      {
+        "domain": "blanket_grade9_recertification",
+        "reason": "Grade 10 should inherit explicit transition evidence rather than rerunning all Grade-9 proof."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "AD-TA9-001",
+        "restriction": "Do not convert unknown or helped-only evidence into secure independent readiness.",
+        "reason": "Evidence honesty is the core progression invariant."
+      },
+      {
+        "id": "AD-TA9-002",
+        "restriction": "Do not make enrichment/later-grade material a Grade-9 completion blocker.",
+        "reason": "Roadmap scope explicitly separates required Grade-9 work from enrichment and later sophistication."
+      },
+      {
+        "id": "AD-TA9-003",
+        "restriction": "Do not add persisted mastery percentages/probabilities or a second learner store.",
+        "reason": "The exit view must remain derived from existing evidence."
+      },
+      {
+        "id": "AD-TA9-004",
+        "restriction": "Do not edit canonical Physics content to make the exit report green.",
+        "reason": "Content defects require a separate bounded authority path."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA9-001",
+        "condition": "Grade-9 scope coverage materially changes.",
+        "effect": "STALE",
+        "rationale": "Exit/blocker classification depends on current canonical required scope."
+      },
+      {
+        "id": "STALE-TA9-002",
+        "condition": "Learner evidence semantics or precedence changes.",
+        "effect": "STOP",
+        "rationale": "Derived state truth table must be re-qualified."
+      },
+      {
+        "id": "STALE-TA9-003",
+        "condition": "Owner progression authority changes.",
+        "effect": "OWNER_REVIEW",
+        "rationale": "Transition philosophy is Owner-governed."
+      },
+      {
+        "id": "STALE-TA9-004",
+        "condition": "Branch/base or predecessor checkpoint no longer matches the declared Git basis.",
+        "effect": "RECONCILE",
+        "rationale": "Material work must re-anchor before writes."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA9-001",
+      "objective": "Reconstruct required Grade-9 scope and derive a categorical evidence projection without percentages.",
+      "targets": [
+        "docs/grade9/",
+        "Shared/tools/learner_evidence.py"
+      ],
+      "reads": [
+        "docs/grade9/grade9-physics-scope-coverage.json",
+        "Shared/tools/learner_evidence.py"
+      ],
+      "writes": [
+        "Shared/tools/",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA9-001",
+        "INPUT-TA9-002",
+        "INPUT-TA9-004"
+      ],
+      "acceptance": [
+        "AC-TA9-001"
+      ],
+      "tests": [
+        "TEST-TA9-001"
+      ],
+      "expected_state": "Required capabilities/domains resolve to secure, usable-but-fragile, known-gap or insufficient/unknown from explicit evidence only.",
+      "stop_conditions": [
+        "Current scope authority is ambiguous.",
+        "A persisted mastery state would be required."
+      ]
+    },
+    {
+      "id": "STEP-TA9-002",
+      "objective": "Derive Grade-10 transition blockers/non-blockers from required scope, prerequisites and evidence.",
+      "targets": [
+        "Shared/tools/",
+        "tests/"
+      ],
+      "reads": [
+        "docs/grade9/grade9-physics-scope-coverage.json",
+        "agents/relay/checkpoints/CP-TA-008.yaml"
+      ],
+      "writes": [
+        "Shared/tools/",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA9-001",
+        "INPUT-TA9-002",
+        "INPUT-TA9-003"
+      ],
+      "acceptance": [
+        "AC-TA9-002"
+      ],
+      "tests": [
+        "TEST-TA9-002"
+      ],
+      "expected_state": "Only required/prerequisite/major-misconception gaps can block; enrichment and later-grade gaps remain visible but non-blocking.",
+      "stop_conditions": [
+        "Blocker semantics require new subject truth rather than existing classifications."
+      ]
+    },
+    {
+      "id": "STEP-TA9-003",
+      "objective": "Produce machine-readable and parent/agent-readable transition views with explicit evidence basis.",
+      "targets": [
+        "docs/grade9/",
+        "Shared/tools/",
+        "tests/"
+      ],
+      "reads": [
+        "Shared/tools/learner_evidence.py",
+        "docs/grade9/grade9-physics-scope-coverage.json"
+      ],
+      "writes": [
+        "docs/grade9/",
+        "Shared/tools/",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA9-002",
+        "INPUT-TA9-003"
+      ],
+      "acceptance": [
+        "AC-TA9-003"
+      ],
+      "tests": [
+        "TEST-TA9-003"
+      ],
+      "expected_state": "The report explains demonstrated, fragile, gap, unknown, repair/recheck and transition implications without exposing a hidden score.",
+      "stop_conditions": [
+        "A report cannot be reproduced from authoritative scope/evidence."
+      ]
+    },
+    {
+      "id": "STEP-TA9-004",
+      "objective": "Run overclaiming falsifiers, protected-domain diff, full guardrails/V2.5 quality and final transition checkpoint.",
+      "targets": [
+        "tests/",
+        "docs/grade9/",
+        "agents/relay/"
+      ],
+      "reads": [
+        "agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml"
+      ],
+      "writes": [
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA9-001",
+        "INPUT-TA9-002",
+        "INPUT-TA9-003",
+        "INPUT-TA9-004"
+      ],
+      "acceptance": [
+        "AC-TA9-004"
+      ],
+      "tests": [
+        "TEST-TA9-004"
+      ],
+      "expected_state": "WP-TA-105 is either evidence-backed complete or retains an exact residual gap with no overclaiming and no unauthorized content/state writes.",
+      "stop_conditions": [
+        "Any protected-domain, evidence-honesty, quality or exact-head validation requirement is unresolved."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "Reconstruct required Grade-9 scope and derive a categorical evidence projection without percentages.",
+        "targets": [
+          "docs/grade9/",
+          "Shared/tools/learner_evidence.py"
+        ],
+        "inputs": [
+          "INPUT-TA9-001",
+          "INPUT-TA9-002",
+          "INPUT-TA9-004"
+        ],
+        "tests": [
+          "TEST-TA9-001"
+        ],
+        "benchmarks": [
+          "BENCH-TA9-001"
+        ],
+        "acceptance": [
+          "AC-TA9-001"
+        ],
+        "expected_result": "Required capabilities/domains resolve to secure, usable-but-fragile, known-gap or insufficient/unknown from explicit evidence only.",
+        "stop_if": [
+          "Current scope authority is ambiguous.",
+          "A persisted mastery state would be required."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Derive Grade-10 transition blockers/non-blockers from required scope, prerequisites and evidence.",
+        "targets": [
+          "Shared/tools/",
+          "tests/"
+        ],
+        "inputs": [
+          "INPUT-TA9-001",
+          "INPUT-TA9-002",
+          "INPUT-TA9-003"
+        ],
+        "tests": [
+          "TEST-TA9-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA9-002"
+        ],
+        "acceptance": [
+          "AC-TA9-002"
+        ],
+        "expected_result": "Only required/prerequisite/major-misconception gaps can block; enrichment and later-grade gaps remain visible but non-blocking.",
+        "stop_if": [
+          "Blocker semantics require new subject truth rather than existing classifications."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Produce machine-readable and parent/agent-readable transition views with explicit evidence basis.",
+        "targets": [
+          "docs/grade9/",
+          "Shared/tools/",
+          "tests/"
+        ],
+        "inputs": [
+          "INPUT-TA9-002",
+          "INPUT-TA9-003"
+        ],
+        "tests": [
+          "TEST-TA9-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA9-003"
+        ],
+        "acceptance": [
+          "AC-TA9-003"
+        ],
+        "expected_result": "The report explains demonstrated, fragile, gap, unknown, repair/recheck and transition implications without exposing a hidden score.",
+        "stop_if": [
+          "A report cannot be reproduced from authoritative scope/evidence."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run overclaiming falsifiers, protected-domain diff, full guardrails/V2.5 quality and final transition checkpoint.",
+        "targets": [
+          "tests/",
+          "docs/grade9/",
+          "agents/relay/"
+        ],
+        "inputs": [
+          "INPUT-TA9-001",
+          "INPUT-TA9-002",
+          "INPUT-TA9-003",
+          "INPUT-TA9-004"
+        ],
+        "tests": [
+          "TEST-TA9-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA9-004"
+        ],
+        "acceptance": [
+          "AC-TA9-004"
+        ],
+        "expected_result": "WP-TA-105 is either evidence-backed complete or retains an exact residual gap with no overclaiming and no unauthorized content/state writes.",
+        "stop_if": [
+          "Any protected-domain, evidence-honesty, quality or exact-head validation requirement is unresolved."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "state": "REQUIRED",
+    "reason": "WP-TA-105 is a new material boundary with different input authority, aggregation semantics and falsifiers from EP-TA-008.",
+    "candidate_rule": "A candidate must complete fresh DISC/QUAL/TC for QSET-TA-010 before any WP-TA-105 material write; ODR-0006/ODR-0007 are scoped to EP-TA-008 and confer no successor write exception."
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The exit view must remain a derived query over existing scope/evidence owners rather than a second mastery architecture.",
+        "review_focus": [
+          "single evidence owner",
+          "derived categorical state",
+          "transition blocker boundary",
+          "no duplicate curriculum truth"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "A small Shared query/report module may be required.",
+        "review_focus": [
+          "determinism",
+          "small API",
+          "explicit unknowns",
+          "no persistence side effects"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "Truth tables and blocker/non-blocker falsifiers are the primary correctness proof.",
+        "review_focus": [
+          "unknown/helped evidence",
+          "enrichment non-blocking",
+          "prerequisite blockers",
+          "report reproducibility"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Grade-exit aggregation can silently overclaim mastery or turn enrichment into a completion gate.",
+        "review_focus": [
+          "evidence basis",
+          "scope classification",
+          "no percentage proxy",
+          "protected-domain diff"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "The successor EP needs fresh qualification, checkpoint continuity and exact-head delivery custody.",
+        "review_focus": [
+          "QSET/QUAL/TC",
+          "checkpoint continuity",
+          "PR correlation",
+          "exact-head validation"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "No learner UI is required for the initial derived report contract."
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "The first slice is a query/report view, not an interactive UI redesign."
+      },
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical algorithm changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The bounded Grade-9 scope/evidence projection is not performance-sensitive."
+      },
+      {
+        "blueprint": "migration",
+        "reason": "No persisted learner-state migration is authorized."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, or safety hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA9-001",
+      "description": "Every required Grade-9 Physics capability/domain receives a derived categorical evidence state—secure, usable-but-fragile, known gap, or insufficient/unknown—without a mastery percentage and without promoting helped/unknown evidence to independent security.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-001",
+        "BENCH-TA9-001"
+      ]
+    },
+    {
+      "id": "AC-TA9-002",
+      "description": "Grade-10 transition blockers are limited to required Grade-9 holes, genuine prerequisite blockers and major unresolved misconceptions; enrichment, later-grade sophistication and optional improvement remain visible but non-blocking.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-002",
+        "BENCH-TA9-002"
+      ]
+    },
+    {
+      "id": "AC-TA9-003",
+      "description": "A machine-readable and parent/agent-readable transition view explains evidence basis, uncertainty, repairs/rechecks and why Grade 10 is or is not the next productive frontier without requiring raw internal-state inspection.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-003",
+        "BENCH-TA9-003"
+      ]
+    },
+    {
+      "id": "AC-TA9-004",
+      "description": "No second mastery/grade-state store or unauthorized canonical Physics edits are introduced; overclaiming falsifiers, protected-domain diff, quality review, full guardrails and exact-head V2.5 validation are reconciled before checkpoint credit.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-004",
+        "BENCH-TA9-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA9-001",
+      "obligation_class": "MUST_PASS",
+      "method": "Run a frozen truth table over required capabilities with independent, helped-only, missing and unobserved evidence plus an enrichment-only case.",
+      "proves": [
+        "AC-TA9-001"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA9-002",
+      "obligation_class": "MUST_PASS",
+      "method": "Run blocker-boundary cases proving required/prerequisite gaps can block while enrichment/later-grade gaps do not.",
+      "proves": [
+        "AC-TA9-002"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA9-003",
+      "obligation_class": "MUST_PASS",
+      "method": "Reconstruct the transition decision from report output and authoritative source refs without reading implementation internals.",
+      "proves": [
+        "AC-TA9-003"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA9-004",
+      "obligation_class": "MUST_PASS",
+      "method": "Run unknown/helped/enrichment overclaiming falsifiers, protected Physics/evidence-state diff, quality review, full repository guardrails and exact-head V2.5 validation.",
+      "proves": [
+        "AC-TA9-004"
+      ],
+      "class": "MUST_PASS"
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ]
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "create successor EP when work continues",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

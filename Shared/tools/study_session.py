@@ -557,6 +557,7 @@ def _next_step(study_plan: dict) -> dict | None:
             "routing_posture": row.get("routing_posture"),
             "starting_support": row.get("starting_support"),
             "initial_visual": row.get("initial_visual"),
+            "presentation": row.get("presentation"),
             "recommended_explorer_ref": row.get("recommended_explorer_ref"),
             "exercise_demand": row.get("exercise_demand"),
             "exercise_question_ref": row.get("exercise_question_ref"),
@@ -1061,6 +1062,9 @@ def readable_plan(report: dict) -> str:
                 f'support {step.get("starting_support") or "unspecified"} / '
                 f'demand {step.get("exercise_demand") or "unspecified"}'
             )
+        presentation = step.get("presentation") or {}
+        if presentation.get("checkpoint_prompt"):
+            out.append(f'   checkpoint: {presentation["checkpoint_prompt"]}')
         visual = step.get("initial_visual") or {}
         if visual.get("representation_ref"):
             out.append(

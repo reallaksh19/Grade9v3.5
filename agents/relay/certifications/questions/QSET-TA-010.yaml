@@ -1,0 +1,167 @@
+{
+  "schema_version": "relay-v2.5-question-set",
+  "id": "QSET-TA-010",
+  "route": {
+    "route_key": "SERIAL:EP-TA-009",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-009",
+    "ep_id": "EP-TA-009",
+    "ep_path": "agents/relay/execution-packages/EP-TA-009.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null,
+    "roadmap_revision": "RM-0009",
+    "work_package": "WP-TA-105",
+    "ep_contract_digest": "sha256:8b4701dc72f97a2d7268c32c0b37c5623b4bdd786a4d2c9f1d5eb7c71c2818fe"
+  },
+  "boundary": {
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "INPUT_AUTHORITY",
+      "PROTECTED_INVARIANT",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "WP-TA-105 is the serial frontier under execution-derived roadmap revision RM-0009 after the predecessor checkpoint closes WP-TA-107.",
+      "The successor aggregates canonical Grade-9 scope with existing learner evidence; it must not persist a mastery/grade state.",
+      "ODR-0006/ODR-0007 are predecessor-only execution exceptions and do not authorize EP-TA-009 material writes."
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "focus": "PRODUCTION_PATH",
+      "anchors": [
+        "WP-TA-105",
+        "INPUT-TA9-001",
+        "INPUT-TA9-002"
+      ],
+      "prompt": "Trace the production path from canonical Grade-9 required scope plus existing learner evidence to a derived exit/transition report. Name each authority owner and show why no new mastery store is needed.",
+      "required_output_keys": [
+        "scope_owner",
+        "evidence_owner",
+        "derived_projection",
+        "consumer"
+      ],
+      "evidence_required": true,
+      "deterministic_expected": {
+        "scope_owner": "Existing Grade-9 scope coverage/canonical Physics classifications",
+        "evidence_owner": "Shared/tools/learner_evidence and existing learner records",
+        "derived_projection": "A reproducible categorical exit view computed from scope plus evidence, not persisted as learner mastery truth",
+        "consumer": "Parent/agent transition report and Grade-10 planning handoff"
+      }
+    },
+    {
+      "id": "Q2",
+      "focus": "ENGINEERING_PROBLEM",
+      "anchors": [
+        "BENCH-TA9-001",
+        "BENCH-TA9-002"
+      ],
+      "prompt": "Reconstruct the decision sequence that distinguishes secure, usable-but-fragile, known-gap and insufficient/unknown evidence, then decides transition blockers without letting enrichment or later-grade material block Grade-9 exit.",
+      "required_output_keys": [
+        "reconstruction_steps",
+        "blocker_rule",
+        "non_blocker_rule"
+      ],
+      "evidence_required": true,
+      "reconstruction_mode": "DESIGN_REASONING",
+      "payload": {
+        "source": "Issue #169, WP-TA-105, Grade-9 scope coverage, learner evidence contracts"
+      },
+      "deterministic_expected": {
+        "reconstruction_steps": [
+          "Select required Grade-9 scope and genuine prerequisite relationships from existing coverage authority.",
+          "Join existing evidence without promoting helped/unknown observations.",
+          "Derive categorical evidence state per required capability/domain.",
+          "Classify blockers from required holes, prerequisite blockers and major unresolved misconceptions.",
+          "Keep enrichment/later-grade/optional improvement visible but non-blocking.",
+          "Render machine/human transition basis with explicit unknowns."
+        ],
+        "blocker_rule": "Only required-scope or genuine-prerequisite deficits and major unresolved misconceptions with explicit evidence basis may block.",
+        "non_blocker_rule": "Enrichment, later-grade sophistication and optional improvement do not block merely because they are unobserved or incomplete."
+      }
+    },
+    {
+      "id": "Q3",
+      "focus": "BOUNDARIES_INVARIANTS",
+      "anchors": [
+        "AC-TA9-001",
+        "AC-TA9-002",
+        "AC-TA9-004"
+      ],
+      "prompt": "State the protected invariants and exact falsifiers for the grade-exit projection.",
+      "required_output_keys": [
+        "protected_invariant",
+        "falsifier",
+        "prohibited_mutation"
+      ],
+      "evidence_required": true,
+      "deterministic_expected": {
+        "protected_invariant": "Unknown evidence remains unknown; helped-only evidence is not secure; enrichment is non-blocking; output is derived, not a second mastery store.",
+        "falsifier": "Any unknown/helped-only capability becomes secure, any enrichment/later-grade gap blocks exit without required-scope authority, or any persisted mastery/grade-readiness truth is introduced.",
+        "prohibited_mutation": "Canonical Physics meaning and existing learner observations may not be rewritten to make transition appear ready."
+      }
+    },
+    {
+      "id": "Q4",
+      "focus": "VERIFICATION",
+      "anchors": [
+        "TEST-TA9-001",
+        "TEST-TA9-002",
+        "TEST-TA9-003",
+        "TEST-TA9-004"
+      ],
+      "prompt": "Define the independent verification method and exact expected outcome for the exit-readiness slice.",
+      "required_output_keys": [
+        "independent_method",
+        "predicted_result",
+        "tolerance_or_exactness"
+      ],
+      "evidence_required": true,
+      "oracle_refs": [
+        "BENCH-TA9-001",
+        "BENCH-TA9-002",
+        "BENCH-TA9-003",
+        "BENCH-TA9-004"
+      ],
+      "independence_requirement": "Use frozen scope/evidence cases, protected-domain diff and repository validators rather than assertions embedded only in the new implementation.",
+      "deterministic_expected": {
+        "independent_method": "Run categorical evidence truth table, blocker-boundary cases, report reconstruction, overclaiming falsifiers, protected-domain diff, full guardrails and exact-head V2.5 validation.",
+        "predicted_result": "Unknown/helped evidence never overclaims security, enrichment/later-grade gaps remain non-blocking, parent report is reconstructable, and no second mastery store or unauthorized Physics edit appears.",
+        "tolerance_or_exactness": "Exact category/blocker membership and zero unauthorized persisted mastery/protected-domain edits."
+      }
+    },
+    {
+      "id": "Q5",
+      "focus": "FIRST_SAFE_SLICE",
+      "anchors": [
+        "STEP-TA9-001",
+        "AC-TA9-001"
+      ],
+      "prompt": "Name the first bounded material slice after fresh qualification and how it will be falsified before blocker/report work.",
+      "required_output_keys": [
+        "first_change",
+        "predicted_before",
+        "predicted_after",
+        "verification"
+      ],
+      "evidence_required": true,
+      "step_refs": [
+        "STEP-TA9-001"
+      ],
+      "deterministic_expected": {
+        "first_change": "Build the smallest derived scope+evidence categorical projection and focused truth-table tests; do not add transition-blocker or reporting complexity yet.",
+        "predicted_before": "The repository has scope and evidence separately but no authoritative derived Grade-9 exit category view.",
+        "predicted_after": "Required capabilities/domains can be categorized from explicit evidence with unknown/helped cases preserved conservatively and no persisted mastery state.",
+        "verification": "TEST-TA9-001 with BENCH-TA9-001 must pass before STEP-TA9-002."
+      }
+    }
+  ],
+  "prepared_by": {
+    "agent_instance_id": "chatgpt-sol-wp105-planner-20260921"
+  }
+}
