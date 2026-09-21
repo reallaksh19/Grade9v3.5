@@ -22,10 +22,8 @@
       return response.json();
     });
 
-    const makeAdapter = () => {
-      let acceptedCalls = 0;
-      return {
-        evaluateTransfer(request, snapshot) {
+    const makeAdapter = () => ({
+      evaluateTransfer(request, snapshot) {
           if (request.sourceEntityRef !== "dividend-156" || request.targetRef !== "quotient-first-digit") {
             return {
               accepted: false,
@@ -34,9 +32,9 @@
             };
           }
           if (snapshot.sceneId !== scene.id) throw new Error("scene identity changed");
-          acceptedCalls += 1;
-          const suffix = acceptedCalls === 1 ? "1" : `branch-${acceptedCalls}`;
-          const entityRef = `quotient-digit-${suffix}`;
+          const entityRef = snapshot.revision === 0
+            ? "quotient-digit-1"
+            : "quotient-digit-branch-2";
           return {
             accepted: true,
             summary: "The first quotient digit is 1 because 12 fits into 15 once.",
@@ -55,9 +53,8 @@
               }],
             },
           };
-        },
-      };
-    };
+      },
+    });
 
     const injections = [{
       id: "estimate-checkpoint",
