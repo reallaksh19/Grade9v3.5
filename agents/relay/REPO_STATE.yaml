@@ -30,8 +30,8 @@
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-008",
-    "path": "agents/relay/checkpoints/CP-TA-008.yaml"
+    "id": "CP-TA-009",
+    "path": "agents/relay/checkpoints/CP-TA-009.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -53,7 +53,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Complete fresh repository-only DISC/QUAL/TC for QSET-TA-011 and pass MATERIAL_WRITE_READY on fix/issue-173-core-projections-v25 before any Shared/product implementation write."
+      "next_action": "Complete fresh repository-only incoming-agent certification on the current Core contract and pass the live write gate before changing Shared product code."
     },
     "quality": {
       "state": "CLEAR",
@@ -64,16 +64,16 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Issue #173 is admitted and the semantic EP/QSET is prepared. Guardrails passed on the first coordination head. The first V2.5 run stopped in an upstream Common-development self-test before downstream validators; workflow entrypoints are being corrected to the pinned SKILL. No product acceptance credit is earned; fresh candidate qualification and implementation evidence remain pending.",
+      "summary": "The Core work package is admitted and repository custody is reconciled. No product acceptance credit is earned; fresh incoming-agent certification and implementation evidence are still pending.",
       "not_run": [
         {
-          "id": "fresh EP-TA-010 candidate qualification",
-          "reason": "QSET-TA-011 is prepared but no distinct candidate DISC/QUAL/TC exists yet.",
+          "id": "fresh EP-TA-010 incoming-agent certification",
+          "reason": "A distinct incoming candidate has not yet produced repository-only discovery, qualification and takeover evidence for the current contract.",
           "cause": "DEPENDENCY_WAIT"
         },
         {
           "id": "EP-TA-010 implementation/validation suite",
-          "reason": "Material writes are gated until candidate certification and live material-write readiness.",
+          "reason": "Product writes are not yet authorized by the live candidate-specific write gate.",
           "cause": "NOT_SCHEDULED"
         }
       ]
@@ -88,18 +88,18 @@
   "projection": {
     "required": true,
     "state": "STALE",
-    "operation_id": "GHGEN-WP105-ISS169-R1",
+    "operation_id": "GHGEN-CORE173-R1",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-WP105-ISS169-R1.yaml",
+    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R1.yaml",
     "roadmap_revision": "RM-0010",
     "execution_ref": "EP-TA-010",
-    "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
+    "receipt": null,
     "basis": [
-      "Issue #173 provider readback",
-      "ISSUE_GRAPH IG-0006",
       "RM-0010 task admission",
-      "EP-TA-010 / QSET-TA-011"
+      "Issue #173 provider readback",
+      "IG-0006",
+      "EP-TA-010"
     ],
     "superseded_operations": [],
     "observed": {
@@ -110,8 +110,8 @@
       "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
       "basis": [
         "Issue #169 provider readback",
-        "relay-operation:GHOP-WP105-ISSUE169-HANDOFF",
-        "ISSUE_GRAPH IG-0005"
+        "GHGEN-WP105-ISS169-R1 verified generation",
+        "IG-0005"
       ]
     }
   },
@@ -119,13 +119,17 @@
     "required": true,
     "provider": "GITHUB",
     "observation": {
-      "id": "DOBS-PR168-RM0008",
-      "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
+      "id": "DOBS-PR177-RM0010",
+      "path": "agents/relay/delivery/DOBS-PR177-RM0010.yaml"
     },
     "observations": [
       {
         "id": "DOBS-PR168-RM0008",
         "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
+      },
+      {
+        "id": "DOBS-PR177-RM0010",
+        "path": "agents/relay/delivery/DOBS-PR177-RM0010.yaml"
       }
     ]
   },
@@ -134,9 +138,9 @@
     "projection_ready": false,
     "handover_ready": false,
     "reasons": [
-      "RM-0010 makes WP-TA-108 the sole serial frontier with a semantic EP and fresh bound QSET.",
-      "No fresh candidate DISC/QUAL/TC exists yet, so MATERIAL_WRITE_READY is unavailable.",
-      "The previous GitHub projection generation still targets WP-TA-105/#169 and is intentionally marked STALE until #173 delivery projection is reconciled."
+      "CP-TA-009 now transfers serial custody from the unexecuted exit-readiness package to the current Core work package.",
+      "Fresh incoming-agent certification is still missing, so candidate-specific product-write readiness has not been established.",
+      "The new Issue #173 external handover generation is prepared but not yet published and verified."
     ]
   },
   "chat_context_required": false

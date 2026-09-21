@@ -5,7 +5,7 @@
     "branch": "fix/issue-173-core-projections-v25",
     "base_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
     "execution_state": "EXECUTABLE",
-    "previous_checkpoint": "CP-TA-008",
+    "previous_checkpoint": "CP-TA-009",
     "previous_join": null,
     "previous_replan": null
   },
@@ -651,7 +651,7 @@
         ],
         "expected_result": "Stable reasoning/crux/scaffold/protected-decision fields and falsifiers exist with legacy fallback preserved.",
         "stop_if": [
-          "MATERIAL_WRITE_READY is false.",
+          "The live write gate is false.",
           "PR #176 contract changed or current main drift overlaps the qualified boundary."
         ]
       },
