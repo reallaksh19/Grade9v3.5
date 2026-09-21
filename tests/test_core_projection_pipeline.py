@@ -324,5 +324,175 @@ class LearnerFacingStructuredProjection(unittest.TestCase):
 
 
 
+class Motion2DRealWitness(unittest.TestCase):
+    """Read-only canonical Motion2D truth proves the structured pipeline end to end."""
+
+    FAMILIAR = "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
+    TRANSFER = "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
+
+    def package(self):
+        path = REPO / "Physics/library/phy-kin-2d-motion.v1.json"
+        package = json.loads(path.read_text(encoding="utf-8"))
+        familiar = next(q for q in package["questions"] if q["id"] == self.FAMILIAR)
+        transfer = next(q for q in package["questions"] if q["id"] == self.TRANSFER)
+
+        familiar["answer"]["reasoning_route"] = [
+            {
+                "id": "MOVE-K2D-2A-REPRESENT",
+                "kind": "REPRESENT",
+                "action": "Separate horizontal and vertical equations while keeping one common elapsed time.",
+                "why_valid": "The components evolve independently but describe the same stone during one event.",
+                "inputs": ["u_x=15 m/s", "u_y=0", "Delta y=-20 m", "a_y=-10 m/s^2"],
+                "output": "Two component equations coupled by one event time.",
+            },
+            {
+                "id": "MOVE-K2D-2A-EVENT",
+                "kind": "DECIDE",
+                "action": "Use the vertical ground-contact condition to determine the flight time.",
+                "why_valid": "Impact is defined by the known vertical displacement, so the y equation determines when the event occurs.",
+                "inputs": ["Delta y=-20 m", "u_y=0", "a_y=-10 m/s^2"],
+                "output": "t=2 s is the common impact time.",
+            },
+            {
+                "id": "MOVE-K2D-2A-EXECUTE",
+                "kind": "TRANSFORM",
+                "action": "Reuse the common impact time in horizontal displacement and both velocity components.",
+                "why_valid": "Range and impact velocity must refer to the same physical instant as ground contact.",
+                "inputs": ["t=2 s", "u_x=15 m/s", "a_x=0", "a_y=-10 m/s^2"],
+                "output": "Delta x=30 m and v=(15 i - 20 j) m/s.",
+            },
+            {
+                "id": "MOVE-K2D-2A-VERIFY",
+                "kind": "VERIFY",
+                "action": "Check that horizontal speed changes range but not the ideal fall time.",
+                "why_valid": "The vertical event equation contains no horizontal speed when a_x=0 and air resistance is neglected.",
+                "inputs": ["vertical event equation", "a_x=0"],
+                "output": "The result respects component independence and one shared clock.",
+            },
+        ]
+        familiar["answer"]["crux_move_ref"] = "MOVE-K2D-2A-EVENT"
+        familiar["scaffolds"] = [
+            {
+                "text": "Write separate x and y columns, but draw one shared t between them; place the 20 m drop in the y column.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "supports_move_ref": "MOVE-K2D-2A-REPRESENT",
+            }
+        ]
+
+        transfer["answer"]["reasoning_route"] = [
+            {
+                "id": "MOVE-K2D-2B-REPRESENT",
+                "kind": "REPRESENT",
+                "action": "List the post-release acceleration components before selecting a named motion model.",
+                "why_valid": "Model validity depends on the actual post-release forces and resulting acceleration components.",
+                "inputs": ["a_x=2 m/s^2", "a_y=-g", "rocket thrust remains active"],
+                "output": "The motion has nonzero horizontal acceleration and gravitational vertical acceleration.",
+            },
+            {
+                "id": "MOVE-K2D-2B-DECIDE",
+                "kind": "DECIDE",
+                "action": "Reject the standard gravity-only projectile specialization.",
+                "why_valid": "That specialization requires a_x=0 after release, but the active motor gives a_x=2 m/s^2.",
+                "inputs": ["standard projectile condition a_x=0", "actual a_x=2 m/s^2"],
+                "output": "The familiar projectile specialization is invalid for this interval.",
+            },
+            {
+                "id": "MOVE-K2D-2B-CONNECT",
+                "kind": "CONNECT",
+                "action": "Use the parent two-dimensional constant-acceleration model.",
+                "why_valid": "Both acceleration components are stated constant, so the more general component model remains valid.",
+                "inputs": ["a_x=2 m/s^2", "a_y=-g"],
+                "output": "Use constant-acceleration equations independently in x and y with one common time.",
+            },
+            {
+                "id": "MOVE-K2D-2B-VERIFY",
+                "kind": "VERIFY",
+                "action": "Check the switch-off boundary.",
+                "why_valid": "If horizontal thrust ends and drag is negligible, a_x returns to zero and the standard projectile specialization becomes valid again.",
+                "inputs": ["motor off", "drag negligible"],
+                "output": "The model choice changes exactly when its defining condition changes.",
+            },
+        ]
+        transfer["answer"]["crux_move_ref"] = "MOVE-K2D-2B-DECIDE"
+        transfer["scaffolds"] = [
+            {
+                "text": "Before naming a model, list the acceleration components that remain after release.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "supports_move_ref": "MOVE-K2D-2B-REPRESENT",
+            }
+        ]
+        transfer["transfer"]["protected_move_ref"] = "MOVE-K2D-2B-DECIDE"
+        return package
+
+    def compiled(self):
+        package = self.package()
+        report = intake.check(package)
+        self.assertTrue(report["admitted"], report["findings"])
+        packages = [
+            json.loads(path.read_text(encoding="utf-8"))
+            for path in sorted((REPO / "Physics/library").glob("*.json"))
+        ]
+        packages = [
+            copy.deepcopy(package) if p.get("package_id") == package["package_id"] else p
+            for p in packages
+        ]
+        return compile_bucket(
+            build_index(packages),
+            "BUCKET-PHY-KIN-2D-MOTION",
+            topic_id="TEST-MOTION2D-STRUCTURED",
+            title="Motion in 2D structured witness",
+            subject="Physics",
+            practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+        )
+
+    def test_real_motion2d_questions_survive_compile_with_distinct_crux_and_protection(self):
+        compiled = self.compiled()
+        blocks = {
+            block["source_question_id"]: block
+            for product in compiled["plan"]["products"]
+            for unit in product["units"]
+            for block in unit["blocks"]
+            if block.get("source_question_id") in {self.FAMILIAR, self.TRANSFER}
+        }
+        familiar = blocks[self.FAMILIAR]
+        transfer = blocks[self.TRANSFER]
+        self.assertEqual("MOVE-K2D-2A-EVENT", familiar["answer"]["crux_move_ref"])
+        self.assertEqual("MOVE-K2D-2B-DECIDE", transfer["answer"]["crux_move_ref"])
+        self.assertEqual("MOVE-K2D-2B-DECIDE", transfer["transfer"]["protected_move_ref"])
+        self.assertEqual("NEW_TRANSFER", transfer["exposure_role"])
+        self.assertEqual(self.FAMILIAR, transfer["transfer"]["builds_on"][0])
+
+    def test_real_motion2d_publish_keeps_protected_decision_after_attempt(self):
+        compiled = self.compiled()
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(compiled, root / "inputs")
+            publish(
+                root / "inputs/plan.json",
+                root / "inputs/baseline.json",
+                root / "inputs",
+                root / "publication",
+                load_physics(),
+            )
+            familiar = (root / "publication/CORE2A.html").read_text(encoding="utf-8")
+            transfer = (root / "publication/CORE2B.html").read_text(encoding="utf-8")
+
+        familiar_before, familiar_answer = familiar.split('<section class="answer-section"', 1)
+        self.assertIn("one shared t", familiar_before)
+        self.assertNotIn("Use the vertical ground-contact condition", familiar_before)
+        self.assertIn('data-reasoning-move="MOVE-K2D-2A-EVENT"', familiar_answer)
+        self.assertIn("Key decision", familiar_answer)
+
+        transfer_before, transfer_answer = transfer.split('<section class="answer-section"', 1)
+        self.assertIn("list the acceleration components", transfer_before.lower())
+        self.assertNotIn("Reject the standard gravity-only projectile specialization", transfer_before)
+        self.assertNotIn("MOVE-K2D-2B-DECIDE", transfer_before)
+        self.assertIn('data-reasoning-move="MOVE-K2D-2B-DECIDE"', transfer_answer)
+        self.assertIn("protected from pre-attempt scaffolding", transfer_answer)
+
+
+
 if __name__ == "__main__":
     unittest.main()
