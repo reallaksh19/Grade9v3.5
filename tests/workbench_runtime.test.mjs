@@ -408,13 +408,40 @@ test("redo restores an accepted semantic state without replaying adapter validit
 });
 
 test("a new accepted commit after undo invalidates the redo branch", () => {
-  const runtime = new WorkbenchRuntime(fixture, divisionAdapter());
+  let acceptedCalls = 0;
+  const baseAdapter = divisionAdapter();
+  const runtime = new WorkbenchRuntime(fixture, {
+    evaluateTransfer(request, snapshot) {
+      acceptedCalls += 1;
+      if (acceptedCalls === 1) return baseAdapter.evaluateTransfer(request, snapshot);
+      return {
+        accepted: true,
+        summary: "Create a genuinely new branch result.",
+        patch: {
+          addEntities: [{
+            id: "quotient-digit-branch-2",
+            label: "1",
+            provenance: { kind: "DERIVED", sourceEntityRefs: ["dividend-156", "divisor-12"] }
+          }],
+          addProjections: [{
+            id: "quotient-digit-branch-2-result",
+            entityRef: "quotient-digit-branch-2",
+            label: "1",
+            representation: "quotient digit branch",
+            placement: { grid: "division-work", row: "result", column: "main" }
+          }]
+        }
+      };
+    }
+  });
   runtime.dispatch({ type: "PICK", entityRef: "dividend-156", channel: "click" });
   runtime.dispatch({ type: "DROP", targetRef: "quotient-first-digit", channel: "click" });
   runtime.dispatch({ type: "UNDO", channel: "keyboard" });
 
   runtime.dispatch({ type: "PICK", entityRef: "dividend-156", channel: "click" });
-  runtime.dispatch({ type: "DROP", targetRef: "quotient-first-digit", channel: "click" });
+  const branch = runtime.dispatch({ type: "DROP", targetRef: "quotient-first-digit", channel: "click" });
+  assert.equal(branch.type, "TRANSFER_ACCEPTED");
+  assert.equal(runtime.snapshot.entities.some((row) => row.id === "quotient-digit-branch-2"), true);
 
   assert.throws(
     () => runtime.dispatch({ type: "REDO", channel: "keyboard" }),
