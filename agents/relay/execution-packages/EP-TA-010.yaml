@@ -1,0 +1,1199 @@
+{
+  "schema_version": "relay-v2.5",
+  "identity": {
+    "ep_id": "EP-TA-010",
+    "branch": "fix/issue-173-core-projections-v25",
+    "base_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "execution_state": "EXECUTABLE",
+    "previous_checkpoint": "CP-TA-008",
+    "previous_join": null,
+    "previous_replan": null
+  },
+  "replan_inheritance": null,
+  "git_basis": {
+    "expected_branch": "fix/issue-173-core-projections-v25",
+    "material_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "base_branch": "main",
+    "base_observed_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "drift_policy": "RECHECK_BEFORE_WRITE",
+    "drift_receipt": null
+  },
+  "roadmap_source": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0010",
+    "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
+    "phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "work_package": "WP-TA-108",
+    "generated_from_frontier": true,
+    "task_admission": {
+      "disposition": "ADDED_EXECUTION_WP",
+      "searched_paths": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        "agents/relay/roadmap/PROGRESS.yaml",
+        "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+        "agents/relay/execution-packages/EP-TA-009.yaml"
+      ],
+      "basis": [
+        "Owner instruction on 2026-09-21 to start fixing issue #173 under engineering-pr-delivery-v2.5.",
+        "Issue #173 owns Shared Core contracts/schema/compiler/runtime projection/tests and is not represented by WP-TA-105.",
+        "No WP-TA-105 material evidence has started, so the serial frontier can be safely resequenced without discarding accepted implementation credit."
+      ]
+    }
+  },
+  "outcome": {
+    "user_visible": [
+      "A self-paced learner sees six Core products that differ by learner work rather than page title or hint count.",
+      "Core1B asks for the same conceptual inference before repair; Core2A makes the key application decision visible; Core2B preserves the changed decision until the learner attempts it."
+    ],
+    "engineering": [
+      "Introduce stable application reasoning-move/crux identity without replacing existing concept teaching-step identity.",
+      "Separate source/question hints from authored pedagogical scaffolds and enforce cross-reference/disclosure boundaries.",
+      "Preserve backward compatibility and correct current compiler/source-fidelity losses."
+    ]
+  },
+  "context_capsule": {
+    "product_goal": "Support self-paced learning with minimal feedback while preserving the conceptual/application crux and giving the learner enough answer/repair material to work independently.",
+    "roadmap_position": "WP-TA-108 is inserted before the unstarted WP-TA-105 exit-readiness slice and consumes 8 of the 15 remaining roadmap points; completed 85/100 credit is unchanged.",
+    "why_this_work_exists": "Issue #173 and the live-system audit show Core1B is structurally differentiated, but application reasoning is still prose/index based, source/pedagogical hints are conflated, the renderer ignores difficult_move, and compiler source custody loses subparts/options.",
+    "current_architecture": "Concept truth lives in microtopic.inferential_jump plus stable teaching_path IDs; application truth lives in question.answer.reasoning[] with optional positional difficult_move; transfer uses adaptation/transfer metadata; canonical reveal stages already exist; publication_host performs static Core rendering; Shared/workbench remains generic interaction infrastructure.",
+    "current_implementation_state": "Current main is 411e8dc... with PR #168 and #171 merged. PR #176 is an unmerged draft contract freeze whose field names are design input, not live runtime truth."
+  },
+  "repository_discovery": [
+    {
+      "id": "DSTEP-TA10-001",
+      "action": "COMPARE",
+      "targets": [
+        "Shared/roles/README.md",
+        "Shared/roles/CORE1A.md",
+        "Shared/roles/CORE1B.md",
+        "Shared/roles/CORE2.md",
+        "Shared/roles/CORE2A.md",
+        "Shared/roles/CORE2B.md",
+        "https://github.com/reallaksh19/Grade9V3/pull/176"
+      ],
+      "question": "Which six-role semantics are live on main and which structured projection fields exist only in draft PR #176?",
+      "expected_outputs": [
+        "Live role invariant map",
+        "Candidate-only contract field map"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop if live versus candidate contract truth cannot be separated."
+    },
+    {
+      "id": "DSTEP-TA10-002",
+      "action": "TRACE",
+      "targets": [
+        "Shared/library/package.schema.json",
+        "Shared/library/intake.py",
+        "Shared/library/compile_inputs.py",
+        "Shared/publication_host/inputs.py",
+        "Shared/publication_host/compose.py"
+      ],
+      "question": "Trace concept/application records through validation, compilation and learner rendering, including difficult_move, hints, transfer, subparts/options and exposure_role.",
+      "expected_outputs": [
+        "Current data-flow map",
+        "Lossy or weakly enforced boundaries"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop if the current production path cannot be reconstructed exactly."
+    },
+    {
+      "id": "DSTEP-TA10-003",
+      "action": "INSPECT",
+      "targets": [
+        "Physics/library/phy-kin-2d-motion.v1.json",
+        "tests/test_grade9_motion2d_agent_a_atlas.py",
+        "tests/test_library.py",
+        "tests/test_publication_engine.py"
+      ],
+      "question": "Identify the bounded Motion-in-2D concept, familiar horizontal-launch application and changed-demand rocket-thrust transfer pair used as the proof oracle.",
+      "expected_outputs": [
+        "Gold concept/question IDs",
+        "Existing anti-collapse and transfer falsifiers"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop if no current real proof slice exists."
+    },
+    {
+      "id": "DSTEP-TA10-004",
+      "action": "VERIFY_GIT",
+      "targets": [
+        "agents/relay/REPO_STATE.yaml",
+        "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+        ".github/workflows/v25-relay.yml"
+      ],
+      "question": "Verify RM-0010/WP-TA-108 is the sole serial frontier, the branch/base still match and Common protocol basis is 1bc4eca... before material writes.",
+      "expected_outputs": [
+        "Exact branch/head/base",
+        "Current frontier/protocol basis"
+      ],
+      "receipt_required": true,
+      "on_failure": "Stop and reconcile route or Git drift before material implementation."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "INPUT-TA10-001",
+      "name": "Live six-Core contract",
+      "description": "Current-main role semantics and existing schema/compiler/runtime behavior that backward compatibility must preserve.",
+      "authority": "Current Grade9V3 main and issue #173.",
+      "source": "Shared/roles/**; Shared/library/**; Shared/publication_host/**; issue #173",
+      "type": "LIVE_IMPLEMENTATION_CONTRACT",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "main@411e8dc plus issue #173 requirements",
+      "consumers": [
+        "STEP-TA10-001",
+        "STEP-TA10-002",
+        "AC-TA10-001",
+        "AC-TA10-002"
+      ],
+      "validation": [
+        "Do not treat draft #176 fields as already implemented."
+      ],
+      "stale_if": [
+        "main changes relevant Shared contracts/compiler/rendering before write."
+      ]
+    },
+    {
+      "id": "INPUT-TA10-002",
+      "name": "Draft projection interface",
+      "description": "Unmerged #176 field names and ownership boundaries used as candidate interface evidence.",
+      "authority": "Draft PR #176; not runtime authority until adopted by this implementation.",
+      "source": "PR #176 docs/CORE-PROJECTION-CONTRACT.md and schema patches",
+      "type": "CANDIDATE_INTERFACE",
+      "units": "NA",
+      "editable": true,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "reasoning_route/crux_move_ref/scaffolds/protected_move_ref/core projection envelope",
+      "consumers": [
+        "STEP-TA10-001",
+        "STEP-TA10-002",
+        "AC-TA10-001"
+      ],
+      "validation": [
+        "Every adopted field must be implemented and tested on this branch; unadopted candidate ideas remain non-live."
+      ],
+      "stale_if": [
+        "PR #176 field contract materially changes."
+      ]
+    },
+    {
+      "id": "INPUT-TA10-003",
+      "name": "Motion-in-2D proof slice",
+      "description": "Current canonical records for independent components, horizontal launch and continued-thrust model-choice transfer.",
+      "authority": "Physics canonical package on current main.",
+      "source": "Physics/library/phy-kin-2d-motion.v1.json",
+      "type": "CANONICAL_READ_ONLY_PROOF",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS; Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04; Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+      "consumers": [
+        "STEP-TA10-003",
+        "AC-TA10-003",
+        "AC-TA10-004"
+      ],
+      "validation": [
+        "Use existing scientific truth; do not bulk-author or change Physics meaning."
+      ],
+      "stale_if": [
+        "Those canonical records or their family/transfer semantics change."
+      ]
+    },
+    {
+      "id": "INPUT-TA10-004",
+      "name": "Existing reveal-stage and workbench boundaries",
+      "description": "Canonical representation reveal stages and generic semantic runtime that must be reused rather than duplicated.",
+      "authority": "Merged WP-TA-104/#168/#171 current-main implementation.",
+      "source": "Shared/library/visual_support.py; Shared/tools/learning_router.py; Shared/workbench/**",
+      "type": "PREDECESSOR_CONTRACT",
+      "units": "NA",
+      "editable": false,
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "value": "Existing canonical visual-stage validation plus generic workbench/runtime boundaries",
+      "consumers": [
+        "STEP-TA10-002",
+        "STEP-TA10-003",
+        "AC-TA10-003"
+      ],
+      "validation": [
+        "Do not introduce a second visual-state ontology or persist mastery state."
+      ],
+      "stale_if": [
+        "Merged router/workbench boundaries materially change."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "BENCH-TA10-001",
+      "name": "Concept A/B shared-truth witness",
+      "purpose": "Prove Core1A and Core1B consume the same inferential truth while learner action/reveal policy differs.",
+      "source": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": {
+        "concept": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+        "crux": "one shared clock across independent x/y component equations"
+      },
+      "expected": "Core1A exposes the completed inference; Core1B prompts before reconstruction/repair and both remain bound to the same canonical concept/step identities.",
+      "tolerance": null,
+      "independence": "Expected semantics come from current canonical microtopic and role contract, not new compiler code.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA10-001",
+        "AC-TA10-003"
+      ],
+      "stale_if": [
+        "The canonical microtopic or Core1A/Core1B role contract changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA10-002",
+      "name": "Familiar-to-transfer application witness",
+      "purpose": "Prove Core2A familiar reasoning and Core2B changed model choice remain distinct even if support amount changes.",
+      "source": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 and Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+      "oracle_class": "REFERENCE_DATA",
+      "payload": {
+        "practice": "vertical event condition determines common impact time",
+        "transfer": "continued horizontal thrust invalidates gravity-only projectile specialization"
+      },
+      "expected": "Core2A binds a stable crux move; Core2B binds a changed/protected decision and pre-attempt support cannot reveal it.",
+      "tolerance": null,
+      "independence": "The changed demand is explicit in current canonical adaptation/transfer metadata.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA10-001",
+        "AC-TA10-003",
+        "AC-TA10-004"
+      ],
+      "stale_if": [
+        "The Motion-in-2D parent/transfer pair changes."
+      ]
+    },
+    {
+      "id": "BENCH-TA10-003",
+      "name": "Legacy compatibility witness",
+      "purpose": "Ensure existing reasoning[]/difficult_move/hints records still validate, compile and render while structured fields migrate in.",
+      "source": "Current library and committed relative-motion publication fixtures",
+      "oracle_class": "FROZEN_GOLDEN",
+      "payload": {
+        "legacy_fields": [
+          "answer.reasoning[]",
+          "answer.difficult_move",
+          "question.hints[]"
+        ],
+        "publication": "Physics/content/relative-motion-library"
+      },
+      "expected": "Legacy records continue to work; new structured fields are authoritative only when authored and no compiler invents structured truth from prose.",
+      "tolerance": null,
+      "independence": "Committed current-main fixtures predate the new structured application contract.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA10-001",
+        "AC-TA10-002",
+        "AC-TA10-004"
+      ],
+      "stale_if": [
+        "Legacy fixture contract is intentionally retired by a separately authorized migration."
+      ]
+    },
+    {
+      "id": "BENCH-TA10-004",
+      "name": "Source custody fidelity witness",
+      "purpose": "Prevent source-validation false assurance caused by compiler loss of subparts/options or other preserved question fields.",
+      "source": "Core2 role contract plus canonical question/source projection path",
+      "oracle_class": "OBSERVATIONAL",
+      "payload": {
+        "fields": [
+          "source_refs",
+          "original_identifier",
+          "stem",
+          "subparts",
+          "options",
+          "conditions",
+          "figure_refs",
+          "hints",
+          "answer"
+        ]
+      },
+      "expected": "Compilation preserves canonical question structure and publication validation compares against an unlossy source projection; mutation/loss of preserved fields is rejected.",
+      "tolerance": null,
+      "independence": "The required preserved fields are enumerated by the existing Core2 role contract, not the new implementation.",
+      "applicability": "CURRENT_EP_REQUIRED",
+      "resolution": "READY",
+      "verifies": [
+        "AC-TA10-002",
+        "AC-TA10-004"
+      ],
+      "stale_if": [
+        "Core2 source-custody contract changes."
+      ]
+    }
+  ],
+  "scope": {
+    "allowed": [
+      {
+        "path": "Shared/roles/",
+        "reason": "Clarify role semantics only where required by the adopted contract."
+      },
+      {
+        "path": "Shared/library/",
+        "reason": "Schema, intake, cross-reference validation and compiler/projection implementation are owned by issue #173."
+      },
+      {
+        "path": "Shared/publication_host/",
+        "reason": "Learner-facing Core rendering semantics and runtime validation are owned by issue #173."
+      },
+      {
+        "path": "tests/",
+        "reason": "Anti-collapse, backward-compatibility, source-fidelity and bounded proof tests are required."
+      },
+      {
+        "path": "docs/architecture-manifest.json",
+        "reason": "Generated architecture manifest may be regenerated only through the canonical builder."
+      },
+      {
+        "path": "agents/relay/",
+        "reason": "V2.5 evidence, quality, checkpoint, progress and delivery coordination are governed outputs."
+      }
+    ],
+    "allowed_reads": [
+      {
+        "path": "Physics/library/phy-kin-2d-motion.v1.json",
+        "reason": "Read-only gold academic proof slice."
+      },
+      {
+        "path": "Shared/workbench/",
+        "reason": "Reuse generic semantic interaction boundaries; do not move academic truth into the workbench."
+      },
+      {
+        "path": "Shared/tools/learning_router.py",
+        "reason": "Preserve session-only support/visual routing and avoid duplicate learner-state ownership."
+      },
+      {
+        "path": "Physics/content/relative-motion-library/",
+        "reason": "Read legacy compiled/publication fixture for backward compatibility."
+      },
+      {
+        "path": "https://github.com/reallaksh19/Grade9V3/pull/176",
+        "reason": "Read frozen candidate field names and ownership boundaries without assuming merge."
+      }
+    ],
+    "protected": [
+      {
+        "path": "Physics/library/",
+        "reason": "Canonical Physics meaning remains read-only in this Core implementation lane; use existing records as proof."
+      },
+      {
+        "path": "Physics/matrices/",
+        "reason": "Matrix/routing academic truth is outside issue #173 ownership."
+      },
+      {
+        "path": "Shared/workbench/",
+        "reason": "Generic interaction runtime remains subject-neutral and must not absorb Core academic reasoning truth."
+      },
+      {
+        "invariant": "Knowledge percentage remains a routing coordinate only and never becomes mastery evidence.",
+        "reason": "Issue #173 must not introduce another learner-state model."
+      }
+    ],
+    "prohibited": [
+      {
+        "domain": "bulk_subject_authoring",
+        "reason": "Canonical data authoring belongs to the separate Atlas/data lane."
+      },
+      {
+        "domain": "bespoke_webpage_redesign",
+        "reason": "Final interactive webpage work is a separate lane."
+      },
+      {
+        "domain": "seventh_core_or_parallel_reasoning_ontology",
+        "reason": "The implementation must project shared academic truth rather than create another product database."
+      },
+      {
+        "domain": "fixed_hint_count_or_mastery_probability",
+        "reason": "Neither is part of the six-Core contract."
+      }
+    ],
+    "owner_reserved": []
+  },
+  "anti_drift": {
+    "do_not": [
+      {
+        "id": "AD-TA10-001",
+        "restriction": "Do not copy PR #176 wholesale and claim its contract is live without implementing compiler/intake/render/test behavior.",
+        "reason": "The draft is candidate interface evidence only."
+      },
+      {
+        "id": "AD-TA10-002",
+        "restriction": "Do not manufacture reasoning_route from legacy prose and then treat it as authored canonical truth.",
+        "reason": "Backward compatibility must not fabricate semantics."
+      },
+      {
+        "id": "AD-TA10-003",
+        "restriction": "Do not solve Core2B by removing hints from Core2A.",
+        "reason": "Transfer is a changed decision structure, not support quantity."
+      },
+      {
+        "id": "AD-TA10-004",
+        "restriction": "Do not add a second visual-stage, learner-state or workbench academic ontology.",
+        "reason": "Canonical representations and session routing already have owners."
+      }
+    ],
+    "stale_if": [
+      {
+        "id": "STALE-TA10-001",
+        "condition": "PR #176 changes the frozen field names/ownership boundary.",
+        "effect": "RECONCILE",
+        "rationale": "The implementation contract must be re-compared before writes."
+      },
+      {
+        "id": "STALE-TA10-002",
+        "condition": "Shared package/compiler/publication paths change on main.",
+        "effect": "RECONCILE",
+        "rationale": "The traced production path and backward-compatibility assumptions may no longer hold."
+      },
+      {
+        "id": "STALE-TA10-003",
+        "condition": "Motion-in-2D gold records materially change.",
+        "effect": "RECONCILE",
+        "rationale": "The proof oracle would no longer match the qualified slice."
+      },
+      {
+        "id": "STALE-TA10-004",
+        "condition": "A write would require changing protected Physics meaning or persisted learner mastery state.",
+        "effect": "STOP",
+        "rationale": "That exceeds issue #173 authority."
+      }
+    ]
+  },
+  "implementation_plan": [
+    {
+      "id": "STEP-TA10-001",
+      "objective": "Land the contract/schema/test falsifiers for stable application moves, crux refs, scaffold provenance and protected transfer decisions while retaining legacy fallback.",
+      "targets": [
+        "Shared/roles/",
+        "Shared/library/package.schema.json",
+        "tests/"
+      ],
+      "reads": [
+        "PR #176 candidate contract",
+        "current package schema",
+        "current anti-collapse tests"
+      ],
+      "writes": [
+        "Shared/roles/",
+        "Shared/library/package.schema.json",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA10-001",
+        "INPUT-TA10-002"
+      ],
+      "acceptance": [
+        "AC-TA10-001"
+      ],
+      "tests": [
+        "TEST-TA10-001"
+      ],
+      "expected_state": "Schema can hold stable reasoning moves/crux/scaffolds/protected move with explicit source/pedagogy ownership and legacy records remain valid.",
+      "stop_conditions": [
+        "Any adopted field creates a second source of scientific truth.",
+        "Legacy current-main records stop validating without an explicit migration path."
+      ]
+    },
+    {
+      "id": "STEP-TA10-002",
+      "objective": "Implement intake/cross-reference/compiler/source-fidelity projection, including preservation of subparts/options and stable transfer exposure semantics.",
+      "targets": [
+        "Shared/library/intake.py",
+        "Shared/library/compile_inputs.py",
+        "Shared/library/visual_support.py",
+        "Shared/publication_host/inputs.py",
+        "tests/"
+      ],
+      "reads": [
+        "current compiler/source validation",
+        "canonical reveal-stage validation"
+      ],
+      "writes": [
+        "Shared/library/",
+        "Shared/publication_host/inputs.py",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA10-001",
+        "INPUT-TA10-002",
+        "INPUT-TA10-004"
+      ],
+      "acceptance": [
+        "AC-TA10-002"
+      ],
+      "tests": [
+        "TEST-TA10-002"
+      ],
+      "expected_state": "Structured refs resolve, source/pedagogy objects remain distinct, preserved source fields survive compilation, and transfer identity is not downgraded to generic practice.",
+      "stop_conditions": [
+        "Validation would require semantic guessing from prose.",
+        "Source custody can only be preserved by duplicating canonical question truth."
+      ]
+    },
+    {
+      "id": "STEP-TA10-003",
+      "objective": "Render conceptual reconstruction and application reasoning so crux/protection are learner-visible without duplicating academic truth.",
+      "targets": [
+        "Shared/publication_host/compose.py",
+        "tests/test_publication_engine.py",
+        "tests/"
+      ],
+      "reads": [
+        "current ELICITED_REVEAL renderer",
+        "structured projection fields",
+        "Motion-in-2D gold slice"
+      ],
+      "writes": [
+        "Shared/publication_host/compose.py",
+        "tests/"
+      ],
+      "inputs": [
+        "INPUT-TA10-001",
+        "INPUT-TA10-003",
+        "INPUT-TA10-004"
+      ],
+      "acceptance": [
+        "AC-TA10-003"
+      ],
+      "tests": [
+        "TEST-TA10-003"
+      ],
+      "expected_state": "Core1B preserves attempt-before-reveal; Core2A distinguishes setup/crux/execution/check; Core2B pre-attempt help does not disclose the protected decision.",
+      "stop_conditions": [
+        "Renderer must infer missing academic semantics from DOM/prose.",
+        "Protection can only be implemented by locking self-study answers behind a tutor."
+      ]
+    },
+    {
+      "id": "STEP-TA10-004",
+      "objective": "Prove one real Motion-in-2D slice end to end, run backward-compatibility/source-fidelity anti-collapse tests, regenerate governed artifacts and complete exact-head review.",
+      "targets": [
+        "tests/",
+        "Physics/library/phy-kin-2d-motion.v1.json",
+        "Physics/content/relative-motion-library/",
+        "docs/architecture-manifest.json",
+        "agents/relay/"
+      ],
+      "reads": [
+        "bounded canonical proof records",
+        "legacy publication fixture"
+      ],
+      "writes": [
+        "tests/",
+        "docs/architecture-manifest.json",
+        "agents/relay/"
+      ],
+      "inputs": [
+        "INPUT-TA10-001",
+        "INPUT-TA10-002",
+        "INPUT-TA10-003",
+        "INPUT-TA10-004"
+      ],
+      "acceptance": [
+        "AC-TA10-004"
+      ],
+      "tests": [
+        "TEST-TA10-004"
+      ],
+      "expected_state": "Gold slice proves four projections from shared truth, legacy fixtures remain valid, source custody is faithful and full guardrails/V2.5 are exact-head green before checkpoint credit.",
+      "stop_conditions": [
+        "Any protected Physics semantic diff appears.",
+        "Any anti-collapse/source-fidelity/backward-compatibility or exact-head gate remains unresolved."
+      ]
+    }
+  ],
+  "next_work": {
+    "phase_transition": false,
+    "steps": [
+      {
+        "order": 1,
+        "action": "After fresh candidate certification, make the first material commit contract/schema/tests only, adopting the frozen #176 field names selectively against current-main truth.",
+        "targets": [
+          "Shared/roles/",
+          "Shared/library/package.schema.json",
+          "tests/"
+        ],
+        "inputs": [
+          "INPUT-TA10-001",
+          "INPUT-TA10-002"
+        ],
+        "tests": [
+          "TEST-TA10-001"
+        ],
+        "benchmarks": [
+          "BENCH-TA10-001",
+          "BENCH-TA10-003"
+        ],
+        "acceptance": [
+          "AC-TA10-001"
+        ],
+        "expected_result": "Stable reasoning/crux/scaffold/protected-decision fields and falsifiers exist with legacy fallback preserved.",
+        "stop_if": [
+          "MATERIAL_WRITE_READY is false.",
+          "PR #176 contract changed or current main drift overlaps the qualified boundary."
+        ]
+      },
+      {
+        "order": 2,
+        "action": "Implement intake/compiler/source-fidelity cross-reference behavior and preserve exact source-question structure.",
+        "targets": [
+          "Shared/library/intake.py",
+          "Shared/library/compile_inputs.py",
+          "Shared/publication_host/inputs.py",
+          "tests/"
+        ],
+        "inputs": [
+          "INPUT-TA10-001",
+          "INPUT-TA10-002",
+          "INPUT-TA10-004"
+        ],
+        "tests": [
+          "TEST-TA10-002"
+        ],
+        "benchmarks": [
+          "BENCH-TA10-003",
+          "BENCH-TA10-004"
+        ],
+        "acceptance": [
+          "AC-TA10-002"
+        ],
+        "expected_result": "Compiled projections preserve source custody and resolve structured application/scaffold/visual references without semantic invention.",
+        "stop_if": [
+          "A required ref cannot be validated without guessing academic meaning."
+        ]
+      },
+      {
+        "order": 3,
+        "action": "Implement learner-facing crux/protection rendering and prove the bounded Motion-in-2D slice.",
+        "targets": [
+          "Shared/publication_host/compose.py",
+          "tests/"
+        ],
+        "inputs": [
+          "INPUT-TA10-003",
+          "INPUT-TA10-004"
+        ],
+        "tests": [
+          "TEST-TA10-003"
+        ],
+        "benchmarks": [
+          "BENCH-TA10-001",
+          "BENCH-TA10-002"
+        ],
+        "acceptance": [
+          "AC-TA10-003"
+        ],
+        "expected_result": "Core1B and Core2A/Core2B are behaviorally distinguishable by learner work and disclosure, not hint count.",
+        "stop_if": [
+          "The renderer must create academic content at runtime."
+        ]
+      },
+      {
+        "order": 4,
+        "action": "Run full anti-collapse/backward-compatibility/source-fidelity/guardrail/V2.5 review and checkpoint the slice.",
+        "targets": [
+          "tests/",
+          "docs/architecture-manifest.json",
+          "agents/relay/"
+        ],
+        "inputs": [
+          "INPUT-TA10-001",
+          "INPUT-TA10-003"
+        ],
+        "tests": [
+          "TEST-TA10-004"
+        ],
+        "benchmarks": [
+          "BENCH-TA10-002",
+          "BENCH-TA10-003",
+          "BENCH-TA10-004"
+        ],
+        "acceptance": [
+          "AC-TA10-004"
+        ],
+        "expected_result": "WP-TA-108 closes only on exact-head evidence and WP-TA-105 becomes the serial frontier again.",
+        "stop_if": [
+          "Any protected-domain diff, quality finding mapped to a hard stop, or exact-head validation failure remains."
+        ]
+      }
+    ]
+  },
+  "qualification_boundary": {
+    "required": true,
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "ENGINEERING_AUTHORITY",
+      "PROTECTED_INVARIANT",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "WP-TA-108 changes Shared schema/compiler/publication semantics and protected source-custody/application-disclosure invariants relative to EP-TA-009.",
+      "The Owner explicitly pinned Common engineering-pr-delivery-v2.5 at 1bc4eca6eac9d75900ddee1c338da4b44817eeec.",
+      "No predecessor direct-execution exception applies to EP-TA-010."
+    ],
+    "question_policy": "DEFAULT",
+    "question_policy_basis": [],
+    "not_applicable_reason": null,
+    "question_set": {
+      "id": "QSET-TA-011",
+      "path": "agents/relay/certifications/questions/QSET-TA-011.yaml"
+    }
+  },
+  "quality": {
+    "applicable": [
+      {
+        "blueprint": "software-design",
+        "reason": "The task changes canonical projection ownership and must avoid duplicate reasoning/visual/learner-state ontologies.",
+        "review_focus": [
+          "single academic truth ownership",
+          "stable identity",
+          "projection boundaries",
+          "backward compatibility"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Shared schema/compiler/intake/rendering behavior changes.",
+        "review_focus": [
+          "small reusable primitives",
+          "cross-reference validation",
+          "lossless projection",
+          "no semantic guessing"
+        ]
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "Learner-facing static rendering must make crux and attempt/reveal policy legible in self-paced use.",
+        "review_focus": [
+          "crux salience",
+          "attempt before reveal",
+          "minimal feedback",
+          "answer accessibility"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "The completion rule is primarily falsifier-driven.",
+        "review_focus": [
+          "A/B collapse",
+          "source fidelity",
+          "bad refs",
+          "protected decision disclosure",
+          "legacy compatibility"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Cross-layer contract changes can silently duplicate truth or weaken custody.",
+        "review_focus": [
+          "authority boundaries",
+          "migration fallback",
+          "renderer semantics",
+          "protected domains"
+        ]
+      },
+      {
+        "blueprint": "accessibility",
+        "reason": "Reveal/details and learner-facing crux semantics must remain keyboard/readable without hidden-only distinctions.",
+        "review_focus": [
+          "semantic HTML",
+          "details/reveal access",
+          "non-color crux distinction",
+          "reading order"
+        ]
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Legacy reasoning[]/difficult_move/hints records must continue to work during structured-route migration.",
+        "review_focus": [
+          "fallback precedence",
+          "no silent reinterpretation",
+          "generated artifacts",
+          "fixture compatibility"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Issue #173 requires a dedicated PR and V2.5 correlation/exact-head evidence.",
+        "review_focus": [
+          "Issue-EP correlation",
+          "draft #176 separation",
+          "provider readback",
+          "exact-head CI"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical algorithm or tolerance changes."
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The bounded projection/validation changes are not performance-sensitive."
+      }
+    ],
+    "review_contract": {
+      "required": true,
+      "required_before_checkpoint": true,
+      "receipt_namespace": "QRV-",
+      "required_outputs": [
+        "procedure_results",
+        "findings",
+        "owner_report",
+        "successor_handover"
+      ]
+    },
+    "findings_policy": "Quality findings remain quality state unless they map to an existing acceptance, authority, protected-invariant, safety, or repository-state hard-stop condition.",
+    "ordinary_findings_are_hard_stops": false
+  },
+  "acceptance": [
+    {
+      "id": "AC-TA10-001",
+      "description": "The live schema/role contract can express stable application reasoning moves and crux refs, distinct pedagogical scaffolds, and a protected transfer decision while preserving legacy reasoning[]/difficult_move/hints compatibility.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA10-001",
+        "BENCH-TA10-001",
+        "BENCH-TA10-003"
+      ]
+    },
+    {
+      "id": "AC-TA10-002",
+      "description": "Intake/compiler/runtime validation resolves structured refs, keeps source hints separate from authored scaffolds, preserves subparts/options/source custody and does not downgrade transfer identity or validate a lossy source projection against itself.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA10-002",
+        "BENCH-TA10-003",
+        "BENCH-TA10-004"
+      ]
+    },
+    {
+      "id": "AC-TA10-003",
+      "description": "Learner-facing rendering preserves Core1B attempt-before-reveal and visibly distinguishes Core2A representation/setup, crux, execution and check while Core2B pre-attempt support cannot disclose the protected changed decision.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA10-003",
+        "BENCH-TA10-001",
+        "BENCH-TA10-002"
+      ]
+    },
+    {
+      "id": "AC-TA10-004",
+      "description": "One real Motion-in-2D proof slice plus anti-collapse, bad-ref, disclosure, source-fidelity and backward-compatibility falsifiers pass; generated artifacts, quality review, full guardrails and exact-head V2.5 validation are reconciled before checkpoint credit.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA10-004",
+        "BENCH-TA10-002",
+        "BENCH-TA10-003",
+        "BENCH-TA10-004"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "TEST-TA10-001",
+      "obligation_class": "MUST_PASS",
+      "method": "Schema/intake tests reject unresolved crux/scaffold/protected refs and source/pedagogy provenance conflation while legacy records remain admitted.",
+      "proves": [
+        "AC-TA10-001"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA10-002",
+      "obligation_class": "MUST_PASS",
+      "method": "Compiler/publication-input falsifiers prove canonical subparts/options/source identity survive projection and structured refs/exposure semantics remain intact.",
+      "proves": [
+        "AC-TA10-002"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA10-003",
+      "obligation_class": "MUST_PASS",
+      "method": "Publication tests prove Core1B prompt precedes reveal, Core2A crux is rendered distinctly and Core2B protected decision is not disclosed pre-attempt.",
+      "proves": [
+        "AC-TA10-003"
+      ],
+      "class": "MUST_PASS"
+    },
+    {
+      "id": "TEST-TA10-004",
+      "obligation_class": "MUST_PASS",
+      "method": "Run Motion-in-2D gold-slice end-to-end tests, legacy relative-motion publication regression, full unittest/guardrails/generated-artifact check and V2.5 exact-head validation.",
+      "proves": [
+        "AC-TA10-004"
+      ],
+      "class": "MUST_PASS"
+    }
+  ],
+  "failure_and_stop_conditions": {
+    "hard_stop_categories": [
+      "OWNER_DECISION_REQUIRED",
+      "ESSENTIAL_INPUT_MISSING",
+      "AUTHORITY_VIOLATION",
+      "PROTECTED_INVARIANT_FAILURE",
+      "WRITE_COLLISION",
+      "SUPERSEDED_EP",
+      "ROADMAP_CONFLICT",
+      "REPOSITORY_STATE_CONFLICT",
+      "UNSAFE_ENGINEERING_RESULT"
+    ]
+  },
+  "report_contract": {
+    "sections": [
+      "Executive state",
+      "Overall / phase / EP progress",
+      "Work completed",
+      "Files changed",
+      "Acceptance matrix",
+      "Tests and evidence",
+      "Quality findings",
+      "Known limitations",
+      "Owner decisions required",
+      "GitHub issue changes",
+      "Roadmap changes",
+      "Exact next actions",
+      "Successor EP"
+    ],
+    "payloads": [
+      {
+        "id": "RPT-STATE",
+        "section": "Executive state",
+        "sources": [
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "relay_state",
+          "current_position",
+          "execution_state",
+          "material_authority",
+          "stop"
+        ]
+      },
+      {
+        "id": "RPT-PROGRESS",
+        "section": "Overall / phase / EP progress",
+        "sources": [
+          "PROGRESS",
+          "OVERALL_ROADMAP",
+          "EP"
+        ],
+        "required_fields": [
+          "progress_basis",
+          "overall",
+          "phase",
+          "work_package",
+          "step",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "RPT-WORK",
+        "section": "Work completed",
+        "sources": [
+          "EP",
+          "CP"
+        ],
+        "required_fields": [
+          "completed_steps",
+          "implementation_result"
+        ]
+      },
+      {
+        "id": "RPT-FILES",
+        "section": "Files changed",
+        "sources": [
+          "CP"
+        ],
+        "required_fields": [
+          "files_changed"
+        ]
+      },
+      {
+        "id": "RPT-AC",
+        "section": "Acceptance matrix",
+        "sources": [
+          "EP",
+          "PROGRESS",
+          "CP"
+        ],
+        "required_fields": [
+          "criterion",
+          "status",
+          "percent",
+          "basis"
+        ]
+      },
+      {
+        "id": "RPT-EVIDENCE",
+        "section": "Tests and evidence",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "validation_id",
+          "obligation_class",
+          "status",
+          "basis_ref",
+          "not_run_reason"
+        ]
+      },
+      {
+        "id": "RPT-QUALITY",
+        "section": "Quality findings",
+        "sources": [
+          "EP",
+          "QRV",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "quality_review",
+          "procedures",
+          "findings",
+          "disposition",
+          "execution_effect"
+        ]
+      },
+      {
+        "id": "RPT-LIMITS",
+        "section": "Known limitations",
+        "sources": [
+          "EP",
+          "CP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "limitations",
+          "evidence_gaps",
+          "deferred_items"
+        ]
+      },
+      {
+        "id": "RPT-OWNER",
+        "section": "Owner decisions required",
+        "sources": [
+          "ODR",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "decision_required",
+          "pending_items",
+          "authority_effect"
+        ]
+      },
+      {
+        "id": "RPT-ISSUES",
+        "section": "GitHub issue changes",
+        "sources": [
+          "ISSUE_GRAPH",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "operations",
+          "relationships",
+          "projection_state"
+        ]
+      },
+      {
+        "id": "RPT-ROADMAP",
+        "section": "Roadmap changes",
+        "sources": [
+          "OVERALL_ROADMAP",
+          "ROADMAP_REVISION",
+          "PROGRESS"
+        ],
+        "required_fields": [
+          "revision",
+          "topology_or_status_change",
+          "frontier_after",
+          "progress_basis_effect"
+        ]
+      },
+      {
+        "id": "RPT-NEXT",
+        "section": "Exact next actions",
+        "sources": [
+          "EP"
+        ],
+        "required_fields": [
+          "ordered_actions",
+          "targets",
+          "inputs",
+          "tests",
+          "benchmarks",
+          "acceptance",
+          "expected_result",
+          "stop_conditions"
+        ]
+      },
+      {
+        "id": "RPT-SUCCESSOR",
+        "section": "Successor EP",
+        "sources": [
+          "CP",
+          "OVERALL_ROADMAP",
+          "REPO_STATE"
+        ],
+        "required_fields": [
+          "successor_mode",
+          "next_frontier",
+          "ep_or_terminal_disposition"
+        ]
+      }
+    ],
+    "status_publication": {
+      "default_after_minutes": 25,
+      "owner_override": null
+    }
+  },
+  "checkpoint_contract": {
+    "required": true
+  },
+  "successor_relay": {
+    "required": true,
+    "duties": [
+      "reconcile current roadmap node",
+      "create checkpoint",
+      "update progress",
+      "update issue projection when applicable",
+      "compute next executable frontier",
+      "restore or revise WP-TA-105 successor EP after WP-TA-108 completion",
+      "validate successor EP",
+      "run cold-start check",
+      "update REPO_STATE"
+    ],
+    "required_outputs": [
+      "checkpoint",
+      "progress_reconciliation",
+      "issue_projection_disposition",
+      "next_frontier",
+      "successor_ep_or_terminal_disposition"
+    ]
+  }
+}

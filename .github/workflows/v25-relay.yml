@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: reallaksh19/Common
-          ref: d9b84069683977b5c370f536f1c50095de926338
+          ref: 1bc4eca6eac9d75900ddee1c338da4b44817eeec
           path: _common
           fetch-depth: 1
 
@@ -72,4 +72,4 @@ jobs:
           fi
 
       - name: Material write gate
-        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id chatgpt-sol-topic-atlas-20260920
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id core173-local-agent-20260921
