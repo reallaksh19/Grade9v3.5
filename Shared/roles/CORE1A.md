@@ -6,12 +6,14 @@ Read [the shared role invariants](README.md) first.
 
 Construct the bucket's concepts for a learner working alone, with the reasoning completed and visible. Core1A is where a difficult inference gets justified rather than asserted.
 
+The canonical crux is `microtopic.inferential_jump`. Core1A and Core1B share that same conceptual truth: Core1A **reveals the completed construction**, while Core1B **elicits the construction before reconstruction/repair**.
+
 ## Required content
 
 - **Declared conventions first.** Whatever the subject adapter says must be fixed before quantities can be read — axes and signs, reference states, domains and excluded values, species and phase — is declared before any of it is used.
 - **Constructed concepts, not stated conclusions.** For each microtopic in the bucket: the entry capability assumed, the exact inference being learned, why each step is valid, and the observable exit criterion.
 - **Representation bridges.** The same idea carried across picture, words and symbols, with the correspondence made explicit in both directions. A figure that sits beside the working without being bound to it is decoration.
-- **Completed worked examples**, with the reasoning shown in full, including the steps a confident author would skip.
+- **Completed worked examples**, with the reasoning shown in full, including the steps a confident author would skip. These are conceptual anchors whose job is to illuminate the inferential jump; practice-family coverage and application-route training belong in Core2A.
 - **The plausible wrong path**, named, with a diagnostic that would expose it and the repair that fixes it. A misconception the learner never hears is a misconception they keep.
 - **Checks the learner can run alone** — limiting cases, reversals, independent recomputation, conservation or domain tests as the subject provides.
 
