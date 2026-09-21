@@ -12,6 +12,7 @@ from Physics.adapter import load as load_physics
 from Shared.contracts import ContractError
 from Shared.library.compile_inputs import compile_bucket, write
 from Shared.library.resolve import build_index
+from Shared.publication_host.host import publish
 from Shared.publication_host.inputs import read_inputs
 
 REPO = Path(__file__).resolve().parents[1]
@@ -256,6 +257,71 @@ class PublicationBoundaryStructuredRefs(unittest.TestCase):
         with self.assertRaises(ContractError) as raised:
             self.validate_after(disclose, transfer=True)
         self.assertEqual("PROTECTED_MOVE_DISCLOSED_BY_SCAFFOLD", raised.exception.code)
+
+
+class LearnerFacingStructuredProjection(unittest.TestCase):
+    def render(self, *, transfer=False):
+        package = package_fixture()
+        q = structured_question(package)
+        if transfer:
+            q["exposure"].append({"core": "CORE2B", "role": "NEW_TRANSFER", "artifact_ref": None})
+            q["transfer"] = {
+                "dimension": "model_choice",
+                "statement": "Changed demand requires the learner to choose the subtraction order.",
+                "builds_on": ["MIC-MEASURED-FROM"],
+                "protected_move_ref": "MOVE-DECIDE",
+            }
+        self.assertTrue(intake.check(package)["admitted"], intake.check(package)["findings"])
+
+        package_paths = sorted((REPO / "Physics/library").glob("*.json"))
+        packages = [json.loads(path.read_text(encoding="utf-8")) for path in package_paths]
+        packages = [copy.deepcopy(package) if p.get("package_id") == package["package_id"] else p
+                    for p in packages]
+        compiled = compile_bucket(
+            build_index(packages),
+            "BUCKET-RELATIVE-MOTION",
+            topic_id="TEST-RENDER-STRUCTURED",
+            title="Structured learner rendering",
+            subject="Physics",
+            practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+        )
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(compiled, root / "inputs")
+            publish(
+                root / "inputs/plan.json",
+                root / "inputs/baseline.json",
+                root / "inputs",
+                root / "publication",
+                load_physics(),
+            )
+            return {
+                core: (root / "publication" / f"{core}.html").read_text(encoding="utf-8")
+                for core in ("CORE2A", "CORE2B")
+                if (root / "publication" / f"{core}.html").exists()
+            }
+
+    def test_core2a_scaffold_precedes_answer_and_crux_is_visibly_distinct(self):
+        html = self.render()["CORE2A"]
+        before, after = html.split('<section class="answer-section"', 1)
+        self.assertIn("Support before you solve", before)
+        self.assertIn("Keep the common axes visible before subtracting.", before)
+        self.assertNotIn("Subtract the observer velocity from the target velocity.", before)
+        self.assertIn('data-reasoning-move="MOVE-REPRESENT"', after)
+        self.assertIn('data-reasoning-move="MOVE-DECIDE"', after)
+        self.assertIn('<span class="move-kind">Key decision</span>', after)
+        self.assertIn("<strong>Independent check:</strong>", after)
+
+    def test_core2b_protected_decision_is_absent_from_pre_attempt_support(self):
+        html = self.render(transfer=True)["CORE2B"]
+        before, after = html.split('<section class="answer-section"', 1)
+        self.assertIn("Support before you solve", before)
+        self.assertIn('data-supports-move="MOVE-REPRESENT"', before)
+        self.assertNotIn("MOVE-DECIDE", before)
+        self.assertNotIn("Subtract the observer velocity from the target velocity.", before)
+        self.assertIn('data-reasoning-move="MOVE-DECIDE"', after)
+        self.assertIn("This decision was protected from pre-attempt scaffolding", after)
+
 
 
 if __name__ == "__main__":
