@@ -131,7 +131,8 @@ def _scaffold_support(block, core):
         label = scaffold["support_kind"].title()
         body += (
             f'<details data-supports-move="{escape(scaffold["supports_move_ref"], quote=True)}" '
-            f'data-support-kind="{escape(scaffold["support_kind"], quote=True)}">'
+            f'data-support-kind="{escape(scaffold["support_kind"], quote=True)}" '
+            f'data-reveals="{escape(scaffold["reveals"], quote=True)}">'
             f'<summary>Support {level}: {escape(label)}</summary>'
             f'<p>{escape(scaffold["text"])}</p></details>'
         )
