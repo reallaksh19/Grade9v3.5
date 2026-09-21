@@ -50,8 +50,6 @@ def structured_question(package: dict) -> dict:
             "support_kind": "REPRESENT",
             "reveals": "CONCEPT",
             "supports_move_ref": "MOVE-REPRESENT",
-            "visual_ref": "REP-REL-VECTOR",
-            "visual_stage_ref": "VIS-REL-VECTOR-V1",
         }
     ]
     return question
@@ -92,6 +90,7 @@ class StructuredApplicationPipeline(unittest.TestCase):
     def test_visual_support_validates_scaffold_stage_ownership(self):
         package = package_fixture()
         q = structured_question(package)
+        q["scaffolds"][0]["visual_ref"] = "REP-REL-VECTOR"
         q["scaffolds"][0]["visual_stage_ref"] = "VIS-NOT-IN-REP"
         findings = visual_support.check(package)
         self.assertTrue(any(f["point"] == "SCAFFOLD_VISUAL_STAGE_FOREIGN"
