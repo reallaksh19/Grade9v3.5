@@ -293,6 +293,131 @@
         "output"
       ]
     },
+    "reasoning_move": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One explicit application reasoning move. This is a cognitive state transition (why/which move and its result), not merely a line of arithmetic working.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "REPRESENT",
+            "DECIDE",
+            "CONNECT",
+            "TRANSFORM",
+            "VERIFY"
+          ]
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why_valid": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "output": {
+          "type": "string",
+          "minLength": 1
+        },
+        "representation_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional canonical representation that makes this reasoning move visible."
+        },
+        "visual_stage_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional reveal-stage id within representation_ref."
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional source binding for a claim carried by this move."
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "action",
+        "why_valid",
+        "inputs",
+        "output"
+      ],
+      "dependentRequired": {
+        "representation_ref": [
+          "visual_stage_ref"
+        ],
+        "visual_stage_ref": [
+          "representation_ref"
+        ]
+      }
+    },
+    "scaffold": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A practice pedagogical scaffold for Core2A/Core2B. This is deliberately separate from question.hints[], which preserves the question/source hint ladder; Core2B additionally constrains scaffolds through transfer.protected_move_ref.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support_kind": {
+          "enum": [
+            "REPRESENT",
+            "CONNECT",
+            "EXECUTE"
+          ],
+          "description": "What cognitive help the scaffold provides."
+        },
+        "reveals": {
+          "enum": [
+            "CONCEPT",
+            "METHOD",
+            "ANSWER"
+          ],
+          "description": "How much of the route/result the scaffold discloses."
+        },
+        "supports_move_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable id of the reasoning_route move this scaffold supports."
+        },
+        "visual_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_stage_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "text",
+        "support_kind",
+        "reveals",
+        "supports_move_ref"
+      ],
+      "dependentRequired": {
+        "visual_ref": [
+          "visual_stage_ref"
+        ],
+        "visual_stage_ref": [
+          "visual_ref"
+        ]
+      }
+    },
     "answer": {
       "type": "object",
       "additionalProperties": false,
@@ -315,6 +440,19 @@
             "minLength": 1
           },
           "minItems": 1
+        },
+        "reasoning_route": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reasoning_move"
+          },
+          "minItems": 1,
+          "description": "Structured application reasoning route. When present with crux_move_ref, this is authoritative for Core2A/Core2B reasoning semantics; reasoning[] remains the legacy prose fallback."
+        },
+        "crux_move_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable id of the question-specific reasoning move that is the primary learner crux. Intake validates that it resolves inside reasoning_route[]."
         },
         "check": {
           "type": "string",
@@ -371,7 +509,7 @@
         "difficult_move": {
           "type": "integer",
           "minimum": 0,
-          "description": "Index into reasoning[] of the first move a learner is likely to miss. An index rather than a copy of the text, so it cannot drift from the step it names; out of range is a finding. This is the step the spec says must be made explicit rather than glossed, and naming it is what stops a solution breakdown from being a summary."
+          "description": "Legacy index into reasoning[] of the first move a learner is likely to miss. During migration, reasoning_route[] + crux_move_ref are authoritative when present; this index remains the backward-compatible fallback for older records."
         }
       },
       "required": [
@@ -2096,7 +2234,15 @@
             }
           },
           "minItems": 0,
-          "description": "The ladder of hints, in order. Order is meaning here -- Core2 preserves the source's ordering, and the other two products depend on a hint not arriving before the one that should precede it -- so this is a list and never a set."
+          "description": "The ladder of hints, in order. Order is meaning here -- Core2 preserves the source's ordering. Pedagogical Core2A support belongs in scaffolds[] so source custody and authored support are not conflated."
+        },
+        "scaffolds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scaffold"
+          },
+          "minItems": 0,
+          "description": "Optional Core2A/Core2B pedagogical scaffold ladder, separate from source/question hints[]. Core2B help must preserve the transfer-protected decision."
         },
         "transfer": {
           "type": "object",
@@ -2125,6 +2271,11 @@
               },
               "minItems": 1,
               "description": "Exposure lineage: the question or microtopic ids the learner has already seen that this builds on. A transfer claim with no lineage is a claim about a learner nobody has described."
+            },
+            "protected_move_ref": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Stable reasoning-move id for the changed learner decision that pre-attempt help must not hand over."
             }
           },
           "required": [
