@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 208,
-  "relation_count": 252,
+  "relation_count": 258,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -17,7 +17,7 @@
     "WEB": 6,
     "WEB_RUNTIME": 3
   },
-  "digest": "sha256:091ccaf995e77f9cf88a7b0746de99355ef62e3dbe2a62aac60ff1dbddf2025e",
+  "digest": "sha256:f20d987d0bfb3489d76dd770a2bda2b8487eb8a13d83b71c37237d329b3ee93a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -961,8 +961,8 @@
       "path": "tests/test_core_projection_pipeline.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 26005,
-      "sha256": "056bba525ea20f350385bc402c999a5813f85b492a79fd5d1c0484467be9d2f4"
+      "bytes": 26004,
+      "sha256": "e71f97695f7d448ebd034eb179084c37959096d0e5d02b6bcd38803fb5e33d5e"
     },
     {
       "path": "tests/test_empirical_acceptance.py",
@@ -2195,6 +2195,36 @@
     {
       "from": "tests/test_core_issue19_integration.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.publication_host.inputs",
       "kind": "IMPORTS"
     },
     {
