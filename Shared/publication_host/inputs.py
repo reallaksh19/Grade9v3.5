@@ -71,16 +71,19 @@ def _read_sources(baseline, root):
             require("value" in atom, "ATOM_VALUE_REQUIRED")
             atoms[atom["id"]] = {**atom, "source_id": ref["id"]}
         for q in source.get("questions", []):
-            require(set(q) <= {"id", "original_number", "stem", "subparts", "options", "conditions", "verification"},
+            require(set(q) <= {"id", "original_number", "stem", "subparts", "options",
+                               "conditions", "source_refs", "figure_refs", "hints", "verification"},
                     "SOURCE_QUESTION_FIELDS_UNSUPPORTED", q.get("id", ""))
             key = (ref["id"], q["id"])
             require(key not in questions, "SOURCE_QUESTION_COLLISION")
             text(q.get("original_number"), "ORIGINAL_NUMBER_REQUIRED")
             text(q.get("stem"), "SOURCE_STEM_REQUIRED")
-            for field in ("subparts", "options", "conditions"):
+            for field in ("subparts", "options", "conditions", "source_refs", "figure_refs"):
                 require(isinstance(q.get(field, []), list), "SOURCE_QUESTION_LIST_INVALID")
                 for value in q.get(field, []):
                     text(value, "SOURCE_QUESTION_FIELD_EMPTY")
+            if "hints" in q:
+                require(isinstance(q["hints"], list), "SOURCE_QUESTION_LIST_INVALID", "hints")
             questions[key] = q
     require(bool(sources) and bool(atoms), "SOURCE_INVENTORY_EMPTY")
     return sources, atoms, questions
@@ -171,6 +174,12 @@ def _question(ctx, block):
     require(block.get("original_number") == original["original_number"], "SOURCE_NUMBER_CHANGED")
     for field in ("subparts", "options", "conditions"):
         require(block.get(field, []) == original.get(field, []), "SOURCE_QUESTION_FIELD_CHANGED", field)
+    # Legacy frozen source files predate these custody fields. Newly compiled library
+    # sources carry them, so compare whenever the source projection actually owns them.
+    for field in ("source_refs", "figure_refs", "hints"):
+        if field in original:
+            require(block.get(field, []) == original.get(field, []),
+                    "SOURCE_QUESTION_FIELD_CHANGED", field)
     answer = block["answer"]
     text(answer.get("summary"), "ANSWER_BODY_EMPTY")
     strings(answer.get("steps"), "SOLUTION_STEPS_EMPTY")

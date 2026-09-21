@@ -176,10 +176,12 @@ def check(package: dict) -> dict:
                                     "answer, so every hint after it has nothing left to offer")
         answer = row.get("answer") or {}
         route = answer.get("reasoning_route") or []
-        move_ids = [move.get("id") for move in route if isinstance(move, dict)]
+        move_rows = [move for move in route if isinstance(move, dict)]
+        move_ids = [move.get("id") for move in move_rows]
         if len(move_ids) != len(set(move_ids)):
             fail("REASONING_ROUTE", f"{qid}: reasoning_route move ids must be unique")
-        move_set = set(move_ids)
+        move_by_id = {move.get("id"): move for move in move_rows if move.get("id")}
+        move_set = set(move_by_id)
         crux = answer.get("crux_move_ref")
         if crux is not None and crux not in move_set:
             fail("REASONING_ROUTE", f"{qid}: crux_move_ref {crux} does not resolve inside reasoning_route")
@@ -187,6 +189,9 @@ def check(package: dict) -> dict:
             fail("REASONING_ROUTE", f"{qid}: structured reasoning_route has no crux_move_ref")
         if crux and not route:
             fail("REASONING_ROUTE", f"{qid}: crux_move_ref is present without reasoning_route")
+        if crux in move_by_id and move_by_id[crux].get("kind") != "DECIDE":
+            fail("REASONING_ROUTE", f"{qid}: crux_move_ref {crux} must name a DECIDE move, "
+                                    "not an execution-only step")
 
         scaffolds = row.get("scaffolds") or []
         for position, scaffold in enumerate(scaffolds):
@@ -200,6 +205,8 @@ def check(package: dict) -> dict:
         if protected is not None and protected not in move_set:
             fail("TRANSFER", f"{qid}: protected_move_ref {protected} does not resolve "
                              "inside reasoning_route")
+        if protected in move_by_id and move_by_id[protected].get("kind") != "DECIDE":
+            fail("TRANSFER", f"{qid}: protected_move_ref {protected} must name a DECIDE move")
         if protected and any(s.get("supports_move_ref") == protected for s in scaffolds):
             fail("TRANSFER", f"{qid}: a scaffold targets protected move {protected}, "
                              "so pre-attempt support would disclose the changed decision")

@@ -90,4 +90,33 @@ def findings(records: dict[str, dict]) -> list[dict[str, str]]:
                          f"{support_field[:-1]} {position + 1} moves {visual_ref} backward "
                          f"from stage {previous[visual_ref]} to {index}")
                 previous[visual_ref] = index
+
+        # A reasoning move may bind the canonical representation/stage that makes the
+        # move visible in a worked solution. Validate ownership, but do not impose the
+        # hint/scaffold monotonic-stage rule: a reasoning route may legitimately return
+        # to an earlier view while checking its result.
+        route = (row.get("answer") or {}).get("reasoning_route") or []
+        for position, move in enumerate(route):
+            if not isinstance(move, dict):
+                continue
+            visual_ref = move.get("representation_ref")
+            stage_ref = move.get("visual_stage_ref")
+            if visual_ref is None and stage_ref is None:
+                continue
+            if not visual_ref or not stage_ref:
+                fail("REASONING_VISUAL_PAIR_INCOMPLETE", rid,
+                     f"reasoning move {position + 1} must provide representation_ref "
+                     "and visual_stage_ref together")
+                continue
+            rep = representations.get(visual_ref)
+            if rep is None:
+                fail("REASONING_VISUAL_WRONG_TYPE", rid,
+                     f"reasoning move {position + 1} representation_ref {visual_ref} "
+                     "is not a representation")
+                continue
+            ids = [stage.get("id") for stage in rep.get("reveal_stages", []) or []]
+            if stage_ref not in ids:
+                fail("REASONING_VISUAL_STAGE_FOREIGN", rid,
+                     f"reasoning move {position + 1} stage {stage_ref} "
+                     f"does not belong to {visual_ref}")
     return out

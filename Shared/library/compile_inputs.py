@@ -145,7 +145,16 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
     questions, question_records = [], []
     for record in bucket_questions(records, bucket_id):
         row = {"id": record["id"], "original_number": record["original_identifier"],
-               "stem": record["stem"], "conditions": record.get("conditions", [])}
+               "stem": record["stem"],
+               "subparts": deepcopy(record.get("subparts") or []),
+               "options": deepcopy(record.get("options") or []),
+               "conditions": deepcopy(record.get("conditions") or []),
+               # These custody fields let the publication boundary compare the compiled
+               # learner block against an unlossy source projection. Legacy frozen
+               # source files may omit them; newly compiled library sources do not.
+               "source_refs": list(record.get("source_refs") or []),
+               "figure_refs": list(record.get("figure_refs") or []),
+               "hints": deepcopy(record.get("hints") or [])}
         if record.get("verification"):
             row["verification"] = record["verification"]
             for atom_id in record["verification"]["bindings"].values():
@@ -658,8 +667,8 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
     # is custody of the source, not a decision about how a question is used in teaching.
     exposure = next((e for e in record.get("exposure", []) if e.get("core") == core), None)
     role = ("SOURCE_CUSTODY" if exposure is None else
-            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE",
-             "NEW_TRANSFER": "NEW_TRANSFER"}.get(exposure.get("role"), "PRACTICE"))
+            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(
+                exposure.get("role"), exposure.get("role")))
     block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
              "obligation_ids": [obligation_id],
              "source_atom_ids": sorted({a["id"] for a in atoms}),
@@ -678,6 +687,7 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
              "figure_refs": list(record.get("figure_refs") or []),
              "answer": {"summary": answer["summary"], "steps": answer["reasoning"],
                         "check": answer["check"],
+                        "subparts": deepcopy(answer.get("subpart_answers") or []),
                         **({"reasoning_route": deepcopy(answer["reasoning_route"])}
                            if answer.get("reasoning_route") else {}),
                         **({"crux_move_ref": answer["crux_move_ref"]}

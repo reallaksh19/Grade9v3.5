@@ -72,6 +72,22 @@ class StructuredApplicationPipeline(unittest.TestCase):
         self.assertTrue(any(f["point"] == "REASONING_ROUTE" and "unique" in f["detail"]
                             for f in findings), findings)
 
+    def test_intake_requires_crux_to_name_a_decision_move(self):
+        package = package_fixture()
+        q = structured_question(package)
+        q["answer"]["reasoning_route"][1]["kind"] = "TRANSFORM"
+        findings = intake.check(package)["findings"]
+        self.assertTrue(any(f["point"] == "REASONING_ROUTE" and "DECIDE" in f["detail"]
+                            for f in findings), findings)
+
+    def test_reasoning_move_visual_stage_ownership_is_validated(self):
+        package = package_fixture()
+        q = structured_question(package)
+        q["answer"]["reasoning_route"][0]["visual_stage_ref"] = "VIS-NOT-IN-REP"
+        findings = visual_support.findings(build_index([package]))
+        self.assertTrue(any(f["code"] == "REASONING_VISUAL_STAGE_FOREIGN"
+                            for f in findings), findings)
+
     def test_intake_rejects_scaffold_that_targets_protected_transfer_decision(self):
         package = package_fixture()
         q = structured_question(package)
@@ -92,8 +108,8 @@ class StructuredApplicationPipeline(unittest.TestCase):
         q = structured_question(package)
         q["scaffolds"][0]["visual_ref"] = "REP-REL-VECTOR"
         q["scaffolds"][0]["visual_stage_ref"] = "VIS-NOT-IN-REP"
-        findings = visual_support.check(package)
-        self.assertTrue(any(f["point"] == "SCAFFOLD_VISUAL_STAGE_FOREIGN"
+        findings = visual_support.findings(build_index([package]))
+        self.assertTrue(any(f["code"] == "SCAFFOLD_VISUAL_STAGE_FOREIGN"
                             for f in findings), findings)
 
     def test_compiler_preserves_source_shape_and_structured_application_truth(self):
@@ -122,8 +138,11 @@ class StructuredApplicationPipeline(unittest.TestCase):
             if block.get("source_question_id") == q["id"]
         ]
         core2a = next(block for block in blocks if block["id"].startswith("CORE2A-"))
-        self.assertEqual(core2a["subparts"], q["subparts"])
-        self.assertEqual(core2a["options"], q["options"])
+        source_question = next(row for row in compiled["source"]["questions"] if row["id"] == q["id"])
+        for field in ("subparts", "options", "conditions", "source_refs", "figure_refs", "hints"):
+            self.assertEqual(source_question[field], q.get(field, []), field)
+            self.assertEqual(core2a.get(field, []), q.get(field, []), field)
+        self.assertEqual(core2a["answer"]["subparts"], q["answer"]["subpart_answers"])
         self.assertEqual(core2a["answer"]["reasoning_route"], q["answer"]["reasoning_route"])
         self.assertEqual(core2a["answer"]["crux_move_ref"], "MOVE-DECIDE")
         self.assertEqual(core2a["scaffolds"], q["scaffolds"])
