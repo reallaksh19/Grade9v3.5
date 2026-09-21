@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 208,
-  "relation_count": 255,
+  "relation_count": 258,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -17,7 +17,7 @@
     "WEB": 6,
     "WEB_RUNTIME": 3
   },
-  "digest": "sha256:40f0934a1bdaf62f4e231c712c72eb5efe11dc673717aa4c001c76736575b8dd",
+  "digest": "sha256:4d0bb0afc88c33d91b782863c4acc6983c60a3da7022f90df95d097123fb5a24",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -65,8 +65,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 43973,
-      "sha256": "d80ec45b563c50fdb0f3b448a5ef3ac4ca34f759698becc22b776447419a6348"
+      "bytes": 44651,
+      "sha256": "882d75d8b152b572c8c8f40e237f39082dc9290281aca076b595ff93bbff70f5"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -135,8 +135,8 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 14632,
-      "sha256": "bd58ca55f6e0ee5b76942aa46789559eb95cd89dd971abae7cb8cef2dfc10dc8"
+      "bytes": 15183,
+      "sha256": "97758c6771cc61536b1b2d61f1835dd7c2f766d34dc112a95005699c03af6e65"
     },
     {
       "path": "Shared/library/learner-profile.schema.json",
@@ -261,8 +261,8 @@
       "path": "Shared/library/visual_support.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 4669,
-      "sha256": "2359d8c3f75e6120357b889311d0234699fd64f7bc8e806d1eed1b088ea3ad8d"
+      "bytes": 6247,
+      "sha256": "b1e3519876bac237c4b26554ac1c2b279a2bdf6dd56ba00ef40408f88cad80a1"
     },
     {
       "path": "Shared/library/worksheet-map.schema.json",
@@ -303,8 +303,8 @@
       "path": "Shared/publication_host/compose.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 13161,
-      "sha256": "491177645d4d1984d2d1bd58550a1ac78b00f90fef5b3422f06532ba484db281"
+      "bytes": 16256,
+      "sha256": "28388c55bc19bbf3ce9627f57b0b8d2e1d677debbf3d2fe7b3f23935d834d85d"
     },
     {
       "path": "Shared/publication_host/drawing.py",
@@ -324,8 +324,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 13852,
-      "sha256": "6aa80a86d46be598a8f4855c2b47e5c2fa3fe379cb27163f4ad4fdbdd511c14a"
+      "bytes": 17893,
+      "sha256": "6d4384df55fe57328489f41a15b8fee6d9497b12dd62c167459f4a5e31fa5c92"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -961,8 +961,8 @@
       "path": "tests/test_core_projection_pipeline.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7544,
-      "sha256": "203b7462e4e261c8462561b6e389163da0ba43756d07173f67aa2db00cfb40df"
+      "bytes": 15379,
+      "sha256": "aa7bf79e8ba01a2ac43a815e2f7cc239632dcd0e894930ceba1c8b205cc67e49"
     },
     {
       "path": "tests/test_empirical_acceptance.py",
@@ -1098,13 +1098,6 @@
       "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
     },
     {
-      "path": "tests/test_grade9_motion_scope.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 2109,
-      "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
-    },
-    {
       "path": "tests/test_grade9_motion1d_vertical_gravity_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1124,6 +1117,13 @@
       "role_description": "Executable checks",
       "bytes": 4220,
       "sha256": "c0516c711c21581eefad2b623ee0b74864af73d0cfbd17273b92b44552aa4707"
+    },
+    {
+      "path": "tests/test_grade9_motion_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2109,
+      "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
     },
     {
       "path": "tests/test_grade9_nlm_connected_string_agent_a_atlas.py",
@@ -1350,18 +1350,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session_scenario_scan.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 26000,
-      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
-    },
-    {
       "path": "tests/test_study_session.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 37321,
       "sha256": "4460a5e134ca0519b715b17a60b0d8a97a9677ac90963a25c33c372ae049ed47"
+    },
+    {
+      "path": "tests/test_study_session_scenario_scan.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26000,
+      "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1462,18 +1462,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run_agent_path_stress.py",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 6932,
-      "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
-    },
-    {
       "path": "tools/run-builder/index.html",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 7041,
       "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
+    },
+    {
+      "path": "tools/run_agent_path_stress.py",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6932,
+      "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
     }
   ],
   "relations": [
@@ -1574,12 +1574,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -1609,12 +1609,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
@@ -2199,6 +2199,11 @@
     },
     {
       "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
     },
@@ -2210,6 +2215,16 @@
     {
       "from": "tests/test_core_projection_pipeline.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.publication_host.inputs",
       "kind": "IMPORTS"
     },
     {
@@ -2673,12 +2688,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
