@@ -1,0 +1,80 @@
+{
+  "apiVersion": "0.1.0",
+  "sceneVersion": "1.0.0",
+  "id": "division-semantic-identity-lifecycle",
+  "grids": [
+    {
+      "id": "division-work",
+      "label": "Long division work",
+      "rows": ["working", "result"],
+      "columns": ["left", "main", "right"]
+    },
+    {
+      "id": "division-expression",
+      "label": "Division expression",
+      "rows": ["problem"],
+      "columns": ["main"]
+    }
+  ],
+  "entities": [
+    {
+      "id": "dividend-156",
+      "label": "156",
+      "provenance": {"kind": "SOURCE", "sourceEntityRefs": []}
+    },
+    {
+      "id": "divisor-12",
+      "label": "12",
+      "provenance": {"kind": "SOURCE", "sourceEntityRefs": []}
+    }
+  ],
+  "projections": [
+    {
+      "id": "dividend-expression",
+      "entityRef": "dividend-156",
+      "label": "156 ÷ 12",
+      "representation": "division expression",
+      "placement": {"grid": "division-expression", "row": "problem", "column": "main"}
+    },
+    {
+      "id": "dividend-working",
+      "entityRef": "dividend-156",
+      "label": "156",
+      "representation": "working dividend",
+      "placement": {"grid": "division-work", "row": "working", "column": "left"}
+    },
+    {
+      "id": "divisor-expression",
+      "entityRef": "divisor-12",
+      "label": "12",
+      "representation": "divisor",
+      "placement": {"grid": "division-work", "row": "working", "column": "main"}
+    }
+  ],
+  "targets": [
+    {
+      "id": "partial-dividend-first",
+      "label": "First partial dividend",
+      "operation": "establish-partial-dividend",
+      "placement": {"grid": "division-work", "row": "working", "column": "right"}
+    },
+    {
+      "id": "quotient-first-digit",
+      "label": "First quotient digit",
+      "operation": "derive-first-quotient-digit",
+      "placement": {"grid": "division-work", "row": "result", "column": "main"}
+    }
+  ],
+  "canonicalTransformations": [
+    {
+      "id": "establish-first-partial-dividend",
+      "sourceEntityRefs": ["dividend-156"],
+      "targetRef": "partial-dividend-first"
+    },
+    {
+      "id": "choose-first-quotient-digit",
+      "sourceEntityRefs": ["partial-dividend-15", "divisor-12"],
+      "targetRef": "quotient-first-digit"
+    }
+  ]
+}

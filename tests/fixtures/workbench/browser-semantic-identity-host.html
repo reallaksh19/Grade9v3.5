@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic Workbench Identity Lifecycle Fixture</title>
+</head>
+<body>
+  <semantic-workbench id="identity"></semantic-workbench>
+  <script type="module">
+    import "/Shared/workbench/semantic-workbench.mjs";
+
+    const scene = await fetch("/tests/fixtures/workbench/arithmetic-division-semantic-identity.json").then((response) => {
+      if (!response.ok) throw new Error(`fixture fetch failed: ${response.status}`);
+      return response.json();
+    });
+
+    let adapterCalls = 0;
+    const adapter = {
+      evaluateTransfer(request, snapshot) {
+        adapterCalls += 1;
+        if (snapshot.sceneId !== scene.id) throw new Error("scene identity changed");
+
+        if (request.sourceEntityRef === "dividend-156" && request.targetRef === "partial-dividend-first") {
+          return {
+            accepted: true,
+            summary: "The first partial dividend is 15.",
+            patch: {
+              addEntities: [{
+                id: "partial-dividend-15",
+                label: "15",
+                provenance: { kind: "DERIVED", sourceEntityRefs: ["dividend-156"] },
+              }],
+              addProjections: [{
+                id: "partial-dividend-working",
+                entityRef: "partial-dividend-15",
+                label: "15",
+                representation: "partial dividend",
+                placement: { grid: "division-work", row: "working", column: "right" },
+              }],
+            },
+          };
+        }
+
+        if (request.sourceEntityRef === "partial-dividend-15" && request.targetRef === "quotient-first-digit") {
+          return {
+            accepted: true,
+            summary: "The first quotient digit is 1 because 12 fits into 15 once.",
+            patch: {
+              addEntities: [{
+                id: "quotient-digit-1",
+                label: "1",
+                provenance: { kind: "DERIVED", sourceEntityRefs: ["partial-dividend-15", "divisor-12"] },
+              }],
+              addProjections: [{
+                id: "quotient-digit-1-result",
+                entityRef: "quotient-digit-1",
+                label: "1",
+                representation: "quotient digit",
+                placement: { grid: "division-work", row: "result", column: "main" },
+              }],
+            },
+          };
+        }
+
+        return {
+          accepted: false,
+          reason: "Use the current semantic intermediate for this target.",
+          allowedTargets: snapshot.entities.some((row) => row.id === "partial-dividend-15")
+            ? ["quotient-first-digit"]
+            : ["partial-dividend-first"],
+        };
+      },
+    };
+
+    const element = document.getElementById("identity");
+    const events = [];
+    element.addEventListener("semantic-workbench-event", (event) => events.push(structuredClone(event.detail)));
+    element.scene = structuredClone(scene);
+    element.adapter = adapter;
+
+    window.identityHarness = {
+      snapshot() { return element.snapshot; },
+      textSummary() { return element.textSummary; },
+      events() { return structuredClone(events); },
+      adapterCalls() { return adapterCalls; },
+    };
+    window.__identityReady = true;
+  </script>
+</body>
+</html>

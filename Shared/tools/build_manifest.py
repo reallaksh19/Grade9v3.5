@@ -28,6 +28,7 @@ MANIFEST = REPO / "docs" / "architecture-manifest.json"
 
 ROLES = [
     ("Shared/publication_host", "ENGINE", "Subject-neutral publication engine"),
+    ("Shared/workbench", "WEB_RUNTIME", "Subject-neutral semantic interaction and Web Component runtime"),
     ("Shared/library", "LIBRARY", "Topic library: intake, resolution, promotion, compilation"),
     ("Shared/gates", "GATES", "Technical gate schema and validator"),
     ("Shared/roles", "CONTRACT", "The six Core role specifications"),
@@ -104,7 +105,7 @@ def collect(overrides: dict[str, bytes] | None = None) -> dict:
     for path in sorted(REPO.rglob("*")):
         if not path.is_file() or any(part in SKIP_PARTS for part in path.relative_to(REPO).parts):
             continue
-        if path.suffix not in {".py", ".json", ".md", ".html", ".js", ".css", ".yml"}:
+        if path.suffix not in {".py", ".json", ".md", ".html", ".js", ".mjs", ".css", ".yml"}:
             continue
         classified = classify(path)
         if classified is None:

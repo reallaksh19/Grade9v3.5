@@ -5,18 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 196,
-  "relation_count": 251,
+  "component_count": 206,
+  "relation_count": 252,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 88,
+    "TEST": 95,
     "TOOLING": 49,
-    "WEB": 6
+    "WEB": 6,
+    "WEB_RUNTIME": 3
   },
-  "digest": "sha256:88d14f5847d4384d7e5da0ce39e71d0655aff1856491e19bbb78c22193000de4",
+  "digest": "sha256:b59b15f559c960871cb1248a3401ec58abbe498cd92927d66132bb47391ad4d6",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -428,8 +429,8 @@
       "path": "Shared/tools/build_manifest.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8205,
-      "sha256": "43cabea8ea10412f21b70ddf831f2d5f8b0fe5d25e2ad7df6383dc9eb121c825"
+      "bytes": 8320,
+      "sha256": "3231b9b269704ec14e077c2a534d12a5f1c4060056521a5e60d835bba86f9a37"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -733,6 +734,27 @@
       "sha256": "452778cf6035c7371c987c37d209f2a329b67db8bc506174d1fa924be06e2f6b"
     },
     {
+      "path": "Shared/workbench/README.md",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 4566,
+      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
+    },
+    {
+      "path": "Shared/workbench/runtime.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 21365,
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "Shared/workbench/semantic-workbench.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 18776,
+      "sha256": "bba7aef0476f3d9373ba8c14eae107ec56da6fd7d1677fc23f452218683aedfd"
+    },
+    {
       "path": "tests/fixtures/agent_path_stress/cases.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -829,6 +851,34 @@
       "role_description": "Executable checks",
       "bytes": 757,
       "sha256": "1de5cdfb36e32cc769ce6305788d80bdccaed0a4ccee9d4e91fe3c4c752f9bf9"
+    },
+    {
+      "path": "tests/fixtures/workbench/arithmetic-division-semantic-identity.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2207,
+      "sha256": "629dfb94bee3a600e80160ebd08bc004cbac5ecb8c9883417214bc0fb4ac8848"
+    },
+    {
+      "path": "tests/fixtures/workbench/arithmetic-division.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2379,
+      "sha256": "43a3ab56dd6027c1af4f75cad730cf0e605c542b0bc8ab72c720554e6ab13b5a"
+    },
+    {
+      "path": "tests/fixtures/workbench/browser-host.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4668,
+      "sha256": "4d5077c40ed3d550ef3751875d81c42e7635e3cd08ef6ff7b3943137b39f549a"
+    },
+    {
+      "path": "tests/fixtures/workbench/browser-semantic-identity-host.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3325,
+      "sha256": "e2277f3ed2a02e02e0cc3ac1b79891b2296d3f3f4413292af4ce857344c847eb"
     },
     {
       "path": "tests/test_agent_path_stress_prompts.py",
@@ -1342,11 +1392,32 @@
       "sha256": "4578635bbe72da972cd8ca52d0f25b3a1bf3cf3d80a7e9f585ec1361209a5b16"
     },
     {
+      "path": "tests/test_workbench_runtime.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2391,
+      "sha256": "56361a1f42ed0333421a5c3e2302c4a4b12b329322e5764089ff1711076b65eb"
+    },
+    {
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 13266,
       "sha256": "3d92164cdc7548d4984ef0eb236d9ce32d5c9010fba001234f58967dc7a69765"
+    },
+    {
+      "path": "tests/workbench_browser.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26753,
+      "sha256": "44ee3a4c1c2a53771eec7582ca19d1d253212438217037f6a07faafbdc1d9b8c"
+    },
+    {
+      "path": "tests/workbench_runtime.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 36185,
+      "sha256": "251a7fdd387da577c1df2b031fc1c2f28633c744877f9917ebcdb3216e2557ec"
     },
     {
       "path": "tools/app.css",
@@ -2634,6 +2705,11 @@
     },
     {
       "from": "tests/test_vector_foundations_modernization.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_workbench_runtime.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

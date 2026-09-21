@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic Workbench Browser Contract Fixture</title>
+  <style>
+    body{margin:0;padding:24px;font:16px/1.4 system-ui,sans-serif}
+    main{display:grid;gap:24px;max-width:1000px;margin:auto}
+  </style>
+</head>
+<body>
+  <main>
+    <semantic-workbench id="primary"></semantic-workbench>
+    <semantic-workbench id="secondary"></semantic-workbench>
+  </main>
+  <script type="module">
+    import "/Shared/workbench/semantic-workbench.mjs";
+
+    const scene = await fetch("/tests/fixtures/workbench/arithmetic-division.json").then((response) => {
+      if (!response.ok) throw new Error(`fixture fetch failed: ${response.status}`);
+      return response.json();
+    });
+
+    const makeAdapter = () => ({
+      evaluateTransfer(request, snapshot) {
+          if (request.sourceEntityRef !== "dividend-156" || request.targetRef !== "quotient-first-digit") {
+            return {
+              accepted: false,
+              reason: "Choose the dividend source before deriving this direct result.",
+              allowedTargets: ["quotient-first-digit"],
+            };
+          }
+          if (snapshot.sceneId !== scene.id) throw new Error("scene identity changed");
+          const entityRef = snapshot.revision === 0
+            ? "quotient-digit-1"
+            : "quotient-digit-branch-2";
+          return {
+            accepted: true,
+            summary: "The first quotient digit is 1 because 12 fits into 15 once.",
+            patch: {
+              addEntities: [{
+                id: entityRef,
+                label: "1",
+                provenance: { kind: "DERIVED", sourceEntityRefs: ["dividend-156", "divisor-12"] },
+              }],
+              addProjections: [{
+                id: `${entityRef}-result`,
+                entityRef,
+                label: "1",
+                representation: "quotient digit",
+                placement: { grid: "division-work", row: "result", column: "main" },
+              }],
+            },
+          };
+      },
+    });
+
+    const injections = [{
+      id: "estimate-checkpoint",
+      kind: "checkpoint",
+      afterTransformationRef: "choose-first-quotient-digit",
+      prompt: "How many 12s fit into 15 without passing it?",
+    }];
+
+    const events = new Map();
+
+    function mount(id) {
+      const element = document.getElementById(id);
+      events.set(id, []);
+      element.addEventListener("semantic-workbench-event", (event) => events.get(id).push(structuredClone(event.detail)));
+      element.scene = structuredClone(scene);
+      element.adapter = makeAdapter();
+      element.injections = structuredClone(injections);
+      return element;
+    }
+
+    mount("primary");
+    mount("secondary");
+
+    window.workbenchHarness = {
+      reset(id) {
+        const element = document.getElementById(id);
+        events.set(id, []);
+        element.scene = structuredClone(scene);
+        element.adapter = makeAdapter();
+        element.injections = structuredClone(injections);
+      },
+      snapshot(id) {
+        return document.getElementById(id).snapshot;
+      },
+      textSummary(id) {
+        return document.getElementById(id).textSummary;
+      },
+      events(id) {
+        return structuredClone(events.get(id) || []);
+      },
+      metrics(id) {
+        const host = document.getElementById(id);
+        const root = host.shadowRoot;
+        const grids = [...root.querySelectorAll(".logical-grid")];
+        const source = root.querySelector('[data-role="entity"][data-projection-ref="dividend-expression"]');
+        const target = root.querySelector('[data-role="target"][data-target-ref="quotient-first-digit"]');
+        const sourceRect = source.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const sourceStyle = getComputedStyle(source);
+        return {
+          columnCounts: grids.map((grid) => getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length),
+          sourceGrid: source.closest(".grid-shell")?.querySelector("h3")?.textContent,
+          targetGrid: target.closest(".grid-shell")?.querySelector("h3")?.textContent,
+          sourceLeft: sourceRect.left,
+          sourceTop: sourceRect.top,
+          targetLeft: targetRect.left,
+          targetTop: targetRect.top,
+          reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
+          transitionDuration: sourceStyle.transitionDuration,
+          animationName: sourceStyle.animationName,
+        };
+      },
+    };
+
+    window.__workbenchReady = true;
+  </script>
+</body>
+</html>
