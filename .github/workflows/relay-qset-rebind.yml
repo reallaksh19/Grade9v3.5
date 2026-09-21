@@ -1,0 +1,56 @@
+name: relay-qset-rebind
+
+on:
+  push:
+    branches:
+      - takeover/topic-atlas-browser-correctness
+    paths:
+      - .github/workflows/relay-qset-rebind.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rebind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: takeover/topic-atlas-browser-correctness
+          fetch-depth: 0
+      - name: Checkout pinned Common V2.5 protocol
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: 65518fd5340599b2a0fb88db5041f6c96389ccb8
+          path: _common
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Rebind QSET to exact EP digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path("_common/skills/engineering-pr-delivery-v2.5/scripts").resolve()))
+          from takeoverlib import yaml_digest
+          ep = Path("agents/relay/execution-packages/EP-TA-008.yaml")
+          qpath = Path("agents/relay/certifications/questions/QSET-TA-009.yaml")
+          q = json.loads(qpath.read_text())
+          q["route"]["ep_contract_digest"] = yaml_digest(ep)
+          qpath.write_text(json.dumps(q, indent=2) + "\n")
+          print(q["route"]["ep_contract_digest"])
+          PY
+      - name: Commit exact binding and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/relay-qset-rebind.yml
+          git add agents/relay/certifications/questions/QSET-TA-009.yaml
+          git diff --cached --check
+          git commit -m "fix(relay): bind QSET with protocol digest"
+          git push origin HEAD:takeover/topic-atlas-browser-correctness
