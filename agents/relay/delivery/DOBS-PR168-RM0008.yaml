@@ -1,0 +1,90 @@
+{
+  "schema_version": "relay-v2.5-delivery-observation",
+  "id": "DOBS-PR168-RM0008",
+  "provider": "GITHUB",
+  "repository": "reallaksh19/Grade9V3",
+  "vehicle": {
+    "kind": "PULL_REQUEST",
+    "number": 168,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/168",
+    "lifecycle": "DRAFT",
+    "head": {
+      "ref": "takeover/topic-atlas-browser-correctness",
+      "sha": "56f837783b82e08b1f3af0405bd2712d6312dcfb"
+    },
+    "base": {
+      "ref": "main",
+      "sha": "843ec2d8d6faa2b8de15795ed1535905e4efc8a8"
+    }
+  },
+  "mergeability": {
+    "state": "MERGEABLE"
+  },
+  "checks": {
+    "state": "FAIL",
+    "head_sha": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+    "required": [
+      "guardrails",
+      "v25-relay"
+    ],
+    "observations": [
+      {
+        "name": "guardrails",
+        "run_id": 35555764104,
+        "status": "PASS",
+        "basis": "pull_request run completed/success on observed head 56f837783b82e08b1f3af0405bd2712d6312dcfb"
+      },
+      {
+        "name": "v25-relay",
+        "run_id": 35555763866,
+        "status": "FAIL",
+        "basis": "protocol unit/stress, semantic conformance, cold-start, baton, discovery, takeover, route and Git inspection passed; candidate-specific material-write gate failed because no independent admission exists for EP-TA-008"
+      }
+    ]
+  },
+  "review": {
+    "state": "CLEAR",
+    "unresolved_threads": 0,
+    "change_requests": 0
+  },
+  "description_contract": {
+    "marker": "<!-- relay-pr-correlation:v1 -->",
+    "marker_present": true,
+    "body_digest": "sha256:61667f79c12b2c0460ad2e5bf44cc271bd7732d373dab8a86e22fc04b3057af4",
+    "correlations": [
+      {
+        "issue_node": "ISSUE-159",
+        "issue_number": 159,
+        "ep_id": "EP-TA-008",
+        "ep_path": "agents/relay/execution-packages/EP-TA-008.yaml",
+        "work_package": "WP-TA-107",
+        "relationship": "IMPLEMENTS",
+        "meaning": "EP-TA-008 delivers the completed session-router work for WP-TA-107 owned by GitHub issue #159."
+      },
+      {
+        "issue_node": "ISSUE-160",
+        "issue_number": 160,
+        "ep_id": "EP-TA-007",
+        "ep_path": "agents/relay/execution-packages/EP-TA-007.yaml",
+        "work_package": "WP-TA-104",
+        "relationship": "IMPLEMENTS",
+        "meaning": "EP-TA-007 delivered the predecessor canonical representation/staged-help work for WP-TA-104 owned by GitHub issue #160."
+      },
+      {
+        "issue_node": "ISSUE-169",
+        "issue_number": 169,
+        "ep_id": "EP-TA-009",
+        "ep_path": "agents/relay/execution-packages/EP-TA-009.yaml",
+        "work_package": "WP-TA-105",
+        "relationship": "INTEGRATES",
+        "meaning": "PR #168 integrates the governed successor EP-TA-009 contract for WP-TA-105 owned by issue #169 without claiming successor material implementation."
+      }
+    ]
+  },
+  "readback_basis": [
+    "GitHub provider readback for PR #168 at head 56f837783b82e08b1f3af0405bd2712d6312dcfb",
+    "GitHub Actions guardrails run 35555764104 completed/success",
+    "GitHub Actions v25-relay run 35555763866 completed/failure only at candidate-specific material-write gate after all semantic/cold-start/baton/route/Git steps passed",
+    "GitHub provider review readback: zero reviews and zero unresolved review threads"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "relay-v2.5",
-  "graph_revision": "IG-0004",
+  "graph_revision": "IG-0005",
   "nodes": [
     {
       "id": "ISSUE-118",
@@ -216,14 +216,83 @@
     },
     {
       "id": "ISSUE-159",
-      "state": "ACTIVE",
+      "state": "COMPLETE",
       "github_state": "OPEN",
       "github": {
         "issue_number": 159,
         "issue_id": 5517410594,
         "url": "https://github.com/reallaksh19/Grade9V3/issues/159"
       },
-      "roadmap_node": "WP-TA-107"
+      "roadmap_node": "WP-TA-107",
+      "closure_receipt": {
+        "acceptance_terminal": true,
+        "evidence_terminal": true,
+        "acceptance": [
+          {
+            "id": "AC-TA8-001",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-008"
+            ]
+          },
+          {
+            "id": "AC-TA8-002",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-008"
+            ]
+          },
+          {
+            "id": "AC-TA8-003",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-008"
+            ]
+          },
+          {
+            "id": "AC-TA8-004",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-008"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "TEST-TA8-001",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-008"
+          },
+          {
+            "id": "TEST-TA8-002",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-008"
+          },
+          {
+            "id": "TEST-TA8-003",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-008"
+          },
+          {
+            "id": "TEST-TA8-004",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-008"
+          }
+        ],
+        "pr_disposition": "PR #168 is the correlated continuation delivery vehicle and remains open until provider merge/readback.",
+        "remaining_work_disposition": "TRANSFERRED_TO_SUCCESSOR",
+        "unresolved_items": [],
+        "successor": "ISSUE-169",
+        "checkpoint": "CP-TA-008"
+      }
     },
     {
       "id": "HANDOVER-ISS159-03943C0B50F7",
@@ -252,6 +321,17 @@
         "url": "https://github.com/reallaksh19/Grade9V3/issues/160"
       },
       "roadmap_node": "WP-TA-104"
+    },
+    {
+      "id": "ISSUE-169",
+      "state": "ACTIVE",
+      "github_state": "OPEN",
+      "github": {
+        "issue_number": 169,
+        "issue_id": 5522215316,
+        "url": "https://github.com/reallaksh19/Grade9V3/issues/169"
+      },
+      "roadmap_node": "WP-TA-105"
     }
   ],
   "relationships": [
@@ -262,6 +342,11 @@
     },
     {
       "from": "ISSUE-160",
+      "relation": "RELATES_TO",
+      "to": "ISSUE-159"
+    },
+    {
+      "from": "ISSUE-169",
       "relation": "RELATES_TO",
       "to": "ISSUE-159"
     }

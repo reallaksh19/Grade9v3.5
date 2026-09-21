@@ -1,0 +1,183 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-008",
+  "ep_id": "EP-TA-008",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0008"
+  },
+  "execution_basis": {
+    "material_ref": "62a4868021a1e2b32b0836d8a3b97f7526108481",
+    "validated_implementation_head": "62a4868021a1e2b32b0836d8a3b97f7526108481"
+  },
+  "implementation_result": {
+    "summary": "Completed the Issue #159 subject-neutral session router: conservative evidence posture, declared family support, bounded no-estimate gateway, stable same-family transfer, renderer-neutral presentation/checkpoint separation, feedback-owned repair/fresh verification, and separate NLM R3/R8 witnesses.",
+    "completed_steps": [
+      "STEP-TA8-001",
+      "STEP-TA8-002",
+      "STEP-TA8-003",
+      "STEP-TA8-004"
+    ],
+    "files_changed": [
+      "Shared/tools/learner_evidence.py",
+      "Shared/tools/learning_router.py",
+      "Shared/tools/study_start.py",
+      "Shared/tools/worksheet_study_plan.py",
+      "Shared/tools/study_session.py",
+      "tests/test_learning_router.py",
+      "tests/test_study_start.py",
+      "tests/test_worksheet_study_plan.py",
+      "tests/test_study_session.py",
+      "tests/test_external_provider_bridge.py",
+      "docs/architecture-manifest.json",
+      "agents/relay/"
+    ]
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA8-001",
+      "status": "PASS",
+      "basis": [
+        "EVIDENCE-TA8-001-STEP1"
+      ]
+    },
+    {
+      "id": "AC-TA8-002",
+      "status": "PASS",
+      "basis": [
+        "EVIDENCE-TA8-002-STEP2"
+      ]
+    },
+    {
+      "id": "AC-TA8-003",
+      "status": "PASS",
+      "basis": [
+        "EVIDENCE-TA8-003-STEP3"
+      ]
+    },
+    {
+      "id": "AC-TA8-004",
+      "status": "PASS",
+      "basis": [
+        "EVIDENCE-TA8-004-STEP4",
+        "QRV-TA-008",
+        "guardrails 35555764104",
+        "ODR-0006",
+        "ODR-0007"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA8-001",
+      "status": "PASS",
+      "basis_ref": "993d49ad9c0f84388d83306b762cc756f02cea71",
+      "evidence": [
+        "Independent-evidence and declared-support truth table passed."
+      ]
+    },
+    {
+      "id": "TEST-TA8-002",
+      "status": "PASS",
+      "basis_ref": "843ec2d8d6faa2b8de15795ed1535905e4efc8a8",
+      "evidence": [
+        "Bounded no-estimate gateway and stable same-family transfer falsifiers passed."
+      ]
+    },
+    {
+      "id": "TEST-TA8-003",
+      "status": "PASS",
+      "basis_ref": "6376b5e3846f9eb0a6ce7033c5d51f62cf6146e3",
+      "evidence": [
+        "Renderer-neutral checkpoint/presentation and feedback-owned repair/verification falsifiers passed."
+      ]
+    },
+    {
+      "id": "TEST-TA8-004",
+      "status": "PASS",
+      "basis_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+      "evidence": [
+        "Separate R3/R8 witnesses, protected Physics diff, QRV-TA-008 and current PR-head guardrails pass; normal material-write gate remains explicitly unmet under Owner exception."
+      ]
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-008",
+    "path": "agents/relay/quality/QRV-TA-008.yaml",
+    "digest": "sha256:c2c3b5e4c8279d53c8da76da37e5e48bb204fab58e6deee588cfb1fe40205f31"
+  },
+  "quality_findings": [
+    {
+      "id": "QF-TA8-001",
+      "disposition": "REMEDIATED",
+      "statement": "Normal independent-candidate material-write gate remained unmet; ODR-0006/ODR-0007 explicitly authorized direct EP-TA-008 execution and prohibited fabricating a gate pass."
+    }
+  ],
+  "known_limitations": [
+    {
+      "statement": "No independent replacement-agent admission exists for EP-TA-008; this is a closed Owner-authorized predecessor exception and confers no authority on EP-TA-009.",
+      "basis": [
+        "ODR-0006",
+        "ODR-0007",
+        "QRV-TA-008"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "Stable transfer can be proven from existing same-family canonical question evidence and matrix-authorized demand; no new mastery score is needed.",
+      "basis": [
+        "EVIDENCE-TA8-002-STEP2"
+      ]
+    },
+    {
+      "statement": "Reasoning checkpoint, representation/scene and pedagogy injection can remain independent semantic refs while feedback.py retains post-attempt authority.",
+      "basis": [
+        "EVIDENCE-TA8-003-STEP3"
+      ]
+    },
+    {
+      "statement": "Separate R3/R8 witnesses are sufficient to close the mother contract without editing protected Physics truth.",
+      "basis": [
+        "EVIDENCE-TA8-004-STEP4",
+        "QRV-TA-008"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-107 is complete and earns its full 15/100 programme weight.",
+        "basis": [
+          "CP-TA-008",
+          "QRV-TA-008",
+          "guardrails 35555764104"
+        ]
+      },
+      {
+        "statement": "WP-TA-105 becomes the next serial frontier at 0/15 and is owned by Issue #169 / EP-TA-009.",
+        "basis": [
+          "RM-0008 dependency graph",
+          "Issue #169",
+          "EP-TA-009"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "Execute WP-TA-105 only after fresh EP-TA-009 qualification/certification; derive Grade-9 exit and Grade-10 transition evidence without a mastery percentage or second learner store."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-105",
+    "ep_id": "EP-TA-009",
+    "parallel_plan": null,
+    "join_id": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}

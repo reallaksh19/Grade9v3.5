@@ -17,21 +17,21 @@
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TA-107",
+    "work_package": "WP-TA-105",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-008",
-    "path": "agents/relay/execution-packages/EP-TA-008.yaml",
+    "id": "EP-TA-009",
+    "path": "agents/relay/execution-packages/EP-TA-009.yaml",
     "state": "EXECUTABLE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-007",
-    "path": "agents/relay/checkpoints/CP-TA-007.yaml"
+    "id": "CP-TA-008",
+    "path": "agents/relay/checkpoints/CP-TA-008.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -43,9 +43,9 @@
   },
   "takeover_admissions": [],
   "progress": {
-    "overall_percent": 81.25,
-    "phase_percent": 81.25,
-    "ep_percent": 75,
+    "overall_percent": 85,
+    "phase_percent": 85,
+    "ep_percent": 0,
     "basis_revision": "PB-0006"
   },
   "status_planes": {
@@ -53,28 +53,26 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the exact continuation head, open a correlated PR for the post-#148 EP-TA-008 work, then complete the separate R3/R8 quality/checkpoint/delivery close without changing protected Physics truth."
+      "next_action": "Complete fresh EP-TA-009 discovery/qualification/takeover certification against QSET-TA-010, then run material_write_ready for that candidate before any WP-TA-105 material write. Predecessor ODR-0006/ODR-0007 do not authorize successor material execution."
     },
     "quality": {
-      "state": "NEEDS_ATTENTION",
+      "state": "CLEAR",
       "findings": [
-        "AUDIT-TA-008-MOTHER-CONTRACT findings 006 and 008 remain open until the separate witness and final delivery slices close them.",
-        "Audit findings 001-005 and 007 are technically remediated by the accepted router slices; final quality review has not yet been published.",
-        "The Owner authorized direct execution; the normal independent replacement-agent write gate remains unmet and must not be reported as passed."
+        "WP-TA-107 closed under QRV-TA-008. EP-TA-009 has no material quality findings yet; fresh qualification and its own quality review are required before/after successor implementation."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Evidence/support, gateway/transfer, and renderer-independent presentation/feedback slices are proven. Separate R3/R8 witnesses, final quality review, protected-domain/delivery reconciliation and checkpoint close remain open. Normal independent replacement-agent certification remains absent under the Owner's direct-execution authorization.",
+      "summary": "WP-TA-107 acceptance/evidence is terminal and complete. WP-TA-105 is a new zero-credit frontier with a fresh QSET and no material evidence yet.",
       "not_run": [
         {
-          "id": "fresh independent replacement-agent qualification",
-          "reason": "A separate replacement agent has not completed the normal independent qualification/certification path; the Owner authorized direct execution without fabricating that evidence.",
+          "id": "EP-TA-009 fresh independent candidate qualification",
+          "reason": "QSET-TA-010 is prepared; no distinct candidate has yet completed DISC/QUAL/TC for the new material boundary.",
           "cause": "DEPENDENCY_WAIT"
         },
         {
-          "id": "TEST-TA8-004",
-          "reason": "Separate R3/R8 witness, final exact-head quality/protected-domain/delivery reconciliation has not yet been executed.",
+          "id": "TEST-TA9-001..004",
+          "reason": "WP-TA-105 material implementation has not started.",
           "cause": "NOT_SCHEDULED"
         }
       ]
@@ -89,19 +87,18 @@
   "projection": {
     "required": true,
     "state": "IN_SYNC",
-    "operation_id": "GHGEN-HO-159160-R2",
+    "operation_id": "GHGEN-WP105-ISS169-R1",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-HO-159160-R2.yaml",
+    "plan": "agents/relay/projection/generations/GHGEN-WP105-ISS169-R1.yaml",
     "roadmap_revision": "RM-0008",
-    "execution_ref": "EP-TA-008",
-    "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
+    "execution_ref": "EP-TA-009",
+    "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
     "basis": [
-      "agents/relay/REPO_STATE.yaml",
-      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
-      "agents/relay/execution-packages/EP-TA-008.yaml",
-      "agents/relay/certifications/questions/QSET-TA-009.yaml",
-      "handover-generation:GHGEN-HO-159160-R2"
+      "Issue #169 provider readback",
+      "ISSUE_GRAPH IG-0005",
+      "EP-TA-009",
+      "QSET-TA-010"
     ],
     "superseded_operations": [
       {
@@ -130,15 +127,15 @@
       }
     ],
     "observed": {
-      "operation_id": "GHGEN-HO-159160-R2",
+      "operation_id": "GHGEN-WP105-ISS169-R1",
       "target": "github:reallaksh19/Grade9V3:issues",
       "roadmap_revision": "RM-0008",
-      "execution_ref": "EP-TA-008",
-      "receipt": "github-generation:GHGEN-HO-159160-R2:issue-164",
+      "execution_ref": "EP-TA-009",
+      "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
       "basis": [
-        "Issue #164 provider readback",
-        "relay-operation:GHOP-HO-159160-REVISE",
-        "ISSUE_GRAPH IG-0004"
+        "Issue #169 provider readback",
+        "relay-operation:GHOP-WP105-ISSUE169-HANDOFF",
+        "ISSUE_GRAPH IG-0005"
       ]
     }
   },
@@ -146,13 +143,13 @@
     "required": true,
     "provider": "GITHUB",
     "observation": {
-      "id": "DOBS-PR148-RM0008",
-      "path": "agents/relay/delivery/DOBS-PR148-RM0008.yaml"
+      "id": "DOBS-PR168-RM0008",
+      "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
     },
     "observations": [
       {
-        "id": "DOBS-PR148-RM0008",
-        "path": "agents/relay/delivery/DOBS-PR148-RM0008.yaml"
+        "id": "DOBS-PR168-RM0008",
+        "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
       }
     ]
   },
@@ -161,8 +158,9 @@
     "projection_ready": true,
     "handover_ready": true,
     "reasons": [
-      "RM-0008 EP-TA-008 has a current semantic contract and fresh QSET-TA-009.",
-      "Issue #164 handover projection is verified in sync with ISSUE_GRAPH IG-0004, including #160 checkpoint ownership and #159 current ownership."
+      "CP-TA-008 closes WP-TA-107 and establishes EP-TA-009 as the zero-credit serial successor.",
+      "Issue #169 is verified open and mapped to WP-TA-105 under ISSUE_GRAPH IG-0005.",
+      "QSET-TA-010 is bound to the EP-TA-009 contract; fresh candidate qualification remains required before material writes."
     ]
   },
   "chat_context_required": false
