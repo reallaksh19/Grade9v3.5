@@ -5,18 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 196,
-  "relation_count": 251,
+  "component_count": 206,
+  "relation_count": 252,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 88,
+    "TEST": 95,
     "TOOLING": 49,
-    "WEB": 6
+    "WEB": 6,
+    "WEB_RUNTIME": 3
   },
-  "digest": "sha256:88d14f5847d4384d7e5da0ce39e71d0655aff1856491e19bbb78c22193000de4",
+  "digest": "sha256:e88c953f60fee4f729b49174dfb541674b7d5e390bb7d5adede5a2583a72fd30",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -428,8 +429,8 @@
       "path": "Shared/tools/build_manifest.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8205,
-      "sha256": "43cabea8ea10412f21b70ddf831f2d5f8b0fe5d25e2ad7df6383dc9eb121c825"
+      "bytes": 8320,
+      "sha256": "3231b9b269704ec14e077c2a534d12a5f1c4060056521a5e60d835bba86f9a37"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -733,6 +734,27 @@
       "sha256": "452778cf6035c7371c987c37d209f2a329b67db8bc506174d1fa924be06e2f6b"
     },
     {
+      "path": "Shared/workbench/README.md",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 4566,
+      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
+    },
+    {
+      "path": "Shared/workbench/runtime.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 21365,
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "Shared/workbench/semantic-workbench.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 18776,
+      "sha256": "bba7aef0476f3d9373ba8c14eae107ec56da6fd7d1677fc23f452218683aedfd"
+    },
+    {
       "path": "tests/fixtures/agent_path_stress/cases.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -829,6 +851,34 @@
       "role_description": "Executable checks",
       "bytes": 757,
       "sha256": "1de5cdfb36e32cc769ce6305788d80bdccaed0a4ccee9d4e91fe3c4c752f9bf9"
+    },
+    {
+      "path": "tests/fixtures/workbench/arithmetic-division-semantic-identity.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2207,
+      "sha256": "629dfb94bee3a600e80160ebd08bc004cbac5ecb8c9883417214bc0fb4ac8848"
+    },
+    {
+      "path": "tests/fixtures/workbench/arithmetic-division.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2379,
+      "sha256": "43a3ab56dd6027c1af4f75cad730cf0e605c542b0bc8ab72c720554e6ab13b5a"
+    },
+    {
+      "path": "tests/fixtures/workbench/browser-host.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4523,
+      "sha256": "3d4dd6c163842bc4cc64f0965a690bc9409cc31e0c81c020ad525b7a25db9b78"
+    },
+    {
+      "path": "tests/fixtures/workbench/browser-semantic-identity-host.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3325,
+      "sha256": "e2277f3ed2a02e02e0cc3ac1b79891b2296d3f3f4413292af4ce857344c847eb"
     },
     {
       "path": "tests/test_agent_path_stress_prompts.py",
@@ -1034,6 +1084,13 @@
       "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
     },
     {
+      "path": "tests/test_grade9_motion_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2109,
+      "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
+    },
+    {
       "path": "tests/test_grade9_motion1d_vertical_gravity_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1053,13 +1110,6 @@
       "role_description": "Executable checks",
       "bytes": 4220,
       "sha256": "c0516c711c21581eefad2b623ee0b74864af73d0cfbd17273b92b44552aa4707"
-    },
-    {
-      "path": "tests/test_grade9_motion_scope.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 2109,
-      "sha256": "0bb207840f114ce219945d073f60eca00ae9f50071ea5cfb845403e2ca55a10d"
     },
     {
       "path": "tests/test_grade9_nlm_connected_string_agent_a_atlas.py",
@@ -1286,18 +1336,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 37321,
-      "sha256": "4460a5e134ca0519b715b17a60b0d8a97a9677ac90963a25c33c372ae049ed47"
-    },
-    {
       "path": "tests/test_study_session_scenario_scan.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 26000,
       "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
+    },
+    {
+      "path": "tests/test_study_session.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 37321,
+      "sha256": "4460a5e134ca0519b715b17a60b0d8a97a9677ac90963a25c33c372ae049ed47"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1342,11 +1392,32 @@
       "sha256": "4578635bbe72da972cd8ca52d0f25b3a1bf3cf3d80a7e9f585ec1361209a5b16"
     },
     {
+      "path": "tests/test_workbench_runtime.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2391,
+      "sha256": "56361a1f42ed0333421a5c3e2302c4a4b12b329322e5764089ff1711076b65eb"
+    },
+    {
       "path": "tests/test_worksheet_study_plan.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 13266,
       "sha256": "3d92164cdc7548d4984ef0eb236d9ce32d5c9010fba001234f58967dc7a69765"
+    },
+    {
+      "path": "tests/workbench_browser.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 26753,
+      "sha256": "44ee3a4c1c2a53771eec7582ca19d1d253212438217037f6a07faafbdc1d9b8c"
+    },
+    {
+      "path": "tests/workbench_runtime.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 35171,
+      "sha256": "82fe8b28eb8d5dbd70795286fa92250ac096837aeaaae6c19d2676460373be65"
     },
     {
       "path": "tools/app.css",
@@ -1377,18 +1448,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run-builder/index.html",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 7041,
-      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
-    },
-    {
       "path": "tools/run_agent_path_stress.py",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 6932,
       "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
+    },
+    {
+      "path": "tools/run-builder/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 7041,
+      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
     }
   ],
   "relations": [
@@ -1489,12 +1560,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1524,12 +1595,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1694,12 +1765,12 @@
     },
     {
       "from": "Shared/tools/compile_execution_packet.py",
-      "to": "Shared.tools",
+      "to": "Shared.tools.spec_conformance",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/compile_execution_packet.py",
-      "to": "Shared.tools.spec_conformance",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -1714,12 +1785,12 @@
     },
     {
       "from": "Shared/tools/execute_authoring_run.py",
-      "to": "Shared.library",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/execute_authoring_run.py",
-      "to": "Shared.library.resolve",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -1874,17 +1945,17 @@
     },
     {
       "from": "Shared/tools/resolve_request.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "Shared/tools/resolve_request.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "Shared/tools/resolve_request.py",
       "to": "Shared.tools.author_brief",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -1894,12 +1965,12 @@
     },
     {
       "from": "Shared/tools/review_authority.py",
-      "to": "Shared.library",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/tools/review_authority.py",
-      "to": "Shared.library.resolve",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2324,12 +2395,12 @@
     },
     {
       "from": "tests/test_import_sil.py",
-      "to": "Shared.library",
+      "to": "Shared.library.intake",
       "kind": "IMPORTS"
     },
     {
       "from": "tests/test_import_sil.py",
-      "to": "Shared.library.intake",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2355,16 +2426,6 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.contracts",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_library.py",
-      "to": "Shared.library",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_library.py",
-      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2385,6 +2446,16 @@
     {
       "from": "tests/test_library.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2573,23 +2644,18 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
       "from": "tests/test_study_start.py",
       "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
-      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2609,17 +2675,22 @@
     },
     {
       "from": "tests/test_tools.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
       "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
-      "to": "Shared.tools.topic_independence_guard",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_tools.py",
-      "to": "Shared.tools.topic_independence_guard",
       "kind": "IMPORTS"
     },
     {
@@ -2634,6 +2705,11 @@
     },
     {
       "from": "tests/test_vector_foundations_modernization.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_workbench_runtime.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
