@@ -1,0 +1,47 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0009",
+    "from_revision": "RM-0008",
+    "to_revision": "RM-0009",
+    "classification": "EXECUTION_DERIVED_STATUS",
+    "trigger": {
+      "type": "CHECKPOINT",
+      "path": "agents/relay/checkpoints/CP-TA-008.yaml"
+    }
+  },
+  "changes": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      "OBJ-TOPIC-ATLAS-COMPLETE",
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TA-107",
+      "WP-TA-105"
+    ],
+    "unaffected": [
+      "WP-TAKEOVER-RECONCILE",
+      "WP-TA-102",
+      "WP-TA-106",
+      "WP-TA-103",
+      "WP-TA-104"
+    ]
+  },
+  "invalidated_execution_packages": [],
+  "issue_graph_reconciled": true,
+  "progress_basis_change": {
+    "old_basis": "PB-0006",
+    "new_basis": "PB-0007",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TA-105"
+  ],
+  "notes": [
+    "CP-TA-008 closes WP-TA-107 after all four acceptance criteria are satisfied.",
+    "Programme progress advances from 81.25/100 to 85/100 solely from the final accepted WP-TA-107 slice.",
+    "WP-TA-105 becomes the zero-credit serial frontier under EP-TA-009 and Issue #169.",
+    "The predecessor Owner execution exceptions do not authorize EP-TA-009 material writes."
+  ]
+}

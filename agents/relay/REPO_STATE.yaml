@@ -11,7 +11,7 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0008",
+    "revision": "RM-0009",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
@@ -46,33 +46,33 @@
     "overall_percent": 85,
     "phase_percent": 85,
     "ep_percent": 0,
-    "basis_revision": "PB-0006"
+    "basis_revision": "PB-0007"
   },
   "status_planes": {
     "execution": {
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Complete fresh EP-TA-009 discovery/qualification/takeover certification against QSET-TA-010, then run material_write_ready for that candidate before any WP-TA-105 material write. Predecessor ODR-0006/ODR-0007 do not authorize successor material execution."
+      "next_action": "Complete fresh successor discovery and independent qualification/certification against the current question set, then pass the candidate-specific material-write gate before any Grade-9 exit/Grade-10 transition implementation."
     },
     "quality": {
       "state": "CLEAR",
       "findings": [
-        "WP-TA-107 closed under QRV-TA-008. EP-TA-009 has no material quality findings yet; fresh qualification and its own quality review are required before/after successor implementation."
+        "The completed router package has a clear final quality review. The successor package has no material quality findings yet; its own fresh qualification and final quality review remain required."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "WP-TA-107 acceptance/evidence is terminal and complete. WP-TA-105 is a new zero-credit frontier with a fresh QSET and no material evidence yet.",
+      "summary": "The router package is fully accepted. The Grade-9 exit/Grade-10 transition frontier starts at zero accepted material evidence and requires fresh independent qualification before implementation.",
       "not_run": [
         {
-          "id": "EP-TA-009 fresh independent candidate qualification",
-          "reason": "QSET-TA-010 is prepared; no distinct candidate has yet completed DISC/QUAL/TC for the new material boundary.",
+          "id": "fresh independent successor qualification",
+          "reason": "A distinct candidate has not yet completed discovery, qualification and takeover certification for the new material boundary.",
           "cause": "DEPENDENCY_WAIT"
         },
         {
-          "id": "TEST-TA9-001..004",
-          "reason": "WP-TA-105 material implementation has not started.",
+          "id": "successor validation suite",
+          "reason": "The Grade-9 exit/Grade-10 transition implementation has not started.",
           "cause": "NOT_SCHEDULED"
         }
       ]
@@ -91,45 +91,20 @@
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-WP105-ISS169-R1.yaml",
-    "roadmap_revision": "RM-0008",
+    "roadmap_revision": "RM-0009",
     "execution_ref": "EP-TA-009",
     "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
     "basis": [
       "Issue #169 provider readback",
       "ISSUE_GRAPH IG-0005",
-      "EP-TA-009",
-      "QSET-TA-010"
+      "EP-TA-009 successor contract",
+      "fresh successor qualification question set"
     ],
-    "superseded_operations": [
-      {
-        "operation_id": "GHGEN-HO-79E29CBD0F01",
-        "target": "github:reallaksh19/Grade9V3:issues",
-        "roadmap_revision": "RM-0007",
-        "execution_ref": "EP-TA-008",
-        "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
-        "superseded_by": "GHGEN-HO-03943C0B50F7",
-        "receipt": "github-generation:GHGEN-HO-79E29CBD0F01",
-        "basis": [
-          "Issue #159 is now the mapped mother contract for WP-TA-107; the prior handover source was the active EP because no source issue was mapped."
-        ]
-      },
-      {
-        "operation_id": "GHGEN-HO-03943C0B50F7",
-        "target": "github:reallaksh19/Grade9V3:issues",
-        "roadmap_revision": "RM-0008",
-        "execution_ref": "EP-TA-008",
-        "disposition": "SUPERSEDED_AFTER_PUBLICATION_UNCONFIRMED",
-        "superseded_by": "GHGEN-HO-159160-R2",
-        "receipt": "github-generation:GHGEN-HO-03943C0B50F7:issue-164",
-        "basis": [
-          "Issue graph advanced to IG-0004 after verifying Issue #160 as WP-TA-104 owner; handover body must be revised to current Phase-1/QSET-TA-009 state."
-        ]
-      }
-    ],
+    "superseded_operations": [],
     "observed": {
       "operation_id": "GHGEN-WP105-ISS169-R1",
       "target": "github:reallaksh19/Grade9V3:issues",
-      "roadmap_revision": "RM-0008",
+      "roadmap_revision": "RM-0009",
       "execution_ref": "EP-TA-009",
       "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
       "basis": [
@@ -158,9 +133,9 @@
     "projection_ready": true,
     "handover_ready": true,
     "reasons": [
-      "CP-TA-008 closes WP-TA-107 and establishes EP-TA-009 as the zero-credit serial successor.",
-      "Issue #169 is verified open and mapped to WP-TA-105 under ISSUE_GRAPH IG-0005.",
-      "QSET-TA-010 is bound to the EP-TA-009 contract; fresh candidate qualification remains required before material writes."
+      "The predecessor checkpoint closes the router work and establishes the Grade-9 exit/Grade-10 transition package as the zero-credit serial successor.",
+      "Issue #169 is verified open and mapped to the new frontier under ISSUE_GRAPH IG-0005.",
+      "The successor contract has a fresh bound qualification question set; independent candidate qualification remains required before material writes."
     ]
   },
   "chat_context_required": false

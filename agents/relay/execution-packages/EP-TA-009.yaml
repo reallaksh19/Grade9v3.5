@@ -20,7 +20,7 @@
   },
   "roadmap_source": {
     "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "roadmap_revision": "RM-0008",
+    "roadmap_revision": "RM-0009",
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
     "work_package": "WP-TA-105",
@@ -759,28 +759,23 @@
     "not_applicable": [
       {
         "blueprint": "accessibility",
-        "reason": "No learner UI is required for the initial derived report contract.",
-        "review_focus": []
+        "reason": "No learner UI is required for the initial derived report contract."
       },
       {
         "blueprint": "ui-ux",
-        "reason": "The first slice is a query/report view, not an interactive UI redesign.",
-        "review_focus": []
+        "reason": "The first slice is a query/report view, not an interactive UI redesign."
       },
       {
         "blueprint": "engineering-numerics",
-        "reason": "No scientific numerical algorithm changes.",
-        "review_focus": []
+        "reason": "No scientific numerical algorithm changes."
       },
       {
         "blueprint": "performance",
-        "reason": "The bounded Grade-9 scope/evidence projection is not performance-sensitive.",
-        "review_focus": []
+        "reason": "The bounded Grade-9 scope/evidence projection is not performance-sensitive."
       },
       {
         "blueprint": "migration",
-        "reason": "No persisted learner-state migration is authorized.",
-        "review_focus": []
+        "reason": "No persisted learner-state migration is authorized."
       }
     ],
     "review_contract": {
@@ -800,19 +795,39 @@
   "acceptance": [
     {
       "id": "AC-TA9-001",
-      "description": "Every required Grade-9 Physics capability/domain receives a derived categorical evidence state—secure, usable-but-fragile, known gap, or insufficient/unknown—without a mastery percentage and without promoting helped/unknown evidence to independent security."
+      "description": "Every required Grade-9 Physics capability/domain receives a derived categorical evidence state—secure, usable-but-fragile, known gap, or insufficient/unknown—without a mastery percentage and without promoting helped/unknown evidence to independent security.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-001",
+        "BENCH-TA9-001"
+      ]
     },
     {
       "id": "AC-TA9-002",
-      "description": "Grade-10 transition blockers are limited to required Grade-9 holes, genuine prerequisite blockers and major unresolved misconceptions; enrichment, later-grade sophistication and optional improvement remain visible but non-blocking."
+      "description": "Grade-10 transition blockers are limited to required Grade-9 holes, genuine prerequisite blockers and major unresolved misconceptions; enrichment, later-grade sophistication and optional improvement remain visible but non-blocking.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-002",
+        "BENCH-TA9-002"
+      ]
     },
     {
       "id": "AC-TA9-003",
-      "description": "A machine-readable and parent/agent-readable transition view explains evidence basis, uncertainty, repairs/rechecks and why Grade 10 is or is not the next productive frontier without requiring raw internal-state inspection."
+      "description": "A machine-readable and parent/agent-readable transition view explains evidence basis, uncertainty, repairs/rechecks and why Grade 10 is or is not the next productive frontier without requiring raw internal-state inspection.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-003",
+        "BENCH-TA9-003"
+      ]
     },
     {
       "id": "AC-TA9-004",
-      "description": "No second mastery/grade-state store or unauthorized canonical Physics edits are introduced; overclaiming falsifiers, protected-domain diff, quality review, full guardrails and exact-head V2.5 validation are reconciled before checkpoint credit."
+      "description": "No second mastery/grade-state store or unauthorized canonical Physics edits are introduced; overclaiming falsifiers, protected-domain diff, quality review, full guardrails and exact-head V2.5 validation are reconciled before checkpoint credit.",
+      "weight": 25,
+      "verification": [
+        "TEST-TA9-004",
+        "BENCH-TA9-004"
+      ]
     }
   ],
   "validation": [
@@ -822,7 +837,8 @@
       "method": "Run a frozen truth table over required capabilities with independent, helped-only, missing and unobserved evidence plus an enrichment-only case.",
       "proves": [
         "AC-TA9-001"
-      ]
+      ],
+      "class": "MUST_PASS"
     },
     {
       "id": "TEST-TA9-002",
@@ -830,7 +846,8 @@
       "method": "Run blocker-boundary cases proving required/prerequisite gaps can block while enrichment/later-grade gaps do not.",
       "proves": [
         "AC-TA9-002"
-      ]
+      ],
+      "class": "MUST_PASS"
     },
     {
       "id": "TEST-TA9-003",
@@ -838,7 +855,8 @@
       "method": "Reconstruct the transition decision from report output and authoritative source refs without reading implementation internals.",
       "proves": [
         "AC-TA9-003"
-      ]
+      ],
+      "class": "MUST_PASS"
     },
     {
       "id": "TEST-TA9-004",
@@ -846,7 +864,8 @@
       "method": "Run unknown/helped/enrichment overclaiming falsifiers, protected Physics/evidence-state diff, quality review, full repository guardrails and exact-head V2.5 validation.",
       "proves": [
         "AC-TA9-004"
-      ]
+      ],
+      "class": "MUST_PASS"
     }
   ],
   "failure_and_stop_conditions": {
