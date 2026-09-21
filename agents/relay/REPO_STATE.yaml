@@ -58,12 +58,13 @@
     "quality": {
       "state": "CLEAR",
       "findings": [
-        "No EP-TA-010 material implementation has started. Quality review is required before checkpoint; current risk is contract/runtime drift across schema, compiler, source custody and rendering."
+        "No EP-TA-010 material implementation has started. Quality review is required before checkpoint; current risk is contract/runtime drift across schema, compiler, source custody and rendering.",
+        "Pinned Common@1bc4eca has one Common-development unit-test failure in test_three_pass_prompt_output::test_prompt3_requires_withdrawal_when_architecture_unnecessary. SKILL.md lines 790-818 define downstream repository validators separately; Grade9V3 will execute those entrypoints directly and will not misreport the upstream self-test as PASS."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Issue #173 is admitted and the semantic EP/QSET is prepared. No product acceptance credit is earned; fresh candidate qualification and implementation evidence are pending.",
+      "summary": "Issue #173 is admitted and the semantic EP/QSET is prepared. Guardrails passed on the first coordination head. The first V2.5 run stopped in an upstream Common-development self-test before downstream validators; workflow entrypoints are being corrected to the pinned SKILL. No product acceptance credit is earned; fresh candidate qualification and implementation evidence remain pending.",
       "not_run": [
         {
           "id": "fresh EP-TA-010 candidate qualification",

@@ -34,25 +34,29 @@ jobs:
       - name: Install relay validator dependencies
         run: pip install --quiet pyyaml jsonschema
 
-      - name: V2.5 protocol unit suite
-        working-directory: _common/skills/engineering-pr-delivery-v2.5
-        run: python3 -m unittest discover -s tests -p "test_*.py" -v
-
-      - name: V2.5 protocol stress suite
-        working-directory: _common/skills/engineering-pr-delivery-v2.5
-        run: python3 -m unittest discover -s tests/stress -p "test_*.py" -v
-
+      # SKILL.md defines Common's unit/stress/self-consistency suites as Common
+      # development/release checks. A downstream repository executes the repository
+      # validation entrypoints below against the pinned Common implementation.
       - name: Relay semantic conformance
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_relay_conformance.py .
 
       - name: Cold-start reconstructability
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/cold_start_check.py .
 
+      - name: Zero-context reconstruction
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_zero_context_reconstruction.py .
+
       - name: Baton readiness
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_baton_readiness.py .
 
       - name: Discovery receipt validity
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_discovery_receipt.py .
+
+      - name: Question-set validity
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_question_set.py .
+
+      - name: Qualification receipt validity
+        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_qualification_receipt.py .
 
       - name: Takeover certification validity
         run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/validate_takeover_certification.py .
