@@ -658,7 +658,8 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
     # is custody of the source, not a decision about how a question is used in teaching.
     exposure = next((e for e in record.get("exposure", []) if e.get("core") == core), None)
     role = ("SOURCE_CUSTODY" if exposure is None else
-            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE"}.get(exposure.get("role"), "PRACTICE"))
+            {"PLANNED_WORKED_ANCHOR": "WORKED_EXAMPLE",
+             "NEW_TRANSFER": "NEW_TRANSFER"}.get(exposure.get("role"), "PRACTICE"))
     block = {"id": f'{core}-{record["id"]}', "kind": "QUESTION",
              "obligation_ids": [obligation_id],
              "source_atom_ids": sorted({a["id"] for a in atoms}),
@@ -671,16 +672,24 @@ def _question_block(core: str, record: dict, obligation_id: str, atoms: list[dic
              "source_refs": list(record.get("source_refs") or []),
              "origin": record.get("origin"),
              "original_number": record["original_identifier"], "stem": record["stem"],
-             "subparts": [], "options": [], "conditions": record.get("conditions", []),
+             "subparts": deepcopy(record.get("subparts") or []),
+             "options": deepcopy(record.get("options") or []),
+             "conditions": deepcopy(record.get("conditions") or []),
              "figure_refs": list(record.get("figure_refs") or []),
              "answer": {"summary": answer["summary"], "steps": answer["reasoning"],
                         "check": answer["check"],
+                        **({"reasoning_route": deepcopy(answer["reasoning_route"])}
+                           if answer.get("reasoning_route") else {}),
+                        **({"crux_move_ref": answer["crux_move_ref"]}
+                           if answer.get("crux_move_ref") else {}),
                         **({"difficult_move": answer["difficult_move"]}
                            if answer.get("difficult_move") is not None else {}),
                         **({"numeric": answer["numeric"]} if answer.get("numeric") else {}),
                         **({"rubric": deepcopy(answer["rubric"])}
                            if answer.get("rubric") else {})},
-             "hints": [dict(hint) for hint in record.get("hints") or []],
+             "hints": [deepcopy(hint) for hint in record.get("hints") or []],
+             **({"scaffolds": deepcopy(record["scaffolds"])}
+                if record.get("scaffolds") else {}),
              # Core2B's changed-demand claim, exposure lineage and repair route are
              # authored assessment content. Dropping them turns a transfer task into
              # ordinary practice even though the library still appears complete.
