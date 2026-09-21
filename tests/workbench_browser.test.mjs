@@ -380,6 +380,50 @@ test("real browser semantic interaction contract", { skip: !driverPath, timeout:
     assert.equal(cancelled.interaction.pickedEntityRef, null);
     assert.equal(cancelled.revision, 0);
 
+    await driver.execute("window.workbenchHarness.reset('primary');");
+    const abortedSource = await driver.shadowElement("#primary", sourceSelector);
+    const abortedCancel = await driver.shadowElement("#primary", '[data-action="cancel"]');
+    await driver.request("POST", `/session/${driver.sessionId}/actions`, { actions: [{
+      type: "pointer", id: "aborted-pointer", parameters: { pointerType: "mouse" }, actions: [
+        { type: "pointerMove", duration: 0, origin: driver.ref(abortedSource), x: 0, y: 0 },
+        { type: "pointerDown", button: 0 },
+        { type: "pointerMove", duration: 100, origin: driver.ref(abortedCancel), x: 0, y: 0 },
+        { type: "pointerUp", button: 0 },
+      ],
+    }] });
+    await driver.request("DELETE", `/session/${driver.sessionId}/actions`);
+    assert.equal(
+      await driver.execute("return window.workbenchHarness.snapshot('primary').interaction.pickedEntityRef;"),
+      "dividend-156",
+    );
+    const cancelAfterAbort = await driver.shadowElement("#primary", '[data-action="cancel"]');
+    await driver.browserClick(cancelAfterAbort);
+    assert.equal(
+      await driver.execute("return window.workbenchHarness.snapshot('primary').interaction.pickedEntityRef;"),
+      null,
+    );
+
+    await driver.execute("window.workbenchHarness.reset('primary');");
+    const cancelledPointerSource = await driver.shadowElement("#primary", sourceSelector);
+    await driver.execute(`
+      arguments[0].dispatchEvent(new PointerEvent("pointerdown", {
+        bubbles: true, composed: true, pointerType: "mouse", pointerId: 41, button: 0
+      }));
+      arguments[0].dispatchEvent(new PointerEvent("pointercancel", {
+        bubbles: true, composed: true, pointerType: "mouse", pointerId: 41
+      }));
+    `, [driver.ref(cancelledPointerSource)]);
+    assert.equal(
+      await driver.execute("return window.workbenchHarness.snapshot('primary').interaction.pickedEntityRef;"),
+      "dividend-156",
+    );
+    const cancelAfterPointerCancel = await driver.shadowElement("#primary", '[data-action="cancel"]');
+    await driver.browserClick(cancelAfterPointerCancel);
+    assert.equal(
+      await driver.execute("return window.workbenchHarness.snapshot('primary').interaction.pickedEntityRef;"),
+      null,
+    );
+
     const sourceForUndo = await driver.shadowElement("#primary", sourceSelector);
     await driver.browserClick(sourceForUndo);
     const targetForUndo = await driver.shadowElement("#primary", targetSelector);
