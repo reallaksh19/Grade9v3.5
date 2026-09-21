@@ -22,36 +22,42 @@
       return response.json();
     });
 
-    const makeAdapter = () => ({
-      evaluateTransfer(request, snapshot) {
-        if (request.sourceEntityRef !== "dividend-156" || request.targetRef !== "quotient-first-digit") {
+    const makeAdapter = () => {
+      let acceptedCalls = 0;
+      return {
+        evaluateTransfer(request, snapshot) {
+          if (request.sourceEntityRef !== "dividend-156" || request.targetRef !== "quotient-first-digit") {
+            return {
+              accepted: false,
+              reason: "Choose the dividend source before deriving this direct result.",
+              allowedTargets: ["quotient-first-digit"],
+            };
+          }
+          if (snapshot.sceneId !== scene.id) throw new Error("scene identity changed");
+          acceptedCalls += 1;
+          const suffix = acceptedCalls === 1 ? "1" : `branch-${acceptedCalls}`;
+          const entityRef = `quotient-digit-${suffix}`;
           return {
-            accepted: false,
-            reason: "Choose the dividend source before deriving this direct result.",
-            allowedTargets: ["quotient-first-digit"],
+            accepted: true,
+            summary: "The first quotient digit is 1 because 12 fits into 15 once.",
+            patch: {
+              addEntities: [{
+                id: entityRef,
+                label: "1",
+                provenance: { kind: "DERIVED", sourceEntityRefs: ["dividend-156", "divisor-12"] },
+              }],
+              addProjections: [{
+                id: `${entityRef}-result`,
+                entityRef,
+                label: "1",
+                representation: "quotient digit",
+                placement: { grid: "division-work", row: "result", column: "main" },
+              }],
+            },
           };
-        }
-        if (snapshot.sceneId !== scene.id) throw new Error("scene identity changed");
-        return {
-          accepted: true,
-          summary: "The first quotient digit is 1 because 12 fits into 15 once.",
-          patch: {
-            addEntities: [{
-              id: "quotient-digit-1",
-              label: "1",
-              provenance: { kind: "DERIVED", sourceEntityRefs: ["dividend-156", "divisor-12"] },
-            }],
-            addProjections: [{
-              id: "quotient-digit-1-result",
-              entityRef: "quotient-digit-1",
-              label: "1",
-              representation: "quotient digit",
-              placement: { grid: "division-work", row: "result", column: "main" },
-            }],
-          },
-        };
-      },
-    });
+        },
+      };
+    };
 
     const injections = [{
       id: "estimate-checkpoint",
