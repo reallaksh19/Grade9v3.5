@@ -101,7 +101,7 @@ class CoreProjectionContract(unittest.TestCase):
         self.assertIn("scaffold", core2a.lower())
         self.assertIn("crux", core2a.lower())
         self.assertIn("protected", core2b.lower())
-        self.assertIn("inferential jump", readme.lower())
+        self.assertIn("microtopic.inferential_jump", readme.lower())
         self.assertIn("application", readme.lower())
 
 
