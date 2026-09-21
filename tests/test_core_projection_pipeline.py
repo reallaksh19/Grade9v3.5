@@ -3,12 +3,16 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
 from Shared.library import intake, visual_support
-from Shared.library.compile_inputs import compile_bucket
+from Physics.adapter import load as load_physics
+from Shared.contracts import ContractError
+from Shared.library.compile_inputs import compile_bucket, write
 from Shared.library.resolve import build_index
+from Shared.publication_host.inputs import read_inputs
 
 REPO = Path(__file__).resolve().parents[1]
 PACKAGE_PATH = REPO / "Physics/library/relative-motion.v1.json"
@@ -183,6 +187,75 @@ class StructuredApplicationPipeline(unittest.TestCase):
         self.assertEqual(len(blocks), 1)
         self.assertEqual(blocks[0]["exposure_role"], "NEW_TRANSFER")
         self.assertEqual(blocks[0]["transfer"]["protected_move_ref"], "MOVE-DECIDE")
+
+
+class PublicationBoundaryStructuredRefs(unittest.TestCase):
+    def compiled(self, transfer=False):
+        package = package_fixture()
+        q = structured_question(package)
+        if transfer:
+            q["exposure"].append({"core": "CORE2B", "role": "NEW_TRANSFER", "artifact_ref": None})
+            q["transfer"] = {
+                "dimension": "model_choice",
+                "statement": "Changed demand requires the learner to choose the subtraction order.",
+                "builds_on": ["MIC-MEASURED-FROM"],
+                "protected_move_ref": "MOVE-DECIDE",
+            }
+            q["scaffolds"] = []
+        package_paths = sorted((REPO / "Physics/library").glob("*.json"))
+        packages = [json.loads(path.read_text(encoding="utf-8")) for path in package_paths]
+        packages = [copy.deepcopy(package) if p.get("package_id") == package["package_id"] else p
+                    for p in packages]
+        return compile_bucket(
+            build_index(packages),
+            "BUCKET-RELATIVE-MOTION",
+            topic_id="TEST-PUBLICATION-STRUCTURED",
+            title="Publication structured validation",
+            subject="Physics",
+            practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+        )
+
+    def validate_after(self, mutate, *, transfer=False):
+        compiled = self.compiled(transfer=transfer)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(compiled, root)
+            plan = json.loads((root / "plan.json").read_text(encoding="utf-8"))
+            baseline = json.loads((root / "baseline.json").read_text(encoding="utf-8"))
+            block = next(
+                block
+                for product in plan["products"]
+                for unit in product["units"]
+                for block in unit["blocks"]
+                if block.get("source_question_id") == "Q-AUTHOR-REL-01"
+                and block["id"].startswith("CORE2B-" if transfer else "CORE2A-")
+            )
+            mutate(block)
+            return read_inputs(plan, baseline, root, load_physics())
+
+    def test_valid_structured_application_reaches_publication_boundary(self):
+        ctx = self.validate_after(lambda block: None)
+        self.assertIn("CORE2A-Q-AUTHOR-REL-01", ctx["objects"])
+
+    def test_publication_boundary_rejects_dangling_crux(self):
+        with self.assertRaises(ContractError) as raised:
+            self.validate_after(
+                lambda block: block["answer"].__setitem__("crux_move_ref", "MOVE-MISSING")
+            )
+        self.assertEqual("CRUX_MOVE_UNKNOWN", raised.exception.code)
+
+    def test_publication_boundary_rejects_protected_move_scaffold_disclosure(self):
+        def disclose(block):
+            block["scaffolds"] = [{
+                "text": "Use the subtraction order now.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "supports_move_ref": "MOVE-DECIDE",
+            }]
+
+        with self.assertRaises(ContractError) as raised:
+            self.validate_after(disclose, transfer=True)
+        self.assertEqual("PROTECTED_MOVE_DISCLOSED_BY_SCAFFOLD", raised.exception.code)
 
 
 if __name__ == "__main__":
