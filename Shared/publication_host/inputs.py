@@ -175,23 +175,6 @@ def _question(ctx, block):
     text(answer.get("summary"), "ANSWER_BODY_EMPTY")
     strings(answer.get("steps"), "SOLUTION_STEPS_EMPTY")
     text(answer.get("check"), "ANSWER_CHECK_EMPTY")
-    route = answer.get("reasoning_route") or []
-    move_ids = [move.get("id") for move in route if isinstance(move, dict)]
-    require(len(move_ids) == len(set(move_ids)), "REASONING_MOVE_ID_COLLISION")
-    crux = answer.get("crux_move_ref")
-    require(not route or bool(crux), "CRUX_MOVE_REQUIRED")
-    require(not crux or crux in set(move_ids), "CRUX_MOVE_UNKNOWN", str(crux))
-    scaffolds = block.get("scaffolds") or []
-    require(isinstance(scaffolds, list), "SCAFFOLD_BODY_INVALID")
-    for scaffold in scaffolds:
-        require(isinstance(scaffold, dict), "SCAFFOLD_BODY_INVALID")
-        target = text(scaffold.get("supports_move_ref"), "SCAFFOLD_MOVE_REQUIRED")
-        require(target in set(move_ids), "SCAFFOLD_MOVE_UNKNOWN", target)
-    transfer = block.get("transfer") or {}
-    protected = transfer.get("protected_move_ref")
-    require(not protected or protected in set(move_ids), "PROTECTED_MOVE_UNKNOWN", str(protected))
-    require(not protected or all(s.get("supports_move_ref") != protected for s in scaffolds),
-            "PROTECTED_MOVE_DISCLOSED", str(protected))
     require(len(answer.get("subparts", [])) == len(original.get("subparts", [])), "SUBPART_ANSWER_MISSING")
     for part in answer.get("subparts", []):
         text(part, "SUBPART_ANSWER_EMPTY")
