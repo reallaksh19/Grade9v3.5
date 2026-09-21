@@ -6,6 +6,8 @@ Read [the shared role invariants](README.md) first.
 
 Make the learner do the conceptual work that Core1A did for them, then give them everything needed to check and repair their attempt — without a tutor present.
 
+The canonical crux is the same `microtopic.inferential_jump` used by Core1A. Core1B does not own a second version of the concept: it changes **who performs the inference and when it is revealed**.
+
 ## Coverage obligation
 
 Core1B carries **the same intrinsic coverage as Core1A** for the bucket. Every concept Core1A constructs, Core1B elicits. It is not a lighter product, an optional extra, or a quiz appended to the lesson. If a concept is too hard to elicit, that is a design problem to solve, not a licence to drop it.
