@@ -309,7 +309,8 @@ class LearnerFacingStructuredProjection(unittest.TestCase):
         self.assertNotIn("Subtract the observer velocity from the target velocity.", before)
         self.assertIn('data-reasoning-move="MOVE-REPRESENT"', after)
         self.assertIn('data-reasoning-move="MOVE-DECIDE"', after)
-        self.assertIn('class="move-kind"', after)\n        self.assertIn('>Key decision</span>', after)
+        self.assertIn('class="move-kind"', after)
+        self.assertIn('>Key decision</span>', after)
         self.assertIn("<strong>Independent check:</strong>", after)
 
     def test_core2b_protected_decision_is_absent_from_pre_attempt_support(self):
