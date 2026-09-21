@@ -35,3 +35,17 @@ Core1A/Core1B and Core2A/Core2B share scientific truth and may share a declared 
 Changing numbers alone produces practice **within a family**, not a new transfer capability. A legitimate shared anchor may recur across products, but its new learner action and its help/reveal state must be visible. Repeated equations and definitions need not be paraphrased to defeat a similarity check — necessary repetition is legitimate, and similarity scores are review triggers, not verdicts.
 
 Turning B into A with the nouns changed, or into A with random blanks punched into it, fails this rule.
+
+
+## Cross-lane Core projection contract
+
+The role files above remain authoritative for learner-product meaning. The shared interface used by Core code, canonical Atlas/data authoring, and the interactive webpage builder is frozen in [Core Projection Contract v1.0](../../docs/CORE-PROJECTION-CONTRACT.md).
+
+The contract fixes these boundaries:
+
+- Core1A/Core1B share the same conceptual truth; Core1A reveals the completed inference and Core1B elicits it before reconstruction/repair.
+- Core2A/Core2B share capability truth; Core2A scaffolds a familiar reasoning route and Core2B protects the changed decision required for transfer.
+- `microtopic.inferential_jump` is the Core1A/Core1B conceptual crux.
+- `answer.reasoning_route[]` + `answer.crux_move_ref` are the structured Core2A/Core2B application route when authored.
+- `question.hints[]` preserves the question/source hint ladder; `question.scaffolds[]` holds optional Core2A pedagogical support.
+- canonical representations remain academic truth; webpages consume reveal-stage bindings rather than inventing them.
