@@ -306,6 +306,8 @@ class LearnerFacingStructuredProjection(unittest.TestCase):
         before, after = html.split('<section class="answer-section"', 1)
         self.assertIn("Support before you solve", before)
         self.assertIn("Keep the common axes visible before subtracting.", before)
+        self.assertIn('data-support-kind="REPRESENT"', before)
+        self.assertIn('data-reveals="CONCEPT"', before)
         self.assertNotIn("Subtract the observer velocity from the target velocity.", before)
         self.assertIn('data-reasoning-move="MOVE-REPRESENT"', after)
         self.assertIn('data-reasoning-move="MOVE-DECIDE"', after)
