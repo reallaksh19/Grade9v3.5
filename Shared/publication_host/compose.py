@@ -19,10 +19,6 @@ figcaption{font-size:15px;line-height:1.45;margin-top:8px}math{font-size:1.2em;m
 .question{border-left:4px solid #398b93;padding-left:18px;margin:26px 0}
 .source{font:13px/1.5 system-ui,sans-serif}.answer{padding:12px 18px;background:#f3f8f9;margin:24px 0}
 .notice{font:14px/1.5 system-ui,sans-serif;padding:12px;background:#fff4db}
-.scaffolds{border:1px solid #c8d9df;padding:12px 16px;margin:18px 0;background:#f8fbfc}
-.reasoning-route{margin:18px 0}.reasoning-route ol{padding-left:24px}.reasoning-move{margin:12px 0;padding:10px 12px;border-left:3px solid #9ab8c1}
-.reasoning-move.crux{border-left-width:6px;background:#eef7f8}.move-kind{font:12px/1.4 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em}
-.protected-note{font:14px/1.5 system-ui,sans-serif;border-left:4px solid #6f7880;padding-left:10px}
 details{margin:12px 0}summary{cursor:pointer;font-size:15px}.numeric{font-weight:bold}
 table{border-collapse:collapse;width:100%;font-size:14px}td,th{border:1px solid #bbcad2;padding:8px;text-align:left}
 @media(max-width:600px){main{padding:20px}body{font-size:17px}h1{font-size:1.6rem}}
@@ -128,7 +124,8 @@ def _scaffold_support(block, core):
     scaffolds = block.get("scaffolds") or []
     if not scaffolds:
         return ""
-    body = '<aside class="scaffolds" aria-label="Optional problem-solving support">'
+    body = ('<aside class="scaffolds" aria-label="Optional problem-solving support" '
+            'style="border:1px solid #c8d9df;padding:12px 16px;margin:18px 0;background:#f8fbfc">')
     body += '<h4>Support before you solve</h4>'
     for level, scaffold in enumerate(scaffolds, 1):
         label = scaffold["support_kind"].title()
@@ -161,10 +158,15 @@ def _reasoning_route(answer, transfer):
         is_crux = move_id == crux
         classes = "reasoning-move crux" if is_crux else "reasoning-move"
         heading = "Key decision" if is_crux else labels[move["kind"]]
+        move_style = ("margin:12px 0;padding:10px 12px;border-left:6px solid #398b93;"
+                      "background:#eef7f8" if is_crux else
+                      "margin:12px 0;padding:10px 12px;border-left:3px solid #9ab8c1")
         body += (
-            f'<li class="{classes}" data-reasoning-move="{escape(move_id, quote=True)}" '
+            f'<li class="{classes}" style="{move_style}" '
+            f'data-reasoning-move="{escape(move_id, quote=True)}" '
             f'data-move-kind="{escape(move["kind"], quote=True)}">'
-            f'<span class="move-kind">{escape(heading)}</span>'
+            f'<span class="move-kind" style="font:12px/1.4 system-ui,sans-serif;'
+            f'text-transform:uppercase;letter-spacing:.04em">{escape(heading)}</span>'
             f'<p><strong>{escape(move["action"])}</strong></p>'
             f'<p>{escape(move["why_valid"])}</p>'
             f'<p><strong>Result:</strong> {escape(move["output"])}</p></li>'
@@ -172,7 +174,8 @@ def _reasoning_route(answer, transfer):
     body += '</ol></section>'
     if protected:
         body += (
-            '<p class="protected-note"><strong>Transfer decision:</strong> '
+            '<p class="protected-note" style="font:14px/1.5 system-ui,sans-serif;'
+            'border-left:4px solid #6f7880;padding-left:10px"><strong>Transfer decision:</strong> '
             'This decision was protected from pre-attempt scaffolding and is shown here '
             'only with the full answer.</p>'
         )
@@ -209,7 +212,8 @@ def _question(ctx, block, numeric_assessment, core):
         reveal += f'<p class="numeric"><span data-answer-value="{qid}" data-unit="{escape(n["unit"], quote=True)}">{escape(str(n["value"]))}</span> {escape(n["unit"])}</p>'
     transfer = block.get("transfer") or {}
     reveal += _reasoning_route(answer, transfer) + _list(answer.get("subparts", []))
-    reveal += '<p><strong>Independent check:</strong> ' + escape(answer["check"]) + '</p>'
+    check_label = "Independent check" if answer.get("reasoning_route") else "Check"
+    reveal += '<p><strong>' + check_label + ':</strong> ' + escape(answer["check"]) + '</p>'
     rubric = answer.get("rubric") or []
     if rubric:
         reveal += '<p><strong>What a strong justification contains:</strong></p><ul>'
