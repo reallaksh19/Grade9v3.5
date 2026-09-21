@@ -1,0 +1,147 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-020",
+  "candidate": {
+    "agent_instance_id": "core173-local-agent-20260922-r3"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-010",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-010",
+    "ep_id": "EP-TA-010",
+    "ep_path": "agents/relay/execution-packages/EP-TA-010.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0010",
+    "relay_protocol_basis_ref": "reallaksh19/Common@1bc4eca6eac9d75900ddee1c338da4b44817eeec:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "ep_contract_digest": "sha256:aeb25f5ecadd5c2a500718b9ac5f90920b889091bb6cdf11363a1b1f91083fd4",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-009",
+      "path": "agents/relay/checkpoints/CP-TA-009.yaml",
+      "digest": "sha256:daa5315df017e1f9019df02e43dd4e598dc21ddee8b0b0288e93686268b0a807"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA10-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Live role invariant map",
+          "value": "Core1A/Core1B and Core2A/Core2B share scientific truth but must demand different learner work; source honesty preserves original identity, and knowledge percentage remains routing context rather than mastery evidence.",
+          "basis": [
+            "Shared/roles/README.md",
+            "Shared/roles/CORE1A.md",
+            "Shared/roles/CORE1B.md",
+            "Shared/roles/CORE2.md",
+            "Shared/roles/CORE2A.md",
+            "Shared/roles/CORE2B.md"
+          ]
+        },
+        {
+          "name": "Candidate-only contract field map",
+          "value": "reasoning_route[], crux_move_ref, scaffolds[] and transfer.protected_move_ref are candidate interface fields from draft PR #176, not live branch runtime truth; issue #173 consumer evidence from PR #179 shows the current compiler drops them.",
+          "basis": [
+            "draft PR #176",
+            "Issue #173 comment 5765145617",
+            "PR #179 consumer evidence"
+          ]
+        }
+      ],
+      "basis": [
+        "Current branch role files",
+        "Draft PR #176 provider state",
+        "Issue #173 provider readback"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Current data-flow map",
+          "value": "Subject library package records -> Shared/library/intake.py validation -> Shared/library/compile_inputs.py compile_bucket/question blocks -> Shared/publication_host/inputs.py validation -> Shared/publication_host/compose.py learner HTML. Core1B ELICITED_REVEAL is rendered as a closed, learner-openable details repair after its prompt.",
+          "basis": [
+            "Shared/library/intake.py",
+            "Shared/library/compile_inputs.py",
+            "Shared/publication_host/inputs.py",
+            "Shared/publication_host/compose.py"
+          ]
+        },
+        {
+          "name": "Lossy or weakly enforced boundaries",
+          "value": "compile_inputs hardcodes compiled subparts/options to empty arrays, maps non-worked Core2 exposure including NEW_TRANSFER to PRACTICE, transports only positional difficult_move, and publication rendering does not distinguish that application crux. question.hints serves both source and pedagogical use, while the draft structured application fields are not delivered.",
+          "basis": [
+            "Shared/library/compile_inputs.py lines 659-680",
+            "Shared/publication_host/compose.py",
+            "Shared/library/package.schema.json",
+            "Issue #173 comment 5765145617"
+          ]
+        }
+      ],
+      "basis": [
+        "Current branch compiler/publication path"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Gold concept/question IDs",
+          "value": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS; Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04; Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04.",
+          "basis": [
+            "Physics/library/phy-kin-2d-motion.v1.json"
+          ]
+        },
+        {
+          "name": "Existing anti-collapse and transfer falsifiers",
+          "value": "tests/test_library.py rejects prompt-answered-in-place, invalid difficult_move indices and bad transfer lineage; tests/test_grade9_motion2d_agent_a_atlas.py requires real transfer dimensions/lineage and keeps model-choice hints at CONCEPT depth; authoring validation requires actual changed task fields rather than metadata-only transfer.",
+          "basis": [
+            "tests/test_library.py",
+            "tests/test_grade9_motion2d_agent_a_atlas.py",
+            "Shared/tools/execute_authoring_run.py"
+          ]
+        }
+      ],
+      "basis": [
+        "Current Motion-in-2D canonical package and tests"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Exact branch/head/base",
+          "value": "Branch fix/issue-173-core-projections-v25 at pre-certification head 8dd254e955d9b1c5b73a7e931e6e913b94a8db5f; PR base/main is 411e8dc0108347933792fbbd5a6be8dfa59d655e.",
+          "basis": [
+            "GitHub branch readback",
+            "PR #177 provider readback"
+          ]
+        },
+        {
+          "name": "Current frontier/protocol basis",
+          "value": "RM-0010 / WP-TA-108 / EP-TA-010 is the sole serial frontier. Repository protocol basis is reallaksh19/Common@1bc4eca6eac9d75900ddee1c338da4b44817eeec:skills/engineering-pr-delivery-v2.5, which is also current Common main.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+            "Common main provider readback"
+          ]
+        }
+      ],
+      "basis": [
+        "Current branch relay state and GitHub provider readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}
