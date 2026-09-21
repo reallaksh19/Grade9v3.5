@@ -1,0 +1,44 @@
+name: one-shot-regenerate-architecture
+
+on:
+  push:
+    branches:
+      - fix/issue-173-core-projections-v25
+    paths:
+      - .github/workflows/one-shot-regenerate-architecture.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/issue-173-core-projections-v25
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate canonical architecture manifest
+        run: |
+          python3 Shared/tools/build_manifest.py
+          if ! git diff --quiet -- tools/data.js public/data/data.js; then
+            echo "Unexpected generated web-data drift"
+            git diff --stat -- tools/data.js public/data/data.js
+            exit 1
+          fi
+          changed="$(git diff --name-only)"
+          if [ "$changed" != "docs/architecture-manifest.json" ]; then
+            echo "Unexpected regeneration diff:"
+            printf '%s\n' "$changed"
+            exit 1
+          fi
+      - name: Commit canonical builder output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json
+          git commit -m "chore: regenerate architecture manifest"
+          git push origin HEAD:fix/issue-173-core-projections-v25
