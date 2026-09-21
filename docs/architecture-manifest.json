@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 207,
-  "relation_count": 252,
+  "component_count": 208,
+  "relation_count": 255,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 96,
+    "TEST": 97,
     "TOOLING": 49,
     "WEB": 6,
     "WEB_RUNTIME": 3
   },
-  "digest": "sha256:db5a92330669db6cc77760dfd6fa92381aab59491b73ca9504fe0583e27e38e6",
+  "digest": "sha256:40f0934a1bdaf62f4e231c712c72eb5efe11dc673717aa4c001c76736575b8dd",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -65,8 +65,8 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 43409,
-      "sha256": "682715cf073045092b60cbb9f77d5114ab1178f5c4110ddedaf4606c0adf080e"
+      "bytes": 43973,
+      "sha256": "d80ec45b563c50fdb0f3b448a5ef3ac4ca34f759698becc22b776447419a6348"
     },
     {
       "path": "Shared/library/depiction.py",
@@ -135,8 +135,8 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 12946,
-      "sha256": "4aa92363079ba2323f1cee9159ea4b83260dc327dbfa5eeb240d3b487f461054"
+      "bytes": 14632,
+      "sha256": "bd58ca55f6e0ee5b76942aa46789559eb95cd89dd971abae7cb8cef2dfc10dc8"
     },
     {
       "path": "Shared/library/learner-profile.schema.json",
@@ -261,8 +261,8 @@
       "path": "Shared/library/visual_support.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 4241,
-      "sha256": "16d351803f61833028f1abb119e1e6c403f701ca4cbbe40ef5865bfacbe3740d"
+      "bytes": 4669,
+      "sha256": "2359d8c3f75e6120357b889311d0234699fd64f7bc8e806d1eed1b088ea3ad8d"
     },
     {
       "path": "Shared/library/worksheet-map.schema.json",
@@ -958,6 +958,13 @@
       "sha256": "6f40ed569ba44a46329a87d2b8ea12d18bab3c38876cbcb5ee58e67610c20bda"
     },
     {
+      "path": "tests/test_core_projection_pipeline.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7544,
+      "sha256": "203b7462e4e261c8462561b6e389163da0ba43756d07173f67aa2db00cfb40df"
+    },
+    {
       "path": "tests/test_empirical_acceptance.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1567,12 +1574,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1602,12 +1609,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -2191,6 +2198,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_projection_pipeline.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_empirical_acceptance.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -2651,12 +2673,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
