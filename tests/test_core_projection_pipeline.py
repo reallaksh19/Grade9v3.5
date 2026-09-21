@@ -327,6 +327,7 @@ class LearnerFacingStructuredProjection(unittest.TestCase):
 class Motion2DRealWitness(unittest.TestCase):
     """Read-only canonical Motion2D truth proves the structured pipeline end to end."""
 
+    CONCEPT = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
     FAMILIAR = "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
     TRANSFER = "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
 
@@ -445,6 +446,44 @@ class Motion2DRealWitness(unittest.TestCase):
             title="Motion in 2D structured witness",
             subject="Physics",
             practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+        )
+
+    def test_real_motion2d_core1a_and_core1b_share_one_concept_obligation(self):
+        package = self.package()
+        compiled = self.compiled()
+        obligation = f"OB-{self.CONCEPT}"
+        concept = next(row for row in package["microtopics"] if row["id"] == self.CONCEPT)
+
+        core1a = next(row for row in compiled["plan"]["products"] if row["core"] == "CORE1A")
+        core1b = next(row for row in compiled["plan"]["products"] if row["core"] == "CORE1B")
+        a_blocks = core1a["units"][0]["blocks"]
+        b_blocks = core1b["units"][0]["blocks"]
+
+        declarative = next(
+            block for block in a_blocks
+            if block.get("obligation_ids") == [obligation] and block["kind"] == "TEXT"
+        )
+        ask_index = next(
+            i for i, block in enumerate(b_blocks)
+            if block["id"] == f"CORE1B-{self.CONCEPT}-ASK"
+        )
+        reveal_index = next(
+            i for i, block in enumerate(b_blocks)
+            if block["id"] == f"CORE1B-{self.CONCEPT}-ASK-REVEAL"
+        )
+        ask = b_blocks[ask_index]
+        reveal = b_blocks[reveal_index]
+
+        self.assertIn(concept["inferential_jump"], declarative["text"])
+        self.assertEqual([obligation], ask["obligation_ids"])
+        self.assertEqual([obligation], reveal["obligation_ids"])
+        self.assertLess(ask_index, reveal_index)
+        self.assertEqual("ELICITED_REVEAL", reveal["placement"])
+        self.assertEqual(ask["id"], reveal["reveals_block_id"])
+        self.assertNotIn(concept["inferential_jump"], ask["text"])
+        self.assertIn(
+            "What separates between axes, and what must stay common",
+            reveal["text"],
         )
 
     def test_real_motion2d_questions_survive_compile_with_distinct_crux_and_protection(self):
