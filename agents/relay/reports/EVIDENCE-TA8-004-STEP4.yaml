@@ -1,0 +1,77 @@
+{
+  "schema_version": "relay-v2.5-evidence-note",
+  "id": "EVIDENCE-TA8-004-STEP4",
+  "kind": "BOUNDED_ACCEPTANCE_EVIDENCE",
+  "repository": "reallaksh19/Grade9V3",
+  "roadmap_revision": "RM-0008",
+  "work_package": "WP-TA-107",
+  "execution_package": "EP-TA-008",
+  "implementation_step": "STEP-TA8-004",
+  "acceptance": [
+    "AC-TA8-004"
+  ],
+  "validation": [
+    "TEST-TA8-004"
+  ],
+  "material_basis": "62a4868021a1e2b32b0836d8a3b97f7526108481",
+  "observed": {
+    "implementation_guardrails": {
+      "run_id": 35534575998,
+      "status": "PASS",
+      "basis_ref": "62a4868021a1e2b32b0836d8a3b97f7526108481"
+    },
+    "current_pr_guardrails": {
+      "run_id": 35554515663,
+      "status": "PASS",
+      "basis_ref": "8b5b541da6ae6567bad325855051a7029a4abf44"
+    },
+    "relay_validation": {
+      "run_id": 35554515658,
+      "basis_ref": "8b5b541da6ae6567bad325855051a7029a4abf44",
+      "passed": [
+        "protocol unit suite",
+        "protocol stress suite",
+        "semantic conformance",
+        "cold-start reconstructability",
+        "baton readiness",
+        "discovery receipt validity",
+        "takeover certification validity",
+        "execution-route resolution",
+        "live Git context"
+      ],
+      "expected_exception": "candidate-specific material write gate remains FAIL because no independent candidate admission exists; ODR-0006/ODR-0007 authorize direct EP-TA-008 execution and explicitly prohibit reporting this gate as passed"
+    },
+    "witnesses": [
+      "tests/test_learning_router.py::test_nlm_r3_body_ownership_witness",
+      "tests/test_study_session.py::test_nlm_r3_persistent_difficulty_routes_to_existing_narrow_repair",
+      "tests/test_learning_router.py::test_nlm_r8_quantitative_friction_witness",
+      "tests/test_study_session.py::test_nlm_r8_helped_success_stays_uncertain_and_requires_fresh_verification"
+    ],
+    "protected_domain_diff": {
+      "base_ref": "843ec2d8d6faa2b8de15795ed1535905e4efc8a8",
+      "head_ref": "8b5b541da6ae6567bad325855051a7029a4abf44",
+      "physics_files_changed": [],
+      "result": "PASS"
+    },
+    "delivery": {
+      "pr_number": 168,
+      "state": "DRAFT",
+      "correlation": "Issue #159 ↔ EP-TA-008 / WP-TA-107 is declared in the live PR description; predecessor Issue #160 ↔ EP-TA-007 / WP-TA-104 remains declared separately."
+    }
+  },
+  "protected_invariants": {
+    "physics_library_mutated": false,
+    "physics_matrix_mutated": false,
+    "persisted_routing_or_mastery_state": false,
+    "shared_router_subject_specific_policy": false,
+    "candidate_gate_fabricated": false
+  },
+  "disposition": {
+    "test_ta8_004": "PASS_UNDER_EXPLICIT_OWNER_EXECUTION_EXCEPTION",
+    "ac_ta8_004": "ELIGIBLE_FOR_FINAL_QUALITY_AND_CHECKPOINT_RECONCILIATION",
+    "owner_exception_refs": [
+      "ODR-0006-OWNER-QUALIFICATION-OVERRIDE",
+      "ODR-0007-OWNER-DIRECT-EXECUTION-CONTINUATION"
+    ]
+  }
+}
