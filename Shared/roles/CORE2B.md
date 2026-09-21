@@ -4,7 +4,9 @@ Read [the shared role invariants](README.md) first.
 
 ## Purpose
 
-Assess whether the learner can carry the bucket's reasoning into a situation that demands a decision they have not been handed — a different model, a different representation, a different context, or a higher reasoning load.
+Assess whether the learner can carry an established capability into a situation that demands a decision they have not been handed — a different model choice, representation translation, novel mapping, or longer reasoning chain.
+
+Core2B is **not Core2A with less support**. Its defining property is a specified changed demand, and the learner decision created by that change must remain protected before the attempt.
 
 ## What makes a Core2B task
 
@@ -12,16 +14,16 @@ A task belongs here only if it changes a **specified** dimension of demand relat
 
 | Dimension | The learner must now |
 |---|---|
-| Model choice | Decide which relation or model applies, rather than being told |
-| Representation | Choose or translate the representation before calculating |
-| Context | Map an unfamiliar situation onto a known structure |
-| Reasoning load | Chain steps that were previously separated |
+| `model_choice` | Decide which relation or model applies, rather than being told |
+| `representation_translation` | Choose or translate the representation before calculating |
+| `novelty` | Map an unfamiliar situation onto a known structure |
+| `reasoning_steps` | Chain steps that were previously separated |
 
 **A cover story is not a dimension.** The same question with different numbers, or the same structure with a different object in it, is same-family practice and belongs in Core2A. Declaring it `NEW_TRANSFER` does not make it transfer; the exposure audit exists precisely to dispute that claim, and a flagged pair is resolved by a reviewer, not by the author's own label.
 
 ## Required content
 
-- **Graduated help** that supports without collapsing the demand — help that hands over the model choice defeats the task.
+- **Graduated pedagogical scaffolds** that support without collapsing the demand. Source/question hints remain custody data; practice support belongs in `question.scaffolds[]`. If `transfer.protected_move_ref` is declared, no pre-attempt scaffold or visual stage may hand over that move.
 - **Full answer and rubric**, including what a good justification contains, not only the final result.
 - **A repair route** for the predictable failure, pointing back to the specific Core1A/Core1B construction that addresses it.
 - **An explicit statement of the changed demand** relative to prior exposure, so the reviewer can check the transfer claim.
@@ -47,8 +49,10 @@ cannot check the reverse — that everything the prose requires appears in the b
 question.transfer.dimension              state which dimension of demand changes
 question.transfer.statement              an explicit statement of the changed demand
 question.transfer.builds_on[]            exposure lineage: what the learner has already seen
-question.hints[]                         graduated help that supports without collapsing the demand
-question.hints[].reveals                 help that hands over the model choice defeats the task
+question.transfer.protected_move_ref      the changed decision that pre-attempt help must not hand over, when authored
+question.scaffolds[]                     graduated pedagogical help, separate from source/question hints
+question.scaffolds[].reveals             disclosure depth of that help
+question.scaffolds[].supports_move_ref   the reasoning move the scaffold targets
 question.answer.summary                  full answer
 question.answer.rubric[]                 and rubric
 question.answer.rubric[].criterion       what a good justification contains
