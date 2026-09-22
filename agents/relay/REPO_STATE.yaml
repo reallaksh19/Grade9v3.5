@@ -68,27 +68,19 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the exact protocol-migration head under Common@6cc47ea, then complete STEP-TA10-004 quality/checkpoint/delivery reconciliation."
+      "next_action": "Validate the QRV/delivery-observation coordination head, then reconcile GHGEN-CORE173-R1, checkpoint/progress and successor frontier without merging PR #177 absent Owner authorization."
     },
     "quality": {
       "state": "CLEAR",
-      "findings": [
-        "STEP-TA10-001..003 implementation and the bounded Motion-in-2D witness are present. A current QRV quality review is still required before checkpoint credit.",
-        "No active hard-stop quality finding is recorded; exact-head revised-protocol validation is required before acceptance closure."
-      ]
+      "findings": []
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "Core projection implementation, learner-facing rendering and the bounded Motion-in-2D proof slice are present. Pre-migration exact-head guardrails/V2.5 passed; this transaction rebases relay validation onto revised Common@6cc47ea and requires fresh exact-head validation before checkpoint credit.",
+      "summary": "EP-TA-010 product implementation is fully exercised on 9fe45c05edebd738188eb8da0524d9ee2a9b34db: guardrails 35671187483 and revised v25-relay 35671187502 PASS, and QRV-TA-010 records CLEAR procedures. Checkpoint/progress/issue-projection closure is still pending and the delivery PR remains draft/unmerged.",
       "not_run": [
         {
-          "id": "revised Common@6cc47ea exact-head relay validation",
-          "reason": "Protocol-basis migration is being committed in this transaction; the new exact head has not yet run.",
-          "cause": "NOT_SCHEDULED"
-        },
-        {
-          "id": "EP-TA-010 QRV/checkpoint closure",
-          "reason": "Quality review and checkpoint must bind to the final exact material head after revised-protocol validation.",
+          "id": "EP-TA-010 checkpoint/progress closure",
+          "reason": "Checkpoint and progress reconciliation are the next STEP-TA10-004 relay transaction after QRV/delivery readback.",
           "cause": "DEPENDENCY_WAIT"
         }
       ]
@@ -155,9 +147,10 @@
     "reasons": [
       "CP-TA-009 remains the predecessor baton for WP-TA-108 / EP-TA-010.",
       "DRIFT-TA-008 classifies the main movement to 1b549c3 as DISJOINT from Core projection semantics and preserves WRITE authority.",
-      "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea while preserving the existing EP semantic boundary.",
+      "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea.",
       "Execution custody is enforced for SERIAL:EP-TA-010 and assigned to chatgpt-sol-core173-20260922-r1.",
-      "Issue #173 projection, quality review and final checkpoint remain pending exact-head revised-protocol validation."
+      "Exact implementation/protocol head 9fe45c05 passed guardrails 35671187483 and revised v25-relay 35671187502.",
+      "QRV-TA-010 and refreshed DOBS-PR177-RM0010 are being committed; checkpoint/progress/issue-projection closure remains."
     ]
   },
   "chat_context_required": false,

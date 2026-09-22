@@ -1,0 +1,221 @@
+{
+  "schema_version": "relay-v2.5-quality-review",
+  "quality_review_id": "QRV-TA-010",
+  "ep": {
+    "id": "EP-TA-010",
+    "path": "agents/relay/execution-packages/EP-TA-010.yaml",
+    "contract_digest": "sha256:96e6960b15b1999d66b33155a799233f23e4723375dac2c6ff02eb2b36608528"
+  },
+  "roadmap_revision": "RM-0010",
+  "material_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+  "reviewer": {
+    "type": "AGENT",
+    "identity": "chatgpt-sol-core173-20260922-r1"
+  },
+  "router_snapshot": {
+    "applicable": [
+      {
+        "blueprint": "accessibility",
+        "reason": "Reveal/details and learner-facing crux semantics must remain keyboard/readable without hidden-only distinctions.",
+        "review_focus": [
+          "semantic HTML",
+          "details/reveal access",
+          "non-color crux distinction",
+          "reading order"
+        ]
+      },
+      {
+        "blueprint": "code-review",
+        "reason": "Cross-layer contract changes can silently duplicate truth or weaken custody.",
+        "review_focus": [
+          "authority boundaries",
+          "migration fallback",
+          "renderer semantics",
+          "protected domains"
+        ]
+      },
+      {
+        "blueprint": "coding",
+        "reason": "Shared schema/compiler/intake/rendering behavior changes.",
+        "review_focus": [
+          "small reusable primitives",
+          "cross-reference validation",
+          "lossless projection",
+          "no semantic guessing"
+        ]
+      },
+      {
+        "blueprint": "github-delivery",
+        "reason": "Issue #173 requires a dedicated PR and V2.5 correlation/exact-head evidence.",
+        "review_focus": [
+          "Issue-EP correlation",
+          "draft #176 separation",
+          "provider readback",
+          "exact-head CI"
+        ]
+      },
+      {
+        "blueprint": "migration",
+        "reason": "Legacy reasoning[]/difficult_move/hints records must continue to work during structured-route migration.",
+        "review_focus": [
+          "fallback precedence",
+          "no silent reinterpretation",
+          "generated artifacts",
+          "fixture compatibility"
+        ]
+      },
+      {
+        "blueprint": "software-design",
+        "reason": "The task changes canonical projection ownership and must avoid duplicate reasoning/visual/learner-state ontologies.",
+        "review_focus": [
+          "single academic truth ownership",
+          "stable identity",
+          "projection boundaries",
+          "backward compatibility"
+        ]
+      },
+      {
+        "blueprint": "testing",
+        "reason": "The completion rule is primarily falsifier-driven.",
+        "review_focus": [
+          "A/B collapse",
+          "source fidelity",
+          "bad refs",
+          "protected decision disclosure",
+          "legacy compatibility"
+        ]
+      },
+      {
+        "blueprint": "ui-ux",
+        "reason": "Learner-facing static rendering must make crux and attempt/reveal policy legible in self-paced use.",
+        "review_focus": [
+          "crux salience",
+          "attempt before reveal",
+          "minimal feedback",
+          "answer accessibility"
+        ]
+      }
+    ],
+    "not_applicable": [
+      {
+        "blueprint": "engineering-numerics",
+        "reason": "No scientific numerical algorithm or tolerance changes.",
+        "review_focus": []
+      },
+      {
+        "blueprint": "performance",
+        "reason": "The bounded projection/validation changes are not performance-sensitive.",
+        "review_focus": []
+      }
+    ]
+  },
+  "procedure_results": [
+    {
+      "blueprint": "accessibility",
+      "result": "CLEAR",
+      "evidence": [
+        "Shared/publication_host/compose.py uses semantic details/summary disclosure, explicit aria-label text, reading-order-preserving answer sections, and a visible text label 'Key decision' rather than color alone.",
+        "tests/test_core_projection_pipeline.py asserts scaffold-before-answer ordering and semantic crux/protected-decision markers.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    },
+    {
+      "blueprint": "code-review",
+      "result": "CLEAR",
+      "evidence": [
+        "PR #177 keeps canonical Physics/library records read-only; the Motion2D acceptance witness mutates a test-local copy only.",
+        "Structured refs are revalidated at intake and publication boundaries; source hints and authored scaffolds remain separate custody channels.",
+        "Protected Core2B decisions cannot be targeted by pre-attempt scaffolds.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    },
+    {
+      "blueprint": "coding",
+      "result": "CLEAR",
+      "evidence": [
+        "Shared/library/compile_inputs.py preserves subparts/options/source_refs/figure_refs/hints and structured reasoning/transfer fields losslessly.",
+        "Shared/library/intake.py and Shared/publication_host/inputs.py fail closed on dangling/duplicate/non-decision crux and protected refs.",
+        "Shared/library/visual_support.py reuses canonical representation/reveal-stage ownership instead of adding a second visual ontology.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    },
+    {
+      "blueprint": "github-delivery",
+      "result": "CLEAR",
+      "evidence": [
+        "DOBS-PR177-RM0010 provider readback observes draft PR #177 at 9fe45c05edebd738188eb8da0524d9ee2a9b34db, MERGEABLE with exact-head guardrails and revised v25-relay PASS.",
+        "PR body contains relay-pr-correlation:v1 with ISSUE-173 ↔ EP-TA-010 ↔ WP-TA-108 IMPLEMENTS correlation.",
+        "Review-thread readback reports zero unresolved threads/change requests.",
+        "No Owner merge authorization is claimed; draft lifecycle is preserved."
+      ]
+    },
+    {
+      "blueprint": "migration",
+      "result": "CLEAR",
+      "evidence": [
+        "New structured fields are optional migration fields; legacy reasoning[]/difficult_move/hints remain supported.",
+        "Committed relative-motion publications verify against refreshed frozen runtime snapshots.",
+        "Legacy string hints retain their prior learner-visible behavior while structured hints preserve disclosure metadata.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    },
+    {
+      "blueprint": "software-design",
+      "result": "CLEAR",
+      "evidence": [
+        "The contract adds stable application reasoning/crux/scaffold/protection identity while leaving canonical academic truth in subject-library records.",
+        "Core1A/Core1B reuse the existing inferential-jump/teaching-path truth; Core2A/Core2B share capability truth but differ by familiar versus protected changed decision.",
+        "No new mastery state, seventh Core, or duplicate visual-state ontology was introduced.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    },
+    {
+      "blueprint": "testing",
+      "result": "CLEAR",
+      "evidence": [
+        "tests/test_core_projection_contract.py covers contract structure, migration optionality and source-hint/scaffold separation.",
+        "tests/test_core_projection_pipeline.py covers bad refs, DECIDE-only crux/protection, source fidelity, visual ownership, disclosure protection, learner rendering and a real Motion2D witness.",
+        "Full repository guardrails run 35671187483 passed, including generated-artifact drift, full unittest suite and all JSON parsing."
+      ]
+    },
+    {
+      "blueprint": "ui-ux",
+      "result": "CLEAR",
+      "evidence": [
+        "Core2A support renders before the answer; the full solution labels the crux 'Key decision' and the verification 'Independent check'.",
+        "Core2B pre-attempt support excludes the protected decision and the full answer explains that protection boundary.",
+        "Source hints render separately from authored scaffolds and both preserve disclosure metadata.",
+        "guardrails:35671187483:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+        "v25-relay:35671187502:PASS@9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00"
+      ]
+    }
+  ],
+  "findings": [],
+  "overall_state": "CLEAR",
+  "execution_effect": {
+    "blocks_execution": false,
+    "blocking_findings": []
+  },
+  "owner_report": {
+    "summary": "EP-TA-010 implementation is quality-clear on the observed exact product/protocol head: structured Core projection semantics are lossless, source custody is preserved, learner-facing crux/protection is explicit, migration fallback remains compatible, and full guardrails plus revised V2.5 pass.",
+    "visible_risks": [
+      "PR #177 remains draft and unmerged, so the implementation is not yet current-main behavior.",
+      "Downstream canonical-data consumer PR #179 should not treat the compiler/projection support as landed until provider readback records #177 merged."
+    ],
+    "decisions_required": [
+      "Merge authorization for PR #177 remains an explicit Owner decision separate from this quality review."
+    ]
+  },
+  "successor_handover": {
+    "unresolved_findings": [],
+    "follow_up": [
+      "Carry PR #177 forward in Owner status until provider readback records MERGED or CLOSED.",
+      "After #177 lands, rerun the Issue #174 / PR #179 canonical-content consumer against the landed compiler/projection contract before claiming its delivery gap resolved."
+    ]
+  }
+}

@@ -10,19 +10,19 @@
     "lifecycle": "DRAFT",
     "head": {
       "ref": "fix/issue-173-core-projections-v25",
-      "sha": "d6ff1d60df58d77870ce8d3de3adbc0718cf602d"
+      "sha": "9fe45c05edebd738188eb8da0524d9ee2a9b34db"
     },
     "base": {
       "ref": "main",
-      "sha": "411e8dc0108347933792fbbd5a6be8dfa59d655e"
+      "sha": "1b549c3f6547cd5125546e3cb9699efb484f9b28"
     }
   },
   "mergeability": {
     "state": "MERGEABLE"
   },
   "checks": {
-    "state": "FAIL",
-    "head_sha": "d6ff1d60df58d77870ce8d3de3adbc0718cf602d",
+    "state": "PASS",
+    "head_sha": "9fe45c05edebd738188eb8da0524d9ee2a9b34db",
     "required": [
       "guardrails",
       "v25-relay"
@@ -30,15 +30,15 @@
     "observations": [
       {
         "name": "guardrails",
-        "run_id": 35634716560,
+        "run_id": 35671187483,
         "status": "PASS",
-        "basis": "Run 35634716560 completed/success on observed PR head d6ff1d60df58d77870ce8d3de3adbc0718cf602d."
+        "basis": "Run 35671187483 completed/success on exact implementation/protocol head 9fe45c05edebd738188eb8da0524d9ee2a9b34db; full repository tests and JSON parse passed."
       },
       {
         "name": "v25-relay",
-        "run_id": 35634716674,
-        "status": "FAIL",
-        "basis": "Run 35634716674 reached downstream relay semantic conformance and exposed custody/projection/correlation mismatches being reconciled by CP-TA-009/GHGEN-CORE173-R1/DOBS-PR177-RM0010."
+        "run_id": 35671187502,
+        "status": "PASS",
+        "basis": "Run 35671187502 completed/success on exact implementation/protocol head 9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea, including certification, enforced execution custody, live Git context and MATERIAL_WRITE_READY."
       }
     ]
   },
@@ -50,7 +50,7 @@
   "description_contract": {
     "marker": "<!-- relay-pr-correlation:v1 -->",
     "marker_present": true,
-    "body_digest": "sha256:f8e496516b33b611a08e83ac3db2ee9189d00b21a963ee8824d536555c4f31d7",
+    "body_digest": "sha256:9053a1c625e56a61811c66268a6f4a6743d7e2d6569b1463d2ecf5a273ebd1f0",
     "correlations": [
       {
         "issue_node": "ISSUE-173",
@@ -64,9 +64,11 @@
     ]
   },
   "readback_basis": [
-    "GitHub provider readback for draft PR #177 at head d6ff1d60df58d77870ce8d3de3adbc0718cf602d",
-    "PR description contains relay-pr-correlation:v1 and Issue #173 / EP-TA-010 / WP-TA-108 correlation",
-    "guardrails run 35634716560 completed/success",
-    "v25-relay run 35634716674 completed/failure at relay semantic conformance before candidate admission"
+    "GitHub provider readback for draft PR #177 at head 9fe45c05edebd738188eb8da0524d9ee2a9b34db and base 1b549c3f6547cd5125546e3cb9699efb484f9b28; mergeable=true.",
+    "PR #177 description contains relay-pr-correlation:v1 and the Issue #173 / EP-TA-010 / WP-TA-108 IMPLEMENTS correlation.",
+    "GitHub review-thread readback found zero review threads and review-submission readback found no change requests.",
+    "guardrails run 35671187483 completed/success on the observed head.",
+    "v25-relay run 35671187502 completed/success on the observed head using revised Common@6cc47ea and the normal material write gate.",
+    "PR lifecycle is DRAFT; this observation records no merge authorization."
   ]
 }
