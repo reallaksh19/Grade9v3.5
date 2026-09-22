@@ -1,0 +1,37 @@
+schema_version: relay-v3-transaction
+id: TX-CUTOVER-ACTIVATE-MAIN-174-001
+command: ACTIVATE_PROTOCOL_CUTOVER
+actor: chatgpt-sol-canonical-20260922
+status: COMMITTED
+created_at: '2026-09-22T11:33:02.710408Z'
+updated_at: '2026-09-22T11:33:02.728091Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:399f733352259ca1b99e088f22eb17c85ea122b6510c62880df188bef5357ecd
+  after_digest: sha256:1fe60cf33edf16183c49bacf133a8f02145d55a1971c6f72dfa296d95271bfb6
+  staged_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/backups/000.before
+- path: relay/MIGRATION/CUTOVER_READINESS.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:f53dcd0f69aca2df7c89cec634d8f7f4cfbafd57a01f0613549a24a743c37200
+  staged_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/staged/001.after
+  backup_path: null
+- path: relay/MIGRATION/V25_DEPRECATION.md
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:fe516c4a8388e4f2b56a57f1d74121b5e1c88460cd36d4a044b81f5867202904
+  staged_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/staged/002.after
+  backup_path: null
+- path: relay/PROTOCOL_SELECTION.yaml
+  before_exists: true
+  before_digest: sha256:2c7c855779690d3af36982c5f4ad2a9f276c4da0acef9805ea0f9d713541b01d
+  after_digest: sha256:df37c4aca90dcf6305220920c02641f786516ac17eafb34dcb64ebdbc065961e
+  staged_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-CUTOVER-ACTIVATE-MAIN-174-001/backups/003.before
+applied:
+- relay/EVENTS.jsonl
+- relay/MIGRATION/CUTOVER_READINESS.yaml
+- relay/MIGRATION/V25_DEPRECATION.md
+- relay/PROTOCOL_SELECTION.yaml

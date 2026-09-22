@@ -1,0 +1,16 @@
+schema_version: relay-v3-protocol-selection
+selected_protocol: V2_5
+status: PREPARED
+legacy:
+  root: agents/relay
+  tree_digest: sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8
+  policy: LIVE_COMPATIBILITY
+v3:
+  state_path: relay/STATE.yaml
+  validation: PENDING
+cutover:
+  owner_authorized: false
+  owner_basis: null
+  legacy_freeze_digest: sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8
+  readiness_digest: null
+  activated_at: null
