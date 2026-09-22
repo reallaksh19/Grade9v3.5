@@ -38,7 +38,7 @@ def _subject_rows(subject: str) -> list[dict]:
             compiled = compile_bucket(
                 records,
                 bucket_id,
-                topic_id=f"CORE-LEARNER-{bucket_id}",
+                topic_id=bucket_id,
                 title=records[bucket_id]["title"],
                 subject=subject,
                 practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
