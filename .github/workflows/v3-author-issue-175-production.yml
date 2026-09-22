@@ -693,21 +693,19 @@ jobs:
               unittest.main()
           PY
 
-          cat > tests/test_core_learning_runtime.py <<'PY'
-          from __future__ import annotations
-
-          import shutil
-          import subprocess
-          import unittest
+          python - <<'PY'
           from pathlib import Path
 
-          from Shared.tools import build_core_learning_data, build_core_learning_host, build_core_learning_runtime
+          path = Path("tests/test_workbench_runtime.py")
+          source = path.read_text(encoding="utf-8")
+          marker = "class CoreLearningProductionRuntime"
+          if marker not in source:
+              source += r'''
 
-          REPO = Path(__file__).resolve().parents[1]
-
-
-          class CoreLearningRuntimeProduction(unittest.TestCase):
-              def test_node_component_contracts(self):
+          class CoreLearningProductionRuntime(unittest.TestCase):
+              def test_core_learning_node_component_contracts(self):
+                  import shutil
+                  import subprocess
                   node = shutil.which("node")
                   self.assertIsNotNone(node)
                   result = subprocess.run(
@@ -716,7 +714,8 @@ jobs:
                   )
                   self.assertEqual(result.returncode, 0, result.stdout)
 
-              def test_generated_data_is_current_and_production_backed(self):
+              def test_core_learning_generated_data_is_current_and_production_backed(self):
+                  from Shared.tools import build_core_learning_data
                   payload = build_core_learning_data.build()
                   self.assertEqual(payload["provider_status"], "PRODUCTION_COMPILED_CANONICAL")
                   self.assertEqual(
@@ -724,7 +723,8 @@ jobs:
                       build_core_learning_data.rendered_file()["public/core-learning/data.js"],
                   )
 
-              def test_public_and_standalone_hosts_have_one_source(self):
+              def test_core_learning_public_and_standalone_hosts_have_one_source(self):
+                  from Shared.tools import build_core_learning_host
                   rendered = build_core_learning_host.render()
                   public = rendered["public/core-learning/index.html"].decode("utf-8")
                   standalone = rendered["standalone/core-learning/index.html"].decode("utf-8")
@@ -737,14 +737,13 @@ jobs:
                   self.assertIn('id="explorer-frame"', public)
                   self.assertIn('new URL("../../" + locator', public)
 
-              def test_public_runtime_is_generated_from_shared_sources(self):
+              def test_core_learning_public_runtime_is_generated_from_shared_sources(self):
+                  from Shared.tools import build_core_learning_runtime
                   for relative, expected in build_core_learning_runtime.render().items():
                       with self.subTest(path=relative):
                           self.assertEqual((REPO / relative).read_bytes(), expected)
-
-
-          if __name__ == "__main__":
-              unittest.main()
+          '''
+              path.write_text(source, encoding="utf-8")
           PY
 
       - name: Add real-browser production learner journey
@@ -863,7 +862,8 @@ jobs:
 
       - name: Focused production tests
         run: |
-          python -m unittest tests.test_core_learning_adapter tests.test_core_learning_runtime
+          python -m unittest tests.test_core_learning_adapter
+          node --test tests/core_learning_page.test.mjs tests/core_learning_host.test.mjs
           python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract
           python Shared/tools/build_manifest.py --check
 
