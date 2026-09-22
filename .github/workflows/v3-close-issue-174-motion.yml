@@ -1,0 +1,84 @@
+name: v3-close-issue-174-motion
+
+on:
+  push:
+    branches:
+      - relay/v3-close-174-motion
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  close:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Motion closeout branch
+        uses: actions/checkout@v4
+        with:
+          ref: relay/v3-close-174-motion
+          fetch-depth: 0
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install V3 dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Write provider readback
+        run: |
+          cat > /tmp/delivery-status.yaml <<'YAML'
+          schema_version: relay-v3-delivery-status
+          authority: PROVIDER_READBACK
+          vehicle:
+            provider: GITHUB
+            kind: PULL_REQUEST
+            number: 187
+          observed_at: '2026-09-22T12:56:22Z'
+          provider_ref: https://github.com/reallaksh19/Grade9V3/pull/187
+          lifecycle: MERGED
+          checks: PASS
+          review: NOT_APPLICABLE
+          mergeability: NOT_APPLICABLE
+          YAML
+
+      - name: Sync merged provider state
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . sync-delivery \
+            --tx-id TX-SYNC-ISS174-MOTION-MERGED-001 \
+            --event-id EVT-SYNC-ISS174-MOTION-MERGED-001 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --observation /tmp/delivery-status.yaml
+
+      - name: Verify close authorization
+        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py CLOSE_TASK .
+
+      - name: Close Motion task
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . close \
+            --tx-id TX-CLOSE-ISS174-MOTION-001 \
+            --event-id EVT-CLOSE-ISS174-MOTION-001 \
+            --actor chatgpt-sol-canonical-20260922
+
+      - name: Validate closed V3 authority
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+
+      - name: Commit closeout
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay
+          git commit -m "[relay-v3] Close Issue 174 Motion delivery"
+          git push origin HEAD:relay/v3-close-174-motion
