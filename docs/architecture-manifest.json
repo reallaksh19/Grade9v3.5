@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 208,
-  "relation_count": 258,
+  "component_count": 209,
+  "relation_count": 264,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 97,
+    "TEST": 98,
     "TOOLING": 49,
     "WEB": 6,
     "WEB_RUNTIME": 3
   },
-  "digest": "sha256:6fb4496f6a782a80361d0a3807db5dc271242a45fcfa8f08d20cc4a0b6c77d17",
+  "digest": "sha256:b2245a00507ff7965cb537422ba606551f1c020098957af44c9ce356d0d40d39",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1245,6 +1245,13 @@
       "sha256": "157c679b1920bfaab60806171a2edd1651ab16f33b2cc359152cc2d8f2988dcb"
     },
     {
+      "path": "tests/test_motion2d_canonical.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13792,
+      "sha256": "8bb7785210a508594f4a30e68f4abd35702f67afbea37031b8b07d3de0cf8458"
+    },
+    {
       "path": "tests/test_motion2d_gcdr_properties.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1444,8 +1451,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 1857167,
-      "sha256": "67e844c3e73cfc0d33c875148ac8e084bd24fdc078f60d6b62131012884d66c1"
+      "bytes": 1858022,
+      "sha256": "e0f3e47569b47d40aab2e2ff2d5e4d77699ef48237dea9b8b31721ec7095d92a"
     },
     {
       "path": "tools/index.html",
@@ -2530,6 +2537,36 @@
     {
       "from": "tests/test_mathematics.py",
       "to": "Shared.publication_host.science",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.publication_host.host",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_motion2d_canonical.py",
+      "to": "Shared.publication_host.inputs",
       "kind": "IMPORTS"
     },
     {
