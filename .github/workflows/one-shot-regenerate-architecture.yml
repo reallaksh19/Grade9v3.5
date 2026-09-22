@@ -1,0 +1,27 @@
+name: one-shot-regenerate-architecture
+on:
+  push:
+    branches: [fix/issue-173-core-projections-v25]
+    paths: [.github/workflows/one-shot-regenerate-architecture.yml]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/issue-173-core-projections-v25
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: |
+          python3 Shared/tools/build_manifest.py
+          if ! git diff --quiet -- tools/data.js public/data/data.js; then exit 1; fi
+          test "$(git diff --name-only)" = "docs/architecture-manifest.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/architecture-manifest.json
+          git commit -m "chore: regenerate manifest for Motion2D witness"
+          git push origin HEAD:fix/issue-173-core-projections-v25
