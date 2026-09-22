@@ -35,6 +35,8 @@ class Grade9NlmFrictionConnectedSlice(unittest.TestCase):
         cls.capabilities = {row["id"]: row for row in cls.package["capabilities"]}
         cls.microtopics = {row["id"]: row for row in cls.package["microtopics"]}
         cls.relations = {row["id"]: row for row in cls.package["relations"]}
+        cls.questions = {row["id"]: row for row in cls.package["questions"]}
+        cls.representations = {row["id"]: row for row in cls.package["representations"]}
 
     def test_existing_qualitative_friction_capability_is_not_silently_redefined(self):
         old = self.capabilities["CAP-NLM-FRICTION"]
@@ -191,6 +193,81 @@ class Grade9NlmFrictionConnectedSlice(unittest.TestCase):
         self.assertEqual(
             by_name["coefficient-based static/kinetic friction calculations"]["local_state"],
             "LOCAL_READY",
+        )
+
+
+    def test_nlm_friction_gold_family_has_one_structured_familiar_crux(self):
+        question = self.questions["Q-PHY-NLM-INCLINE-2A-STATIC-02"]
+        route = question["answer"]["reasoning_route"]
+        by_id = {move["id"]: move for move in route}
+        crux = question["answer"]["crux_move_ref"]
+        self.assertEqual(crux, "R-NLM-INCLINE-STATIC-FEASIBILITY")
+        self.assertEqual(by_id[crux]["kind"], "DECIDE")
+        self.assertIn("REL-NLM-STATIC-FRICTION-BOUND", by_id[crux]["inputs"])
+        self.assertEqual(question["answer"]["difficult_move"], 3)
+        self.assertEqual(question["origin"], "AUTHORED")
+        self.assertEqual(question["source_refs"], ["SRC-AUTHOR-NLM"])
+
+    def test_nlm_friction_gold_family_scaffolds_resolve_to_canonical_moves_and_visuals(self):
+        rep = self.representations["REP-NLM-FRICTION-THRESHOLD"]
+        stages = {stage["id"] for stage in rep["reveal_stages"]}
+        for qid in (
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+            "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+        ):
+            question = self.questions[qid]
+            route_ids = {move["id"] for move in question["answer"]["reasoning_route"]}
+            for scaffold in question["scaffolds"]:
+                self.assertIn(scaffold["supports_move_ref"], route_ids)
+                self.assertEqual(scaffold.get("visual_ref"), "REP-NLM-FRICTION-THRESHOLD")
+                self.assertIn(scaffold.get("visual_stage_ref"), stages)
+
+    def test_nlm_friction_transfer_protects_the_changed_friction_decision(self):
+        question = self.questions["Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"]
+        route = {move["id"]: move for move in question["answer"]["reasoning_route"]}
+        protected = question["transfer"]["protected_move_ref"]
+        self.assertEqual(protected, "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION")
+        self.assertEqual(question["answer"]["crux_move_ref"], protected)
+        self.assertEqual(route[protected]["kind"], "DECIDE")
+        self.assertIn("sign of f_required", route[protected]["action"])
+        self.assertNotIn(protected, {row["supports_move_ref"] for row in question["scaffolds"]})
+
+        rep = self.representations["REP-NLM-FRICTION-THRESHOLD"]
+        stage_ids = [stage["id"] for stage in rep["reveal_stages"]]
+        protected_stage = route[protected]["visual_stage_ref"]
+        self.assertEqual(route[protected]["representation_ref"], "REP-NLM-FRICTION-THRESHOLD")
+        self.assertEqual(protected_stage, "VIS-NLM-FRICTION-V3")
+        protected_stage_index = stage_ids.index(protected_stage)
+        for scaffold in question["scaffolds"]:
+            self.assertLess(stage_ids.index(scaffold["visual_stage_ref"]), protected_stage_index)
+
+        protected_visual = next(
+            stage for stage in rep["reveal_stages"] if stage["id"] == protected_stage
+        )
+        self.assertTrue(
+            {"static-friction arrow", "contact-state label", "friction-demand/limit comparison"}
+            .issubset(set(protected_visual["visible_elements"]))
+        )
+
+    def test_gold_family_does_not_duplicate_or_mutate_static_friction_authority(self):
+        relation = self.relations["REL-NLM-STATIC-FRICTION-BOUND"]
+        self.assertEqual(relation["expression"], "|f_s| <= mu_s N")
+        self.assertEqual(relation["gate_relation_ref"], "REL-NLM-STATIC-FRICTION-BOUND")
+        familiar = self.questions["Q-PHY-NLM-INCLINE-2A-STATIC-02"]
+        transfer = self.questions["Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"]
+        self.assertEqual(
+            familiar["hints"],
+            [
+                {"text": "First ask which way the block would tend to slip if friction vanished.", "reveals": "CONCEPT"},
+                {"text": "Find N from the perpendicular equation, solve the friction required for rest, then compare that requirement with mu_s N.", "reveals": "METHOD"},
+            ],
+        )
+        self.assertEqual(
+            transfer["hints"],
+            [
+                {"text": "Which part of the horizontal force changes the contact normal, and which part changes the tangential force demand?", "reveals": "CONCEPT"},
+                {"text": "Find N first, then solve the signed friction needed for rest before comparing its magnitude with the static limit.", "reveals": "METHOD"},
+            ],
         )
 
     def test_momentum_transfer_stays_out_of_this_slice(self):
