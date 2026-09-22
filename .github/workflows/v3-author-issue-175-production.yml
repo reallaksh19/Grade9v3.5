@@ -857,7 +857,9 @@ jobs:
           PY
 
       - name: Regenerate public and standalone artifacts
-        run: python Shared/tools/build_manifest.py
+        run: |
+          python Shared/tools/build_manifest.py
+          python Shared/tools/build_manifest.py
 
       - name: Focused production tests
         run: |
