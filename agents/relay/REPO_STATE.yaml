@@ -140,7 +140,7 @@
     ]
   },
   "relay_readiness": {
-    "baton_ready": true,
+    "baton_ready": false,
     "projection_ready": false,
     "handover_ready": false,
     "reasons": [
@@ -239,7 +239,7 @@
       "resolution_condition": "PR #177 is separately authorized, merged and read back on main; the Grade-9 exit-readiness route is then regenerated or reconciled and freshly qualified against the delivered Core contract."
     },
     {
-      "id": "PEND-TA10-PROTOCOL-003",
+      "id": "KI-TA10-PROJECTION-001",
       "kind": "KNOWN_ISSUE",
       "state": "OPEN",
       "summary": "Final checkpoint synchronization is blocked by an upstream verified-projection supersession lifecycle defect; the external checkpoint comment itself is already published and read back exactly.",
@@ -268,7 +268,8 @@
         "TESTS",
         "DRAFT_PR_UPDATES"
       ],
-      "resolution_condition": "A merged/pinned Common protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth."
+      "resolution_condition": "A merged/pinned Common protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth.",
+      "revisit_when": "Common merges and Grade9V3 pins a protocol revision that can faithfully supersede a verified GitHub projection predecessor."
     }
   ]
 }
