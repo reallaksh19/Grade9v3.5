@@ -2,13 +2,13 @@ schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V3-ISS174-MOTION-002
-  state_digest: sha256:d2afbf6bcd8a5c2e104b3be197f77b1fc1cf2add7bbfb0e88f0ed3b96fa94f27
+  state_digest: sha256:35a67c57067e6d0e57be14e682e49788e5e8677987e1e62fe9a677c7a4f45155
   material_basis:
     head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
-    tree_digest: sha256:e7f56d644f751f4bb31bcb17a73d46b98522503a426bf8439373524d0407573b
+    tree_digest: sha256:172cc52320e5439207e43fb529f2c916e464d4f3860886df5daffaec9d2f6a2d
     relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
     dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
-  coordination_head: 556d76600afbae19f3f808d45422bfca8a5f5277
+  coordination_head: 9b3dbbcbf2643480d9558e64b2ece2fda6ae079f
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
@@ -29,17 +29,31 @@ programme:
   - WP-TA-108
   - WP-TA-105
 execution:
-  lifecycle: TERMINAL
-  work_package: null
-  ep: null
-  lease: null
-  executor: null
+  lifecycle: ACTIVE
+  work_package: WP-CANONICAL-174-MOTION
+  ep: EP-CANONICAL-174-MOTION-002
+  lease: LEASE-CANONICAL-174-MOTION-002
+  executor: chatgpt-sol-canonical-20260922
 scope:
-  allowed_writes: []
-  protected: []
-  prohibited: []
+  allowed_writes:
+  - Physics/library/phy-kin-2d-motion.v1.json
+  - tests/test_motion2d_canonical.py
+  - docs/architecture-manifest.json
+  - tools/data.js
+  - public/data/data.js
+  protected:
+  - Physics/matrices/phy-kin-2d-motion.rungs.json
+  - Physics/tools/motion2d_gcdr_properties.py
+  - public/physics/motion-2d/**
+  - Shared/**
+  - Physics/library/phy-nlm-first-law.v1.json
+  - agents/relay/**
+  prohibited:
+  - Mathematics/**
+  - Chemistry/**
+  - standalone/**
 material:
-  base: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
+  base: 1b92a943fe0b90fc829140e63ea4121b02dfd225
   head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
   relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
   dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
@@ -54,20 +68,29 @@ controls:
   handover_blockers: []
   delivery_blockers: []
   informational:
-  - CTRL-OWNER-MERGE-ISS174-MOTION-20260922
+  - CTRL-OWNER-MERGE-ISS174-NLM-20260922
 delivery:
   issue: null
   pr: 187
   lifecycle: DECLARED
   merge_authorized: true
 next:
-  immediate_material_action: null
+  immediate_material_action: Run the focused Motion canonical falsifiers, delivered
+    Core projection tests, deterministic data generation and exact-head guardrails.
   delivery_action: Perform the explicitly authorized delivery transition.
-  stop_conditions: []
+  stop_conditions:
+  - Do not duplicate family-level matrix authority into the library.
+  - Do not change existing source hints, Motion matrix text, explorer artifacts or
+    GCDR property authority.
+  - Do not modify delivered Shared Core code unless a generic falsifier proves a separate
+    regression.
+  - Keep PR 187 Motion-only.
 handoff:
   zero_context_takeover_possible: true
   reconstruction_sources:
   - relay/ROADMAP/ROADMAP.yaml
   - relay/STATE.yaml
   - relay/CONTROLS/controls.yaml
+  - relay/WORK/EP-CANONICAL-174-MOTION-002.yaml
+  - relay/LEASES/LEASE-CANONICAL-174-MOTION-002.yaml
   - relay/CHECKPOINTS/CP-CANONICAL-174-MOTION-002.yaml

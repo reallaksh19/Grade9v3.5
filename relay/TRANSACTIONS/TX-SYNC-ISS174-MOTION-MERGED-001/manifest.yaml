@@ -1,0 +1,23 @@
+schema_version: relay-v3-transaction
+id: TX-SYNC-ISS174-MOTION-MERGED-001
+command: SYNC_DELIVERY
+actor: chatgpt-sol-canonical-20260922
+status: COMMITTED
+created_at: '2026-09-22T12:57:39.831671Z'
+updated_at: '2026-09-22T12:57:39.842664Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:2c54068cd5b8f8bf13dcf03fddbdc749bea8e52119837ea5e2078a70a1963250
+  after_digest: sha256:8c6e1c4ea21c9e35cf5ec351448dc4f33b56499a560b73a43aef9815eb2dd140
+  staged_path: relay/TRANSACTIONS/TX-SYNC-ISS174-MOTION-MERGED-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-SYNC-ISS174-MOTION-MERGED-001/backups/000.before
+- path: relay/GENERATED/DELIVERY_STATUS.yaml
+  before_exists: true
+  before_digest: sha256:38401aa69fd27e11f0f7e97ef09faaeb2b11f8ca671af496b6ddc58578ce27e4
+  after_digest: sha256:9db143cfc42110eb7ce487b45cadbb904b3ccb6e4a27e9a348705ac300e0ec2e
+  staged_path: relay/TRANSACTIONS/TX-SYNC-ISS174-MOTION-MERGED-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-SYNC-ISS174-MOTION-MERGED-001/backups/001.before
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/DELIVERY_STATUS.yaml
