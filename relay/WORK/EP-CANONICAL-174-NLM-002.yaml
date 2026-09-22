@@ -1,0 +1,73 @@
+schema_version: relay-v3-ep
+id: EP-CANONICAL-174-NLM-002
+work_package: WP-CANONICAL-174-NLM
+outcome:
+  statement: Revalidate and deliver the bounded NLM friction canonical-data proof
+    against the delivered Core projection contract from PR 177 while preserving scientific
+    and source authority and excluding Motion-in-2D.
+basis:
+  predecessor_checkpoint: null
+  material_base: 876faffab1eab90111d17ffda143b98285786097
+  protocol_basis: reallaksh19/Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400:skills/engineering-pr-delivery-v3
+  semantic_dependencies:
+  - path: Shared/library
+    reason: Delivered canonical package schema, intake and compiler contract.
+  - path: Shared/publication_host
+    reason: Delivered Core2A/Core2B publication preservation and protected-move boundary.
+  - path: Physics/adapter
+    reason: Subject scientific depiction and representation contract.
+  - path: Physics/gates
+    reason: Canonical static-friction scientific relation authority.
+scope:
+  write:
+  - Physics/library/phy-nlm-first-law.v1.json
+  - tests/test_g9_nlm_friction_connected.py
+  - docs/architecture-manifest.json
+  read:
+  - Shared/**
+  - Physics/**
+  - tests/**
+  protect:
+  - Shared/**
+  - Physics/adapter/**
+  - Physics/gates/**
+  - agents/relay/**
+  prohibit:
+  - Physics/library/phy-kin-2d-motion.v1.json
+  - Mathematics/**
+  - Chemistry/**
+  - public/physics/**
+  - standalone/**
+acceptance:
+- id: AC-NLM-GOLD
+  statement: The real NLM friction familiar and transfer items retain structured reasoning,
+    stable decision crux, staged scaffolds, protected transfer move, source hints
+    and relation authority.
+  evidence_requirements:
+  - test: python -m unittest discover -s tests -p test_g9_nlm_friction_connected.py
+- id: AC-NLM-PIPELINE
+  statement: The delivered Core projection pipeline from PR 177 preserves the authored
+    NLM reasoning route and rejects protected-decision leakage.
+  evidence_requirements:
+  - test: python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract
+- id: AC-NLM-REPO
+  statement: Exact-head repository validation is green and generated architecture
+    data is current.
+  evidence_requirements:
+  - test: guardrails and pinned v3-relay workflows on the exact delivery head
+quality_policy:
+  level: STANDARD
+  independent_review: OPTIONAL
+admission_policy:
+  qualification: NOT_REQUIRED
+  question_policy: NONE
+next:
+  first_action: Re-run the bounded NLM proof and delivered Core projection falsifiers
+    on the restacked exact head before checkpointing.
+  stop_conditions:
+  - Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority
+    must be corrected before acceptance.
+  - Any generic runtime or compiler falsifier must be separately scoped rather than
+    redesigning delivered Issues 162 or 173.
+  - Motion-in-2D must not be added to PR 179.
+  - MERGE and RELEASE require separate explicit delivery authorization.
