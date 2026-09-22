@@ -1,0 +1,51 @@
+schema_version: relay-v3-transaction
+id: TX-READMIT-ISS174-MOTION-002
+command: ADMIT_TASK
+actor: chatgpt-sol-canonical-20260922
+status: COMMITTED
+created_at: '2026-09-22T12:28:21.317218Z'
+updated_at: '2026-09-22T12:28:21.332916Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:34abc263c3b84be83927fa9eae1a0ff930dc463b957b2a7851fd85269ea2807d
+  after_digest: sha256:6cb5dc986d241c840f360fd720864ae0055222e582c61b9566145735b996e8f9
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:b86a06b50beb43245a7c4c44944bfa43fd17b065adc50eed8fa9f2862026113e
+  after_digest: sha256:60472a703c4b9c31590c2a3419adec75e12a54f1fea679c42921df595b086ce3
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/backups/001.before
+- path: relay/LEASES/LEASE-CANONICAL-174-MOTION-002.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:0dcd198232935b9a99da995a81347aa9031049803cf254c272b50b79bd42486b
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/002.after
+  backup_path: null
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:88ef981bbe1ffcbf10632a184cfa383e0bd4df5acad36b03f94cb78af8433363
+  after_digest: sha256:0f5418d2fc7321b988889b177c9b8c13793f0ae0a825e9aeb39ac7821ced19b9
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/backups/003.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:f4ca6484f3064dfd5ff0820d3776cabe699b583b8cbd552cd75d6d43060a32d5
+  after_digest: sha256:c23363b30dd59bd35f1884b9f6d3e52f4bbcf82a5c5af59692d82c38442ed027
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/backups/004.before
+- path: relay/WORK/EP-CANONICAL-174-MOTION-002.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:e6dfc5d504732444d7dd9096471a35d9b94daf622cddbe0eabafe48a0acde2c4
+  staged_path: relay/TRANSACTIONS/TX-READMIT-ISS174-MOTION-002/staged/005.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-CANONICAL-174-MOTION-002.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/WORK/EP-CANONICAL-174-MOTION-002.yaml
