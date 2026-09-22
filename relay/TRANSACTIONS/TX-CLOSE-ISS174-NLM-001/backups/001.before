@@ -2,13 +2,13 @@ schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V3-ISS174-NLM-002
-  state_digest: sha256:12bc05e89011da6d9681df76eeefff98b96bde2f9fca0733bdbc5239262b5e93
+  state_digest: sha256:25cb95a95c3de7d4473a3fa826a271620ea29837acdc708f1de74ab56a9ea257
   material_basis:
     head: a15db96e60170f1ed480ece96803fa9c02fd6dc6
-    tree_digest: sha256:56006016a3ed3bb7c549f9568df8988ef3019a2d2bcf6b6c441727e09821f454
+    tree_digest: sha256:624d82b62ee2d5cf33df52be36533b68a898d3685732efd377716552cab0d491
     relevant_paths_digest: sha256:d7293bf5923b35585e6712e3d7771abd80e2cc2aedf41f9ee50248ec844d2b68
     dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  coordination_head: c457bda9468b36b71cd04f4f25336a31bc3a867f
+  coordination_head: aa29b156cdc905f0484f86b4d915a658b91fbb62
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
@@ -28,17 +28,29 @@ programme:
   - WP-TA-108
   - WP-TA-105
 execution:
-  lifecycle: TERMINAL
-  work_package: null
-  ep: null
-  lease: null
-  executor: null
+  lifecycle: ACTIVE
+  work_package: WP-CANONICAL-174-NLM
+  ep: EP-CANONICAL-174-NLM-002
+  lease: LEASE-CANONICAL-174-NLM-002
+  executor: chatgpt-sol-canonical-20260922
 scope:
-  allowed_writes: []
-  protected: []
-  prohibited: []
+  allowed_writes:
+  - Physics/library/phy-nlm-first-law.v1.json
+  - tests/test_g9_nlm_friction_connected.py
+  - docs/architecture-manifest.json
+  protected:
+  - Shared/**
+  - Physics/adapter/**
+  - Physics/gates/**
+  - agents/relay/**
+  prohibited:
+  - Physics/library/phy-kin-2d-motion.v1.json
+  - Mathematics/**
+  - Chemistry/**
+  - public/physics/**
+  - standalone/**
 material:
-  base: a15db96e60170f1ed480ece96803fa9c02fd6dc6
+  base: 876faffab1eab90111d17ffda143b98285786097
   head: a15db96e60170f1ed480ece96803fa9c02fd6dc6
   relevant_paths_digest: sha256:d7293bf5923b35585e6712e3d7771abd80e2cc2aedf41f9ee50248ec844d2b68
   dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -52,21 +64,29 @@ controls:
   execution_blockers: []
   handover_blockers: []
   delivery_blockers: []
-  informational:
-  - CTRL-OWNER-MERGE-ISS174-NLM-20260922
+  informational: []
 delivery:
   issue: null
   pr: 179
   lifecycle: DECLARED
-  merge_authorized: true
+  merge_authorized: false
 next:
-  immediate_material_action: null
+  immediate_material_action: Re-run the bounded NLM proof and delivered Core projection
+    falsifiers on the restacked exact head before checkpointing.
   delivery_action: Perform the explicitly authorized delivery transition.
-  stop_conditions: []
+  stop_conditions:
+  - Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority
+    must be corrected before acceptance.
+  - Any generic runtime or compiler falsifier must be separately scoped rather than
+    redesigning delivered Issues 162 or 173.
+  - Motion-in-2D must not be added to PR 179.
+  - MERGE and RELEASE require separate explicit delivery authorization.
 handoff:
   zero_context_takeover_possible: true
   reconstruction_sources:
   - relay/ROADMAP/ROADMAP.yaml
   - relay/STATE.yaml
   - relay/CONTROLS/controls.yaml
+  - relay/WORK/EP-CANONICAL-174-NLM-002.yaml
+  - relay/LEASES/LEASE-CANONICAL-174-NLM-002.yaml
   - relay/CHECKPOINTS/CP-CANONICAL-174-NLM-002.yaml
