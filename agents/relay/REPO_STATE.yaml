@@ -7,7 +7,7 @@
   },
   "relay_protocol": {
     "version": "2.5",
-    "basis_ref": "reallaksh19/Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00:skills/engineering-pr-delivery-v2.5"
+    "basis_ref": "reallaksh19/Common@85e59a93d469035e7924dfbbb1f5918adc203647:skills/engineering-pr-delivery-v2.5"
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
@@ -146,7 +146,7 @@
     "reasons": [
       "The Core projection implementation is checkpointed with all acceptance criteria complete.",
       "Execution custody for the completed Core implementation is released.",
-      "The final Issue #173 checkpoint comment is published and provider-read back, but final synchronization is held by an upstream projection-lifecycle defect.",
+      "The final Issue #173 checkpoint comment is published and provider-read back; final synchronization remains blocked because current Common/main still lacks faithful verified-predecessor supersession.",
       "Grade-9 exit readiness remains waiting for draft PR #177 provider delivery; PR #170 is draft and ordered after it."
     ]
   },
@@ -243,7 +243,7 @@
       "kind": "KNOWN_ISSUE",
       "state": "OPEN",
       "summary": "Final checkpoint synchronization is blocked by an upstream verified-projection supersession lifecycle defect; the external checkpoint comment itself is already published and read back exactly.",
-      "source": "Pinned Common projection validators and open Common PR #415",
+      "source": "Current Common/main projection validators at 85e59a93d469035e7924dfbbb1f5918adc203647 and open Common PR #415",
       "scope": {
         "route_key": null,
         "ep_id": null,
@@ -257,8 +257,8 @@
       },
       "evidence": [
         "Issue #173 comment 5769610327 contains the exact final checkpoint marker/body.",
-        "Pinned Common 6cc47ea rejects a verified predecessor once the current published generation becomes observed because its supersession-history disposition enum has no verified-predecessor state.",
-        "Common PR #415 is the upstream verified GitHub projection supersession fix."
+        "Current Common/main 85e59a93d469035e7924dfbbb1f5918adc203647 still lacks a verified-predecessor supersession-history disposition, so faithful final convergence remains unavailable on main.",
+        "Common PR #415 head 5a72830711b976e05e6893103f7a45152b0879bc carries the repository-neutral verified-projection supersession fix and remains open/unmerged."
       ],
       "must_resolve_before": [
         "RELEASE"
@@ -268,8 +268,8 @@
         "TESTS",
         "DRAFT_PR_UPDATES"
       ],
-      "resolution_condition": "A merged/pinned Common protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth.",
-      "revisit_when": "Common merges and Grade9V3 pins a protocol revision that can faithfully supersede a verified GitHub projection predecessor."
+      "resolution_condition": "A merged Common/main protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth.",
+      "revisit_when": "Common PR #415, or an equivalent verified-projection supersession fix, lands on Common/main and Grade9V3 pins that revision."
     }
   ]
 }
