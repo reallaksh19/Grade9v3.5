@@ -2171,7 +2171,9 @@
         }
       ],
       "relation_refs": [],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-KIN-2D-SHARED-CLOCK"
+      ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -2314,7 +2316,10 @@
         "REL-KIN-2D-VELOCITY",
         "REL-KIN-2D-DISPLACEMENT"
       ],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-KIN-2D-SHARED-CLOCK",
+        "REP-KIN-2D-EVENT-CLOCK"
+      ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -2491,7 +2496,11 @@
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
-      "representation_refs": [],
+      "representation_refs": [
+        "REP-KIN-2D-SHARED-CLOCK",
+        "REP-KIN-2D-EVENT-CLOCK",
+        "REP-KIN-2D-PROJECTILE-MODEL"
+      ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
       ],
@@ -2905,7 +2914,389 @@
       "gate_relation_ref": "REL-PROJECTILE-COMPONENT-MODEL"
     }
   ],
-  "representations": [],
+  "representations": [
+    {
+      "id": "REP-KIN-2D-SHARED-CLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "SYNCHRONIZED_COMPONENT_STATE",
+      "purpose": "Keep independently evolving x and y descriptions attached to one physical object, one declared frame and one shared clock, so only simultaneous component values are recombined into a plane state.",
+      "required_elements": [
+        "physical object",
+        "declared x-y frame",
+        "x-component history",
+        "y-component history",
+        "shared time marker",
+        "simultaneous ordered-pair state"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "physical object",
+        "declared x-y frame",
+        "shared time marker",
+        "x-component history",
+        "y-component history",
+        "simultaneous ordered-pair state"
+      ],
+      "instance_constraints": [
+        "The x and y histories describe the same object in the same declared frame.",
+        "A reconstructed plane state uses x and y evaluated at one identical elapsed time.",
+        "Mixed-time values may be individually valid measurements but must not be rendered as one simultaneous state."
+      ],
+      "accessibility": [
+        "The shared time is stated numerically or textually; synchronization must not be conveyed by colour alone.",
+        "Each component history is labelled with axis and signed quantity.",
+        "An invalid mixed-time state is identified in text as non-simultaneous."
+      ],
+      "misleading_alternatives": [
+        "Showing separate x and y clocks without marking a mismatch as invalid.",
+        "Recombining x(t1) with y(t2) as though it were one physical state."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "x-component history",
+          "symbol": "x(t), v_x(t)",
+          "in_words": "The horizontal component state evaluated at the shared physical time."
+        },
+        {
+          "element": "y-component history",
+          "symbol": "y(t), v_y(t)",
+          "in_words": "The vertical component state evaluated at the same shared physical time."
+        },
+        {
+          "element": "shared time marker",
+          "symbol": "t",
+          "in_words": "The one elapsed time that belongs to both component descriptions of the event."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-KIN-2D-SHARED-CLOCK"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-SHARED-V0",
+          "label": "Problem only",
+          "purpose": "Show the physical motion without handing over the component representation.",
+          "visible_elements": [
+            "physical object"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SHARED-V1",
+          "label": "Frame and clock",
+          "purpose": "Expose the common frame and one shared time marker before showing the completed component state.",
+          "visible_elements": [
+            "physical object",
+            "declared x-y frame",
+            "shared time marker"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SHARED-V2",
+          "label": "Component histories",
+          "purpose": "Show separate signed x and y histories tied to the same clock while leaving final recombination to the learner.",
+          "visible_elements": [
+            "physical object",
+            "declared x-y frame",
+            "shared time marker",
+            "x-component history",
+            "y-component history"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SHARED-V3",
+          "label": "Simultaneous reconstruction",
+          "purpose": "Reveal the valid ordered-pair state reconstructed from same-time component values.",
+          "visible_elements": [
+            "physical object",
+            "declared x-y frame",
+            "shared time marker",
+            "x-component history",
+            "y-component history",
+            "simultaneous ordered-pair state"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-SHARED-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-SHARED-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-SHARED-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-EVENT-CLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "EVENT_CONDITION_CLOCK",
+      "purpose": "Make event selection explicit: one component condition identifies the requested event time, and that same time is then reused on every component before reconstructing the requested state.",
+      "required_elements": [
+        "physical event",
+        "event condition",
+        "shared event timeline",
+        "solved event-time marker",
+        "x-component evaluation",
+        "y-component evaluation",
+        "reconstructed event state"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "physical event",
+        "event condition",
+        "shared event timeline",
+        "solved event-time marker",
+        "x-component evaluation",
+        "y-component evaluation",
+        "reconstructed event state"
+      ],
+      "instance_constraints": [
+        "The event condition must name the physical instant before cross-axis calculation is performed.",
+        "A time solved from one component is reused unchanged on the other component for that same event.",
+        "The final event state contains only component values sampled at the solved event time."
+      ],
+      "accessibility": [
+        "The event condition and solved time are stated in text as well as marked graphically.",
+        "Cross-axis reuse of the event time is announced explicitly.",
+        "Component evaluations are labelled with the same event-time value."
+      ],
+      "misleading_alternatives": [
+        "Solving unrelated convenient times on x and y for one physical event.",
+        "Using a projectile shortcut before identifying the event condition that makes it valid."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "event condition",
+          "symbol": "event equation",
+          "in_words": "The component condition that defines when the requested physical event occurs."
+        },
+        {
+          "element": "solved event-time marker",
+          "symbol": "t_event",
+          "in_words": "The single clock value at which every component of the requested event is evaluated."
+        },
+        {
+          "element": "reconstructed event state",
+          "symbol": "(x(t_event), y(t_event), v_x(t_event), v_y(t_event))",
+          "in_words": "The simultaneous component state at the selected physical event."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-KIN-2D-EVENT-CLOCK"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-EVENT-V0",
+          "label": "Requested event",
+          "purpose": "Show only the physical story and requested event.",
+          "visible_elements": [
+            "physical event"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-EVENT-V1",
+          "label": "Event condition",
+          "purpose": "Expose the condition that identifies the event without solving its time.",
+          "visible_elements": [
+            "physical event",
+            "event condition",
+            "shared event timeline"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-EVENT-V2",
+          "label": "Shared event time",
+          "purpose": "Reveal the solved event-time marker while leaving cross-axis evaluation to the learner.",
+          "visible_elements": [
+            "physical event",
+            "event condition",
+            "shared event timeline",
+            "solved event-time marker"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-EVENT-V3",
+          "label": "Event reconstruction",
+          "purpose": "Show both component evaluations and the reconstructed simultaneous event state.",
+          "visible_elements": [
+            "physical event",
+            "event condition",
+            "shared event timeline",
+            "solved event-time marker",
+            "x-component evaluation",
+            "y-component evaluation",
+            "reconstructed event state"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-EVENT-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-EVENT-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-EVENT-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-PROJECTILE-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "MODEL_SELECTION_GATE",
+      "purpose": "Make the ideal projectile specialization conditional on the interactions that remain after release: gravity-only free flight licenses a_x=0 and a_y=-g; retained thrust, significant drag or contact requires a more general model.",
+      "required_elements": [
+        "launched-object scene",
+        "post-release interaction inventory",
+        "gravity-only status",
+        "horizontal acceleration readout",
+        "vertical acceleration readout",
+        "model-status gate"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "launched-object scene",
+        "post-release interaction inventory",
+        "gravity-only status",
+        "horizontal acceleration readout",
+        "vertical acceleration readout",
+        "model-status gate"
+      ],
+      "instance_constraints": [
+        "Model eligibility is determined from post-release interactions rather than trajectory shape.",
+        "With +y upward, the ideal projectile specialization requires a_x=0 and a_y=-g.",
+        "If horizontal thrust, significant drag or continuing contact is retained, the ideal projectile specialization is rejected even when the path is curved."
+      ],
+      "accessibility": [
+        "Active post-release interactions are named in text; arrows or colours are not the only cue.",
+        "The acceleration components and model status are readable as text or symbols.",
+        "Invalid-model status states the violated assumption explicitly."
+      ],
+      "misleading_alternatives": [
+        "Calling every launched or curved-path object an ideal projectile.",
+        "Keeping a_x=0 while also showing an active horizontal rocket thrust."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "horizontal acceleration readout",
+          "symbol": "a_x",
+          "in_words": "The horizontal acceleration implied by the retained post-release interactions."
+        },
+        {
+          "element": "vertical acceleration readout",
+          "symbol": "a_y",
+          "in_words": "The vertical acceleration under the declared sign convention."
+        },
+        {
+          "element": "model-status gate",
+          "symbol": "projectile model valid?",
+          "in_words": "Whether the gravity-only projectile specialization is licensed for the current interval."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-KIN-2D-PROJECTILE-MODEL-GATE"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-PROJ-V0",
+          "label": "Launch story",
+          "purpose": "Show the launched-object scenario without naming the model.",
+          "visible_elements": [
+            "launched-object scene"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PROJ-V1",
+          "label": "Interaction audit",
+          "purpose": "Expose post-release interactions while leaving the model decision to the learner.",
+          "visible_elements": [
+            "launched-object scene",
+            "post-release interaction inventory"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PROJ-V2",
+          "label": "Acceleration consequences",
+          "purpose": "Show the acceleration components implied by the interaction audit without declaring final model eligibility.",
+          "visible_elements": [
+            "launched-object scene",
+            "post-release interaction inventory",
+            "gravity-only status",
+            "horizontal acceleration readout",
+            "vertical acceleration readout"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PROJ-V3",
+          "label": "Model decision",
+          "purpose": "Reveal the model-status gate after the interaction and acceleration evidence is visible.",
+          "visible_elements": [
+            "launched-object scene",
+            "post-release interaction inventory",
+            "gravity-only status",
+            "horizontal acceleration readout",
+            "vertical acceleration readout",
+            "model-status gate"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-PROJ-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
+        }
+      ]
+    }
+  ],
   "question_families": [
     {
       "id": "FAM-PHY-KIN-2D-PRACTICE",
@@ -3191,7 +3582,67 @@
         "check": "The fall time comes from vertical motion; changing only horizontal speed would change range but not the ideal fall time.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR"
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "difficult_move": 0,
+        "reasoning_route": [
+          {
+            "id": "R-KIN-LAUNCH-REPRESENT",
+            "kind": "REPRESENT",
+            "action": "Represent the horizontal and vertical histories in one declared frame with one shared elapsed time, placing the 20 m drop in the vertical component.",
+            "why_valid": "The component equations evolve independently but still describe one stone at one physical instant, so the known landing geometry belongs to y while time remains common.",
+            "inputs": [
+              "u_x=15 m/s",
+              "u_y=0",
+              "Delta y=-20 m",
+              "a_x=0",
+              "a_y=-10 m/s^2"
+            ],
+            "output": "Two component descriptions coupled by one shared event clock.",
+            "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+            "visual_stage_ref": "VIS-KIN-2D-SHARED-V2"
+          },
+          {
+            "id": "R-KIN-LAUNCH-EVENT",
+            "kind": "DECIDE",
+            "action": "Use the vertical ground-contact condition Delta y=-20 m to determine the flight time before calculating horizontal range or impact velocity.",
+            "why_valid": "Ground impact is defined by the vertical displacement, so the y equation identifies the event time; that one time then belongs to every component at impact.",
+            "inputs": [
+              "Delta y=-20 m",
+              "u_y=0",
+              "a_y=-10 m/s^2"
+            ],
+            "output": "t_event=2 s is the common impact time.",
+            "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+            "visual_stage_ref": "VIS-KIN-2D-EVENT-V2"
+          },
+          {
+            "id": "R-KIN-LAUNCH-REUSE",
+            "kind": "CONNECT",
+            "action": "Reuse t_event=2 s in the horizontal displacement and both velocity components.",
+            "why_valid": "Range and impact velocity must be reconstructed at the same physical event that the vertical equation identified.",
+            "inputs": [
+              "t_event=2 s",
+              "u_x=15 m/s",
+              "a_x=0",
+              "a_y=-10 m/s^2"
+            ],
+            "output": "Delta x=30 m, v_x=15 m/s and v_y=-20 m/s at impact.",
+            "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+            "visual_stage_ref": "VIS-KIN-2D-EVENT-V3"
+          },
+          {
+            "id": "R-KIN-LAUNCH-CHECK",
+            "kind": "VERIFY",
+            "action": "Check that the ideal fall time is set by vertical motion while horizontal speed changes the range but not the vertical landing event.",
+            "why_valid": "With a_x=0 and no drag, the vertical event equation contains no horizontal speed.",
+            "inputs": [
+              "vertical event equation",
+              "a_x=0"
+            ],
+            "output": "The result is consistent with independent components and one shared clock."
+          }
+        ],
+        "crux_move_ref": "R-KIN-LAUNCH-EVENT"
       },
       "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
       "secondary_capability_refs": [
@@ -3216,7 +3667,25 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "K2D3-6"
+      "repair_ref": "K2D3-6",
+      "scaffolds": [
+        {
+          "text": "Draw x and y as separate columns tied to one shared t, and place the 20 m drop only in the y column.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-LAUNCH-REPRESENT",
+          "visual_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "visual_stage_ref": "VIS-KIN-2D-SHARED-V1"
+        },
+        {
+          "text": "Name the physical condition that says the stone has reached the ground before solving for the event time.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-KIN-LAUNCH-EVENT",
+          "visual_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "visual_stage_ref": "VIS-KIN-2D-EVENT-V1"
+        }
+      ]
     },
     {
       "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
@@ -3583,7 +4052,65 @@
             "criterion": "Falls back to the general component constant-acceleration model.",
             "evidence_of": "Chooses the smallest valid parent model rather than inventing a new law."
           }
-        ]
+        ],
+        "difficult_move": 2,
+        "reasoning_route": [
+          {
+            "id": "R-KIN-TRANSFER-INTERACTIONS",
+            "kind": "REPRESENT",
+            "action": "Inventory the interactions and acceleration components that remain after release before assigning a named motion model.",
+            "why_valid": "Model validity follows from the retained post-release interactions, not from the fact that the object was launched or follows a curved path.",
+            "inputs": [
+              "horizontal rocket thrust remains active",
+              "a_x=2 m/s^2",
+              "a_y=-g"
+            ],
+            "output": "Post-release motion has nonzero horizontal acceleration and gravitational vertical acceleration.",
+            "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+            "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
+          },
+          {
+            "id": "R-KIN-TRANSFER-MODEL",
+            "kind": "DECIDE",
+            "action": "Reject the standard gravity-only projectile specialization because its defining horizontal-acceleration condition is violated.",
+            "why_valid": "The standard specialization requires gravity-only free flight and therefore a_x=0, while the active motor gives a_x=2 m/s^2.",
+            "inputs": [
+              "projectile condition a_x=0",
+              "actual a_x=2 m/s^2",
+              "active post-release thrust"
+            ],
+            "output": "The standard ideal projectile specialization is invalid for this interval.",
+            "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+            "visual_stage_ref": "VIS-KIN-2D-PROJ-V3"
+          },
+          {
+            "id": "R-KIN-TRANSFER-PARENT",
+            "kind": "CONNECT",
+            "action": "Use the parent two-dimensional constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as both components remain constant.",
+            "why_valid": "Rejecting a specialization does not discard the more general component model whose validity conditions are still satisfied.",
+            "inputs": [
+              "constant a_x=2 m/s^2",
+              "constant a_y=-g",
+              "one shared time"
+            ],
+            "output": "Use component constant-acceleration equations in x and y with one common clock.",
+            "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+            "visual_stage_ref": "VIS-KIN-2D-SHARED-V2"
+          },
+          {
+            "id": "R-KIN-TRANSFER-CHECK",
+            "kind": "VERIFY",
+            "action": "Check the model boundary by switching the motor off while keeping drag negligible.",
+            "why_valid": "Once the horizontal thrust ends, a_x returns to zero and gravity-only free flight licenses the standard projectile specialization from that later instant.",
+            "inputs": [
+              "motor off",
+              "drag negligible",
+              "gravity retained"
+            ],
+            "output": "The specialization becomes valid exactly when its defining interaction condition is restored."
+          }
+        ],
+        "crux_move_ref": "R-KIN-TRANSFER-MODEL"
       },
       "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
       "secondary_capability_refs": [
@@ -3618,8 +4145,19 @@
         "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
-        ]
-      }
+        ],
+        "protected_move_ref": "R-KIN-TRANSFER-MODEL"
+      },
+      "scaffolds": [
+        {
+          "text": "List the post-release interactions and the acceleration components they imply before you name any motion model.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-TRANSFER-INTERACTIONS",
+          "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+          "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
+        }
+      ]
     },
     {
       "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
