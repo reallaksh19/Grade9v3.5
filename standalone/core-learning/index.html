@@ -1,24 +1,4 @@
-#!/usr/bin/env python3
-"""Generate public and standalone Core learner hosts from one neutral template."""
-from __future__ import annotations
-
-import argparse
-from pathlib import Path
-
-REPO = Path(__file__).resolve().parents[2]
-
-HOSTS = {
-    "public/core-learning/index.html": {
-        "data_src": "./data.js",
-        "runtime_base": "../js/core-learning",
-    },
-    "standalone/core-learning/index.html": {
-        "data_src": "../../public/core-learning/data.js",
-        "runtime_base": "../../public/js/core-learning",
-    },
-}
-
-TEMPLATE = r'''<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -56,11 +36,11 @@ TEMPLATE = r'''<!doctype html>
     <core-learning-page id="learner"></core-learning-page>
   </main>
 
-  <script src="__CORE_DATA_SRC__"></script>
+  <script src="../../public/core-learning/data.js"></script>
   <script type="module">
-    import "__CORE_RUNTIME_BASE__/semantic-workbench.mjs";
-    import "__CORE_RUNTIME_BASE__/core-learning-page.mjs";
-    import { mountCoreLearningPage } from "__CORE_RUNTIME_BASE__/core-learning-host.mjs";
+    import "../../public/js/core-learning/semantic-workbench.mjs";
+    import "../../public/js/core-learning/core-learning-page.mjs";
+    import { mountCoreLearningPage } from "../../public/js/core-learning/core-learning-host.mjs";
 
     const data = window.GRADE9V3_CORE;
     const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
@@ -137,49 +117,3 @@ TEMPLATE = r'''<!doctype html>
   </script>
 </body>
 </html>
-'''
-
-
-def render_host(*, data_src: str, runtime_base: str) -> bytes:
-    rendered = TEMPLATE.replace("__CORE_DATA_SRC__", data_src).replace("__CORE_RUNTIME_BASE__", runtime_base)
-    if "__CORE_DATA_SRC__" in rendered or "__CORE_RUNTIME_BASE__" in rendered:
-        raise ValueError("CORE_LEARNING_HOST_TEMPLATE_UNRESOLVED")
-    return rendered.encode("utf-8")
-
-
-def render() -> dict[str, bytes]:
-    return {
-        relative: render_host(data_src=config["data_src"], runtime_base=config["runtime_base"])
-        for relative, config in HOSTS.items()
-    }
-
-
-def write() -> dict[str, bytes]:
-    rendered = render()
-    for relative, content in rendered.items():
-        path = REPO / relative
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(content)
-    return rendered
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate or verify Core learner hosts")
-    parser.add_argument("--check", action="store_true")
-    args = parser.parse_args()
-    rendered = render()
-    if args.check:
-        stale = [
-            relative for relative, content in rendered.items()
-            if not (REPO / relative).is_file() or (REPO / relative).read_bytes() != content
-        ]
-        for relative in stale:
-            print(f"generated file is stale: {relative}")
-        return 1 if stale else 0
-    write()
-    for relative in sorted(rendered): print(f"wrote {relative}")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

@@ -1,72 +1,67 @@
 #!/usr/bin/env python3
-"""Package precompiled CoreProjection rows for the static learner proof.
-
-Issue #175 owns browser/runtime composition, not academic compilation. Until the
-#173/#174 provider is landed on this branch, this generator deliberately consumes
-only the frozen precompiled projection fixture used by the learner-shell contract.
-It must not read subject libraries, matrices, teaching routes or raw Topic Atlas
-records to reconstruct Core semantics.
-"""
+"""Generate learner CoreProjection rows from canonical compiler output."""
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-PROVIDER_FIXTURE = REPO / "tests" / "fixtures" / "workbench" / "core-learning-projections.json"
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from Shared.contracts import ContractError
+from Shared.library.compile_inputs import compile_bucket
+from Shared.library.resolve import build_index, load_packages
+from Shared.tools.core_learning_projection_adapter import adapt_compiled_bucket
+
 OUT = REPO / "public" / "core-learning" / "data.js"
 
 
-class CoreLearningDataError(ValueError):
-    pass
+def subjects() -> list[str]:
+    return sorted(p.parent.parent.name for p in REPO.glob("*/adapter/CoreContracts.json"))
 
 
-def _precompiled_rows(path: Path = PROVIDER_FIXTURE) -> list[dict]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
-    rows = payload.get("projections")
-    if not isinstance(rows, list) or not rows:
-        raise CoreLearningDataError("CORE_LEARNING_PRECOMPILED_PROJECTIONS_REQUIRED")
-
-    normalized = []
-    seen = set()
-    for index, projection in enumerate(rows):
-        if not isinstance(projection, dict):
-            raise CoreLearningDataError(
-                f"CORE_LEARNING_PRECOMPILED_PROJECTION_INVALID: {index}"
+def _subject_rows(subject: str) -> list[dict]:
+    paths = sorted((REPO / subject / "library").glob("*.json"))
+    if not paths:
+        return []
+    records = build_index(load_packages(paths))
+    bucket_ids = sorted(
+        row["id"]
+        for row in records.values()
+        if isinstance(row, dict) and row.get("_collection") == "buckets"
+    )
+    rows = []
+    for bucket_id in bucket_ids:
+        try:
+            compiled = compile_bucket(
+                records,
+                bucket_id,
+                topic_id=f"CORE-LEARNER-{bucket_id}",
+                title=records[bucket_id]["title"],
+                subject=subject,
+                practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
             )
-        projection_id = projection.get("id")
-        contract_version = projection.get("contract_version")
-        core = projection.get("core")
-        if (
-            not isinstance(projection_id, str) or not projection_id.strip()
-            or contract_version != "1.0"
-            or core not in {"CORE1A", "CORE1B", "CORE2A", "CORE2B"}
-        ):
-            raise CoreLearningDataError(
-                f"CORE_LEARNING_PRECOMPILED_PROJECTION_INVALID: {index}"
-            )
-        if projection_id in seen:
-            raise CoreLearningDataError(
-                f"CORE_LEARNING_PRECOMPILED_PROJECTION_DUPLICATE: {projection_id}"
-            )
-        seen.add(projection_id)
-        normalized.append({
-            "id": f"fixture:{projection_id}",
-            "subject": "Fixture",
-            "source_ref": projection_id,
-            "projection": projection,
-            "scene_ref": None,
-            "adapter_ref": None,
-            "injection_refs": [],
-        })
-    return normalized
+        except ContractError:
+            continue
+        rows.extend(adapt_compiled_bucket(compiled, records, subject=subject))
+    return rows
 
 
 def build() -> dict:
+    rows = []
+    for subject in subjects():
+        rows.extend(_subject_rows(subject))
+    rows.sort(key=lambda row: row["id"])
     return {
         "generated_by": "Shared/tools/build_core_learning_data.py",
-        "provider_status": "FROZEN_PRECOMPILED_FIXTURE",
-        "core_projections": _precompiled_rows(),
+        "provider_status": "PRODUCTION_COMPILED_CANONICAL",
+        "provider": {
+            "mode": "CANONICAL_LIBRARY_TO_COMPILE_BUCKET_TO_CORE_PROJECTION",
+            "contract_version": "1.0",
+        },
+        "core_projections": rows,
     }
 
 
@@ -94,7 +89,7 @@ def main() -> int:
     payload = write()
     print(
         f"wrote {OUT.relative_to(REPO)}: "
-        f"{len(payload['core_projections'])} precompiled fixture projection(s)"
+        f"{len(payload['core_projections'])} canonical compiler projection(s)"
     )
     return 0
 
