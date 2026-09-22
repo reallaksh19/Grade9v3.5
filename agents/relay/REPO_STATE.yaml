@@ -48,12 +48,12 @@
         "agent_instance_id": "core173-local-agent-20260921"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-019",
-        "path": "agents/relay/certifications/discovery/DISC-TA-019.yaml"
+        "id": "DISC-TA-021",
+        "path": "agents/relay/certifications/discovery/DISC-TA-021.yaml"
       },
       "certification": {
-        "id": "TC-TA-019",
-        "path": "agents/relay/certifications/takeover/TC-TA-019.yaml"
+        "id": "TC-TA-020",
+        "path": "agents/relay/certifications/takeover/TC-TA-020.yaml"
       }
     }
   ],
@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run the live material-write gate for core173-local-agent-20260921; if it passes, execute STEP-TA10-001 contract/schema/falsifier work only."
+      "next_action": "Run exact-head V2.5 material-write readiness against DRIFT-TA-008 and the requalified candidate, then complete STEP-TA10-004 validation/quality/checkpoint closure."
     },
     "quality": {
       "state": "CLEAR",
@@ -153,9 +153,10 @@
     "projection_ready": false,
     "handover_ready": false,
     "reasons": [
-      "CP-TA-009 transfers serial custody from the unexecuted exit-readiness package to WP-TA-108 / EP-TA-010.",
-      "DISC-TA-019, QUAL-TA-009 and TC-TA-019 provide candidate-specific repository-only takeover evidence for core173-local-agent-20260921.",
-      "Issue #173 projection remains externally incomplete until the current generation is published/read back; projection readiness is independent of candidate material-write readiness."
+      "CP-TA-009 remains the predecessor baton for WP-TA-108 / EP-TA-010.",
+      "DRIFT-TA-008 classifies the main movement to 1b549c3 as DISJOINT from Core projection semantics and preserves WRITE authority.",
+      "DISC-TA-021, QSET-TA-012, QUAL-TA-011 and TC-TA-020 rebind core173-local-agent-20260921 to the drift-aware EP-TA-010 digest.",
+      "Issue #173 projection and final checkpoint remain pending exact-head validation and quality closure."
     ]
   },
   "chat_context_required": false

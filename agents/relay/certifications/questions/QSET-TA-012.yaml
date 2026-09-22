@@ -1,0 +1,173 @@
+{
+  "schema_version": "relay-v2.5-question-set",
+  "id": "QSET-TA-012",
+  "route": {
+    "route_key": "SERIAL:EP-TA-010",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-010",
+    "ep_id": "EP-TA-010",
+    "ep_path": "agents/relay/execution-packages/EP-TA-010.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null,
+    "roadmap_revision": "RM-0010",
+    "work_package": "WP-TA-108",
+    "ep_contract_digest": "sha256:96e6960b15b1999d66b33155a799233f23e4723375dac2c6ff02eb2b36608528"
+  },
+  "boundary": {
+    "trigger": "MATERIAL_QUALIFICATION_BOUNDARY_CHANGED",
+    "from_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "to_phase": "PHASE-TAKEOVER-RECONCILIATION",
+    "changed_dimensions": [
+      "PRODUCTION_PATH",
+      "ENGINEERING_AUTHORITY",
+      "PROTECTED_INVARIANT",
+      "VERIFICATION_ORACLE"
+    ],
+    "basis": [
+      "WP-TA-108 changes Shared schema/compiler/publication semantics and protected source-custody/application-disclosure invariants relative to EP-TA-009.",
+      "The Owner explicitly pinned Common engineering-pr-delivery-v2.5 at 1bc4eca6eac9d75900ddee1c338da4b44817eeec.",
+      "No predecessor direct-execution exception applies to EP-TA-010."
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "focus": "PRODUCTION_PATH",
+      "anchors": [
+        "WP-TA-108",
+        "INPUT-TA10-001",
+        "INPUT-TA10-003"
+      ],
+      "prompt": "Trace one real Motion-in-2D slice from canonical microtopic/question records through package validation, compile_inputs, publication_host validation and learner-facing rendering. Name the production entrypoint, state/academic owner, authority source and downstream consumer; separate live main behavior from draft PR #176.",
+      "required_output_keys": [
+        "production_entrypoint",
+        "state_owner",
+        "authority_source",
+        "downstream_consumer"
+      ],
+      "evidence_required": true,
+      "deterministic_expected": {
+        "production_entrypoint": "Shared/library package records -> intake/check -> compile_inputs.compile_bucket -> publication_host inputs validation -> publication_host compose learner HTML",
+        "state_owner": "Canonical academic truth remains in subject library records; Shared owns validation/projection/rendering semantics, not a second academic database",
+        "authority_source": "Current main roles/schema/compiler/runtime plus issue #173; PR #176 is candidate interface evidence only",
+        "downstream_consumer": "The six Core learner products/static publication and later webpage adapter"
+      }
+    },
+    {
+      "id": "Q2",
+      "focus": "ENGINEERING_PROBLEM",
+      "anchors": [
+        "BENCH-TA10-001",
+        "BENCH-TA10-002",
+        "BENCH-TA10-004"
+      ],
+      "prompt": "Reconstruct the minimum design that preserves one conceptual truth and one application reasoning truth across the six products while fixing current source-custody loss and avoiding a second route/visual ontology.",
+      "required_output_keys": [
+        "reconstruction_steps",
+        "intermediate_result",
+        "expected_result"
+      ],
+      "evidence_required": true,
+      "reconstruction_mode": "DESIGN_REASONING",
+      "payload": {
+        "source": "Issue #173, current main audit facts, PR #176 candidate field names, Motion-in-2D proof records"
+      },
+      "deterministic_expected": {
+        "reconstruction_steps": [
+          "Keep microtopic.inferential_jump and teaching_path IDs as concept-side truth.",
+          "Add authored stable application reasoning moves and a crux reference with legacy prose/index fallback.",
+          "Keep question.hints as source/question custody and add separate authored pedagogical scaffolds targeting reasoning moves.",
+          "Bind changed Core2B demand to a protected reasoning move and reuse existing canonical representation/reveal-stage refs.",
+          "Compile these objects losslessly, preserving subparts/options and transfer exposure semantics.",
+          "Render Core1B attempt-before-reveal and make Core2A crux/Core2B protection visible without creating academic truth in UI code."
+        ],
+        "intermediate_result": "One subject-neutral projection contract whose concept/application identities are canonical and whose presentation policy is derived.",
+        "expected_result": "Six products differ by learner work/disclosure while sharing academic truth; legacy records remain valid and source custody is lossless."
+      }
+    },
+    {
+      "id": "Q3",
+      "focus": "BOUNDARIES_INVARIANTS",
+      "anchors": [
+        "AC-TA10-001",
+        "AC-TA10-002",
+        "AC-TA10-003"
+      ],
+      "prompt": "State the intended mutation, protected invariants and exact falsifier for the Core projection change.",
+      "required_output_keys": [
+        "mutation_effect",
+        "protected_invariant",
+        "falsifier"
+      ],
+      "evidence_required": true,
+      "mutation": {
+        "condition": "Introduce structured application/crux/scaffold/protection projection and lossless compiler/render behavior.",
+        "protected_invariant": "Do not duplicate canonical academic truth, mutate source custody, collapse transfer into fewer hints, or turn learner routing/visual state into mastery truth.",
+        "falsifier": "Any unresolved crux/scaffold ref passes; any canonical subpart/option is lost while validation passes; Core2B can be created by support reduction alone; or the renderer receives a crux yet renders it indistinguishably."
+      },
+      "deterministic_expected": {
+        "mutation_effect": "Add stable authored reasoning/crux/scaffold/protected-decision identity plus lossless projection/rendering, preserving legacy fallback.",
+        "protected_invariant": "One academic truth per concept/application, exact source custody, Core1B attempt-before-reveal, genuine changed-demand transfer, existing visual-stage/workbench ownership and no mastery store.",
+        "falsifier": "A bad ref or source/pedagogy conflation is admitted, source fields are dropped without failure, Core2B collapses to Core2A with fewer hints, or learner-facing output cannot distinguish an authored crux/protected decision."
+      }
+    },
+    {
+      "id": "Q4",
+      "focus": "VERIFICATION",
+      "anchors": [
+        "BENCH-TA10-001",
+        "BENCH-TA10-002",
+        "BENCH-TA10-003",
+        "BENCH-TA10-004"
+      ],
+      "prompt": "Define independent verification for the slice and the exact predicted result.",
+      "required_output_keys": [
+        "independent_method",
+        "predicted_result",
+        "tolerance_or_exactness"
+      ],
+      "evidence_required": true,
+      "oracle_refs": [
+        "BENCH-TA10-001",
+        "BENCH-TA10-002",
+        "BENCH-TA10-003",
+        "BENCH-TA10-004"
+      ],
+      "independence_requirement": "Use existing canonical Motion-in-2D records, legacy committed publication fixtures, role-prescribed source fields and repository guardrails rather than assertions embedded only in the new implementation.",
+      "deterministic_expected": {
+        "independent_method": "Run bad-reference/provenance/anti-collapse/source-fidelity tests, compile/render the real Motion-in-2D witness, re-run legacy relative-motion publication regression, inspect protected-domain diff, then run full guardrails and exact-head V2.5 validators.",
+        "predicted_result": "Shared concept truth projects to Core1A/Core1B; familiar/changed application projects to Core2A/Core2B with crux/protection; canonical source fields survive; legacy fixtures still pass; no unauthorized Physics/workbench/learner-state semantics change.",
+        "tolerance_or_exactness": "Exact ID/ref resolution and source-field equality; zero unauthorized protected-domain semantic edits; required test suites must pass."
+      }
+    },
+    {
+      "id": "Q5",
+      "focus": "FIRST_SAFE_SLICE",
+      "anchors": [
+        "STEP-TA10-001",
+        "AC-TA10-001"
+      ],
+      "prompt": "Name the first bounded material change after certification, including before/after observations and the exact verification required before compiler/render work.",
+      "required_output_keys": [
+        "first_change",
+        "predicted_before",
+        "predicted_after",
+        "verification"
+      ],
+      "evidence_required": true,
+      "step_refs": [
+        "STEP-TA10-001"
+      ],
+      "deterministic_expected": {
+        "first_change": "Adopt/normalize the #176 structured field contract into role/schema definitions and add falsifier/backward-compatibility tests only; do not change compiler/rendering yet.",
+        "predicted_before": "Current main has prose reasoning[], optional positional difficult_move and one hints[] channel; stable application crux/scaffold/protected-decision fields are absent.",
+        "predicted_after": "Schema/roles can express stable reasoning moves, crux, separate scaffolds and protected transfer decisions while all legacy current-main records still validate.",
+        "verification": "TEST-TA10-001 plus BENCH-TA10-001/BENCH-TA10-003 must pass before STEP-TA10-002."
+      }
+    }
+  ],
+  "prepared_by": {
+    "agent_instance_id": "core173-local-agent-20260921"
+  }
+}

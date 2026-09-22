@@ -1,0 +1,25 @@
+{
+  "schema_version": "relay-v2.5-drift",
+  "from_base": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+  "to_base": "1b549c3f6547cd5125546e3cb9699efb484f9b28",
+  "classification": "DISJOINT",
+  "changed_paths": [
+    "Shared/workbench/semantic-workbench.mjs",
+    "agents/relay/roadmap/owner-decisions/ODR-0008-ISSUE162-PR180-MERGE-AUTHORIZATION.yaml",
+    "docs/architecture-manifest.json",
+    "tests/workbench_browser.test.mjs",
+    "tests/workbench_runtime.test.mjs"
+  ],
+  "affected_scope": [],
+  "rationale": "Main advanced through PR #180, which changes only pointer/click suppression behavior in the generic semantic Workbench and its tests plus generated/coordination files. EP-TA-010 owns Shared Core role/schema/compiler/publication projection semantics and protects the Workbench from becoming academic authority. PR #180 does not change academic references, Core projection semantics, learner evidence/mastery ownership, support routing, representation/reveal-stage ownership, or the Workbench academic-authority boundary; therefore the base drift is behaviorally disjoint from WP-TA-108.",
+  "qualification": {
+    "basis": [
+      "EP-TA-010 scope and protected invariants",
+      "PR #180 / main@1b549c3 diff",
+      "Shared/workbench remains generic interaction runtime; no academic Core truth is introduced there",
+      "Common V2.5 DISJOINT drift rule"
+    ],
+    "confirmation": "NOT_REQUIRED",
+    "confirmation_basis": []
+  }
+}

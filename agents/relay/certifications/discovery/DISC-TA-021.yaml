@@ -1,0 +1,144 @@
+{
+  "schema_version": "relay-v2.5-discovery",
+  "id": "DISC-TA-021",
+  "candidate": {
+    "agent_instance_id": "core173-local-agent-20260921"
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-010",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-010",
+    "ep_id": "EP-TA-010",
+    "ep_path": "agents/relay/execution-packages/EP-TA-010.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0010",
+    "relay_protocol_basis_ref": "reallaksh19/Common@1bc4eca6eac9d75900ddee1c338da4b44817eeec:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "ep_contract_digest": "sha256:96e6960b15b1999d66b33155a799233f23e4723375dac2c6ff02eb2b36608528",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-009",
+      "path": "agents/relay/checkpoints/CP-TA-009.yaml",
+      "digest": "sha256:daa5315df017e1f9019df02e43dd4e598dc21ddee8b0b0288e93686268b0a807"
+    }
+  },
+  "steps": [
+    {
+      "id": "DSTEP-TA10-001",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Live role invariant map",
+          "value": "Core1A/Core1B and Core2A/Core2B remain projections of shared academic truth; the branch now implements stable application move/crux/scaffold/protected-decision fields while preserving legacy fallback, and no main drift changed those ownership boundaries.",
+          "basis": [
+            "Shared/roles/**",
+            "Shared/library/package.schema.json",
+            "PR #180 main drift"
+          ]
+        },
+        {
+          "name": "Candidate-only contract field map",
+          "value": "The #176 candidate field names have now been selectively adopted on the execution branch under EP-TA-010; they remain absent from current main and are still governed as projection fields rather than a second academic ontology.",
+          "basis": [
+            "PR #176",
+            "EP-TA-010 branch implementation",
+            "main@1b549c3"
+          ]
+        }
+      ],
+      "basis": [
+        "Current execution branch readback",
+        "Current main readback",
+        "DRIFT-TA-008 analysis"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-002",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Current data-flow map",
+          "value": "Subject library records are validated by intake, compiled losslessly into source and Core question blocks, revalidated at the publication boundary, and rendered into learner HTML; Core1B keeps prompt-before-ELICITED_REVEAL and Core2A/Core2B now consume structured application moves without moving academic truth into presentation code.",
+          "basis": [
+            "Shared/library/intake.py",
+            "Shared/library/compile_inputs.py",
+            "Shared/publication_host/inputs.py",
+            "Shared/publication_host/compose.py"
+          ]
+        },
+        {
+          "name": "Lossy or weakly enforced boundaries",
+          "value": "The previously observed subpart/option/source-fidelity and NEW_TRANSFER downgrades are corrected on the branch. Remaining compatibility is explicit: legacy reasoning[]/difficult_move/hints remain valid when structured fields are absent, while authored structured refs fail closed when present.",
+          "basis": [
+            "tests/test_core_projection_contract.py",
+            "tests/test_core_projection_pipeline.py",
+            "Shared/library/compile_inputs.py"
+          ]
+        }
+      ],
+      "basis": [
+        "Current branch implementation and falsifiers"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-003",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Gold concept/question IDs",
+          "value": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS; Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04; Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04.",
+          "basis": [
+            "Physics/library/phy-kin-2d-motion.v1.json"
+          ]
+        },
+        {
+          "name": "Existing anti-collapse and transfer falsifiers",
+          "value": "The branch now includes real Motion-in-2D end-to-end assertions for Core1A/Core1B shared concept identity, Core2A familiar crux, Core2B protected model-choice transfer, plus source-fidelity, dangling-ref, disclosure and legacy compatibility falsifiers.",
+          "basis": [
+            "tests/test_core_projection_pipeline.py",
+            "tests/test_core_projection_contract.py",
+            "tests/test_grade9_motion2d_agent_a_atlas.py"
+          ]
+        }
+      ],
+      "basis": [
+        "Current canonical Motion-in-2D package and execution-branch tests"
+      ]
+    },
+    {
+      "id": "DSTEP-TA10-004",
+      "status": "PASS",
+      "outputs": [
+        {
+          "name": "Exact branch/head/base",
+          "value": "Branch fix/issue-173-core-projections-v25 at drift-requalification parent 05a61219e79d4952176d1747a36dd58fc214c923; live main is 1b549c3f6547cd5125546e3cb9699efb484f9b28 and DRIFT-TA-008 classifies the movement from 411e8dc0108347933792fbbd5a6be8dfa59d655e as DISJOINT.",
+          "basis": [
+            "GitHub branch readback",
+            "GitHub main readback",
+            "agents/relay/drift/DRIFT-TA-008.yaml"
+          ]
+        },
+        {
+          "name": "Current frontier/protocol basis",
+          "value": "RM-0010 / WP-TA-108 / EP-TA-010 remains the sole serial frontier. Common main and the repository protocol pin remain 1bc4eca6eac9d75900ddee1c338da4b44817eeec; the drift receipt changes no qualification boundary beyond Git-basis reconciliation.",
+          "basis": [
+            "agents/relay/REPO_STATE.yaml",
+            "agents/relay/roadmap/OVERALL_ROADMAP.yaml",
+            "Common main readback"
+          ]
+        }
+      ],
+      "basis": [
+        "Current branch/main/protocol readback"
+      ]
+    }
+  ],
+  "result": "PASS",
+  "conversation_context_used": false
+}
