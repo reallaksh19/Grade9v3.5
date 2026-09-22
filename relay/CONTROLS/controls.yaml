@@ -68,7 +68,7 @@ controls:
     - PR 179 merged at bbd796e4c7de7e5eac80e973357ee79c9bb72df9.
 - id: CTRL-OWNER-MERGE-ISS174-MOTION-20260922
   kind: OWNER
-  state: OPEN
+  state: RESOLVED
   source:
     type: OWNER
     ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
@@ -78,10 +78,11 @@ controls:
   - MERGE
   resolution:
     condition: PR 187 is merged or the Owner revokes this authority.
-    evidence: []
+    evidence:
+    - PR 187 merged at 47895822a3f4c63b4441f740328ca7e01a595bfb.
 - id: CTRL-OWNER-MERGE-ISS175-PRODUCTION-20260922
   kind: OWNER
-  state: OPEN
+  state: RESOLVED
   source:
     type: OWNER
     ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
@@ -91,4 +92,18 @@ controls:
   - MERGE
   resolution:
     condition: PR 178 is merged or the Owner revokes this authority.
+    evidence:
+    - PR 178 merged at 7b142cf4e05fc4403734ed75dd04cb98a6dfc3b9.
+- id: CTRL-OWNER-MERGE-ISS163-PORTABLE-20260922
+  kind: OWNER
+  state: OPEN
+  source:
+    type: OWNER
+    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
+  condition: Owner explicitly authorizes merging the current V3-governed Issue 163 delivery when GitHub and V3 report it mergeable.
+  blocks: []
+  permits:
+  - MERGE
+  resolution:
+    condition: PR 192 is merged or the Owner revokes this authority.
     evidence: []
