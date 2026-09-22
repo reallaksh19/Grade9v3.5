@@ -1,0 +1,79 @@
+{
+  "schema_version": "relay-v2.5-delivery-observation",
+  "id": "DOBS-PR177-RM0010",
+  "provider": "GITHUB",
+  "repository": "reallaksh19/Grade9V3",
+  "vehicle": {
+    "kind": "PULL_REQUEST",
+    "number": 177,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/177",
+    "lifecycle": "DRAFT",
+    "head": {
+      "ref": "fix/issue-173-core-projections-v25",
+      "sha": "a283454fece94bace1175a0ef2247d3216db62cf"
+    },
+    "base": {
+      "ref": "main",
+      "sha": "1b549c3f6547cd5125546e3cb9699efb484f9b28"
+    }
+  },
+  "mergeability": {
+    "state": "MERGEABLE"
+  },
+  "checks": {
+    "state": "PASS",
+    "head_sha": "a283454fece94bace1175a0ef2247d3216db62cf",
+    "required": [
+      "guardrails",
+      "v25-relay"
+    ],
+    "observations": [
+      {
+        "name": "guardrails",
+        "run_id": 35675911636,
+        "status": "PASS",
+        "basis": "Push guardrails run 35675911636 completed/success on exact head a283454fece94bace1175a0ef2247d3216db62cf; generated-artifact integrity, full repository tests and JSON validation passed."
+      },
+      {
+        "name": "v25-relay",
+        "run_id": 35675911659,
+        "status": "PASS",
+        "basis": "Push v25-relay run 35675911659 completed/success on exact head a283454fece94bace1175a0ef2247d3216db62cf using current Common/main 85e59a93d469035e7924dfbbb1f5918adc203647; relay is IDLE and material-write authority is NONE."
+      }
+    ]
+  },
+  "review": {
+    "state": "CLEAR",
+    "unresolved_threads": 0,
+    "change_requests": 0
+  },
+  "description_contract": {
+    "marker": "<!-- relay-pr-correlation:v1 -->",
+    "marker_present": true,
+    "body_digest": "sha256:719d5c5d059778299d1d3988b2f9c6dcd1fed583ac99989310770f8b3bda211d",
+    "correlations": [
+      {
+        "issue_node": "ISSUE-173",
+        "issue_number": 173,
+        "ep_id": "EP-TA-010",
+        "ep_path": "agents/relay/execution-packages/EP-TA-010.yaml",
+        "work_package": "WP-TA-108",
+        "relationship": "IMPLEMENTS",
+        "meaning": "EP-TA-010 implements the governed six-Core projection contract for WP-TA-108 owned by GitHub issue #173."
+      }
+    ]
+  },
+  "readback_basis": [
+    "GitHub provider readback for draft PR #177 at head a283454fece94bace1175a0ef2247d3216db62cf and base 1b549c3f6547cd5125546e3cb9699efb484f9b28; mergeable=true.",
+    "PR #177 description contains relay-pr-correlation:v1 and the Issue #173 / EP-TA-010 / WP-TA-108 IMPLEMENTS correlation.",
+    "PR #177 description now records the read-only successor audit: PR #170 needs a bounded demand-class join and must separate authored transfer availability from transition-requiredness after #177 delivery.",
+    "PR #170 remains draft and its description explicitly orders it after PR #177.",
+    "GitHub review-thread and review-submission readback found zero unresolved threads/change requests at the last checked provider observation.",
+    "guardrails run 35675911636 completed/success on the observed head.",
+    "v25-relay run 35675911659 completed/success on the observed head using current Common/main 85e59a93d469035e7924dfbbb1f5918adc203647.",
+    "CP-TA-010 / RM-0011 record WP-TA-108 complete at 93/100 programme progress with no active material EP.",
+    "Issue #173 final checkpoint comment is published and provider-read back; projection remains PUBLISHED_UNCONFIRMED because current Common/main still lacks faithful verified-predecessor supersession.",
+    "Common PR #415 is open, mergeable and green; read-only audit confirms it implements the exact verified-predecessor to verified-successor lifecycle and has zero file overlap with later Common/main changes.",
+    "PR #177 remains draft; no merge authorization is recorded by this observation."
+  ]
+}

@@ -15,6 +15,8 @@ PLACEMENTS = {"TEACHING", "ANSWER", "ELICITED_REVEAL"}
 # How far a hint goes. Declared rather than inferred, so a hint that hands over
 # the answer before the last rung is refusable rather than arguable.
 REVEALS = {"CONCEPT", "METHOD", "ANSWER"}
+REASONING_KINDS = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM", "VERIFY"}
+SCAFFOLD_KINDS = {"REPRESENT", "CONNECT", "EXECUTE"}
 # Read from the shared vocabulary, not copied. The inline set was the second place this
 # enum lived, and a fifth value added to one would not have reached the other.
 PURPOSES = {p["id"] for p in
@@ -71,16 +73,19 @@ def _read_sources(baseline, root):
             require("value" in atom, "ATOM_VALUE_REQUIRED")
             atoms[atom["id"]] = {**atom, "source_id": ref["id"]}
         for q in source.get("questions", []):
-            require(set(q) <= {"id", "original_number", "stem", "subparts", "options", "conditions", "verification"},
+            require(set(q) <= {"id", "original_number", "stem", "subparts", "options",
+                               "conditions", "source_refs", "figure_refs", "hints", "verification"},
                     "SOURCE_QUESTION_FIELDS_UNSUPPORTED", q.get("id", ""))
             key = (ref["id"], q["id"])
             require(key not in questions, "SOURCE_QUESTION_COLLISION")
             text(q.get("original_number"), "ORIGINAL_NUMBER_REQUIRED")
             text(q.get("stem"), "SOURCE_STEM_REQUIRED")
-            for field in ("subparts", "options", "conditions"):
+            for field in ("subparts", "options", "conditions", "source_refs", "figure_refs"):
                 require(isinstance(q.get(field, []), list), "SOURCE_QUESTION_LIST_INVALID")
                 for value in q.get(field, []):
                     text(value, "SOURCE_QUESTION_FIELD_EMPTY")
+            if "hints" in q:
+                require(isinstance(q["hints"], list), "SOURCE_QUESTION_LIST_INVALID", "hints")
             questions[key] = q
     require(bool(sources) and bool(atoms), "SOURCE_INVENTORY_EMPTY")
     return sources, atoms, questions
@@ -163,6 +168,67 @@ def _unit(ctx, core, unit):
                     "REVEAL_PROMPT_NOT_READABLE", prompt)
 
 
+
+def _structured_application(block, answer):
+    """Validate structured application semantics at the publication boundary.
+
+    Library intake is the authoring gate, but publication inputs may be assembled by
+    other governed producers. The renderer therefore receives only internally coherent
+    move/scaffold/protection references rather than trusting a prior compiler run.
+    """
+    route = answer.get("reasoning_route")
+    crux = answer.get("crux_move_ref")
+    scaffolds = block.get("scaffolds", [])
+    transfer = block.get("transfer") or {}
+    protected = transfer.get("protected_move_ref")
+
+    if route is None and crux is None and not scaffolds and protected is None:
+        return
+
+    require(isinstance(route, list) and bool(route), "REASONING_ROUTE_REQUIRED")
+    moves = {}
+    for position, move in enumerate(route):
+        require(isinstance(move, dict), "REASONING_MOVE_INVALID", str(position))
+        move_id = text(move.get("id"), "REASONING_MOVE_ID_REQUIRED")
+        require(move_id not in moves, "REASONING_MOVE_ID_COLLISION", move_id)
+        require(move.get("kind") in REASONING_KINDS, "REASONING_MOVE_KIND_UNSUPPORTED",
+                str(move.get("kind")))
+        text(move.get("action"), "REASONING_MOVE_ACTION_REQUIRED")
+        text(move.get("why_valid"), "REASONING_MOVE_JUSTIFICATION_REQUIRED")
+        text(move.get("output"), "REASONING_MOVE_OUTPUT_REQUIRED")
+        inputs = move.get("inputs")
+        require(isinstance(inputs, list), "REASONING_MOVE_INPUTS_INVALID", move_id)
+        for value in inputs:
+            text(value, "REASONING_MOVE_INPUT_EMPTY")
+        rep, stage = move.get("representation_ref"), move.get("visual_stage_ref")
+        require(bool(rep) == bool(stage), "REASONING_VISUAL_PAIR_INCOMPLETE", move_id)
+        moves[move_id] = move
+
+    crux = text(crux, "CRUX_MOVE_REQUIRED")
+    require(crux in moves, "CRUX_MOVE_UNKNOWN", crux)
+    require(moves[crux]["kind"] == "DECIDE", "CRUX_MOVE_NOT_DECISION", crux)
+
+    require(isinstance(scaffolds, list), "SCAFFOLDS_INVALID")
+    for position, scaffold in enumerate(scaffolds):
+        require(isinstance(scaffold, dict), "SCAFFOLD_INVALID", str(position))
+        text(scaffold.get("text"), "SCAFFOLD_TEXT_REQUIRED")
+        require(scaffold.get("support_kind") in SCAFFOLD_KINDS,
+                "SCAFFOLD_KIND_UNSUPPORTED", str(scaffold.get("support_kind")))
+        require(scaffold.get("reveals") in REVEALS,
+                "SCAFFOLD_REVEAL_UNDECLARED", str(scaffold.get("reveals")))
+        target = text(scaffold.get("supports_move_ref"), "SCAFFOLD_MOVE_REQUIRED")
+        require(target in moves, "SCAFFOLD_MOVE_UNKNOWN", target)
+        visual, stage = scaffold.get("visual_ref"), scaffold.get("visual_stage_ref")
+        require(bool(visual) == bool(stage), "SCAFFOLD_VISUAL_PAIR_INCOMPLETE", str(position))
+
+    if protected is not None:
+        protected = text(protected, "PROTECTED_MOVE_REQUIRED")
+        require(protected in moves, "PROTECTED_MOVE_UNKNOWN", protected)
+        require(moves[protected]["kind"] == "DECIDE", "PROTECTED_MOVE_NOT_DECISION", protected)
+        require(all(s.get("supports_move_ref") != protected for s in scaffolds),
+                "PROTECTED_MOVE_DISCLOSED_BY_SCAFFOLD", protected)
+
+
 def _question(ctx, block):
     key = (block["source_id"], block["source_question_id"])
     require(key in ctx["questions"], "QUESTION_SOURCE_UNKNOWN")
@@ -171,7 +237,14 @@ def _question(ctx, block):
     require(block.get("original_number") == original["original_number"], "SOURCE_NUMBER_CHANGED")
     for field in ("subparts", "options", "conditions"):
         require(block.get(field, []) == original.get(field, []), "SOURCE_QUESTION_FIELD_CHANGED", field)
+    # Legacy frozen source files predate these custody fields. Newly compiled library
+    # sources carry them, so compare whenever the source projection actually owns them.
+    for field in ("source_refs", "figure_refs", "hints"):
+        if field in original:
+            require(block.get(field, []) == original.get(field, []),
+                    "SOURCE_QUESTION_FIELD_CHANGED", field)
     answer = block["answer"]
+    _structured_application(block, answer)
     text(answer.get("summary"), "ANSWER_BODY_EMPTY")
     strings(answer.get("steps"), "SOLUTION_STEPS_EMPTY")
     text(answer.get("check"), "ANSWER_CHECK_EMPTY")

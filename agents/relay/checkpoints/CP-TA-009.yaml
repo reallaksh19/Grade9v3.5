@@ -1,0 +1,132 @@
+{
+  "schema_version": "relay-v2.5",
+  "contract_version": 2,
+  "checkpoint_id": "CP-TA-009",
+  "ep_id": "EP-TA-009",
+  "roadmap_basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "revision": "RM-0009"
+  },
+  "execution_basis": {
+    "material_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb"
+  },
+  "implementation_result": {
+    "summary": "No Grade-9 exit-readiness product work was executed. RM-0010 admitted issue #173 ahead of this zero-credit slice and preserved all completed 85/100 programme credit.",
+    "completed_steps": [],
+    "files_changed": []
+  },
+  "acceptance_results": [
+    {
+      "id": "AC-TA9-001",
+      "status": "NOT_RUN",
+      "basis": [
+        "RM-0010 task admission; no EP-TA-009 material execution occurred"
+      ]
+    },
+    {
+      "id": "AC-TA9-002",
+      "status": "NOT_RUN",
+      "basis": [
+        "RM-0010 task admission; no EP-TA-009 material execution occurred"
+      ]
+    },
+    {
+      "id": "AC-TA9-003",
+      "status": "NOT_RUN",
+      "basis": [
+        "RM-0010 task admission; no EP-TA-009 material execution occurred"
+      ]
+    },
+    {
+      "id": "AC-TA9-004",
+      "status": "NOT_RUN",
+      "basis": [
+        "RM-0010 task admission; no EP-TA-009 material execution occurred"
+      ]
+    }
+  ],
+  "validation_results": [
+    {
+      "id": "TEST-TA9-001",
+      "status": "NOT_RUN",
+      "basis_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+      "reason": "No EP-TA-009 material implementation occurred before the active frontier was resequenced by RM-0010."
+    },
+    {
+      "id": "TEST-TA9-002",
+      "status": "NOT_RUN",
+      "basis_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+      "reason": "No EP-TA-009 material implementation occurred before the active frontier was resequenced by RM-0010."
+    },
+    {
+      "id": "TEST-TA9-003",
+      "status": "NOT_RUN",
+      "basis_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+      "reason": "No EP-TA-009 material implementation occurred before the active frontier was resequenced by RM-0010."
+    },
+    {
+      "id": "TEST-TA9-004",
+      "status": "NOT_RUN",
+      "basis_ref": "56f837783b82e08b1f3af0405bd2712d6312dcfb",
+      "reason": "No EP-TA-009 material implementation occurred before the active frontier was resequenced by RM-0010."
+    }
+  ],
+  "quality_review": {
+    "id": "QRV-TA-009",
+    "path": "agents/relay/quality/QRV-TA-009.yaml",
+    "digest": "sha256:3f2154f98b3f70eeb0a30306b7abfc3491352ca52d0362a18e62387b19e291c2"
+  },
+  "quality_findings": [],
+  "known_limitations": [
+    {
+      "statement": "WP-TA-105 remains unimplemented and retains zero credit; this checkpoint is a custody transfer, not completion.",
+      "basis": [
+        "RM-0010",
+        "PROGRESS PB-0008"
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "statement": "Issue #173 must execute before the retained Grade-9 exit-readiness slice because it changes the shared Core projection contract consumed by later learner-facing work.",
+      "basis": [
+        "Issue #173",
+        "RM-0010",
+        "WP-TA-108"
+      ]
+    }
+  ],
+  "roadmap_reconciliation": {
+    "result": "STATUS_UPDATE",
+    "status_updates": [
+      {
+        "statement": "WP-TA-105 returns to planned/waiting at 0/7 behind WP-TA-108.",
+        "basis": [
+          "RM-0010",
+          "PB-0008"
+        ]
+      },
+      {
+        "statement": "WP-TA-108 / EP-TA-010 becomes the sole serial frontier.",
+        "basis": [
+          "RM-0010",
+          "Issue #173"
+        ]
+      }
+    ],
+    "proposals": [],
+    "owner_decisions_required": []
+  },
+  "remaining_work": [
+    "Retain the full Grade-9 exit-readiness acceptance contract for a fresh successor after WP-TA-108 closes.",
+    "Execute the issue #173 Core projection contract before returning to exit-readiness work."
+  ],
+  "successor": {
+    "mode": "SERIAL",
+    "frontier_work_package": "WP-TA-108",
+    "ep_id": "EP-TA-010",
+    "parallel_plan": null,
+    "lane_id": null,
+    "lanes": []
+  }
+}

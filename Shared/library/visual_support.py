@@ -60,29 +60,63 @@ def findings(records: dict[str, dict]) -> list[dict[str, str]]:
 
         if row.get("_collection") != "questions":
             continue
-        previous: dict[str, int] = {}
-        for position, hint in enumerate(row.get("hints", []) or []):
-            visual_ref = hint.get("visual_ref")
-            stage_ref = hint.get("visual_stage_ref")
+        for support_field, point_prefix in (("hints", "HINT"), ("scaffolds", "SCAFFOLD")):
+            previous: dict[str, int] = {}
+            for position, support in enumerate(row.get(support_field, []) or []):
+                visual_ref = support.get("visual_ref")
+                stage_ref = support.get("visual_stage_ref")
+                if visual_ref is None and stage_ref is None:
+                    continue
+                if not visual_ref or not stage_ref:
+                    fail(f"{point_prefix}_VISUAL_PAIR_INCOMPLETE", rid,
+                         f"{support_field[:-1]} {position + 1} must provide visual_ref "
+                         "and visual_stage_ref together")
+                    continue
+                rep = representations.get(visual_ref)
+                if rep is None:
+                    fail(f"{point_prefix}_VISUAL_WRONG_TYPE", rid,
+                         f"{support_field[:-1]} {position + 1} visual_ref {visual_ref} "
+                         "is not a representation")
+                    continue
+                ids = [stage.get("id") for stage in rep.get("reveal_stages", []) or []]
+                if stage_ref not in ids:
+                    fail(f"{point_prefix}_VISUAL_STAGE_FOREIGN", rid,
+                         f"{support_field[:-1]} {position + 1} stage {stage_ref} "
+                         f"does not belong to {visual_ref}")
+                    continue
+                index = ids.index(stage_ref)
+                if visual_ref in previous and index < previous[visual_ref]:
+                    fail(f"{point_prefix}_VISUAL_STAGE_REGRESSION", rid,
+                         f"{support_field[:-1]} {position + 1} moves {visual_ref} backward "
+                         f"from stage {previous[visual_ref]} to {index}")
+                previous[visual_ref] = index
+
+        # A reasoning move may bind the canonical representation/stage that makes the
+        # move visible in a worked solution. Validate ownership, but do not impose the
+        # hint/scaffold monotonic-stage rule: a reasoning route may legitimately return
+        # to an earlier view while checking its result.
+        route = (row.get("answer") or {}).get("reasoning_route") or []
+        for position, move in enumerate(route):
+            if not isinstance(move, dict):
+                continue
+            visual_ref = move.get("representation_ref")
+            stage_ref = move.get("visual_stage_ref")
             if visual_ref is None and stage_ref is None:
                 continue
             if not visual_ref or not stage_ref:
-                fail("HINT_VISUAL_PAIR_INCOMPLETE", rid,
-                     f"hint {position + 1} must provide visual_ref and visual_stage_ref together")
+                fail("REASONING_VISUAL_PAIR_INCOMPLETE", rid,
+                     f"reasoning move {position + 1} must provide representation_ref "
+                     "and visual_stage_ref together")
                 continue
             rep = representations.get(visual_ref)
             if rep is None:
-                fail("HINT_VISUAL_WRONG_TYPE", rid,
-                     f"hint {position + 1} visual_ref {visual_ref} is not a representation")
+                fail("REASONING_VISUAL_WRONG_TYPE", rid,
+                     f"reasoning move {position + 1} representation_ref {visual_ref} "
+                     "is not a representation")
                 continue
             ids = [stage.get("id") for stage in rep.get("reveal_stages", []) or []]
             if stage_ref not in ids:
-                fail("HINT_VISUAL_STAGE_FOREIGN", rid,
-                     f"hint {position + 1} stage {stage_ref} does not belong to {visual_ref}")
-                continue
-            index = ids.index(stage_ref)
-            if visual_ref in previous and index < previous[visual_ref]:
-                fail("HINT_VISUAL_STAGE_REGRESSION", rid,
-                     f"hint {position + 1} moves {visual_ref} backward from stage {previous[visual_ref]} to {index}")
-            previous[visual_ref] = index
+                fail("REASONING_VISUAL_STAGE_FOREIGN", rid,
+                     f"reasoning move {position + 1} stage {stage_ref} "
+                     f"does not belong to {visual_ref}")
     return out

@@ -4,15 +4,17 @@ Read [the shared role invariants](README.md) first.
 
 ## Purpose
 
-Teach the learner to solve, by working through real questions with the expert reasoning fully exposed. Core2A is supported application: the learner is not expected to get there unaided.
+Teach the learner to solve a **familiar question-family demand** by making the application reasoning route explicit and supportable. Core2A is supported application: the learner is not expected to get there unaided.
+
+The canonical crux is the question-specific application reasoning move. Where authored, `question.answer.reasoning_route[]` holds the structured route and `question.answer.crux_move_ref` identifies the stable move that unlocks the problem.
 
 ## Required content
 
 Per question:
 
 - **Exact source identity** preserved (see [Core2](CORE2.md)) and visible to the learner, including provenance class.
-- **Complete solution breakdown**: not the answer and not a summary, but the sequence of decisions, with the first difficult move made explicit rather than glossed.
-- **Hints**, where useful. There is no required hint count. A complete explanation may itself be the appropriate support; one substantive hint may beat three thin ones. Hint count is not a quality proxy in either direction.
+- **Complete solution breakdown**: not the answer and not a summary, but the sequence of reasoning moves and transformations, with the crux move made explicit rather than glossed.
+- **Pedagogical scaffolds**, where useful, separate from source/question hints. There is no required scaffold count. Each authored scaffold may declare its cognitive function (`REPRESENT | CONNECT | EXECUTE`), reveal depth, target reasoning move, and optional canonical visual stage.
 - **A check** the learner can run on their own result — a limiting case, reversal, independent recomputation, or whatever the subject adapter qualifies.
 - **A figure** where the geometry, structure or representation carries meaning, bound to the working rather than placed beside it.
 - **Declared family and exposure role**, so that reuse across products is auditable.
@@ -43,10 +45,14 @@ cannot check the reverse — that everything the prose requires appears in the b
 question.source_refs[]                   exact source identity preserved and visible
 question.original_identifier             including the original question number
 question.origin                          including provenance class
-question.answer.reasoning[]              the sequence of decisions, not a summary
-question.answer.difficult_move           the first difficult move made explicit rather than glossed
+question.answer.reasoning[]              legacy prose fallback for the sequence of decisions
+question.answer.reasoning_route[]        structured sequence of application reasoning moves, when authored
+question.answer.crux_move_ref            stable id of the question-specific crux move, when authored
+question.answer.difficult_move           legacy fallback index while older records migrate
 question.answer.check                    a check the learner can run on their own result
-question.hints[]                         hints, where useful; no required count
+question.scaffolds[]                     pedagogical support, where useful; no required count
+question.scaffolds[].support_kind        what cognitive help is provided
+question.scaffolds[].supports_move_ref   the reasoning move the scaffold targets
 question.figure_refs[]                   a figure where the representation carries meaning
 question.family_ref                      declared family, so reuse is auditable
 question.exposure[].core                 declared exposure role, so reuse is auditable

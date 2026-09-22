@@ -11,7 +11,7 @@ Hold the bucket's question custody: the actual source questions, in their origin
 Per question:
 
 - **Exact original identity**: source identifier, original question number, stem, subparts, options and conditions, preserved verbatim. Figures and their captions survive; an unadapted original figure is held rather than dropped.
-- **Ladder hints**, where the source supplies them, in their original ordering.
+- **Ladder hints**, where the source supplies them, in their original ordering. These remain custody data in `question.hints[]`; downstream pedagogical support is authored separately in `question.scaffolds[]` rather than rewriting the source ladder.
 - **An answer**, with whatever working or rubric the source provides.
 - **Provenance class**: supplied original, adapted (with parent identity and the exact changed fields), or authored.
 

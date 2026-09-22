@@ -1,0 +1,72 @@
+{
+  "schema_version": "relay-v2.5-github-projection",
+  "generation": {
+    "id": "GHGEN-CORE173-R1",
+    "repository": "reallaksh19/Grade9V3",
+    "roadmap_revision": "RM-0010",
+    "issue_graph_revision": "IG-0006",
+    "execution_ref": "EP-TA-010",
+    "state": "SUPERSEDED",
+    "supersedes_generation": "GHGEN-WP105-ISS169-R1",
+    "basis": [
+      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "agents/relay/roadmap/revisions/RM-0010.yaml",
+      "agents/relay/execution-packages/EP-TA-010.yaml",
+      "GitHub issue #173 provider readback"
+    ]
+  },
+  "operations": [
+    {
+      "id": "GHOP-CORE173-HANDOVER",
+      "kind": "PUBLISH_HANDOVER",
+      "state": "SUPERSEDED",
+      "idempotency_key": "relay:GHGEN-CORE173-R1:GHOP-CORE173-HANDOVER",
+      "depends_on": [],
+      "subject": {
+        "issue_node": "ISSUE-173",
+        "related_nodes": [
+          "ISSUE-169"
+        ]
+      },
+      "preconditions": {
+        "repository_issue_state": "OPEN",
+        "work_state": "ACTIVE",
+        "work_package": "WP-TA-108"
+      },
+      "desired": {
+        "body_marker": "<!-- relay-operation:GHOP-CORE173-HANDOVER -->",
+        "body_projection": "<!-- relay-operation:GHOP-CORE173-HANDOVER -->\n# Core contract implementation handover\n\n- Roadmap: RM-0010\n- Work package: WP-TA-108\n- Active execution package: EP-TA-010\n- Programme progress: 85/100 accepted; this package: 0/8\n- Delivery PR: #177\n\nThe repository-side route is being reconciled before product writes. The first material slice is contract/schema/falsifier tests, followed by compiler/source-fidelity projection, learner-facing crux/protected-decision rendering, and a bounded Motion-in-2D proof.\n\nNo product acceptance credit is claimed yet. Fresh incoming-agent certification remains required before material implementation.\n",
+        "github_state": "OPEN",
+        "relationships": [
+          {
+            "from": "ISSUE-169",
+            "relation": "DEPENDS_ON",
+            "to": "ISSUE-173"
+          }
+        ]
+      },
+      "publication": {
+        "attempt_count": 0,
+        "last_attempt_basis": [],
+        "receipt": null,
+        "last_error": null
+      },
+      "verification": {
+        "status": "NOT_RUN",
+        "basis": [],
+        "observed_issue_number": null,
+        "observed_issue_id": null,
+        "observed_github_state": null,
+        "observed_relationships": []
+      },
+      "reconciliation": {
+        "issue_graph_effects": [],
+        "complete_when": [
+          "Issue #173 handover marker is observed on the verified issue projection."
+        ]
+      },
+      "superseded_by": "GHGEN-CORE173-R2"
+    }
+  ]
+}

@@ -1,17 +1,17 @@
 {
   "schema_version": "relay-v2.5",
-  "relay_state": "ACTIVE",
+  "relay_state": "IDLE",
   "repository": {
     "name": "Grade9V3",
     "remote": "reallaksh19/Grade9V3"
   },
   "relay_protocol": {
     "version": "2.5",
-    "basis_ref": "reallaksh19/Common@d9b84069683977b5c370f536f1c50095de926338:skills/engineering-pr-delivery-v2.5"
+    "basis_ref": "reallaksh19/Common@85e59a93d469035e7924dfbbb1f5918adc203647:skills/engineering-pr-delivery-v2.5"
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0009",
+    "revision": "RM-0011",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
@@ -24,14 +24,14 @@
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-009",
-    "path": "agents/relay/execution-packages/EP-TA-009.yaml",
-    "state": "EXECUTABLE",
+    "id": null,
+    "path": null,
+    "state": "NONE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-008",
-    "path": "agents/relay/checkpoints/CP-TA-008.yaml"
+    "id": "CP-TA-010",
+    "path": "agents/relay/checkpoints/CP-TA-010.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -43,39 +43,26 @@
   },
   "takeover_admissions": [],
   "progress": {
-    "overall_percent": 85,
-    "phase_percent": 85,
-    "ep_percent": 0,
-    "basis_revision": "PB-0007"
+    "overall_percent": 93,
+    "phase_percent": 93,
+    "ep_percent": 100,
+    "basis_revision": "PB-0009"
   },
   "status_planes": {
     "execution": {
-      "state": "READY",
-      "can_continue": true,
-      "material_authority": "WRITE",
-      "next_action": "Complete fresh successor discovery and independent qualification/certification against the current question set, then pass the candidate-specific material-write gate before any Grade-9 exit/Grade-10 transition implementation."
+      "state": "WAITING",
+      "can_continue": false,
+      "material_authority": "NONE",
+      "next_action": "Complete provider delivery/readback for draft PR #177, then reconcile Grade-9 exit readiness against the delivered Core contract before any material successor work."
     },
     "quality": {
       "state": "CLEAR",
-      "findings": [
-        "The completed router package has a clear final quality review. The successor package has no material quality findings yet; its own fresh qualification and final quality review remain required."
-      ]
+      "findings": []
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "The router package is fully accepted. The Grade-9 exit/Grade-10 transition frontier starts at zero accepted material evidence and requires fresh independent qualification before implementation.",
-      "not_run": [
-        {
-          "id": "fresh independent successor qualification",
-          "reason": "A distinct candidate has not yet completed discovery, qualification and takeover certification for the new material boundary.",
-          "cause": "DEPENDENCY_WAIT"
-        },
-        {
-          "id": "successor validation suite",
-          "reason": "The Grade-9 exit/Grade-10 transition implementation has not started.",
-          "cause": "NOT_SCHEDULED"
-        }
-      ]
+      "state": "COMPLETE",
+      "summary": "The Core projection implementation is accepted: all four criteria are complete, guardrails 35672260012 and revised relay validation 35672260109 passed, the Issue #173 handover is synchronized, and delivery ordering is resolved.",
+      "not_run": []
     },
     "stop": {
       "active": false,
@@ -86,31 +73,51 @@
   },
   "projection": {
     "required": true,
-    "state": "IN_SYNC",
-    "operation_id": "GHGEN-WP105-ISS169-R1",
+    "state": "PUBLISHED_UNCONFIRMED",
+    "operation_id": "GHGEN-CORE173-R3",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-WP105-ISS169-R1.yaml",
-    "roadmap_revision": "RM-0009",
-    "execution_ref": "EP-TA-009",
-    "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
+    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R3.yaml",
+    "roadmap_revision": "RM-0011",
+    "execution_ref": "NONE",
+    "receipt": "github-generation:GHGEN-CORE173-R3:issue-173:comment-5769610327",
     "basis": [
-      "Issue #169 provider readback",
-      "ISSUE_GRAPH IG-0005",
-      "EP-TA-009 successor contract",
-      "fresh successor qualification question set"
+      "agents/relay/checkpoints/CP-TA-010.yaml",
+      "agents/relay/roadmap/revisions/RM-0011.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "guardrails 35672260012",
+      "v25-relay 35672260109",
+      "GitHub Issue #173 synchronized handover",
+      "GitHub PR #170 draft delivery-order readback",
+      "GitHub Issue #173 comment 5769610327 provider readback matched the prepared final checkpoint body.",
+      "Final projection reconciliation is deferred on the pinned protocol's verified-predecessor supersession limitation; Common PR #415 is the upstream fix."
     ],
-    "superseded_operations": [],
+    "superseded_operations": [
+      {
+        "operation_id": "GHGEN-CORE173-R1",
+        "target": "github:reallaksh19/Grade9V3:issues",
+        "roadmap_revision": "RM-0010",
+        "execution_ref": "EP-TA-010",
+        "disposition": "SUPERSEDED_BEFORE_PUBLICATION",
+        "superseded_by": "GHGEN-CORE173-R3",
+        "receipt": null,
+        "basis": [
+          "generation:GHGEN-CORE173-R1",
+          "GHGEN-CORE173-R2 is preserved as the verified observed predecessor",
+          "superseded_by:GHGEN-CORE173-R3"
+        ]
+      }
+    ],
     "observed": {
-      "operation_id": "GHGEN-WP105-ISS169-R1",
+      "operation_id": "GHGEN-CORE173-R2",
       "target": "github:reallaksh19/Grade9V3:issues",
-      "roadmap_revision": "RM-0009",
-      "execution_ref": "EP-TA-009",
-      "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
+      "roadmap_revision": "RM-0010",
+      "execution_ref": "EP-TA-010",
+      "receipt": "github-generation:GHGEN-CORE173-R2:issue-173:comment-5769504507",
       "basis": [
-        "Issue #169 provider readback",
-        "relay-operation:GHOP-WP105-ISSUE169-HANDOFF",
-        "ISSUE_GRAPH IG-0005"
+        "GitHub Issue #173 provider readback",
+        "comment:5769504507",
+        "marker:relay-operation:GHOP-CORE173-HANDOVER-R2"
       ]
     }
   },
@@ -118,25 +125,151 @@
     "required": true,
     "provider": "GITHUB",
     "observation": {
-      "id": "DOBS-PR168-RM0008",
-      "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
+      "id": "DOBS-PR177-RM0010",
+      "path": "agents/relay/delivery/DOBS-PR177-RM0010.yaml"
     },
     "observations": [
       {
         "id": "DOBS-PR168-RM0008",
         "path": "agents/relay/delivery/DOBS-PR168-RM0008.yaml"
+      },
+      {
+        "id": "DOBS-PR177-RM0010",
+        "path": "agents/relay/delivery/DOBS-PR177-RM0010.yaml"
       }
     ]
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": true,
-    "handover_ready": true,
+    "projection_ready": false,
+    "handover_ready": false,
     "reasons": [
-      "The predecessor checkpoint closes the router work and establishes the Grade-9 exit/Grade-10 transition package as the zero-credit serial successor.",
-      "Issue #169 is verified open and mapped to the new frontier under ISSUE_GRAPH IG-0005.",
-      "The successor contract has a fresh bound qualification question set; independent candidate qualification remains required before material writes."
+      "The Core projection implementation is checkpointed with all acceptance criteria complete.",
+      "Execution custody for the completed Core implementation is released.",
+      "The final Issue #173 checkpoint comment is published and provider-read back; final synchronization remains blocked because current Common/main still lacks faithful verified-predecessor supersession.",
+      "Grade-9 exit readiness remains waiting for draft PR #177 provider delivery; PR #170 is draft and ordered after it."
     ]
   },
-  "chat_context_required": false
+  "chat_context_required": false,
+  "execution_custody": {
+    "enforced": true,
+    "leases": [
+      {
+        "route_key": "SERIAL:EP-TA-010",
+        "candidate": {
+          "agent_instance_id": "chatgpt-sol-core173-20260922-r1"
+        },
+        "state": "RELEASED",
+        "branch": "fix/issue-173-core-projections-v25",
+        "source": "Owner instruction on 2026-09-22 to continue under revised Common/main engineering-pr-delivery-v2.5; custody established with the fresh protocol-basis admission transaction. Released when the Core projection checkpoint completed."
+      }
+    ]
+  },
+  "control_obligations": [
+    {
+      "id": "PEND-TA10-DELIVERY-001",
+      "kind": "DEFERRED_VALIDATION",
+      "state": "SATISFIED",
+      "summary": "Resolve delivery order between PR #177 and PR #170 before making PR #177 review-ready or merging either continuation, because the open branches carry different RM-0010 continuation/terminal states.",
+      "source": "GitHub provider readback of PR #170 and PR #177 on 2026-09-22",
+      "scope": {
+        "route_key": "SERIAL:EP-TA-010",
+        "ep_id": "EP-TA-010",
+        "branch": "fix/issue-173-core-projections-v25",
+        "issues": [
+          169,
+          173
+        ],
+        "pull_requests": [
+          170,
+          177
+        ]
+      },
+      "evidence": [
+        "PR #177 head a9dc214d3b957ff50ecbd36d90d4de1710472e84 is DRAFT/MERGEABLE and implements Issue #173 before the Grade-9 exit frontier.",
+        "PR #170 head cb7a0cfeec0e14494e2c462791f0ce3cf7fb334b is OPEN/MERGEABLE and claims terminal Grade-9 transition state under RM-0010.",
+        "Provider readback confirms PR #170 is DRAFT.",
+        "PR #170 description explicitly requires PR #177 to land first and marks its earlier 100/100 state historical."
+      ],
+      "must_resolve_before": [
+        "PR_READY",
+        "MERGE"
+      ],
+      "allowed_before_resolution": [
+        "BOUNDED_PRODUCT_WRITES",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "Provider readback plus repository reconciliation establishes one delivery order that preserves the Issue #173 Core-contract dependency before any terminal Grade-9 transition, or the Owner explicitly selects a compatible ordering."
+    },
+    {
+      "id": "PEND-TA10-PROVIDER-002",
+      "kind": "DEFERRED_VALIDATION",
+      "state": "OPEN",
+      "summary": "Draft PR #177 must be delivered and read back before Grade-9 exit-readiness receives a fresh material route.",
+      "source": "Core projection checkpoint successor boundary and provider delivery-order readback",
+      "scope": {
+        "route_key": null,
+        "ep_id": null,
+        "branch": null,
+        "issues": [
+          169,
+          173
+        ],
+        "pull_requests": [
+          170,
+          177
+        ]
+      },
+      "evidence": [
+        "guardrails 35672260012 PASS",
+        "revised relay validation 35672260109 PASS",
+        "PR #170 is draft and explicitly blocked behind PR #177."
+      ],
+      "must_resolve_before": [
+        "RELEASE",
+        "PR_READY",
+        "MERGE"
+      ],
+      "allowed_before_resolution": [
+        "READ_ONLY_INSPECTION",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "PR #177 is separately authorized, merged and read back on main; the Grade-9 exit-readiness route is then regenerated or reconciled and freshly qualified against the delivered Core contract."
+    },
+    {
+      "id": "KI-TA10-PROJECTION-001",
+      "kind": "KNOWN_ISSUE",
+      "state": "OPEN",
+      "summary": "Final checkpoint synchronization is blocked by an upstream verified-projection supersession lifecycle defect; the external checkpoint comment itself is already published and read back exactly.",
+      "source": "Current Common/main projection validators at 85e59a93d469035e7924dfbbb1f5918adc203647 and open Common PR #415",
+      "scope": {
+        "route_key": null,
+        "ep_id": null,
+        "branch": null,
+        "issues": [
+          173
+        ],
+        "pull_requests": [
+          177
+        ]
+      },
+      "evidence": [
+        "Issue #173 comment 5769610327 contains the exact final checkpoint marker/body.",
+        "Current Common/main 85e59a93d469035e7924dfbbb1f5918adc203647 still lacks a verified-predecessor supersession-history disposition, so faithful final convergence remains unavailable on main.",
+        "Common PR #415 head 5a72830711b976e05e6893103f7a45152b0879bc carries the repository-neutral verified-projection supersession fix and remains open/unmerged."
+      ],
+      "must_resolve_before": [
+        "RELEASE"
+      ],
+      "allowed_before_resolution": [
+        "READ_ONLY_INSPECTION",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "A merged Common/main protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth.",
+      "revisit_when": "Common PR #415, or an equivalent verified-projection supersession fix, lands on Common/main and Grade9V3 pins that revision."
+    }
+  ]
 }

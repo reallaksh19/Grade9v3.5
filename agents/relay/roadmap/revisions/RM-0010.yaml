@@ -1,0 +1,50 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0010",
+    "from_revision": "RM-0009",
+    "to_revision": "RM-0010",
+    "classification": "EXECUTION_DERIVED_STATUS",
+    "trigger": {
+      "type": "OWNER_TASK_ADMISSION",
+      "path": "https://github.com/reallaksh19/Grade9V3/issues/173"
+    }
+  },
+  "changes": {
+    "added": [
+      "WP-TA-108"
+    ],
+    "removed": [],
+    "changed": [
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TA-105"
+    ],
+    "unaffected": [
+      "WP-TAKEOVER-RECONCILE",
+      "WP-TA-102",
+      "WP-TA-106",
+      "WP-TA-103",
+      "WP-TA-104",
+      "WP-TA-107"
+    ]
+  },
+  "invalidated_execution_packages": [
+    "EP-TA-009"
+  ],
+  "issue_graph_reconciled": true,
+  "progress_basis_change": {
+    "old_basis": "PB-0007",
+    "new_basis": "PB-0008",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [
+    "WP-TA-108"
+  ],
+  "notes": [
+    "Issue #173 is admitted as new execution work under the existing Grade-9 self-study concept; no objective/phase concept changes.",
+    "Completed 85/100 credit is unchanged. The previous 15-point remaining allocation is split into WP-TA-108 (8) and WP-TA-105 (7).",
+    "WP-TA-105 had zero accepted material evidence and is resequenced behind WP-TA-108; EP-TA-009 loses frontier authority.",
+    "Fresh candidate qualification is mandatory for EP-TA-010 before product/material writes."
+  ]
+}

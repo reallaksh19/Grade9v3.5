@@ -1,0 +1,70 @@
+{
+  "schema_version": "relay-v2.5-takeover-certification",
+  "id": "TC-TA-020",
+  "candidate": {
+    "agent_instance_id": "core173-local-agent-20260921"
+  },
+  "prepared_by": {
+    "agent_instance_id": "core173-local-agent-20260921"
+  },
+  "evaluated_by": {
+    "type": "DETERMINISTIC_VALIDATOR",
+    "identity": "validate_takeover_certification.py",
+    "basis": [
+      "Current Common main V2.5 validators",
+      "DRIFT-TA-008 DISJOINT base reconciliation",
+      "DISC-TA-021 repository-only re-discovery",
+      "QSET-TA-012 / QUAL-TA-011 deterministic PASS",
+      "CP-TA-009 predecessor baton",
+      "EP-TA-010 drift-aware exact contract digest"
+    ]
+  },
+  "self_certification": {
+    "allowed": false
+  },
+  "route": {
+    "route_key": "SERIAL:EP-TA-010",
+    "mode": "SERIAL",
+    "execution_ref": "EP-TA-010",
+    "ep_id": "EP-TA-010",
+    "ep_path": "agents/relay/execution-packages/EP-TA-010.yaml",
+    "plan_id": null,
+    "plan_path": null,
+    "lane_id": null
+  },
+  "basis": {
+    "roadmap_id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
+    "roadmap_revision": "RM-0010",
+    "relay_protocol_basis_ref": "reallaksh19/Common@1bc4eca6eac9d75900ddee1c338da4b44817eeec:skills/engineering-pr-delivery-v2.5",
+    "material_ref": "411e8dc0108347933792fbbd5a6be8dfa59d655e",
+    "ep_contract_digest": "sha256:96e6960b15b1999d66b33155a799233f23e4723375dac2c6ff02eb2b36608528",
+    "repo_profile_digest": "sha256:954cdd371183121091d3690de67c9b699135f89cad93a0edad53a27b058e64b2",
+    "predecessor_baton": {
+      "type": "CHECKPOINT",
+      "id": "CP-TA-009",
+      "path": "agents/relay/checkpoints/CP-TA-009.yaml",
+      "digest": "sha256:daa5315df017e1f9019df02e43dd4e598dc21ddee8b0b0288e93686268b0a807"
+    }
+  },
+  "discovery_receipt": {
+    "id": "DISC-TA-021",
+    "path": "agents/relay/certifications/discovery/DISC-TA-021.yaml"
+  },
+  "qualification": {
+    "required": true,
+    "status": "PASS",
+    "receipt_id": "QUAL-TA-011",
+    "receipt_path": "agents/relay/certifications/qualification/QUAL-TA-011.yaml",
+    "receipt_digest": "sha256:ff615a736f2e34bcd2856a3b0f7a56c2ab8c11bcbe684896196d556b4bee3c9e"
+  },
+  "checks": {
+    "baton_semantics": "PASS",
+    "repository_discovery": "PASS",
+    "route_grounding": "PASS",
+    "input_oracle_readiness": "PASS",
+    "scope_understood": "PASS",
+    "report_successor_contract": "PASS"
+  },
+  "result": "PASS",
+  "conversation_context_used": false
+}
