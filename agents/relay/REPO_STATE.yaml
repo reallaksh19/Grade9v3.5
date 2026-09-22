@@ -95,20 +95,36 @@
   "projection": {
     "required": true,
     "state": "STALE",
-    "operation_id": "GHGEN-CORE173-R1",
+    "operation_id": "GHGEN-CORE173-R2",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R1.yaml",
+    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R2.yaml",
     "roadmap_revision": "RM-0010",
     "execution_ref": "EP-TA-010",
     "receipt": null,
     "basis": [
-      "RM-0010 task admission",
-      "Issue #173 provider readback",
-      "IG-0006",
-      "EP-TA-010"
+      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "agents/relay/execution-packages/EP-TA-010.yaml",
+      "agents/relay/quality/QRV-TA-010.yaml",
+      "agents/relay/delivery/DOBS-PR177-RM0010.yaml",
+      "GitHub Issue #173 and PR #177 provider readback"
     ],
-    "superseded_operations": [],
+    "superseded_operations": [
+      {
+        "operation_id": "GHGEN-CORE173-R1",
+        "target": "github:reallaksh19/Grade9V3:issues",
+        "roadmap_revision": "RM-0010",
+        "execution_ref": "EP-TA-010",
+        "disposition": "SUPERSEDED_BEFORE_PUBLICATION",
+        "superseded_by": "GHGEN-CORE173-R2",
+        "receipt": null,
+        "basis": [
+          "generation:GHGEN-CORE173-R1",
+          "superseded_by:GHGEN-CORE173-R2"
+        ]
+      }
+    ],
     "observed": {
       "operation_id": "GHGEN-WP105-ISS169-R1",
       "target": "github:reallaksh19/Grade9V3:issues",

@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0010",
     "issue_graph_revision": "IG-0006",
     "execution_ref": "EP-TA-010",
-    "state": "PREPARED",
+    "state": "SUPERSEDED",
     "supersedes_generation": "GHGEN-WP105-ISS169-R1",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -20,7 +20,7 @@
     {
       "id": "GHOP-CORE173-HANDOVER",
       "kind": "PUBLISH_HANDOVER",
-      "state": "PREPARED",
+      "state": "SUPERSEDED",
       "idempotency_key": "relay:GHGEN-CORE173-R1:GHOP-CORE173-HANDOVER",
       "depends_on": [],
       "subject": {
@@ -65,7 +65,8 @@
         "complete_when": [
           "Issue #173 handover marker is observed on the verified issue projection."
         ]
-      }
+      },
+      "superseded_by": "GHGEN-CORE173-R2"
     }
   ]
 }
