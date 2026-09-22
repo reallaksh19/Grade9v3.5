@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "portable-workbench-package",
+  "packageVersion": "1.0.0",
+  "componentApiVersion": "0.1.0",
+  "transformationIrVersion": "0.1.0",
+  "adapterApiVersion": "0.1.0",
+  "scenePackageVersion": "1.0.0",
+  "id": "portable-integration-riemann",
+  "title": "Integration partition and Riemann-sum proof",
+  "sourceRefs": [
+    "issue:163:integration-cross-subject-proof"
+  ],
+  "sceneRefs": [
+    "integration-riemann-refinement-proof"
+  ],
+  "representationRefs": [
+    "graph",
+    "partition rectangles",
+    "Riemann sum",
+    "integral representation"
+  ],
+  "assetRefs": [],
+  "accessibilityRefs": [
+    "text state",
+    "keyboard transfer"
+  ],
+  "questionBindings": [],
+  "provenance": {
+    "authority": "NON_CANONICAL_COMPILED_PROOF",
+    "sourceKind": "COMPILED_PROOF_FIXTURE",
+    "sourceRefs": [
+      "issue:163:integration-cross-subject-proof"
+    ]
+  },
+  "scene": {
+    "apiVersion": "0.1.0",
+    "sceneVersion": "1.0.0",
+    "id": "integration-riemann-refinement-proof",
+    "grids": [
+      {
+        "id": "integration-grid",
+        "label": "Riemann construction",
+        "rows": [
+          "graph",
+          "partition",
+          "representation"
+        ],
+        "columns": [
+          "picture",
+          "correspondence",
+          "symbol"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "id": "function-x-squared",
+        "label": "f(x)=x^2",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      }
+    ],
+    "projections": [
+      {
+        "id": "function-graph",
+        "entityRef": "function-x-squared",
+        "label": "Graph of y=x^2",
+        "representation": "graph",
+        "placement": {
+          "grid": "integration-grid",
+          "row": "graph",
+          "column": "picture"
+        }
+      },
+      {
+        "id": "coarse-partition",
+        "entityRef": "function-x-squared",
+        "label": "Rectangles over a coarse partition",
+        "representation": "partition rectangles",
+        "placement": {
+          "grid": "integration-grid",
+          "row": "partition",
+          "column": "picture"
+        }
+      },
+      {
+        "id": "coarse-sum",
+        "entityRef": "function-x-squared",
+        "label": "sum f(x_i*) dx",
+        "representation": "rectangle-to-term correspondence",
+        "placement": {
+          "grid": "integration-grid",
+          "row": "partition",
+          "column": "symbol"
+        }
+      }
+    ],
+    "targets": [
+      {
+        "id": "refine-riemann-sum",
+        "label": "Refine partition toward integral",
+        "operation": "refine-partition",
+        "placement": {
+          "grid": "integration-grid",
+          "row": "representation",
+          "column": "correspondence"
+        }
+      }
+    ],
+    "canonicalTransformations": [
+      {
+        "id": "riemann-refinement",
+        "sourceEntityRefs": [
+          "function-x-squared"
+        ],
+        "targetRef": "refine-riemann-sum"
+      }
+    ]
+  },
+  "adapter": {
+    "id": "declarative-transfer-v1",
+    "apiVersion": "0.1.0",
+    "rules": [
+      {
+        "id": "rule-riemann-refinement",
+        "transformationRef": "riemann-refinement",
+        "sourceEntityRef": "function-x-squared",
+        "targetRef": "refine-riemann-sum",
+        "operation": "refine-partition",
+        "summary": "Refinement preserves rectangle-to-term correspondence while the sum approaches the integral representation.",
+        "patch": {
+          "addEntities": [
+            {
+              "id": "riemann-limit",
+              "label": "limit sum f(x_i*) dx = integral f(x) dx",
+              "provenance": {
+                "kind": "DERIVED",
+                "sourceEntityRefs": [
+                  "function-x-squared"
+                ]
+              }
+            }
+          ],
+          "addProjections": [
+            {
+              "id": "integral-representation",
+              "entityRef": "riemann-limit",
+              "label": "integral f(x) dx",
+              "representation": "integral representation",
+              "placement": {
+                "grid": "integration-grid",
+                "row": "representation",
+                "column": "symbol"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "injections": []
+}

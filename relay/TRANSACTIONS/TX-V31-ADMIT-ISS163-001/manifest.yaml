@@ -1,0 +1,51 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ADMIT-ISS163-001
+command: ADMIT_TASK
+actor: chatgpt-sol-portable-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T15:58:46.015287Z'
+updated_at: '2026-09-22T15:58:46.042738Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:29993dfa72dab16f022f8442fced7c894708d910897ae76ce94bd0008ce5938f
+  after_digest: sha256:eb0bbf46e085f12a9eaeb764bf334d070d8d21a0b7285208922960767c10b53e
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:6ef11fe8793b6b6dbd076a685850c484d562ed2ab8b5dab5c900d7d77f96aefc
+  after_digest: sha256:a960ec64767cf14ffdd968228628bb6f956eff2952a750d23e49ea318ae5e2b8
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/backups/001.before
+- path: relay/LEASES/LEASE-PORTABLE-163-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:108d7d952f590048a1bba535c818248ec74cf14cda3a2dc136cad18bcc9fad61
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/002.after
+  backup_path: null
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:b9239497a93abcf61175f4a66a52a30f5f2729f00cde04d86064bf1b8b92630b
+  after_digest: sha256:70ccca59f587877b563f9f7c6063d68e99b7ede3adb4bbe2b85f98c45615dcc9
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/backups/003.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:5549d9fa74c46a2152b3c3bf17b4da368320dca1c22a0bd44b22a6cea24c05f2
+  after_digest: sha256:66c97fd32bef9a69668ec93b5e8cf1508fc7c78581de4398c1c0574e87e10af1
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/backups/004.before
+- path: relay/WORK/EP-PORTABLE-163-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:fdf6e8886d388d921c00533bf2b8f43d5075b80c91ef012cf97fc41db069f7e1
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS163-001/staged/005.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-PORTABLE-163-V31-001.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/WORK/EP-PORTABLE-163-V31-001.yaml

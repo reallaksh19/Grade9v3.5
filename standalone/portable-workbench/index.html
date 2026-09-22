@@ -1,0 +1,1134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portable Workbench Offline Host</title><style>:root{--workbench-border:#64748b;--workbench-focus:#1d4ed8;--workbench-surface:#f8fafc}body{font:16px/1.45 system-ui,sans-serif;margin:0;padding:1rem}main{max-width:70rem;margin:auto}</style></head><body><main><h1>Portable Workbench Offline Host</h1><p id="package-label"></p><semantic-workbench id="portable-workbench"></semantic-workbench></main><script type="module">
+export const WORKBENCH_API_VERSION = "0.1.0";
+
+export class WorkbenchError extends Error {
+  constructor(code, detail = "") {
+    super(detail ? `${code}: ${detail}` : code);
+    this.name = "WorkbenchError";
+    this.code = code;
+    this.detail = detail;
+  }
+}
+
+const clone = (value) => JSON.parse(JSON.stringify(value));
+
+function requireCondition(condition, code, detail = "") {
+  if (!condition) throw new WorkbenchError(code, detail);
+}
+
+function nonEmptyString(value, code, detail = "") {
+  requireCondition(typeof value === "string" && value.trim().length > 0, code, detail);
+  return value;
+}
+
+function uniqueStrings(values, code, detail) {
+  requireCondition(Array.isArray(values) && values.length > 0, code, detail);
+  values.forEach((value) => nonEmptyString(value, code, detail));
+  requireCondition(new Set(values).size === values.length, code, detail);
+}
+
+function uniqueIds(rows, code) {
+  const ids = rows.map((row) => nonEmptyString(row?.id, code));
+  requireCondition(new Set(ids).size === ids.length, code);
+}
+
+function validateStringRefs(values, code, detail = "") {
+  requireCondition(Array.isArray(values), code, detail);
+  values.forEach((value) => nonEmptyString(value, code, detail));
+  requireCondition(new Set(values).size === values.length, code, detail);
+  return values;
+}
+
+function validateProvenanceMetadata(provenance, owner) {
+  if (provenance == null) return [];
+  requireCondition(
+    typeof provenance === "object" && !Array.isArray(provenance),
+    "WORKBENCH_PROVENANCE_INVALID",
+    owner,
+  );
+  if (Object.prototype.hasOwnProperty.call(provenance, "kind")) {
+    nonEmptyString(provenance.kind, "WORKBENCH_PROVENANCE_INVALID", owner);
+  }
+  if (!Object.prototype.hasOwnProperty.call(provenance, "sourceEntityRefs")) return [];
+  return validateStringRefs(
+    provenance.sourceEntityRefs,
+    "WORKBENCH_PROVENANCE_INVALID",
+    owner,
+  );
+}
+
+function indexById(rows) {
+  return Object.fromEntries(rows.map((row) => [row.id, row]));
+}
+
+function validateProvenanceAcyclic(entities) {
+  const byId = indexById(entities);
+  const visiting = new Set();
+  const visited = new Set();
+
+  function visit(entityId, path) {
+    if (visited.has(entityId)) return;
+    if (visiting.has(entityId)) {
+      const start = path.indexOf(entityId);
+      const cycle = [...path.slice(start), entityId];
+      throw new WorkbenchError("WORKBENCH_PROVENANCE_CYCLE", cycle.join(" -> "));
+    }
+
+    visiting.add(entityId);
+    path.push(entityId);
+    const sources = byId[entityId]?.provenance?.sourceEntityRefs || [];
+    for (const source of sources) visit(source, path);
+    path.pop();
+    visiting.delete(entityId);
+    visited.add(entityId);
+  }
+
+  for (const entity of entities) visit(entity.id, []);
+}
+
+function validatePlacement(scene, placement, owner) {
+  requireCondition(placement && typeof placement === "object" && !Array.isArray(placement),
+    "WORKBENCH_PLACEMENT_REQUIRED", owner);
+  for (const forbidden of ["x", "y", "left", "top", "width", "height"]) {
+    requireCondition(!(forbidden in placement), "WORKBENCH_PIXEL_COORDINATE_FORBIDDEN", `${owner}.${forbidden}`);
+  }
+  const allowed = new Set(["grid", "row", "column"]);
+  for (const key of Object.keys(placement)) {
+    requireCondition(allowed.has(key), "WORKBENCH_PLACEMENT_FIELD_UNSUPPORTED", `${owner}.${key}`);
+  }
+
+  const gridId = nonEmptyString(placement.grid, "WORKBENCH_GRID_REF_REQUIRED", owner);
+  const rowId = nonEmptyString(placement.row, "WORKBENCH_ROW_REF_REQUIRED", owner);
+  const columnId = nonEmptyString(placement.column, "WORKBENCH_COLUMN_REF_REQUIRED", owner);
+  const grid = scene.grids.find((row) => row.id === gridId);
+  requireCondition(grid, "WORKBENCH_GRID_UNKNOWN", `${owner} -> ${gridId}`);
+  requireCondition(grid.rows.includes(rowId), "WORKBENCH_ROW_UNKNOWN", `${owner} -> ${rowId}`);
+  requireCondition(grid.columns.includes(columnId), "WORKBENCH_COLUMN_UNKNOWN", `${owner} -> ${columnId}`);
+}
+
+export function validateScene(input) {
+  const scene = clone(input);
+  requireCondition(scene && typeof scene === "object" && !Array.isArray(scene),
+    "WORKBENCH_SCENE_REQUIRED");
+  requireCondition(scene.apiVersion === WORKBENCH_API_VERSION,
+    "WORKBENCH_API_VERSION_MISMATCH", String(scene.apiVersion));
+  nonEmptyString(scene.sceneVersion, "WORKBENCH_SCENE_VERSION_REQUIRED");
+  nonEmptyString(scene.id, "WORKBENCH_SCENE_ID_REQUIRED");
+
+  requireCondition(Array.isArray(scene.grids) && scene.grids.length > 0,
+    "WORKBENCH_GRIDS_REQUIRED", scene.id);
+  uniqueIds(scene.grids, "WORKBENCH_GRID_ID_INVALID");
+  for (const grid of scene.grids) {
+    uniqueStrings(grid.rows, "WORKBENCH_GRID_ROWS_INVALID", grid.id);
+    uniqueStrings(grid.columns, "WORKBENCH_GRID_COLUMNS_INVALID", grid.id);
+  }
+
+  scene.entities = scene.entities || [];
+  scene.projections = scene.projections || [];
+  scene.targets = scene.targets || [];
+  scene.canonicalTransformations = scene.canonicalTransformations || [];
+  requireCondition(Array.isArray(scene.entities), "WORKBENCH_ENTITIES_INVALID");
+  requireCondition(Array.isArray(scene.projections), "WORKBENCH_PROJECTIONS_INVALID");
+  requireCondition(Array.isArray(scene.targets), "WORKBENCH_TARGETS_INVALID");
+  requireCondition(Array.isArray(scene.canonicalTransformations), "WORKBENCH_TRANSFORMATIONS_INVALID");
+  uniqueIds(scene.entities, "WORKBENCH_ENTITY_ID_INVALID");
+  uniqueIds(scene.projections, "WORKBENCH_PROJECTION_ID_INVALID");
+  uniqueIds(scene.targets, "WORKBENCH_TARGET_ID_INVALID");
+  uniqueIds(scene.canonicalTransformations, "WORKBENCH_TRANSFORMATION_ID_INVALID");
+
+  const entityIds = new Set(scene.entities.map((row) => row.id));
+  for (const entity of scene.entities) {
+    nonEmptyString(entity.label, "WORKBENCH_ENTITY_LABEL_REQUIRED", entity.id);
+    const sources = validateProvenanceMetadata(entity.provenance, entity.id);
+    for (const source of sources) {
+      requireCondition(entityIds.has(source),
+        "WORKBENCH_PROVENANCE_SOURCE_UNKNOWN", `${entity.id} -> ${source}`);
+    }
+  }
+  validateProvenanceAcyclic(scene.entities);
+  for (const projection of scene.projections) {
+    nonEmptyString(projection.entityRef, "WORKBENCH_PROJECTION_ENTITY_REQUIRED", projection.id);
+    requireCondition(entityIds.has(projection.entityRef), "WORKBENCH_PROJECTION_ENTITY_UNKNOWN", projection.id);
+    nonEmptyString(projection.label, "WORKBENCH_PROJECTION_LABEL_REQUIRED", projection.id);
+    validatePlacement(scene, projection.placement, projection.id);
+  }
+  for (const target of scene.targets) {
+    nonEmptyString(target.label, "WORKBENCH_TARGET_LABEL_REQUIRED", target.id);
+    nonEmptyString(target.operation, "WORKBENCH_TARGET_OPERATION_REQUIRED", target.id);
+    validatePlacement(scene, target.placement, target.id);
+  }
+
+  const targetIds = new Set(scene.targets.map((row) => row.id));
+  for (const transformation of scene.canonicalTransformations) {
+    validateStringRefs(
+      transformation.sourceEntityRefs,
+      "WORKBENCH_TRANSFORMATION_SOURCES_INVALID",
+      transformation.id,
+    );
+    const targetRef = nonEmptyString(
+      transformation.targetRef,
+      "WORKBENCH_TRANSFORMATION_TARGET_REQUIRED",
+      transformation.id,
+    );
+    requireCondition(
+      targetIds.has(targetRef),
+      "WORKBENCH_TRANSFORMATION_TARGET_UNKNOWN",
+      `${transformation.id} -> ${targetRef}`,
+    );
+  }
+
+  return scene;
+}
+
+export function resolvePlacement(sceneInput, placement) {
+  const scene = validateScene(sceneInput);
+  validatePlacement(scene, placement, "placement");
+  const grid = scene.grids.find((row) => row.id === placement.grid);
+  return {
+    grid: grid.id,
+    row: grid.rows.indexOf(placement.row) + 1,
+    column: grid.columns.indexOf(placement.column) + 1,
+  };
+}
+
+export function validateInjections(injections, sceneInput) {
+  const scene = validateScene(sceneInput);
+  const rows = clone(injections || []);
+  requireCondition(Array.isArray(rows), "WORKBENCH_INJECTIONS_INVALID");
+  uniqueIds(rows, "WORKBENCH_INJECTION_ID_INVALID");
+  const transformations = new Set(scene.canonicalTransformations.map((row) => row.id));
+  for (const row of rows) {
+    nonEmptyString(row.kind, "WORKBENCH_INJECTION_KIND_REQUIRED", row.id);
+    nonEmptyString(row.prompt, "WORKBENCH_INJECTION_PROMPT_REQUIRED", row.id);
+    if (row.afterTransformationRef != null) {
+      requireCondition(transformations.has(row.afterTransformationRef),
+        "WORKBENCH_INJECTION_TRANSFORMATION_UNKNOWN", row.id);
+    }
+  }
+  return rows;
+}
+
+function requestForAdapter(request) {
+  return clone({
+    sourceEntityRef: request.sourceEntityRef,
+    targetRef: request.targetRef,
+    operation: request.operation,
+  });
+}
+
+function snapshotForAdapter(state) {
+  return clone({
+    sceneId: state.sceneId,
+    sceneVersion: state.sceneVersion,
+    revision: state.revision,
+    grids: state.grids,
+    entities: state.entities,
+    projections: state.projections,
+    targets: state.targets,
+    canonicalTransformations: state.canonicalTransformations,
+  });
+}
+
+function validateAllowedTargets(state, allowedTargetsInput) {
+  if (allowedTargetsInput == null) return [];
+  const allowedTargets = clone(allowedTargetsInput);
+  validateStringRefs(allowedTargets, "WORKBENCH_ALLOWED_TARGETS_INVALID", "allowedTargets");
+  const targetIds = new Set(state.targets.map((row) => row.id));
+  for (const targetRef of allowedTargets) {
+    requireCondition(
+      targetIds.has(targetRef),
+      "WORKBENCH_ALLOWED_TARGET_UNKNOWN",
+      targetRef,
+    );
+  }
+  return allowedTargets;
+}
+
+function validatePatch(currentState, patchInput, usedEntityIds, usedProjectionIds) {
+  const patch = clone(patchInput || {});
+  const allowedKeys = new Set(["addEntities", "addProjections"]);
+  for (const key of Object.keys(patch)) {
+    requireCondition(allowedKeys.has(key), "WORKBENCH_PATCH_FIELD_UNSUPPORTED", key);
+  }
+  patch.addEntities = patch.addEntities || [];
+  patch.addProjections = patch.addProjections || [];
+  requireCondition(Array.isArray(patch.addEntities), "WORKBENCH_PATCH_ENTITIES_INVALID");
+  requireCondition(Array.isArray(patch.addProjections), "WORKBENCH_PATCH_PROJECTIONS_INVALID");
+  requireCondition(patch.addEntities.length > 0 || patch.addProjections.length > 0,
+    "WORKBENCH_PATCH_EMPTY");
+  uniqueIds(patch.addEntities, "WORKBENCH_PATCH_ENTITY_ID_INVALID");
+  uniqueIds(patch.addProjections, "WORKBENCH_PATCH_PROJECTION_ID_INVALID");
+
+  const existingEntityIds = new Set(currentState.entities.map((row) => row.id));
+  const nextEntityIds = new Set(existingEntityIds);
+  for (const entity of patch.addEntities) {
+    nonEmptyString(entity.label, "WORKBENCH_ENTITY_LABEL_REQUIRED", entity.id);
+    requireCondition(!nextEntityIds.has(entity.id), "WORKBENCH_PATCH_ENTITY_EXISTS", entity.id);
+    requireCondition(!usedEntityIds.has(entity.id), "WORKBENCH_ENTITY_ID_REUSED", entity.id);
+    const sources = validateProvenanceMetadata(entity.provenance, entity.id);
+    for (const source of sources) {
+      requireCondition(existingEntityIds.has(source), "WORKBENCH_PROVENANCE_SOURCE_UNKNOWN", `${entity.id} -> ${source}`);
+    }
+    nextEntityIds.add(entity.id);
+  }
+
+  const existingProjectionIds = new Set(currentState.projections.map((row) => row.id));
+  const sceneLike = {
+    apiVersion: WORKBENCH_API_VERSION,
+    sceneVersion: currentState.sceneVersion,
+    id: currentState.sceneId,
+    grids: currentState.grids,
+    entities: [...currentState.entities, ...patch.addEntities],
+    projections: [],
+    targets: [],
+    canonicalTransformations: [],
+  };
+  for (const projection of patch.addProjections) {
+    nonEmptyString(projection.entityRef, "WORKBENCH_PROJECTION_ENTITY_REQUIRED", projection.id);
+    requireCondition(nextEntityIds.has(projection.entityRef), "WORKBENCH_PROJECTION_ENTITY_UNKNOWN", projection.id);
+    requireCondition(!existingProjectionIds.has(projection.id), "WORKBENCH_PATCH_PROJECTION_EXISTS", projection.id);
+    requireCondition(!usedProjectionIds.has(projection.id), "WORKBENCH_PROJECTION_ID_REUSED", projection.id);
+    nonEmptyString(projection.label, "WORKBENCH_PROJECTION_LABEL_REQUIRED", projection.id);
+    validatePlacement(sceneLike, projection.placement, projection.id);
+    existingProjectionIds.add(projection.id);
+  }
+  return patch;
+}
+
+export class WorkbenchRuntime {
+  constructor(sceneInput, adapter, { injections = [], eventSink = null } = {}) {
+    requireCondition(adapter && typeof adapter.evaluateTransfer === "function",
+      "WORKBENCH_ADAPTER_REQUIRED");
+    const scene = validateScene(sceneInput);
+    this._adapter = adapter;
+    this._eventSink = typeof eventSink === "function" ? eventSink : null;
+    this._injections = validateInjections(injections, scene);
+    this._state = {
+      sceneId: scene.id,
+      sceneVersion: scene.sceneVersion,
+      revision: 0,
+      grids: clone(scene.grids),
+      entities: clone(scene.entities),
+      projections: clone(scene.projections),
+      targets: clone(scene.targets),
+      canonicalTransformations: clone(scene.canonicalTransformations),
+      interaction: {
+        inspectedEntityRef: null,
+        inspectedProjectionRef: null,
+        pickedEntityRef: null,
+        preview: null,
+      },
+    };
+    this._history = [];
+    this._future = [];
+    this._usedEntityIds = new Set(scene.entities.map((row) => row.id));
+    this._usedProjectionIds = new Set(scene.projections.map((row) => row.id));
+    this._dispatching = false;
+  }
+
+  get snapshot() {
+    return clone(this._state);
+  }
+
+  get injections() {
+    return clone(this._injections);
+  }
+
+  get canonicalTransformations() {
+    return clone(this._state.canonicalTransformations);
+  }
+
+  get canUndo() {
+    return this._history.length > 0;
+  }
+
+  get canRedo() {
+    return this._future.length > 0;
+  }
+
+  _emit(type, detail = {}) {
+    const event = clone({
+      type,
+      sceneId: this._state.sceneId,
+      revision: this._state.revision,
+      ...detail,
+    });
+    if (this._eventSink) {
+      try {
+        this._eventSink(clone(event));
+      } catch {
+        // Observers are downstream of semantic state; host failures cannot alter dispatch.
+      }
+    }
+    return event;
+  }
+
+  _entity(entityRef) {
+    return this._state.entities.find((row) => row.id === entityRef) || null;
+  }
+
+  _projection(projectionRef) {
+    return this._state.projections.find((row) => row.id === projectionRef) || null;
+  }
+
+  _linkedProjectionRefs(entityRef) {
+    return this._state.projections
+      .filter((row) => row.entityRef === entityRef)
+      .map((row) => row.id);
+  }
+
+  _target(targetRef) {
+    return this._state.targets.find((row) => row.id === targetRef) || null;
+  }
+
+  _request(targetRef, channel) {
+    const sourceEntityRef = this._state.interaction.pickedEntityRef;
+    requireCondition(sourceEntityRef, "WORKBENCH_SOURCE_NOT_PICKED");
+    const target = this._target(targetRef);
+    requireCondition(target, "WORKBENCH_TARGET_UNKNOWN", targetRef);
+    return {
+      sourceEntityRef,
+      targetRef,
+      operation: target.operation,
+      channel: channel || "unknown",
+    };
+  }
+
+  _decision(request) {
+    let raw;
+    try {
+      raw = this._adapter.evaluateTransfer(
+        requestForAdapter(request),
+        snapshotForAdapter(this._state),
+      );
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : String(error);
+      return {
+        accepted: false,
+        reason,
+        code: "WORKBENCH_ADAPTER_FAILURE",
+        allowedTargets: [],
+      };
+    }
+
+    try {
+      requireCondition(raw && typeof raw === "object", "WORKBENCH_ADAPTER_DECISION_INVALID");
+      requireCondition(typeof raw.accepted === "boolean", "WORKBENCH_ADAPTER_DECISION_INVALID");
+      if (!raw.accepted) {
+        return {
+          accepted: false,
+          reason: nonEmptyString(raw.reason, "WORKBENCH_REJECTION_REASON_REQUIRED"),
+          allowedTargets: validateAllowedTargets(this._state, raw.allowedTargets),
+        };
+      }
+      return {
+        accepted: true,
+        summary: typeof raw.summary === "string" ? raw.summary : "Accepted",
+        patch: validatePatch(this._state, raw.patch, this._usedEntityIds, this._usedProjectionIds),
+      };
+    } catch (error) {
+      const code = error instanceof WorkbenchError ? error.code : "WORKBENCH_ADAPTER_DECISION_INVALID";
+      const reason = error instanceof Error ? error.message : String(error);
+      return { accepted: false, reason, code, allowedTargets: [] };
+    }
+  }
+
+  _commit(decision, request) {
+    const before = clone(this._state);
+    const next = clone(this._state);
+    next.entities.push(...decision.patch.addEntities);
+    next.projections.push(...decision.patch.addProjections);
+    next.revision += 1;
+    next.interaction.pickedEntityRef = null;
+    next.interaction.preview = null;
+    this._history.push(before);
+    this._future = [];
+    for (const entity of decision.patch.addEntities) this._usedEntityIds.add(entity.id);
+    for (const projection of decision.patch.addProjections) this._usedProjectionIds.add(projection.id);
+    this._state = next;
+    return this._emit("TRANSFER_ACCEPTED", {
+      request,
+      summary: decision.summary,
+      addedEntityRefs: decision.patch.addEntities.map((row) => row.id),
+      addedProjectionRefs: decision.patch.addProjections.map((row) => row.id),
+    });
+  }
+
+  dispatch(intentInput) {
+    requireCondition(!this._dispatching, "WORKBENCH_REENTRANT_DISPATCH");
+    this._dispatching = true;
+    try {
+      const intent = clone(intentInput || {});
+    const type = nonEmptyString(intent.type, "WORKBENCH_INTENT_TYPE_REQUIRED");
+    const channel = intent.channel || "unknown";
+
+    if (type === "INSPECT") {
+      requireCondition(this._entity(intent.entityRef), "WORKBENCH_ENTITY_UNKNOWN", String(intent.entityRef));
+      let projectionRef = null;
+      if (intent.projectionRef != null) {
+        const projection = this._projection(intent.projectionRef);
+        requireCondition(projection, "WORKBENCH_PROJECTION_UNKNOWN", String(intent.projectionRef));
+        requireCondition(projection.entityRef === intent.entityRef,
+          "WORKBENCH_PROJECTION_ENTITY_MISMATCH",
+          `${intent.projectionRef} -> ${intent.entityRef}`);
+        projectionRef = projection.id;
+      }
+      const linkedProjectionRefs = this._linkedProjectionRefs(intent.entityRef);
+      this._state.interaction.inspectedEntityRef = intent.entityRef;
+      this._state.interaction.inspectedProjectionRef = projectionRef;
+      return this._emit("ENTITY_INSPECTED", {
+        entityRef: intent.entityRef,
+        projectionRef,
+        linkedProjectionRefs,
+        channel,
+      });
+    }
+
+    if (type === "PICK") {
+      requireCondition(this._entity(intent.entityRef), "WORKBENCH_ENTITY_UNKNOWN", String(intent.entityRef));
+      this._state.interaction.pickedEntityRef = intent.entityRef;
+      this._state.interaction.preview = null;
+      return this._emit("ENTITY_PICKED", { entityRef: intent.entityRef, channel });
+    }
+
+    if (type === "PREVIEW_TARGET") {
+      const request = this._request(intent.targetRef, channel);
+      const decision = this._decision(request);
+      this._state.interaction.preview = {
+        targetRef: intent.targetRef,
+        accepted: decision.accepted,
+        reason: decision.reason || null,
+      };
+      return this._emit("TRANSFER_PREVIEW", {
+        request,
+        accepted: decision.accepted,
+        reason: decision.reason || null,
+        allowedTargets: decision.allowedTargets || [],
+      });
+    }
+
+    if (type === "DROP") {
+      const request = this._request(intent.targetRef, channel);
+      const decision = this._decision(request);
+      if (!decision.accepted) {
+        this._state.interaction.preview = {
+          targetRef: intent.targetRef,
+          accepted: false,
+          reason: decision.reason,
+        };
+        return this._emit("TRANSFER_REJECTED", {
+          request,
+          reason: decision.reason,
+          code: decision.code || null,
+          allowedTargets: decision.allowedTargets || [],
+        });
+      }
+      return this._commit(decision, request);
+    }
+
+    if (type === "CANCEL") {
+      this._state.interaction.pickedEntityRef = null;
+      this._state.interaction.preview = null;
+      return this._emit("INTERACTION_CANCELLED", { channel });
+    }
+
+    if (type === "UNDO") {
+      requireCondition(this._history.length > 0, "WORKBENCH_NOTHING_TO_UNDO");
+      const previous = this._history.pop();
+      const current = clone(this._state);
+      const nextRevision = this._state.revision + 1;
+      this._future.push(current);
+      this._state = previous;
+      this._state.revision = nextRevision;
+      this._state.interaction.pickedEntityRef = null;
+      this._state.interaction.preview = null;
+      return this._emit("UNDO_APPLIED", { channel });
+    }
+
+    if (type === "REDO") {
+      requireCondition(this._future.length > 0, "WORKBENCH_NOTHING_TO_REDO");
+      const next = this._future.pop();
+      const current = clone(this._state);
+      const nextRevision = this._state.revision + 1;
+      this._history.push(current);
+      this._state = next;
+      this._state.revision = nextRevision;
+      this._state.interaction.pickedEntityRef = null;
+      this._state.interaction.preview = null;
+      return this._emit("REDO_APPLIED", { channel });
+    }
+
+      throw new WorkbenchError("WORKBENCH_INTENT_UNSUPPORTED", type);
+    } finally {
+      this._dispatching = false;
+    }
+  }
+}
+
+const TAG_NAME = "semantic-workbench";
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function placementStyle(scene, placement) {
+  const resolved = resolvePlacement(scene, placement);
+  return `grid-row:${resolved.row};grid-column:${resolved.column};`;
+}
+
+export class SemanticWorkbench extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._scene = null;
+    this._adapter = null;
+    this._injections = [];
+    this._runtime = null;
+    this._lastStatus = "Workbench not configured.";
+    this._suppressedClick = null;
+
+    this.shadowRoot.addEventListener("pointerover", (event) => this._onPointerOver(event));
+    this.shadowRoot.addEventListener("pointerdown", (event) => this._onPointerDown(event));
+    this.shadowRoot.addEventListener("pointerup", (event) => this._onPointerUp(event));
+    this.shadowRoot.addEventListener("pointercancel", () => this._onPointerCancel());
+    this.shadowRoot.addEventListener("focusin", (event) => this._onFocusIn(event));
+    this.shadowRoot.addEventListener("click", (event) => this._onClick(event));
+    this.shadowRoot.addEventListener("keydown", (event) => this._onKeyDown(event));
+  }
+
+  set scene(value) {
+    this._scene = value;
+    this._mountRuntime();
+  }
+
+  get scene() {
+    return this._scene;
+  }
+
+  set adapter(value) {
+    this._adapter = value;
+    this._mountRuntime();
+  }
+
+  get adapter() {
+    return this._adapter;
+  }
+
+  set injections(value) {
+    this._injections = Array.isArray(value) ? value : [];
+    this._mountRuntime();
+  }
+
+  get injections() {
+    return [...this._injections];
+  }
+
+  get snapshot() {
+    return this._runtime ? this._runtime.snapshot : null;
+  }
+
+  get textSummary() {
+    return this._runtime ? this._summaryText(this._runtime.snapshot) : this._lastStatus;
+  }
+
+  connectedCallback() {
+    this._render();
+  }
+
+  dispatchIntent(intent) {
+    if (!this._runtime) throw new WorkbenchError("WORKBENCH_NOT_READY");
+    const event = this._runtime.dispatch(intent);
+    this._render();
+    return event;
+  }
+
+  _dispatchWithoutRebuild(intent) {
+    if (!this._runtime) throw new WorkbenchError("WORKBENCH_NOT_READY");
+    const event = this._runtime.dispatch(intent);
+    this._syncInteractionVisuals();
+    return event;
+  }
+
+  _mountRuntime() {
+    if (!this._scene || !this._adapter) {
+      this._runtime = null;
+      this._lastStatus = "Workbench requires scene data and an adapter.";
+      this._render();
+      return;
+    }
+    try {
+      this._runtime = new WorkbenchRuntime(this._scene, this._adapter, {
+        injections: this._injections,
+        eventSink: (event) => this._onRuntimeEvent(event),
+      });
+      this._lastStatus = "Workbench ready.";
+      this._render();
+      this.dispatchEvent(new CustomEvent("semantic-workbench-event", {
+        detail: { type: "WORKBENCH_READY", sceneId: this._scene.id, revision: 0 },
+        bubbles: true,
+        composed: true,
+      }));
+    } catch (error) {
+      this._runtime = null;
+      this._lastStatus = error instanceof Error ? error.message : String(error);
+      this._render();
+    }
+  }
+
+  _onRuntimeEvent(event) {
+    if (event.type === "TRANSFER_REJECTED") this._lastStatus = `Rejected: ${event.reason}`;
+    else if (event.type === "TRANSFER_ACCEPTED") this._lastStatus = event.summary || "Transfer accepted.";
+    else if (event.type === "TRANSFER_PREVIEW") this._lastStatus = event.accepted ? "Target available." : `Target unavailable: ${event.reason}`;
+    else if (event.type === "ENTITY_INSPECTED") this._lastStatus = event.linkedProjectionRefs?.length > 1
+      ? `Inspecting ${event.linkedProjectionRefs.length} linked representations.`
+      : "Inspecting representation.";
+    else if (event.type === "ENTITY_PICKED") this._lastStatus = "Source selected. Choose a target.";
+    else if (event.type === "INTERACTION_CANCELLED") this._lastStatus = "Selection cancelled.";
+    else if (event.type === "UNDO_APPLIED") this._lastStatus = "Previous transformation restored.";
+    else if (event.type === "REDO_APPLIED") this._lastStatus = "Undone transformation restored.";
+
+    this.dispatchEvent(new CustomEvent("semantic-workbench-event", {
+      detail: event,
+      bubbles: true,
+      composed: true,
+    }));
+  }
+
+  _closestRole(event, role) {
+    const target = event.target?.closest?.(`[data-role="${role}"]`);
+    return target || null;
+  }
+
+  _clickToken(event) {
+    const action = event.target?.closest?.("[data-action]");
+    if (action) return `action:${action.dataset.action}`;
+    const entity = this._closestRole(event, "entity");
+    if (entity) return `entity:${entity.dataset.projectionRef}`;
+    const target = this._closestRole(event, "target");
+    if (target) return `target:${target.dataset.targetRef}`;
+    return null;
+  }
+
+  _onPointerOver(event) {
+    const entity = this._closestRole(event, "entity");
+    if (entity) this._dispatchWithoutRebuild({
+      type: "INSPECT",
+      entityRef: entity.dataset.entityRef,
+      projectionRef: entity.dataset.projectionRef,
+      channel: "pointer",
+    });
+    const target = this._closestRole(event, "target");
+    if (target && this._runtime?.snapshot.interaction.pickedEntityRef) {
+      this._dispatchWithoutRebuild({ type: "PREVIEW_TARGET", targetRef: target.dataset.targetRef, channel: "pointer" });
+    }
+  }
+
+  _onPointerDown(event) {
+    const entity = this._closestRole(event, "entity");
+    if (!entity) {
+      this._suppressedClick = null;
+      return;
+    }
+    this._suppressedClick = this._clickToken(event);
+    this._dispatchWithoutRebuild({ type: "PICK", entityRef: entity.dataset.entityRef, channel: "pointer" });
+  }
+
+  _onPointerUp(event) {
+    const target = this._closestRole(event, "target");
+    if (target && this._runtime?.snapshot.interaction.pickedEntityRef) {
+      this._suppressedClick = this._clickToken(event);
+      this.dispatchIntent({ type: "DROP", targetRef: target.dataset.targetRef, channel: "pointer" });
+      return;
+    }
+    if (this._clickToken(event) !== this._suppressedClick) this._suppressedClick = null;
+  }
+
+  _onPointerCancel() {
+    this._suppressedClick = null;
+  }
+
+  _onFocusIn(event) {
+    const entity = this._closestRole(event, "entity");
+    if (entity) this._dispatchWithoutRebuild({
+      type: "INSPECT",
+      entityRef: entity.dataset.entityRef,
+      projectionRef: entity.dataset.projectionRef,
+      channel: "keyboard",
+    });
+  }
+
+  _onClick(event) {
+    const clickToken = this._clickToken(event);
+    if (this._suppressedClick && clickToken === this._suppressedClick) {
+      this._suppressedClick = null;
+      return;
+    }
+    this._suppressedClick = null;
+    const action = event.target?.closest?.("[data-action]");
+    if (action) {
+      const type = action.dataset.action === "undo" ? "UNDO" : (action.dataset.action === "redo" ? "REDO" : "CANCEL");
+      try { this.dispatchIntent({ type, channel: "click" }); } catch (_) { /* no-op when unavailable */ }
+      return;
+    }
+    const entity = this._closestRole(event, "entity");
+    if (entity) {
+      this._dispatchWithoutRebuild({ type: "PICK", entityRef: entity.dataset.entityRef, channel: "click" });
+      return;
+    }
+    const target = this._closestRole(event, "target");
+    if (target && this._runtime?.snapshot.interaction.pickedEntityRef) {
+      this.dispatchIntent({ type: "DROP", targetRef: target.dataset.targetRef, channel: "click" });
+    }
+  }
+
+  _onKeyDown(event) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      this.dispatchIntent({ type: "CANCEL", channel: "keyboard" });
+      return;
+    }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
+      event.preventDefault();
+      const type = event.shiftKey ? "REDO" : "UNDO";
+      try { this.dispatchIntent({ type, channel: "keyboard" }); } catch (_) { /* history action unavailable */ }
+      return;
+    }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "y") {
+      event.preventDefault();
+      try { this.dispatchIntent({ type: "REDO", channel: "keyboard" }); } catch (_) { /* nothing to redo */ }
+      return;
+    }
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const entity = this._closestRole(event, "entity");
+    if (entity) {
+      event.preventDefault();
+      this._dispatchWithoutRebuild({ type: "PICK", entityRef: entity.dataset.entityRef, channel: "keyboard" });
+      return;
+    }
+    const target = this._closestRole(event, "target");
+    if (target && this._runtime?.snapshot.interaction.pickedEntityRef) {
+      event.preventDefault();
+      this.dispatchIntent({ type: "DROP", targetRef: target.dataset.targetRef, channel: "keyboard" });
+    }
+  }
+
+  _focusToken() {
+    const active = this.shadowRoot?.activeElement;
+    if (!active) return null;
+    if (active.dataset.role === "entity") return { kind: "entity", ref: active.dataset.projectionRef };
+    if (active.dataset.role === "target") return { kind: "target", ref: active.dataset.targetRef };
+    if (active.dataset.action) return { kind: "action", ref: active.dataset.action };
+    return null;
+  }
+
+  _restoreFocus(token) {
+    if (!token || !this.shadowRoot) return;
+    const candidates = [...this.shadowRoot.querySelectorAll("button")];
+    const next = candidates.find((button) => {
+      if (token.kind === "entity") return button.dataset.role === "entity" && button.dataset.projectionRef === token.ref;
+      if (token.kind === "target") return button.dataset.role === "target" && button.dataset.targetRef === token.ref;
+      return token.kind === "action" && button.dataset.action === token.ref;
+    });
+    next?.focus({ preventScroll: true });
+  }
+
+  _summaryText(state) {
+    const entity = (ref) => state.entities.find((row) => row.id === ref);
+    const projection = (ref) => state.projections.find((row) => row.id === ref);
+    const target = (ref) => state.targets.find((row) => row.id === ref);
+    const label = (row, fallback) => row?.label || fallback;
+
+    let inspectedText = "Nothing inspected.";
+    if (state.interaction.inspectedProjectionRef) {
+      inspectedText = `Inspecting ${label(projection(state.interaction.inspectedProjectionRef), state.interaction.inspectedProjectionRef)}.`;
+    } else if (state.interaction.inspectedEntityRef) {
+      inspectedText = `Inspecting ${label(entity(state.interaction.inspectedEntityRef), state.interaction.inspectedEntityRef)}.`;
+    }
+
+    const selectedText = state.interaction.pickedEntityRef
+      ? `Selected source ${label(entity(state.interaction.pickedEntityRef), state.interaction.pickedEntityRef)}.`
+      : "No source selected.";
+
+    let previewText = "No target preview.";
+    if (state.interaction.preview) {
+      const preview = state.interaction.preview;
+      const targetLabel = label(target(preview.targetRef), preview.targetRef);
+      const availability = preview.accepted ? "available" : "unavailable";
+      const reason = preview.reason ? ` Reason: ${preview.reason}.` : "";
+      previewText = `Target ${targetLabel}: ${availability}.${reason}`;
+    }
+
+    const representations = state.projections.length
+      ? state.projections.map((row) => {
+          const kind = row.representation ? ` [${row.representation}]` : "";
+          return `${label(row, row.id)}${kind}`;
+        }).join("; ")
+      : "none";
+
+    return `Scene ${state.sceneId}. Revision ${state.revision}. ${inspectedText} ${selectedText} ${previewText} Representations: ${representations}.`;
+  }
+
+  _syncInteractionVisuals() {
+    if (!this._runtime || !this.shadowRoot) return;
+    const state = this._runtime.snapshot;
+    const picked = state.interaction.pickedEntityRef;
+    const inspected = state.interaction.inspectedEntityRef;
+    const inspectedProjection = state.interaction.inspectedProjectionRef;
+    for (const button of this.shadowRoot.querySelectorAll('[data-role="entity"]')) {
+      const selected = button.dataset.entityRef === picked;
+      const origin = Boolean(inspectedProjection) && button.dataset.projectionRef === inspectedProjection;
+      const linked = button.dataset.entityRef === inspected && !origin;
+      const active = selected || origin || linked;
+      const correspondenceState = origin ? "origin" : (linked ? "linked" : (selected ? "selected" : "none"));
+      button.classList.toggle("active", active);
+      button.dataset.correspondenceState = correspondenceState;
+      button.setAttribute("aria-pressed", selected ? "true" : "false");
+      const label = button.querySelector(".entity-state");
+      if (label) label.textContent = origin ? "Inspected representation" : (linked ? "Linked representation" : (selected ? "Selected representation" : "Representation"));
+    }
+    for (const button of this.shadowRoot.querySelectorAll('[data-role="target"]')) {
+      const isPreview = state.interaction.preview?.targetRef === button.dataset.targetRef;
+      const accepted = isPreview && state.interaction.preview?.accepted === true;
+      button.classList.toggle("valid", accepted);
+      button.classList.toggle("invalid", isPreview && !accepted);
+      const label = button.querySelector("small");
+      if (label) label.textContent = isPreview ? (accepted ? "Available" : "Unavailable") : "Target";
+    }
+    const status = this.shadowRoot.querySelector(".status");
+    if (status) status.textContent = this._lastStatus;
+    const summary = this.shadowRoot.querySelector(".text-summary p");
+    if (summary) summary.textContent = this._summaryText(state);
+  }
+
+  _renderGrid(grid, state) {
+    const projections = state.projections
+      .filter((row) => row.placement.grid === grid.id)
+      .map((row) => ({ ...row, role: "entity" }));
+    const targets = state.targets
+      .filter((row) => row.placement.grid === grid.id)
+      .map((row) => ({ ...row, role: "target" }));
+    const rows = [...projections, ...targets].sort((a, b) => {
+      const pa = resolvePlacement(this._scene, a.placement);
+      const pb = resolvePlacement(this._scene, b.placement);
+      return pa.row - pb.row || pa.column - pb.column || a.id.localeCompare(b.id);
+    });
+
+    const picked = state.interaction.pickedEntityRef;
+    const inspected = state.interaction.inspectedEntityRef;
+    const inspectedProjection = state.interaction.inspectedProjectionRef;
+    const preview = state.interaction.preview;
+    const content = rows.map((row) => {
+      const style = placementStyle(this._scene, row.placement);
+      if (row.role === "entity") {
+        const selected = row.entityRef === picked;
+        const origin = Boolean(inspectedProjection) && row.id === inspectedProjection;
+        const linked = row.entityRef === inspected && !origin;
+        const active = selected || origin || linked;
+        const correspondenceState = origin ? "origin" : (linked ? "linked" : (selected ? "selected" : "none"));
+        const stateLabel = origin ? "Inspected representation" : (linked ? "Linked representation" : (selected ? "Selected representation" : "Representation"));
+        return `<button class="slot entity${active ? " active" : ""}" style="${style}" data-role="entity" data-entity-ref="${escapeHtml(row.entityRef)}" data-projection-ref="${escapeHtml(row.id)}" data-correspondence-state="${correspondenceState}" aria-pressed="${selected ? "true" : "false"}"><span>${escapeHtml(row.label)}</span><small class="entity-state">${stateLabel}</small></button>`;
+      }
+      const isPreview = preview?.targetRef === row.id;
+      const stateLabel = isPreview ? (preview.accepted ? "Available" : "Unavailable") : "Target";
+      return `<button class="slot target${isPreview ? (preview.accepted ? " valid" : " invalid") : ""}" style="${style}" data-role="target" data-target-ref="${escapeHtml(row.id)}"><span>${escapeHtml(row.label)}</span><small>${stateLabel}</small></button>`;
+    }).join("");
+
+    return `<section class="grid-shell"><h3>${escapeHtml(grid.label || grid.id)}</h3><div class="logical-grid" style="--column-count:${grid.columns.length}">${content}</div></section>`;
+  }
+
+  _render() {
+    if (!this.shadowRoot) return;
+    const focusToken = this._focusToken();
+    if (!this._runtime) {
+      this.shadowRoot.innerHTML = `<style>:host{display:block;font:inherit}.diagnostic{border:1px solid currentColor;padding:.75rem;border-radius:.5rem}</style><div class="diagnostic" role="status">${escapeHtml(this._lastStatus)}</div>`;
+      this._restoreFocus(focusToken);
+      return;
+    }
+
+    const state = this._runtime.snapshot;
+    const checkpoints = this._runtime.injections.map((row) => `<aside class="checkpoint"><strong>${escapeHtml(row.kind)}</strong><span>${escapeHtml(row.prompt)}</span></aside>`).join("");
+    const grids = state.grids.map((grid) => this._renderGrid(grid, state)).join("");
+    const textSummary = this._summaryText(state);
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host{display:block;container-type:inline-size;font:inherit;color:var(--workbench-fg,inherit)}
+        .frame{border:1px solid var(--workbench-border,#94a3b8);border-radius:.75rem;padding:1rem;background:var(--workbench-bg,#fff)}
+        .toolbar{display:flex;gap:.5rem;justify-content:flex-end;margin-bottom:.75rem}
+        button{font:inherit}
+        .logical-grid{display:grid;grid-template-columns:repeat(var(--column-count),minmax(0,1fr));gap:.6rem;align-items:stretch}
+        .slot{min-width:0;min-height:2.75rem;border:1px solid var(--workbench-border,#94a3b8);border-radius:.5rem;padding:.65rem;background:var(--workbench-surface,#f8fafc);color:inherit;text-align:left;touch-action:manipulation}
+        .entity{display:flex;flex-direction:column;gap:.15rem}.entity small{font-size:.75em}
+        .entity.active{outline:3px solid var(--workbench-focus,#2563eb);outline-offset:2px}
+        .target{display:flex;flex-direction:column;gap:.15rem}.target small{font-size:.75em}.target.valid{border-style:double}.target.invalid{border-style:dashed}
+        .checkpoint{display:flex;gap:.5rem;align-items:flex-start;margin:.75rem 0;padding:.65rem;border-left:4px solid var(--workbench-checkpoint,#64748b);background:var(--workbench-surface,#f8fafc)}
+        .text-summary{margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--workbench-border,#94a3b8)}
+        .text-summary h3{margin:.1rem 0 .35rem;font-size:1em}.text-summary p{margin:0}
+        .status{margin-top:.75rem;min-height:1.5em}
+        @container (max-width:34rem){.logical-grid{grid-template-columns:1fr}.slot{grid-column:1!important;grid-row:auto!important}}
+        @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+      </style>
+      <section class="frame" aria-label="Semantic transformation workbench">
+        <div class="toolbar"><button data-action="undo"${this._runtime.canUndo ? "" : " disabled"}>Undo</button><button data-action="redo"${this._runtime.canRedo ? "" : " disabled"}>Redo</button><button data-action="cancel">Cancel</button></div>
+        ${checkpoints}
+        ${grids}
+        <section class="text-summary" aria-label="Workbench text state"><h3>Text state</h3><p>${escapeHtml(textSummary)}</p></section>
+        <div class="status" role="status" aria-live="polite">${escapeHtml(this._lastStatus)}</div>
+      </section>`;
+    this._restoreFocus(focusToken);
+  }
+}
+
+if (typeof customElements !== "undefined" && !customElements.get(TAG_NAME)) {
+  customElements.define(TAG_NAME, SemanticWorkbench);
+}
+
+export const PORTABLE_PACKAGE_VERSION = "1.0.0";
+export const PORTABLE_TRANSFORMATION_IR_VERSION = "0.1.0";
+export const PORTABLE_ADAPTER_API_VERSION = "0.1.0";
+export const PORTABLE_SCENE_PACKAGE_VERSION = "1.0.0";
+export const PORTABLE_ADAPTER_ID = "declarative-transfer-v1";
+
+const executableKeys = new Set([
+  "script", "javascript", "eval", "function", "handler",
+  "onclick", "onload", "onerror", "sourcecode", "executable",
+]);
+const pixelKeys = new Set(["x", "y", "left", "top", "width", "height"]);
+const portableClone = (value) => JSON.parse(JSON.stringify(value));
+
+export class PortablePackageError extends Error {
+  constructor(code, detail = "") {
+    super(detail ? `${code}: ${detail}` : code);
+    this.name = "PortablePackageError";
+    this.code = code;
+    this.detail = detail;
+  }
+}
+
+function requirePortable(condition, code, detail = "") {
+  if (!condition) throw new PortablePackageError(code, detail);
+}
+
+function nonEmpty(value, code, detail = "") {
+  requirePortable(typeof value === "string" && value.trim().length > 0, code, detail);
+  return value;
+}
+
+function stringList(value, code) {
+  requirePortable(Array.isArray(value), code);
+  value.forEach((row) => nonEmpty(row, code));
+  requirePortable(new Set(value).size === value.length, code);
+  return value;
+}
+
+function scanData(value, path = "package") {
+  requirePortable(typeof value !== "function", "PORTABLE_EXECUTABLE_VALUE_FORBIDDEN", path);
+  if (Array.isArray(value)) {
+    value.forEach((row, index) => scanData(row, `${path}[${index}]`));
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+  for (const [key, child] of Object.entries(value)) {
+    requirePortable(!executableKeys.has(key.toLowerCase()), "PORTABLE_EXECUTABLE_FIELD_FORBIDDEN", `${path}.${key}`);
+    if (key === "placement" && child && typeof child === "object") {
+      for (const pixel of pixelKeys) {
+        requirePortable(!(pixel in child), "PORTABLE_PIXEL_COORDINATE_FORBIDDEN", `${path}.${key}.${pixel}`);
+      }
+    }
+    scanData(child, `${path}.${key}`);
+  }
+}
+
+function validateAdapter(adapter, scene) {
+  requirePortable(adapter && typeof adapter === "object", "PORTABLE_ADAPTER_REQUIRED");
+  requirePortable(adapter.id === PORTABLE_ADAPTER_ID, "PORTABLE_ADAPTER_ID_UNSUPPORTED", String(adapter.id));
+  requirePortable(adapter.apiVersion === PORTABLE_ADAPTER_API_VERSION, "PORTABLE_ADAPTER_API_VERSION_MISMATCH", String(adapter.apiVersion));
+  requirePortable(Array.isArray(adapter.rules) && adapter.rules.length > 0, "PORTABLE_ADAPTER_RULES_REQUIRED");
+  const transforms = new Map(scene.canonicalTransformations.map((row) => [row.id, row]));
+  const targets = new Map(scene.targets.map((row) => [row.id, row]));
+  const ids = new Set();
+  for (const rule of adapter.rules) {
+    nonEmpty(rule.id, "PORTABLE_ADAPTER_RULE_ID_REQUIRED");
+    requirePortable(!ids.has(rule.id), "PORTABLE_ADAPTER_RULE_ID_DUPLICATE", rule.id);
+    ids.add(rule.id);
+    const transform = transforms.get(rule.transformationRef);
+    requirePortable(Boolean(transform), "PORTABLE_ADAPTER_TRANSFORMATION_UNKNOWN", String(rule.transformationRef));
+    requirePortable(transform.sourceEntityRefs.includes(rule.sourceEntityRef), "PORTABLE_ADAPTER_SOURCE_MISMATCH", rule.id);
+    requirePortable(transform.targetRef === rule.targetRef, "PORTABLE_ADAPTER_TARGET_MISMATCH", rule.id);
+    requirePortable(targets.get(rule.targetRef)?.operation === rule.operation, "PORTABLE_ADAPTER_OPERATION_MISMATCH", rule.id);
+    requirePortable(rule.patch && typeof rule.patch === "object", "PORTABLE_ADAPTER_PATCH_REQUIRED", rule.id);
+  }
+}
+
+export function validatePortablePackage(input) {
+  const pkg = portableClone(input);
+  scanData(pkg);
+  const expected = {
+    schemaVersion: "portable-workbench-package",
+    packageVersion: PORTABLE_PACKAGE_VERSION,
+    componentApiVersion: WORKBENCH_API_VERSION,
+    transformationIrVersion: PORTABLE_TRANSFORMATION_IR_VERSION,
+    adapterApiVersion: PORTABLE_ADAPTER_API_VERSION,
+    scenePackageVersion: PORTABLE_SCENE_PACKAGE_VERSION,
+  };
+  for (const [key, value] of Object.entries(expected)) {
+    requirePortable(pkg[key] === value, `PORTABLE_${key.toUpperCase()}_MISMATCH`, String(pkg[key]));
+  }
+  nonEmpty(pkg.id, "PORTABLE_PACKAGE_ID_REQUIRED");
+  nonEmpty(pkg.title, "PORTABLE_PACKAGE_TITLE_REQUIRED");
+  for (const field of ["sourceRefs", "sceneRefs", "representationRefs", "assetRefs", "accessibilityRefs"]) {
+    stringList(pkg[field], `PORTABLE_${field.toUpperCase()}_INVALID`);
+  }
+  requirePortable(Array.isArray(pkg.questionBindings), "PORTABLE_QUESTION_BINDINGS_INVALID");
+  requirePortable(pkg.provenance?.authority === "NON_CANONICAL_COMPILED_PROOF", "PORTABLE_PROVENANCE_AUTHORITY_INVALID");
+  const scene = validateScene(pkg.scene);
+  requirePortable(pkg.sceneRefs.length === 1 && pkg.sceneRefs[0] === scene.id, "PORTABLE_SCENE_REFS_MISMATCH");
+  validateAdapter(pkg.adapter, scene);
+  requirePortable(Array.isArray(pkg.injections), "PORTABLE_INJECTIONS_INVALID");
+  return pkg;
+}
+
+export function createDeclarativeAdapter(packageInput) {
+  const pkg = validatePortablePackage(packageInput);
+  return {
+    evaluateTransfer(request) {
+      const rule = pkg.adapter.rules.find((row) =>
+        row.sourceEntityRef === request.sourceEntityRef
+        && row.targetRef === request.targetRef
+        && row.operation === request.operation
+      );
+      if (!rule) {
+        const allowedTargets = pkg.adapter.rules
+          .filter((row) => row.sourceEntityRef === request.sourceEntityRef)
+          .map((row) => row.targetRef);
+        return {
+          accepted: false,
+          reason: "No compiled transformation rule authorizes this transfer.",
+          allowedTargets: [...new Set(allowedTargets)],
+        };
+      }
+      return {
+        accepted: true,
+        summary: rule.summary || "Compiled transformation accepted.",
+        patch: portableClone(rule.patch),
+      };
+    },
+  };
+}
+
+export function mountPortableWorkbench(element, packageInput) {
+  requirePortable(element && typeof element === "object", "PORTABLE_HOST_ELEMENT_REQUIRED");
+  const pkg = validatePortablePackage(packageInput);
+  element.scene = portableClone(pkg.scene);
+  element.adapter = createDeclarativeAdapter(pkg);
+  element.injections = portableClone(pkg.injections);
+  return pkg;
+}
+
+const PORTABLE_PACKAGES=[{"schemaVersion":"portable-workbench-package","packageVersion":"1.0.0","componentApiVersion":"0.1.0","transformationIrVersion":"0.1.0","adapterApiVersion":"0.1.0","scenePackageVersion":"1.0.0","id":"portable-long-division","title":"Long division semantic transfer proof","sourceRefs":["tests/fixtures/workbench/arithmetic-division.json"],"sceneRefs":["division-first-quotient-digit"],"representationRefs":["division expression","working dividend","quotient"],"assetRefs":[],"accessibilityRefs":["keyboard transfer","text state"],"questionBindings":[],"provenance":{"authority":"NON_CANONICAL_COMPILED_PROOF","sourceKind":"EXISTING_CORE_TEST_WITNESS","sourceRefs":["tests/fixtures/workbench/arithmetic-division.json"]},"scene":{"apiVersion":"0.1.0","sceneVersion":"1.0.0","id":"division-first-quotient-digit","grids":[{"id":"division-work","label":"Long division work","rows":["working","result"],"columns":["left","main","right"]},{"id":"division-expression","label":"Division expression","rows":["problem"],"columns":["main"]}],"entities":[{"id":"dividend-156","label":"156","provenance":{"kind":"SOURCE","sourceEntityRefs":[]}},{"id":"divisor-12","label":"12","provenance":{"kind":"SOURCE","sourceEntityRefs":[]}}],"projections":[{"id":"dividend-expression","entityRef":"dividend-156","label":"156 \u00f7 12","representation":"division expression","placement":{"grid":"division-expression","row":"problem","column":"main"}},{"id":"dividend-place-value","entityRef":"dividend-156","label":"156 in long-division working form","representation":"working dividend","placement":{"grid":"division-work","row":"working","column":"left"}},{"id":"divisor-expression","entityRef":"divisor-12","label":"12","representation":"divisor","placement":{"grid":"division-work","row":"working","column":"main"}}],"targets":[{"id":"quotient-first-digit","label":"First quotient digit","operation":"derive-first-quotient-digit","placement":{"grid":"division-work","row":"result","column":"main"}},{"id":"remainder-final","label":"Final remainder","operation":"derive-final-remainder","placement":{"grid":"division-work","row":"result","column":"right"}}],"canonicalTransformations":[{"id":"choose-first-quotient-digit","sourceEntityRefs":["dividend-156","divisor-12"],"targetRef":"quotient-first-digit"}]},"adapter":{"id":"declarative-transfer-v1","apiVersion":"0.1.0","rules":[{"id":"rule-first-quotient-digit","transformationRef":"choose-first-quotient-digit","sourceEntityRef":"dividend-156","targetRef":"quotient-first-digit","operation":"derive-first-quotient-digit","summary":"The first quotient digit is derived from the leading place-value comparison.","patch":{"addEntities":[{"id":"quotient-digit-1","label":"1","provenance":{"kind":"DERIVED","sourceEntityRefs":["dividend-156","divisor-12"]}}],"addProjections":[{"id":"quotient-first-digit-result","entityRef":"quotient-digit-1","label":"1","representation":"first quotient digit","placement":{"grid":"division-work","row":"result","column":"main"}}]}}]},"injections":[]},{"schemaVersion":"portable-workbench-package","packageVersion":"1.0.0","componentApiVersion":"0.1.0","transformationIrVersion":"0.1.0","adapterApiVersion":"0.1.0","scenePackageVersion":"1.0.0","id":"portable-redox-electron-equivalence","title":"Redox oxidation-state and electron-equivalence proof","sourceRefs":["standalone/chemistry-redox-reactions-master-suite.html","public/chemistry/redox/explorers/redox_reactions/index.html"],"sceneRefs":["redox-electron-equivalence-proof"],"representationRefs":["oxidation-state ledger","half-reaction","electron equivalence"],"assetRefs":[],"accessibilityRefs":["text state","keyboard transfer"],"questionBindings":[],"provenance":{"authority":"NON_CANONICAL_COMPILED_PROOF","sourceKind":"COMPILED_PROOF_FIXTURE","sourceRefs":["standalone/chemistry-redox-reactions-master-suite.html","public/chemistry/redox/explorers/redox_reactions/index.html"]},"scene":{"apiVersion":"0.1.0","sceneVersion":"1.0.0","id":"redox-electron-equivalence-proof","grids":[{"id":"redox-grid","label":"Redox ledger","rows":["oxidation-state","half-reaction","equivalence"],"columns":["oxidation","relation","reduction"]}],"entities":[{"id":"iron-ii","label":"Fe2+","provenance":{"kind":"SOURCE","sourceEntityRefs":[]}},{"id":"cerium-iv","label":"Ce4+","provenance":{"kind":"SOURCE","sourceEntityRefs":[]}}],"projections":[{"id":"iron-ledger","entityRef":"iron-ii","label":"Fe: +2 -> +3","representation":"oxidation-state ledger","placement":{"grid":"redox-grid","row":"oxidation-state","column":"oxidation"}},{"id":"iron-half-reaction","entityRef":"iron-ii","label":"Fe2+ -> Fe3+ + e-","representation":"half-reaction","placement":{"grid":"redox-grid","row":"half-reaction","column":"oxidation"}},{"id":"cerium-half-reaction","entityRef":"cerium-iv","label":"Ce4+ + e- -> Ce3+","representation":"half-reaction","placement":{"grid":"redox-grid","row":"half-reaction","column":"reduction"}}],"targets":[{"id":"electron-equivalence","label":"Match electron loss and gain","operation":"match-electrons","placement":{"grid":"redox-grid","row":"equivalence","column":"relation"}}],"canonicalTransformations":[{"id":"equate-redox-electrons","sourceEntityRefs":["iron-ii","cerium-iv"],"targetRef":"electron-equivalence"}]},"adapter":{"id":"declarative-transfer-v1","apiVersion":"0.1.0","rules":[{"id":"rule-equate-redox-electrons","transformationRef":"equate-redox-electrons","sourceEntityRef":"iron-ii","targetRef":"electron-equivalence","operation":"match-electrons","summary":"One electron lost by Fe2+ matches one electron gained by Ce4+.","patch":{"addEntities":[{"id":"balanced-electron-ledger","label":"1 e- lost = 1 e- gained","provenance":{"kind":"DERIVED","sourceEntityRefs":["iron-ii","cerium-iv"]}}],"addProjections":[{"id":"electron-equivalence-result","entityRef":"balanced-electron-ledger","label":"1 e- = 1 e-","representation":"electron equivalence","placement":{"grid":"redox-grid","row":"equivalence","column":"relation"}}]}}]},"injections":[]},{"schemaVersion":"portable-workbench-package","packageVersion":"1.0.0","componentApiVersion":"0.1.0","transformationIrVersion":"0.1.0","adapterApiVersion":"0.1.0","scenePackageVersion":"1.0.0","id":"portable-integration-riemann","title":"Integration partition and Riemann-sum proof","sourceRefs":["issue:163:integration-cross-subject-proof"],"sceneRefs":["integration-riemann-refinement-proof"],"representationRefs":["graph","partition rectangles","Riemann sum","integral representation"],"assetRefs":[],"accessibilityRefs":["text state","keyboard transfer"],"questionBindings":[],"provenance":{"authority":"NON_CANONICAL_COMPILED_PROOF","sourceKind":"COMPILED_PROOF_FIXTURE","sourceRefs":["issue:163:integration-cross-subject-proof"]},"scene":{"apiVersion":"0.1.0","sceneVersion":"1.0.0","id":"integration-riemann-refinement-proof","grids":[{"id":"integration-grid","label":"Riemann construction","rows":["graph","partition","representation"],"columns":["picture","correspondence","symbol"]}],"entities":[{"id":"function-x-squared","label":"f(x)=x^2","provenance":{"kind":"SOURCE","sourceEntityRefs":[]}}],"projections":[{"id":"function-graph","entityRef":"function-x-squared","label":"Graph of y=x^2","representation":"graph","placement":{"grid":"integration-grid","row":"graph","column":"picture"}},{"id":"coarse-partition","entityRef":"function-x-squared","label":"Rectangles over a coarse partition","representation":"partition rectangles","placement":{"grid":"integration-grid","row":"partition","column":"picture"}},{"id":"coarse-sum","entityRef":"function-x-squared","label":"sum f(x_i*) dx","representation":"rectangle-to-term correspondence","placement":{"grid":"integration-grid","row":"partition","column":"symbol"}}],"targets":[{"id":"refine-riemann-sum","label":"Refine partition toward integral","operation":"refine-partition","placement":{"grid":"integration-grid","row":"representation","column":"correspondence"}}],"canonicalTransformations":[{"id":"riemann-refinement","sourceEntityRefs":["function-x-squared"],"targetRef":"refine-riemann-sum"}]},"adapter":{"id":"declarative-transfer-v1","apiVersion":"0.1.0","rules":[{"id":"rule-riemann-refinement","transformationRef":"riemann-refinement","sourceEntityRef":"function-x-squared","targetRef":"refine-riemann-sum","operation":"refine-partition","summary":"Refinement preserves rectangle-to-term correspondence while the sum approaches the integral representation.","patch":{"addEntities":[{"id":"riemann-limit","label":"limit sum f(x_i*) dx = integral f(x) dx","provenance":{"kind":"DERIVED","sourceEntityRefs":["function-x-squared"]}}],"addProjections":[{"id":"integral-representation","entityRef":"riemann-limit","label":"integral f(x) dx","representation":"integral representation","placement":{"grid":"integration-grid","row":"representation","column":"symbol"}}]}}]},"injections":[]}];const events=[];window.__portableEvents=events;const pkg=PORTABLE_PACKAGES[0];const element=document.querySelector("#portable-workbench");element.addEventListener("semantic-workbench-event",e=>events.push(e.detail));mountPortableWorkbench(element,pkg);document.querySelector("#package-label").textContent=pkg.title;window.__portablePackageId=pkg.id;window.__portableWorkbenchReady=true;
+</script></body></html>
