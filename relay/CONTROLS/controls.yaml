@@ -54,14 +54,28 @@ controls:
     - Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400 continuity assessment ready=true
 - id: CTRL-OWNER-MERGE-ISS174-NLM-20260922
   kind: OWNER
-  state: OPEN
+  state: RESOLVED
   source:
     type: OWNER
     ref: direct-owner:2026-09-22T11:48:50Z:sha256:d982aa62202077357b1a30cde1405fcd765a1408a139f105294d1c6d5c7c73dc
-  condition: Owner explicitly authorizes merging the current V3-governed delivery when GitHub reports it mergeable.
+  condition: Owner explicitly authorizes merging the current V3-governed NLM delivery when GitHub reports it mergeable.
   blocks: []
   permits:
   - MERGE
   resolution:
     condition: PR 179 is merged or the Owner revokes this authority.
+    evidence:
+    - PR 179 merged at bbd796e4c7de7e5eac80e973357ee79c9bb72df9.
+- id: CTRL-OWNER-MERGE-ISS174-MOTION-20260922
+  kind: OWNER
+  state: OPEN
+  source:
+    type: OWNER
+    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
+  condition: Owner authorizes merging the next V3-governed Issue 174 delivery when GitHub and V3 report it mergeable; PR 187 is that separate Motion delivery.
+  blocks: []
+  permits:
+  - MERGE
+  resolution:
+    condition: PR 187 is merged or the Owner revokes this authority.
     evidence: []
