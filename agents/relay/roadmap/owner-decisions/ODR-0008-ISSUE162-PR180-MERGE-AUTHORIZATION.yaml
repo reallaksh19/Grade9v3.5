@@ -1,0 +1,51 @@
+{
+  "schema_version": "relay-v2.5",
+  "id": "ODR-0008-ISSUE162-PR180-MERGE-AUTHORIZATION",
+  "decision": {
+    "authority": "OWNER",
+    "kind": "AUTHORIZATION",
+    "statement": "Authorize delivery of the bounded Issue #162 corrective fix by merging PR #180 only at exact head 4726bcef5cd7594ae9319b9d98562213c47eaef2. Preserve the recorded V2.5 route-resolution failure as evidence; do not treat this authorization as generic material-write authority or as a transfer of Issue #169 / EP-TA-009 scope.",
+    "source": "GitHub Issue #162 comment 5768982881 recording the Owner's active-session instruction 'owner override, start'."
+  },
+  "effects": {
+    "requirement_disposition": "NOT_APPLICABLE",
+    "grants_material_write_authority": false,
+    "pending_items": []
+  },
+  "delivery_authorization": {
+    "action": "MERGE",
+    "provider": "GITHUB",
+    "repository": "reallaksh19/Grade9V3",
+    "vehicle": "PULL_REQUEST",
+    "number": 180,
+    "head_sha": "4726bcef5cd7594ae9319b9d98562213c47eaef2",
+    "disposition": "GRANTED"
+  },
+  "impact": {
+    "class": [
+      "LOCAL",
+      "DELIVERY",
+      "PROTOCOL_EXCEPTION"
+    ]
+  },
+  "affected": {
+    "objectives": [
+      "OBJ-TOPIC-ATLAS-COMPLETE"
+    ],
+    "phases": [
+      "PHASE-TAKEOVER-RECONCILIATION"
+    ],
+    "work_packages": [],
+    "execution_packages": [],
+    "issues": [
+      "ISSUE-162"
+    ]
+  },
+  "required_reconciliation": [
+    "Read back PR #180 immediately before and after merge and reject the authorization if the head SHA changed.",
+    "Keep v25-relay run 35666847161 recorded as a route-resolution failure; do not relabel it PASS.",
+    "Do not change Issue #169 / EP-TA-009 scope or claim this delivery authorization grants generic material-write authority.",
+    "After merge, read back main and Issue #162, record the merge commit, and close the corrective issue only if provider state confirms the merge."
+  ],
+  "status": "APPLIED"
+}

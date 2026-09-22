@@ -859,7 +859,7 @@ test("public component uses Shadow DOM and keeps instance state separate", async
   const a = new module.SemanticWorkbench();
   const b = new module.SemanticWorkbench();
   assert.notEqual(a.shadowRoot, b.shadowRoot);
-  assert.deepEqual(a.shadowRoot.listeners.map(([type]) => type).sort(), ["click", "focusin", "keydown", "pointerdown", "pointerover", "pointerup"]);
+  assert.deepEqual(a.shadowRoot.listeners.map(([type]) => type).sort(), ["click", "focusin", "keydown", "pointercancel", "pointerdown", "pointerover", "pointerup"]);
 });
 
 assert.equal(WORKBENCH_API_VERSION, "0.1.0");

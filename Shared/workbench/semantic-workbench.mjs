@@ -29,11 +29,12 @@ export class SemanticWorkbench extends HTMLElement {
     this._injections = [];
     this._runtime = null;
     this._lastStatus = "Workbench not configured.";
-    this._suppressNextClick = false;
+    this._suppressedClick = null;
 
     this.shadowRoot.addEventListener("pointerover", (event) => this._onPointerOver(event));
     this.shadowRoot.addEventListener("pointerdown", (event) => this._onPointerDown(event));
     this.shadowRoot.addEventListener("pointerup", (event) => this._onPointerUp(event));
+    this.shadowRoot.addEventListener("pointercancel", () => this._onPointerCancel());
     this.shadowRoot.addEventListener("focusin", (event) => this._onFocusIn(event));
     this.shadowRoot.addEventListener("click", (event) => this._onClick(event));
     this.shadowRoot.addEventListener("keydown", (event) => this._onKeyDown(event));
@@ -142,6 +143,16 @@ export class SemanticWorkbench extends HTMLElement {
     return target || null;
   }
 
+  _clickToken(event) {
+    const action = event.target?.closest?.("[data-action]");
+    if (action) return `action:${action.dataset.action}`;
+    const entity = this._closestRole(event, "entity");
+    if (entity) return `entity:${entity.dataset.projectionRef}`;
+    const target = this._closestRole(event, "target");
+    if (target) return `target:${target.dataset.targetRef}`;
+    return null;
+  }
+
   _onPointerOver(event) {
     const entity = this._closestRole(event, "entity");
     if (entity) this._dispatchWithoutRebuild({
@@ -158,16 +169,26 @@ export class SemanticWorkbench extends HTMLElement {
 
   _onPointerDown(event) {
     const entity = this._closestRole(event, "entity");
-    if (!entity) return;
-    this._suppressNextClick = true;
+    if (!entity) {
+      this._suppressedClick = null;
+      return;
+    }
+    this._suppressedClick = this._clickToken(event);
     this._dispatchWithoutRebuild({ type: "PICK", entityRef: entity.dataset.entityRef, channel: "pointer" });
   }
 
   _onPointerUp(event) {
     const target = this._closestRole(event, "target");
-    if (!target || !this._runtime?.snapshot.interaction.pickedEntityRef) return;
-    this._suppressNextClick = true;
-    this.dispatchIntent({ type: "DROP", targetRef: target.dataset.targetRef, channel: "pointer" });
+    if (target && this._runtime?.snapshot.interaction.pickedEntityRef) {
+      this._suppressedClick = this._clickToken(event);
+      this.dispatchIntent({ type: "DROP", targetRef: target.dataset.targetRef, channel: "pointer" });
+      return;
+    }
+    if (this._clickToken(event) !== this._suppressedClick) this._suppressedClick = null;
+  }
+
+  _onPointerCancel() {
+    this._suppressedClick = null;
   }
 
   _onFocusIn(event) {
@@ -181,10 +202,12 @@ export class SemanticWorkbench extends HTMLElement {
   }
 
   _onClick(event) {
-    if (this._suppressNextClick) {
-      this._suppressNextClick = false;
+    const clickToken = this._clickToken(event);
+    if (this._suppressedClick && clickToken === this._suppressedClick) {
+      this._suppressedClick = null;
       return;
     }
+    this._suppressedClick = null;
     const action = event.target?.closest?.("[data-action]");
     if (action) {
       const type = action.dataset.action === "undo" ? "UNDO" : (action.dataset.action === "redo" ? "REDO" : "CANCEL");
