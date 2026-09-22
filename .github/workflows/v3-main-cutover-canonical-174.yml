@@ -1,0 +1,174 @@
+name: v3-main-cutover-canonical-174
+
+on:
+  push:
+    branches:
+      - relay/v3-main-cutover-canonical-174
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cutover:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout clean cutover branch
+        uses: actions/checkout@v4
+        with:
+          ref: relay/v3-main-cutover-canonical-174
+          fetch-depth: 0
+
+      - name: Fetch current main
+        run: git fetch origin main:refs/remotes/origin/main
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install relay dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Bootstrap V3 from current main V2.5 truth
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/v25_migration.py . bootstrap \
+            --tx-id TX-MIGRATE-CANONICAL-174-001 \
+            --event-id EVT-MIGRATE-CANONICAL-174-001 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --owner-outcome "Complete the remaining canonical-data, learner-page integration, and external-portability work while preserving delivered #162 and #173." \
+            --current-goal "Deliver Issue #174 through bounded NLM and Motion-in-2D canonical-data proofs without importing Issue #169 execution custody."
+
+      - name: Reconcile migrated present authority to native V3 IDLE
+        shell: bash
+        run: |
+          python - <<'PY'
+          import copy
+          import sys
+          from pathlib import Path
+
+          root = Path(".").resolve()
+          scripts = root / "_common_v3/skills/engineering-pr-delivery-v3/scripts"
+          sys.path.insert(0, str(scripts))
+
+          from relay_tx import _event, _events
+          from snapshot_projection import build as build_snapshot
+          from transactionlib import execute, jsonl_bytes, yaml_bytes
+          from v3lib import load_yaml
+
+          actor = "chatgpt-sol-canonical-20260922"
+          tx_id = "TX-MIGRATION-RECONCILE-174-001"
+          event_id = "EVT-MIGRATION-RECONCILE-174-001"
+
+          state = load_yaml(root / "relay/STATE.yaml")
+          controls = load_yaml(root / "relay/CONTROLS/controls.yaml")
+          new_state = copy.deepcopy(state)
+          new_controls = copy.deepcopy(controls)
+
+          new_state["execution"] = {"lifecycle": "IDLE", "ep": None, "lease": None, "route": None}
+          new_state["accepted"] = {"checkpoint": None}
+          new_state["delivery"] = {"required": False, "primary_vehicle": None}
+
+          migration = next(row for row in new_controls["controls"] if row["id"] == "CTRL-MIGRATION-RECONCILE")
+          migration["state"] = "RESOLVED"
+          migration["resolution"]["evidence"] = [
+              "Native V3 present authority is intentionally IDLE; no V2.5 execution custody or acceptance was translated.",
+              "Current main remains the delivered #173 baseline da91e9e42c641e9d2bdd970d1e87a6b8227c84a9.",
+              "Issue #169 / PR #181 remains a separate delivery lane and is not imported into #174 native V3 authority.",
+              "New #174 work must enter through canonical V3 admit-task after cutover.",
+          ]
+
+          snapshot = build_snapshot(
+              root,
+              state_override=new_state,
+              controls_override=new_controls,
+          )
+          events = _events(root)
+          events.append(_event(
+              event_id,
+              "MIGRATION_RECONCILED",
+              actor,
+              "V2.5-to-V3",
+              [tx_id, "main:da91e9e42c641e9d2bdd970d1e87a6b8227c84a9", "Issue#174"],
+              {
+                  "native_lifecycle": "IDLE",
+                  "legacy_acceptance_imported": False,
+                  "issue_169_route_imported": False,
+              },
+          ))
+
+          result = execute(
+              root,
+              tx_id=tx_id,
+              command="RECONCILE_MIGRATION",
+              actor=actor,
+              replacements={
+                  "relay/STATE.yaml": yaml_bytes(new_state),
+                  "relay/CONTROLS/controls.yaml": yaml_bytes(new_controls),
+                  "relay/GENERATED/CURRENT_SNAPSHOT.yaml": yaml_bytes(snapshot),
+                  "relay/EVENTS.jsonl": jsonl_bytes(events),
+              },
+          )
+          print(result["id"], result["status"])
+          PY
+
+      - name: Freeze live V2.5 history
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . freeze \
+            --tx-id TX-CUTOVER-FREEZE-MAIN-174-001 \
+            --event-id EVT-CUTOVER-FREEZE-MAIN-174-001 \
+            --actor chatgpt-sol-canonical-20260922
+
+      - name: Prove intelligence continuity
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/intelligence_projection.py . continuity \
+            --base-ref origin/main \
+            --task-output relay/GENERATED/tasks/PRE-CUTOVER-MAIN-174.snapshot.yaml \
+            --improvement-output relay/GENERATED/improvements/PRE-CUTOVER-MAIN-174.improvement.yaml \
+            --output relay/GENERATED/INTELLIGENCE_CONTINUITY.yaml
+
+      - name: Resolve continuity control transactionally
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . resolve-control \
+            --tx-id TX-CONTINUITY-RESOLVE-MAIN-174-001 \
+            --event-id EVT-CONTINUITY-RESOLVE-MAIN-174-001 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --control-id CTRL-V25-INTELLIGENCE-CONTINUITY \
+            --evidence relay/GENERATED/INTELLIGENCE_CONTINUITY.yaml \
+            --evidence "Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400 continuity assessment ready=true" \
+            --base-ref origin/main
+
+      - name: Assess V3 cutover
+        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . assess
+
+      - name: Activate V3 from direct Owner basis
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . activate \
+            --tx-id TX-CUTOVER-ACTIVATE-MAIN-174-001 \
+            --event-id EVT-CUTOVER-ACTIVATE-MAIN-174-001 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --owner-utterance-digest sha256:4ad403bb77d967639b6827b28b590a9d1c3d6082043d0cd28cbcef1e1664b4ae \
+            --owner-session-timestamp 2026-09-22T11:08:03Z
+
+      - name: Validate active V3 selection
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_default.py .
+
+      - name: Commit only pinned V3 transaction outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay
+          git diff --cached --stat
+          git commit -m "[relay-v3-cutover] Activate V3 from current main"
+          git push origin HEAD:relay/v3-main-cutover-canonical-174
