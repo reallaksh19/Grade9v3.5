@@ -1,0 +1,101 @@
+schema_version: relay-v3.1-checkpoint
+id: CP-PORTABLE-163-V31-001
+ep: EP-PORTABLE-163-V31-001
+material_result:
+  head: f9a83586c3b634c879f472fa6a764fae6edeafc3
+  relevant_paths_digest: sha256:f3f4a20bffc4662a8ce3e6c1fc8d17e2725e865a0c77c72ff1405ba98d837400
+  dependency_digest: sha256:4b1e507c943a45bb6e0fcc520941958725f845ee5cd5373d360c0a337d4ea706
+acceptance:
+- id: AC-163-PACKAGE
+  result: PASS
+  evidence:
+  - 'V3.1 checkpoint workflow 35753637083: Python and Node portable package validation
+    PASS'
+  - Version mismatch, executable payload and pixel-placement falsifiers fail closed.
+  - Portable host contains no eval or new Function.
+- id: AC-163-HOSTS
+  result: PASS
+  evidence:
+  - 'V3.1 checkpoint workflow 35753637083: real Chrome cross-host proof PASS'
+  - The same long-division package executes in repository static, external plain-HTML
+    and true single-file hosts.
+  - Single-file host has no runtime network/CDN dependency.
+- id: AC-163-CROSS-SUBJECT
+  result: PASS
+  evidence:
+  - 'V3.1 checkpoint workflow 35753637083: long-division, Redox and integration package
+    tests PASS'
+  - All three packages share one component/IR/adapter/scene-package contract without
+    Core edits.
+- id: AC-163-BOUNDARY
+  result: PASS
+  evidence:
+  - 'V3.1 checkpoint workflow 35753637083: protected-path diff against main PASS'
+  - Shared/workbench, Shared/library, publication host, learner shell and canonical
+    subject trees remain unchanged.
+  - Redox and integration rows remain NON_CANONICAL_COMPILED_PROOF fixtures.
+- id: AC-163-PARITY
+  result: PASS
+  evidence:
+  - 'V3.1 checkpoint workflow 35753637083: build_portable_workbench --check PASS'
+  - Public, external and single-file artifacts are generated through one deterministic
+    build path.
+- id: AC-163-REPO
+  result: PASS
+  evidence:
+  - exact-head pinned V3.1 run 35753230251 PASS
+  - exact-head guardrails run 35753230397 PASS
+  - 'V3.1 checkpoint workflow 35753637083: manifest freshness and focused acceptance
+    PASS'
+validation:
+  focused_tests: PASS
+  spec_delivery: PASS
+  full_guardrails: PASS
+quality:
+  policy: STANDARD
+  result: CLEAR
+known_limitations:
+- Historical V3 checkpoints remain migration evidence only and are not promoted into
+  native V3.1 acceptance.
+- Because V3.1 accepted-progress projection counts native checkpoints, historical
+  completed roadmap work is not represented as V3.1 accepted progress.
+- Redox and integration are portability proof fixtures, not newly canonicalized subject
+  records.
+discoveries:
+- Issue 163 technical acceptance survives a clean protocol-line migration from V3
+  to V3.1 without Core or subject-data changes.
+- The portable package/runtime boundary remains data-only, versioned and fail-closed
+  under V3.1 revalidation.
+- Provider delivery can proceed from the fresh V3.1 checkpoint; the former V3 checkpoint
+  is not needed as live authority.
+handoff:
+  what_changed:
+  - The active delivery lane was migrated to Common@edb845f06f32c87453dee6fbfcc2f84937017279
+    Engineering Relay V3.1.
+  - Issue 163 was re-admitted under EP-PORTABLE-163-V31-001 and re-proven instead
+    of importing the old V3 checkpoint.
+  - Permanent relay CI now validates the V3.1 selector/foundation/cutover.
+  what_is_true_now:
+  - PR 192 portability implementation passes all six V3.1 acceptance criteria.
+  - Core, canonical subject truth and the Issue 175 learner shell remain outside portability
+    ownership.
+  - Accepted V3.1 material head is f9a83586c3b634c879f472fa6a764fae6edeafc3.
+  what_remains_uncertain:
+  - Historical programme completion is preserved in roadmap/migration evidence but
+    does not count as native V3.1 accepted progress without native checkpoints.
+  - Grade-9 exit readiness Issue 169 remains a separate lane after Issue 163 provider
+    closeout.
+  do_not_break:
+  - Do not re-enable Engineering Relay V3.
+  - Do not promote relay-v3 checkpoints/events as relay-v3.1 authority.
+  - Do not add executable package data or learner-mastery policy to portability.
+  attempted_and_rejected:
+  - Reusing the prior V3 checkpoint as V3.1 acceptance was rejected; acceptance was
+    re-run natively.
+  - Rewriting prior relay-v3 event history into relay-v3.1 events was rejected.
+  resume_from:
+  - Run V3.1 PR_READY and MERGE authorization on PR 192.
+  - If GitHub remains mergeable, merge PR 192, sync provider readback, close the V3.1
+    task and reconcile WP-PORTABLE-163 COMPLETE.
+  first_successor_action: Perform the separately authorized V3.1 delivery transition
+    for PR 192 if provider and V3.1 merge gates are green.
