@@ -200,13 +200,21 @@ def _question(ctx, block, numeric_assessment, core):
     answer = block["answer"]
     reveal = f'<article class="answer" id="answer-{qid}" data-answer-id="{qid}">'
     reveal += f'<h3>Question {escape(block["original_number"])}</h3>'
+    structured_route = bool(answer.get("reasoning_route"))
     for level, hint in enumerate(block.get("hints", []), 1):
         if isinstance(hint, str):
-            reveal += f'<details class="source-hint"><summary>Hint {level}</summary><p>{escape(hint)}</p></details>'
-        else:
+            if structured_route:
+                reveal += f'<details class="source-hint"><summary>Hint {level}</summary><p>{escape(hint)}</p></details>'
+            else:
+                reveal += f'<details><summary>Hint {level}</summary><p>{escape(hint)}</p></details>'
+        elif structured_route:
             reveal += (
                 f'<details class="source-hint" data-reveals="{escape(hint["reveals"], quote=True)}">'
                 f'<summary>Hint {level}</summary><p>{escape(hint["text"])}</p></details>'
+            )
+        else:
+            reveal += (
+                f'<details><summary>Hint {level}</summary><p>{escape(hint["text"])}</p></details>'
             )
     if block.get('guidance'):
         reveal += '<p>Guidance:</p>' + _list(block['guidance'])
