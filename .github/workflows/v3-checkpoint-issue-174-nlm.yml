@@ -1,0 +1,194 @@
+name: v3-checkpoint-issue-174-nlm
+
+on:
+  push:
+    branches:
+      - content/issue-174-nlm-friction-gold
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  checkpoint:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout NLM branch
+        uses: actions/checkout@v4
+        with:
+          ref: content/issue-174-nlm-friction-gold
+          fetch-depth: 0
+
+      - name: Fetch stacked V3 base
+        run: git fetch origin relay/v3-main-cutover-canonical-174:refs/remotes/origin/relay/v3-main-cutover-canonical-174
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Re-run bounded NLM proof
+        run: python -m unittest discover -s tests -p test_g9_nlm_friction_connected.py
+
+      - name: Re-run delivered Core projection falsifiers
+        run: python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract
+
+      - name: Re-run spec delivery and generated-manifest checks
+        run: |
+          python Shared/tools/spec_delivery.py --enforce --summary
+          python Shared/tools/build_manifest.py --check
+
+      - name: Verify checkpoint action authorization
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py CHECKPOINT . \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+
+      - name: Build exact material result and checkpoint
+        env:
+          CHECKPOINT_RUN_ID: ${{ github.run_id }}
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/material_basis.py . \
+            --base-ref origin/relay/v3-main-cutover-canonical-174 > /tmp/material.json
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import yaml
+
+          material = json.loads(Path("/tmp/material.json").read_text(encoding="utf-8"))["material_basis"]
+          run_id = os.environ["CHECKPOINT_RUN_ID"]
+          checkpoint = {
+              "schema_version": "relay-v3-checkpoint",
+              "id": "CP-CANONICAL-174-NLM-002",
+              "ep": "EP-CANONICAL-174-NLM-002",
+              "material_result": {
+                  "head": material["head"],
+                  "relevant_paths_digest": material["relevant_paths_digest"],
+                  "dependency_digest": material["dependency_digest"],
+              },
+              "acceptance": [
+                  {
+                      "id": "AC-NLM-GOLD",
+                      "result": "PASS",
+                      "evidence": [
+                          f"checkpoint workflow {run_id}: test_g9_nlm_friction_connected.py PASS",
+                          f"material head {material['head']}",
+                          "Source hints and REL-NLM-STATIC-FRICTION-BOUND authority are asserted by focused tests.",
+                      ],
+                  },
+                  {
+                      "id": "AC-NLM-PIPELINE",
+                      "result": "PASS",
+                      "evidence": [
+                          f"checkpoint workflow {run_id}: test_core_projection_pipeline + test_core_projection_contract PASS",
+                          "Delivered PR 177 structured reasoning/protection pipeline is exercised without Shared changes.",
+                      ],
+                  },
+                  {
+                      "id": "AC-NLM-REPO",
+                      "result": "PASS",
+                      "evidence": [
+                          "guardrails push run 35722709945 PASS",
+                          "pinned v3-relay push run 35722709935 PASS",
+                          "V2.5 compatibility push run 35722709938 PASS",
+                          f"checkpoint workflow {run_id}: spec_delivery and build_manifest --check PASS",
+                      ],
+                  },
+              ],
+              "validation": {
+                  "focused_tests": "PASS",
+                  "spec_delivery": "PASS",
+                  "full_guardrails": "PASS",
+              },
+              "quality": {
+                  "policy": "STANDARD",
+                  "result": "CLEAR",
+              },
+              "known_limitations": [
+                  "Delivery remains stacked on PR 184; PR 179 cannot land independently of the V3 cutover.",
+                  "Motion-in-2D remains outside this checkpoint and requires a separate Issue 174 delivery slice.",
+                  "MERGE and RELEASE are not authorized by the current deterministic lease.",
+              ],
+              "discoveries": [
+                  "The NLM product material head remains stable while V3 admission/checkpoint work is coordination-only.",
+                  "The stale V2.5 Issue 174 governance edits were removed rather than crossing the frozen V2.5 history boundary.",
+                  "The NLM gold family consumes the delivered PR 177 structured reasoning/protected-transfer contract without Shared changes.",
+              ],
+              "handoff": {
+                  "what_changed": [
+                      "PR 179 was restacked onto the clean-main V3 cutover and narrowed back to the three NLM product files.",
+                      "Issue 174 NLM delivery now has native V3 roadmap admission, deterministic lease and accepted evidence.",
+                  ],
+                  "what_is_true_now": [
+                      "NLM friction familiar and transfer items have structured routes, decision cruxes, staged scaffolds and protected transfer semantics.",
+                      "Source hints and canonical static-friction relation authority are preserved.",
+                      f"Accepted material head is {material['head']}.",
+                  ],
+                  "what_remains_uncertain": [
+                      "External delivery is not complete until PR 184 and then PR 179 receive separately authorized merge transitions.",
+                      "Motion-in-2D canonical normalization is not part of this checkpoint.",
+                  ],
+                  "do_not_break": [
+                      "Do not add Motion-in-2D to PR 179.",
+                      "Do not mutate frozen agents/relay V2.5 history after the V3 cutover.",
+                      "Do not grant merge or release from execution/checkpoint authority.",
+                  ],
+                  "attempted_and_rejected": [
+                      "A combined NLM plus Motion admission under PR 179 was rejected because it violated the PR's NLM-only delivery scope.",
+                      "Importing PR 181 RM-0012 execution custody into the V3 cutover was rejected because it coupled Issue 169 to Issue 174.",
+                  ],
+                  "resume_from": [
+                      "Deliver PR 184 before PR 179.",
+                      "After NLM delivery, create a separate Motion-in-2D V3 task and PR.",
+                  ],
+                  "first_successor_action": "Keep PR 179 draft/stacked until an explicit PR-ready or merge transition is authorized; then begin the separate Motion-in-2D slice from the delivered base.",
+              },
+          }
+          Path("/tmp/cp-issue-174-nlm.yaml").write_text(
+              yaml.safe_dump(checkpoint, sort_keys=False),
+              encoding="utf-8",
+          )
+          print(yaml.safe_dump(checkpoint, sort_keys=False), end="")
+          PY
+
+      - name: Accept checkpoint transactionally
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . checkpoint \
+            --tx-id TX-CP-ISS174-NLM-002 \
+            --event-id EVT-CP-ISS174-NLM-002 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --checkpoint /tmp/cp-issue-174-nlm.yaml \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+
+      - name: Publish V3 handover
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . handover \
+            --tx-id TX-HANDOVER-ISS174-NLM-002 \
+            --event-id EVT-HANDOVER-ISS174-NLM-002 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+
+      - name: Validate accepted authority
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+
+      - name: Commit checkpoint and handover
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay
+          git diff --cached --stat
+          git commit -m "[relay-v3] Accept Issue 174 NLM checkpoint"
+          git push origin HEAD:content/issue-174-nlm-friction-gold
