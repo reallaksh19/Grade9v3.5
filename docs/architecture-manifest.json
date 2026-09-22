@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 227,
-  "relation_count": 269,
+  "component_count": 234,
+  "relation_count": 272,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 103,
-    "TOOLING": 53,
+    "TEST": 109,
+    "TOOLING": 54,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:6cde81c9dbb0766a70087207a6f67e6869e8e23aa0980e8fe422c3c97e958e5a",
+  "digest": "sha256:6a76a39575c41335bd189c345f7c63573e085a48f9677328f159efce79370c0f",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -454,6 +454,13 @@
       "sha256": "0478b632e78cf579415f34a301f347fb9a60a92693ab138debdd360837ad66a7"
     },
     {
+      "path": "Shared/tools/build_portable_workbench.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6791,
+      "sha256": "98a9b6055f59fef4cadc7e5133a3c8a9fd86bf4323e3d3052ba38f7126275d55"
+    },
+    {
       "path": "Shared/tools/build_web_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -867,6 +874,34 @@
       "sha256": "e54e9b7515b1ec9e658aa9bc2a579e1b16859b7cb258a115af1a85e2407c87a9"
     },
     {
+      "path": "tests/fixtures/portable-workbench/external-host.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1804,
+      "sha256": "66b656700bdc6b566e7c9f3cde289e29cc47131aeb038f665c0c753c34b0527b"
+    },
+    {
+      "path": "tests/fixtures/portable-workbench/sources/01-long-division.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1305,
+      "sha256": "ec04cf622789fc8761cfc2882f02f935c1115c4df6ce131395fe6e9d6182ebd7"
+    },
+    {
+      "path": "tests/fixtures/portable-workbench/sources/02-redox.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3066,
+      "sha256": "133baf44b4b221d7f199b33347c29fb5764d65c8b5fba3de673fc128ab0346ee"
+    },
+    {
+      "path": "tests/fixtures/portable-workbench/sources/03-integration.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3003,
+      "sha256": "4d93fca544087dd89549602884e8a2e8a90cf85b297b426a1e961c86a724febc"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-laws-of-motion.acceptance.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -998,6 +1033,13 @@
       "role_description": "Executable checks",
       "bytes": 7502,
       "sha256": "3c493ffad390de9ed44003e8b23b625ec8b7d4e75deea4283fb18c0617a3bc30"
+    },
+    {
+      "path": "tests/portable_workbench.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11751,
+      "sha256": "aed6a4c5c2a7cded6145028775bbbe86bec92edd8c3a094ff8024a50cb6bad63"
     },
     {
       "path": "tests/test_agent_path_stress_prompts.py",
@@ -1397,6 +1439,13 @@
       "role_description": "Executable checks",
       "bytes": 7049,
       "sha256": "36b518094a478680b0720e54984ad9e5641a0df2969c77e2843be72814ea5fd2"
+    },
+    {
+      "path": "tests/test_portable_workbench.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4204,
+      "sha256": "23540990e090d531a181ee180965617e5cf9a05ece2d0711f4c9a0236d793c99"
     },
     {
       "path": "tests/test_practical_learner_evidence.py",
@@ -1818,6 +1867,11 @@
     {
       "from": "Shared/tools/build_manifest.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_portable_workbench.py",
+      "to": "Shared.portable.package",
       "kind": "IMPORTS"
     },
     {
@@ -2727,6 +2781,16 @@
     },
     {
       "from": "tests/test_owner_decisions.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_portable_workbench.py",
+      "to": "Shared.portable.package",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_portable_workbench.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
