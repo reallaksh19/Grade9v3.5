@@ -314,6 +314,8 @@ class LearnerFacingStructuredProjection(unittest.TestCase):
         self.assertIn('class="move-kind"', after)
         self.assertIn('>Key decision</span>', after)
         self.assertIn("<strong>Independent check:</strong>", after)
+        self.assertIn('class="source-hint"', after)
+        self.assertIn('data-reveals="CONCEPT"', after)
 
     def test_core2b_protected_decision_is_absent_from_pre_attempt_support(self):
         html = self.render(transfer=True)["CORE2B"]
