@@ -7,7 +7,7 @@
   },
   "relay_protocol": {
     "version": "2.5",
-    "basis_ref": "reallaksh19/Common@1bc4eca6eac9d75900ddee1c338da4b44817eeec:skills/engineering-pr-delivery-v2.5"
+    "basis_ref": "reallaksh19/Common@6cc47ea211d4e7b1fbff968cbeae9433a104db00:skills/engineering-pr-delivery-v2.5"
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
@@ -45,15 +45,15 @@
     {
       "route_key": "SERIAL:EP-TA-010",
       "candidate": {
-        "agent_instance_id": "core173-local-agent-20260921"
+        "agent_instance_id": "chatgpt-sol-core173-20260922-r1"
       },
       "discovery_receipt": {
-        "id": "DISC-TA-021",
-        "path": "agents/relay/certifications/discovery/DISC-TA-021.yaml"
+        "id": "DISC-TA-022",
+        "path": "agents/relay/certifications/discovery/DISC-TA-022.yaml"
       },
       "certification": {
-        "id": "TC-TA-020",
-        "path": "agents/relay/certifications/takeover/TC-TA-020.yaml"
+        "id": "TC-TA-021",
+        "path": "agents/relay/certifications/takeover/TC-TA-021.yaml"
       }
     }
   ],
@@ -68,28 +68,28 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Run exact-head V2.5 material-write readiness against DRIFT-TA-008 and the requalified candidate, then complete STEP-TA10-004 validation/quality/checkpoint closure."
+      "next_action": "Validate the exact protocol-migration head under Common@6cc47ea, then complete STEP-TA10-004 quality/checkpoint/delivery reconciliation."
     },
     "quality": {
       "state": "CLEAR",
       "findings": [
-        "No EP-TA-010 material implementation has started. Quality review is required before checkpoint; current risk is contract/runtime drift across schema, compiler, source custody and rendering.",
-        "Pinned Common@1bc4eca has one Common-development unit-test failure in test_three_pass_prompt_output::test_prompt3_requires_withdrawal_when_architecture_unnecessary. SKILL.md lines 790-818 define downstream repository validators separately; Grade9V3 will execute those entrypoints directly and will not misreport the upstream self-test as PASS."
+        "STEP-TA10-001..003 implementation and the bounded Motion-in-2D witness are present. A current QRV quality review is still required before checkpoint credit.",
+        "No active hard-stop quality finding is recorded; exact-head revised-protocol validation is required before acceptance closure."
       ]
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "The Core work package is admitted and repository custody is reconciled. No product acceptance credit is earned; fresh incoming-agent certification and implementation evidence are still pending.",
+      "summary": "Core projection implementation, learner-facing rendering and the bounded Motion-in-2D proof slice are present. Pre-migration exact-head guardrails/V2.5 passed; this transaction rebases relay validation onto revised Common@6cc47ea and requires fresh exact-head validation before checkpoint credit.",
       "not_run": [
         {
-          "id": "fresh EP-TA-010 incoming-agent certification",
-          "reason": "A distinct incoming candidate has not yet produced repository-only discovery, qualification and takeover evidence for the current contract.",
-          "cause": "DEPENDENCY_WAIT"
+          "id": "revised Common@6cc47ea exact-head relay validation",
+          "reason": "Protocol-basis migration is being committed in this transaction; the new exact head has not yet run.",
+          "cause": "NOT_SCHEDULED"
         },
         {
-          "id": "EP-TA-010 implementation/validation suite",
-          "reason": "Product writes are not yet authorized by the live candidate-specific write gate.",
-          "cause": "NOT_SCHEDULED"
+          "id": "EP-TA-010 QRV/checkpoint closure",
+          "reason": "Quality review and checkpoint must bind to the final exact material head after revised-protocol validation.",
+          "cause": "DEPENDENCY_WAIT"
         }
       ]
     },
@@ -155,9 +155,25 @@
     "reasons": [
       "CP-TA-009 remains the predecessor baton for WP-TA-108 / EP-TA-010.",
       "DRIFT-TA-008 classifies the main movement to 1b549c3 as DISJOINT from Core projection semantics and preserves WRITE authority.",
-      "DISC-TA-021, QSET-TA-012, QUAL-TA-011 and TC-TA-020 rebind core173-local-agent-20260921 to the drift-aware EP-TA-010 digest.",
-      "Issue #173 projection and final checkpoint remain pending exact-head validation and quality closure."
+      "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea while preserving the existing EP semantic boundary.",
+      "Execution custody is enforced for SERIAL:EP-TA-010 and assigned to chatgpt-sol-core173-20260922-r1.",
+      "Issue #173 projection, quality review and final checkpoint remain pending exact-head revised-protocol validation."
     ]
   },
-  "chat_context_required": false
+  "chat_context_required": false,
+  "execution_custody": {
+    "enforced": true,
+    "leases": [
+      {
+        "route_key": "SERIAL:EP-TA-010",
+        "candidate": {
+          "agent_instance_id": "chatgpt-sol-core173-20260922-r1"
+        },
+        "state": "ACTIVE",
+        "branch": "fix/issue-173-core-projections-v25",
+        "source": "Owner instruction on 2026-09-22 to continue under revised Common/main engineering-pr-delivery-v2.5; custody established with the fresh protocol-basis admission transaction."
+      }
+    ]
+  },
+  "control_obligations": []
 }
