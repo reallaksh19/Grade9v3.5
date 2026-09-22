@@ -1,12 +1,13 @@
 schema_version: relay-v3-roadmap
-revision: RM-V3-ISS175-PRODUCTION-001
+revision: RM-V3-ISS175-PRODUCTION-002
 title: Grade 9 Physics learner independence and progression
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
-  current_goal: Integrate delivered Issue 173 reasoning/projection contracts and Issue
-    174 canonical NLM/Motion data into the existing Issue 175 learner-page builder,
-    then migrate one real explorer.
+  current_goal: 'Deliver Issue #163 external portability: compile canonical content
+    into versioned portable runtime packages, prove Grade9V3/external/offline hosts,
+    and complete Redox, long-division and integration cross-subject proofs without
+    moving learner-page shell ownership into the portability lane.'
 work_packages:
 - id: WP-TAKEOVER-RECONCILE
   title: Correct Topic Atlas browser input, fallback, request, and handoff semantics
@@ -72,6 +73,6 @@ work_packages:
 - id: WP-LEARNER-175-PRODUCTION
   title: Integrate canonical Core projections into learner-page builder
   weight: 7
-  state: ACTIVE
+  state: COMPLETE
   depends_on:
   - WP-CANONICAL-174-MOTION
