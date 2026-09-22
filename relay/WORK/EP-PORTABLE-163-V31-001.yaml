@@ -1,0 +1,106 @@
+schema_version: relay-v3.1-ep
+id: EP-PORTABLE-163-V31-001
+work_package: WP-PORTABLE-163
+outcome:
+  statement: Re-prove and deliver the already-authored Issue 163 portable-workbench
+    implementation under the pinned V3.1 protocol without modifying delivered Core
+    or canonical subject truth.
+basis:
+  predecessor_checkpoint: null
+  material_base: c6f1ce51ae0631a346487609e88f544fece2fa08
+  protocol_basis: reallaksh19/Common@edb845f06f32c87453dee6fbfcc2f84937017279:skills/engineering-pr-delivery-v3.1
+  semantic_dependencies:
+  - path: relay/MIGRATION/V3_TO_V31.yaml
+    reason: Pins the preserved V3 source authority and records that the old checkpoint
+      is historical evidence only.
+  - path: Shared/workbench/runtime.mjs
+    reason: Delivered Core runtime remains the semantic execution engine.
+  - path: Shared/workbench/semantic-workbench.mjs
+    reason: Delivered Web Component remains the public runtime surface.
+  - path: Shared/portable/package.py
+    reason: Issue 163 portable package contract already authored on PR 192.
+  - path: Shared/tools/build_portable_workbench.py
+    reason: Issue 163 one-source host/package generator already authored on PR 192.
+scope:
+  write:
+  - Shared/portable/**
+  - Shared/tools/build_portable_workbench.py
+  - public/portable-workbench/**
+  - standalone/portable-workbench/**
+  - tests/fixtures/portable-workbench/**
+  - tests/test_portable_workbench.py
+  - tests/portable_workbench.test.mjs
+  - docs/portable-workbench.md
+  - docs/architecture-manifest.json
+  - .github/workflows/v3-relay.yml
+  read:
+  - Shared/workbench/**
+  - Shared/library/**
+  - Chemistry/**
+  - Mathematics/**
+  - Physics/**
+  - public/chemistry/**
+  - standalone/chemistry-redox-reactions-master-suite.html
+  - tests/fixtures/workbench/**
+  - relay/MIGRATION/V3_TO_V31.yaml
+  protect:
+  - Shared/workbench/**
+  - Shared/library/**
+  - Shared/publication_host/**
+  - Physics/**
+  - Chemistry/**
+  - Mathematics/**
+  - public/core-learning/**
+  - standalone/core-learning/**
+  - agents/relay/**
+  prohibit:
+  - Do not treat prior V3 acceptance as a V3.1 checkpoint.
+  - Do not add page-local learner mastery, support policy or question routing.
+  - Do not put executable JavaScript inside portable package data.
+  - Do not create a new canonical curriculum database.
+  - Do not modify delivered Core runtime merely to make a portability proof pass.
+acceptance:
+- id: AC-163-PACKAGE
+  statement: Versioned package seams fail closed on mismatch/malformed/executable/pixel
+    payloads.
+  evidence_requirements:
+  - test: python -m unittest tests.test_portable_workbench
+  - test: node --test tests/portable_workbench.test.mjs
+- id: AC-163-HOSTS
+  statement: The same package works in repository static, external plain-HTML, and
+    true single-file hosts.
+  evidence_requirements:
+  - test: real Chrome cross-host proof
+- id: AC-163-CROSS-SUBJECT
+  statement: Long division, Redox and integration use one portable runtime/build contract
+    without Core edits.
+  evidence_requirements:
+  - test: cross-subject portable package tests
+- id: AC-163-BOUNDARY
+  statement: Core, learner shell and canonical subject truth remain outside portability
+    ownership.
+  evidence_requirements:
+  - oracle: protected paths are unchanged from main
+- id: AC-163-PARITY
+  statement: Public, external and offline artifacts are generated from one source/build
+    path and freshness-checked.
+  evidence_requirements:
+  - test: python -m Shared.tools.build_portable_workbench --check
+- id: AC-163-REPO
+  statement: Exact-head guardrails and pinned V3.1 validation pass.
+  evidence_requirements:
+  - test: guardrails and v31-relay on exact PR 192 material head
+quality_policy:
+  level: STANDARD
+  independent_review: OPTIONAL
+admission_policy:
+  qualification: NOT_REQUIRED
+  question_policy: NONE
+next:
+  first_action: Run the full Issue 163 acceptance against the current material head
+    under V3.1, accept a fresh V3.1 checkpoint, then continue provider delivery.
+  stop_conditions:
+  - Any Shared/workbench Core source change requires a new generic runtime falsifier
+    and separate scope.
+  - Any canonical subject-data change is outside Issue 163.
+  - No merge may occur unless GitHub is mergeable and V3.1 MERGE authorization passes.

@@ -1,0 +1,22 @@
+schema_version: relay-v3-to-v3.1-migration-evidence
+authority: MIGRATION_EVIDENCE
+source:
+  protocol: V3
+  commit: 23aad8f08113cd1d249b5d70916f324fac44bc08
+  relay_tree_digest: sha256:7dfdf6083047c7c9939c5510b2408654a18d29047e30ca3edb4c176a35c998ff
+  accepted_checkpoint: CP-PORTABLE-163-001
+target:
+  protocol: V3_1
+  common_ref: edb845f06f32c87453dee6fbfcc2f84937017279
+  skill: skills/engineering-pr-delivery-v3.1
+owner_basis:
+  direct_utterance_digest: sha256:40817b6da2e347452b652e8c8af97dc873449a815f36fbaadd3138d0bb4e6662
+  session_timestamp: '2026-09-22T15:49:12Z'
+policy:
+- The V3 relay tree is preserved byte-for-byte by the pinned source Git commit and
+  relay_tree_digest.
+- No relay-v3 event line is rewritten as relay-v3.1 history.
+- The V3 Issue 163 checkpoint is migration evidence only and is not promoted as a
+  V3.1 checkpoint.
+- Issue 163 is re-admitted and re-validated natively under V3.1 before provider delivery
+  continues.

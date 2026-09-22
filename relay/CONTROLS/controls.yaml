@@ -1,106 +1,14 @@
-schema_version: relay-v3-controls
+schema_version: relay-v3.1-controls
 controls:
-- id: CTRL-MIGRATION-RECONCILE
-  kind: PROTOCOL
-  state: RESOLVED
-  source:
-    type: VALIDATOR
-    ref: relay/MIGRATION/V25_REPORT.yaml
-  condition: Legacy V2.5 intent/evidence has not yet been reconciled into native V3
-    execution authority.
-  blocks:
-  - MATERIAL_WRITE
-  - TEST
-  - CHECKPOINT
-  - HANDOVER
-  - LOCAL_EXECUTION_EXPORT
-  - DRAFT_PR_UPDATE
-  - PR_READY
-  - MERGE
-  - RELEASE
-  - CLOSE_TASK
-  permits:
-  - READ
-  - ANALYZE
-  resolution:
-    condition: Native V3 roadmap/frontier/EP/lease/checkpoint disposition is established
-      without rewriting V2.5 history.
-    evidence:
-    - Native V3 present authority is intentionally IDLE; no V2.5 execution custody
-      or acceptance was translated.
-    - 'Current main remains delivered #173 baseline da91e9e42c641e9d2bdd970d1e87a6b8227c84a9.'
-    - 'Issue #169 / PR #181 remains separate and is not imported into #174 native
-      V3 authority.'
-    - 'New #174 work must enter through canonical V3 admit-task after cutover.'
-- id: CTRL-V25-INTELLIGENCE-CONTINUITY
-  kind: PROTOCOL
-  state: RESOLVED
-  source:
-    type: REPOSITORY
-    ref: Common#421
-  condition: V3 cutover must not retire V2.5 roadmap admission, ROADMAP_EVENTS, checkpoint/progress
-    reconciliation, discovery, Owner-delta, or handover intelligence before continuity
-    is proven.
-  blocks:
-  - PROTOCOL_CUTOVER
-  permits:
-  - READ
-  - ANALYZE
-  resolution:
-    condition: 'Common#421 continuity acceptance is evidenced: governed roadmap/event/checkpoint/progress
-      intelligence remains semantically intact across the selected V3 authority boundary.'
-    evidence:
-    - relay/GENERATED/INTELLIGENCE_CONTINUITY.yaml
-    - Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400 continuity assessment ready=true
-- id: CTRL-OWNER-MERGE-ISS174-NLM-20260922
-  kind: OWNER
-  state: RESOLVED
-  source:
-    type: OWNER
-    ref: direct-owner:2026-09-22T11:48:50Z:sha256:d982aa62202077357b1a30cde1405fcd765a1408a139f105294d1c6d5c7c73dc
-  condition: Owner explicitly authorizes merging the current V3-governed NLM delivery when GitHub reports it mergeable.
-  blocks: []
-  permits:
-  - MERGE
-  resolution:
-    condition: PR 179 is merged or the Owner revokes this authority.
-    evidence:
-    - PR 179 merged at bbd796e4c7de7e5eac80e973357ee79c9bb72df9.
-- id: CTRL-OWNER-MERGE-ISS174-MOTION-20260922
-  kind: OWNER
-  state: RESOLVED
-  source:
-    type: OWNER
-    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
-  condition: Owner authorizes merging the next V3-governed Issue 174 delivery when GitHub and V3 report it mergeable; PR 187 is that separate Motion delivery.
-  blocks: []
-  permits:
-  - MERGE
-  resolution:
-    condition: PR 187 is merged or the Owner revokes this authority.
-    evidence:
-    - PR 187 merged at 47895822a3f4c63b4441f740328ca7e01a595bfb.
-- id: CTRL-OWNER-MERGE-ISS175-PRODUCTION-20260922
-  kind: OWNER
-  state: RESOLVED
-  source:
-    type: OWNER
-    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
-  condition: Owner explicitly authorizes merging the current V3-governed delivery when GitHub reports it mergeable.
-  blocks: []
-  permits:
-  - MERGE
-  resolution:
-    condition: PR 178 is merged or the Owner revokes this authority.
-    evidence:
-    - PR 178 merged at 7b142cf4e05fc4403734ed75dd04cb98a6dfc3b9.
 - id: CTRL-OWNER-MERGE-ISS163-PORTABLE-20260922
   kind: OWNER
   state: OPEN
   source:
     type: OWNER
-    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
-  condition: Owner explicitly authorizes merging the current V3-governed Issue 163 delivery when GitHub and V3 report it mergeable.
+    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable; protocol-update:2026-09-22T15:49:12Z
+  condition: Owner merge intent for PR 192 remains in force; the later Owner command
+    changes relay implementation from V3 to the pinned V3.1 line and does not revoke
+    the merge intent.
   blocks: []
   permits:
   - MERGE
