@@ -140,22 +140,28 @@ class Motion2DCanonicalData(unittest.TestCase):
             for binding in rep["support_stage_map"]:
                 self.assertIn(binding["visual_stage_ref"], stages)
 
-    def test_microtopic_bindings_match_activity_teaching_steps(self):
+    def test_microtopic_bindings_preserve_rep_reuse_and_primary_activity_step_ownership(self):
         expected = {
             "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS": [REP_SHARED],
             "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION": [REP_SHARED, REP_EVENT],
             "MIC-PHY-KIN-PROJECTILE-MODEL": [REP_SHARED, REP_EVENT, REP_MODEL],
         }
         for micro_id, rep_ids in expected.items():
-            micro = self.microtopics[micro_id]
-            self.assertEqual(micro["representation_refs"], rep_ids)
-            step_ids = {row["id"] for row in micro["teaching_path"]}
-            for rep_id in rep_ids:
-                activity_id = self.representations[rep_id]["interactive_resource_refs"][0]
-                activity_steps = set(
-                    self.resources[activity_id]["extensions"]["topic_atlas"]["teaching_step_refs"]
-                )
-                self.assertTrue(activity_steps & step_ids)
+            self.assertEqual(self.microtopics[micro_id]["representation_refs"], rep_ids)
+
+        primary_owners = {
+            REP_SHARED: "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+            REP_EVENT: "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+            REP_MODEL: "MIC-PHY-KIN-PROJECTILE-MODEL",
+        }
+        for rep_id, micro_id in primary_owners.items():
+            activity_id = self.representations[rep_id]["interactive_resource_refs"][0]
+            activity_steps = set(
+                self.resources[activity_id]["extensions"]["topic_atlas"]["teaching_step_refs"]
+            )
+            micro_steps = {row["id"] for row in self.microtopics[micro_id]["teaching_path"]}
+            self.assertTrue(activity_steps)
+            self.assertTrue(activity_steps <= micro_steps)
 
     def test_familiar_route_has_event_choice_crux_and_preserves_source_hints(self):
         q = self.questions[FAMILIAR]
@@ -287,7 +293,11 @@ class Motion2DCanonicalData(unittest.TestCase):
 
         familiar_before, familiar_after = familiar.split('<section class="answer-section"', 1)
         self.assertIn("20 m drop", familiar_before)
-        self.assertNotIn("R-KIN-LAUNCH-EVENT", familiar_before)
+        self.assertIn(f'data-supports-move="{FAMILIAR_CRUX}"', familiar_before)
+        self.assertNotIn(
+            "Use the vertical ground-contact condition Delta y=-20 m to determine the flight time",
+            familiar_before,
+        )
         self.assertIn(f'data-reasoning-move="{FAMILIAR_CRUX}"', familiar_after)
         self.assertIn("Key decision", familiar_after)
 
