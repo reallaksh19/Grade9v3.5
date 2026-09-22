@@ -1,4 +1,4 @@
-name: v3-relay
+name: v31-relay
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-v3:
+  validate-v31:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Grade9V3
@@ -18,12 +18,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout pinned Engineering Relay V3
+      - name: Checkout pinned Engineering Relay V3.1
         uses: actions/checkout@v4
         with:
           repository: reallaksh19/Common
-          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
-          path: _common_v3
+          ref: edb845f06f32c87453dee6fbfcc2f84937017279
+          path: _common_v31
           fetch-depth: 1
 
       - uses: actions/setup-python@v5
@@ -34,10 +34,10 @@ jobs:
         run: python -m pip install --disable-pip-version-check pyyaml jsonschema
 
       - name: Resolve selected protocol
-        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_default.py .
+        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/protocol_default.py .
 
-      - name: Validate V3 foundation
-        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+      - name: Validate V3.1 foundation
+        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/validate_foundation.py .
 
       - name: Validate active protocol selection and frozen V2.5 history
-        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/protocol_cutover.py . validate
