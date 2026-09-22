@@ -1,4 +1,4 @@
-name: v3-admit-issue-174-nlm
+name: v3-repair-issue-174-nlm-admission
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  admit:
+  repair:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -38,18 +38,26 @@ jobs:
       - name: Install relay dependencies
         run: python -m pip install --disable-pip-version-check pyyaml jsonschema
 
-      - name: Write bounded NLM admission
+      - name: Release malformed-contract lease without changing product
         run: |
-          cat > /tmp/issue-174-nlm-admission.yaml <<'YAML'
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . release-lease \
+            --tx-id TX-RELEASE-ISS174-NLM-001 \
+            --event-id EVT-RELEASE-ISS174-NLM-001 \
+            --actor chatgpt-sol-canonical-20260922
+
+      - name: Write corrected mapped admission
+        run: |
+          cat > /tmp/issue-174-nlm-admission-v2.yaml <<'YAML'
           schema_version: relay-v3-task-admission
           roadmap:
-            disposition: ADDED_EXECUTION_WP
-            new_revision: RM-V3-ISS174-NLM-001
+            disposition: MAPPED_EXISTING_WP
+            new_revision: RM-V3-ISS174-NLM-002
             basis:
-              - Owner handover orders #174 canonical-data delivery before #175 production integration
-              - Issue #174 requires the NLM friction gold family as the first canonical-data proof
-              - PR #179 contains the bounded NLM-only implementation
-              - PR #184 provides the clean-main V3 authority boundary without importing #169 custody
+              - "Owner handover orders Issue 174 canonical-data delivery before Issue 175 production integration."
+              - "Issue 174 requires the NLM friction gold family as the first canonical-data proof."
+              - "PR 179 contains the bounded NLM-only implementation."
+              - "PR 184 provides the clean-main V3 authority boundary without importing Issue 169 custody."
+              - "EP-CANONICAL-174-NLM-001 is preserved as superseded admission history because YAML comments truncated several descriptive strings."
             work_package:
               id: WP-CANONICAL-174-NLM
               title: Deliver NLM friction canonical gold proof
@@ -59,23 +67,23 @@ jobs:
                 - WP-TA-108
           ep:
             schema_version: relay-v3-ep
-            id: EP-CANONICAL-174-NLM-001
+            id: EP-CANONICAL-174-NLM-002
             work_package: WP-CANONICAL-174-NLM
             outcome:
-              statement: Revalidate and deliver the bounded NLM friction canonical-data proof against delivered #173 while preserving scientific/source authority and excluding Motion-in-2D.
+              statement: "Revalidate and deliver the bounded NLM friction canonical-data proof against the delivered Core projection contract from PR 177 while preserving scientific and source authority and excluding Motion-in-2D."
             basis:
               predecessor_checkpoint: null
               material_base: 876faffab1eab90111d17ffda143b98285786097
-              protocol_basis: reallaksh19/Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400:skills/engineering-pr-delivery-v3
+              protocol_basis: "reallaksh19/Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400:skills/engineering-pr-delivery-v3"
               semantic_dependencies:
                 - path: Shared/library
-                  reason: Delivered canonical package schema, intake and compiler contract.
+                  reason: "Delivered canonical package schema, intake and compiler contract."
                 - path: Shared/publication_host
-                  reason: Delivered Core2A/Core2B publication preservation and protected-move boundary.
+                  reason: "Delivered Core2A/Core2B publication preservation and protected-move boundary."
                 - path: Physics/adapter
-                  reason: Subject scientific depiction and representation contract.
+                  reason: "Subject scientific depiction and representation contract."
                 - path: Physics/gates
-                  reason: Canonical static-friction scientific relation authority.
+                  reason: "Canonical static-friction scientific relation authority."
             scope:
               write:
                 - Physics/library/phy-nlm-first-law.v1.json
@@ -98,17 +106,17 @@ jobs:
                 - standalone/**
             acceptance:
               - id: AC-NLM-GOLD
-                statement: The real NLM friction familiar and transfer items retain structured reasoning, stable decision crux, staged scaffolds, protected transfer move, source hints and relation authority.
+                statement: "The real NLM friction familiar and transfer items retain structured reasoning, stable decision crux, staged scaffolds, protected transfer move, source hints and relation authority."
                 evidence_requirements:
-                  - test: python -m unittest discover -s tests -p test_g9_nlm_friction_connected.py
+                  - test: "python -m unittest discover -s tests -p test_g9_nlm_friction_connected.py"
               - id: AC-NLM-PIPELINE
-                statement: Delivered #173 compiler/publication semantics preserve the authored NLM route and prevent protected-decision leakage.
+                statement: "The delivered Core projection pipeline from PR 177 preserves the authored NLM reasoning route and rejects protected-decision leakage."
                 evidence_requirements:
-                  - test: python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract
+                  - test: "python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract"
               - id: AC-NLM-REPO
-                statement: Exact-head repository validation is green and generated architecture data is current.
+                statement: "Exact-head repository validation is green and generated architecture data is current."
                 evidence_requirements:
-                  - test: guardrails and pinned v3-relay workflows on the exact delivery head
+                  - test: "guardrails and pinned v3-relay workflows on the exact delivery head"
             quality_policy:
               level: STANDARD
               independent_review: OPTIONAL
@@ -116,14 +124,14 @@ jobs:
               qualification: NOT_REQUIRED
               question_policy: NONE
             next:
-              first_action: Re-run the bounded NLM proof and delivered Core projection falsifiers on the restacked exact head before checkpointing.
+              first_action: "Re-run the bounded NLM proof and delivered Core projection falsifiers on the restacked exact head before checkpointing."
               stop_conditions:
-                - Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority must be corrected before acceptance.
-                - Any generic runtime/compiler falsifier must be separately scoped rather than redesigning delivered #162/#173.
-                - Motion-in-2D must not be added to PR #179.
-                - MERGE and RELEASE require separate explicit delivery authorization.
+                - "Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority must be corrected before acceptance."
+                - "Any generic runtime or compiler falsifier must be separately scoped rather than redesigning delivered Issues 162 or 173."
+                - "Motion-in-2D must not be added to PR 179."
+                - "MERGE and RELEASE require separate explicit delivery authorization."
           lease:
-            id: LEASE-CANONICAL-174-NLM-001
+            id: LEASE-CANONICAL-174-NLM-002
             executor_id: chatgpt-sol-canonical-20260922
             method: DETERMINISTIC
             qualification: null
@@ -137,35 +145,29 @@ jobs:
               number: 179
           YAML
 
-      - name: Admit #174 NLM slice natively
+      - name: Re-admit corrected NLM contract
         run: |
           python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . admit-task \
-            --tx-id TX-ADMIT-ISS174-NLM-001 \
-            --event-id EVT-ADMIT-ISS174-NLM-001 \
+            --tx-id TX-READMIT-ISS174-NLM-002 \
+            --event-id EVT-READMIT-ISS174-NLM-002 \
             --actor chatgpt-sol-canonical-20260922 \
-            --admission /tmp/issue-174-nlm-admission.yaml \
+            --admission /tmp/issue-174-nlm-admission-v2.yaml \
             --base-ref origin/relay/v3-main-cutover-canonical-174
 
-      - name: Prove bounded action authorization
-        run: |
-          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
-            --path Physics/library/phy-nlm-first-law.v1.json \
-            --base-ref origin/relay/v3-main-cutover-canonical-174
-          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
-            --path tests/test_g9_nlm_friction_connected.py \
-            --base-ref origin/relay/v3-main-cutover-canonical-174
-          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py DRAFT_PR_UPDATE .
-
-      - name: Validate V3 authority
+      - name: Validate corrected durable contract and authorization
         run: |
           python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
           python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path Physics/library/phy-nlm-first-law.v1.json \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py DRAFT_PR_UPDATE .
 
-      - name: Commit native admission outputs
+      - name: Commit repaired native admission
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add relay
           git diff --cached --stat
-          git commit -m "[relay-v3] Admit Issue 174 NLM canonical slice"
+          git commit -m "[relay-v3] Repair Issue 174 NLM admission contract"
           git push origin HEAD:content/issue-174-nlm-friction-gold
