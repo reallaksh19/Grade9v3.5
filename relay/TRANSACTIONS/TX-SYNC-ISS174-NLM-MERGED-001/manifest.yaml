@@ -1,0 +1,23 @@
+schema_version: relay-v3-transaction
+id: TX-SYNC-ISS174-NLM-MERGED-001
+command: SYNC_DELIVERY
+actor: chatgpt-sol-canonical-20260922
+status: COMMITTED
+created_at: '2026-09-22T11:59:33.693222Z'
+updated_at: '2026-09-22T11:59:33.699068Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:a5281a6f5d9b0d54480b17a51f3de3d84060c71d6bd3b01907edd3bea4afde26
+  after_digest: sha256:536ff88d5c5174696ffae735d5d526c005d48324a145763200301a4902941f3d
+  staged_path: relay/TRANSACTIONS/TX-SYNC-ISS174-NLM-MERGED-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-SYNC-ISS174-NLM-MERGED-001/backups/000.before
+- path: relay/GENERATED/DELIVERY_STATUS.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:38401aa69fd27e11f0f7e97ef09faaeb2b11f8ca671af496b6ddc58578ce27e4
+  staged_path: relay/TRANSACTIONS/TX-SYNC-ISS174-NLM-MERGED-001/staged/001.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/DELIVERY_STATUS.yaml
