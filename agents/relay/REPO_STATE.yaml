@@ -94,21 +94,23 @@
   },
   "projection": {
     "required": true,
-    "state": "STALE",
+    "state": "IN_SYNC",
     "operation_id": "GHGEN-CORE173-R2",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-CORE173-R2.yaml",
     "roadmap_revision": "RM-0010",
     "execution_ref": "EP-TA-010",
-    "receipt": null,
+    "receipt": "github-generation:GHGEN-CORE173-R2:issue-173:comment-5769504507",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
       "agents/relay/execution-packages/EP-TA-010.yaml",
       "agents/relay/quality/QRV-TA-010.yaml",
       "agents/relay/delivery/DOBS-PR177-RM0010.yaml",
-      "GitHub Issue #173 and PR #177 provider readback"
+      "GitHub Issue #173 and PR #177 provider readback",
+      "GitHub Issue #173 comment 5769504507 provider readback",
+      "relay-operation:GHOP-CORE173-HANDOVER-R2 marker verified"
     ],
     "superseded_operations": [
       {
@@ -126,15 +128,15 @@
       }
     ],
     "observed": {
-      "operation_id": "GHGEN-WP105-ISS169-R1",
+      "operation_id": "GHGEN-CORE173-R2",
       "target": "github:reallaksh19/Grade9V3:issues",
-      "roadmap_revision": "RM-0009",
-      "execution_ref": "EP-TA-009",
-      "receipt": "github-generation:GHGEN-WP105-ISS169-R1:issue-169",
+      "roadmap_revision": "RM-0010",
+      "execution_ref": "EP-TA-010",
+      "receipt": "github-generation:GHGEN-CORE173-R2:issue-173:comment-5769504507",
       "basis": [
-        "Issue #169 provider readback",
-        "GHGEN-WP105-ISS169-R1 verified generation",
-        "IG-0005"
+        "GitHub Issue #173 provider readback",
+        "comment:5769504507",
+        "marker:relay-operation:GHOP-CORE173-HANDOVER-R2"
       ]
     }
   },
@@ -158,15 +160,15 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": false,
-    "handover_ready": false,
+    "projection_ready": true,
+    "handover_ready": true,
     "reasons": [
       "CP-TA-009 remains the predecessor baton for WP-TA-108 / EP-TA-010.",
       "DRIFT-TA-008 classifies the main movement to 1b549c3 as DISJOINT from Core projection semantics and preserves WRITE authority.",
       "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea.",
       "Execution custody is enforced for SERIAL:EP-TA-010 and assigned to chatgpt-sol-core173-20260922-r1.",
       "Exact implementation/protocol head 9fe45c05 passed guardrails 35671187483 and revised v25-relay 35671187502.",
-      "The required quality review is clear and the draft PR #177 delivery observation is refreshed; checkpoint/progress/issue-projection closure remains."
+      "The current Issue #173 handover projection is verified against GitHub provider readback; checkpoint/progress closure remains."
     ]
   },
   "chat_context_required": false,
