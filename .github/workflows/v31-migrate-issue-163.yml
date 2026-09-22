@@ -197,17 +197,19 @@ jobs:
           }
           (relay / "EVENTS.jsonl").write_text(json.dumps(event, sort_keys=True) + "\n", encoding="utf-8")
 
-          notice = f"""# Engineering Relay legacy deprecation notice
-
-Status: **READ_ONLY_HISTORY**
-
-Engineering Relay V3.1 is the selected protocol under direct Owner authority dated {owner_timestamp}.
-
-- V2.5 remains preserved under `agents/relay/**` with freeze digest `{freeze}`.
-- The prior V3 authority is preserved by Git source commit `{source_commit}` and relay digest `{relay_digest}`.
-- New relay authority must be written through Common@edb845f06f32c87453dee6fbfcc2f84937017279 `skills/engineering-pr-delivery-v3.1`.
-- No V3 event has been rewritten as V3.1 history.
-"""
+          notice = "\n".join([
+              "# Engineering Relay legacy deprecation notice",
+              "",
+              "Status: **READ_ONLY_HISTORY**",
+              "",
+              f"Engineering Relay V3.1 is the selected protocol under direct Owner authority dated {owner_timestamp}.",
+              "",
+              f"- V2.5 remains preserved under \`agents/relay/**\` with freeze digest \`{freeze}\`.",
+              f"- The prior V3 authority is preserved by Git source commit \`{source_commit}\` and relay digest \`{relay_digest}\`.",
+              "- New relay authority must be written through Common@edb845f06f32c87453dee6fbfcc2f84937017279 \`skills/engineering-pr-delivery-v3.1\`.",
+              "- No V3 event has been rewritten as V3.1 history.",
+              "",
+          ])
           (relay / "MIGRATION/V25_DEPRECATION.md").write_text(notice, encoding="utf-8")
           PY
 
