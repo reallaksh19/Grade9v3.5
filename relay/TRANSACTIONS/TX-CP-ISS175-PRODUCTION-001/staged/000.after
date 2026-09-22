@@ -1,0 +1,101 @@
+schema_version: relay-v3-checkpoint
+id: CP-LEARNER-175-PRODUCTION-001
+ep: EP-LEARNER-175-PRODUCTION-001
+material_result:
+  head: b8a96923383aa1f7fdf4d6eb2a6c866225570a21
+  relevant_paths_digest: sha256:107cb7d7ec6807d292b213e04aec22fd630b49ec0b9e5d324f46ff5280036966
+  dependency_digest: sha256:720145a580fbf493a857dd224240669753441cf5841c0e4efe8658be31871ed2
+acceptance:
+- id: AC-175-SHELL
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35736012083: core_learning_page + core_learning_host tests
+    PASS'
+  - 'checkpoint workflow 35736012083: test_workbench_runtime real-browser journey
+    PASS'
+  - Public and standalone hosts are generated from the same subject-neutral source/runtime.
+- id: AC-175-PROVIDER
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35736012083: test_core_learning_adapter PASS'
+  - public/core-learning/data.js provider_status=PRODUCTION_COMPILED_CANONICAL
+  - Provider adapter consumes compile_bucket output plus canonical records; browser
+    does not compile raw subject truth.
+- id: AC-175-CORE-SEMANTICS
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35736012083: delivered Core projection pipeline/contract
+    tests PASS'
+  - 'checkpoint workflow 35736012083: Core1/Core2 shell tests PASS'
+  - Real-browser journey proves Core2A crux appears after attempt and Core2B protected
+    model decision is absent pre-attempt.
+- id: AC-175-EXPLORER
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35736012083: shared-clock explorer mount is same-origin/offline-safe'
+  - public/physics/motion-2d/explorers/shared-clock/index.html is unchanged from main
+  - Explorer locator arrives through generated provider metadata rather than page-local
+    routing truth.
+- id: AC-175-PR134
+  result: PASS
+  evidence:
+  - PR 134 is CLOSED and not merged.
+  - Disposition comment 5777606503 records it as a reference prototype because its
+    HTML embeds prediction/diagnostic/feedback academic behavior.
+- id: AC-175-REPO
+  result: PASS
+  evidence:
+  - exact-head guardrails run 35735703976 PASS
+  - exact-head pinned V3 run 35735703953 PASS
+  - production repair/browser run 35735535851 PASS
+  - 'checkpoint workflow 35736012083: topic-independence and build_manifest --check
+    PASS'
+validation:
+  focused_tests: PASS
+  spec_delivery: PASS
+  full_guardrails: PASS
+quality:
+  policy: STANDARD
+  result: CLEAR
+known_limitations:
+- Issue 163 external portable runtime-package compilation remains a separate lane.
+- Issue 169 Grade-9 exit readiness remains a separate route and is not claimed by
+  the learner-page builder.
+discoveries:
+- The production learner host can consume real Issue 173 compiler output and Issue
+  174 Motion canonical data without browser-side curriculum discovery.
+- A pre-existing scientific explorer can be mounted unchanged through explicit canonical
+  resource metadata while pedagogy remains projection-driven.
+- PR 134 demonstrates why standalone page-local diagnostics must not become the builder's
+  second academic database.
+handoff:
+  what_changed:
+  - The existing Issue 175 shell/host-parity work is now backed by production compiler-generated
+    Motion Core projections.
+  - Public and standalone hosts mount the existing shared-clock explorer through explicit
+    generated metadata.
+  - PR 134 is dispositioned and closed unmerged as a reference prototype.
+  what_is_true_now:
+  - One generated shell covers Core1A/Core1B/Core2A/Core2B using explicit projection
+    state.
+  - Core2A visibly distinguishes the crux after attempt/reveal.
+  - Core2B protected decisions remain undisclosed before attempt.
+  - Public/standalone parity and offline same-origin explorer mounting are tested.
+  - Accepted material head is b8a96923383aa1f7fdf4d6eb2a6c866225570a21.
+  what_remains_uncertain:
+  - External portable/single-file packaging and cross-subject portability proofs belong
+    to Issue 163.
+  do_not_break:
+  - Do not add page-local curriculum, question-bank, mastery or support-policy truth.
+  - Do not move compiler/raw subject discovery into the browser runtime.
+  - Do not rewrite scientific explorer implementations merely to fit the generated
+    shell.
+  attempted_and_rejected:
+  - Merging PR 134 as-is was rejected because it combines scientific scene, prediction
+    choices, diagnostics and correctness/feedback logic in one page-local model.
+  resume_from:
+  - Deliver PR 178 through V3 provider transition.
+  - Then proceed to Issue 163 external portability without transferring learner-shell
+    ownership into that lane.
+  first_successor_action: If PR 178 is merged, close Issue 175 after V3 provider readback
+    and admit the next independent portability task.
