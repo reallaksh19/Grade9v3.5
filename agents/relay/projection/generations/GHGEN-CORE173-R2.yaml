@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0010",
     "issue_graph_revision": "IG-0006",
     "execution_ref": "EP-TA-010",
-    "state": "PREPARED",
+    "state": "PUBLISHING",
     "supersedes_generation": "GHGEN-CORE173-R1",
     "basis": [
       "agents/relay/REPO_STATE.yaml",
@@ -21,7 +21,7 @@
     {
       "id": "GHOP-CORE173-HANDOVER-R2",
       "kind": "PUBLISH_HANDOVER",
-      "state": "PREPARED",
+      "state": "ATTEMPTED_UNCONFIRMED",
       "idempotency_key": "relay:GHGEN-CORE173-R2:GHOP-CORE173-HANDOVER-R2",
       "depends_on": [],
       "subject": {
@@ -48,8 +48,12 @@
         ]
       },
       "publication": {
-        "attempt_count": 0,
-        "last_attempt_basis": [],
+        "attempt_count": 1,
+        "last_attempt_basis": [
+          "prepared_generation:d8a1b10fd3e76dae2e1c5a40b0d88e5bf7fc1947",
+          "target:github:reallaksh19/Grade9V3:issue-173",
+          "idempotency_marker:relay-operation:GHOP-CORE173-HANDOVER-R2"
+        ],
         "receipt": null,
         "last_error": null
       },
