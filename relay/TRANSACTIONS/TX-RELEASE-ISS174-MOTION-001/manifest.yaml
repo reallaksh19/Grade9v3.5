@@ -1,0 +1,37 @@
+schema_version: relay-v3-transaction
+id: TX-RELEASE-ISS174-MOTION-001
+command: RELEASE_LEASE
+actor: chatgpt-sol-canonical-20260922
+status: COMMITTED
+created_at: '2026-09-22T12:28:20.825899Z'
+updated_at: '2026-09-22T12:28:20.836568Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:15a5270b10aa7f2276b19eff80c66a164098ac4092b87a2aba3cf42e750167ec
+  after_digest: sha256:34abc263c3b84be83927fa9eae1a0ff930dc463b957b2a7851fd85269ea2807d
+  staged_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:5a641f42e3f9392f575eaea978ab855eb59fc8f0cd11ac38697ac82accefbb9a
+  after_digest: sha256:b86a06b50beb43245a7c4c44944bfa43fd17b065adc50eed8fa9f2862026113e
+  staged_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/backups/001.before
+- path: relay/LEASES/LEASE-CANONICAL-174-MOTION-001.yaml
+  before_exists: true
+  before_digest: sha256:001025f2b7aeb492b41875f43e06308404678a6eb2e194b51c36cd7b80074d62
+  after_digest: sha256:b8cf6339df9f2cea8b7fb5688342860647f46a28990fa8b87d9e26e4cf6fe47d
+  staged_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/backups/002.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:bc9e6665bbfb0facb049d832919d7323cd3667123e1075d232a7c2273c515515
+  after_digest: sha256:f4ca6484f3064dfd5ff0820d3776cabe699b583b8cbd552cd75d6d43060a32d5
+  staged_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-RELEASE-ISS174-MOTION-001/backups/003.before
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-CANONICAL-174-MOTION-001.yaml
+- relay/STATE.yaml

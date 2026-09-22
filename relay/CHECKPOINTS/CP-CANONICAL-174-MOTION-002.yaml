@@ -1,0 +1,81 @@
+schema_version: relay-v3-checkpoint
+id: CP-CANONICAL-174-MOTION-002
+ep: EP-CANONICAL-174-MOTION-002
+material_result:
+  head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
+  relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
+  dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
+acceptance:
+- id: AC-MOTION-CANONICAL
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35729887796: test_motion2d_canonical.py PASS'
+  - material head 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
+  - Three representations, familiar/transfer structured routes, source-hint custody
+    and protected-transfer semantics are asserted.
+- id: AC-MOTION-AUTHORITY
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35729887796: matrix-authority assertions PASS'
+  - Physics/matrices/phy-kin-2d-motion.rungs.json remains protected and unchanged
+    by the Motion material delta.
+- id: AC-MOTION-PIPELINE
+  result: PASS
+  evidence:
+  - 'checkpoint workflow 35729887796: Core projection pipeline/contract tests PASS'
+  - Protected-decision leakage falsifier and Core2A/Core2B publication checks pass
+    without Shared changes.
+- id: AC-MOTION-REPO
+  result: PASS
+  evidence:
+  - guardrails push run 35728404856 PASS
+  - pinned v3-relay push run 35728404855 PASS
+  - guardrails PR run 35728408931 PASS
+  - pinned v3-relay PR run 35728408922 PASS
+  - 'checkpoint workflow 35729887796: spec_delivery and build_manifest --check PASS'
+validation:
+  focused_tests: PASS
+  spec_delivery: PASS
+  full_guardrails: PASS
+quality:
+  policy: STANDARD
+  result: CLEAR
+known_limitations:
+- This checkpoint proves canonical Motion data/projection only; learner-page production
+  integration remains Issue 175.
+- External portable runtime packaging remains Issue 163.
+discoveries:
+- The three Motion representations can reuse existing activity resources while the
+  matrix remains family-level academic authority.
+- Familiar event-time choice and transfer model-choice are independently expressible
+  through the delivered structured reasoning contract.
+- No Shared/Core modification is required for this Motion production proof.
+handoff:
+  what_changed:
+  - Motion-in-2D now has three canonical representations bound to existing activity
+    resources and microtopic teaching paths.
+  - The real familiar horizontal-launch and transfer projectile-validity items now
+    carry structured routes, crux moves, scaffolds and transfer protection.
+  what_is_true_now:
+  - Motion matrix family authority remains unchanged.
+  - Existing source hints remain unchanged.
+  - Generated architecture and web data match the canonical library.
+  - Accepted material head is 817564ee4d17f91b2ad9c4d16b6c763e795a70ef.
+  what_remains_uncertain:
+  - Issue 175 still must consume real Issue 173/174 projections in production learner
+    pages.
+  - Issue 163 external portability remains independent work.
+  do_not_break:
+  - Do not duplicate Motion family matrix authority into library prose.
+  - Do not alter source hints or GCDR explorer/property authority to satisfy presentation
+    concerns.
+  - Do not reopen delivered Shared Core contracts absent a generic falsifier.
+  attempted_and_rejected:
+  - Combining Motion with PR 179 was rejected because PR 179 was the bounded NLM-only
+    delivery.
+  resume_from:
+  - Deliver PR 187 through V3 provider transition.
+  - Then move to Issue 175 production projection integration before portability closure
+    work.
+  first_successor_action: If PR 187 is merged, close the Motion V3 task and proceed
+    to Issue 175 production integration using delivered Issue 173/174 data.

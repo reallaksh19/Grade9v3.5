@@ -2,23 +2,22 @@ schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V3-ISS174-MOTION-002
-  state_digest: sha256:35a67c57067e6d0e57be14e682e49788e5e8677987e1e62fe9a677c7a4f45155
+  state_digest: sha256:8e7289cb497942a25074440c187db2cad2e364d5bb3af99324efd616b187bac1
   material_basis:
-    head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
-    tree_digest: sha256:172cc52320e5439207e43fb529f2c916e464d4f3860886df5daffaec9d2f6a2d
-    relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
+    head: 4fc9a03547d8ae21f5d465c89629aee1bbf601c0
+    tree_digest: sha256:c092db66b9bc35bc1da492336be8d444e9c0eb6109de533e413e8d8e94246169
+    relevant_paths_digest: sha256:c09179d1497ba2525f180a37b257d4cea571fc35ea69854bc1ddf03bec313296
     dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
-  coordination_head: 9b3dbbcbf2643480d9558e64b2ece2fda6ae079f
+  coordination_head: 287911a1cb449afdc53a915ef960d57f816b1123
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
   current_goal: 'Deliver Issue #174 through bounded NLM and Motion-in-2D canonical-data
     proofs without importing Issue #169 execution custody.'
 programme:
-  accepted_progress: 7.41
+  accepted_progress: 3.7
   completed_work:
   - WP-CANONICAL-174-NLM
-  - WP-CANONICAL-174-MOTION
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -28,6 +27,7 @@ programme:
   - WP-TA-107
   - WP-TA-108
   - WP-TA-105
+  - WP-CANONICAL-174-MOTION
 execution:
   lifecycle: ACTIVE
   work_package: WP-CANONICAL-174-MOTION
@@ -54,15 +54,12 @@ scope:
   - standalone/**
 material:
   base: 1b92a943fe0b90fc829140e63ea4121b02dfd225
-  head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
-  relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
+  head: 4fc9a03547d8ae21f5d465c89629aee1bbf601c0
+  relevant_paths_digest: sha256:c09179d1497ba2525f180a37b257d4cea571fc35ea69854bc1ddf03bec313296
   dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
 evidence:
-  latest_checkpoint: CP-CANONICAL-174-MOTION-002
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -93,4 +90,3 @@ handoff:
   - relay/CONTROLS/controls.yaml
   - relay/WORK/EP-CANONICAL-174-MOTION-002.yaml
   - relay/LEASES/LEASE-CANONICAL-174-MOTION-002.yaml
-  - relay/CHECKPOINTS/CP-CANONICAL-174-MOTION-002.yaml

@@ -1,24 +1,23 @@
 schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
-  roadmap_revision: RM-V3-ISS174-MOTION-002
-  state_digest: sha256:35a67c57067e6d0e57be14e682e49788e5e8677987e1e62fe9a677c7a4f45155
+  roadmap_revision: RM-V3-ISS174-MOTION-001
+  state_digest: sha256:8395f02427d56aa1a829b7fec5d3262d11a74f364a428e2f94ca13f5894f120c
   material_basis:
-    head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
-    tree_digest: sha256:172cc52320e5439207e43fb529f2c916e464d4f3860886df5daffaec9d2f6a2d
-    relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
-    dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
-  coordination_head: 9b3dbbcbf2643480d9558e64b2ece2fda6ae079f
+    head: 1b92a943fe0b90fc829140e63ea4121b02dfd225
+    tree_digest: sha256:610fe566d34da97377fca6a5278d07de30c1b2e408832e2111a6568f3ff69967
+    relevant_paths_digest: sha256:592c5b1b522c49fefbc5644b9be72cfda146f1884ae27ba1c3c351b00d162c7d
+    dependency_digest: sha256:291bec3d479d5c3bbe3d1f1742008eb3db0d3a4973f85bd6864c8858fd2aa085
+  coordination_head: b0dc4df425d8eeb4dd6f898caaece2fb5e43ccc0
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
   current_goal: 'Deliver Issue #174 through bounded NLM and Motion-in-2D canonical-data
     proofs without importing Issue #169 execution custody.'
 programme:
-  accepted_progress: 7.41
+  accepted_progress: 3.7
   completed_work:
   - WP-CANONICAL-174-NLM
-  - WP-CANONICAL-174-MOTION
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -28,41 +27,37 @@ programme:
   - WP-TA-107
   - WP-TA-108
   - WP-TA-105
+  - WP-CANONICAL-174-MOTION
 execution:
   lifecycle: ACTIVE
   work_package: WP-CANONICAL-174-MOTION
-  ep: EP-CANONICAL-174-MOTION-002
-  lease: LEASE-CANONICAL-174-MOTION-002
+  ep: EP-CANONICAL-174-MOTION-001
+  lease: LEASE-CANONICAL-174-MOTION-001
   executor: chatgpt-sol-canonical-20260922
 scope:
   allowed_writes:
   - Physics/library/phy-kin-2d-motion.v1.json
   - tests/test_motion2d_canonical.py
   - docs/architecture-manifest.json
-  - tools/data.js
-  - public/data/data.js
   protected:
   - Physics/matrices/phy-kin-2d-motion.rungs.json
-  - Physics/tools/motion2d_gcdr_properties.py
-  - public/physics/motion-2d/**
+  - Physics/activities/**
   - Shared/**
   - Physics/library/phy-nlm-first-law.v1.json
   - agents/relay/**
   prohibited:
   - Mathematics/**
   - Chemistry/**
+  - public/physics/**
   - standalone/**
 material:
   base: 1b92a943fe0b90fc829140e63ea4121b02dfd225
-  head: 817564ee4d17f91b2ad9c4d16b6c763e795a70ef
-  relevant_paths_digest: sha256:9367323294f7e49392fec9c2a283302389065ec208a63b463f021061c2552701
-  dependency_digest: sha256:7cd4bc1f0cbf11c2af6df7f906bf535ad5e19906fc6a8345576a0105a2a807cd
+  head: 1b92a943fe0b90fc829140e63ea4121b02dfd225
+  relevant_paths_digest: sha256:592c5b1b522c49fefbc5644b9be72cfda146f1884ae27ba1c3c351b00d162c7d
+  dependency_digest: sha256:291bec3d479d5c3bbe3d1f1742008eb3db0d3a4973f85bd6864c8858fd2aa085
 evidence:
-  latest_checkpoint: CP-CANONICAL-174-MOTION-002
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -75,13 +70,13 @@ delivery:
   lifecycle: DECLARED
   merge_authorized: true
 next:
-  immediate_material_action: Run the focused Motion canonical falsifiers, delivered
-    Core projection tests, deterministic data generation and exact-head guardrails.
+  immediate_material_action: Author the three canonical Motion representations and
+    structured familiar/transfer routes without changing the Motion matrix or existing
+    source hints.
   delivery_action: Perform the explicitly authorized delivery transition.
   stop_conditions:
   - Do not duplicate family-level matrix authority into the library.
-  - Do not change existing source hints, Motion matrix text, explorer artifacts or
-    GCDR property authority.
+  - Do not change existing source hints or activity academic authority.
   - Do not modify delivered Shared Core code unless a generic falsifier proves a separate
     regression.
   - Keep PR 187 Motion-only.
@@ -91,6 +86,5 @@ handoff:
   - relay/ROADMAP/ROADMAP.yaml
   - relay/STATE.yaml
   - relay/CONTROLS/controls.yaml
-  - relay/WORK/EP-CANONICAL-174-MOTION-002.yaml
-  - relay/LEASES/LEASE-CANONICAL-174-MOTION-002.yaml
-  - relay/CHECKPOINTS/CP-CANONICAL-174-MOTION-002.yaml
+  - relay/WORK/EP-CANONICAL-174-MOTION-001.yaml
+  - relay/LEASES/LEASE-CANONICAL-174-MOTION-001.yaml

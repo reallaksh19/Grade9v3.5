@@ -4281,7 +4281,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 110,
+          "record_count": 116,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4296,6 +4296,21 @@ window.GRADE9V3 = {
             "questions": 10,
             "obligations": 7,
             "authoring_requirements": [
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-EVENT-CLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-PROJECTILE-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-SHARED-CLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
