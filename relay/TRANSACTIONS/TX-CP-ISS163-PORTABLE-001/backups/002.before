@@ -2,13 +2,13 @@ schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V3-ISS163-PORTABLE-001
-  state_digest: sha256:2746cd1a2ddaba3dc3759ee8a1d55f893038614f15a3a0dd6781f5f218c62853
+  state_digest: sha256:1fa135b04cb10b8eb38f2f24583c9843efb8a1894f0753f80ed2e67ba5acec88
   material_basis:
-    head: 72b7d8c6e18273252c6e8faac90ff11dd4af0425
-    tree_digest: sha256:cf1034dae4bdec767e852b69d9e64be5ed0687143edbf753c3b6c09f88228058
-    relevant_paths_digest: sha256:343113efebec58f2698886ef915e78261f35784c4d9fa6f62b55c7a93f5c645a
+    head: c6f1ce51ae0631a346487609e88f544fece2fa08
+    tree_digest: sha256:d4088fea45bbe8d8c0ca4265365d8893050609a22b9dd3b41d77973cf32e06df
+    relevant_paths_digest: sha256:277d6dd1c3322e274b2f4f8d25d126709ff5dd307ec5103c354394c8e5793734
     dependency_digest: sha256:69704c73202a60fbfb0e84d34fd56064e35b17d3861638c14125b565660964b4
-  coordination_head: 72b7d8c6e18273252c6e8faac90ff11dd4af0425
+  coordination_head: 94080b1fb9286cd2bc29ce9175402554e9992129
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
@@ -17,12 +17,11 @@ owner:
     and complete Redox, long-division and integration cross-subject proofs without
     moving learner-page shell ownership into the portability lane.'
 programme:
-  accepted_progress: 18.7
+  accepted_progress: 12.2
   completed_work:
   - WP-CANONICAL-174-NLM
   - WP-CANONICAL-174-MOTION
   - WP-LEARNER-175-PRODUCTION
-  - WP-PORTABLE-163
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -32,6 +31,7 @@ programme:
   - WP-TA-107
   - WP-TA-108
   - WP-TA-105
+  - WP-PORTABLE-163
 execution:
   lifecycle: ACTIVE
   work_package: WP-PORTABLE-163
@@ -71,15 +71,12 @@ scope:
   - Do not modify delivered Core runtime merely to make a proof fixture pass.
 material:
   base: c6f1ce51ae0631a346487609e88f544fece2fa08
-  head: 72b7d8c6e18273252c6e8faac90ff11dd4af0425
-  relevant_paths_digest: sha256:343113efebec58f2698886ef915e78261f35784c4d9fa6f62b55c7a93f5c645a
+  head: c6f1ce51ae0631a346487609e88f544fece2fa08
+  relevant_paths_digest: sha256:277d6dd1c3322e274b2f4f8d25d126709ff5dd307ec5103c354394c8e5793734
   dependency_digest: sha256:69704c73202a60fbfb0e84d34fd56064e35b17d3861638c14125b565660964b4
 evidence:
-  latest_checkpoint: CP-PORTABLE-163-001
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -111,4 +108,3 @@ handoff:
   - relay/CONTROLS/controls.yaml
   - relay/WORK/EP-PORTABLE-163-001.yaml
   - relay/LEASES/LEASE-PORTABLE-163-001.yaml
-  - relay/CHECKPOINTS/CP-PORTABLE-163-001.yaml
