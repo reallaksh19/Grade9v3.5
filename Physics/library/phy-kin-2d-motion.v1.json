@@ -2924,7 +2924,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "SYNCHRONIZED_COMPONENT_STATE",
+      "kind": "VECTOR",
       "purpose": "Keep independently evolving x and y descriptions attached to one physical object, one declared frame and one shared clock, so only simultaneous component values are recombined into a plane state.",
       "required_elements": [
         "physical object",
@@ -2965,18 +2965,18 @@
       "correspondence": [
         {
           "element": "x-component history",
-          "symbol": "x(t), v_x(t)",
-          "in_words": "The horizontal component state evaluated at the shared physical time."
+          "symbol": "v_x",
+          "in_words": "The horizontal velocity component at the shared physical time."
         },
         {
           "element": "y-component history",
-          "symbol": "y(t), v_y(t)",
-          "in_words": "The vertical component state evaluated at the same shared physical time."
+          "symbol": "v_y",
+          "in_words": "The vertical velocity component at the same shared physical time."
         },
         {
           "element": "shared time marker",
           "symbol": "t",
-          "in_words": "The one elapsed time that belongs to both component descriptions of the event."
+          "in_words": "The one elapsed time used by both component descriptions."
         }
       ],
       "interactive_resource_refs": [
@@ -3051,7 +3051,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "EVENT_CONDITION_CLOCK",
+      "kind": "GRAPH",
       "purpose": "Make event selection explicit: one component condition identifies the requested event time, and that same time is then reused on every component before reconstructing the requested state.",
       "required_elements": [
         "physical event",
@@ -3093,19 +3093,19 @@
       "scene_instances": [],
       "correspondence": [
         {
-          "element": "event condition",
-          "symbol": "event equation",
-          "in_words": "The component condition that defines when the requested physical event occurs."
-        },
-        {
           "element": "solved event-time marker",
-          "symbol": "t_event",
-          "in_words": "The single clock value at which every component of the requested event is evaluated."
+          "symbol": "t",
+          "in_words": "The single elapsed time at which both component descriptions are evaluated for the selected event."
         },
         {
-          "element": "reconstructed event state",
-          "symbol": "(x(t_event), y(t_event), v_x(t_event), v_y(t_event))",
-          "in_words": "The simultaneous component state at the selected physical event."
+          "element": "x-component evaluation",
+          "symbol": "Delta x",
+          "in_words": "The horizontal displacement evaluated at the shared event time."
+        },
+        {
+          "element": "y-component evaluation",
+          "symbol": "Delta y",
+          "in_words": "The vertical displacement evaluated at the same shared event time."
         }
       ],
       "interactive_resource_refs": [
@@ -3180,7 +3180,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "MODEL_SELECTION_GATE",
+      "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Make the ideal projectile specialization conditional on the interactions that remain after release: gravity-only free flight licenses a_x=0 and a_y=-g; retained thrust, significant drag or contact requires a more general model.",
       "required_elements": [
         "launched-object scene",
@@ -3219,19 +3219,19 @@
       "scene_instances": [],
       "correspondence": [
         {
+          "element": "gravity-only status",
+          "symbol": "g",
+          "in_words": "The retained gravitational acceleration magnitude in the ideal projectile specialization."
+        },
+        {
           "element": "horizontal acceleration readout",
-          "symbol": "a_x",
-          "in_words": "The horizontal acceleration implied by the retained post-release interactions."
+          "symbol": "v_x",
+          "in_words": "The horizontal component whose constancy is a consequence of zero horizontal acceleration in the ideal specialization."
         },
         {
           "element": "vertical acceleration readout",
-          "symbol": "a_y",
-          "in_words": "The vertical acceleration under the declared sign convention."
-        },
-        {
-          "element": "model-status gate",
-          "symbol": "projectile model valid?",
-          "in_words": "Whether the gravity-only projectile specialization is licensed for the current interval."
+          "symbol": "v_y",
+          "in_words": "The vertical velocity component that changes under the retained gravitational acceleration."
         }
       ],
       "interactive_resource_refs": [
