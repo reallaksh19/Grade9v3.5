@@ -33,3 +33,4 @@ The same component and declarative adapter contract is used by long division, Re
 ## Compatibility rule
 
 A consuming app needs only the generated portable runtime assets plus a package JSON, or the generated single-file host. It must not reach into Shadow DOM to configure behavior. If Core later changes an API version, old packages fail closed until deliberately rebuilt.
+Generated artifacts are freshness-checked by `python -m Shared.tools.build_portable_workbench --check`; exact-head repository validation remains the release gate.
