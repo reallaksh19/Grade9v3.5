@@ -1,0 +1,46 @@
+{
+  "schema_version": "relay-v2.5",
+  "revision": {
+    "id": "RM-0011",
+    "from_revision": "RM-0010",
+    "to_revision": "RM-0011",
+    "classification": "EXECUTION_DERIVED_STATUS",
+    "trigger": {
+      "type": "CHECKPOINT",
+      "path": "agents/relay/checkpoints/CP-TA-010.yaml"
+    }
+  },
+  "changes": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      "OBJ-TOPIC-ATLAS-COMPLETE",
+      "PHASE-TAKEOVER-RECONCILIATION",
+      "WP-TA-108",
+      "WP-TA-105"
+    ],
+    "unaffected": [
+      "WP-TAKEOVER-RECONCILE",
+      "WP-TA-102",
+      "WP-TA-106",
+      "WP-TA-103",
+      "WP-TA-104",
+      "WP-TA-107"
+    ]
+  },
+  "invalidated_execution_packages": [],
+  "issue_graph_reconciled": true,
+  "progress_basis_change": {
+    "old_basis": "PB-0008",
+    "new_basis": "PB-0009",
+    "old_total_weight": 100,
+    "new_total_weight": 100
+  },
+  "frontier_after": [],
+  "notes": [
+    "CP-TA-010 closes WP-TA-108 after all four acceptance criteria pass.",
+    "Programme progress advances from 85/100 to 93/100 solely from accepted WP-TA-108 work.",
+    "PR #170 has been returned to draft and marked as dependent on PR #177; its earlier terminal 100/100 statements are historical branch-local state, not current roadmap authority.",
+    "WP-TA-105 remains FUTURE/WAITING until PR #177 provider delivery is merged/read back and the successor route is freshly reconciled."
+  ]
+}

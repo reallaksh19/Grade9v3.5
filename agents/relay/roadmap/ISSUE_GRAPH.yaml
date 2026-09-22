@@ -1,6 +1,6 @@
 {
   "schema_version": "relay-v2.5",
-  "graph_revision": "IG-0006",
+  "graph_revision": "IG-0007",
   "nodes": [
     {
       "id": "ISSUE-118",
@@ -335,14 +335,83 @@
     },
     {
       "id": "ISSUE-173",
-      "state": "ACTIVE",
+      "state": "COMPLETE",
       "github_state": "OPEN",
       "github": {
         "issue_number": 173,
         "issue_id": 5529699307,
         "url": "https://github.com/reallaksh19/Grade9V3/issues/173"
       },
-      "roadmap_node": "WP-TA-108"
+      "roadmap_node": "WP-TA-108",
+      "closure_receipt": {
+        "acceptance_terminal": true,
+        "evidence_terminal": true,
+        "acceptance": [
+          {
+            "id": "AC-TA10-001",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-010"
+            ]
+          },
+          {
+            "id": "AC-TA10-002",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-010"
+            ]
+          },
+          {
+            "id": "AC-TA10-003",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-010"
+            ]
+          },
+          {
+            "id": "AC-TA10-004",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis": [
+              "CP-TA-010"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "TEST-TA10-001",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-010"
+          },
+          {
+            "id": "TEST-TA10-002",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-010"
+          },
+          {
+            "id": "TEST-TA10-003",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-010"
+          },
+          {
+            "id": "TEST-TA10-004",
+            "status": "PASS",
+            "disposition": "SATISFIED",
+            "basis_ref": "CP-TA-010"
+          }
+        ],
+        "pr_disposition": "PR #177 remains draft/open pending separate Owner merge authorization and provider readback. PR #170 is draft and explicitly ordered after #177.",
+        "remaining_work_disposition": "TRANSFERRED_TO_SUCCESSOR",
+        "unresolved_items": [],
+        "successor": "ISSUE-169",
+        "checkpoint": "CP-TA-010"
+      }
     }
   ],
   "relationships": [

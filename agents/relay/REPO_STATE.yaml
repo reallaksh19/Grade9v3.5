@@ -1,6 +1,6 @@
 {
   "schema_version": "relay-v2.5",
-  "relay_state": "ACTIVE",
+  "relay_state": "IDLE",
   "repository": {
     "name": "Grade9V3",
     "remote": "reallaksh19/Grade9V3"
@@ -11,27 +11,27 @@
   },
   "roadmap": {
     "id": "RM-GRADE9V3-TOPIC-ATLAS-TAKEOVER",
-    "revision": "RM-0010",
+    "revision": "RM-0011",
     "path": "agents/relay/roadmap/OVERALL_ROADMAP.yaml"
   },
   "current_position": {
     "objective": "OBJ-TOPIC-ATLAS-COMPLETE",
     "phase": "PHASE-TAKEOVER-RECONCILIATION",
-    "work_package": "WP-TA-108",
+    "work_package": "WP-TA-105",
     "work_packages": []
   },
   "execution_policy": {
     "mode": "SERIAL"
   },
   "active_ep": {
-    "id": "EP-TA-010",
-    "path": "agents/relay/execution-packages/EP-TA-010.yaml",
-    "state": "EXECUTABLE",
+    "id": null,
+    "path": null,
+    "state": "NONE",
     "continuity_receipt": null
   },
   "last_checkpoint": {
-    "id": "CP-TA-009",
-    "path": "agents/relay/checkpoints/CP-TA-009.yaml"
+    "id": "CP-TA-010",
+    "path": "agents/relay/checkpoints/CP-TA-010.yaml"
   },
   "predecessor_join": {
     "id": null,
@@ -41,49 +41,28 @@
     "id": null,
     "path": null
   },
-  "takeover_admissions": [
-    {
-      "route_key": "SERIAL:EP-TA-010",
-      "candidate": {
-        "agent_instance_id": "chatgpt-sol-core173-20260922-r1"
-      },
-      "discovery_receipt": {
-        "id": "DISC-TA-022",
-        "path": "agents/relay/certifications/discovery/DISC-TA-022.yaml"
-      },
-      "certification": {
-        "id": "TC-TA-021",
-        "path": "agents/relay/certifications/takeover/TC-TA-021.yaml"
-      }
-    }
-  ],
+  "takeover_admissions": [],
   "progress": {
-    "overall_percent": 85,
-    "phase_percent": 85,
-    "ep_percent": 0,
-    "basis_revision": "PB-0008"
+    "overall_percent": 93,
+    "phase_percent": 93,
+    "ep_percent": 100,
+    "basis_revision": "PB-0009"
   },
   "status_planes": {
     "execution": {
-      "state": "READY",
-      "can_continue": true,
-      "material_authority": "WRITE",
-      "next_action": "Keep PR #177 draft; reconcile its delivery order with PR #170, then perform checkpoint/progress/successor reconciliation only on the surviving compatible delivery basis."
+      "state": "WAITING",
+      "can_continue": false,
+      "material_authority": "NONE",
+      "next_action": "Complete provider delivery/readback for draft PR #177, then reconcile Grade-9 exit readiness against the delivered Core contract before any material successor work."
     },
     "quality": {
       "state": "CLEAR",
       "findings": []
     },
     "evidence": {
-      "state": "PARTIAL",
-      "summary": "Core projection implementation, quality review, exact-head validation and Issue #173 publication are complete. Roadmap checkpoint/progress closure is intentionally deferred because PR #170 and PR #177 currently carry different RM-0010 delivery continuations.",
-      "not_run": [
-        {
-          "id": "checkpoint/progress closure",
-          "reason": "The delivery order between PR #177 and PR #170 must be reconciled before changing the active frontier or claiming terminal roadmap progress.",
-          "cause": "DEPENDENCY_WAIT"
-        }
-      ]
+      "state": "COMPLETE",
+      "summary": "The Core projection implementation is accepted: all four criteria are complete, guardrails 35672260012 and revised relay validation 35672260109 passed, the Issue #173 handover is synchronized, and delivery ordering is resolved.",
+      "not_run": []
     },
     "stop": {
       "active": false,
@@ -94,23 +73,22 @@
   },
   "projection": {
     "required": true,
-    "state": "IN_SYNC",
-    "operation_id": "GHGEN-CORE173-R2",
+    "state": "STALE",
+    "operation_id": "GHGEN-CORE173-R3",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
-    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R2.yaml",
-    "roadmap_revision": "RM-0010",
-    "execution_ref": "EP-TA-010",
-    "receipt": "github-generation:GHGEN-CORE173-R2:issue-173:comment-5769504507",
+    "plan": "agents/relay/projection/generations/GHGEN-CORE173-R3.yaml",
+    "roadmap_revision": "RM-0011",
+    "execution_ref": "NONE",
+    "receipt": null,
     "basis": [
-      "agents/relay/REPO_STATE.yaml",
+      "agents/relay/checkpoints/CP-TA-010.yaml",
+      "agents/relay/roadmap/revisions/RM-0011.yaml",
       "agents/relay/roadmap/ISSUE_GRAPH.yaml",
-      "agents/relay/execution-packages/EP-TA-010.yaml",
-      "agents/relay/quality/QRV-TA-010.yaml",
-      "agents/relay/delivery/DOBS-PR177-RM0010.yaml",
-      "GitHub Issue #173 and PR #177 provider readback",
-      "GitHub Issue #173 comment 5769504507 provider readback",
-      "relay-operation:GHOP-CORE173-HANDOVER-R2 marker verified"
+      "guardrails 35672260012",
+      "v25-relay 35672260109",
+      "GitHub Issue #173 synchronized handover",
+      "GitHub PR #170 draft delivery-order readback"
     ],
     "superseded_operations": [
       {
@@ -160,15 +138,13 @@
   },
   "relay_readiness": {
     "baton_ready": true,
-    "projection_ready": true,
-    "handover_ready": true,
+    "projection_ready": false,
+    "handover_ready": false,
     "reasons": [
-      "CP-TA-009 remains the predecessor baton for WP-TA-108 / EP-TA-010.",
-      "DRIFT-TA-008 classifies the main movement to 1b549c3 as DISJOINT from Core projection semantics and preserves WRITE authority.",
-      "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea.",
-      "Execution custody is enforced for SERIAL:EP-TA-010 and assigned to chatgpt-sol-core173-20260922-r1.",
-      "Exact implementation/protocol head 9fe45c05 passed guardrails 35671187483 and revised v25-relay 35671187502.",
-      "The current Issue #173 projection is synchronized; checkpoint/progress transition is deferred until PR #177 versus PR #170 delivery ordering is reconciled."
+      "The Core projection implementation is checkpointed with all acceptance criteria complete.",
+      "Execution custody for the completed Core implementation is released.",
+      "The final Issue #173 checkpoint comment is prepared but has not yet been published and read back.",
+      "Grade-9 exit readiness remains waiting for draft PR #177 provider delivery; PR #170 is draft and ordered after it."
     ]
   },
   "chat_context_required": false,
@@ -180,9 +156,9 @@
         "candidate": {
           "agent_instance_id": "chatgpt-sol-core173-20260922-r1"
         },
-        "state": "ACTIVE",
+        "state": "RELEASED",
         "branch": "fix/issue-173-core-projections-v25",
-        "source": "Owner instruction on 2026-09-22 to continue under revised Common/main engineering-pr-delivery-v2.5; custody established with the fresh protocol-basis admission transaction."
+        "source": "Owner instruction on 2026-09-22 to continue under revised Common/main engineering-pr-delivery-v2.5; custody established with the fresh protocol-basis admission transaction. Released when the Core projection checkpoint completed."
       }
     ]
   },
@@ -190,7 +166,7 @@
     {
       "id": "PEND-TA10-DELIVERY-001",
       "kind": "DEFERRED_VALIDATION",
-      "state": "OPEN",
+      "state": "SATISFIED",
       "summary": "Resolve delivery order between PR #177 and PR #170 before making PR #177 review-ready or merging either continuation, because the open branches carry different RM-0010 continuation/terminal states.",
       "source": "GitHub provider readback of PR #170 and PR #177 on 2026-09-22",
       "scope": {
@@ -208,7 +184,9 @@
       },
       "evidence": [
         "PR #177 head a9dc214d3b957ff50ecbd36d90d4de1710472e84 is DRAFT/MERGEABLE and implements Issue #173 before the Grade-9 exit frontier.",
-        "PR #170 head cb7a0cfeec0e14494e2c462791f0ce3cf7fb334b is OPEN/MERGEABLE and claims terminal Grade-9 transition state under RM-0010."
+        "PR #170 head cb7a0cfeec0e14494e2c462791f0ce3cf7fb334b is OPEN/MERGEABLE and claims terminal Grade-9 transition state under RM-0010.",
+        "Provider readback confirms PR #170 is DRAFT.",
+        "PR #170 description explicitly requires PR #177 to land first and marks its earlier 100/100 state historical."
       ],
       "must_resolve_before": [
         "PR_READY",
@@ -220,6 +198,42 @@
         "DRAFT_PR_UPDATES"
       ],
       "resolution_condition": "Provider readback plus repository reconciliation establishes one delivery order that preserves the Issue #173 Core-contract dependency before any terminal Grade-9 transition, or the Owner explicitly selects a compatible ordering."
+    },
+    {
+      "id": "PEND-TA10-PROVIDER-002",
+      "kind": "DEFERRED_VALIDATION",
+      "state": "OPEN",
+      "summary": "Draft PR #177 must be delivered and read back before Grade-9 exit-readiness receives a fresh material route.",
+      "source": "Core projection checkpoint successor boundary and provider delivery-order readback",
+      "scope": {
+        "route_key": null,
+        "ep_id": null,
+        "branch": null,
+        "issues": [
+          169,
+          173
+        ],
+        "pull_requests": [
+          170,
+          177
+        ]
+      },
+      "evidence": [
+        "guardrails 35672260012 PASS",
+        "revised relay validation 35672260109 PASS",
+        "PR #170 is draft and explicitly blocked behind PR #177."
+      ],
+      "must_resolve_before": [
+        "RELEASE",
+        "PR_READY",
+        "MERGE"
+      ],
+      "allowed_before_resolution": [
+        "READ_ONLY_INSPECTION",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "PR #177 is separately authorized, merged and read back on main; the Grade-9 exit-readiness route is then regenerated or reconciled and freshly qualified against the delivered Core contract."
     }
   ]
 }

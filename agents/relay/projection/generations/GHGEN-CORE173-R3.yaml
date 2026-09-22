@@ -1,0 +1,73 @@
+{
+  "schema_version": "relay-v2.5-github-projection",
+  "generation": {
+    "id": "GHGEN-CORE173-R3",
+    "repository": "reallaksh19/Grade9V3",
+    "roadmap_revision": "RM-0011",
+    "issue_graph_revision": "IG-0007",
+    "execution_ref": "NONE",
+    "state": "PREPARED",
+    "supersedes_generation": "GHGEN-CORE173-R2",
+    "basis": [
+      "agents/relay/checkpoints/CP-TA-010.yaml",
+      "agents/relay/roadmap/revisions/RM-0011.yaml",
+      "agents/relay/roadmap/ISSUE_GRAPH.yaml",
+      "guardrails 35672260012",
+      "v25-relay 35672260109",
+      "GitHub Issue #173 synchronized handover",
+      "GitHub PR #170 draft delivery-order readback"
+    ]
+  },
+  "operations": [
+    {
+      "id": "GHOP-CORE173-CHECKPOINT-R3",
+      "kind": "PUBLISH_HANDOVER",
+      "state": "PREPARED",
+      "idempotency_key": "relay:GHGEN-CORE173-R3:GHOP-CORE173-CHECKPOINT-R3",
+      "depends_on": [],
+      "subject": {
+        "issue_node": "ISSUE-173",
+        "related_nodes": [
+          "ISSUE-169"
+        ]
+      },
+      "preconditions": {
+        "repository_issue_state": "OPEN",
+        "work_state": "COMPLETE",
+        "work_package": "WP-TA-108"
+      },
+      "desired": {
+        "body_marker": "<!-- relay-operation:GHOP-CORE173-CHECKPOINT-R3 -->",
+        "body_projection": "<!-- relay-operation:GHOP-CORE173-CHECKPOINT-R3 -->\n## Engineering checkpoint — Core projection contract complete\n\nIssue #173's repository implementation is checkpointed complete.\n\n- Validated implementation head: `9fe45c05edebd738188eb8da0524d9ee2a9b34db`\n- Full guardrails run `35672260012`: PASS\n- Revised relay-validation run `35672260109`: PASS\n- Roadmap progress after this checkpoint: **93/100**\n- Delivery PR #177 remains **draft/open**; this checkpoint does not authorize merge.\n\nAccepted behavior:\n- explanation and reconstruction use the same canonical conceptual inference while reconstruction preserves prompt-before-repair;\n- familiar application exposes a stable decision crux separately from execution;\n- changed-demand transfer protects its model-selection decision from pre-attempt support;\n- source hints remain exact source custody, separate from authored pedagogical scaffolds;\n- compiler/publication projection preserves source structure and stable reasoning references;\n- legacy records and committed publications remain compatible;\n- the real Motion-in-2D witness passes without editing canonical Physics truth.\n\nDelivery ordering is explicit: PR #170 is draft and blocked behind PR #177. After #177 is separately authorized, merged and read back on main, #170 must be reconciled against the delivered Core contract and freshly qualified before Grade-9 exit work resumes.\n",
+        "github_state": "OPEN",
+        "relationships": [
+          {
+            "from": "ISSUE-169",
+            "relation": "DEPENDS_ON",
+            "to": "ISSUE-173"
+          }
+        ]
+      },
+      "publication": {
+        "attempt_count": 0,
+        "last_attempt_basis": [],
+        "receipt": null,
+        "last_error": null
+      },
+      "verification": {
+        "status": "NOT_RUN",
+        "basis": [],
+        "observed_issue_number": null,
+        "observed_issue_id": null,
+        "observed_github_state": null,
+        "observed_relationships": []
+      },
+      "reconciliation": {
+        "issue_graph_effects": [],
+        "complete_when": [
+          "Issue #173 contains the final checkpoint marker and current checkpoint body."
+        ]
+      }
+    }
+  ]
+}
