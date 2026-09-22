@@ -10,7 +10,7 @@
     "lifecycle": "DRAFT",
     "head": {
       "ref": "fix/issue-173-core-projections-v25",
-      "sha": "9fe45c05edebd738188eb8da0524d9ee2a9b34db"
+      "sha": "a9dc214d3b957ff50ecbd36d90d4de1710472e84"
     },
     "base": {
       "ref": "main",
@@ -22,7 +22,7 @@
   },
   "checks": {
     "state": "PASS",
-    "head_sha": "9fe45c05edebd738188eb8da0524d9ee2a9b34db",
+    "head_sha": "a9dc214d3b957ff50ecbd36d90d4de1710472e84",
     "required": [
       "guardrails",
       "v25-relay"
@@ -30,15 +30,15 @@
     "observations": [
       {
         "name": "guardrails",
-        "run_id": 35671187483,
+        "run_id": 35672049203,
         "status": "PASS",
-        "basis": "Run 35671187483 completed/success on exact implementation/protocol head 9fe45c05edebd738188eb8da0524d9ee2a9b34db; full repository tests and JSON parse passed."
+        "basis": "Run 35672049203 completed/success on synchronized coordination head a9dc214d3b957ff50ecbd36d90d4de1710472e84, including generated-artifact integrity, full repository tests and JSON validation."
       },
       {
         "name": "v25-relay",
-        "run_id": 35671187502,
+        "run_id": 35672049223,
         "status": "PASS",
-        "basis": "Run 35671187502 completed/success on exact implementation/protocol head 9fe45c05edebd738188eb8da0524d9ee2a9b34db under Common@6cc47ea, including certification, enforced execution custody, live Git context and MATERIAL_WRITE_READY."
+        "basis": "Run 35672049223 completed/success on synchronized coordination head a9dc214d3b957ff50ecbd36d90d4de1710472e84 under revised Common@6cc47ea, including projection convergence, execution custody, live Git context and the normal material-write gate."
       }
     ]
   },
@@ -50,7 +50,7 @@
   "description_contract": {
     "marker": "<!-- relay-pr-correlation:v1 -->",
     "marker_present": true,
-    "body_digest": "sha256:9053a1c625e56a61811c66268a6f4a6743d7e2d6569b1463d2ecf5a273ebd1f0",
+    "body_digest": "sha256:4abed650417c2e43c2f6abcbebd2c938981bb13ccae582997530ae2d7fab60f2",
     "correlations": [
       {
         "issue_node": "ISSUE-173",
@@ -64,11 +64,13 @@
     ]
   },
   "readback_basis": [
-    "GitHub provider readback for draft PR #177 at head 9fe45c05edebd738188eb8da0524d9ee2a9b34db and base 1b549c3f6547cd5125546e3cb9699efb484f9b28; mergeable=true.",
+    "GitHub provider readback for draft PR #177 at synchronized head a9dc214d3b957ff50ecbd36d90d4de1710472e84 and base 1b549c3f6547cd5125546e3cb9699efb484f9b28; mergeable=true.",
     "PR #177 description contains relay-pr-correlation:v1 and the Issue #173 / EP-TA-010 / WP-TA-108 IMPLEMENTS correlation.",
-    "GitHub review-thread readback found zero review threads and review-submission readback found no change requests.",
-    "guardrails run 35671187483 completed/success on the observed head.",
-    "v25-relay run 35671187502 completed/success on the observed head using revised Common@6cc47ea and the normal material write gate.",
-    "PR lifecycle is DRAFT; this observation records no merge authorization."
+    "GitHub review readback found zero review threads and no change requests.",
+    "guardrails run 35672049203 completed/success on the observed head.",
+    "v25-relay run 35672049223 completed/success on the observed head using revised Common@6cc47ea.",
+    "Issue #173 handover projection is provider-verified and synchronized.",
+    "PR #177 remains draft; provider readback of PR #170 exposes a separate terminal RM-0010 delivery state that must be reconciled before PR_READY or MERGE.",
+    "No merge authorization is recorded by this observation."
   ]
 }

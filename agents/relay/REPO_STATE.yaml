@@ -68,7 +68,7 @@
       "state": "READY",
       "can_continue": true,
       "material_authority": "WRITE",
-      "next_action": "Validate the quality/delivery-observation coordination head, then reconcile the current Issue #173 projection, checkpoint/progress and successor frontier without merging PR #177 absent Owner authorization."
+      "next_action": "Keep PR #177 draft; reconcile its delivery order with PR #170, then perform checkpoint/progress/successor reconciliation only on the surviving compatible delivery basis."
     },
     "quality": {
       "state": "CLEAR",
@@ -76,11 +76,11 @@
     },
     "evidence": {
       "state": "PARTIAL",
-      "summary": "EP-TA-010 product implementation is fully exercised on the observed exact product/protocol head: guardrails 35671187483 and revised relay validation 35671187502 passed, and the required quality procedures are clear. Checkpoint/progress/issue-projection closure is still pending and the delivery PR remains draft/unmerged.",
+      "summary": "Core projection implementation, quality review, exact-head validation and Issue #173 publication are complete. Roadmap checkpoint/progress closure is intentionally deferred because PR #170 and PR #177 currently carry different RM-0010 delivery continuations.",
       "not_run": [
         {
-          "id": "EP-TA-010 checkpoint/progress closure",
-          "reason": "Checkpoint and progress reconciliation are the next STEP-TA10-004 relay transaction after QRV/delivery readback.",
+          "id": "checkpoint/progress closure",
+          "reason": "The delivery order between PR #177 and PR #170 must be reconciled before changing the active frontier or claiming terminal roadmap progress.",
           "cause": "DEPENDENCY_WAIT"
         }
       ]
@@ -168,7 +168,7 @@
       "DISC-TA-022, QSET-TA-012, QUAL-TA-012 and TC-TA-021 bind the active execution candidate to revised Common@6cc47ea.",
       "Execution custody is enforced for SERIAL:EP-TA-010 and assigned to chatgpt-sol-core173-20260922-r1.",
       "Exact implementation/protocol head 9fe45c05 passed guardrails 35671187483 and revised v25-relay 35671187502.",
-      "The current Issue #173 handover projection is verified against GitHub provider readback; checkpoint/progress closure remains."
+      "The current Issue #173 projection is synchronized; checkpoint/progress transition is deferred until PR #177 versus PR #170 delivery ordering is reconciled."
     ]
   },
   "chat_context_required": false,
@@ -186,5 +186,40 @@
       }
     ]
   },
-  "control_obligations": []
+  "control_obligations": [
+    {
+      "id": "PEND-TA10-DELIVERY-001",
+      "kind": "DEFERRED_VALIDATION",
+      "state": "OPEN",
+      "summary": "Resolve delivery order between PR #177 and PR #170 before making PR #177 review-ready or merging either continuation, because the open branches carry different RM-0010 continuation/terminal states.",
+      "source": "GitHub provider readback of PR #170 and PR #177 on 2026-09-22",
+      "scope": {
+        "route_key": "SERIAL:EP-TA-010",
+        "ep_id": "EP-TA-010",
+        "branch": "fix/issue-173-core-projections-v25",
+        "issues": [
+          169,
+          173
+        ],
+        "pull_requests": [
+          170,
+          177
+        ]
+      },
+      "evidence": [
+        "PR #177 head a9dc214d3b957ff50ecbd36d90d4de1710472e84 is DRAFT/MERGEABLE and implements Issue #173 before the Grade-9 exit frontier.",
+        "PR #170 head cb7a0cfeec0e14494e2c462791f0ce3cf7fb334b is OPEN/MERGEABLE and claims terminal Grade-9 transition state under RM-0010."
+      ],
+      "must_resolve_before": [
+        "PR_READY",
+        "MERGE"
+      ],
+      "allowed_before_resolution": [
+        "BOUNDED_PRODUCT_WRITES",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "Provider readback plus repository reconciliation establishes one delivery order that preserves the Issue #173 Core-contract dependency before any terminal Grade-9 transition, or the Owner explicitly selects a compatible ordering."
+    }
+  ]
 }
