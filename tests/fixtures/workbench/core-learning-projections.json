@@ -1,0 +1,230 @@
+{
+  "fixture_contract": "Core Projection Contract v1.0",
+  "projections": [
+    {
+      "id": "core1a",
+      "contract_version": "1.0",
+      "core": "CORE1A",
+      "concept": {
+        "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
+        "inferential_jump": "A supplied relation follows from the supplied representation and conditions.",
+        "teaching_path": [
+          {
+            "id": "T1",
+            "role": "REPRESENT",
+            "action": "Read the supplied representation.",
+            "why_valid": "The representation is part of the projection input."
+          },
+          {
+            "id": "T2",
+            "role": "CONNECT",
+            "action": "Connect the supplied condition to the target relation.",
+            "why_valid": "The connection is supplied as authored teaching-path data."
+          }
+        ],
+        "elicitation": null,
+        "misconceptions": [],
+        "representation_refs": [
+          "REP-FIXTURE-1"
+        ]
+      },
+      "application": null,
+      "presentation": {
+        "attempt_before_reveal": false,
+        "show_full_construction": true,
+        "initial_visual_ref": "REP-FIXTURE-1",
+        "initial_visual_stage_ref": "V1",
+        "protected_move_refs": []
+      }
+    },
+    {
+      "id": "core1b",
+      "contract_version": "1.0",
+      "core": "CORE1B",
+      "concept": {
+        "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
+        "inferential_jump": "A supplied relation follows from the supplied representation and conditions.",
+        "teaching_path": [
+          {
+            "id": "T1",
+            "role": "REPRESENT",
+            "action": "Read the supplied representation.",
+            "why_valid": "The representation is part of the projection input."
+          },
+          {
+            "id": "T2",
+            "role": "CONNECT",
+            "action": "Connect the supplied condition to the target relation.",
+            "why_valid": "The connection is supplied as authored teaching-path data."
+          }
+        ],
+        "elicitation": {
+          "prompt": "Reconstruct the connection before revealing the authored path."
+        },
+        "misconceptions": [],
+        "representation_refs": [
+          "REP-FIXTURE-1"
+        ]
+      },
+      "application": null,
+      "presentation": {
+        "attempt_before_reveal": true,
+        "show_full_construction": false,
+        "initial_visual_ref": "REP-FIXTURE-1",
+        "initial_visual_stage_ref": "V1",
+        "protected_move_refs": []
+      }
+    },
+    {
+      "id": "core2a",
+      "contract_version": "1.0",
+      "core": "CORE2A",
+      "concept": {
+        "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
+        "inferential_jump": "A supplied relation follows from the supplied representation and conditions.",
+        "teaching_path": [],
+        "elicitation": null,
+        "misconceptions": [],
+        "representation_refs": [
+          "REP-FIXTURE-1"
+        ]
+      },
+      "application": {
+        "question_ref": "Q-FIXTURE-A",
+        "family_ref": "FAM-FIXTURE",
+        "stem": "Use the supplied representation to decide the next valid move.",
+        "reasoning_route": [
+          {
+            "id": "R1",
+            "kind": "REPRESENT",
+            "action": "Read the supplied state.",
+            "why_valid": "The state is part of the question.",
+            "inputs": [
+              "state"
+            ],
+            "output": "usable representation"
+          },
+          {
+            "id": "R2",
+            "kind": "DECIDE",
+            "action": "Choose the condition that controls the next move.",
+            "why_valid": "The decision is supplied by the authored reasoning route.",
+            "inputs": [
+              "usable representation"
+            ],
+            "output": "decision"
+          }
+        ],
+        "crux_move_ref": "R2",
+        "hints": [],
+        "scaffolds": [
+          {
+            "text": "Focus on the supplied state before choosing the controlling condition.",
+            "support_kind": "REPRESENT",
+            "reveals": "CONCEPT",
+            "supports_move_ref": "R1",
+            "visual_ref": "REP-FIXTURE-1",
+            "visual_stage_ref": "V2"
+          },
+          {
+            "text": "Connect the controlling condition to the authored decision before executing.",
+            "support_kind": "CONNECT",
+            "reveals": "METHOD",
+            "supports_move_ref": "R2",
+            "visual_ref": "REP-FIXTURE-1",
+            "visual_stage_ref": "V3"
+          }
+        ],
+        "transfer": null,
+        "check": "Check against the supplied condition."
+      },
+      "presentation": {
+        "attempt_before_reveal": false,
+        "show_full_construction": false,
+        "initial_visual_ref": "REP-FIXTURE-1",
+        "initial_visual_stage_ref": "V1",
+        "protected_move_refs": []
+      }
+    },
+    {
+      "id": "core2b",
+      "contract_version": "1.0",
+      "core": "CORE2B",
+      "concept": {
+        "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
+        "inferential_jump": "A supplied relation follows from the supplied representation and conditions.",
+        "teaching_path": [],
+        "elicitation": null,
+        "misconceptions": [],
+        "representation_refs": [
+          "REP-FIXTURE-1"
+        ]
+      },
+      "application": {
+        "question_ref": "Q-FIXTURE-B",
+        "family_ref": "FAM-FIXTURE",
+        "stem": "Adapt the supplied capability to a changed demand.",
+        "reasoning_route": [
+          {
+            "id": "R1",
+            "kind": "REPRESENT",
+            "action": "Read the changed state.",
+            "why_valid": "The state is supplied by the question.",
+            "inputs": [
+              "changed state"
+            ],
+            "output": "usable representation"
+          },
+          {
+            "id": "R-PROTECTED",
+            "kind": "DECIDE",
+            "action": "Select the controlling model or condition.",
+            "why_valid": "This is the authored protected decision.",
+            "inputs": [
+              "usable representation"
+            ],
+            "output": "selected decision"
+          }
+        ],
+        "crux_move_ref": "R-PROTECTED",
+        "hints": [],
+        "scaffolds": [
+          {
+            "text": "Compare the changed state with the familiar state before deciding.",
+            "support_kind": "REPRESENT",
+            "reveals": "CONCEPT",
+            "supports_move_ref": "R1",
+            "visual_ref": "REP-FIXTURE-1",
+            "visual_stage_ref": "V2"
+          },
+          {
+            "text": "Use the changed condition to choose the controlling model or condition.",
+            "support_kind": "CONNECT",
+            "reveals": "METHOD",
+            "supports_move_ref": "R-PROTECTED",
+            "visual_ref": "REP-FIXTURE-1",
+            "visual_stage_ref": "V3"
+          }
+        ],
+        "transfer": {
+          "dimension": "model_choice",
+          "statement": "Choose the controlling condition for the changed demand.",
+          "builds_on": [
+            "MIC-FIXTURE-SHARED-IDEA"
+          ],
+          "protected_move_ref": "R-PROTECTED"
+        },
+        "check": "Check the selected condition."
+      },
+      "presentation": {
+        "attempt_before_reveal": true,
+        "show_full_construction": false,
+        "initial_visual_ref": "REP-FIXTURE-1",
+        "initial_visual_stage_ref": "V1",
+        "protected_move_refs": [
+          "R-PROTECTED"
+        ]
+      }
+    }
+  ]
+}
