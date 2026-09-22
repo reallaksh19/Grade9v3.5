@@ -76,4 +76,20 @@ jobs:
           fi
 
       - name: Material write gate
-        run: python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id chatgpt-sol-core173-20260922-r1
+        shell: bash
+        run: |
+          read -r relay_state write_authority <<EOF
+          $(python3 - <<'PY'
+          import yaml
+          with open("agents/relay/REPO_STATE.yaml", "r", encoding="utf-8") as handle:
+              state = yaml.safe_load(handle) or {}
+          execution = ((state.get("status_planes") or {}).get("execution") or {})
+          print(state.get("relay_state", ""), execution.get("material_authority", ""))
+          PY
+          )
+          EOF
+          if { [ "$relay_state" = "ACTIVE" ] || [ "$relay_state" = "PARALLEL" ]; } && [ "$write_authority" = "WRITE" ]; then
+            python3 _common/skills/engineering-pr-delivery-v2.5/scripts/material_write_ready.py . --candidate-id chatgpt-sol-core173-20260922-r1
+          else
+            echo "Material write check: not applicable for relay_state=$relay_state"
+          fi
