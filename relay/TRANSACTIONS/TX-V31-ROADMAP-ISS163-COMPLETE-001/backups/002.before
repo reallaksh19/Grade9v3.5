@@ -1,12 +1,13 @@
 schema_version: relay-v3.1-roadmap
-revision: RM-V31-ISS163-PORTABLE-003
+revision: RM-V31-ISS163-PORTABLE-002
 title: Grade 9 Physics learner independence and progression
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
-  current_goal: Prove Grade-9 Physics exit readiness and Grade-10 transition from
-    canonical Grade-9 scope plus existing learner evidence, without a mastery percentage
-    or second learner truth store.
+  current_goal: 'Deliver Issue #163 external portability: compile canonical content
+    into versioned portable runtime packages, prove Grade9V3/external/offline hosts,
+    and complete Redox, long-division and integration cross-subject proofs without
+    moving learner-page shell ownership into the portability lane.'
 work_packages:
 - id: WP-TAKEOVER-RECONCILE
   title: Correct Topic Atlas browser input, fallback, request, and handoff semantics
@@ -78,6 +79,6 @@ work_packages:
 - id: WP-PORTABLE-163
   title: Deliver detachable versioned workbench packages and external/offline hosts
   weight: 8
-  state: COMPLETE
+  state: ACTIVE
   depends_on:
   - WP-LEARNER-175-PRODUCTION

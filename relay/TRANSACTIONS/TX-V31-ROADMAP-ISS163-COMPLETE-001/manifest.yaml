@@ -1,0 +1,37 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ROADMAP-ISS163-COMPLETE-001
+command: RECONCILE_ROADMAP
+actor: chatgpt-sol-portable-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T16:27:30.246574Z'
+updated_at: '2026-09-22T16:27:30.265492Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:7a135c14ccbc1bf1db8477676b2acfc6bd9d48651408ada606fa5001726c032e
+  after_digest: sha256:9ed8eaa08a1172740fe8991783b24022097c9afce3cb4b398e0f32b06b7e07ab
+  staged_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:34457cac7da348cf548668da1dab870f927c1d41c203eb8b2dd8bdafe3d175db
+  after_digest: sha256:df3d3646e3f7a2a786ee40dfdd4e7ef809c229c0bdde86bf16f6304a8a0282da
+  staged_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/backups/001.before
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:70ccca59f587877b563f9f7c6063d68e99b7ede3adb4bbe2b85f98c45615dcc9
+  after_digest: sha256:0b86bfbdcf2f6ab79c6eea87ac7b40be9d42125b5032ac152e32c98e490197a8
+  staged_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/backups/002.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:c4b8d378319c27fc8771045219a6d682afe4e43d456a031359b33cb4963b9832
+  after_digest: sha256:32cbd1e64b8109b1a79084d2e8e2637894d8cf3ff7aeb41c1d4a084e755b4134
+  staged_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ROADMAP-ISS163-COMPLETE-001/backups/003.before
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml

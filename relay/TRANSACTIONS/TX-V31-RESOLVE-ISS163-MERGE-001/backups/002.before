@@ -1,0 +1,109 @@
+schema_version: relay-v3.1-snapshot
+authority: DERIVED_READ_MODEL
+generated_from:
+  roadmap_revision: RM-V31-ISS163-PORTABLE-002
+  state_digest: sha256:5468d7ccfe859b11dc79c00342f7497cd665c9807304e8f74c448e27547918a6
+  material_basis:
+    head: f9a83586c3b634c879f472fa6a764fae6edeafc3
+    tree_digest: sha256:39cd095cb9b4f0926c15ed665de74352d4df698370726eed0e683d8d22bc4660
+    relevant_paths_digest: sha256:f3f4a20bffc4662a8ce3e6c1fc8d17e2725e865a0c77c72ff1405ba98d837400
+    dependency_digest: sha256:4b1e507c943a45bb6e0fcc520941958725f845ee5cd5373d360c0a337d4ea706
+  coordination_head: 0ed20c39f56d459e2a25dcb432688d3695483ba6
+owner:
+  outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
+    work while preserving delivered #162 and #173.'
+  current_goal: 'Deliver Issue #163 external portability: compile canonical content
+    into versioned portable runtime packages, prove Grade9V3/external/offline hosts,
+    and complete Redox, long-division and integration cross-subject proofs without
+    moving learner-page shell ownership into the portability lane.'
+programme:
+  accepted_progress: 6.5
+  completed_work:
+  - WP-PORTABLE-163
+  remaining_work:
+  - WP-TAKEOVER-RECONCILE
+  - WP-TA-102
+  - WP-TA-106
+  - WP-TA-103
+  - WP-TA-104
+  - WP-TA-107
+  - WP-TA-108
+  - WP-TA-105
+  - WP-CANONICAL-174-NLM
+  - WP-CANONICAL-174-MOTION
+  - WP-LEARNER-175-PRODUCTION
+execution:
+  lifecycle: ACTIVE
+  work_package: WP-PORTABLE-163
+  ep: EP-PORTABLE-163-V31-001
+  lease: LEASE-PORTABLE-163-V31-001
+  executor: chatgpt-sol-portable-v31-20260922
+scope:
+  allowed_writes:
+  - Shared/portable/**
+  - Shared/tools/build_portable_workbench.py
+  - public/portable-workbench/**
+  - standalone/portable-workbench/**
+  - tests/fixtures/portable-workbench/**
+  - tests/test_portable_workbench.py
+  - tests/portable_workbench.test.mjs
+  - docs/portable-workbench.md
+  - docs/architecture-manifest.json
+  - .github/workflows/v3-relay.yml
+  protected:
+  - Shared/workbench/**
+  - Shared/library/**
+  - Shared/publication_host/**
+  - Physics/**
+  - Chemistry/**
+  - Mathematics/**
+  - public/core-learning/**
+  - standalone/core-learning/**
+  - agents/relay/**
+  prohibited:
+  - Do not treat prior V3 acceptance as a V3.1 checkpoint.
+  - Do not add page-local learner mastery, support policy or question routing.
+  - Do not put executable JavaScript inside portable package data.
+  - Do not create a new canonical curriculum database.
+  - Do not modify delivered Core runtime merely to make a portability proof pass.
+material:
+  base: c6f1ce51ae0631a346487609e88f544fece2fa08
+  head: f9a83586c3b634c879f472fa6a764fae6edeafc3
+  relevant_paths_digest: sha256:f3f4a20bffc4662a8ce3e6c1fc8d17e2725e865a0c77c72ff1405ba98d837400
+  dependency_digest: sha256:4b1e507c943a45bb6e0fcc520941958725f845ee5cd5373d360c0a337d4ea706
+evidence:
+  latest_checkpoint: CP-PORTABLE-163-V31-001
+  latest_material_validation:
+    focused_tests: PASS
+    spec_delivery: PASS
+    full_guardrails: PASS
+controls:
+  execution_blockers: []
+  handover_blockers: []
+  delivery_blockers: []
+  informational:
+  - CTRL-OWNER-MERGE-ISS163-PORTABLE-20260922
+delivery:
+  issue: null
+  pr: 192
+  lifecycle: DECLARED
+  merge_authorized: true
+next:
+  immediate_material_action: Run the full Issue 163 acceptance against the current
+    material head under V3.1, accept a fresh V3.1 checkpoint, then continue provider
+    delivery.
+  delivery_action: Perform the explicitly authorized delivery transition.
+  stop_conditions:
+  - Any Shared/workbench Core source change requires a new generic runtime falsifier
+    and separate scope.
+  - Any canonical subject-data change is outside Issue 163.
+  - No merge may occur unless GitHub is mergeable and V3.1 MERGE authorization passes.
+handoff:
+  zero_context_takeover_possible: true
+  reconstruction_sources:
+  - relay/ROADMAP/ROADMAP.yaml
+  - relay/STATE.yaml
+  - relay/CONTROLS/controls.yaml
+  - relay/WORK/EP-PORTABLE-163-V31-001.yaml
+  - relay/LEASES/LEASE-PORTABLE-163-V31-001.yaml
+  - relay/CHECKPOINTS/CP-PORTABLE-163-V31-001.yaml

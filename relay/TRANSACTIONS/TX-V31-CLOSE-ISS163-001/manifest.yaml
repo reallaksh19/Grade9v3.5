@@ -1,0 +1,37 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-CLOSE-ISS163-001
+command: CLOSE_TASK
+actor: chatgpt-sol-portable-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T16:27:29.713894Z'
+updated_at: '2026-09-22T16:27:29.734009Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:b73826d028070058ddef0e0178e45c26149219ff7293cde5ef1b0ec73314cc19
+  after_digest: sha256:7a135c14ccbc1bf1db8477676b2acfc6bd9d48651408ada606fa5001726c032e
+  staged_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:cc51307b20b84a1dab9a0ed1c2bf8e1671b8bf424471c3f8200305770f0a243e
+  after_digest: sha256:34457cac7da348cf548668da1dab870f927c1d41c203eb8b2dd8bdafe3d175db
+  staged_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/backups/001.before
+- path: relay/LEASES/LEASE-PORTABLE-163-V31-001.yaml
+  before_exists: true
+  before_digest: sha256:108d7d952f590048a1bba535c818248ec74cf14cda3a2dc136cad18bcc9fad61
+  after_digest: sha256:876d69ad80591dd047e625612c54f4a8c2627ce825aa83f3d8d0368aa34d206e
+  staged_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/backups/002.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:47f81b9d6be775489a6a6a58c5664ca7848cf684cb76b0cd12d5c4f4e9377609
+  after_digest: sha256:c4b8d378319c27fc8771045219a6d682afe4e43d456a031359b33cb4963b9832
+  staged_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CLOSE-ISS163-001/backups/003.before
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-PORTABLE-163-V31-001.yaml
+- relay/STATE.yaml

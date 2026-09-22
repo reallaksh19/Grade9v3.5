@@ -1,0 +1,23 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-SYNC-ISS163-MERGED-001
+command: SYNC_DELIVERY
+actor: chatgpt-sol-portable-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T16:27:28.181489Z'
+updated_at: '2026-09-22T16:27:28.192291Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:35e7912387b1d26bcd492c005f47d35b1a8b462b30b689c05bfe13acf26816af
+  after_digest: sha256:f40ad9490c25518ebd6a8058e81f318b79a77edf7d7fb32d496ba926cda15ce6
+  staged_path: relay/TRANSACTIONS/TX-V31-SYNC-ISS163-MERGED-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-SYNC-ISS163-MERGED-001/backups/000.before
+- path: relay/GENERATED/DELIVERY_STATUS.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:fa68a000dbd9fbcee203eb665490f238815dce7aca03b0c5303eeb74dd52bd76
+  staged_path: relay/TRANSACTIONS/TX-V31-SYNC-ISS163-MERGED-001/staged/001.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/DELIVERY_STATUS.yaml
