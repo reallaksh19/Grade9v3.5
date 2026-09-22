@@ -65,7 +65,7 @@ jobs:
 
       - name: Close NLM task transactionally
         run: |
-          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . close-task \
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . close \
             --tx-id TX-CLOSE-ISS174-NLM-001 \
             --event-id EVT-CLOSE-ISS174-NLM-001 \
             --actor chatgpt-sol-canonical-20260922
