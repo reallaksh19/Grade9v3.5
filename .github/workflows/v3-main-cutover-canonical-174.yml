@@ -94,11 +94,12 @@ jobs:
           events = _events(root)
           events.append(_event(
               event_id,
-              "MIGRATION_RECONCILED",
+              "CONTROL_RESOLVED",
               actor,
-              "V2.5-to-V3",
+              "CTRL-MIGRATION-RECONCILE",
               [tx_id, "main:da91e9e42c641e9d2bdd970d1e87a6b8227c84a9", "Issue#174"],
               {
+                  "control": "CTRL-MIGRATION-RECONCILE",
                   "native_lifecycle": "IDLE",
                   "legacy_acceptance_imported": False,
                   "issue_169_route_imported": False,
