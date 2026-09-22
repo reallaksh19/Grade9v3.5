@@ -6,7 +6,7 @@
     "roadmap_revision": "RM-0011",
     "issue_graph_revision": "IG-0007",
     "execution_ref": "NONE",
-    "state": "PREPARED",
+    "state": "PUBLISHING",
     "supersedes_generation": "GHGEN-CORE173-R2",
     "basis": [
       "agents/relay/checkpoints/CP-TA-010.yaml",
@@ -22,7 +22,7 @@
     {
       "id": "GHOP-CORE173-CHECKPOINT-R3",
       "kind": "PUBLISH_HANDOVER",
-      "state": "PREPARED",
+      "state": "ATTEMPTED_UNCONFIRMED",
       "idempotency_key": "relay:GHGEN-CORE173-R3:GHOP-CORE173-CHECKPOINT-R3",
       "depends_on": [],
       "subject": {
@@ -49,14 +49,21 @@
         ]
       },
       "publication": {
-        "attempt_count": 0,
-        "last_attempt_basis": [],
-        "receipt": null,
+        "attempt_count": 1,
+        "last_attempt_basis": [
+          "target:github:reallaksh19/Grade9V3:issue-173",
+          "comment:5769610327",
+          "idempotency_marker:relay-operation:GHOP-CORE173-CHECKPOINT-R3"
+        ],
+        "receipt": "github-comment:5769610327",
         "last_error": null
       },
       "verification": {
         "status": "NOT_RUN",
-        "basis": [],
+        "basis": [
+          "Provider readback confirms comment 5769610327 contains the exact prepared marker/body.",
+          "Final IN_SYNC reconciliation is deferred because the pinned Common protocol cannot represent a verified predecessor in supersession history without misclassifying it; Common PR #415 carries that lifecycle fix."
+        ],
         "observed_issue_number": null,
         "observed_issue_id": null,
         "observed_github_state": null,

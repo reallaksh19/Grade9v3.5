@@ -73,14 +73,14 @@
   },
   "projection": {
     "required": true,
-    "state": "STALE",
+    "state": "PUBLISHED_UNCONFIRMED",
     "operation_id": "GHGEN-CORE173-R3",
     "target": "github:reallaksh19/Grade9V3:issues",
     "adapter": "GITHUB_ISSUES",
     "plan": "agents/relay/projection/generations/GHGEN-CORE173-R3.yaml",
     "roadmap_revision": "RM-0011",
     "execution_ref": "NONE",
-    "receipt": null,
+    "receipt": "github-generation:GHGEN-CORE173-R3:issue-173:comment-5769610327",
     "basis": [
       "agents/relay/checkpoints/CP-TA-010.yaml",
       "agents/relay/roadmap/revisions/RM-0011.yaml",
@@ -88,7 +88,9 @@
       "guardrails 35672260012",
       "v25-relay 35672260109",
       "GitHub Issue #173 synchronized handover",
-      "GitHub PR #170 draft delivery-order readback"
+      "GitHub PR #170 draft delivery-order readback",
+      "GitHub Issue #173 comment 5769610327 provider readback matched the prepared final checkpoint body.",
+      "Final projection reconciliation is deferred on the pinned protocol's verified-predecessor supersession limitation; Common PR #415 is the upstream fix."
     ],
     "superseded_operations": [
       {
@@ -144,7 +146,7 @@
     "reasons": [
       "The Core projection implementation is checkpointed with all acceptance criteria complete.",
       "Execution custody for the completed Core implementation is released.",
-      "The final Issue #173 checkpoint comment is prepared but has not yet been published and read back.",
+      "The final Issue #173 checkpoint comment is published and provider-read back, but final synchronization is held by an upstream projection-lifecycle defect.",
       "Grade-9 exit readiness remains waiting for draft PR #177 provider delivery; PR #170 is draft and ordered after it."
     ]
   },
@@ -235,6 +237,38 @@
         "DRAFT_PR_UPDATES"
       ],
       "resolution_condition": "PR #177 is separately authorized, merged and read back on main; the Grade-9 exit-readiness route is then regenerated or reconciled and freshly qualified against the delivered Core contract."
+    },
+    {
+      "id": "PEND-TA10-PROTOCOL-003",
+      "kind": "KNOWN_ISSUE",
+      "state": "OPEN",
+      "summary": "Final checkpoint synchronization is blocked by an upstream verified-projection supersession lifecycle defect; the external checkpoint comment itself is already published and read back exactly.",
+      "source": "Pinned Common projection validators and open Common PR #415",
+      "scope": {
+        "route_key": null,
+        "ep_id": null,
+        "branch": null,
+        "issues": [
+          173
+        ],
+        "pull_requests": [
+          177
+        ]
+      },
+      "evidence": [
+        "Issue #173 comment 5769610327 contains the exact final checkpoint marker/body.",
+        "Pinned Common 6cc47ea rejects a verified predecessor once the current published generation becomes observed because its supersession-history disposition enum has no verified-predecessor state.",
+        "Common PR #415 is the upstream verified GitHub projection supersession fix."
+      ],
+      "must_resolve_before": [
+        "RELEASE"
+      ],
+      "allowed_before_resolution": [
+        "READ_ONLY_INSPECTION",
+        "TESTS",
+        "DRAFT_PR_UPDATES"
+      ],
+      "resolution_condition": "A merged/pinned Common protocol supports faithful verified-predecessor supersession; then the published final checkpoint generation is provider-verified into IN_SYNC without misclassifying historical truth."
     }
   ]
 }
