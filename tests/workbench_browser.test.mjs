@@ -593,3 +593,101 @@ test("real browser preserves distinct intermediate semantic identity through und
     await new Promise((resolveClose) => staticServer.server.close(resolveClose));
   }
 });
+
+
+test("production Core learner host mounts canonical Motion projection and existing explorer", { skip: !driverPath, timeout: 30000 }, async () => {
+  const staticServer = await openStaticServer();
+  const driverProcess = await startDriver(driverPath);
+  const driver = new WebDriver(driverProcess.base);
+  try {
+    await driver.open();
+    const paths = ["/public/core-learning/index.html", "/standalone/core-learning/index.html"];
+    const snapshots = [];
+    for (const path of paths) {
+      await driver.navigate(`${staticServer.origin}${path}`);
+      await driver.waitFor("return window.__coreLearningStaticHostReady === true;");
+
+      const motionId = await driver.execute(`
+        return window.GRADE9V3_CORE.core_projections.find(
+          (row) => row.source_ref === "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
+            && row.projection.core === "CORE2A"
+        )?.id || null;
+      `);
+      assert.ok(motionId);
+      await driver.execute(`
+        const select = document.querySelector("#projection-select");
+        select.value = arguments[0];
+        document.querySelector("#load-projection").click();
+      `, [motionId]);
+      await driver.waitFor("return document.querySelector('#learner').state?.core === 'CORE2A';");
+
+      const mounted = await driver.execute(`
+        const learner = document.querySelector("#learner");
+        const frame = document.querySelector("#explorer-frame");
+        return {
+          providerStatus: window.GRADE9V3_CORE.provider_status,
+          core: learner.state.core,
+          stage: learner.state.stage,
+          selected: document.querySelector("#projection-select").value,
+          explorerHidden: document.querySelector("#explorer-panel").hidden,
+          explorerUrl: frame.src,
+        };
+      `);
+      assert.equal(mounted.providerStatus, "PRODUCTION_COMPILED_CANONICAL");
+      assert.equal(mounted.core, "CORE2A");
+      assert.equal(mounted.stage, "QUESTION_VISIBLE");
+      assert.equal(mounted.selected, motionId);
+      assert.equal(mounted.explorerHidden, false);
+      assert.match(mounted.explorerUrl, /\/public\/physics\/motion-2d\/explorers\/shared-clock\/index\.html$/);
+      assert.equal(new URL(mounted.explorerUrl).origin, staticServer.origin);
+
+      const attemptInput = await driver.shadowElement("#learner", "[data-attempt-input]");
+      await driver.sendKeys(attemptInput, "Use the vertical landing condition to get the shared event time.");
+      const commit = await driver.shadowElement("#learner", '[data-action="commit"]');
+      await driver.sendKeys(commit, ENTER);
+      await driver.waitFor("return document.querySelector('#learner').state.reasoningVisible === true;");
+      const after = await driver.execute(`
+        const learner = document.querySelector("#learner");
+        return { state: learner.state, html: learner.shadowRoot.innerHTML };
+      `);
+      assert.match(after.html, /Key decision/);
+      assert.match(after.html, /Use the vertical ground-contact condition/);
+      snapshots.push({
+        providerStatus: mounted.providerStatus,
+        core: mounted.core,
+        stage: after.state.stage,
+        reasoningVisible: after.state.reasoningVisible,
+      });
+    }
+    assert.deepEqual(snapshots[0], snapshots[1]);
+
+    await driver.navigate(`${staticServer.origin}/public/core-learning/index.html`);
+    await driver.waitFor("return window.__coreLearningStaticHostReady === true;");
+    const transferId = await driver.execute(`
+      return window.GRADE9V3_CORE.core_projections.find(
+        (row) => row.source_ref === "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
+          && row.projection.core === "CORE2B"
+      )?.id || null;
+    `);
+    assert.ok(transferId);
+    await driver.execute(`
+      document.querySelector("#projection-select").value = arguments[0];
+      document.querySelector("#load-projection").click();
+    `, [transferId]);
+    await driver.waitFor("return document.querySelector('#learner').state?.core === 'CORE2B';");
+    const before = await driver.execute("return document.querySelector('#learner').shadowRoot.innerHTML;");
+    assert.doesNotMatch(before, /Reject the standard gravity-only projectile specialization/);
+    const input = await driver.shadowElement("#learner", "[data-attempt-input]");
+    await driver.sendKeys(input, "The horizontal thrust breaks the gravity-only projectile specialization.");
+    const button = await driver.shadowElement("#learner", '[data-action="commit"]');
+    await driver.sendKeys(button, ENTER);
+    await driver.waitFor("return document.querySelector('#learner').state.reasoningVisible === true;");
+    const after = await driver.execute("return document.querySelector('#learner').shadowRoot.innerHTML;");
+    assert.match(after, /Reject the standard gravity-only projectile specialization/);
+    assert.match(after, /Key decision/);
+  } finally {
+    await driver.close();
+    driverProcess.child.kill("SIGTERM");
+    await new Promise((resolveClose) => staticServer.server.close(resolveClose));
+  }
+});

@@ -2,13 +2,13 @@ schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V3-ISS175-PRODUCTION-001
-  state_digest: sha256:c8827e44cc986511f0fe9997d92d7dea8b68314c0681632a3f9af4572b1a2137
+  state_digest: sha256:f354a460806ac4315c92b3fc779a7bb49808050809fa801a2257a361a72c3a83
   material_basis:
-    head: b8a96923383aa1f7fdf4d6eb2a6c866225570a21
-    tree_digest: sha256:0dfc0ca720611f39d5fb24d6d3dad64f1556603962d860766327931fbde8a68f
-    relevant_paths_digest: sha256:107cb7d7ec6807d292b213e04aec22fd630b49ec0b9e5d324f46ff5280036966
+    head: b7950ade3d46db5464f17941307987f0f751eb4b
+    tree_digest: sha256:72ba497ce6181164575339da1f30d683b7108ea64d8ed9e65ad177a281728022
+    relevant_paths_digest: sha256:91b9c5de4c60f7393f18d9f417fd7016f0a7e71a99db107dd233450d34f91ae7
     dependency_digest: sha256:720145a580fbf493a857dd224240669753441cf5841c0e4efe8658be31871ed2
-  coordination_head: c53f1b453ec6db61c15a487a98f771b4604fe42d
+  coordination_head: c21e8ced53f9d8b7fd46b8aa4e37efbd75e4d608
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
@@ -16,11 +16,10 @@ owner:
     174 canonical NLM/Motion data into the existing Issue 175 learner-page builder,
     then migrate one real explorer.
 programme:
-  accepted_progress: 13.04
+  accepted_progress: 6.96
   completed_work:
   - WP-CANONICAL-174-NLM
   - WP-CANONICAL-174-MOTION
-  - WP-LEARNER-175-PRODUCTION
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -30,6 +29,7 @@ programme:
   - WP-TA-107
   - WP-TA-108
   - WP-TA-105
+  - WP-LEARNER-175-PRODUCTION
 execution:
   lifecycle: ACTIVE
   work_package: WP-LEARNER-175-PRODUCTION
@@ -74,15 +74,12 @@ scope:
   - Do not reopen Issues 162, 173 or 174 unless a generic falsifier proves a regression.
 material:
   base: 8aff9d95571b68897cc0d005eb7e34b716b69f47
-  head: b8a96923383aa1f7fdf4d6eb2a6c866225570a21
-  relevant_paths_digest: sha256:107cb7d7ec6807d292b213e04aec22fd630b49ec0b9e5d324f46ff5280036966
+  head: b7950ade3d46db5464f17941307987f0f751eb4b
+  relevant_paths_digest: sha256:91b9c5de4c60f7393f18d9f417fd7016f0a7e71a99db107dd233450d34f91ae7
   dependency_digest: sha256:720145a580fbf493a857dd224240669753441cf5841c0e4efe8658be31871ed2
 evidence:
-  latest_checkpoint: CP-LEARNER-175-PRODUCTION-001
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -115,4 +112,3 @@ handoff:
   - relay/CONTROLS/controls.yaml
   - relay/WORK/EP-LEARNER-175-PRODUCTION-001.yaml
   - relay/LEASES/LEASE-LEARNER-175-PRODUCTION-001.yaml
-  - relay/CHECKPOINTS/CP-LEARNER-175-PRODUCTION-001.yaml

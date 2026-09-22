@@ -79,3 +79,16 @@ controls:
   resolution:
     condition: PR 187 is merged or the Owner revokes this authority.
     evidence: []
+- id: CTRL-OWNER-MERGE-ISS175-PRODUCTION-20260922
+  kind: OWNER
+  state: OPEN
+  source:
+    type: OWNER
+    ref: direct-owner:2026-09-22T11:48:50Z:merge-if-mergeable
+  condition: Owner explicitly authorizes merging the current V3-governed delivery when GitHub reports it mergeable.
+  blocks: []
+  permits:
+  - MERGE
+  resolution:
+    condition: PR 178 is merged or the Owner revokes this authority.
+    evidence: []
