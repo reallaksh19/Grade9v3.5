@@ -37,7 +37,7 @@ jobs:
           python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . --path tools/data.js --base-ref origin/main
           python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . --path public/data/data.js --base-ref origin/main
       - name: Verify Physics representation contract
-        run: python Shared/tools/representation_contract.py
+        run: python Shared/library/depiction.py --enforce
       - name: Re-run Motion and Core falsifiers
         run: |
           python -m unittest discover -s tests -p test_motion2d_canonical.py
