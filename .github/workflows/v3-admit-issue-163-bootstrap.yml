@@ -1,10 +1,218 @@
-name: v3-admit-issue-163-bootstrap
+name: v3-admit-issue-163-portable
+
 on:
+  push:
+    branches:
+      - integration/issue-163-portable-workbench
   workflow_dispatch:
+
 permissions:
-  contents: read
+  contents: write
+
 jobs:
-  placeholder:
+  admit:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Bootstrap placeholder; replaced after PR assignment."
+      - name: Checkout portability branch
+        uses: actions/checkout@v4
+        with:
+          ref: integration/issue-163-portable-workbench
+          fetch-depth: 0
+
+      - name: Fetch current main
+        run: git fetch origin main:refs/remotes/origin/main
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install V3 dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Normalize completed-task context for new V3 admission
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          path = Path("relay/STATE.yaml")
+          state = yaml.safe_load(path.read_text(encoding="utf-8"))
+          assert state["execution"]["lifecycle"] == "TERMINAL", state["execution"]
+          assert state["accepted"]["checkpoint"] == "CP-LEARNER-175-PRODUCTION-001"
+          state["execution"] = {"lifecycle": "IDLE", "ep": None, "lease": None, "route": None}
+          state["accepted"] = {"checkpoint": None}
+          state["delivery"] = {"required": False, "primary_vehicle": None}
+          path.write_text(yaml.safe_dump(state, sort_keys=False), encoding="utf-8")
+          PY
+
+      - name: Write Issue 163 admission
+        run: |
+          cat > /tmp/issue-163-admission.yaml <<'YAML'
+          schema_version: relay-v3-task-admission
+          roadmap:
+            disposition: ADDED_EXECUTION_WP
+            new_revision: RM-V3-ISS163-PORTABLE-001
+            basis:
+              - "Issue 175 production learner-page integration is complete and closed."
+              - "Issue 163 is the remaining external-portability lane in the Owner outcome."
+              - "The delivered Semantic Workbench Core already owns runtime mechanics; this task owns compilation, packaging, external/offline hosts and compatibility proof."
+              - "PR 192 is the dedicated Issue 163 delivery vehicle."
+            work_package:
+              id: WP-PORTABLE-163
+              title: Deliver detachable versioned workbench packages and external/offline hosts
+              weight: 8
+              state: ACTIVE
+              depends_on:
+                - WP-LEARNER-175-PRODUCTION
+          ep:
+            schema_version: relay-v3-ep
+            id: EP-PORTABLE-163-001
+            work_package: WP-PORTABLE-163
+            outcome:
+              statement: "Compile semantic workbench scenes into explicit versioned data-only portable packages, prove the same packages in Grade9V3, external plain-HTML and single-file offline hosts, and deliver Redox, long-division and integration cross-subject proof packages without moving learner-shell or academic-truth ownership into the portability layer."
+            basis:
+              predecessor_checkpoint: CP-LEARNER-175-PRODUCTION-001
+              material_base: c6f1ce51ae0631a346487609e88f544fece2fa08
+              protocol_basis: "reallaksh19/Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400:skills/engineering-pr-delivery-v3"
+              semantic_dependencies:
+                - path: Shared/workbench/runtime.mjs
+                  reason: "Delivered Core runtime supplies scene validation, semantic state and events."
+                - path: Shared/workbench/semantic-workbench.mjs
+                  reason: "Delivered Web Component supplies the detached browser UI and public theming boundary."
+                - path: Shared/workbench/README.md
+                  reason: "Delivered Core boundary explicitly defers portable-package and external-host proof to Issue 163."
+                - path: tests/fixtures/workbench/arithmetic-division.json
+                  reason: "Existing long-division semantic witness supplies a non-Physics portability source."
+                - path: standalone/chemistry-redox-reactions-master-suite.html
+                  reason: "Existing bespoke Redox implementation supplies migration lessons and provenance, not portable runtime authority."
+            scope:
+              write:
+                - Shared/portable/**
+                - Shared/tools/build_portable_workbench.py
+                - public/portable-workbench/**
+                - standalone/portable-workbench/**
+                - tests/fixtures/portable-workbench/**
+                - tests/test_portable_workbench.py
+                - tests/portable_workbench.test.mjs
+                - tests/workbench_browser.test.mjs
+                - docs/portable-workbench.md
+                - docs/architecture-manifest.json
+                - Shared/tools/build_manifest.py
+                - Shared/tools/topic_independence_allowlist.json
+              read:
+                - Shared/workbench/**
+                - Shared/library/**
+                - Chemistry/**
+                - Mathematics/**
+                - Physics/**
+                - public/chemistry/**
+                - standalone/chemistry-redox-reactions-master-suite.html
+                - tests/fixtures/workbench/**
+                - tests/workbench_runtime.test.mjs
+              protect:
+                - Shared/workbench/**
+                - Shared/library/**
+                - Shared/publication_host/**
+                - Shared/workbench/core-learning-**
+                - Shared/tools/core_learning_**
+                - Physics/**
+                - Chemistry/**
+                - Mathematics/**
+                - public/core-learning/**
+                - standalone/core-learning/**
+                - agents/relay/**
+              prohibit:
+                - "Do not add page-local learner mastery, support policy or question routing."
+                - "Do not put executable JavaScript inside portable scene/package data."
+                - "Do not create a new canonical curriculum database."
+                - "Do not modify delivered Core runtime merely to make a proof fixture pass."
+            acceptance:
+              - id: AC-163-PACKAGE
+                statement: "A validated manifest exposes component API, Transformation IR, adapter API and scene-package versions; incompatible or malformed packages fail closed with readable diagnostics and no eval/new Function."
+                evidence_requirements:
+                  - test: "python -m unittest tests.test_portable_workbench"
+                  - test: "node --test tests/portable_workbench.test.mjs"
+              - id: AC-163-HOSTS
+                statement: "The same generated package works in repository static host, external plain-HTML host and generated single-file offline host with no network/CDN dependency or parent internal-DOM access."
+                evidence_requirements:
+                  - test: "browser contract covers static, external and offline hosts"
+              - id: AC-163-CROSS-SUBJECT
+                statement: "Redox, long-division and integration proof packages use the same portable runtime/build contract without Core source edits."
+                evidence_requirements:
+                  - test: "portable package tests cover all three package ids and shared version contract"
+              - id: AC-163-BOUNDARY
+                statement: "Packages contain compiled scene/adapter data and provenance only; canonical subject records and learner-page ownership remain outside the portability layer, semantic events carry no mastery interpretation, and normal layouts contain no authored pixel coordinates."
+                evidence_requirements:
+                  - oracle: "Shared/workbench and canonical subject paths remain unchanged."
+                  - test: "package validation rejects executable payload fields and pixel-coordinate placement."
+              - id: AC-163-PARITY
+                statement: "Public/external/offline artifacts are generated from one source/build path and freshness is mechanically checked."
+                evidence_requirements:
+                  - test: "python Shared/tools/build_portable_workbench.py --check"
+              - id: AC-163-REPO
+                statement: "Exact-head guardrails and pinned V3 validation pass with generated architecture metadata current."
+                evidence_requirements:
+                  - test: "guardrails and v3-relay on exact PR 192 head"
+            quality_policy:
+              level: STANDARD
+              independent_review: OPTIONAL
+            admission_policy:
+              qualification: NOT_REQUIRED
+              question_policy: NONE
+            next:
+              first_action: "Implement the portable package validator/compiler and one-source generated hosts around the delivered Core, then add the three cross-subject proof packages and browser/offline/version falsifiers."
+              stop_conditions:
+                - "Any required Shared/workbench Core source change must be justified by a generic runtime falsifier and split if it alters delivered Issue 162 semantics."
+                - "Do not absorb Issue 175 learner-page shell/composition ownership."
+                - "Do not treat bespoke Redox page JavaScript as canonical truth."
+                - "Portable scene data must remain data-only and version-fail-closed."
+          lease:
+            id: LEASE-PORTABLE-163-001
+            executor_id: chatgpt-sol-canonical-20260922
+            method: DETERMINISTIC
+            qualification: null
+            owner_basis: null
+            branch: integration/issue-163-portable-workbench
+          delivery:
+            required: true
+            primary_vehicle:
+              provider: GITHUB
+              kind: PULL_REQUEST
+              number: 192
+          YAML
+
+      - name: Admit Issue 163
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . admit-task \
+            --tx-id TX-ADMIT-ISS163-PORTABLE-001 \
+            --event-id EVT-ADMIT-ISS163-PORTABLE-001 \
+            --actor chatgpt-sol-portable-20260922 \
+            --admission /tmp/issue-163-admission.yaml \
+            --base-ref origin/main
+
+      - name: Validate bounded V3 authority
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path Shared/portable/package.py --base-ref origin/main
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path Shared/tools/build_portable_workbench.py --base-ref origin/main
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path tests/test_portable_workbench.py --base-ref origin/main
+
+      - name: Commit native Issue 163 admission
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay
+          git commit -m "[relay-v3] Admit Issue 163 portability proof"
+          git push origin HEAD:integration/issue-163-portable-workbench
