@@ -5157,7 +5157,82 @@
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
-        "difficult_move": 1
+        "difficult_move": 3,
+        "reasoning_route": [
+          {
+            "id": "R-NLM-INCLINE-STATIC-REPRESENT",
+            "kind": "REPRESENT",
+            "action": "Choose axes parallel and perpendicular to the plane, identify the block as the body, and determine the no-friction slip tendency.",
+            "why_valid": "The contact-aligned frame makes the normal and tangential force requirements explicit, while the no-friction tendency determines which way static friction would have to act to maintain rest.",
+            "inputs": [
+              "fixed incline geometry",
+              "chosen block",
+              "gravity",
+              "provisional static contact"
+            ],
+            "output": "contact-aligned free-body representation with downhill slip tendency and uphill required-friction sense",
+            "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+            "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+          },
+          {
+            "id": "R-NLM-INCLINE-STATIC-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Apply perpendicular equilibrium to obtain N = mg cos(theta).",
+            "why_valid": "For this item no other force has a perpendicular component and the block remains in contact without perpendicular acceleration.",
+            "inputs": [
+              "contact-aligned free-body representation",
+              "perpendicular equilibrium"
+            ],
+            "output": "N = mg cos(theta)"
+          },
+          {
+            "id": "R-NLM-INCLINE-STATIC-DEMAND",
+            "kind": "CONNECT",
+            "action": "Assume rest provisionally and use tangential equilibrium to find the friction required by that state: f_required = mg sin(theta).",
+            "why_valid": "Static friction responds to the force demand of the no-slip state; its limiting value is a bound to test afterward, not the starting equality.",
+            "inputs": [
+              "downhill gravity component",
+              "provisional no-slip state"
+            ],
+            "output": "f_required = mg sin(theta), directed uphill"
+          },
+          {
+            "id": "R-NLM-INCLINE-STATIC-FEASIBILITY",
+            "kind": "DECIDE",
+            "action": "Compare the required friction magnitude with the static limit and accept the rest model only if |f_required| <= mu_s N.",
+            "why_valid": "The canonical static-friction relation permits the required no-slip value only while its magnitude stays within mu_s N.",
+            "inputs": [
+              "f_required = mg sin(theta)",
+              "N = mg cos(theta)",
+              "REL-NLM-STATIC-FRICTION-BOUND"
+            ],
+            "output": "static rest is feasible iff mg sin(theta) <= mu_s mg cos(theta)",
+            "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+            "visual_stage_ref": "VIS-NLM-FRICTION-V3"
+          },
+          {
+            "id": "R-NLM-INCLINE-STATIC-THRESHOLD",
+            "kind": "TRANSFORM",
+            "action": "Simplify the feasibility inequality to tan(theta) <= mu_s.",
+            "why_valid": "For 0 <= theta < 90 degrees, mg cos(theta) is positive, so division preserves the inequality direction.",
+            "inputs": [
+              "mg sin(theta) <= mu_s mg cos(theta)"
+            ],
+            "output": "tan(theta) <= mu_s"
+          },
+          {
+            "id": "R-NLM-INCLINE-STATIC-CHECK",
+            "kind": "VERIFY",
+            "action": "Check that equality is used only at impending slip and that smaller angles require static friction below its maximum.",
+            "why_valid": "A limiting equality everywhere would contradict the static-friction bound and the zero/small-demand cases.",
+            "inputs": [
+              "tan(theta) <= mu_s",
+              "REL-NLM-STATIC-FRICTION-BOUND"
+            ],
+            "output": "threshold and sub-threshold behavior are consistent with the canonical static-friction model"
+          }
+        ],
+        "crux_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY"
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -5186,7 +5261,33 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM8-3"
+      "repair_ref": "NLM8-3",
+      "scaffolds": [
+        {
+          "text": "Use axes parallel and perpendicular to the plane and mark the block as the chosen body. Without friction, which way would it tend to move?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-NLM-INCLINE-STATIC-REPRESENT",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+        },
+        {
+          "text": "Assume rest provisionally. Use the perpendicular equation to find N, then the tangential equation to find the friction value that rest would require; do not set it equal to mu_s N.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+        },
+        {
+          "text": "Now test whether the required friction magnitude is within the static bound before simplifying the inequality.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V3"
+        }
+      ]
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
@@ -5628,7 +5729,75 @@
             "criterion": "Tests |f_required| against mu_s N instead of setting friction equal to its limit immediately.",
             "evidence_of": "Uses the static-feasibility model correctly."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-INCLINE-HORIZONTAL-REPRESENT",
+            "kind": "REPRESENT",
+            "action": "Choose contact-aligned axes and resolve the horizontal push into P cos(theta) uphill and P sin(theta) into the plane, while leaving friction direction undecided.",
+            "why_valid": "The applied force changes both tangential demand and the normal reaction; friction direction must follow the signed no-slip requirement rather than be assumed from the picture.",
+            "inputs": [
+              "horizontal force P",
+              "incline angle theta",
+              "chosen block",
+              "provisional static contact"
+            ],
+            "output": "contact-aligned force representation with unresolved friction direction",
+            "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+            "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+          },
+          {
+            "id": "R-NLM-INCLINE-HORIZONTAL-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Apply perpendicular equilibrium to obtain N = mg cos(theta) + P sin(theta).",
+            "why_valid": "The horizontal push has an inward perpendicular component, so the normal reaction must be derived from the actual perpendicular force balance.",
+            "inputs": [
+              "mg cos(theta) outward from the plane",
+              "P sin(theta) into the plane",
+              "perpendicular equilibrium"
+            ],
+            "output": "N = mg cos(theta) + P sin(theta)",
+            "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+            "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+          },
+          {
+            "id": "R-NLM-INCLINE-HORIZONTAL-SIGNED-DEMAND",
+            "kind": "CONNECT",
+            "action": "Impose tangential rest to obtain the signed friction demand f_required = mg sin(theta) - P cos(theta).",
+            "why_valid": "Static friction must supply whatever signed tangential force closes the provisional no-slip equilibrium; solving first avoids assuming its direction or maximum value.",
+            "inputs": [
+              "P cos(theta) uphill",
+              "mg sin(theta) downhill",
+              "provisional no-slip state"
+            ],
+            "output": "f_required = mg sin(theta) - P cos(theta)"
+          },
+          {
+            "id": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION",
+            "kind": "DECIDE",
+            "action": "Use the sign of f_required to determine the required friction direction and test its magnitude against mu_s N.",
+            "why_valid": "The sign carries the direction demanded by equilibrium, while the static-friction bound decides whether that demanded state is physically available.",
+            "inputs": [
+              "signed f_required",
+              "actual N",
+              "REL-NLM-STATIC-FRICTION-BOUND"
+            ],
+            "output": "static rest is feasible iff |mg sin(theta) - P cos(theta)| <= mu_s[mg cos(theta) + P sin(theta)]",
+            "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+            "visual_stage_ref": "VIS-NLM-FRICTION-V3"
+          },
+          {
+            "id": "R-NLM-INCLINE-HORIZONTAL-CHECK",
+            "kind": "VERIFY",
+            "action": "Check both P = 0 and the zero-friction condition P cos(theta) = mg sin(theta).",
+            "why_valid": "The first limit must recover the familiar incline threshold, while the second must permit zero static friction even though mu_s N is nonzero.",
+            "inputs": [
+              "derived feasibility condition"
+            ],
+            "output": "P = 0 gives tan(theta) <= mu_s; P cos(theta) = mg sin(theta) gives f_required = 0"
+          }
+        ],
+        "crux_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION"
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -5671,9 +5840,28 @@
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
           "MIC-PHY-NLM-FRICTION-QUANT"
-        ]
+        ],
+        "protected_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION"
       },
-      "repair_ref": "NLM8-1"
+      "repair_ref": "NLM8-1",
+      "scaffolds": [
+        {
+          "text": "Resolve the horizontal push into components parallel and perpendicular to the plane. Keep the friction direction undecided.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-NLM-INCLINE-HORIZONTAL-REPRESENT",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+        },
+        {
+          "text": "Use only the perpendicular rest equation to determine the actual normal reaction before deciding anything about friction.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-NLM-INCLINE-HORIZONTAL-NORMAL",
+          "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+        }
+      ]
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",

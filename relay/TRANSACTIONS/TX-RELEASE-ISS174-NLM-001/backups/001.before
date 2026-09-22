@@ -1,23 +1,22 @@
 schema_version: relay-v3-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
-  roadmap_revision: RM-V3-ISS174-NLM-002
-  state_digest: sha256:25cb95a95c3de7d4473a3fa826a271620ea29837acdc708f1de74ab56a9ea257
+  roadmap_revision: RM-V3-ISS174-NLM-001
+  state_digest: sha256:a39af7c358b966b70b89a39ecc4d95baf2ddcb5cda9e96da70fb159b0d13eab4
   material_basis:
     head: a15db96e60170f1ed480ece96803fa9c02fd6dc6
     tree_digest: sha256:624d82b62ee2d5cf33df52be36533b68a898d3685732efd377716552cab0d491
     relevant_paths_digest: sha256:d7293bf5923b35585e6712e3d7771abd80e2cc2aedf41f9ee50248ec844d2b68
     dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  coordination_head: aa29b156cdc905f0484f86b4d915a658b91fbb62
+  coordination_head: 876d0f0b72cd92cc4763049d5444bceec6899aa6
 owner:
   outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
     work while preserving delivered #162 and #173.'
   current_goal: 'Deliver Issue #174 through bounded NLM and Motion-in-2D canonical-data
     proofs without importing Issue #169 execution custody.'
 programme:
-  accepted_progress: 3.85
-  completed_work:
-  - WP-CANONICAL-174-NLM
+  accepted_progress: 0.0
+  completed_work: []
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -27,11 +26,12 @@ programme:
   - WP-TA-107
   - WP-TA-108
   - WP-TA-105
+  - WP-CANONICAL-174-NLM
 execution:
   lifecycle: ACTIVE
   work_package: WP-CANONICAL-174-NLM
-  ep: EP-CANONICAL-174-NLM-002
-  lease: LEASE-CANONICAL-174-NLM-002
+  ep: EP-CANONICAL-174-NLM-001
+  lease: LEASE-CANONICAL-174-NLM-001
   executor: chatgpt-sol-canonical-20260922
 scope:
   allowed_writes:
@@ -55,11 +55,8 @@ material:
   relevant_paths_digest: sha256:d7293bf5923b35585e6712e3d7771abd80e2cc2aedf41f9ee50248ec844d2b68
   dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 evidence:
-  latest_checkpoint: CP-CANONICAL-174-NLM-002
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -77,9 +74,9 @@ next:
   stop_conditions:
   - Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority
     must be corrected before acceptance.
-  - Any generic runtime or compiler falsifier must be separately scoped rather than
-    redesigning delivered Issues 162 or 173.
-  - Motion-in-2D must not be added to PR 179.
+  - Any generic runtime/compiler falsifier must be separately scoped rather than redesigning
+    delivered
+  - Motion-in-2D must not be added to PR
   - MERGE and RELEASE require separate explicit delivery authorization.
 handoff:
   zero_context_takeover_possible: true
@@ -87,6 +84,5 @@ handoff:
   - relay/ROADMAP/ROADMAP.yaml
   - relay/STATE.yaml
   - relay/CONTROLS/controls.yaml
-  - relay/WORK/EP-CANONICAL-174-NLM-002.yaml
-  - relay/LEASES/LEASE-CANONICAL-174-NLM-002.yaml
-  - relay/CHECKPOINTS/CP-CANONICAL-174-NLM-002.yaml
+  - relay/WORK/EP-CANONICAL-174-NLM-001.yaml
+  - relay/LEASES/LEASE-CANONICAL-174-NLM-001.yaml

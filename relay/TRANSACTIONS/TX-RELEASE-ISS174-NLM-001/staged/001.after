@@ -1,0 +1,67 @@
+schema_version: relay-v3-snapshot
+authority: DERIVED_READ_MODEL
+generated_from:
+  roadmap_revision: RM-V3-ISS174-NLM-001
+  state_digest: sha256:7dd736a2751f295db8a7ec2884fb330a7441bb307d6409b4688fdd645309240f
+  material_basis:
+    head: 1d381c4c5619ca142352e2b2c8a49e73e5fa2fa9
+    tree_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+    relevant_paths_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+    dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  coordination_head: 1d381c4c5619ca142352e2b2c8a49e73e5fa2fa9
+owner:
+  outcome: 'Complete the remaining canonical-data, learner-page integration, and external-portability
+    work while preserving delivered #162 and #173.'
+  current_goal: 'Deliver Issue #174 through bounded NLM and Motion-in-2D canonical-data
+    proofs without importing Issue #169 execution custody.'
+programme:
+  accepted_progress: 0.0
+  completed_work: []
+  remaining_work:
+  - WP-TAKEOVER-RECONCILE
+  - WP-TA-102
+  - WP-TA-106
+  - WP-TA-103
+  - WP-TA-104
+  - WP-TA-107
+  - WP-TA-108
+  - WP-TA-105
+  - WP-CANONICAL-174-NLM
+execution:
+  lifecycle: IDLE
+  work_package: null
+  ep: null
+  lease: null
+  executor: null
+scope:
+  allowed_writes: []
+  protected: []
+  prohibited: []
+material:
+  base: 1d381c4c5619ca142352e2b2c8a49e73e5fa2fa9
+  head: 1d381c4c5619ca142352e2b2c8a49e73e5fa2fa9
+  relevant_paths_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  dependency_digest: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+evidence:
+  latest_checkpoint: null
+  latest_material_validation: {}
+controls:
+  execution_blockers: []
+  handover_blockers: []
+  delivery_blockers: []
+  informational: []
+delivery:
+  issue: null
+  pr: 179
+  lifecycle: DECLARED
+  merge_authorized: false
+next:
+  immediate_material_action: null
+  delivery_action: Perform the explicitly authorized delivery transition.
+  stop_conditions: []
+handoff:
+  zero_context_takeover_possible: false
+  reconstruction_sources:
+  - relay/ROADMAP/ROADMAP.yaml
+  - relay/STATE.yaml
+  - relay/CONTROLS/controls.yaml
