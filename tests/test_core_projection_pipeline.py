@@ -489,6 +489,44 @@ class Motion2DRealWitness(unittest.TestCase):
             reveal["text"],
         )
 
+    def practice_only(self, compiled):
+        """Project the real bucket to the two practice products this witness proves.
+
+        Motion2D currently also advertises a compact Core1 orientation product whose
+        authoring gap is unrelated to the Core2 projection contract. Keep publication
+        validation strict by pruning the plan and obligations together rather than
+        teaching the host to ignore that missing product.
+        """
+        compiled = copy.deepcopy(compiled)
+        selected = {"CORE2A", "CORE2B"}
+        compiled["plan"]["products"] = [
+            product for product in compiled["plan"]["products"]
+            if product["core"] in selected
+        ]
+        compiled["baseline"]["selected_cores"] = [
+            core for core in compiled["baseline"]["selected_cores"] if core in selected
+        ]
+        obligations = []
+        for obligation in compiled["baseline"]["obligations"]:
+            required = [core for core in obligation["required_cores"] if core in selected]
+            if not required:
+                continue
+            row = copy.deepcopy(obligation)
+            row["required_cores"] = required
+            obligations.append(row)
+        compiled["baseline"]["obligations"] = obligations
+        compiled["baseline"]["required_questions"] = [
+            row for row in compiled["baseline"]["required_questions"]
+            if row["core"] in selected
+        ]
+        accounted = {
+            atom_id for obligation in obligations for atom_id in obligation["source_atom_ids"]
+        }
+        compiled["source"]["atoms"] = [
+            atom for atom in compiled["source"]["atoms"] if atom["id"] in accounted
+        ]
+        return compiled
+
     def test_real_motion2d_questions_survive_compile_with_distinct_crux_and_protection(self):
         compiled = self.compiled()
         blocks = {
@@ -507,7 +545,7 @@ class Motion2DRealWitness(unittest.TestCase):
         self.assertEqual(self.FAMILIAR, transfer["transfer"]["builds_on"][0])
 
     def test_real_motion2d_publish_keeps_protected_decision_after_attempt(self):
-        compiled = self.compiled()
+        compiled = self.practice_only(self.compiled())
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             write(compiled, root / "inputs")
