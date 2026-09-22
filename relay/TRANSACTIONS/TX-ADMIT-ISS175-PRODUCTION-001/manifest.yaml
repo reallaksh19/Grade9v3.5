@@ -1,0 +1,51 @@
+schema_version: relay-v3-transaction
+id: TX-ADMIT-ISS175-PRODUCTION-001
+command: ADMIT_TASK
+actor: chatgpt-sol-builder-20260922
+status: COMMITTED
+created_at: '2026-09-22T13:08:40.110925Z'
+updated_at: '2026-09-22T13:08:40.137864Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:32775707469b04d747b26c8f17eed52e1cf17259abade0f83375e58e4168cd9b
+  after_digest: sha256:71d2690270e04ea0d5d8c382e2ca7caf443ea2cb3a5f9d634bc420a45bc86855
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:650f2cd7465569536d82ac0eef60c5dfda8489d00c2c40f376534166f73a61c5
+  after_digest: sha256:069a910c184abb45eece9d51df4b39d1d8d37cd57cc428616a0b7cbe94a631e2
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/backups/001.before
+- path: relay/LEASES/LEASE-LEARNER-175-PRODUCTION-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:a27521890765fa80b4e51b55bdfd02b9d295130b0514908bab082a7096aa28d5
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/002.after
+  backup_path: null
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:c7355acf3178b35b110f8408fe22b4d068d5efd309e19e622399b749675da07f
+  after_digest: sha256:31bc14a46665b315321ec1a4c3463d2a77e32389b2e0f3dd40e1d8b13fd00ba3
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/backups/003.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:b5c4cdba4aa10c702579d59e3d174d5a006292b417a96bc93a9f51a3d434e5c5
+  after_digest: sha256:3e892985b88aba13bcf454322610f96ca16fb3b722c90fcff14ff8dc666ce1ba
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/backups/004.before
+- path: relay/WORK/EP-LEARNER-175-PRODUCTION-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:c326a9757e2e416060b68884b699997380b03ccdc3c96ca089aab94235591fba
+  staged_path: relay/TRANSACTIONS/TX-ADMIT-ISS175-PRODUCTION-001/staged/005.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-LEARNER-175-PRODUCTION-001.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/WORK/EP-LEARNER-175-PRODUCTION-001.yaml
