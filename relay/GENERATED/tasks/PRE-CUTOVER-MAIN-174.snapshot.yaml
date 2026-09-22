@@ -1,0 +1,359 @@
+schema_version: relay-v3-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V2_5
+identity:
+  work_package: WP-TA-108
+  ep: EP-TA-010
+  issue: null
+  delivery_vehicle: null
+purpose:
+  programme_outcome: Make Grade 9 Physics independently navigable, repairable, verifiable,
+    and transition-ready
+  current_goal: Grade 9 Physics self-study completion and governed Grade 10 transition
+  task_outcome: Introduce stable application reasoning-move/crux identity without
+    replacing existing concept teaching-step identity.; Separate source/question hints
+    from authored pedagogical scaffolds and enforce cross-reference/disclosure boundaries.;
+    Preserve backward compatibility and correct current compiler/source-fidelity losses.
+  why_this_task_exists: 'Issue #173 and the live-system audit show Core1B is structurally
+    differentiated, but application reasoning is still prose/index based, source/pedagogical
+    hints are conflated, the renderer ignores difficult_move, and compiler source
+    custody loses subparts/options.'
+lineage:
+  predecessor_checkpoint: CP-TA-009
+  upstream_dependencies:
+  - WP-TA-107
+  roadmap_admission:
+    disposition: ADDED_EXECUTION_WP
+    revision: RM-0010
+    basis:
+    - 'Owner instruction on 2026-09-21 to start fixing issue #173 under engineering-pr-delivery-v2.5.'
+    - 'Issue #173 owns Shared Core contracts/schema/compiler/runtime projection/tests
+      and is not represented by WP-TA-105.'
+    - No WP-TA-105 material evidence has started, so the serial frontier can be safely
+      resequenced without discarding accepted implementation credit.
+parent_issue:
+  repository: null
+  number: null
+  title: null
+  state: null
+  url: null
+  baseline: null
+  current: null
+  updates: []
+parent_issue_progress:
+  checklist: []
+  summary:
+    complete: 0
+    partial: 0
+    pending: 0
+    blocked: 0
+    deferred: 0
+    not_applicable: 0
+    unknown: 0
+    total: 0
+current_task_progress:
+  checklist:
+  - id: AC-TA10-001
+    statement: The live schema/role contract can express stable application reasoning
+      moves and crux refs, distinct pedagogical scaffolds, and a protected transfer
+      decision while preserving legacy reasoning[]/difficult_move/hints compatibility.
+    state: COMPLETE
+    evidence:
+    - CP-TA-010
+    - guardrails 35672260012
+    - v25-relay 35672260109
+  - id: AC-TA10-002
+    statement: Intake/compiler/runtime validation resolves structured refs, keeps
+      source hints separate from authored scaffolds, preserves subparts/options/source
+      custody and does not downgrade transfer identity or validate a lossy source
+      projection against itself.
+    state: COMPLETE
+    evidence:
+    - CP-TA-010
+    - guardrails 35672260012
+    - v25-relay 35672260109
+  - id: AC-TA10-003
+    statement: Learner-facing rendering preserves Core1B attempt-before-reveal and
+      visibly distinguishes Core2A representation/setup, crux, execution and check
+      while Core2B pre-attempt support cannot disclose the protected changed decision.
+    state: COMPLETE
+    evidence:
+    - CP-TA-010
+    - guardrails 35672260012
+    - v25-relay 35672260109
+  - id: AC-TA10-004
+    statement: One real Motion-in-2D proof slice plus anti-collapse, bad-ref, disclosure,
+      source-fidelity and backward-compatibility falsifiers pass; generated artifacts,
+      quality review, full guardrails and exact-head V2.5 validation are reconciled
+      before checkpoint credit.
+    state: COMPLETE
+    evidence:
+    - CP-TA-010
+    - guardrails 35672260012
+    - v25-relay 35672260109
+  summary:
+    complete: 4
+    partial: 0
+    pending: 0
+    blocked: 0
+    total: 4
+offloads: []
+pending_items: []
+known_issues: []
+improvement_vs_original_issue:
+  baseline_digest: null
+  items: []
+scope:
+  write:
+  - Shared/roles/
+  - Shared/library/
+  - Shared/publication_host/
+  - tests/
+  - docs/architecture-manifest.json
+  - agents/relay/
+  - .github/workflows/v25-relay.yml
+  read:
+  - Physics/library/phy-kin-2d-motion.v1.json
+  - Shared/workbench/
+  - Shared/tools/learning_router.py
+  - Physics/content/relative-motion-library/
+  - https://github.com/reallaksh19/Grade9V3/pull/176
+  protected:
+  - Physics/library/
+  - Physics/matrices/
+  - Shared/workbench/
+  - Knowledge percentage remains a routing coordinate only and never becomes mastery
+    evidence.
+  prohibited:
+  - bulk_subject_authoring
+  - bespoke_webpage_redesign
+  - seventh_core_or_parallel_reasoning_ontology
+  - fixed_hint_count_or_mastery_probability
+inputs:
+- id: INPUT-TA10-001
+  role: Live six-Core contract
+  authority: 'Current Grade9V3 main and issue #173.'
+  source_ref: 'Shared/roles/**; Shared/library/**; Shared/publication_host/**; issue
+    #173'
+  freshness: CURRENT
+- id: INPUT-TA10-002
+  role: Draft projection interface
+  authority: 'Draft PR #176; not runtime authority until adopted by this implementation.'
+  source_ref: 'PR #176 docs/CORE-PROJECTION-CONTRACT.md and schema patches'
+  freshness: CURRENT
+- id: INPUT-TA10-003
+  role: Motion-in-2D proof slice
+  authority: Physics canonical package on current main.
+  source_ref: Physics/library/phy-kin-2d-motion.v1.json
+  freshness: CURRENT
+- id: INPUT-TA10-004
+  role: Existing reveal-stage and workbench boundaries
+  authority: Merged WP-TA-104/#168/#171 current-main implementation.
+  source_ref: Shared/library/visual_support.py; Shared/tools/learning_router.py; Shared/workbench/**
+  freshness: CURRENT
+benchmarks:
+- id: BENCH-TA10-001
+  purpose: Prove Core1A and Core1B consume the same inferential truth while learner
+    action/reveal policy differs.
+  role: Concept A/B shared-truth witness
+  source_ref: MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS
+  oracle: REFERENCE_DATA
+  expected: Core1A exposes the completed inference; Core1B prompts before reconstruction/repair
+    and both remain bound to the same canonical concept/step identities.
+  required: true
+  current_result: UNKNOWN
+  evidence_basis:
+    material_ref: 411e8dc0108347933792fbbd5a6be8dfa59d655e
+    checkpoint: CP-TA-010
+- id: BENCH-TA10-002
+  purpose: Prove Core2A familiar reasoning and Core2B changed model choice remain
+    distinct even if support amount changes.
+  role: Familiar-to-transfer application witness
+  source_ref: Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 and Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04
+  oracle: REFERENCE_DATA
+  expected: Core2A binds a stable crux move; Core2B binds a changed/protected decision
+    and pre-attempt support cannot reveal it.
+  required: true
+  current_result: UNKNOWN
+  evidence_basis:
+    material_ref: 411e8dc0108347933792fbbd5a6be8dfa59d655e
+    checkpoint: CP-TA-010
+- id: BENCH-TA10-003
+  purpose: Ensure existing reasoning[]/difficult_move/hints records still validate,
+    compile and render while structured fields migrate in.
+  role: Legacy compatibility witness
+  source_ref: Current library and committed relative-motion publication fixtures
+  oracle: FROZEN_GOLDEN
+  expected: Legacy records continue to work; new structured fields are authoritative
+    only when authored and no compiler invents structured truth from prose.
+  required: true
+  current_result: UNKNOWN
+  evidence_basis:
+    material_ref: 411e8dc0108347933792fbbd5a6be8dfa59d655e
+    checkpoint: CP-TA-010
+- id: BENCH-TA10-004
+  purpose: Prevent source-validation false assurance caused by compiler loss of subparts/options
+    or other preserved question fields.
+  role: Source custody fidelity witness
+  source_ref: Core2 role contract plus canonical question/source projection path
+  oracle: OBSERVATIONAL
+  expected: Compilation preserves canonical question structure and publication validation
+    compares against an unlossy source projection; mutation/loss of preserved fields
+    is rejected.
+  required: true
+  current_result: UNKNOWN
+  evidence_basis:
+    material_ref: 411e8dc0108347933792fbbd5a6be8dfa59d655e
+    checkpoint: CP-TA-010
+benchmark_debt:
+  required_missing:
+  - BENCH-TA10-001
+  - BENCH-TA10-002
+  - BENCH-TA10-003
+  - BENCH-TA10-004
+  stale: []
+  optional: []
+execution:
+  lifecycle: IDLE
+  lease_or_custody: null
+  executor: null
+  route: SERIAL:EP-TA-010
+  branch: relay/v3-main-cutover-canonical-174
+material:
+  base: 411e8dc0108347933792fbbd5a6be8dfa59d655e
+  current_head: 48d003583d2696fc84afc6f9d1e49e9324c334b1
+acceptance:
+- id: AC-TA10-001
+  state: PASS
+  statement: The live schema/role contract can express stable application reasoning
+    moves and crux refs, distinct pedagogical scaffolds, and a protected transfer
+    decision while preserving legacy reasoning[]/difficult_move/hints compatibility.
+  evidence:
+  - CP-TA-010
+  - guardrails 35672260012
+  - v25-relay 35672260109
+- id: AC-TA10-002
+  state: PASS
+  statement: Intake/compiler/runtime validation resolves structured refs, keeps source
+    hints separate from authored scaffolds, preserves subparts/options/source custody
+    and does not downgrade transfer identity or validate a lossy source projection
+    against itself.
+  evidence:
+  - CP-TA-010
+  - guardrails 35672260012
+  - v25-relay 35672260109
+- id: AC-TA10-003
+  state: PASS
+  statement: Learner-facing rendering preserves Core1B attempt-before-reveal and visibly
+    distinguishes Core2A representation/setup, crux, execution and check while Core2B
+    pre-attempt support cannot disclose the protected changed decision.
+  evidence:
+  - CP-TA-010
+  - guardrails 35672260012
+  - v25-relay 35672260109
+- id: AC-TA10-004
+  state: PASS
+  statement: One real Motion-in-2D proof slice plus anti-collapse, bad-ref, disclosure,
+    source-fidelity and backward-compatibility falsifiers pass; generated artifacts,
+    quality review, full guardrails and exact-head V2.5 validation are reconciled
+    before checkpoint credit.
+  evidence:
+  - CP-TA-010
+  - guardrails 35672260012
+  - v25-relay 35672260109
+controls:
+  material_write:
+  - PEND-TA10-PROVIDER-002
+  - KI-TA10-PROJECTION-001
+  checkpoint: []
+  handover: []
+  pr_ready:
+  - PEND-TA10-PROVIDER-002
+  merge:
+  - PEND-TA10-PROVIDER-002
+  release:
+  - PEND-TA10-PROVIDER-002
+  - KI-TA10-PROJECTION-001
+knowledge_state:
+  known_true:
+  - Completed the six-Core projection contract with one canonical academic truth,
+    separate source/pedagogical custody, stable application decision identity, protected
+    changed-demand transfer, lossless projection and legacy compatibility. The bounded
+    Motion-in-2D witness proves the learner-job distinctions without editing canonical
+    Physics truth.
+  - Explanation and reconstruction can consume the same canonical conceptual inference
+    when learner responsibility and reveal order encode the difference.
+  - A stable DECIDE move separates familiar application capability from downstream
+    algebra and makes transfer a changed model-selection obligation rather than practice
+    with fewer hints.
+  - Source hints and authored pedagogical scaffolds coexist safely when custody origin
+    and disclosure identity are separate.
+  - The bounded real Physics proof needs no canonical Physics-data mutation; structured
+    projection metadata is test-local.
+  known_false: []
+  unknown:
+  - The static publication host proves disclosure ordering and closed repair surfaces
+    but does not itself implement an interactive learner submission gate.
+  - 'PR #177 remains draft and unmerged, so accepted repository work is not yet current-main
+    behavior.'
+  - 'PR #177 needs separate merge authorization, provider merge and main readback.'
+  - 'After #177 lands, reconcile draft PR #170 against the delivered Core contract
+    and freshly qualify the Grade-9 exit-readiness route; prior invalidated acceptance
+    credit does not carry forward.'
+  assumptions: []
+negative_knowledge: []
+preserve:
+  accepted_do_not_reopen:
+  - claim: AC-TA10-001 accepted at CP-TA-010
+    checkpoint: CP-TA-010
+    evidence:
+    - CP-TA-010:AC-TA10-001
+    reopen_if:
+    - Required evidence becomes stale or fails.
+    - A dependency, counterexample, or Owner requirement changes the accepted basis.
+  - claim: AC-TA10-002 accepted at CP-TA-010
+    checkpoint: CP-TA-010
+    evidence:
+    - CP-TA-010:AC-TA10-002
+    reopen_if:
+    - Required evidence becomes stale or fails.
+    - A dependency, counterexample, or Owner requirement changes the accepted basis.
+  - claim: AC-TA10-003 accepted at CP-TA-010
+    checkpoint: CP-TA-010
+    evidence:
+    - CP-TA-010:AC-TA10-003
+    reopen_if:
+    - Required evidence becomes stale or fails.
+    - A dependency, counterexample, or Owner requirement changes the accepted basis.
+  - claim: AC-TA10-004 accepted at CP-TA-010
+    checkpoint: CP-TA-010
+    evidence:
+    - CP-TA-010:AC-TA10-004
+    reopen_if:
+    - Required evidence becomes stale or fails.
+    - A dependency, counterexample, or Owner requirement changes the accepted basis.
+history:
+  recent_events: []
+next:
+  immediate_action: 'After fresh candidate certification, make the first material
+    commit contract/schema/tests only, adopting the frozen #176 field names selectively
+    against current-main truth.'
+  next_value_frontier: Make six-Core projections mechanically preserve conceptual
+    and application crux
+  stop_conditions:
+  - OWNER_DECISION_REQUIRED
+  - ESSENTIAL_INPUT_MISSING
+  - AUTHORITY_VIOLATION
+  - PROTECTED_INVARIANT_FAILURE
+  - WRITE_COLLISION
+  - SUPERSEDED_EP
+  - ROADMAP_CONFLICT
+  - REPOSITORY_STATE_CONFLICT
+  - UNSAFE_ENGINEERING_RESULT
+reconstruction_sources:
+- agents/relay/REPO_STATE.yaml
+- agents/relay/roadmap/OVERALL_ROADMAP.yaml
+- agents/relay/roadmap/PROGRESS.yaml
+- agents/relay/roadmap/ROADMAP_EVENTS.yaml
+- agents/relay/execution-packages/EP-TA-010.yaml
+- agents/relay/checkpoints/CP-TA-010.yaml

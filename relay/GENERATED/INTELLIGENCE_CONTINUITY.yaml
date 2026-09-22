@@ -1,0 +1,31 @@
+schema_version: relay-v3-intelligence-continuity
+authority: DERIVED_CONTINUITY_ASSESSMENT
+ready: true
+source:
+  protocol: V2_5
+  legacy_tree_digest: sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8
+  roadmap_revision: RM-0011
+projections:
+  task_snapshot_digest: sha256:af09451438fe3a0410b2a67078a69a64631eef888953d2629ac3797f7d121512
+  improvement_view_digest: sha256:762f99e40e5b8b4e4f0e13655916de9617c4ec2fe073440ba0d1848de41ea984
+checks:
+  legacy_history_preserved: PASS
+  roadmap_admission: PASS
+  roadmap_events: PASS
+  checkpoint_progress: PASS
+  discovery: PASS
+  owner_delta: PASS
+  handover_intelligence: PASS
+  generated_projection_non_authority: PASS
+evidence:
+- legacy digest expected=sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8
+  before=sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8 after=sha256:799ee8d10056ed7e66122b8b6626e3ed0d4bb3b645167d6a6d5dea1c3d9759f8
+  files=128
+- roadmap admission=ADDED_EXECUTION_WP revision=RM-0010
+- 'validate_roadmap_events.py exit=0: PASS'
+- 'validate_progress.py exit=0: PASS; validate_checkpoint.py exit=0: PASS; checkpoint=CP-TA-010
+  exists=True'
+- discovery active_steps=0 historical_receipts=22
+- owner delta mechanisms=owner_publication.py,render_owner_status.py,owner_change_projection.py
+- handover planner=True task_present=True task_intelligence=True
+- derived views task=DERIVED_READ_MODEL improvement=DERIVED_READ_MODEL legacy_unchanged=True
