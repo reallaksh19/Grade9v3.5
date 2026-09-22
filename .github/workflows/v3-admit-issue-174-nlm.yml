@@ -1,0 +1,171 @@
+name: v3-admit-issue-174-nlm
+
+on:
+  push:
+    branches:
+      - content/issue-174-nlm-friction-gold
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  admit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout NLM branch
+        uses: actions/checkout@v4
+        with:
+          ref: content/issue-174-nlm-friction-gold
+          fetch-depth: 0
+
+      - name: Fetch stacked V3 base
+        run: git fetch origin relay/v3-main-cutover-canonical-174:refs/remotes/origin/relay/v3-main-cutover-canonical-174
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install relay dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Write bounded NLM admission
+        run: |
+          cat > /tmp/issue-174-nlm-admission.yaml <<'YAML'
+          schema_version: relay-v3-task-admission
+          roadmap:
+            disposition: ADDED_EXECUTION_WP
+            new_revision: RM-V3-ISS174-NLM-001
+            basis:
+              - Owner handover orders #174 canonical-data delivery before #175 production integration
+              - Issue #174 requires the NLM friction gold family as the first canonical-data proof
+              - PR #179 contains the bounded NLM-only implementation
+              - PR #184 provides the clean-main V3 authority boundary without importing #169 custody
+            work_package:
+              id: WP-CANONICAL-174-NLM
+              title: Deliver NLM friction canonical gold proof
+              weight: 4
+              state: ACTIVE
+              depends_on:
+                - WP-TA-108
+          ep:
+            schema_version: relay-v3-ep
+            id: EP-CANONICAL-174-NLM-001
+            work_package: WP-CANONICAL-174-NLM
+            outcome:
+              statement: Revalidate and deliver the bounded NLM friction canonical-data proof against delivered #173 while preserving scientific/source authority and excluding Motion-in-2D.
+            basis:
+              predecessor_checkpoint: null
+              material_base: 876faffab1eab90111d17ffda143b98285786097
+              protocol_basis: reallaksh19/Common@c87cf87b313801e42ecd0fcc7d36af0d90c5f400:skills/engineering-pr-delivery-v3
+              semantic_dependencies:
+                - path: Shared/library
+                  reason: Delivered canonical package schema, intake and compiler contract.
+                - path: Shared/publication_host
+                  reason: Delivered Core2A/Core2B publication preservation and protected-move boundary.
+                - path: Physics/adapter
+                  reason: Subject scientific depiction and representation contract.
+                - path: Physics/gates
+                  reason: Canonical static-friction scientific relation authority.
+            scope:
+              write:
+                - Physics/library/phy-nlm-first-law.v1.json
+                - tests/test_g9_nlm_friction_connected.py
+                - docs/architecture-manifest.json
+              read:
+                - Shared/**
+                - Physics/**
+                - tests/**
+              protect:
+                - Shared/**
+                - Physics/adapter/**
+                - Physics/gates/**
+                - agents/relay/**
+              prohibit:
+                - Physics/library/phy-kin-2d-motion.v1.json
+                - Mathematics/**
+                - Chemistry/**
+                - public/physics/**
+                - standalone/**
+            acceptance:
+              - id: AC-NLM-GOLD
+                statement: The real NLM friction familiar and transfer items retain structured reasoning, stable decision crux, staged scaffolds, protected transfer move, source hints and relation authority.
+                evidence_requirements:
+                  - test: python -m unittest discover -s tests -p test_g9_nlm_friction_connected.py
+              - id: AC-NLM-PIPELINE
+                statement: Delivered #173 compiler/publication semantics preserve the authored NLM route and prevent protected-decision leakage.
+                evidence_requirements:
+                  - test: python -m unittest tests.test_core_projection_pipeline tests.test_core_projection_contract
+              - id: AC-NLM-REPO
+                statement: Exact-head repository validation is green and generated architecture data is current.
+                evidence_requirements:
+                  - test: guardrails and pinned v3-relay workflows on the exact delivery head
+            quality_policy:
+              level: STANDARD
+              independent_review: OPTIONAL
+            admission_policy:
+              qualification: NOT_REQUIRED
+              question_policy: NONE
+            next:
+              first_action: Re-run the bounded NLM proof and delivered Core projection falsifiers on the restacked exact head before checkpointing.
+              stop_conditions:
+                - Any change to source hints, provenance or REL-NLM-STATIC-FRICTION-BOUND authority must be corrected before acceptance.
+                - Any generic runtime/compiler falsifier must be separately scoped rather than redesigning delivered #162/#173.
+                - Motion-in-2D must not be added to PR #179.
+                - MERGE and RELEASE require separate explicit delivery authorization.
+          lease:
+            id: LEASE-CANONICAL-174-NLM-001
+            executor_id: chatgpt-sol-canonical-20260922
+            method: DETERMINISTIC
+            qualification: null
+            owner_basis: null
+            branch: content/issue-174-nlm-friction-gold
+          delivery:
+            required: true
+            primary_vehicle:
+              provider: GITHUB
+              kind: PULL_REQUEST
+              number: 179
+          YAML
+
+      - name: Admit #174 NLM slice natively
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_tx.py . admit-task \
+            --tx-id TX-ADMIT-ISS174-NLM-001 \
+            --event-id EVT-ADMIT-ISS174-NLM-001 \
+            --actor chatgpt-sol-canonical-20260922 \
+            --admission /tmp/issue-174-nlm-admission.yaml \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+
+      - name: Prove bounded action authorization
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path Physics/library/phy-nlm-first-law.v1.json \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py MATERIAL_WRITE . \
+            --path tests/test_g9_nlm_friction_connected.py \
+            --base-ref origin/relay/v3-main-cutover-canonical-174
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/relay_can.py DRAFT_PR_UPDATE .
+
+      - name: Validate V3 authority
+        run: |
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+          python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
+
+      - name: Commit native admission outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay
+          git diff --cached --stat
+          git commit -m "[relay-v3] Admit Issue 174 NLM canonical slice"
+          git push origin HEAD:content/issue-174-nlm-friction-gold
