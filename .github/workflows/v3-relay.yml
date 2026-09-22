@@ -1,0 +1,43 @@
+name: v3-relay
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Grade9V3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout pinned Engineering Relay V3
+        uses: actions/checkout@v4
+        with:
+          repository: reallaksh19/Common
+          ref: c87cf87b313801e42ecd0fcc7d36af0d90c5f400
+          path: _common_v3
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install relay validator dependencies
+        run: python -m pip install --disable-pip-version-check pyyaml jsonschema
+
+      - name: Resolve selected protocol
+        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_default.py .
+
+      - name: Validate V3 foundation
+        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/validate_foundation.py .
+
+      - name: Validate active protocol selection and frozen V2.5 history
+        run: python _common_v3/skills/engineering-pr-delivery-v3/scripts/protocol_cutover.py . validate
