@@ -9,6 +9,9 @@ The expanded v2 bank reuses canonical Physics capabilities/families already pres
 | Pass-1 topic | Canonical bucket | Capability | Existing microtopic | Family | Decision |
 | --- | --- | --- | --- | --- | --- |
 | Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-SECOND-LAW` | `MIC-PHY-NLM-SECOND-LAW` | `FAM-PHY-NLM-PRACTICE` | REUSE |
+| Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-FORCES-SUM-ZERO` | canonical capability | `FAM-PHY-NLM-PRACTICE` | REUSE |
+| Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-FRAME-CHOICE` | canonical capability | `FAM-PHY-NLM-PRACTICE` | REUSE |
+| Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-CONNECTED-COMMON-ACCEL` | canonical capability | `FAM-PHY-NLM-PRACTICE` | REUSE |
 | Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-FRICTION-QUANT` | `MIC-PHY-NLM-FRICTION-QUANT` | `FAM-PHY-NLM-PRACTICE` | REUSE |
 | Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-IDEAL-STRING-TENSION` | `MIC-PHY-NLM-IDEAL-STRING-TENSION` | `FAM-PHY-NLM-PRACTICE` | REUSE |
 | Motion in 2D — linear/projectile only | `BUCKET-PHY-KIN-2D-MOTION` | `CAP-KIN-2D-INDEPENDENT-COMPONENTS` | `MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS` | `FAM-PHY-KIN-2D-PRACTICE` | REUSE |
@@ -48,7 +51,7 @@ The expanded v2 bank reuses canonical Physics capabilities/families already pres
 
 The native repository distinction is preserved:
 
-- `question.hints[]` is source/question custody. For the accepted 54 items no official hint ladder is supplied, so it remains empty.
+- `question.hints[]` is source/question custody. For the accepted 67 items no official hint ladder is supplied, so it remains empty.
 - `question.scaffolds[]` is authored Core2A/Core2B pedagogical support. Each accepted record has a graduated scaffold ladder bound to stable `answer.reasoning_route[]` move IDs.
 
 ## Core2B transfer analysis
@@ -62,6 +65,9 @@ Transfer remains an analysis claim, not a generated practice set. Real-transfer 
 - `PYQ-PHY-JEEADV-2014-P1-Q18` — competing free-particle versus finite-chamber interpretations;
 - `PYQ-PHY-JEEADV-2023-P1-Q01` — energy, projectile impact and restitution across successive events;
 - `PYQ-PHY-JEEADV-2025-P2-Q15` — linear drag changes the governing horizontal model;
+- `PYQ-PHY-IITJEE-2009-P2-Q40` — accelerating-frame model choice introduces pseudo-force;
+- `PYQ-PHY-IITJEE-2011-P2-Q26` — projectile timing must be coupled to collision momentum;
+- `PYQ-CHEM-JEEADV-2015-P2-Q28` — ligand and metal oxidation must be combined before permanganate balancing;
 - `PYQ-CHEM-JEEADV-2023-P2-Q08` — half-reaction balancing plus two requested stoichiometric outputs;
 - `PYQ-CHEM-JEEADV-2025-P2-Q16` — hydrolysis-water accounting before mass-fraction and integer composition constraints.
 
