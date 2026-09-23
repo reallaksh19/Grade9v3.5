@@ -2,13 +2,13 @@ schema_version: relay-v3.1-snapshot
 authority: DERIVED_READ_MODEL
 generated_from:
   roadmap_revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
-  state_digest: sha256:da436809536d583856518abde8f323b594fc5d568b0cf62eb460b697fa522fa4
+  state_digest: sha256:6e2fdb76a6998c9a66ec86457475a9c747e0c86d3cdd60df8205be25399b952a
   material_basis:
-    head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
-    tree_digest: sha256:b3d08280e03720d772957ba552b19e678add3f768bb23cc5fce8f0cadc4eccce
-    relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
+    head: 0bc5e483fff3867fcf2e7c141b091a8aeded236f
+    tree_digest: sha256:5f1a0c3b70884ce0bd1dd44f9ee55475b8834cd727baaa0cc437ce05ae65cd58
+    relevant_paths_digest: sha256:2be1d594989016b07c7fd674566869a6c7451ee54437293a55e560336d7427dd
     dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
-  coordination_head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
+  coordination_head: aa37b9ab83b901cdea282ffb2cd6385639bb4cf2
 owner:
   outcome: Preserve the delivered self-study architecture and activate new work only
     from a concrete learner, worksheet, source, or product defect rather than from
@@ -17,10 +17,9 @@ owner:
     and Mathematics expansion are Owner-skipped for now; dormant Physics inventory
     remains demand-gated and real learner evidence remains input-gated.
 programme:
-  accepted_progress: 8.73
+  accepted_progress: 6.35
   completed_work:
   - WP-PORTABLE-163
-  - WP-ISS125-ACCELERATED-FRAMES
   remaining_work:
   - WP-TAKEOVER-RECONCILE
   - WP-TA-102
@@ -33,6 +32,7 @@ programme:
   - WP-CANONICAL-174-NLM
   - WP-CANONICAL-174-MOTION
   - WP-LEARNER-175-PRODUCTION
+  - WP-ISS125-ACCELERATED-FRAMES
 execution:
   lifecycle: ACTIVE
   work_package: WP-ISS125-ACCELERATED-FRAMES
@@ -73,15 +73,12 @@ scope:
     authority.
 material:
   base: c6e2e825e9bd3e67f1e37228d6ddca19081edb23
-  head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
-  relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
+  head: 0bc5e483fff3867fcf2e7c141b091a8aeded236f
+  relevant_paths_digest: sha256:2be1d594989016b07c7fd674566869a6c7451ee54437293a55e560336d7427dd
   dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
 evidence:
-  latest_checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
-  latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+  latest_checkpoint: null
+  latest_material_validation: {}
 controls:
   execution_blockers: []
   handover_blockers: []
@@ -111,4 +108,3 @@ handoff:
   - relay/CONTROLS/controls.yaml
   - relay/WORK/EP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
   - relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
-  - relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
