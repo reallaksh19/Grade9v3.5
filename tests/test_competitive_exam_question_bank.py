@@ -11,13 +11,13 @@ LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
 OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in"}
 EXPECTED_COUNTS = {
     "Physics": {
-        "Newton's Laws of Motion / NLM": 9,
-        "Motion in 2D / Motion in a Plane — linear/projectile only": 10,
+        "Newton's Laws of Motion / NLM": 12,
+        "Motion in 2D / Motion in a Plane — linear/projectile only": 11,
         "Motion in 1D — relative motion only": 2,
     },
     "Chemistry": {
-        "Redox Reactions": 19,
-        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 14,
+        "Redox Reactions": 25,
+        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 17,
     },
 }
 
@@ -45,11 +45,11 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
         cls.ledger = load(LEDGER)
 
     def test_fixture_native_v2_shape_and_counts(self):
-        self.assertEqual(len(self.physics["questions"]), 21)
-        self.assertEqual(len(self.chemistry["questions"]), 33)
-        self.assertEqual(len(self.questions), 54)
+        self.assertEqual(len(self.physics["questions"]), 25)
+        self.assertEqual(len(self.chemistry["questions"]), 42)
+        self.assertEqual(len(self.questions), 67)
         for bank in self.banks:
-            self.assertEqual(bank["version"], "2.1.0")
+            self.assertEqual(bank["version"], "2.2.0")
             self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
             self.assertEqual(bank["access_status"], "FULL_ITEM_INSPECTED")
 
@@ -187,13 +187,12 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             q for _, q in self.questions
             if q["extensions"]["grade9v3:analysis"]["topic"] == "Motion in 1D — relative motion only"
         ]
-        self.assertEqual(len(relative), 2)
-        self.assertEqual(
-            {q["id"] for q in relative},
+        self.assertGreaterEqual(len(relative), 2)
+        self.assertTrue(
             {
                 "PYQ-PHY-IITJEE-2008-P2-Q32",
                 "PYQ-PHY-JEEADV-2014-P1-Q18",
-            },
+            }.issubset({q["id"] for q in relative})
         )
 
     def test_donor_registries_remain_quarantined_and_preserved(self):
