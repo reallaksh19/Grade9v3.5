@@ -1,6 +1,6 @@
 {
   "manifest_id": "QB-PHYSICS-COMPETITIVE-PASS1-V2",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "acquisition_ref": "PASS1-OFFICIAL-ARCHIVE-2026-09-23",
   "target_package": "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
   "inspector_id": "pass1-provenance",
@@ -25,7 +25,11 @@
     "NEET (UG) 2020 English Set E1 Physics Q160",
     "JEE (Advanced) 2022 Paper 1 Physics Q8",
     "JEE (Advanced) 2023 Paper 1 Physics Q1",
-    "JEE (Advanced) 2025 Paper 2 Physics Q15"
+    "JEE (Advanced) 2025 Paper 2 Physics Q15",
+    "IIT-JEE 2009 Paper I Physics Q49",
+    "IIT-JEE 2009 Paper II Physics Q40",
+    "IIT-JEE 2009 Paper II Physics Q55",
+    "IIT-JEE 2011 Paper II Physics Q26"
   ],
   "access_status": "FULL_ITEM_INSPECTED",
   "resource": {
@@ -64,12 +68,12 @@
     "grade9v3:source_hint_policy": "question.hints[] is source custody only; authored support is question.scaffolds[].",
     "grade9v3:wording_policy": "Every learner-facing stem is PYQ_ADAPTED because it is a faithful non-verbatim restatement; the verified original identity remains in grade9v3:source_custody.",
     "grade9v3:topic_counts": {
-      "Newton's Laws of Motion / NLM": 9,
-      "Motion in 2D / Motion in a Plane — linear/projectile only": 10,
+      "Newton's Laws of Motion / NLM": 12,
+      "Motion in 2D / Motion in a Plane — linear/projectile only": 11,
       "Motion in 1D — relative motion only": 2
     },
     "grade9v3:source_resource_policy": "Question source_refs/origin_ref resolve against resources[]; exact source wording remains external.",
-    "grade9v3:accepted_question_count": 21
+    "grade9v3:accepted_question_count": 25
   },
   "questions": [
     {
@@ -3544,6 +3548,684 @@
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-IITJEE-2009-P1-Q49",
+      "version": "2.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "IIT-JEE",
+          "year": 2009,
+          "paper": "Paper I",
+          "section": "Physics",
+          "question_number": "49",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2009_1.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "IIT-JEE|2009|Paper I|Physics|Q49",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "IIT-JEE 2009 · Paper I · Q49",
+          "original_question_type": "multi_correct_mcq",
+          "learner_question_type": "multi_correct_mcq",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Tests the exact consequence of zero resultant external force without overextending it to energy or torque statements."
+          },
+          "expected_time_seconds": 70,
+          "common_wrong_route": "Assuming zero net external force implies every mechanical quantity is conserved.",
+          "stable_crux_move": "Use the system momentum equation dP/dt=F_ext and distinguish net force from net torque.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "IIT-JEE|2009|Paper I|Physics|Q49",
+      "stem": "In an inertial frame, the resultant of all external forces on a system of particles is zero. Which quantity is guaranteed not to change with time?",
+      "subparts": [],
+      "options": [
+        "(A) Linear momentum of the system",
+        "(B) Kinetic energy of the system",
+        "(C) Angular momentum of the system",
+        "(D) Potential energy of the system"
+      ],
+      "conditions": [
+        "The observation is made from an inertial frame."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Option (A) only: total linear momentum is constant.",
+        "reasoning": [
+          "For a system of particles, dP/dt equals the resultant external force.",
+          "Since the resultant external force is zero, dP/dt=0 and total linear momentum is constant.",
+          "Zero net force does not by itself guarantee zero external torque or conservation of kinetic or potential energy."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "For a system of particles, dP/dt equals the resultant external force.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Since the resultant external force is zero, dP/dt=0 and total linear momentum is constant.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Zero net force does not by itself guarantee zero external torque or conservation of kinetic or potential energy.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Option (A) only: total linear momentum is constant."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-2",
+        "check": "Internal interactions can change kinetic or potential energy while leaving total linear momentum unchanged.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FORCES-SUM-ZERO",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "IIT-JEE|2009|Paper I|Physics|Q49",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Recall the system form of Newton's second law.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-1"
+        },
+        {
+          "text": "Ask which conservation statement follows directly from F_ext=0.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-2"
+        },
+        {
+          "text": "Check why zero net force does not imply zero torque or constant kinetic energy.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P1-Q49-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-IITJEE-2009-P2-Q40",
+      "version": "2.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "IIT-JEE",
+          "year": 2009,
+          "paper": "Paper II",
+          "section": "Physics",
+          "question_number": "40",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2009_2.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "IIT-JEE|2009|Paper II|Physics|Q40",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "IIT-JEE 2009 · Paper II · Q40",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Requires choosing the accelerating frame and combining gravity with pseudo-force along a curved constraint."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Applying only gravity and leaving the equilibrium at the vertex despite the accelerating support.",
+          "stable_crux_move": "Introduce the horizontal pseudo-force in the wire frame before minimizing the effective potential.",
+          "transfer_profile": {
+            "core2b_candidate": true,
+            "dimension": "model_choice",
+            "classification": "REAL_TRANSFER_CANDIDATE"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "IIT-JEE|2009|Paper II|Physics|Q40",
+      "stem": "A bead can slide without friction on a wire shaped as the parabola y=kx^2, with y vertical. The wire is accelerated horizontally with constant acceleration a. Find the distance from the y-axis of the new equilibrium position where the bead can remain at rest relative to the wire.",
+      "subparts": [],
+      "options": [
+        "(A) a/(gk)",
+        "(B) a/(2gk)",
+        "(C) 2a/(gk)",
+        "(D) a/(4gk)"
+      ],
+      "conditions": [
+        "The bead is frictionless on the wire.",
+        "The required equilibrium is relative to the accelerating wire."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Option (B): a/(2gk).",
+        "reasoning": [
+          "In the accelerating wire frame, the bead experiences gravity downward and a horizontal pseudo-force ma opposite the wire acceleration.",
+          "The effective potential along the wire is U(x)=mgkx^2 ± max, with the sign depending on the acceleration direction.",
+          "Equilibrium requires dU/dx=0, so 2mgkx ± ma=0 and the distance magnitude is |x|=a/(2gk)."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "In the accelerating wire frame, the bead experiences gravity downward and a horizontal pseudo-force ma opposite the wire acceleration.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-2",
+            "kind": "CONNECT",
+            "action": "The effective potential along the wire is U(x)=mgkx^2 ± max, with the sign depending on the acceleration direction.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Equilibrium requires dU/dx=0, so 2mgkx ± ma=0 and the distance magnitude is |x|=a/(2gk).",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Option (B): a/(2gk)."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-2",
+        "check": "As a approaches zero, the equilibrium returns to the parabola's lowest point x=0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "IIT-JEE|2009|Paper II|Physics|Q40",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Work in the wire frame, where the bead is stationary at the desired equilibrium.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-1"
+        },
+        {
+          "text": "Add the pseudo-force opposite the wire acceleration.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-2"
+        },
+        {
+          "text": "Substitute y=kx^2 into the effective potential and differentiate with respect to x.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q40-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-IITJEE-2009-P2-Q55",
+      "version": "2.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "IIT-JEE",
+          "year": 2009,
+          "paper": "Paper II",
+          "section": "Physics",
+          "question_number": "55",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2009_2.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "IIT-JEE|2009|Paper II|Physics|Q55",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "IIT-JEE 2009 · Paper II · Q55",
+          "original_question_type": "integer_answer",
+          "learner_question_type": "integer_answer",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Requires solving the connected-body acceleration and tension before applying work over the first-second displacement."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Using T=mg or using the heavy block's weight difference directly as the work-producing force.",
+          "stable_crux_move": "Find the actual string tension first; the work asked is by tension, not by the net force.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "IIT-JEE|2009|Paper II|Physics|Q55",
+      "stem": "A light inextensible string passes over a smooth fixed pulley and connects masses 0.36 kg and 0.72 kg. The system is released from rest. Taking g=10 m/s^2, find the work in joules done by the string on the 0.36 kg block during the first second.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "String is light and inextensible.",
+        "Pulley is smooth.",
+        "The system starts from rest.",
+        "Use g=10 m/s^2."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "8 J.",
+        "reasoning": [
+          "The common acceleration is a=(0.72-0.36)g/(0.72+0.36)=10/3 m/s^2.",
+          "For the 0.36 kg block moving upward, T-mg=ma, so T=0.36(10+10/3)=4.8 N.",
+          "Its displacement in the first second is s=(1/2)at^2=5/3 m, and string tension acts along the displacement, so W=Ts=4.8×5/3=8 J."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "The common acceleration is a=(0.72-0.36)g/(0.72+0.36)=10/3 m/s^2.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-2",
+            "kind": "CONNECT",
+            "action": "For the 0.36 kg block moving upward, T-mg=ma, so T=0.36(10+10/3)=4.8 N.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Its displacement in the first second is s=(1/2)at^2=5/3 m, and string tension acts along the displacement, so W=Ts=4.8×5/3=8 J.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "8 J."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-2",
+        "check": "The work is positive on the lighter block because its displacement is in the same direction as the tension force.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [
+        "CAP-NLM-CONNECTED-COMMON-ACCEL",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "IIT-JEE|2009|Paper II|Physics|Q55",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Solve the two-mass Atwood acceleration for the common string motion.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-1"
+        },
+        {
+          "text": "Use Newton II on the 0.36 kg block to determine T.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-2"
+        },
+        {
+          "text": "Find its first-second displacement and take W=T s.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2009-P2-Q55-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-IITJEE-2011-P2-Q26",
+      "version": "2.2.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "IIT-JEE",
+          "year": 2011,
+          "paper": "Paper II",
+          "section": "Physics",
+          "question_number": "26",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2011_2.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "IIT-JEE|2011|Paper II|Physics|Q26",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "IIT-JEE 2011 · Paper II · Q26",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Uses projectile timing to infer post-collision velocities, then links them by momentum conservation."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Treating the ranges as velocities without first establishing the common fall time.",
+          "stable_crux_move": "Exploit the shared projectile fall time before applying horizontal momentum conservation at the collision.",
+          "transfer_profile": {
+            "core2b_candidate": true,
+            "dimension": "reasoning_steps",
+            "classification": "REAL_TRANSFER_CANDIDATE"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "IIT-JEE|2011|Paper II|Physics|Q26",
+      "stem": "A 0.2 kg ball rests on top of a 5 m vertical post. A 0.01 kg bullet moving horizontally with speed V strikes the ball centrally. After the collision the ball and bullet move independently and land 20 m and 100 m, respectively, from the foot of the post. Find the bullet's initial speed.",
+      "subparts": [],
+      "options": [
+        "(A) 250 m/s",
+        "(B) 250sqrt(2) m/s",
+        "(C) 400 m/s",
+        "(D) 500 m/s"
+      ],
+      "conditions": [
+        "Both bodies begin their post-collision projectile motion from the same 5 m height.",
+        "Use g=10 m/s^2 for the numerical evaluation consistent with the source options."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Option (D): 500 m/s.",
+        "reasoning": [
+          "From height 5 m with zero initial vertical velocity, the common fall time is t=sqrt(2h/g)=1 s.",
+          "Therefore the ball and bullet post-collision horizontal speeds are 20 m/s and 100 m/s.",
+          "Horizontal momentum during the short collision is conserved: 0.01V=0.2(20)+0.01(100)=5, giving V=500 m/s."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "From height 5 m with zero initial vertical velocity, the common fall time is t=sqrt(2h/g)=1 s.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Therefore the ball and bullet post-collision horizontal speeds are 20 m/s and 100 m/s.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Horizontal momentum during the short collision is conserved: 0.01V=0.2(20)+0.01(100)=5, giving V=500 m/s.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Option (D): 500 m/s."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-2",
+        "check": "The two bodies have the same fall time because they leave from the same height with zero vertical velocity; their different ranges therefore directly encode different horizontal speeds.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "IIT-JEE|2011|Paper II|Physics|Q26",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Find the common time to fall 5 m.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-1"
+        },
+        {
+          "text": "Convert each horizontal range into its post-collision horizontal speed.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-2"
+        },
+        {
+          "text": "Apply horizontal momentum conservation across the brief collision.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q26-MOVE-3"
         }
       ]
     }
