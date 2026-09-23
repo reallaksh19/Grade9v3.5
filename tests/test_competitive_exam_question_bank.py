@@ -11,7 +11,7 @@ LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
 OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in"}
 EXPECTED_COUNTS = {
     "Physics": {
-        "Newton's Laws of Motion / NLM": 12,
+        "Newton's Laws of Motion / NLM": 13,
         "Motion in 2D / Motion in a Plane — linear/projectile only": 15,
         "Motion in 1D — relative motion only": 3,
     },
