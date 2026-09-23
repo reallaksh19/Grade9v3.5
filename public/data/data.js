@@ -1548,6 +1548,54 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-NLM-ACCELERATING-FRAME-EXTENSION",
+          "title": "Accelerating-frame observer choice, apparent weight, and hanging-bob transfer",
+          "grade": 9,
+          "chapter": "Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-NEWTON-SECOND-LAW"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "A scale measures the support/normal force, not mass or gravitational force; in an inertial vertical description the normal force changes with acceleration while mg remains the gravitational force.",
+            "When Newton's second law is written in a frame accelerating with a_frame, a pseudo-force -m a_frame is added as a frame-dependent modelling term; it is not a new physical interaction or a Newton-III partner.",
+            "An inertial-frame description and a consistently written accelerating-frame description of the same event must agree on observable quantities such as scale reading and string direction."
+          ],
+          "misconceptions": [
+            "A scale always reads mg because weight is mg.",
+            "An elevator moving upward must make the scale read heavier.",
+            "Pseudo-force is a new physical interaction or a third-law partner."
+          ]
+        },
+        {
+          "gate_id": "PHY-KIN-CIRCULAR-DYNAMICS-EXTENSION",
+          "title": "Circular dynamics: inward acceleration and net radial force role",
+          "grade": 9,
+          "chapter": "Motion / Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-KIN-AVERAGE-RATES",
+            "PHY-NEWTON-SECOND-LAW",
+            "PHY-NLM-CONTACT-CONSTRAINTS"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "For uniform circular motion, velocity is tangent while acceleration is radial and inward with magnitude v^2/r.",
+            "Centripetal describes the inward role of the net radial force; it is not an additional physical interaction to add to a free-body diagram.",
+            "Different real interactions such as tension, static friction, gravity, or normal-force components can supply the required inward resultant without changing the radial Newton-II relation."
+          ],
+          "misconceptions": [
+            "A free-body diagram should contain the real inward force plus another arrow labelled centripetal force.",
+            "Constant speed means acceleration is zero.",
+            "Static friction on every flat curve automatically equals mu_s N."
+          ]
+        },
+        {
           "gate_id": "PHY-VEC-SCALAR-VECTOR",
           "title": "Magnitude, vector and signed component",
           "grade": 9,
@@ -1759,54 +1807,6 @@ window.GRADE9V3 = {
           "misconceptions": [
             "The raw value of tan^-1(v_y/v_x) is always the final direction.",
             "The zero vector can be normalized in the same way as any other vector."
-          ]
-        },
-        {
-          "gate_id": "PHY-NLM-ACCELERATING-FRAME-EXTENSION",
-          "title": "Accelerating-frame observer choice, apparent weight, and hanging-bob transfer",
-          "grade": 9,
-          "chapter": "Force and Laws of Motion",
-          "scope_class": "OWNER_EXTENSION",
-          "tier": "JEE_MAINS",
-          "scope_state": "ACTIVE",
-          "prerequisites": [
-            "PHY-NEWTON-SECOND-LAW"
-          ],
-          "external_prerequisites": [],
-          "concepts": [
-            "A scale measures the support/normal force, not mass or gravitational force; in an inertial vertical description the normal force changes with acceleration while mg remains the gravitational force.",
-            "When Newton's second law is written in a frame accelerating with a_frame, a pseudo-force -m a_frame is added as a frame-dependent modelling term; it is not a new physical interaction or a Newton-III partner.",
-            "An inertial-frame description and a consistently written accelerating-frame description of the same event must agree on observable quantities such as scale reading and string direction."
-          ],
-          "misconceptions": [
-            "A scale always reads mg because weight is mg.",
-            "An elevator moving upward must make the scale read heavier.",
-            "Pseudo-force is a new physical interaction or a third-law partner."
-          ]
-        },
-        {
-          "gate_id": "PHY-KIN-CIRCULAR-DYNAMICS-EXTENSION",
-          "title": "Circular dynamics: inward acceleration and net radial force role",
-          "grade": 9,
-          "chapter": "Motion / Force and Laws of Motion",
-          "scope_class": "OWNER_EXTENSION",
-          "tier": "JEE_MAINS",
-          "scope_state": "ACTIVE",
-          "prerequisites": [
-            "PHY-KIN-AVERAGE-RATES",
-            "PHY-NEWTON-SECOND-LAW",
-            "PHY-NLM-CONTACT-CONSTRAINTS"
-          ],
-          "external_prerequisites": [],
-          "concepts": [
-            "For uniform circular motion, velocity is tangent while acceleration is radial and inward with magnitude v^2/r.",
-            "Centripetal describes the inward role of the net radial force; it is not an additional physical interaction to add to a free-body diagram.",
-            "Different real interactions such as tension, static friction, gravity, or normal-force components can supply the required inward resultant without changing the radial Newton-II relation."
-          ],
-          "misconceptions": [
-            "A free-body diagram should contain the real inward force plus another arrow labelled centripetal force.",
-            "Constant speed means acceleration is zero.",
-            "Static friction on every flat curve automatically equals mu_s N."
           ]
         }
       ],
@@ -19330,17 +19330,6 @@ window.GRADE9V3 = {
               ],
               "activities": [
                 {
-                  "id": "ACT-NLM-ACCELERATED-FRAMES",
-                  "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
-                  "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
-                  "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
-                  "supports_claims": [
-                    "CAP-NLM-FRAME-CHOICE",
-                    "CAP-NLM-FBD-BODY-OWNERSHIP",
-                    "CAP-NLM-SECOND-LAW"
-                  ]
-                },
-                {
                   "id": "ACT-KIN-CIRCULAR-DYNAMICS",
                   "title": "Circular Motion & the Centripetal-Force Fallacy Explorer",
                   "locator": "public/physics/motion-1d/explorers/circular-dynamics/index.html",
@@ -19348,6 +19337,17 @@ window.GRADE9V3 = {
                   "supports_claims": [
                     "CAP-KIN-CIRCULAR-DYNAMICS-ROLE",
                     "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+                    "CAP-NLM-SECOND-LAW"
+                  ]
+                },
+                {
+                  "id": "ACT-NLM-ACCELERATED-FRAMES",
+                  "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
+                  "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+                  "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
+                  "supports_claims": [
+                    "CAP-NLM-FRAME-CHOICE",
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
                     "CAP-NLM-SECOND-LAW"
                   ]
                 }

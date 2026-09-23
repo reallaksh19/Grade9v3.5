@@ -13,7 +13,7 @@ if str(REPO) not in sys.path:
 from Shared.contracts import ContractError
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools.core_learning_projection_adapter import adapt_compiled_bucket
+from Shared.tools.core_learning_projection_adapter import adapt_compiled_bucket_with_status
 
 OUT = REPO / "public" / "core-learning" / "data.js"
 
@@ -22,10 +22,10 @@ def subjects() -> list[str]:
     return sorted(p.parent.parent.name for p in REPO.glob("*/adapter/CoreContracts.json"))
 
 
-def _subject_rows(subject: str) -> list[dict]:
+def _subject_rows(subject: str) -> tuple[list[dict], list[dict]]:
     paths = sorted((REPO / subject / "library").glob("*.json"))
     if not paths:
-        return []
+        return [], []
     records = build_index(load_packages(paths))
     bucket_ids = sorted(
         row["id"]
@@ -33,6 +33,7 @@ def _subject_rows(subject: str) -> list[dict]:
         if isinstance(row, dict) and row.get("_collection") == "buckets"
     )
     rows = []
+    availability = []
     for bucket_id in bucket_ids:
         try:
             compiled = compile_bucket(
@@ -43,17 +44,38 @@ def _subject_rows(subject: str) -> list[dict]:
                 subject=subject,
                 practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
             )
-        except ContractError:
+        except ContractError as exc:
+            availability.append({
+                "subject": subject,
+                "bucket_ref": bucket_id,
+                "status": "UNSUPPORTED",
+                "code": exc.code,
+                "detail": exc.detail,
+                "projection_refs": [],
+            })
             continue
-        rows.extend(adapt_compiled_bucket(compiled, records, subject=subject))
-    return rows
+        bucket_rows, finding = adapt_compiled_bucket_with_status(compiled, records, subject=subject)
+        rows.extend(bucket_rows)
+        availability.append({
+            "subject": subject,
+            "bucket_ref": bucket_id,
+            "status": "AVAILABLE" if bucket_rows else "UNSUPPORTED",
+            "code": finding["code"] if finding else None,
+            "detail": finding["detail"] if finding else None,
+            "projection_refs": [row["id"] for row in bucket_rows],
+        })
+    return rows, availability
 
 
 def build() -> dict:
     rows = []
+    availability = []
     for subject in subjects():
-        rows.extend(_subject_rows(subject))
+        subject_rows, subject_availability = _subject_rows(subject)
+        rows.extend(subject_rows)
+        availability.extend(subject_availability)
     rows.sort(key=lambda row: row["id"])
+    availability.sort(key=lambda row: (row["subject"], row["bucket_ref"]))
     return {
         "generated_by": "Shared/tools/build_core_learning_data.py",
         "provider_status": "PRODUCTION_COMPILED_CANONICAL",
@@ -62,6 +84,8 @@ def build() -> dict:
             "contract_version": "1.0",
         },
         "core_projections": rows,
+        "bucket_availability": availability,
+        "findings": [row for row in availability if row["status"] == "UNSUPPORTED"],
     }
 
 
