@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 241,
-  "relation_count": 280,
+  "component_count": 242,
+  "relation_count": 282,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
     "TEST": 115,
-    "TOOLING": 55,
+    "TOOLING": 56,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:ff555e33de86757c23dde3cda165b00e45c330c79075efb4c6154f2f6f9a5b2c",
+  "digest": "sha256:a45c01405e88c7720b7d11706cabc4558a2247080827342d527449c1f7835986",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -454,6 +454,13 @@
       "sha256": "724af2879bf50b53a24d66ccf70fac31dc4083b1f0f7a2bdc1a965f37e34f7b1"
     },
     {
+      "path": "Shared/tools/atlas_index.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 21045,
+      "sha256": "a7d886edfb2db3b179c4c3b5ba756b2dec9638a5416e0d1d32a67df75c5b3324"
+    },
+    {
       "path": "Shared/tools/atlas_need.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -506,8 +513,8 @@
       "path": "Shared/tools/build_web_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 15674,
-      "sha256": "5576d3f35bfe30958c80ffb0c490d2959bbe2eb1fcd79c9e328daf330c9cdeb4"
+      "bytes": 16238,
+      "sha256": "cb29b5bd44e64c2c13f1f197adf8ee7ab1d068d26887f699884e21d1d0c0536f"
     },
     {
       "path": "Shared/tools/capability_audit.py",
@@ -1430,8 +1437,8 @@
       "path": "tests/test_issue212_atlas_index.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 17222,
-      "sha256": "86a8ab763b24e4f99a652e461f5e6d99f105b38bf678536142bf68d8a606abac"
+      "bytes": 24407,
+      "sha256": "e2e606e7e6819a7dba0707a9db991a51b6242ff98de99726eb36157e3e970220"
     },
     {
       "path": "tests/test_learning_router.py",
@@ -1675,8 +1682,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 1896399,
-      "sha256": "3eb754ca62b88a8f47831b4ca1970c1e0bdec7e67c320c94b550eec021d4e0e3"
+      "bytes": 2186055,
+      "sha256": "98b4037b93f28502760cc95ed735a215aebdb6d20740f152700bdde8304eb8aa"
     },
     {
       "path": "tools/index.html",
@@ -1941,6 +1948,16 @@
     {
       "from": "Shared/tools/build_web_data.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_web_data.py",
+      "to": "Shared.tools.atlas_index",
       "kind": "IMPORTS"
     },
     {
