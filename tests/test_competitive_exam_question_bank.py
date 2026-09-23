@@ -8,16 +8,16 @@ PHYS_BANK = ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v2.
 CHEM_BANK = ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json"
 LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
 
-OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in"}
+OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in"}
 EXPECTED_COUNTS = {
     "Physics": {
         "Newton's Laws of Motion / NLM": 12,
-        "Motion in 2D / Motion in a Plane — linear/projectile only": 14,
-        "Motion in 1D — relative motion only": 2,
+        "Motion in 2D / Motion in a Plane — linear/projectile only": 15,
+        "Motion in 1D — relative motion only": 3,
     },
     "Chemistry": {
-        "Redox Reactions": 25,
-        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 19,
+        "Redox Reactions": 26,
+        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 20,
     },
 }
 
@@ -45,11 +45,11 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
         cls.ledger = load(LEDGER)
 
     def test_fixture_native_v2_shape_and_counts(self):
-        self.assertEqual(len(self.physics["questions"]), 28)
-        self.assertEqual(len(self.chemistry["questions"]), 44)
-        self.assertEqual(len(self.questions), 72)
+        self.assertEqual(len(self.physics["questions"]), 31)
+        self.assertEqual(len(self.chemistry["questions"]), 46)
+        self.assertEqual(len(self.questions), 77)
         for bank in self.banks:
-            self.assertEqual(bank["version"], "2.4.0")
+            self.assertEqual(bank["version"], "2.5.0")
             self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
             self.assertEqual(bank["access_status"], "FULL_ITEM_INSPECTED")
 
@@ -96,6 +96,27 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             )
             self.assertNotIn(identity, seen)
             seen.add(identity)
+
+    def test_jee_main_2026_records_require_official_paper_and_final_key(self):
+        expected = {
+            "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
+            "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+            "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+            "PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51",
+            "PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62",
+        }
+        actual = {q["id"] for _, q in self.questions if q["extensions"]["grade9v3:source_custody"]["exam"] == "JEE Main"}
+        self.assertEqual(actual, expected)
+        for _, q in self.questions:
+            custody = q["extensions"]["grade9v3:source_custody"]
+            if custody["exam"] != "JEE Main":
+                continue
+            self.assertEqual(custody["year"], 2026)
+            self.assertIn("Session 2", custody["paper"])
+            self.assertIn("Shift 2", custody["paper"])
+            self.assertEqual(custody["answer_authority"], "OFFICIAL_NTA_FINAL_ANSWER_KEY")
+            self.assertIn(urlparse(custody["answer_key_url"]).hostname, OFFICIAL_HOSTS)
+            self.assertEqual(custody["last_checked"], "2026-09-23")
 
     def test_native_question_fields_are_learner_usable(self):
         required = {
@@ -187,11 +208,12 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             q for _, q in self.questions
             if q["extensions"]["grade9v3:analysis"]["topic"] == "Motion in 1D — relative motion only"
         ]
-        self.assertGreaterEqual(len(relative), 2)
+        self.assertGreaterEqual(len(relative), 3)
         self.assertTrue(
             {
                 "PYQ-PHY-IITJEE-2008-P2-Q32",
                 "PYQ-PHY-JEEADV-2014-P1-Q18",
+                "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
             }.issubset({q["id"] for q in relative})
         )
 
