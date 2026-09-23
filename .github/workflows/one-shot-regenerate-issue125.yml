@@ -7,7 +7,6 @@ permissions:
   contents: write
 jobs:
   regenerate:
-    if: github.actor != 'github-actions[bot]' || github.event.head_commit.message != 'chore: regenerate issue125 derived artifacts'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +18,7 @@ jobs:
           python-version: '3.11'
       - name: Regenerate repository-derived artifacts
         run: python3 Shared/tools/build_manifest.py
-      - name: Commit generated outputs
+      - name: Commit generated outputs when changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
