@@ -9,12 +9,12 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 
 ## Summary
 
-- Accepted authoritative questions: **8**
+- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **30**
 - In-scope donor candidates still quarantined: **147**
 - Exact duplicate donor clusters detected: **0**
 - Number-normalized/trivial-variant clusters detected beyond exact duplicates: **0**
-- Straight-line relative-motion verified coverage: **0 accepted**; acquisition hold remains.
-- No fully authored question was added.
+- Straight-line relative-motion coverage: **2 accepted** official-paper parent records; the former acquisition hold is closed.
+- No fully authored question was added; accepted learner-facing wording is explicitly `PYQ_ADAPTED`, with source hints kept separate from authored scaffolds.
 
 ### Quarantine reason counts
 
