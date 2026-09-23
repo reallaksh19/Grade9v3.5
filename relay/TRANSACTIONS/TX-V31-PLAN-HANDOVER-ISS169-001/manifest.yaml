@@ -1,0 +1,58 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-PLAN-HANDOVER-ISS169-001
+command: PLAN_HANDOVER
+actor: chatgpt-sol-exit-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T16:46:11.687319Z'
+updated_at: '2026-09-22T16:46:11.707988Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:5297b747da9eabdd2b279d71af17f9d75b6e02851e739c2920ebec68b7477e55
+  after_digest: sha256:b141b01948cbf2092fe9e21dd5170135a6b7fd0754c5131699fd4ec4feddb17e
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:3cec28fb39bd47e11723ae36e90ce7360cd181a3dcd3f10a3dc3aad685bb50ed
+  after_digest: sha256:b9b1c0ee76cec5e339c101268a22e2ea9993321b74e690a20f6c2eb67944df45
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/backups/001.before
+- path: relay/GENERATED/HANDOVER_CONTEXT.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:25cd257aefb6f3611e515f4a68010320a4429b5635d821f2a0a1be7874c89caa
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/002.after
+  backup_path: null
+- path: relay/GENERATED/THREE_PASS_REQUEST.md
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:393dfbf6bc90da5468cd2054f810fa368cd19e147321d90ebe9d57aac7aec97c
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/003.after
+  backup_path: null
+- path: relay/GENERATED/THREE_PASS_REQUEST.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:8f0451ec77c300588b130fc9814fae8bf33238728c9b5227b6f299fca8d07867
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/004.after
+  backup_path: null
+- path: relay/GENERATED/improvements/current.improvement.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:5420c4f505d0366d8c8c4b5977e81d0d1bd07f4b8d1c8e48b0daf8802feddd1c
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/005.after
+  backup_path: null
+- path: relay/GENERATED/tasks/EP-EXIT-169-V31-001.snapshot.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:de0893b1427114ea5d3ef4fbb57d6ba00d7615dd9d3cc1f2c8c6956817984db6
+  staged_path: relay/TRANSACTIONS/TX-V31-PLAN-HANDOVER-ISS169-001/staged/006.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/GENERATED/HANDOVER_CONTEXT.yaml
+- relay/GENERATED/THREE_PASS_REQUEST.md
+- relay/GENERATED/THREE_PASS_REQUEST.yaml
+- relay/GENERATED/improvements/current.improvement.yaml
+- relay/GENERATED/tasks/EP-EXIT-169-V31-001.snapshot.yaml

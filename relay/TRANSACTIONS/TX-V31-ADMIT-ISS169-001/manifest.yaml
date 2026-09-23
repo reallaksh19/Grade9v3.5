@@ -1,0 +1,51 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ADMIT-ISS169-001
+command: ADMIT_TASK
+actor: chatgpt-sol-exit-v31-20260922
+status: COMMITTED
+created_at: '2026-09-22T16:42:12.492273Z'
+updated_at: '2026-09-22T16:42:12.518642Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:9ed8eaa08a1172740fe8991783b24022097c9afce3cb4b398e0f32b06b7e07ab
+  after_digest: sha256:5297b747da9eabdd2b279d71af17f9d75b6e02851e739c2920ebec68b7477e55
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:df3d3646e3f7a2a786ee40dfdd4e7ef809c229c0bdde86bf16f6304a8a0282da
+  after_digest: sha256:3cec28fb39bd47e11723ae36e90ce7360cd181a3dcd3f10a3dc3aad685bb50ed
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/backups/001.before
+- path: relay/LEASES/LEASE-EXIT-169-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:ed971cafad3b44a61c4800ada40a0fdb68068f739dd40c78744cf10f28422ba4
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/002.after
+  backup_path: null
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:0b86bfbdcf2f6ab79c6eea87ac7b40be9d42125b5032ac152e32c98e490197a8
+  after_digest: sha256:1661a25768bdbec91600d23e55dfdbb458e7442d8abf69e2ec6fe3da60296a9c
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/backups/003.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:e19a71da33765bf8a13e9a73a12b5b32f38f86184a5c58717e2c6c22e94f9ad1
+  after_digest: sha256:364e447be5a6b97582d69141a909e926cd5ff35fecb50237e2a19adf0b5947bc
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/backups/004.before
+- path: relay/WORK/EP-EXIT-169-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:8762fc805e7daadd0c1f4f73a6c146de6081635b83fd4b7f85e51048c46ab988
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS169-001/staged/005.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-EXIT-169-V31-001.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/WORK/EP-EXIT-169-V31-001.yaml

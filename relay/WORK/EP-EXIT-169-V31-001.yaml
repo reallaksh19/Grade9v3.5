@@ -1,0 +1,107 @@
+schema_version: relay-v3.1-ep
+id: EP-EXIT-169-V31-001
+work_package: WP-TA-105
+outcome:
+  statement: Deliver an auditable derived Grade-9 exit/Grade-10 transition view from
+    canonical required scope and existing learner evidence, preserving unknowns, prerequisite
+    blockers, optional enrichment boundaries, and the delivered Core2A/Core2B demand
+    contract without a mastery score or second learner truth store.
+basis:
+  predecessor_checkpoint: null
+  material_base: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+  protocol_basis: reallaksh19/Common@edb845f06f32c87453dee6fbfcc2f84937017279:skills/engineering-pr-delivery-v3.1
+  semantic_dependencies:
+  - path: docs/grade9/grade9-physics-scope-coverage.json
+    reason: Canonical required Grade-9 scope and blocker classification.
+  - path: Shared/tools/learner_evidence.py
+    reason: Existing learner evidence strength/independence semantics remain authoritative.
+  - path: Physics/library/**
+    reason: Canonical question exposure and transfer metadata supply derived demand-class
+      context.
+  - path: Shared/library/**
+    reason: Delivered Core projection contract supplies Core2A/Core2B exposure semantics.
+  - path: relay/MIGRATION/V3_TO_V31.yaml
+    reason: Pins the current protocol-line migration boundary.
+scope:
+  write:
+  - Shared/tools/grade9_exit.py
+  - tests/test_grade9_exit.py
+  - docs/grade9/GRADE9-PHYSICS-EXIT-TRANSITION-REPORT.md
+  - docs/architecture-manifest.json
+  read:
+  - Shared/tools/learner_evidence.py
+  - Shared/tools/study_session.py
+  - Shared/library/**
+  - Physics/library/**
+  - Physics/matrices/**
+  - docs/grade9/**
+  - agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml
+  protect:
+  - Learners/**
+  - Physics/**
+  - Shared/library/**
+  - Shared/publication_host/**
+  - Shared/workbench/**
+  - public/core-learning/**
+  - standalone/core-learning/**
+  - agents/relay/**
+  prohibit:
+  - Do not add mastery percentages, probabilities, readiness scores or a second Grade-9
+    state store.
+  - Do not convert unknown/missing evidence into mastery or failure.
+  - Do not make authored Core2B inventory alone a transition requirement.
+  - Do not modify Physics or Learners canonical/persisted truth.
+  - Do not persist derived Core labels, family refs or transfer dimensions into learner
+    observations.
+acceptance:
+- id: AC-169-DERIVED
+  statement: Exit readiness is a derived query/report over canonical Grade-9 scope
+    plus existing learner evidence, with secure, usable-but-fragile, known-gap and
+    insufficient/unknown categories and no persisted readiness score.
+  evidence_requirements:
+  - test: python -m unittest tests.test_grade9_exit
+- id: AC-169-DEMAND
+  statement: Changed-demand evidence is recognized only from canonical Core2B exposure
+    plus transfer metadata plus direct/no-help demonstrated evidence; Core2A or caller
+    prose cannot manufacture transfer evidence.
+  evidence_requirements:
+  - test: focused Core2A/Core2B demand-class falsifiers
+- id: AC-169-AUTHORITY
+  statement: Transfer availability, learner observation and transition-requiredness
+    remain separate; authored changed-demand inventory alone does not block or defer
+    Grade 10.
+  evidence_requirements:
+  - test: authority-driven changed-demand requirement falsifiers
+- id: AC-169-TRANSITION
+  statement: Required/prerequisite known gaps block, unknown required evidence remains
+    evidence-required, fragile evidence gets targeted rechecks, enrichment/later-grade
+    gaps stay visible but non-blocking, and Grade 10 inherits explicit transition
+    evidence rather than blanket recertification.
+  evidence_requirements:
+  - test: transition blocker/non-blocker and parent/agent report tests
+- id: AC-169-BOUNDARY
+  statement: No material changes occur under Physics or Learners, and learner evidence
+    ownership remains unchanged.
+  evidence_requirements:
+  - oracle: protected-domain diff against main is empty
+- id: AC-169-REPO
+  statement: Exact-head guardrails and pinned V3.1 validation pass with generated
+    manifest current.
+  evidence_requirements:
+  - test: guardrails and v31-relay on exact PR 194 head
+quality_policy:
+  level: STANDARD
+  independent_review: OPTIONAL
+admission_policy:
+  qualification: NOT_REQUIRED
+  question_policy: NONE
+next:
+  first_action: Reuse only the bounded PR 170 product candidate, implement the post-Core2B
+    compatibility corrections, replace authored-transfer-implies-required tests with
+    authority-driven falsifiers, and regenerate the readable report/manifest.
+  stop_conditions:
+  - Any need to mutate Physics or Learners requires a separately scoped defect.
+  - Do not import V2.5 relay/checkpoint/qualification files from PR 170 or PR 181.
+  - Do not make transfer evidence a completion denominator without explicit transition
+    authority.
+  - No merge until fresh V3.1 checkpoint and V3.1 MERGE authorization pass.

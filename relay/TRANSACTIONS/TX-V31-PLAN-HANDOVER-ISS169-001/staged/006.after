@@ -1,0 +1,215 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: WP-TA-105
+  ep: EP-EXIT-169-V31-001
+  issue: null
+  delivery_vehicle: 194
+purpose:
+  programme_outcome: 'Complete the remaining canonical-data, learner-page integration,
+    and external-portability work while preserving delivered #162 and #173.'
+  current_goal: Prove Grade-9 Physics exit readiness and Grade-10 transition from
+    canonical Grade-9 scope plus existing learner evidence, without a mastery percentage
+    or second learner truth store.
+  task_outcome: Deliver an auditable derived Grade-9 exit/Grade-10 transition view
+    from canonical required scope and existing learner evidence, preserving unknowns,
+    prerequisite blockers, optional enrichment boundaries, and the delivered Core2A/Core2B
+    demand contract without a mastery score or second learner truth store.
+  why_this_task_exists: Prove Grade-9 Physics exit readiness and Grade-10 transition
+lineage:
+  predecessor_checkpoint: null
+  upstream_dependencies:
+  - WP-TA-108
+  roadmap_admission:
+    disposition: MAPPED_EXISTING_WP
+    revision: RM-V31-ISS169-EXIT-001
+    basis:
+    - relay/ROADMAP/ROADMAP.yaml
+parent_issue:
+  repository: null
+  number: null
+  title: null
+  state: null
+  url: null
+  baseline: null
+  current: null
+  updates: []
+  disposition: UNKNOWN
+  relationships: []
+  handover_ledger: null
+parent_issue_progress:
+  checklist: []
+  summary:
+    complete: 0
+    partial: 0
+    pending: 0
+    blocked: 0
+    deferred: 0
+    not_applicable: 0
+    unknown: 0
+    total: 0
+current_task_progress:
+  checklist:
+  - id: AC-169-DERIVED
+    statement: Exit readiness is a derived query/report over canonical Grade-9 scope
+      plus existing learner evidence, with secure, usable-but-fragile, known-gap and
+      insufficient/unknown categories and no persisted readiness score.
+    state: PENDING
+    evidence: []
+  - id: AC-169-DEMAND
+    statement: Changed-demand evidence is recognized only from canonical Core2B exposure
+      plus transfer metadata plus direct/no-help demonstrated evidence; Core2A or
+      caller prose cannot manufacture transfer evidence.
+    state: PENDING
+    evidence: []
+  - id: AC-169-AUTHORITY
+    statement: Transfer availability, learner observation and transition-requiredness
+      remain separate; authored changed-demand inventory alone does not block or defer
+      Grade 10.
+    state: PENDING
+    evidence: []
+  - id: AC-169-TRANSITION
+    statement: Required/prerequisite known gaps block, unknown required evidence remains
+      evidence-required, fragile evidence gets targeted rechecks, enrichment/later-grade
+      gaps stay visible but non-blocking, and Grade 10 inherits explicit transition
+      evidence rather than blanket recertification.
+    state: PENDING
+    evidence: []
+  - id: AC-169-BOUNDARY
+    statement: No material changes occur under Physics or Learners, and learner evidence
+      ownership remains unchanged.
+    state: PENDING
+    evidence: []
+  - id: AC-169-REPO
+    statement: Exact-head guardrails and pinned V3.1 validation pass with generated
+      manifest current.
+    state: PENDING
+    evidence: []
+  summary:
+    complete: 0
+    partial: 0
+    pending: 6
+    blocked: 0
+    total: 6
+offloads: []
+pending_items: []
+known_issues: []
+improvement_vs_original_issue:
+  baseline_digest: null
+  items: []
+scope:
+  write:
+  - Shared/tools/grade9_exit.py
+  - tests/test_grade9_exit.py
+  - docs/grade9/GRADE9-PHYSICS-EXIT-TRANSITION-REPORT.md
+  - docs/architecture-manifest.json
+  read:
+  - Shared/tools/learner_evidence.py
+  - Shared/tools/study_session.py
+  - Shared/library/**
+  - Physics/library/**
+  - Physics/matrices/**
+  - docs/grade9/**
+  - agents/relay/roadmap/owner-decisions/ODR-0003-G9-PHYSICS-INDEPENDENCE.yaml
+  protected:
+  - Learners/**
+  - Physics/**
+  - Shared/library/**
+  - Shared/publication_host/**
+  - Shared/workbench/**
+  - public/core-learning/**
+  - standalone/core-learning/**
+  - agents/relay/**
+  prohibited:
+  - Do not add mastery percentages, probabilities, readiness scores or a second Grade-9
+    state store.
+  - Do not convert unknown/missing evidence into mastery or failure.
+  - Do not make authored Core2B inventory alone a transition requirement.
+  - Do not modify Physics or Learners canonical/persisted truth.
+  - Do not persist derived Core labels, family refs or transfer dimensions into learner
+    observations.
+inputs: []
+benchmarks: []
+benchmark_debt:
+  required_missing: []
+  stale: []
+  optional: []
+execution:
+  lifecycle: ACTIVE
+  lease_or_custody: LEASE-EXIT-169-V31-001
+  executor: chatgpt-sol-exit-v31-20260922
+  route: SERIAL:EP-EXIT-169-V31-001
+  branch: readiness/issue-169-grade9-exit-v31
+material:
+  base: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+  current_head: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+acceptance:
+- id: AC-169-DERIVED
+  state: NOT_PROVED
+  statement: Exit readiness is a derived query/report over canonical Grade-9 scope
+    plus existing learner evidence, with secure, usable-but-fragile, known-gap and
+    insufficient/unknown categories and no persisted readiness score.
+  evidence: []
+- id: AC-169-DEMAND
+  state: NOT_PROVED
+  statement: Changed-demand evidence is recognized only from canonical Core2B exposure
+    plus transfer metadata plus direct/no-help demonstrated evidence; Core2A or caller
+    prose cannot manufacture transfer evidence.
+  evidence: []
+- id: AC-169-AUTHORITY
+  state: NOT_PROVED
+  statement: Transfer availability, learner observation and transition-requiredness
+    remain separate; authored changed-demand inventory alone does not block or defer
+    Grade 10.
+  evidence: []
+- id: AC-169-TRANSITION
+  state: NOT_PROVED
+  statement: Required/prerequisite known gaps block, unknown required evidence remains
+    evidence-required, fragile evidence gets targeted rechecks, enrichment/later-grade
+    gaps stay visible but non-blocking, and Grade 10 inherits explicit transition
+    evidence rather than blanket recertification.
+  evidence: []
+- id: AC-169-BOUNDARY
+  state: NOT_PROVED
+  statement: No material changes occur under Physics or Learners, and learner evidence
+    ownership remains unchanged.
+  evidence: []
+- id: AC-169-REPO
+  state: NOT_PROVED
+  statement: Exact-head guardrails and pinned V3.1 validation pass with generated
+    manifest current.
+  evidence: []
+controls:
+  material_write: []
+  checkpoint: []
+  handover: []
+  pr_ready: []
+  merge: []
+  release: []
+knowledge_state:
+  known_true: []
+  known_false: []
+  unknown: []
+  assumptions: []
+negative_knowledge: []
+preserve:
+  accepted_do_not_reopen: []
+history:
+  recent_events: []
+next:
+  immediate_action: Reuse only the bounded PR 170 product candidate, implement the
+    post-Core2B compatibility corrections, replace authored-transfer-implies-required
+    tests with authority-driven falsifiers, and regenerate the readable report/manifest.
+  next_value_frontier: Prove Grade-9 Physics exit readiness and Grade-10 transition
+  stop_conditions:
+  - Any need to mutate Physics or Learners requires a separately scoped defect.
+  - Do not import V2.5 relay/checkpoint/qualification files from PR 170 or PR 181.
+  - Do not make transfer evidence a completion denominator without explicit transition
+    authority.
+  - No merge until fresh V3.1 checkpoint and V3.1 MERGE authorization pass.
+reconstruction_sources:
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/CONTROLS/controls.yaml
+- relay/WORK/EP-EXIT-169-V31-001.yaml
