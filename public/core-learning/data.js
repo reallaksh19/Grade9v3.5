@@ -230,6 +230,19 @@ window.GRADE9V3_CORE = {
           "question_ref": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
           "stem": "A stone is launched horizontally at 15 m/s from a cliff 20 m above level ground. Take +y upward and g=10 m/s^2. Find the flight time, horizontal range and impact velocity.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "The launch has u_y=0.",
+            "Ground is 20 m below the launch point."
+          ],
+          "figure_refs": [],
           "reasoning_route": [
             {
               "id": "R-KIN-LAUNCH-REPRESENT",
@@ -400,6 +413,19 @@ window.GRADE9V3_CORE = {
           "question_ref": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
           "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "The horizontal rocket thrust remains active after release.",
+            "The question asks for model selection, not a full trajectory calculation."
+          ],
+          "figure_refs": [],
           "reasoning_route": [
             {
               "id": "R-KIN-TRANSFER-INTERACTIONS",
@@ -497,6 +523,343 @@ window.GRADE9V3_CORE = {
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/motion-2d/explorers/projectile-model/index.html"
+    }
+  ],
+  "bucket_availability": [
+    {
+      "subject": "Mathematics",
+      "bucket_ref": "BUCKET-LINEAR-EQUATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
+      "status": "AVAILABLE",
+      "code": null,
+      "detail": null,
+      "projection_refs": [
+        "physics:mic-phy-kin-2d-independent-components:core1a",
+        "physics:mic-phy-kin-2d-independent-components:core1b",
+        "physics:q-phy-kin-2d-2a-horizontal-launch-04:core2a",
+        "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-SOUND",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-RELATIVE-MOTION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    }
+  ],
+  "findings": [
+    {
+      "subject": "Mathematics",
+      "bucket_ref": "BUCKET-LINEAR-EQUATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-SOUND",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
+      "status": "UNSUPPORTED",
+      "code": "PARENT_TRANSFER_PAIR_MISSING",
+      "detail": "No linked CORE2A/CORE2B question pair.",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-RELATIVE-MOTION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
+      "status": "UNSUPPORTED",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
+      "projection_refs": []
     }
   ]
 };

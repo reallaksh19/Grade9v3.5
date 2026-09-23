@@ -1,0 +1,47 @@
+schema_version: "relay-v3.1-transaction"
+id: "TX-V31-ADMIT-ISS212-002"
+command: "ADMIT_TASK"
+actor: "chatgpt-sol-issue212-v31-20260923"
+status: "COMMITTED"
+created_at: "2026-09-23T16:46:06Z"
+updated_at: "2026-09-23T16:46:06Z"
+payload_state: "PRUNED"
+operations:
+  -
+    path: "relay/EVENTS.jsonl"
+    before_exists: true
+    before_digest: "sha256:dfd091367cc6c065c7de36d74bbd249f7d534ec33a70b5c717ff2b688e0fbe0f"
+    after_digest: "sha256:3c2720b101520690d34b7f4d290fb1dda7a7817233890454aeb7ff1cd49d06ba"
+  -
+    path: "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+    before_exists: true
+    before_digest: "sha256:4307eda487d20544b89d04a8bb1f65ecffa2e1e03b7f7f5498e54a0fdea2aa0f"
+    after_digest: "sha256:b668cbdeb42a83453f877f6496a7deb36e43ec98d49399ddef14de32894a08e3"
+  -
+    path: "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-002.yaml"
+    before_exists: false
+    before_digest: null
+    after_digest: "sha256:4e75adb6fd1606ec2a42d6f6203358ddb2209d96bef2461303e1cad7380f2737"
+  -
+    path: "relay/ROADMAP/ROADMAP.yaml"
+    before_exists: true
+    before_digest: "sha256:23ba2fef36a6db75abfe8a5e27d609736e7bb7419e63837a7670dfda71efbc59"
+    after_digest: "sha256:6f24420153eee40a95a44daf0db37e2faebc8ba6431aab9b368cd8c53d3754dd"
+  -
+    path: "relay/STATE.yaml"
+    before_exists: true
+    before_digest: "sha256:8c6a149dcdda52b97f0d049f8b86cfb7ae6459294932d8b2c446e0dcb5d0dcac"
+    after_digest: "sha256:7cef57194f499c5eeb599fcb78a447ff81972e0dd5d971ac4fe34c347010ae8b"
+  -
+    path: "relay/WORK/EP-ISS212-ATLAS-INDEX-V31-002.yaml"
+    before_exists: false
+    before_digest: null
+    after_digest: "sha256:1de2e1840c9e2e97c70a2190dbec10803f7e39545d3b85e451a954e830e99d94"
+applied:
+  - "relay/EVENTS.jsonl"
+  - "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+  - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-002.yaml"
+  - "relay/ROADMAP/ROADMAP.yaml"
+  - "relay/STATE.yaml"
+  - "relay/WORK/EP-ISS212-ATLAS-INDEX-V31-002.yaml"
+identity_reservations: []

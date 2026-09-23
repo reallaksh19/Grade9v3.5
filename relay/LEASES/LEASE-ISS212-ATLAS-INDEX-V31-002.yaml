@@ -1,0 +1,45 @@
+schema_version: "relay-v3.1-lease"
+id: "LEASE-ISS212-ATLAS-INDEX-V31-002"
+route: "SERIAL:EP-ISS212-ATLAS-INDEX-V31-002"
+executor:
+  id: "chatgpt-sol-issue212-v31-20260923"
+basis:
+  ep_id: "EP-ISS212-ATLAS-INDEX-V31-002"
+  ep_digest: "sha256:88e00e1f46b25870b66491b3c74a737ac4b682db9378d8a020d189ab549c1bcc"
+  material_base: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+  predecessor_checkpoint: null
+  protocol_basis: "reallaksh19/Common@03f0ec137064347fcbcc275ad2b7458814528aef:skills/engineering-pr-delivery-v3.1"
+authority:
+  actions:
+    - "READ"
+    - "ANALYZE"
+    - "MATERIAL_WRITE"
+    - "TEST"
+    - "CHECKPOINT"
+    - "HANDOVER"
+    - "LOCAL_EXECUTION_EXPORT"
+    - "DRAFT_PR_UPDATE"
+admission:
+  method: "DETERMINISTIC"
+  result: "PASS"
+  repository_only: true
+  qualification:
+    required: false
+    qset: null
+    evaluator: null
+    result: null
+    evidence: []
+custody:
+  epoch: 1
+  granted_at: "2026-09-23T16:46:06Z"
+  renewed_at: "2026-09-23T16:46:06Z"
+  recovery_after_seconds: 3600
+  recovery_policy: "TAKEOVER_AFTER_EXPIRY"
+  activity_basis:
+    relevant_worktree_digest: "sha256:7ffa204b97c0e69922a2df8faf3410b8e7b86cd739cd652735a2b941de91d68e"
+    dependency_worktree_digest: "sha256:2adeff7ae074a7fee8b67a9d65cb434ccfea32cc4f152aea165366eb1d78b3b0"
+    material_head: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+    base_ref: "origin/main"
+state: "ACTIVE"
+invalidation:
+  reasons: []

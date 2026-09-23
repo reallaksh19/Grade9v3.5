@@ -185,6 +185,31 @@ test("reasoning route appears after commit and marks the supplied crux without c
   assert.match(rendered, /data-crux="true"/);
   assert.match(rendered, /Key decision/);
   assert.match(rendered, /Choose the condition that controls the next move/);
+  assert.match(rendered, /Independent check/);
+  assert.match(rendered, /Check against the supplied condition/);
+});
+
+test("question parts and source identity survive projection and display without leaking a solution", () => {
+  const projection = structuredClone(byId.core2b);
+  Object.assign(projection.application, {
+    source_refs: ["SRC-EXAMPLE"],
+    origin: "ADAPTED",
+    original_number: "7(a)",
+    subparts: ["Explain the choice.", "State a limit."],
+    options: ["Model A", "Model B"],
+    conditions: ["Use the stated reference frame."],
+    figure_refs: ["FIG-EXAMPLE"],
+  });
+  const validated = validateCoreProjection(projection);
+  assert.deepEqual(validated.application.source_refs, ["SRC-EXAMPLE"]);
+  assert.deepEqual(validated.application.figure_refs, ["FIG-EXAMPLE"]);
+  const before = renderCoreLearningProjection(projection);
+  assert.match(before, /Explain the choice/);
+  assert.match(before, /Model B/);
+  assert.match(before, /Use the stated reference frame/);
+  assert.match(before, /SRC-EXAMPLE/);
+  assert.doesNotMatch(before, /Independent check/);
+  assert.doesNotMatch(before, /Select the controlling model or condition/);
 });
 
 test("Core2B support stops at a protected move before commit and unlocks only after commit", () => {

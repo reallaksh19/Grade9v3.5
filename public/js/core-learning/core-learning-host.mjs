@@ -46,6 +46,7 @@ export function resolveCoreLearningRecord(data, projectionId) {
   requireCondition(matches.length === 1, "CORE_LEARNING_PROJECTION_NOT_FOUND", id);
 
   const record = requireObject(matches[0], "CORE_LEARNING_PROJECTION_RECORD_INVALID", id);
+  const sourceRef = requireString(record.source_ref, "CORE_LEARNING_SOURCE_REF_INVALID", id);
   const projection = validateCoreProjection(
     requireObject(record.projection, "CORE_LEARNING_PROJECTION_ENVELOPE_REQUIRED", id),
   );
@@ -69,9 +70,15 @@ export function resolveCoreLearningRecord(data, projectionId) {
     "CORE_LEARNING_INJECTION_REFS_INVALID",
     id,
   );
+  requireCondition(
+    sceneRef != null || injectionRefs.length === 0,
+    "CORE_LEARNING_INJECTION_BINDING_INCOMPLETE",
+    id,
+  );
 
   return {
     id,
+    sourceRef,
     projection,
     sceneRef,
     adapterRef,
