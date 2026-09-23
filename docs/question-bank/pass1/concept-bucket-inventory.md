@@ -1,6 +1,6 @@
 # Pass 1 concept-bucket inventory
 
-Issue: #201
+Issue: #216
 
 The expanded v2 bank reuses canonical Physics capabilities/families already present in the subject library. Chemistry still has no canonical subject-library package for the requested topics, so its identifiers remain local invariant-demand proposals inside the exam-bank namespace rather than being silently promoted globally.
 
