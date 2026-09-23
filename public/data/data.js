@@ -30744,8 +30744,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30765,9 +30765,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -30795,8 +30800,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30816,9 +30821,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -30913,8 +30923,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30934,9 +30944,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -30964,8 +30979,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30985,9 +31000,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31015,8 +31035,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31036,9 +31056,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31066,8 +31091,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31087,9 +31112,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31318,8 +31348,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31339,9 +31369,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32762,8 +32797,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32783,9 +32818,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32880,8 +32920,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32901,9 +32941,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32931,8 +32976,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32952,9 +32997,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34859,8 +34909,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34880,9 +34930,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34910,8 +34965,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34931,9 +34986,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35028,8 +35088,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35049,9 +35109,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35146,8 +35211,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35167,9 +35232,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36033,8 +36103,8 @@ window.GRADE9V3 = {
             "detail": "CORE2A, CORE2B"
           },
           "availability": {
-            "mapping": "INVALID",
-            "core": "INVALID",
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36054,9 +36124,14 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": null,
-              "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -38042,9 +38117,14 @@ window.GRADE9V3 = {
           "detail": "No canonical representation or activity/resource link is authored for this rung."
         },
         {
+          "code": "MICROTOPIC_REF_UNAVAILABLE",
+          "ref": null,
+          "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+        },
+        {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": null,
-          "detail": "Cannot resolve rung-level Core projections while its microtopic mapping is invalid."
+          "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38151,13 +38231,12 @@ window.GRADE9V3 = {
         "rung_count": 102,
         "availability": {
           "mapping": {
-            "INVALID": 15,
-            "READY": 87
+            "READY": 87,
+            "UNAVAILABLE": 15
           },
           "core": {
-            "INVALID": 15,
             "READY": 1,
-            "UNAVAILABLE": 86
+            "UNAVAILABLE": 101
           },
           "representation": {
             "READY": 14,
@@ -38180,6 +38259,7 @@ window.GRADE9V3 = {
         },
         "finding_counts": {
           "CORE_PROJECTION_UNAVAILABLE": 101,
+          "MICROTOPIC_REF_UNAVAILABLE": 15,
           "VISUAL_REF_UNAVAILABLE": 81
         },
         "matrices": [
@@ -38188,12 +38268,11 @@ window.GRADE9V3 = {
             "rung_count": 7,
             "availability": {
               "mapping": {
-                "INVALID": 5,
-                "READY": 2
+                "READY": 2,
+                "UNAVAILABLE": 5
               },
               "core": {
-                "INVALID": 5,
-                "UNAVAILABLE": 2
+                "UNAVAILABLE": 7
               },
               "representation": {
                 "UNAVAILABLE": 7
@@ -38213,6 +38292,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 7,
+              "MICROTOPIC_REF_UNAVAILABLE": 5,
               "VISUAL_REF_UNAVAILABLE": 7
             }
           },
@@ -38221,12 +38301,11 @@ window.GRADE9V3 = {
             "rung_count": 5,
             "availability": {
               "mapping": {
-                "INVALID": 2,
-                "READY": 3
+                "READY": 3,
+                "UNAVAILABLE": 2
               },
               "core": {
-                "INVALID": 2,
-                "UNAVAILABLE": 3
+                "UNAVAILABLE": 5
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38246,6 +38325,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 2,
               "VISUAL_REF_UNAVAILABLE": 5
             }
           },
@@ -38350,12 +38430,11 @@ window.GRADE9V3 = {
             "rung_count": 6,
             "availability": {
               "mapping": {
-                "INVALID": 3,
-                "READY": 3
+                "READY": 3,
+                "UNAVAILABLE": 3
               },
               "core": {
-                "INVALID": 3,
-                "UNAVAILABLE": 3
+                "UNAVAILABLE": 6
               },
               "representation": {
                 "UNAVAILABLE": 6
@@ -38375,6 +38454,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 6,
+              "MICROTOPIC_REF_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 6
             }
           },
@@ -38510,12 +38590,11 @@ window.GRADE9V3 = {
             "rung_count": 5,
             "availability": {
               "mapping": {
-                "INVALID": 3,
-                "READY": 2
+                "READY": 2,
+                "UNAVAILABLE": 3
               },
               "core": {
-                "INVALID": 3,
-                "UNAVAILABLE": 2
+                "UNAVAILABLE": 5
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38535,6 +38614,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 5
             }
           },
@@ -38543,12 +38623,11 @@ window.GRADE9V3 = {
             "rung_count": 5,
             "availability": {
               "mapping": {
-                "INVALID": 1,
-                "READY": 4
+                "READY": 4,
+                "UNAVAILABLE": 1
               },
               "core": {
-                "INVALID": 1,
-                "UNAVAILABLE": 4
+                "UNAVAILABLE": 5
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38568,6 +38647,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 1,
               "VISUAL_REF_UNAVAILABLE": 5
             }
           },
@@ -38639,12 +38719,11 @@ window.GRADE9V3 = {
             "rung_count": 5,
             "availability": {
               "mapping": {
-                "INVALID": 1,
-                "READY": 4
+                "READY": 4,
+                "UNAVAILABLE": 1
               },
               "core": {
-                "INVALID": 1,
-                "UNAVAILABLE": 4
+                "UNAVAILABLE": 5
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38664,6 +38743,7 @@ window.GRADE9V3 = {
             },
             "finding_counts": {
               "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 1,
               "VISUAL_REF_UNAVAILABLE": 5
             }
           },
