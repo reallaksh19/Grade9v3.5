@@ -170,6 +170,45 @@
       ],
       "selection_reason": "Interactive multi-block train simulation demonstrating contact normal force transmission, equal-and-opposite interface pairs, and system-boundary cancellation.",
       "fallback": []
+    },
+    {
+      "id": "ACT-NLM-ACCELERATED-FRAMES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue125:scope_class": "QUESTION_DEMAND_EXTENSION"
+      },
+      "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
+      "origin": "AUTHORED",
+      "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+      "edition": "1.0.0",
+      "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
+      "last_checked": "2026-09-23",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created interactive cognitive model.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "ACTIVITY"
+      ],
+      "supports_claims": [
+        "CAP-NLM-FRAME-CHOICE",
+        "CAP-NLM-FBD-BODY-OWNERSHIP",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "entry_capabilities": [
+        "CAP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Explicit-demand non-default explorer that keeps physical forces separate from the accelerating-frame pseudo term and cross-checks the same observable in inertial and non-inertial descriptions.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -922,8 +961,14 @@
           "output": "roadside account: physical forces only.  accelerating-bus account: same physical forces plus backward pseudo-force."
         }
       ],
-      "relation_refs": [],
-      "representation_refs": [],
+      "relation_refs": [
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-PSEUDO-FORCE",
+        "REL-NLM-HANGING-BOB-TILT"
+      ],
+      "representation_refs": [
+        "REP-NLM-ACCELERATING-FRAME-COMPARISON"
+      ],
       "question_family_refs": [],
       "misconceptions": [
         {
@@ -952,7 +997,7 @@
           "no_numeric_claim": "The answer classifies observer descriptions and contains no computed pseudo-force or acceleration magnitude."
         }
       },
-      "research_contribution": "Author-created observer-choice boundary. No pseudo-force equation is asserted; a quantitative treatment would require upstream gate ownership.",
+      "research_contribution": "Author-created observer-choice boundary extended by explicit ExamSIDE demand with gate-owned quantitative elevator, pseudo-force and hanging-bob relations. This remains a non-default Grade-9 extension rather than ordinary completion scope.",
       "prerequisite_refs": [
         "CAP-NLM-FBD-BODY-OWNERSHIP"
       ],
@@ -2502,6 +2547,245 @@
         "The two signed acceleration magnitudes are equal and opposite in the declared coordinates."
       ],
       "gate_relation_ref": "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+    },
+    {
+      "id": "REL-NLM-ELEVATOR-SUPPORT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue125:scope_class": "QUESTION_DEMAND_EXTENSION"
+      },
+      "expression": "N - m g = m a_y",
+      "meaning": "For a person that remains in contact with a horizontal scale in an inertial ground frame, with upward positive and g the positive magnitude of gravitational acceleration, the signed vertical force balance is N - m g = m a_y.",
+      "symbols": [
+        {
+          "symbol": "N",
+          "meaning": "Upward normal/support force exerted by the scale on the person",
+          "unit_or_domain": "N, N >= 0 while contact persists"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Person mass",
+          "unit_or_domain": "kg, positive scalar"
+        },
+        {
+          "symbol": "g",
+          "meaning": "Positive magnitude of gravitational acceleration",
+          "unit_or_domain": "m/s^2, positive scalar"
+        },
+        {
+          "symbol": "a_y",
+          "meaning": "Person vertical acceleration, positive upward",
+          "unit_or_domain": "m/s^2, signed scalar"
+        }
+      ],
+      "conditions": [
+        "The ground frame is treated as inertial and the positive vertical direction is upward.",
+        "The person remains in contact with the scale, so N >= 0.",
+        "The person and scale share the stated vertical acceleration while contact persists.",
+        "g is the positive magnitude of the downward gravitational acceleration."
+      ],
+      "derivation": [
+        {
+          "id": "NLM-AF-ELEV-1",
+          "role": "DECLARE",
+          "action": "Choose the person, use upward positive, and place only the real vertical forces N upward and mg downward.",
+          "why_valid": "The inertial-frame force equation uses physical interactions on one chosen body.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "F_net,y = N - m g."
+        },
+        {
+          "id": "NLM-AF-ELEV-2",
+          "role": "TRANSFORM",
+          "action": "Apply Newton's second law to the same person and axis.",
+          "why_valid": "REL-NEWTON-SECOND-LAW owns the inertial-frame force-acceleration relation.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "N - m g = m a_y."
+        },
+        {
+          "id": "NLM-AF-ELEV-3",
+          "role": "VERIFY",
+          "action": "Check the contact boundary N >= 0 and the free-fall case a_y = -g.",
+          "why_valid": "The scale can push but cannot supply a negative normal force while contact is maintained.",
+          "inputs": [],
+          "output": "At a_y = -g, N = 0; a computed N < 0 invalidates the floor-contact model."
+        }
+      ],
+      "limits": [
+        "This is an explicit-demand extension and does not make accelerating-frame content a default Grade-9 route.",
+        "Do not use after floor contact is lost.",
+        "The scale reading is N; mg remains the gravitational force."
+      ],
+      "checks": [
+        "a_y = 0 gives N = mg.",
+        "a_y > 0 gives N > mg.",
+        "-g < a_y < 0 gives 0 < N < mg.",
+        "a_y = -g gives N = 0 while mg remains nonzero."
+      ],
+      "gate_relation_ref": "REL-NLM-ELEVATOR-SUPPORT"
+    },
+    {
+      "id": "REL-NLM-PSEUDO-FORCE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue125:scope_class": "QUESTION_DEMAND_EXTENSION"
+      },
+      "expression": "F_pseudo = -m a_frame",
+      "meaning": "In a one-axis frame accelerating with signed acceleration a_frame relative to an inertial frame, the pseudo-force assigned to a mass m is opposite the frame acceleration and has magnitude m|a_frame|.",
+      "symbols": [
+        {
+          "symbol": "F_pseudo",
+          "meaning": "Signed pseudo-force used only in the accelerating-frame description",
+          "unit_or_domain": "N; signed scalar component"
+        },
+        {
+          "symbol": "m",
+          "meaning": "Mass of the described body",
+          "unit_or_domain": "kg; positive scalar"
+        },
+        {
+          "symbol": "a_frame",
+          "meaning": "Signed acceleration of the selected non-inertial frame relative to the inertial frame",
+          "unit_or_domain": "m/s^2; signed scalar"
+        }
+      ],
+      "conditions": [
+        "The selected observer frame has nonzero translational acceleration relative to the inertial frame.",
+        "F_pseudo and a_frame use the same declared axis and sign convention.",
+        "The mass is positive and treated as constant.",
+        "The pseudo-force is a frame-dependent modelling term, not a physical interaction and not a Newton-third-law partner."
+      ],
+      "derivation": [
+        {
+          "id": "NLM-AF-PSEUDO-1",
+          "role": "DECLARE",
+          "action": "State the accelerating observer and the signed frame acceleration before adding any frame term.",
+          "why_valid": "The pseudo-force convention belongs to observer acceleration, not to a new physical agent.",
+          "inputs": [
+            "CAP-NLM-FRAME-CHOICE"
+          ],
+          "output": "declared a_frame and axis"
+        },
+        {
+          "id": "NLM-AF-PSEUDO-2",
+          "role": "TRANSFORM",
+          "action": "Assign the frame term opposite the frame acceleration.",
+          "why_valid": "REL-NLM-PSEUDO-FORCE is the gate-owned convention for the selected accelerating frame.",
+          "inputs": [],
+          "output": "F_pseudo = -m a_frame."
+        },
+        {
+          "id": "NLM-AF-PSEUDO-3",
+          "role": "VERIFY",
+          "action": "Set a_frame to zero and confirm that the extra term vanishes.",
+          "why_valid": "An inertial or constant-velocity observer does not require the translational pseudo-force convention.",
+          "inputs": [],
+          "output": "a_frame = 0 -> F_pseudo = 0."
+        }
+      ],
+      "limits": [
+        "Do not draw this term as a physical interaction in an inertial-frame free-body diagram.",
+        "This bounded relation covers translational frame acceleration only; rotating-frame inertial terms are outside scope.",
+        "Do not call the pseudo-force a Newton-third-law partner."
+      ],
+      "checks": [
+        "Reversing a_frame reverses F_pseudo.",
+        "a_frame = 0 removes the term.",
+        "Units are newtons."
+      ],
+      "gate_relation_ref": "REL-NLM-PSEUDO-FORCE"
+    },
+    {
+      "id": "REL-NLM-HANGING-BOB-TILT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue125:scope_class": "QUESTION_DEMAND_TRANSFER"
+      },
+      "expression": "tan(theta) = |a_frame| / g",
+      "meaning": "For a bob stationary relative to a horizontally accelerating vehicle, with a massless taut string and no other horizontal interaction, the equilibrium string tilt magnitude theta from vertical satisfies tan(theta)=|a_frame|/g in the vehicle frame.",
+      "symbols": [
+        {
+          "symbol": "theta",
+          "meaning": "Magnitude of the string tilt from the vertical",
+          "unit_or_domain": "rad; 0 <= theta < pi/2"
+        },
+        {
+          "symbol": "a_frame",
+          "meaning": "Horizontal acceleration of the vehicle frame; magnitude appears in the tilt relation",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "g",
+          "meaning": "Positive magnitude of gravitational acceleration",
+          "unit_or_domain": "m/s^2, positive scalar"
+        }
+      ],
+      "conditions": [
+        "The bob is stationary relative to the vehicle after transients, so its relative acceleration is zero.",
+        "The vehicle has constant horizontal acceleration over the represented state.",
+        "The string is massless and taut, and air resistance is neglected.",
+        "theta is measured from the vertical; the bob tilts opposite the vehicle acceleration."
+      ],
+      "derivation": [
+        {
+          "id": "NLM-AF-BOB-1",
+          "role": "DECLARE",
+          "action": "In the vehicle frame, draw gravity downward and the pseudo-force opposite the horizontal frame acceleration.",
+          "why_valid": "The bob is stationary in the selected accelerating coordinates, so the frame term must accompany the real forces.",
+          "inputs": [
+            "REL-NLM-PSEUDO-FORCE"
+          ],
+          "output": "horizontal pseudo magnitude m|a_frame|; vertical weight magnitude mg."
+        },
+        {
+          "id": "NLM-AF-BOB-2",
+          "role": "TRANSFORM",
+          "action": "Resolve the string tension along horizontal and vertical axes and divide the component balances.",
+          "why_valid": "The common tension magnitude cancels, leaving the ratio of horizontal and vertical effective loads.",
+          "inputs": [],
+          "output": "tan(theta) = |a_frame| / g."
+        },
+        {
+          "id": "NLM-AF-BOB-3",
+          "role": "VERIFY",
+          "action": "Let a_frame approach zero and check that the string becomes vertical.",
+          "why_valid": "With no horizontal frame acceleration there is no horizontal pseudo term.",
+          "inputs": [],
+          "output": "a_frame -> 0 gives theta -> 0."
+        }
+      ],
+      "limits": [
+        "This is a transfer relation for the explicit-demand accelerating-frame extension, not ordinary Grade-9 completion scope.",
+        "Do not use during transient swinging when the bob is not stationary relative to the vehicle.",
+        "Rotating vehicles and aerodynamic forces are outside this bounded model."
+      ],
+      "checks": [
+        "a_frame = 0 gives theta = 0.",
+        "Reversing horizontal acceleration reverses the tilt direction but not the magnitude theta.",
+        "The ratio |a_frame|/g is dimensionless."
+      ],
+      "gate_relation_ref": "REL-NLM-HANGING-BOB-TILT"
     }
   ],
   "representations": [
@@ -2801,6 +3085,197 @@
         {
           "support_level": "high",
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "issue125:scope_class": "QUESTION_DEMAND_EXTENSION"
+      },
+      "kind": "DUAL_FRAME_FORCE_MODEL",
+      "purpose": "Show one physical event in an inertial and an accelerating observer description while keeping physical interactions fixed, making the pseudo-force visibly frame-dependent, and preserving the same observable scale reading or string direction.",
+      "required_elements": [
+        "physical situation",
+        "chosen body",
+        "observer/frame label",
+        "frame acceleration",
+        "body velocity direction",
+        "body acceleration",
+        "real-force arrows",
+        "weight arrow",
+        "normal/support arrow",
+        "pseudo-force arrow",
+        "contact-state label",
+        "frame equation",
+        "observable comparison"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW",
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-PSEUDO-FORCE",
+        "REL-NLM-HANGING-BOB-TILT"
+      ],
+      "read_order": [
+        "physical situation",
+        "chosen body",
+        "observer/frame label",
+        "body velocity direction",
+        "body acceleration",
+        "frame acceleration",
+        "real-force arrows",
+        "weight arrow",
+        "normal/support arrow",
+        "pseudo-force arrow",
+        "frame equation",
+        "contact-state label",
+        "observable comparison"
+      ],
+      "instance_constraints": [
+        "The inertial frame shows only physical interaction forces.",
+        "The accelerating frame preserves the same physical interactions and adds the pseudo-force only as a labelled frame term.",
+        "Velocity direction is shown separately from acceleration direction.",
+        "Scale reading is represented by N and never relabelled as mg.",
+        "At a_y = -g the contact state shows N = 0 while the weight arrow remains present.",
+        "A computed N < 0 is displayed as loss of the floor-contact model, never as a negative scale reading.",
+        "The hanging-bob tilt is opposite the vehicle acceleration and uses REL-NLM-HANGING-BOB-TILT only in its declared stationary-relative state."
+      ],
+      "accessibility": [
+        "Every force arrow has a text label naming whether it is a physical interaction or a pseudo term.",
+        "Frame identity and acceleration direction are stated in text and not encoded by colour alone.",
+        "Scale reading, mg, acceleration and contact state are available as text values.",
+        "The two-frame comparison states the shared observable prediction in text."
+      ],
+      "misleading_alternatives": [
+        "Showing a pseudo-force in the inertial ground-frame FBD.",
+        "Removing the weight arrow during free fall.",
+        "Using elevator velocity direction to choose the scale reading.",
+        "Calling the pseudo-force a Newton-third-law partner."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "weight arrow",
+          "symbol": "m g",
+          "in_words": "The downward weight arrow is the gravitational interaction and remains present in every frame description."
+        },
+        {
+          "element": "normal/support arrow",
+          "symbol": "N",
+          "in_words": "The support arrow is the scale force on the person and is the observable scale reading."
+        },
+        {
+          "element": "pseudo-force arrow",
+          "symbol": "F_pseudo",
+          "in_words": "The pseudo arrow appears only in the accelerating-frame column and points opposite a_frame."
+        },
+        {
+          "element": "frame acceleration",
+          "symbol": "a_frame",
+          "in_words": "The frame-acceleration marker identifies when and in which direction the pseudo-force convention is required."
+        }
+      ],
+      "interactive_resource_refs": [
+        "ACT-NLM-ACCELERATED-FRAMES"
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-FRAME-V0",
+          "label": "Physical scene only",
+          "purpose": "Show the elevator or vehicle situation without force bookkeeping.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRAME-V1",
+          "label": "Observer and motion state",
+          "purpose": "Reveal frame identity plus velocity and acceleration without force arrows.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "observer/frame label",
+            "frame acceleration",
+            "body velocity direction",
+            "body acceleration"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRAME-V2",
+          "label": "Real interactions",
+          "purpose": "Reveal real-force ownership while withholding the pseudo term.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "observer/frame label",
+            "frame acceleration",
+            "body velocity direction",
+            "body acceleration",
+            "real-force arrows",
+            "weight arrow",
+            "normal/support arrow"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRAME-V3",
+          "label": "Frame bookkeeping",
+          "purpose": "Add the pseudo-force only where the selected frame accelerates and show the corresponding frame equation.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "observer/frame label",
+            "frame acceleration",
+            "body velocity direction",
+            "body acceleration",
+            "real-force arrows",
+            "weight arrow",
+            "normal/support arrow",
+            "pseudo-force arrow",
+            "frame equation"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FRAME-V4",
+          "label": "Observable cross-check",
+          "purpose": "Show contact state and compare the observable prediction across both descriptions.",
+          "visible_elements": [
+            "physical situation",
+            "chosen body",
+            "observer/frame label",
+            "frame acceleration",
+            "body velocity direction",
+            "body acceleration",
+            "real-force arrows",
+            "weight arrow",
+            "normal/support arrow",
+            "pseudo-force arrow",
+            "frame equation",
+            "contact-state label",
+            "observable comparison"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-FRAME-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-FRAME-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-FRAME-V2"
         }
       ]
     }
