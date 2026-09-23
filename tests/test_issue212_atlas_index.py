@@ -278,17 +278,6 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual("READY", row["availability"]["locator"])
         self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
         self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
-        target = physics["visual_targets"]["ACT-NLM-FRICTION-THRESHOLD"]
-        self.assertIn(
-            "REP-NLM-FRICTION-THRESHOLD",
-            target["representation_refs"],
-            "Resource provenance may name a representation without creating an R5 rung edge.",
-        )
-        self.assertEqual(
-            "public/physics/nlm/explorers/friction-threshold/index.html",
-            target["locator"],
-        )
-        self.assertIsNone(target["portable_package_ref"])
         target = physics["visual_targets"]["ACT-KIN-2D-SHARED-CLOCK"]
         self.assertEqual(
             ["REP-KIN-2D-SHARED-CLOCK"],
@@ -320,9 +309,6 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual("UNAVAILABLE", row["availability"]["locator"])
         self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
         self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["locator"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
 
     def test_nlm_r5_consumer_row_does_not_infer_representation(self):
         physics = subject_payload("Physics")
@@ -339,6 +325,17 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual("READY", row["availability"]["locator"])
         self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
         self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
+        target = physics["visual_targets"]["ACT-NLM-FRICTION-THRESHOLD"]
+        self.assertIn(
+            "REP-NLM-FRICTION-THRESHOLD",
+            target["representation_refs"],
+            "Resource provenance may name a representation without creating an R5 rung edge.",
+        )
+        self.assertEqual(
+            "public/physics/nlm/explorers/friction-threshold/index.html",
+            target["locator"],
+        )
+        self.assertIsNone(target["portable_package_ref"])
 
 
 class ResolverAdversarialFalsifierTest(unittest.TestCase):
