@@ -249,7 +249,7 @@ class IndependentSourceOracleTest(unittest.TestCase):
 class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
     def test_subject_payload_has_versioned_atlas_index(self):
         physics = subject_payload("Physics")
-        self.assertIn("atlas_index_contract_version", physics)
+        self.assertEqual("2.0", physics["atlas_index_contract_version"])
         self.assertIn("atlas_index", physics)
         self.assertIn("visual_targets", physics)
 
@@ -278,6 +278,31 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual("READY", row["availability"]["locator"])
         self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
         self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
+        target = physics["visual_targets"]["ACT-NLM-FRICTION-THRESHOLD"]
+        self.assertIn(
+            "REP-NLM-FRICTION-THRESHOLD",
+            target["representation_refs"],
+            "Resource provenance may name a representation without creating an R5 rung edge.",
+        )
+        self.assertEqual(
+            "public/physics/nlm/explorers/friction-threshold/index.html",
+            target["locator"],
+        )
+        self.assertIsNone(target["portable_package_ref"])
+        target = physics["visual_targets"]["ACT-KIN-2D-SHARED-CLOCK"]
+        self.assertEqual(
+            ["REP-KIN-2D-SHARED-CLOCK"],
+            target["representation_refs"],
+        )
+        self.assertEqual(
+            "public/physics/motion-2d/explorers/shared-clock/index.html",
+            target["locator"],
+        )
+        self.assertEqual("REPO_BUNDLE", target["delivery_profile"])
+        self.assertIsNone(target["portable_package_ref"])
+        self.assertEqual("READY", target["availability"]["locator"])
+        self.assertEqual("UNAVAILABLE", target["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", target["availability"]["standalone"])
 
     def test_math_r1_consumer_row_does_not_collapse_prerequisites(self):
         math = subject_payload("Mathematics")
