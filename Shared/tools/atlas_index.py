@@ -164,6 +164,15 @@ def _visual_targets(records: dict) -> dict[str, dict]:
     return targets
 
 
+def _availability_counts(rows: list[dict], dimensions: tuple[str, ...]) -> dict:
+    return {
+        dimension: dict(sorted(Counter(
+            row["availability"][dimension] for row in rows
+        ).items()))
+        for dimension in dimensions
+    }
+
+
 def _coverage(rows: list[dict]) -> dict:
     dimensions = (
         "mapping",
@@ -174,14 +183,29 @@ def _coverage(rows: list[dict]) -> dict:
         "portable_package",
         "standalone",
     )
+    by_matrix: list[dict] = []
+    matrix_order = _ordered_unique(row["matrix_id"] for row in rows)
+    for matrix_id in matrix_order:
+        matrix_rows = [row for row in rows if row["matrix_id"] == matrix_id]
+        by_matrix.append({
+            "matrix_id": matrix_id,
+            "rung_count": len(matrix_rows),
+            "availability": _availability_counts(matrix_rows, dimensions),
+            "finding_counts": dict(sorted(Counter(
+                finding["code"]
+                for row in matrix_rows
+                for finding in row["findings"]
+            ).items())),
+        })
     return {
         "rung_count": len(rows),
-        "availability": {
-            dimension: dict(sorted(Counter(
-                row["availability"][dimension] for row in rows
-            ).items()))
-            for dimension in dimensions
-        },
+        "availability": _availability_counts(rows, dimensions),
+        "finding_counts": dict(sorted(Counter(
+            finding["code"]
+            for row in rows
+            for finding in row["findings"]
+        ).items())),
+        "matrices": by_matrix,
     }
 
 
@@ -460,8 +484,9 @@ def build_subject_index(
                 "findings": findings,
             }
             rows.append(row)
+            global_findings.extend(findings)
 
-    # Keep global findings deterministic and avoid duplicate duplicate-key summaries.
+    # Keep global findings deterministic and avoid repeated summaries.
     deduped_global: list[dict] = []
     seen_global: set[tuple] = set()
     for finding in global_findings:
