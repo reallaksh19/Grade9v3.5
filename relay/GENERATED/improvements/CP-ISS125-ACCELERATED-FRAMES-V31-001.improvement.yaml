@@ -1,0 +1,59 @@
+schema_version: relay-v3.1-improvement-view
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+task: EP-ISS125-ACCELERATED-FRAMES-V31-001
+checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
+from:
+  predecessor_checkpoint: null
+  material_basis: c6e2e825e9bd3e67f1e37228d6ddca19081edb23
+to:
+  accepted_checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
+  material_basis: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
+improvement:
+  capability_added: []
+  capability_strengthened:
+  - Added a demand-gated accelerating-frame quantitative gate with elevator support,
+    pseudo-force, and hanging-bob relations.
+  - Bound the frame-choice microtopic to one canonical FREE_BODY_DIAGRAM representation
+    and authored accelerated-frames explorer.
+  - Added focused falsifiers and updated frozen gate/representation/renderer inventories
+    without weakening them.
+  - Repinned repository V3.1 validation to exact Common@1c168695f237a8bef184a9e189be80fab87d1e78.
+  evidence_added:
+  - focused_tests=PASS
+  - spec_delivery=PASS
+  - full_guardrails=PASS
+  understanding_improved:
+  - Issue 125's quantitative elevator and pseudo-force UI could not be honest page-owned
+    math; those claims required subject-owned gate relations first.
+  - Physics depiction enforcement requires the new canonical visual to reuse the declared
+    FREE_BODY_DIAGRAM kind rather than invent a new representation kind.
+  - The prior v31 workflow pin was older than the Owner-required exact V3.1 basis;
+    custody-fenced admission exposed that mismatch and the workflow is now pinned
+    to 1c168695f237a8bef184a9e189be80fab87d1e78.
+  downstream_unlocked:
+  - PR 199
+  - CP-ISS125-ACCELERATED-FRAMES-V31-001
+  - relay/STATE.yaml
+  - .github/workflows/v3-relay.yml
+  controls_resolved: []
+  controls_created: []
+roadmap_effect:
+  concept_change: NO_CONCEPT_CHANGE
+  execution_disposition: NO_CHANGE
+  roadmap_revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
+not_improved: []
+still_not_proved:
+- R4 frame-choice remains an explicit-demand non-default Grade-9 extension; this checkpoint
+  does not make it an exit-readiness requirement.
+- The Physics static FREE_BODY_DIAGRAM renderer remains PROPOSED; the canonical representation
+  is implemented by the authored interactive activity.
+- Circular-motion/centripetal dynamics, rotating-frame inertial terms, and broader
+  advanced mechanics remain outside Issue 125.
+- No explicit Owner MERGE authority for PR 199 is present in relay controls.
+new_questions: []
+reconstruction_sources:
+- relay/STATE.yaml
+- relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+- relay/WORK/EP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+- relay/EVENTS.jsonl

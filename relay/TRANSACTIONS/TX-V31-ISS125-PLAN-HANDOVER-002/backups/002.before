@@ -1,0 +1,141 @@
+schema_version: relay-v3.1-handover-context
+authority: DERIVED_HANDOVER_INPUT
+frozen_at: '2026-09-22T16:46:09.380504Z'
+frozen_basis:
+  roadmap_revision: RM-V31-ISS169-EXIT-001
+  state_digest: sha256:8f83757d75f6b918ba46978a0f4a37bb53db1e1e8163dc636b4c330111c8a1b6
+  target_digest: sha256:e51adbb297cf53b12edd55dfdc1407c5997e4551f67bbb502eab27dde8a970db
+  material_head: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+  relevant_paths_digest: sha256:2414eb9b3a5a29856f4231b6a509f64515300ebf52763970da4d6f2c730670f9
+  dependency_digest: sha256:8e1a674586ba5415471d296f7c8a9b6fcf272238df79fee00bd957d6f6abecf5
+  coordination_head: a3c50cae8dbfa8f54f7021f8298e2d204f1ad1db
+  checkpoint: null
+  ep: EP-EXIT-169-V31-001
+  lease: LEASE-EXIT-169-V31-001
+target:
+  schema_version: relay-v3.1-handover-target
+  authority: PROVIDER_READBACK
+  provider: GITHUB
+  repository: reallaksh19/Grade9V3
+  kind: PULL_REQUEST
+  number: 194
+  title: 'Grade 9: derive exit readiness under Relay V3.1'
+  url: https://github.com/reallaksh19/Grade9V3/pull/194
+  state: DRAFT
+  observed_at: '2026-09-22T16:43:02Z'
+  provider_ref: github:reallaksh19/Grade9V3#194@a3c50cae8dbfa8f54f7021f8298e2d204f1ad1db
+blind_context:
+  programme:
+    outcome: 'Complete the remaining canonical-data, learner-page integration, and
+      external-portability work while preserving delivered #162 and #173.'
+    current_goal: Prove Grade-9 Physics exit readiness and Grade-10 transition from
+      canonical Grade-9 scope plus existing learner evidence, without a mastery percentage
+      or second learner truth store.
+    roadmap_revision: RM-V31-ISS169-EXIT-001
+    roadmap_title: Grade 9 Physics learner independence and progression
+  local_responsibility:
+    work_package: WP-TA-105
+    title: Prove Grade-9 Physics exit readiness and Grade-10 transition
+    outcome: Deliver an auditable derived Grade-9 exit/Grade-10 transition view from
+      canonical required scope and existing learner evidence, preserving unknowns,
+      prerequisite blockers, optional enrichment boundaries, and the delivered Core2A/Core2B
+      demand contract without a mastery score or second learner truth store.
+    acceptance_statements:
+    - Exit readiness is a derived query/report over canonical Grade-9 scope plus existing
+      learner evidence, with secure, usable-but-fragile, known-gap and insufficient/unknown
+      categories and no persisted readiness score.
+    - Changed-demand evidence is recognized only from canonical Core2B exposure plus
+      transfer metadata plus direct/no-help demonstrated evidence; Core2A or caller
+      prose cannot manufacture transfer evidence.
+    - Transfer availability, learner observation and transition-requiredness remain
+      separate; authored changed-demand inventory alone does not block or defer Grade
+      10.
+    - Required/prerequisite known gaps block, unknown required evidence remains evidence-required,
+      fragile evidence gets targeted rechecks, enrichment/later-grade gaps stay visible
+      but non-blocking, and Grade 10 inherits explicit transition evidence rather
+      than blanket recertification.
+    - No material changes occur under Physics or Learners, and learner evidence ownership
+      remains unchanged.
+    - Exact-head guardrails and pinned V3.1 validation pass with generated manifest
+      current.
+  stable_constraints:
+  - Do not add mastery percentages, probabilities, readiness scores or a second Grade-9
+    state store.
+  - Do not convert unknown/missing evidence into mastery or failure.
+  - Do not make authored Core2B inventory alone a transition requirement.
+  - Do not modify Physics or Learners canonical/persisted truth.
+  - Do not persist derived Core labels, family refs or transfer dimensions into learner
+    observations.
+reality_context:
+  execution:
+    lifecycle: ACTIVE
+    ep: EP-EXIT-169-V31-001
+    lease: LEASE-EXIT-169-V31-001
+    executor: chatgpt-sol-exit-v31-20260922
+    branch: readiness/issue-169-grade9-exit-v31
+  material:
+    base: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+    head: ad1f5a3d512eeacdbbc5c2f1f8a1740fe2d5ffb0
+    relevant_paths_digest: sha256:2414eb9b3a5a29856f4231b6a509f64515300ebf52763970da4d6f2c730670f9
+    dependency_digest: sha256:8e1a674586ba5415471d296f7c8a9b6fcf272238df79fee00bd957d6f6abecf5
+    coordination_head: a3c50cae8dbfa8f54f7021f8298e2d204f1ad1db
+  evidence:
+    latest_checkpoint: null
+    latest_material_validation: {}
+  controls:
+    execution_blockers: []
+    handover_blockers: []
+    delivery_blockers: []
+    informational: []
+  delivery:
+    issue: null
+    pr: 194
+    lifecycle: DECLARED
+    merge_authorized: false
+accumulated_learning:
+  checkpoint: null
+  discoveries: []
+  known_limitations: []
+  what_changed: []
+  what_is_true_now: []
+  what_remains_uncertain: []
+  do_not_break: []
+  attempted_and_rejected: []
+  resume_from: []
+  first_successor_action: null
+  task_snapshot:
+    path: relay/GENERATED/tasks/EP-EXIT-169-V31-001.snapshot.yaml
+    digest: sha256:b41fbc70d16d8b923b2eea07e09c6933ac91195c76fedae642f155334f3ee074
+    source_protocol: V3_1
+    ep: EP-EXIT-169-V31-001
+    work_package: WP-TA-105
+    next_action: Reuse only the bounded PR 170 product candidate, implement the post-Core2B
+      compatibility corrections, replace authored-transfer-implies-required tests
+      with authority-driven falsifiers, and regenerate the readable report/manifest.
+  improvement_view:
+    path: relay/GENERATED/improvements/current.improvement.yaml
+    digest: sha256:74a52424ea04bd87640b3cc429f5ece1ad91fb220593581652c53c51c190efa3
+    source_protocol: V3_1
+    checkpoint: null
+    capability_change: false
+    evidence_count: 0
+  parent_issue:
+    repository: null
+    number: null
+    disposition: UNKNOWN
+    relationships: []
+generator_contract:
+  canonical_launcher: skills/three-pass-prompt-generator/SKILL.md
+  canonical_schema: skills/three-pass-prompt-generator/schema.md
+  canonical_validator: skills/three-pass-prompt-generator/validate.py
+  protocol_revision_at_freeze: TPG-3P-2026-09-22-R10
+  generator_mode: THREE_PASS_ONLY
+  live_main_fetch_required: true
+  prompt_sequence:
+  - PROMPT_0_5
+  - PROMPT_1
+  - PROMPT_2
+  - PROMPT_2_5
+  - PROMPT_3
+  complex_mode: true
+  prompt1_q1_q5_required: true

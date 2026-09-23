@@ -1,0 +1,37 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-CP-ISS125-001
+command: ACCEPT_CHECKPOINT
+actor: chatgpt-sol-issue125-v31-20260923
+status: COMMITTED
+created_at: '2026-09-23T03:54:04.505905Z'
+updated_at: '2026-09-23T03:54:04.518906Z'
+operations:
+- path: relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:710390bfa355e0acde88e40844a23267bb22cc83e6798dd0b238502ddec9cb24
+  staged_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/staged/000.after
+  backup_path: null
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:084b248320ebe7fdfdff51ac1b94469b13ef6e7c3ac52f7980883ea55cbfee2a
+  after_digest: sha256:b493adbd708b3640101c4acf8ccf4b5ab3bd883fb7c4371273ba8e381add3f07
+  staged_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/backups/001.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:fc51ab3591aeee68248153733a6b031f3f8ae23081ca43922e142b9aeb614468
+  after_digest: sha256:246c71e2acb30578909b6393737abf10c1998721a6091840c3b48d8357007bf8
+  staged_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/backups/002.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:c2067b4499115767426010551a35afbe5d22761532bcdda1573ca0a72214b7f8
+  after_digest: sha256:d29818859ada7f5c07a8e68586212c5933f11f0de07397d097a48863b3513ca5
+  staged_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-CP-ISS125-001/backups/003.before
+applied:
+- relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/STATE.yaml

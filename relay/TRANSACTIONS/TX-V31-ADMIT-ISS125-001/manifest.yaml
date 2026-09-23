@@ -1,0 +1,51 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ADMIT-ISS125-001
+command: ADMIT_TASK
+actor: chatgpt-sol-issue125-v31-20260923
+status: COMMITTED
+created_at: '2026-09-23T03:47:32.405952Z'
+updated_at: '2026-09-23T03:47:32.433771Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:b141b01948cbf2092fe9e21dd5170135a6b7fd0754c5131699fd4ec4feddb17e
+  after_digest: sha256:084b248320ebe7fdfdff51ac1b94469b13ef6e7c3ac52f7980883ea55cbfee2a
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:3aaefdb1398187eb7e2c185d99c8ffa8b154533ea6ab9ff94d0d26aab261e8e0
+  after_digest: sha256:fc51ab3591aeee68248153733a6b031f3f8ae23081ca43922e142b9aeb614468
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/backups/001.before
+- path: relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:bfe7573ae1e9395c1f6cbebe1a499f2c8054dc2a96509b6c40e59f0b8cd55180
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/002.after
+  backup_path: null
+- path: relay/ROADMAP/ROADMAP.yaml
+  before_exists: true
+  before_digest: sha256:6b3d82c4ea9c3139487583348a92842cd76a10dea04ce421931db8487a4cf03c
+  after_digest: sha256:8211f29535c376192dc31fbd15bd39b7c6b4e28ede80bc3d5cb55165639061b7
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/backups/003.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:e7ad976588aa097194f2344786b0b59bcfde496fa28915a91515ed111bbb7b46
+  after_digest: sha256:c2067b4499115767426010551a35afbe5d22761532bcdda1573ca0a72214b7f8
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/backups/004.before
+- path: relay/WORK/EP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:92577491b2de78b84c9dac1f16397755f772374c7ca7c1f433f539c1c971243c
+  staged_path: relay/TRANSACTIONS/TX-V31-ADMIT-ISS125-001/staged/005.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+- relay/ROADMAP/ROADMAP.yaml
+- relay/STATE.yaml
+- relay/WORK/EP-ISS125-ACCELERATED-FRAMES-V31-001.yaml

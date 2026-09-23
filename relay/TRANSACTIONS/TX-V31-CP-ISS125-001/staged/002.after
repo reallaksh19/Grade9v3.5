@@ -1,0 +1,114 @@
+schema_version: relay-v3.1-snapshot
+authority: DERIVED_READ_MODEL
+generated_from:
+  roadmap_revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
+  state_digest: sha256:da436809536d583856518abde8f323b594fc5d568b0cf62eb460b697fa522fa4
+  material_basis:
+    head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
+    tree_digest: sha256:b3d08280e03720d772957ba552b19e678add3f768bb23cc5fce8f0cadc4eccce
+    relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
+    dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
+  coordination_head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
+owner:
+  outcome: Preserve the delivered self-study architecture and activate new work only
+    from a concrete learner, worksheet, source, or product defect rather than from
+    stale umbrella scope.
+  current_goal: No successor content lane is active. Grade-10 Physics, Grade-11 Physics,
+    and Mathematics expansion are Owner-skipped for now; dormant Physics inventory
+    remains demand-gated and real learner evidence remains input-gated.
+programme:
+  accepted_progress: 8.73
+  completed_work:
+  - WP-PORTABLE-163
+  - WP-ISS125-ACCELERATED-FRAMES
+  remaining_work:
+  - WP-TAKEOVER-RECONCILE
+  - WP-TA-102
+  - WP-TA-106
+  - WP-TA-103
+  - WP-TA-104
+  - WP-TA-107
+  - WP-TA-108
+  - WP-TA-105
+  - WP-CANONICAL-174-NLM
+  - WP-CANONICAL-174-MOTION
+  - WP-LEARNER-175-PRODUCTION
+execution:
+  lifecycle: ACTIVE
+  work_package: WP-ISS125-ACCELERATED-FRAMES
+  ep: EP-ISS125-ACCELERATED-FRAMES-V31-001
+  lease: LEASE-ISS125-ACCELERATED-FRAMES-V31-001
+  executor: chatgpt-sol-issue125-v31-20260923
+  custody_epoch: 1
+scope:
+  allowed_writes:
+  - .github/workflows/v3-relay.yml
+  - Physics/gates/foundational-relations.v1.json
+  - Physics/library/phy-nlm-first-law.v1.json
+  - public/physics/nlm/explorers/accelerated-frames/index.html
+  - tests/test_issue125_accelerated_frames_explorer.py
+  - tests/test_gates.py
+  - tests/test_grade9_physics_learner_loop.py
+  - tests/test_issue19_physics_content.py
+  - tests/test_library.py
+  - tools/data.js
+  - public/data/data.js
+  - docs/architecture-manifest.json
+  protected:
+  - Learners/**
+  - Mathematics/**
+  - Chemistry/**
+  - agents/relay/**
+  - Shared/publication_host/**
+  - Shared/workbench/**
+  - standalone/**
+  prohibited:
+  - Do not promote R4 / CAP-NLM-FRAME-CHOICE into default Grade-9 completion or exit-readiness
+    scope.
+  - Do not add circular-motion / centripetal-force dynamics under Issue 125.
+  - Do not create learner mastery state, readiness scores, or a second truth store.
+  - Do not let the HTML page become independent scientific authority for equations
+    owned by Physics gates/library relations.
+  - Do not merge without an accepted fresh V3.1 checkpoint and explicit Owner MERGE
+    authority.
+material:
+  base: c6e2e825e9bd3e67f1e37228d6ddca19081edb23
+  head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
+  relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
+  dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
+evidence:
+  latest_checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
+  latest_material_validation:
+    focused_tests: PASS
+    spec_delivery: PASS
+    full_guardrails: PASS
+controls:
+  execution_blockers: []
+  handover_blockers: []
+  delivery_blockers: []
+  informational: []
+delivery:
+  issue: null
+  pr: 199
+  lifecycle: DECLARED
+  merge_authorized: false
+next:
+  immediate_material_action: Treat current PR 199 bytes as candidate work, repin .github/workflows/v3-relay.yml
+    to exact Common@1c168695f237a8bef184a9e189be80fab87d1e78, then re-run exact-head
+    falsifiers before checkpoint.
+  delivery_action: Perform the explicitly authorized delivery transition.
+  stop_conditions:
+  - Stop if exact V3.1 authorization denies a material write or checkpoint.
+  - Stop if any change promotes R4 into default Grade-9 scope.
+  - Stop if circular-motion dynamics enter the Issue 125 slice.
+  - Stop before merge unless a fresh accepted checkpoint exists and explicit Owner
+    MERGE authority is present.
+handoff:
+  zero_context_takeover_possible: true
+  reconstruction_sources:
+  - relay/ROADMAP/ROADMAP.yaml
+  - relay/STATE.yaml
+  - relay/CONTROLS/controls.yaml
+  - relay/WORK/EP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  - relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  - relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml

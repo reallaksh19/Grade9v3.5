@@ -1,0 +1,58 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ISS125-PLAN-HANDOVER-002
+command: PLAN_HANDOVER
+actor: chatgpt-sol-issue125-v31-20260923
+status: COMMITTED
+created_at: '2026-09-23T09:02:23.968744Z'
+updated_at: '2026-09-23T09:02:23.985173Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:dd64ef0284ea38adea457ca4038015ae44dc83827f0049e9f5cccec8d358e17c
+  after_digest: sha256:1836e0627ac22c71a431d15e43a5229d2daa0a21768d387b5a2fe34e84d68941
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:4989520a13489e1d6224af4c9253c007b7f1d1525b799fee4aded75c8c264c3e
+  after_digest: sha256:4989520a13489e1d6224af4c9253c007b7f1d1525b799fee4aded75c8c264c3e
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/backups/001.before
+- path: relay/GENERATED/HANDOVER_CONTEXT.yaml
+  before_exists: true
+  before_digest: sha256:25cd257aefb6f3611e515f4a68010320a4429b5635d821f2a0a1be7874c89caa
+  after_digest: sha256:64e2d41b90f71fce3acdcdfde814016474b650ee7594d9a8dbd100a8b86eaa2e
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/backups/002.before
+- path: relay/GENERATED/THREE_PASS_REQUEST.md
+  before_exists: true
+  before_digest: sha256:393dfbf6bc90da5468cd2054f810fa368cd19e147321d90ebe9d57aac7aec97c
+  after_digest: sha256:6c159d5a10ba82109d65e13dd614f1bc0b60f403344569f46848bb51a412bd87
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/backups/003.before
+- path: relay/GENERATED/THREE_PASS_REQUEST.yaml
+  before_exists: true
+  before_digest: sha256:8f0451ec77c300588b130fc9814fae8bf33238728c9b5227b6f299fca8d07867
+  after_digest: sha256:9dba370a486b18c0dea43728bce0d4a4ef1f0f744b614301c5bee69980818b37
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/004.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/backups/004.before
+- path: relay/GENERATED/improvements/CP-ISS125-ACCELERATED-FRAMES-V31-001.improvement.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:b200b58b24abe09bd77ca71e06906f3ef992d82b6c66ae6eacd8bf8995aa647e
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/005.after
+  backup_path: null
+- path: relay/GENERATED/tasks/EP-ISS125-ACCELERATED-FRAMES-V31-001.snapshot.yaml
+  before_exists: false
+  before_digest: null
+  after_digest: sha256:6e6a4aaa4170267a059eddd9a2adc29be76a784166442878eca870658392e172
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-PLAN-HANDOVER-002/staged/006.after
+  backup_path: null
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/GENERATED/HANDOVER_CONTEXT.yaml
+- relay/GENERATED/THREE_PASS_REQUEST.md
+- relay/GENERATED/THREE_PASS_REQUEST.yaml
+- relay/GENERATED/improvements/CP-ISS125-ACCELERATED-FRAMES-V31-001.improvement.yaml
+- relay/GENERATED/tasks/EP-ISS125-ACCELERATED-FRAMES-V31-001.snapshot.yaml

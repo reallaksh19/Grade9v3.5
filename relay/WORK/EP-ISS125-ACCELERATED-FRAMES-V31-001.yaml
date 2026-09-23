@@ -1,0 +1,109 @@
+schema_version: relay-v3.1-ep
+id: EP-ISS125-ACCELERATED-FRAMES-V31-001
+work_package: WP-ISS125-ACCELERATED-FRAMES
+outcome:
+  statement: Reconcile and deliver Issue 125 as a non-default, explicit-demand NLM
+    extension with subject-owned elevator/pseudo-force/hanging-bob relations, one
+    canonical accelerating-frame representation and learner explorer, without promoting
+    R4 into ordinary Grade-9 completion scope.
+basis:
+  predecessor_checkpoint: null
+  material_base: c6e2e825e9bd3e67f1e37228d6ddca19081edb23
+  protocol_basis: reallaksh19/Common@1c168695f237a8bef184a9e189be80fab87d1e78:skills/engineering-pr-delivery-v3.1
+  semantic_dependencies:
+  - path: Physics/library/phy-nlm-first-law.v1.json
+    reason: Canonical NLM capability, relation, representation, question, and activity
+      truth.
+  - path: Physics/matrices/phy-nlm-first-law.rungs.json
+    reason: Authority that R4 frame choice remains non-default.
+  - path: Physics/gates/foundational-relations.v1.json
+    reason: Subject-owned quantitative relation authority.
+  - path: Shared/library/package.schema.json
+    reason: Canonical library structure and representation contract.
+  - path: docs/grade9/G9-2-FORCE-LAWS-AUTHORING-AUDIT.md
+    reason: 'Grade-9 scope boundary: frame choice is QUESTION_DEMAND / DECLARED_EXTENSION.'
+scope:
+  write:
+  - .github/workflows/v3-relay.yml
+  - Physics/gates/foundational-relations.v1.json
+  - Physics/library/phy-nlm-first-law.v1.json
+  - public/physics/nlm/explorers/accelerated-frames/index.html
+  - tests/test_issue125_accelerated_frames_explorer.py
+  - tests/test_gates.py
+  - tests/test_grade9_physics_learner_loop.py
+  - tests/test_issue19_physics_content.py
+  - tests/test_library.py
+  - tools/data.js
+  - public/data/data.js
+  - docs/architecture-manifest.json
+  read:
+  - Physics/matrices/phy-nlm-first-law.rungs.json
+  - Physics/library/**
+  - Physics/gates/**
+  - Shared/library/**
+  - docs/grade9/**
+  - tests/**
+  protect:
+  - Learners/**
+  - Mathematics/**
+  - Chemistry/**
+  - agents/relay/**
+  - Shared/publication_host/**
+  - Shared/workbench/**
+  - standalone/**
+  prohibit:
+  - Do not promote R4 / CAP-NLM-FRAME-CHOICE into default Grade-9 completion or exit-readiness
+    scope.
+  - Do not add circular-motion / centripetal-force dynamics under Issue 125.
+  - Do not create learner mastery state, readiness scores, or a second truth store.
+  - Do not let the HTML page become independent scientific authority for equations
+    owned by Physics gates/library relations.
+  - Do not merge without an accepted fresh V3.1 checkpoint and explicit Owner MERGE
+    authority.
+acceptance:
+- id: AC-125-SCOPE
+  statement: R4 remains non-default and the accelerated-frame activity is explicitly
+    demand-gated.
+  evidence_requirements:
+  - test: tests/test_issue125_accelerated_frames_explorer.py::AcceleratedFrameExplorerContract::test_r4_remains_nondefault_explicit_demand_extension
+- id: AC-125-GATE
+  statement: Elevator support, pseudo-force, and hanging-bob quantitative claims are
+    gate-owned with explicit validity conditions.
+  evidence_requirements:
+  - test: tests/test_issue125_accelerated_frames_explorer.py::AcceleratedFrameExplorerContract::test_quantitative_relations_are_gate_owned
+- id: AC-125-REPRESENTATION
+  statement: The frame-choice microtopic binds one canonical representation and one
+    authored activity using declared Physics representation kinds.
+  evidence_requirements:
+  - test: tests/test_issue125_accelerated_frames_explorer.py::AcceleratedFrameExplorerContract::test_microtopic_and_resource_bind_one_canonical_representation
+- id: AC-125-BEHAVIOR
+  statement: The explorer separates velocity from acceleration, preserves mg in free
+    fall, applies pseudo-force only to accelerating-frame bookkeeping, and provides
+    bounded hanging-bob transfer.
+  evidence_requirements:
+  - test: tests/test_issue125_accelerated_frames_explorer.py
+- id: AC-125-BOUNDARY
+  statement: No circular-motion scope leak or default-route expansion is introduced.
+  evidence_requirements:
+  - test: tests/test_issue125_accelerated_frames_explorer.py::AcceleratedFrameExplorerContract::test_no_circular_motion_scope_leak
+- id: AC-125-REPO
+  statement: Repository-wide guardrails pass and v31-relay validates against exact
+    Common@1c168695f237a8bef184a9e189be80fab87d1e78.
+  evidence_requirements:
+  - oracle: GitHub Actions guardrails + v31-relay on the exact PR head.
+quality_policy:
+  level: STANDARD
+  independent_review: OPTIONAL
+admission_policy:
+  qualification: NOT_REQUIRED
+  question_policy: NONE
+next:
+  first_action: Treat current PR 199 bytes as candidate work, repin .github/workflows/v3-relay.yml
+    to exact Common@1c168695f237a8bef184a9e189be80fab87d1e78, then re-run exact-head
+    falsifiers before checkpoint.
+  stop_conditions:
+  - Stop if exact V3.1 authorization denies a material write or checkpoint.
+  - Stop if any change promotes R4 into default Grade-9 scope.
+  - Stop if circular-motion dynamics enter the Issue 125 slice.
+  - Stop before merge unless a fresh accepted checkpoint exists and explicit Owner
+    MERGE authority is present.

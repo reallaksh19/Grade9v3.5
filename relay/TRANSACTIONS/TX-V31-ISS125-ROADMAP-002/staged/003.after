@@ -1,0 +1,22 @@
+schema_version: relay-v3.1
+roadmap:
+  revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
+  path: relay/ROADMAP/ROADMAP.yaml
+execution:
+  lifecycle: ACTIVE
+  ep: EP-ISS125-ACCELERATED-FRAMES-V31-001
+  lease: LEASE-ISS125-ACCELERATED-FRAMES-V31-001
+  route: SERIAL:EP-ISS125-ACCELERATED-FRAMES-V31-001
+  custody_epoch: 1
+accepted:
+  checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
+controls:
+  path: relay/CONTROLS/controls.yaml
+delivery:
+  required: true
+  primary_vehicle:
+    provider: GITHUB
+    kind: PULL_REQUEST
+    number: 199
+generated:
+  snapshot: relay/GENERATED/CURRENT_SNAPSHOT.yaml
