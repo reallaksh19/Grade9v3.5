@@ -1,0 +1,37 @@
+name: pass1-refresh-generated
+
+on:
+  push:
+    branches:
+      - question-bank/pass1-provenance
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[generated-refresh]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: question-bank/pass1-provenance
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install schema validator
+        run: python -m pip install jsonschema
+      - name: Regenerate repository artifacts
+        run: python3 Shared/tools/build_manifest.py
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/data.js public/data/data.js docs/architecture-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "[generated-refresh] Refresh generated artifacts"
+          git push origin HEAD:question-bank/pass1-provenance
