@@ -1,0 +1,580 @@
+{
+  "bank_schema_version": "1.0.0",
+  "bank_id": "QB-CHEMISTRY-COMPETITIVE-PASS1",
+  "subject": "Chemistry",
+  "pass_scope": "PASS_1_QUESTION_BANK_ONLY",
+  "status": "CANDIDATE_FOR_CANONICAL_MERGE",
+  "generated_sets": false,
+  "core_contract_refs": [
+    "Shared/roles/CORE2.md",
+    "Shared/roles/CORE2A.md",
+    "Shared/roles/CORE2B.md",
+    "Shared/library/package.schema.json"
+  ],
+  "source_policy": {
+    "provenance_classes": [
+      "PYQ_VERIFIED",
+      "PYQ_ADAPTED",
+      "SOURCE_UNVERIFIED"
+    ],
+    "canonical_questions_may_use": [
+      "PYQ_VERIFIED",
+      "PYQ_ADAPTED"
+    ],
+    "authored_questions_allowed": false,
+    "exact_source_text_policy": "VERBATIM_SOURCE_TEXT_IS_NOT_REPRODUCED_IN_THIS BANK FILE; authoritative organizer locator is canonical custody when verbatim redistribution is not permitted by source policy.",
+    "historical_identity_policy": "Preserve the examination name used at the time; legacy IIT-JEE is not relabelled as JEE (Advanced)."
+  },
+  "concept_resolution": {
+    "status": "LOCAL_PROPOSALS_PENDING_CANONICAL_CHEMISTRY_LIBRARY",
+    "rationale": "No canonical Chemistry library capability package for these two topics exists on current main. These are invariant-demand proposals, not story-specific capabilities and not global schema changes.",
+    "proposed_buckets": [
+      {
+        "id": "BUCKET-CHEM-REDOX-REACTIONS",
+        "title": "Redox reactions"
+      },
+      {
+        "id": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+        "title": "Mole concept and stoichiometry"
+      }
+    ],
+    "proposed_capabilities": [
+      {
+        "id": "CAP-CHEM-REDOX-OXIDATION-STATE",
+        "action": "Assign and compare oxidation states using composition and charge constraints."
+      },
+      {
+        "id": "CAP-CHEM-REDOX-DISPROPORTIONATION",
+        "action": "Recognize when the same element in one reactant is simultaneously oxidized and reduced."
+      },
+      {
+        "id": "CAP-CHEM-REDOX-BALANCE-ELECTRON",
+        "action": "Balance oxidation and reduction electron inventories in the specified reaction medium."
+      },
+      {
+        "id": "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT",
+        "action": "Convert concentration and sample volume into amount of substance."
+      },
+      {
+        "id": "CAP-CHEM-STOICH-MOLE-RATIO",
+        "action": "Map amounts through a balanced stoichiometric or electron-transfer ratio."
+      },
+      {
+        "id": "CAP-CHEM-STOICH-MASS-MOLE",
+        "action": "Convert between amount and mass after the reacting amount has been established."
+      }
+    ],
+    "proposed_families": [
+      {
+        "id": "FAM-CHEM-REDOX-REACTION-CLASSIFICATION",
+        "invariant_demand": "Classify a redox pattern by oxidation-state changes."
+      },
+      {
+        "id": "FAM-CHEM-REDOX-ACIDIC-MEDIUM-BALANCE",
+        "invariant_demand": "Balance an acidic-medium redox reaction and count transferred electrons/products."
+      },
+      {
+        "id": "FAM-CHEM-MOLE-ELECTROLYTIC-STOICH",
+        "invariant_demand": "Convert solution amount into electrolysis stoichiometric outputs using one shared reacting inventory."
+      }
+    ]
+  },
+  "source_records": [
+    {
+      "id": "SRC-IITJEE-2008-P1-OFFICIAL",
+      "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+      "exam": "IIT-JEE",
+      "year": 2008,
+      "date": null,
+      "paper": "Paper I",
+      "section": "Paragraph for Question Nos. 64 to 66",
+      "source_url": "https://jeeadv.ac.in/past_qps/2008_1.pdf",
+      "archive_url": "https://jeeadv.ac.in/archive.html",
+      "answer_key_url": null,
+      "answer_key_locator": "Correct option is marked in the official paper itself.",
+      "last_checked": "2026-09-23",
+      "verification_status": "PYQ_VERIFIED"
+    },
+    {
+      "id": "SRC-JEEADV-2023-P2-OFFICIAL",
+      "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+      "exam": "JEE (Advanced)",
+      "year": 2023,
+      "date": "2023-06-04",
+      "session": "Paper 2, 14:30-17:30 IST",
+      "paper": "Paper 2",
+      "section": "Section 3 (Non-negative Integer)",
+      "source_url": "https://jeeadv.ac.in/past_qps/2023_2_English.pdf",
+      "archive_url": "https://jeeadv.ac.in/archive.html",
+      "date_authority_url": "https://jeeadv.ac.in/reports/2023.pdf",
+      "answer_key_url": null,
+      "answer_key_locator": "No final-answer-key URL was located in the current archive during this pass; answer is independently solved.",
+      "last_checked": "2026-09-23",
+      "verification_status": "PYQ_VERIFIED"
+    },
+    {
+      "id": "SRC-IITJEE-2007-P1-OFFICIAL",
+      "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+      "exam": "IIT-JEE",
+      "year": 2007,
+      "date": null,
+      "paper": "Paper I",
+      "section": "Shared mole-concept paragraph for Questions 39 to 41",
+      "source_url": "https://jeeadv.ac.in/past_qps/2007_1.pdf",
+      "archive_url": "https://jeeadv.ac.in/archive.html",
+      "answer_key_url": null,
+      "answer_key_locator": "Correct options are marked in the official paper itself.",
+      "last_checked": "2026-09-23",
+      "verification_status": "PYQ_VERIFIED"
+    }
+  ],
+  "shared_source_contexts": [
+    {
+      "id": "CTX-IITJEE-2007-P1-Q39-41",
+      "source_ref": "SRC-IITJEE-2007-P1-OFFICIAL",
+      "source_locator": "Official PDF pages at zero-based indices 16-18, shared paragraph preceding Questions 39-41.",
+      "context_summary": "A 4.0 M aqueous sodium chloride solution, 500 mL aliquot, is electrolysed; atomic masses for Na and Hg and the Faraday constant are supplied.",
+      "verbatim_text": null,
+      "custody_mode": "EXTERNAL_REFERENCE"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PYQ-CHEM-IITJEE-2008-P1-Q66",
+      "provenance_status": "PYQ_VERIFIED",
+      "source_refs": [
+        "SRC-IITJEE-2008-P1-OFFICIAL"
+      ],
+      "original_identifier": {
+        "exam": "IIT-JEE",
+        "year": 2008,
+        "date": null,
+        "session": null,
+        "shift": null,
+        "paper": "Paper I",
+        "section": "Paragraph for Question Nos. 64 to 66",
+        "question_number": "66",
+        "pdf_page_index_zero_based": 22
+      },
+      "topic": "Redox Reactions",
+      "concept_bucket": "BUCKET-CHEM-REDOX-REACTIONS",
+      "family_ref": "FAM-CHEM-REDOX-REACTION-CLASSIFICATION",
+      "primary_capability_ref": "CAP-CHEM-REDOX-DISPROPORTIONATION",
+      "secondary_capability_refs": [
+        "CAP-CHEM-REDOX-OXIDATION-STATE"
+      ],
+      "exam_source_badge": "IIT-JEE 2008 · Paper I · Q66",
+      "question_type": "single_correct_mcq",
+      "source_text_custody": {
+        "mode": "EXTERNAL_REFERENCE",
+        "verbatim_stem": null,
+        "verbatim_subparts": null,
+        "verbatim_options": null,
+        "conditions_preserved_by_locator": true
+      },
+      "stem_summary": "Classify the reaction in which white phosphorus reacts with sodium hydroxide and phosphine is one product.",
+      "figure": {
+        "present": false,
+        "identity": null,
+        "caption": null,
+        "source_locator": null,
+        "local_copy": null
+      },
+      "original_hints": [],
+      "source_answer": {
+        "kind": "option",
+        "value": "B",
+        "authority": "official paper embedded key"
+      },
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "A direct redox-pattern classification once oxidation states in the products are recognized."
+      },
+      "expected_time_seconds": 60,
+      "answer_verification": {
+        "status": "SOURCE_KEY_AND_INDEPENDENT_CHECK",
+        "independent_check": "Phosphorus starts at oxidation state 0; in the products it is reduced to -3 in PH3 and oxidized to +1 in hypophosphite, so the same element undergoes both directions: disproportionation."
+      },
+      "common_wrong_route": "Classify by product appearance or reaction setting instead of tracking phosphorus oxidation states.",
+      "reasoning_route": [
+        "Assign phosphorus oxidation state in elemental P.",
+        "Identify one reduced and one oxidized phosphorus product.",
+        "Classify simultaneous oxidation and reduction of the same element as disproportionation."
+      ],
+      "reasoning_route_origin": "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT",
+      "stable_crux_move": "Track the same element into two products with oxidation states on opposite sides of its starting value.",
+      "transfer_profile": {
+        "core2b_candidate": false,
+        "model_choice": 1,
+        "representation_translation": 0,
+        "novelty": 0,
+        "reasoning_steps": 2,
+        "classification": "SAME_FAMILY_VARIATION"
+      }
+    },
+    {
+      "id": "PYQ-CHEM-JEEADV-2023-P2-Q08",
+      "provenance_status": "PYQ_VERIFIED",
+      "source_refs": [
+        "SRC-JEEADV-2023-P2-OFFICIAL"
+      ],
+      "original_identifier": {
+        "exam": "JEE (Advanced)",
+        "year": 2023,
+        "date": "2023-06-04",
+        "session": "Paper 2, 14:30-17:30 IST",
+        "shift": null,
+        "paper": "Paper 2",
+        "section": "Section 3 (Non-negative Integer)",
+        "question_number": "8",
+        "pdf_page_index_zero_based": 26
+      },
+      "topic": "Redox Reactions",
+      "concept_bucket": "BUCKET-CHEM-REDOX-REACTIONS",
+      "family_ref": "FAM-CHEM-REDOX-ACIDIC-MEDIUM-BALANCE",
+      "primary_capability_ref": "CAP-CHEM-REDOX-BALANCE-ELECTRON",
+      "secondary_capability_refs": [
+        "CAP-CHEM-REDOX-OXIDATION-STATE",
+        "CAP-CHEM-STOICH-MOLE-RATIO"
+      ],
+      "exam_source_badge": "JEE (Advanced) 2023 · Paper 2 · Q8",
+      "question_type": "non_negative_integer",
+      "source_text_custody": {
+        "mode": "EXTERNAL_REFERENCE",
+        "verbatim_stem": null,
+        "verbatim_subparts": null,
+        "verbatim_options": null,
+        "conditions_preserved_by_locator": true
+      },
+      "stem_summary": "Five moles of hydrogen sulfide react completely with acidified permanganate; determine the requested sum involving water formed and electrons transferred.",
+      "figure": {
+        "present": false,
+        "identity": null,
+        "caption": null,
+        "source_locator": null,
+        "local_copy": null
+      },
+      "original_hints": [],
+      "source_answer": {
+        "kind": "integer",
+        "value": null,
+        "authority": "official answer-key URL not located in archive during pass"
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires correct acidic-medium half-reaction accounting, electron count and stoichiometric scaling to the supplied amount."
+      },
+      "expected_time_seconds": 150,
+      "answer_verification": {
+        "status": "INDEPENDENTLY_SOLVED_NO_OFFICIAL_KEY_LOCATED",
+        "verified_value": 18,
+        "independent_check": "Balanced ionic equation: 2 MnO4^- + 5 H2S + 6 H+ -> 2 Mn2+ + 5 S + 8 H2O. For 5 mol H2S, water x=8 mol and electrons y=10 mol, so x+y=18."
+      },
+      "common_wrong_route": "Count water or permanganate coefficients before balancing both charge and atoms in acidic medium, or count only 5 electrons instead of 10.",
+      "reasoning_route": [
+        "Write oxidation of sulfide sulfur from -2 to 0 and reduction of Mn(+7) to Mn(+2).",
+        "Equalize the electron count and balance H/O in acidic medium.",
+        "Scale to 5 mol H2S and read water and total electrons transferred."
+      ],
+      "reasoning_route_origin": "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT",
+      "stable_crux_move": "Electron balance fixes the stoichiometric scale before water is counted.",
+      "transfer_profile": {
+        "core2b_candidate": true,
+        "model_choice": 2,
+        "representation_translation": 1,
+        "novelty": 2,
+        "reasoning_steps": 3,
+        "classification": "REAL_TRANSFER_CANDIDATE"
+      }
+    },
+    {
+      "id": "PYQ-CHEM-IITJEE-2007-P1-Q39",
+      "provenance_status": "PYQ_VERIFIED",
+      "source_refs": [
+        "SRC-IITJEE-2007-P1-OFFICIAL"
+      ],
+      "original_identifier": {
+        "exam": "IIT-JEE",
+        "year": 2007,
+        "date": null,
+        "session": null,
+        "shift": null,
+        "paper": "Paper I",
+        "section": "Shared mole-concept paragraph for Questions 39 to 41",
+        "question_number": "39",
+        "pdf_page_index_zero_based": 16
+      },
+      "shared_context_ref": "CTX-IITJEE-2007-P1-Q39-41",
+      "variant_cluster_ref": "CLUSTER-CHEM-IITJEE-2007-P1-Q39-41",
+      "topic": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+      "concept_bucket": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+      "family_ref": "FAM-CHEM-MOLE-ELECTROLYTIC-STOICH",
+      "primary_capability_ref": "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT",
+      "secondary_capability_refs": [
+        "CAP-CHEM-STOICH-MOLE-RATIO"
+      ],
+      "exam_source_badge": "IIT-JEE 2007 · Paper I · Q39",
+      "question_type": "single_correct_mcq",
+      "source_text_custody": {
+        "mode": "EXTERNAL_REFERENCE",
+        "verbatim_stem": null,
+        "verbatim_subparts": null,
+        "verbatim_options": null,
+        "conditions_preserved_by_locator": true
+      },
+      "stem_summary": "Using the shared NaCl electrolysis setup, determine the total amount of chlorine gas evolved.",
+      "figure": {
+        "present": false,
+        "identity": null,
+        "caption": null,
+        "source_locator": null,
+        "local_copy": null
+      },
+      "original_hints": [],
+      "source_answer": {
+        "kind": "option",
+        "value": "B",
+        "authority": "official paper embedded key"
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Convert molarity and volume to chloride amount, then apply the 2 Cl- to 1 Cl2 stoichiometric ratio."
+      },
+      "expected_time_seconds": 75,
+      "answer_verification": {
+        "status": "SOURCE_KEY_AND_INDEPENDENT_CHECK",
+        "independent_check": "4.0 mol/L x 0.500 L gives 2.0 mol chloride. Since 2 Cl- produce 1 Cl2, the amount of chlorine is 1.0 mol, matching option B."
+      },
+      "common_wrong_route": "Treat 2 mol of chloride ions as 2 mol of chlorine molecules.",
+      "reasoning_route": [
+        "Convert 4.0 M and 0.500 L to moles of NaCl/Cl-.",
+        "Apply the electrode stoichiometry 2 Cl- -> Cl2 + 2e-.",
+        "Read the chlorine amount."
+      ],
+      "reasoning_route_origin": "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT",
+      "stable_crux_move": "Use molecular chlorine's two-chloride stoichiometry after converting concentration to amount.",
+      "transfer_profile": {
+        "core2b_candidate": false,
+        "model_choice": 1,
+        "representation_translation": 1,
+        "novelty": 0,
+        "reasoning_steps": 2,
+        "classification": "SAME_FAMILY_VARIATION"
+      }
+    },
+    {
+      "id": "PYQ-CHEM-IITJEE-2007-P1-Q40",
+      "provenance_status": "PYQ_VERIFIED",
+      "source_refs": [
+        "SRC-IITJEE-2007-P1-OFFICIAL"
+      ],
+      "original_identifier": {
+        "exam": "IIT-JEE",
+        "year": 2007,
+        "date": null,
+        "session": null,
+        "shift": null,
+        "paper": "Paper I",
+        "section": "Shared mole-concept paragraph for Questions 39 to 41",
+        "question_number": "40",
+        "pdf_page_index_zero_based": 17
+      },
+      "shared_context_ref": "CTX-IITJEE-2007-P1-Q39-41",
+      "variant_cluster_ref": "CLUSTER-CHEM-IITJEE-2007-P1-Q39-41",
+      "topic": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+      "concept_bucket": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+      "family_ref": "FAM-CHEM-MOLE-ELECTROLYTIC-STOICH",
+      "primary_capability_ref": "CAP-CHEM-STOICH-MASS-MOLE",
+      "secondary_capability_refs": [
+        "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT",
+        "CAP-CHEM-STOICH-MOLE-RATIO"
+      ],
+      "exam_source_badge": "IIT-JEE 2007 · Paper I · Q40",
+      "question_type": "single_correct_mcq",
+      "source_text_custody": {
+        "mode": "EXTERNAL_REFERENCE",
+        "verbatim_stem": null,
+        "verbatim_subparts": null,
+        "verbatim_options": null,
+        "conditions_preserved_by_locator": true
+      },
+      "stem_summary": "With mercury as the cathode in the shared electrolysis setup, determine the maximum mass of amalgam formed.",
+      "figure": {
+        "present": false,
+        "identity": null,
+        "caption": null,
+        "source_locator": null,
+        "local_copy": null
+      },
+      "original_hints": [],
+      "source_answer": {
+        "kind": "option",
+        "value": "D",
+        "authority": "official paper embedded key"
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires carrying the shared 2 mol sodium inventory into the stated amalgam mass calculation and using the supplied atomic masses."
+      },
+      "expected_time_seconds": 120,
+      "answer_verification": {
+        "status": "SOURCE_KEY_AND_INDEPENDENT_CHECK",
+        "independent_check": "The 500 mL of 4.0 M NaCl contains 2 mol Na+. Complete cathodic uptake gives 2 mol Na in Na-Hg amalgam; with the paper's implied 1:1 NaHg composition and supplied masses, 2(23+200)=446 g, matching option D."
+      },
+      "common_wrong_route": "Report only the deposited sodium mass, or omit the mercury contribution to the amalgam mass.",
+      "reasoning_route": [
+        "Carry forward the 2 mol Na+ inventory from the shared stem.",
+        "Use the cathode/amalgam stoichiometric composition implied by the source item.",
+        "Convert the resulting formula amount to mass with the supplied atomic masses."
+      ],
+      "reasoning_route_origin": "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT",
+      "stable_crux_move": "The requested mass is the amalgam mass, not the sodium deposit alone.",
+      "transfer_profile": {
+        "core2b_candidate": false,
+        "model_choice": 1,
+        "representation_translation": 1,
+        "novelty": 1,
+        "reasoning_steps": 3,
+        "classification": "SAME_FAMILY_VARIATION"
+      }
+    },
+    {
+      "id": "PYQ-CHEM-IITJEE-2007-P1-Q41",
+      "provenance_status": "PYQ_VERIFIED",
+      "source_refs": [
+        "SRC-IITJEE-2007-P1-OFFICIAL"
+      ],
+      "original_identifier": {
+        "exam": "IIT-JEE",
+        "year": 2007,
+        "date": null,
+        "session": null,
+        "shift": null,
+        "paper": "Paper I",
+        "section": "Shared mole-concept paragraph for Questions 39 to 41",
+        "question_number": "41",
+        "pdf_page_index_zero_based": 18
+      },
+      "shared_context_ref": "CTX-IITJEE-2007-P1-Q39-41",
+      "variant_cluster_ref": "CLUSTER-CHEM-IITJEE-2007-P1-Q39-41",
+      "topic": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+      "concept_bucket": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+      "family_ref": "FAM-CHEM-MOLE-ELECTROLYTIC-STOICH",
+      "primary_capability_ref": "CAP-CHEM-STOICH-MOLE-RATIO",
+      "secondary_capability_refs": [
+        "CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT"
+      ],
+      "exam_source_badge": "IIT-JEE 2007 · Paper I · Q41",
+      "question_type": "single_correct_mcq",
+      "source_text_custody": {
+        "mode": "EXTERNAL_REFERENCE",
+        "verbatim_stem": null,
+        "verbatim_subparts": null,
+        "verbatim_options": null,
+        "conditions_preserved_by_locator": true
+      },
+      "stem_summary": "Using the shared NaCl electrolysis setup and the supplied Faraday constant, determine the total charge required for complete electrolysis.",
+      "figure": {
+        "present": false,
+        "identity": null,
+        "caption": null,
+        "source_locator": null,
+        "local_copy": null
+      },
+      "original_hints": [],
+      "source_answer": {
+        "kind": "option",
+        "value": "D",
+        "authority": "official paper embedded key"
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Convert solution amount to electron amount and then use the Faraday charge-per-mole conversion."
+      },
+      "expected_time_seconds": 90,
+      "answer_verification": {
+        "status": "SOURCE_KEY_AND_INDEPENDENT_CHECK",
+        "independent_check": "The solution contains 2 mol NaCl, so complete electrolysis transfers 2 mol electrons. Charge=2 x 96500 C=193000 C, matching option D."
+      },
+      "common_wrong_route": "Use one Faraday for the full 2 mol NaCl inventory.",
+      "reasoning_route": [
+        "Convert solution concentration and volume to 2 mol NaCl.",
+        "Associate one electron per Na+ discharged, hence 2 mol electrons.",
+        "Multiply by the supplied Faraday constant."
+      ],
+      "reasoning_route_origin": "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT",
+      "stable_crux_move": "Convert the reacting amount into moles of electrons before converting electrons into charge.",
+      "transfer_profile": {
+        "core2b_candidate": false,
+        "model_choice": 1,
+        "representation_translation": 1,
+        "novelty": 0,
+        "reasoning_steps": 2,
+        "classification": "SAME_FAMILY_VARIATION"
+      }
+    }
+  ],
+  "extensions": {
+    "grade9v3:exam_bank": {
+      "issue_ref": "https://github.com/reallaksh19/Grade9V3/issues/201",
+      "branch": "question-bank/pass1-provenance",
+      "capability_namespace": "LOCAL_PROPOSAL_UNTIL_CHEMISTRY_CANONICAL_LIBRARY_EXISTS",
+      "learner_facing_policy": "Only PYQ_VERIFIED/PYQ_ADAPTED may become learner-facing Core2; SOURCE_UNVERIFIED remains donor-only.",
+      "no_practice_sets": true
+    }
+  },
+  "variant_clusters": [
+    {
+      "id": "CLUSTER-CHEM-IITJEE-2007-P1-Q39-41",
+      "relation": "SHARED_SOURCE_CONTEXT_PEERS",
+      "shared_context_ref": "CTX-IITJEE-2007-P1-Q39-41",
+      "member_refs": [
+        "PYQ-CHEM-IITJEE-2007-P1-Q39",
+        "PYQ-CHEM-IITJEE-2007-P1-Q40",
+        "PYQ-CHEM-IITJEE-2007-P1-Q41"
+      ],
+      "parent_ref": null,
+      "note": "Three distinct original questions sharing one official paragraph; none is an adaptation or parent of another."
+    }
+  ]
+}
