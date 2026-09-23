@@ -1,6 +1,6 @@
 {
   "manifest_id": "QB-PHYSICS-COMPETITIVE-PASS1-V2",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "acquisition_ref": "PASS1-OFFICIAL-ARCHIVE-2026-09-23",
   "target_package": "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
   "inspector_id": "pass1-provenance",
@@ -71,12 +71,12 @@
     "grade9v3:source_hint_policy": "question.hints[] is source custody only; authored support is question.scaffolds[].",
     "grade9v3:wording_policy": "Every learner-facing stem is PYQ_ADAPTED because it is a faithful non-verbatim restatement; the verified original identity remains in grade9v3:source_custody.",
     "grade9v3:topic_counts": {
-      "Newton's Laws of Motion / NLM": 12,
-      "Motion in 2D / Motion in a Plane — linear/projectile only": 14,
-      "Motion in 1D — relative motion only": 2
+      "Newton's Laws of Motion / NLM": 13,
+      "Motion in 2D / Motion in a Plane — linear/projectile only": 15,
+      "Motion in 1D — relative motion only": 3
     },
     "grade9v3:source_resource_policy": "Question source_refs/origin_ref resolve against resources[]; exact source wording remains external.",
-    "grade9v3:accepted_question_count": 28
+    "grade9v3:accepted_question_count": 31
   },
   "questions": [
     {
@@ -4738,6 +4738,483 @@
           "supports_move_ref": "PYQ-PHY-JEEADV-2013-P1-Q07-MOVE-3"
         }
       ]
+    },
+    {
+      "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
+      "version": "2.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEMAIN-2026-04APR-SHIFT2-OFFICIAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE Main",
+          "year": 2026,
+          "paper": "Session 2 · 04 Apr 2026 · Shift 2",
+          "section": "Physics",
+          "question_number": "27",
+          "paper_url": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/04/20260409432593766.pdf",
+          "archive_url": "https://jeemain.nta.nic.in/sitemap/",
+          "answer_key_url": "https://www.nta.ac.in/Download/Notice/Notice_20260420132025.pdf",
+          "answer_authority": "OFFICIAL_NTA_FINAL_ANSWER_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q27",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 1D — relative motion only",
+          "concept_bucket": "BUCKET-RELATIVE-MOTION",
+          "exam_source_badge": "JEE Main 2026 · 04 Apr · Shift 2 · Q27",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Requires choosing the correct pairwise reference frame, one unit conversion and a short relative-velocity equation."
+          },
+          "expected_time_seconds": 90,
+          "common_wrong_route": "Treating the 5 m/s impact speed as a ground-frame speed or subtracting car B's speed in the wrong direction.",
+          "stable_crux_move": "Write the stone's velocity relative to A as (v+80)-100, with v measured relative to B.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEMAIN-2026-04APR-SHIFT2-OFFICIAL",
+      "original_identifier": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q27",
+      "stem": "Cars A and B move in the same direction at 100 km/h and 80 km/h, with A ahead. A passenger in B throws a stone forward so that it reaches A with a speed of 5 m/s relative to A. Find the stone's launch speed v relative to car B, in km/h.",
+      "subparts": [],
+      "options": [
+        "18 km/h",
+        "28 km/h",
+        "38 km/h",
+        "48 km/h"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "38 km/h.",
+        "reasoning": [
+          "Convert the specified impact speed relative to A: 5 m/s = 18 km/h.",
+          "If v is the launch speed relative to B, the stone's ground speed is v+80 km/h; relative to A it is v+80-100.",
+          "Set v+80-100=18 to obtain v=38 km/h."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Convert the specified impact speed relative to A: 5 m/s = 18 km/h.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-2",
+            "kind": "CONNECT",
+            "action": "If v is the launch speed relative to B, the stone's ground speed is v+80 km/h; relative to A it is v+80-100.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Set v+80-100=18 to obtain v=38 km/h.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "38 km/h."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-2",
+        "check": "With v=38 km/h, the stone moves at 118 km/h relative to the road and therefore closes on car A at 18 km/h = 5 m/s, matching the source condition.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Selects the governing relation from the preserved source quantities before calculating.",
+            "evidence_of": "Correct model selection rather than answer matching."
+          },
+          {
+            "criterion": "Carries the calculation or classification to the stated result and independently checks it.",
+            "evidence_of": "A complete auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-RELATIVE-V",
+      "secondary_capability_refs": [
+        "CAP-SAME-TIME"
+      ],
+      "family_ref": "FAM-RELATIVE-V",
+      "adaptation": {
+        "parent_ref": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q27",
+        "changed_fields": [
+          "stem",
+          "options"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and only the listed presentation fields are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Put all speeds in one frame and one unit before comparing them.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-1"
+        },
+        {
+          "text": "The passenger's v is relative to B, so add B's ground speed before subtracting A's.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+      "version": "2.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEMAIN-2026-04APR-SHIFT2-OFFICIAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE Main",
+          "year": 2026,
+          "paper": "Session 2 · 04 Apr 2026 · Shift 2",
+          "section": "Physics",
+          "question_number": "29",
+          "paper_url": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/04/20260409432593766.pdf",
+          "archive_url": "https://jeemain.nta.nic.in/sitemap/",
+          "answer_key_url": "https://www.nta.ac.in/Download/Notice/Notice_20260420132025.pdf",
+          "answer_authority": "OFFICIAL_NTA_FINAL_ANSWER_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q29",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "JEE Main 2026 · 04 Apr · Shift 2 · Q29",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Directly translates parametric position into velocity components and then into a direction."
+          },
+          "expected_time_seconds": 70,
+          "common_wrong_route": "Using y/x at t=2 s instead of differentiating to obtain the instantaneous velocity direction.",
+          "stable_crux_move": "Differentiate x(t) and y(t); the requested angle is set by v_y/v_x, not y/x.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEMAIN-2026-04APR-SHIFT2-OFFICIAL",
+      "original_identifier": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q29",
+      "stem": "A projectile has coordinates x=24t and y=43.6t-4.9t^2, with x and y in metres and t in seconds. What angle does its velocity vector make with the horizontal at t=2 s?",
+      "subparts": [],
+      "options": [
+        "60°",
+        "45°",
+        "30°",
+        "75°"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "45°.",
+        "reasoning": [
+          "Differentiate the coordinate laws: v_x=dx/dt=24 m/s and v_y=dy/dt=43.6-9.8t.",
+          "At t=2 s, v_y=43.6-19.6=24 m/s.",
+          "Thus tan(theta)=v_y/v_x=1, so theta=45°."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Differentiate the coordinate laws: v_x=dx/dt=24 m/s and v_y=dy/dt=43.6-9.8t.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-2",
+            "kind": "CONNECT",
+            "action": "At t=2 s, v_y=43.6-19.6=24 m/s.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Thus tan(theta)=v_y/v_x=1, so theta=45°.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "45°."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-2",
+        "check": "Equal positive horizontal and vertical velocity components at t=2 s require a 45° direction in the first quadrant.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Selects the governing relation from the preserved source quantities before calculating.",
+            "evidence_of": "Correct model selection rather than answer matching."
+          },
+          {
+            "criterion": "Carries the calculation or classification to the stated result and independently checks it.",
+            "evidence_of": "A complete auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "secondary_capability_refs": [
+        "CAP-KIN-PROJECTILE-MODEL"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE Main|2026|Session 2 · 04 Apr 2026 · Shift 2|Physics|Q29",
+        "changed_fields": [
+          "stem",
+          "options"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and only the listed presentation fields are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "The question asks for the direction of velocity, so differentiate both coordinate functions first.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-1"
+        },
+        {
+          "text": "Use tan(theta)=v_y/v_x only after evaluating both components at t=2 s.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+      "version": "2.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEMAIN-2026-06APR-SHIFT2-OFFICIAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE Main",
+          "year": 2026,
+          "paper": "Session 2 · 06 Apr 2026 · Shift 2",
+          "section": "Physics",
+          "question_number": "46",
+          "paper_url": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/04/20260409725707538.pdf",
+          "archive_url": "https://jeemain.nta.nic.in/sitemap/",
+          "answer_key_url": "https://www.nta.ac.in/Download/Notice/Notice_20260420132025.pdf",
+          "answer_authority": "OFFICIAL_NTA_FINAL_ANSWER_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE Main|2026|Session 2 · 06 Apr 2026 · Shift 2|Physics|Q46",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "JEE Main 2026 · 06 Apr · Shift 2 · Q46",
+          "original_question_type": "integer_answer",
+          "learner_question_type": "integer_answer",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Combines Newton II on an incline with the time-acceleration scaling for equal-distance motion from rest."
+          },
+          "expected_time_seconds": 120,
+          "common_wrong_route": "Assuming halving the time only doubles acceleration, or omitting the normal-force factor in kinetic friction.",
+          "stable_crux_move": "Same-distance motion from rest makes t proportional to 1/sqrt(a), so t/2 means four times the acceleration.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEMAIN-2026-06APR-SHIFT2-OFFICIAL",
+      "original_identifier": "JEE Main|2026|Session 2 · 06 Apr 2026 · Shift 2|Physics|Q46",
+      "stem": "A block takes time t to slide from rest down a 45° inclined plane. When the same plane is made frictionless, the time becomes t/2. If the original coefficient of friction is alpha/100, find alpha.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The block starts from rest in both cases and traverses the same distance along the plane."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "75.",
+        "reasoning": [
+          "For the rough 45° plane, a_r=g(sin45°-mu cos45°)=g(1-mu)/sqrt(2). For the smooth plane, a_s=g/sqrt(2).",
+          "For the same distance from rest, time is proportional to 1/sqrt(a). Since the smooth time is t/2, a_s=4a_r.",
+          "Therefore 1=4(1-mu), giving mu=3/4=75/100 and alpha=75."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "For the rough 45° plane, a_r=g(sin45°-mu cos45°)=g(1-mu)/sqrt(2). For the smooth plane, a_s=g/sqrt(2).",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-2",
+            "kind": "CONNECT",
+            "action": "For the same distance from rest, time is proportional to 1/sqrt(a). Since the smooth time is t/2, a_s=4a_r.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Therefore 1=4(1-mu), giving mu=3/4=75/100 and alpha=75.",
+            "why_valid": "This follows from the stated source quantities and the preserved physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "75."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-2",
+        "check": "With mu=0.75, the rough acceleration is one quarter of the smooth acceleration, so its travel time is twice as large, exactly as stated.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Selects the governing relation from the preserved source quantities before calculating.",
+            "evidence_of": "Correct model selection rather than answer matching."
+          },
+          {
+            "criterion": "Carries the calculation or classification to the stated result and independently checks it.",
+            "evidence_of": "A complete auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE Main|2026|Session 2 · 06 Apr 2026 · Shift 2|Physics|Q46",
+        "changed_fields": [
+          "stem",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and only the listed presentation fields are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write the down-slope acceleration once with friction and once without friction.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-1"
+        },
+        {
+          "text": "For equal distance from rest, compare times through s=(1/2)at^2 rather than through speed.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46-MOVE-2"
+        }
+      ]
     }
   ],
   "resources": [
@@ -4800,6 +5277,69 @@
       ],
       "selection_reason": "First-party NEET question-paper archive plus NTA final answer key.",
       "fallback": []
+    },
+    {
+      "id": "SRC-JEEMAIN-2026-04APR-SHIFT2-OFFICIAL",
+      "version": "1.0.0",
+      "status": "REVIEWED",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+        "grade9v3:answer_key_url": "https://www.nta.ac.in/Download/Notice/Notice_20260420132025.pdf"
+      },
+      "title": "JEE Main 2026 Session 2 · 04 April · Shift 2 official B.E./B.Tech paper",
+      "origin": "WEB",
+      "locator": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/04/20260409432593766.pdf",
+      "edition": "JEE Main 2026 Session 2, 04 April 2026, Shift 2",
+      "section": "Physics and Chemistry",
+      "last_checked": "2026-09-23",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Official organizer-hosted paper. Learner-facing records are faithful non-verbatim PYQ_ADAPTED restatements; exact source text remains at the official paper locator.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "First-party JEE Main shift paper matched to the NTA final answer key.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-JEEMAIN-2026-06APR-SHIFT2-OFFICIAL",
+      "version": "1.0.0",
+      "status": "REVIEWED",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+        "grade9v3:answer_key_url": "https://www.nta.ac.in/Download/Notice/Notice_20260420132025.pdf"
+      },
+      "title": "JEE Main 2026 Session 2 · 06 April · Shift 2 official B.E./B.Tech paper",
+      "origin": "WEB",
+      "locator": "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/04/20260409725707538.pdf",
+      "edition": "JEE Main 2026 Session 2, 06 April 2026, Shift 2",
+      "section": "Physics and Chemistry",
+      "last_checked": "2026-09-23",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Official organizer-hosted paper. Learner-facing records are faithful non-verbatim PYQ_ADAPTED restatements; exact source text remains at the official paper locator.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "First-party JEE Main shift paper matched to the NTA final answer key.",
+      "fallback": []
     }
-  ]
+  ],
+  "last_checked": "2026-09-23"
 }
