@@ -5,20 +5,62 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 240,
-  "relation_count": 277,
+  "component_count": 241,
+  "relation_count": 280,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 114,
+    "TEST": 115,
     "TOOLING": 55,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:ac8cf8c4b6505ec9206086c9f9c1ae28dcbb0e7f3321b2a139bbb8d1bf471904",
+  "digest": "sha256:5c4a632f4564d4b12215150ba3d42a033814fa2d8986360c59d90ba1518f1065",
   "components": [
+    {
+      "path": "public/core-learning/data.js",
+      "role": "WEB",
+      "role_description": "Static Core learner host and generated projection data",
+      "bytes": 36390,
+      "sha256": "b624b6e2df670c33cacae307f20cc1d148ee3f8966c7ecea3ae3d38602ebeaa5"
+    },
+    {
+      "path": "public/core-learning/index.html",
+      "role": "WEB",
+      "role_description": "Static Core learner host and generated projection data",
+      "bytes": 5285,
+      "sha256": "ec13acf4fba75d273f57018ba4c3e86ed762d8741eb87b2999825c942da72fc8"
+    },
+    {
+      "path": "public/js/core-learning/core-learning-host.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 4785,
+      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
+    },
+    {
+      "path": "public/js/core-learning/core-learning-page.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 30085,
+      "sha256": "6bd66f15c1ee1a6229a0c94127cda988f146925572450ea95d4d37587d6a3bc9"
+    },
+    {
+      "path": "public/js/core-learning/runtime.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 21365,
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "public/js/core-learning/semantic-workbench.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 19627,
+      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
+    },
     {
       "path": "Shared/gates/gate.schema.json",
       "role": "GATES",
@@ -776,13 +818,6 @@
       "sha256": "452778cf6035c7371c987c37d209f2a329b67db8bc506174d1fa924be06e2f6b"
     },
     {
-      "path": "Shared/workbench/README.md",
-      "role": "WEB_RUNTIME",
-      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
-      "bytes": 4566,
-      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
-    },
-    {
       "path": "Shared/workbench/core-learning-host.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
@@ -797,6 +832,13 @@
       "sha256": "6bd66f15c1ee1a6229a0c94127cda988f146925572450ea95d4d37587d6a3bc9"
     },
     {
+      "path": "Shared/workbench/README.md",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 4566,
+      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
+    },
+    {
       "path": "Shared/workbench/runtime.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
@@ -807,48 +849,6 @@
       "path": "Shared/workbench/semantic-workbench.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
-      "bytes": 19627,
-      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
-    },
-    {
-      "path": "public/core-learning/data.js",
-      "role": "WEB",
-      "role_description": "Static Core learner host and generated projection data",
-      "bytes": 36390,
-      "sha256": "b624b6e2df670c33cacae307f20cc1d148ee3f8966c7ecea3ae3d38602ebeaa5"
-    },
-    {
-      "path": "public/core-learning/index.html",
-      "role": "WEB",
-      "role_description": "Static Core learner host and generated projection data",
-      "bytes": 5285,
-      "sha256": "ec13acf4fba75d273f57018ba4c3e86ed762d8741eb87b2999825c942da72fc8"
-    },
-    {
-      "path": "public/js/core-learning/core-learning-host.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 4785,
-      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
-    },
-    {
-      "path": "public/js/core-learning/core-learning-page.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 30085,
-      "sha256": "6bd66f15c1ee1a6229a0c94127cda988f146925572450ea95d4d37587d6a3bc9"
-    },
-    {
-      "path": "public/js/core-learning/runtime.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 21365,
-      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
-    },
-    {
-      "path": "public/js/core-learning/semantic-workbench.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
       "bytes": 19627,
       "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
     },
@@ -1287,6 +1287,13 @@
       "sha256": "cf3b2c7be63a54b0e367f57482bb94a25a0cd9c83c2d9a7cfcd412af15126b0c"
     },
     {
+      "path": "tests/test_grade9_motion_scope.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2459,
+      "sha256": "648ccacc69eb791b7e752f308d7a97eb8a75e496997695fd52fad128f145b0c0"
+    },
+    {
       "path": "tests/test_grade9_motion1d_vertical_gravity_agent_a_atlas.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1306,13 +1313,6 @@
       "role_description": "Executable checks",
       "bytes": 4220,
       "sha256": "c0516c711c21581eefad2b623ee0b74864af73d0cfbd17273b92b44552aa4707"
-    },
-    {
-      "path": "tests/test_grade9_motion_scope.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 2459,
-      "sha256": "648ccacc69eb791b7e752f308d7a97eb8a75e496997695fd52fad128f145b0c0"
     },
     {
       "path": "tests/test_grade9_nlm_connected_string_agent_a_atlas.py",
@@ -1425,6 +1425,13 @@
       "role_description": "Executable checks",
       "bytes": 13620,
       "sha256": "8c0efdf31f0136a4747bb224fea110de1d4fff37dbd1de2f061c6197920979df"
+    },
+    {
+      "path": "tests/test_issue212_atlas_index.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 17200,
+      "sha256": "50b3f2a9d0680922cbd63940e71e3b36f4cc22bcbea4ce250ecea87573573783"
     },
     {
       "path": "tests/test_learning_router.py",
@@ -1574,18 +1581,18 @@
       "sha256": "d12908786ee30d968b6881dbae5df756921b8cb4de71567ef27ea9b6ac3e4a6b"
     },
     {
-      "path": "tests/test_study_session.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 37321,
-      "sha256": "4460a5e134ca0519b715b17a60b0d8a97a9677ac90963a25c33c372ae049ed47"
-    },
-    {
       "path": "tests/test_study_session_scenario_scan.py",
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 26000,
       "sha256": "ca37ca069eda28bf5c1804b11d40927d123976b6d56bdf3344b70f3b4dd4c161"
+    },
+    {
+      "path": "tests/test_study_session.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 37321,
+      "sha256": "4460a5e134ca0519b715b17a60b0d8a97a9677ac90963a25c33c372ae049ed47"
     },
     {
       "path": "tests/test_study_start.py",
@@ -1686,18 +1693,18 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
-      "path": "tools/run-builder/index.html",
-      "role": "WEB",
-      "role_description": "Browsable surfaces over generated data",
-      "bytes": 7041,
-      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
-    },
-    {
       "path": "tools/run_agent_path_stress.py",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
       "bytes": 6932,
       "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
+    },
+    {
+      "path": "tools/run-builder/index.html",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 7041,
+      "sha256": "4a15a559844b651878a18ee17102fa601f28d3ded1a5e57d24facb7c5b0b82b9"
     }
   ],
   "relations": [
@@ -1798,12 +1805,12 @@
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/audit.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -1833,12 +1840,12 @@
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "Shared.contracts",
+      "to": "adapter",
       "kind": "IMPORTS"
     },
     {
       "from": "Shared/publication_host/science.py",
-      "to": "adapter",
+      "to": "Shared.contracts",
       "kind": "IMPORTS"
     },
     {
@@ -2732,6 +2739,21 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_issue212_atlas_index.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_issue212_atlas_index.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_issue212_atlas_index.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_learning_router.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -3007,12 +3029,12 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session.py",
+      "from": "tests/test_study_session_scenario_scan.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
-      "from": "tests/test_study_session_scenario_scan.py",
+      "from": "tests/test_study_session.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
