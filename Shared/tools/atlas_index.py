@@ -217,6 +217,13 @@ def build_subject_index(
 ) -> dict:
     """Build a deterministic Atlas index from explicit canonical relationships."""
     core_availability, core_by_id, core_by_microtopic = _core_maps(core_payload, subject)
+    teaching_step_ids = {
+        step.get("id")
+        for record in records.values()
+        if isinstance(record, dict) and record.get("_collection") == "microtopics"
+        for step in record.get("teaching_path", [])
+        if isinstance(step, dict) and step.get("id")
+    }
     key_counts = Counter(
         (board.get("matrix_id"), rung.get("rung"))
         for board in boards
@@ -337,6 +344,18 @@ def build_subject_index(
                     ))
                     activity_invalid = True
                     mapping_invalid = True
+                    continue
+
+                atlas_extension = records[ref].get("extensions", {}).get("topic_atlas", {})
+                for step_ref in atlas_extension.get("teaching_step_refs", []):
+                    if step_ref not in teaching_step_ids:
+                        findings.append(_finding(
+                            "ACTIVITY_TEACHING_STEP_REF_UNRESOLVED",
+                            step_ref,
+                            f"ACTIVITY {ref} declares a teaching_step_ref that does not resolve.",
+                        ))
+                        activity_invalid = True
+                        mapping_invalid = True
 
             core_projection_refs: list[str] = []
             bucket_core = core_availability.get(bucket_id)

@@ -378,6 +378,43 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
             [finding["code"] for finding in row["findings"]],
         )
 
+    def test_broken_prerequisite_ref_is_invalid_without_collapsing_layers(self):
+        records = copy.deepcopy(self.physics)
+        records["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"]["prerequisite_refs"] = [
+            "CAP-DOES-NOT-EXIST"
+        ]
+
+        result = build_subject_index("Physics", [self.motion], records, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+
+        self.assertEqual(["CAP-DOES-NOT-EXIST"], row["microtopic_prerequisite_refs"])
+        self.assertEqual(
+            ["CAP-VECTOR-SIGNED-COMPONENT"],
+            row["capability_prerequisite_refs"],
+        )
+        self.assertEqual("INVALID", row["availability"]["mapping"])
+        self.assertIn(
+            "PREREQUISITE_REF_UNRESOLVED",
+            [finding["code"] for finding in row["findings"]],
+        )
+
+    def test_broken_activity_teaching_step_ref_is_not_reported_ready(self):
+        records = copy.deepcopy(self.physics)
+        records["ACT-KIN-2D-SHARED-CLOCK"]["extensions"]["topic_atlas"][
+            "teaching_step_refs"
+        ] = ["STEP-DOES-NOT-EXIST"]
+
+        result = build_subject_index("Physics", [self.motion], records, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+
+        self.assertEqual(["ACT-KIN-2D-SHARED-CLOCK"], row["activity_refs"])
+        self.assertEqual("INVALID", row["availability"]["activity"])
+        self.assertEqual("INVALID", row["availability"]["mapping"])
+        self.assertIn(
+            "ACTIVITY_TEACHING_STEP_REF_UNRESOLVED",
+            [finding["code"] for finding in row["findings"]],
+        )
+
     def test_broken_representation_ref_is_not_reported_ready(self):
         records = copy.deepcopy(self.physics)
         records["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"]["representation_refs"] = [
