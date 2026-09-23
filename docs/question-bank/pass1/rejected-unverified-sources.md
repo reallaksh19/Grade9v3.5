@@ -9,12 +9,12 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 
 ## Summary
 
-- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **67**
+- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **71**
 - In-scope donor candidates still quarantined: **147**
 - Exact duplicate donor clusters detected: **0**
 - Number-normalized/trivial-variant clusters detected beyond exact duplicates: **0**
 - Straight-line relative-motion coverage: **2 accepted** official-paper parent records; this remains the sparsest topic and further first-party acquisition is still needed.
-- Accepted exam identities currently comprise **27 IIT-JEE**, **34 JEE (Advanced)** and **6 NEET (UG)** items.
+- Accepted exam identities currently comprise **27 IIT-JEE**, **38 JEE (Advanced)** and **6 NEET (UG)** items.
 - JEE Main/AIEEE and additional AIPMT/NEET donor attributions remain quarantined unless the exact question can be matched to a persistent first-party paper/question source; an official answer key alone is not enough.
 - No fully authored question was added; accepted learner-facing wording is explicitly `PYQ_ADAPTED`, with source hints kept separate from authored scaffolds.
 
