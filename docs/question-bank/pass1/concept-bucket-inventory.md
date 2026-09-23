@@ -48,7 +48,7 @@ The expanded v2 bank reuses canonical Physics capabilities/families already pres
 
 The native repository distinction is preserved:
 
-- `question.hints[]` is source/question custody. For the accepted 30 items no official hint ladder is supplied, so it remains empty.
+- `question.hints[]` is source/question custody. For the accepted 54 items no official hint ladder is supplied, so it remains empty.
 - `question.scaffolds[]` is authored Core2A/Core2B pedagogical support. Each accepted record has a graduated scaffold ladder bound to stable `answer.reasoning_route[]` move IDs.
 
 ## Core2B transfer analysis
@@ -60,6 +60,8 @@ Transfer remains an analysis claim, not a generated practice set. Real-transfer 
 - `PYQ-PHY-JEEADV-2019-P2-Q09` — infinite rebound sequence requiring separate displacement/time series;
 - `PYQ-PHY-JEEADV-2024-P2-Q09` — relative projectile motion removes common gravity;
 - `PYQ-PHY-JEEADV-2014-P1-Q18` — competing free-particle versus finite-chamber interpretations;
+- `PYQ-PHY-JEEADV-2023-P1-Q01` — energy, projectile impact and restitution across successive events;
+- `PYQ-PHY-JEEADV-2025-P2-Q15` — linear drag changes the governing horizontal model;
 - `PYQ-CHEM-JEEADV-2023-P2-Q08` — half-reaction balancing plus two requested stoichiometric outputs;
 - `PYQ-CHEM-JEEADV-2025-P2-Q16` — hydrolysis-water accounting before mass-fraction and integer composition constraints.
 
