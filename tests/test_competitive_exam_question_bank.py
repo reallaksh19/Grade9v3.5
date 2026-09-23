@@ -12,7 +12,7 @@ OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbs
 EXPECTED_COUNTS = {
     "Physics": {
         "Newton's Laws of Motion / NLM": 12,
-        "Motion in 2D / Motion in a Plane — linear/projectile only": 13,
+        "Motion in 2D / Motion in a Plane — linear/projectile only": 14,
         "Motion in 1D — relative motion only": 2,
     },
     "Chemistry": {
@@ -45,11 +45,11 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
         cls.ledger = load(LEDGER)
 
     def test_fixture_native_v2_shape_and_counts(self):
-        self.assertEqual(len(self.physics["questions"]), 27)
+        self.assertEqual(len(self.physics["questions"]), 28)
         self.assertEqual(len(self.chemistry["questions"]), 44)
-        self.assertEqual(len(self.questions), 71)
+        self.assertEqual(len(self.questions), 72)
         for bank in self.banks:
-            self.assertEqual(bank["version"], "2.3.0")
+            self.assertEqual(bank["version"], "2.4.0")
             self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
             self.assertEqual(bank["access_status"], "FULL_ITEM_INSPECTED")
 
