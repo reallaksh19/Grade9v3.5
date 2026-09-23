@@ -1,0 +1,37 @@
+schema_version: relay-v3.1-transaction
+id: TX-V31-ISS125-RELEASE-002
+command: RELEASE_LEASE
+actor: chatgpt-sol-issue125-v31-20260923
+status: COMMITTED
+created_at: '2026-09-23T09:02:24.503822Z'
+updated_at: '2026-09-23T09:02:24.513161Z'
+operations:
+- path: relay/EVENTS.jsonl
+  before_exists: true
+  before_digest: sha256:1836e0627ac22c71a431d15e43a5229d2daa0a21768d387b5a2fe34e84d68941
+  after_digest: sha256:c3bd96e1fdc2ebb7f0643a8af81b5f29dcae399dfb227c0a13617db2e2c9c429
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/staged/000.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/backups/000.before
+- path: relay/GENERATED/CURRENT_SNAPSHOT.yaml
+  before_exists: true
+  before_digest: sha256:4989520a13489e1d6224af4c9253c007b7f1d1525b799fee4aded75c8c264c3e
+  after_digest: sha256:aab5de0d1ab1444df64cf5e3dd749483872b6255654d0c1bb1e2f5a4cace5279
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/staged/001.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/backups/001.before
+- path: relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+  before_exists: true
+  before_digest: sha256:bfe7573ae1e9395c1f6cbebe1a499f2c8054dc2a96509b6c40e59f0b8cd55180
+  after_digest: sha256:ecef673c784de2bfeff766e92520f86c09e346ad72a47a6bdff4ec8e1851e4f5
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/staged/002.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/backups/002.before
+- path: relay/STATE.yaml
+  before_exists: true
+  before_digest: sha256:d29818859ada7f5c07a8e68586212c5933f11f0de07397d097a48863b3513ca5
+  after_digest: sha256:76b475ccbb865c330532f6d7b0377479fe4d4f9353a3d04731d622f2e97cf12a
+  staged_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/staged/003.after
+  backup_path: relay/TRANSACTIONS/TX-V31-ISS125-RELEASE-002/backups/003.before
+applied:
+- relay/EVENTS.jsonl
+- relay/GENERATED/CURRENT_SNAPSHOT.yaml
+- relay/LEASES/LEASE-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+- relay/STATE.yaml

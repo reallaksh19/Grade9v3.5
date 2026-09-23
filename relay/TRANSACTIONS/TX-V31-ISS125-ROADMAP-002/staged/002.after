@@ -1,0 +1,90 @@
+schema_version: relay-v3.1-roadmap
+revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
+title: Grade9V3 reconciled delivered baseline
+owner:
+  outcome: Preserve the delivered self-study architecture and activate new work only
+    from a concrete learner, worksheet, source, or product defect rather than from
+    stale umbrella scope.
+  current_goal: No successor content lane is active. Grade-10 Physics, Grade-11 Physics,
+    and Mathematics expansion are Owner-skipped for now; dormant Physics inventory
+    remains demand-gated and real learner evidence remains input-gated.
+work_packages:
+- id: WP-TAKEOVER-RECONCILE
+  title: Correct Topic Atlas browser input, fallback, request, and handoff semantics
+  weight: 20.0
+  state: COMPLETE
+  depends_on: []
+- id: WP-TA-102
+  title: Move diagnostic need resolution and Core focus authority into Shared
+  weight: 25.0
+  state: COMPLETE
+  depends_on:
+  - WP-TAKEOVER-RECONCILE
+- id: WP-TA-106
+  title: Make the governed roadmap the repository first-read agent entry point
+  weight: 5.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-102
+- id: WP-TA-103
+  title: Freeze the Grade-9 Physics scope and capability boundary
+  weight: 10.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-106
+- id: WP-TA-104
+  title: Make canonical representations and staged visual help first-class
+  weight: 10.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-103
+- id: WP-TA-107
+  title: Route learner evidence into support, visual state, exercise demand and a
+    closed session loop
+  weight: 15.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-104
+- id: WP-TA-108
+  title: Make six-Core projections mechanically preserve conceptual and application
+    crux
+  weight: 8.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-107
+- id: WP-TA-105
+  title: Prove Grade-9 Physics exit readiness and Grade-10 transition
+  weight: 7.0
+  state: COMPLETE
+  depends_on:
+  - WP-TA-108
+- id: WP-CANONICAL-174-NLM
+  title: Deliver NLM friction canonical gold proof
+  weight: 4
+  state: COMPLETE
+  depends_on:
+  - WP-TA-108
+- id: WP-CANONICAL-174-MOTION
+  title: Deliver Motion-in-2D canonical reasoning and representation proof
+  weight: 4
+  state: COMPLETE
+  depends_on:
+  - WP-CANONICAL-174-NLM
+- id: WP-LEARNER-175-PRODUCTION
+  title: Integrate canonical Core projections into learner-page builder
+  weight: 7
+  state: COMPLETE
+  depends_on:
+  - WP-CANONICAL-174-MOTION
+- id: WP-PORTABLE-163
+  title: Deliver detachable versioned workbench packages and external/offline hosts
+  weight: 8
+  state: COMPLETE
+  depends_on:
+  - WP-LEARNER-175-PRODUCTION
+- id: WP-ISS125-ACCELERATED-FRAMES
+  title: Deliver demand-gated accelerated-frame and elevator extension explorer
+  weight: 3
+  state: ACTIVE
+  depends_on:
+  - WP-TA-105
