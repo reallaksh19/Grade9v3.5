@@ -253,17 +253,23 @@ def build_subject_index(
                 mapping_invalid = True
 
             microtopic_ref = source_rung.get("microtopic_ref")
+            mapping_unavailable = not microtopic_ref
             microtopic = records.get(microtopic_ref) if microtopic_ref else None
-            if not (
+            if mapping_unavailable:
+                findings.append(_finding(
+                    "MICROTOPIC_REF_UNAVAILABLE",
+                    None,
+                    "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable.",
+                ))
+            elif not (
                 isinstance(microtopic, dict)
                 and microtopic.get("_collection") == "microtopics"
             ):
-                if microtopic_ref:
-                    findings.append(_finding(
-                        "MICROTOPIC_REF_UNRESOLVED",
-                        microtopic_ref,
-                        "Matrix declares a microtopic_ref that does not resolve to a canonical microtopic.",
-                    ))
+                findings.append(_finding(
+                    "MICROTOPIC_REF_UNRESOLVED",
+                    microtopic_ref,
+                    "Matrix declares a microtopic_ref that does not resolve to a canonical microtopic.",
+                ))
                 microtopic = None
                 mapping_invalid = True
 
@@ -359,12 +365,19 @@ def build_subject_index(
 
             core_projection_refs: list[str] = []
             bucket_core = core_availability.get(bucket_id)
-            if microtopic is None:
+            if mapping_invalid:
                 core_status = INVALID
                 findings.append(_finding(
                     "CORE_PROJECTION_UNAVAILABLE",
                     None,
                     "Cannot resolve rung-level Core projections while its microtopic mapping is invalid.",
+                ))
+            elif microtopic is None:
+                core_status = UNAVAILABLE
+                findings.append(_finding(
+                    "CORE_PROJECTION_UNAVAILABLE",
+                    None,
+                    "No Core projection can be bound because this rung has no authored microtopic_ref.",
                 ))
             elif bucket_core is None:
                 core_status = INVALID
@@ -466,7 +479,11 @@ def build_subject_index(
                     "detail": bucket_core.get("detail") if bucket_core else None,
                 },
                 "availability": {
-                    "mapping": INVALID if mapping_invalid else READY,
+                    "mapping": (
+                        INVALID if mapping_invalid
+                        else UNAVAILABLE if mapping_unavailable
+                        else READY
+                    ),
                     "core": core_status,
                     "representation": representation_status,
                     "activity": activity_status,

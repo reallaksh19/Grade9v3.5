@@ -348,6 +348,26 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         cls.nlm = matrix_board("Physics", NLM_MATRIX)
         cls.linear = matrix_board("Mathematics", MATH_MATRIX)
 
+    def test_absent_microtopic_is_explicitly_unavailable_not_invalid(self):
+        board = copy.deepcopy(self.motion)
+        rung(board, "R1").pop("microtopic_ref", None)
+
+        result = build_subject_index("Physics", [board], self.physics, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+
+        self.assertIsNone(row["microtopic_ref"])
+        self.assertIsNone(row["capability_ref"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["mapping"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["core"])
+        self.assertIn(
+            "MICROTOPIC_REF_UNAVAILABLE",
+            [finding["code"] for finding in row["findings"]],
+        )
+        self.assertNotIn(
+            "MICROTOPIC_REF_UNRESOLVED",
+            [finding["code"] for finding in row["findings"]],
+        )
+
     def test_missing_microtopic_keeps_row_and_marks_invalid(self):
         board = copy.deepcopy(self.motion)
         rung(board, "R1")["microtopic_ref"] = "MIC-DOES-NOT-EXIST"
