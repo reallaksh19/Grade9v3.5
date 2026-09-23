@@ -2,14 +2,14 @@
 
 Issue: #201
 
-The inventory reuses canonical Physics capabilities/microtopics already present on `main`. Chemistry currently has no canonical subject-library package for the two requested topics, so its entries remain **local proposals** inside the exam-bank namespace and are not silently promoted into the global capability namespace.
+The expanded v2 bank reuses canonical Physics capabilities/families already present in the subject library. Chemistry still has no canonical subject-library package for the requested topics, so its identifiers remain local invariant-demand proposals inside the exam-bank namespace rather than being silently promoted globally.
 
 ## Physics — canonical reuse
 
 | Pass-1 topic | Canonical bucket | Capability | Existing microtopic | Family | Decision |
 | --- | --- | --- | --- | --- | --- |
 | Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-SECOND-LAW` | `MIC-PHY-NLM-SECOND-LAW` | `FAM-PHY-NLM-PRACTICE` | REUSE |
-| Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-FRICTION-QUANT` | `MIC-PHY-NLM-FRICTION-QUANT` | `FAM-PHY-NLM-INCLINE-MODELLING` | REUSE |
+| Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-FRICTION-QUANT` | `MIC-PHY-NLM-FRICTION-QUANT` | `FAM-PHY-NLM-PRACTICE` | REUSE |
 | Newton's Laws of Motion / NLM | `BUCKET-PHY-NLM-FIRST-LAW` | `CAP-NLM-IDEAL-STRING-TENSION` | `MIC-PHY-NLM-IDEAL-STRING-TENSION` | `FAM-PHY-NLM-PRACTICE` | REUSE |
 | Motion in 2D — linear/projectile only | `BUCKET-PHY-KIN-2D-MOTION` | `CAP-KIN-2D-INDEPENDENT-COMPONENTS` | `MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS` | `FAM-PHY-KIN-2D-PRACTICE` | REUSE |
 | Motion in 2D — linear/projectile only | `BUCKET-PHY-KIN-2D-MOTION` | `CAP-KIN-2D-CONSTANT-ACCELERATION` | `MIC-PHY-KIN-2D-CONSTANT-ACCELERATION` | `FAM-PHY-KIN-2D-PRACTICE` | REUSE |
@@ -20,36 +20,47 @@ The inventory reuses canonical Physics capabilities/microtopics already present 
 
 ### Physics scope notes
 
-- The 2D bank excludes circular-motion demands entirely. No circular-motion capability or family is added.
-- Straight-line relative motion reuses the existing general relative-motion capability family rather than creating train/car/story-specific capability IDs.
-- No new Physics family was required by the accepted questions in this pass.
+- The 2D bank excludes circular motion entirely.
+- Straight-line relative motion reuses the existing relative-motion family; the former acquisition hold is closed by two official-paper items.
+- No train/car/story-specific capability was created.
 
 ## Chemistry — local invariant-demand proposals
 
 | Topic | Proposed bucket | Proposed capability | Invariant learner action | Status |
 | --- | --- | --- | --- | --- |
 | Redox Reactions | `BUCKET-CHEM-REDOX-REACTIONS` | `CAP-CHEM-REDOX-OXIDATION-STATE` | Assign and compare oxidation states using composition and charge constraints. | LOCAL_PROPOSAL |
-| Redox Reactions | `BUCKET-CHEM-REDOX-REACTIONS` | `CAP-CHEM-REDOX-DISPROPORTIONATION` | Recognize when the same element in one reactant is simultaneously oxidized and reduced. | LOCAL_PROPOSAL |
-| Redox Reactions | `BUCKET-CHEM-REDOX-REACTIONS` | `CAP-CHEM-REDOX-BALANCE-ELECTRON` | Balance oxidation and reduction electron inventories in the specified reaction medium. | LOCAL_PROPOSAL |
-| Some Basic Concepts / Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT` | Convert concentration and sample volume into amount of substance. | LOCAL_PROPOSAL |
-| Some Basic Concepts / Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-STOICH-MOLE-RATIO` | Map amounts through a balanced stoichiometric or electron-transfer ratio. | LOCAL_PROPOSAL |
-| Some Basic Concepts / Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-STOICH-MASS-MOLE` | Convert between amount and mass after the reacting amount has been established. | LOCAL_PROPOSAL |
+| Redox Reactions | `BUCKET-CHEM-REDOX-REACTIONS` | `CAP-CHEM-REDOX-DISPROPORTIONATION` | Recognize simultaneous oxidation and reduction of the same element. | LOCAL_PROPOSAL |
+| Redox Reactions | `BUCKET-CHEM-REDOX-REACTIONS` | `CAP-CHEM-REDOX-BALANCE-ELECTRON` | Balance electron inventories in the specified redox medium. | LOCAL_PROPOSAL |
+| Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-MOLE-CONCENTRATION-TO-AMOUNT` | Convert concentration and sample volume into amount of substance. | LOCAL_PROPOSAL |
+| Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-STOICH-MOLE-RATIO` | Map amounts through balanced stoichiometric or electron-transfer ratios. | LOCAL_PROPOSAL |
+| Mole Concept / Stoichiometry | `BUCKET-CHEM-MOLE-STOICHIOMETRY` | `CAP-CHEM-STOICH-MASS-MOLE` | Convert between amount and mass after reacting amount is established. | LOCAL_PROPOSAL |
 
 ### Proposed Chemistry families
 
-| Family | Invariant application demand | Why it is not story-specific |
+| Family | Invariant application demand | Status |
 | --- | --- | --- |
-| `FAM-CHEM-REDOX-REACTION-CLASSIFICATION` | Classify a redox pattern by oxidation-state changes. | The family is keyed to a reusable model/operation, not to phosphorus, permanganate, NaCl, an electrode material, or any other surface story. |
-| `FAM-CHEM-REDOX-ACIDIC-MEDIUM-BALANCE` | Balance an acidic-medium redox reaction and count transferred electrons/products. | The family is keyed to a reusable model/operation, not to phosphorus, permanganate, NaCl, an electrode material, or any other surface story. |
-| `FAM-CHEM-MOLE-ELECTROLYTIC-STOICH` | Convert solution amount into electrolysis stoichiometric outputs using one shared reacting inventory. | The family is keyed to a reusable model/operation, not to phosphorus, permanganate, NaCl, an electrode material, or any other surface story. |
+| `FAM-CHEM-REDOX-REACTION-CLASSIFICATION` | Classify or quantify a redox pattern from oxidation-state changes. | LOCAL_PROPOSAL |
+| `FAM-CHEM-REDOX-ACIDIC-MEDIUM-BALANCE` | Balance electron inventories and map balanced coefficients to requested quantities. | LOCAL_PROPOSAL |
+| `FAM-CHEM-MOLE-ELECTROLYTIC-STOICH` | Convert a shared solution inventory into electrolysis outputs. | LOCAL_PROPOSAL |
+| `FAM-CHEM-STOICH-AMOUNT-MAPPING` | Carry amount through formula units, ion counts, yield, polymer units, hydrolysis or gas-generation stoichiometry. | LOCAL_PROPOSAL |
 
-## Core2B transfer distinction
+## Source hints versus authored support
 
-The bank stores a `transfer_profile` on every accepted item with four explicit dimensions: `model_choice`, `representation_translation`, `novelty`, and `reasoning_steps`. A different number set, exam year, or surface story is not sufficient for `REAL_TRANSFER_CANDIDATE`.
+The native repository distinction is preserved:
 
-Current real-transfer candidates are:
+- `question.hints[]` is source/question custody. For the accepted 30 items no official hint ladder is supplied, so it remains empty.
+- `question.scaffolds[]` is authored Core2A/Core2B pedagogical support. Each accepted record has a graduated scaffold ladder bound to stable `answer.reasoning_route[]` move IDs.
 
-- `PYQ-PHY-IITJEE-2011-P2-Q33`: projectile timing must be reconciled with accelerated observer/train displacement.
-- `PYQ-CHEM-JEEADV-2023-P2-Q08`: acidic-medium electron balancing must be converted into both product amount and transferred-electron count.
+## Core2B transfer analysis
 
-This is analysis metadata only; no Core2B practice asset or final set is created in Pass 1.
+Transfer remains an analysis claim, not a generated practice set. Real-transfer candidates are flagged only where the demand changes materially, including:
+
+- `PYQ-PHY-JEEADV-2020-P1-Q13` — multi-stage stick/slip reasoning with changing support reactions;
+- `PYQ-PHY-IITJEE-2011-P2-Q33` — projectile event time plus accelerated relative displacement;
+- `PYQ-PHY-JEEADV-2019-P2-Q09` — infinite rebound sequence requiring separate displacement/time series;
+- `PYQ-PHY-JEEADV-2024-P2-Q09` — relative projectile motion removes common gravity;
+- `PYQ-PHY-JEEADV-2014-P1-Q18` — competing free-particle versus finite-chamber interpretations;
+- `PYQ-CHEM-JEEADV-2023-P2-Q08` — half-reaction balancing plus two requested stoichiometric outputs;
+- `PYQ-CHEM-JEEADV-2025-P2-Q16` — hydrolysis-water accounting before mass-fraction and integer composition constraints.
+
+No final Core2B practice set is generated in PASS 1.
