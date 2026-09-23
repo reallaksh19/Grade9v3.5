@@ -40,7 +40,7 @@ function dataWith(records) {
 
 test("host resolves an explicitly precompiled Core projection record", () => {
   const record = resolveCoreLearningRecord(dataWith([
-    { id: "motion-core1b", projection: byId.core1b },
+    { id: "motion-core1b", source_ref: "MIC-FIXTURE-1", projection: byId.core1b },
   ]), "motion-core1b");
 
   assert.equal(record.id, "motion-core1b");
@@ -82,6 +82,7 @@ test("host refuses raw Topic Atlas data instead of synthesizing a browser-local 
 test("workbench binding is all-or-nothing and references explicit host registries", () => {
   const incomplete = dataWith([{
     id: "core2a-incomplete",
+    source_ref: "Q-FIXTURE-2A",
     projection: byId.core2a,
     scene_ref: "scene-1",
   }]);
@@ -93,6 +94,7 @@ test("workbench binding is all-or-nothing and references explicit host registrie
 
   const bound = dataWith([{
     id: "core2a-bound",
+    source_ref: "Q-FIXTURE-2A",
     projection: byId.core2a,
     scene_ref: "scene-1",
     adapter_ref: "adapter-1",
@@ -121,11 +123,61 @@ test("workbench binding is all-or-nothing and references explicit host registrie
   }]);
 });
 
+test("host fails with named codes for missing, malformed, or unbound references", () => {
+  const bound = {
+    id: "bound",
+    source_ref: "Q-EXAMPLE",
+    projection: byId.core2a,
+    scene_ref: "scene-1",
+    adapter_ref: "adapter-1",
+    injection_refs: ["hint-1"],
+  };
+  const data = dataWith([bound]);
+  assert.equal(resolveCoreLearningRecord(data, "bound").sourceRef, "Q-EXAMPLE");
+  const fails = (action, code) => assert.throws(
+    action,
+    (error) => error instanceof CoreLearningHostError && error.code === code,
+  );
+  fails(() => resolveCoreLearningRecord(data, "absent"), "CORE_LEARNING_PROJECTION_NOT_FOUND");
+  fails(
+    () => resolveCoreLearningInputs(data, "bound", { scenes: { "scene-1": sceneFixture } }),
+    "CORE_LEARNING_ADAPTER_NOT_FOUND",
+  );
+  fails(
+    () => resolveCoreLearningInputs(data, "bound", {
+      scenes: { "scene-1": sceneFixture },
+      adapters: { "adapter-1": {} },
+    }),
+    "CORE_LEARNING_INJECTION_NOT_FOUND",
+  );
+  fails(
+    () => resolveCoreLearningRecord(dataWith([{ ...bound, source_ref: " " }]), "bound"),
+    "CORE_LEARNING_SOURCE_REF_INVALID",
+  );
+  const missingSource = { ...bound };
+  delete missingSource.source_ref;
+  fails(
+    () => resolveCoreLearningRecord(dataWith([missingSource]), "bound"),
+    "CORE_LEARNING_SOURCE_REF_INVALID",
+  );
+  fails(
+    () => resolveCoreLearningRecord(dataWith([{ ...bound, injection_refs: [""] }]), "bound"),
+    "CORE_LEARNING_INJECTION_REFS_INVALID",
+  );
+  fails(
+    () => resolveCoreLearningRecord(dataWith([{
+      ...bound, scene_ref: null, adapter_ref: null,
+    }]), "bound"),
+    "CORE_LEARNING_INJECTION_BINDING_INCOMPLETE",
+  );
+});
+
 test("mount configures projection and workbench inputs atomically and clears stale bindings", () => {
   const adapter = { evaluateTransfer() { return { accepted: false, reason: "fixture" }; } };
   const data = dataWith([
     {
       id: "core2b-mounted",
+      source_ref: "Q-FIXTURE-2B",
       projection: byId.core2b,
       scene_ref: "scene-division",
       adapter_ref: "adapter-division",
@@ -133,6 +185,7 @@ test("mount configures projection and workbench inputs atomically and clears sta
     },
     {
       id: "core1b-plain",
+      source_ref: "MIC-FIXTURE-1",
       projection: byId.core1b,
       scene_ref: null,
       adapter_ref: null,

@@ -92,6 +92,13 @@ def _application(block: dict) -> dict:
         "question_ref": block["source_question_id"],
         "family_ref": block["family"],
         "stem": block["stem"],
+        "source_refs": list(block.get("source_refs") or []),
+        "origin": block.get("origin"),
+        "original_number": block.get("original_number"),
+        "subparts": deepcopy(block.get("subparts") or []),
+        "options": deepcopy(block.get("options") or []),
+        "conditions": deepcopy(block.get("conditions") or []),
+        "figure_refs": list(block.get("figure_refs") or []),
         "reasoning_route": deepcopy(answer.get("reasoning_route") or []),
         "crux_move_ref": answer.get("crux_move_ref"),
         "hints": deepcopy(block.get("hints") or []),
@@ -163,26 +170,38 @@ def _concept_for_pair(compiled: dict, records: dict, familiar: dict) -> str | No
         if (
             rep_ref in (row.get("representation_refs") or [])
             and row.get("elicitation")
-            and _explorer_locator(records, rep_ref)
         ):
             candidates.append(ref)
     return candidates[0] if candidates else None
 
 
-def adapt_compiled_bucket(compiled: dict, records: dict, *, subject: str) -> list[dict]:
-    """Return production learner rows for compiler-backed parent/transfer pairs."""
+def adapt_compiled_bucket_with_status(
+    compiled: dict, records: dict, *, subject: str
+) -> tuple[list[dict], dict | None]:
+    """Return learner rows and a named reason when no complete activity can be projected."""
     products = _products(compiled)
-    if not all(core in products for core in CORE_ORDER):
-        return []
+    missing = [core for core in CORE_ORDER if core not in products]
+    if missing:
+        return [], {"code": "CORE_ROLES_MISSING", "detail": ", ".join(missing)}
+
+    pairs = _candidate_pairs(compiled)
+    if not pairs:
+        return [], {"code": "PARENT_TRANSFER_PAIR_MISSING", "detail": "No linked CORE2A/CORE2B question pair."}
 
     rows: list[dict[str, Any]] = []
-    for familiar, transfer in _candidate_pairs(compiled):
+    missing_binding = False
+    missing_locator = False
+    for familiar, transfer in pairs:
         microtopic_ref = _concept_for_pair(compiled, records, familiar)
         if not microtopic_ref:
+            missing_binding = True
+            continue
+        concept_rep = _first_route_representation(familiar)
+        if not _explorer_locator(records, concept_rep):
+            missing_locator = True
             continue
         concept_a = _concept(records, microtopic_ref, eliciting=False)
         concept_b = _concept(records, microtopic_ref, eliciting=True)
-        concept_rep = (concept_a.get("representation_refs") or [None])[0]
 
         pair_rows = [
             ("CORE1A", microtopic_ref, concept_a, None, concept_rep),
@@ -225,7 +244,7 @@ def adapt_compiled_bucket(compiled: dict, records: dict, *, subject: str) -> lis
     unique = {}
     for row in rows:
         unique[row["id"]] = row
-    return sorted(
+    result = sorted(
         unique.values(),
         key=lambda row: (
             row["subject"],
@@ -233,3 +252,16 @@ def adapt_compiled_bucket(compiled: dict, records: dict, *, subject: str) -> lis
             CORE_ORDER.index(row["projection"]["core"]),
         ),
     )
+    if result:
+        return result, None
+    if missing_locator:
+        return [], {"code": "EXPLORER_LOCATOR_MISSING", "detail": "A paired canonical representation has no interactive resource locator."}
+    if missing_binding:
+        return [], {"code": "CONCEPT_BINDING_MISSING", "detail": "No paired microtopic has the route representation and elicitation."}
+    return [], {"code": "PROJECTION_UNAVAILABLE", "detail": "No complete learner projection was produced."}
+
+
+def adapt_compiled_bucket(compiled: dict, records: dict, *, subject: str) -> list[dict]:
+    """Return production learner rows for compiler-backed parent/transfer pairs."""
+    rows, _ = adapt_compiled_bucket_with_status(compiled, records, subject=subject)
+    return rows

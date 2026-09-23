@@ -3,8 +3,11 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+from Shared.contracts import ContractError
 from Shared.tools import build_core_learning_data
+from Shared.tools.core_learning_projection_adapter import _application
 
 REPO = Path(__file__).resolve().parents[1]
 MOTION = REPO / "Physics/library/phy-kin-2d-motion.v1.json"
@@ -62,6 +65,53 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertEqual(app["hints"], source["hints"])
         self.assertEqual(app["scaffolds"], source["scaffolds"])
         self.assertEqual(app["check"], source["answer"]["check"])
+        for field in ("source_refs", "origin", "subparts", "options", "conditions", "figure_refs"):
+            self.assertEqual(app[field], source[field])
+        self.assertEqual(app["original_number"], source.get("original_identifier"))
+
+    def test_compiled_question_parts_survive_without_rewriting(self):
+        block = {
+            "source_question_id": "Q-EXAMPLE",
+            "family": "F-EXAMPLE",
+            "stem": "Choose the valid relation.",
+            "source_refs": ["SRC-EXAMPLE"],
+            "origin": "ADAPTED",
+            "original_number": "7(a)",
+            "subparts": ["Find the first value.", "Explain the choice."],
+            "options": ["A", "B"],
+            "conditions": ["Assume a closed system."],
+            "figure_refs": ["FIG-1"],
+            "answer": {"reasoning_route": [], "check": "Check units."},
+        }
+        app = _application(block)
+        for field in ("source_refs", "origin", "original_number", "subparts", "options", "conditions", "figure_refs"):
+            self.assertEqual(app[field], block[field])
+
+    def test_every_bucket_has_explicit_availability_or_finding(self):
+        availability = self.payload["bucket_availability"]
+        self.assertTrue(availability)
+        self.assertEqual(len({(row["subject"], row["bucket_ref"]) for row in availability}), len(availability))
+        self.assertEqual(
+            {(row["subject"], row["bucket_ref"]) for row in self.payload["findings"]},
+            {(row["subject"], row["bucket_ref"]) for row in availability if row["status"] == "UNSUPPORTED"},
+        )
+        for row in availability:
+            self.assertIn(row["status"], {"AVAILABLE", "UNSUPPORTED"})
+            if row["status"] == "AVAILABLE":
+                self.assertTrue(row["projection_refs"])
+                self.assertTrue(set(row["projection_refs"]).issubset({record["id"] for record in self.rows}))
+            else:
+                self.assertTrue(row["code"])
+                self.assertEqual(row["projection_refs"], [])
+
+    def test_compiler_error_is_reported_with_named_code(self):
+        subject = next(name for name in build_core_learning_data.subjects() if name == "Physics")
+        with patch.object(build_core_learning_data, "compile_bucket", side_effect=ContractError("BAD_SOURCE", "example")):
+            rows, availability = build_core_learning_data._subject_rows(subject)
+        self.assertEqual(rows, [])
+        self.assertTrue(availability)
+        self.assertTrue(all(row["status"] == "UNSUPPORTED" for row in availability))
+        self.assertTrue(all(row["code"] == "BAD_SOURCE" for row in availability))
 
     def test_core2b_preserves_protected_transfer_without_scaffold_leak(self):
         row = self.row(core="CORE2B", source=TRANSFER)

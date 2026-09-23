@@ -43,6 +43,12 @@ function optionalArray(value, code, detail = "") {
   return value;
 }
 
+function optionalStringArray(value, code) {
+  const items = optionalArray(value, code);
+  for (const item of items) requireString(item, code);
+  return items;
+}
+
 function validateReasoningRoute(projection) {
   const application = projection.application;
   const route = application?.reasoning_route ?? [];
@@ -166,6 +172,24 @@ export function validateCoreProjection(input) {
     requireString(projection.application.question_ref, "CORE_PROJECTION_QUESTION_REF_REQUIRED");
     requireString(projection.application.family_ref, "CORE_PROJECTION_FAMILY_REF_REQUIRED");
     requireString(projection.application.stem, "CORE_PROJECTION_STEM_REQUIRED");
+    for (const field of ["source_refs", "subparts", "options", "conditions", "figure_refs"]) {
+      projection.application[field] = optionalStringArray(
+        projection.application[field],
+        `CORE_PROJECTION_${field.toUpperCase()}_INVALID`,
+      );
+    }
+    if (projection.application.origin != null) {
+      requireCondition(
+        ["ORIGINAL", "ADAPTED", "AUTHORED"].includes(projection.application.origin),
+        "CORE_PROJECTION_ORIGIN_INVALID",
+      );
+    }
+    if (projection.application.original_number != null) {
+      requireString(projection.application.original_number, "CORE_PROJECTION_ORIGINAL_NUMBER_INVALID");
+    }
+    if (projection.application.check != null) {
+      requireCondition(typeof projection.application.check === "string", "CORE_PROJECTION_CHECK_INVALID");
+    }
     projection.application.reasoning_route = optionalArray(
       projection.application.reasoning_route,
       "CORE_PROJECTION_REASONING_ROUTE_INVALID",
@@ -347,9 +371,22 @@ function renderConcept(projection, state) {
 
 function renderQuestion(projection, state) {
   if (!state.questionVisible) return "";
+  const app = projection.application;
+  const source = [
+    app.origin,
+    app.original_number ? `Question ${app.original_number}` : null,
+    ...app.source_refs.map((ref) => `Source ${ref}`),
+  ].filter(Boolean);
+  const list = (label, items) => items.length
+    ? `<div class="question-parts"><h4>${label}</h4><ol>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>`
+    : "";
   return `<section class="question" aria-labelledby="core-question-title">
     <h3 id="core-question-title">Try</h3>
-    <p>${escapeHtml(projection.application.stem ?? "")}</p>
+    <p>${escapeHtml(app.stem)}</p>
+    ${source.length ? `<p class="source-identity">${source.map(escapeHtml).join(" · ")}</p>` : ""}
+    ${list("Conditions", app.conditions)}
+    ${list("Parts", app.subparts)}
+    ${list("Options", app.options)}
   </section>`;
 }
 
@@ -410,6 +447,15 @@ function renderReasoningRoute(projection, state) {
   </section>`;
 }
 
+function renderIndependentCheck(projection, state) {
+  const check = projection.application?.check;
+  if (!state.reasoningVisible || !check) return "";
+  return `<section class="check-panel" aria-labelledby="core-check-title">
+    <h3 id="core-check-title">Independent check</h3>
+    <p>${escapeHtml(check)}</p>
+  </section>`;
+}
+
 function renderConstruction(projection, state) {
   if (!projection.concept || !state.reconstructionVisible) return "";
   return `<section class="construction-panel" data-semantic="reconstruction" aria-labelledby="core-construction-title">
@@ -447,7 +493,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
   return `<style>
     :host { display:block; font:inherit; color:inherit; }
     .shell { display:grid; gap:1rem; max-width:72rem; margin:0 auto; }
-    .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.construction-panel,.representation-panel {
+    .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.check-panel,.construction-panel,.representation-panel {
       border:1px solid currentColor; border-radius:.75rem; padding:1rem;
     }
     .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
@@ -455,6 +501,8 @@ export function renderCoreLearningProjection(input, stateInput = null) {
     ol { margin:.5rem 0 0; padding-left:1.25rem; }
     li + li { margin-top:.65rem; }
     small { display:block; margin-top:.2rem; opacity:.8; }
+    .source-identity { font-size:.85rem; opacity:.8; }
+    .question-parts h4 { margin:.75rem 0 .25rem; }
     label { display:block; font-weight:600; margin-bottom:.35rem; }
     textarea { box-sizing:border-box; width:100%; max-width:48rem; font:inherit; }
     button { font:inherit; min-height:2.75rem; padding:.55rem .8rem; margin-top:.65rem; }
@@ -466,7 +514,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     @media (max-width: 36rem) {
-      .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.construction-panel,.representation-panel { padding:.75rem; }
+      .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.check-panel,.construction-panel,.representation-panel { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
@@ -486,6 +534,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
     ${renderSupport(projection, state)}
     ${renderConstruction(projection, state)}
     ${renderReasoningRoute(projection, state)}
+    ${renderIndependentCheck(projection, state)}
     ${renderCompletion(state)}
   </article>`;
 }
