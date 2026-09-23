@@ -1,0 +1,170 @@
+schema_version: "relay-v3.1-ep"
+id: "EP-ISS212-ATLAS-INDEX-V31-002"
+work_package: "WP-ISS212-ATLAS-INDEX"
+outcome:
+  statement: "Deliver Issue 212 as the canonical subject-neutral Atlas reference-integrity producer, then release a final versioned consumer contract to Issues 213 and 214 only after independent falsifiers, semantic resolution, exact-row validation, and an explicit FINAL B → C/D HANDOFF."
+basis:
+  predecessor_checkpoint: null
+  material_base: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+  protocol_basis: "reallaksh19/Common@03f0ec137064347fcbcc275ad2b7458814528aef:skills/engineering-pr-delivery-v3.1"
+  semantic_dependencies:
+    -
+      path: "Issue #212 live body (updated 2026-09-23T16:39:48Z)"
+      reason: "Hard producer acceptance now blocks #213/#214 material work until the final contract/head/fixtures handoff is explicitly released."
+    -
+      path: "Shared/library/package.schema.json"
+      reason: "Canonical microtopic, capability, prerequisite, representation, and resource reference structure."
+    -
+      path: "Shared/library/matrix.schema.json"
+      reason: "Canonical matrix/rung identity, authored order, ladder position, and default-entry eligibility semantics."
+    -
+      path: "Shared/library/resolve.py"
+      reason: "Canonical ID index and unresolved-reference behavior."
+    -
+      path: "Shared/tools/build_web_data.py"
+      reason: "Single Atlas generation path to extend without creating a second curriculum authority."
+    -
+      path: "Shared/tools/build_core_learning_data.py"
+      reason: "Merged Issue 211 Core projection and bucket-availability authority consumed by the derived index."
+    -
+      path: "public/core-learning/data.js"
+      reason: "Current generated Issue 211 projection IDs and explicit AVAILABLE/UNSUPPORTED bucket truth."
+    -
+      path: "Physics/library/**"
+      reason: "Canonical Physics package records used by all Physics matrix rows and Motion/NLM witnesses."
+    -
+      path: "Physics/matrices/**"
+      reason: "Canonical Physics rung rows, local identity, order, and eligibility."
+    -
+      path: "Mathematics/library/**"
+      reason: "Canonical Mathematics package records and prerequisite/representation counterexample."
+    -
+      path: "Mathematics/matrices/**"
+      reason: "Canonical Mathematics rung rows and local identity/order."
+scope:
+  write:
+    - "Shared/tools/build_web_data.py"
+    - "Shared/tools/atlas_index.py"
+    - "tests/test_issue212_atlas_index.py"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+    - "tools/data.js"
+    - "public/data/data.js"
+    - "docs/architecture-manifest.json"
+  read:
+    - "Shared/library/package.schema.json"
+    - "Shared/library/matrix.schema.json"
+    - "Shared/library/resolve.py"
+    - "Shared/library/compile_inputs.py"
+    - "Shared/library/intake.py"
+    - "Shared/contracts.py"
+    - "Shared/tools/build_core_learning_data.py"
+    - "Shared/tools/core_learning_projection_adapter.py"
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Physics/adapter/CoreContracts.json"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Mathematics/adapter/CoreContracts.json"
+    - "public/core-learning/data.js"
+    - "public/js/topic-atlas.js"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+  protect:
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Shared/tools/build_core_learning_data.py"
+    - "public/core-learning/**"
+    - "public/js/topic-atlas.js"
+  prohibit:
+    - "Do not edit subject-owned library or matrix truth to make Atlas coverage look complete."
+    - "Do not edit Core projection/builder authority or repair unsupported Core buckets inside Issue 212."
+    - "Do not edit Atlas browser/HTML behavior, Shared workbench code, portable runtime, or standalone host code."
+    - "Do not infer academic IDs or links from titles, URLs, rung proximity, source order, or semantic similarity."
+    - "Do not fabricate representation, activity, Core projection, portable-package, standalone/offline, or browser-locator availability."
+    - "Do not create a second curriculum database or make generated Atlas data academic authority."
+    - "Do not release #213 or #214 for material work before AC-212-DOWNSTREAM-RELEASE is evidenced and the FINAL B → C/D HANDOFF is posted."
+    - "Do not treat the provisional AtlasIndex.v1 issue example as a released contract."
+    - "Do not fall back to older continuity behavior; this execution is pinned to the reviewed V3.1 Common head."
+    - "Do not merge without a fresh accepted V3.1 checkpoint and explicit Owner MERGE authority."
+acceptance:
+  -
+    id: "AC-212-WITNESSES"
+    statement: "Independent Motion R1, NLM R5, Mathematics R1, NLM R4 and adversarial falsifiers are committed and pass against the intended resolver behavior without deriving their expected truth from that resolver."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-INTEGRITY"
+    statement: "Every authored source rung is emitted exactly once; duplicate composite keys and dangling declared refs are explicit findings and no invalid ref is reported READY."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-SEMANTICS"
+    statement: "Prerequisite authority is explicit; microtopic and capability prerequisite dimensions remain separate when source truth differs; representation, activity/resource, browser locator, portable package, and standalone/offline availability are separate non-implying states."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-CORE"
+    statement: "Atlas Core mapping consumes merged Issue 211 projection/availability truth; Motion projections resolve while NLM/Mathematics unsupported states remain explicit without fabricated IDs."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-DETERMINISM"
+    statement: "Derived output is deterministic under record permutation and preserves authored matrix/rung order plus default/non-default eligibility."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-CONSUMER"
+    statement: "The final integrated build_web_data payload exposes one explicit versioned consumer contract with stable (matrix_id, rung) identity, final field/status semantics, stable finding codes, visual-target provenance, and exact validated Motion/NLM/Math consumer rows."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+      -
+        oracle: "Exact generated Motion R1, NLM R5, and Mathematics R1 rows on the final execution head."
+  -
+    id: "AC-212-REPO"
+    statement: "Owned generated Atlas artifacts are fresh and identical, existing Atlas suites plus focused Issue 212 falsifiers pass, manifest is fresh, and exact-head repository guardrails remain green."
+    evidence_requirements:
+      -
+        test: "python -m unittest discover -s tests -p 'test_topic_atlas_contract.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_shared_topic_atlas_core.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_topic_atlas_takeover_contract.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_issue212_atlas_index.py' -v"
+      -
+        test: "python Shared/tools/build_manifest.py --check"
+  -
+    id: "AC-212-DOWNSTREAM-RELEASE"
+    statement: "Issue 212 is not handoff-complete and Issues 213/214 remain READ-ONLY / DEPENDENCY-WAIT until B posts FINAL B → C/D HANDOFF on #212 with exact head, explicit final contract version (version-bumped if provisional semantics changed), field/type/status semantics, prerequisite/Core/representation/activity/resource/locator/portable/standalone semantics, stable finding codes, Motion/NLM/Math fixtures, visual_targets provenance, known unavailable/invalid examples and upstream blockers, then explicitly notifies #213 and #214 that this exact contract is ready for material consumption."
+    evidence_requirements:
+      -
+        oracle: "FINAL B → C/D HANDOFF comment on #212 with exact head/version/fixtures."
+      -
+        oracle: "Explicit #213 dependency-release notification referencing the final #212 handoff."
+      -
+        oracle: "Explicit #214 dependency-release notification referencing the final #212 handoff."
+quality_policy:
+  level: "STANDARD"
+  independent_review: "OPTIONAL"
+admission_policy:
+  qualification: "NOT_REQUIRED"
+  question_policy: "NONE"
+next:
+  first_action: "Continue from the already-committed independent oracle/falsifier slice on branch issue-212-atlas-index; implement the smallest subject-neutral resolver/index, integrate it into build_web_data, validate exact consumer rows, freeze the final version, then satisfy AC-212-DOWNSTREAM-RELEASE before notifying C/D."
+  stop_conditions:
+    - "Stop if any required academic edge would have to be guessed rather than traced to a canonical source field."
+    - "Stop and return the exact upstream finding if a source-owned defect requires subject-data repair."
+    - "Stop if implementation collapses prerequisite authority or representation/activity/resource/locator/portable/standalone states."
+    - "Keep #213 and #214 READ-ONLY / DEPENDENCY-WAIT until the final version/head/fixtures handoff and explicit release notifications exist."
+    - "Stop before merge unless a fresh accepted checkpoint exists and explicit Owner MERGE authority is present."
