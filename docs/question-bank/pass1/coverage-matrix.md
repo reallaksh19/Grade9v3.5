@@ -10,7 +10,7 @@ The active expanded bank is the fixture-native v2 custody surface:
 - `Physics/library/exam-bank/competitive-exam-question-bank.v2.json`
 - `Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json`
 
-The original v1 files remain as the first provenance seed for audit history. They are not the current coverage target.
+The superseded 8-question v1 bank files have been removed. The v2 custody manifests are the sole active exam-bank truth under the subject libraries.
 
 All 30 learner-usable v2 records are `PYQ_ADAPTED`: the parent exam identity is source-verified against the official organizer archive, while the stored stem/options/conditions are explicitly faithful non-verbatim restatements. Source-provided hint ladders remain in `question.hints[]` (empty for this accepted set); authored teaching support is kept separately in `question.scaffolds[]`.
 
