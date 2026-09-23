@@ -8,16 +8,16 @@ PHYS_BANK = ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v2.
 CHEM_BANK = ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json"
 LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
 
-OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in"}
+OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in"}
 EXPECTED_COUNTS = {
     "Physics": {
-        "Newton's Laws of Motion / NLM": 7,
-        "Motion in 2D / Motion in a Plane — linear/projectile only": 6,
+        "Newton's Laws of Motion / NLM": 9,
+        "Motion in 2D / Motion in a Plane — linear/projectile only": 10,
         "Motion in 1D — relative motion only": 2,
     },
     "Chemistry": {
-        "Redox Reactions": 7,
-        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 8,
+        "Redox Reactions": 19,
+        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 14,
     },
 }
 
@@ -32,19 +32,24 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
         cls.physics = load(PHYS_BANK)
         cls.chemistry = load(CHEM_BANK)
         cls.banks = [cls.physics, cls.chemistry]
+        cls.resource_by_id = {
+            resource["id"]: resource
+            for bank in cls.banks
+            for resource in bank.get("resources", [bank["resource"]])
+        }
         cls.questions = [
-            (bank["resource"], q)
+            (cls.resource_by_id[q["origin_ref"]], q)
             for bank in cls.banks
             for q in bank["questions"]
         ]
         cls.ledger = load(LEDGER)
 
     def test_fixture_native_v2_shape_and_counts(self):
-        self.assertEqual(len(self.physics["questions"]), 15)
-        self.assertEqual(len(self.chemistry["questions"]), 15)
-        self.assertEqual(len(self.questions), 30)
+        self.assertEqual(len(self.physics["questions"]), 21)
+        self.assertEqual(len(self.chemistry["questions"]), 33)
+        self.assertEqual(len(self.questions), 54)
         for bank in self.banks:
-            self.assertEqual(bank["version"], "2.0.0")
+            self.assertEqual(bank["version"], "2.1.0")
             self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
             self.assertEqual(bank["access_status"], "FULL_ITEM_INSPECTED")
 
@@ -65,6 +70,8 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             self.assertEqual(q["origin"], "ADAPTED")
             self.assertEqual(q["extensions"]["grade9v3:provenance_class"], "PYQ_ADAPTED")
             self.assertEqual(q["origin_ref"], resource["id"])
+            self.assertIn(q["origin_ref"], self.resource_by_id)
+            self.assertTrue(set(q["source_refs"]).issubset(self.resource_by_id))
             self.assertEqual(q["adaptation"]["parent_ref"], q["original_identifier"])
             self.assertTrue(q["adaptation"]["changed_fields"])
             self.assertIn("stem", q["adaptation"]["changed_fields"])
