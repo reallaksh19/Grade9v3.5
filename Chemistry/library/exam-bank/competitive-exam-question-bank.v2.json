@@ -1,6 +1,6 @@
 {
   "manifest_id": "QB-CHEMISTRY-COMPETITIVE-PASS1-V2",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "acquisition_ref": "PASS1-OFFICIAL-ARCHIVE-2026-09-23",
   "target_package": "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json",
   "inspector_id": "pass1-provenance",
@@ -46,7 +46,9 @@
     "IIT-JEE 2011 Paper II Chemistry Q1",
     "JEE (Advanced) 2015 Paper 1 Chemistry Q27",
     "JEE (Advanced) 2015 Paper 2 Chemistry Q25",
-    "JEE (Advanced) 2015 Paper 2 Chemistry Q28"
+    "JEE (Advanced) 2015 Paper 2 Chemistry Q28",
+    "JEE (Advanced) 2017 Paper 1 Chemistry Q26",
+    "JEE (Advanced) 2026 Paper 1 Chemistry Q9"
   ],
   "access_status": "FULL_ITEM_INSPECTED",
   "resource": {
@@ -61,7 +63,7 @@
     "title": "JEE (Advanced) official past question-paper archive",
     "origin": "WEB",
     "locator": "https://jeeadv.ac.in/archive.html",
-    "edition": "2007-2025 papers inspected for PASS 1",
+    "edition": "2007-2026 papers inspected for PASS 1",
     "section": "Selected official prior papers",
     "last_checked": "2026-09-23",
     "access_status": "SECTION_INSPECTED",
@@ -93,10 +95,10 @@
     ],
     "grade9v3:topic_counts": {
       "Redox Reactions": 25,
-      "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 17
+      "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 19
     },
     "grade9v3:source_resource_policy": "Question source_refs/origin_ref resolve against resources[]; exact source wording remains external.",
-    "grade9v3:accepted_question_count": 42
+    "grade9v3:accepted_question_count": 44
   },
   "questions": [
     {
@@ -6863,6 +6865,337 @@
           "supports_move_ref": "PYQ-CHEM-JEEADV-2015-P2-Q28-MOVE-3"
         }
       ]
+    },
+    {
+      "id": "PYQ-CHEM-JEEADV-2017-P1-Q26",
+      "version": "2.3.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2017,
+          "paper": "Paper 1",
+          "section": "Chemistry",
+          "question_number": "26",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2017_1.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2017|Paper 1|Chemistry|Q26",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+          "concept_bucket": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+          "exam_source_badge": "JEE (Advanced) 2017 · Paper 1 · Q26",
+          "original_question_type": "integer_answer",
+          "learner_question_type": "integer_answer",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Links crystallographic cell geometry and density directly to an atom count."
+          },
+          "expected_time_seconds": 130,
+          "common_wrong_route": "Forgetting the four atoms per FCC unit cell or mishandling pm-to-cm conversion.",
+          "stable_crux_move": "Convert density into mass per FCC cell before counting cells and atoms.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2017|Paper 1|Chemistry|Q26",
+      "stem": "A pure crystalline substance has an FCC structure with cell edge 400 pm and density 8 g cm^-3. The number of atoms in 256 g is N×10^24. Find N.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "FCC unit cell contains four atoms.",
+        "1 pm = 10^-10 cm."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "2.",
+        "reasoning": [
+          "The cell edge is 400 pm = 4×10^-8 cm, so the unit-cell volume is 6.4×10^-23 cm^3.",
+          "At density 8 g cm^-3, one cell has mass 5.12×10^-22 g. Thus 256 g contains 5×10^23 unit cells.",
+          "An FCC cell contains four atoms, giving 2×10^24 atoms; therefore N=2."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "The cell edge is 400 pm = 4×10^-8 cm, so the unit-cell volume is 6.4×10^-23 cm^3.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-2",
+            "kind": "CONNECT",
+            "action": "At density 8 g cm^-3, one cell has mass 5.12×10^-22 g. Thus 256 g contains 5×10^23 unit cells.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "An FCC cell contains four atoms, giving 2×10^24 atoms; therefore N=2.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "2."
+          }
+        ],
+        "crux_move_ref": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-2",
+        "check": "4×5×10^23 = 2×10^24 atoms.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the source quantities.",
+            "evidence_of": "Correct model selection."
+          },
+          {
+            "criterion": "Carries the route to the final answer and checks it.",
+            "evidence_of": "Complete auditable solution."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-CHEM-STOICH-MASS-MOLE",
+      "secondary_capability_refs": [
+        "CAP-CHEM-STOICH-MOLE-RATIO"
+      ],
+      "family_ref": "FAM-CHEM-STOICH-AMOUNT-MAPPING",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2017|Paper 1|Chemistry|Q26",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, conditions, target and scientific demand are preserved."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Convert 400 pm into centimeters and cube it.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-1"
+        },
+        {
+          "text": "Use density to find the mass of one unit cell.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-2"
+        },
+        {
+          "text": "Multiply the number of cells by four atoms per FCC cell.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2017-P1-Q26-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-CHEM-JEEADV-2026-P1-Q09",
+      "version": "2.3.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2026,
+          "paper": "Paper 1",
+          "section": "Chemistry",
+          "question_number": "9",
+          "paper_url": "https://jeeadv.ac.in/documents/p1_english.pdf",
+          "archive_url": "https://jeeadv.ac.in/",
+          "answer_key_url": "https://jeeadv.ac.in/documents/p1_solutions_final.pdf",
+          "answer_authority": "OFFICIAL_FINAL_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2026|Paper 1|Chemistry|Q9",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry",
+          "concept_bucket": "BUCKET-CHEM-MOLE-STOICHIOMETRY",
+          "exam_source_badge": "JEE (Advanced) 2026 · Paper 1 · Q9",
+          "original_question_type": "numerical_value",
+          "learner_question_type": "numerical_value",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Requires converting component masses to mole totals before using the ideal-gas pressure ratio."
+          },
+          "expected_time_seconds": 110,
+          "common_wrong_route": "Comparing mixture masses rather than mixture mole counts.",
+          "stable_crux_move": "At equal temperature and volume, compare total moles—not total mass.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2026|Paper 1|Chemistry|Q9",
+      "stem": "Two equal-volume cylinders at the same temperature contain He-Ar mixtures. Cylinder 1 has masses m1 of He and m2 of Ar; cylinder 2 has m2 of He and m1 of Ar. The molar mass of Ar is ten times that of He. If cylinder 1 needs five times the external pressure of cylinder 2 to have the same volume, find m1/m2.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both gas mixtures are ideal.",
+        "Temperatures and volumes are equal when the pressure ratio is compared.",
+        "M_Ar=10 M_He."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "9.80.",
+        "reasoning": [
+          "Let M be the molar mass of He and r=m1/m2. Cylinder 1 contains (10m1+m2)/(10M) moles; cylinder 2 contains (10m2+m1)/(10M) moles.",
+          "At equal T and V, pressure is proportional to total moles, so (10r+1)/(10+r)=5.",
+          "Solving 10r+1=50+5r gives r=49/5=9.8."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Let M be the molar mass of He and r=m1/m2. Cylinder 1 contains (10m1+m2)/(10M) moles; cylinder 2 contains (10m2+m1)/(10M) moles.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-2",
+            "kind": "CONNECT",
+            "action": "At equal T and V, pressure is proportional to total moles, so (10r+1)/(10+r)=5.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Solving 10r+1=50+5r gives r=49/5=9.8.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "9.80."
+          }
+        ],
+        "crux_move_ref": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-2",
+        "check": "(10×9.8+1)/(10+9.8)=99/19.8=5.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the source quantities.",
+            "evidence_of": "Correct model selection."
+          },
+          {
+            "criterion": "Carries the route to the final answer and checks it.",
+            "evidence_of": "Complete auditable solution."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-CHEM-STOICH-MOLE-RATIO",
+      "secondary_capability_refs": [
+        "CAP-CHEM-STOICH-MASS-MOLE"
+      ],
+      "family_ref": "FAM-CHEM-STOICH-AMOUNT-MAPPING",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2026|Paper 1|Chemistry|Q9",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, conditions, target and scientific demand are preserved."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Express the mole count in each cylinder using M_Ar=10M_He.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-1"
+        },
+        {
+          "text": "Use P∝n at fixed T and V.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-2"
+        },
+        {
+          "text": "Set the mole-count ratio equal to five and solve for m1/m2.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-CHEM-JEEADV-2026-P1-Q09-MOVE-3"
+        }
+      ]
     }
   ],
   "resources": [
@@ -6878,7 +7211,7 @@
       "title": "JEE (Advanced) official past question-paper archive",
       "origin": "WEB",
       "locator": "https://jeeadv.ac.in/archive.html",
-      "edition": "2007-2025 papers inspected for PASS 1",
+      "edition": "2007-2026 papers inspected for PASS 1",
       "section": "Selected official prior papers",
       "last_checked": "2026-09-23",
       "access_status": "SECTION_INSPECTED",
