@@ -1423,6 +1423,29 @@ window.GRADE9V3 = {
           ]
         },
         {
+          "gate_id": "PHY-NLM-ACCELERATING-FRAME-EXTENSION",
+          "title": "Accelerating-frame observer choice, apparent weight, and hanging-bob transfer",
+          "grade": 9,
+          "chapter": "Force and Laws of Motion",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "JEE_MAINS",
+          "scope_state": "ACTIVE",
+          "prerequisites": [
+            "PHY-NEWTON-SECOND-LAW"
+          ],
+          "external_prerequisites": [],
+          "concepts": [
+            "A scale measures the support/normal force, not mass or gravitational force; in an inertial vertical description the normal force changes with acceleration while mg remains the gravitational force.",
+            "When Newton's second law is written in a frame accelerating with a_frame, a pseudo-force -m a_frame is added as a frame-dependent modelling term; it is not a new physical interaction or a Newton-III partner.",
+            "An inertial-frame description and a consistently written accelerating-frame description of the same event must agree on observable quantities such as scale reading and string direction."
+          ],
+          "misconceptions": [
+            "A scale always reads mg because weight is mg.",
+            "An elevator moving upward must make the scale read heavier.",
+            "Pseudo-force is a new physical interaction or a third-law partner."
+          ]
+        },
+        {
           "gate_id": "PHY-NLM-MOMENTUM-TRANSFER-RATE",
           "title": "Force from discrete momentum transfer per unit time",
           "grade": 9,
@@ -5601,6 +5624,17 @@ window.GRADE9V3 = {
               ]
             },
             {
+              "id": "REL-NLM-ELEVATOR-SUPPORT",
+              "expression": "N - m g = m a_y",
+              "meaning": "For a person that remains in contact with a horizontal scale in an inertial ground frame, with upward positive and g the positive magnitude of gravitational acceleration, the signed vertical force balance is N - m g = m a_y.",
+              "conditions": [
+                "The ground frame is treated as inertial and the positive vertical direction is upward.",
+                "The person remains in contact with the scale, so N >= 0.",
+                "The person and scale share the stated vertical acceleration while contact persists.",
+                "g is the positive magnitude of the downward gravitational acceleration."
+              ]
+            },
+            {
               "id": "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
               "expression": "y_A + y_B = L_free = constant; a_A + a_B = 0",
               "meaning": "For one taut inextensible string over one fixed ideal pulley, with both coordinates measured away from the pulley along the two straight segments, the variable segment lengths sum to a constant and the signed accelerations sum to zero.",
@@ -5609,6 +5643,17 @@ window.GRADE9V3 = {
                 "Only the two declared straight segments change length; the wrapped/fixed portions are constant.",
                 "Both coordinates are measured away from the pulley along their local string segments.",
                 "The pulley itself does not translate."
+              ]
+            },
+            {
+              "id": "REL-NLM-HANGING-BOB-TILT",
+              "expression": "tan(theta) = |a_frame| / g",
+              "meaning": "For a bob stationary relative to a horizontally accelerating vehicle, with a massless taut string and no other horizontal interaction, the equilibrium string tilt magnitude theta from vertical satisfies tan(theta)=|a_frame|/g in the vehicle frame.",
+              "conditions": [
+                "The bob is stationary relative to the vehicle after transients, so its relative acceleration is zero.",
+                "The vehicle has constant horizontal acceleration over the represented state.",
+                "The string is massless and taut, and air resistance is neglected.",
+                "theta is measured from the vertical; the bob tilts opposite the vehicle acceleration."
               ]
             },
             {
@@ -5631,6 +5676,17 @@ window.GRADE9V3 = {
                 "N is obtained from the actual free-body dynamics.",
                 "The friction direction opposes the relative sliding at the contact.",
                 "The simple dry-sliding coefficient model is being used."
+              ]
+            },
+            {
+              "id": "REL-NLM-PSEUDO-FORCE",
+              "expression": "F_pseudo = -m a_frame",
+              "meaning": "In a one-axis frame accelerating with signed acceleration a_frame relative to an inertial frame, the pseudo-force assigned to a mass m is opposite the frame acceleration and has magnitude m|a_frame|.",
+              "conditions": [
+                "The selected observer frame has nonzero translational acceleration relative to the inertial frame.",
+                "F_pseudo and a_frame use the same declared axis and sign convention.",
+                "The mass is positive and treated as constant.",
+                "The pseudo-force is a frame-dependent modelling term, not a physical interaction and not a Newton-third-law partner."
               ]
             },
             {
@@ -6123,7 +6179,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 141,
+          "record_count": 146,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6138,6 +6194,11 @@ window.GRADE9V3 = {
             "questions": 38,
             "obligations": 15,
             "authoring_requirements": [
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-FBD-BODY-OWNERSHIP",
@@ -18250,6 +18311,17 @@ window.GRADE9V3 = {
                     "CAP-NLM-THIRD-LAW",
                     "CAP-NLM-CONNECTED-COMMON-ACCEL"
                   ]
+                },
+                {
+                  "id": "ACT-NLM-ACCELERATED-FRAMES",
+                  "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
+                  "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+                  "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
+                  "supports_claims": [
+                    "CAP-NLM-FRAME-CHOICE",
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-SECOND-LAW"
+                  ]
                 }
               ]
             },
@@ -18720,7 +18792,19 @@ window.GRADE9V3 = {
                   "repair_ref": "NLM6-4"
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-ACCELERATED-FRAMES",
+                  "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
+                  "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+                  "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
+                  "supports_claims": [
+                    "CAP-NLM-FRAME-CHOICE",
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-SECOND-LAW"
+                  ]
+                }
+              ]
             },
             {
               "rung": "R8",
@@ -20032,7 +20116,19 @@ window.GRADE9V3 = {
                   "repair_ref": "NLM4-3"
                 }
               ],
-              "activities": []
+              "activities": [
+                {
+                  "id": "ACT-NLM-ACCELERATED-FRAMES",
+                  "title": "Accelerated Frames, Elevators & Pseudo Force Explorer",
+                  "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+                  "section": "Apparent weight, inertial-versus-accelerating frame bookkeeping, free fall, and hanging-bob transfer",
+                  "supports_claims": [
+                    "CAP-NLM-FRAME-CHOICE",
+                    "CAP-NLM-FBD-BODY-OWNERSHIP",
+                    "CAP-NLM-SECOND-LAW"
+                  ]
+                }
+              ]
             }
           ]
         },
