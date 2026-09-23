@@ -145,6 +145,14 @@ class IndependentSourceOracleTest(unittest.TestCase):
             ["ACT-KIN-2D-SHARED-CLOCK"],
             activity_refs(self.physics, capability_ref),
         )
+        activity = self.physics["ACT-KIN-2D-SHARED-CLOCK"]
+        self.assertEqual(
+            "public/physics/motion-2d/explorers/shared-clock/index.html",
+            activity["locator"],
+        )
+        gcdr = activity.get("extensions", {}).get("topic_atlas", {}).get("gcdr_contract", {})
+        self.assertEqual("REPO_BUNDLE", gcdr.get("delivery_profile", {}).get("profile"))
+        self.assertNotIn("portable_package_ref", activity)
 
         availability = core_availability(self.core, "Physics", MOTION_BUCKET)
         self.assertEqual("AVAILABLE", availability["status"])
@@ -183,6 +191,12 @@ class IndependentSourceOracleTest(unittest.TestCase):
             ["ACT-NLM-FRICTION-THRESHOLD"],
             activity_refs(self.physics, capability_ref),
         )
+        activity = self.physics["ACT-NLM-FRICTION-THRESHOLD"]
+        self.assertEqual(
+            "public/physics/nlm/explorers/friction-threshold/index.html",
+            activity["locator"],
+        )
+        self.assertNotIn("portable_package_ref", activity)
 
         representation = self.physics["REP-NLM-FRICTION-THRESHOLD"]
         self.assertEqual(
@@ -218,7 +232,7 @@ class IndependentSourceOracleTest(unittest.TestCase):
         self.assertEqual([], activity_refs(self.math, capability_ref))
 
         representation = self.math["REP-MATH-NUMBER-LINE"]
-        self.assertEqual([], representation["interactive_resource_refs"])
+        self.assertEqual([], representation.get("interactive_resource_refs", []))
 
         availability = core_availability(self.core, "Mathematics", MATH_BUCKET)
         self.assertEqual("UNSUPPORTED", availability["status"])
@@ -259,6 +273,11 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
             ["CAP-VECTOR-SIGNED-COMPONENT"],
             row["capability_prerequisite_refs"],
         )
+        self.assertEqual("READY", row["availability"]["representation"])
+        self.assertEqual("READY", row["availability"]["activity"])
+        self.assertEqual("READY", row["availability"]["locator"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
 
     def test_math_r1_consumer_row_does_not_collapse_prerequisites(self):
         math = subject_payload("Mathematics")
@@ -271,6 +290,14 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual([], row["capability_prerequisite_refs"])
         self.assertEqual(["REP-MATH-NUMBER-LINE"], row["representation_refs"])
         self.assertEqual([], row["activity_refs"])
+        self.assertEqual("READY", row["availability"]["representation"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["activity"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["locator"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["locator"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
 
     def test_nlm_r5_consumer_row_does_not_infer_representation(self):
         physics = subject_payload("Physics")
@@ -282,6 +309,11 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual([], row["representation_refs"])
         self.assertEqual(["ACT-NLM-FRICTION-THRESHOLD"], row["activity_refs"])
         self.assertEqual([], row["core_projection_refs"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["representation"])
+        self.assertEqual("READY", row["availability"]["activity"])
+        self.assertEqual("READY", row["availability"]["locator"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
 
 
 class ResolverAdversarialFalsifierTest(unittest.TestCase):
