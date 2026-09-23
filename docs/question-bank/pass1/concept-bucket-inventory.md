@@ -24,7 +24,7 @@ The expanded v2 bank reuses canonical Physics capabilities/families already pres
 ### Physics scope notes
 
 - The 2D bank excludes circular motion entirely.
-- Straight-line relative motion reuses the existing relative-motion family; the former acquisition hold is closed by two official-paper items.
+- Straight-line relative motion reuses the existing relative-motion family; the relative-motion family now has three official-paper parent items, including a first-party JEE Main 2026 item; it remains the sparsest requested topic.
 - No train/car/story-specific capability was created.
 
 ## Chemistry — local invariant-demand proposals
@@ -51,7 +51,7 @@ The expanded v2 bank reuses canonical Physics capabilities/families already pres
 
 The native repository distinction is preserved:
 
-- `question.hints[]` is source/question custody. For the accepted 71 items no official hint ladder is supplied, so it remains empty.
+- `question.hints[]` is source/question custody. For the accepted 77 items no official hint ladder is supplied, so it remains empty.
 - `question.scaffolds[]` is authored Core2A/Core2B pedagogical support. Each accepted record has a graduated scaffold ladder bound to stable `answer.reasoning_route[]` move IDs.
 
 ## Core2B transfer analysis
@@ -74,3 +74,8 @@ Transfer remains an analysis claim, not a generated practice set. Real-transfer 
 - `PYQ-CHEM-JEEADV-2025-P2-Q16` — hydrolysis-water accounting before mass-fraction and integer composition constraints.
 
 No final Core2B practice set is generated in PASS 1.
+
+
+## JEE Main 2026 source diversification
+
+The 2026 Session 2 additions reuse existing invariant-demand capabilities and families: `CAP-NLM-FRICTION-QUANT`, `CAP-KIN-2D-INDEPENDENT-COMPONENTS`, `CAP-RELATIVE-V`, `CAP-CHEM-REDOX-OXIDATION-STATE`, `CAP-CHEM-STOICH-MASS-MOLE`, `FAM-PHY-NLM-PRACTICE`, `FAM-PHY-KIN-2D-PRACTICE`, `FAM-RELATIVE-V`, `FAM-CHEM-REDOX-REACTION-CLASSIFICATION`, and `FAM-CHEM-STOICH-AMOUNT-MAPPING`. No car-, incline-, projectile-equation-, or transition-metal-story-specific capability was introduced.
