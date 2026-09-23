@@ -1,78 +1,111 @@
-schema_version: relay-v3.1-snapshot
-authority: DERIVED_READ_MODEL
+schema_version: "relay-v3.1-snapshot"
+authority: "DERIVED_READ_MODEL"
 generated_from:
-  roadmap_revision: RM-V31-ISS125-ACCELERATED-FRAMES-001
-  state_digest: sha256:1bfd925a2dd13d185122213b4b2c2ed0d9b48076ed63f9fd00cfd656b150cceb
+  roadmap_revision: "RM-V31-ISS212-ATLAS-INDEX-001"
+  state_digest: "sha256:4fca6e314ff83077b856712d8478e63bb37fc2ddba32ad30fa2861c8c6a0b3fd"
   material_basis:
-    head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
-    tree_digest: sha256:9a57b22a7da29f1c786c553b140e07037745c24da7cc7a74dffa098026614519
-    relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
-    dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
-  coordination_head: eb1c94b4b12e10b3743ad6f09fa3e6bb4e45c47e
+    head: "c768c53270b559297d316ead70f50ef6e7a99ba9"
+    tree_digest: "sha256:856d56f0dba612704365466a1be883f460b9ded482adfb36f691f7efdb81f5f5"
+    relevant_paths_digest: "sha256:081cd65d6bc51a08c5f47218d1155c817a9712fd11cb12381975e0f26e6777df"
+    dependency_digest: "sha256:3a525db9fd7dc99dbcf625c68918c87d7b9703a59e0f4cade8e94cb70aaf87a1"
+  coordination_head: "c768c53270b559297d316ead70f50ef6e7a99ba9"
 owner:
-  outcome: Preserve the delivered self-study architecture and activate new work only
-    from a concrete learner, worksheet, source, or product defect rather than from
-    stale umbrella scope.
-  current_goal: No successor content lane is active. Grade-10 Physics, Grade-11 Physics,
-    and Mathematics expansion are Owner-skipped for now; dormant Physics inventory
-    remains demand-gated and real learner evidence remains input-gated.
+  outcome: "Preserve the delivered self-study architecture and activate new work only from a concrete learner, worksheet, source, or product defect rather than from stale umbrella scope."
+  current_goal: "No successor content lane is active. Grade-10 Physics, Grade-11 Physics, and Mathematics expansion are Owner-skipped for now; dormant Physics inventory remains demand-gated and real learner evidence remains input-gated."
 programme:
-  accepted_progress: 8.73
+  programme_progress: 95.35
   completed_work:
-  - WP-PORTABLE-163
-  - WP-ISS125-ACCELERATED-FRAMES
+    - "WP-TAKEOVER-RECONCILE"
+    - "WP-TA-102"
+    - "WP-TA-106"
+    - "WP-TA-103"
+    - "WP-TA-104"
+    - "WP-TA-107"
+    - "WP-TA-108"
+    - "WP-TA-105"
+    - "WP-CANONICAL-174-NLM"
+    - "WP-CANONICAL-174-MOTION"
+    - "WP-LEARNER-175-PRODUCTION"
+    - "WP-PORTABLE-163"
   remaining_work:
-  - WP-TAKEOVER-RECONCILE
-  - WP-TA-102
-  - WP-TA-106
-  - WP-TA-103
-  - WP-TA-104
-  - WP-TA-107
-  - WP-TA-108
-  - WP-TA-105
-  - WP-CANONICAL-174-NLM
-  - WP-CANONICAL-174-MOTION
-  - WP-LEARNER-175-PRODUCTION
+    - "WP-ISS125-ACCELERATED-FRAMES"
+    - "WP-ISS212-ATLAS-INDEX"
+  accepted_progress: 8.53
+  evidence_backed_work:
+    - "WP-PORTABLE-163"
+    - "WP-ISS125-ACCELERATED-FRAMES"
 execution:
-  lifecycle: IDLE
-  work_package: null
-  ep: null
-  lease: null
-  executor: null
+  lifecycle: "ACTIVE"
+  work_package: "WP-ISS212-ATLAS-INDEX"
+  ep: "EP-ISS212-ATLAS-INDEX-V31-001"
+  lease: "LEASE-ISS212-ATLAS-INDEX-V31-001"
+  executor: "chatgpt-sol-issue212-v31-20260923"
   custody_epoch: 1
 scope:
-  allowed_writes: []
-  protected: []
-  prohibited: []
+  allowed_writes:
+    - "Shared/tools/build_web_data.py"
+    - "Shared/tools/atlas_index.py"
+    - "tests/test_issue212_atlas_index.py"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+    - "tools/data.js"
+    - "public/data/data.js"
+    - "docs/architecture-manifest.json"
+  protected:
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Shared/tools/build_core_learning_data.py"
+    - "public/core-learning/**"
+    - "public/js/topic-atlas.js"
+  prohibited:
+    - "Do not edit subject-owned library or matrix truth to make Atlas coverage look complete."
+    - "Do not edit Core projection/builder authority or repair unsupported Core buckets inside Issue 212."
+    - "Do not edit Atlas browser/HTML behavior, Shared workbench code, portable runtime, or standalone host code."
+    - "Do not infer academic IDs or links from titles, URLs, rung proximity, source order, or semantic similarity."
+    - "Do not fabricate representation, activity, Core projection, portable-package, or standalone availability."
+    - "Do not create a second curriculum database or make generated Atlas data academic authority."
+    - "Do not fall back to older continuity behavior; this execution is pinned to the reviewed V3.1 Common head."
+    - "Do not merge without a fresh accepted V3.1 checkpoint and explicit Owner MERGE authority."
 material:
-  base: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
-  head: 05a7c0e1a65cde16b6d8b82422a932717a95f21f
-  relevant_paths_digest: sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae
-  dependency_digest: sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8
+  base: "c768c53270b559297d316ead70f50ef6e7a99ba9"
+  head: "c768c53270b559297d316ead70f50ef6e7a99ba9"
+  relevant_paths_digest: "sha256:081cd65d6bc51a08c5f47218d1155c817a9712fd11cb12381975e0f26e6777df"
+  dependency_digest: "sha256:3a525db9fd7dc99dbcf625c68918c87d7b9703a59e0f4cade8e94cb70aaf87a1"
 evidence:
-  latest_checkpoint: CP-ISS125-ACCELERATED-FRAMES-V31-001
+  latest_checkpoint: "CP-ISS125-ACCELERATED-FRAMES-V31-001"
   latest_material_validation:
-    focused_tests: PASS
-    spec_delivery: PASS
-    full_guardrails: PASS
+    focused_tests: "PASS"
+    spec_delivery: "PASS"
+    full_guardrails: "PASS"
 controls:
   execution_blockers: []
   handover_blockers: []
   delivery_blockers: []
   informational: []
 delivery:
-  issue: null
-  pr: 199
-  lifecycle: DECLARED
+  issue: 212
+  pr: null
+  lifecycle: "DECLARED"
   merge_authorized: false
 next:
-  immediate_material_action: null
-  delivery_action: Perform the explicitly authorized delivery transition.
-  stop_conditions: []
+  immediate_material_action: "Commit independent Motion R1, NLM R5, Mathematics R1, NLM R4, and adversarial oracle/falsifier tests before any generator change; then implement only the smallest failing Issue 212 resolver/index behavior."
+  delivery_action: "Perform the explicitly authorized delivery transition."
+  stop_conditions:
+    - "Stop if any required academic edge would have to be guessed rather than traced to a canonical source field."
+    - "Stop and reconcile if merged Issue 211 Core truth differs materially on the execution base."
+    - "Stop and return the exact upstream finding if a source-owned defect requires subject-data repair."
+    - "Stop if the consumer contract would collapse distinct prerequisite or representation/activity/portable semantics."
+    - "Stop if the pinned V3.1 protocol basis Common@03f0ec137064347fcbcc275ad2b7458814528aef becomes unusable or is superseded before the next custody boundary."
+    - "Stop before merge unless a fresh accepted checkpoint exists and explicit Owner MERGE authority is present."
 handoff:
   zero_context_takeover_possible: true
   reconstruction_sources:
-  - relay/ROADMAP/ROADMAP.yaml
-  - relay/STATE.yaml
-  - relay/CONTROLS/controls.yaml
-  - relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml
+    - "relay/ROADMAP/ROADMAP.yaml"
+    - "relay/STATE.yaml"
+    - "relay/CONTROLS/controls.yaml"
+    - "relay/WORK/EP-ISS212-ATLAS-INDEX-V31-001.yaml"
+    - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-001.yaml"
+    - "relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml"

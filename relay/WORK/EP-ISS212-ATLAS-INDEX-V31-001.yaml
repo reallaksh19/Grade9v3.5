@@ -1,0 +1,152 @@
+schema_version: "relay-v3.1-ep"
+id: "EP-ISS212-ATLAS-INDEX-V31-001"
+work_package: "WP-ISS212-ATLAS-INDEX"
+outcome:
+  statement: "Deliver Issue 212 as a thin subject-neutral canonical Atlas reference-integrity projection over existing subject matrices/packages and merged Issue 211 Core availability, with stable (matrix_id, rung) identity, explicit resolved/unavailable/invalid findings, separated prerequisite and visual/resource semantics, deterministic generation, and no new academic authority."
+basis:
+  predecessor_checkpoint: null
+  material_base: "c768c53270b559297d316ead70f50ef6e7a99ba9"
+  protocol_basis: "reallaksh19/Common@03f0ec137064347fcbcc275ad2b7458814528aef:skills/engineering-pr-delivery-v3.1"
+  semantic_dependencies:
+    -
+      path: "Shared/library/package.schema.json"
+      reason: "Canonical microtopic, capability, prerequisite, representation, and resource reference structure."
+    -
+      path: "Shared/library/matrix.schema.json"
+      reason: "Canonical matrix/rung identity, authored order, ladder position, and default-entry eligibility semantics."
+    -
+      path: "Shared/library/resolve.py"
+      reason: "Canonical ID index and unresolved-reference behavior."
+    -
+      path: "Shared/tools/build_web_data.py"
+      reason: "Existing single Atlas generation path that Issue 212 extends rather than replacing."
+    -
+      path: "Shared/tools/build_core_learning_data.py"
+      reason: "Merged Issue 211 Core projection and bucket-availability authority consumed by the derived index."
+    -
+      path: "public/core-learning/data.js"
+      reason: "Current generated Issue 211 projection IDs and explicit AVAILABLE/UNSUPPORTED bucket truth."
+    -
+      path: "Physics/library/**"
+      reason: "Canonical Physics package records used by all Physics matrix rows and the Motion/NLM witnesses."
+    -
+      path: "Physics/matrices/**"
+      reason: "Canonical Physics rung rows, local rung identity, order, and eligibility."
+    -
+      path: "Mathematics/library/**"
+      reason: "Canonical Mathematics package records and prerequisite/representation counterexample."
+    -
+      path: "Mathematics/matrices/**"
+      reason: "Canonical Mathematics rung rows and local identity/order."
+scope:
+  write:
+    - "Shared/tools/build_web_data.py"
+    - "Shared/tools/atlas_index.py"
+    - "tests/test_issue212_atlas_index.py"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+    - "tools/data.js"
+    - "public/data/data.js"
+    - "docs/architecture-manifest.json"
+  read:
+    - "Shared/library/package.schema.json"
+    - "Shared/library/matrix.schema.json"
+    - "Shared/library/resolve.py"
+    - "Shared/library/compile_inputs.py"
+    - "Shared/library/intake.py"
+    - "Shared/contracts.py"
+    - "Shared/tools/build_core_learning_data.py"
+    - "Shared/tools/core_learning_projection_adapter.py"
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Physics/adapter/CoreContracts.json"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Mathematics/adapter/CoreContracts.json"
+    - "public/core-learning/data.js"
+    - "public/js/topic-atlas.js"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+  protect:
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Shared/tools/build_core_learning_data.py"
+    - "public/core-learning/**"
+    - "public/js/topic-atlas.js"
+  prohibit:
+    - "Do not edit subject-owned library or matrix truth to make Atlas coverage look complete."
+    - "Do not edit Core projection/builder authority or repair unsupported Core buckets inside Issue 212."
+    - "Do not edit Atlas browser/HTML behavior, Shared workbench code, portable runtime, or standalone host code."
+    - "Do not infer academic IDs or links from titles, URLs, rung proximity, source order, or semantic similarity."
+    - "Do not fabricate representation, activity, Core projection, portable-package, or standalone availability."
+    - "Do not create a second curriculum database or make generated Atlas data academic authority."
+    - "Do not fall back to older continuity behavior; this execution is pinned to the reviewed V3.1 Common head."
+    - "Do not merge without a fresh accepted V3.1 checkpoint and explicit Owner MERGE authority."
+acceptance:
+  -
+    id: "AC-212-WITNESSES"
+    statement: "Independent source-derived oracles for Motion-in-2D R1, NLM R5, Mathematics R1, and the non-default NLM R4 preserve exact canonical identity and asymmetries."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-INTEGRITY"
+    statement: "Every authored source rung is emitted exactly once; duplicate composite keys and dangling declared refs are explicit findings and no invalid ref is reported READY."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-SEMANTICS"
+    statement: "Microtopic and capability prerequisite dimensions remain distinct when source truth differs, and representation/activity/locator/portable availability are not conflated."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-CORE"
+    statement: "Atlas Core mapping consumes merged Issue 211 projection/availability truth; Motion projections resolve while NLM/Mathematics unsupported states remain explicit without fabricated IDs."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-DETERMINISM"
+    statement: "Derived output is deterministic under record permutation and preserves authored matrix/rung order plus default/non-default eligibility."
+    evidence_requirements:
+      -
+        test: "tests/test_issue212_atlas_index.py"
+  -
+    id: "AC-212-CONSUMER"
+    statement: "One versioned subject-neutral index/visual handoff exposes stable composite identity and explicit absence/invalid states so Agents C/D do not synthesize IDs or links."
+    evidence_requirements:
+      -
+        oracle: "Issue 212 final contract handoff to Issues 213 and 214."
+  -
+    id: "AC-212-REPO"
+    statement: "Owned generated Atlas artifacts are fresh and identical, existing Atlas suites plus focused Issue 212 falsifiers pass, and exact-head repository guardrails remain green."
+    evidence_requirements:
+      -
+        test: "python -m unittest discover -s tests -p 'test_topic_atlas_contract.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_shared_topic_atlas_core.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_topic_atlas_takeover_contract.py' -v"
+      -
+        test: "python -m unittest discover -s tests -p 'test_issue212_atlas_index.py' -v"
+quality_policy:
+  level: "STANDARD"
+  independent_review: "OPTIONAL"
+admission_policy:
+  qualification: "NOT_REQUIRED"
+  question_policy: "NONE"
+next:
+  first_action: "Commit independent Motion R1, NLM R5, Mathematics R1, NLM R4, and adversarial oracle/falsifier tests before any generator change; then implement only the smallest failing Issue 212 resolver/index behavior."
+  stop_conditions:
+    - "Stop if any required academic edge would have to be guessed rather than traced to a canonical source field."
+    - "Stop and reconcile if merged Issue 211 Core truth differs materially on the execution base."
+    - "Stop and return the exact upstream finding if a source-owned defect requires subject-data repair."
+    - "Stop if the consumer contract would collapse distinct prerequisite or representation/activity/portable semantics."
+    - "Stop if the pinned V3.1 protocol basis Common@03f0ec137064347fcbcc275ad2b7458814528aef becomes unusable or is superseded before the next custody boundary."
+    - "Stop before merge unless a fresh accepted checkpoint exists and explicit Owner MERGE authority is present."
