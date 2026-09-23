@@ -1,0 +1,40 @@
+schema_version: relay-v3.1-lease
+id: LEASE-ISS125-ACCELERATED-FRAMES-V31-001
+route: SERIAL:EP-ISS125-ACCELERATED-FRAMES-V31-001
+executor:
+  id: chatgpt-sol-issue125-v31-20260923
+basis:
+  ep_id: EP-ISS125-ACCELERATED-FRAMES-V31-001
+  ep_digest: sha256:aa887f5c14aff0c4422b0a9493b82014fcb7e1701a42229e13f32235a6a471a2
+  material_base: c6e2e825e9bd3e67f1e37228d6ddca19081edb23
+  predecessor_checkpoint: null
+  protocol_basis: reallaksh19/Common@1c168695f237a8bef184a9e189be80fab87d1e78:skills/engineering-pr-delivery-v3.1
+authority:
+  actions:
+  - READ
+  - ANALYZE
+  - MATERIAL_WRITE
+  - TEST
+  - CHECKPOINT
+  - HANDOVER
+  - LOCAL_EXECUTION_EXPORT
+  - DRAFT_PR_UPDATE
+admission:
+  method: DETERMINISTIC
+  result: PASS
+  repository_only: true
+  qualification:
+    required: false
+    qset: null
+    evaluator: null
+    result: null
+    evidence: []
+custody:
+  epoch: 1
+  granted_at: '2026-09-23T03:47:32.019849Z'
+  renewed_at: '2026-09-23T03:47:32.019849Z'
+  recovery_after_seconds: 3600
+  recovery_policy: TAKEOVER_AFTER_EXPIRY
+state: ACTIVE
+invalidation:
+  reasons: []
