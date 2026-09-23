@@ -1,25 +1,31 @@
 {
   "manifest_id": "QB-PHYSICS-COMPETITIVE-PASS1-V2",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "acquisition_ref": "PASS1-OFFICIAL-ARCHIVE-2026-09-23",
   "target_package": "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
   "inspector_id": "pass1-provenance",
   "inspection_sections": [
-    "IIT-JEE 2007 Paper I Q3",
-    "IIT-JEE 2007 Paper I Q10",
-    "IIT-JEE 2008 Paper II Q33",
-    "IIT-JEE 2011 Paper I Q41",
-    "IIT-JEE 2011 Paper II Q34",
-    "JEE (Advanced) 2014 Paper 2 Q19",
-    "JEE (Advanced) 2020 Paper 1 Q13",
-    "IIT-JEE 2011 Paper II Q33",
-    "JEE (Advanced) 2018 Paper 2 Q8",
-    "JEE (Advanced) 2019 Paper 2 Q9",
-    "JEE (Advanced) 2021 Paper 1 Q5",
-    "JEE (Advanced) 2021 Paper 1 Q6",
-    "JEE (Advanced) 2024 Paper 2 Q9",
-    "IIT-JEE 2008 Paper II Q32",
-    "JEE (Advanced) 2014 Paper 1 Q18"
+    "IIT-JEE 2007 Paper I Physics Q3",
+    "IIT-JEE 2007 Paper I Physics Q10",
+    "IIT-JEE 2008 Paper II Physics Q33",
+    "IIT-JEE 2011 Paper I Physics Q41",
+    "IIT-JEE 2011 Paper II Physics Q34",
+    "JEE (Advanced) 2014 Paper 2 Physics Q19",
+    "JEE (Advanced) 2020 Paper 1 Physics Q13",
+    "IIT-JEE 2011 Paper II Physics Q33",
+    "JEE (Advanced) 2018 Paper 2 Physics Q8",
+    "JEE (Advanced) 2019 Paper 2 Physics Q9",
+    "JEE (Advanced) 2021 Paper 1 Physics Q5",
+    "JEE (Advanced) 2021 Paper 1 Physics Q6",
+    "JEE (Advanced) 2024 Paper 2 Physics Q9",
+    "IIT-JEE 2008 Paper II Physics Q32",
+    "JEE (Advanced) 2014 Paper 1 Physics Q18",
+    "IIT-JEE 2012 Paper I Physics Q5",
+    "JEE (Advanced) 2014 Paper 1 Physics Q8",
+    "NEET (UG) 2020 English Set E1 Physics Q160",
+    "JEE (Advanced) 2022 Paper 1 Physics Q8",
+    "JEE (Advanced) 2023 Paper 1 Physics Q1",
+    "JEE (Advanced) 2025 Paper 2 Physics Q15"
   ],
   "access_status": "FULL_ITEM_INSPECTED",
   "resource": {
@@ -58,10 +64,12 @@
     "grade9v3:source_hint_policy": "question.hints[] is source custody only; authored support is question.scaffolds[].",
     "grade9v3:wording_policy": "Every learner-facing stem is PYQ_ADAPTED because it is a faithful non-verbatim restatement; the verified original identity remains in grade9v3:source_custody.",
     "grade9v3:topic_counts": {
-      "Newton's Laws of Motion / NLM": 7,
-      "Motion in 2D / Motion in a Plane — linear/projectile only": 6,
+      "Newton's Laws of Motion / NLM": 9,
+      "Motion in 2D / Motion in a Plane — linear/projectile only": 10,
       "Motion in 1D — relative motion only": 2
-    }
+    },
+    "grade9v3:source_resource_policy": "Question source_refs/origin_ref resolve against resources[]; exact source wording remains external.",
+    "grade9v3:accepted_question_count": 21
   },
   "questions": [
     {
@@ -2542,6 +2550,1064 @@
           "supports_move_ref": "PYQ-PHY-JEEADV-2014-P1-Q18-MOVE-3"
         }
       ]
+    },
+    {
+      "id": "PYQ-PHY-IITJEE-2012-P1-Q05",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "IIT-JEE",
+          "year": 2012,
+          "paper": "Paper I",
+          "section": "Physics",
+          "question_number": "5",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2012_1.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "IIT-JEE|2012|Paper I|Physics|Q5",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "IIT-JEE 2012 · Paper I · Q5",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Synchronizes an SHM event with a projectile event using one shared time."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Solving the projectile without first locating the moving block at t=1 s.",
+          "stable_crux_move": "Use the shared event time to locate the block before imposing projectile coincidence.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "IIT-JEE|2012|Paper I|Physics|Q5",
+      "stem": "A block on a frictionless horizontal surface is attached to a spring of natural length 4.9 m. It is stretched by 0.2 m and released, executing SHM with angular frequency pi/3 rad/s. At the same instant a pebble is launched at 45 degrees from a point 10 m away. If it meets the block after 1 s, determine the launch speed.",
+      "subparts": [],
+      "options": [
+        "(A) sqrt(50) m/s",
+        "(B) sqrt(51) m/s",
+        "(C) sqrt(52) m/s",
+        "(D) sqrt(53) m/s"
+      ],
+      "conditions": [
+        "Take g=10 m/s^2.",
+        "The spring-block motion and projectile launch begin simultaneously.",
+        "The block starts from maximum extension."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Option (A): sqrt(50) m/s.",
+        "reasoning": [
+          "After 1 s the spring extension is 0.2 cos(pi/3)=0.1 m, so the block is 5.0 m from the fixed end.",
+          "The pebble starts 10 m away and must cover 5 m horizontally in 1 s, so v cos45=5.",
+          "Hence v=5sqrt(2)=sqrt(50) m/s; its vertical displacement after 1 s is also zero, so the meeting height is consistent."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "After 1 s the spring extension is 0.2 cos(pi/3)=0.1 m, so the block is 5.0 m from the fixed end.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-2",
+            "kind": "CONNECT",
+            "action": "The pebble starts 10 m away and must cover 5 m horizontally in 1 s, so v cos45=5.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "Hence v=5sqrt(2)=sqrt(50) m/s; its vertical displacement after 1 s is also zero, so the meeting height is consistent.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Option (A): sqrt(50) m/s."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-2",
+        "check": "With v/sqrt(2)=5 m/s, y(1)=5-5=0 and the horizontal coordinate is exactly the block coordinate.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "IIT-JEE|2012|Paper I|Physics|Q5",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Evaluate the spring extension at t=1 s from its cosine law.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-1"
+        },
+        {
+          "text": "Translate the resulting block position into the pebble's required horizontal displacement.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-2"
+        },
+        {
+          "text": "Check the vertical projectile displacement at the same time.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEADV-2014-P1-Q08",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2014,
+          "paper": "Paper 1",
+          "section": "Physics",
+          "question_number": "8",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2014_1.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2014|Paper 1|Physics|Q8",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "JEE (Advanced) 2014 · Paper 1 · Q8",
+          "original_question_type": "multi_correct_mcq",
+          "learner_question_type": "multi_correct_mcq",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Requires force balance plus torque balance and careful handling of the smooth-wall limiting case."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Applying one friction formula mechanically without separating the general and smooth-wall cases.",
+          "stable_crux_move": "Write both translational equilibrium and moment equilibrium before testing special cases.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2014|Paper 1|Physics|Q8",
+      "stem": "A uniform ladder of mass m leans against a wall at angle theta and is on the verge of slipping. Let the wall and floor friction coefficients be mu1 and mu2, with normal reactions N1 at the wall and N2 at the floor. Identify the source-correct limiting-equilibrium statements.",
+      "subparts": [],
+      "options": [
+        "(A) mu1=0, mu2!=0 and N2 tan(theta)=mg/2",
+        "(B) mu1!=0, mu2=0 and N1 tan(theta)=mg/2",
+        "(C) mu1!=0, mu2!=0 and N2=mg/(1+mu1 mu2)",
+        "(D) mu1=0, mu2!=0 and N1 tan(theta)=mg/2"
+      ],
+      "conditions": [
+        "The ladder is in static limiting equilibrium.",
+        "Friction acts at the impending-slip limits where present."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Options (C) and (D).",
+        "reasoning": [
+          "With friction at both contacts, horizontal balance gives N1=mu2 N2 and vertical balance gives N2+mu1 N1=mg.",
+          "Eliminating N1 yields N2=mg/(1+mu1 mu2), establishing option (C).",
+          "If the wall is smooth (mu1=0), taking moments about the foot gives N1 L sin(theta)=mg(L/2)cos(theta), hence N1 tan(theta)=mg/2, establishing option (D)."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "With friction at both contacts, horizontal balance gives N1=mu2 N2 and vertical balance gives N2+mu1 N1=mg.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Eliminating N1 yields N2=mg/(1+mu1 mu2), establishing option (C).",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "If the wall is smooth (mu1=0), taking moments about the foot gives N1 L sin(theta)=mg(L/2)cos(theta), hence N1 tan(theta)=mg/2, establishing option (D).",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Options (C) and (D)."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-2",
+        "check": "The smooth-wall special case follows independently from torque balance and does not require a wall friction force.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2014|Paper 1|Physics|Q8",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Draw all four possible contact forces and mark their limiting directions.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-1"
+        },
+        {
+          "text": "Use horizontal and vertical force balance for the two-friction case.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-2"
+        },
+        {
+          "text": "For the smooth-wall case, take moments about the foot to eliminate floor forces.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2014-P1-Q08-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-NEET-2020-E1-Q160",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NEET-NTA-OFFICIAL-2020"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "NEET (UG)",
+          "year": 2020,
+          "paper": "English Set E1",
+          "section": "Physics",
+          "question_number": "160",
+          "paper_url": "https://cdnbbsr.s3waas.gov.in/s37bc1ec1d9c3426357e69acd5bf320061/uploads/2022/02/2022021555.pdf",
+          "archive_url": "https://neet.nta.nic.in/archive/",
+          "answer_key_url": "https://nta.ac.in/Download/Notice/Notice_20201016104324.pdf",
+          "answer_authority": "OFFICIAL_FINAL_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "NEET (UG)|2020|English Set E1|Physics|Q160",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Newton's Laws of Motion / NLM",
+          "concept_bucket": "BUCKET-PHY-NLM-FIRST-LAW",
+          "exam_source_badge": "NEET (UG) 2020 · English Set E1 · Q160",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Direct Newton-II application to a two-body connected system."
+          },
+          "expected_time_seconds": 60,
+          "common_wrong_route": "Dividing by one mass instead of the total moving mass.",
+          "stable_crux_move": "Treat both bodies as one system to expose the net external driving force.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-NEET-NTA-OFFICIAL-2020",
+      "original_identifier": "NEET (UG)|2020|English Set E1|Physics|Q160",
+      "stem": "Two masses, 4 kg and 6 kg, are connected by a massless string over a frictionless pulley. Find the magnitude of the system acceleration in terms of g.",
+      "subparts": [],
+      "options": [
+        "(1) g",
+        "(2) g/2",
+        "(3) g/5",
+        "(4) g/10"
+      ],
+      "conditions": [
+        "String is massless.",
+        "Pulley is frictionless."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Option (3): g/5.",
+        "reasoning": [
+          "For an ideal Atwood machine, the net driving force is (6-4)g=2g.",
+          "The total accelerated mass is 10 kg, so a=2g/10=g/5."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-NEET-2020-E1-Q160-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "For an ideal Atwood machine, the net driving force is (6-4)g=2g.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-NEET-2020-E1-Q160-MOVE-2",
+            "kind": "CONNECT",
+            "action": "The total accelerated mass is 10 kg, so a=2g/10=g/5.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Option (3): g/5."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-NEET-2020-E1-Q160-MOVE-2",
+        "check": "Writing 6g-T=6a and T-4g=4a and adding gives the same result.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-NLM-SECOND-LAW",
+      "secondary_capability_refs": [
+        "CAP-NLM-IDEAL-STRING-TENSION"
+      ],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": {
+        "parent_ref": "NEET (UG)|2020|English Set E1|Physics|Q160",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Identify the unbalanced weight difference that drives the pair.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-NEET-2020-E1-Q160-MOVE-1"
+        },
+        {
+          "text": "Apply Newton II to the combined 10 kg system.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-NEET-2020-E1-Q160-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEADV-2022-P1-Q08",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2022,
+          "paper": "Paper 1",
+          "section": "Physics",
+          "question_number": "8",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2022_1_English.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "INDEPENDENTLY_CHECKED_AGAINST_OFFICIAL_QUESTION",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "JEE (Advanced) 2022 · Paper 1 · Q8",
+          "original_question_type": "numerical_value",
+          "learner_question_type": "numerical_value",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Splits one projectile into two acceleration regimes while preserving the apex state."
+          },
+          "expected_time_seconds": 140,
+          "common_wrong_route": "Recomputing the whole flight with the modified gravity instead of changing only the descent.",
+          "stable_crux_move": "Preserve the apex state and change only the second-stage fall time.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+      "stem": "A projectile has ordinary range d when launched at speed v and angle theta under gravity g. At the highest point it enters a region where the effective downward acceleration is g/0.81. If its new total horizontal range is d'=n d, find n.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The acceleration changes only after the projectile reaches its apex.",
+        "Horizontal velocity is unchanged at the boundary."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "0.95.",
+        "reasoning": [
+          "The projectile reaches the apex after covering half of its ordinary range, d/2.",
+          "The apex height is unchanged, but the downward acceleration becomes g/0.81, so the fall time from the apex is 0.9 times the original descent time.",
+          "The second horizontal segment is therefore 0.9(d/2); hence d'=d/2+0.9d/2=0.95d."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "The projectile reaches the apex after covering half of its ordinary range, d/2.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2",
+            "kind": "CONNECT",
+            "action": "The apex height is unchanged, but the downward acceleration becomes g/0.81, so the fall time from the apex is 0.9 times the original descent time.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "The second horizontal segment is therefore 0.9(d/2); hence d'=d/2+0.9d/2=0.95d.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "0.95."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2",
+        "check": "Stronger effective gravity must shorten only the post-apex horizontal segment, so n must lie between 0.5 and 1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2022|Paper 1|Physics|Q8",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Use symmetry only for the ordinary projectile to identify the apex position.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-1"
+        },
+        {
+          "text": "Compare the fall time from a fixed height under g and g/0.81.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-2"
+        },
+        {
+          "text": "Convert that time ratio into the second-stage horizontal distance.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2022-P1-Q08-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEADV-2023-P1-Q01",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2023,
+          "paper": "Paper 1",
+          "section": "Physics",
+          "question_number": "1",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2023_1_English.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "INDEPENDENTLY_CHECKED_AGAINST_OFFICIAL_QUESTION",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2023|Paper 1|Physics|Q1",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "JEE (Advanced) 2023 · Paper 1 · Q1",
+          "original_question_type": "multi_correct_mcq",
+          "learner_question_type": "multi_correct_mcq",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Chains energy, projectile motion and restitution across two events."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Losing the sign of the rebound vertical velocity or mixing launch/drop heights.",
+          "stable_crux_move": "Carry the horizontal component unchanged and apply restitution only to the normal component at impact.",
+          "transfer_profile": {
+            "core2b_candidate": true,
+            "dimension": "reasoning_steps",
+            "classification": "REAL_TRANSFER_CANDIDATE"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2023|Paper 1|Physics|Q1",
+      "stem": "A ball slides without friction from a height h above a terrace whose top is 3h above the ground, leaves horizontally, strikes the ground and rebounds with coefficient of restitution 1/sqrt(3). Determine which of the source statements about launch speed, impact angle, rebound velocity and rebound geometry are correct.",
+      "subparts": [],
+      "options": [
+        "(A) u0=sqrt(2gh) horizontally",
+        "(B) rebound velocity equals sqrt(2gh)(x-hat - z-hat)",
+        "(C) impact angle is 60 degrees",
+        "(D) horizontal range divided by rebound maximum height is 2sqrt(3)"
+      ],
+      "conditions": [
+        "Slide is frictionless.",
+        "Ground is horizontal.",
+        "Coefficient of restitution is 1/sqrt(3)."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Options (A), (C) and (D).",
+        "reasoning": [
+          "Energy on the slide gives horizontal launch speed u0=sqrt(2gh).",
+          "Falling through 3h gives vertical impact speed sqrt(6gh), so tan(theta)=sqrt(6gh)/sqrt(2gh)=sqrt(3), hence theta=60 degrees.",
+          "After impact the upward vertical component is sqrt(2gh); rebound height is h, while pre-impact flight gives horizontal distance 2sqrt(3)h, so d/h1=2sqrt(3)."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Energy on the slide gives horizontal launch speed u0=sqrt(2gh).",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Falling through 3h gives vertical impact speed sqrt(6gh), so tan(theta)=sqrt(6gh)/sqrt(2gh)=sqrt(3), hence theta=60 degrees.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "After impact the upward vertical component is sqrt(2gh); rebound height is h, while pre-impact flight gives horizontal distance 2sqrt(3)h, so d/h1=2sqrt(3).",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "Options (A), (C) and (D)."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-2",
+        "check": "The restitution factor maps sqrt(6gh) to sqrt(2gh), so the rebound vertical component is upward; this also shows option (B)'s sign/direction statement is not correct.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2023|Paper 1|Physics|Q1",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Use energy conservation on the slide to get the horizontal launch speed.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-1"
+        },
+        {
+          "text": "Find the vertical impact component from the 3h fall.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-2"
+        },
+        {
+          "text": "Apply restitution to the vertical component, then compute rebound height and compare with the first-flight range.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "PYQ-PHY-JEEADV-2025-P2-Q15",
+      "version": "2.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-OFFICIAL-ARCHIVE"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:provenance_class": "PYQ_ADAPTED",
+        "grade9v3:source_custody": {
+          "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+          "exam": "JEE (Advanced)",
+          "year": 2025,
+          "paper": "Paper 2",
+          "section": "Physics",
+          "question_number": "15",
+          "paper_url": "https://jeeadv.ac.in/past_qps/2025_2_English.pdf",
+          "archive_url": "https://jeeadv.ac.in/archive.html",
+          "answer_key_url": null,
+          "answer_authority": "OFFICIAL_PAPER_EMBEDDED_KEY",
+          "last_checked": "2026-09-23",
+          "source_status": "PYQ_VERIFIED_PARENT",
+          "parent_ref": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+          "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        },
+        "grade9v3:analysis": {
+          "topic": "Motion in 2D / Motion in a Plane — linear/projectile only",
+          "concept_bucket": "BUCKET-PHY-KIN-2D-MOTION",
+          "exam_source_badge": "JEE (Advanced) 2025 · Paper 2 · Q15",
+          "original_question_type": "numerical_value",
+          "learner_question_type": "numerical_value",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Requires solving a velocity-dependent Newton-II equation and integrating the horizontal component."
+          },
+          "expected_time_seconds": 220,
+          "common_wrong_route": "Using constant-acceleration projectile formulas despite velocity-dependent drag.",
+          "stable_crux_move": "Separate the horizontal drag equation and integrate its exponential velocity law.",
+          "transfer_profile": {
+            "core2b_candidate": true,
+            "dimension": "model_choice",
+            "classification": "REAL_TRANSFER_CANDIDATE"
+          }
+        }
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "original_identifier": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+      "stem": "A 0.2 kg projectile is launched at 270 m/s at 60 degrees in a medium with linear drag F=-c v, where c=0.1 kg/s. It hits a vertical wall after 2 s. Taking e=2.7 for the exponential evaluation specified by the source, determine the horizontal distance to the wall.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Linear viscous drag acts opposite the instantaneous velocity.",
+        "Use the source's e=2.7 approximation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "170 m (within the official accepted interval 167–171 m).",
+        "reasoning": [
+          "The horizontal component obeys m dvx/dt=-c vx, so vx(t)=vx0 exp[-(c/m)t].",
+          "Here vx0=270 cos60=135 m/s and m/c=2 s, so x(t)=vx0(m/c)[1-exp(-ct/m)].",
+          "At t=2 s, x=270(1-1/e)=270(1-1/2.7)=170 m."
+        ],
+        "reasoning_route": [
+          {
+            "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "The horizontal component obeys m dvx/dt=-c vx, so vx(t)=vx0 exp[-(c/m)t].",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 1"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Here vx0=270 cos60=135 m/s and m/c=2 s, so x(t)=vx0(m/c)[1-exp(-ct/m)].",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "intermediate result 2"
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-3",
+            "kind": "EXECUTE",
+            "action": "At t=2 s, x=270(1-1/e)=270(1-1/2.7)=170 m.",
+            "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
+            "inputs": [
+              "stated source quantities"
+            ],
+            "output": "170 m (within the official accepted interval 167–171 m)."
+          }
+        ],
+        "crux_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2",
+        "check": "The distance is smaller than the no-drag value 135×2=270 m, as it must be.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED",
+        "rubric": [
+          {
+            "criterion": "Sets up the governing relation from the stated source quantities before substituting.",
+            "evidence_of": "Correct model selection rather than answer guessing."
+          },
+          {
+            "criterion": "Carries the calculation or classification through to the stated final answer and checks it.",
+            "evidence_of": "A complete, auditable solution route."
+          }
+        ],
+        "difficult_move": 1
+      },
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": {
+        "parent_ref": "JEE (Advanced)|2025|Paper 2|Physics|Q15",
+        "changed_fields": [
+          "stem",
+          "options",
+          "conditions"
+        ],
+        "reason": "Faithful non-verbatim restatement of a source-verified prior-exam item. Exam identity, numerical conditions, answer target and scientific demand are preserved; wording and presentation are adapted for repository custody."
+      },
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PYQ_ADAPTED_PRACTICE_CANDIDATE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write Newton II for the horizontal component only.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-1"
+        },
+        {
+          "text": "Identify the decay time constant m/c.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-2"
+        },
+        {
+          "text": "Integrate vx(t) from 0 to 2 s rather than multiplying the final speed by time.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "PYQ-PHY-JEEADV-2025-P2-Q15-MOVE-3"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "SRC-JEEADV-OFFICIAL-ARCHIVE",
+      "version": "1.0.0",
+      "status": "REVIEWED",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
+      },
+      "title": "JEE (Advanced) official past question-paper archive",
+      "origin": "WEB",
+      "locator": "https://jeeadv.ac.in/archive.html",
+      "edition": "2007-2025 papers inspected for PASS 1",
+      "section": "Selected official prior papers",
+      "last_checked": "2026-09-23",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Official organizer archive. Exact source wording and figures remain at organizer paper locators; learner-usable records here are explicitly faithful non-verbatim PYQ_ADAPTED restatements.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "Primary authoritative source used to verify historical exam identity and question locators.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-NEET-NTA-OFFICIAL-2020",
+      "version": "1.0.0",
+      "status": "REVIEWED",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
+      },
+      "title": "NEET (UG) official 2020 question paper and NTA final answer key",
+      "origin": "WEB",
+      "locator": "https://neet.nta.nic.in/archive/",
+      "edition": "NEET (UG) 2020 English Set E1",
+      "section": "English Set E1",
+      "last_checked": "2026-09-23",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Official NTA/NEET archive. Exact source wording remains at organizer locators; learner-facing records are faithful non-verbatim restatements.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "ADVANCED"
+      ],
+      "selection_reason": "First-party NEET question-paper archive plus NTA final answer key.",
+      "fallback": []
     }
   ]
 }
