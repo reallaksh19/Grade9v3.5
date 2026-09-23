@@ -1,14 +1,14 @@
 schema_version: "relay-v3.1-snapshot"
 authority: "DERIVED_READ_MODEL"
 generated_from:
-  roadmap_revision: "RM-V31-ISS212-ATLAS-INDEX-001"
-  state_digest: "sha256:73ec7518eab48775245012c6f708f48bd03dc37cc9bea02a5c2f1c956f9ed822"
+  roadmap_revision: "RM-V31-ISS212-ATLAS-INDEX-002"
+  state_digest: "sha256:a0af64d9f6167643cc99c638f184e329bb79a2a0f32e96d5529ec8808fec9eed"
   material_basis:
-    head: "05a7c0e1a65cde16b6d8b82422a932717a95f21f"
-    tree_digest: "sha256:9a57b22a7da29f1c786c553b140e07037745c24da7cc7a74dffa098026614519"
-    relevant_paths_digest: "sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae"
-    dependency_digest: "sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8"
-  coordination_head: "16718d46866f65f7123810aec630b3aa9226c523"
+    head: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+    tree_digest: "sha256:ad4c51c4ae2b6d4ffe11a056a2b1d49e1d7041e7855c5f5f022628baa5e763cc"
+    relevant_paths_digest: "sha256:081cd65d6bc51a08c5f47218d1155c817a9712fd11cb12381975e0f26e6777df"
+    dependency_digest: "sha256:3a525db9fd7dc99dbcf625c68918c87d7b9703a59e0f4cade8e94cb70aaf87a1"
+  coordination_head: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
 owner:
   outcome: "Preserve the delivered self-study architecture and activate new work only from a concrete learner, worksheet, source, or product defect rather than from stale umbrella scope."
   current_goal: "No successor content lane is active. Grade-10 Physics, Grade-11 Physics, and Mathematics expansion are Owner-skipped for now; dormant Physics inventory remains demand-gated and real learner evidence remains input-gated."
@@ -35,21 +35,47 @@ programme:
     - "WP-PORTABLE-163"
     - "WP-ISS125-ACCELERATED-FRAMES"
 execution:
-  lifecycle: "IDLE"
-  work_package: null
-  ep: null
-  lease: null
-  executor: null
+  lifecycle: "ACTIVE"
+  work_package: "WP-ISS212-ATLAS-INDEX"
+  ep: "EP-ISS212-ATLAS-INDEX-V31-002"
+  lease: "LEASE-ISS212-ATLAS-INDEX-V31-002"
+  executor: "chatgpt-sol-issue212-v31-20260923"
   custody_epoch: 1
 scope:
-  allowed_writes: []
-  protected: []
-  prohibited: []
+  allowed_writes:
+    - "Shared/tools/build_web_data.py"
+    - "Shared/tools/atlas_index.py"
+    - "tests/test_issue212_atlas_index.py"
+    - "tests/test_topic_atlas_contract.py"
+    - "tests/test_shared_topic_atlas_core.py"
+    - "tests/test_topic_atlas_takeover_contract.py"
+    - "tools/data.js"
+    - "public/data/data.js"
+    - "docs/architecture-manifest.json"
+  protected:
+    - "Physics/library/**"
+    - "Physics/matrices/**"
+    - "Mathematics/library/**"
+    - "Mathematics/matrices/**"
+    - "Shared/tools/build_core_learning_data.py"
+    - "public/core-learning/**"
+    - "public/js/topic-atlas.js"
+  prohibited:
+    - "Do not edit subject-owned library or matrix truth to make Atlas coverage look complete."
+    - "Do not edit Core projection/builder authority or repair unsupported Core buckets inside Issue 212."
+    - "Do not edit Atlas browser/HTML behavior, Shared workbench code, portable runtime, or standalone host code."
+    - "Do not infer academic IDs or links from titles, URLs, rung proximity, source order, or semantic similarity."
+    - "Do not fabricate representation, activity, Core projection, portable-package, standalone/offline, or browser-locator availability."
+    - "Do not create a second curriculum database or make generated Atlas data academic authority."
+    - "Do not release #213 or #214 for material work before AC-212-DOWNSTREAM-RELEASE is evidenced and the FINAL B → C/D HANDOFF is posted."
+    - "Do not treat the provisional AtlasIndex.v1 issue example as a released contract."
+    - "Do not fall back to older continuity behavior; this execution is pinned to the reviewed V3.1 Common head."
+    - "Do not merge without a fresh accepted V3.1 checkpoint and explicit Owner MERGE authority."
 material:
-  base: "05a7c0e1a65cde16b6d8b82422a932717a95f21f"
-  head: "05a7c0e1a65cde16b6d8b82422a932717a95f21f"
-  relevant_paths_digest: "sha256:e583ea8c56be3c1bee813843262ded51d6f5c6398537946d4bcebffa925c07ae"
-  dependency_digest: "sha256:3435e30c3130239a9d8ccd66789d69809636d5e09d08809c699103e5d0ebedf8"
+  base: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+  head: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
+  relevant_paths_digest: "sha256:081cd65d6bc51a08c5f47218d1155c817a9712fd11cb12381975e0f26e6777df"
+  dependency_digest: "sha256:3a525db9fd7dc99dbcf625c68918c87d7b9703a59e0f4cade8e94cb70aaf87a1"
 evidence:
   latest_checkpoint: "CP-ISS125-ACCELERATED-FRAMES-V31-001"
   latest_material_validation:
@@ -67,13 +93,20 @@ delivery:
   lifecycle: "DECLARED"
   merge_authorized: false
 next:
-  immediate_material_action: null
+  immediate_material_action: "Continue from the already-committed independent oracle/falsifier slice on branch issue-212-atlas-index; implement the smallest subject-neutral resolver/index, integrate it into build_web_data, validate exact consumer rows, freeze the final version, then satisfy AC-212-DOWNSTREAM-RELEASE before notifying C/D."
   delivery_action: "Perform the explicitly authorized delivery transition."
-  stop_conditions: []
+  stop_conditions:
+    - "Stop if any required academic edge would have to be guessed rather than traced to a canonical source field."
+    - "Stop and return the exact upstream finding if a source-owned defect requires subject-data repair."
+    - "Stop if implementation collapses prerequisite authority or representation/activity/resource/locator/portable/standalone states."
+    - "Keep #213 and #214 READ-ONLY / DEPENDENCY-WAIT until the final version/head/fixtures handoff and explicit release notifications exist."
+    - "Stop before merge unless a fresh accepted checkpoint exists and explicit Owner MERGE authority is present."
 handoff:
   zero_context_takeover_possible: true
   reconstruction_sources:
     - "relay/ROADMAP/ROADMAP.yaml"
     - "relay/STATE.yaml"
     - "relay/CONTROLS/controls.yaml"
+    - "relay/WORK/EP-ISS212-ATLAS-INDEX-V31-002.yaml"
+    - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-002.yaml"
     - "relay/CHECKPOINTS/CP-ISS125-ACCELERATED-FRAMES-V31-001.yaml"
