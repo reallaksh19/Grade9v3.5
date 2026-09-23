@@ -9,7 +9,7 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 
 ## Summary
 
-- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **30**
+- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **54**
 - In-scope donor candidates still quarantined: **147**
 - Exact duplicate donor clusters detected: **0**
 - Number-normalized/trivial-variant clusters detected beyond exact duplicates: **0**
@@ -197,4 +197,4 @@ None detected beyond exact duplicates.
 
 ## Notes
 
-The report deliberately does **not** convert `SOURCE_UNVERIFIED` items into `PYQ_ADAPTED`. Adaptation requires a verified parent and an exact `changed_fields` list. None was needed for the accepted Pass-1 corpus.
+The report deliberately does **not** convert `SOURCE_UNVERIFIED` items into `PYQ_ADAPTED`. Adaptation requires a verified first-party parent and an exact `changed_fields` list. This expansion promoted only newly matched organizer-paper items; JEE Main/AIEEE and AIPMT candidates without persistent first-party question text remain quarantined.
