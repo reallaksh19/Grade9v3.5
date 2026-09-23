@@ -173,7 +173,7 @@
     },
     {
       "rung": "R5",
-      "ladder_position": 100,
+      "ladder_position": 99,
       "provenance": "AUTHORED",
       "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
       "ceiling": [
@@ -200,6 +200,54 @@
           "notice": "the turning acceleration shrinks toward zero as direction stops changing"
         }
       ]
+    },
+    {
+      "rung": "R6",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+      "ceiling": [
+        "angular velocity formalism",
+        "rotating-frame inertial-force derivations",
+        "calculus",
+        "banked-road design",
+        "general nonuniform-curvature dynamics"
+      ],
+      "must_contain": [
+        "A velocity-direction change / inward-acceleration view shown before force equations.",
+        "An inertial-frame FBD containing only real interactions and no added centripetal-force arrow.",
+        "An inward-positive radial axis with Sigma F_r = m v^2/r shown as the net requirement.",
+        "At least one mechanism comparison among tension, static friction, gravity or normal-force components.",
+        "A cut-string state whose immediate path is tangent.",
+        "Top and bottom vertical-circle states with separately declared inward directions."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the physical interaction supplying the inward resultant",
+          "hold": "the same m, v and r",
+          "notice": "the force type changes while the required net radial force m v^2/r does not"
+        },
+        {
+          "phase": 2,
+          "vary": "speed v at fixed m and r",
+          "hold": "the same circular radius and mechanism",
+          "notice": "the inward acceleration and required net radial force scale with v squared"
+        },
+        {
+          "phase": 3,
+          "vary": "position from top to bottom of a vertical circle",
+          "hold": "gravity downward and the same chosen body",
+          "notice": "the inward radial axis reverses physical direction, changing the sign contribution of gravity"
+        },
+        {
+          "phase": 4,
+          "vary": "string state from taut to cut",
+          "hold": "the same instantaneous tangent velocity at the cut event",
+          "notice": "removing inward tension removes the turning acceleration while the immediate motion remains tangent"
+        }
+      ],
+      "default_entry_eligible": false
     }
   ],
   "family": {
@@ -251,6 +299,18 @@
       "changed_demand": "A complete circular revolution is described by radius and period, requiring the learner to construct circumference before computing the uniform speed.",
       "information_not_handed_over": "that one revolution travels path length 2 pi r",
       "repair_to": "R5"
+    },
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A circular-motion problem names tension, friction or gravity and asks for the inward force requirement without handing over whether 'centripetal' is a separate force or a role of the resultant.",
+      "information_not_handed_over": "that only real interactions belong on the inertial FBD and their inward components sum to m v^2/r",
+      "repair_to": "R6"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A vertical-circle problem requires separate top/bottom radial sign equations and a just-taut T=0 boundary.",
+      "information_not_handed_over": "the inward direction at each point and the physical boundary that a string cannot push",
+      "repair_to": "R6"
     }
   ]
 }
