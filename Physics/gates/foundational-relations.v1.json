@@ -895,6 +895,239 @@
       ]
     },
     {
+      "gate_id": "PHY-NLM-ACCELERATING-FRAME-EXTENSION",
+      "title": "Accelerating-frame observer choice, apparent weight, and hanging-bob transfer",
+      "curriculum": {
+        "board": "Owner / ExamSIDE demand",
+        "grade": 9,
+        "chapter": "Force and Laws of Motion",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "JEE_MAINS",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-NLM-APPARENT-WEIGHT-SUPPORT",
+          "statement": "A scale measures the support/normal force, not mass or gravitational force; in an inertial vertical description the normal force changes with acceleration while mg remains the gravitational force."
+        },
+        {
+          "concept_id": "CON-NLM-PSEUDO-FORCE-FRAME-TERM",
+          "statement": "When Newton's second law is written in a frame accelerating with a_frame, a pseudo-force -m a_frame is added as a frame-dependent modelling term; it is not a new physical interaction or a Newton-III partner."
+        },
+        {
+          "concept_id": "CON-NLM-DUAL-FRAME-EQUIVALENCE",
+          "statement": "An inertial-frame description and a consistently written accelerating-frame description of the same event must agree on observable quantities such as scale reading and string direction."
+        }
+      ],
+      "prerequisites": [
+        "PHY-NEWTON-SECOND-LAW"
+      ],
+      "relations": [
+        {
+          "relation_id": "REL-NLM-ELEVATOR-SUPPORT",
+          "expression": "N - m g = m a_y",
+          "meaning": "For a person that remains in contact with a horizontal scale in an inertial ground frame, with upward positive and g the positive magnitude of gravitational acceleration, the signed vertical force balance is N - m g = m a_y.",
+          "symbols": [
+            {
+              "symbol": "N",
+              "meaning": "Upward normal/support force exerted by the scale on the person",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Person mass",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Positive magnitude of gravitational acceleration",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "a_y",
+              "meaning": "Person vertical acceleration, positive upward",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The ground frame is treated as inertial and the positive vertical direction is upward.",
+            "The person remains in contact with the scale, so N >= 0.",
+            "The person and scale share the stated vertical acceleration while contact persists.",
+            "g is the positive magnitude of the downward gravitational acceleration."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-PSEUDO-FORCE",
+          "expression": "F_pseudo = -m a_frame",
+          "meaning": "In a one-axis frame accelerating with signed acceleration a_frame relative to an inertial frame, the pseudo-force assigned to a mass m is opposite the frame acceleration and has magnitude m|a_frame|.",
+          "symbols": [
+            {
+              "symbol": "F_pseudo",
+              "meaning": "Signed pseudo-force used only in the accelerating-frame description",
+              "unit": "N",
+              "dimension": "M L T^-2"
+            },
+            {
+              "symbol": "m",
+              "meaning": "Mass of the described body",
+              "unit": "kg",
+              "dimension": "M"
+            },
+            {
+              "symbol": "a_frame",
+              "meaning": "Signed acceleration of the selected non-inertial frame relative to the inertial frame",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The selected observer frame has nonzero translational acceleration relative to the inertial frame.",
+            "F_pseudo and a_frame use the same declared axis and sign convention.",
+            "The mass is positive and treated as constant.",
+            "The pseudo-force is a frame-dependent modelling term, not a physical interaction and not a Newton-third-law partner."
+          ]
+        },
+        {
+          "relation_id": "REL-NLM-HANGING-BOB-TILT",
+          "expression": "tan(theta) = |a_frame| / g",
+          "meaning": "For a bob stationary relative to a horizontally accelerating vehicle, with a massless string and no other horizontal interaction, the equilibrium string tilt theta from the vertical satisfies tan(theta)=|a_frame|/g in the vehicle frame.",
+          "symbols": [
+            {
+              "symbol": "theta",
+              "meaning": "Magnitude of the string tilt from the vertical",
+              "unit": "rad",
+              "dimension": "1"
+            },
+            {
+              "symbol": "a_frame",
+              "meaning": "Magnitude/sign source of the vehicle's horizontal frame acceleration",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            },
+            {
+              "symbol": "g",
+              "meaning": "Positive magnitude of gravitational acceleration",
+              "unit": "m/s^2",
+              "dimension": "L T^-2"
+            }
+          ],
+          "conditions": [
+            "The bob is stationary relative to the vehicle after transients, so its relative acceleration is zero.",
+            "The vehicle has constant horizontal acceleration over the represented state.",
+            "The string is massless and taut, and air resistance is neglected.",
+            "theta is measured from the vertical; the bob tilts opposite the vehicle acceleration."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Keep velocity direction separate from acceleration direction; apparent weight depends on acceleration, not on whether the elevator is moving up or down.",
+        "Use REL-NLM-ELEVATOR-SUPPORT only while scale contact persists; if the unconstrained calculation would require N < 0, the contact model has failed rather than producing a negative scale reading.",
+        "At free fall a_y = -g, the support force is N = 0 while the gravitational force mg remains nonzero.",
+        "Use REL-NLM-PSEUDO-FORCE only in the explicitly selected accelerating frame; do not add it in the inertial ground-frame equation.",
+        "Dual-frame calculations must describe the same body and physical event and must agree on observable support force/string direction.",
+        "Keep this gate as explicit-demand extension content; it does not make R4 a default Grade-9 learner coordinate."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-NLMAF-FRAME",
+          "sequence": 1,
+          "action": "Declare the observer frame, its acceleration, and the signed axis before writing any force equation.",
+          "why_valid": "Whether a pseudo-force term appears depends on observer acceleration, so frame choice is part of the model."
+        },
+        {
+          "step_id": "RS-NLMAF-REAL-FORCES",
+          "sequence": 2,
+          "action": "Inventory the physical interactions on the chosen body and keep their forces unchanged when switching observers.",
+          "why_valid": "Changing observers does not create or remove physical agents.",
+          "depends_on": [
+            "RS-NLMAF-FRAME"
+          ]
+        },
+        {
+          "step_id": "RS-NLMAF-PSEUDO",
+          "sequence": 3,
+          "action": "If the selected frame accelerates, add REL-NLM-PSEUDO-FORCE with direction opposite a_frame; otherwise do not add it.",
+          "why_valid": "The pseudo-force is the declared convention that compensates for the frame acceleration.",
+          "depends_on": [
+            "RS-NLMAF-REAL-FORCES"
+          ]
+        },
+        {
+          "step_id": "RS-NLMAF-CHECK",
+          "sequence": 4,
+          "action": "Compare an observable such as scale reading or string direction across the inertial and accelerating descriptions.",
+          "why_valid": "Two consistent descriptions of one physical event must predict the same observable.",
+          "depends_on": [
+            "RS-NLMAF-PSEUDO"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-NLMAF-SCALE-IS-MG",
+          "wrong_idea": "A scale always reads mg because weight is mg.",
+          "counterexample": "In an upward-accelerating elevator N = m(g+a_y) > mg, while in free fall N = 0 even though mg remains nonzero.",
+          "repair": "Treat the scale reading as the normal/support force and solve the force balance for N."
+        },
+        {
+          "misconception_id": "MIS-NLMAF-VELOCITY-SETS-READING",
+          "wrong_idea": "An elevator moving upward must make the scale read heavier.",
+          "counterexample": "An elevator can move upward while accelerating downward and then N < mg.",
+          "repair": "Use acceleration direction, not velocity direction, in the force equation."
+        },
+        {
+          "misconception_id": "MIS-NLMAF-PSEUDO-REAL",
+          "wrong_idea": "Pseudo-force is a new physical interaction or a third-law partner.",
+          "counterexample": "The same physical agents are present in the inertial and accelerating descriptions; only the accelerating description introduces the pseudo term.",
+          "repair": "Name physical agents first, then add the frame term only after selecting a non-inertial observer."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-NLMAF-ELEVATOR",
+          "title": "Apparent weight and contact in a vertically accelerating elevator",
+          "hidden_invariants": [
+            "Scale reading is N, not mg.",
+            "Velocity direction does not determine N; acceleration does.",
+            "N cannot be negative while the person remains on the floor."
+          ]
+        },
+        {
+          "family_id": "FAM-NLMAF-DUAL-FRAME",
+          "title": "One event described in inertial and accelerating frames",
+          "hidden_invariants": [
+            "Physical interaction forces are unchanged by observer choice.",
+            "The pseudo term appears only in the accelerating-frame bookkeeping.",
+            "Observable predictions agree when each frame is used consistently."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 4,
+        "prerequisite_depth": 2,
+        "note": "The algebra is short; the main difficulty is choosing the observer, separating velocity from acceleration, and distinguishing physical interactions from a frame-dependent pseudo term."
+      },
+      "badges": [
+        "FORCE-MOTION",
+        "EXPLICIT-DEMAND",
+        "JEE-PREPARATION",
+        "NONDEFAULT-EXTENSION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-NLMAF-SYMBOL-NO-UNIT",
+          "mutation": "Remove the Physics-required unit field from the first symbol of the elevator relation.",
+          "expected_violation": "SYMBOL_FIELD_MISSING"
+        }
+      ]
+    },
+    {
       "gate_id": "PHY-NLM-MOMENTUM-TRANSFER-RATE",
       "title": "Force from discrete momentum transfer per unit time",
       "curriculum": {
