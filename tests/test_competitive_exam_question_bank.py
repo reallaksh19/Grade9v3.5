@@ -7,6 +7,12 @@ ROOT = Path(__file__).resolve().parents[1]
 PHYS_BANK = ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
 CHEM_BANK = ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json"
 LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
+CONCEPT_INVENTORY = ROOT / "docs/question-bank/pass1/concept-bucket-inventory.md"
+PHYS_CANONICAL_LIBRARIES = [
+    ROOT / "Physics/library/phy-nlm-first-law.v1.json",
+    ROOT / "Physics/library/phy-kin-2d-motion.v1.json",
+    ROOT / "Physics/library/relative-motion.v1.json",
+]
 
 OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in"}
 EXPECTED_COUNTS = {
@@ -43,6 +49,13 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             for q in bank["questions"]
         ]
         cls.ledger = load(LEDGER)
+        cls.concept_inventory = CONCEPT_INVENTORY.read_text(encoding="utf-8")
+        cls.physics_capability_ids = set()
+        cls.physics_family_ids = set()
+        for path in PHYS_CANONICAL_LIBRARIES:
+            package = load(path)
+            cls.physics_capability_ids.update(x["id"] for x in package["capabilities"])
+            cls.physics_family_ids.update(x["id"] for x in package["question_families"])
 
     def test_fixture_native_v2_shape_and_counts(self):
         self.assertEqual(len(self.physics["questions"]), 31)
@@ -117,6 +130,40 @@ class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
             self.assertEqual(custody["answer_authority"], "OFFICIAL_NTA_FINAL_ANSWER_KEY")
             self.assertIn(urlparse(custody["answer_key_url"]).hostname, OFFICIAL_HOSTS)
             self.assertEqual(custody["last_checked"], "2026-09-23")
+
+    def test_duplicate_ids_and_authoritative_source_ledger_resolution(self):
+        seen_ids = set()
+        accepted_by_id = {}
+        for record in self.ledger["accepted_authoritative_records"]:
+            for question_id in record["accepted_question_ids"]:
+                self.assertNotIn(question_id, accepted_by_id)
+                accepted_by_id[question_id] = record
+
+        for _, q in self.questions:
+            self.assertNotIn(q["id"], seen_ids)
+            seen_ids.add(q["id"])
+            self.assertIn(q["id"], accepted_by_id)
+            record = accepted_by_id[q["id"]]
+            custody = q["extensions"]["grade9v3:source_custody"]
+            self.assertEqual(record["source_url"], custody["paper_url"])
+            self.assertEqual(record["exam"], custody["exam"])
+            self.assertEqual(record["year"], custody["year"])
+
+        self.assertEqual(set(accepted_by_id), seen_ids)
+
+    def test_concept_and_family_refs_resolve(self):
+        for q in self.physics["questions"]:
+            self.assertIn(q["primary_capability_ref"], self.physics_capability_ids)
+            for capability_ref in q["secondary_capability_refs"]:
+                self.assertIn(capability_ref, self.physics_capability_ids)
+            self.assertIn(q["family_ref"], self.physics_family_ids)
+
+        for q in self.chemistry["questions"]:
+            # Chemistry identifiers are intentionally local proposals in PASS 1.
+            self.assertIn("`" + q["primary_capability_ref"] + "`", self.concept_inventory)
+            for capability_ref in q["secondary_capability_refs"]:
+                self.assertIn("`" + capability_ref + "`", self.concept_inventory)
+            self.assertIn("`" + q["family_ref"] + "`", self.concept_inventory)
 
     def test_native_question_fields_are_learner_usable(self):
         required = {
