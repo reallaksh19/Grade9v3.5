@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accelerated Frames, Elevators & Pseudo Force · NLM Explorer</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--blue:#2563eb;--green:#15803d;--orange:#c2410c;--red:#b91c1c;--violet:#7c3aed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:#0f172a;color:white;padding:14px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center;position:sticky;top:0;z-index:20}
+header h1{font-size:18px;margin:0}header p{font-size:12px;color:#cbd5e1;margin:2px 0 0}header a{color:#7dd3fc}
+main{max-width:1200px;margin:auto;padding:18px;display:grid;gap:14px}.card{background:var(--card);border:1px solid #e2e8f0;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+.banner{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:10px 12px;font-size:12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button,.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer}.tabs button.active{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd;font-weight:700}.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}
+.controls{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}label{display:grid;gap:5px;font-size:12px;font-weight:650;color:#334155}input[type=range],select{width:100%}.value{font-family:ui-monospace,monospace;border:1px solid var(--line);background:#f8fafc;border-radius:5px;padding:2px 6px}
+.outputs{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}.metric .name{font-size:11px;color:var(--muted)}.metric .val{font-size:18px;font-weight:750;margin-top:4px}.metric small{display:block;color:var(--muted);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.frame{border:1px solid #dbeafe;border-radius:10px;padding:12px;background:#f8fbff}.frame.acc{border-color:#ddd6fe;background:#faf5ff}.frame h3{font-size:14px;margin:0 0 8px}.eq{font-family:ui-monospace,monospace;background:#fff;border-left:4px solid var(--blue);padding:8px 10px;border-radius:5px;margin:7px 0}.acc .eq{border-left-color:var(--violet)}
+.force{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding:6px 0;font-size:12px}.force:last-child{border-bottom:0}
+.good,.warn,.bad{border-radius:8px;padding:10px 12px;font-size:12px}.good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.scene{display:none}.scene.active{display:block}canvas{width:100%;height:260px;border:1px solid var(--line);border-radius:10px;background:white;display:block}.matrix{width:100%;border-collapse:collapse;font-size:12px}.matrix th,.matrix td{border:1px solid #e2e8f0;padding:8px;text-align:left}.matrix th{background:#f8fafc}.pill{display:inline-block;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:700}.pill.green{background:#dcfce7;color:#166534}.pill.orange{background:#ffedd5;color:#9a3412}.pill.violet{background:#ede9fe;color:#5b21b6}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.spacer{height:6px}footer{display:flex;justify-content:space-between;gap:10px;align-items:center}
+@media(max-width:850px){.controls,.outputs,.grid2{grid-template-columns:1fr}header{position:static}canvas{height:230px}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Accelerated Frames, Elevators & Pseudo Force</h1>
+    <p>Explicit-demand NLM extension · R4 / CAP-NLM-FRAME-CHOICE</p>
+  </div>
+  <a href="../../index.html">Back to NLM Atlas</a>
+</header>
+<main>
+  <section class="card">
+    <div class="banner"><strong>Scope:</strong> this is a non-default, question-demand extension. It does not become ordinary Grade-9 completion work. The physical interactions are the same in both observer descriptions; only the accelerating-frame bookkeeping adds a pseudo-force term.</div>
+    <div class="spacer"></div>
+    <div class="tabs" aria-label="Explorer scenes">
+      <button id="tabPredict" type="button" class="active" data-scene="predict">1 · Predict</button>
+      <button id="tabGround" type="button" data-scene="ground">2 · Ground frame</button>
+      <button id="tabElevator" type="button" data-scene="elevator">3 · Elevator frame</button>
+      <button id="tabDual" type="button" data-scene="dual">4 · Dual-frame check</button>
+      <button id="tabTransfer" type="button" data-scene="transfer">5 · Hanging-bob transfer</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="controls">
+      <label>Person mass
+        <span><span id="massValue" class="value">60</span> kg</span>
+        <input id="mass" type="range" min="30" max="100" step="1" value="60">
+      </label>
+      <label>Elevator/frame acceleration (up +)
+        <span><span id="accelValue" class="value">2.00</span> m/s²</span>
+        <input id="accel" type="range" min="-9.81" max="9.81" step="0.01" value="2">
+      </label>
+      <label>Elevator velocity direction
+        <select id="velocity">
+          <option value="UP">moving upward</option>
+          <option value="DOWN">moving downward</option>
+          <option value="ZERO">instantaneously stationary</option>
+        </select>
+      </label>
+      <label>Effective-gravity shorthand
+        <span><input id="effectiveToggle" type="checkbox"> show in accelerating frame</span>
+      </label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn" type="button" data-a="2">accelerating up</button>
+      <button class="btn" type="button" data-a="-2">accelerating down</button>
+      <button class="btn" type="button" data-a="0">zero acceleration</button>
+      <button class="btn" type="button" data-a="-9.81">free fall</button>
+    </div>
+  </section>
+
+  <section class="outputs">
+    <div class="metric"><div class="name">Mass</div><div id="massOut" class="val">60 kg</div><small>unchanged by motion</small></div>
+    <div class="metric"><div class="name">Gravitational force mg</div><div id="weightOut" class="val">588.6 N</div><small>real interaction; remains in free fall</small></div>
+    <div class="metric"><div class="name">Scale reading N</div><div id="normalOut" class="val">708.6 N</div><small id="normalNote">support force</small></div>
+    <div class="metric"><div class="name">Contact state</div><div id="contactOut" class="val">CONTACT</div><small id="velocityNote">velocity independent</small></div>
+  </section>
+
+  <section id="predict" class="card scene active">
+    <h2 style="font-size:16px;margin-top:0">Predict before calculating</h2>
+    <p>The elevator can be moving upward while accelerating downward, or moving downward while accelerating upward. Which quantity controls the scale reading?</p>
+    <table class="matrix">
+      <thead><tr><th>Velocity</th><th>Acceleration</th><th>Scale relation</th></tr></thead>
+      <tbody>
+        <tr><td>up</td><td>up</td><td>N &gt; mg</td></tr>
+        <tr><td>up</td><td>down</td><td>N &lt; mg</td></tr>
+        <tr><td>down</td><td>down</td><td>N &lt; mg</td></tr>
+        <tr><td>down</td><td>up</td><td>N &gt; mg</td></tr>
+      </tbody>
+    </table>
+    <div class="good" style="margin-top:10px"><strong>Invariant:</strong> scale reading depends on acceleration, not on whether the elevator is moving up or down.</div>
+  </section>
+
+  <section id="ground" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Inertial ground frame</h2>
+    <div class="grid2">
+      <div>
+        <canvas id="groundCanvas" width="560" height="260" aria-label="Ground-frame elevator free-body diagram"></canvas>
+      </div>
+      <div class="frame">
+        <h3>Physical forces only</h3>
+        <div class="force"><span>scale on person</span><strong>↑ N</strong></div>
+        <div class="force"><span>Earth on person</span><strong>↓ mg</strong></div>
+        <div class="eq">N - m g = m a<sub>y</sub></div>
+        <div id="groundEquation" class="eq"></div>
+        <div id="groundBoundary" class="good"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="elevator" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Accelerating elevator frame</h2>
+    <div class="grid2">
+      <div>
+        <canvas id="elevatorCanvas" width="560" height="260" aria-label="Accelerating elevator-frame force diagram"></canvas>
+      </div>
+      <div class="frame acc">
+        <h3>Same physical interactions + frame term</h3>
+        <div class="force"><span>scale on person</span><strong>↑ N</strong></div>
+        <div class="force"><span>Earth on person</span><strong>↓ mg</strong></div>
+        <div class="force"><span>pseudo-force</span><strong id="pseudoDirection">↓ m a_frame</strong></div>
+        <div class="eq">F<sub>pseudo</sub> = -m a<sub>frame</sub></div>
+        <div class="eq">N - mg - m a<sub>frame</sub> = 0</div>
+        <div id="pseudoOut" class="eq"></div>
+        <div id="effectiveGravity" class="warn" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dual" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Dual-frame cross-check</h2>
+    <div class="grid2">
+      <div class="frame">
+        <h3>Ground frame <span class="pill green">inertial</span></h3>
+        <p>Person accelerates with the elevator.</p>
+        <div class="eq">N - mg = m a</div>
+        <div id="dualGround"></div>
+      </div>
+      <div class="frame acc">
+        <h3>Elevator frame <span class="pill violet">accelerating</span></h3>
+        <p>Person is at rest relative to the cabin.</p>
+        <div class="eq">N - mg + F<sub>pseudo</sub> = 0</div>
+        <div id="dualElevator"></div>
+      </div>
+    </div>
+    <div id="agreement" class="good" style="margin-top:10px"></div>
+    <div class="warn" style="margin-top:10px"><strong>Classifier:</strong> gravity and normal force are real interactions. The pseudo-force is a frame-dependent inertial term, not a Newton-III partner.</div>
+  </section>
+
+  <section id="transfer" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Transfer: hanging bob in a horizontally accelerating vehicle</h2>
+    <div class="controls" style="grid-template-columns:repeat(2,minmax(180px,1fr))">
+      <label>Vehicle acceleration magnitude
+        <span><span id="horizontalAccelValue" class="value">3.00</span> m/s²</span>
+        <input id="horizontalAccel" type="range" min="0" max="10" step="0.05" value="3">
+      </label>
+      <label>Vehicle acceleration direction
+        <select id="horizontalDirection">
+          <option value="RIGHT">right</option>
+          <option value="LEFT">left</option>
+        </select>
+      </label>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <canvas id="bobCanvas" width="560" height="260" aria-label="Hanging bob in accelerating vehicle"></canvas>
+      <div class="frame acc">
+        <h3>Vehicle-frame equilibrium</h3>
+        <div id="bobPseudo" class="force"></div>
+        <div class="eq">tan(θ) = |a<sub>frame</sub>| / g</div>
+        <div id="angleOut" class="eq"></div>
+        <div class="good">The bob tilts opposite the vehicle acceleration. If a<sub>frame</sub> → 0, θ → 0 and the string returns vertical.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <footer>
+      <div>
+        <strong>Protected distinctions</strong>
+        <div style="font-size:12px;color:var(--muted)">velocity ≠ acceleration · scale reading N ≠ mg · pseudo-force ≠ physical interaction</div>
+      </div>
+      <button id="reset" class="btn primary" type="button">Reset explorer</button>
+    </footer>
+  </section>
+</main>
+<script>
+(() => {
+  const G = 9.81;
+  const mass = document.getElementById('mass');
+  const accel = document.getElementById('accel');
+  const velocity = document.getElementById('velocity');
+  const effectiveToggle = document.getElementById('effectiveToggle');
+  const horizontalAccel = document.getElementById('horizontalAccel');
+  const horizontalDirection = document.getElementById('horizontalDirection');
+
+  function arrow(ctx,x1,y1,x2,y2,label,color){
+    const ang=Math.atan2(y2-y1,x2-x1),head=10;
+    ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-head*Math.cos(ang-.5),y2-head*Math.sin(ang-.5));
+    ctx.lineTo(x2-head*Math.cos(ang+.5),y2-head*Math.sin(ang+.5));
+    ctx.closePath();ctx.fill();
+    ctx.font='13px system-ui';ctx.fillText(label,(x1+x2)/2+8,(y1+y2)/2);
+  }
+
+  function drawElevator(canvas, acceleratingFrame){
+    const ctx=canvas.getContext('2d'), a=Number(accel.value);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#e2e8f0';ctx.fillRect(90,35,380,190);
+    ctx.fillStyle='#fff';ctx.fillRect(105,50,350,155);
+    ctx.fillStyle='#475569';ctx.fillRect(255,130,50,60);
+    ctx.fillStyle='#0f172a';ctx.font='12px system-ui';ctx.fillText('person',260,162);
+    ctx.fillStyle='#94a3b8';ctx.fillRect(225,190,110,8);
+    arrow(ctx,280,130,280,75,'N','#15803d');
+    arrow(ctx,280,190,280,238,'mg','#b91c1c');
+    if(acceleratingFrame && Math.abs(a)>0.001){
+      const down=a>0;
+      arrow(ctx,330,150,330,down?215:85,'F_pseudo','#7c3aed');
+    }
+    if(Math.abs(a)>0.001){
+      arrow(ctx,155,155,155,a>0?85:220,'a_frame','#2563eb');
+    }
+  }
+
+  function drawBob(){
+    const canvas=document.getElementById('bobCanvas'),ctx=canvas.getContext('2d');
+    const a=Math.abs(Number(horizontalAccel.value));
+    const dir=horizontalDirection.value;
+    const sign=dir==='RIGHT'?1:-1;
+    const theta=Math.atan(a/G);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.strokeStyle='#64748b';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(100,55);ctx.lineTo(460,55);ctx.stroke();
+    const pivotX=280,pivotY=70,L=120;
+    const bobX=pivotX-sign*Math.sin(theta)*L,bobY=pivotY+Math.cos(theta)*L;
+    ctx.strokeStyle='#0f172a';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(pivotX,pivotY);ctx.lineTo(bobX,bobY);ctx.stroke();
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(bobX,bobY,18,0,Math.PI*2);ctx.fill();
+    arrow(ctx,160,35,dir==='RIGHT'?235:85,35,'vehicle a','#2563eb');
+    arrow(ctx,bobX,bobY,bobX-sign*65,bobY,'pseudo','#7c3aed');
+    arrow(ctx,bobX,bobY,bobX,bobY+60,'mg','#b91c1c');
+    ctx.fillStyle='#334155';ctx.font='13px system-ui';ctx.fillText('bob tilts opposite acceleration',160,235);
+  }
+
+  function update(){
+    const m=Number(mass.value), a=Number(accel.value);
+    const mg=m*G;
+    const rawN=m*(G+a);
+    const N=Math.max(0,rawN);
+    const pseudo=-m*a;
+    document.getElementById('massValue').textContent=m.toFixed(0);
+    document.getElementById('accelValue').textContent=a.toFixed(2);
+    document.getElementById('massOut').textContent=m.toFixed(0)+' kg';
+    document.getElementById('weightOut').textContent=mg.toFixed(1)+' N';
+    document.getElementById('normalOut').textContent=N.toFixed(1)+' N';
+    const freeFall=Math.abs(a+G)<0.011;
+    document.getElementById('contactOut').textContent=freeFall?'FREE FALL':'CONTACT';
+    document.getElementById('normalNote').textContent=freeFall?'N = 0 while mg remains nonzero':'support force / scale reading';
+    document.getElementById('velocityNote').textContent=velocity.options[velocity.selectedIndex].text+'; reading follows acceleration';
+    document.getElementById('groundEquation').innerHTML=
+      N.toFixed(1)+' - '+mg.toFixed(1)+' = '+m.toFixed(0)+' × '+a.toFixed(2)+' N';
+    document.getElementById('groundBoundary').textContent=freeFall
+      ? 'Free fall: N = 0. Gravity has not vanished; the person and cabin accelerate together at -g.'
+      : (a>0?'Upward acceleration: N > mg.':a<0?'Downward acceleration: N < mg while contact persists.':'Zero acceleration: N = mg.');
+    const pseudoDir=a>0?'downward':a<0?'upward':'zero';
+    document.getElementById('pseudoDirection').textContent=pseudoDir==='zero'?'F_pseudo = 0':(pseudoDir==='downward'?'↓ |F_pseudo|':'↑ |F_pseudo|');
+    document.getElementById('pseudoOut').textContent='F_pseudo = '+pseudo.toFixed(1)+' N (signed, up +)';
+    const eff=document.getElementById('effectiveGravity');
+    eff.style.display=effectiveToggle.checked?'block':'none';
+    eff.textContent='Accelerating-frame shorthand: g_effective magnitude along downward/upward bookkeeping corresponds to g + a_frame = '+(G+a).toFixed(2)+' m/s² for this vertical sign convention.';
+    document.getElementById('dualGround').innerHTML='<strong>N = '+N.toFixed(1)+' N</strong><br><small>person acceleration a = '+a.toFixed(2)+' m/s²</small>';
+    document.getElementById('dualElevator').innerHTML='<strong>N = '+N.toFixed(1)+' N</strong><br><small>person relative acceleration = 0; F_pseudo = '+pseudo.toFixed(1)+' N</small>';
+    document.getElementById('agreement').textContent='Same observable: both descriptions predict scale reading N = '+N.toFixed(1)+' N.';
+    drawElevator(document.getElementById('groundCanvas'),false);
+    drawElevator(document.getElementById('elevatorCanvas'),true);
+
+    const ha=Math.abs(Number(horizontalAccel.value));
+    const theta=Math.atan(ha/G)*180/Math.PI;
+    document.getElementById('horizontalAccelValue').textContent=ha.toFixed(2);
+    const pseudoSide=horizontalDirection.value==='RIGHT'?'left':'right';
+    document.getElementById('bobPseudo').innerHTML='<span>pseudo-force direction</span><strong>'+pseudoSide+'</strong>';
+    document.getElementById('angleOut').textContent='θ = arctan('+ha.toFixed(2)+' / 9.81) = '+theta.toFixed(1)+'°';
+    drawBob();
+  }
+
+  document.querySelectorAll('.tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===btn));
+    document.querySelectorAll('.scene').forEach(x=>x.classList.toggle('active',x.id===btn.dataset.scene));
+    update();
+  }));
+  [mass,accel,velocity,effectiveToggle,horizontalAccel,horizontalDirection].forEach(el=>el.addEventListener('input',update));
+  document.querySelectorAll('[data-a]').forEach(btn=>btn.addEventListener('click',()=>{accel.value=btn.dataset.a;update();}));
+  document.getElementById('reset').addEventListener('click',()=>{
+    mass.value=60;accel.value=2;velocity.value='UP';effectiveToggle.checked=false;
+    horizontalAccel.value=3;horizontalDirection.value='RIGHT';
+    document.getElementById('tabPredict').click();
+    update();
+  });
+  update();
+})();
+</script>
+</body>
+</html>
