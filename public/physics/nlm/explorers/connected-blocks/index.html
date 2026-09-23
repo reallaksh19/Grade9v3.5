@@ -1676,6 +1676,69 @@
             </div>
           </div>
         </div>
+        <div class="g9-card" id="horseCartTransfer" style="margin-bottom:14px; background:#fffdf7; border-color:#fde68a;">
+          <div class="card-banner">
+            <div class="banner-title-wrap">
+              <span class="banner-num-circle" style="background:#b45309;">H</span>
+              <div>
+                <h2 class="banner-title">Horse–Cart Transfer: Why Equal-and-Opposite Does Not Mean No Acceleration</h2>
+                <p class="banner-subtitle">Reuse the same body-ownership and system-boundary rules in a familiar Newton-III paradox.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sliders-inline-bar">
+            <div class="slider-field">
+              <div class="slider-field-top"><span>Horse mass m<sub>h</sub> (kg)</span><span class="slider-field-val" id="horseMassValue">300</span></div>
+              <label for="horseMass" style="font-size:10px;color:#64748b;">Horse mass</label>
+              <input type="range" class="custom-range" id="horseMass" min="150" max="600" step="10" value="300" oninput="syncHorseCart()">
+            </div>
+            <div class="slider-field">
+              <div class="slider-field-top"><span>Cart mass m<sub>c</sub> (kg)</span><span class="slider-field-val" id="cartMassValue">200</span></div>
+              <label for="cartMass" style="font-size:10px;color:#64748b;">Cart mass</label>
+              <input type="range" class="custom-range" id="cartMass" min="50" max="500" step="10" value="200" oninput="syncHorseCart()">
+            </div>
+            <div class="slider-field">
+              <div class="slider-field-top"><span>Ground-on-horse traction F<sub>g</sub> (N)</span><span class="slider-field-val" id="groundTractionValue">1000</span></div>
+              <label for="groundTraction" style="font-size:10px;color:#64748b;">External ground traction</label>
+              <input type="range" class="custom-range" id="groundTraction" min="100" max="2500" step="50" value="1000" oninput="syncHorseCart()">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">
+            <div class="results-pill-row">
+              <span style="font-weight:700;color:#15803d;">Combined-system acceleration</span>
+              <span class="val-accel" id="horseCartAccel">2.00 m/s²</span>
+              <span style="font-size:10px;color:#64748b;">F<sub>g</sub> = (m<sub>h</sub> + m<sub>c</sub>)a</span>
+            </div>
+            <div class="results-pill-row">
+              <span style="font-weight:700;color:#1d4ed8;">Horse-on-cart force T</span>
+              <span class="val-force-blue" id="horseCartTension">400 N</span>
+              <span style="font-size:10px;color:#64748b;">Cart: T = m<sub>c</sub>a</span>
+            </div>
+            <div class="results-pill-row">
+              <span style="font-weight:700;color:#c2410c;">Net force on horse</span>
+              <span class="val-force-orange" id="horseCartHorseNet">600 N</span>
+              <span style="font-size:10px;color:#64748b;">Horse: F<sub>g</sub> - T = m<sub>h</sub>a</span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px;font-size:11.5px;color:#991b1b;">
+              <strong>Wrong cancellation:</strong> horse-on-cart and cart-on-horse are equal and opposite, but they act on different bodies. They are not both terms in one body's net-force equation.
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;font-size:11.5px;color:#166534;">
+              <strong>Correct boundary:</strong> for the combined horse+cart system, the horse–cart interaction is internal and cancels only after combining the two body equations. Ground-on-horse traction crosses the system boundary and remains external.
+            </div>
+          </div>
+
+          <div style="margin-top:10px;font-size:11.5px;color:#334155;">
+            Third-law pairs: <strong>horse on cart = +T</strong> and <strong>cart on horse = -T</strong>; separately, the horse pushes the ground backward and the ground pushes the horse forward.
+          </div>
+          <button type="button" class="footer-btn prev" style="margin-top:10px;width:max-content;" onclick="resetHorseCart()">Reset horse–cart rig</button>
+        </div>
+
+
 
         <div id="diagQuizContainer" style="display: flex; flex-direction: column; gap: 14px;">
           <!-- Questions populated dynamically -->
@@ -2871,9 +2934,42 @@
   window.closeHelpModal = function() {
     document.getElementById('helpModal').style.display = 'none';
   };
+  window.syncHorseCart = function() {
+    const mh = Number(document.getElementById('horseMass')?.value || 300);
+    const mc = Number(document.getElementById('cartMass')?.value || 200);
+    const fg = Number(document.getElementById('groundTraction')?.value || 1000);
+    const a = fg / (mh + mc);
+    const tension = mc * a;
+    const horseNet = fg - tension;
+    const values = {
+      horseMassValue: mh.toFixed(0),
+      cartMassValue: mc.toFixed(0),
+      groundTractionValue: fg.toFixed(0),
+      horseCartAccel: a.toFixed(2) + ' m/s²',
+      horseCartTension: tension.toFixed(0) + ' N',
+      horseCartHorseNet: horseNet.toFixed(0) + ' N'
+    };
+    Object.entries(values).forEach(([id, value]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    });
+  };
+
+  window.resetHorseCart = function() {
+    const horse = document.getElementById('horseMass');
+    const cart = document.getElementById('cartMass');
+    const traction = document.getElementById('groundTraction');
+    if (horse) horse.value = 300;
+    if (cart) cart.value = 200;
+    if (traction) traction.value = 1000;
+    window.syncHorseCart();
+  };
+
+
 
   window.addEventListener('DOMContentLoaded', () => {
     initDiagnosticQuizStep8();
+    syncHorseCart();
     goToStep(2);
   });
 
