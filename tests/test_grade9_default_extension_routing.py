@@ -21,7 +21,7 @@ from Shared.tools import (  # noqa: E402
 
 class Grade9DefaultExtensionRouting(unittest.TestCase):
     TARGETS = {
-        "Physics/matrices/phy-kin-1d-motion.rungs.json": {"R3"},
+        "Physics/matrices/phy-kin-1d-motion.rungs.json": {"R3", "R6"},
         "Physics/matrices/phy-nlm-first-law.rungs.json": {"R4"},
         "Physics/matrices/phy-grav-universal-law.rungs.json": {"R4", "R5"},
     }
@@ -107,7 +107,7 @@ class Grade9DefaultExtensionRouting(unittest.TestCase):
     def test_worksheet_owner_estimate_coordinates_ignore_nondefault_rungs(self):
         positions = study_start._teaching_positions(study_map.subject_index("Physics"))
         expected_absent = {
-            "MATRIX-PHY-KIN-1D-MOTION": {"R3"},
+            "MATRIX-PHY-KIN-1D-MOTION": {"R3", "R6"},
             "MATRIX-PHY-NLM-FIRST-LAW": {"R4"},
             "MATRIX-PHY-GRAV-UNIVERSAL-LAW": {"R4", "R5"},
         }

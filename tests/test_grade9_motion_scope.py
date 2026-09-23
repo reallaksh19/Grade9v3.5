@@ -27,7 +27,16 @@ class Grade9MotionScope(unittest.TestCase):
         self.assertEqual(self.bucket["prerequisite_refs"], [])
 
     def test_every_motion_rung_reuses_a_current_canonical_microtopic_and_capability(self):
-        self.assertEqual(len(self.matrix["rungs"]), 6)
+        self.assertEqual(
+            {row["rung"] for row in self.matrix["rungs"]},
+            {"R1", "R2", "R3", "R4G", "R4", "R5", "R6"},
+        )
+        r6 = next(row for row in self.matrix["rungs"] if row["rung"] == "R6")
+        self.assertFalse(r6["default_entry_eligible"])
+        self.assertEqual(
+            r6["microtopic_ref"],
+            "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+        )
         for rung in self.matrix["rungs"]:
             ref = rung.get("microtopic_ref")
             self.assertIn(ref, self.microtopics, rung["rung"])

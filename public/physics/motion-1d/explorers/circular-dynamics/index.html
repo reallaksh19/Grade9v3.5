@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Circular Motion & the Centripetal-Force Fallacy · Physics Explorer</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--blue:#2563eb;--green:#15803d;--orange:#c2410c;--red:#b91c1c;--violet:#7c3aed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:#0f172a;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center;position:sticky;top:0;z-index:20}
+header h1{font-size:18px;margin:0}header p{font-size:12px;color:#cbd5e1;margin:3px 0 0}header a{color:#7dd3fc}
+main{max-width:1180px;margin:auto;padding:18px;display:grid;gap:14px}.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+.banner{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:10px 12px;font-size:12px}.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button,.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer}.tabs button.active{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd;font-weight:700}
+.controls{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}label{display:grid;gap:5px;font-size:12px;font-weight:650;color:#334155}input[type=range],select{width:100%}.value{font-family:ui-monospace,monospace;border:1px solid var(--line);background:#f8fafc;border-radius:5px;padding:2px 6px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}.metric .name{font-size:11px;color:var(--muted)}.metric .val{font-size:18px;font-weight:750;margin-top:4px}.metric small{display:block;color:var(--muted);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{border:1px solid #dbeafe;border-radius:10px;padding:12px;background:#f8fbff}.panel.violet{border-color:#ddd6fe;background:#faf5ff}.panel h3{font-size:14px;margin:0 0 8px}
+.eq{font-family:ui-monospace,monospace;background:#fff;border-left:4px solid var(--blue);padding:8px 10px;border-radius:5px;margin:7px 0}.violet .eq{border-left-color:var(--violet)}
+.good,.warn,.bad{border-radius:8px;padding:10px 12px;font-size:12px}.good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.scene{display:none}.scene.active{display:block}canvas{width:100%;height:300px;border:1px solid var(--line);border-radius:10px;background:white;display:block}
+.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{border:1px solid #e2e8f0;padding:8px;text-align:left}.table th{background:#f8fafc}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pill{display:inline-block;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:700}.green{background:#dcfce7;color:#166534}.orange{background:#ffedd5;color:#9a3412}.violetPill{background:#ede9fe;color:#5b21b6}
+.bar{height:14px;background:#e2e8f0;border-radius:999px;overflow:hidden}.bar>span{display:block;height:100%;background:#475569}.spacer{height:6px}
+@media(max-width:850px){.controls,.metrics,.grid2{grid-template-columns:1fr}header{position:static}canvas{height:250px}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Circular Motion & the “Centripetal Force” Fallacy</h1>
+    <p>R6 · CAP-KIN-CIRCULAR-DYNAMICS-ROLE · non-default Owner extension</p>
+  </div>
+  <a href="../../../index.html">Back to Physics</a>
+</header>
+<main>
+  <section class="card">
+    <div class="banner"><strong>Scope:</strong> R5 still owns elementary Grade-9 uniform circular motion. This R6 extension adds radial dynamics. “Centripetal” names the inward role of the net force; it is not another physical interaction.</div>
+    <div class="spacer"></div>
+    <div class="tabs" aria-label="Explorer scenes">
+      <button class="active" data-scene="kinematics">1 · Velocity first</button>
+      <button data-scene="forces">2 · Force role</button>
+      <button data-scene="scaling">3 · Radial scaling</button>
+      <button data-scene="friction">4 · Flat curve</button>
+      <button data-scene="cut">5 · Cut string</button>
+      <button data-scene="vertical">6 · Vertical circle</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="controls">
+      <label>Mass m
+        <span><span id="mValue" class="value">2.0</span> kg</span>
+        <input id="m" type="range" min="0.5" max="10" step="0.1" value="2">
+      </label>
+      <label>Speed v
+        <span><span id="vValue" class="value">4.0</span> m/s</span>
+        <input id="v" type="range" min="1" max="20" step="0.1" value="4">
+      </label>
+      <label>Radius r
+        <span><span id="rValue" class="value">2.0</span> m</span>
+        <input id="r" type="range" min="0.5" max="20" step="0.1" value="2">
+      </label>
+      <label>Axes
+        <span><input id="axisToggle" type="checkbox" checked> show radial/tangential axes</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="metrics">
+    <div class="metric"><div class="name">Radial acceleration</div><div id="arOut" class="val">8.00 m/s²</div><small>a<sub>r</sub> = v²/r</small></div>
+    <div class="metric"><div class="name">Required inward net force</div><div id="frOut" class="val">16.0 N</div><small>ΣF<sub>r</sub> = m v²/r</small></div>
+    <div class="metric"><div class="name">Double-speed requirement</div><div id="doubleOut" class="val">64.0 N</div><small>2v ⇒ 4× force</small></div>
+    <div class="metric"><div class="name">Force classifier</div><div class="val">ROLE ≠ TYPE</div><small>centripetal is the radial resultant role</small></div>
+  </section>
+
+  <section id="kinematics" class="card scene active">
+    <h2 style="font-size:16px;margin-top:0">Start with motion, not force names</h2>
+    <div class="grid2">
+      <canvas id="orbitCanvas" width="560" height="300" aria-label="Circular motion with tangent velocity and inward acceleration"></canvas>
+      <div class="panel">
+        <h3>Reasoning order</h3>
+        <ol style="font-size:13px;line-height:1.7;padding-left:20px">
+          <li>Speed can stay constant while <strong>velocity direction changes</strong>.</li>
+          <li>Changing velocity means acceleration is nonzero.</li>
+          <li>For uniform circular motion that acceleration is inward: <strong>a<sub>r</sub>=v²/r</strong>.</li>
+          <li>Only then ask which real interactions supply the required inward net force.</li>
+        </ol>
+        <div class="good"><strong>Invariant:</strong> tangent velocity and inward acceleration are perpendicular in the uniform case.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="forces" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Force type versus radial role</h2>
+    <div class="controls" style="grid-template-columns:repeat(2,minmax(180px,1fr))">
+      <label>Mechanism
+        <select id="mechanism">
+          <option value="string">mass on string</option>
+          <option value="curve">car on flat curve</option>
+          <option value="orbit">ideal gravity orbit</option>
+        </select>
+      </label>
+      <label>Display
+        <span><input id="wrongForceToggle" type="checkbox"> show the common wrong FBD</span>
+      </label>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <canvas id="forceCanvas" width="560" height="300" aria-label="Real-force free-body diagram"></canvas>
+      <div class="panel">
+        <h3 id="mechanismTitle">String case</h3>
+        <div id="realForceText" class="eq">real inward force: tension T</div>
+        <div class="eq">ΣF<sub>r</sub> = m v²/r</div>
+        <div id="forceRoleText" class="good">Tension supplies the centripetal role. Do not add a second force arrow called Fc.</div>
+        <div id="wrongBox" class="bad" style="display:none;margin-top:10px"><strong>Wrong:</strong> drawing T inward and another “Fc” inward double-counts the same required resultant.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scaling" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Radial/tangential axes and v² scaling</h2>
+    <div class="grid2">
+      <canvas id="axesCanvas" width="560" height="300" aria-label="Radial tangential axes on circular path"></canvas>
+      <div class="panel violet">
+        <h3>Signed radial Newton II</h3>
+        <div class="eq">inward positive: ΣF<sub>r</sub> = m a<sub>r</sub> = m v²/r</div>
+        <div id="scalingText" class="eq"></div>
+        <table class="table">
+          <thead><tr><th>Change</th><th>Required inward force</th></tr></thead>
+          <tbody>
+            <tr><td>v → 2v</td><td>×4</td></tr>
+            <tr><td>m → 2m</td><td>×2</td></tr>
+            <tr><td>r → 2r</td><td>×1/2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="friction" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Flat curve: required friction versus available static-friction capacity</h2>
+    <div class="controls" style="grid-template-columns:repeat(3,minmax(160px,1fr))">
+      <label>Coefficient μ<sub>s</sub>
+        <span><span id="muValue" class="value">0.30</span></span>
+        <input id="mu" type="range" min="0.05" max="1" step="0.01" value="0.30">
+      </label>
+      <label>g
+        <span><span id="gValue" class="value">9.81</span> m/s²</span>
+        <input id="g" type="range" min="8" max="10" step="0.01" value="9.81">
+      </label>
+      <label>Model
+        <span class="value">N = mg</span>
+        <span style="font-size:11px;color:#64748b">horizontal road, no vertical acceleration</span>
+      </label>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="panel">
+        <div class="eq">f<sub>required</sub> = m v²/r</div>
+        <div class="eq">|f<sub>s</sub>| ≤ μ<sub>s</sub>N</div>
+        <div id="frictionNumbers" class="eq"></div>
+        <div class="bar"><span id="capacityBar" style="width:50%"></span></div>
+      </div>
+      <div>
+        <div id="frictionStatus" class="good"></div>
+        <div class="warn" style="margin-top:10px"><strong>Do not write f<sub>s</sub>=μ<sub>s</sub>N automatically.</strong> Equality is only the limiting static-friction boundary. Below threshold, actual static friction matches the smaller inward demand.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cut" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Cut the string: what path begins immediately?</h2>
+    <div class="row">
+      <button id="cutButton" class="btn" type="button">Cut string</button>
+      <button id="resetCut" class="btn" type="button">Reset</button>
+      <span id="cutState" class="pill green">string taut</span>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <canvas id="cutCanvas" width="560" height="300" aria-label="String cut from circular motion showing tangent path"></canvas>
+      <div class="panel">
+        <h3>Instant after the cut</h3>
+        <div class="eq">tension → 0</div>
+        <div class="eq">instantaneous velocity remains tangent</div>
+        <div id="cutExplanation" class="good">Before the cut, tension turns the velocity inward. The object is not carrying an outward “centripetal reaction” that gets released.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vertical" class="card scene">
+    <h2 style="font-size:16px;margin-top:0">Vertical circle: re-declare inward before assigning signs</h2>
+    <div class="controls" style="grid-template-columns:repeat(2,minmax(180px,1fr))">
+      <label>Selected point
+        <select id="verticalPoint">
+          <option value="top">top</option>
+          <option value="bottom">bottom</option>
+        </select>
+      </label>
+      <label>g
+        <span class="value">same g control as flat-curve scene</span>
+      </label>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <canvas id="verticalCanvas" width="560" height="300" aria-label="Top and bottom vertical-circle radial force diagram"></canvas>
+      <div class="panel violet">
+        <div id="verticalEquation" class="eq">top: T + mg = m v²/r</div>
+        <div id="verticalMeaning" class="good">At the top, inward is downward: both tension and gravity contribute positively.</div>
+        <div class="eq">just-taut top boundary: T = 0</div>
+        <div id="minSpeed" class="eq"></div>
+        <div class="warn">m v²/r is the required <strong>net radial force</strong>. It is not another downward force added to T and mg.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <strong>Protected distinctions</strong>
+    <div style="font-size:12px;color:#64748b;margin-top:4px">speed ≠ velocity · inward acceleration before force model · force type ≠ radial role · required static friction ≠ maximum static friction · post-cut tangent ≠ radial-outward path</div>
+  </section>
+</main>
+<script>
+(() => {
+  const $=id=>document.getElementById(id);
+  const m=$('m'),v=$('v'),r=$('r'),axisToggle=$('axisToggle'),mechanism=$('mechanism'),wrongForceToggle=$('wrongForceToggle'),mu=$('mu'),g=$('g'),verticalPoint=$('verticalPoint');
+  let cut=false;
+  function arrow(ctx,x1,y1,x2,y2,label,color){
+    const ang=Math.atan2(y2-y1,x2-x1),h=10;
+    ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-h*Math.cos(ang-.5),y2-h*Math.sin(ang-.5));ctx.lineTo(x2-h*Math.cos(ang+.5),y2-h*Math.sin(ang+.5));ctx.closePath();ctx.fill();
+    ctx.font='13px system-ui';ctx.fillText(label,(x1+x2)/2+7,(y1+y2)/2-5);
+  }
+  function baseCircle(ctx){
+    ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+    ctx.strokeStyle='#cbd5e1';ctx.lineWidth=2;ctx.beginPath();ctx.arc(275,150,90,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(275,150,5,0,Math.PI*2);ctx.fill();ctx.font='12px system-ui';ctx.fillText('centre',245,145);
+  }
+  function drawOrbit(){
+    const c=$('orbitCanvas'),ctx=c.getContext('2d');baseCircle(ctx);
+    const x=365,y=150;
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();
+    arrow(ctx,x,y,x,y-75,'v tangent','#2563eb');arrow(ctx,x,y,285,y,'a_r inward','#c2410c');
+    if(axisToggle.checked){arrow(ctx,x+30,y,x+30,y-55,'tangent axis','#64748b');arrow(ctx,x,y+35,x-60,y+35,'radial +','#64748b');}
+  }
+  function drawForce(){
+    const c=$('forceCanvas'),ctx=c.getContext('2d');baseCircle(ctx);const x=365,y=150;
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();
+    arrow(ctx,x,y,292,y,'required inward','#475569');
+    const mech=mechanism.value;
+    if(mech==='string') arrow(ctx,x,y,315,y,'T','#15803d');
+    if(mech==='curve') arrow(ctx,x,y,315,y,'f_s','#15803d');
+    if(mech==='orbit') arrow(ctx,x,y,315,y,'gravity','#15803d');
+    if(wrongForceToggle.checked) arrow(ctx,x,y+28,300,y+28,'WRONG Fc','#b91c1c');
+  }
+  function drawAxes(){
+    const c=$('axesCanvas'),ctx=c.getContext('2d');baseCircle(ctx);const x=365,y=150;
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();
+    arrow(ctx,x,y,x,y-75,'v','#2563eb');arrow(ctx,x,y,292,y,'a_r','#c2410c');
+    if(axisToggle.checked){arrow(ctx,x+28,y,x+28,y-65,'+t','#64748b');arrow(ctx,x,y+32,x-72,y+32,'+r inward','#64748b');}
+  }
+  function drawCut(){
+    const c=$('cutCanvas'),ctx=c.getContext('2d');baseCircle(ctx);const x=365,y=150;
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();
+    arrow(ctx,x,y,x,y-75,'v tangent','#2563eb');
+    if(!cut){ctx.strokeStyle='#15803d';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(275,150);ctx.lineTo(350,150);ctx.stroke();arrow(ctx,x,y,305,y,'T','#15803d');}
+    else{ctx.strokeStyle='#2563eb';ctx.setLineDash([7,5]);ctx.beginPath();ctx.moveTo(x,y-18);ctx.lineTo(x,y-120);ctx.stroke();ctx.setLineDash([]);ctx.font='13px system-ui';ctx.fillStyle='#2563eb';ctx.fillText('initial path: tangent',385,48);}
+  }
+  function drawVertical(){
+    const c=$('verticalCanvas'),ctx=c.getContext('2d');baseCircle(ctx);const top=verticalPoint.value==='top';const x=275,y=top?60:240;
+    ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(x,y,14,0,Math.PI*2);ctx.fill();
+    arrow(ctx,x,y,x,top?115:185,'T inward','#15803d');
+    arrow(ctx,x+35,y,x+35,y+65,'mg','#b91c1c');
+    arrow(ctx,x-35,y,x-35,top?120:180,'+r inward','#64748b');
+  }
+  function update(){
+    const M=Number(m.value),V=Number(v.value),R=Number(r.value),MU=Number(mu.value),G=Number(g.value);
+    const ar=V*V/R, req=M*ar, doubled=M*(2*V)*(2*V)/R;
+    $('mValue').textContent=M.toFixed(1);$('vValue').textContent=V.toFixed(1);$('rValue').textContent=R.toFixed(1);
+    $('arOut').textContent=ar.toFixed(2)+' m/s²';$('frOut').textContent=req.toFixed(1)+' N';$('doubleOut').textContent=doubled.toFixed(1)+' N';
+    $('scalingText').textContent='current: '+M.toFixed(1)+' × '+V.toFixed(1)+'² / '+R.toFixed(1)+' = '+req.toFixed(1)+' N';
+    $('muValue').textContent=MU.toFixed(2);$('gValue').textContent=G.toFixed(2);
+    const normal=M*G,maxF=MU*normal,ratio=req/maxF;
+    $('frictionNumbers').innerHTML='required = '+req.toFixed(1)+' N<br>limit μ_sN = '+maxF.toFixed(1)+' N';
+    $('capacityBar').style.width=Math.min(100,ratio*100).toFixed(1)+'%';
+    const ok=req<=maxF+1e-9;
+    $('frictionStatus').className=ok?'good':'bad';
+    $('frictionStatus').textContent=ok
+      ? 'No-slip feasible: actual static friction = '+req.toFixed(1)+' N, which is below the '+maxF.toFixed(1)+' N limit.'
+      : 'No-slip model fails: required '+req.toFixed(1)+' N exceeds the '+maxF.toFixed(1)+' N static-friction limit.';
+    const mech=mechanism.value;
+    const meta={
+      string:['String case','real inward force: tension T','Tension supplies the centripetal role. Do not add a second force arrow called Fc.'],
+      curve:['Flat-curve case','real inward force: static friction f_s','Static friction supplies the inward role only if the required value stays within |f_s| ≤ μ_sN.'],
+      orbit:['Ideal-orbit case','real inward force: gravity','Gravity supplies the radial role; there is no separate centripetal-force interaction.']
+    }[mech];
+    $('mechanismTitle').textContent=meta[0];$('realForceText').textContent=meta[1];$('forceRoleText').textContent=meta[2];
+    $('wrongBox').style.display=wrongForceToggle.checked?'block':'none';
+    const top=verticalPoint.value==='top';
+    $('verticalEquation').innerHTML=top?'top: T + mg = m v²/r':'bottom: T - mg = m v²/r';
+    $('verticalMeaning').textContent=top?'At the top, inward is downward: both tension and gravity contribute positively.':'At the bottom, inward is upward: tension is positive radial and gravity is negative radial.';
+    $('minSpeed').textContent='v_min(top, T=0) = √(gr) = '+Math.sqrt(G*R).toFixed(2)+' m/s';
+    $('cutState').textContent=cut?'string cut':'string taut';
+    $('cutState').className='pill '+(cut?'orange':'green');
+    drawOrbit();drawForce();drawAxes();drawCut();drawVertical();
+  }
+  document.querySelectorAll('.tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===btn));
+    document.querySelectorAll('.scene').forEach(x=>x.classList.toggle('active',x.id===btn.dataset.scene));update();
+  }));
+  [m,v,r,axisToggle,mechanism,wrongForceToggle,mu,g,verticalPoint].forEach(el=>el.addEventListener('input',update));
+  $('cutButton').addEventListener('click',()=>{cut=true;update();});
+  $('resetCut').addEventListener('click',()=>{cut=false;update();});
+  update();
+})();
+</script>
+</body>
+</html>
