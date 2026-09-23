@@ -454,6 +454,44 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         self.assertEqual("READY", row["availability"]["representation"])
         self.assertEqual("UNAVAILABLE", row["availability"]["activity"])
 
+    def test_locator_failure_does_not_invalidate_academic_mapping(self):
+        records = copy.deepcopy(self.physics)
+        records["ACT-KIN-2D-SHARED-CLOCK"]["locator"] = ""
+
+        result = build_subject_index("Physics", [self.motion], records, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+
+        self.assertEqual("READY", row["availability"]["mapping"])
+        self.assertEqual("READY", row["availability"]["activity"])
+        self.assertEqual("INVALID", row["availability"]["locator"])
+        self.assertIn(
+            "ACTIVITY_LOCATOR_UNAVAILABLE",
+            [finding["code"] for finding in row["findings"]],
+        )
+
+    def test_no_visual_links_are_explicitly_unavailable_without_guessing(self):
+        records = copy.deepcopy(self.physics)
+        records["MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"]["representation_refs"] = []
+        records["ACT-KIN-2D-SHARED-CLOCK"]["supports_claims"] = [
+            claim
+            for claim in records["ACT-KIN-2D-SHARED-CLOCK"].get("supports_claims", [])
+            if claim != "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+        ]
+
+        result = build_subject_index("Physics", [self.motion], records, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+
+        self.assertEqual([], row["representation_refs"])
+        self.assertEqual([], row["activity_refs"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["representation"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["activity"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["locator"])
+        self.assertEqual("READY", row["availability"]["mapping"])
+        self.assertIn(
+            "VISUAL_REF_UNAVAILABLE",
+            [finding["code"] for finding in row["findings"]],
+        )
+
     def test_record_permutation_does_not_change_semantic_output(self):
         reversed_records = dict(reversed(list(self.physics.items())))
 
@@ -461,6 +499,27 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         permuted = build_subject_index("Physics", [self.motion], reversed_records, self.core)
 
         self.assertEqual(normal, permuted)
+
+    def test_full_corpus_source_rows_are_preserved_exactly_once(self):
+        payload = build_web_data.build()
+        expected = []
+        observed = []
+        for subject in sorted(payload["subjects"]):
+            boards = [
+                load(path)
+                for path in sorted((REPO / subject / "matrices").glob("*.rungs.json"))
+            ]
+            expected.extend(
+                (subject, board["matrix_id"], source["rung"])
+                for board in boards
+                for source in board.get("rungs", [])
+            )
+            observed.extend(
+                (subject, row["matrix_id"], row["rung"])
+                for row in payload["subjects"][subject]["atlas_index"]
+            )
+        self.assertEqual(expected, observed)
+        self.assertEqual(len(observed), len(set(observed)))
 
     def test_every_source_rung_appears_once_in_authored_order(self):
         result = build_subject_index(
