@@ -1,0 +1,35 @@
+schema_version: "relay-v3.1-transaction"
+id: "TX-V31-RELEASE-ISS212-001"
+command: "RELEASE_LEASE"
+actor: "chatgpt-sol-issue212-v31-20260923"
+status: "COMMITTED"
+created_at: "2026-09-23T16:43:32Z"
+updated_at: "2026-09-23T16:43:32Z"
+payload_state: "PRUNED"
+operations:
+  -
+    path: "relay/EVENTS.jsonl"
+    before_exists: true
+    before_digest: "sha256:13afdf2ba2762764118386293324121be63bbec251a79a69a64029fa60b8dfed"
+    after_digest: "sha256:dfd091367cc6c065c7de36d74bbd249f7d534ec33a70b5c717ff2b688e0fbe0f"
+  -
+    path: "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+    before_exists: false
+    before_digest: null
+    after_digest: "sha256:4307eda487d20544b89d04a8bb1f65ecffa2e1e03b7f7f5498e54a0fdea2aa0f"
+  -
+    path: "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-001.yaml"
+    before_exists: true
+    before_digest: "sha256:29b651aecb0b10efc4b48e2b0963c2e6130a44ad95de2f4904c0f186f7223a77"
+    after_digest: "sha256:7d4e5a5a829ac16e878be3901db6bcb99805173d0f48b4bcc310d9796fb360c3"
+  -
+    path: "relay/STATE.yaml"
+    before_exists: true
+    before_digest: "sha256:f2c23378021fa0f10a5538829a4099a940531cc33e17cd913ddc7f560d9b007b"
+    after_digest: "sha256:8c6a149dcdda52b97f0d049f8b86cfb7ae6459294932d8b2c446e0dcb5d0dcac"
+applied:
+  - "relay/EVENTS.jsonl"
+  - "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+  - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-001.yaml"
+  - "relay/STATE.yaml"
+identity_reservations: []
