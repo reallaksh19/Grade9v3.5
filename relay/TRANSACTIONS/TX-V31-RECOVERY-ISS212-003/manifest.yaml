@@ -1,0 +1,41 @@
+schema_version: "relay-v3.1-transaction"
+id: "TX-V31-RECOVERY-ISS212-003"
+command: "ACTIVATE_LEASE"
+actor: "chatgpt-sol-issue212-recovery-v31-20260923"
+status: "COMMITTED"
+created_at: "2026-09-23T18:01:45Z"
+updated_at: "2026-09-23T18:01:45Z"
+payload_state: "PRUNED"
+operations:
+  -
+    path: "relay/EVENTS.jsonl"
+    before_exists: true
+    before_digest: "sha256:3c2720b101520690d34b7f4d290fb1dda7a7817233890454aeb7ff1cd49d06ba"
+    after_digest: "sha256:0bb8dc997fc86866b8cfd2f593c9a0e8eab0e353412b10fc4feb445e0002574b"
+  -
+    path: "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+    before_exists: true
+    before_digest: "sha256:b668cbdeb42a83453f877f6496a7deb36e43ec98d49399ddef14de32894a08e3"
+    after_digest: "sha256:3c30cc835cda6827b844bb9cea3c49cbf8d3e5fcf7ed0134516128113a13b503"
+  -
+    path: "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-002.yaml"
+    before_exists: true
+    before_digest: "sha256:4e75adb6fd1606ec2a42d6f6203358ddb2209d96bef2461303e1cad7380f2737"
+    after_digest: "sha256:a49380a9c856ad9a2af9aeefc3a1681d712c5a4ef1ac2a100bccbf67881b4277"
+  -
+    path: "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-003.yaml"
+    before_exists: false
+    before_digest: null
+    after_digest: "sha256:e9cda4659524df29c156364313d01c2d72c88db8bd0c0feca0425aaf3a86e8ec"
+  -
+    path: "relay/STATE.yaml"
+    before_exists: true
+    before_digest: "sha256:7cef57194f499c5eeb599fcb78a447ff81972e0dd5d971ac4fe34c347010ae8b"
+    after_digest: "sha256:1b27d6e95de41ed93d57680d424e3ac1197deeb3c0d76eaa729da0b5227f650c"
+applied:
+  - "relay/EVENTS.jsonl"
+  - "relay/GENERATED/CURRENT_SNAPSHOT.yaml"
+  - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-002.yaml"
+  - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-003.yaml"
+  - "relay/STATE.yaml"
+identity_reservations: []

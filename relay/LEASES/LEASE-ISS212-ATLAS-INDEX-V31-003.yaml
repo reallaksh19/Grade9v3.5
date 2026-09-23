@@ -1,8 +1,8 @@
 schema_version: "relay-v3.1-lease"
-id: "LEASE-ISS212-ATLAS-INDEX-V31-002"
+id: "LEASE-ISS212-ATLAS-INDEX-V31-003"
 route: "SERIAL:EP-ISS212-ATLAS-INDEX-V31-002"
 executor:
-  id: "chatgpt-sol-issue212-v31-20260923"
+  id: "chatgpt-sol-issue212-recovery-v31-20260923"
 basis:
   ep_id: "EP-ISS212-ATLAS-INDEX-V31-002"
   ep_digest: "sha256:88e00e1f46b25870b66491b3c74a737ac4b682db9378d8a020d189ab549c1bcc"
@@ -30,9 +30,9 @@ admission:
     result: null
     evidence: []
 custody:
-  epoch: 1
-  granted_at: "2026-09-23T16:46:06Z"
-  renewed_at: "2026-09-23T16:46:06Z"
+  epoch: 2
+  granted_at: "2026-09-23T18:01:45Z"
+  renewed_at: "2026-09-23T18:01:45Z"
   recovery_after_seconds: 3600
   recovery_policy: "TAKEOVER_AFTER_EXPIRY"
   activity_basis:
@@ -40,7 +40,6 @@ custody:
     dependency_worktree_digest: "sha256:2adeff7ae074a7fee8b67a9d65cb434ccfea32cc4f152aea165366eb1d78b3b0"
     material_head: "2d9cd521750a6cd018e553fd91dbfe8593ca2991"
     base_ref: "origin/main"
-state: "INVALIDATED"
+state: "ACTIVE"
 invalidation:
-  reasons:
-    - "RECOVERY_TAKEOVER_BY:LEASE-ISS212-ATLAS-INDEX-V31-003"
+  reasons: []
