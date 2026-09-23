@@ -3,34 +3,89 @@
 Issue: #201  
 Scope: question-bank custody only; no practice sets or exams.
 
-## Accepted canonical candidates
+## Active bank
 
-This matrix is intentionally sparse. Cells are populated only by accepted source records; blank difficulty bands are not back-filled with authored material.
+The active expanded bank is the fixture-native v2 custody surface:
 
-| Concept bucket | Exam source | Question type | D1 | D2 | D3 | D4 | Provenance | Item IDs |
-| --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
-| `BUCKET-CHEM-MOLE-STOICHIOMETRY` | IIT-JEE | `single_correct_mcq` | 0 | 3 | 0 | 0 | `PYQ_VERIFIED` | `PYQ-CHEM-IITJEE-2007-P1-Q39`, `PYQ-CHEM-IITJEE-2007-P1-Q40`, `PYQ-CHEM-IITJEE-2007-P1-Q41` |
-| `BUCKET-CHEM-REDOX-REACTIONS` | IIT-JEE | `single_correct_mcq` | 1 | 0 | 0 | 0 | `PYQ_VERIFIED` | `PYQ-CHEM-IITJEE-2008-P1-Q66` |
-| `BUCKET-CHEM-REDOX-REACTIONS` | JEE (Advanced) | `non_negative_integer` | 0 | 0 | 1 | 0 | `PYQ_VERIFIED` | `PYQ-CHEM-JEEADV-2023-P2-Q08` |
-| `BUCKET-PHY-KIN-2D-MOTION` | IIT-JEE | `integer_answer` | 0 | 0 | 1 | 0 | `PYQ_VERIFIED` | `PYQ-PHY-IITJEE-2011-P2-Q33` |
-| `BUCKET-PHY-NLM-FIRST-LAW` | IIT-JEE | `integer_answer` | 0 | 1 | 0 | 0 | `PYQ_VERIFIED` | `PYQ-PHY-IITJEE-2011-P1-Q41` |
-| `BUCKET-PHY-NLM-FIRST-LAW` | IIT-JEE | `single_correct_mcq` | 0 | 0 | 1 | 0 | `PYQ_VERIFIED` | `PYQ-PHY-IITJEE-2007-P1-Q03` |
-| `BUCKET-RELATIVE-MOTION` | — | — | 0 | 0 | 0 | 0 | — | **ACQUISITION HOLD** |
+- `Physics/library/exam-bank/competitive-exam-question-bank.v2.json`
+- `Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json`
+
+The original v1 files remain as the first provenance seed for audit history. They are not the current coverage target.
+
+All 30 learner-usable v2 records are `PYQ_ADAPTED`: the parent exam identity is source-verified against the official organizer archive, while the stored stem/options/conditions are explicitly faithful non-verbatim restatements. Source-provided hint ladders remain in `question.hints[]` (empty for this accepted set); authored teaching support is kept separately in `question.scaffolds[]`.
 
 ## Topic totals
 
-| Topic / bucket | PYQ_VERIFIED | PYQ_ADAPTED | SOURCE_UNVERIFIED promoted | Coverage note |
-| --- | ---: | ---: | ---: | --- |
-| `BUCKET-PHY-NLM-FIRST-LAW` | 2 | 0 | 0 | Only organizer-verified items shown. |
-| `BUCKET-PHY-KIN-2D-MOTION` | 1 | 0 | 0 | Only organizer-verified items shown. |
-| `BUCKET-RELATIVE-MOTION` | 0 | 0 | 0 | No authoritative straight-line relative-motion source matched in Pass 1; donor candidates remain quarantined. |
-| `BUCKET-CHEM-REDOX-REACTIONS` | 2 | 0 | 0 | Only organizer-verified items shown. |
-| `BUCKET-CHEM-MOLE-STOICHIOMETRY` | 3 | 0 | 0 | Only organizer-verified items shown. |
+| Topic / bucket | Accepted v2 items | D1 | D2 | D3 | D4 | Relative/source status |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| `BUCKET-PHY-NLM-FIRST-LAW` | 7 | 0 | 4 | 2 | 1 | Source-matched |
+| `BUCKET-PHY-KIN-2D-MOTION` | 6 | 0 | 2 | 4 | 0 | Source-matched; circular motion excluded |
+| `BUCKET-RELATIVE-MOTION` | 2 | 0 | 1 | 1 | **Previous acquisition hold closed** |
+| `BUCKET-CHEM-REDOX-REACTIONS` | 7 | 2 | 4 | 1 | 0 | Source-matched |
+| `BUCKET-CHEM-MOLE-STOICHIOMETRY` | 8 | 0 | 7 | 1 | 0 | Source-matched |
+| **TOTAL** | **30** | **2** | **18** | **9** | **1** | No authored fill |
 
-## Source-status boundary
+## Accepted IDs by topic
 
-The `SOURCE_UNVERIFIED` donor population is reported in `source-acquisition-ledger.json` and `rejected-unverified-sources.md`. Those candidates are deliberately excluded from D1-D4 cells because difficulty analysis is attached only after the source item is accepted into canonical custody. This avoids creating a visually rectangular matrix by manufacturing questions or analysis.
+### Physics — Newton's Laws of Motion / NLM (7)
 
-## Exam identity
+- `PYQ-PHY-IITJEE-2007-P1-Q03`
+- `PYQ-PHY-IITJEE-2007-P1-Q10`
+- `PYQ-PHY-IITJEE-2008-P2-Q33`
+- `PYQ-PHY-IITJEE-2011-P1-Q41`
+- `PYQ-PHY-IITJEE-2011-P2-Q34`
+- `PYQ-PHY-JEEADV-2014-P2-Q19`
+- `PYQ-PHY-JEEADV-2020-P1-Q13`
 
-Legacy 2007, 2008 and 2011 records remain labelled **IIT-JEE**. The 2023 record is labelled **JEE (Advanced)**. No historical relabelling is performed.
+### Physics — Motion in 2D, linear/projectile only (6)
+
+- `PYQ-PHY-IITJEE-2011-P2-Q33`
+- `PYQ-PHY-JEEADV-2018-P2-Q08`
+- `PYQ-PHY-JEEADV-2019-P2-Q09`
+- `PYQ-PHY-JEEADV-2021-P1-Q05`
+- `PYQ-PHY-JEEADV-2021-P1-Q06`
+- `PYQ-PHY-JEEADV-2024-P2-Q09`
+
+### Physics — Motion in 1D, relative motion only (2)
+
+- `PYQ-PHY-IITJEE-2008-P2-Q32`
+- `PYQ-PHY-JEEADV-2014-P1-Q18`
+
+### Chemistry — Redox Reactions (7)
+
+- `PYQ-CHEM-IITJEE-2008-P1-Q66`
+- `PYQ-CHEM-IITJEE-2011-P1-Q17`
+- `PYQ-CHEM-IITJEE-2011-P1-Q18`
+- `PYQ-CHEM-IITJEE-2012-P2-Q22`
+- `PYQ-CHEM-JEEADV-2023-P2-Q08`
+- `PYQ-CHEM-JEEADV-2024-P2-Q02`
+- `PYQ-CHEM-JEEADV-2025-P1-Q08`
+
+### Chemistry — Mole Concept / Stoichiometry (8)
+
+- `PYQ-CHEM-IITJEE-2007-P1-Q39`
+- `PYQ-CHEM-IITJEE-2007-P1-Q40`
+- `PYQ-CHEM-IITJEE-2007-P1-Q41`
+- `PYQ-CHEM-IITJEE-2008-P2-Q51`
+- `PYQ-CHEM-IITJEE-2011-P2-Q14`
+- `PYQ-CHEM-JEEADV-2023-P1-Q08`
+- `PYQ-CHEM-JEEADV-2025-P1-Q12`
+- `PYQ-CHEM-JEEADV-2025-P2-Q16`
+
+## Provenance and source-status boundary
+
+The official JEE (Advanced) past-paper archive is the primary authority for this expanded pass. Legacy papers retain their historical **IIT-JEE** identity; 2014+ records use **JEE (Advanced)**.
+
+The existing donor registries remain discovery inputs only. Their `SOURCE_UNVERIFIED` population remains quarantined and is not counted in the 30 accepted v2 records. No authored question was inserted to make this matrix rectangular.
+
+## Core2 / Core2A custody split
+
+The v2 shape follows the repository's source-ingest and native question fixtures:
+
+- exact historical identity and official parent locator live in `extensions["grade9v3:source_custody"]`;
+- the learner-facing restatement is marked `origin: "ADAPTED"` and `PYQ_ADAPTED`;
+- source hint custody is `hints[]`;
+- authored graduated teaching support is `scaffolds[]`;
+- full answer, reasoning route, crux move, rubric and independent check live under `answer`.
+
+This prevents the previous error of treating a prose summary or an authored hint ladder as verbatim Core2 source custody.
