@@ -18,6 +18,7 @@ SMOKE = {
 REPRESENTATIONS = {
     "REP-NLM-FBD-BODY-OWNERSHIP",
     "REP-NLM-FRICTION-THRESHOLD",
+    "REP-NLM-ACCELERATING-FRAME-COMPARISON",
 }
 
 
@@ -62,9 +63,18 @@ class Grade9PhysicsVisualLearnerLoopTest(unittest.TestCase):
             ["ACT-NLM-FRICTION-THRESHOLD"],
             reps["REP-NLM-FRICTION-THRESHOLD"]["interactive_resource_refs"],
         )
+        self.assertEqual(
+            ["REP-NLM-ACCELERATING-FRAME-COMPARISON"],
+            micro["MIC-PHY-NLM-FRAME-CHOICE"]["representation_refs"],
+        )
+        self.assertEqual(
+            ["ACT-NLM-ACCELERATED-FRAMES"],
+            reps["REP-NLM-ACCELERATING-FRAME-COMPARISON"]["interactive_resource_refs"],
+        )
         # FREE_BODY_DIAGRAM remains PROPOSED: canonical truth exists without a fake renderer.
         self.assertEqual([], reps["REP-NLM-FBD-BODY-OWNERSHIP"]["scene_instances"])
         self.assertEqual([], reps["REP-NLM-FRICTION-THRESHOLD"]["scene_instances"])
+        self.assertEqual([], reps["REP-NLM-ACCELERATING-FRAME-COMPARISON"]["scene_instances"])
 
     def test_support_stage_and_hint_stage_are_separate_and_resolve(self):
         self.assertEqual([], visual_findings(self.records))
