@@ -1,91 +1,117 @@
 # Pass 1 competitive-exam coverage matrix
 
-Issue: #201  
+Issue: #216  
 Scope: question-bank custody only; no practice sets or exams.
 
 ## Active bank
 
-The active expanded bank is the fixture-native v2 custody surface:
+The active fixture-native v2 custody surface contains **54 source-matched PYQ adaptations**:
 
-- `Physics/library/exam-bank/competitive-exam-question-bank.v2.json`
-- `Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json`
+- `Physics/library/exam-bank/competitive-exam-question-bank.v2.json` — **21**
+- `Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json` — **33**
 
-The superseded 8-question v1 bank files have been removed. The v2 custody manifests are the sole active exam-bank truth under the subject libraries.
-
-All 30 learner-usable v2 records are `PYQ_ADAPTED`: the parent exam identity is source-verified against the official organizer archive, while the stored stem/options/conditions are explicitly faithful non-verbatim restatements. Source-provided hint ladders remain in `question.hints[]` (empty for this accepted set); authored teaching support is kept separately in `question.scaffolds[]`.
+Every learner-facing item is `PYQ_ADAPTED`: its historical parent is matched to a first-party organizer question source, while stored wording is explicitly a faithful non-verbatim restatement. Source `hints[]` remains source-only; authored teaching support is in `scaffolds[]`.
 
 ## Topic totals
 
-| Topic / bucket | Accepted v2 items | D1 | D2 | D3 | D4 | Relative/source status |
+| Topic / bucket | Accepted items | D1 | D2 | D3 | D4 | Source status |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `BUCKET-PHY-NLM-FIRST-LAW` | 7 | 0 | 4 | 2 | 1 | Source-matched |
-| `BUCKET-PHY-KIN-2D-MOTION` | 6 | 0 | 2 | 4 | 0 | Source-matched; circular motion excluded |
-| `BUCKET-RELATIVE-MOTION` | 2 | 0 | 1 | 1 | **Previous acquisition hold closed** |
-| `BUCKET-CHEM-REDOX-REACTIONS` | 7 | 2 | 4 | 1 | 0 | Source-matched |
-| `BUCKET-CHEM-MOLE-STOICHIOMETRY` | 8 | 0 | 7 | 1 | 0 | Source-matched |
-| **TOTAL** | **30** | **2** | **18** | **9** | **1** | No authored fill |
+| `BUCKET-PHY-NLM-FIRST-LAW` | 9 | 0 | 5 | 3 | 1 | Source-matched |
+| `BUCKET-PHY-KIN-2D-MOTION` | 10 | 0 | 2 | 6 | 2 | Source-matched; circular motion excluded |
+| `BUCKET-RELATIVE-MOTION` | 2 | 0 | 1 | 1 | 0 | Source-matched; narrow acquisition remains sparse |
+| `BUCKET-CHEM-REDOX-REACTIONS` | 19 | 4 | 10 | 5 | 0 | Source-matched |
+| `BUCKET-CHEM-MOLE-STOICHIOMETRY` | 14 | 0 | 11 | 3 | 0 | Source-matched |
+| **TOTAL** | **54** | **4** | **29** | **18** | **3** | No authored fill |
+
 
 ## Accepted IDs by topic
 
-### Physics — Newton's Laws of Motion / NLM (7)
+### Newton's Laws of Motion / NLM (9)
 
 - `PYQ-PHY-IITJEE-2007-P1-Q03`
 - `PYQ-PHY-IITJEE-2007-P1-Q10`
 - `PYQ-PHY-IITJEE-2008-P2-Q33`
 - `PYQ-PHY-IITJEE-2011-P1-Q41`
 - `PYQ-PHY-IITJEE-2011-P2-Q34`
+- `PYQ-PHY-JEEADV-2014-P1-Q08`
 - `PYQ-PHY-JEEADV-2014-P2-Q19`
 - `PYQ-PHY-JEEADV-2020-P1-Q13`
+- `PYQ-PHY-NEET-2020-E1-Q160`
 
-### Physics — Motion in 2D, linear/projectile only (6)
+### Motion in 2D / Motion in a Plane — linear/projectile only (10)
 
 - `PYQ-PHY-IITJEE-2011-P2-Q33`
+- `PYQ-PHY-IITJEE-2012-P1-Q05`
 - `PYQ-PHY-JEEADV-2018-P2-Q08`
 - `PYQ-PHY-JEEADV-2019-P2-Q09`
 - `PYQ-PHY-JEEADV-2021-P1-Q05`
 - `PYQ-PHY-JEEADV-2021-P1-Q06`
+- `PYQ-PHY-JEEADV-2022-P1-Q08`
+- `PYQ-PHY-JEEADV-2023-P1-Q01`
 - `PYQ-PHY-JEEADV-2024-P2-Q09`
+- `PYQ-PHY-JEEADV-2025-P2-Q15`
 
-### Physics — Motion in 1D, relative motion only (2)
+### Motion in 1D — relative motion only (2)
 
 - `PYQ-PHY-IITJEE-2008-P2-Q32`
 - `PYQ-PHY-JEEADV-2014-P1-Q18`
 
-### Chemistry — Redox Reactions (7)
+### Redox Reactions (19)
 
 - `PYQ-CHEM-IITJEE-2008-P1-Q66`
 - `PYQ-CHEM-IITJEE-2011-P1-Q17`
 - `PYQ-CHEM-IITJEE-2011-P1-Q18`
 - `PYQ-CHEM-IITJEE-2012-P2-Q22`
+- `PYQ-CHEM-JEEADV-2014-P1-Q29`
+- `PYQ-CHEM-JEEADV-2016-P1-Q34`
+- `PYQ-CHEM-JEEADV-2018-P2-Q08`
+- `PYQ-CHEM-JEEADV-2018-P2-Q09`
+- `PYQ-CHEM-JEEADV-2019-P2-Q09`
+- `PYQ-CHEM-JEEADV-2020-P2-Q03`
+- `PYQ-CHEM-JEEADV-2021-P2-Q11`
+- `PYQ-CHEM-JEEADV-2021-P2-Q12`
+- `PYQ-CHEM-JEEADV-2022-P1-Q04`
 - `PYQ-CHEM-JEEADV-2023-P2-Q08`
+- `PYQ-CHEM-JEEADV-2023-P2-Q10`
 - `PYQ-CHEM-JEEADV-2024-P2-Q02`
 - `PYQ-CHEM-JEEADV-2025-P1-Q08`
+- `PYQ-CHEM-NEET-2020-E1-Q099`
+- `PYQ-CHEM-NEET-2020-E1-Q125`
 
-### Chemistry — Mole Concept / Stoichiometry (8)
+### Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry (14)
 
 - `PYQ-CHEM-IITJEE-2007-P1-Q39`
 - `PYQ-CHEM-IITJEE-2007-P1-Q40`
 - `PYQ-CHEM-IITJEE-2007-P1-Q41`
 - `PYQ-CHEM-IITJEE-2008-P2-Q51`
 - `PYQ-CHEM-IITJEE-2011-P2-Q14`
+- `PYQ-CHEM-JEEADV-2014-P1-Q39`
+- `PYQ-CHEM-JEEADV-2016-P1-Q32`
+- `PYQ-CHEM-JEEADV-2018-P1-Q08`
 - `PYQ-CHEM-JEEADV-2023-P1-Q08`
 - `PYQ-CHEM-JEEADV-2025-P1-Q12`
 - `PYQ-CHEM-JEEADV-2025-P2-Q16`
+- `PYQ-CHEM-NEET-2020-E1-Q106`
+- `PYQ-CHEM-NEET-2020-E1-Q110`
+- `PYQ-CHEM-NEET-2020-E1-Q123`
 
-## Provenance and source-status boundary
+## Source-lineage status
 
-The official JEE (Advanced) past-paper archive is the primary authority for this expanded pass. Legacy papers retain their historical **IIT-JEE** identity; 2014+ records use **JEE (Advanced)**.
+| Lineage | PASS 1 status | Rule |
+| --- | --- | --- |
+| IIT-JEE / JEE (Advanced) | **ACCEPTED** | Organizer archive supplies persistent historical question papers. |
+| NEET | **PARTIAL ACCEPTED** | 2020 English Set E1 is matched to the official NEET paper and NTA final key. |
+| JEE Main / AIEEE | **HELD** | Official notices/keys were located, but targeted donor stems are not promoted without a persistent first-party paper parent. |
+| AIPMT | **HELD** | Official CBSE key material alone is not enough to promote a question. |
 
-The existing donor registries remain discovery inputs only. Their `SOURCE_UNVERIFIED` population remains quarantined and is not counted in the 30 accepted v2 records. No authored question was inserted to make this matrix rectangular.
+The bank is therefore larger without lowering the provenance threshold. Secondary donor registries remain discovery inputs only.
 
 ## Core2 / Core2A custody split
 
-The v2 shape follows the repository's source-ingest and native question fixtures:
+- historical identity and official source locator: `extensions["grade9v3:source_custody"]`;
+- learner-facing wording: `origin: "ADAPTED"` / `PYQ_ADAPTED`;
+- source hints: `hints[]`;
+- authored graduated help: `scaffolds[]`;
+- answer, reasoning route, crux, rubric and independent check: `answer`.
 
-- exact historical identity and official parent locator live in `extensions["grade9v3:source_custody"]`;
-- the learner-facing restatement is marked `origin: "ADAPTED"` and `PYQ_ADAPTED`;
-- source hint custody is `hints[]`;
-- authored graduated teaching support is `scaffolds[]`;
-- full answer, reasoning route, crux move, rubric and independent check live under `answer`.
-
-This prevents the previous error of treating a prose summary or an authored hint ladder as verbatim Core2 source custody.
+No practice set or exam is generated in PASS 1.
