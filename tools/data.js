@@ -997,7 +997,8 @@ window.GRADE9V3 = {
                       "domain": "RATIONAL",
                       "bindings": {
                         "a": "DAT-MATH-A",
-                        "b": "DAT-MATH-B",                        "c": "DAT-MATH-C"
+                        "b": "DAT-MATH-B",
+                        "c": "DAT-MATH-C"
                       }
                     }
                   }
@@ -1996,7 +1997,8 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"              },
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -2995,7 +2997,8 @@ window.GRADE9V3 = {
                   "check": "Look immediately before and after the instant: a changing velocity signals nonzero acceleration even when the middle velocity is zero.",
                   "acceptable_alternatives": [],
                   "subpart_answers": [],
-                  "verification_status": "CHECKED_BY_AUTHOR"                },
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
                 "oracle": {
                   "no_numeric_claim": "The answer distinguishes zero/nonzero acceleration qualitatively and gives no computed acceleration value."
                 }
@@ -3994,7 +3997,8 @@ window.GRADE9V3 = {
                   "diagnostic_prompt": "If a=(10 i + 4 j) m/s², should both component equations use a=√116?",
                   "repair": "No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component."
                 },
-                {                  "wrong_idea": "If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.",
+                {
+                  "wrong_idea": "If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.",
                   "diagnostic_prompt": "If a_x is constant but a_y changes with time, may the same constant-acceleration displacement formula be used exactly on y over the whole interval?",
                   "repair": "No. Model validity is checked per axis. A constant a_x does not make a_y constant."
                 },
@@ -4993,7 +4997,8 @@ window.GRADE9V3 = {
               "id": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
               "title": "A free-body diagram belongs to one chosen body",
               "badge": "HARD",
-              "status": "CANDIDATE",              "badge_reason": "Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on.",
+              "status": "CANDIDATE",
+              "badge_reason": "Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on.",
               "entry_assumptions": [
                 "Can keep several forces visible even when their net effect is zero."
               ],
@@ -5992,7 +5997,8 @@ window.GRADE9V3 = {
               "origin": "AUTHORED",
               "answer": "With +up, the signed acceleration is a=-g. At the highest point v=0, so t_top=u/g. Using v^2=u^2+2as gives H=u^2/(2g)."
             },
-            {              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
+            {
+              "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
               "stem": "A ball is launched vertically upward from a balcony with speed u. The ground is H below the launch point. Put the origin at the balcony and choose upward as positive. Derive the future time at which the ball reaches the ground and the signed impact velocity.",
               "origin": "AUTHORED",
               "answer": "The ground event has s=-H and a=-g, so -H=ut-(1/2)gt^2. The future root is t=[u+sqrt(u^2+2gH)]/g. The signed impact velocity is v=u-gt=-sqrt(u^2+2gH)."
@@ -6991,7 +6997,8 @@ window.GRADE9V3 = {
                   "kind": "MODEL_RESPONSE",
                   "summary": "Draw the perpendicular normal at the contact point, then place the outgoing path on the other side with the same tilt to that normal; both angles are measured from the normal.",
                   "reasoning": [
-                    "Locate the point where the incoming path meets the surface.",                    "Draw the perpendicular reference there before reading or copying any angle.",
+                    "Locate the point where the incoming path meets the surface.",
+                    "Draw the perpendicular reference there before reading or copying any angle.",
                     "Use the same reference on the opposite side to place the outgoing path."
                   ],
                   "check": "Rotate the page mentally. If the construction depends on the page edge rather than the normal, it will change; a correct construction will not.",
@@ -7990,7 +7997,8 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "PROSE_AUTHORING",
-                "core": "CORE1A",                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
+                "core": "CORE1A",
+                "detail": "blocks carry library-held teaching text; connecting narrative still requires authoring"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -8989,7 +8997,8 @@ window.GRADE9V3 = {
             {
               "id": "CAP-KIN-CONSTANT-ACCELERATION",
               "action": "Derive the constant-acceleration kinematic equations from a straight velocity-time graph, then choose and apply them only when one acceleration value describes the interval.",
-              "provider": null,              "acceptance": "CANDIDATE"
+              "provider": null,
+              "acceptance": "CANDIDATE"
             },
             {
               "id": "CAP-KIN-DISTANCE-DISPLACEMENT",
@@ -9988,7 +9997,8 @@ window.GRADE9V3 = {
                   "action": "Compare the geometric area under the two paths without moving A or B.",
                   "why_valid": "Mechanical work in a pressure-volume process depends on the path traced, so different path shapes can produce different work while endpoints remain fixed.",
                   "role": "TRANSFORM",
-                  "output": "A,B unchanged; area under path 1 != area under path 2 -> process work differs",                  "inputs": []
+                  "output": "A,B unchanged; area under path 1 != area under path 2 -> process work differs",
+                  "inputs": []
                 },
                 {
                   "id": "THERMO-R3-3",
@@ -10987,7 +10997,8 @@ window.GRADE9V3 = {
                 "oracle": {
                   "no_numeric_claim": "The answer is symbolic; the magnitude-one check is algebraic and asserts no computed numerical measurement."
                 }
-              },              "prerequisites": [
+              },
+              "prerequisites": [
                 "CAP-VEC-UNIT-NOTATION",
                 "CAP-RIGHT-TRIANGLE-BRIDGE"
               ]
@@ -11986,7 +11997,8 @@ window.GRADE9V3 = {
               "origin": "AUTHORED",
               "answer": "K = 9 J. Mechanical-energy conservation additionally requires that no frictional or outside transfer change the chosen K + U account."
             },
-            {              "id": "Q-PHY-WEP-2A-DERIV-01",
+            {
+              "id": "Q-PHY-WEP-2A-DERIV-01",
               "stem": "Do not quote the final formula. Starting from constant-force work, Newton's second law and the constant-acceleration relation v^2-u^2=2as, derive the kinetic-energy expression for motion from rest. Then show why slowly raising the same mass through height h near Earth's surface gives a gravitational potential-energy increase mgh.",
               "origin": "AUTHORED",
               "answer": "The two required chains are W_net = mas = 0.5mv^2 -> K = 0.5mv^2 from rest, and slow lift F_applied = mg -> W_applied = mgh -> Delta U_g = mgh."
@@ -12985,7 +12997,8 @@ window.GRADE9V3 = {
               },
               {
                 "level": "medium",
-                "handed_over": "Node labels and a suggested loop are supplied, but the learner chooses signs and equations."              },
+                "handed_over": "Node labels and a suggested loop are supplied, but the learner chooses signs and equations."
+              },
               {
                 "level": "low",
                 "handed_over": "Only the circuit, component values, and requested quantity are supplied."
@@ -13984,7 +13997,8 @@ window.GRADE9V3 = {
                   {
                     "id": "FLUID-R4-3",
                     "role": "VERIFY",
-                    "action": "Now move the faster point to a lower height and ask whether speed alone still fixes the pressure ordering.",                    "why_valid": "Changing height adds another ledger change, so the earlier two-variable conclusion cannot be transferred without considering the full comparison.",
+                    "action": "Now move the faster point to a lower height and ask whether speed alone still fixes the pressure ordering.",
+                    "why_valid": "Changing height adds another ledger change, so the earlier two-variable conclusion cannot be transferred without considering the full comparison.",
                     "output": "speed at point 2: higher | height at point 2: lower | pressure ordering: not decidable from speed alone",
                     "inputs": []
                   }
@@ -14983,7 +14997,8 @@ window.GRADE9V3 = {
                 "An orbital-plane drawing with position and momentum as in-plane polar vectors and angular momentum shown as an axial vector normal to the plane.",
                 "The same orbit shown from the opposite face so the axial direction convention must be applied rather than guessed from clockwise/counter-clockwise words alone."
               ],
-              "controlled_variation": [                {
+              "controlled_variation": [
+                {
                   "phase": 1,
                   "vary": "the satellite's position around the orbit",
                   "hold": "central force directed through the same origin",
@@ -15982,7 +15997,8 @@ window.GRADE9V3 = {
                     "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
                     "acceptable_alternatives": [],
                     "subpart_answers": [],
-                    "verification_status": "CHECKED_BY_AUTHOR"                  },
+                    "verification_status": "CHECKED_BY_AUTHOR"
+                  },
                   "oracle": {
                     "verification": {
                       "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
@@ -16981,7 +16997,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "phase": 3,
-                  "vary": "which axis supplies the event condition used to find time",                  "hold": "one event and one physical clock",
+                  "vary": "which axis supplies the event condition used to find time",
+                  "hold": "one event and one physical clock",
                   "notice": "the event time obtained from either axis must be used on both axes"
                 }
               ],
@@ -17980,7 +17997,8 @@ window.GRADE9V3 = {
                     "id": "MAG-R2-3",
                     "role": "VERIFY",
                     "action": "Keep the physical surface fixed but reverse which normal arrow is declared positive.",
-                    "why_valid": "Changing the chosen orientation reverses the sign convention while leaving the physical setup unchanged, separating signed description from apparatus.",                    "output": "normal one way -> one sign; reversed normal -> opposite sign",
+                    "why_valid": "Changing the chosen orientation reverses the sign convention while leaving the physical setup unchanged, separating signed description from apparatus.",
+                    "output": "normal one way -> one sign; reversed normal -> opposite sign",
                     "inputs": []
                   }
                 ]
@@ -18979,7 +18997,8 @@ window.GRADE9V3 = {
                 ],
                 "teaching_path": [
                   {
-                    "id": "NLM5-1",                    "role": "DECLARE",
+                    "id": "NLM5-1",
+                    "role": "DECLARE",
                     "action": "Choose the body and mark the contact surface before deciding a friction direction.",
                     "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
                     "output": "chosen body; named contact; tangent direction available.",
@@ -19978,7 +19997,8 @@ window.GRADE9V3 = {
                     "action": "State the idealization before using one tension symbol: taut inextensible massless string, with any pulley/redirection frictionless and massless for this bounded model.",
                     "why_valid": "Uniform tension is a consequence of the ideal model and must not be silently transferred to a nonideal rope or pulley.",
                     "output": "ideal single string model declared -> one tension magnitude T is admissible throughout that string",
-                    "inputs": []                  },
+                    "inputs": []
+                  },
                   {
                     "id": "NLM10-2",
                     "role": "DECLARE",
@@ -20977,7 +20997,8 @@ window.GRADE9V3 = {
                   "family_ref": "FAM-PHY-NLM-MOMENTUM-TRANSFER-PRACTICE",
                   "repair_ref": "NLM-MTR-2"
                 },
-                {                  "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
+                {
+                  "id": "Q-PHY-NLM-MTR-2B-AVERAGE-05",
                   "stem": "A repeated-launch calculation gives F_avg=30 N for a held launcher. A high-speed force sensor, however, shows short force pulses separated by intervals close to zero force. A learner says the sensor disproves the 30 N result because the force is not constantly 30 N. Decide whether the two observations are compatible and state what additional information would be needed to determine a peak force.",
                   "answer": "They are compatible. The 30 N result is the time-average momentum-transfer force over many events, not an assertion of a constant instantaneous force. Determining a peak force requires additional pulse-duration or force-time-profile information.",
                   "origin": "AUTHORED",
@@ -21976,7 +21997,8 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [
                   "CAP-OPT-MIRROR-EQUATION"
                 ],
-                "acceptance_status": "CANDIDATE"              },
+                "acceptance_status": "CANDIDATE"
+              },
               "questions": [],
               "activities": []
             }
@@ -22975,7 +22997,8 @@ window.GRADE9V3 = {
                     "output": "P = 1/f in D",
                     "inputs": [
                       "REL-LENS-POWER"
-                    ]                  },
+                    ]
+                  },
                   {
                     "id": "LENS-R6-3",
                     "role": "VERIFY",
@@ -23974,7 +23997,8 @@ window.GRADE9V3 = {
                 "rolling resistance",
                 "deformation loss",
                 "air drag",
-                "bearing loss",                "slip"
+                "bearing loss",
+                "slip"
               ],
               "must_contain": [
                 "Two rolling bodies released from the same incline height with equal mass and radius but different moments of inertia.",
@@ -24973,7 +24997,8 @@ window.GRADE9V3 = {
                   }
                 },
                 "elicitation": {
-                  "predict": {                    "prompt": "When a sound pulse reaches you across a room, must the same air particles that touched the speaker have reached your ear?",
+                  "predict": {
+                    "prompt": "When a sound pulse reaches you across a room, must the same air particles that touched the speaker have reached your ear?",
                     "defensible_answer": "No. Air particles oscillate locally; the compression/rarefaction disturbance travels through successive interactions."
                   },
                   "attempt": {
@@ -25972,7 +25997,8 @@ window.GRADE9V3 = {
                         "evidence_of": "The learner is testing path dependence without changing the state change."
                       },
                       {
-                        "criterion": "The response separates the common internal-energy change from potentially different transfers.",                        "evidence_of": "The learner distinguishes a state function from path quantities."
+                        "criterion": "The response separates the common internal-energy change from potentially different transfers.",
+                        "evidence_of": "The learner distinguishes a state function from path quantities."
                       }
                     ],
                     "accepted": [
@@ -26971,7 +26997,8 @@ window.GRADE9V3 = {
                 ],
                 "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
                 "misconceptions": [
-                  {                    "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
+                  {
+                    "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
                     "diagnostic_prompt": "If theta is measured from the +y axis instead of +x, which component is adjacent to theta?",
                     "repair": "Name the angle reference first. Cosine goes with the adjacent component and sine with the opposite component; x/y labels follow only after the geometry is fixed."
                   },
@@ -27970,7 +27997,8 @@ window.GRADE9V3 = {
                   },
                   "oracle": {
                     "no_numeric_claim": "The answer states only increase/no-change/decrease and contains no computed energy value."
-                  }                },
+                  }
+                },
                 "elicitation": {
                   "predict": {
                     "prompt": "A moving object is braking. Before calculating anything, should the combined work over the braking interval correspond to increasing or decreasing kinetic energy?",
@@ -28969,7 +28997,8 @@ window.GRADE9V3 = {
                   "CAP-WEP-MECH-ENERGY-CONDITION"
                 ],
                 "teaching_path": [
-                  {                    "id": "WEP6-1",
+                  {
+                    "id": "WEP6-1",
                     "role": "DECLARE",
                     "action": "Choose the body/system, displacement direction, reference frame and height reference before calculating.",
                     "why_valid": "Work sign and energy values depend on these declarations.",
@@ -29968,7 +29997,8 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "The transformed ordered pair plus one sentence tying each sign to the declared positive axes.",
                     "closure": "RUBRIC",
-                    "rubric": [                      {
+                    "rubric": [
+                      {
                         "criterion": "Leaves the horizontal component unchanged.",
                         "evidence_of": "Tracking only the axis convention that changed."
                       },
