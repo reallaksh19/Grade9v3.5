@@ -66,7 +66,7 @@ def core_projection_refs_for_microtopic(core: dict, microtopic_ref: str) -> list
     return sorted(
         row["id"]
         for row in core["core_projections"]
-        if (row.get("concept") or {}).get("microtopic_ref") == microtopic_ref
+        if (row.get("projection") or {}).get("concept", {}).get("microtopic_ref") == microtopic_ref
     )
 
 
@@ -335,7 +335,7 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
 
         self.assertEqual(["REP-DOES-NOT-EXIST"], row["representation_refs"])
         self.assertEqual("INVALID", row["availability"]["representation"])
-        self.assertNotEqual("READY", row["availability"]["visual"])
+        self.assertEqual("INVALID", row["availability"]["mapping"])
 
     def test_missing_activity_resource_does_not_erase_representation(self):
         records = copy.deepcopy(self.physics)
@@ -347,7 +347,7 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         self.assertEqual(["REP-KIN-2D-SHARED-CLOCK"], row["representation_refs"])
         self.assertEqual("READY", row["availability"]["representation"])
         self.assertEqual("INVALID", row["availability"]["activity"])
-        self.assertNotEqual("READY", row["availability"]["visual"])
+        self.assertEqual("INVALID", row["availability"]["mapping"])
 
     def test_duplicate_composite_key_is_explicit_and_never_first_wins(self):
         duplicate = copy.deepcopy(self.motion)
