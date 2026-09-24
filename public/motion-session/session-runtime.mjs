@@ -226,7 +226,7 @@ export function transitionMotionSessionState(currentStateInput, actionInput) {
   if ([
     "SESSION_START", "IDENTITY_RESOLVED", "TRACE_EXPORTED", "RETRY_REQUESTED",
     "STAGE_EXITED", "STAGE_ENTERED", "CORE_REVEAL_REQUESTED",
-    "VISUAL_ACTION_REQUESTED", "RECOVERY_STARTED",
+    "VISUAL_ACTION_REQUESTED", "RECOVERY_STARTED", "WORKBENCH_WAITING",
   ].includes(type)) {
     return observed(state, type);
   }
