@@ -21,11 +21,12 @@ class PortableWorkbenchPackageTests(unittest.TestCase):
         cls.packages = build_portable_workbench.packages()
         cls.by_id = {row["id"]: row for row in cls.packages}
 
-    def test_three_cross_subject_packages_share_one_contract(self):
+    def test_fixture_and_canonical_packages_share_one_contract(self):
         self.assertEqual(set(self.by_id), {
             "portable-long-division",
             "portable-redox-electron-equivalence",
             "portable-integration-riemann",
+            "portable-motion-shared-clock",
         })
         versions = {
             (row["packageVersion"], row["componentApiVersion"], row["transformationIrVersion"],
@@ -41,10 +42,28 @@ class PortableWorkbenchPackageTests(unittest.TestCase):
         )
         self.assertEqual(self.by_id["portable-long-division"]["scene"], source)
 
-    def test_packages_are_noncanonical_compiled_proofs(self):
-        for package in self.packages:
+    def test_fixture_packages_remain_noncanonical_compiled_proofs(self):
+        for package_id in (
+            "portable-long-division",
+            "portable-redox-electron-equivalence",
+            "portable-integration-riemann",
+        ):
+            package = self.by_id[package_id]
             self.assertEqual(package["provenance"]["authority"], "NON_CANONICAL_COMPILED_PROOF")
             self.assertNotIn("mastery", json.dumps(package).lower())
+
+    def test_motion_package_is_compiled_from_canonical_shared_clock_source(self):
+        package = self.by_id["portable-motion-shared-clock"]
+        self.assertEqual(package["resourceRef"], "ACT-KIN-2D-SHARED-CLOCK")
+        self.assertEqual(package["representationRefs"], ["REP-KIN-2D-SHARED-CLOCK"])
+        self.assertEqual(package["provenance"]["authority"], "CANONICAL_COMPILED_RESOURCE")
+        self.assertEqual(package["provenance"]["representationRef"], "REP-KIN-2D-SHARED-CLOCK")
+        self.assertEqual(package["scene"]["id"], "portable-motion-shared-clock-scene")
+        rules = {row["id"]: row for row in package["adapter"]["rules"]}
+        self.assertEqual(rules["same-time"]["outcome"], "ACCEPT")
+        self.assertEqual(rules["mixed-time"]["outcome"], "REJECT")
+        self.assertIn("single physical state", rules["mixed-time"]["reason"])
+        self.assertNotIn("mastery", json.dumps(package).lower())
 
     def test_canonical_provenance_requires_explicit_resource_and_representation(self):
         canonical = copy.deepcopy(self.packages[0])

@@ -8,7 +8,7 @@ PACKAGE_SCHEMA = "portable-workbench-package"
 PACKAGE_VERSION = "1.0.0"
 COMPONENT_API_VERSION = "0.1.0"
 TRANSFORMATION_IR_VERSION = "0.1.0"
-ADAPTER_API_VERSION = "0.1.0"
+ADAPTER_API_VERSION = "0.2.0"
 SCENE_PACKAGE_VERSION = "1.0.0"
 DECLARATIVE_ADAPTER_ID = "declarative-transfer-v1"
 NON_CANONICAL_PROVENANCE_AUTHORITY = "NON_CANONICAL_COMPILED_PROOF"
@@ -156,6 +156,12 @@ def _validate_adapter(adapter: dict[str, Any], scene: dict[str, Any]) -> dict[st
         target = _text(rule.get("targetRef"), "PORTABLE_ADAPTER_TARGET_REQUIRED", rule_id)
         _require(target == transform["targetRef"], "PORTABLE_ADAPTER_TARGET_MISMATCH", rule_id)
         _require(rule.get("operation") == targets[target]["operation"], "PORTABLE_ADAPTER_OPERATION_MISMATCH", rule_id)
+        outcome = rule.get("outcome", "ACCEPT")
+        _require(outcome in {"ACCEPT", "REJECT"}, "PORTABLE_ADAPTER_OUTCOME_INVALID", rule_id)
+        if outcome == "REJECT":
+            _text(rule.get("reason"), "PORTABLE_ADAPTER_REJECTION_REASON_REQUIRED", rule_id)
+            _require("patch" not in rule, "PORTABLE_ADAPTER_REJECTION_PATCH_FORBIDDEN", rule_id)
+            continue
         patch = rule.get("patch")
         _require(isinstance(patch, dict), "PORTABLE_ADAPTER_PATCH_REQUIRED", rule_id)
         _require(set(patch) <= {"addEntities", "addProjections"}, "PORTABLE_ADAPTER_PATCH_FIELD_UNSUPPORTED", rule_id)
