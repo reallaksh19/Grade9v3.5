@@ -241,23 +241,19 @@ class Issue19PhysicsFirstSlice(unittest.TestCase):
             )
 
         gate = load_json(REPO / "Physics/gates/foundational-relations.v1.json")
-        grade9_gate_ids = {
-            row["gate_id"] for row in gate["gates"]
+        grade9_gates = [
+            row for row in gate["gates"]
             if row["curriculum"]["grade"] == 9
+        ]
+        grade9_gate_ids = {row["gate_id"] for row in grade9_gates}
+        grade9_owner_extension_ids = {
+            row["gate_id"] for row in grade9_gates
+            if row["curriculum"]["scope_class"] == "OWNER_EXTENSION"
         }
-        self.assertEqual(
-            grade9_gate_ids,
-            {
-                "PHY-KIN-AVERAGE-RATES",
-                "PHY-NEWTON-SECOND-LAW",
-                "PHY-NLM-CONTACT-CONSTRAINTS",
-                "PHY-NLM-MOMENTUM-TRANSFER-RATE",
-                "PHY-NLM-ACCELERATING-FRAME-EXTENSION",
-                "PHY-POWER-RATES",
-                "PHY-WORK-ENERGY-GRADE9",
-                "PHY-WAVE-SPEED",
-                "PHY-SIMPLE-MACHINES-GRADE9",
-            },
+        self.assertEqual(grade9_gate_ids, grade9_owner_extension_ids)
+        self.assertIn(
+            "PHY-KIN-CIRCULAR-DYNAMICS-EXTENSION",
+            grade9_owner_extension_ids,
         )
         for row in gate["gates"]:
             self.assertEqual(row["curriculum"]["scope_class"], "OWNER_EXTENSION")

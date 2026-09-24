@@ -25,6 +25,14 @@ Core2 is a preservation product. Its contents are **not** generated. If a bucket
 
 An author-created review corpus may legitimately exist and may feed Core2A/Core2B practice, with truthful authored provenance throughout. It does not become Core2 by being useful.
 
+## Rights-aware preservation
+
+Core2 preserves the **assessment demand exactly**. When repository rights/source policy permit, source wording and demand-bearing media are stored verbatim. When they do not, the exact source item may remain externally referenced only when custody is pinned to retained source bytes, a precise item locator and an explicit component-by-component verification record. Reconstructed wording is never presented as an original.
+
+For source-derived canonical questions, `question.extensions.source_custody` is the durable question-level proof. It binds the question to the acquisition/resource digest, records the exact source item locus, distinguishes embedded-verbatim from external-reference custody, and records whether identity, stem, subparts, options, conditions, figures/captions, source hints and source answer/rubric were preserved, absent in the source, externally verified, or remain unresolved. An unresolved proof may remain candidate evidence; it cannot establish reviewed Core2 custody.
+
+This proof complements rather than replaces digest-bound review authority: acquisition proves the bytes, question custody proves what was compared, and promotion proves who independently accepted the resulting canonical record.
+
 ## Downstream consequence
 
 Core2A and Core2B depend on Core2's custody for any claim about assessment demand, exposure or transfer boundaries. While Core2 is held, those products may still be built from authored candidates, but their acceptance inherits the hold: practice can be produced, and it can be honest, but it cannot claim to reflect the real assessment surface of the bucket.

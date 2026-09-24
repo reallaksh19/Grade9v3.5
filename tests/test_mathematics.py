@@ -232,11 +232,11 @@ class EndToEnd(unittest.TestCase):
     def test_the_bucket_publishes_and_its_exact_answer_is_verified(self):
         result, out = self._publish()
         self.assertEqual(result["status"], "PASS")
-        self.assertEqual(result["products"], ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A"])
-        # Rose from two when Core1A began carrying the worked example its spec
-        # requires: the same answer is now checked once per product that states
-        # it, which is the point of counting rather than a regression.
-        self.assertEqual(result["numeric_answers_compared"], 3)
+        self.assertEqual(result["products"], ["CORE1", "CORE1A", "CORE1B", "CORE2A"])
+        # The authored Mathematics practice question remains available to the teaching
+        # products but no longer masquerades as Core2 source custody. Its exact answer is
+        # therefore checked only in the products that legitimately state it.
+        self.assertEqual(result["numeric_answers_compared"], 2)
         self.assertEqual(result["scientific_reviews_pending"], 0)
         self.assertFalse(result["release_authorized"], "machine checks never authorise release")
         evidence = json.loads((out / "evidence.json").read_text(encoding="utf-8"))

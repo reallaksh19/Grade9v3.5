@@ -252,8 +252,29 @@ def repair_for(records: dict, question: dict, failed_capability_ref: str | None,
     }
 
 
+def pre_attempt_safe_hint(question: dict, shown_hint_indices: list[int]) -> dict | None:
+    """Return only support safe to expose before a Core2B attempt.
+
+    Hints remain canonical custody data. Learner-time disclosure is stricter: any
+    transfer task gets concept-only support before commitment. METHOD/ANSWER hints may
+    still participate in graduated help after an attempt through next_safe_hint().
+    """
+    shown = set(shown_hint_indices)
+    is_transfer = isinstance(question.get("transfer"), dict) and bool(question.get("transfer"))
+    for index, hint in enumerate(question.get("hints", [])):
+        if index in shown:
+            continue
+        reveals = hint.get("reveals")
+        if reveals == "ANSWER":
+            continue
+        if is_transfer and reveals != "CONCEPT":
+            continue
+        return {"index": index, **hint}
+    return None
+
+
 def next_safe_hint(question: dict, shown_hint_indices: list[int]) -> dict | None:
-    """Return the next non-answer hint that preserves the intended decision demand."""
+    """Return the next post-attempt non-answer hint that preserves decision demand."""
     shown = set(shown_hint_indices)
     transfer = question.get("transfer") or {}
     model_choice_transfer = transfer.get("dimension") == "model_choice"

@@ -1,19 +1,79 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"https://grade9v3.local/source-custody-manifest.schema.json",
-  "title":"Source custody ingestion manifest",
-  "type":"object",
-  "additionalProperties":false,
-  "required":["manifest_id","version","acquisition_ref","target_package","inspector_id","inspection_sections","access_status","resource","questions"],
-  "properties":{
-    "manifest_id":{"type":"string","minLength":1},
-    "version":{"type":"string","minLength":1},
-    "acquisition_ref":{"type":"string","minLength":1},
-    "target_package":{"type":"string","minLength":1},
-    "inspector_id":{"type":"string","minLength":1},
-    "inspection_sections":{"type":"array","items":{"type":"string","minLength":1}},
-    "access_status":{"enum":["SECTION_INSPECTED","FULL_ITEM_INSPECTED"]},
-    "resource":{"type":"object"},
-    "questions":{"type":"array","items":{"type":"object"}}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/source-custody-manifest.schema.json",
+  "title": "Source custody ingestion manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_id",
+    "version",
+    "acquisition_ref",
+    "target_package",
+    "inspector_id",
+    "inspection_sections",
+    "access_status",
+    "resource",
+    "questions"
+  ],
+  "properties": {
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acquisition_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_package": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspector_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspection_sections": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "access_status": {
+      "enum": [
+        "SECTION_INSPECTED",
+        "FULL_ITEM_INSPECTED"
+      ]
+    },
+    "resource": {
+      "type": "object"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "extensions"
+        ],
+        "properties": {
+          "extensions": {
+            "type": "object",
+            "required": [
+              "source_custody"
+            ],
+            "properties": {
+              "source_custody": {
+                "type": "object",
+                "description": "Validated against source-question-custody.schema.json by source_pipeline.py"
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

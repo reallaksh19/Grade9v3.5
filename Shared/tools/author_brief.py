@@ -157,10 +157,11 @@ def resolve(board: dict, knowledge: int, core: str) -> tuple[str | None, list[st
 def practice(board: dict, core: str) -> list[str]:
     """The family, and for the transfer product the rows that change its demand.
 
-    Core2A and Core2B are two questions asked of one family: A varies instances while
-    preserving the decision structure, B varies the decision structure while preserving
-    mathematics already taught. Both read the family; only B reads transfer, and a Core2B
-    brief with no transfer row says so rather than offering the family twice.
+    Core2A and Core2B are two questions asked of one family: A selects or authors a
+    familiar instance while preserving the family demand and decision structure; B varies
+    the decision structure while preserving mathematics already taught. Both read the
+    family; only B reads transfer, and a Core2B brief with no transfer row says so rather
+    than offering the family twice.
     """
     family = board.get("family") or {}
     if not family:
@@ -174,8 +175,10 @@ def practice(board: dict, core: str) -> list[str]:
            f'  independent check : {family["independent_check"]}', ""]
     if core == "CORE2A":
         return out + [
-            "Vary the numbers, the objects or the cover story; leave the demand above",
-            "untouched. Changing it is the other product.", ""]
+            "Select or author a familiar same-family application whose invariant demand",
+            "and decision structure stay unchanged. Surface details may vary, but synthetic",
+            "number/object/cover-story variation is not required and is never the purpose",
+            "of Core2A. Changing the demand is the other product.", ""]
 
     rows = board.get("transfer") or []
     if not rows:

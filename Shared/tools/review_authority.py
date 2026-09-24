@@ -13,7 +13,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import digest, load  # noqa: E402
-from Shared.library import intake, promote  # noqa: E402
+from Shared.library import intake, promote, source_custody  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
 
 REQUEST_SCHEMA = REPO / "Shared/library/review-promotion-request.schema.json"
@@ -287,6 +287,16 @@ def validate_promotion(request: dict, repo: Path = REPO) -> dict:
     if STAGE_NEXT.get(current) != target_stage:
         fail("REVIEW_PROMOTION_STAGE_INVALID", record.get("id", ""),
              f"only {current} -> {STAGE_NEXT.get(current)} is legal, not {target_stage}")
+
+    if (target_stage == "REVIEWED" and collection == "questions"
+            and record.get("origin") in {"ORIGINAL", "ADAPTED"}):
+        try:
+            custody_records = _subject_records(subject, target, package, repo)
+        except Exception as exc:
+            fail("REVIEW_SOURCE_CUSTODY_LIBRARY_UNREADABLE", record.get("id", ""), str(exc))
+        else:
+            found.extend(source_custody.validate_question(
+                record, records=custody_records, require_resolved=True, repo=repo))
 
     evidence = request.get("evidence") or {}
     authoring_actor = None

@@ -551,13 +551,14 @@ class SpecDelivery(unittest.TestCase):
         self.assertNotIn("Predict first:", texts["CORE1A"])
         self.assertIn("A common wrong idea", texts["CORE1B"])
 
-    def test_hints_are_authored_and_carried(self):
-        # Both halves had to move together: authoring hints into a compiler that emits []
-        # delivers nothing, and carrying [] delivers nothing. R1.5 asserted the defect
-        # in both places; this asserts the fix in both.
-        rows = {(r["role"], r["path"]): r["state"]
-                for r in self.rows_for("Mathematics") if "path" in r}
-        self.assertEqual(rows[("CORE2", "question.hints[]")], "DELIVERED")
+    def test_source_hints_do_not_manufacture_core2_from_authored_practice(self):
+        # Core2 owns source-supplied hints, so an AUTHORED Mathematics practice question
+        # must not make that role appear delivered. The projection-pipeline tests cover
+        # preservation of question hints into legitimate practice blocks; this regression
+        # check protects the ownership boundary and the compiler's non-dropping projection.
+        subject_rows = self.rows_for("Mathematics")
+        core2 = [r for r in subject_rows if r["role"] == "CORE2" and "path" not in r]
+        self.assertEqual(core2, [{"role": "CORE2", "state": "NOT_COMPILED_HERE"}])
         source = (REPO / "Shared/library/compile_inputs.py").read_text(encoding="utf-8")
         self.assertNotIn('"hints": []', source)
 
@@ -943,6 +944,13 @@ class AuthorBrief(unittest.TestCase):
     def test_the_practice_brief_carries_the_family(self):
         text = "\n".join(author_brief.practice(self.board(), "CORE2A"))
         self.assertIn(self.board()["family"]["difficult_move"], text)
+
+    def test_core2a_brief_defines_familiar_demand_not_surface_mutation(self):
+        text = "\n".join(author_brief.practice(self.board(), "CORE2A"))
+        self.assertIn("familiar same-family application", text)
+        self.assertIn("synthetic", text)
+        self.assertIn("not required", text)
+        self.assertNotIn("Vary the numbers, the objects or the cover story", text)
 
     def test_only_the_transfer_product_reads_the_transfer_rows(self):
         board = self.board()

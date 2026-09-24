@@ -14,6 +14,7 @@ if __package__ in (None, ""):
 from Shared.contracts import digest, load  # noqa: E402
 from Shared.library.practice_inventory import bucket_capabilities  # noqa: E402
 from Shared.library.resolve import build_index, load_packages  # noqa: E402
+from Shared.library import source_custody  # noqa: E402
 from Shared.tools import review_authority  # noqa: E402
 
 SCHEMA = REPO / "Shared/library/source-inspection-receipt.schema.json"
@@ -101,7 +102,10 @@ def derive_coverage(records: dict, bucket_id: str, resource_refs: list[str],
     result = {}
     for core in CORES:
         if core == "CORE2":
-            questions = [q for q in eligible if q.get("origin") in {"ORIGINAL", "ADAPTED"}]
+            questions = [
+                q for q in eligible
+                if source_custody.valid_for_core2(q, records, repo)
+            ]
         else:
             questions = [
                 q for q in eligible
@@ -198,11 +202,10 @@ def verify(receipt: dict, *, request: dict | None = None,
                 fail("SOURCE_RECEIPT_QUESTION_DANGLING", qref,
                      f"{core} coverage names a question not held in the canonical library")
                 continue
-            if question.get("primary_capability_ref") not in owned:
+            capability_in_scope = question.get("primary_capability_ref") in owned
+            if not capability_in_scope:
                 fail("SOURCE_RECEIPT_QUESTION_OUTSIDE_BUCKET", qref,
                      "question primary capability is not taught by this bucket")
-            else:
-                represented.add(question.get("primary_capability_ref"))
             if not (set(question.get("source_refs", [])) & resource_ids):
                 fail("SOURCE_RECEIPT_QUESTION_SOURCE_MISMATCH", qref,
                      "question is not bound to any resource evidenced by this receipt")
@@ -223,10 +226,20 @@ def verify(receipt: dict, *, request: dict | None = None,
                 if question.get("origin") not in {"ORIGINAL", "ADAPTED"}:
                     fail("SOURCE_RECEIPT_CORE2_AUTHORED_QUESTION", qref,
                          "Core2 custody cannot be established by an AUTHORED question")
+                    custody_ok = False
+                else:
+                    custody_findings = source_custody.validate_question(
+                        question, records=records, require_resolved=True, repo=repo)
+                    found.extend(custody_findings)
+                    custody_ok = not custody_findings
+                if capability_in_scope and custody_ok:
+                    represented.add(question.get("primary_capability_ref"))
             else:
                 if not any(row.get("core") == core for row in question.get("exposure", [])):
                     fail("SOURCE_RECEIPT_QUESTION_NOT_EXPOSED", qref,
                          f"question is not exposed to {core}")
+                elif capability_in_scope:
+                    represented.add(question.get("primary_capability_ref"))
         if status == "SUFFICIENT":
             missing = sorted(owned - represented)
             if missing:

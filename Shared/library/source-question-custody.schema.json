@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/source-question-custody.schema.json",
+  "title": "Core2 question-level source custody proof",
+  "description": "Typed evidence that one source-derived canonical question is bound to a pinned source item and that its demand-bearing components were explicitly inspected.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version","acquisition_ref","resource_ref","source_item_locator","source_digest","custody_mode","comparison_status","demand_signature","components","notes"],
+  "properties": {
+    "version": {"const": "1.0.0"},
+    "acquisition_ref": {"type": "string","minLength": 1},
+    "resource_ref": {"type": "string","minLength": 1},
+    "source_item_locator": {"type": "string","minLength": 1},
+    "source_digest": {"type": "string","pattern": "^[0-9a-f]{64}$"},
+    "custody_mode": {"enum": ["EMBEDDED_VERBATIM","EXTERNAL_REFERENCE"]},
+    "comparison_status": {"enum": ["ORIGINAL_EXACT","ADAPTED_DECLARED","UNRESOLVED"]},
+    "demand_signature": {"type": "string","pattern": "^[0-9a-f]{64}$"},
+    "components": {
+      "type": "object","additionalProperties": false,
+      "required": ["original_identifier","stem","subparts","options","conditions","figures","captions","hints","answer_or_rubric"],
+      "properties": {
+        "original_identifier": {"$ref": "#/$defs/componentStatus"},
+        "stem": {"$ref": "#/$defs/componentStatus"},
+        "subparts": {"$ref": "#/$defs/componentStatus"},
+        "options": {"$ref": "#/$defs/componentStatus"},
+        "conditions": {"$ref": "#/$defs/componentStatus"},
+        "figures": {"$ref": "#/$defs/componentStatus"},
+        "captions": {"$ref": "#/$defs/componentStatus"},
+        "hints": {"$ref": "#/$defs/componentStatus"},
+        "answer_or_rubric": {"$ref": "#/$defs/componentStatus"}
+      }
+    },
+    "notes": {"type": "array","items": {"type": "string","minLength": 1},"minItems": 0}
+  },
+  "$defs": {
+    "componentStatus": {"enum": ["PRESERVED","NOT_PRESENT_IN_SOURCE","EXTERNAL_REFERENCE_VERIFIED","UNRESOLVED"]}
+  }
+}

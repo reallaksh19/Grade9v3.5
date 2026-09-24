@@ -175,21 +175,32 @@ class Compilation(unittest.TestCase):
             result = publish(inputs / "plan.json", inputs / "baseline.json", inputs,
                              Path(temp) / "publication", load_physics())
         self.assertEqual(result["status"], "PASS")
-        # Two now, not one: Core2 holds the question in custody with its answer, so the
-        # same verified result is checked again in the product that preserves it.
-        # Rose from two when Core1A began carrying the worked example its spec
-        # requires: the same answer is now checked once per product that states
-        # it, which is the point of counting rather than a regression.
-        self.assertEqual(result["numeric_answers_compared"], 3)
+        # Relative-motion practice is authored. Phase 4 restores the ownership boundary:
+        # the answer is still checked where the authored familiar application appears,
+        # but the same authored question is no longer duplicated into Core2 custody.
+        self.assertEqual(result["numeric_answers_compared"], 2)
         self.assertIn("CORE1", result["products"])
-        self.assertIn("CORE2", result["products"])
+        self.assertNotIn("CORE2", result["products"])
         self.assertFalse(result["release_authorized"])
 
     def test_a_product_the_library_cannot_support_is_reported_not_padded(self):
         compiled = self.compile()
         self.assertNotIn("CORE2B", compiled["baseline"]["selected_cores"])
         unsupported = [r for r in compiled["authoring_requirements"] if r["kind"] == "PRODUCT_UNSUPPORTED"]
-        self.assertEqual([r["core"] for r in unsupported], ["CORE2B"])
+        self.assertEqual(
+            [r["core"] for r in unsupported],
+            ["CORE2", "CORE2B"],
+        )
+
+    def test_renderability_is_not_progression_readiness(self):
+        compiled = self.compile()
+        for core, row in compiled["product_support"].items():
+            with self.subTest(core=core):
+                self.assertEqual(row["progression_readiness"], "NOT_EVALUATED_BY_COMPILER")
+                self.assertEqual(
+                    row["renderable"],
+                    core in compiled["baseline"]["selected_cores"],
+                )
 
     def test_remaining_authoring_is_declared_rather_than_invented(self):
         # This named FIGURE_AUTHORING, which R3.1 closed for this subject. Asserting a
@@ -243,14 +254,55 @@ class Compilation(unittest.TestCase):
         equation = next(b for b in blocks if b["kind"] == "EQUATION")
         self.assertTrue(equation["conditions"], "a relation without its conditions is not a map")
 
-    def test_core2_takes_custody_of_every_question_the_bucket_holds(self):
+    def test_authored_practice_cannot_become_core2_source_custody(self):
         compiled = self.compile()
-        custody = next(p for p in compiled["plan"]["products"] if p["core"] == "CORE2")
-        held = {b["source_question_id"] for b in custody["units"][0]["blocks"]}
-        self.assertEqual(held, {q["id"] for q in compiled["source"]["questions"]})
-        for block in custody["units"][0]["blocks"]:
-            self.assertEqual(block["exposure_role"], "SOURCE_CUSTODY",
-                             "custody is not a teaching decision about how a question is used")
+        self.assertNotIn("CORE2", compiled["baseline"]["selected_cores"])
+        authored_ids = {q["id"] for q in compiled["source"]["questions"]}
+        self.assertIn("Q-AUTHOR-REL-01", authored_ids)
+        unsupported = {
+            row["core"]: row["detail"]
+            for row in compiled["authoring_requirements"]
+            if row["kind"] == "PRODUCT_UNSUPPORTED"
+        }
+        self.assertIn("CORE2", unsupported)
+        self.assertIn("authored practice does not become Core2", unsupported["CORE2"])
+
+
+    def test_reviewed_source_question_with_resolved_custody_can_compile_as_core2(self):
+        data = packages()
+        target = next(
+            package for package in data
+            if package["package_id"] == "LIB-PHY-RELATIVE-MOTION-SEED"
+        )
+        manifest = json.loads(
+            (REPO / "tests/fixtures/source_ingest/custody-manifest.json")
+            .read_text(encoding="utf-8")
+        )
+        target["resources"].append(copy.deepcopy(manifest["resource"]))
+        question = copy.deepcopy(manifest["questions"][0])
+        question["status"] = "REVIEWED"
+        target["questions"].append(question)
+
+        compiled = compile_bucket(
+            build_index(data),
+            "BUCKET-RELATIVE-MOTION",
+            topic_id="T-SOURCE-CUSTODY",
+            title="Source custody witness",
+            subject="Physics",
+            practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+        )
+        self.assertIn("CORE2", compiled["baseline"]["selected_cores"])
+        custody = next(
+            product for product in compiled["plan"]["products"]
+            if product["core"] == "CORE2"
+        )
+        held = {
+            block["source_question_id"]
+            for block in custody["units"][0]["blocks"]
+            if block["kind"] == "QUESTION"
+        }
+        self.assertEqual(held, {"Q-TEST-FIXTURE-REL-01"})
+        self.assertNotIn("Q-AUTHOR-REL-01", held)
 
     def test_a_question_binding_an_unknown_datum_is_rejected(self):
         data = packages()
@@ -1306,18 +1358,35 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
     def test_unbuilt_kind_backlog_is_reported_without_claiming_a_renderer(self):
         """Canonical visual truth may legitimately arrive before its static renderer.
 
-        Grade-9 Physics now owns three FREE_BODY_DIAGRAM representations implemented
-        by interactive ACTIVITY resources and staged hints, while the static depiction
-        contract still says FREE_BODY_DIAGRAM is PROPOSED. The priority report must make
-        that renderer backlog visible rather than forcing representation authoring to wait
-        or pretending a renderer exists.
+        The waiting population is derived from canonical representation and microtopic
+        records rather than a hand-maintained count. Renderer status remains a separate
+        subject-contract claim and must stay PROPOSED until a static renderer exists.
         """
+        records = build_index(packages())
+        waiting_representation_ids = {
+            rid for rid, record in records.items()
+            if record.get("_collection") == "representations"
+            and record.get("kind") == "FREE_BODY_DIAGRAM"
+            and not record.get("scene_instances")
+        }
+        waiting_bucket_ids = {
+            record["bucket_id"]
+            for record in records.values()
+            if record.get("_collection") == "microtopics"
+            and waiting_representation_ids.intersection(record.get("representation_refs", []))
+        }
+        self.assertIn("REP-KIN-CIRCULAR-FORCE-ROLE", waiting_representation_ids)
+        self.assertEqual(
+            depiction.declared_kinds(REPO / "Physics")["FREE_BODY_DIAGRAM"],
+            "PROPOSED",
+        )
+
         expected = {
             "Physics": [{
                 "kind": "FREE_BODY_DIAGRAM",
                 "status": "PROPOSED",
-                "representations_waiting": 3,
-                "buckets_waiting": 2,
+                "representations_waiting": len(waiting_representation_ids),
+                "buckets_waiting": len(waiting_bucket_ids),
             }],
         }
         for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):

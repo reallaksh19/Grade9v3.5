@@ -28,6 +28,7 @@ class ReviewPromotionAuthority(unittest.TestCase):
             "Shared/library/review-promotion-receipt.schema.json",
             "Shared/library/authoring-run-receipt.schema.json",
             "Shared/library/source-inspection-receipt.schema.json",
+            "Shared/library/source-question-custody.schema.json",
         ]:
             target = self.repo / path
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -167,6 +168,28 @@ class ReviewPromotionAuthority(unittest.TestCase):
         request["record_digest"] = digest(target)
         report = review_authority.validate_promotion(request, self.repo)
         self.assertIn("REVIEW_AUTHORING_DIGEST_MISMATCH",
+                      [row["point"] for row in report["findings"]])
+
+    def test_source_derived_question_cannot_be_reviewed_without_custody_proof(self):
+        package = self.package()
+        target = next(q for q in package["questions"] if q["id"] == self.RECORD_ID)
+        target["origin"] = "ORIGINAL"
+        target["origin_ref"] = "SRC-NCERT-PLANE"
+        target["source_refs"] = ["SRC-NCERT-PLANE"]
+        target["adaptation"] = None
+        target["extensions"].pop("source_custody", None)
+        self.package_path.write_text(json.dumps(package, indent=2) + "\n", encoding="utf-8")
+
+        authoring = copy.deepcopy(self.authoring)
+        authoring["changed_records"][0]["origin"] = "ORIGINAL"
+        authoring["changed_records"][0]["sha256"] = digest(target)
+        authoring["library_after"]["digest"] = digest(package)
+        self.authoring_path.write_text(json.dumps(authoring, indent=2) + "\n", encoding="utf-8")
+        self.authoring = authoring
+
+        request = self.review_request()
+        report = review_authority.validate_promotion(request, self.repo)
+        self.assertIn("SOURCE_CUSTODY_PROOF_MISSING",
                       [row["point"] for row in report["findings"]])
 
     def test_stage_skip_is_rejected(self):

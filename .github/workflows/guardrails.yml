@@ -58,6 +58,25 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # Core2A still permits legacy prose while the corpus migrates, but that debt is
+      # frozen: a new or materially revised familiar-application item must use the
+      # structured reasoning route and stable crux rather than creating more fallback debt.
+      - name: Core2A reasoning migration only moves forward
+        run: python3 Shared/tools/core2a_inventory.py --enforce-forward
+
+      # Core2B is a changed-demand claim relative to prior exposure. Existing transfer
+      # debt is frozen; new or materially revised items must name and protect the changed
+      # decision, establish their capabilities from lineage, carry specific repair and
+      # rubric closure, and keep the adaptation parent inside the declared lineage.
+      - name: Core2B transfer integrity only moves forward
+        run: python3 Shared/tools/core2b_inventory.py --enforce-forward
+
+      # Core2, Core2A and Core2B own different claims. This family-level join proves
+      # those claims remain connected without allowing authored practice to become
+      # source custody or treating a renderable product as progression readiness.
+      - name: Cross-Core progression ownership and lineage remain coherent
+        run: python3 Shared/library/core_progression.py --enforce
+
       # A claim about a learner must be backed by what was seen, or say it is a waiver.
       # Enforcing from the start: the store landed with its gate, and both committed
       # profiles are waiver-backed with a null percentage, which is the honest value.
