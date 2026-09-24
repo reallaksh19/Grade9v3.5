@@ -2961,7 +2961,85 @@
         "Recombining x(t1) with y(t2) as though it were one physical state."
       ],
       "rendered_asset_refs": [],
-      "scene_instances": [],
+      "scene_instances": [
+        {
+          "id": "SCENE-KIN-2D-SHARED-CLOCK-PORTABLE-01",
+          "cores": [
+            "CORE1A",
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+          "datum_refs": [
+            "DAT-KIN-2D-SHARED-T2",
+            "DAT-KIN-2D-MIXED-T3"
+          ],
+          "scene": {
+            "kind": "SHARED_CLOCK_2D",
+            "frame": "One physical particle in one declared x-y frame; every component sample remains attached to its own sample time.",
+            "caption": "Same-time x and y samples may reconstruct one simultaneous particle state; mixed-time samples are non-simultaneous and must be rejected.",
+            "portable_workbench": {
+              "schema_version": "1.0.0",
+              "package_ref": "portable-motion-shared-clock",
+              "scene_ref": "portable-motion-shared-clock-scene",
+              "grid": {
+                "id": "shared-clock-grid",
+                "rows": [
+                  "candidate",
+                  "reconstruction"
+                ],
+                "columns": [
+                  "sample",
+                  "state"
+                ]
+              },
+              "entities": [
+                {
+                  "id": "shared-clock-same-time-candidate",
+                  "label": "x(2 s), y(2 s)",
+                  "x_time_ref": "DAT-KIN-2D-SHARED-T2",
+                  "y_time_ref": "DAT-KIN-2D-SHARED-T2",
+                  "semantic_state": "SIMULTANEOUS"
+                },
+                {
+                  "id": "shared-clock-mixed-time-candidate",
+                  "label": "x(2 s), y(3 s)",
+                  "x_time_ref": "DAT-KIN-2D-SHARED-T2",
+                  "y_time_ref": "DAT-KIN-2D-MIXED-T3",
+                  "semantic_state": "NON_SIMULTANEOUS"
+                }
+              ],
+              "target": {
+                "id": "shared-clock-plane-state",
+                "label": "Reconstruct one simultaneous plane state",
+                "operation": "reconstruct-plane-state"
+              },
+              "transactions": [
+                {
+                  "id": "same-time",
+                  "source_entity_ref": "shared-clock-same-time-candidate",
+                  "target_ref": "shared-clock-plane-state",
+                  "operation": "reconstruct-plane-state",
+                  "outcome": "ACCEPT",
+                  "summary": "Same-time x(2 s) and y(2 s) samples refer to one shared physical instant and may be recombined."
+                },
+                {
+                  "id": "mixed-time",
+                  "source_entity_ref": "shared-clock-mixed-time-candidate",
+                  "target_ref": "shared-clock-plane-state",
+                  "operation": "reconstruct-plane-state",
+                  "outcome": "REJECT",
+                  "reason": "Mixing x at one time with y at another does not describe any single physical state of the object."
+                }
+              ],
+              "accessibility": {
+                "validity_is_textual": true,
+                "synchronization_is_not_colour_only": true,
+                "mixed_time_reason_required": true
+              }
+            }
+          }
+        }
+      ],
       "correspondence": [
         {
           "element": "x-component history",
@@ -4346,5 +4424,38 @@
   "evidence": [],
   "known_issues": [],
   "extensions": {},
-  "data": []
+  "data": [
+    {
+      "id": "DAT-KIN-2D-SHARED-T2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "s",
+      "symbol": "t_same",
+      "meaning": "Canonical shared sample time for the authored shared-clock reconstruction witness.",
+      "locator": "Author-created from the governed Motion-in-2D shared-clock misconception and K2D1-4 same-instant invariant; no measured coordinate value is claimed."
+    },
+    {
+      "id": "DAT-KIN-2D-MIXED-T3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 3,
+      "unit": "s",
+      "symbol": "t_mixed",
+      "meaning": "Contrasting y-component sample time used only to expose the canonical mixed-time non-simultaneous state.",
+      "locator": "Author-created from the governed Motion-in-2D misconception example x(2 s) with y(3 s); no measured coordinate value is claimed."
+    }
+  ]
 }
