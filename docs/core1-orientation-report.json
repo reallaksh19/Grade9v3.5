@@ -9,10 +9,9 @@
   "summary": {
     "bucket_count": 21,
     "core1_compilable_buckets": 14,
-    "buckets_with_structural_findings": 4,
+    "buckets_with_structural_findings": 3,
     "finding_counts": {
-      "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING": 3,
-      "RELATION_REF_UNRESOLVED": 1
+      "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING": 3
     }
   },
   "buckets": [
@@ -1152,6 +1151,11 @@
           "condition_count": 2
         },
         {
+          "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
           "id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
           "has_meaning": true,
           "condition_count": 3
@@ -1170,6 +1174,11 @@
           "id": "REL-MECHANICAL-ENERGY-CONSERVATION",
           "has_meaning": true,
           "condition_count": 2
+        },
+        {
+          "id": "REL-NEWTON-SECOND-LAW",
+          "has_meaning": true,
+          "condition_count": 3
         },
         {
           "id": "REL-WEIGHT-NEAR-EARTH",
@@ -1232,21 +1241,8 @@
         }
       ],
       "curriculum_mapping_count": 0,
-      "findings": [
-        {
-          "code": "RELATION_REF_UNRESOLVED",
-          "detail": "Core1 relation reference does not resolve in the canonical package.",
-          "ref": "REL-CONSTANT-ACCELERATION-NO-TIME"
-        },
-        {
-          "code": "RELATION_REF_UNRESOLVED",
-          "detail": "Core1 relation reference does not resolve in the canonical package.",
-          "ref": "REL-NEWTON-SECOND-LAW"
-        }
-      ],
-      "finding_codes": [
-        "RELATION_REF_UNRESOLVED"
-      ],
+      "findings": [],
+      "finding_codes": [],
       "manual_review_obligations": [
         "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
         "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
