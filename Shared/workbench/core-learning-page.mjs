@@ -817,6 +817,43 @@ function renderConstruction(projection, state) {
   </section>`;
 }
 
+function renderOrientationMap(projection) {
+  if (projection.core !== "CORE1" || !projection.orientation) return "";
+  return `<section class="orientation-map" aria-labelledby="core-orientation-map-title">
+    <h3 id="core-orientation-map-title">${escapeHtml(projection.orientation.title)}</h3>
+    ${projection.orientation.blocks.map((block) => {
+      if (block.kind === "TEXT") {
+        return `<article data-orientation-block="${escapeHtml(block.id)}">
+          <p>${escapeHtml(block.text ?? "").replaceAll("\n", "<br>")}</p>
+        </article>`;
+      }
+      if (block.kind === "EQUATION") {
+        const symbols = (block.symbols ?? []).length
+          ? `<ul>${block.symbols.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        const conditions = (block.conditions ?? []).length
+          ? `<ul>${block.conditions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        return `<article data-orientation-block="${escapeHtml(block.id)}">
+          <div class="equation-expression">${block.mathml ?? ""}</div>
+          ${block.meaning ? `<p>${escapeHtml(block.meaning)}</p>` : ""}
+          ${symbols}
+          ${conditions}
+        </article>`;
+      }
+      const correspondence = (block.correspondence ?? []).length
+        ? `<ul>${block.correspondence.map((row) =>
+            `<li>${escapeHtml(row.element ?? "")} ↔ ${escapeHtml(row.symbol ?? "")}: ${escapeHtml(row.in_words ?? "")}</li>`
+          ).join("")}</ul>`
+        : "";
+      return `<article data-orientation-block="${escapeHtml(block.id)}">
+        <p>${escapeHtml(block.scene?.caption ?? "Canonical orientation figure.")}</p>
+        ${correspondence}
+      </article>`;
+    }).join("")}
+  </section>`;
+}
+
 function renderRepresentation(state) {
   const visualRef = state.currentVisualRef ? escapeHtml(state.currentVisualRef) : "";
   const visualStage = state.currentVisualStageRef ? escapeHtml(state.currentVisualStageRef) : "";
@@ -846,7 +883,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
   return `<style>
     :host { display:block; font:inherit; color:inherit; }
     .shell { display:grid; gap:1rem; max-width:72rem; margin:0 auto; }
-    .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
+    .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
       border:1px solid currentColor; border-radius:.75rem; padding:1rem;
     }
     .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
@@ -867,7 +904,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     @media (max-width: 36rem) {
-      .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
+      .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
@@ -880,6 +917,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       <p class="status">${escapeHtml(state.stage.replaceAll("_", " ").toLowerCase())}</p>
       <p class="visually-hidden" aria-live="polite" data-live-status></p>
     </header>
+    ${renderOrientationMap(projection)}
     ${renderConcept(projection, state)}
     ${renderQuestion(projection, state)}
     ${renderQuestionFigures(projection, state)}
