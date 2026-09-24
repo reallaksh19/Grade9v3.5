@@ -1139,15 +1139,18 @@ window.GRADE9V3 = {
             "REP-MATH-NUMBER-LINE"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "mathematics:mic-math-constraint:core1a",
+            "mathematics:mic-math-constraint:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -1177,13 +1180,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
@@ -1207,15 +1204,18 @@ window.GRADE9V3 = {
             "REP-MATH-NUMBER-LINE"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "mathematics:mic-math-equivalent-ops:core1a",
+            "mathematics:mic-math-equivalent-ops:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -1245,13 +1245,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
@@ -1275,15 +1269,18 @@ window.GRADE9V3 = {
             "REP-MATH-NUMBER-LINE"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "mathematics:mic-math-exact-solution:core1a",
+            "mathematics:mic-math-exact-solution:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -1313,23 +1310,11 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         }
       ],
       "visual_targets": {},
-      "findings": [
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-LINEAR-EQUATION",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        }
-      ],
+      "findings": [],
       "coverage": {
         "rung_count": 3,
         "availability": {
@@ -1337,7 +1322,7 @@ window.GRADE9V3 = {
             "READY": 3
           },
           "core": {
-            "UNAVAILABLE": 3
+            "READY": 3
           },
           "representation": {
             "READY": 3
@@ -1355,9 +1340,7 @@ window.GRADE9V3 = {
             "UNAVAILABLE": 3
           }
         },
-        "finding_counts": {
-          "CORE_PROJECTION_UNAVAILABLE": 3
-        },
+        "finding_counts": {},
         "matrices": [
           {
             "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
@@ -1367,7 +1350,7 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "core": {
-                "UNAVAILABLE": 3
+                "READY": 3
               },
               "representation": {
                 "READY": 3
@@ -1385,9 +1368,7 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 3
               }
             },
-            "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 3
-            }
+            "finding_counts": {}
           }
         ]
       }
@@ -30689,15 +30670,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-elec-current-conservation:core1a",
+            "physics:mic-elec-current-conservation:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30729,11 +30713,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -30754,9 +30733,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -30810,9 +30789,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -30868,15 +30847,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-elec-ohmic-model-test:core1a",
+            "physics:mic-elec-ohmic-model-test:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -30908,11 +30890,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -30933,9 +30910,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -30989,9 +30966,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31045,9 +31022,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31101,9 +31078,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31159,15 +31136,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-fluid-r2:core1a",
+            "physics:mic-phy-fluid-r2:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31199,11 +31179,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31226,15 +31201,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-fluid-r3:core1a",
+            "physics:mic-phy-fluid-r3:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31266,11 +31244,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31293,15 +31266,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-fluid-r4:core1a",
+            "physics:mic-phy-fluid-r4:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31333,11 +31309,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31358,9 +31329,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31417,15 +31388,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-r1:core1a",
+            "physics:mic-phy-grav-r1:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31457,11 +31431,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31489,15 +31458,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-inverse-square:core1a",
+            "physics:mic-phy-grav-inverse-square:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31529,11 +31501,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31563,15 +31530,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-free-fall-g:core1a",
+            "physics:mic-phy-grav-free-fall-g:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31603,11 +31573,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31634,15 +31599,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-mass-weight:core1a",
+            "physics:mic-phy-grav-mass-weight:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31674,11 +31642,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31701,15 +31664,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-r4:core1a",
+            "physics:mic-phy-grav-r4:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31741,11 +31707,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31768,15 +31729,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-grav-r5:core1a",
+            "physics:mic-phy-grav-r5:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31808,11 +31772,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31835,15 +31794,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-distance-displacement:core1a",
+            "physics:mic-phy-kin-distance-displacement:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31875,11 +31837,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31906,15 +31863,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-average-rates:core1a",
+            "physics:mic-phy-kin-average-rates:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -31946,11 +31906,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -31978,15 +31933,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-zero-v-nonzero-a:core1a",
+            "physics:mic-phy-kin-zero-v-nonzero-a:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32018,11 +31976,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -32053,15 +32006,18 @@ window.GRADE9V3 = {
             "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-motion-graphs:core1a",
+            "physics:mic-phy-kin-motion-graphs:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32091,13 +32047,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
@@ -32124,15 +32074,18 @@ window.GRADE9V3 = {
             "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-constant-acceleration:core1a",
+            "physics:mic-phy-kin-constant-acceleration:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32162,13 +32115,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
@@ -32189,15 +32136,18 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-KIN-CIRCULAR-DYNAMICS"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-uniform-circular-motion:core1a",
+            "physics:mic-phy-kin-uniform-circular-motion:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -32236,13 +32186,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
@@ -32275,15 +32219,18 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-KIN-CIRCULAR-DYNAMICS"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-circular-dynamics-role:core1a",
+            "physics:mic-phy-kin-circular-dynamics-role:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -32329,13 +32276,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
@@ -32451,7 +32392,10 @@ window.GRADE9V3 = {
             "ACT-KIN-2D-SHARED-CLOCK",
             "ACT-KIN-2D-EVENT-CLOCK"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-2d-constant-acceleration:core1a",
+            "physics:mic-phy-kin-2d-constant-acceleration:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": null,
@@ -32459,7 +32403,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -32512,13 +32456,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
@@ -32555,7 +32493,10 @@ window.GRADE9V3 = {
             "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
             "ACT-KIN-2D-LANDING-GEOMETRY"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-projectile-model:core1a",
+            "physics:mic-phy-kin-projectile-model:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": null,
@@ -32563,7 +32504,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -32647,13 +32588,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
@@ -32671,15 +32606,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-mag-field-direction:core1a",
+            "physics:mic-mag-field-direction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32711,11 +32649,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -32742,15 +32675,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-mag-flux-orientation:core1a",
+            "physics:mic-mag-flux-orientation:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32782,11 +32718,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -32807,9 +32738,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32865,15 +32796,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-mag-redirect-not-speed:core1a",
+            "physics:mic-mag-redirect-not-speed:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -32905,11 +32839,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -32930,9 +32859,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32986,9 +32915,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -33044,7 +32973,10 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-net-zero-motion:core1a",
+            "physics:mic-phy-nlm-net-zero-motion:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33052,7 +32984,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -33084,11 +33016,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -33115,7 +33042,10 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-forces-sum-zero:core1a",
+            "physics:mic-phy-nlm-forces-sum-zero:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33123,7 +33053,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -33155,11 +33085,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -33188,7 +33113,10 @@ window.GRADE9V3 = {
             "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
             "ACT-NLM-ACCELERATED-FRAMES"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-fbd-body-ownership:core1a",
+            "physics:mic-phy-nlm-fbd-body-ownership:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33196,7 +33124,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -33250,13 +33178,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33281,7 +33203,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-FRICTION-THRESHOLD"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-friction:core1a",
+            "physics:mic-phy-nlm-friction:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33289,7 +33214,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33328,13 +33253,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-FRICTION",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33360,7 +33279,10 @@ window.GRADE9V3 = {
             "ACT-KIN-CIRCULAR-DYNAMICS",
             "ACT-NLM-ACCELERATED-FRAMES"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-second-law:core1a",
+            "physics:mic-phy-nlm-second-law:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33368,7 +33290,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33415,13 +33337,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-SECOND-LAW",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33534,7 +33450,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-connected-common-accel:core1a",
+            "physics:mic-phy-nlm-connected-common-accel:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33542,7 +33461,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33581,13 +33500,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33615,7 +33528,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-ideal-string-tension:core1a",
+            "physics:mic-phy-nlm-ideal-string-tension:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33623,7 +33539,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33662,13 +33578,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33696,7 +33606,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-single-string-constraint:core1a",
+            "physics:mic-phy-nlm-single-string-constraint:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33704,7 +33617,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33743,13 +33656,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33773,7 +33680,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-third-law:core1a",
+            "physics:mic-phy-nlm-third-law:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33781,7 +33691,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "READY",
             "locator": "READY",
@@ -33820,13 +33730,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-THIRD-LAW",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33852,7 +33756,10 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-ACCELERATED-FRAMES"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-frame-choice:core1a",
+            "physics:mic-phy-nlm-frame-choice:core1b"
+          ],
           "core_availability": {
             "status": "AVAILABLE",
             "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
@@ -33860,7 +33767,7 @@ window.GRADE9V3 = {
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -33906,13 +33813,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "MIC-PHY-NLM-FRAME-CHOICE",
-              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER",
@@ -33941,15 +33842,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-momentum-transfer-rate:core1a",
+            "physics:mic-phy-nlm-momentum-transfer-rate:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -33981,11 +33885,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34008,15 +33907,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-normal-reflection:core1a",
+            "physics:mic-opt-normal-reflection:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34048,11 +33950,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34079,15 +33976,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-real-virtual-image:core1a",
+            "physics:mic-opt-real-virtual-image:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34119,11 +34019,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34150,15 +34045,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-sign-convention:core1a",
+            "physics:mic-opt-sign-convention:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34190,11 +34088,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34221,15 +34114,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-spherical-ray-construction:core1a",
+            "physics:mic-opt-spherical-ray-construction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34261,11 +34157,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34292,15 +34183,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-mirror-equation:core1a",
+            "physics:mic-opt-mirror-equation:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34332,11 +34226,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34363,15 +34252,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-mirror-magnification:core1a",
+            "physics:mic-opt-mirror-magnification:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34403,11 +34295,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34430,15 +34317,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-refraction-normal:core1a",
+            "physics:mic-opt-refraction-normal:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34470,11 +34360,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34501,15 +34386,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-refractive-index-snell:core1a",
+            "physics:mic-opt-refractive-index-snell:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34541,11 +34429,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34572,15 +34455,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-lens-ray-construction:core1a",
+            "physics:mic-opt-lens-ray-construction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34612,11 +34498,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34643,15 +34524,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-lens-equation:core1a",
+            "physics:mic-opt-lens-equation:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34683,11 +34567,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34714,15 +34593,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-lens-magnification:core1a",
+            "physics:mic-opt-lens-magnification:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34754,11 +34636,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34785,15 +34662,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-opt-lens-power:core1a",
+            "physics:mic-opt-lens-power:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34825,11 +34705,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34852,15 +34727,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-osc-stable-equilibrium:core1a",
+            "physics:mic-osc-stable-equilibrium:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -34892,11 +34770,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -34917,9 +34790,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -34973,9 +34846,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35031,15 +34904,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-osc-energy-exchange:core1a",
+            "physics:mic-osc-energy-exchange:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35071,11 +34947,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35096,9 +34967,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35154,15 +35025,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-rot-r1:core1a",
+            "physics:mic-phy-rot-r1:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35194,11 +35068,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35219,9 +35088,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35277,15 +35146,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-rot-r3:core1a",
+            "physics:mic-phy-rot-r3:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35317,11 +35189,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35344,15 +35211,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-rot-r4:core1a",
+            "physics:mic-phy-rot-r4:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35384,11 +35254,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35411,15 +35276,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-rot-r5:core1a",
+            "physics:mic-phy-rot-r5:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35451,11 +35319,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35482,15 +35345,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-machine-tradeoff:core1a",
+            "physics:mic-phy-machine-tradeoff:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35522,11 +35388,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35554,15 +35415,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-machine-ma:core1a",
+            "physics:mic-phy-machine-ma:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35594,11 +35458,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35625,15 +35484,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-machine-compare:core1a",
+            "physics:mic-phy-machine-compare:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35665,11 +35527,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35693,15 +35550,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-sound-source-medium:core1a",
+            "physics:mic-phy-sound-source-medium:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35733,11 +35593,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SOUND",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35765,15 +35620,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-sound-longitudinal:core1a",
+            "physics:mic-phy-sound-longitudinal:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35805,11 +35663,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SOUND",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35840,15 +35693,18 @@ window.GRADE9V3 = {
             "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-sound-wave-quantities:core1a",
+            "physics:mic-phy-sound-wave-quantities:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35878,13 +35734,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SOUND",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-SOUND",
@@ -35907,15 +35757,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-sound-perception:core1a",
+            "physics:mic-phy-sound-perception:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -35947,11 +35800,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SOUND",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -35979,15 +35827,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-sound-reflection:core1a",
+            "physics:mic-phy-sound-reflection:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36019,11 +35870,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-SOUND",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36046,15 +35892,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-thermo-r1:core1a",
+            "physics:mic-phy-thermo-r1:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36086,11 +35935,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36111,9 +35955,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -36169,15 +36013,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-thermo-r3:core1a",
+            "physics:mic-phy-thermo-r3:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36209,11 +36056,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36236,15 +36078,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-thermo-r4:core1a",
+            "physics:mic-phy-thermo-r4:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36276,11 +36121,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36303,15 +36143,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-thermo-r5:core1a",
+            "physics:mic-phy-thermo-r5:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36343,11 +36186,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36372,15 +36210,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-component-sum:core1a",
+            "physics:mic-phy-vec-component-sum:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36412,11 +36253,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36444,15 +36280,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-resultant-constraint:core1a",
+            "physics:mic-phy-vec-resultant-constraint:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36484,11 +36323,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36515,15 +36349,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-sub-order:core1a",
+            "physics:mic-phy-vec-sub-order:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36555,11 +36392,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36590,15 +36422,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-angle-decomposition:core1a",
+            "physics:mic-phy-vec-angle-decomposition:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36630,11 +36465,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36661,15 +36491,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-unit-notation:core1a",
+            "physics:mic-phy-vec-unit-notation:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36701,11 +36534,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36735,15 +36563,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-direction-from-components:core1a",
+            "physics:mic-phy-vec-direction-from-components:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36775,11 +36606,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36808,15 +36634,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-vec-unit-direction:core1a",
+            "physics:mic-phy-vec-unit-direction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2A, CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36848,11 +36677,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36875,15 +36699,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-work-direction:core1a",
+            "physics:mic-phy-wep-work-direction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36915,11 +36742,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -36946,15 +36768,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-net-work-sign:core1a",
+            "physics:mic-phy-wep-net-work-sign:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -36986,11 +36811,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37017,15 +36837,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-potential-eligibility:core1a",
+            "physics:mic-phy-wep-potential-eligibility:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37057,11 +36880,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37089,15 +36907,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-mech-energy-condition:core1a",
+            "physics:mic-phy-wep-mech-energy-condition:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37129,11 +36950,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37161,15 +36977,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-power-rates:core1a",
+            "physics:mic-phy-wep-power-rates:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37200,11 +37019,6 @@ window.GRADE9V3 = {
             "activity_refs": []
           },
           "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
@@ -37238,15 +37052,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-energy-derivations:core1a",
+            "physics:mic-phy-wep-energy-derivations:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37278,11 +37095,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37310,15 +37122,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-wep-grade9-quant:core1a",
+            "physics:mic-phy-wep-grade9-quant:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37350,11 +37165,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37377,15 +37187,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-measured-from:core1a",
+            "physics:mic-measured-from:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37417,11 +37230,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37447,15 +37255,18 @@ window.GRADE9V3 = {
           ],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-same-time:core1a",
+            "physics:mic-same-time:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37487,11 +37298,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37521,15 +37327,18 @@ window.GRADE9V3 = {
             "REP-REL-VECTOR"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-common-interval:core1a",
+            "physics:mic-common-interval:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37559,13 +37368,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
@@ -37590,15 +37393,18 @@ window.GRADE9V3 = {
             "REP-REL-VECTOR"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-geometric-check:core1a",
+            "physics:mic-geometric-check:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37628,13 +37434,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
@@ -37652,15 +37452,18 @@ window.GRADE9V3 = {
           "capability_prerequisite_refs": [],
           "representation_refs": [],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-vector-vs-scalar:core1a",
+            "physics:mic-vector-vs-scalar:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "UNAVAILABLE",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37692,11 +37495,6 @@ window.GRADE9V3 = {
           },
           "findings": [
             {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            },
-            {
               "code": "VISUAL_REF_UNAVAILABLE",
               "ref": null,
               "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -37726,15 +37524,18 @@ window.GRADE9V3 = {
             "REP-VECTOR-COMPONENT"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-signed-component:core1a",
+            "physics:mic-signed-component:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37764,13 +37565,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
@@ -37795,15 +37590,18 @@ window.GRADE9V3 = {
             "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
           ],
           "activity_refs": [],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-graphical-subtraction:core1a",
+            "physics:mic-graphical-subtraction:core1b"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "CORE_ROLES_MISSING",
-            "detail": "CORE2B"
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "UNAVAILABLE",
             "locator": "UNAVAILABLE",
@@ -37833,13 +37631,7 @@ window.GRADE9V3 = {
             },
             "activity_refs": []
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "CORE_ROLES_MISSING: CORE2B"
-            }
-          ]
+          "findings": []
         }
       ],
       "visual_targets": {
@@ -38120,11 +37912,6 @@ window.GRADE9V3 = {
       },
       "findings": [
         {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
           "code": "VISUAL_REF_UNAVAILABLE",
           "ref": null,
           "detail": "No canonical representation or activity/resource link is authored for this rung."
@@ -38138,151 +37925,6 @@ window.GRADE9V3 = {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": null,
           "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-KIN-1D-MOTION",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-FRICTION",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-SECOND-LAW",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-THIRD-LAW",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "MIC-PHY-NLM-FRAME-CHOICE",
-          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-SOUND",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-VEC-ADD-SUB",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-RELATIVE-MOTION",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
-        },
-        {
-          "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-VECTOR-REPRESENTATION",
-          "detail": "CORE_ROLES_MISSING: CORE2B"
         }
       ],
       "coverage": {
@@ -38293,8 +37935,8 @@ window.GRADE9V3 = {
             "UNAVAILABLE": 15
           },
           "core": {
-            "READY": 2,
-            "UNAVAILABLE": 100
+            "READY": 87,
+            "UNAVAILABLE": 15
           },
           "representation": {
             "READY": 14,
@@ -38318,7 +37960,7 @@ window.GRADE9V3 = {
           }
         },
         "finding_counts": {
-          "CORE_PROJECTION_UNAVAILABLE": 100,
+          "CORE_PROJECTION_UNAVAILABLE": 15,
           "MICROTOPIC_REF_UNAVAILABLE": 15,
           "VISUAL_REF_UNAVAILABLE": 81
         },
@@ -38332,7 +37974,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 5
               },
               "core": {
-                "UNAVAILABLE": 7
+                "READY": 2,
+                "UNAVAILABLE": 5
               },
               "representation": {
                 "UNAVAILABLE": 7
@@ -38351,7 +37994,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 7,
+              "CORE_PROJECTION_UNAVAILABLE": 5,
               "MICROTOPIC_REF_UNAVAILABLE": 5,
               "VISUAL_REF_UNAVAILABLE": 7
             }
@@ -38365,7 +38008,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 2
               },
               "core": {
-                "UNAVAILABLE": 5
+                "READY": 3,
+                "UNAVAILABLE": 2
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38384,7 +38028,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "CORE_PROJECTION_UNAVAILABLE": 2,
               "MICROTOPIC_REF_UNAVAILABLE": 2,
               "VISUAL_REF_UNAVAILABLE": 5
             }
@@ -38397,7 +38041,7 @@ window.GRADE9V3 = {
                 "READY": 6
               },
               "core": {
-                "UNAVAILABLE": 6
+                "READY": 6
               },
               "representation": {
                 "UNAVAILABLE": 6
@@ -38416,7 +38060,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 6,
               "VISUAL_REF_UNAVAILABLE": 6
             }
           },
@@ -38428,7 +38071,7 @@ window.GRADE9V3 = {
                 "READY": 7
               },
               "core": {
-                "UNAVAILABLE": 7
+                "READY": 7
               },
               "representation": {
                 "READY": 3,
@@ -38450,7 +38093,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 7,
               "VISUAL_REF_UNAVAILABLE": 3
             }
           },
@@ -38462,8 +38104,7 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "core": {
-                "READY": 1,
-                "UNAVAILABLE": 2
+                "READY": 3
               },
               "representation": {
                 "READY": 3
@@ -38481,9 +38122,7 @@ window.GRADE9V3 = {
                 "READY": 3
               }
             },
-            "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 2
-            }
+            "finding_counts": {}
           },
           {
             "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
@@ -38494,7 +38133,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 3
               },
               "core": {
-                "UNAVAILABLE": 6
+                "READY": 3,
+                "UNAVAILABLE": 3
               },
               "representation": {
                 "UNAVAILABLE": 6
@@ -38513,7 +38153,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 6,
+              "CORE_PROJECTION_UNAVAILABLE": 3,
               "MICROTOPIC_REF_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 6
             }
@@ -38526,8 +38166,7 @@ window.GRADE9V3 = {
                 "READY": 11
               },
               "core": {
-                "READY": 1,
-                "UNAVAILABLE": 10
+                "READY": 11
               },
               "representation": {
                 "READY": 3,
@@ -38549,7 +38188,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 10,
               "VISUAL_REF_UNAVAILABLE": 2
             }
           },
@@ -38561,7 +38199,7 @@ window.GRADE9V3 = {
                 "READY": 1
               },
               "core": {
-                "UNAVAILABLE": 1
+                "READY": 1
               },
               "representation": {
                 "UNAVAILABLE": 1
@@ -38580,7 +38218,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 1,
               "VISUAL_REF_UNAVAILABLE": 1
             }
           },
@@ -38592,7 +38229,7 @@ window.GRADE9V3 = {
                 "READY": 6
               },
               "core": {
-                "UNAVAILABLE": 6
+                "READY": 6
               },
               "representation": {
                 "UNAVAILABLE": 6
@@ -38611,7 +38248,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 6,
               "VISUAL_REF_UNAVAILABLE": 6
             }
           },
@@ -38623,7 +38259,7 @@ window.GRADE9V3 = {
                 "READY": 6
               },
               "core": {
-                "UNAVAILABLE": 6
+                "READY": 6
               },
               "representation": {
                 "UNAVAILABLE": 6
@@ -38642,7 +38278,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 6,
               "VISUAL_REF_UNAVAILABLE": 6
             }
           },
@@ -38655,7 +38290,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 3
               },
               "core": {
-                "UNAVAILABLE": 5
+                "READY": 2,
+                "UNAVAILABLE": 3
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38674,7 +38310,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "CORE_PROJECTION_UNAVAILABLE": 3,
               "MICROTOPIC_REF_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 5
             }
@@ -38688,7 +38324,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 1
               },
               "core": {
-                "UNAVAILABLE": 5
+                "READY": 4,
+                "UNAVAILABLE": 1
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38707,7 +38344,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "CORE_PROJECTION_UNAVAILABLE": 1,
               "MICROTOPIC_REF_UNAVAILABLE": 1,
               "VISUAL_REF_UNAVAILABLE": 5
             }
@@ -38720,7 +38357,7 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "core": {
-                "UNAVAILABLE": 3
+                "READY": 3
               },
               "representation": {
                 "UNAVAILABLE": 3
@@ -38739,7 +38376,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 3
             }
           },
@@ -38751,7 +38387,7 @@ window.GRADE9V3 = {
                 "READY": 5
               },
               "core": {
-                "UNAVAILABLE": 5
+                "READY": 5
               },
               "representation": {
                 "READY": 1,
@@ -38771,7 +38407,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 5,
               "VISUAL_REF_UNAVAILABLE": 4
             }
           },
@@ -38784,7 +38419,8 @@ window.GRADE9V3 = {
                 "UNAVAILABLE": 1
               },
               "core": {
-                "UNAVAILABLE": 5
+                "READY": 4,
+                "UNAVAILABLE": 1
               },
               "representation": {
                 "UNAVAILABLE": 5
@@ -38803,7 +38439,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "CORE_PROJECTION_UNAVAILABLE": 1,
               "MICROTOPIC_REF_UNAVAILABLE": 1,
               "VISUAL_REF_UNAVAILABLE": 5
             }
@@ -38816,7 +38452,7 @@ window.GRADE9V3 = {
                 "READY": 4
               },
               "core": {
-                "UNAVAILABLE": 4
+                "READY": 4
               },
               "representation": {
                 "UNAVAILABLE": 4
@@ -38835,7 +38471,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 4,
               "VISUAL_REF_UNAVAILABLE": 4
             }
           },
@@ -38847,7 +38482,7 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "core": {
-                "UNAVAILABLE": 3
+                "READY": 3
               },
               "representation": {
                 "UNAVAILABLE": 3
@@ -38866,7 +38501,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 3
             }
           },
@@ -38878,7 +38512,7 @@ window.GRADE9V3 = {
                 "READY": 7
               },
               "core": {
-                "UNAVAILABLE": 7
+                "READY": 7
               },
               "representation": {
                 "UNAVAILABLE": 7
@@ -38897,7 +38531,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 7,
               "VISUAL_REF_UNAVAILABLE": 7
             }
           },
@@ -38909,7 +38542,7 @@ window.GRADE9V3 = {
                 "READY": 4
               },
               "core": {
-                "UNAVAILABLE": 4
+                "READY": 4
               },
               "representation": {
                 "READY": 2,
@@ -38929,7 +38562,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 4,
               "VISUAL_REF_UNAVAILABLE": 2
             }
           },
@@ -38941,7 +38573,7 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "core": {
-                "UNAVAILABLE": 3
+                "READY": 3
               },
               "representation": {
                 "READY": 2,
@@ -38961,7 +38593,6 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 3,
               "VISUAL_REF_UNAVAILABLE": 1
             }
           }

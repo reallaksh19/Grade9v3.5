@@ -1,7 +1,7 @@
 export const CORE_LEARNING_PAGE_TAG = "core-learning-page";
 export const CORE_PROJECTION_CONTRACT_VERSION = "1.0";
 
-const CORE_MODES = new Set(["CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
+const CORE_MODES = new Set(["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
 const SUPPORT_KINDS = new Set(["REPRESENT", "CONNECT", "EXECUTE"]);
 const REVEAL_KINDS = new Set(["CONCEPT", "METHOD", "ANSWER"]);
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -138,6 +138,9 @@ export function validateCoreProjection(input) {
     String(projection.core),
   );
 
+  projection.orientation = projection.orientation == null
+    ? null
+    : requireObject(projection.orientation, "CORE_PROJECTION_ORIENTATION_INVALID");
   projection.concept = projection.concept == null
     ? null
     : requireObject(projection.concept, "CORE_PROJECTION_CONCEPT_INVALID");
@@ -149,9 +152,37 @@ export function validateCoreProjection(input) {
     "CORE_PROJECTION_PRESENTATION_REQUIRED",
   );
 
+  if (projection.orientation) {
+    requireString(projection.orientation.bucket_ref, "CORE_PROJECTION_ORIENTATION_BUCKET_REQUIRED");
+    requireString(projection.orientation.title, "CORE_PROJECTION_ORIENTATION_TITLE_REQUIRED");
+    projection.orientation.blocks = optionalArray(
+      projection.orientation.blocks,
+      "CORE_PROJECTION_ORIENTATION_BLOCKS_INVALID",
+      projection.orientation.bucket_ref,
+    );
+    requireCondition(
+      projection.orientation.blocks.length > 0,
+      "CORE_PROJECTION_ORIENTATION_BLOCKS_REQUIRED",
+      projection.orientation.bucket_ref,
+    );
+    for (const block of projection.orientation.blocks) {
+      requireObject(block, "CORE_PROJECTION_ORIENTATION_BLOCK_INVALID");
+      requireString(block.id, "CORE_PROJECTION_ORIENTATION_BLOCK_ID_REQUIRED");
+      requireCondition(
+        ["TEXT", "EQUATION", "FIGURE"].includes(block.kind),
+        "CORE_PROJECTION_ORIENTATION_BLOCK_KIND_INVALID",
+        String(block.kind),
+      );
+    }
+  }
+
   if (projection.concept) {
     requireString(projection.concept.microtopic_ref, "CORE_PROJECTION_MICROTOPIC_REF_REQUIRED");
     requireString(projection.concept.inferential_jump, "CORE_PROJECTION_INFERENTIAL_JUMP_REQUIRED");
+    projection.concept.entry_assumptions = optionalStringArray(
+      projection.concept.entry_assumptions,
+      "CORE_PROJECTION_ENTRY_ASSUMPTIONS_INVALID",
+    );
     projection.concept.teaching_path = optionalArray(
       projection.concept.teaching_path,
       "CORE_PROJECTION_TEACHING_PATH_INVALID",
@@ -162,11 +193,30 @@ export function validateCoreProjection(input) {
       "CORE_PROJECTION_MISCONCEPTIONS_INVALID",
       projection.concept.microtopic_ref,
     );
-    projection.concept.representation_refs = optionalArray(
+    projection.concept.representation_refs = optionalStringArray(
       projection.concept.representation_refs,
       "CORE_PROJECTION_REPRESENTATION_REFS_INVALID",
+    );
+    projection.concept.representations = optionalArray(
+      projection.concept.representations,
+      "CORE_PROJECTION_REPRESENTATIONS_INVALID",
       projection.concept.microtopic_ref,
     );
+    projection.concept.relation_checks = optionalStringArray(
+      projection.concept.relation_checks,
+      "CORE_PROJECTION_RELATION_CHECKS_INVALID",
+    );
+    projection.concept.worked_anchors = optionalArray(
+      projection.concept.worked_anchors,
+      "CORE_PROJECTION_WORKED_ANCHORS_INVALID",
+      projection.concept.microtopic_ref,
+    );
+    projection.concept.exit_task = projection.concept.exit_task == null
+      ? {}
+      : requireObject(projection.concept.exit_task, "CORE_PROJECTION_EXIT_TASK_INVALID");
+    if (projection.concept.elicitation != null) {
+      requireObject(projection.concept.elicitation, "CORE_PROJECTION_ELICITATION_INVALID");
+    }
   }
 
   if (projection.application) {
@@ -274,6 +324,9 @@ export function validateCoreProjection(input) {
     );
   }
 
+  if (projection.core === "CORE1") {
+    requireCondition(projection.orientation != null, "CORE_PROJECTION_ORIENTATION_REQUIRED", projection.core);
+  }
   if (["CORE1A", "CORE1B"].includes(projection.core)) {
     requireCondition(projection.concept != null, "CORE_PROJECTION_CONCEPT_REQUIRED", projection.core);
   }
@@ -287,9 +340,10 @@ export function validateCoreProjection(input) {
 
 function isConceptReconstruction(projection) {
   return Boolean(
-    projection.presentation.attempt_before_reveal
+    projection.core === "CORE1B"
+    && projection.presentation.attempt_before_reveal
     && !projection.application?.question_ref
-    && projection.concept.teaching_path.length,
+    && projection.concept?.elicitation,
   );
 }
 
@@ -465,13 +519,25 @@ function renderTeachingPath(path) {
 function renderConcept(projection, state) {
   if (!projection.concept) return "";
   const eliciting = isConceptReconstruction(projection) && !state.attempted;
+  const predict = projection.concept.elicitation?.predict ?? {};
+  const attempt = projection.concept.elicitation?.attempt ?? {};
   const text = eliciting
-    ? projection.concept.elicitation?.prompt ?? "Reconstruct the connection before revealing it."
+    ? predict.prompt ?? "Reconstruct the connection before revealing it."
     : projection.concept.inferential_jump;
-  const label = eliciting ? "Reconstruct" : "Concept target";
+  const label = eliciting ? "Predict and reconstruct" : "Concept target";
+  const production = eliciting && attempt.produces
+    ? `<p><strong>Produce:</strong> ${escapeHtml(attempt.produces)}</p>`
+    : "";
+  const assumptions = !eliciting && projection.concept.entry_assumptions.length
+    ? `<div class="entry-assumptions"><h4>What this assumes</h4><ul>${projection.concept.entry_assumptions.map(
+        (item) => `<li>${escapeHtml(item)}</li>`,
+      ).join("")}</ul></div>`
+    : "";
   return `<section class="concept" aria-labelledby="core-concept-title">
     <h3 id="core-concept-title">${label}</h3>
     <p>${escapeHtml(text)}</p>
+    ${production}
+    ${assumptions}
   </section>`;
 }
 
@@ -641,11 +707,150 @@ function renderSolution(projection, state) {
   </section>`;
 }
 
+function renderMisconceptions(items) {
+  if (!items.length) return "";
+  return `<div class="misconception-repair"><h4>Diagnose and repair</h4><ul>${items.map((item) =>
+    `<li><strong>Wrong idea:</strong> ${escapeHtml(item.wrong_idea ?? "")}
+      <br><strong>Tell them apart:</strong> ${escapeHtml(item.diagnostic_prompt ?? "")}
+      <br><strong>Repair:</strong> ${escapeHtml(item.repair ?? "")}</li>`
+  ).join("")}</ul></div>`;
+}
+
+function renderConceptRepresentations(concept) {
+  if (!concept.representations.length) return "";
+  return `<div class="concept-representations"><h4>Representation bridge</h4>${concept.representations.map((rep) => {
+    const correspondence = (rep.correspondence ?? []).length
+      ? `<ul>${rep.correspondence.map((row) =>
+          `<li>${escapeHtml(row.element ?? "")} ↔ ${escapeHtml(row.symbol ?? "")}: ${escapeHtml(row.in_words ?? "")}</li>`
+        ).join("")}</ul>`
+      : '<p class="empty">No explicit correspondence supplied.</p>';
+    return `<article data-concept-representation="${escapeHtml(rep.representation_ref ?? "")}">
+      <h5>${escapeHtml(rep.representation_ref ?? "Representation")}</h5>
+      ${correspondence}
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderWorkedAnchors(anchors) {
+  if (!anchors.length) return "";
+  return `<div class="worked-anchors"><h4>Worked conceptual anchor</h4>${anchors.map((anchor) => {
+    const answer = anchor.answer ?? {};
+    const reasoning = (answer.reasoning ?? []).length
+      ? `<ol>${answer.reasoning.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`
+      : "";
+    return `<article data-worked-anchor="${escapeHtml(anchor.question_ref ?? "")}">
+      <p>${escapeHtml(anchor.stem ?? "")}</p>
+      ${answer.summary ? `<p><strong>Answer:</strong> ${escapeHtml(answer.summary)}</p>` : ""}
+      ${reasoning}
+      ${answer.check ? `<p><strong>Check:</strong> ${escapeHtml(answer.check)}</p>` : ""}
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderExitClosure(concept) {
+  const task = concept.exit_task ?? {};
+  const answer = task.answer ?? {};
+  if (!task.prompt && !concept.relation_checks.length) return "";
+  const reasoning = (answer.reasoning ?? []).length
+    ? `<ol>${answer.reasoning.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`
+    : "";
+  const relationChecks = concept.relation_checks.length
+    ? `<div><h5>Independent checks</h5><ul>${concept.relation_checks.map((item) =>
+        `<li>${escapeHtml(item)}</li>`
+      ).join("")}</ul></div>`
+    : "";
+  return `<div class="concept-closure"><h4>Independent closure</h4>
+    ${task.prompt ? `<p><strong>Check yourself:</strong> ${escapeHtml(task.prompt)}</p>` : ""}
+    ${answer.summary ? `<p><strong>Answer:</strong> ${escapeHtml(answer.summary)}</p>` : ""}
+    ${reasoning}
+    ${answer.check ? `<p><strong>Verify:</strong> ${escapeHtml(answer.check)}</p>` : ""}
+    ${relationChecks}
+  </div>`;
+}
+
+function renderCore1BReconstruction(concept) {
+  const elicitation = concept.elicitation ?? {};
+  const predict = elicitation.predict ?? {};
+  const attempt = elicitation.attempt ?? {};
+  const reconstruct = elicitation.reconstruct ?? {};
+  const boundary = elicitation.boundary_test ?? {};
+  const route = (reconstruct.route ?? []).length
+    ? `<ol>${reconstruct.route.map((step) =>
+        `<li>${escapeHtml(step.ask ?? "")}${step.why_this_ask ? `<small>${escapeHtml(step.why_this_ask)}</small>` : ""}</li>`
+      ).join("")}</ol>`
+    : "";
+  let closure = "";
+  if (attempt.closure === "MODEL_RESPONSE" && attempt.model_response) {
+    closure = `<p><strong>Model response:</strong> ${escapeHtml(attempt.model_response)}</p>`;
+  } else if ((attempt.rubric ?? []).length) {
+    closure = `<div><h5>Self-check criteria</h5><ul>${attempt.rubric.map((row) =>
+      `<li><strong>${escapeHtml(row.criterion ?? "")}</strong> — ${escapeHtml(row.evidence_of ?? "")}</li>`
+    ).join("")}</ul></div>`;
+  }
+  return `<div class="core1b-reconstruction">
+    ${predict.defensible_answer ? `<p><strong>Defensible answer:</strong> ${escapeHtml(predict.defensible_answer)}</p>` : ""}
+    <h4>Reconstruct the reasoning</h4>
+    ${route}
+    ${renderMisconceptions(concept.misconceptions)}
+    ${closure}
+    ${boundary.prompt ? `<div class="boundary-test"><h4>Boundary test</h4>
+      <p>${escapeHtml(boundary.prompt)}</p>
+      ${boundary.answer ? `<p><strong>Answer:</strong> ${escapeHtml(boundary.answer)}</p>` : ""}
+      ${boundary.confirms ? `<small>${escapeHtml(boundary.confirms)}</small>` : ""}
+    </div>` : ""}
+  </div>`;
+}
+
 function renderConstruction(projection, state) {
   if (!projection.concept || !state.reconstructionVisible) return "";
+  const body = projection.core === "CORE1B"
+    ? renderCore1BReconstruction(projection.concept)
+    : `${renderTeachingPath(projection.concept.teaching_path)}
+       ${renderConceptRepresentations(projection.concept)}
+       ${renderMisconceptions(projection.concept.misconceptions)}
+       ${renderWorkedAnchors(projection.concept.worked_anchors)}
+       ${renderExitClosure(projection.concept)}`;
+  const title = projection.core === "CORE1B" ? "Reconstruction and repair" : "Completed construction";
   return `<section class="construction-panel" data-semantic="reconstruction" aria-labelledby="core-construction-title">
-    <h3 id="core-construction-title">Construction</h3>
-    ${renderTeachingPath(projection.concept.teaching_path)}
+    <h3 id="core-construction-title">${title}</h3>
+    ${body}
+  </section>`;
+}
+
+function renderOrientationMap(projection) {
+  if (projection.core !== "CORE1" || !projection.orientation) return "";
+  return `<section class="orientation-map" aria-labelledby="core-orientation-map-title">
+    <h3 id="core-orientation-map-title">${escapeHtml(projection.orientation.title)}</h3>
+    ${projection.orientation.blocks.map((block) => {
+      if (block.kind === "TEXT") {
+        return `<article data-orientation-block="${escapeHtml(block.id)}">
+          <p>${escapeHtml(block.text ?? "").replaceAll("\n", "<br>")}</p>
+        </article>`;
+      }
+      if (block.kind === "EQUATION") {
+        const symbols = (block.symbols ?? []).length
+          ? `<ul>${block.symbols.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        const conditions = (block.conditions ?? []).length
+          ? `<ul>${block.conditions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`
+          : "";
+        return `<article data-orientation-block="${escapeHtml(block.id)}">
+          <div class="equation-expression">${block.mathml ?? ""}</div>
+          ${block.meaning ? `<p>${escapeHtml(block.meaning)}</p>` : ""}
+          ${symbols}
+          ${conditions}
+        </article>`;
+      }
+      const correspondence = (block.correspondence ?? []).length
+        ? `<ul>${block.correspondence.map((row) =>
+            `<li>${escapeHtml(row.element ?? "")} ↔ ${escapeHtml(row.symbol ?? "")}: ${escapeHtml(row.in_words ?? "")}</li>`
+          ).join("")}</ul>`
+        : "";
+      return `<article data-orientation-block="${escapeHtml(block.id)}">
+        <p>${escapeHtml(block.scene?.caption ?? "Canonical orientation figure.")}</p>
+        ${correspondence}
+      </article>`;
+    }).join("")}
   </section>`;
 }
 
@@ -678,7 +883,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
   return `<style>
     :host { display:block; font:inherit; color:inherit; }
     .shell { display:grid; gap:1rem; max-width:72rem; margin:0 auto; }
-    .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
+    .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
       border:1px solid currentColor; border-radius:.75rem; padding:1rem;
     }
     .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
@@ -699,7 +904,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     @media (max-width: 36rem) {
-      .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
+      .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
@@ -712,6 +917,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       <p class="status">${escapeHtml(state.stage.replaceAll("_", " ").toLowerCase())}</p>
       <p class="visually-hidden" aria-live="polite" data-live-status></p>
     </header>
+    ${renderOrientationMap(projection)}
     ${renderConcept(projection, state)}
     ${renderQuestion(projection, state)}
     ${renderQuestionFigures(projection, state)}
