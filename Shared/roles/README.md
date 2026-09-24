@@ -38,7 +38,7 @@ Turning B into A with the nouns changed, or into A with random blanks punched in
 
 ## Learner-facing production templates
 
-The role files define **what each Core means**. [Core learner-product templates](CORE-TEMPLATES.md)
+The role files define **what each Core means**. [Core learner-product templates](LEARNER-PRODUCT-TEMPLATES.md)
 define the stable presentation anatomy and reveal order used to turn those semantics into
 learner-facing products.
 
@@ -51,7 +51,7 @@ The template contract is intentionally narrower than the role specifications:
 - it does define ordered learner-facing blocks, reveal/withhold boundaries and structural
   anti-collapse rules for all six roles.
 
-The machine-readable fenced block in `CORE-TEMPLATES.md` is validated by
+The machine-readable fenced block in `LEARNER-PRODUCT-TEMPLATES.md` is validated by
 `Shared/tools/core_template_contract.py`.
 
 ## Cross-lane Core projection contract
