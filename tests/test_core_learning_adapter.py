@@ -226,6 +226,7 @@ class CoreLearningProductionAdapter(unittest.TestCase):
 
     def test_compiler_emitted_core2_can_project_without_teaching_pair(self):
         block = {
+            "kind": "QUESTION",
             "source_question_id": "Q-SOURCE-1",
             "family": "F-SOURCE",
             "stem": "Preserved source demand.",
