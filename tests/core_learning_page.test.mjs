@@ -21,6 +21,7 @@ const byId = Object.fromEntries(fixtures.map((row) => [row.id, row]));
 
 test("frozen CoreProjection fixtures derive the contract-defined initial states", () => {
   const expected = {
+    core1: ["CORE1", "ORIENTATION", false, false],
     core1a: ["CORE1A", "CONSTRUCTION_VISIBLE", true, false],
     core1b: ["CORE1B", "AWAITING_ATTEMPT", false, false],
     core2a: ["CORE2A", "QUESTION_VISIBLE", false, true],
@@ -63,11 +64,41 @@ test("initial state follows supplied presentation policy rather than subject or 
   assert.equal(leftState.reasoningVisible, rightState.reasoningVisible);
 });
 
-test("Core1 fixtures use the frozen nullable application boundary", () => {
+test("Core1-family fixtures keep orientation and concept products outside application practice", () => {
+  assert.equal(byId.core1.application, null);
+  assert.equal(byId.core1.concept, null);
   assert.equal(byId.core1a.application, null);
   assert.equal(byId.core1b.application, null);
+  assert.doesNotThrow(() => validateCoreProjection(byId.core1));
   assert.doesNotThrow(() => validateCoreProjection(byId.core1a));
   assert.doesNotThrow(() => validateCoreProjection(byId.core1b));
+});
+
+test("Core1 renders compiler-owned orientation blocks without inventing an attempt", () => {
+  const projection = byId.core1;
+  const state = deriveCoreLearningState(projection);
+  const rendered = renderCoreLearningProjection(projection, state);
+
+  assert.equal(state.stage, "ORIENTATION");
+  assert.match(rendered, /Fixture concept map/);
+  assert.match(rendered, /Read the declared sign convention/);
+  assert.match(rendered, /Velocity is constant/);
+  assert.match(rendered, /labelled displacement from the declared origin/i);
+  assert.doesNotMatch(rendered, /data-attempt-form/);
+  assert.doesNotMatch(rendered, /Completed construction/);
+});
+
+test("Core1A learner surface preserves the completed construction and independent closure", () => {
+  const rendered = renderCoreLearningProjection(byId.core1a);
+  assert.match(rendered, /Completed construction/);
+  assert.match(rendered, /Read the supplied representation/);
+  assert.match(rendered, /The representation is part of the projection input/);
+  assert.match(rendered, /Representation bridge/);
+  assert.match(rendered, /marked state/);
+  assert.match(rendered, /Worked conceptual anchor/);
+  assert.match(rendered, /Use the supplied representation to explain the relation/);
+  assert.match(rendered, /Independent closure/);
+  assert.match(rendered, /Reverse the relation and recover the supplied state/);
 });
 
 test("projection validation fails closed on unsupported, incomplete, or dangling envelopes", () => {
@@ -112,21 +143,34 @@ test("projection validation fails closed on unsupported, incomplete, or dangling
   );
 });
 
-test("Core1B keeps the inferential jump and reconstruction absent until commit", () => {
+test("Core1B keeps canonical truth and authored reconstruction closure behind a genuine attempt", () => {
   const projection = byId.core1b;
   const initial = deriveCoreLearningState(projection);
   const before = renderCoreLearningProjection(projection, initial);
 
-  assert.match(before, /Reconstruct the connection before revealing the authored path/);
+  assert.match(before, /Which supplied condition controls the connection/);
+  assert.match(before, /A condition choice plus a reason/);
   assert.match(before, /data-attempt-form/);
   assert.doesNotMatch(before, /A supplied relation follows from the supplied representation and conditions/);
-  assert.doesNotMatch(before, /Read the supplied representation/);
+  assert.doesNotMatch(before, /What does the marked state represent/);
+  assert.doesNotMatch(before, /Defensible answer/);
+  assert.doesNotMatch(before, /Boundary test/);
   assert.doesNotMatch(before, /data-semantic="reconstruction"/);
+
+  assert.throws(
+    () => transitionCoreLearningState(
+      projection,
+      initial,
+      { type: "COMMIT_ATTEMPT", response: "   " },
+    ),
+    (error) => error instanceof CoreLearningPageError
+      && error.code === "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED",
+  );
 
   const committed = transitionCoreLearningState(
     projection,
     initial,
-    { type: "COMMIT_ATTEMPT", response: "reconstructed connection" },
+    { type: "COMMIT_ATTEMPT", response: "The stated condition controls it." },
   ).state;
   const after = renderCoreLearningProjection(projection, committed);
 
@@ -135,7 +179,13 @@ test("Core1B keeps the inferential jump and reconstruction absent until commit",
   assert.equal(committed.stage, "RECONSTRUCTION_VISIBLE");
   assert.equal(committed.reconstructionVisible, true);
   assert.match(after, /A supplied relation follows from the supplied representation and conditions/);
-  assert.match(after, /Read the supplied representation/);
+  assert.match(after, /What does the marked state represent/);
+  assert.match(after, /Which condition connects that state to the relation/);
+  assert.match(after, /Defensible answer/);
+  assert.match(after, /The relation is valid without checking the condition/);
+  assert.match(after, /Model response/);
+  assert.match(after, /Boundary test/);
+  assert.doesNotMatch(after, /Read the supplied representation.*Connect the supplied condition/s);
   assert.match(after, /data-semantic="reconstruction"/);
 });
 
