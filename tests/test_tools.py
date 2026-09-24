@@ -552,12 +552,16 @@ class SpecDelivery(unittest.TestCase):
         self.assertIn("A common wrong idea", texts["CORE1B"])
 
     def test_hints_are_authored_and_carried(self):
-        # Both halves had to move together: authoring hints into a compiler that emits []
-        # delivers nothing, and carrying [] delivers nothing. R1.5 asserted the defect
-        # in both places; this asserts the fix in both.
+        # Hints still have to survive compilation, but an AUTHORED practice question no
+        # longer makes Core2 source custody renderable. Mathematics therefore proves both
+        # halves of the Phase-4 boundary at once: Core2 is honestly not compiled here,
+        # while the familiar-application product still carries the authored hints.
+        subject_rows = self.rows_for("Mathematics")
         rows = {(r["role"], r["path"]): r["state"]
-                for r in self.rows_for("Mathematics") if "path" in r}
-        self.assertEqual(rows[("CORE2", "question.hints[]")], "DELIVERED")
+                for r in subject_rows if "path" in r}
+        core2 = [r for r in subject_rows if r["role"] == "CORE2" and "path" not in r]
+        self.assertEqual(core2, [{"role": "CORE2", "state": "NOT_COMPILED_HERE"}])
+        self.assertEqual(rows[("CORE2A", "question.hints[]")], "DELIVERED")
         source = (REPO / "Shared/library/compile_inputs.py").read_text(encoding="utf-8")
         self.assertNotIn('"hints": []', source)
 
