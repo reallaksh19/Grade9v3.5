@@ -580,7 +580,7 @@
         </div>
         <input type="range" min="0" max="100" value="50" id="knowledgeSlider" style="width: 100%; accent-color: #38bdf8;" oninput="window.ATLAS.setKnowledgeSlider(this.value)">
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin-top: 4px; font-family: var(--font-mono);">
-          <span>None / 0%</span>
+          <span>0%</span>
           <span>45% (R2 Threshold)</span>
           <span>78% (Friction R5)</span>
           <span>100% (Default Lane Cap)</span>
@@ -684,7 +684,7 @@
 <!-- Canonical Projected Database Global -->
 <script src="../../data/data.js"></script>
 <!-- Generic Topic Atlas Engine (Issue #118) -->
-<script src="../../js/topic-atlas.js"></script>
+<script src="../../core-learning/data.js"></script>\n<script src="../../js/topic-atlas.js"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     window.ATLAS.init('MATRIX-PHY-NLM-FIRST-LAW');
