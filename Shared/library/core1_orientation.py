@@ -128,13 +128,18 @@ def audit_bucket(
     *,
     relation_index: dict[str, dict] | None = None,
     representation_index: dict[str, dict] | None = None,
+    microtopics_override: list[dict] | None = None,
 ) -> dict:
     relations = relation_index or _index(package, "relations")
     representations = representation_index or _index(package, "representations")
-    microtopics = [
-        row for row in package.get("microtopics", []) or []
-        if isinstance(row, dict) and row.get("bucket_id") == bucket.get("id")
-    ]
+    microtopics = (
+        list(microtopics_override)
+        if microtopics_override is not None
+        else [
+            row for row in package.get("microtopics", []) or []
+            if isinstance(row, dict) and row.get("bucket_id") == bucket.get("id")
+        ]
+    )
 
     findings: list[dict] = []
     relation_refs = sorted({
@@ -296,9 +301,16 @@ def audit(repo: Path) -> dict:
     for subject, subject_rows in sorted(by_subject.items()):
         relations: dict[str, dict] = {}
         representations: dict[str, dict] = {}
+        microtopics_by_bucket: dict[str, list[dict]] = {}
         for _, package in subject_rows:
             relations.update(_index(package, "relations"))
             representations.update(_index(package, "representations"))
+            for microtopic in package.get("microtopics", []) or []:
+                if not isinstance(microtopic, dict):
+                    continue
+                bucket_ref = microtopic.get("bucket_id")
+                if isinstance(bucket_ref, str):
+                    microtopics_by_bucket.setdefault(bucket_ref, []).append(microtopic)
         for path, package in subject_rows:
             rel = str(path.relative_to(repo))
             for bucket in package.get("buckets", []) or []:
@@ -310,6 +322,7 @@ def audit(repo: Path) -> dict:
                         bucket,
                         relation_index=relations,
                         representation_index=representations,
+                        microtopics_override=microtopics_by_bucket.get(bucket.get("id"), []),
                     ))
     rows.sort(key=lambda row: (row["subject"], row["bucket_ref"] or ""))
     counts: dict[str, int] = {}
