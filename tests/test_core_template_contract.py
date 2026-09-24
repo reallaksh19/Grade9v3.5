@@ -8,6 +8,29 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 class CoreTemplateContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.projections = build_core_learning_data.build()["core_projections"]
+
+    @classmethod
+    def projection(cls, core, *, source_ref=None, microtopic_ref=None):
+        matches = [
+            row["projection"]
+            for row in cls.projections
+            if row["projection"]["core"] == core
+            and (source_ref is None or row["source_ref"] == source_ref)
+            and (
+                microtopic_ref is None
+                or (row["projection"].get("concept") or {}).get("microtopic_ref")
+                == microtopic_ref
+            )
+        ]
+        if len(matches) != 1:
+            raise AssertionError(
+                f"expected one {core} witness; found {len(matches)}"
+            )
+        return matches[0]
+
     def test_contract_covers_all_six_roles_and_passes_structural_audit(self):
         report = core_template_contract.audit(REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md")
         self.assertTrue(report["passed"], report["findings"])
@@ -58,6 +81,58 @@ class CoreTemplateContractTests(unittest.TestCase):
             for role in core_template_contract.ROLE_ORDER
         ]
         self.assertEqual(len(signatures), len(set(signatures)))
+
+
+    def test_real_canonical_witnesses_match_role_template_boundaries(self):
+        bucket = "BUCKET-PHY-KIN-2D-MOTION"
+        concept = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+        familiar = "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
+        transfer = "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
+
+        core1 = self.projection("CORE1", source_ref=bucket)
+        self.assertIsNotNone(core1["orientation"])
+        self.assertIsNone(core1["concept"])
+        self.assertIsNone(core1["application"])
+
+        core1a = self.projection("CORE1A", microtopic_ref=concept)
+        self.assertTrue(core1a["presentation"]["show_full_construction"])
+        self.assertFalse(core1a["presentation"]["attempt_before_reveal"])
+        self.assertTrue(core1a["concept"]["inferential_jump"])
+        self.assertTrue(core1a["concept"]["teaching_path"])
+
+        core1b = self.projection("CORE1B", microtopic_ref=concept)
+        self.assertTrue(core1b["presentation"]["attempt_before_reveal"])
+        self.assertFalse(core1b["presentation"]["show_full_construction"])
+        self.assertTrue(core1b["concept"]["elicitation"]["predict"]["prompt"])
+        self.assertTrue(core1b["concept"]["elicitation"]["attempt"]["produces"])
+
+        core2_rows = [
+            row["projection"]
+            for row in self.projections
+            if row["projection"]["core"] == "CORE2"
+        ]
+        self.assertTrue(core2_rows, "production provider must expose at least one Core2 custody witness")
+        core2 = core2_rows[0]
+        self.assertTrue(core2["application"]["source_refs"])
+        self.assertIsNotNone(core2["application"]["origin"])
+        self.assertIn("hints", core2["application"])
+        self.assertIn("solution", core2["application"])
+
+        core2a = self.projection("CORE2A", source_ref=familiar)
+        self.assertTrue(core2a["application"]["reasoning_route"])
+        self.assertTrue(core2a["application"]["crux_move_ref"])
+        self.assertIn("scaffolds", core2a["application"])
+        self.assertTrue(core2a["application"]["solution"]["summary"])
+
+        core2b = self.projection("CORE2B", source_ref=transfer)
+        protected = core2b["application"]["transfer"]["protected_move_ref"]
+        self.assertIn(protected, core2b["presentation"]["protected_move_refs"])
+        safe_limit = core2b["presentation"]["pre_attempt_scaffold_limit"]
+        for scaffold in core2b["application"]["scaffolds"][:safe_limit]:
+            self.assertNotEqual(scaffold.get("supports_move_ref"), protected)
+            self.assertEqual(scaffold.get("reveals"), "CONCEPT")
+        self.assertTrue(core2b["application"]["solution"]["rubric"])
+        self.assertIsNotNone(core2b["application"]["repair"])
 
 
 if __name__ == "__main__":
