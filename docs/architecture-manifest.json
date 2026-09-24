@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 263,
-  "relation_count": 306,
+  "component_count": 265,
+  "relation_count": 308,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 42,
-    "TEST": 125,
+    "LIBRARY": 43,
+    "TEST": 126,
     "TOOLING": 59,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:bde86e0507a05ca0439d899177d717bc614f64ac8a1129a5ec11046d3b206293",
+  "digest": "sha256:aaacb322892551775cfe00e96e243ca9d0c037b2ae861edeb94107d01273a9fe",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -81,6 +81,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 12940,
       "sha256": "089f6e86e0fae3947e250bd6710104fe52d73338d1a73c33571558eefbcb4414"
+    },
+    {
+      "path": "Shared/library/core1a_construction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 8570,
+      "sha256": "215be1906fe7c6069e2f3d63485f57630a7b4ea009352ef3d85c6f7fbaff9a68"
     },
     {
       "path": "Shared/library/core_progression.py",
@@ -1224,6 +1231,13 @@
       "sha256": "004c07230848c431c1d1d6093ccc55499cb48b742ffa15384f67ac435b890881"
     },
     {
+      "path": "tests/test_core1a_construction.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4859,
+      "sha256": "1906f5e1434828864ddcba2ea7eb94e7fe21dd9de64ec6e14a8237ef3bfe0edf"
+    },
+    {
       "path": "tests/test_core2a_inventory.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1890,6 +1904,11 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1a_construction.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2674,6 +2693,11 @@
     },
     {
       "from": "tests/test_core1_orientation.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1a_construction.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
     },
