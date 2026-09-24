@@ -54,14 +54,16 @@ def _subject_rows(subject: str) -> tuple[list[dict], list[dict]]:
                 "projection_refs": [],
             })
             continue
-        bucket_rows, finding = adapt_compiled_bucket_with_status(compiled, records, subject=subject)
+        bucket_rows, findings = adapt_compiled_bucket_with_status(compiled, records, subject=subject)
         rows.extend(bucket_rows)
+        first = findings[0] if findings else None
         availability.append({
             "subject": subject,
             "bucket_ref": bucket_id,
             "status": "AVAILABLE" if bucket_rows else "UNSUPPORTED",
-            "code": finding["code"] if finding else None,
-            "detail": finding["detail"] if finding else None,
+            "code": first["code"] if first else None,
+            "detail": first["detail"] if first else None,
+            "findings": findings,
             "projection_refs": [row["id"] for row in bucket_rows],
         })
     return rows, availability
@@ -85,7 +87,15 @@ def build() -> dict:
         },
         "core_projections": rows,
         "bucket_availability": availability,
-        "findings": [row for row in availability if row["status"] == "UNSUPPORTED"],
+        "findings": [
+            {
+                "subject": row["subject"],
+                "bucket_ref": row["bucket_ref"],
+                **finding,
+            }
+            for row in availability
+            for finding in row.get("findings", [])
+        ],
     }
 
 
