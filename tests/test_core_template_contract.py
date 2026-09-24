@@ -9,14 +9,14 @@ REPO = Path(__file__).resolve().parents[1]
 
 class CoreTemplateContractTests(unittest.TestCase):
     def test_contract_covers_all_six_roles_and_passes_structural_audit(self):
-        report = core_template_contract.audit(REPO / "Shared" / "roles" / "CORE-TEMPLATES.md")
+        report = core_template_contract.audit(REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md")
         self.assertTrue(report["passed"], report["findings"])
         self.assertEqual(report["roles_checked"], 6)
         self.assertEqual(report["contract_version"], "1.0")
 
     def test_core1b_attempt_precedes_reconstruction(self):
         roles = core_template_contract.load_contract(
-            REPO / "Shared" / "roles" / "CORE-TEMPLATES.md"
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
         )["roles"]
         ids = [block["id"] for block in roles["CORE1B"]["ordered_blocks"]]
         self.assertLess(ids.index("attempt"), ids.index("reconstruct"))
@@ -24,7 +24,7 @@ class CoreTemplateContractTests(unittest.TestCase):
 
     def test_core2b_protects_changed_decision_until_after_attempt(self):
         roles = core_template_contract.load_contract(
-            REPO / "Shared" / "roles" / "CORE-TEMPLATES.md"
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
         )["roles"]
         core2b = roles["CORE2B"]
         ids = [block["id"] for block in core2b["ordered_blocks"]]
@@ -37,7 +37,7 @@ class CoreTemplateContractTests(unittest.TestCase):
 
     def test_source_hints_and_authored_scaffolds_are_not_collapsed(self):
         roles = core_template_contract.load_contract(
-            REPO / "Shared" / "roles" / "CORE-TEMPLATES.md"
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
         )["roles"]
         self.assertIn(
             "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
@@ -51,7 +51,7 @@ class CoreTemplateContractTests(unittest.TestCase):
 
     def test_all_role_anatomies_are_distinct(self):
         roles = core_template_contract.load_contract(
-            REPO / "Shared" / "roles" / "CORE-TEMPLATES.md"
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
         )["roles"]
         signatures = [
             tuple(block["id"] for block in roles[role]["ordered_blocks"])
