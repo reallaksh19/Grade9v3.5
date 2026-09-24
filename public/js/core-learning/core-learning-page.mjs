@@ -8,6 +8,7 @@ const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value
 
 export const CORE_LEARNER_EVENTS = Object.freeze({
   ATTEMPT_COMMITTED: "attempt_committed",
+  ATTEMPT_REJECTED: "attempt_rejected",
   SUPPORT_REQUESTED: "support_requested",
   HINT_REQUESTED: "hint_requested",
   REVEAL_CHANGED: "reveal_changed",
@@ -828,11 +829,22 @@ export class CoreLearningPage extends HTMLElementBase {
   commitAttempt(response = "") {
     this._requireProjection();
     const before = this._state;
-    const result = transitionCoreLearningState(
-      this._projection,
-      this._state,
-      { type: "COMMIT_ATTEMPT", response: String(response ?? "") },
-    );
+    let result;
+    try {
+      result = transitionCoreLearningState(
+        this._projection,
+        this._state,
+        { type: "COMMIT_ATTEMPT", response: String(response ?? "") },
+      );
+    } catch (error) {
+      const reason = error?.code || error?.name || "CORE_LEARNING_ATTEMPT_REJECTED";
+      this._emit(CORE_LEARNER_EVENTS.ATTEMPT_REJECTED, {
+        reason,
+        responsePresent: String(response ?? "").trim().length > 0,
+      });
+      this._announce("Attempt not accepted. Enter a response before continuing.");
+      throw error;
+    }
     this._state = result.state;
     this._render();
     this._emit(CORE_LEARNER_EVENTS.ATTEMPT_COMMITTED, {
@@ -994,10 +1006,22 @@ export class CoreLearningPage extends HTMLElementBase {
   _bindActions() {
     if (!this.shadowRoot?.querySelector) return;
     const form = this.shadowRoot.querySelector("[data-attempt-form]");
+    const input = this.shadowRoot.querySelector("[data-attempt-input]");
+    input?.addEventListener("invalid", () => {
+      this._emit(CORE_LEARNER_EVENTS.ATTEMPT_REJECTED, {
+        reason: "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED",
+        responsePresent: Boolean(String(input.value ?? "").trim().length),
+      });
+      this._announce("Attempt not accepted. Enter a response before continuing.");
+      queueMicrotask(() => input.focus?.());
+    });
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
-      const input = this.shadowRoot.querySelector("[data-attempt-input]");
-      this.commitAttempt(input?.value ?? "");
+      try {
+        this.commitAttempt(input?.value ?? "");
+      } catch (error) {
+        if (error?.code !== "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED") throw error;
+      }
     });
     this.shadowRoot.querySelector('[data-action="support"]')?.addEventListener("click", () => {
       this.requestSupport();
