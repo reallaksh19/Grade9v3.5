@@ -2,7 +2,7 @@
 """Parse and validate the six-Core learner-product template contract.
 
 The role specifications remain authoritative for learner-product meaning. This module
-checks only the presentation contract carried by Shared/roles/CORE-TEMPLATES.md:
+checks only the presentation contract carried by Shared/roles/LEARNER-PRODUCT-TEMPLATES.md:
 role presence, block ordering, reveal-state vocabulary and a small set of anti-collapse
 invariants that are safe to test mechanically.
 
@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[2]
-TEMPLATE_SPEC = REPO / "Shared" / "roles" / "CORE-TEMPLATES.md"
+TEMPLATE_SPEC = REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
 ROLE_ORDER = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 BLOCK = re.compile(r"^\`\`\`core-templates\s*$\n(.*?)^\`\`\`\s*$", re.MULTILINE | re.DOTALL)
 ALLOWED_VISIBILITY = {"IMMEDIATE", "ATTEMPT_FIRST", "POST_ATTEMPT", "ON_REVEAL", "AUTHOR_ONLY"}
