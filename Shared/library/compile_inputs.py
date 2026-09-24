@@ -43,7 +43,7 @@ if __package__ in (None, ""):
 from Shared.contracts import digest, join, load, require, sentence
 from Shared.library.resolve import build_index, load_packages, slice_for_bucket
 from Shared.library.practice_inventory import bucket_questions
-from Shared.library import source_custody
+from Shared.library import core1_orientation, source_custody
 
 # Core1 and Core2 sit outside the teaching-route mechanism. A route says which product
 # teaches a microtopic; these two do not teach it. Core1 is the bucket's map -- its
@@ -187,11 +187,25 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
     for core in COMPOSABLE:
         covered = claimed[core] & microtopic_ids
         if core == "CORE1":
-            if relation_ids:
+            representation_index = {
+                row["id"]: row
+                for row in chosen["records"].get("representations", [])
+                if isinstance(row, dict) and isinstance(row.get("id"), str)
+            }
+            surfaces = core1_orientation.orientation_surfaces(
+                records[bucket_id],
+                microtopics,
+                relation_ids,
+                representation_index=representation_index,
+            )
+            if surfaces:
                 supported.append(core)
             else:
-                unsupported[core] = ("the bucket declares no governing relation, so there is "
-                                     "nothing for a map of it to orient a learner to")
+                unsupported[core] = (
+                    "the bucket has no canonical relation, declared convention/scope, "
+                    "hard-transition pointer or Core1 primary scene from which to emit "
+                    "a compact semantic orientation"
+                )
         elif core == "CORE2":
             if core2_question_records:
                 supported.append(core)

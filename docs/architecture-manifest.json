@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 263,
-  "relation_count": 305,
+  "component_count": 272,
+  "relation_count": 316,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 41,
-    "TEST": 126,
+    "LIBRARY": 46,
+    "TEST": 130,
     "TOOLING": 59,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:829fc25c6417708248b9d72e9213ef4e6aa2d7118bc5498bcccc36a3e53f6038",
+  "digest": "sha256:5a4e2f1a8014acfe4690fa8c83465352e4bc56da972e8dd2da740dad58c121bd",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -72,8 +72,43 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 46185,
-      "sha256": "2d9947d30a799572bb5c0b29731d9913eaf61d8e151a77c54722fa99d3af910e"
+      "bytes": 46765,
+      "sha256": "991889d32a3724326a67db313d42d4223c65192a3121fd350eb530b28a0bce51"
+    },
+    {
+      "path": "Shared/library/core1_delivery.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 9123,
+      "sha256": "7049b35ab014fde5ea05927ebffb55ebc3d91568b6f2b64ecc3eff90e7399c29"
+    },
+    {
+      "path": "Shared/library/core1_orientation.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 15721,
+      "sha256": "a3ee6e50c5934f7a21ee8107d139fcf784b58eef885ba3a342a1ca9165676436"
+    },
+    {
+      "path": "Shared/library/core1_progression.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 13019,
+      "sha256": "6146ebf173ab9de712cc9f8da3f7093e70a999402dc0b9e2e945411590700039"
+    },
+    {
+      "path": "Shared/library/core1a_construction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 14235,
+      "sha256": "5796b4b32990fb088714b004cd8703a31172dee350512c491655a5d64a3dd4e6"
+    },
+    {
+      "path": "Shared/library/core1b_reconstruction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 15811,
+      "sha256": "5dbecb8ff4d0fd0d0a06aa46bc0f14f9bfcd2b694751c433fd1dd99e695f110c"
     },
     {
       "path": "Shared/library/core_progression.py",
@@ -604,8 +639,8 @@
       "path": "Shared/tools/core_learning_projection_adapter.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20924,
-      "sha256": "6cb74b31499d5e4fcbe8d3bf7ae555b94d5d106b630d650a957e06d678656199"
+      "bytes": 26713,
+      "sha256": "413ba5f92c0df00b97337a3400446074a75f876cfbbca25a38b58525ddb5ecca"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -870,8 +905,8 @@
       "path": "Shared/workbench/core-learning-page.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
-      "bytes": 41118,
-      "sha256": "e7b122a82cc76614c73e22af7c4bc2637465f215959d0f3c2a9963d5f2961f44"
+      "bytes": 50839,
+      "sha256": "3141c65380d646bdeaab6ada4c38a71e32033ed4422b277a05a038ed30054ece"
     },
     {
       "path": "Shared/workbench/runtime.mjs",
@@ -891,8 +926,8 @@
       "path": "public/core-learning/data.js",
       "role": "WEB",
       "role_description": "Static Core learner host and generated projection data",
-      "bytes": 121105,
-      "sha256": "abe623c96e2d009942c1c5d05881aa65c7d7a49cc64eaf3d3be8ea40e21179a3"
+      "bytes": 1690810,
+      "sha256": "52c02ce4b950d25047481ab30061842a96db9d1085ddf9504df1ad411d82fb48"
     },
     {
       "path": "public/core-learning/index.html",
@@ -912,8 +947,8 @@
       "path": "public/js/core-learning/core-learning-page.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Generated public Core learner runtime",
-      "bytes": 41118,
-      "sha256": "e7b122a82cc76614c73e22af7c4bc2637465f215959d0f3c2a9963d5f2961f44"
+      "bytes": 50839,
+      "sha256": "3141c65380d646bdeaab6ada4c38a71e32033ed4422b277a05a038ed30054ece"
     },
     {
       "path": "public/js/core-learning/runtime.mjs",
@@ -947,8 +982,8 @@
       "path": "tests/core_learning_page.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 21098,
-      "sha256": "f99a13f93c308dfbbd5614e44d3b10ad38efafeccb07c6cff1035329682e5640"
+      "bytes": 23538,
+      "sha256": "c104f4bf72704e6af394151697759d8bdc32bebb1d52a09fcc6fc4b9e23738c7"
     },
     {
       "path": "tests/fixtures/agent_path_stress/cases.json",
@@ -1115,8 +1150,8 @@
       "path": "tests/fixtures/workbench/core-learning-projections.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 7502,
-      "sha256": "3c493ffad390de9ed44003e8b23b625ec8b7d4e75deea4283fb18c0617a3bc30"
+      "bytes": 13074,
+      "sha256": "d32c7109e2f5f6b9bd968f439a3dd7c9c98ef131efbd5fe90215507fb8b3ecf5"
     },
     {
       "path": "tests/motion_session_251.test.mjs",
@@ -1136,8 +1171,8 @@
       "path": "tests/readiness_join_215.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 22965,
-      "sha256": "6b96a2d7be13aa73d821c552e89181898d0794d3026e826daca6ba497f52d6a3"
+      "bytes": 23189,
+      "sha256": "cff4c5924726a962c7feacd3d461116018327e28462ddf154325704f34f1e10a"
     },
     {
       "path": "tests/test_agent_path_stress_prompts.py",
@@ -1217,6 +1252,34 @@
       "sha256": "4b470c0779b10d5d6cc29964ed44d1b8e031429dc4fd831bbb3361e1caafa4ba"
     },
     {
+      "path": "tests/test_core1_orientation.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 10646,
+      "sha256": "6cd3349f564967d633f19363912cf43c625fbe8cc8d24f899ede6a331f048127"
+    },
+    {
+      "path": "tests/test_core1_progression.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6272,
+      "sha256": "9db86c1291088451ed8cd1a1840240ab583ff44c85ba7b55b44d8196be130413"
+    },
+    {
+      "path": "tests/test_core1a_construction.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7475,
+      "sha256": "0305ef2cf4fe9f3dcd838d87d380f780e8e0d46bd3cc3034a74c08be415bab7b"
+    },
+    {
+      "path": "tests/test_core1b_reconstruction.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8906,
+      "sha256": "198387b9d08b1fbdbcbfa159d4591179fd7e07552156283383eb901b5719c213"
+    },
+    {
       "path": "tests/test_core2a_inventory.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1241,8 +1304,8 @@
       "path": "tests/test_core_learning_adapter.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13173,
-      "sha256": "bad06a5f3ae9bcc1023fc54cad079410f77ba16819c50e289901594585880e6b"
+      "bytes": 17523,
+      "sha256": "422c9875e0bef93b05813b73c47b71137b029b8c18748b01d5bc7297eb6d2606"
     },
     {
       "path": "tests/test_core_progression.py",
@@ -1549,8 +1612,8 @@
       "path": "tests/test_issue212_atlas_index.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 27144,
-      "sha256": "aad1cbbc427f35287a52f0ab1edf54ea77d8c9b1a6114320a12c712e25675c6c"
+      "bytes": 28065,
+      "sha256": "8841a34ee0b9299f03b7674d9c0db3f17399f1c65f9ec6662a93cfb3fb138f8e"
     },
     {
       "path": "tests/test_issue214_motion_portable_source.py",
@@ -1801,8 +1864,8 @@
       "path": "tests/topic_atlas_browser.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11977,
-      "sha256": "b95895d5ea3b7f94a657dc0e606b490af278526637f53ffb2f6cc81975d08422"
+      "bytes": 11971,
+      "sha256": "1d02dd6372d735ac024d0f8e698f46d4eeb090fd97022999c55fd9ea5a302358"
     },
     {
       "path": "tests/workbench_browser.test.mjs",
@@ -1829,8 +1892,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 2196621,
-      "sha256": "0c10a00a003e54182a742d1577608049b8c432fbe2ea54f8c3e9bf6a1ba51297"
+      "bytes": 2176398,
+      "sha256": "2067207bab4b67823aeee42502c3a36709c772f0e3c701752cebf8a0020071cc"
     },
     {
       "path": "tools/index.html",
@@ -1890,6 +1953,31 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_delivery.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_delivery.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_progression.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1a_construction.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1b_reconstruction.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2670,6 +2758,36 @@
     {
       "from": "tests/test_competitive_exam_bank_contract.py",
       "to": "Shared.tools.competitive_exam_bank",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_orientation.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1a_construction.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1b_reconstruction.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {

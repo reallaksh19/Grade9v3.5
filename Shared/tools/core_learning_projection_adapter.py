@@ -10,7 +10,7 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any
 
-CORE_ORDER = ("CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
+CORE_ORDER = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 
 
 class CoreLearningProjectionAdapterError(ValueError):
@@ -60,21 +60,133 @@ def _explorer_locator(records: dict, representation_ref: str | None) -> str | No
     return None
 
 
-def _concept(records: dict, microtopic_ref: str, *, eliciting: bool) -> dict:
+def _worked_anchors(records: dict, microtopic: dict) -> list[dict]:
+    families = {
+        ref for ref in (microtopic.get("question_family_refs") or [])
+        if isinstance(ref, str) and ref
+    }
+    rows = []
+    for record in records.values():
+        if not isinstance(record, dict):
+            continue
+        family = record.get("family_ref") or record.get("family")
+        if family not in families:
+            continue
+        if not any(
+            isinstance(exposure, dict) and exposure.get("core") == "CORE1A"
+            for exposure in (record.get("exposure") or [])
+        ):
+            continue
+        answer = record.get("answer") or {}
+        reasoning = answer.get("reasoning") or []
+        if not isinstance(reasoning, list) or not reasoning:
+            continue
+        rows.append({
+            "question_ref": record.get("id"),
+            "stem": record.get("stem"),
+            "figure_refs": list(record.get("figure_refs") or []),
+            "answer": {
+                "summary": answer.get("summary") or "",
+                "reasoning": deepcopy(reasoning),
+                "check": answer.get("check") or "",
+            },
+        })
+    return sorted(rows, key=lambda row: row.get("question_ref") or "")
+
+
+def _concept_representations(records: dict, microtopic: dict, *, core: str) -> list[dict]:
+    result = []
+    for ref in microtopic.get("representation_refs") or []:
+        if not isinstance(ref, str) or not ref:
+            continue
+        representation = records.get(ref)
+        if not isinstance(representation, dict):
+            continue
+        scenes = [
+            deepcopy(scene)
+            for scene in (representation.get("scene_instances") or [])
+            if isinstance(scene, dict)
+            and scene.get("microtopic_ref") == microtopic.get("id")
+            and core in (scene.get("cores") or [])
+        ]
+        result.append({
+            "representation_ref": ref,
+            "correspondence": deepcopy(representation.get("correspondence") or []),
+            "scenes": scenes,
+        })
+    return result
+
+
+def _concept(records: dict, microtopic_ref: str, *, core: str) -> dict:
     row = records[microtopic_ref]
-    elicitation = row.get("elicitation") or {}
-    predict = elicitation.get("predict") or {}
+    relation_checks = []
+    for ref in row.get("relation_refs") or []:
+        relation = records.get(ref) or {}
+        for check in relation.get("checks") or []:
+            if isinstance(check, str) and check not in relation_checks:
+                relation_checks.append(check)
     return {
         "microtopic_ref": row["id"],
+        "title": row.get("title"),
+        "intrinsic_badge": row.get("intrinsic_badge"),
         "inferential_jump": row["inferential_jump"],
+        "entry_assumptions": list(row.get("entry_assumptions") or []),
         "teaching_path": deepcopy(row.get("teaching_path") or []),
-        "elicitation": (
-            {"prompt": predict["prompt"]}
-            if eliciting and isinstance(predict.get("prompt"), str) and predict["prompt"]
-            else None
-        ),
+        "elicitation": deepcopy(row.get("elicitation")) if core == "CORE1B" else None,
         "misconceptions": deepcopy(row.get("misconceptions") or []),
         "representation_refs": list(row.get("representation_refs") or []),
+        "representations": _concept_representations(records, row, core=core),
+        "relation_checks": relation_checks,
+        "exit_task": deepcopy(row.get("exit_task") or {}),
+        "worked_anchors": _worked_anchors(records, row) if core == "CORE1A" else [],
+    }
+
+
+def _study_refs(compiled: dict, records: dict, core: str) -> list[str]:
+    refs = []
+    for obligation in (compiled.get("baseline") or {}).get("obligations") or []:
+        if core not in (obligation.get("required_cores") or []):
+            continue
+        obligation_id = obligation.get("id")
+        if not isinstance(obligation_id, str) or not obligation_id.startswith("OB-"):
+            continue
+        ref = obligation_id[3:]
+        row = records.get(ref)
+        if isinstance(row, dict) and row.get("_collection") == "microtopics":
+            refs.append(ref)
+    return sorted(set(refs))
+
+
+def _orientation(product: dict, compiled: dict) -> dict:
+    units = product.get("units") or []
+    _require(bool(units), "CORE1_ORIENTATION_UNIT_MISSING")
+    unit = units[0]
+    blocks = []
+    for block in unit.get("blocks") or []:
+        kind = block.get("kind")
+        if kind not in {"TEXT", "EQUATION", "FIGURE"}:
+            continue
+        payload = {
+            "id": block.get("id"),
+            "kind": kind,
+        }
+        for field in (
+            "text",
+            "mathml",
+            "meaning",
+            "symbols",
+            "conditions",
+            "correspondence",
+            "scene",
+        ):
+            if field in block:
+                payload[field] = deepcopy(block[field])
+        blocks.append(payload)
+    _require(bool(blocks), "CORE1_ORIENTATION_BLOCKS_MISSING")
+    return {
+        "bucket_ref": (compiled.get("derived_from") or {}).get("bucket"),
+        "title": unit.get("title") or (compiled.get("plan") or {}).get("title"),
+        "blocks": blocks,
     }
 
 
@@ -304,6 +416,7 @@ def _projection(
     application: dict | None,
     records: dict,
     initial_representation_ref: str | None,
+    orientation: dict | None = None,
 ) -> dict:
     transfer = (application or {}).get("transfer") or {}
     protected = transfer.get("protected_move_ref")
@@ -317,6 +430,7 @@ def _projection(
     return {
         "contract_version": "1.0",
         "core": core,
+        "orientation": deepcopy(orientation),
         "concept": deepcopy(concept),
         "application": deepcopy(application),
         "presentation": {
@@ -378,13 +492,46 @@ def adapt_compiled_bucket_with_status(
 ) -> tuple[list[dict], list[dict]]:
     """Return independent learner projections plus named provider findings.
 
-    Core2A availability never depends on a Core2B child, and optional interactive
-    explorers never gate static academic delivery. Core2B still carries its explicit
-    lineage/protected-decision contract from the compiler.
+    Core1-family delivery follows compiler ownership directly:
+    - Core1 comes from the compiler's orientation product;
+    - Core1A/Core1B concept coverage comes from compiled concept obligations;
+    - Core2-family application projections remain question-driven.
+
+    Optional explorers never gate static academic delivery.
     """
     products = _products(compiled)
     rows: list[dict[str, Any]] = []
     findings: list[dict] = []
+
+    # Core1 is the compiler-owned semantic map. It is projected independently of
+    # application-question maturity.
+    core1_product = products.get("CORE1")
+    if core1_product:
+        try:
+            orientation = _orientation(core1_product, compiled)
+            bucket_ref = orientation["bucket_ref"]
+            bucket = records.get(bucket_ref) or {}
+            primary = bucket.get("primary_representation_ref")
+            projection = _projection(
+                core="CORE1",
+                orientation=orientation,
+                concept=None,
+                application=None,
+                records=records,
+                initial_representation_ref=primary,
+            )
+            rows.append({
+                "id": _row_id(subject, bucket_ref, "CORE1"),
+                "subject": subject,
+                "source_ref": bucket_ref,
+                "projection": projection,
+                "scene_ref": None,
+                "adapter_ref": None,
+                "injection_refs": [],
+                "explorer_locator": _explorer_locator(records, primary),
+            })
+        except CoreLearningProjectionAdapterError as exc:
+            findings.append(_finding("CORE1_PROJECTION_UNAVAILABLE", str(exc)))
 
     # Core2 is a source-custody product. Only compiler-emitted Core2 blocks can enter
     # this surface; authored A/B practice is never promoted here by the adapter.
@@ -418,18 +565,51 @@ def adapt_compiled_bucket_with_status(
                 "CORE2_PROJECTION_UNAVAILABLE", str(exc), block.get("source_question_id")
             ))
 
+    # Study concepts are owned by compiler obligations, not discovered through practice
+    # questions. This keeps concept acquisition independent of application maturity.
+    for core in ("CORE1A", "CORE1B"):
+        if core not in products:
+            continue
+        for concept_ref in _study_refs(compiled, records, core):
+            try:
+                concept = _concept(records, concept_ref, core=core)
+                initial_rep = (
+                    concept["representation_refs"][0]
+                    if concept["representation_refs"]
+                    else None
+                )
+                projection = _projection(
+                    core=core,
+                    concept=concept,
+                    application=None,
+                    records=records,
+                    initial_representation_ref=initial_rep,
+                )
+                rows.append({
+                    "id": _row_id(subject, concept_ref, core),
+                    "subject": subject,
+                    "source_ref": concept_ref,
+                    "projection": projection,
+                    "scene_ref": None,
+                    "adapter_ref": None,
+                    "injection_refs": [],
+                    "explorer_locator": _explorer_locator(records, initial_rep),
+                })
+            except CoreLearningProjectionAdapterError as exc:
+                findings.append(_finding(
+                    f"{core}_PROJECTION_UNAVAILABLE", str(exc), concept_ref
+                ))
+
     familiar = _structured_familiar_blocks(products)
     transfers = _structured_transfer_blocks(products)
     familiar_by_id = {row.get("source_question_id"): row for row in familiar}
-
-    concept_refs: dict[str, tuple[str, str | None]] = {}
 
     for block in familiar:
         qid = block["source_question_id"]
         try:
             application = _application(block, records)
             concept_ref = _concept_for_application(compiled, records, block)
-            concept = _concept(records, concept_ref, eliciting=False) if concept_ref else None
+            concept = _concept(records, concept_ref, core="CORE1A") if concept_ref else None
             initial_rep = _first_route_representation(block)
             projection = _projection(
                 core="CORE2A",
@@ -448,8 +628,6 @@ def adapt_compiled_bucket_with_status(
                 "injection_refs": [],
                 "explorer_locator": _explorer_locator(records, initial_rep),
             })
-            if concept_ref:
-                concept_refs[concept_ref] = (qid, initial_rep)
         except CoreLearningProjectionAdapterError as exc:
             findings.append(_finding("CORE2A_PROJECTION_UNAVAILABLE", str(exc), qid))
 
@@ -475,7 +653,7 @@ def adapt_compiled_bucket_with_status(
         try:
             application = _application(block, records)
             concept_ref = _concept_for_application(compiled, records, parent)
-            concept = _concept(records, concept_ref, eliciting=False) if concept_ref else None
+            concept = _concept(records, concept_ref, core="CORE1A") if concept_ref else None
             initial_rep = _first_route_representation(block) or _first_route_representation(parent)
             projection = _projection(
                 core="CORE2B",
@@ -496,36 +674,8 @@ def adapt_compiled_bucket_with_status(
                     records, projection["presentation"]["initial_visual_ref"]
                 ),
             })
-            if concept_ref:
-                concept_refs[concept_ref] = (
-                    parent["source_question_id"],
-                    _first_route_representation(parent),
-                )
         except CoreLearningProjectionAdapterError as exc:
             findings.append(_finding("CORE2B_PROJECTION_UNAVAILABLE", str(exc), qid))
-
-    # Concept products are shared academic truth. Emit them once for every concept that
-    # a mature application actually uses; their existence is not conditional on an A/B pair.
-    for concept_ref, (_, concept_rep) in sorted(concept_refs.items()):
-        for core, eliciting in (("CORE1A", False), ("CORE1B", True)):
-            concept = _concept(records, concept_ref, eliciting=eliciting)
-            projection = _projection(
-                core=core,
-                concept=concept,
-                application=None,
-                records=records,
-                initial_representation_ref=concept_rep,
-            )
-            rows.append({
-                "id": _row_id(subject, concept_ref, core),
-                "subject": subject,
-                "source_ref": concept_ref,
-                "projection": projection,
-                "scene_ref": None,
-                "adapter_ref": None,
-                "injection_refs": [],
-                "explorer_locator": _explorer_locator(records, concept_rep),
-            })
 
     unique = {row["id"]: row for row in rows}
     result = sorted(
@@ -538,7 +688,7 @@ def adapt_compiled_bucket_with_status(
     )
     if not result and not findings:
         missing = [
-            core for core in ("CORE1A", "CORE1B", "CORE2A", "CORE2B")
+            core for core in ("CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
             if core not in products
         ]
         if missing:
@@ -549,7 +699,6 @@ def adapt_compiled_bucket_with_status(
                 "No mature learner projection was produced from the compiled bucket.",
             ))
     return result, findings
-
 
 def adapt_compiled_bucket(compiled: dict, records: dict, *, subject: str) -> list[dict]:
     """Return production learner rows for compiler-backed canonical records."""

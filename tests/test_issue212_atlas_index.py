@@ -254,9 +254,22 @@ class IndependentSourceOracleTest(unittest.TestCase):
         self.assertEqual([], representation.get("interactive_resource_refs", []))
 
         availability = core_availability(self.core, "Mathematics", MATH_BUCKET)
-        self.assertEqual("UNSUPPORTED", availability["status"])
-        self.assertEqual("CORE_ROLES_MISSING", availability["code"])
-        self.assertEqual([], availability["projection_refs"])
+        self.assertEqual("AVAILABLE", availability["status"])
+        self.assertIn(
+            "mathematics:mic-math-constraint:core1a",
+            availability["projection_refs"],
+        )
+        self.assertIn(
+            "mathematics:mic-math-constraint:core1b",
+            availability["projection_refs"],
+        )
+        self.assertEqual(
+            [
+                "mathematics:mic-math-constraint:core1a",
+                "mathematics:mic-math-constraint:core1b",
+            ],
+            core_projection_refs_for_microtopic(self.core, "MIC-MATH-CONSTRAINT"),
+        )
 
     def test_nlm_r4_remains_explicit_nondefault(self):
         source = rung(self.nlm, "R4")
@@ -338,7 +351,14 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         )
         self.assertEqual([], row["representation_refs"])
         self.assertEqual(["ACT-NLM-FRICTION-THRESHOLD"], row["activity_refs"])
-        self.assertEqual([], row["core_projection_refs"])
+        self.assertEqual(
+            [
+                "physics:mic-phy-nlm-friction:core1a",
+                "physics:mic-phy-nlm-friction:core1b",
+            ],
+            row["core_projection_refs"],
+        )
+        self.assertEqual("READY", row["availability"]["core"])
         self.assertEqual("UNAVAILABLE", row["availability"]["representation"])
         self.assertEqual("READY", row["availability"]["activity"])
         self.assertEqual("READY", row["availability"]["locator"])
@@ -530,13 +550,21 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         self.assertEqual(100, row["ladder_position"])
         self.assertFalse(row["default_entry_eligible"])
 
-    def test_unsupported_core_is_explicit_not_fabricated(self):
+    def test_study_core_is_explicit_without_fabricating_representation(self):
         result = build_subject_index("Physics", [self.nlm], self.physics, self.core)
         row = find_row(result, NLM_MATRIX, "R5")
 
-        self.assertEqual([], row["core_projection_refs"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["core"])
-        self.assertIn(
+        self.assertEqual(
+            [
+                "physics:mic-phy-nlm-friction:core1a",
+                "physics:mic-phy-nlm-friction:core1b",
+            ],
+            row["core_projection_refs"],
+        )
+        self.assertEqual("READY", row["availability"]["core"])
+        self.assertEqual([], row["representation_refs"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["representation"])
+        self.assertNotIn(
             "CORE_PROJECTION_UNAVAILABLE",
             [finding["code"] for finding in row["findings"]],
         )

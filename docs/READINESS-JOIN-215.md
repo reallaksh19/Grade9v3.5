@@ -55,7 +55,7 @@ The oracle directly observes:
 9. keyboard operation, visible active outline treatment and textual meaning;
 10. direct `file://` standalone loading with zero runtime resource requests;
 11. R999 fail-closed behavior with no enabled Core/visual/portable actions;
-12. Mathematics R1 contrast: representation READY while unavailable Core/activity/portable surfaces remain explicitly unavailable.
+12. Mathematics R1 contrast: representation and canonical Core1A/Core1B study delivery are READY while activity/explorer/portable surfaces remain explicitly unavailable.
 
 ## Integrated P1–P5 matrix
 

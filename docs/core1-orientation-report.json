@@ -1,0 +1,1470 @@
+{
+  "schema_version": "1.0.0",
+  "audit": "CORE1_SEMANTIC_ORIENTATION",
+  "semantics": {
+    "core1": "compact semantic orientation; map, not teaching construction",
+    "structural_gate_only": true,
+    "manual_review_required": true
+  },
+  "summary": {
+    "bucket_count": 21,
+    "core1_compilable_buckets": 21,
+    "buckets_with_structural_findings": 3,
+    "finding_counts": {
+      "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING": 3
+    }
+  },
+  "buckets": [
+    {
+      "subject": "Mathematics",
+      "package_path": "Mathematics/library/linear-equations.v1.json",
+      "bucket_ref": "BUCKET-LINEAR-EQUATION",
+      "title": "Linear equations in one unknown",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "RESOLVED",
+      "primary_representation_ref": "REP-MATH-NUMBER-LINE",
+      "relations": [
+        {
+          "id": "REL-MATH-EXACTNESS",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MATH-LINEAR-SOLUTION",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-MATH-CONSTRAINT",
+          "title": "An equation constrains an unknown",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners arriving from arithmetic read the equals sign as an instruction to compute, and that reading survives unless it is confronted directly."
+        },
+        {
+          "microtopic_ref": "MIC-MATH-EQUIVALENT-OPS",
+          "title": "Operations that preserve the solution set",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The steps are memorable as a procedure, which is exactly why the reversibility condition behind them goes unnoticed until it fails."
+        },
+        {
+          "microtopic_ref": "MIC-MATH-EXACT-SOLUTION",
+          "title": "An exact solution is not its decimal approximation",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Calculator habits teach that a decimal is the finished answer, so a fraction reads as unfinished work rather than as the exact value."
+        }
+      ],
+      "curriculum_mapping_count": 1,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-elec-current-ohm.v1.json",
+      "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+      "title": "Current electricity: charge-flow foundation",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+          "title": "Charge flow is not consumed by a component",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Everyday language about using electricity makes it easy to confuse energy transfer with disappearance of charge flow."
+        },
+        {
+          "microtopic_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+          "title": "Ohmic behavior is a tested model, not a permanent label",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The learner must separate a measured proportional pattern from the stronger claim that every device keeps one resistance under every operating condition."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-fluid-bernoulli-equation.v1.json",
+      "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+      "title": "Fluid statics, buoyancy and Bernoulli flow",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-FLUID-R2",
+          "title": "Buoyant force follows displaced fluid",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The key distinction is between the object's own mass and the volume of fluid removed by the submerged part."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-FLUID-R3",
+          "title": "Steady incompressible flow speeds up in a narrower section",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The rung requires a conserved through-flow picture rather than the everyday intuition that less room means slower motion."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-FLUID-R4",
+          "title": "Pressure, speed and height trade along an ideal-flow path",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The main failure is using a two-variable slogan when the energy ledger also contains height and model conditions."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-grav-universal-law.v1.json",
+      "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+      "title": "Universal gravitation, free fall and orbital motion",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-R1",
+          "title": "Gravity is a persistent mutual attraction fixed by source-receiver geometry",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often make gravity one-sided, motion-dependent, or page-down; the rung must keep body ownership and geometric direction explicit."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+          "title": "Universal gravitation: model scope, centre distance and inverse-square scaling",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The fragile move is not arithmetic: it is deciding whether the point/external-spherical model applies, defining centre-to-centre r, and keeping mass factors separate from the inverse-square distance factor."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-FREE-FALL-G",
+          "title": "Local gravitational acceleration: force per unit mass and free-fall mass independence",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners can conflate force with field/acceleration, treat 9.8 m/s^2 as universal, or assume a heavier object must accelerate more because it feels a larger gravitational force."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
+          "title": "Mass stays with the object; weight is its local gravitational force",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Everyday language and scale readings encourage mass/weight conflation; the learner must keep object mass, local g, and gravitational force as different quantities."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-R4",
+          "title": "Gravitational binding uses a chosen zero of potential energy",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The rung must keep potential, kinetic, and total energy distinct while comparing bound motion with just-escape motion."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-GRAV-R5",
+          "title": "Central gravity conserves orbital angular momentum about the centre",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The rung is both an origin condition and an axial-direction distinction, so the orbital plane and viewing side must remain explicit."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-kin-1d-motion.v1.json",
+      "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
+      "title": "One-dimensional motion",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 1,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NO_CORE1_SCENE",
+      "primary_representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH",
+      "relations": [
+        {
+          "id": "REL-AVERAGE-ACCELERATION",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-AVERAGE-SPEED",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-AVERAGE-VELOCITY",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-CIRC-NET-RADIAL-FORCE",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-CIRC-RADIAL-ACCELERATION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-CIRC-TOP-MIN-SPEED",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-CIRC-VERTICAL-BOTTOM",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-CIRC-VERTICAL-TOP",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-CONSTANT-ACCELERATION-VELOCITY",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-UNIFORM-CIRCULAR-SPEED",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+          "title": "Path travelled is not start-to-finish change",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Everyday language often uses distance for both ideas, so an out-and-back case is needed to force the distinction."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+          "title": "Zero velocity at an instant does not mean zero acceleration",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "A single still-looking instant invites learners to confuse the current velocity with how velocity is changing."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-AVERAGE-RATES",
+          "title": "Average speed and average velocity come from different totals",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The arithmetic is simple, but equal-distance and equal-time weighting are easily confused."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+          "title": "Derive the constant-acceleration equations from one velocity-time graph",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The algebra is elementary, but the learner must connect graph slope and geometric area to three equivalent kinematic equations while preserving the model condition."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+          "title": "Uniform circular motion keeps speed while velocity turns",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Everyday use of 'speed' and 'velocity' can hide that direction change alone is a velocity change."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+          "title": "Motion graphs turn coordinate change into rate",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The arithmetic is simple, but graph height, slope, and physical motion are easily confused."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+          "title": "Circular dynamics: centripetal is a net-force role, not a new force",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The same motion requirement can be supplied by different physical interactions, so learners must separate force type from radial role and re-declare the inward axis around the circle."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [
+        {
+          "code": "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING",
+          "detail": "The declared primary representation has no scene instance bound to Core1.",
+          "ref": "REP-PHY-KIN-POSITION-TIME-GRAPH"
+        }
+      ],
+      "finding_codes": [
+        "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING"
+      ],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-kin-2d-motion.v1.json",
+      "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
+      "title": "Two-dimensional kinematics and projectile model",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NO_CORE1_SCENE",
+      "primary_representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+      "relations": [
+        {
+          "id": "REL-KIN-2D-DISPLACEMENT",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-KIN-2D-VELOCITY",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-PROJECTILE-COMPONENT-MODEL",
+          "has_meaning": true,
+          "condition_count": 4
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+          "title": "Split one plane-motion event into independent x/y components with one clock",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often interpret independent components as unrelated motions and accidentally use different times or mix x and y quantities."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+          "title": "Apply constant-acceleration kinematics component by component",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The formulas are familiar from 1D, but the challenge is selecting the right component equation on each axis and enforcing one common time."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+          "title": "Select the gravity-only projectile model before using projectile consequences",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Projectile formulas become brittle when the learner skips the model decision, mixes times, or treats horizontal velocity as requiring a continuing horizontal force."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [
+        {
+          "code": "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING",
+          "detail": "The declared primary representation has no scene instance bound to Core1.",
+          "ref": "REP-KIN-2D-SHARED-CLOCK"
+        }
+      ],
+      "finding_codes": [
+        "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING"
+      ],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-mag-field-lorentz.v1.json",
+      "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+      "title": "Magnetic fields and orientation reasoning",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-MAG-FIELD-DIRECTION",
+          "title": "One magnetic direction, several page marks",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The learner must coordinate a three-dimensional axial direction with two-dimensional page marks before later magnetic rules are readable."
+        },
+        {
+          "microtopic_ref": "MIC-MAG-FLUX-ORIENTATION",
+          "title": "Through-going field depends on surface orientation",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The hard move is treating the surface as oriented and comparing how much field passes through it without changing either its size or the field."
+        },
+        {
+          "microtopic_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+          "title": "A perpendicular magnetic force redirects without speeding up",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Learners often transfer the everyday rule 'force means speeding up' to a case where force is everywhere sideways to the instantaneous motion."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-nlm-first-law.v1.json",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "title": "Newton's first law and free-body diagrams",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-NEWTON-SECOND-LAW",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-NLM-ELEVATOR-SUPPORT",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-HANGING-BOB-TILT",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-IDEAL-STRING-TENSION",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-KINETIC-FRICTION",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-PSEUDO-FORCE",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-STATIC-FRICTION-BOUND",
+          "has_meaning": true,
+          "condition_count": 4
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+          "title": "Zero net force allows steady motion",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Everyday friction makes continued motion look as if it needs a continuing push."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+          "title": "Nonzero forces can cancel",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often read a zero total as evidence that nothing is present instead of as cancellation among directed contributions."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+          "title": "A free-body diagram belongs to one chosen body",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Equal-and-opposite partner forces look like natural cancellations until the learner asks which body each arrow actually acts on."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+          "title": "An accelerating observer needs a declared pseudo-force convention",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The same physical interactions can be described by observers with different accelerations, and the extra convention is easy to omit when the observer is inside the accelerating vehicle."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+          "title": "Net force, not any one force, sets acceleration",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The difficult step is completing a one-body force inventory before using the simple equation."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+          "title": "Friction opposes relative sliding at a contact",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Friction is often memorized as 'opposite motion', which fails for driven or rolling contacts."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW",
+          "title": "Third-law partner forces act on different bodies",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Equal-and-opposite wording invites learners to cancel a pair that belongs to two different bodies."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "title": "Quantitative static and kinetic friction conditions",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The difficult decision is not substituting mu N; it is determining the required tangential force, the actual normal reaction, and whether the contact can remain static."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+          "title": "Connected bodies and a justified common acceleration",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Learners must distinguish a kinematic constraint from a force interaction and must not cancel internal forces inside individual-body equations."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+          "title": "Ideal-string tension belongs to each body-specific FBD",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Equal tension is a model consequence, not a property of every rope/pulley setup, and the two tension arrows act on different bodies."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+          "title": "One fixed-pulley string gives one length constraint",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The learner must translate geometry into one fixed-length equation rather than memorize a pulley-count rule."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-nlm-momentum-transfer.v1.json",
+      "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+      "title": "Momentum-transfer force rate",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-NLM-DISCRETE-MOMENTUM-TRANSFER",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-NLM-FORCE-MOMENTUM-RATE",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-NLM-LINEAR-MOMENTUM-ITEM",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+          "title": "Force from a steady stream of discrete momentum changes",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The key decisions are the system/direction choice and distinguishing force on the ejecta from equal-and-opposite launcher recoil and the external support force that balances it."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-optics-reflection-mirrors.v1.json",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+      "title": "Reflection and spherical mirrors",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 1,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-MIRROR-EQUATION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MIRROR-MAGNIFICATION",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-OPT-NORMAL-REFLECTION",
+          "title": "Measure reflection from the normal, not the surface",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "A familiar mirror picture becomes wrong immediately if the reference line for the angle is the surface instead of the normal."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+          "title": "Real and virtual describe how light paths meet",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The everyday word virtual invites a false not-recordable interpretation unless image type is tied directly to ray geometry."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-SIGN-CONVENTION",
+          "title": "Optical signs come from declared directions",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Memorized object-and-image sign tables fail as soon as the drawing is mirrored or a less familiar optical configuration is used."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+          "title": "Principal rays are consistent shortcuts to one spherical-mirror image",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners can memorize individual ray rules yet combine them inconsistently or treat one ray as sufficient to locate an image."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-MIRROR-EQUATION",
+          "title": "The mirror equation is a signed paraxial model of the ray geometry",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Correct algebra can still represent the wrong physical mirror if signs are assigned from labels or if the paraxial model condition is forgotten."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
+          "title": "Signed magnification carries image size and orientation",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often keep only the absolute size ratio and lose the orientation information carried by the sign."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-optics-refraction-lenses.v1.json",
+      "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+      "title": "Refraction and spherical lenses",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-LENS-EQUATION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-LENS-MAGNIFICATION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-LENS-POWER",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-REFRACTIVE-INDEX-SPEED",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-SNELLS-LAW",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-OPT-REFRACTION-NORMAL",
+          "title": "Refraction begins with the normal and the two media",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The visible ray kink is easy to copy while using the wrong angular reference or forgetting that a slab contains two separate boundaries."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+          "title": "Refractive index connects speed change to Snell geometry",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often remember a sine ratio but reverse the media or interpret higher refractive index as faster light."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+          "title": "A thin lens image must be supported by independent principal rays",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Memorized image tables can hide incompatible ray rules or the false idea that a ray through the optical centre must bend strongly."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-LENS-EQUATION",
+          "title": "Use the signed thin-lens equation only after the ray model fixes the geometry",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The algebra is short, but mirror/lens sign confusion and loss of the paraxial model boundary produce plausible-looking wrong answers."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-LENS-MAGNIFICATION",
+          "title": "Lens magnification sign carries image orientation",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Using only |m| preserves size while erasing the erect/inverted information that the signed optical state contains."
+        },
+        {
+          "microtopic_ref": "MIC-OPT-LENS-POWER",
+          "title": "Lens power is signed inverse focal length in metres",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "A correct reciprocal can still be wrong by a factor of one hundred if centimetres are substituted directly, and dropping sign erases converging/diverging character."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-osc-shm-waves.v1.json",
+      "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
+      "title": "Oscillation foundation: stable equilibrium",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
+          "title": "Repetition is not enough: look for a stable equilibrium",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Repeated motion is visually salient, so learners can miss the stronger requirement that the system's response be organized around one stable equilibrium."
+        },
+        {
+          "microtopic_ref": "MIC-OSC-ENERGY-EXCHANGE",
+          "title": "Energy trades twice during one displacement cycle",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The position cycle repeats once while the energy pattern repeats at both center crossings, so learners must coordinate two time patterns without confusing sign with stored energy."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-rot-rigid-body.v1.json",
+      "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
+      "title": "Rotational dynamics, angular momentum and rolling",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-ROT-R1",
+          "title": "Mass distribution sets rotational inertia about an axis",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The comparison is qualitative but only works if the axis stays explicit while the mass distribution changes."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-ROT-R3",
+          "title": "Angular momentum conservation belongs to a specified origin",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The central difficulty is keeping the turning-effect test and angular-momentum statement tied to the same origin while the body's distribution changes."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-ROT-R4",
+          "title": "Pure rolling makes the contact point instantaneously at rest",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The learner must combine translation with rotation at different points of one rigid body without treating every point as having the centre speed."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-ROT-R5",
+          "title": "Mass distribution changes ideal rolling acceleration",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The comparison is conceptual only if mass amount, radius, incline, and no-slip conditions are controlled while shape changes."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-simple-machines.v1.json",
+      "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
+      "title": "Simple machines",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 1,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-IDEAL-MACHINE-WORK",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MECHANICAL-ADVANTAGE",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-MACHINE-TRADEOFF",
+          "title": "A machine trades force or direction for distance; it does not create work",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "A larger output force looks like an energy gain unless input distance is tracked."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-MACHINE-COMPARE",
+          "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners can memorize device names without identifying what each machine changes about force, direction and distance."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-sound.v1.json",
+      "bucket_ref": "BUCKET-PHY-SOUND",
+      "title": "Sound",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NO_CORE1_SCENE",
+      "primary_representation_ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+      "relations": [
+        {
+          "id": "REL-ECHO-DISTANCE",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-FREQUENCY-PERIOD",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-WAVE-SPEED",
+          "has_meaning": true,
+          "condition_count": 2
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+          "title": "Sound propagates through a medium as longitudinal compressions and rarefactions",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "A transverse-looking sketch is tempting; the learner must keep local particle displacement parallel to propagation and read compression/rarefaction as density/pressure-pattern changes rather than travelling particles."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+          "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Frequency, wavelength and amplitude can all change independently enough that verbal mixing is common."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-SOUND-REFLECTION",
+          "title": "Reflected sound can form echoes, reverberation and echolocation cues",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The common arithmetic error is forgetting the round trip; a second modeling error is treating one memorized delay/distance threshold as universally defining an echo."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [
+        {
+          "code": "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING",
+          "detail": "The declared primary representation has no scene instance bound to Core1.",
+          "ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH"
+        }
+      ],
+      "finding_codes": [
+        "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING"
+      ],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-thermo-first-second-law.v1.json",
+      "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+      "title": "Thermodynamics and heat engines",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "NOT_AUTHORED",
+      "convention_count": 0,
+      "scope_state": "NOT_AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-THERMO-R1",
+          "title": "Internal energy is stored; heat and work are transfers",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The entry distinction must be made with a system boundary before any energy-balance law is introduced."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-THERMO-R3",
+          "title": "Internal-energy change is fixed by endpoint states, not process path",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The learner must read a Cartesian pressure-volume diagram as multiple paths between the same endpoints without turning path area into a state property."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-THERMO-R4",
+          "title": "A complete cycle returns the state while its loop records net work",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The rung depends on reading a directed closed pressure-volume loop while keeping state return separate from nonzero energy transfer over the cycle."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-THERMO-R5",
+          "title": "Heat engines require heat rejection and obey a reservoir-temperature ceiling",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The distinction is conceptual: removing mechanical losses does not remove the second-law need for a cold-reservoir heat flow."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-vec-add-sub.v1.json",
+      "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
+      "title": "Vector addition, subtraction and orientation",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 1,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-VEC-ANGLE-COMPONENTS",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+          "title": "Impose a component constraint on a resultant",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The learner must reverse the usual direction of reasoning: instead of finding the resultant from inputs, one resultant component is specified and an input component must be chosen to make it true."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-VEC-COMPONENT-SUM",
+          "title": "Add vectors by corresponding signed components",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The arithmetic is simple once the representation is correct, but learners often add magnitudes or mix unlike axes instead of combining corresponding signed components."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-VEC-SUB-ORDER",
+          "title": "Operand order reverses a subtraction result",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The construction may already be familiar, but learners can still preserve the same arrow direction after swapping the words."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+          "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The trigonometry is short, but learners must first decide whether decomposition is needed, identify the angle reference, preserve signs, and avoid treating an initial component pair as a later-time motion law."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-vector-direction-unit.v1.json",
+      "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+      "title": "Vector direction and unit representation",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-VEC-DIRECTION-FROM-COMPONENTS",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-VEC-IJ-NOTATION",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-VEC-UNIT-DIRECTION",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+          "title": "Translate signed components to i-hat/j-hat notation",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The notation is compact but can tempt learners to drop a negative coefficient or treat basis labels as extra vector magnitudes."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+          "title": "Recover direction from signed components",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The ratio is simple, but a calculator's inverse tangent does not by itself preserve quadrant information."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+          "title": "Normalize a nonzero vector to unit direction",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The division is simple, but the same magnitude must divide every component and the zero vector is a hard domain boundary."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/phy-work-energy-power.v1.json",
+      "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+      "title": "Work, energy and power",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "NOT_AUTHORED",
+      "primary_representation_ref": null,
+      "relations": [
+        {
+          "id": "REL-AVERAGE-POWER",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-CONSTANT-ACCELERATION-NO-TIME",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-INSTANTANEOUS-POWER",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-KINETIC-ENERGY",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-MECHANICAL-ENERGY-CONSERVATION",
+          "has_meaning": true,
+          "condition_count": 2
+        },
+        {
+          "id": "REL-NEWTON-SECOND-LAW",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-WEIGHT-NEAR-EARTH",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-WORK-CONSTANT-FORCE",
+          "has_meaning": true,
+          "condition_count": 3
+        },
+        {
+          "id": "REL-WORK-ENERGY-THEOREM",
+          "has_meaning": true,
+          "condition_count": 1
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-PHY-WEP-WORK-DIRECTION",
+          "title": "Only the along-path part of a force contributes to work",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Force size alone feels decisive until a strong perpendicular force is contrasted with the actual displacement."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
+          "title": "Net work sign tracks kinetic-energy change",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners may attach energy change to one named force rather than to the combined work of all forces."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+          "title": "Potential energy belongs only to endpoint-determined interactions",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "It is tempting to hide every force inside an energy label, especially once gravitational potential energy is familiar."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+          "title": "Mechanical energy is constant only after the system and transfer account close",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The familiar K+U equality is easy to apply before declaring the system or checking friction/external transfer, which confuses total-energy conservation with the narrower mechanical-energy shortcut."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-POWER-RATES",
+          "title": "Power is an energy-transfer rate, not the work itself",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Learners often keep the same units and reasoning for work and power or treat an interval average as an instantaneous value."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+          "title": "Grade 9 work and mechanical-energy equations are one ledger",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The arithmetic is direct; the difficult part is deciding which account and relation the situation permits."
+        },
+        {
+          "microtopic_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+          "title": "Derive kinetic and raised-body potential energy from the work ledger",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The endpoint formulae are simple; the harder work is maintaining one physical model through the force, motion and work substitutions."
+        }
+      ],
+      "curriculum_mapping_count": 0,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/relative-motion.v1.json",
+      "bucket_ref": "BUCKET-RELATIVE-MOTION",
+      "title": "Relative velocity in a plane",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "RESOLVED",
+      "primary_representation_ref": "REP-REL-VECTOR",
+      "relations": [
+        {
+          "id": "REL-RELATIVE-POSITION",
+          "has_meaning": true,
+          "condition_count": 4
+        },
+        {
+          "id": "REL-RELATIVE-VELOCITY",
+          "has_meaning": true,
+          "condition_count": 4
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-MEASURED-FROM",
+          "title": "A number alone does not say where something is",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The idea is reachable by pacing a room, but it is routinely skipped as obvious and then assumed by every rung above it."
+        },
+        {
+          "microtopic_ref": "MIC-SAME-TIME",
+          "title": "Position measured from the other object",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Observer order and common time are easily hidden by a memorized formula."
+        },
+        {
+          "microtopic_ref": "MIC-COMMON-INTERVAL",
+          "title": "From relative position to relative velocity",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "The student must connect two same-time position statements to one common interval rather than memorize a subtraction rule."
+        },
+        {
+          "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+          "title": "Check direction, magnitude and observer reversal",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Correct arithmetic can conceal an incorrect vector construction or frame interpretation."
+        },
+        {
+          "microtopic_ref": "MIC-FRAME-QUALIFICATION-BOUNDARY",
+          "title": "When the simple v_A/B = v_A - v_B relation needs frame qualification (research-boundary note)",
+          "intrinsic_badge": "HARD",
+          "badge_reason": "Not a Grade 9 assessment badge: this is a RESEARCH-depth boundary note, included only to show where the taught relation stops applying."
+        }
+      ],
+      "curriculum_mapping_count": 1,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    },
+    {
+      "subject": "Physics",
+      "package_path": "Physics/library/vector-representation.v1.json",
+      "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
+      "title": "Vector representation and subtraction",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
+      "conventions_state": "AUTHORED",
+      "convention_count": 2,
+      "scope_state": "AUTHORED",
+      "primary_representation_state": "RESOLVED",
+      "primary_representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+      "relations": [
+        {
+          "id": "REL-VECTOR-SUBTRACTION",
+          "has_meaning": true,
+          "condition_count": 3
+        }
+      ],
+      "hard_transitions": [
+        {
+          "microtopic_ref": "MIC-VECTOR-VS-SCALAR",
+          "title": "Vector information versus magnitude-only information",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The words are simple, but learners often treat equal length or equal speed as if it fully identifies a directed quantity."
+        },
+        {
+          "microtopic_ref": "MIC-SIGNED-COMPONENT",
+          "title": "Choosing axes and keeping components signed",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "Axis choice is conventional, but once the positive directions are declared the component signs are fixed and cannot be chosen for convenience."
+        },
+        {
+          "microtopic_ref": "MIC-GRAPHICAL-SUBTRACTION",
+          "title": "Subtraction as addition of the reversed vector",
+          "intrinsic_badge": "MEDIUM",
+          "badge_reason": "The reverse-then-add construction is a genuine model shift from ordinary addition, even though the component arithmetic looks similar."
+        }
+      ],
+      "curriculum_mapping_count": 1,
+      "findings": [],
+      "finding_codes": [],
+      "manual_review_obligations": [
+        "CORE1_IS_MAP_NOT_TEACHING_CONSTRUCTION",
+        "ORIENTATION_WORDING_IS_CONCISE_WITHOUT_ERASING_CONDITIONS"
+      ]
+    }
+  ]
+}

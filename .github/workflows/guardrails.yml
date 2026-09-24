@@ -58,6 +58,59 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # Core1 orientation is a structural map, not a prose-quality score. Existing
+      # debt is frozen in a deterministic baseline; new/revised buckets may not add
+      # unresolved relations, missing relation conditions/meaning, malformed conventions,
+      # unqualified curriculum mappings, or broken declared Core1 representation bindings.
+      - name: Core1 semantic-orientation debt only moves forward
+        run: |
+          python3 -m Shared.library.core1_orientation \
+            --check-baseline docs/core1-orientation-baseline.json
+          python3 -m Shared.library.core1_orientation \
+            --write-report /tmp/core1-orientation-report.json
+          diff -u docs/core1-orientation-report.json /tmp/core1-orientation-report.json
+
+      # Core1A is the completed conceptual construction around
+      # microtopic.inferential_jump. Existing representation/worked-anchor debt is
+      # frozen; new or materially revised microtopics may not add structural debt.
+      - name: Core1A conceptual-construction debt only moves forward
+        run: |
+          python3 -m Shared.library.core1a_construction \
+            --check-baseline docs/core1a-construction-baseline.json
+          python3 -m Shared.library.core1a_construction \
+            --write-report /tmp/core1a-construction-report.json
+          diff -u docs/core1a-construction-report.json /tmp/core1a-construction-report.json
+
+      # Core1B changes agency, not conceptual truth. Routed Core1B coverage must
+      # match Core1A and each self-tutor cycle must close without a tutor. Unrouted
+      # concepts are handed to cross-Core progression rather than mislabelled B debt.
+      - name: Core1B reconstruction integrity only moves forward
+        run: |
+          python3 -m Shared.library.core1b_reconstruction \
+            --check-baseline docs/core1b-reconstruction-baseline.json
+          python3 -m Shared.library.core1b_reconstruction \
+            --write-report /tmp/core1b-reconstruction-report.json
+          diff -u docs/core1b-reconstruction-report.json /tmp/core1b-reconstruction-report.json
+
+      # Core1-family progression keeps one canonical conceptual truth across
+      # orientation, completed construction and learner reconstruction. Local Phase-2
+      # migration debt remains local; only new ownership/routing/progression drift fails.
+      - name: Cross-Core1 conceptual progression only moves forward
+        run: |
+          python3 -m Shared.library.core1_progression \
+            --check-baseline docs/core1-progression-baseline.json
+          python3 -m Shared.library.core1_progression \
+            --write-report /tmp/core1-progression-report.json
+          diff -u docs/core1-progression-report.json /tmp/core1-progression-report.json
+
+      # Core1-family learner delivery must preserve the Phase-4 progression through
+      # compiler-backed projections and the shared static/runtime host. Unlike local
+      # construction debt, learner delivery admits no baseline exceptions.
+      - name: Core1-family learner delivery remains complete and semantically stable
+        run: |
+          python3 -m Shared.library.core1_delivery \
+            --check-report docs/core1-delivery-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
