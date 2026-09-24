@@ -5,9 +5,11 @@ import {
 
 export const PORTABLE_PACKAGE_VERSION = "1.0.0";
 export const PORTABLE_TRANSFORMATION_IR_VERSION = "0.1.0";
-export const PORTABLE_ADAPTER_API_VERSION = "0.1.0";
+export const PORTABLE_ADAPTER_API_VERSION = "0.2.0";
 export const PORTABLE_SCENE_PACKAGE_VERSION = "1.0.0";
 export const PORTABLE_ADAPTER_ID = "declarative-transfer-v1";
+export const NON_CANONICAL_PROVENANCE_AUTHORITY = "NON_CANONICAL_COMPILED_PROOF";
+export const CANONICAL_PROVENANCE_AUTHORITY = "CANONICAL_COMPILED_RESOURCE";
 
 const executableKeys = new Set([
   "script", "javascript", "eval", "function", "handler",
@@ -76,7 +78,14 @@ function validateAdapter(adapter, scene) {
     requirePortable(transform.sourceEntityRefs.includes(rule.sourceEntityRef), "PORTABLE_ADAPTER_SOURCE_MISMATCH", rule.id);
     requirePortable(transform.targetRef === rule.targetRef, "PORTABLE_ADAPTER_TARGET_MISMATCH", rule.id);
     requirePortable(targets.get(rule.targetRef)?.operation === rule.operation, "PORTABLE_ADAPTER_OPERATION_MISMATCH", rule.id);
-    requirePortable(rule.patch && typeof rule.patch === "object", "PORTABLE_ADAPTER_PATCH_REQUIRED", rule.id);
+    const outcome = rule.outcome ?? "ACCEPT";
+    requirePortable(["ACCEPT", "REJECT"].includes(outcome), "PORTABLE_ADAPTER_OUTCOME_INVALID", rule.id);
+    if (outcome === "REJECT") {
+      nonEmpty(rule.reason, "PORTABLE_ADAPTER_REJECTION_REASON_REQUIRED", rule.id);
+      requirePortable(!("patch" in rule), "PORTABLE_ADAPTER_REJECTION_PATCH_FORBIDDEN", rule.id);
+    } else {
+      requirePortable(rule.patch && typeof rule.patch === "object", "PORTABLE_ADAPTER_PATCH_REQUIRED", rule.id);
+    }
   }
 }
 
@@ -100,12 +109,75 @@ export function validatePortablePackage(input) {
     stringList(pkg[field], `PORTABLE_${field.toUpperCase()}_INVALID`);
   }
   requirePortable(Array.isArray(pkg.questionBindings), "PORTABLE_QUESTION_BINDINGS_INVALID");
-  requirePortable(pkg.provenance?.authority === "NON_CANONICAL_COMPILED_PROOF", "PORTABLE_PROVENANCE_AUTHORITY_INVALID");
+  const authority = pkg.provenance?.authority;
+  requirePortable(
+    [NON_CANONICAL_PROVENANCE_AUTHORITY, CANONICAL_PROVENANCE_AUTHORITY].includes(authority),
+    "PORTABLE_PROVENANCE_AUTHORITY_INVALID",
+    String(authority),
+  );
+  if (authority === CANONICAL_PROVENANCE_AUTHORITY) {
+    nonEmpty(pkg.resourceRef, "PORTABLE_CANONICAL_RESOURCE_REF_REQUIRED");
+    nonEmpty(pkg.provenance?.resourceRef, "PORTABLE_CANONICAL_RESOURCE_REF_REQUIRED");
+    requirePortable(
+      pkg.provenance.resourceRef === pkg.resourceRef,
+      "PORTABLE_CANONICAL_RESOURCE_REF_MISMATCH",
+      String(pkg.provenance.resourceRef),
+    );
+    nonEmpty(pkg.provenance?.representationRef, "PORTABLE_CANONICAL_REPRESENTATION_REF_REQUIRED");
+    requirePortable(
+      pkg.representationRefs.includes(pkg.provenance.representationRef),
+      "PORTABLE_CANONICAL_REPRESENTATION_REF_MISMATCH",
+      String(pkg.provenance.representationRef),
+    );
+    stringList(pkg.provenance?.sourceRefs, "PORTABLE_CANONICAL_SOURCE_REFS_REQUIRED");
+    requirePortable(pkg.provenance.sourceRefs.length > 0, "PORTABLE_CANONICAL_SOURCE_REFS_REQUIRED");
+    requirePortable(
+      JSON.stringify(pkg.provenance.sourceRefs) === JSON.stringify(pkg.sourceRefs),
+      "PORTABLE_CANONICAL_SOURCE_REFS_MISMATCH",
+    );
+  }
   const scene = validateScene(pkg.scene);
   requirePortable(pkg.sceneRefs.length === 1 && pkg.sceneRefs[0] === scene.id, "PORTABLE_SCENE_REFS_MISMATCH");
   validateAdapter(pkg.adapter, scene);
   requirePortable(Array.isArray(pkg.injections), "PORTABLE_INJECTIONS_INVALID");
   return pkg;
+}
+
+export function resolveCanonicalPortableTarget(resourceRef, visualTargets, packagesById) {
+  nonEmpty(resourceRef, "VISUAL_REF_UNAVAILABLE");
+  requirePortable(visualTargets && typeof visualTargets === "object" && !Array.isArray(visualTargets), "VISUAL_TARGET_INDEX_INVALID");
+  const target = visualTargets[resourceRef];
+  requirePortable(target && typeof target === "object" && !Array.isArray(target), "VISUAL_REF_UNAVAILABLE", resourceRef);
+  requirePortable(target.resource_ref === resourceRef, "VISUAL_REF_INVALID", String(target.resource_ref));
+  requirePortable(target.availability && typeof target.availability === "object", "VISUAL_TARGET_AVAILABILITY_INVALID", resourceRef);
+  if (target.availability.resource === "INVALID") throw new PortablePackageError("VISUAL_REF_INVALID", resourceRef);
+  requirePortable(target.availability.resource === "READY", "VISUAL_REF_UNAVAILABLE", resourceRef);
+
+  const packageRef = target.portable_package_ref;
+  requirePortable(
+    target.availability.portable_package === "READY" && typeof packageRef === "string" && packageRef.trim().length > 0,
+    "STANDALONE_PACKAGE_UNAVAILABLE",
+    resourceRef,
+  );
+  requirePortable(packagesById && typeof packagesById === "object" && !Array.isArray(packagesById), "PORTABLE_PACKAGE_CATALOG_INVALID");
+  requirePortable(packagesById[packageRef] && typeof packagesById[packageRef] === "object", "PORTABLE_PACKAGE_NOT_FOUND", String(packageRef));
+  const pkg = validatePortablePackage(packagesById[packageRef]);
+  requirePortable(pkg.id === packageRef, "PORTABLE_PACKAGE_REF_MISMATCH", String(pkg.id));
+  requirePortable(pkg.provenance?.authority === CANONICAL_PROVENANCE_AUTHORITY, "PORTABLE_CANONICAL_PROVENANCE_REQUIRED", packageRef);
+  requirePortable(pkg.resourceRef === resourceRef, "PORTABLE_RESOURCE_BINDING_MISMATCH", String(pkg.resourceRef));
+  requirePortable(Array.isArray(target.representation_refs), "VISUAL_TARGET_REPRESENTATIONS_INVALID", resourceRef);
+  const representationRef = pkg.provenance?.representationRef;
+  requirePortable(target.representation_refs.includes(representationRef), "PORTABLE_REPRESENTATION_BINDING_MISMATCH", String(representationRef));
+
+  return {
+    resourceRef,
+    representationRef,
+    portablePackageRef: packageRef,
+    locator: target.locator ?? null,
+    deliveryProfile: target.delivery_profile ?? null,
+    standaloneReady: target.availability.standalone === "READY",
+    package: portableClone(pkg),
+  };
 }
 
 export function createDeclarativeAdapter(packageInput) {
@@ -125,6 +197,13 @@ export function createDeclarativeAdapter(packageInput) {
           accepted: false,
           reason: "No compiled transformation rule authorizes this transfer.",
           allowedTargets: [...new Set(allowedTargets)],
+        };
+      }
+      if ((rule.outcome ?? "ACCEPT") === "REJECT") {
+        return {
+          accepted: false,
+          reason: rule.reason,
+          allowedTargets: [rule.targetRef],
         };
       }
       return {

@@ -8,9 +8,11 @@ PACKAGE_SCHEMA = "portable-workbench-package"
 PACKAGE_VERSION = "1.0.0"
 COMPONENT_API_VERSION = "0.1.0"
 TRANSFORMATION_IR_VERSION = "0.1.0"
-ADAPTER_API_VERSION = "0.1.0"
+ADAPTER_API_VERSION = "0.2.0"
 SCENE_PACKAGE_VERSION = "1.0.0"
 DECLARATIVE_ADAPTER_ID = "declarative-transfer-v1"
+NON_CANONICAL_PROVENANCE_AUTHORITY = "NON_CANONICAL_COMPILED_PROOF"
+CANONICAL_PROVENANCE_AUTHORITY = "CANONICAL_COMPILED_RESOURCE"
 
 _EXECUTABLE_KEYS = {
     "script", "javascript", "eval", "function", "handler",
@@ -154,6 +156,12 @@ def _validate_adapter(adapter: dict[str, Any], scene: dict[str, Any]) -> dict[st
         target = _text(rule.get("targetRef"), "PORTABLE_ADAPTER_TARGET_REQUIRED", rule_id)
         _require(target == transform["targetRef"], "PORTABLE_ADAPTER_TARGET_MISMATCH", rule_id)
         _require(rule.get("operation") == targets[target]["operation"], "PORTABLE_ADAPTER_OPERATION_MISMATCH", rule_id)
+        outcome = rule.get("outcome", "ACCEPT")
+        _require(outcome in {"ACCEPT", "REJECT"}, "PORTABLE_ADAPTER_OUTCOME_INVALID", rule_id)
+        if outcome == "REJECT":
+            _text(rule.get("reason"), "PORTABLE_ADAPTER_REJECTION_REASON_REQUIRED", rule_id)
+            _require("patch" not in rule, "PORTABLE_ADAPTER_REJECTION_PATCH_FORBIDDEN", rule_id)
+            continue
         patch = rule.get("patch")
         _require(isinstance(patch, dict), "PORTABLE_ADAPTER_PATCH_REQUIRED", rule_id)
         _require(set(patch) <= {"addEntities", "addProjections"}, "PORTABLE_ADAPTER_PATCH_FIELD_UNSUPPORTED", rule_id)
@@ -183,7 +191,41 @@ def validate_package(package: dict[str, Any]) -> dict[str, Any]:
     _require(isinstance(package.get("questionBindings"), list), "PORTABLE_QUESTION_BINDINGS_INVALID")
     provenance = package.get("provenance")
     _require(isinstance(provenance, dict), "PORTABLE_PROVENANCE_REQUIRED")
-    _require(provenance.get("authority") == "NON_CANONICAL_COMPILED_PROOF", "PORTABLE_PROVENANCE_AUTHORITY_INVALID")
+    authority = provenance.get("authority")
+    _require(
+        authority in {NON_CANONICAL_PROVENANCE_AUTHORITY, CANONICAL_PROVENANCE_AUTHORITY},
+        "PORTABLE_PROVENANCE_AUTHORITY_INVALID",
+        str(authority),
+    )
+    if authority == CANONICAL_PROVENANCE_AUTHORITY:
+        resource_ref = _text(package.get("resourceRef"), "PORTABLE_CANONICAL_RESOURCE_REF_REQUIRED")
+        provenance_resource_ref = _text(
+            provenance.get("resourceRef"),
+            "PORTABLE_CANONICAL_RESOURCE_REF_REQUIRED",
+        )
+        _require(
+            provenance_resource_ref == resource_ref,
+            "PORTABLE_CANONICAL_RESOURCE_REF_MISMATCH",
+            provenance_resource_ref,
+        )
+        representation_ref = _text(
+            provenance.get("representationRef"),
+            "PORTABLE_CANONICAL_REPRESENTATION_REF_REQUIRED",
+        )
+        _require(
+            representation_ref in package["representationRefs"],
+            "PORTABLE_CANONICAL_REPRESENTATION_REF_MISMATCH",
+            representation_ref,
+        )
+        provenance_source_refs = _string_list(
+            provenance.get("sourceRefs"),
+            "PORTABLE_CANONICAL_SOURCE_REFS_REQUIRED",
+            allow_empty=False,
+        )
+        _require(
+            provenance_source_refs == package["sourceRefs"],
+            "PORTABLE_CANONICAL_SOURCE_REFS_MISMATCH",
+        )
     scene = _validate_scene(package.get("scene"))
     _require(package["sceneRefs"] == [scene["id"]], "PORTABLE_SCENE_REFS_MISMATCH")
     _validate_adapter(package.get("adapter"), scene)
@@ -208,7 +250,7 @@ def build_package(source: dict[str, Any], scene: dict[str, Any]) -> dict[str, An
         "accessibilityRefs": list(source.get("accessibilityRefs") or []),
         "questionBindings": deepcopy(source.get("questionBindings") or []),
         "provenance": {
-            "authority": "NON_CANONICAL_COMPILED_PROOF",
+            "authority": source.get("provenanceAuthority", NON_CANONICAL_PROVENANCE_AUTHORITY),
             "sourceKind": source.get("sourceKind", "COMPILED_PROOF_FIXTURE"),
             "sourceRefs": list(source.get("sourceRefs") or []),
         },
@@ -220,4 +262,8 @@ def build_package(source: dict[str, Any], scene: dict[str, Any]) -> dict[str, An
         },
         "injections": deepcopy(source.get("injections") or []),
     }
+    if package["provenance"]["authority"] == CANONICAL_PROVENANCE_AUTHORITY:
+        package["resourceRef"] = source.get("resourceRef")
+        package["provenance"]["resourceRef"] = source.get("resourceRef")
+        package["provenance"]["representationRef"] = source.get("representationRef")
     return validate_package(package)

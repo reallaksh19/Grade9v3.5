@@ -16,6 +16,7 @@ AUTHORING_SCHEMA = REPO / "Shared/library/authoring-request.schema.json"
 ATLAS_PAGES = [
     REPO / "public/physics/nlm/index.html",
     REPO / "public/physics/motion-2d/index.html",
+    REPO / "public/mathematics/linear-equations/index.html",
 ]
 
 
@@ -204,6 +205,96 @@ console.log(JSON.stringify({pack,envelope}));
             docs["pack"]["diagnostic_contract"]["error_stage_values"],
             ["CONCEPT", "SETUP", "EXECUTION", "CARELESS", "UNKNOWN"],
         )
+
+    def test_atlas_index_20_requires_exact_composite_identity_and_ready_destinations(self):
+        result = run_node(r"""
+const subject = {
+  atlas_index_contract_version: '2.0',
+  atlas_index: [
+    {
+      matrix_id:'MATRIX-A', rung:'R1',
+      microtopic_prerequisite_refs:['CAP-PRE-MIC'],
+      capability_prerequisite_refs:[],
+      representation_refs:['REP-A'],
+      activity_refs:['ACT-A'],
+      core_projection_refs:['core:a'],
+      availability:{
+        mapping:'READY', core:'READY', representation:'READY',
+        activity:'READY', locator:'READY', portable_package:'READY', standalone:'READY'
+      },
+      findings:[]
+    }
+  ],
+  visual_targets: {
+    'ACT-A': {
+      locator:'public/example/index.html',
+      portable_package_ref:'portable-example',
+      availability:{locator:'READY', portable_package:'READY', standalone:'READY'}
+    }
+  }
+};
+const exact = t.resolveAtlasComposite(subject, 'MATRIX-A', 'R1');
+const wrongMatrix = t.resolveAtlasComposite(subject, 'MATRIX-B', 'R1');
+const wrongRung = t.resolveAtlasComposite(subject, 'MATRIX-A', 'R2');
+const oldContract = t.resolveAtlasComposite({...subject, atlas_index_contract_version:'1.0'}, 'MATRIX-A', 'R1');
+const visual = t.resolveVisualDestinationsFor(subject, exact.row);
+const portable = t.resolvePortableDestinationsFor(subject, exact.row);
+const portableHref = t.portablePackageHref(portable.ready[0].package_ref);
+const core = t.resolveCoreDestinationsFor(exact.row, {core_projections:[{id:'core:a'}]});
+const brokenCore = t.resolveCoreDestinationsFor(exact.row, {core_projections:[]});
+const unavailableRow = {
+  ...exact.row,
+  activity_refs:[],
+  core_projection_refs:[],
+  availability:{...exact.row.availability, core:'UNAVAILABLE', activity:'UNAVAILABLE', locator:'UNAVAILABLE', portable_package:'UNAVAILABLE', standalone:'UNAVAILABLE'}
+};
+const unavailableVisual = t.resolveVisualDestinationsFor(subject, unavailableRow);
+const unavailablePortable = t.resolvePortableDestinationsFor(subject, unavailableRow);
+console.log(JSON.stringify({exact,wrongMatrix,wrongRung,oldContract,visual,portable,portableHref,core,brokenCore,unavailableVisual,unavailablePortable}));
+""")
+        self.assertEqual("READY", result["exact"]["status"])
+        self.assertEqual("R1", result["exact"]["row"]["rung"])
+        self.assertEqual("ATLAS_TARGET_NOT_FOUND", result["wrongMatrix"]["code"])
+        self.assertEqual("ATLAS_TARGET_NOT_FOUND", result["wrongRung"]["code"])
+        self.assertEqual("ATLAS_INDEX_VERSION_UNSUPPORTED", result["oldContract"]["code"])
+        self.assertEqual(["ACT-A"], [row["ref"] for row in result["visual"]["ready"]])
+        self.assertEqual(["portable-example"], [row["package_ref"] for row in result["portable"]["ready"]])
+        self.assertTrue(result["portable"]["ready"][0]["standalone"])
+        self.assertIn("portable-workbench/index.html?package=portable-example", result["portableHref"])
+        self.assertEqual(["core:a"], result["core"]["ready"])
+        self.assertEqual("INVALID", result["brokenCore"]["status"])
+        self.assertEqual(["core:a"], result["brokenCore"]["unresolved"])
+        self.assertEqual("UNAVAILABLE", result["unavailableVisual"]["status"])
+        self.assertEqual([], result["unavailableVisual"]["ready"])
+        self.assertEqual("UNAVAILABLE", result["unavailablePortable"]["status"])
+        self.assertEqual([], result["unavailablePortable"]["ready"])
+
+    def test_browser_uses_subject_neutral_native_selection_and_history(self):
+        source = JS.read_text(encoding="utf-8")
+        for invented in (
+            "1. Foundation",
+            "2. Dynamics & Applications",
+            "3. Constraints & Quantitative",
+            "4. Interaction & Closure",
+        ):
+            self.assertNotIn(invented, source)
+        self.assertIn("atlas_index_contract_version", source)
+        self.assertIn("ATLAS_INDEX_CONTRACT_VERSION = '2.0'", source)
+        self.assertIn("window.history.pushState", source)
+        self.assertIn("popstate", source)
+        self.assertIn('aria-controls="card-', source)
+        self.assertIn('aria-pressed="', source)
+        self.assertNotIn("return locator || '#'", source)
+        self.assertIn("CORE_PROJECTION_RUNTIME_UNRESOLVED", source)
+        self.assertIn("resolvePortableDestinationsFor", source)
+        self.assertIn("public/portable-workbench/index.html", source)
+        self.assertIn("data-portable-package", source)
+        self.assertIn("Diagnostic Import Error:", source)
+
+        for page in ATLAS_PAGES:
+            html = page.read_text(encoding="utf-8")
+            self.assertIn("../../core-learning/data.js", html)
+            self.assertNotIn("None / 0%", html)
 
     def test_browser_source_does_not_claim_authoritative_planner_execution(self):
         source = JS.read_text(encoding="utf-8")

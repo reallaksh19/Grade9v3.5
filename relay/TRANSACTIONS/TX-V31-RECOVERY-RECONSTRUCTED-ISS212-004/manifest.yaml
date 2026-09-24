@@ -1,0 +1,23 @@
+schema_version: "relay-v3.1-transaction"
+id: "TX-V31-RECOVERY-RECONSTRUCTED-ISS212-004"
+command: "RECORD_RECOVERY_RECONSTRUCTED"
+actor: "chatgpt-sol-issue212-recovery-v31-20260923"
+status: "COMMITTED"
+created_at: "2026-09-23T18:04:58Z"
+updated_at: "2026-09-23T18:04:58Z"
+payload_state: "PRUNED"
+operations:
+  -
+    path: "relay/EVENTS.jsonl"
+    before_exists: true
+    before_digest: "sha256:0bb8dc997fc86866b8cfd2f593c9a0e8eab0e353412b10fc4feb445e0002574b"
+    after_digest: "sha256:c9edc8a75cd310c43a10599122fd18103ab5f22a63fec757edddab9080bd251f"
+  -
+    path: "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-003.yaml"
+    before_exists: true
+    before_digest: "sha256:e9cda4659524df29c156364313d01c2d72c88db8bd0c0feca0425aaf3a86e8ec"
+    after_digest: "sha256:62fcb753b3288d08bc5d42ff73f93ca040c7a3cd80c3be5819ac18b2d024e8b5"
+applied:
+  - "relay/EVENTS.jsonl"
+  - "relay/LEASES/LEASE-ISS212-ATLAS-INDEX-V31-003.yaml"
+identity_reservations: []

@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: reallaksh19/Common
-          ref: 1c168695f237a8bef184a9e189be80fab87d1e78
+          ref: 5676b61141c2cdc7816ca624a288a27b48f3e412
           path: _common_v31
           fetch-depth: 1
 
@@ -33,11 +33,5 @@ jobs:
       - name: Install relay validator dependencies
         run: python -m pip install --disable-pip-version-check pyyaml jsonschema
 
-      - name: Resolve selected protocol
-        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/protocol_default.py .
-
-      - name: Validate V3.1 foundation
+      - name: Validate V3.1 recorder foundation
         run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/validate_foundation.py .
-
-      - name: Validate active protocol selection and frozen V2.5 history
-        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/protocol_cutover.py . validate

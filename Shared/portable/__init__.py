@@ -1,3 +1,4 @@
+from .binding import resolve_portable_target
 from .package import (
     ADAPTER_API_VERSION,
     COMPONENT_API_VERSION,
@@ -18,4 +19,5 @@ __all__ = [
     "PortablePackageError",
     "build_package",
     "validate_package",
+    "resolve_portable_target",
 ]

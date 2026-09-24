@@ -500,7 +500,7 @@
         </div>
         <input type="range" min="0" max="100" value="50" id="knowledgeSlider" style="width: 100%; accent-color: #c084fc;" oninput="window.ATLAS.setKnowledgeSlider(this.value)">
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin-top: 4px; font-family: var(--font-mono);">
-          <span>None / 0%</span>
+          <span>0%</span>
           <span>20% (R1 Constraint)</span>
           <span>60% (R2 Equivalent Ops)</span>
           <span>100% (R3 Exact Solution)</span>
@@ -599,7 +599,7 @@
 </footer>
 
 <script src="../../data/data.js"></script>
-<script src="../../js/topic-atlas.js"></script>
+<script src="../../core-learning/data.js"></script>\n<script src="../../js/topic-atlas.js"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     window.ATLAS.init('MATRIX-MATH-LINEAR-EQUATIONS');
