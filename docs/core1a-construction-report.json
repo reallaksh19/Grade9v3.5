@@ -4,14 +4,18 @@
   "semantics": {
     "crux": "microtopic.inferential_jump",
     "structural_gate_only": true,
-    "manual_review_required": true
+    "manual_review_required": true,
+    "worked_anchor_mechanism": "question exposure CORE1A + answer.reasoning[]"
   },
   "summary": {
     "microtopic_count": 91,
-    "structured_microtopics": 90,
-    "microtopics_with_debt": 1,
+    "structured_microtopics": 2,
+    "microtopics_with_debt": 89,
     "finding_counts": {
-      "REPRESENTATION_BRIDGE_MISSING": 1
+      "REPRESENTATION_BRIDGE_MISSING": 74,
+      "REPRESENTATION_CORRESPONDENCE_MISSING": 1,
+      "REPRESENTATION_SCENE_BINDING_MISSING": 9,
+      "WORKED_CONCEPTUAL_ANCHOR_MISSING": 85
     }
   },
   "microtopics": [
@@ -24,12 +28,28 @@
       "representation_refs": [
         "REP-MATH-NUMBER-LINE"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 2,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [
+        "Q-MATH-LINEAR-01"
+      ],
+      "relation_check_refs": [
+        "REL-MATH-LINEAR-SOLUTION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-MATH-CONSTRAINT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -41,12 +61,28 @@
       "representation_refs": [
         "REP-MATH-NUMBER-LINE"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 2,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [
+        "Q-MATH-LINEAR-01"
+      ],
+      "relation_check_refs": [
+        "REL-MATH-LINEAR-SOLUTION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-MATH-EQUIVALENT-OPS"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -58,12 +94,22 @@
       "representation_refs": [
         "REP-MATH-NUMBER-LINE"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
       "representation_bridge_count": 2,
+      "worked_anchor_refs": [
+        "Q-MATH-LINEAR-01"
+      ],
+      "relation_check_refs": [
+        "REL-MATH-EXACTNESS"
+      ],
       "finding_codes": [],
       "findings": [],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -75,12 +121,29 @@
       "representation_refs": [
         "REP-REL-VECTOR"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 3,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [
+        "Q-AUTHOR-REL-01"
+      ],
+      "relation_check_refs": [
+        "REL-RELATIVE-POSITION",
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-COMMON-INTERVAL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -90,12 +153,30 @@
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-ELEC-CURRENT-CONSERVATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-ELEC-CURRENT-CONSERVATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -105,12 +186,30 @@
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-ELEC-OHMIC-MODEL-TEST"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-ELEC-OHMIC-MODEL-TEST"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -120,12 +219,32 @@
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-RELATIVE-VELOCITY"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-FRAME-QUALIFICATION-BOUNDARY"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-FRAME-QUALIFICATION-BOUNDARY"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -137,12 +256,22 @@
       "representation_refs": [
         "REP-REL-VECTOR"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-REL-VECTOR"
+      ],
       "representation_bridge_count": 3,
+      "worked_anchor_refs": [
+        "Q-AUTHOR-REL-01"
+      ],
+      "relation_check_refs": [
+        "REL-RELATIVE-VELOCITY"
+      ],
       "finding_codes": [],
       "findings": [],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -154,12 +283,28 @@
       "representation_refs": [
         "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
+      ],
       "representation_bridge_count": 3,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-VECTOR-SUBTRACTION"
+      ],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-GRAPHICAL-SUBTRACTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -169,12 +314,30 @@
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-MAG-FIELD-DIRECTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-MAG-FIELD-DIRECTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -184,12 +347,30 @@
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-MAG-FLUX-ORIENTATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-MAG-FLUX-ORIENTATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -199,12 +380,30 @@
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-MAG-REDIRECT-NOT-SPEED"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-MAG-REDIRECT-NOT-SPEED"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -214,12 +413,30 @@
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-MEASURED-FROM"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-MEASURED-FROM"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -229,12 +446,32 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-LENS-EQUATION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-LENS-EQUATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-LENS-EQUATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -244,12 +481,32 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-LENS-MAGNIFICATION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-LENS-MAGNIFICATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-LENS-MAGNIFICATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -259,12 +516,32 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-LENS-POWER"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-LENS-POWER"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-LENS-POWER"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -274,12 +551,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-LENS-RAY-CONSTRUCTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-LENS-RAY-CONSTRUCTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -289,12 +584,32 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-MIRROR-EQUATION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-MIRROR-EQUATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-MIRROR-EQUATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -304,12 +619,32 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-MIRROR-MAGNIFICATION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-MIRROR-MAGNIFICATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-MIRROR-MAGNIFICATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -319,12 +654,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-NORMAL-REFLECTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-NORMAL-REFLECTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -334,12 +687,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-REAL-VIRTUAL-IMAGE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-REAL-VIRTUAL-IMAGE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -349,12 +720,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-REFRACTION-NORMAL"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-REFRACTION-NORMAL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -364,12 +753,33 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-REFRACTIVE-INDEX-SPEED",
+        "REL-SNELLS-LAW"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -379,12 +789,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-SIGN-CONVENTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-SIGN-CONVENTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -394,12 +822,30 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -409,12 +855,30 @@
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OSC-ENERGY-EXCHANGE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OSC-ENERGY-EXCHANGE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -424,12 +888,30 @@
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-OSC-STABLE-EQUILIBRIUM"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-OSC-STABLE-EQUILIBRIUM"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -439,12 +921,30 @@
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-FLUID-R2"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-FLUID-R2"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -454,12 +954,30 @@
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-FLUID-R3"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-FLUID-R3"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -469,12 +987,30 @@
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-FLUID-R4"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-FLUID-R4"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -484,12 +1020,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-FREE-FALL-G"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-FREE-FALL-G"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -499,12 +1053,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-INVERSE-SQUARE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-INVERSE-SQUARE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -514,12 +1086,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-MASS-WEIGHT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-MASS-WEIGHT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -529,12 +1119,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-R1"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-R1"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -544,12 +1152,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-R4"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-R4"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -559,12 +1185,30 @@
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-GRAV-R5"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-GRAV-R5"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -574,15 +1218,36 @@
       "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [
-        "REP-KIN-2D-SHARED-CLOCK",
-        "REP-KIN-2D-EVENT-CLOCK"
+        "REP-KIN-2D-EVENT-CLOCK",
+        "REP-KIN-2D-SHARED-CLOCK"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 6,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-KIN-2D-DISPLACEMENT",
+        "REL-KIN-2D-VELOCITY"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -594,12 +1259,26 @@
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-KIN-2D-SHARED-CLOCK"
+      ],
       "representation_bridge_count": 3,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -609,12 +1288,33 @@
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-AVERAGE-SPEED",
+        "REL-AVERAGE-VELOCITY"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-KIN-AVERAGE-RATES"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-AVERAGE-RATES"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -626,12 +1326,36 @@
       "representation_refs": [
         "REP-KIN-CIRCULAR-FORCE-ROLE"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 4,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-CIRC-NET-RADIAL-FORCE",
+        "REL-CIRC-RADIAL-ACCELERATION",
+        "REL-CIRC-TOP-MIN-SPEED",
+        "REL-CIRC-VERTICAL-BOTTOM",
+        "REL-CIRC-VERTICAL-TOP"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -643,12 +1367,32 @@
       "representation_refs": [
         "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+      ],
       "representation_bridge_count": 4,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-AVERAGE-ACCELERATION",
+        "REL-CONSTANT-ACCELERATION-DISPLACEMENT",
+        "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+        "REL-CONSTANT-ACCELERATION-NO-TIME",
+        "REL-CONSTANT-ACCELERATION-VELOCITY"
+      ],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -658,12 +1402,30 @@
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -676,12 +1438,30 @@
         "REP-PHY-KIN-POSITION-TIME-GRAPH",
         "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-PHY-KIN-POSITION-TIME-GRAPH",
+        "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
+      ],
       "representation_bridge_count": 6,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-AVERAGE-ACCELERATION",
+        "REL-AVERAGE-VELOCITY"
+      ],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-MOTION-GRAPHS"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -691,16 +1471,36 @@
       "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [
-        "REP-KIN-2D-SHARED-CLOCK",
         "REP-KIN-2D-EVENT-CLOCK",
-        "REP-KIN-2D-PROJECTILE-MODEL"
+        "REP-KIN-2D-PROJECTILE-MODEL",
+        "REP-KIN-2D-SHARED-CLOCK"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 9,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-KIN-PROJECTILE-MODEL"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-PROJECTILE-MODEL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -710,12 +1510,32 @@
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-UNIFORM-CIRCULAR-SPEED"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -725,12 +1545,30 @@
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -740,12 +1578,32 @@
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-IDEAL-MACHINE-WORK"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-MACHINE-COMPARE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-MACHINE-COMPARE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -755,12 +1613,32 @@
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "intrinsic_badge": "EASY",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-MECHANICAL-ADVANTAGE"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-MACHINE-MA"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-MACHINE-MA"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -770,12 +1648,32 @@
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-IDEAL-MACHINE-WORK"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-MACHINE-TRADEOFF"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-MACHINE-TRADEOFF"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -785,12 +1683,32 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -802,20 +1720,36 @@
       "representation_refs": [
         "REP-NLM-FBD-BODY-OWNERSHIP"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
       "finding_codes": [
-        "REPRESENTATION_BRIDGE_MISSING"
+        "REPRESENTATION_CORRESPONDENCE_MISSING",
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
       ],
       "findings": [
         {
-          "code": "REPRESENTATION_BRIDGE_MISSING",
-          "detail": "Referenced representations do not carry a complete picture/word/symbol correspondence.",
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+        },
+        {
+          "code": "REPRESENTATION_CORRESPONDENCE_MISSING",
+          "detail": "The bound representation has no explicit picture/word/symbol correspondence.",
+          "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
           "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
         }
       ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -825,12 +1759,30 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -842,12 +1794,34 @@
       "representation_refs": [
         "REP-NLM-ACCELERATING-FRAME-COMPARISON"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 3,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-HANGING-BOB-TILT",
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-NLM-FRAME-CHOICE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-FRAME-CHOICE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -857,12 +1831,30 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-FRICTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-FRICTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -874,12 +1866,33 @@
       "representation_refs": [
         "REP-NLM-FRICTION-THRESHOLD"
       ],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 3,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-KINETIC-FRICTION",
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_SCENE_BINDING_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_SCENE_BINDING_MISSING",
+          "detail": "No canonical representation has a CORE1A scene bound to this microtopic.",
+          "ref": "MIC-PHY-NLM-FRICTION-QUANT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-FRICTION-QUANT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -889,12 +1902,32 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -904,12 +1937,34 @@
       "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-DISCRETE-MOMENTUM-TRANSFER",
+        "REL-NLM-FORCE-MOMENTUM-RATE",
+        "REL-NLM-LINEAR-MOMENTUM-ITEM"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -919,12 +1974,30 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-NET-ZERO-MOTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-NET-ZERO-MOTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -934,12 +2007,32 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-SECOND-LAW"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-SECOND-LAW"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -949,12 +2042,32 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -964,12 +2077,30 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-NLM-THIRD-LAW"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-NLM-THIRD-LAW"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -979,12 +2110,30 @@
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-ROT-R1"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-ROT-R1"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -994,12 +2143,30 @@
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-ROT-R3"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-ROT-R3"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1009,12 +2176,30 @@
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-ROT-R4"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-ROT-R4"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1024,12 +2209,30 @@
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-ROT-R5"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-ROT-R5"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1039,12 +2242,30 @@
       "bucket_ref": "BUCKET-PHY-SOUND",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-SOUND-LONGITUDINAL"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-SOUND-LONGITUDINAL"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1054,12 +2275,30 @@
       "bucket_ref": "BUCKET-PHY-SOUND",
       "intrinsic_badge": "EASY",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-SOUND-PERCEPTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-SOUND-PERCEPTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1069,12 +2308,33 @@
       "bucket_ref": "BUCKET-PHY-SOUND",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-ECHO-DISTANCE",
+        "REL-WAVE-SPEED"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-SOUND-REFLECTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-SOUND-REFLECTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1084,12 +2344,30 @@
       "bucket_ref": "BUCKET-PHY-SOUND",
       "intrinsic_badge": "EASY",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-SOUND-SOURCE-MEDIUM"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-SOUND-SOURCE-MEDIUM"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1102,12 +2380,30 @@
         "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
         "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+        "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+      ],
       "representation_bridge_count": 4,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-FREQUENCY-PERIOD",
+        "REL-WAVE-SPEED"
+      ],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-SOUND-WAVE-QUANTITIES"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1117,12 +2413,30 @@
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-THERMO-R1"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-THERMO-R1"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1132,12 +2446,30 @@
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-THERMO-R3"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-THERMO-R3"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1147,12 +2479,30 @@
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-THERMO-R4"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-THERMO-R4"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1162,12 +2512,30 @@
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-THERMO-R5"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-THERMO-R5"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1177,12 +2545,32 @@
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-VEC-ANGLE-COMPONENTS"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1192,12 +2580,30 @@
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-COMPONENT-SUM"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-COMPONENT-SUM"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1207,12 +2613,32 @@
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-VEC-DIRECTION-FROM-COMPONENTS"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1222,12 +2648,30 @@
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1237,12 +2681,30 @@
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-SUB-ORDER"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-SUB-ORDER"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1252,12 +2714,32 @@
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-VEC-UNIT-DIRECTION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-UNIT-DIRECTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-UNIT-DIRECTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1267,12 +2749,32 @@
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-VEC-IJ-NOTATION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-VEC-UNIT-NOTATION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-VEC-UNIT-NOTATION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1282,12 +2784,37 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-CONSTANT-ACCELERATION-NO-TIME",
+        "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+        "REL-NEWTON-SECOND-LAW",
+        "REL-WEIGHT-NEAR-EARTH",
+        "REL-WORK-CONSTANT-FORCE",
+        "REL-WORK-ENERGY-THEOREM"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1297,12 +2824,36 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH",
+        "REL-KINETIC-ENERGY",
+        "REL-MECHANICAL-ENERGY-CONSERVATION",
+        "REL-WORK-CONSTANT-FORCE",
+        "REL-WORK-ENERGY-THEOREM"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-GRADE9-QUANT"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-GRADE9-QUANT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1312,12 +2863,30 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1327,12 +2896,30 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-NET-WORK-SIGN"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-NET-WORK-SIGN"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1342,12 +2929,30 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1357,12 +2962,33 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [
+        "REL-AVERAGE-POWER",
+        "REL-INSTANTANEOUS-POWER"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-POWER-RATES"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-POWER-RATES"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1372,12 +2998,30 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-PHY-WEP-WORK-DIRECTION"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-PHY-WEP-WORK-DIRECTION"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1387,12 +3031,28 @@
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "intrinsic_badge": "HARD",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [
+        "Q-AUTHOR-REL-01"
+      ],
+      "relation_check_refs": [
+        "REL-RELATIVE-POSITION"
+      ],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-SAME-TIME"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1404,12 +3064,26 @@
       "representation_refs": [
         "REP-VECTOR-COMPONENT"
       ],
+      "core1a_scene_representation_refs": [
+        "REP-VECTOR-COMPONENT"
+      ],
       "representation_bridge_count": 1,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-SIGNED-COMPONENT"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     },
     {
@@ -1419,12 +3093,30 @@
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
       "intrinsic_badge": "MEDIUM",
       "representation_refs": [],
+      "core1a_scene_representation_refs": [],
       "representation_bridge_count": 0,
-      "finding_codes": [],
-      "findings": [],
+      "worked_anchor_refs": [],
+      "relation_check_refs": [],
+      "finding_codes": [
+        "REPRESENTATION_BRIDGE_MISSING",
+        "WORKED_CONCEPTUAL_ANCHOR_MISSING"
+      ],
+      "findings": [
+        {
+          "code": "REPRESENTATION_BRIDGE_MISSING",
+          "detail": "No canonical representation is bound to this Core1A concept.",
+          "ref": "MIC-VECTOR-VS-SCALAR"
+        },
+        {
+          "code": "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+          "detail": "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
+          "ref": "MIC-VECTOR-VS-SCALAR"
+        }
+      ],
       "manual_review_obligations": [
         "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL"
+        "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+        "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL"
       ]
     }
   ]
