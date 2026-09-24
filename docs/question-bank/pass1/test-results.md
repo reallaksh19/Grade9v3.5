@@ -97,22 +97,30 @@ Those 69 reasoning moves were normalized to `TRANSFORM`. Scaffold `support_kind:
 
 ## CI / repository status
 
-The branch was reconciled with current `main` after `main` advanced during this work. At the final validation point:
+The branch was reconciled with the integrated Core2/Core2A/Core2B architecture now on `main`.
+
+Final validated head before merge: `11fb01570090ac3110523803dc3410b954ad2e2a`.
 
 - PR #217 is **0 commits behind `main`** and GitHub reports it **mergeable**;
-- `pass1-question-bank-contract` — **PASS**;
-- `v31-relay` — **PASS**;
-- generated-artifact refresh — **PASS**;
+- `pass1-question-bank-contract` — **PASS** (run #16);
+- `v31-relay` — **PASS** (run #1034);
+- repository-wide `guardrails` — **PASS** (run #5106);
+- full repository regression suite — **1,177 tests, PASS**;
+- generated architecture/artifact consistency — **PASS**;
 - topic-independence scan — **PASS**;
-- generated architecture-manifest consistency — **PASS**.
+- all JSON documents parse — **PASS**;
+- cross-Core progression ownership/lineage gate — **PASS**.
 
-The repository-wide `guardrails` workflow remains red because current `main` itself has the same three unrelated Physics baseline failures:
+The PASS-1 v2 bank uses its governed extension layout for provenance and analysis metadata, while the earlier progression reader consumed the v1 layout. Integration therefore added a narrow v1/v2 compatibility read at the progression boundary; no learner-facing PYQ wording, source disposition or provenance class was changed.
 
-1. declared falsifier `FAL-CIRC-SYMBOL-NO-UNIT` has no registered mutation;
-2. `test_owner_extensions_do_not_claim_curriculum_authority`;
-3. Physics depiction backlog expected/actual count mismatch.
+The resulting family-level source-demand truth is explicit:
 
-These three failures were reproduced on current `main` and are not introduced by the question-bank activity contract. The question-bank-specific workflow and V3.1 Relay both pass.
+- `FAM-PHY-NLM-PRACTICE` — evidenced by the v2 bank;
+- `FAM-PHY-KIN-2D-PRACTICE` — evidenced by the v2 bank;
+- `FAM-RELATIVE-V` — now evidenced by **3** verified-parent v2 items;
+- `FAM-PHY-NLM-INCLINE-MODELLING` — no longer receives an exact family-level anchor merely from the broader v2 NLM family mapping; it remains `SOURCE_DEMAND_NOT_YET_EVIDENCED` pending an explicit reviewed join.
+
+The progression audit scans all **77** accepted v2 bank anchors while keeping competitive-bank evidence distinct from ordinary Core2 custody.
 
 ## Committed test contracts
 
