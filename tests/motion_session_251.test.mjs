@@ -514,7 +514,8 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     const summaryText = await driver.execute("return document.querySelector('#session-summary').textContent;");
     assert.match(summaryText, /does not infer mastery/i);
     const browserTrace = await driver.execute("return window.__motionSessionTrace;");
-    const browserReplay = replayMotionSessionTrace(browserTrace);\n    assert.equal(browserReplay.ok, true, JSON.stringify(browserReplay));
+    const browserReplay = replayMotionSessionTrace(browserTrace);
+    assert.equal(browserReplay.ok, true, JSON.stringify(browserReplay));
     const packageRequested = browserTrace.find((e) => e.requested_transition.type === "PACKAGE_LOAD_REQUESTED");
     const packageReady = browserTrace.find((e) => e.requested_transition.type === "PACKAGE_READY");
     assert.equal(packageReady.parent_sequence, packageRequested.sequence);
