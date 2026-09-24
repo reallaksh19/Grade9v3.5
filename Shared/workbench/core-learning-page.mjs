@@ -1,7 +1,7 @@
 export const CORE_LEARNING_PAGE_TAG = "core-learning-page";
 export const CORE_PROJECTION_CONTRACT_VERSION = "1.0";
 
-const CORE_MODES = new Set(["CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
+const CORE_MODES = new Set(["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
 const SUPPORT_KINDS = new Set(["REPRESENT", "CONNECT", "EXECUTE"]);
 const REVEAL_KINDS = new Set(["CONCEPT", "METHOD", "ANSWER"]);
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -138,6 +138,9 @@ export function validateCoreProjection(input) {
     String(projection.core),
   );
 
+  projection.orientation = projection.orientation == null
+    ? null
+    : requireObject(projection.orientation, "CORE_PROJECTION_ORIENTATION_INVALID");
   projection.concept = projection.concept == null
     ? null
     : requireObject(projection.concept, "CORE_PROJECTION_CONCEPT_INVALID");
@@ -149,9 +152,37 @@ export function validateCoreProjection(input) {
     "CORE_PROJECTION_PRESENTATION_REQUIRED",
   );
 
+  if (projection.orientation) {
+    requireString(projection.orientation.bucket_ref, "CORE_PROJECTION_ORIENTATION_BUCKET_REQUIRED");
+    requireString(projection.orientation.title, "CORE_PROJECTION_ORIENTATION_TITLE_REQUIRED");
+    projection.orientation.blocks = optionalArray(
+      projection.orientation.blocks,
+      "CORE_PROJECTION_ORIENTATION_BLOCKS_INVALID",
+      projection.orientation.bucket_ref,
+    );
+    requireCondition(
+      projection.orientation.blocks.length > 0,
+      "CORE_PROJECTION_ORIENTATION_BLOCKS_REQUIRED",
+      projection.orientation.bucket_ref,
+    );
+    for (const block of projection.orientation.blocks) {
+      requireObject(block, "CORE_PROJECTION_ORIENTATION_BLOCK_INVALID");
+      requireString(block.id, "CORE_PROJECTION_ORIENTATION_BLOCK_ID_REQUIRED");
+      requireCondition(
+        ["TEXT", "EQUATION", "FIGURE"].includes(block.kind),
+        "CORE_PROJECTION_ORIENTATION_BLOCK_KIND_INVALID",
+        String(block.kind),
+      );
+    }
+  }
+
   if (projection.concept) {
     requireString(projection.concept.microtopic_ref, "CORE_PROJECTION_MICROTOPIC_REF_REQUIRED");
     requireString(projection.concept.inferential_jump, "CORE_PROJECTION_INFERENTIAL_JUMP_REQUIRED");
+    projection.concept.entry_assumptions = optionalStringArray(
+      projection.concept.entry_assumptions,
+      "CORE_PROJECTION_ENTRY_ASSUMPTIONS_INVALID",
+    );
     projection.concept.teaching_path = optionalArray(
       projection.concept.teaching_path,
       "CORE_PROJECTION_TEACHING_PATH_INVALID",
@@ -162,11 +193,30 @@ export function validateCoreProjection(input) {
       "CORE_PROJECTION_MISCONCEPTIONS_INVALID",
       projection.concept.microtopic_ref,
     );
-    projection.concept.representation_refs = optionalArray(
+    projection.concept.representation_refs = optionalStringArray(
       projection.concept.representation_refs,
       "CORE_PROJECTION_REPRESENTATION_REFS_INVALID",
+    );
+    projection.concept.representations = optionalArray(
+      projection.concept.representations,
+      "CORE_PROJECTION_REPRESENTATIONS_INVALID",
       projection.concept.microtopic_ref,
     );
+    projection.concept.relation_checks = optionalStringArray(
+      projection.concept.relation_checks,
+      "CORE_PROJECTION_RELATION_CHECKS_INVALID",
+    );
+    projection.concept.worked_anchors = optionalArray(
+      projection.concept.worked_anchors,
+      "CORE_PROJECTION_WORKED_ANCHORS_INVALID",
+      projection.concept.microtopic_ref,
+    );
+    projection.concept.exit_task = projection.concept.exit_task == null
+      ? {}
+      : requireObject(projection.concept.exit_task, "CORE_PROJECTION_EXIT_TASK_INVALID");
+    if (projection.concept.elicitation != null) {
+      requireObject(projection.concept.elicitation, "CORE_PROJECTION_ELICITATION_INVALID");
+    }
   }
 
   if (projection.application) {
@@ -274,6 +324,9 @@ export function validateCoreProjection(input) {
     );
   }
 
+  if (projection.core === "CORE1") {
+    requireCondition(projection.orientation != null, "CORE_PROJECTION_ORIENTATION_REQUIRED", projection.core);
+  }
   if (["CORE1A", "CORE1B"].includes(projection.core)) {
     requireCondition(projection.concept != null, "CORE_PROJECTION_CONCEPT_REQUIRED", projection.core);
   }
@@ -287,9 +340,10 @@ export function validateCoreProjection(input) {
 
 function isConceptReconstruction(projection) {
   return Boolean(
-    projection.presentation.attempt_before_reveal
+    projection.core === "CORE1B"
+    && projection.presentation.attempt_before_reveal
     && !projection.application?.question_ref
-    && projection.concept.teaching_path.length,
+    && projection.concept?.elicitation,
   );
 }
 
