@@ -9,6 +9,7 @@ from Shared.library.resolve import build_index
 REPO = Path(__file__).resolve().parents[1]
 PACKAGE = REPO / "Physics/library/phy-kin-2d-motion.v1.json"
 
+BUCKET = "BUCKET-PHY-KIN-2D-MOTION"
 REP = "REP-KIN-2D-SHARED-CLOCK"
 MIC = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
 SCENE = "SCENE-KIN-2D-SHARED-CLOCK-PORTABLE-01"
@@ -22,12 +23,17 @@ class MotionSharedClockPortableSourceTest(unittest.TestCase):
     def setUpClass(cls):
         cls.package = load(PACKAGE)
         cls.records = build_index([cls.package])
+        cls.bucket = cls.records[BUCKET]
         cls.rep = cls.records[REP]
         cls.microtopic = cls.records[MIC]
         cls.scene = next(
             row for row in cls.rep["scene_instances"] if row["id"] == SCENE
         )
         cls.portable = cls.scene["scene"]["portable_workbench"]
+
+    def test_drawable_motion_bucket_declares_shared_clock_as_its_primary_figure(self):
+        self.assertEqual(self.bucket["primary_representation_ref"], REP)
+        self.assertIn(REP, self.microtopic["representation_refs"])
 
     def test_scene_is_bound_to_canonical_microtopic_and_governed_time_datums(self):
         self.assertEqual(self.scene["microtopic_ref"], MIC)
