@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 240,
-  "relation_count": 277,
+  "component_count": 246,
+  "relation_count": 278,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 34,
-    "TEST": 114,
-    "TOOLING": 55,
+    "LIBRARY": 38,
+    "TEST": 115,
+    "TOOLING": 56,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:1fa610e6ba1085cebdd3a7e7dbb477f4af1bfa16709573bbd0ea214a573649a1",
+  "digest": "sha256:81d3d1ce083b7f7ade34050767d61f7951de818a1328059c29209c09a62240f8",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -62,6 +62,13 @@
       "sha256": "099a75ec8b56e2cde1efb9bc592530f4764074e13e970a654800f743d20c8b55"
     },
     {
+      "path": "Shared/library/competitive-exam-bank.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 9625,
+      "sha256": "a555ee8330e99d67100a1f3fe0fc92882de7710daabbc7101414656e1f774717"
+    },
+    {
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
@@ -88,6 +95,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 6165,
       "sha256": "8a66e6f338996f7c4b849d380776f2dc620b4b6dff091e7c6b5a1d49d6a89f42"
+    },
+    {
+      "path": "Shared/library/exam-source-verification.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 3572,
+      "sha256": "6aa8fa1a3c3e20c511ad24dc86e5a2ece8c5fbfbc41035a4a2f445dedffa2863"
     },
     {
       "path": "Shared/library/execution-packet.schema.json",
@@ -186,6 +200,20 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 4361,
       "sha256": "f8632a06fc9b3a9df4b0b6f6a4be8f9fb00b830dd89e3cc6e8422bbb92e2b6fb"
+    },
+    {
+      "path": "Shared/library/question-bank-publication.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2103,
+      "sha256": "855b6e6f687cad6e5e674da40bdf67b785e5f8c4d130e5f193f3dc74ab907a38"
+    },
+    {
+      "path": "Shared/library/question-bank-run.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 3313,
+      "sha256": "719f537cbae4e621c2047de4cb26561a91add2dbe9f35ce8e26eb902ad3c0bcc"
     },
     {
       "path": "Shared/library/release-receipt.schema.json",
@@ -508,6 +536,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 10674,
       "sha256": "78746a5f22c1f04bcee72242dec44f8f128df715a3b6d4b7610294afefa2a242"
+    },
+    {
+      "path": "Shared/tools/competitive_exam_bank.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 18800,
+      "sha256": "35b235d16fd11b62c2fc09217e99f0df4f81359ab9317585e2b130748661d12d"
     },
     {
       "path": "Shared/tools/compile_execution_packet.py",
@@ -1110,6 +1145,13 @@
       "role_description": "Executable checks",
       "bytes": 19825,
       "sha256": "84369a80da26a73e78db6e995397bb4e92b866e4291b24b89fa3a32ff7d94789"
+    },
+    {
+      "path": "tests/test_competitive_exam_bank_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1986,
+      "sha256": "85ff894cce0aae60fa0e9a0614dadc791523a41361aceeee7b6ba699f6158d87"
     },
     {
       "path": "tests/test_competitive_exam_question_bank.py",
@@ -2444,6 +2486,11 @@
     {
       "from": "tests/test_chemistry_master_suites_audit.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_competitive_exam_bank_contract.py",
+      "to": "Shared.tools.competitive_exam_bank",
       "kind": "IMPORTS"
     },
     {
