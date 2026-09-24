@@ -1,0 +1,47 @@
+name: phase5-refresh-generated
+
+on:
+  push:
+    branches:
+      - audit/core-runtime-phase5
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[phase5-generated-refresh]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/core-runtime-phase5
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install schema validator
+        run: python -m pip install jsonschema
+      - name: Regenerate repository artifacts
+        run: python3 Shared/tools/build_manifest.py
+      - name: Commit generated artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            tools/data.js \
+            public/data/data.js \
+            public/core-learning/data.js \
+            public/core-learning/index.html \
+            standalone/core-learning/index.html \
+            public/js/core-learning/runtime.mjs \
+            public/js/core-learning/semantic-workbench.mjs \
+            public/js/core-learning/core-learning-page.mjs \
+            public/js/core-learning/core-learning-host.mjs \
+            docs/architecture-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "[phase5-generated-refresh] Refresh generated Core learner artifacts"
+          git push origin HEAD:audit/core-runtime-phase5
