@@ -65,7 +65,7 @@ class MotionSharedClockPortableSourceTest(unittest.TestCase):
             cases["mixed-time"]["source_entity_ref"],
             "shared-clock-mixed-time-candidate",
         )
-        self.assertIn("same physical state", cases["mixed-time"]["reason"])
+        self.assertIn("single physical state", cases["mixed-time"]["reason"])
         self.assertEqual(
             cases["same-time"]["operation"],
             cases["mixed-time"]["operation"],
