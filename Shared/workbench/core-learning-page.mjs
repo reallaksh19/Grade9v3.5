@@ -707,11 +707,113 @@ function renderSolution(projection, state) {
   </section>`;
 }
 
+function renderMisconceptions(items) {
+  if (!items.length) return "";
+  return `<div class="misconception-repair"><h4>Diagnose and repair</h4><ul>${items.map((item) =>
+    `<li><strong>Wrong idea:</strong> ${escapeHtml(item.wrong_idea ?? "")}
+      <br><strong>Tell them apart:</strong> ${escapeHtml(item.diagnostic_prompt ?? "")}
+      <br><strong>Repair:</strong> ${escapeHtml(item.repair ?? "")}</li>`
+  ).join("")}</ul></div>`;
+}
+
+function renderConceptRepresentations(concept) {
+  if (!concept.representations.length) return "";
+  return `<div class="concept-representations"><h4>Representation bridge</h4>${concept.representations.map((rep) => {
+    const correspondence = (rep.correspondence ?? []).length
+      ? `<ul>${rep.correspondence.map((row) =>
+          `<li>${escapeHtml(row.element ?? "")} ↔ ${escapeHtml(row.symbol ?? "")}: ${escapeHtml(row.in_words ?? "")}</li>`
+        ).join("")}</ul>`
+      : '<p class="empty">No explicit correspondence supplied.</p>';
+    return `<article data-concept-representation="${escapeHtml(rep.representation_ref ?? "")}">
+      <h5>${escapeHtml(rep.representation_ref ?? "Representation")}</h5>
+      ${correspondence}
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderWorkedAnchors(anchors) {
+  if (!anchors.length) return "";
+  return `<div class="worked-anchors"><h4>Worked conceptual anchor</h4>${anchors.map((anchor) => {
+    const answer = anchor.answer ?? {};
+    const reasoning = (answer.reasoning ?? []).length
+      ? `<ol>${answer.reasoning.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`
+      : "";
+    return `<article data-worked-anchor="${escapeHtml(anchor.question_ref ?? "")}">
+      <p>${escapeHtml(anchor.stem ?? "")}</p>
+      ${answer.summary ? `<p><strong>Answer:</strong> ${escapeHtml(answer.summary)}</p>` : ""}
+      ${reasoning}
+      ${answer.check ? `<p><strong>Check:</strong> ${escapeHtml(answer.check)}</p>` : ""}
+    </article>`;
+  }).join("")}</div>`;
+}
+
+function renderExitClosure(concept) {
+  const task = concept.exit_task ?? {};
+  const answer = task.answer ?? {};
+  if (!task.prompt && !concept.relation_checks.length) return "";
+  const reasoning = (answer.reasoning ?? []).length
+    ? `<ol>${answer.reasoning.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`
+    : "";
+  const relationChecks = concept.relation_checks.length
+    ? `<div><h5>Independent checks</h5><ul>${concept.relation_checks.map((item) =>
+        `<li>${escapeHtml(item)}</li>`
+      ).join("")}</ul></div>`
+    : "";
+  return `<div class="concept-closure"><h4>Independent closure</h4>
+    ${task.prompt ? `<p><strong>Check yourself:</strong> ${escapeHtml(task.prompt)}</p>` : ""}
+    ${answer.summary ? `<p><strong>Answer:</strong> ${escapeHtml(answer.summary)}</p>` : ""}
+    ${reasoning}
+    ${answer.check ? `<p><strong>Verify:</strong> ${escapeHtml(answer.check)}</p>` : ""}
+    ${relationChecks}
+  </div>`;
+}
+
+function renderCore1BReconstruction(concept) {
+  const elicitation = concept.elicitation ?? {};
+  const predict = elicitation.predict ?? {};
+  const attempt = elicitation.attempt ?? {};
+  const reconstruct = elicitation.reconstruct ?? {};
+  const boundary = elicitation.boundary_test ?? {};
+  const route = (reconstruct.route ?? []).length
+    ? `<ol>${reconstruct.route.map((step) =>
+        `<li>${escapeHtml(step.ask ?? "")}${step.why_this_ask ? `<small>${escapeHtml(step.why_this_ask)}</small>` : ""}</li>`
+      ).join("")}</ol>`
+    : "";
+  let closure = "";
+  if (attempt.closure === "MODEL_RESPONSE" && attempt.model_response) {
+    closure = `<p><strong>Model response:</strong> ${escapeHtml(attempt.model_response)}</p>`;
+  } else if ((attempt.rubric ?? []).length) {
+    closure = `<div><h5>Self-check criteria</h5><ul>${attempt.rubric.map((row) =>
+      `<li><strong>${escapeHtml(row.criterion ?? "")}</strong> — ${escapeHtml(row.evidence_of ?? "")}</li>`
+    ).join("")}</ul></div>`;
+  }
+  return `<div class="core1b-reconstruction">
+    ${predict.defensible_answer ? `<p><strong>Defensible answer:</strong> ${escapeHtml(predict.defensible_answer)}</p>` : ""}
+    <h4>Reconstruct the reasoning</h4>
+    ${route}
+    ${renderMisconceptions(concept.misconceptions)}
+    ${closure}
+    ${boundary.prompt ? `<div class="boundary-test"><h4>Boundary test</h4>
+      <p>${escapeHtml(boundary.prompt)}</p>
+      ${boundary.answer ? `<p><strong>Answer:</strong> ${escapeHtml(boundary.answer)}</p>` : ""}
+      ${boundary.confirms ? `<small>${escapeHtml(boundary.confirms)}</small>` : ""}
+    </div>` : ""}
+  </div>`;
+}
+
 function renderConstruction(projection, state) {
   if (!projection.concept || !state.reconstructionVisible) return "";
+  const body = projection.core === "CORE1B"
+    ? renderCore1BReconstruction(projection.concept)
+    : `${renderTeachingPath(projection.concept.teaching_path)}
+       ${renderConceptRepresentations(projection.concept)}
+       ${renderMisconceptions(projection.concept.misconceptions)}
+       ${renderWorkedAnchors(projection.concept.worked_anchors)}
+       ${renderExitClosure(projection.concept)}`;
+  const title = projection.core === "CORE1B" ? "Reconstruction and repair" : "Completed construction";
   return `<section class="construction-panel" data-semantic="reconstruction" aria-labelledby="core-construction-title">
-    <h3 id="core-construction-title">Construction</h3>
-    ${renderTeachingPath(projection.concept.teaching_path)}
+    <h3 id="core-construction-title">${title}</h3>
+    ${body}
   </section>`;
 }
 
