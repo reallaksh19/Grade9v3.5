@@ -10,6 +10,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
+from Shared.library.resolve import build_index  # noqa: E402
 from Shared.tools import source_receipts  # noqa: E402
 
 
@@ -58,6 +59,25 @@ class SourceReceipts(unittest.TestCase):
         report = source_receipts.verify(receipt)
         self.assertIn("SOURCE_RECEIPT_CORE2_AUTHORED_QUESTION",
                       [row["point"] for row in report["findings"]])
+
+    def test_core2_coverage_ignores_reviewed_question_without_item_custody(self):
+        package = json.loads(
+            (REPO / "Physics/library/relative-motion.v1.json").read_text(encoding="utf-8")
+        )
+        question = next(q for q in package["questions"] if q["id"] == "Q-AUTHOR-REL-01")
+        question["status"] = "REVIEWED"
+        question["origin"] = "ORIGINAL"
+        question["origin_ref"] = "SRC-NCERT-PLANE"
+        question["source_refs"] = ["SRC-NCERT-PLANE"]
+        question["adaptation"] = None
+        question["extensions"].pop("source_custody", None)
+        records = build_index([package])
+
+        coverage = source_receipts.derive_coverage(
+            records, "BUCKET-RELATIVE-MOTION", ["SRC-NCERT-PLANE"]
+        )
+        self.assertEqual(coverage["CORE2"]["status"], "INSUFFICIENT")
+        self.assertNotIn(question["id"], coverage["CORE2"]["question_refs"])
 
     def test_sufficiency_requires_an_immutable_content_digest(self):
         receipt = self.legacy()

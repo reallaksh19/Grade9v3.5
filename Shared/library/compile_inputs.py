@@ -43,6 +43,7 @@ if __package__ in (None, ""):
 from Shared.contracts import digest, join, load, require, sentence
 from Shared.library.resolve import build_index, load_packages, slice_for_bucket
 from Shared.library.practice_inventory import bucket_questions
+from Shared.library import source_custody
 
 # Core1 and Core2 sit outside the teaching-route mechanism. A route says which product
 # teaches a microtopic; these two do not teach it. Core1 is the bucket's map -- its
@@ -163,6 +164,16 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
         questions.append(row)
         question_records.append(record)
 
+    # Core2 is source custody, not a synonym for "all questions this bucket can render".
+    # A practice question remains available to Core2A/Core2B regardless of origin, but it
+    # can enter Core2 only when it is a reviewed/curated source-derived item carrying a
+    # resolved Phase-1 custody proof.
+    core2_question_records = [
+        record for record in question_records
+        if record.get("status") in {"REVIEWED", "CURATED"}
+        and source_custody.valid_for_core2(record, records)
+    ]
+
     source = {"id": "LIBRARY", "origin": "AUTHOR_CREATED",
               "citation": f"Compiled from the {subject} library for bucket {bucket_id}. "
                           "Records are author-created candidates; no source measurement or "
@@ -182,10 +193,13 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 unsupported[core] = ("the bucket declares no governing relation, so there is "
                                      "nothing for a map of it to orient a learner to")
         elif core == "CORE2":
-            if question_records:
+            if core2_question_records:
                 supported.append(core)
             else:
-                unsupported[core] = "the library holds no question for this bucket to take custody of"
+                unsupported[core] = (
+                    "the bucket has no reviewed/curated source-derived question with "
+                    "resolved question-level custody; authored practice does not become Core2"
+                )
         elif core in PRACTICE:
             exposed = [q for q in question_records
                        if any(e.get("core") == core for e in q.get("exposure", []))]
@@ -328,10 +342,11 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
                 records, relation_ids, atoms, microtopics, orientation_obligation,
                 equations, bucket)
         elif core == "CORE2":
-            # Custody covers every question the bucket holds, not only those a practice
-            # product exposes: a question omitted here is a question with no record.
+            # Only questions that prove source custody may appear here. Authored practice
+            # stays in Core2A/Core2B and may share a family with source-demand evidence,
+            # but that relationship never rewrites provenance.
             blocks = [_question_block(core, record, custody_obligation, atoms)
-                      for record in question_records]
+                      for record in core2_question_records]
         elif core in ROUTED:
             blocks = list(conventions)
             for microtopic in microtopics:
@@ -384,7 +399,25 @@ def compile_bucket(records: dict, bucket_id: str, *, topic_id: str, title: str,
     plan["products"] = [p for p in plan["products"] if p["units"][0]["blocks"]]
     plan["products"].sort(key=lambda p: COMPOSABLE.index(p["core"]))
     baseline["selected_cores"] = [p["core"] for p in plan["products"]]
+
+    # "Supported" in this compiler means renderable from the current canonical slice.
+    # It is deliberately not a statement that source demand is evidenced, familiar
+    # reasoning is mature, transfer is protected, or learner release is authorised.
+    product_support = {
+        core: {
+            "renderable": core in baseline["selected_cores"],
+            "renderability_reason": (
+                "canonical content compiled into at least one learner block"
+                if core in baseline["selected_cores"]
+                else unsupported.get(core, "no renderable block")
+            ),
+            "progression_readiness": "NOT_EVALUATED_BY_COMPILER",
+        }
+        for core in COMPOSABLE
+    }
+
     return {"baseline": baseline, "source": source, "plan": plan,
+            "product_support": product_support,
             # Every library record this compilation actually read, so a later audit never
             # has to infer it from the plan's text.
             "library_records": sorted({row["id"] for rows in chosen["records"].values()

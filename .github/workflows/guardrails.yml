@@ -71,6 +71,12 @@ jobs:
       - name: Core2B transfer integrity only moves forward
         run: python3 Shared/tools/core2b_inventory.py --enforce-forward
 
+      # Core2, Core2A and Core2B own different claims. This family-level join proves
+      # those claims remain connected without allowing authored practice to become
+      # source custody or treating a renderable product as progression readiness.
+      - name: Cross-Core progression ownership and lineage remain coherent
+        run: python3 Shared/library/core_progression.py --enforce
+
       # A claim about a learner must be backed by what was seen, or say it is a waiver.
       # Enforcing from the start: the store landed with its gate, and both committed
       # profiles are waiver-backed with a null percentage, which is the honest value.

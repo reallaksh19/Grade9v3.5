@@ -11,6 +11,8 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Shared.contracts import digest  # noqa: E402
+from Shared.library import source_custody  # noqa: E402
+from Shared.library.resolve import build_index  # noqa: E402
 from Shared.tools import source_pipeline, source_receipts  # noqa: E402
 
 
@@ -119,6 +121,108 @@ class SourcePipeline(unittest.TestCase):
             self.acquisition(), manifest, self.package())
         self.assertIn("SOURCE_INGEST_RESOURCE_DIGEST_MISMATCH",
                       [row["point"] for row in report["findings"]])
+
+    def test_question_custody_proof_binds_the_demand_signature(self):
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), self.manifest(), self.package())
+        self.assertTrue(report["passed"], report["findings"])
+        question = next(q for q in report["merged_package"]["questions"]
+                        if q["id"] == "Q-TEST-FIXTURE-REL-01")
+        proof = question["extensions"]["source_custody"]
+        self.assertEqual(proof["demand_signature"], source_custody.demand_signature(question))
+
+    def test_wrong_item_locator_is_rejected(self):
+        manifest = self.manifest()
+        manifest["questions"][0]["extensions"]["source_custody"]["source_item_locator"] = "Question F9"
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), manifest, self.package())
+        self.assertIn("SOURCE_CUSTODY_LOCATOR_NOT_INSPECTED",
+                      [row["point"] for row in report["findings"]])
+
+    def test_original_question_demand_drift_invalidates_custody(self):
+        manifest = self.manifest()
+        manifest["questions"][0]["stem"] += " Added after source inspection."
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), manifest, self.package())
+        self.assertIn("SOURCE_CUSTODY_DEMAND_SIGNATURE_MISMATCH",
+                      [row["point"] for row in report["findings"]])
+
+    def test_preserved_condition_cannot_be_empty(self):
+        manifest = self.manifest()
+        manifest["questions"][0]["extensions"]["source_custody"]["components"]["conditions"] = "PRESERVED"
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), manifest, self.package())
+        self.assertIn("SOURCE_CUSTODY_COMPONENT_PRESERVED_BUT_EMPTY",
+                      [row["point"] for row in report["findings"]])
+
+    def test_unresolved_component_cannot_establish_core2_custody(self):
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), self.manifest(), self.package())
+        self.assertTrue(report["passed"], report["findings"])
+        merged = report["merged_package"]
+        question = next(q for q in merged["questions"]
+                        if q["id"] == "Q-TEST-FIXTURE-REL-01")
+        question["extensions"]["source_custody"]["components"]["answer_or_rubric"] = "UNRESOLVED"
+        records = build_index([merged])
+        records[question["id"]] = {**question, "_collection": "questions", "_package": merged["package_id"]}
+        findings = source_custody.validate_question(
+            question, records=records, require_resolved=True)
+        self.assertIn("SOURCE_CUSTODY_COMPONENT_UNRESOLVED",
+                      [row["point"] for row in findings])
+
+    def test_preserved_source_figure_requires_caption(self):
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), self.manifest(), self.package())
+        self.assertTrue(report["passed"], report["findings"])
+        merged = report["merged_package"]
+        question = next(q for q in merged["questions"]
+                        if q["id"] == "Q-TEST-FIXTURE-REL-01")
+        question["figure_refs"] = ["SRC-FIXTURE-FIG"]
+        proof = question["extensions"]["source_custody"]
+        proof["components"]["figures"] = "PRESERVED"
+        proof["components"]["captions"] = "PRESERVED"
+        proof["demand_signature"] = source_custody.demand_signature(question)
+        records = build_index([merged])
+        records[question["id"]] = {**question, "_collection": "questions", "_package": merged["package_id"]}
+        records["SRC-FIXTURE-FIG"] = {
+            "id": "SRC-FIXTURE-FIG", "_collection": "resources",
+            "_package": merged["package_id"], "origin": "LOCAL", "caption": ""
+        }
+        findings = source_custody.validate_question(
+            question, records=records, require_resolved=True)
+        self.assertIn("SOURCE_CUSTODY_FIGURE_CAPTION_MISSING",
+                      [row["point"] for row in findings])
+
+    def test_adaptation_changed_fields_must_match_actual_differences(self):
+        report = source_pipeline.plan_ingestion(
+            self.acquisition(), self.manifest(), self.package())
+        self.assertTrue(report["passed"], report["findings"])
+        merged = report["merged_package"]
+        parent = next(q for q in merged["questions"]
+                      if q["id"] == "Q-TEST-FIXTURE-REL-01")
+        parent = copy.deepcopy(parent)
+        parent["id"] = "Q-TEST-FIXTURE-PARENT"
+        parent["status"] = "REVIEWED"
+        adapted = copy.deepcopy(parent)
+        adapted["id"] = "Q-TEST-FIXTURE-ADAPTED"
+        adapted["status"] = "CANDIDATE"
+        adapted["origin"] = "ADAPTED"
+        adapted["stem"] += " Use a second observer label."
+        adapted["adaptation"] = {
+            "parent_ref": parent["id"],
+            "changed_fields": ["options"],
+            "reason": "Planted false change declaration."
+        }
+        adapted["extensions"]["source_custody"]["comparison_status"] = "ADAPTED_DECLARED"
+        adapted["extensions"]["source_custody"]["demand_signature"] = source_custody.demand_signature(adapted)
+        records = build_index([merged])
+        records[parent["id"]] = {**parent, "_collection": "questions", "_package": merged["package_id"]}
+        records[adapted["id"]] = {**adapted, "_collection": "questions", "_package": merged["package_id"]}
+        findings = source_custody.validate_question(
+            adapted, records=records, require_resolved=True)
+        points = [row["point"] for row in findings]
+        self.assertIn("SOURCE_CUSTODY_ADAPTATION_CHANGES_UNDECLARED", points)
+        self.assertIn("SOURCE_CUSTODY_ADAPTATION_CHANGES_FALSE", points)
 
 
 if __name__ == "__main__":
