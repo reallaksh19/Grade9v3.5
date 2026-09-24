@@ -1,256 +1,276 @@
 import json
-import re
 import unittest
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-PHYS_BANK = ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v1.json"
-CHEM_BANK = ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v1.json"
+PHYS_BANK = ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+CHEM_BANK = ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json"
 LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
+CONCEPT_INVENTORY = ROOT / "docs/question-bank/pass1/concept-bucket-inventory.md"
+PHYS_CANONICAL_LIBRARIES = [
+    ROOT / "Physics/library/phy-nlm-first-law.v1.json",
+    ROOT / "Physics/library/phy-kin-2d-motion.v1.json",
+    ROOT / "Physics/library/relative-motion.v1.json",
+]
 
-ALLOWED_PROVENANCE = {"PYQ_VERIFIED", "PYQ_ADAPTED", "SOURCE_UNVERIFIED"}
-CANONICAL_PROVENANCE = {"PYQ_VERIFIED", "PYQ_ADAPTED"}
-ALLOWED_OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in"}
-DIFFICULTY_MAP = {0: "D1", 1: "D1", 2: "D1", 3: "D2", 4: "D2", 5: "D2", 6: "D3", 7: "D3", 8: "D4", 9: "D4", 10: "D4"}
+OFFICIAL_HOSTS = {"jeeadv.ac.in", "www.jeeadv.ac.in", "neet.nta.nic.in", "cdnbbsr.s3waas.gov.in", "nta.ac.in", "www.nta.ac.in", "jeemain.nta.nic.in"}
+EXPECTED_COUNTS = {
+    "Physics": {
+        "Newton's Laws of Motion / NLM": 13,
+        "Motion in 2D / Motion in a Plane — linear/projectile only": 15,
+        "Motion in 1D — relative motion only": 3,
+    },
+    "Chemistry": {
+        "Redox Reactions": 26,
+        "Some Basic Concepts of Chemistry / Mole Concept / Stoichiometry": 20,
+    },
+}
 
 
-def load_json(path):
+def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def record_ids(package):
-    return {
-        "buckets": {x["id"] for x in package.get("buckets", [])},
-        "capabilities": {x["id"] for x in package.get("capabilities", [])},
-        "families": {x["id"] for x in package.get("question_families", [])},
-    }
-
-
-class CompetitiveExamQuestionBankTest(unittest.TestCase):
+class CompetitiveExamQuestionBankV2Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.physics = load_json(PHYS_BANK)
-        cls.chemistry = load_json(CHEM_BANK)
+        cls.physics = load(PHYS_BANK)
+        cls.chemistry = load(CHEM_BANK)
         cls.banks = [cls.physics, cls.chemistry]
-        cls.questions = [q for bank in cls.banks for q in bank["questions"]]
-        cls.sources = {
-            source["id"]: source
+        cls.resource_by_id = {
+            resource["id"]: resource
             for bank in cls.banks
-            for source in bank["source_records"]
+            for resource in bank.get("resources", [bank["resource"]])
         }
-        cls.ledger = load_json(LEDGER)
+        cls.questions = [
+            (cls.resource_by_id[q["origin_ref"]], q)
+            for bank in cls.banks
+            for q in bank["questions"]
+        ]
+        cls.ledger = load(LEDGER)
+        cls.concept_inventory = CONCEPT_INVENTORY.read_text(encoding="utf-8")
+        cls.physics_capability_ids = set()
+        cls.physics_family_ids = set()
+        for path in PHYS_CANONICAL_LIBRARIES:
+            package = load(path)
+            cls.physics_capability_ids.update(x["id"] for x in package["capabilities"])
+            cls.physics_family_ids.update(x["id"] for x in package["question_families"])
 
-        nlm = load_json(ROOT / "Physics/library/phy-nlm-first-law.v1.json")
-        motion2d = load_json(ROOT / "Physics/library/phy-kin-2d-motion.v1.json")
-        relative = load_json(ROOT / "Physics/library/relative-motion.v1.json")
-        cls.physics_ids = {
-            "buckets": set(),
-            "capabilities": set(),
-            "families": set(),
-        }
-        for package in (nlm, motion2d, relative):
-            ids = record_ids(package)
-            for kind in cls.physics_ids:
-                cls.physics_ids[kind] |= ids[kind]
-
-        resolution = cls.chemistry["concept_resolution"]
-        cls.chem_ids = {
-            "buckets": {x["id"] for x in resolution["proposed_buckets"]},
-            "capabilities": {x["id"] for x in resolution["proposed_capabilities"]},
-            "families": {x["id"] for x in resolution["proposed_families"]},
-        }
-
-    def test_pass1_contains_no_authored_questions_or_generated_sets(self):
+    def test_fixture_native_v2_shape_and_counts(self):
+        self.assertEqual(len(self.physics["questions"]), 31)
+        self.assertEqual(len(self.chemistry["questions"]), 46)
+        self.assertEqual(len(self.questions), 77)
         for bank in self.banks:
-            self.assertFalse(bank["generated_sets"])
-            self.assertFalse(bank["source_policy"]["authored_questions_allowed"])
-        for question in self.questions:
-            self.assertIn(question["provenance_status"], CANONICAL_PROVENANCE)
-            self.assertNotEqual(question["provenance_status"], "AUTHORED")
+            self.assertEqual(bank["version"], "2.5.0")
+            self.assertFalse(bank["extensions"]["grade9v3:generated_sets"])
+            self.assertEqual(bank["access_status"], "FULL_ITEM_INSPECTED")
 
-    def test_provenance_classes_are_exact_and_unverified_is_not_promoted(self):
-        for bank in self.banks:
-            self.assertEqual(set(bank["source_policy"]["provenance_classes"]), ALLOWED_PROVENANCE)
-        for question in self.questions:
-            self.assertNotEqual(question["provenance_status"], "SOURCE_UNVERIFIED")
-        for donor in self.ledger["donor_candidates"]:
-            self.assertEqual(donor["pass1_provenance_status"], "SOURCE_UNVERIFIED")
-            self.assertEqual(donor["promotion_status"], "QUARANTINED_DONOR_ONLY")
+    def test_topic_coverage_is_explicit_and_balanced(self):
+        for subject, bank in (("Physics", self.physics), ("Chemistry", self.chemistry)):
+            counts = {}
+            for q in bank["questions"]:
+                topic = q["extensions"]["grade9v3:analysis"]["topic"]
+                counts[topic] = counts.get(topic, 0) + 1
+            self.assertEqual(counts, EXPECTED_COUNTS[subject])
+            self.assertEqual(
+                bank["extensions"]["grade9v3:topic_counts"],
+                EXPECTED_COUNTS[subject],
+            )
 
-    def test_verified_question_source_refs_resolve_to_official_records(self):
-        for question in self.questions:
-            self.assertTrue(question["source_refs"])
-            for ref in question["source_refs"]:
-                self.assertIn(ref, self.sources)
-                source = self.sources[ref]
-                if question["provenance_status"] == "PYQ_VERIFIED":
-                    self.assertEqual(source["authority_class"], "OFFICIAL_EXAM_ORGANIZER_ARCHIVE")
-                    self.assertEqual(source["verification_status"], "PYQ_VERIFIED")
-                    self.assertIn(urlparse(source["source_url"]).hostname, ALLOWED_OFFICIAL_HOSTS)
-                    self.assertIn(urlparse(source["archive_url"]).hostname, ALLOWED_OFFICIAL_HOSTS)
+    def test_every_question_is_an_honest_pyq_adaptation(self):
+        for resource, q in self.questions:
+            self.assertEqual(q["origin"], "ADAPTED")
+            self.assertEqual(q["extensions"]["grade9v3:provenance_class"], "PYQ_ADAPTED")
+            self.assertEqual(q["origin_ref"], resource["id"])
+            self.assertIn(q["origin_ref"], self.resource_by_id)
+            self.assertTrue(set(q["source_refs"]).issubset(self.resource_by_id))
+            self.assertEqual(q["adaptation"]["parent_ref"], q["original_identifier"])
+            self.assertTrue(q["adaptation"]["changed_fields"])
+            self.assertIn("stem", q["adaptation"]["changed_fields"])
+            self.assertIn("Faithful non-verbatim restatement", q["adaptation"]["reason"])
 
-    def test_original_identifiers_are_complete_without_invented_shift_or_number(self):
+    def test_source_custody_uses_official_organizer_and_subject_qualified_identity(self):
         seen = set()
-        for question in self.questions:
-            ident = question["original_identifier"]
-            for field in ("exam", "year", "paper", "question_number"):
-                self.assertNotIn(ident.get(field), (None, ""))
-            key = (ident["exam"], ident["year"], ident["paper"], ident.get("section"), ident["question_number"])
-            self.assertNotIn(key, seen)
-            seen.add(key)
-            if ident["year"] in {2007, 2008, 2011}:
-                self.assertEqual(ident["exam"], "IIT-JEE")
-            if ident["year"] == 2023:
-                self.assertEqual(ident["exam"], "JEE (Advanced)")
-            # Unknown session/shift values must remain null, not be fabricated placeholders.
-            for field in ("session", "shift"):
-                if field in ident and ident[field] is not None:
-                    self.assertFalse(re.search(r"unknown|assumed|tbd", str(ident[field]), re.I))
+        for resource, q in self.questions:
+            custody = q["extensions"]["grade9v3:source_custody"]
+            self.assertEqual(custody["authority_class"], "OFFICIAL_EXAM_ORGANIZER_ARCHIVE")
+            self.assertEqual(custody["source_status"], "PYQ_VERIFIED_PARENT")
+            self.assertEqual(custody["wording_custody"], "FAITHFUL_NON_VERBATIM_RESTATEMENT")
+            self.assertEqual(custody["last_checked"], "2026-09-23")
+            self.assertIn(custody["section"], {"Physics", "Chemistry"})
+            self.assertIn(f"|{custody['section']}|", q["original_identifier"])
+            self.assertEqual(custody["parent_ref"], q["original_identifier"])
+            self.assertIn(urlparse(custody["paper_url"]).hostname, OFFICIAL_HOSTS)
+            self.assertIn(urlparse(custody["archive_url"]).hostname, OFFICIAL_HOSTS)
+            identity = (
+                custody["exam"], custody["year"], custody["paper"],
+                custody["section"], custody["question_number"],
+            )
+            self.assertNotIn(identity, seen)
+            seen.add(identity)
 
-    def test_difficulty_score_is_component_sum_and_band_matches_rubric(self):
-        expected_components = {
-            "concept_model_selection",
-            "representation_translation",
-            "reasoning_chain_length",
-            "algebra_computational_load",
+    def test_jee_main_2026_records_require_official_paper_and_final_key(self):
+        expected = {
+            "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
+            "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+            "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+            "PYQ-CHEM-JEEMAIN-2026-06APR-S2-Q51",
+            "PYQ-CHEM-JEEMAIN-2026-04APR-S2-Q62",
+        }
+        actual = {q["id"] for _, q in self.questions if q["extensions"]["grade9v3:source_custody"]["exam"] == "JEE Main"}
+        self.assertEqual(actual, expected)
+        for _, q in self.questions:
+            custody = q["extensions"]["grade9v3:source_custody"]
+            if custody["exam"] != "JEE Main":
+                continue
+            self.assertEqual(custody["year"], 2026)
+            self.assertIn("Session 2", custody["paper"])
+            self.assertIn("Shift 2", custody["paper"])
+            self.assertEqual(custody["answer_authority"], "OFFICIAL_NTA_FINAL_ANSWER_KEY")
+            self.assertIn(urlparse(custody["answer_key_url"]).hostname, OFFICIAL_HOSTS)
+            self.assertEqual(custody["last_checked"], "2026-09-23")
+
+    def test_duplicate_ids_and_authoritative_source_ledger_resolution(self):
+        seen_ids = set()
+        accepted_by_id = {}
+        for record in self.ledger["accepted_authoritative_records"]:
+            for question_id in record["accepted_question_ids"]:
+                self.assertNotIn(question_id, accepted_by_id)
+                accepted_by_id[question_id] = record
+
+        for _, q in self.questions:
+            self.assertNotIn(q["id"], seen_ids)
+            seen_ids.add(q["id"])
+            self.assertIn(q["id"], accepted_by_id)
+            record = accepted_by_id[q["id"]]
+            custody = q["extensions"]["grade9v3:source_custody"]
+            self.assertEqual(record["source_url"], custody["paper_url"])
+            self.assertEqual(record["exam"], custody["exam"])
+            self.assertEqual(record["year"], custody["year"])
+
+        self.assertEqual(set(accepted_by_id), seen_ids)
+
+    def test_concept_and_family_refs_resolve(self):
+        for q in self.physics["questions"]:
+            self.assertIn(q["primary_capability_ref"], self.physics_capability_ids)
+            for capability_ref in q["secondary_capability_refs"]:
+                self.assertIn(capability_ref, self.physics_capability_ids)
+            self.assertIn(q["family_ref"], self.physics_family_ids)
+
+        for q in self.chemistry["questions"]:
+            # Chemistry identifiers are intentionally local proposals in PASS 1.
+            self.assertIn("`" + q["primary_capability_ref"] + "`", self.concept_inventory)
+            for capability_ref in q["secondary_capability_refs"]:
+                self.assertIn("`" + capability_ref + "`", self.concept_inventory)
+            self.assertIn("`" + q["family_ref"] + "`", self.concept_inventory)
+
+    def test_native_question_fields_are_learner_usable(self):
+        required = {
+            "id", "version", "status", "source_refs", "evidence_refs", "extensions",
+            "origin", "origin_ref", "original_identifier", "stem", "subparts",
+            "options", "conditions", "figure_refs", "answer",
+            "primary_capability_ref", "secondary_capability_refs", "family_ref",
+            "adaptation", "exposure", "hints", "scaffolds",
+        }
+        for _, q in self.questions:
+            self.assertTrue(required.issubset(q))
+            self.assertTrue(q["stem"].strip())
+            self.assertTrue(q["answer"]["summary"].strip())
+            self.assertTrue(q["answer"]["reasoning"])
+            self.assertTrue(q["answer"]["check"].strip())
+
+    def test_source_hints_and_authored_scaffolds_are_not_conflated(self):
+        for _, q in self.questions:
+            self.assertEqual(
+                q["hints"], [],
+                msg=f"{q['id']} must not invent source-provided hints",
+            )
+            self.assertGreaterEqual(len(q["scaffolds"]), 2)
+            move_ids = {move["id"] for move in q["answer"]["reasoning_route"]}
+            for scaffold in q["scaffolds"]:
+                self.assertIn(scaffold["support_kind"], {"REPRESENT", "CONNECT", "EXECUTE"})
+                self.assertIn(scaffold["reveals"], {"CONCEPT", "METHOD", "ANSWER"})
+                self.assertIn(scaffold["supports_move_ref"], move_ids)
+
+    def test_reasoning_route_crux_and_check_resolve(self):
+        for _, q in self.questions:
+            answer = q["answer"]
+            route = answer["reasoning_route"]
+            self.assertGreaterEqual(len(route), 2)
+            move_ids = {m["id"] for m in route}
+            self.assertIn(answer["crux_move_ref"], move_ids)
+            self.assertEqual(answer["verification_status"], "INDEPENDENTLY_CHECKED")
+            self.assertTrue(answer["rubric"])
+            for row in answer["rubric"]:
+                self.assertTrue(row["criterion"].strip())
+                self.assertTrue(row["evidence_of"].strip())
+
+    def test_difficulty_is_component_based_not_exam_label_based(self):
+        bands = {0:"D1", 1:"D1", 2:"D1", 3:"D2", 4:"D2", 5:"D2",
+                 6:"D3", 7:"D3", 8:"D4", 9:"D4", 10:"D4"}
+        keys = {
+            "concept_model_selection", "representation_translation",
+            "reasoning_chain_length", "algebra_computational_load",
             "trap_exception_sensitivity",
         }
-        for question in self.questions:
-            difficulty = question["difficulty"]
-            components = difficulty["components"]
-            self.assertEqual(set(components), expected_components)
-            for value in components.values():
-                self.assertIsInstance(value, int)
-                self.assertGreaterEqual(value, 0)
-                self.assertLessEqual(value, 2)
-            score = sum(components.values())
+        for _, q in self.questions:
+            analysis = q["extensions"]["grade9v3:analysis"]
+            difficulty = analysis["difficulty"]
+            self.assertEqual(set(difficulty["components"]), keys)
+            score = sum(difficulty["components"].values())
             self.assertEqual(difficulty["score"], score)
-            self.assertEqual(difficulty["band"], DIFFICULTY_MAP[score])
-            self.assertTrue(difficulty["basis"].strip())
-            self.assertGreater(question["expected_time_seconds"], 0)
-
-    def test_concept_bucket_capability_and_family_resolution(self):
-        for question in self.physics["questions"]:
-            self.assertIn(question["concept_bucket"], self.physics_ids["buckets"])
-            self.assertIn(question["family_ref"], self.physics_ids["families"])
-            self.assertIn(question["primary_capability_ref"], self.physics_ids["capabilities"])
-            for ref in question["secondary_capability_refs"]:
-                self.assertIn(ref, self.physics_ids["capabilities"])
-
-        self.assertEqual(
-            self.chemistry["concept_resolution"]["status"],
-            "LOCAL_PROPOSALS_PENDING_CANONICAL_CHEMISTRY_LIBRARY",
-        )
-        for question in self.chemistry["questions"]:
-            self.assertIn(question["concept_bucket"], self.chem_ids["buckets"])
-            self.assertIn(question["family_ref"], self.chem_ids["families"])
-            self.assertIn(question["primary_capability_ref"], self.chem_ids["capabilities"])
-            for ref in question["secondary_capability_refs"]:
-                self.assertIn(ref, self.chem_ids["capabilities"])
-
-    def test_answer_verification_is_present_and_never_exam_label_based(self):
-        allowed = {
-            "SOURCE_KEY_AND_INDEPENDENT_CHECK",
-            "INDEPENDENTLY_SOLVED_NO_OFFICIAL_KEY_LOCATED",
-        }
-        for question in self.questions:
-            verification = question["answer_verification"]
-            self.assertIn(verification["status"], allowed)
-            self.assertTrue(verification["independent_check"].strip())
-            self.assertNotIn(question["original_identifier"]["exam"], question["difficulty"]["basis"])
-            if verification["status"] == "SOURCE_KEY_AND_INDEPENDENT_CHECK":
-                self.assertIsNotNone(question["source_answer"]["value"])
-            else:
-                self.assertIn("verified_value", verification)
-                self.assertIsNotNone(verification["verified_value"])
-
-    def test_adaptation_parent_contract(self):
-        all_ids = {q["id"] for q in self.questions}
-        for question in self.questions:
-            if question["provenance_status"] != "PYQ_ADAPTED":
-                continue
-            self.assertIn(question.get("parent_ref"), all_ids)
-            self.assertTrue(question.get("changed_fields"))
-            self.assertEqual(len(question["changed_fields"]), len(set(question["changed_fields"])))
-
-    def test_variant_clusters_and_shared_context_resolve(self):
-        cluster_rows = self.chemistry.get("variant_clusters", [])
-        cluster_ids = {x["id"] for x in cluster_rows}
-        context_ids = {x["id"] for x in self.chemistry.get("shared_source_contexts", [])}
-        question_ids = {q["id"] for q in self.chemistry["questions"]}
-        for question in self.chemistry["questions"]:
-            if "variant_cluster_ref" in question:
-                self.assertIn(question["variant_cluster_ref"], cluster_ids)
-            if "shared_context_ref" in question:
-                self.assertIn(question["shared_context_ref"], context_ids)
-        for cluster in cluster_rows:
-            self.assertTrue(set(cluster["member_refs"]).issubset(question_ids))
-            if cluster.get("shared_context_ref"):
-                self.assertIn(cluster["shared_context_ref"], context_ids)
-            self.assertIsNone(cluster.get("parent_ref"))
-
-    def test_duplicate_ids_and_source_identity_duplicates_are_rejected(self):
-        ids = [q["id"] for q in self.questions]
-        self.assertEqual(len(ids), len(set(ids)))
-        identities = [
-            (
-                q["original_identifier"]["exam"],
-                q["original_identifier"]["year"],
-                q["original_identifier"]["paper"],
-                q["original_identifier"]["question_number"],
+            self.assertEqual(difficulty["band"], bands[score])
+            self.assertGreater(analysis["expected_time_seconds"], 0)
+            self.assertNotIn(
+                q["extensions"]["grade9v3:source_custody"]["exam"],
+                difficulty["basis"],
             )
-            for q in self.questions
-        ]
-        self.assertEqual(len(identities), len(set(identities)))
 
-    def test_source_text_custody_is_locator_backed_and_not_a_reconstructed_original(self):
-        for question in self.questions:
-            custody = question["source_text_custody"]
-            self.assertEqual(custody["mode"], "EXTERNAL_REFERENCE")
-            self.assertIsNone(custody["verbatim_stem"])
-            self.assertIsNone(custody["verbatim_options"])
-            self.assertTrue(custody["conditions_preserved_by_locator"])
-            self.assertTrue(question["stem_summary"].strip())
-            self.assertEqual(question["reasoning_route_origin"], "INDEPENDENT_ANALYSIS_NOT_SOURCE_HINT")
+    def test_transfer_is_distinguished_from_same_family_practice(self):
+        for _, q in self.questions:
+            profile = q["extensions"]["grade9v3:analysis"]["transfer_profile"]
+            self.assertIn(profile["classification"], {"REAL_TRANSFER_CANDIDATE", "SAME_FAMILY_VARIATION"})
+            if profile["core2b_candidate"]:
+                self.assertEqual(profile["classification"], "REAL_TRANSFER_CANDIDATE")
+                self.assertIn(
+                    profile["dimension"],
+                    {"model_choice", "representation_translation", "reasoning_steps", "novelty"},
+                )
+            else:
+                self.assertEqual(profile["classification"], "SAME_FAMILY_VARIATION")
 
-    def test_scope_excludes_circular_motion_and_holds_unverified_1d_relative_motion(self):
-        for question in self.physics["questions"]:
+    def test_scope_excludes_circular_motion(self):
+        for _, q in self.questions:
             text = " ".join([
-                question["topic"],
-                question["stem_summary"],
-                question["stable_crux_move"],
+                q["extensions"]["grade9v3:analysis"]["topic"],
+                q["stem"],
+                q["extensions"]["grade9v3:analysis"]["stable_crux_move"],
             ]).lower()
             self.assertNotIn("circular motion", text)
             self.assertNotIn("centripetal", text)
 
-        relative_questions = [
-            q for q in self.physics["questions"]
-            if q["concept_bucket"] == "BUCKET-RELATIVE-MOTION"
+    def test_relative_motion_hold_is_closed_by_official_records(self):
+        relative = [
+            q for _, q in self.questions
+            if q["extensions"]["grade9v3:analysis"]["topic"] == "Motion in 1D — relative motion only"
         ]
-        self.assertEqual(relative_questions, [])
-        holds = {x["concept_bucket"]: x for x in self.physics["coverage_holds"]}
-        self.assertEqual(holds["BUCKET-RELATIVE-MOTION"]["status"], "NO_PYQ_VERIFIED_ACCEPTED")
+        self.assertGreaterEqual(len(relative), 3)
+        self.assertTrue(
+            {
+                "PYQ-PHY-IITJEE-2008-P2-Q32",
+                "PYQ-PHY-JEEADV-2014-P1-Q18",
+                "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q27",
+            }.issubset({q["id"] for q in relative})
+        )
 
-    def test_donor_registries_are_preserved(self):
+    def test_donor_registries_remain_quarantined_and_preserved(self):
         for inventory in self.ledger["donor_inventories"]:
             self.assertTrue((ROOT / inventory["path"]).is_file())
             self.assertEqual(inventory["disposition"], "PRESERVED_AS_DONOR_EVIDENCE_NOT_DELETED")
-
-    def test_transfer_profiles_distinguish_real_transfer_from_variation(self):
-        allowed = {"REAL_TRANSFER_CANDIDATE", "SAME_FAMILY_VARIATION"}
-        for question in self.questions:
-            profile = question["transfer_profile"]
-            self.assertIn(profile["classification"], allowed)
-            for field in ("model_choice", "representation_translation", "novelty"):
-                self.assertIsInstance(profile[field], int)
-                self.assertGreaterEqual(profile[field], 0)
-                self.assertLessEqual(profile[field], 2)
-            self.assertGreaterEqual(profile["reasoning_steps"], 1)
-            self.assertEqual(
-                profile["core2b_candidate"],
-                profile["classification"] == "REAL_TRANSFER_CANDIDATE",
-            )
+        for donor in self.ledger["donor_candidates"]:
+            self.assertEqual(donor["pass1_provenance_status"], "SOURCE_UNVERIFIED")
+            self.assertEqual(donor["promotion_status"], "QUARANTINED_DONOR_ONLY")
 
 
 if __name__ == "__main__":

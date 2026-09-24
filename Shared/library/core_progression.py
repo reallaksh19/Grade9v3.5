@@ -47,6 +47,28 @@ def bank_paths(subject: Path) -> list[Path]:
     return sorted((subject / "library" / "exam-bank").glob("*.json"))
 
 
+def _bank_provenance(question: dict) -> str | None:
+    """Accepted provenance across the governed v1 and v2 bank layouts."""
+    direct = question.get("provenance_status")
+    if direct:
+        return direct
+    extensions = question.get("extensions")
+    if not isinstance(extensions, dict):
+        return None
+    return extensions.get("grade9v3:provenance_class")
+
+
+def _bank_concept_bucket(question: dict) -> str | None:
+    direct = question.get("concept_bucket")
+    if direct:
+        return direct
+    extensions = question.get("extensions")
+    if not isinstance(extensions, dict):
+        return None
+    analysis = extensions.get("grade9v3:analysis")
+    return analysis.get("concept_bucket") if isinstance(analysis, dict) else None
+
+
 def bank_anchors(subject: Path) -> list[dict]:
     rows = []
     for path in bank_paths(subject):
@@ -56,11 +78,16 @@ def bank_anchors(subject: Path) -> list[dict]:
             continue
         if not isinstance(bank, dict):
             continue
-        bank_id = bank.get("bank_id") or str(path.relative_to(subject.parent))
+        bank_id = (
+            bank.get("bank_id")
+            or bank.get("manifest_id")
+            or str(path.relative_to(subject.parent))
+        )
+        bank_status = bank.get("status") or bank.get("access_status")
         for question in bank.get("questions", []) or []:
             if not isinstance(question, dict):
                 continue
-            provenance = question.get("provenance_status")
+            provenance = _bank_provenance(question)
             family_ref = question.get("family_ref")
             if provenance not in BANK_ACCEPTED or not family_ref:
                 continue
@@ -70,10 +97,10 @@ def bank_anchors(subject: Path) -> list[dict]:
                 "family_ref": family_ref,
                 "question_id": question.get("id"),
                 "bank_id": bank_id,
-                "bank_status": bank.get("status"),
+                "bank_status": bank_status,
                 "provenance_status": provenance,
                 "primary_capability_ref": question.get("primary_capability_ref"),
-                "concept_bucket": question.get("concept_bucket"),
+                "concept_bucket": _bank_concept_bucket(question),
                 "package_path": str(path.relative_to(subject.parent)),
             })
     return rows

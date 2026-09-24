@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:question-bank-run:1.0.0",
+  "title": "Grade9V3 Competitive Exam Bank Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "activity_type",
+    "pass",
+    "scope",
+    "bank_paths",
+    "ledger_path",
+    "coverage_path",
+    "authority_hosts",
+    "local_ref_registry_paths",
+    "publication_contract",
+    "gates",
+    "completion"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activity_type": {
+      "const": "CANONICAL_COMPETITIVE_EXAM_BANK"
+    },
+    "pass": {
+      "const": "PASS_1"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "topics",
+        "forbidden_outputs",
+        "forbidden_topics"
+      ],
+      "properties": {
+        "topics": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_outputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_topics": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "bank_paths": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "ledger_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coverage_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_contract": {
+      "type": "object"
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$ref": "#/$defs/gate"
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "accepted_count",
+        "source_identity_duplicates",
+        "unresolved_accepted_items",
+        "corpus_saturation_claimed"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "HOLD",
+            "FAIL"
+          ]
+        },
+        "accepted_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_identity_duplicates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unresolved_accepted_items": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corpus_saturation_claimed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authority_hosts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "local_ref_registry_paths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "blocking",
+        "evidence_refs",
+        "findings"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "G0_SCOPE_FROZEN",
+            "G1_CORPUS_ENUMERATED",
+            "G2_SOURCE_AUTHORITY_CHECKED",
+            "G3_SOURCE_DISPOSITIONS_COMPLETE",
+            "G4_CANONICAL_ITEMS_VALID",
+            "G5_CONCEPT_REFS_RESOLVED",
+            "G6_ANSWERS_AND_DIFFICULTY_CHECKED",
+            "G7_COVERAGE_CLOSED",
+            "G8_PUBLICATION_CONTRACT_READY"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "HOLD",
+            "FAIL"
+          ]
+        },
+        "blocking": {
+          "const": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

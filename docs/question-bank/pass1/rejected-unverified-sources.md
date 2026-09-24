@@ -1,6 +1,6 @@
 # Pass 1 rejected / unverified source report
 
-Issue: #201  
+Issue: #216  
 Last checked: 2026-09-23
 
 ## Decision rule
@@ -9,22 +9,24 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 
 ## Summary
 
-- Accepted authoritative questions: **8**
+- Accepted source-matched parent questions represented as learner-usable `PYQ_ADAPTED` records: **77**
 - In-scope donor candidates still quarantined: **147**
 - Exact duplicate donor clusters detected: **0**
 - Number-normalized/trivial-variant clusters detected beyond exact duplicates: **0**
-- Straight-line relative-motion verified coverage: **0 accepted**; acquisition hold remains.
-- No fully authored question was added.
+- Straight-line relative-motion coverage: **3 accepted** official-paper parent records; this remains the sparsest topic and further first-party acquisition is still needed.
+- Accepted exam identities now comprise the canonical bank's IIT-JEE, JEE (Advanced), NEET (UG), and **5 first-party JEE Main 2026** items; exact counts are generated in the coverage matrix.
+- Matched JEE Main 2026 Session 2 items can now be promoted from organizer-hosted papers plus the NTA final key. Unmatched JEE Main/AIEEE and additional AIPMT/NEET donor attributions remain quarantined; a donor label or answer key alone is not enough.
+- No fully authored question was added; accepted learner-facing wording is explicitly `PYQ_ADAPTED`, with source hints kept separate from authored scaffolds.
 
 ### Quarantine reason counts
 
 | Reason | Count |
 | --- | ---: |
 | `SECONDARY_DISCOVERY_ONLY_OFFICIAL_ORGANIZER_MATCH_NOT_ESTABLISHED` | 93 |
-| `SOURCE_PROVENANCE_PENDING_IN_DONOR` | 41 |
+| `SOURCE_PROVENANCE_PENDING_IN_DONOR` | 40 |
 | `SCAN_IDENTITY_NOT_MAPPED_TO_A_TARGET_EXAM_RECORD` | 11 |
-| `LOCAL_DONOR_VERIFICATION_IS_NOT_ACCEPTED_AS_ORGANIZER_VERIFICATION_FOR_PASS1` | 1 |
 | `REPOSITORY_DONOR_ALREADY_FLAGS_UNVERIFIED_OR_FAILED` | 1 |
+| `CLAIMED_SHIFT_DOES_NOT_MATCH_OFFICIAL_QUESTION_PAPER` | 2 |
 
 ## Preserved donor registries
 
@@ -39,7 +41,7 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 
 | Donor ID | Claimed source / year | Local audit | Pass-1 status | Reason |
 | --- | --- | --- | --- | --- |
-| `1D-Q16` | JEE Main 2026 (Online) 4th April Evening Shift | `SOURCE_ITEM_VERIFIED` / `PASS` | `SOURCE_UNVERIFIED` | `LOCAL_DONOR_VERIFICATION_IS_NOT_ACCEPTED_AS_ORGANIZER_VERIFICATION_FOR_PASS1` |
+| `1D-Q16` | JEE Main 2026 (Online) 4th April Evening Shift | `SOURCE_ITEM_VERIFIED` / `PASS` | `SOURCE_UNVERIFIED` | `CLAIMED_SHIFT_DOES_NOT_MATCH_OFFICIAL_QUESTION_PAPER` |
 | `1D-Q17` | JEE Main 2024 (Online) 27th January Morning Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
 | `1D-Q18` | JEE Main 2023 (Online) 30th January Evening Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
 | `PDF-01` | Scanned PDF Page 3 | `none` / `none` | `SOURCE_UNVERIFIED` | `SCAN_IDENTITY_NOT_MAPPED_TO_A_TARGET_EXAM_RECORD` |
@@ -146,7 +148,7 @@ No donor attribution is promoted from a coaching/secondary registry into Core2 c
 | `EXAM-91` | ExamSide JEE Main | `none` / `none` | `SOURCE_UNVERIFIED` | `SECONDARY_DISCOVERY_ONLY_OFFICIAL_ORGANIZER_MATCH_NOT_ESTABLISHED` |
 | `EXAM-92` | ExamSide JEE Main | `none` / `none` | `SOURCE_UNVERIFIED` | `SECONDARY_DISCOVERY_ONLY_OFFICIAL_ORGANIZER_MATCH_NOT_ESTABLISHED` |
 | `EXAM-93` | ExamSide JEE Main | `none` / `none` | `SOURCE_UNVERIFIED` | `SECONDARY_DISCOVERY_ONLY_OFFICIAL_ORGANIZER_MATCH_NOT_ESTABLISHED` |
-| `REDOX-Q01` | JEE Main 2026 (Online) 6th April Evening Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
+| `REDOX-Q01` | JEE Main 2026 (Online) 6th April Evening Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `CLAIMED_SHIFT_DOES_NOT_MATCH_OFFICIAL_QUESTION_PAPER` |
 | `REDOX-Q02` | JEE Main 2025 (Online) 29th January Morning Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
 | `REDOX-Q03` | JEE Main 2024 (Online) 31st January Morning Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
 | `REDOX-Q04` | JEE Main 2025 (Online) 28th January Evening Shift | `SOURCE_PROVENANCE_PENDING` / `PASS` | `SOURCE_UNVERIFIED` | `SOURCE_PROVENANCE_PENDING_IN_DONOR` |
@@ -197,4 +199,4 @@ None detected beyond exact duplicates.
 
 ## Notes
 
-The report deliberately does **not** convert `SOURCE_UNVERIFIED` items into `PYQ_ADAPTED`. Adaptation requires a verified parent and an exact `changed_fields` list. None was needed for the accepted Pass-1 corpus.
+The report deliberately does **not** convert `SOURCE_UNVERIFIED` items into `PYQ_ADAPTED`. Adaptation requires a verified first-party parent and an exact `changed_fields` list. This expansion promotes only newly matched organizer-paper items. The official 04-Apr and 06-Apr 2026 Shift-2 papers also demonstrate that donor items `1D-Q16` and `REDOX-Q01` do not match their claimed shift papers, so those donor claims remain explicitly quarantined. Other JEE Main/AIEEE and AIPMT candidates without persistent first-party question text remain quarantined.

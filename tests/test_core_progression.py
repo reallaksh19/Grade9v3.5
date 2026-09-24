@@ -45,12 +45,27 @@ class CrossCoreProgression(unittest.TestCase):
             for anchor in row["source_anchors"]
         ))
 
-    def test_relative_motion_family_reports_missing_verified_source_demand_honestly(self):
+    def test_relative_motion_family_joins_verified_v2_bank_demand(self):
         report = core_progression.audit(REPO)
         row = next(
             item for item in report["families"]
             if item["subject"] == "Physics"
             and item["family_ref"] == "FAM-RELATIVE-V"
+        )
+        self.assertEqual(
+            row["source_demand_state"],
+            "COMPETITIVE_BANK_VERIFIED_DEMAND",
+        )
+        self.assertTrue(row["source_demand_evidenced"])
+        self.assertEqual(len(row["source_anchors"]), 3)
+        self.assertNotIn("SOURCE_DEMAND_NOT_YET_EVIDENCED", row["gaps"])
+
+    def test_incline_family_does_not_inherit_broad_nlm_bank_evidence(self):
+        report = core_progression.audit(REPO)
+        row = next(
+            item for item in report["families"]
+            if item["subject"] == "Physics"
+            and item["family_ref"] == "FAM-PHY-NLM-INCLINE-MODELLING"
         )
         self.assertEqual(
             row["source_demand_state"],

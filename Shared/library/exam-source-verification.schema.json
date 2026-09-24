@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:exam-source-verification:1.0.0",
+  "title": "Grade9V3 Exam Source Verification Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "claimed_identity",
+    "acquisition_refs",
+    "verification",
+    "scope",
+    "disposition"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "claimed_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exam", "year", "paper", "subject", "question_number"],
+      "properties": {
+        "exam": {"type": "string", "minLength": 1},
+        "year": {"type": ["integer", "null"], "minimum": 1900, "maximum": 2100},
+        "date": {"type": ["string", "null"]},
+        "session": {"type": ["string", "null"]},
+        "shift": {"type": ["string", "null"]},
+        "paper": {"type": ["string", "null"]},
+        "subject": {"enum": ["Physics", "Chemistry", "Mathematics"]},
+        "question_number": {"type": ["string", "null"]}
+      }
+    },
+    "acquisition_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_class",
+        "paper_match",
+        "answer_key_match",
+        "identity_match",
+        "checked_at"
+      ],
+      "properties": {
+        "authority_class": {
+          "enum": [
+            "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "SECONDARY_DISCOVERY_ONLY",
+            "NOT_LOCATED"
+          ]
+        },
+        "paper_match": {"enum": ["MATCH", "MISMATCH", "NOT_FOUND", "NOT_CHECKED"]},
+        "answer_key_match": {"enum": ["MATCH", "MISMATCH", "NOT_FOUND", "NOT_CHECKED"]},
+        "identity_match": {"type": "boolean"},
+        "paper_url": {"type": ["string", "null"]},
+        "answer_key_url": {"type": ["string", "null"]},
+        "source_locator": {"type": ["string", "null"]},
+        "checked_at": {"type": "string", "format": "date"},
+        "notes": {"type": "string"}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {"enum": ["IN_SCOPE", "PARTIAL_SCOPE", "OUT_OF_SCOPE"]},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason_code"],
+      "properties": {
+        "status": {"enum": ["ACCEPTED", "QUARANTINED", "REJECTED", "SOURCE_UNVERIFIED"]},
+        "reason_code": {"type": "string", "minLength": 1},
+        "accepted_question_id": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "disposition": {"properties": {"status": {"const": "ACCEPTED"}}}
+        }
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "authority_class": {"const": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"},
+              "paper_match": {"const": "MATCH"},
+              "identity_match": {"const": true}
+            }
+          },
+          "scope": {"properties": {"status": {"const": "IN_SCOPE"}}},
+          "disposition": {
+            "required": ["accepted_question_id"],
+            "properties": {
+              "accepted_question_id": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    }
+  ]
+}
