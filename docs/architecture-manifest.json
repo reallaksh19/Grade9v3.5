@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 269,
-  "relation_count": 314,
+  "component_count": 270,
+  "relation_count": 316,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 45,
+    "LIBRARY": 46,
     "TEST": 128,
     "TOOLING": 59,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:428fc83daf78aed394b47be4e30c1d16fae5b7edc6d4508148344a9b523f14dd",
+  "digest": "sha256:3a76b3f38c0007b61f05deb235529f115e5ddcd692c7aae032893b1872b513f5",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -74,6 +74,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 46765,
       "sha256": "991889d32a3724326a67db313d42d4223c65192a3121fd350eb530b28a0bce51"
+    },
+    {
+      "path": "Shared/library/core1_delivery.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 9123,
+      "sha256": "7049b35ab014fde5ea05927ebffb55ebc3d91568b6f2b64ecc3eff90e7399c29"
     },
     {
       "path": "Shared/library/core1_orientation.py",
@@ -1932,6 +1939,16 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_delivery.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_delivery.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
