@@ -2267,7 +2267,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -2541,7 +2541,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -3123,7 +3123,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 1,
             "obligations": 8,
             "authoring_requirements": [
@@ -4125,7 +4125,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 19,
             "obligations": 11,
             "authoring_requirements": [
@@ -4825,7 +4825,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 116,
+          "record_count": 118,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4836,7 +4836,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 10,
             "obligations": 7,
             "authoring_requirements": [
@@ -4848,11 +4848,6 @@ window.GRADE9V3 = {
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-PROJECTILE-MODEL",
-                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
-              },
-              {
-                "kind": "FIGURE_AUTHORING",
-                "representation": "REP-KIN-2D-SHARED-CLOCK",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -5105,7 +5100,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 3,
             "authoring_requirements": [
@@ -6711,7 +6706,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 38,
             "obligations": 15,
             "authoring_requirements": [
@@ -7213,7 +7208,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 10,
             "obligations": 5,
             "authoring_requirements": [
@@ -7719,7 +7714,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 8,
             "authoring_requirements": [
@@ -8268,7 +8263,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 8,
             "authoring_requirements": [
@@ -8464,7 +8459,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 2,
             "authoring_requirements": [
@@ -8809,7 +8804,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -9381,7 +9376,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 2,
             "obligations": 7,
             "authoring_requirements": [
@@ -10168,7 +10163,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 5,
             "obligations": 9,
             "authoring_requirements": [
@@ -10498,7 +10493,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 4,
             "authoring_requirements": [
@@ -11037,7 +11032,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 11,
             "obligations": 8,
             "authoring_requirements": [
@@ -11411,7 +11406,7 @@ window.GRADE9V3 = {
               "CORE1A",
               "CORE1B"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 0,
             "obligations": 5,
             "authoring_requirements": [
@@ -12422,7 +12417,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 78,
+            "atoms": 80,
             "questions": 7,
             "obligations": 11,
             "authoring_requirements": [
@@ -12923,7 +12918,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 79,
+            "atoms": 81,
             "questions": 1,
             "obligations": 8,
             "authoring_requirements": [
@@ -13247,7 +13242,7 @@ window.GRADE9V3 = {
               "CORE1B",
               "CORE2A"
             ],
-            "atoms": 79,
+            "atoms": 81,
             "questions": 1,
             "obligations": 7,
             "authoring_requirements": [
