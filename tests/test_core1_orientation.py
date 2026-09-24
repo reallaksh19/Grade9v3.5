@@ -207,6 +207,46 @@ class Core1OrientationAudit(unittest.TestCase):
                 report["buckets"][0]["finding_codes"],
             )
 
+    def test_subject_wide_bucket_ownership_includes_microtopic_from_another_package(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            library = root / "Physics" / "library"
+            library.mkdir(parents=True)
+
+            owner = package_fixture()
+            owner["microtopics"] = []
+            owner["relations"] = []
+            donor = {
+                "subject": "Test",
+                "buckets": [],
+                "microtopics": [{
+                    "id": "MIC-REMOTE",
+                    "title": "Remote-owned hard transition",
+                    "bucket_id": "BUCKET-TEST",
+                    "intrinsic_badge": "HARD",
+                    "badge_reason": "Ownership follows bucket_id, not package location.",
+                    "relation_refs": [],
+                }],
+                "relations": [],
+                "representations": [],
+            }
+            (library / "owner.json").write_text(
+                __import__("json").dumps(owner),
+                encoding="utf-8",
+            )
+            (library / "donor.json").write_text(
+                __import__("json").dumps(donor),
+                encoding="utf-8",
+            )
+
+            report = core1_orientation.audit(root)
+            row = report["buckets"][0]
+            self.assertIn(
+                "MIC-REMOTE",
+                [item["microtopic_ref"] for item in row["hard_transitions"]],
+            )
+            self.assertIn("HARD_TRANSITION_POINTERS", row["orientation_surfaces"])
+
     def test_repo_scan_ignores_nested_exam_bank_and_reads_ordinary_library_packages(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
