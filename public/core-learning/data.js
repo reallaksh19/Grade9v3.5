@@ -74,9 +74,13 @@ window.GRADE9V3_CORE = {
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
+          "show_solution_initially": false,
           "initial_visual_ref": "REP-KIN-2D-SHARED-CLOCK",
           "initial_visual_stage_ref": "VIS-KIN-2D-SHARED-V0",
-          "protected_move_refs": []
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
         }
       },
       "scene_ref": null,
@@ -153,15 +157,338 @@ window.GRADE9V3_CORE = {
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
+          "show_solution_initially": false,
           "initial_visual_ref": "REP-KIN-2D-SHARED-CLOCK",
           "initial_visual_stage_ref": "VIS-KIN-2D-SHARED-V0",
-          "protected_move_refs": []
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
         }
       },
       "scene_ref": null,
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/motion-2d/explorers/shared-clock/index.html"
+    },
+    {
+      "id": "physics:mic-phy-nlm-friction-quant:core1a",
+      "subject": "Physics",
+      "source_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE1A",
+        "concept": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+          "teaching_path": [
+            {
+              "id": "NLM8-1",
+              "role": "DECLARE",
+              "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+              "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+              "inputs": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "perpendicular force equation -> actual N >= 0"
+            },
+            {
+              "id": "NLM8-2",
+              "role": "TRANSFORM",
+              "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+              "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+              "inputs": [
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "no-slip dynamics -> f_s = f_required"
+            },
+            {
+              "id": "NLM8-3",
+              "role": "VERIFY",
+              "action": "Compare |f_required| with mu_s N.",
+              "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+              "inputs": [],
+              "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+            },
+            {
+              "id": "NLM8-4",
+              "role": "TRANSFORM",
+              "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+              "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+              "inputs": [],
+              "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+            }
+          ],
+          "elicitation": null,
+          "misconceptions": [
+            {
+              "wrong_idea": "Friction always equals mu N.",
+              "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+              "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+            },
+            {
+              "wrong_idea": "The normal force is always mg.",
+              "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+              "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+            },
+            {
+              "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+              "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+              "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+            }
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ]
+        },
+        "application": null,
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": true,
+          "show_solution_initially": false,
+          "initial_visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "initial_visual_stage_ref": "VIS-NLM-FRICTION-V0",
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": "public/physics/nlm/explorers/friction-threshold/index.html"
+    },
+    {
+      "id": "physics:mic-phy-nlm-friction-quant:core1b",
+      "subject": "Physics",
+      "source_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE1B",
+        "concept": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+          "teaching_path": [
+            {
+              "id": "NLM8-1",
+              "role": "DECLARE",
+              "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+              "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+              "inputs": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "perpendicular force equation -> actual N >= 0"
+            },
+            {
+              "id": "NLM8-2",
+              "role": "TRANSFORM",
+              "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+              "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+              "inputs": [
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "no-slip dynamics -> f_s = f_required"
+            },
+            {
+              "id": "NLM8-3",
+              "role": "VERIFY",
+              "action": "Compare |f_required| with mu_s N.",
+              "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+              "inputs": [],
+              "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+            },
+            {
+              "id": "NLM8-4",
+              "role": "TRANSFORM",
+              "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+              "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+              "inputs": [],
+              "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+            }
+          ],
+          "elicitation": {
+            "prompt": "A block remains at rest while the applied tangential force is gradually increased. Before impending slip, must static friction already equal mu_s N?"
+          },
+          "misconceptions": [
+            {
+              "wrong_idea": "Friction always equals mu N.",
+              "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+              "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+            },
+            {
+              "wrong_idea": "The normal force is always mg.",
+              "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+              "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+            },
+            {
+              "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+              "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+              "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+            }
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ]
+        },
+        "application": null,
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "initial_visual_stage_ref": "VIS-NLM-FRICTION-V0",
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 0,
+          "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": "public/physics/nlm/explorers/friction-threshold/index.html"
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2a-constant-accel-02:core2a",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2A",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2A-CONSTANT-ACCEL-02",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Both acceleration components are constant over the 3 s interval.",
+            "The initial position is irrelevant because the question asks for displacement."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-CA-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Resolve the vectors into u_x=3, u_y=4, a_x=2 and a_y=-1, with the same elapsed time 3 s on both axes.",
+              "why_valid": "Component kinematics is valid only after the signed components and common physical interval are explicit.",
+              "inputs": [
+                "u=(3i+4j) m/s",
+                "a=(2i-j) m/s^2",
+                "t=3 s"
+              ],
+              "output": "Two signed one-dimensional component problems share one 3 s interval."
+            },
+            {
+              "id": "R-KIN-2D-CA-MODEL",
+              "kind": "CONNECT",
+              "action": "Apply v=u+at and displacement=ut+(1/2)at^2 separately to x and y while preserving signs and the common time.",
+              "why_valid": "The given acceleration vector is constant, so each Cartesian acceleration component is constant over the same interval and the 1D relations apply component-wise.",
+              "inputs": [
+                "a_x=2 constant",
+                "a_y=-1 constant",
+                "t=3 s"
+              ],
+              "output": "The constant-acceleration relations are licensed independently on both axes."
+            },
+            {
+              "id": "R-KIN-2D-CA-CALCULATE",
+              "kind": "TRANSFORM",
+              "action": "Compute v_x=9, v_y=1, Delta x=18 and Delta y=7.5 from the two component equations.",
+              "why_valid": "Substitution into the component equations preserves the negative y acceleration instead of replacing signed components by magnitudes.",
+              "inputs": [
+                "u_x=3",
+                "u_y=4",
+                "a_x=2",
+                "a_y=-1",
+                "t=3"
+              ],
+              "output": "v=(9i+1j) m/s and Delta r=(18i+7.5j) m."
+            },
+            {
+              "id": "R-KIN-2D-CA-CHECK",
+              "kind": "VERIFY",
+              "action": "Check units and signs axis by axis, then confirm both vector components refer to the same 3 s endpoint.",
+              "why_valid": "Unit consistency detects relation misuse and the common-endpoint check prevents combining component states from different times.",
+              "inputs": [
+                "velocity components",
+                "displacement components",
+                "t=3 s"
+              ],
+              "output": "Velocity has m/s units, displacement has m units, and both vectors are single-event states."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-CA-MODEL",
+          "hints": [
+            {
+              "text": "Write the x and y initial velocity and acceleration values separately before calculating.",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Apply the same 1D constant-acceleration relation independently on each axis using the common 3 s.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Make a signed table for u_x, u_y, a_x and a_y before choosing equations.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-CA-REPRESENT"
+            },
+            {
+              "text": "Run the constant-acceleration relation once on x and once on y while keeping one shared 3 s interval.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-KIN-2D-CA-MODEL"
+            }
+          ],
+          "transfer": null,
+          "check": "Each axis uses only its own signed component values; units are m/s for velocity and m for displacement.",
+          "solution": {
+            "summary": "v=(9 i + 1 j) m/s and Delta r=(18 i + 7.5 j) m.",
+            "steps": [
+              "Use v_x=3+2(3)=9 and v_y=4-1(3)=1.",
+              "Use Delta x=3(3)+0.5(2)(3^2)=18.",
+              "Use Delta y=4(3)+0.5(-1)(3^2)=7.5.",
+              "Both axes use the same 3 s interval."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "K2D2-2",
+            "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+            "action": "Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis's signed values and the same t.",
+            "why_valid": "Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.",
+            "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
     },
     {
       "id": "physics:q-phy-kin-2d-2a-horizontal-launch-04:core2a",
@@ -243,6 +570,7 @@ window.GRADE9V3_CORE = {
             "Ground is 20 m below the launch point."
           ],
           "figure_refs": [],
+          "figures": [],
           "reasoning_route": [
             {
               "id": "R-KIN-LAUNCH-REPRESENT",
@@ -331,20 +659,594 @@ window.GRADE9V3_CORE = {
             }
           ],
           "transfer": null,
-          "check": "The fall time comes from vertical motion; changing only horizontal speed would change range but not the ideal fall time."
+          "check": "The fall time comes from vertical motion; changing only horizontal speed would change range but not the ideal fall time.",
+          "solution": {
+            "summary": "The flight time is 2 s, the horizontal range is 30 m, and the impact velocity is (15 i - 20 j) m/s.",
+            "steps": [
+              "Use the vertical condition Delta y=-20=0*t-0.5(10)t^2, giving t=2 s.",
+              "Then Delta x=15(2)=30 m.",
+              "v_x=15 m/s and v_y=-10(2)=-20 m/s at impact."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "K2D3-6",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
+            "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
+            "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
+          }
         },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
+          "show_solution_initially": false,
           "initial_visual_ref": "REP-KIN-2D-SHARED-CLOCK",
           "initial_visual_stage_ref": "VIS-KIN-2D-SHARED-V0",
-          "protected_move_refs": []
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
         }
       },
       "scene_ref": null,
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/motion-2d/explorers/shared-clock/index.html"
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2a-projectile-apex-03:core2a",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2A",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2A-PROJECTILE-APEX-03",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "After release, gravity is the only retained force.",
+            "The given initial components are already resolved."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-APEX-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Represent ideal flight with a_x=0, a_y=-g, constant v_x=u_x and v_y=u_y-gt in the upward-positive frame.",
+              "why_valid": "Gravity-only free flight leaves horizontal velocity constant while vertical velocity changes under a constant downward acceleration.",
+              "inputs": [
+                "u_x=12 m/s",
+                "u_y=20 m/s",
+                "g=10 m/s^2"
+              ],
+              "output": "The apex can be located from vertical velocity while v_x remains 12 m/s."
+            },
+            {
+              "id": "R-KIN-2D-APEX-EVENT",
+              "kind": "DECIDE",
+              "action": "Identify the apex by v_y=0, not by setting the full velocity or acceleration to zero.",
+              "why_valid": "At a vertical turning point v_y changes sign, while horizontal motion continues and gravity remains present.",
+              "inputs": [
+                "v_y=u_y-gt",
+                "v_x nonzero",
+                "a_y=-g"
+              ],
+              "output": "The correct apex event equation is 0=20-10t."
+            },
+            {
+              "id": "R-KIN-2D-APEX-CALCULATE",
+              "kind": "TRANSFORM",
+              "action": "Solve t=2 s, then evaluate velocity, acceleration and height gain at that same event time.",
+              "why_valid": "Every requested quantity describes the same apex event, so the time obtained from v_y=0 must be reused across both components.",
+              "inputs": [
+                "t_apex=2 s",
+                "u_x=12",
+                "u_y=20",
+                "g=10"
+              ],
+              "output": "v=(12i+0j) m/s, a=(0i-10j) m/s^2 and height gained=20 m."
+            },
+            {
+              "id": "R-KIN-2D-APEX-CHECK",
+              "kind": "VERIFY",
+              "action": "Confirm that only v_y vanishes at the apex while v_x and downward acceleration remain nonzero.",
+              "why_valid": "This component check distinguishes a vertical turning point from the false claim that the projectile stops or gravity vanishes.",
+              "inputs": [
+                "apex component values",
+                "gravity-only acceleration"
+              ],
+              "output": "The apex state is consistent with continuous horizontal motion and unchanged gravity."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-APEX-EVENT",
+          "hints": [
+            {
+              "text": "Which component condition defines the apex?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Set only v_y to zero, solve for the shared time, then evaluate the other requested quantities at that time.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Write separate horizontal and vertical rules before deciding what condition defines the top of the path.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-APEX-REPRESENT"
+            },
+            {
+              "text": "At the apex, decide which velocity component changes sign and set only that component to zero.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-KIN-2D-APEX-EVENT"
+            }
+          ],
+          "transfer": null,
+          "check": "Only v_y is zero at the apex; neither the full velocity nor the acceleration is zero.",
+          "solution": {
+            "summary": "The apex occurs at t=2 s. There v=(12 i + 0 j) m/s, a=(0 i - 10 j) m/s^2, and the height gained is 20 m.",
+            "steps": [
+              "At the apex set v_y=u_y-gt=0, so t=20/10=2 s.",
+              "Horizontal acceleration is zero, so v_x remains 12 m/s.",
+              "Gravity still acts at the apex, so a_y=-10 m/s^2.",
+              "Delta y=20(2)-0.5(10)(2^2)=20 m."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "K2D3-4",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.",
+            "why_valid": "At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.",
+            "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2a-same-height-05:core2a",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2A",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "An ideal projectile is launched and later lands at the same height with u_x=12 m/s, u_y=16 m/s and g=8 m/s^2. Find the total flight time, range and landing velocity.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2A-SAME-HEIGHT-05",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "Launch and landing heights are equal.",
+            "Take +y upward."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-SAME-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Represent landing at the launch height with Delta y=0 while keeping a_x=0, a_y=-g and one common flight time.",
+              "why_valid": "Same launch and landing height fixes the vertical event displacement without changing the gravity-only component model.",
+              "inputs": [
+                "u_x=12 m/s",
+                "u_y=16 m/s",
+                "g=8 m/s^2",
+                "same launch and landing height"
+              ],
+              "output": "The landing event satisfies 0=16t-4t^2 and horizontal motion shares that time."
+            },
+            {
+              "id": "R-KIN-2D-SAME-EVENT",
+              "kind": "DECIDE",
+              "action": "Choose the nonzero root of the vertical event equation as the landing time and reject t=0 as the launch event.",
+              "why_valid": "The equation describes two visits to the launch height; event identity selects the later root because the question asks for landing.",
+              "inputs": [
+                "roots t=0 and t=4 s"
+              ],
+              "output": "The total flight time is 4 s."
+            },
+            {
+              "id": "R-KIN-2D-SAME-REUSE",
+              "kind": "CONNECT",
+              "action": "Reuse t=4 s in horizontal displacement and vertical velocity to obtain range and landing velocity.",
+              "why_valid": "Range and landing velocity belong to the same landing event identified by the vertical equation.",
+              "inputs": [
+                "t=4 s",
+                "u_x=12",
+                "u_y=16",
+                "g=8"
+              ],
+              "output": "Range=48 m and landing velocity=(12i-16j) m/s."
+            },
+            {
+              "id": "R-KIN-2D-SAME-CHECK",
+              "kind": "VERIFY",
+              "action": "Compare launch and landing components: v_x must match while v_y has equal magnitude and opposite sign.",
+              "why_valid": "With zero horizontal acceleration and constant downward gravity, return to the same height restores vertical speed magnitude while reversing its direction.",
+              "inputs": [
+                "launch components",
+                "landing components"
+              ],
+              "output": "v_x=12 m/s at both events and v_y changes from +16 to -16 m/s."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-SAME-EVENT",
+          "hints": [
+            {
+              "text": "What vertical displacement condition is true at a same-height landing?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Use Delta y=0 to obtain the nonzero landing time, then reuse that time in x and v_y.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Write the landing geometry first: identify Delta y when the projectile returns to its launch height.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-SAME-REPRESENT"
+            },
+            {
+              "text": "The vertical equation has a launch root and a later root; identify which event is requested before reusing the time.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-KIN-2D-SAME-EVENT"
+            }
+          ],
+          "transfer": null,
+          "check": "At the same height, the horizontal component matches launch and the vertical component has equal magnitude with opposite sign.",
+          "solution": {
+            "summary": "The flight time is 4 s, the range is 48 m, and the landing velocity is (12 i - 16 j) m/s.",
+            "steps": [
+              "At landing Delta y=0=16t-0.5(8)t^2; the nonzero root is t=4 s.",
+              "Horizontal velocity stays 12 m/s, so range=12(4)=48 m.",
+              "v_y=16-8(4)=-16 m/s at landing."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "K2D3-5",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "For a return to the launch height, set Delta y=0 and treat any same-height flight-time/range shortcut as conditional on that equality.",
+            "why_valid": "The shortcut follows from the vertical displacement returning to its initial value; it is not valid when the landing height differs.",
+            "output": "same-height event condition and its validity boundary"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2a-shared-clock-01:core2a",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2A",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2A-SHARED-CLOCK-01",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The two functions refer to the same particle and the same time coordinate.",
+            "Use the declared fixed x-y frame."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-CLOCK-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Treat x(t) and y(t) as two coordinate projections of the same particle in one fixed frame, tied to one common event time t.",
+              "why_valid": "A single plane position is defined by simultaneous coordinates of one particle; independent component functions do not create independent clocks.",
+              "inputs": [
+                "x(t)=4t m",
+                "y(t)=10-2t^2 m",
+                "requested t=2 s"
+              ],
+              "output": "Both coordinates must be evaluated at the same t before they can form one position."
+            },
+            {
+              "id": "R-KIN-2D-CLOCK-EVALUATE",
+              "kind": "TRANSFORM",
+              "action": "Substitute t=2 s into both component functions to obtain x(2)=8 m and y(2)=2 m.",
+              "why_valid": "The requested state is the event labelled t=2 s, so both component functions must be sampled at that event.",
+              "inputs": [
+                "x(t)=4t",
+                "y(t)=10-2t^2",
+                "t=2 s"
+              ],
+              "output": "The simultaneous coordinate values are x=8 m and y=2 m."
+            },
+            {
+              "id": "R-KIN-2D-CLOCK-PAIR",
+              "kind": "CONNECT",
+              "action": "Pair the two simultaneous values as the position (8,2) m and reject x(2) paired with y(3) as a single physical state.",
+              "why_valid": "Coordinates form one state only when they refer to the same object, frame and instant; changing one timestamp changes the event.",
+              "inputs": [
+                "x(2)=8 m",
+                "y(2)=2 m",
+                "y(3) belongs to t=3 s"
+              ],
+              "output": "The valid t=2 s position is (8,2) m; x(2),y(3) is not one position."
+            },
+            {
+              "id": "R-KIN-2D-CLOCK-CHECK",
+              "kind": "VERIFY",
+              "action": "Attach the timestamp to each component value and confirm the two timestamps match before calling the pair a position.",
+              "why_valid": "Timestamp agreement is an independent event-identity check that does not depend on the arithmetic values themselves.",
+              "inputs": [
+                "x(2)",
+                "y(2)"
+              ],
+              "output": "Both values carry t=2 s, so the reconstructed state is temporally consistent."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-CLOCK-PAIR",
+          "hints": [
+            {
+              "text": "What must be the same when x(t) and y(t) describe one particle at one instant?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Evaluate both component functions at the requested t before pairing them.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Write x(t) and y(t) in two columns connected to one clock t before substituting any number.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-CLOCK-REPRESENT"
+            },
+            {
+              "text": "Label the time beside each evaluated component before you pair the coordinates.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
+            }
+          ],
+          "transfer": null,
+          "check": "The answer must use one t for both components; mixing timestamps produces no real single-time state.",
+          "solution": {
+            "summary": "At t=2 s, x=8 m and y=2 m, so the position is (8,2) m in the declared frame. x(2 s) and y(3 s) cannot form one position because they refer to different instants.",
+            "steps": [
+              "Evaluate both component descriptions at the same requested time.",
+              "x(2)=4(2)=8.",
+              "y(2)=10-2(2^2)=2.",
+              "A physical plane state is a simultaneous component pair."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "K2D1-4",
+            "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+            "action": "Recombine only component values that refer to the same frame and the same instant.",
+            "why_valid": "Mixing x at one time with y at another does not describe any single physical state of the object.",
+            "output": "one physically valid plane state reconstructed from simultaneous components"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 2,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2b-model-validity-02:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2B",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2B-MODEL-VALIDITY-02",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The acceleration components are given as functions of time.",
+            "No numerical integration is required; the task is model selection."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-BMODEL-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Write the acceleration histories separately over the interval: a_x(t)=2 and a_y(t)=3t.",
+              "why_valid": "The familiar component method remains available, but model validity must now be checked from how each acceleration component behaves with time.",
+              "inputs": [
+                "0<=t<=4 s",
+                "a_x=2",
+                "a_y=3t"
+              ],
+              "output": "One component is time-independent while the other explicitly varies with t."
+            },
+            {
+              "id": "R-KIN-2D-BMODEL-DECIDE",
+              "kind": "DECIDE",
+              "action": "Decide separately for each axis whether the constant-acceleration condition is satisfied over the whole interval.",
+              "why_valid": "The standard constant-acceleration equations require the relevant acceleration component to remain constant; validity on one axis does not license the other.",
+              "inputs": [
+                "a_x(t)=2",
+                "a_y(t)=3t",
+                "constant-acceleration condition"
+              ],
+              "output": "The model is exact on x and not exact on y over the interval."
+            },
+            {
+              "id": "R-KIN-2D-BMODEL-BOUND",
+              "kind": "CONNECT",
+              "action": "Use ordinary constant-acceleration relations only for x and withhold them from y unless a different valid treatment is supplied.",
+              "why_valid": "A model may be used only where its defining condition holds; rejecting it on y does not invalidate the independently valid x component.",
+              "inputs": [
+                "x condition satisfied",
+                "y condition violated"
+              ],
+              "output": "Constant-acceleration equations are licensed on x only."
+            },
+            {
+              "id": "R-KIN-2D-BMODEL-CHECK",
+              "kind": "VERIFY",
+              "action": "Compare endpoint accelerations: a_x is 2 at both ends, whereas a_y changes from 0 to 12 m/s^2.",
+              "why_valid": "Endpoint comparison independently demonstrates constancy of x and non-constancy of y without relying on the equation choice.",
+              "inputs": [
+                "t=0",
+                "t=4 s",
+                "a_x(t)",
+                "a_y(t)"
+              ],
+              "output": "The component-by-component model decision is confirmed."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-BMODEL-DECIDE",
+          "hints": [
+            {
+              "text": "Is 'constant acceleration' one global label here, or must each component be checked over the interval?",
+              "reveals": "CONCEPT"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Make one row for a_x(t) and one for a_y(t), and write the validity condition each row must satisfy.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-BMODEL-REPRESENT"
+            }
+          ],
+          "transfer": {
+            "dimension": "model_choice",
+            "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
+            "builds_on": [
+              "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
+            ],
+            "protected_move_ref": "R-KIN-2D-BMODEL-DECIDE"
+          },
+          "check": "A constant total direction or a constant x component does not make the y component constant.",
+          "solution": {
+            "summary": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+            "steps": [
+              "Check each acceleration component separately.",
+              "a_x=2 is constant, so the 1D constant-acceleration x relations are valid.",
+              "a_y=3t varies with time, so the constant-a y relations are not exact over the whole interval."
+            ],
+            "rubric": [
+              {
+                "criterion": "Checks x and y acceleration components separately.",
+                "evidence_of": "Model validity is treated per component."
+              },
+              {
+                "criterion": "Accepts constant-acceleration equations only on x.",
+                "evidence_of": "Does not let one valid axis license the other."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "K2D2-1",
+            "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+            "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
+            "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
+            "output": "per-axis model-validity decision"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-KIN-2D-BMODEL-DECIDE"
+          ],
+          "pre_attempt_scaffold_limit": 1,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 1
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
     },
     {
       "id": "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b",
@@ -426,6 +1328,7 @@ window.GRADE9V3_CORE = {
             "The question asks for model selection, not a full trajectory calculation."
           ],
           "figure_refs": [],
+          "figures": [],
           "reasoning_route": [
             {
               "id": "R-KIN-TRANSFER-INTERACTIONS",
@@ -507,22 +1410,765 @@ window.GRADE9V3_CORE = {
             ],
             "protected_move_ref": "R-KIN-TRANSFER-MODEL"
           },
-          "check": "If the motor is switched off after release and drag remains negligible, the standard a_x=0 projectile model becomes valid from that later instant."
+          "check": "If the motor is switched off after release and drag remains negligible, the standard a_x=0 projectile model becomes valid from that later instant.",
+          "solution": {
+            "summary": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+            "steps": [
+              "The standard projectile specialization requires gravity-only free flight.",
+              "The active rocket motor adds a retained horizontal acceleration.",
+              "Therefore use the parent 2D constant-acceleration capability rather than the gravity-only projectile specialization."
+            ],
+            "rubric": [
+              {
+                "criterion": "Rejects the gravity-only projectile specialization.",
+                "evidence_of": "Checks model conditions before formula use."
+              },
+              {
+                "criterion": "Falls back to the general component constant-acceleration model.",
+                "evidence_of": "Chooses the smallest valid parent model rather than inventing a new law."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "K2D3-1",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "Decide whether the object is in ideal near-Earth free flight after release; neglect air resistance, declare +y, then set a_x=0 and a_y=-g.",
+            "why_valid": "The standard projectile equations are a conditional specialization of 2D constant acceleration, not an automatic label for every launched object.",
+            "output": "gravity-only projectile acceleration state"
+          }
         },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
+          "show_solution_initially": false,
           "initial_visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
           "initial_visual_stage_ref": "VIS-KIN-2D-PROJ-V0",
           "protected_move_refs": [
             "R-KIN-TRANSFER-MODEL"
-          ]
+          ],
+          "pre_attempt_scaffold_limit": 1,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 1
         }
       },
       "scene_ref": null,
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/motion-2d/explorers/projectile-model/index.html"
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2b-representation-01:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2B",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "A particle is described verbally: at t=0 it is at the origin, moving east at 6 m/s and north at 2 m/s; during the next interval its acceleration is 3 m/s^2 south and zero east-west. Without being given component equations, choose a coordinate convention and write the signed component state that should be used for later calculation.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2B-REPRESENTATION-01",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Use one fixed Cartesian frame.",
+            "The verbal directions must be translated into signed components before calculation."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-BREP-FACTS",
+              "kind": "REPRESENT",
+              "action": "List the verbal motion facts—eastward velocity, northward velocity, southward acceleration and zero east-west acceleration—without assigning signs yet.",
+              "why_valid": "Direction words are physical facts independent of coordinates; keeping them sign-free first prevents a hidden axis convention from entering the translation.",
+              "inputs": [
+                "6 m/s east",
+                "2 m/s north",
+                "3 m/s^2 south",
+                "zero east-west acceleration"
+              ],
+              "output": "A coordinate-free list of directional velocity and acceleration facts."
+            },
+            {
+              "id": "R-KIN-2D-BREP-FRAME",
+              "kind": "DECIDE",
+              "action": "Choose and declare one perpendicular positive-axis convention before converting the directional facts into signed components.",
+              "why_valid": "Component signs have meaning only relative to an explicitly chosen frame, and this task deliberately withholds that representation decision.",
+              "inputs": [
+                "directional facts",
+                "need for one fixed Cartesian frame"
+              ],
+              "output": "For example, choose +x east and +y north; another consistent convention is also valid."
+            },
+            {
+              "id": "R-KIN-2D-BREP-TRANSLATE",
+              "kind": "TRANSFORM",
+              "action": "Translate each directional fact using the declared frame to obtain u_x=+6, u_y=+2, a_x=0 and a_y=-3.",
+              "why_valid": "Once positive directions are fixed, east and north align with positive axes while south opposes +y, so the signs follow from the chosen representation.",
+              "inputs": [
+                "declared +x east",
+                "+y north",
+                "directional facts"
+              ],
+              "output": "u_x=+6 m/s, u_y=+2 m/s, a_x=0, a_y=-3 m/s^2."
+            },
+            {
+              "id": "R-KIN-2D-BREP-CHECK",
+              "kind": "VERIFY",
+              "action": "Reverse one axis convention mentally and verify that all affected component signs reverse together while the physical motion is unchanged.",
+              "why_valid": "Coordinate descriptions may change under axis reversal, but a consistent transformation must preserve the underlying directional motion.",
+              "inputs": [
+                "signed components",
+                "alternative consistent axis convention"
+              ],
+              "output": "The representation is internally consistent rather than tied to an undeclared sign convention."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-BREP-FRAME",
+          "hints": [
+            {
+              "text": "Before writing numbers, which two perpendicular positive directions will you declare?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Translate each directional word into a sign only after that frame is fixed.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "First list the raw direction words and magnitudes without plus or minus signs.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-BREP-FACTS"
+            }
+          ],
+          "transfer": {
+            "dimension": "representation_translation",
+            "statement": "The learner must convert a verbal direction description into signed x/y state without being handed the component representation.",
+            "builds_on": [
+              "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
+            ],
+            "protected_move_ref": "R-KIN-2D-BREP-FRAME"
+          },
+          "check": "Any consistently declared perpendicular axis convention is acceptable if all signs are transformed consistently.",
+          "solution": {
+            "summary": "One valid choice is +x east and +y north, giving u_x=+6 m/s, u_y=+2 m/s, a_x=0 and a_y=-3 m/s^2, all with one common t.",
+            "steps": [
+              "Declare +x east and +y north.",
+              "Translate each direction into a sign in that frame.",
+              "Keep the same frame and clock for both component histories."
+            ],
+            "rubric": [
+              {
+                "criterion": "Declares a single Cartesian frame before assigning signs.",
+                "evidence_of": "Representation is chosen rather than assumed."
+              },
+              {
+                "criterion": "Translates east/north/south statements into consistent signed components.",
+                "evidence_of": "Verbal motion is converted into canonical x/y state."
+              },
+              {
+                "criterion": "Keeps one common time for the two component histories.",
+                "evidence_of": "Independent components are still one event."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "K2D1-2",
+            "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+            "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
+            "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
+            "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-KIN-2D-BREP-FRAME"
+          ],
+          "pre_attempt_scaffold_limit": 1,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2b-same-height-velocity-05:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2B",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "Both events occur on the same trajectory at the same vertical position.",
+            "Take +y upward."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-BSTATE-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Represent the two events at the same height on one ideal trajectory, one ascending and one descending, and compare the requested quantities component by component.",
+              "why_valid": "The task asks for a relation between two states rather than their times, so shared height and direction of travel are the demand-bearing event facts.",
+              "inputs": [
+                "same projectile",
+                "same height",
+                "ascending event",
+                "descending event"
+              ],
+              "output": "A two-event comparison frame for v_x, v_y, speed and acceleration without event times."
+            },
+            {
+              "id": "R-KIN-2D-BSTATE-DECIDE",
+              "kind": "DECIDE",
+              "action": "Choose direct component invariants at equal height as the comparison method instead of solving for the two event times.",
+              "why_valid": "In ideal flight a_x=0 fixes v_x, while constant vertical acceleration gives equal vertical speed magnitude at the same height; ascent and descent determine opposite signs.",
+              "inputs": [
+                "a_x=0",
+                "a_y=-g",
+                "same vertical position",
+                "ascent versus descent"
+              ],
+              "output": "Compare v_x directly and compare v_y by equal magnitude with opposite direction, without a time calculation."
+            },
+            {
+              "id": "R-KIN-2D-BSTATE-RECOMBINE",
+              "kind": "CONNECT",
+              "action": "Combine the component relations to conclude that speed magnitudes are equal while velocity vectors differ because v_y changes sign.",
+              "why_valid": "Speed depends on v_x^2+v_y^2, whereas vector equality also requires matching component signs.",
+              "inputs": [
+                "same v_x",
+                "equal |v_y|",
+                "opposite v_y signs"
+              ],
+              "output": "The speeds are equal, but the velocity vectors are different."
+            },
+            {
+              "id": "R-KIN-2D-BSTATE-ACCEL",
+              "kind": "CONNECT",
+              "action": "Keep acceleration a=(0,-g) at both events.",
+              "why_valid": "Gravity is the same retained interaction at both locations, so acceleration does not reverse when vertical velocity reverses.",
+              "inputs": [
+                "gravity-only ideal projectile model"
+              ],
+              "output": "Acceleration is identical and downward at both events."
+            },
+            {
+              "id": "R-KIN-2D-BSTATE-CHECK",
+              "kind": "VERIFY",
+              "action": "Check vector equality explicitly: ascent has positive v_y and descent has negative v_y, so identical velocity vectors are impossible.",
+              "why_valid": "A sign difference in any Cartesian component distinguishes two vectors even when their magnitudes match.",
+              "inputs": [
+                "v_y,up>0",
+                "v_y,down<0"
+              ],
+              "output": "Equal speed is not mistaken for equal velocity."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-BSTATE-DECIDE",
+          "hints": [
+            {
+              "text": "At the same height, which horizontal quantity is unchanged throughout ideal flight, and what must differ between ascent and descent?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Compare component signs first; only then compare speed magnitudes.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Make a comparison table for v_x, v_y, speed and acceleration; enter only ‘same height’, ‘upward’ and ‘downward’ before choosing a method.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
+            }
+          ],
+          "transfer": {
+            "dimension": "reasoning_steps",
+            "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
+            "builds_on": [
+              "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
+            ],
+            "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE"
+          },
+          "check": "The two velocity vectors cannot be identical because one has upward v_y and the other downward v_y.",
+          "solution": {
+            "summary": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+            "steps": [
+              "Horizontal velocity remains constant because a_x=0.",
+              "At equal height in the same gravity-only trajectory, the vertical speed magnitude matches on ascent and descent, with opposite signs.",
+              "Combining the components gives equal speed magnitudes but different velocity directions.",
+              "Gravity gives the same downward acceleration at both events."
+            ],
+            "rubric": [
+              {
+                "criterion": "Keeps v_x unchanged across the two events.",
+                "evidence_of": "Uses the horizontal component invariant."
+              },
+              {
+                "criterion": "Gives v_y equal magnitude and opposite sign.",
+                "evidence_of": "Understands same-height vertical-state symmetry without confusing vector equality."
+              },
+              {
+                "criterion": "Distinguishes equal speed from equal velocity.",
+                "evidence_of": "Recombines components conceptually rather than comparing only magnitudes."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "K2D3-7",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.",
+            "why_valid": "The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.",
+            "output": "checked projectile consequence at one physical event"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-KIN-2D-BSTATE-DECIDE"
+          ],
+          "pre_attempt_scaffold_limit": 1,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-kin-2d-2b-unequal-height-03:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2B",
+        "concept": null,
+        "application": {
+          "question_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+          "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+          "source_refs": [
+            "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "Air resistance is neglected.",
+            "Ground is 15 m below the launch point.",
+            "The initial velocity components are already resolved."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-KIN-2D-BHEIGHT-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Use the launch point as vertical reference and mark the ground 15 m below it while retaining the gravity-only model.",
+              "why_valid": "The changed geometry is an event condition, not a new physical law; one reference converts the height difference into vertical displacement.",
+              "inputs": [
+                "launch 15 m above ground",
+                "+y upward",
+                "u_x=10",
+                "u_y=10",
+                "g=10"
+              ],
+              "output": "Ground impact lies at Delta y=-15 m from launch."
+            },
+            {
+              "id": "R-KIN-2D-BHEIGHT-EVENT",
+              "kind": "DECIDE",
+              "action": "Choose Delta y=-15 m as the impact condition instead of reusing the familiar same-height condition Delta y=0.",
+              "why_valid": "The landing surface is below launch, so the actual geometry—not familiarity with the parent problem—determines the event condition.",
+              "inputs": [
+                "ground 15 m below launch",
+                "parent same-height condition Delta y=0"
+              ],
+              "output": "The correct event equation is -15=10t-5t^2."
+            },
+            {
+              "id": "R-KIN-2D-BHEIGHT-SOLVE",
+              "kind": "TRANSFORM",
+              "action": "Solve the event equation and select the positive physical root t=3 s.",
+              "why_valid": "Only a nonnegative post-launch time can represent the stated future ground-impact event.",
+              "inputs": [
+                "-15=10t-5t^2"
+              ],
+              "output": "Ground-impact time t=3 s."
+            },
+            {
+              "id": "R-KIN-2D-BHEIGHT-REUSE",
+              "kind": "CONNECT",
+              "action": "Reuse t=3 s in horizontal motion to obtain Delta x=30 m.",
+              "why_valid": "Horizontal range and vertical ground contact describe the same impact event, so both components must share its time.",
+              "inputs": [
+                "t_impact=3 s",
+                "u_x=10 m/s",
+                "a_x=0"
+              ],
+              "output": "Horizontal range=30 m."
+            },
+            {
+              "id": "R-KIN-2D-BHEIGHT-CHECK",
+              "kind": "VERIFY",
+              "action": "Substitute t=3 s into vertical displacement and compare with the same-height shortcut time 2 s.",
+              "why_valid": "Back-substitution must reproduce -15 m, whereas 2 s reproduces Delta y=0 and therefore identifies the wrong event.",
+              "inputs": [
+                "t=3 s",
+                "candidate t=2 s",
+                "vertical displacement equation"
+              ],
+              "output": "t=3 s gives -15 m and the familiar 2 s shortcut is falsified for ground impact."
+            }
+          ],
+          "crux_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
+          "hints": [
+            {
+              "text": "What vertical displacement identifies ground impact relative to the launch point?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Find the physical root from the y equation, then use that same time in x.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Sketch only the launch level and ground relative to one vertical origin before writing an event equation.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
+            }
+          ],
+          "transfer": {
+            "dimension": "reasoning_steps",
+            "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
+            "builds_on": [
+              "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
+            ],
+            "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT"
+          },
+          "check": "Substitution into the vertical displacement gives -15 m; the nonzero same-height time 2u_y/g=2 s is not the ground-impact time.",
+          "solution": {
+            "summary": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+            "steps": [
+              "Use the vertical impact condition Delta y=-15=10t-5t^2.",
+              "Solve 5t^2-10t-15=0, giving the physical root t=3 s.",
+              "Reuse t=3 s horizontally: Delta x=10(3)=30 m.",
+              "The same-height shortcut would use the wrong event condition here."
+            ],
+            "rubric": [
+              {
+                "criterion": "Uses the actual vertical displacement -15 m rather than a same-height shortcut.",
+                "evidence_of": "Selects the event condition from geometry."
+              },
+              {
+                "criterion": "Reuses the physical impact time in the horizontal equation.",
+                "evidence_of": "Preserves the one-clock invariant."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "K2D3-6",
+            "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+            "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
+            "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
+            "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-KIN-2D-BHEIGHT-EVENT"
+          ],
+          "pre_attempt_scaffold_limit": 1,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "physics:q-phy-nlm-incline-2a-static-02:core2a",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+      "projection": {
+        "contract_version": "1.0",
+        "core": "CORE2A",
+        "concept": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+          "teaching_path": [
+            {
+              "id": "NLM8-1",
+              "role": "DECLARE",
+              "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+              "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+              "inputs": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "perpendicular force equation -> actual N >= 0"
+            },
+            {
+              "id": "NLM8-2",
+              "role": "TRANSFORM",
+              "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+              "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+              "inputs": [
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "no-slip dynamics -> f_s = f_required"
+            },
+            {
+              "id": "NLM8-3",
+              "role": "VERIFY",
+              "action": "Compare |f_required| with mu_s N.",
+              "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+              "inputs": [],
+              "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+            },
+            {
+              "id": "NLM8-4",
+              "role": "TRANSFORM",
+              "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+              "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+              "inputs": [],
+              "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+            }
+          ],
+          "elicitation": null,
+          "misconceptions": [
+            {
+              "wrong_idea": "Friction always equals mu N.",
+              "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+              "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+            },
+            {
+              "wrong_idea": "The normal force is always mg.",
+              "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+              "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+            },
+            {
+              "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+              "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+              "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+            }
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ]
+        },
+        "application": {
+          "question_ref": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+          "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+          "stem": "A block rests on a rough fixed plane inclined at angle theta. The coefficient of static friction is mu_s. Determine the friction required for rest and derive the condition under which the static state is possible.",
+          "source_refs": [
+            "SRC-AUTHOR-NLM"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-NLM-INCLINE-2A-STATIC-02",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "No other force acts on the block.",
+            "The block is tested for rest; do not assume limiting friction at the start."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-NLM-INCLINE-STATIC-REPRESENT",
+              "kind": "REPRESENT",
+              "action": "Choose axes parallel and perpendicular to the plane, identify the block as the body, and determine the no-friction slip tendency.",
+              "why_valid": "The contact-aligned frame makes the normal and tangential force requirements explicit, while the no-friction tendency determines which way static friction would have to act to maintain rest.",
+              "inputs": [
+                "fixed incline geometry",
+                "chosen block",
+                "gravity",
+                "provisional static contact"
+              ],
+              "output": "contact-aligned free-body representation with downhill slip tendency and uphill required-friction sense",
+              "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+            },
+            {
+              "id": "R-NLM-INCLINE-STATIC-NORMAL",
+              "kind": "TRANSFORM",
+              "action": "Apply perpendicular equilibrium to obtain N = mg cos(theta).",
+              "why_valid": "For this item no other force has a perpendicular component and the block remains in contact without perpendicular acceleration.",
+              "inputs": [
+                "contact-aligned free-body representation",
+                "perpendicular equilibrium"
+              ],
+              "output": "N = mg cos(theta)"
+            },
+            {
+              "id": "R-NLM-INCLINE-STATIC-DEMAND",
+              "kind": "CONNECT",
+              "action": "Assume rest provisionally and use tangential equilibrium to find the friction required by that state: f_required = mg sin(theta).",
+              "why_valid": "Static friction responds to the force demand of the no-slip state; its limiting value is a bound to test afterward, not the starting equality.",
+              "inputs": [
+                "downhill gravity component",
+                "provisional no-slip state"
+              ],
+              "output": "f_required = mg sin(theta), directed uphill"
+            },
+            {
+              "id": "R-NLM-INCLINE-STATIC-FEASIBILITY",
+              "kind": "DECIDE",
+              "action": "Compare the required friction magnitude with the static limit and accept the rest model only if |f_required| <= mu_s N.",
+              "why_valid": "The canonical static-friction relation permits the required no-slip value only while its magnitude stays within mu_s N.",
+              "inputs": [
+                "f_required = mg sin(theta)",
+                "N = mg cos(theta)",
+                "REL-NLM-STATIC-FRICTION-BOUND"
+              ],
+              "output": "static rest is feasible iff mg sin(theta) <= mu_s mg cos(theta)",
+              "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "visual_stage_ref": "VIS-NLM-FRICTION-V3"
+            },
+            {
+              "id": "R-NLM-INCLINE-STATIC-THRESHOLD",
+              "kind": "TRANSFORM",
+              "action": "Simplify the feasibility inequality to tan(theta) <= mu_s.",
+              "why_valid": "For 0 <= theta < 90 degrees, mg cos(theta) is positive, so division preserves the inequality direction.",
+              "inputs": [
+                "mg sin(theta) <= mu_s mg cos(theta)"
+              ],
+              "output": "tan(theta) <= mu_s"
+            },
+            {
+              "id": "R-NLM-INCLINE-STATIC-CHECK",
+              "kind": "VERIFY",
+              "action": "Check that equality is used only at impending slip and that smaller angles require static friction below its maximum.",
+              "why_valid": "A limiting equality everywhere would contradict the static-friction bound and the zero/small-demand cases.",
+              "inputs": [
+                "tan(theta) <= mu_s",
+                "REL-NLM-STATIC-FRICTION-BOUND"
+              ],
+              "output": "threshold and sub-threshold behavior are consistent with the canonical static-friction model"
+            }
+          ],
+          "crux_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
+          "hints": [
+            {
+              "text": "First ask which way the block would tend to slip if friction vanished.",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Find N from the perpendicular equation, solve the friction required for rest, then compare that requirement with mu_s N.",
+              "reveals": "METHOD"
+            }
+          ],
+          "scaffolds": [
+            {
+              "text": "Use axes parallel and perpendicular to the plane and mark the block as the chosen body. Without friction, which way would it tend to move?",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "supports_move_ref": "R-NLM-INCLINE-STATIC-REPRESENT",
+              "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "visual_stage_ref": "VIS-NLM-FRICTION-V1"
+            },
+            {
+              "text": "Assume rest provisionally. Use the perpendicular equation to find N, then the tangential equation to find the friction value that rest would require; do not set it equal to mu_s N.",
+              "support_kind": "CONNECT",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
+              "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "visual_stage_ref": "VIS-NLM-FRICTION-V2"
+            },
+            {
+              "text": "Now test whether the required friction magnitude is within the static bound before simplifying the inequality.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
+              "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "visual_stage_ref": "VIS-NLM-FRICTION-V3"
+            }
+          ],
+          "transfer": null,
+          "check": "The calculation uses equality f_s=mu_s N only at the limiting angle; for a smaller angle the actual static friction is below its maximum.",
+          "solution": {
+            "summary": "For rest, N=mg cos(theta) and static friction must act up the plane with required magnitude mg sin(theta). Rest is feasible when mg sin(theta) <= mu_s mg cos(theta), equivalently tan(theta) <= mu_s.",
+            "steps": [
+              "Without friction the block tends to slide down the plane, so static friction required for rest points up the plane.",
+              "The perpendicular equation gives N=mg cos(theta).",
+              "The no-slip tangential equation requires f_required=mg sin(theta).",
+              "Static contact is possible only if f_required <= mu_s N.",
+              "Cancelling mg cos(theta)>0 gives tan(theta)<=mu_s."
+            ],
+            "rubric": []
+          },
+          "repair": {
+            "step_ref": "NLM8-3",
+            "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+            "action": "Compare |f_required| with mu_s N.",
+            "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+            "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "initial_visual_stage_ref": "VIS-NLM-FRICTION-V0",
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 3,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": "public/physics/nlm/explorers/friction-threshold/index.html"
     }
   ],
   "bucket_availability": [
@@ -530,40 +2176,70 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
@@ -572,131 +2248,235 @@ window.GRADE9V3_CORE = {
       "status": "AVAILABLE",
       "code": null,
       "detail": null,
+      "findings": [],
       "projection_refs": [
         "physics:mic-phy-kin-2d-independent-components:core1a",
         "physics:mic-phy-kin-2d-independent-components:core1b",
+        "physics:q-phy-kin-2d-2a-constant-accel-02:core2a",
         "physics:q-phy-kin-2d-2a-horizontal-launch-04:core2a",
-        "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b"
+        "physics:q-phy-kin-2d-2a-projectile-apex-03:core2a",
+        "physics:q-phy-kin-2d-2a-same-height-05:core2a",
+        "physics:q-phy-kin-2d-2a-shared-clock-01:core2a",
+        "physics:q-phy-kin-2d-2b-model-validity-02:core2b",
+        "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b",
+        "physics:q-phy-kin-2d-2b-representation-01:core2b",
+        "physics:q-phy-kin-2d-2b-same-height-velocity-05:core2b",
+        "physics:q-phy-kin-2d-2b-unequal-height-03:core2b"
       ]
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
-      "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
-      "projection_refs": []
+      "status": "AVAILABLE",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "findings": [
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
+        }
+      ],
+      "projection_refs": [
+        "physics:mic-phy-nlm-friction-quant:core1a",
+        "physics:mic-phy-nlm-friction-quant:core1b",
+        "physics:q-phy-nlm-incline-2a-static-02:core2a"
+      ]
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
       "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SOUND",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
       "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "findings": [
+        {
+          "code": "PROJECTION_UNAVAILABLE",
+          "detail": "No mature learner projection was produced from the compiled bucket."
+        }
+      ],
       "projection_refs": []
     }
   ],
@@ -704,162 +2484,123 @@ window.GRADE9V3_CORE = {
     {
       "subject": "Mathematics",
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
-      "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
-      "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
-      "projection_refs": []
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
-      "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SOUND",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
-      "status": "UNSUPPORTED",
-      "code": "PARENT_TRANSFER_PAIR_MISSING",
-      "detail": "No linked CORE2A/CORE2B question pair.",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2A, CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
-      "status": "UNSUPPORTED",
-      "code": "CORE_ROLES_MISSING",
-      "detail": "CORE2B",
-      "projection_refs": []
+      "code": "PROJECTION_UNAVAILABLE",
+      "detail": "No mature learner projection was produced from the compiled bucket."
     }
   ]
 };
