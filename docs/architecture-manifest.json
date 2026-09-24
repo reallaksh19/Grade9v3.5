@@ -5,20 +5,28 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 242,
-  "relation_count": 283,
+  "component_count": 244,
+  "relation_count": 285,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 115,
+    "LIBRARY_DATA": 1,
+    "TEST": 116,
     "TOOLING": 56,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:8690729321d4cfffbe09d0e75e86b9cbd2e0c30235d5d889ed43d5531dfb1d73",
+  "digest": "sha256:78070f5d0564d6f1ba4e25970a0c89298dcc4e91e01aa00a4ba569d5f24e6620",
   "components": [
+    {
+      "path": "Physics/library/phy-kin-2d-motion.v1.json",
+      "role": "LIBRARY_DATA",
+      "role_description": "Subject library packages",
+      "bytes": 212263,
+      "sha256": "5f4250b4083eb789616e1786e3f8ddd1fa92d500a4e2d63ee0e6737c293358e8"
+    },
     {
       "path": "public/core-learning/data.js",
       "role": "WEB",
@@ -1441,6 +1449,13 @@
       "sha256": "c64cb88a4e9f23ebe15e5060ec31c9645de3bf60328fd3b45d5d01e32ad274ee"
     },
     {
+      "path": "tests/test_issue214_motion_portable_source.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4081,
+      "sha256": "3c9bac7cee1ec36e5c166488be523420555fac8a7d8de5a8084b6fbb7a442904"
+    },
+    {
       "path": "tests/test_learning_router.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2768,6 +2783,16 @@
     {
       "from": "tests/test_issue212_atlas_index.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_issue214_motion_portable_source.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_issue214_motion_portable_source.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
