@@ -70,6 +70,17 @@ jobs:
             --write-report /tmp/core1-orientation-report.json
           diff -u docs/core1-orientation-report.json /tmp/core1-orientation-report.json
 
+      # Core1A is the completed conceptual construction around
+      # microtopic.inferential_jump. Existing representation/worked-anchor debt is
+      # frozen; new or materially revised microtopics may not add structural debt.
+      - name: Core1A conceptual-construction debt only moves forward
+        run: |
+          python3 -m Shared.library.core1a_construction \
+            --check-baseline docs/core1a-construction-baseline.json
+          python3 -m Shared.library.core1a_construction \
+            --write-report /tmp/core1a-construction-report.json
+          diff -u docs/core1a-construction-report.json /tmp/core1a-construction-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
