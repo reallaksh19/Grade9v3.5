@@ -19,6 +19,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "..");
 const W3C_ELEMENT = "element-6066-11e4-a52e-4f735466cecf";
 const W3C_SHADOW = "shadow-6066-11e4-a52e-4f735466cecf";
+const ENTER = "\uE007";
 
 const MATRIX = "MATRIX-PHY-KIN-2D-MOTION";
 const MICROTOPIC = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS";
@@ -369,6 +370,20 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.equal(before.state.reconstructionVisible, false);
     assert.doesNotMatch(before.html, /data-semantic="reconstruction"/);
 
+    await driver.execute("history.back();");
+    await driver.waitFor("return window.__motionSessionState.stage === 'orient';");
+    assert.equal(await driver.execute("return document.querySelector('#core1b-learner').state.reconstructionVisible;"), false);
+    await driver.execute("history.forward();");
+    await driver.waitFor("return window.__motionSessionState.stage === 'core1b';");
+    assert.equal(await driver.execute("return document.querySelector('#core1b-learner').state.reconstructionVisible;"), false);
+
+    await driver.click(await driver.element("#reset-session"));
+    await driver.waitFor("return window.__motionSessionState.stage === 'orient';");
+    assert.equal(await driver.execute("return window.__motionSessionState.core1b.attemptCount;"), 0);
+    assert.equal(await driver.execute("return document.querySelector('#core1b-learner').state.reconstructionVisible;"), false);
+    await driver.click(await driver.element("#start-session"));
+    await driver.waitFor("return window.__motionSessionState.stage === 'core1b';");
+
     const input = await driver.shadowElement("#core1b-learner", "[data-attempt-input]");
     await driver.execute("arguments[0].focus();", [driver.ref(input)]);
     await driver.click(await driver.shadowElement("#core1b-learner", '[data-action="commit"]'));
@@ -391,6 +406,10 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
       return { request, granted };
     `);
     assert.equal(core1Reveal.granted.parent_sequence, core1Reveal.request.sequence);
+    await driver.execute("document.querySelector('#core1b-learner').commitAttempt('DUPLICATE_PRIVATE_SENTINEL');");
+    await driver.waitFor("return window.__motionSessionTrace.some(e => e.reason_code === 'SESSION_DUPLICATE_ATTEMPT' && e.requested_transition?.core === 'CORE1B');");
+    assert.equal(await driver.execute("return window.__motionSessionState.core1b.attemptCount;"), 1);
+    assert.equal(await driver.execute("return JSON.stringify(window.__motionSessionTrace).includes('DUPLICATE_PRIVATE_SENTINEL');"), false);
     await driver.click(await driver.element("#core1b-next"));
     await driver.waitFor("return window.__motionSessionState.stage === 'visual';");
 
@@ -422,6 +441,39 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.equal(visualCorrelation.requests.length >= 2, true);
     assert.equal(visualCorrelation.outcomes.length, 2);
     assert.equal(visualCorrelation.outcomes.every(e => visualCorrelation.requests.some(r => r.sequence === e.parent_sequence)), true);
+
+    await driver.execute(`
+      const wb = document.querySelector("#shared-clock-workbench");
+      const repeated = {
+        type: "TRANSFER_REJECTED",
+        revision: 1,
+        code: "TRANSFER_REJECTED",
+        request: {
+          sourceEntityRef: "stress-mixed",
+          targetRef: "shared-clock-plane-state",
+          operation: "reconstruct-plane-state",
+        },
+      };
+      wb.dispatchEvent(new CustomEvent("semantic-workbench-event", { detail: repeated, bubbles: true, composed: true }));
+      wb.dispatchEvent(new CustomEvent("semantic-workbench-event", { detail: repeated, bubbles: true, composed: true }));
+      wb.dispatchEvent(new CustomEvent("semantic-workbench-event", {
+        detail: {
+          type: "TRANSFER_ACCEPTED",
+          revision: 3,
+          code: "TRANSFER_ACCEPTED",
+          request: {
+            sourceEntityRef: "stress-same",
+            targetRef: "shared-clock-plane-state",
+            operation: "reconstruct-plane-state",
+          },
+        },
+        bubbles: true,
+        composed: true,
+      }));
+    `);
+    await driver.waitFor("return window.__motionSessionTrace.some(e => e.reason_code === 'SESSION_DUPLICATE_WORKBENCH_EVENT');");
+    assert.equal(await driver.execute("return window.__motionSessionTrace.some(e => e.reason_code === 'SESSION_WORKBENCH_REVISION_OUT_OF_ORDER');"), true);
+
     await driver.click(await driver.element("#visual-next"));
     await driver.waitFor("return window.__motionSessionState.stage === 'core2b';");
 
