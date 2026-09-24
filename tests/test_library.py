@@ -1306,18 +1306,35 @@ class DepictionIsBackedByTheContract(unittest.TestCase):
     def test_unbuilt_kind_backlog_is_reported_without_claiming_a_renderer(self):
         """Canonical visual truth may legitimately arrive before its static renderer.
 
-        Grade-9 Physics now owns three FREE_BODY_DIAGRAM representations implemented
-        by interactive ACTIVITY resources and staged hints, while the static depiction
-        contract still says FREE_BODY_DIAGRAM is PROPOSED. The priority report must make
-        that renderer backlog visible rather than forcing representation authoring to wait
-        or pretending a renderer exists.
+        The waiting population is derived from canonical representation and microtopic
+        records rather than a hand-maintained count. Renderer status remains a separate
+        subject-contract claim and must stay PROPOSED until a static renderer exists.
         """
+        records = build_index(packages())
+        waiting_representation_ids = {
+            rid for rid, record in records.items()
+            if record.get("_collection") == "representations"
+            and record.get("kind") == "FREE_BODY_DIAGRAM"
+            and not record.get("scene_instances")
+        }
+        waiting_bucket_ids = {
+            record["bucket_id"]
+            for record in records.values()
+            if record.get("_collection") == "microtopics"
+            and waiting_representation_ids.intersection(record.get("representation_refs", []))
+        }
+        self.assertIn("REP-KIN-CIRCULAR-FORCE-ROLE", waiting_representation_ids)
+        self.assertEqual(
+            depiction.declared_kinds(REPO / "Physics")["FREE_BODY_DIAGRAM"],
+            "PROPOSED",
+        )
+
         expected = {
             "Physics": [{
                 "kind": "FREE_BODY_DIAGRAM",
                 "status": "PROPOSED",
-                "representations_waiting": 3,
-                "buckets_waiting": 2,
+                "representations_waiting": len(waiting_representation_ids),
+                "buckets_waiting": len(waiting_bucket_ids),
             }],
         }
         for path in sorted(REPO.glob("*/adapter/CoreContracts.json")):
