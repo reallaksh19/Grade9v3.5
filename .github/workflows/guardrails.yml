@@ -58,6 +58,18 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # Core1 orientation is a structural map, not a prose-quality score. Existing
+      # debt is frozen in a deterministic baseline; new/revised buckets may not add
+      # unresolved relations, missing relation conditions/meaning, malformed conventions,
+      # unqualified curriculum mappings, or broken declared Core1 representation bindings.
+      - name: Core1 semantic-orientation debt only moves forward
+        run: |
+          python3 -m Shared.library.core1_orientation \
+            --check-baseline docs/core1-orientation-baseline.json
+          python3 -m Shared.library.core1_orientation \
+            --write-report /tmp/core1-orientation-report.json
+          diff -u docs/core1-orientation-report.json /tmp/core1-orientation-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
