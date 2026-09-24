@@ -32,6 +32,7 @@ const provenance = document.getElementById("provenance-list");
 const navButtons = [...document.querySelectorAll("[data-stage-nav]")];
 const stageSections = [...document.querySelectorAll("[data-session-stage]")];
 const previousRuns = [];
+const diagnosticMode = new URL(location.href).searchParams.get("diagnostic");
 let runNumber = 1;
 let identity = null;
 let packageData = null;
@@ -57,7 +58,7 @@ function seedIdentity() {
 }
 
 function syncDiagnostics() {
-  window.__motionSessionReady = Boolean(identity && packageData && recorder && !unavailable.hidden === false);
+  window.__motionSessionReady = Boolean(identity && packageData && recorder && unavailable.hidden);
   window.__motionSessionIdentity = identity ? structuredClone(identity) : null;
   window.__motionSessionState = recorder ? recorder.state : null;
   window.__motionSessionTrace = recorder ? recorder.events : [];
@@ -190,9 +191,15 @@ function safeCoreEvent(core, type, detail = {}) {
     );
     return;
   }
-  if (type === CORE_LEARNER_EVENTS.SUPPORT_REQUESTED) {
+  if (type === CORE_LEARNER_EVENTS.SUPPORT_REQUESTED || type === CORE_LEARNER_EVENTS.HINT_REQUESTED) {
     record(
-      { type: "CORE_SUPPORT_REQUESTED", core, revealed: detail.revealed === true, reason: detail.reason || null },
+      {
+        type: "CORE_SUPPORT_REQUESTED",
+        core,
+        revealed: detail.revealed === true,
+        reason: detail.reason || null,
+        supportKind: type === CORE_LEARNER_EVENTS.HINT_REQUESTED ? "hint" : "scaffold",
+      },
       { producer: "Core learner", componentBoundary: boundary },
     );
     return;
@@ -301,6 +308,9 @@ function renderSummary() {
 }
 
 async function loadPackage() {
+  if (diagnosticMode === "package-failure") {
+    throw Object.assign(new Error("Diagnostic package failure"), { code: "SESSION_PORTABLE_PACKAGE_LOAD_FAILED" });
+  }
   record(
     { type: "PACKAGE_LOAD_REQUESTED" },
     { producer: "session shell", componentBoundary: "portable-package-loader" },
@@ -333,6 +343,7 @@ function resetCurrentRun() {
 }
 
 function retryNewRun() {
+  record({ type: "RETRY_REQUESTED" }, { producer: "session shell", componentBoundary: "session-retry" });
   const replay = replayMotionSessionTrace(recorder.events);
   previousRuns.push({ run_id: runId(), trace: recorder.events, replay });
   runNumber += 1;
@@ -412,8 +423,7 @@ function wireActions() {
 }
 
 async function init() {
-  const diagnostic = new URL(location.href).searchParams.get("diagnostic");
-  const selection = diagnostic === "unknown-identity"
+  const selection = diagnosticMode === "unknown-identity"
     ? { ...SESSION_CASE, matrixId: "MATRIX-UNKNOWN-DIAGNOSTIC" }
     : SESSION_CASE;
 
