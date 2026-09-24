@@ -36,6 +36,23 @@ Changing numbers alone produces practice **within a family**, not a new transfer
 
 Turning B into A with the nouns changed, or into A with random blanks punched into it, fails this rule.
 
+## Learner-facing production templates
+
+The role files define **what each Core means**. [Core learner-product templates](CORE-TEMPLATES.md)
+define the stable presentation anatomy and reveal order used to turn those semantics into
+learner-facing products.
+
+The template contract is intentionally narrower than the role specifications:
+
+- it does not own subject truth;
+- it does not create a seventh Core;
+- it does not set page-count quotas;
+- it does not replace canonical representation or source-custody records;
+- it does define ordered learner-facing blocks, reveal/withhold boundaries and structural
+  anti-collapse rules for all six roles.
+
+The machine-readable fenced block in `CORE-TEMPLATES.md` is validated by
+`Shared/tools/core_template_contract.py`.
 
 ## Cross-lane Core projection contract
 
