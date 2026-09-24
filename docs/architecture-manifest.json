@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 265,
-  "relation_count": 308,
+  "component_count": 267,
+  "relation_count": 310,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 43,
-    "TEST": 126,
+    "LIBRARY": 44,
+    "TEST": 127,
     "TOOLING": 59,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:ef2fb2871c07ff2a6db1d11e67234462cd8ce1fb904fa76c2eaf19eb20783c9c",
+  "digest": "sha256:9064f14888033d0e01954f1e6bbd2109c4713c9091f1bdfe3f251c32edfec741",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -88,6 +88,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 14235,
       "sha256": "5796b4b32990fb088714b004cd8703a31172dee350512c491655a5d64a3dd4e6"
+    },
+    {
+      "path": "Shared/library/core1b_reconstruction.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 14401,
+      "sha256": "b0c002e67474a28bb6e4ff75ea5e9f2f35c59a2f6360bb9fe782936c5cc666af"
     },
     {
       "path": "Shared/library/core_progression.py",
@@ -1238,6 +1245,13 @@
       "sha256": "0305ef2cf4fe9f3dcd838d87d380f780e8e0d46bd3cc3034a74c08be415bab7b"
     },
     {
+      "path": "tests/test_core1b_reconstruction.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 8417,
+      "sha256": "8e1b8b549f470cac50d906d33c3bc2458c2cb8d76190d11bda7c46700b4d8f6f"
+    },
+    {
       "path": "tests/test_core2a_inventory.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1908,6 +1922,11 @@
     },
     {
       "from": "Shared/library/core1a_construction.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1b_reconstruction.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
     },
@@ -2698,6 +2717,11 @@
     },
     {
       "from": "tests/test_core1a_construction.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1b_reconstruction.py",
       "to": "Shared.library",
       "kind": "IMPORTS"
     },
