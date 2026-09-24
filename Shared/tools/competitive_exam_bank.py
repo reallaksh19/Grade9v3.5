@@ -1,11 +1,8 @@
-"""Validate the canonical competitive-exam bank as an activity, not only as records.
+"""Validate a canonical competitive-exam bank as an activity, not only as records.
 
-JSON Schema owns shape. This module owns cross-record invariants that schema cannot
-express: source identity uniqueness, ledger closure, provenance promotion rules,
-difficulty arithmetic, reasoning/scaffold references, and run-gate closure.
-
-It deliberately reuses package.schema.json for the learner-facing question/resource
-records instead of creating a parallel educational object model.
+The engine is topic-neutral. Scope, bank paths, source-authority hosts, exclusions and
+local concept registries are data in the run manifest. JSON Schema owns shape; this
+module owns cross-record invariants that schema cannot express.
 """
 from __future__ import annotations
 
@@ -19,31 +16,13 @@ BANK_SCHEMA = ROOT / "Shared/library/competitive-exam-bank.schema.json"
 PACKAGE_SCHEMA = ROOT / "Shared/library/package.schema.json"
 RUN_SCHEMA = ROOT / "Shared/library/question-bank-run.schema.json"
 PUBLICATION_SCHEMA = ROOT / "Shared/library/question-bank-publication.schema.json"
-
-DEFAULT_BANKS = (
-    ROOT / "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
-    ROOT / "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json",
-)
-DEFAULT_LEDGER = ROOT / "docs/question-bank/pass1/source-acquisition-ledger.json"
 DEFAULT_RUN = ROOT / "docs/question-bank/pass1/run-manifest.json"
-DEFAULT_CONCEPT_INVENTORY = ROOT / "docs/question-bank/pass1/concept-bucket-inventory.md"
 
 DIFFICULTY_BAND = {
     0: "D1", 1: "D1", 2: "D1",
     3: "D2", 4: "D2", 5: "D2",
     6: "D3", 7: "D3",
     8: "D4", 9: "D4", 10: "D4",
-}
-OFFICIAL_HOSTS = {
-    "jeeadv.ac.in",
-    "www.jeeadv.ac.in",
-    "nta.ac.in",
-    "www.nta.ac.in",
-    "neet.nta.nic.in",
-    "www.neet.nta.nic.in",
-    "jeemain.nta.nic.in",
-    "www.jeemain.nta.nic.in",
-    "cdnbbsr.s3waas.gov.in",
 }
 EXPECTED_GATES = {
     "G0_SCOPE_FROZEN",
@@ -71,9 +50,8 @@ def _schema_validator(schema: dict):
 
 
 def _schema_findings(value: dict, schema_path: Path, point: str, where: str) -> list[dict]:
-    schema = load(schema_path)
     findings = []
-    for error in _schema_validator(schema).iter_errors(value):
+    for error in _schema_validator(load(schema_path)).iter_errors(value):
         loc = "/".join(str(p) for p in error.path)
         findings.append({
             "point": point,
@@ -112,24 +90,48 @@ def _where(path: Path) -> str:
         return str(path)
 
 
-def _canonical_physics_ids() -> tuple[set[str], set[str]]:
-    capabilities: set[str] = set()
-    families: set[str] = set()
-    for path in sorted((ROOT / "Physics/library").glob("*.json")):
+def _canonical_ids() -> dict[str, set[str]]:
+    out = {"buckets": set(), "capabilities": set(), "families": set()}
+    for path in sorted(ROOT.glob("*/library/*.json")):
         try:
             package = load(path)
         except Exception:
             continue
+        for row in package.get("buckets", []):
+            if row.get("id"):
+                out["buckets"].add(row["id"])
         for row in package.get("capabilities", []):
             if row.get("id"):
-                capabilities.add(row["id"])
+                out["capabilities"].add(row["id"])
         for row in package.get("question_families", []):
             if row.get("id"):
-                families.add(row["id"])
-    return capabilities, families
+                out["families"].add(row["id"])
+    return out
 
 
-def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[list[dict], list[dict]]:
+def _local_registry(paths: list[str]) -> str:
+    chunks = []
+    for rel in paths:
+        path = ROOT / rel
+        if path.is_file():
+            chunks.append(path.read_text(encoding="utf-8"))
+    return "\n".join(chunks)
+
+
+def _resolves(ref: str | None, canonical: set[str], local_registry: str) -> bool:
+    if not ref:
+        return False
+    return ref in canonical or f"`{ref}`" in local_registry
+
+
+def validate_bank(
+    path: Path,
+    ledger: dict,
+    local_registry: str,
+    canonical: dict[str, set[str]],
+    allowed_hosts: set[str],
+    forbidden_topics: list[str],
+) -> tuple[list[dict], list[dict]]:
     bank = load(path)
     findings = _schema_findings(bank, BANK_SCHEMA, "EXAM_BANK_SCHEMA", _where(path))
     questions = list(bank.get("questions") or [])
@@ -148,15 +150,14 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
     ext = bank.get("extensions") or {}
     if ext.get("grade9v3:accepted_question_count") != len(questions):
         _fail(findings, "EXAM_BANK_COUNT_MISMATCH", _where(path),
-              "grade9v3:accepted_question_count must equal len(questions)")
+              "accepted-question count must equal len(questions)")
     topic_counts = ext.get("grade9v3:topic_counts") or {}
     if sum(topic_counts.values()) != len(questions):
         _fail(findings, "EXAM_BANK_TOPIC_COUNT_MISMATCH", _where(path),
-              "sum(grade9v3:topic_counts) must equal len(questions)")
+              "sum(topic_counts) must equal len(questions)")
 
     seen_ids: set[str] = set()
     identities: set[tuple] = set()
-    physics_caps, physics_families = _canonical_physics_ids()
     accepted_by_id = {}
     for record in ledger.get("accepted_authoritative_records", []):
         for question_id in record.get("accepted_question_ids", []):
@@ -178,12 +179,12 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
 
         if provenance not in {"PYQ_VERIFIED", "PYQ_ADAPTED"}:
             _fail(findings, "EXAM_BANK_UNVERIFIED_PROMOTED", qid,
-                  "canonical questions may not use SOURCE_UNVERIFIED provenance")
+                  "canonical questions may not use unverified provenance")
 
         if provenance == "PYQ_ADAPTED":
             if q.get("origin") != "ADAPTED":
                 _fail(findings, "EXAM_BANK_ADAPTATION_ORIGIN", qid,
-                      "PYQ_ADAPTED must have origin=ADAPTED")
+                      "adapted provenance requires origin=ADAPTED")
             adaptation = q.get("adaptation") or {}
             if adaptation.get("parent_ref") != q.get("original_identifier"):
                 _fail(findings, "EXAM_BANK_ADAPTATION_PARENT", qid,
@@ -193,10 +194,10 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
                       "non-verbatim restatement must declare stem in changed_fields")
             if custody.get("source_status") != "PYQ_VERIFIED_PARENT":
                 _fail(findings, "EXAM_BANK_ADAPTATION_SOURCE_STATUS", qid,
-                      "PYQ_ADAPTED requires PYQ_VERIFIED_PARENT custody")
+                      "adapted provenance requires verified-parent custody")
             if custody.get("wording_custody") != "FAITHFUL_NON_VERBATIM_RESTATEMENT":
                 _fail(findings, "EXAM_BANK_ADAPTATION_WORDING", qid,
-                      "PYQ_ADAPTED requires faithful non-verbatim wording custody")
+                      "adapted provenance requires faithful non-verbatim wording custody")
             if custody.get("parent_ref") != q.get("original_identifier"):
                 _fail(findings, "EXAM_BANK_CUSTODY_PARENT", qid,
                       "source_custody.parent_ref must equal original_identifier")
@@ -220,9 +221,9 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
 
         for key in ("paper_url", "archive_url"):
             host = urlparse(custody.get(key) or "").hostname
-            if host not in OFFICIAL_HOSTS:
+            if host not in allowed_hosts:
                 _fail(findings, "EXAM_BANK_NONOFFICIAL_SOURCE_HOST", qid,
-                      f"{key} host {host!r} is not in the organizer allow-list")
+                      f"{key} host {host!r} is not allowed by the run manifest")
 
         ledger_record = accepted_by_id.get(qid)
         if not ledger_record:
@@ -242,7 +243,7 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
             score = sum(components.values())
             if difficulty.get("score") != score:
                 _fail(findings, "EXAM_BANK_DIFFICULTY_SCORE", qid,
-                      "difficulty.score must equal the five component scores")
+                      "difficulty.score must equal the component sum")
             if DIFFICULTY_BAND.get(score) != difficulty.get("band"):
                 _fail(findings, "EXAM_BANK_DIFFICULTY_BAND", qid,
                       "difficulty.band must derive from the component sum")
@@ -266,7 +267,7 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
 
         if q.get("hints") != []:
             _fail(findings, "EXAM_BANK_SOURCE_HINT_CONFLATION", qid,
-                  "PASS-1 may not invent source hints; authored help belongs in scaffolds[]")
+                  "source hints and authored pedagogical support must remain separate")
         for scaffold in q.get("scaffolds") or []:
             if scaffold.get("supports_move_ref") not in move_ids:
                 _fail(findings, "EXAM_BANK_SCAFFOLD_MOVE", qid,
@@ -276,63 +277,67 @@ def _validate_bank(path: Path, ledger: dict, concept_inventory: str) -> tuple[li
         if transfer.get("core2b_candidate"):
             if transfer.get("classification") != "REAL_TRANSFER_CANDIDATE" or not transfer.get("dimension"):
                 _fail(findings, "EXAM_BANK_TRANSFER_CLASSIFICATION", qid,
-                      "Core2B candidate requires REAL_TRANSFER_CANDIDATE and a changed-demand dimension")
+                      "transfer candidate requires a real-transfer classification and changed-demand dimension")
         elif transfer.get("classification") != "SAME_FAMILY_VARIATION" or transfer.get("dimension") is not None:
             _fail(findings, "EXAM_BANK_TRANSFER_VARIATION", qid,
-                  "non-Core2B items must remain SAME_FAMILY_VARIATION with dimension=null")
+                  "non-transfer items must remain same-family variation with dimension=null")
 
         scope_text = " ".join([
-            str(analysis.get("topic", "")), str(q.get("stem", "")),
+            str(analysis.get("topic", "")),
+            str(q.get("stem", "")),
             str(analysis.get("stable_crux_move", "")),
         ]).lower()
-        if "circular motion" in scope_text or "centripetal" in scope_text:
-            _fail(findings, "EXAM_BANK_SCOPE_LEAK_CIRCULAR", qid,
-                  "circular-motion content is outside this PASS-1 scope")
+        for forbidden in forbidden_topics:
+            if forbidden.lower() in scope_text:
+                _fail(findings, "EXAM_BANK_SCOPE_LEAK", qid,
+                      f"forbidden run-scope topic appears in canonical content: {forbidden!r}")
 
-        if custody.get("section") == "Physics":
-            if q.get("primary_capability_ref") not in physics_caps:
+        if not _resolves(analysis.get("concept_bucket"), canonical["buckets"], local_registry):
+            _fail(findings, "EXAM_BANK_BUCKET_UNRESOLVED", qid,
+                  f"concept bucket {analysis.get('concept_bucket')!r} does not resolve")
+        capability_refs = [q.get("primary_capability_ref"), *(q.get("secondary_capability_refs") or [])]
+        for ref in capability_refs:
+            if not _resolves(ref, canonical["capabilities"], local_registry):
                 _fail(findings, "EXAM_BANK_CAPABILITY_UNRESOLVED", qid,
-                      f"Physics capability {q.get('primary_capability_ref')!r} does not resolve")
-            for ref in q.get("secondary_capability_refs") or []:
-                if ref not in physics_caps:
-                    _fail(findings, "EXAM_BANK_CAPABILITY_UNRESOLVED", qid,
-                          f"Physics capability {ref!r} does not resolve")
-            if q.get("family_ref") not in physics_families:
-                _fail(findings, "EXAM_BANK_FAMILY_UNRESOLVED", qid,
-                      f"Physics family {q.get('family_ref')!r} does not resolve")
-        elif custody.get("section") == "Chemistry":
-            refs_to_check = [
-                q.get("primary_capability_ref"),
-                *(q.get("secondary_capability_refs") or []),
-                q.get("family_ref"),
-            ]
-            for ref in refs_to_check:
-                if ref and f"`{ref}`" not in concept_inventory:
-                    _fail(findings, "EXAM_BANK_CHEMISTRY_LOCAL_REF_UNRESOLVED", qid,
-                          f"Chemistry local proposal {ref!r} is absent from concept-bucket-inventory.md")
+                      f"capability {ref!r} does not resolve")
+        if not _resolves(q.get("family_ref"), canonical["families"], local_registry):
+            _fail(findings, "EXAM_BANK_FAMILY_UNRESOLVED", qid,
+                  f"family {q.get('family_ref')!r} does not resolve")
 
     return findings, questions
 
 
-def check(
-    banks: tuple[Path, ...] = DEFAULT_BANKS,
-    ledger_path: Path = DEFAULT_LEDGER,
-    run_path: Path = DEFAULT_RUN,
-) -> dict:
+def check(run_path: Path = DEFAULT_RUN) -> dict:
     findings: list[dict] = []
+    run = load(run_path)
+    findings += _schema_findings(run, RUN_SCHEMA, "EXAM_BANK_RUN_SCHEMA", _where(run_path))
+
+    publication = run.get("publication_contract") or {}
+    findings += _schema_findings(
+        publication, PUBLICATION_SCHEMA, "EXAM_BANK_PUBLICATION_SCHEMA",
+        f"{_where(run_path)}#publication_contract",
+    )
+
+    ledger_path = ROOT / run["ledger_path"]
     ledger = load(ledger_path)
-    concept_inventory = DEFAULT_CONCEPT_INVENTORY.read_text(encoding="utf-8")
+    canonical = _canonical_ids()
+    local_registry = _local_registry(run.get("local_ref_registry_paths") or [])
+    allowed_hosts = set(run.get("authority_hosts") or [])
+    forbidden_topics = list((run.get("scope") or {}).get("forbidden_topics") or [])
+    bank_paths = tuple(ROOT / rel for rel in run.get("bank_paths") or [])
     all_questions: list[dict] = []
 
-    for path in banks:
-        bank_findings, questions = _validate_bank(path, ledger, concept_inventory)
+    for path in bank_paths:
+        bank_findings, questions = validate_bank(
+            path, ledger, local_registry, canonical, allowed_hosts, forbidden_topics
+        )
         findings += bank_findings
         all_questions += questions
 
     ids = [q.get("id") for q in all_questions]
     if len(ids) != len(set(ids)):
-        _fail(findings, "EXAM_BANK_CROSS_SUBJECT_DUPLICATE_ID", "banks",
-              "question ids must be unique across all subject banks")
+        _fail(findings, "EXAM_BANK_CROSS_BANK_DUPLICATE_ID", "banks",
+              "question ids must be unique across all bank files")
 
     accepted_ids = {
         qid
@@ -349,18 +354,10 @@ def check(
     for donor in ledger.get("donor_candidates", []):
         if donor.get("pass1_provenance_status") != "SOURCE_UNVERIFIED":
             _fail(findings, "EXAM_BANK_DONOR_PROVENANCE", donor.get("candidate_id", "<missing>"),
-                  "donor candidates must remain SOURCE_UNVERIFIED until independently promoted")
+                  "donor candidate provenance changed before independent promotion")
         if donor.get("promotion_status") != "QUARANTINED_DONOR_ONLY":
             _fail(findings, "EXAM_BANK_DONOR_DISPOSITION", donor.get("candidate_id", "<missing>"),
-                  "unverified donor candidates must remain quarantined")
-
-    run = load(run_path)
-    findings += _schema_findings(run, RUN_SCHEMA, "EXAM_BANK_RUN_SCHEMA", _where(run_path))
-    publication = run.get("publication_contract") or {}
-    findings += _schema_findings(
-        publication, PUBLICATION_SCHEMA, "EXAM_BANK_PUBLICATION_SCHEMA",
-        f"{_where(run_path)}#publication_contract",
-    )
+                  "unverified donor candidate escaped quarantine")
 
     gates = run.get("gates") or []
     gate_ids = [g.get("id") for g in gates]
@@ -383,7 +380,7 @@ def check(
 
     return {
         "passed": not findings,
-        "banks_checked": len(banks),
+        "banks_checked": len(bank_paths),
         "questions_checked": len(all_questions),
         "findings": findings,
     }
@@ -391,9 +388,10 @@ def check(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--run", type=Path, default=DEFAULT_RUN)
     parser.add_argument("--json", action="store_true", dest="as_json")
     args = parser.parse_args(argv)
-    result = check()
+    result = check(args.run)
     if args.as_json:
         print(json.dumps(result, indent=2))
     elif result["passed"]:

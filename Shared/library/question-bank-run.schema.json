@@ -12,35 +12,57 @@
     "bank_paths",
     "ledger_path",
     "coverage_path",
+    "authority_hosts",
+    "local_ref_registry_paths",
     "publication_contract",
     "gates",
     "completion"
   ],
   "properties": {
-    "run_id": {"type": "string", "minLength": 1},
-    "activity_type": {"const": "CANONICAL_COMPETITIVE_EXAM_BANK"},
-    "pass": {"const": "PASS_1"},
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activity_type": {
+      "const": "CANONICAL_COMPETITIVE_EXAM_BANK"
+    },
+    "pass": {
+      "const": "PASS_1"
+    },
     "scope": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["topics", "forbidden_outputs", "forbidden_topics"],
+      "required": [
+        "topics",
+        "forbidden_outputs",
+        "forbidden_topics"
+      ],
       "properties": {
         "topics": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "forbidden_outputs": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "forbidden_topics": {
           "type": "array",
           "uniqueItems": true,
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -48,16 +70,29 @@
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
-    "ledger_path": {"type": "string", "minLength": 1},
-    "coverage_path": {"type": "string", "minLength": 1},
-    "publication_contract": {"type": "object"},
+    "ledger_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coverage_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_contract": {
+      "type": "object"
+    },
     "gates": {
       "type": "array",
       "minItems": 9,
       "maxItems": 9,
-      "items": {"$ref": "#/$defs/gate"}
+      "items": {
+        "$ref": "#/$defs/gate"
+      }
     },
     "completion": {
       "type": "object",
@@ -70,11 +105,45 @@
         "corpus_saturation_claimed"
       ],
       "properties": {
-        "status": {"enum": ["PASS", "HOLD", "FAIL"]},
-        "accepted_count": {"type": "integer", "minimum": 0},
-        "source_identity_duplicates": {"type": "integer", "minimum": 0},
-        "unresolved_accepted_items": {"type": "integer", "minimum": 0},
-        "corpus_saturation_claimed": {"type": "boolean"}
+        "status": {
+          "enum": [
+            "PASS",
+            "HOLD",
+            "FAIL"
+          ]
+        },
+        "accepted_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_identity_duplicates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unresolved_accepted_items": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corpus_saturation_claimed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authority_hosts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "local_ref_registry_paths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
       }
     }
   },
@@ -82,7 +151,13 @@
     "gate": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "status", "blocking", "evidence_refs", "findings"],
+      "required": [
+        "id",
+        "status",
+        "blocking",
+        "evidence_refs",
+        "findings"
+      ],
       "properties": {
         "id": {
           "enum": [
@@ -97,16 +172,30 @@
             "G8_PUBLICATION_CONTRACT_READY"
           ]
         },
-        "status": {"enum": ["PASS", "HOLD", "FAIL"]},
-        "blocking": {"const": true},
+        "status": {
+          "enum": [
+            "PASS",
+            "HOLD",
+            "FAIL"
+          ]
+        },
+        "blocking": {
+          "const": true
+        },
         "evidence_refs": {
           "type": "array",
-          "items": {"type": "string", "minLength": 1},
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "uniqueItems": true
         },
         "findings": {
           "type": "array",
-          "items": {"type": "string", "minLength": 1}
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }
