@@ -66,7 +66,7 @@ def core_projection_refs_for_microtopic(core: dict, microtopic_ref: str) -> list
     return sorted(
         row["id"]
         for row in core["core_projections"]
-        if (row.get("projection") or {}).get("concept", {}).get("microtopic_ref") == microtopic_ref
+        if (((row.get("projection") or {}).get("concept") or {}).get("microtopic_ref") == microtopic_ref)
     )
 
 
@@ -222,9 +222,16 @@ class IndependentSourceOracleTest(unittest.TestCase):
         )
 
         availability = core_availability(self.core, "Physics", NLM_BUCKET)
-        self.assertEqual("UNSUPPORTED", availability["status"])
-        self.assertEqual("PARENT_TRANSFER_PAIR_MISSING", availability["code"])
-        self.assertEqual([], availability["projection_refs"])
+        self.assertEqual("AVAILABLE", availability["status"])
+        self.assertTrue(availability["projection_refs"])
+        self.assertTrue(any(
+            ref.endswith(":core2a")
+            for ref in availability["projection_refs"]
+        ))
+        self.assertFalse(
+            any("REP-NLM-FRICTION-THRESHOLD" in ref for ref in availability["projection_refs"]),
+            "Learner projection availability must not infer the missing microtopic representation.",
+        )
 
     def test_math_r1_preserves_two_prerequisite_authorities(self):
         source = rung(self.linear, "R1")

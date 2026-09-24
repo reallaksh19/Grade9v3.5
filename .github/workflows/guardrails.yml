@@ -190,13 +190,17 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-          from Shared.tools import build_manifest, build_web_data
-          Path("/tmp/architecture-manifest.json").write_text(
+          from Shared.tools import build_manifest
+
+          root = Path("/tmp/generated-artifact-preview")
+          root.mkdir(parents=True, exist_ok=True)
+          for relative, content in build_manifest.generated_files().items():
+              target = root / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(content)
+          (root / "docs/architecture-manifest.json").parent.mkdir(parents=True, exist_ok=True)
+          (root / "docs/architecture-manifest.json").write_text(
               json.dumps(build_manifest.collect(), indent=2, ensure_ascii=False) + "\n",
-              encoding="utf-8",
-          )
-          Path("/tmp/data.js").write_text(
-              build_web_data.render(build_web_data.build()),
               encoding="utf-8",
           )
           PY
@@ -205,9 +209,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: generated-artifact-preview
-          path: |
-            /tmp/architecture-manifest.json
-            /tmp/data.js
+          path: /tmp/generated-artifact-preview
 
       # --check compares the generated data file and the manifest without writing
       # either, so it covers both artifacts and leaves the checkout untouched.

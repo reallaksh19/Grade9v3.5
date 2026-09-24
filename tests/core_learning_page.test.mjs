@@ -38,6 +38,8 @@ test("frozen CoreProjection fixtures derive the contract-defined initial states"
     assert.equal(state.attempted, false);
     assert.equal(state.attemptCount, 0);
     assert.equal(state.supportIndex, 0);
+    assert.equal(state.hintIndex, 0);
+    assert.equal(state.solutionVisible, false);
   }
 });
 
@@ -124,7 +126,7 @@ test("Core1B keeps the inferential jump and reconstruction absent until commit",
   const committed = transitionCoreLearningState(
     projection,
     initial,
-    { type: "COMMIT_ATTEMPT" },
+    { type: "COMMIT_ATTEMPT", response: "reconstructed connection" },
   ).state;
   const after = renderCoreLearningProjection(projection, committed);
 
@@ -135,6 +137,55 @@ test("Core1B keeps the inferential jump and reconstruction absent until commit",
   assert.match(after, /A supplied relation follows from the supplied representation and conditions/);
   assert.match(after, /Read the supplied representation/);
   assert.match(after, /data-semantic="reconstruction"/);
+});
+
+test("attempt-first products reject blank responses before reveal", () => {
+  const projection = byId.core2b;
+  const initial = deriveCoreLearningState(projection);
+  assert.throws(
+    () => transitionCoreLearningState(
+      projection,
+      initial,
+      { type: "COMMIT_ATTEMPT", response: "   " },
+    ),
+    (error) => error instanceof CoreLearningPageError
+      && error.code === "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED",
+  );
+  assert.equal(initial.reasoningVisible, false);
+  assert.equal(initial.solutionVisible, false);
+});
+
+test("source hints are a separate ordered channel from pedagogical scaffolds", () => {
+  const projection = structuredClone(byId.core2b);
+  projection.application.hints = [
+    { text: "Inspect the changed givens.", reveals: "CONCEPT" },
+    { text: "Choose the controlling model.", reveals: "METHOD" },
+  ];
+  projection.presentation.pre_attempt_hint_limit = 1;
+  projection.presentation.post_attempt_hint_limit = 1;
+
+  const initial = deriveCoreLearningState(projection);
+  const first = transitionCoreLearningState(projection, initial, { type: "REQUEST_HINT" });
+  assert.equal(first.changed, true);
+  assert.equal(first.state.hintIndex, 1);
+  const before = renderCoreLearningProjection(projection, first.state);
+  assert.match(before, /Source\/question hints/);
+  assert.match(before, /Inspect the changed givens/);
+  assert.doesNotMatch(before, /Choose the controlling model/);
+  assert.match(before, /Support/);
+
+  const blocked = transitionCoreLearningState(projection, first.state, { type: "REQUEST_HINT" });
+  assert.equal(blocked.changed, false);
+  assert.equal(blocked.reason, "HINT_PROTECTED_AT_THIS_STAGE");
+
+  const attempted = transitionCoreLearningState(
+    projection,
+    blocked.state,
+    { type: "COMMIT_ATTEMPT", response: "I choose based on the changed condition." },
+  ).state;
+  const stillBlocked = transitionCoreLearningState(projection, attempted, { type: "REQUEST_HINT" });
+  assert.equal(stillBlocked.changed, false);
+  assert.equal(stillBlocked.reason, "HINT_PROTECTED_AT_THIS_STAGE");
 });
 
 test("Core2A support advances supplied scaffolds without changing question identity", () => {
@@ -199,6 +250,14 @@ test("question parts and source identity survive projection and display without 
     options: ["Model A", "Model B"],
     conditions: ["Use the stated reference frame."],
     figure_refs: ["FIG-EXAMPLE"],
+    figures: [{
+      figure_ref: "FIG-EXAMPLE",
+      kind: "DIAGRAM",
+      caption: "A semantic figure caption required to interpret the question.",
+      purpose: "Carry the demand-bearing geometry.",
+      read_order: ["Read the labelled condition.", "Compare the two marked states."],
+      accessibility: ["Do not rely on colour alone."],
+    }],
   });
   const validated = validateCoreProjection(projection);
   assert.deepEqual(validated.application.source_refs, ["SRC-EXAMPLE"]);
@@ -208,6 +267,8 @@ test("question parts and source identity survive projection and display without 
   assert.match(before, /Model B/);
   assert.match(before, /Use the stated reference frame/);
   assert.match(before, /SRC-EXAMPLE/);
+  assert.match(before, /Question figure semantics/);
+  assert.match(before, /semantic figure caption required to interpret the question/);
   assert.doesNotMatch(before, /Independent check/);
   assert.doesNotMatch(before, /Select the controlling model or condition/);
 });
@@ -244,7 +305,7 @@ test("Core2B support stops at a protected move before commit and unlocks only af
   const committed = transitionCoreLearningState(
     projection,
     blocked.state,
-    { type: "COMMIT_ATTEMPT" },
+    { type: "COMMIT_ATTEMPT", response: "I select the model from the changed condition." },
   ).state;
   const afterCommit = renderCoreLearningProjection(projection, committed);
   assert.match(afterCommit, /Reasoning route/);
@@ -263,6 +324,96 @@ test("Core2B support stops at a protected move before commit and unlocks only af
     renderCoreLearningProjection(projection, unlocked.state),
     /Use the changed condition to choose the controlling model or condition/,
   );
+});
+
+test("post-attempt closure renders solution rubric and repair without changing the protected attempt boundary", () => {
+  const projection = structuredClone(byId.core2b);
+  projection.application.solution = {
+    summary: "Use the changed condition to select the bounded model.",
+    steps: ["Represent the changed state.", "Choose the valid model."],
+    rubric: [
+      { criterion: "Names the model condition.", evidence_of: "Justifies the changed decision." },
+    ],
+  };
+  projection.application.repair = {
+    step_ref: "STEP-REPAIR-1",
+    microtopic_ref: "MIC-FIXTURE-SHARED-IDEA",
+    action: "Review the representation-to-condition connection.",
+    why_valid: "The repair targets the prerequisite decision path.",
+  };
+
+  const before = renderCoreLearningProjection(projection);
+  assert.doesNotMatch(before, /Use the changed condition to select the bounded model/);
+  assert.doesNotMatch(before, /Repair route/);
+
+  const afterState = transitionCoreLearningState(
+    projection,
+    deriveCoreLearningState(projection),
+    { type: "COMMIT_ATTEMPT", response: "My bounded-model choice." },
+  ).state;
+  const after = renderCoreLearningProjection(projection, afterState);
+  assert.match(after, /Solution/);
+  assert.match(after, /Use the changed condition to select the bounded model/);
+  assert.match(after, /Rubric/);
+  assert.match(after, /Repair route/);
+  assert.match(after, /STEP-REPAIR-1/);
+});
+
+test("Core2 source custody displays preserved identity hints and answer without inventing practice semantics", () => {
+  const projection = {
+    contract_version: "1.0",
+    core: "CORE2",
+    concept: null,
+    application: {
+      question_ref: "Q-SOURCE-1",
+      family_ref: "F-SOURCE",
+      stem: "Preserved source question.",
+      source_refs: ["SRC-SOURCE-1"],
+      origin: "ORIGINAL",
+      original_number: "12",
+      subparts: [],
+      options: ["A", "B"],
+      conditions: ["Use the preserved condition."],
+      figure_refs: [],
+      figures: [],
+      reasoning_route: [],
+      crux_move_ref: null,
+      hints: [{ text: "Preserved source hint.", reveals: "CONCEPT" }],
+      scaffolds: [],
+      transfer: null,
+      check: "Check the source key.",
+      solution: {
+        summary: "A",
+        steps: ["Preserved source working."],
+        rubric: [{ criterion: "Select A.", evidence_of: "Matches the source key." }],
+      },
+      repair: null,
+    },
+    presentation: {
+      attempt_before_reveal: false,
+      show_full_construction: false,
+      show_solution_initially: true,
+      initial_visual_ref: null,
+      initial_visual_stage_ref: null,
+      protected_move_refs: [],
+      pre_attempt_scaffold_limit: 0,
+      pre_attempt_hint_limit: 1,
+      post_attempt_hint_limit: 1,
+    },
+  };
+  const state = deriveCoreLearningState(projection);
+  assert.equal(state.stage, "SOURCE_CUSTODY_VISIBLE");
+  assert.equal(state.solutionVisible, true);
+  const rendered = renderCoreLearningProjection(projection, state);
+  assert.match(rendered, /Source question/);
+  assert.match(rendered, /SRC-SOURCE-1/);
+  assert.match(rendered, /Question 12/);
+  assert.match(rendered, /Source answer/);
+  assert.match(rendered, /Preserved source working/);
+  assert.doesNotMatch(rendered, /data-action="support"/);
+
+  const hinted = transitionCoreLearningState(projection, state, { type: "REQUEST_HINT" }).state;
+  assert.match(renderCoreLearningProjection(projection, hinted), /Preserved source hint/);
 });
 
 test("rendering uses supplied projection text for Core1A and Core2A", () => {

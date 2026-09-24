@@ -31866,8 +31866,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -31905,7 +31905,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31937,8 +31937,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -31976,7 +31976,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32009,8 +32009,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -32048,7 +32048,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32084,8 +32084,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -32123,7 +32123,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             }
           ]
         },
@@ -32155,8 +32155,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -32194,7 +32194,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             }
           ]
         },
@@ -32220,8 +32220,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -32268,7 +32268,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             }
           ]
         },
@@ -32306,8 +32306,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -32361,7 +32361,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-KIN-1D-MOTION",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             }
           ]
         },
@@ -33074,9 +33074,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33113,8 +33113,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -33145,9 +33145,9 @@ window.GRADE9V3 = {
           "activity_refs": [],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33184,8 +33184,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -33218,9 +33218,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33281,8 +33281,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33311,9 +33311,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33359,8 +33359,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-FRICTION",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33390,9 +33390,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33446,8 +33446,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-SECOND-LAW",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33478,15 +33478,19 @@ window.GRADE9V3 = {
           "activity_refs": [
             "ACT-NLM-FRICTION-THRESHOLD"
           ],
-          "core_projection_refs": [],
+          "core_projection_refs": [
+            "physics:mic-phy-nlm-friction-quant:core1a",
+            "physics:mic-phy-nlm-friction-quant:core1b",
+            "physics:q-phy-nlm-incline-2a-static-02:core2a"
+          ],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
-            "core": "UNAVAILABLE",
+            "core": "READY",
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
@@ -33532,13 +33536,7 @@ window.GRADE9V3 = {
               }
             ]
           },
-          "findings": [
-            {
-              "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
-            }
-          ]
+          "findings": []
         },
         {
           "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
@@ -33566,9 +33564,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33614,8 +33612,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33647,9 +33645,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33695,8 +33693,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33728,9 +33726,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33776,8 +33774,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33805,9 +33803,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33853,8 +33851,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-THIRD-LAW",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33884,9 +33882,9 @@ window.GRADE9V3 = {
           ],
           "core_projection_refs": [],
           "core_availability": {
-            "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "status": "AVAILABLE",
+            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
           },
           "availability": {
             "mapping": "READY",
@@ -33939,8 +33937,8 @@ window.GRADE9V3 = {
           "findings": [
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
-              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "ref": "MIC-PHY-NLM-FRAME-CHOICE",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
             }
           ]
         },
@@ -33974,8 +33972,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -34013,7 +34011,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36405,8 +36403,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -36444,7 +36442,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36477,8 +36475,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -36516,7 +36514,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36548,8 +36546,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -36587,7 +36585,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36623,8 +36621,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PARENT_TRANSFER_PAIR_MISSING",
-            "detail": "No linked CORE2A/CORE2B question pair."
+            "code": "PROJECTION_UNAVAILABLE",
+            "detail": "No mature learner projection was produced from the compiled bucket."
           },
           "availability": {
             "mapping": "READY",
@@ -36662,7 +36660,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-ADD-SUB",
-              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -38182,7 +38180,7 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-KIN-1D-MOTION",
-          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38201,13 +38199,58 @@ window.GRADE9V3 = {
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
-          "ref": "BUCKET-PHY-NLM-FIRST-LAW",
-          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+          "ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-FRICTION",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-SECOND-LAW",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-THIRD-LAW",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-NLM-FRAME-CHOICE",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
-          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38247,7 +38290,7 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-VEC-ADD-SUB",
-          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38278,8 +38321,8 @@ window.GRADE9V3 = {
             "UNAVAILABLE": 15
           },
           "core": {
-            "READY": 1,
-            "UNAVAILABLE": 101
+            "READY": 2,
+            "UNAVAILABLE": 100
           },
           "representation": {
             "READY": 14,
@@ -38303,7 +38346,7 @@ window.GRADE9V3 = {
           }
         },
         "finding_counts": {
-          "CORE_PROJECTION_UNAVAILABLE": 101,
+          "CORE_PROJECTION_UNAVAILABLE": 100,
           "MICROTOPIC_REF_UNAVAILABLE": 15,
           "VISUAL_REF_UNAVAILABLE": 81
         },
@@ -38511,7 +38554,8 @@ window.GRADE9V3 = {
                 "READY": 11
               },
               "core": {
-                "UNAVAILABLE": 11
+                "READY": 1,
+                "UNAVAILABLE": 10
               },
               "representation": {
                 "READY": 3,
@@ -38533,7 +38577,7 @@ window.GRADE9V3 = {
               }
             },
             "finding_counts": {
-              "CORE_PROJECTION_UNAVAILABLE": 11,
+              "CORE_PROJECTION_UNAVAILABLE": 10,
               "VISUAL_REF_UNAVAILABLE": 2
             }
           },
