@@ -2,6 +2,60 @@
   "fixture_contract": "Core Projection Contract v1.0",
   "projections": [
     {
+      "id": "core1",
+      "contract_version": "1.0",
+      "core": "CORE1",
+      "orientation": {
+        "bucket_ref": "BUCKET-FIXTURE",
+        "title": "Fixture concept map",
+        "blocks": [
+          {
+            "id": "CORE1-CONVENTIONS",
+            "kind": "TEXT",
+            "text": "Read the declared sign convention before using the quantities."
+          },
+          {
+            "id": "CORE1-REL-FIXTURE",
+            "kind": "EQUATION",
+            "mathml": "<math><mi>x</mi><mo>=</mo><mi>v</mi><mi>t</mi></math>",
+            "meaning": "The relation connects the supplied quantities under its stated condition.",
+            "symbols": [
+              "x: displacement",
+              "v: constant velocity",
+              "t: elapsed time"
+            ],
+            "conditions": [
+              "Velocity is constant."
+            ]
+          },
+          {
+            "id": "CORE1-FIG-FIXTURE",
+            "kind": "FIGURE",
+            "correspondence": [
+              {
+                "symbol": "x",
+                "element": "marked horizontal displacement",
+                "in_words": "the displacement from the declared origin"
+              }
+            ],
+            "scene": {
+              "caption": "A labelled displacement from the declared origin."
+            }
+          }
+        ]
+      },
+      "concept": null,
+      "application": null,
+      "presentation": {
+        "attempt_before_reveal": false,
+        "show_full_construction": false,
+        "show_solution_initially": false,
+        "initial_visual_ref": null,
+        "initial_visual_stage_ref": null,
+        "protected_move_refs": []
+      }
+    },
+    {
       "id": "core1a",
       "contract_version": "1.0",
       "core": "CORE1A",
@@ -26,6 +80,54 @@
         "misconceptions": [],
         "representation_refs": [
           "REP-FIXTURE-1"
+        ],
+        "title": "Fixture shared idea",
+        "intrinsic_badge": "HARD",
+        "entry_assumptions": [
+          "Can read the supplied representation."
+        ],
+        "representations": [
+          {
+            "representation_ref": "REP-FIXTURE-1",
+            "correspondence": [
+              {
+                "symbol": "x",
+                "element": "marked state",
+                "in_words": "the supplied state variable"
+              }
+            ],
+            "scenes": []
+          }
+        ],
+        "relation_checks": [
+          "Reverse the relation and recover the supplied state."
+        ],
+        "exit_task": {
+          "prompt": "Explain why the relation follows.",
+          "answer": {
+            "summary": "The supplied condition connects the representation to the relation.",
+            "reasoning": [
+              "Read the representation.",
+              "Apply the stated condition."
+            ],
+            "check": "Reverse the connection."
+          }
+        },
+        "worked_anchors": [
+          {
+            "question_ref": "Q-FIXTURE-WORKED",
+            "stem": "Use the supplied representation to explain the relation.",
+            "figure_refs": [],
+            "answer": {
+              "summary": "The relation follows from the supplied condition.",
+              "reasoning": [
+                "Read the state.",
+                "Connect the condition.",
+                "State the relation."
+              ],
+              "check": "Reverse the mapping."
+            }
+          }
         ]
       },
       "application": null,
@@ -59,12 +161,69 @@
           }
         ],
         "elicitation": {
-          "prompt": "Reconstruct the connection before revealing the authored path."
+          "predict": {
+            "prompt": "Which supplied condition controls the connection?",
+            "defensible_answer": "The stated condition connecting the representation to the relation."
+          },
+          "attempt": {
+            "produces": "A condition choice plus a reason.",
+            "closure": "MODEL_RESPONSE",
+            "model_response": "The stated condition controls the connection because it links the visible state to the relation."
+          },
+          "reconstruct": {
+            "route": [
+              {
+                "ask": "What does the marked state represent?",
+                "why_this_ask": "The learner must interpret the representation before using the relation.",
+                "from_step_ref": "T1"
+              },
+              {
+                "ask": "Which condition connects that state to the relation?",
+                "why_this_ask": "The learner must make the conceptual connection themselves.",
+                "from_step_ref": "T2"
+              }
+            ],
+            "differs_from_teaching_path": "The learner begins from the discriminator instead of reading the completed construction."
+          },
+          "boundary_test": {
+            "prompt": "If the stated condition no longer holds, may the same relation be used unchanged?",
+            "answer": "No.",
+            "confirms": "The learner understands the condition boundary rather than recalling the formula."
+          }
         },
-        "misconceptions": [],
+        "misconceptions": [
+          {
+            "wrong_idea": "The relation is valid without checking the condition.",
+            "diagnostic_prompt": "What changes if the stated condition is removed?",
+            "repair": "Return to the condition that licenses the connection."
+          }
+        ],
         "representation_refs": [
           "REP-FIXTURE-1"
-        ]
+        ],
+        "title": "Fixture shared idea",
+        "intrinsic_badge": "HARD",
+        "entry_assumptions": [
+          "Can read the supplied representation."
+        ],
+        "representations": [
+          {
+            "representation_ref": "REP-FIXTURE-1",
+            "correspondence": [
+              {
+                "symbol": "x",
+                "element": "marked state",
+                "in_words": "the supplied state variable"
+              }
+            ],
+            "scenes": []
+          }
+        ],
+        "relation_checks": [
+          "Reverse the relation and recover the supplied state."
+        ],
+        "exit_task": {},
+        "worked_anchors": []
       },
       "application": null,
       "presentation": {
