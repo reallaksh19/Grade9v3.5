@@ -87,7 +87,25 @@ class CoreTemplateContractError(ValueError):
     """Raised when the durable template contract is malformed."""
 
 
-def load_contract(path: Path = TEMPLATE_SPEC) -> dict[str, Any]:
+def discover_template_spec(role_dir: Path = ROLE_DIR) -> Path:
+    """Find the one role document that carries the machine-readable template block."""
+    matches = []
+    for path in sorted(role_dir.glob("*.md")):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        if BLOCK.search(text):
+            matches.append(path)
+    if len(matches) != 1:
+        raise CoreTemplateContractError(
+            f"CORE_TEMPLATE_SPEC_DISCOVERY_FAILED: expected 1 fenced contract, found {len(matches)}"
+        )
+    return matches[0]
+
+
+def load_contract(path: Path | None = None) -> dict[str, Any]:
+    path = path or discover_template_spec()
     text = path.read_text(encoding="utf-8")
     match = BLOCK.search(text)
     if not match:
@@ -120,7 +138,7 @@ def _index(ids: list[str], block_id: str) -> int:
         return -1
 
 
-def audit(path: Path = TEMPLATE_SPEC) -> dict[str, Any]:
+def audit(path: Path | None = None) -> dict[str, Any]:
     findings: list[dict[str, str]] = []
     try:
         contract = load_contract(path)
