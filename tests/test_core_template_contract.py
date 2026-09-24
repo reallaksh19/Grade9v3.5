@@ -111,12 +111,11 @@ class CoreTemplateContractTests(unittest.TestCase):
             for row in self.projections
             if row["projection"]["core"] == "CORE2"
         ]
-        self.assertTrue(core2_rows, "production provider must expose at least one Core2 custody witness")
-        core2 = core2_rows[0]
-        self.assertTrue(core2["application"]["source_refs"])
-        self.assertIsNotNone(core2["application"]["origin"])
-        self.assertIn("hints", core2["application"])
-        self.assertIn("solution", core2["application"])
+        self.assertEqual(
+            core2_rows,
+            [],
+            "current production has no reviewed source-custody Core2; authored practice must not be promoted to fill that hold",
+        )
 
         core2a = self.projection("CORE2A", source_ref=familiar)
         self.assertTrue(core2a["application"]["reasoning_route"])
