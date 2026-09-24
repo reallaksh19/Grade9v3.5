@@ -308,13 +308,13 @@ function renderSummary() {
 }
 
 async function loadPackage() {
-  if (diagnosticMode === "package-failure") {
-    throw Object.assign(new Error("Diagnostic package failure"), { code: "SESSION_PORTABLE_PACKAGE_LOAD_FAILED" });
-  }
   record(
     { type: "PACKAGE_LOAD_REQUESTED" },
     { producer: "session shell", componentBoundary: "portable-package-loader" },
   );
+  if (diagnosticMode === "package-failure") {
+    throw Object.assign(new Error("Diagnostic package failure"), { code: "SESSION_PORTABLE_PACKAGE_LOAD_FAILED" });
+  }
   const ref = identity.portablePackageRef;
   if (!/^[a-z0-9][a-z0-9-]*$/i.test(ref)) {
     throw Object.assign(new Error("Unsafe portable package reference"), { code: "SESSION_PORTABLE_PACKAGE_REF_INVALID" });
