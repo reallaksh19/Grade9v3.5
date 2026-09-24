@@ -222,7 +222,7 @@ export function transitionMotionSessionState(currentStateInput, actionInput) {
   const action = requireObject(actionInput, "SESSION_ACTION_REQUIRED");
   const type = requireString(action.type, "SESSION_ACTION_TYPE_REQUIRED");
 
-  if (type === "SESSION_START" || type === "IDENTITY_RESOLVED" || type === "TRACE_EXPORTED") {
+  if (type === "SESSION_START" || type === "IDENTITY_RESOLVED" || type === "TRACE_EXPORTED" || type === "RETRY_REQUESTED") {
     return observed(state, type);
   }
 
