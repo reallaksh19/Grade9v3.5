@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 242,
-  "relation_count": 282,
+  "relation_count": 283,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -17,7 +17,7 @@
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:336c7f9c9f9b244b6bd1cc7139c8209b2382a4e8adb5ce5435382a4400765ebc",
+  "digest": "sha256:8690729321d4cfffbe09d0e75e86b9cbd2e0c30235d5d889ed43d5531dfb1d73",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -506,8 +506,8 @@
       "path": "Shared/tools/build_portable_workbench.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 6791,
-      "sha256": "98a9b6055f59fef4cadc7e5133a3c8a9fd86bf4323e3d3052ba38f7126275d55"
+      "bytes": 7381,
+      "sha256": "825b649c104c6efd07d69911879ebe9be0757f9e86d98348c98d2692f6916cb6"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -891,8 +891,8 @@
       "path": "tests/fixtures/portable-workbench/external-host.html",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 1804,
-      "sha256": "66b656700bdc6b566e7c9f3cde289e29cc47131aeb038f665c0c753c34b0527b"
+      "bytes": 1955,
+      "sha256": "7e693021a02f62c126d052de542592475a1826ae27a8818a7ad6b6958503bb64"
     },
     {
       "path": "tests/fixtures/portable-workbench/sources/01-long-division.json",
@@ -1052,8 +1052,8 @@
       "path": "tests/portable_workbench.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11751,
-      "sha256": "aed6a4c5c2a7cded6145028775bbbe86bec92edd8c3a094ff8024a50cb6bad63"
+      "bytes": 15594,
+      "sha256": "25ed29d1354b017026d7284e4886053b89a7653da7d2f517586ac27b4868eb2e"
     },
     {
       "path": "tests/test_agent_path_stress_prompts.py",
@@ -1500,8 +1500,8 @@
       "path": "tests/test_portable_workbench.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 4204,
-      "sha256": "23540990e090d531a181ee180965617e5cf9a05ece2d0711f4c9a0236d793c99"
+      "bytes": 10301,
+      "sha256": "806fad7ad0042e5101a6cadf12fecb4b5e39e478a5866f52b00bc4b6508b5621"
     },
     {
       "path": "tests/test_practical_learner_evidence.py",
@@ -2888,6 +2888,11 @@
     {
       "from": "tests/test_owner_decisions.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_portable_workbench.py",
+      "to": "Shared.portable.binding",
       "kind": "IMPORTS"
     },
     {

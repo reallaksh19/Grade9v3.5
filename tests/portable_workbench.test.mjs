@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { WorkbenchRuntime } from "../Shared/workbench/runtime.mjs";
-import { PortablePackageError, createDeclarativeAdapter, validatePortablePackage } from "../Shared/portable/portable-host.mjs";
+import { PortablePackageError, createDeclarativeAdapter, resolveCanonicalPortableTarget, validatePortablePackage } from "../Shared/portable/portable-host.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "..");
@@ -18,6 +18,72 @@ test("three packages validate under one portable version seam", async () => {
     versions.add([pkg.packageVersion,pkg.componentApiVersion,pkg.transformationIrVersion,pkg.adapterApiVersion,pkg.scenePackageVersion,pkg.adapter.id].join("|"));
   }
   assert.equal(versions.size, 1);
+});
+
+test("canonical provenance requires explicit resource and representation refs", async () => {
+  const canonical = structuredClone(await packageById(ids[0]));
+  canonical.resourceRef = "ACT-TEST-CANONICAL";
+  canonical.representationRefs = ["REP-TEST-CANONICAL"];
+  canonical.sourceRefs = ["SRC-TEST-CANONICAL"];
+  canonical.provenance = {
+    authority: "CANONICAL_COMPILED_RESOURCE",
+    sourceKind: "CANONICAL_RESOURCE",
+    sourceRefs: ["SRC-TEST-CANONICAL"],
+    resourceRef: "ACT-TEST-CANONICAL",
+    representationRef: "REP-TEST-CANONICAL",
+  };
+  assert.equal(validatePortablePackage(canonical).resourceRef, "ACT-TEST-CANONICAL");
+
+  const missing = structuredClone(canonical);
+  delete missing.provenance.resourceRef;
+  assert.throws(
+    () => validatePortablePackage(missing),
+    (error) => error instanceof PortablePackageError && error.code === "PORTABLE_CANONICAL_RESOURCE_REF_REQUIRED",
+  );
+});
+
+test("AtlasIndex 2.0 visual target binding is exact-ID and fail-closed", async () => {
+  const resourceRef = "ACT-KIN-2D-SHARED-CLOCK";
+  const unavailable = {
+    resource_ref: resourceRef,
+    representation_refs: ["REP-KIN-2D-SHARED-CLOCK"],
+    locator: "public/physics/motion-2d/explorers/shared-clock/index.html",
+    delivery_kind: "EXISTING_ACTIVITY",
+    delivery_profile: "REPO_BUNDLE",
+    portable_package_ref: null,
+    availability: { resource: "READY", locator: "READY", portable_package: "UNAVAILABLE", standalone: "UNAVAILABLE" },
+  };
+  assert.throws(
+    () => resolveCanonicalPortableTarget(resourceRef, { [resourceRef]: unavailable }, {}),
+    (error) => error instanceof PortablePackageError && error.code === "STANDALONE_PACKAGE_UNAVAILABLE",
+  );
+  assert.throws(
+    () => resolveCanonicalPortableTarget("ACT-NOT-HERE", { [resourceRef]: unavailable }, {}),
+    (error) => error instanceof PortablePackageError && error.code === "VISUAL_REF_UNAVAILABLE",
+  );
+
+  const canonical = structuredClone(await packageById(ids[0]));
+  canonical.id = "portable-motion-shared-clock";
+  canonical.resourceRef = resourceRef;
+  canonical.representationRefs = ["REP-KIN-2D-SHARED-CLOCK"];
+  canonical.sourceRefs = ["SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"];
+  canonical.provenance = {
+    authority: "CANONICAL_COMPILED_RESOURCE",
+    sourceKind: "CANONICAL_RESOURCE",
+    sourceRefs: ["SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"],
+    resourceRef,
+    representationRef: "REP-KIN-2D-SHARED-CLOCK",
+  };
+  const ready = {
+    ...unavailable,
+    delivery_kind: "PORTABLE_PACKAGE",
+    delivery_profile: "SINGLE_FILE_OFFLINE",
+    portable_package_ref: canonical.id,
+    availability: { resource: "READY", locator: "READY", portable_package: "READY", standalone: "READY" },
+  };
+  const binding = resolveCanonicalPortableTarget(resourceRef, { [resourceRef]: ready }, { [canonical.id]: canonical });
+  assert.equal(binding.portablePackageRef, canonical.id);
+  assert.equal(binding.representationRef, "REP-KIN-2D-SHARED-CLOCK");
 });
 
 test("generic declarative adapter executes each proof without Core edits", async () => {
@@ -219,6 +285,23 @@ test("portable workbench runs in repository, external and single-file hosts", { 
       const events = await driver.execute("return window.__portableEvents;");
       assert.ok(events.some((event) => event.type === "TRANSFER_ACCEPTED"));
       assert.equal(JSON.stringify(events).toLowerCase().includes("mastery"), false);
+    }
+
+    for (const path of [
+      "/public/portable-workbench/index.html?package=portable-does-not-exist",
+      "/tests/fixtures/portable-workbench/external-host.html?package=portable-does-not-exist",
+      "/standalone/portable-workbench/index.html?package=portable-does-not-exist",
+    ]) {
+      await driver.navigate(`${staticServer.origin}${path}`);
+      await driver.waitFor("return Boolean(window.__portableWorkbenchError);");
+      const missingPackage = await driver.execute(`return {
+        diagnostic: window.__portableWorkbenchError || null,
+        packageId: window.__portablePackageId || null,
+        ready: window.__portableWorkbenchReady === true,
+      };`);
+      assert.match(missingPackage.diagnostic, /PORTABLE_PACKAGE_NOT_FOUND/);
+      assert.equal(missingPackage.packageId, null);
+      assert.equal(missingPackage.ready, false);
     }
 
     await driver.setWindow(390, 844);
