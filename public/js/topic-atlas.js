@@ -209,7 +209,10 @@
     if (!locator.startsWith('public/')) return locator;
 
     const target = locator.replace(/^public\//, '').split('/').filter(Boolean);
-    const current = window.location.pathname.split('/').filter(Boolean);
+    const pathname = window.location && typeof window.location.pathname === 'string'
+      ? window.location.pathname
+      : '';
+    const current = pathname.split('/').filter(Boolean);
     const publicIdx = current.lastIndexOf('public');
     if (publicIdx === -1) return '../../' + target.join('/');
 
