@@ -58,6 +58,12 @@ jobs:
       - name: Role specs resolve against the library schema
         run: python3 Shared/tools/spec_conformance.py --enforce
 
+      # Core2A still permits legacy prose while the corpus migrates, but that debt is
+      # frozen: a new or materially revised familiar-application item must use the
+      # structured reasoning route and stable crux rather than creating more fallback debt.
+      - name: Core2A reasoning migration only moves forward
+        run: python3 Shared/tools/core2a_inventory.py --enforce-forward
+
       # A claim about a learner must be backed by what was seen, or say it is a waiver.
       # Enforcing from the start: the store landed with its gate, and both committed
       # profiles are waiver-backed with a null percentage, which is the honest value.

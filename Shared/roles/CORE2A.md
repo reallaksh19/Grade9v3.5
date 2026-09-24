@@ -6,7 +6,7 @@ Read [the shared role invariants](README.md) first.
 
 Teach the learner to solve a **familiar question-family demand** by making the application reasoning route explicit and supportable. Core2A is supported application: the learner is not expected to get there unaided.
 
-The canonical crux is the question-specific application reasoning move. Where authored, `question.answer.reasoning_route[]` holds the structured route and `question.answer.crux_move_ref` identifies the stable move that unlocks the problem.
+The canonical crux is the question-specific application reasoning move. Where authored, `question.answer.reasoning_route[]` holds the structured route and `question.answer.crux_move_ref` identifies the stable move that unlocks the problem. That crux is **not required to be a model-choice decision**: it may legitimately be a `REPRESENT`, `DECIDE`, `CONNECT` or `TRANSFORM` move when that is the real familiar-application bottleneck. `VERIFY` closes or tests a result; it is not the move that unlocks the application. Core2B remains stricter because its protected changed demand is specifically a learner decision.
 
 ## Required content
 

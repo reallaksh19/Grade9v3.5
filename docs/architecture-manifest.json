@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 247,
-  "relation_count": 285,
+  "component_count": 249,
+  "relation_count": 287,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 120,
-    "TOOLING": 56,
+    "TEST": 121,
+    "TOOLING": 57,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:85d9b471df4139460fc1eb328f5191daa10ecabb5787a4ad9456a85f18938e4f",
+  "digest": "sha256:6c7b146673ea885f1784dd8cc21f06d8826410e0f7a65d33a0474c9b42b9268d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -135,8 +135,8 @@
       "path": "Shared/library/intake.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 15183,
-      "sha256": "97758c6771cc61536b1b2d61f1835dd7c2f766d34dc112a95005699c03af6e65"
+      "bytes": 15381,
+      "sha256": "fef40b693b829abdf9785346ddeae0032c9d859fc36578ac86e2427c542af3a8"
     },
     {
       "path": "Shared/library/learner-profile.schema.json",
@@ -324,8 +324,8 @@
       "path": "Shared/publication_host/inputs.py",
       "role": "ENGINE",
       "role_description": "Subject-neutral publication engine",
-      "bytes": 17893,
-      "sha256": "6d4384df55fe57328489f41a15b8fee6d9497b12dd62c167459f4a5e31fa5c92"
+      "bytes": 18006,
+      "sha256": "919aa8e02cf5cf0e28e47b027acf356f04834025524f3b11c1c5df26766fa36f"
     },
     {
       "path": "Shared/publication_host/science.py",
@@ -373,8 +373,8 @@
       "path": "Shared/roles/CORE2A.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4484,
-      "sha256": "49ae92ae84fec72860e317f27288c31002d8d6c5236a3cef6788af826cdce63b"
+      "bytes": 4859,
+      "sha256": "a915e8af352ee9cb5e28647d8d2b1e85941def34669a8736d9c6c16ef3073d1d"
     },
     {
       "path": "Shared/roles/CORE2B.md",
@@ -429,8 +429,8 @@
       "path": "Shared/tools/author_brief.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 16163,
-      "sha256": "ac47354121ff9c025ca08cc49a0bfe11fb7422e531455169657c54bc7216d411"
+      "bytes": 16403,
+      "sha256": "503c9f9e62bdafc0e794fcf2d8970e4f854130f61fed23947f48eb1b07ef0e71"
     },
     {
       "path": "Shared/tools/build_core_learning_data.py",
@@ -522,6 +522,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 17192,
       "sha256": "440cbd94065a7837fd8b7daf4b8b2e2c7e77fabf451fcd44c1d6a98ba37166fd"
+    },
+    {
+      "path": "Shared/tools/core2a_inventory.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16748,
+      "sha256": "9eef94d26a350f193c0d3e58268bda1a0bc6c5ddb85088652158418ce32717dd"
     },
     {
       "path": "Shared/tools/core_focus.py",
@@ -1133,6 +1140,13 @@
       "sha256": "8a74cc3e159be69d5a85530a8506a3deb9f3f295cc079ac5314720d99dc2694b"
     },
     {
+      "path": "tests/test_core2a_inventory.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9014,
+      "sha256": "bd6d8c744a75d28637388c096d567d3b5259db3ea01b158903cbfa8ea384771a"
+    },
+    {
       "path": "tests/test_core_issue19_integration.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1157,8 +1171,8 @@
       "path": "tests/test_core_projection_pipeline.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 27965,
-      "sha256": "08dc23cd83f08ea359036e48a3d934cb9c4160303bba411b679389f273880da4"
+      "bytes": 30580,
+      "sha256": "27b4b2c3e599ef9101ec5eb96cbdd70d6b626f9e31c5cc9d8c1c8e085a562534"
     },
     {
       "path": "tests/test_empirical_acceptance.py",
@@ -1640,8 +1654,8 @@
       "path": "tests/test_tools.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 87114,
-      "sha256": "98096d19d3c437b8d479f1dc52330e1d715d2be5e4e203f9d84916d4e97a1d63"
+      "bytes": 87497,
+      "sha256": "d6050827be0a5f8bac8b6973032faa7a932bbbcfcf32bcd9094afe10a91f65fc"
     },
     {
       "path": "tests/test_topic_atlas_browser_runtime.py",
@@ -2096,6 +2110,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/core2a_inventory.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/empirical_acceptance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2502,6 +2521,11 @@
     },
     {
       "from": "tests/test_chemistry_master_suites_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core2a_inventory.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

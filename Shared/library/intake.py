@@ -35,6 +35,7 @@ from Shared.library.substance import (
 
 SCHEMA = Path(__file__).resolve().parent / "package.schema.json"
 LIFECYCLE = ("CANDIDATE", "REVIEWED", "CURATED")
+APPLICATION_CRUX_KINDS = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM"}
 
 
 def schema_errors(package: dict) -> list[str]:
@@ -189,9 +190,10 @@ def check(package: dict) -> dict:
             fail("REASONING_ROUTE", f"{qid}: structured reasoning_route has no crux_move_ref")
         if crux and not route:
             fail("REASONING_ROUTE", f"{qid}: crux_move_ref is present without reasoning_route")
-        if crux in move_by_id and move_by_id[crux].get("kind") != "DECIDE":
-            fail("REASONING_ROUTE", f"{qid}: crux_move_ref {crux} must name a DECIDE move, "
-                                    "not an execution-only step")
+        if crux in move_by_id and move_by_id[crux].get("kind") not in APPLICATION_CRUX_KINDS:
+            fail("REASONING_ROUTE", f"{qid}: crux_move_ref {crux} must name an application "
+                                    "bottleneck move (REPRESENT, DECIDE, CONNECT or TRANSFORM), "
+                                    f"not {move_by_id[crux].get('kind')}")
 
         scaffolds = row.get("scaffolds") or []
         for position, scaffold in enumerate(scaffolds):

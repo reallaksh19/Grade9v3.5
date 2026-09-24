@@ -944,6 +944,13 @@ class AuthorBrief(unittest.TestCase):
         text = "\n".join(author_brief.practice(self.board(), "CORE2A"))
         self.assertIn(self.board()["family"]["difficult_move"], text)
 
+    def test_core2a_brief_defines_familiar_demand_not_surface_mutation(self):
+        text = "\n".join(author_brief.practice(self.board(), "CORE2A"))
+        self.assertIn("familiar same-family application", text)
+        self.assertIn("synthetic", text)
+        self.assertIn("not required", text)
+        self.assertNotIn("Vary the numbers, the objects or the cover story", text)
+
     def test_only_the_transfer_product_reads_the_transfer_rows(self):
         board = self.board()
         dimension = board["transfer"][0]["dimension"]
