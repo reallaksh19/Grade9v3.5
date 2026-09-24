@@ -1,0 +1,43 @@
+name: phase2-core1a-refresh
+
+on:
+  push:
+    branches:
+      - audit/core1a-construction-phase2
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[phase2-core1a-refresh]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/core1a-construction-phase2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install schema validator
+        run: python -m pip install jsonschema
+      - name: Generate Core1A evidence
+        run: |
+          python3 -m Shared.library.core1a_construction \
+            --write-report docs/core1a-construction-report.json \
+            --write-baseline docs/core1a-construction-baseline.json
+          python3 Shared/tools/build_manifest.py
+      - name: Commit exact generated evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            docs/core1a-construction-report.json \
+            docs/core1a-construction-baseline.json \
+            docs/architecture-manifest.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "[phase2-core1a-refresh] Generate Core1A construction evidence"
+          git push origin HEAD:audit/core1a-construction-phase2
