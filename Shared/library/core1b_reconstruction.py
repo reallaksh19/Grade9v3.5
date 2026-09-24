@@ -119,6 +119,15 @@ def audit_microtopic(
 
     in_a = bool(core1a_route_refs)
     in_b = bool(core1b_route_refs)
+    routing_state = (
+        "A_AND_B"
+        if in_a and in_b
+        else "CORE1A_ONLY"
+        if in_a
+        else "CORE1B_ONLY"
+        if in_b
+        else "UNROUTED"
+    )
     if in_a and not in_b:
         findings.append(_finding(
             "CORE1B_COVERAGE_MISSING",
@@ -131,6 +140,24 @@ def audit_microtopic(
             "Core1B routes include a microtopic absent from Core1A route coverage.",
             ref,
         ))
+
+    if not in_a and not in_b:
+        return {
+            "subject": subject,
+            "package_path": package_path,
+            "microtopic_ref": ref,
+            "bucket_ref": microtopic.get("bucket_id"),
+            "core1a_route_refs": [],
+            "core1b_route_refs": [],
+            "routing_state": routing_state,
+            "coverage_equal": True,
+            "finding_codes": sorted({row["code"] for row in findings}),
+            "findings": findings,
+            "phase4_handoff_codes": ["CROSS_CORE_ROUTING_UNRESOLVED"],
+            "manual_review_obligations": [
+                "UNROUTED_CONCEPT_REQUIRES_PROGRAMME_ROUTING_DECISION",
+            ],
+        }
 
     elicitation = microtopic.get("elicitation")
     if not isinstance(elicitation, dict):
@@ -146,7 +173,9 @@ def audit_microtopic(
             "bucket_ref": microtopic.get("bucket_id"),
             "core1a_route_refs": sorted(core1a_route_refs),
             "core1b_route_refs": sorted(core1b_route_refs),
+            "routing_state": routing_state,
             "coverage_equal": in_a == in_b,
+            "phase4_handoff_codes": [],
             "finding_codes": sorted({row["code"] for row in findings}),
             "findings": findings,
             "manual_review_obligations": [
@@ -263,7 +292,9 @@ def audit_microtopic(
         "bucket_ref": microtopic.get("bucket_id"),
         "core1a_route_refs": sorted(core1a_route_refs),
         "core1b_route_refs": sorted(core1b_route_refs),
+        "routing_state": routing_state,
         "coverage_equal": in_a == in_b,
+        "phase4_handoff_codes": [],
         "reconstruct_step_count": len(route) if isinstance(route, list) else 0,
         "finding_codes": sorted({row["code"] for row in findings}),
         "findings": findings,
@@ -315,8 +346,16 @@ def audit(repo: Path) -> dict:
         },
         "summary": {
             "microtopic_count": len(rows),
-            "structured_microtopics": sum(1 for row in rows if not row["findings"]),
-            "microtopics_with_debt": sum(1 for row in rows if row["findings"]),
+            "routed_microtopics": sum(1 for row in rows if row["routing_state"] != "UNROUTED"),
+            "structured_routed_microtopics": sum(
+                1 for row in rows
+                if row["routing_state"] != "UNROUTED" and not row["findings"]
+            ),
+            "microtopics_with_reconstruction_debt": sum(
+                1 for row in rows
+                if row["routing_state"] != "UNROUTED" and row["findings"]
+            ),
+            "unrouted_microtopics": sum(1 for row in rows if row["routing_state"] == "UNROUTED"),
             "coverage_mismatches": sum(1 for row in rows if not row["coverage_equal"]),
             "finding_counts": dict(sorted(counts.items())),
         },
