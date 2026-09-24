@@ -81,6 +81,17 @@ jobs:
             --write-report /tmp/core1a-construction-report.json
           diff -u docs/core1a-construction-report.json /tmp/core1a-construction-report.json
 
+      # Core1B changes agency, not conceptual truth. Routed Core1B coverage must
+      # match Core1A and each self-tutor cycle must close without a tutor. Unrouted
+      # concepts are handed to cross-Core progression rather than mislabelled B debt.
+      - name: Core1B reconstruction integrity only moves forward
+        run: |
+          python3 -m Shared.library.core1b_reconstruction \
+            --check-baseline docs/core1b-reconstruction-baseline.json
+          python3 -m Shared.library.core1b_reconstruction \
+            --write-report /tmp/core1b-reconstruction-report.json
+          diff -u docs/core1b-reconstruction-report.json /tmp/core1b-reconstruction-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
