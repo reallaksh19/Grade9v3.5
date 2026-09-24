@@ -231,8 +231,8 @@ test("Topic Atlas 2.0 exact browser navigation contract", { skip: !driverPath, t
       };
     `);
     assert.match(mathState.text, /Representation:\s*READY/);
-    assert.match(mathState.text, /Core:\s*UNAVAILABLE/);
-    assert.equal(mathState.core, 0);
+    assert.match(mathState.text, /Core:\s*READY/);
+    assert.equal(mathState.core, 2);
     assert.equal(mathState.visual, 0);
     assert.equal(mathState.portable, 0);
     assert.doesNotMatch(mathState.lane, /Dynamics & Applications|Constraints & Quantitative/);
