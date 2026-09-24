@@ -9,7 +9,7 @@ from unittest.mock import patch
 from Shared.contracts import ContractError
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.resolve import build_index
-from Shared.tools import build_core_learning_data
+from Shared.tools import build_core_learning_data, build_core_learning_host
 from Shared.tools.core_learning_projection_adapter import (
     _application,
     adapt_compiled_bucket_with_status,
@@ -327,6 +327,27 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertEqual(projection["core"], "CORE2")
         self.assertTrue(projection["presentation"]["show_solution_initially"])
         self.assertEqual(projection["application"]["solution"]["summary"], "A")
+
+    def test_public_and_standalone_hosts_share_one_academic_template(self):
+        rendered = {
+            path: content.decode("utf-8")
+            for path, content in build_core_learning_host.render().items()
+        }
+        public = rendered["public/core-learning/index.html"]
+        standalone = rendered["standalone/core-learning/index.html"]
+        normalized_public = (
+            public
+            .replace("./data.js", "__DATA__")
+            .replace("../js/core-learning", "__RUNTIME__")
+        )
+        normalized_standalone = (
+            standalone
+            .replace("../../public/core-learning/data.js", "__DATA__")
+            .replace("../../public/js/core-learning", "__RUNTIME__")
+        )
+        self.assertEqual(normalized_public, normalized_standalone)
+        self.assertIn("const rows = Array.isArray(data?.core_projections)", public)
+        self.assertIn("mountCoreLearningPage", public)
 
     def test_shared_clock_explorer_remains_available_when_canonical_resource_exists(self):
         row = self.row(core="CORE2A", source=FAMILIAR)
