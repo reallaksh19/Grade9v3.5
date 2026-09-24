@@ -154,6 +154,18 @@ class IndependentSourceOracleTest(unittest.TestCase):
         self.assertEqual("REPO_BUNDLE", gcdr.get("delivery_profile", {}).get("profile"))
         self.assertNotIn("portable_package_ref", activity)
 
+        representation = self.physics["REP-KIN-2D-SHARED-CLOCK"]
+        portable = next(
+            scene["scene"]["portable_workbench"]
+            for scene in representation["scene_instances"]
+            if isinstance(scene.get("scene", {}).get("portable_workbench"), dict)
+        )
+        self.assertEqual("portable-motion-shared-clock", portable["package_ref"])
+        self.assertEqual(
+            {"portable_package": "READY", "standalone": "READY"},
+            portable["release"],
+        )
+
         availability = core_availability(self.core, "Physics", MOTION_BUCKET)
         self.assertEqual("AVAILABLE", availability["status"])
         self.assertEqual(
@@ -276,8 +288,8 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
         self.assertEqual("READY", row["availability"]["representation"])
         self.assertEqual("READY", row["availability"]["activity"])
         self.assertEqual("READY", row["availability"]["locator"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
-        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
+        self.assertEqual("READY", row["availability"]["portable_package"])
+        self.assertEqual("READY", row["availability"]["standalone"])
         target = physics["visual_targets"]["ACT-KIN-2D-SHARED-CLOCK"]
         self.assertEqual(
             ["REP-KIN-2D-SHARED-CLOCK"],
@@ -288,10 +300,10 @@ class CurrentPayloadFailureSurfaceTest(unittest.TestCase):
             target["locator"],
         )
         self.assertEqual("REPO_BUNDLE", target["delivery_profile"])
-        self.assertIsNone(target["portable_package_ref"])
+        self.assertEqual("portable-motion-shared-clock", target["portable_package_ref"])
         self.assertEqual("READY", target["availability"]["locator"])
-        self.assertEqual("UNAVAILABLE", target["availability"]["portable_package"])
-        self.assertEqual("UNAVAILABLE", target["availability"]["standalone"])
+        self.assertEqual("READY", target["availability"]["portable_package"])
+        self.assertEqual("READY", target["availability"]["standalone"])
 
     def test_math_r1_consumer_row_does_not_collapse_prerequisites(self):
         math = subject_payload("Mathematics")
@@ -347,6 +359,26 @@ class ResolverAdversarialFalsifierTest(unittest.TestCase):
         cls.motion = matrix_board("Physics", MOTION_MATRIX)
         cls.nlm = matrix_board("Physics", NLM_MATRIX)
         cls.linear = matrix_board("Mathematics", MATH_MATRIX)
+
+    def test_package_ref_without_explicit_release_does_not_become_ready(self):
+        records = copy.deepcopy(self.physics)
+        representation = records["REP-KIN-2D-SHARED-CLOCK"]
+        portable = next(
+            scene["scene"]["portable_workbench"]
+            for scene in representation["scene_instances"]
+            if isinstance(scene.get("scene", {}).get("portable_workbench"), dict)
+        )
+        self.assertEqual("portable-motion-shared-clock", portable["package_ref"])
+        portable.pop("release", None)
+
+        result = build_subject_index("Physics", [self.motion], records, self.core)
+        row = find_row(result, MOTION_MATRIX, "R1")
+        target = result["visual_targets"]["ACT-KIN-2D-SHARED-CLOCK"]
+        self.assertEqual("UNAVAILABLE", row["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", row["availability"]["standalone"])
+        self.assertIsNone(target["portable_package_ref"])
+        self.assertEqual("UNAVAILABLE", target["availability"]["portable_package"])
+        self.assertEqual("UNAVAILABLE", target["availability"]["standalone"])
 
     def test_absent_microtopic_is_explicitly_unavailable_not_invalid(self):
         board = copy.deepcopy(self.motion)

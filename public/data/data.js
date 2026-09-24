@@ -32359,8 +32359,8 @@ window.GRADE9V3 = {
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
-            "portable_package": "UNAVAILABLE",
-            "standalone": "UNAVAILABLE"
+            "portable_package": "READY",
+            "standalone": "READY"
           },
           "provenance": {
             "microtopic_ref": {
@@ -32443,8 +32443,8 @@ window.GRADE9V3 = {
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
-            "portable_package": "UNAVAILABLE",
-            "standalone": "UNAVAILABLE"
+            "portable_package": "READY",
+            "standalone": "READY"
           },
           "provenance": {
             "microtopic_ref": {
@@ -32547,8 +32547,8 @@ window.GRADE9V3 = {
             "representation": "READY",
             "activity": "READY",
             "locator": "READY",
-            "portable_package": "UNAVAILABLE",
-            "standalone": "UNAVAILABLE"
+            "portable_package": "READY",
+            "standalone": "READY"
           },
           "provenance": {
             "microtopic_ref": {
@@ -37941,12 +37941,12 @@ window.GRADE9V3 = {
           "locator": "public/physics/motion-2d/explorers/shared-clock/index.html",
           "delivery_kind": "EXISTING_ACTIVITY",
           "delivery_profile": "REPO_BUNDLE",
-          "portable_package_ref": null,
+          "portable_package_ref": "portable-motion-shared-clock",
           "availability": {
             "resource": "READY",
             "locator": "READY",
-            "portable_package": "UNAVAILABLE",
-            "standalone": "UNAVAILABLE"
+            "portable_package": "READY",
+            "standalone": "READY"
           },
           "provenance": {
             "representation_ref_sources": [
@@ -38246,10 +38246,12 @@ window.GRADE9V3 = {
             "UNAVAILABLE": 88
           },
           "portable_package": {
-            "UNAVAILABLE": 102
+            "READY": 3,
+            "UNAVAILABLE": 99
           },
           "standalone": {
-            "UNAVAILABLE": 102
+            "READY": 3,
+            "UNAVAILABLE": 99
           }
         },
         "finding_counts": {
@@ -38410,10 +38412,10 @@ window.GRADE9V3 = {
                 "READY": 3
               },
               "portable_package": {
-                "UNAVAILABLE": 3
+                "READY": 3
               },
               "standalone": {
-                "UNAVAILABLE": 3
+                "READY": 3
               }
             },
             "finding_counts": {
