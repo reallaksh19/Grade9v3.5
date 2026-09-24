@@ -223,8 +223,24 @@ export function transitionMotionSessionState(currentStateInput, actionInput) {
   const action = requireObject(actionInput, "SESSION_ACTION_REQUIRED");
   const type = requireString(action.type, "SESSION_ACTION_TYPE_REQUIRED");
 
-  if (type === "SESSION_START" || type === "IDENTITY_RESOLVED" || type === "TRACE_EXPORTED" || type === "RETRY_REQUESTED") {
+  if ([
+    "SESSION_START", "IDENTITY_RESOLVED", "TRACE_EXPORTED", "RETRY_REQUESTED",
+    "STAGE_EXITED", "STAGE_ENTERED", "CORE_REVEAL_REQUESTED",
+    "VISUAL_ACTION_REQUESTED", "RECOVERY_STARTED",
+  ].includes(type)) {
     return observed(state, type);
+  }
+
+  if (type === "CORE_REVEAL_DENIED") {
+    return result(state, "DENY", action.reason || "SESSION_REVEAL_DENIED", false);
+  }
+
+  if (type === "NAVIGATION_REQUESTED") {
+    const target = requireString(action.stage, "SESSION_TARGET_STAGE_REQUIRED");
+    if (!MOTION_SESSION_STAGES.includes(target)) return result(state, "DENY", "SESSION_STAGE_UNKNOWN", false);
+    if (!state.unlockedStages.includes(target)) return result(state, "DENY", "SESSION_STAGE_LOCKED", false);
+    if (state.stage === target) return result(state, "DENY", "SESSION_STAGE_ALREADY_ACTIVE", false);
+    return result(state, "ACCEPT", "SESSION_NAVIGATION_PERMITTED", false);
   }
 
   if (type === "IDENTITY_RESOLUTION_FAILED" || type === "PACKAGE_LOAD_FAILED") {
