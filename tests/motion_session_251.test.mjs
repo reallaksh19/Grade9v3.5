@@ -534,9 +534,49 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.equal(await driver.execute("return window.__motionSessionTrace.some(e => e.event_type === 'PACKAGE_LOAD_REQUESTED');"), true);
     assert.equal(await driver.execute("return window.__motionSessionTrace.some(e => e.outcome === 'FAIL');"), true);
 
+    await driver.navigate(`${route}?diagnostic=workbench-delay`);
+    await driver.waitFor("return window.__motionSessionTrace?.some(e => e.requested_transition?.type === 'WORKBENCH_WAITING');");
+    assert.equal(await driver.execute("return window.__motionSessionReady === true;"), false);
+    assert.match(await driver.execute("return document.querySelector('#session-status').textContent;"), /preparing/i);
+    await driver.waitFor("return window.__motionSessionReady === true;");
+    const delayedTrace = await driver.execute("return window.__motionSessionTrace;");
+    assert.ok(delayedTrace.findIndex(e => e.requested_transition.type === "WORKBENCH_WAITING")
+      < delayedTrace.findIndex(e => e.event_type === "WORKBENCH_READY"));
+
     await driver.navigate(`${staticServer.origin}/standalone/motion-session/index.html`);
     await driver.waitFor("return window.__motionSessionReady === true;");
     assert.equal(await driver.execute("return window.__motionSessionTrace[0].host_mode;"), "offline");
+
+    await driver.sendKeys(await driver.element("#start-session"), ENTER);
+    await driver.waitFor("return window.__motionSessionState.stage === 'core1b';");
+    const offlineCore1 = await driver.shadowElement("#core1b-learner", "[data-attempt-input]");
+    await driver.sendKeys(offlineCore1, "One object, separate components, one shared time.");
+    await driver.sendKeys(await driver.shadowElement("#core1b-learner", '[data-action="commit"]'), ENTER);
+    await driver.waitFor("return window.__motionSessionState.core1b.revealed === true;");
+    await driver.sendKeys(await driver.element("#core1b-next"), ENTER);
+    await driver.waitFor("return window.__motionSessionState.stage === 'visual';");
+
+    const offlineMixed = await driver.shadowElement("#shared-clock-workbench", '[data-role="entity"][data-projection-ref="shared-clock-mixed-time-candidate-projection"]');
+    const offlineTarget = await driver.shadowElement("#shared-clock-workbench", '[data-role="target"][data-target-ref="shared-clock-plane-state"]');
+    await driver.sendKeys(offlineMixed, ENTER);
+    await driver.sendKeys(offlineTarget, ENTER);
+    await driver.waitFor("return window.__motionSessionState.visual.rejectedCount === 1;");
+    const offlineSame = await driver.shadowElement("#shared-clock-workbench", '[data-role="entity"][data-projection-ref="shared-clock-same-time-candidate-projection"]');
+    const offlineTarget2 = await driver.shadowElement("#shared-clock-workbench", '[data-role="target"][data-target-ref="shared-clock-plane-state"]');
+    await driver.sendKeys(offlineSame, ENTER);
+    await driver.sendKeys(offlineTarget2, ENTER);
+    await driver.waitFor("return window.__motionSessionState.visual.acceptedCount === 1;");
+    await driver.sendKeys(await driver.element("#visual-next"), ENTER);
+    await driver.waitFor("return window.__motionSessionState.stage === 'core2b';");
+
+    const offlineCore2 = await driver.shadowElement("#core2b-learner", "[data-attempt-input]");
+    await driver.sendKeys(offlineCore2, "Check whether the changed post-release interaction still satisfies the familiar model conditions.");
+    await driver.sendKeys(await driver.shadowElement("#core2b-learner", '[data-action="commit"]'), ENTER);
+    await driver.waitFor("return window.__motionSessionState.core2b.revealed === true;");
+    await driver.sendKeys(await driver.element("#core2b-next"), ENTER);
+    await driver.waitFor("return window.__motionSessionState.stage === 'summary' && window.__motionSessionState.completed === true;");
+    assert.equal(replayMotionSessionTrace(await driver.execute("return window.__motionSessionTrace;")).ok, true);
+
     const externalRequests = await driver.execute(`
       return performance.getEntriesByType("resource")
         .map((entry) => new URL(entry.name))
@@ -544,6 +584,11 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
         .map((url) => url.href);
     `);
     assert.deepEqual(externalRequests, []);
+
+    await driver.navigate(`${staticServer.origin}/standalone/motion-session/index.html?diagnostic=package-failure`);
+    await driver.waitFor("return document.querySelector('[data-error-code]')?.textContent === 'SESSION_PORTABLE_PACKAGE_LOAD_FAILED';");
+    assert.equal(await driver.execute("return window.__motionSessionTrace[0].host_mode;"), "offline");
+    assert.equal(await driver.execute("return window.__motionSessionTrace.some(e => e.outcome === 'FAIL');"), true);
   } finally {
     await driver.close();
     driverProcess.child.kill("SIGTERM");
