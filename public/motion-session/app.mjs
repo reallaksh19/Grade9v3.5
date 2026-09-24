@@ -39,6 +39,9 @@ let identity = null;
 let packageData = null;
 let recorder = null;
 let resetting = false;
+let packageLoadSequence = null;
+let pendingVisualActionSequence = null;
+const pendingRevealSequence = { CORE1B: null, CORE2B: null };
 
 function hostMode() {
   if (location.protocol === "file:" || location.pathname.includes("/standalone/")) return "offline";
@@ -162,11 +165,24 @@ function focusStage(stage) {
 }
 
 function navigate(stage, { historyMode = "push" } = {}) {
-  const event = record(
-    { type: "NAVIGATE", stage },
+  const fromStage = recorder.state.stage;
+  const request = record(
+    { type: "NAVIGATION_REQUESTED", stage },
     { producer: "session shell", componentBoundary: "stage-navigation" },
   );
-  if (event.outcome === "DENY") return false;
+  if (request.outcome === "DENY") return false;
+  record(
+    { type: "STAGE_EXITED", stage: fromStage, nextStage: stage },
+    { producer: "session shell", componentBoundary: "stage-navigation", parentSequence: request.sequence },
+  );
+  record(
+    { type: "NAVIGATE", stage },
+    { producer: "session shell", componentBoundary: "stage-navigation", parentSequence: request.sequence },
+  );
+  record(
+    { type: "STAGE_ENTERED", stage, previousStage: fromStage },
+    { producer: "session shell", componentBoundary: "stage-navigation", parentSequence: request.sequence },
+  );
   const url = new URL(location.href);
   url.hash = stage;
   const payload = { motionSessionStage: stage };
@@ -179,17 +195,26 @@ function navigate(stage, { historyMode = "push" } = {}) {
 function safeCoreEvent(core, type, detail = {}) {
   const boundary = core === "CORE1B" ? "core1b-learner" : "core2b-learner";
   if (type === CORE_LEARNER_EVENTS.ATTEMPT_REJECTED) {
-    record(
+    const attempt = record(
       { type: "CORE_ATTEMPT_REJECTED", core, reason: detail.reason || "CORE_LEARNING_ATTEMPT_REJECTED", responsePresent: Boolean(detail.responsePresent) },
       { eventType: type, producer: "Core learner", componentBoundary: boundary },
+    );
+    record(
+      { type: "CORE_REVEAL_DENIED", core, reason: detail.reason || "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED" },
+      { producer: "session shell", componentBoundary: boundary, parentSequence: attempt.sequence },
     );
     return;
   }
   if (type === CORE_LEARNER_EVENTS.ATTEMPT_COMMITTED) {
-    record(
+    const attempt = record(
       { type: "CORE_ATTEMPT_ACCEPTED", core, responsePresent: true },
       { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
+    const reveal = record(
+      { type: "CORE_REVEAL_REQUESTED", core },
+      { producer: "session shell", componentBoundary: boundary, parentSequence: attempt.sequence },
+    );
+    pendingRevealSequence[core] = reveal.sequence;
     return;
   }
   if (type === CORE_LEARNER_EVENTS.SUPPORT_REQUESTED || type === CORE_LEARNER_EVENTS.HINT_REQUESTED) {
@@ -208,8 +233,14 @@ function safeCoreEvent(core, type, detail = {}) {
   if (type === CORE_LEARNER_EVENTS.REVEAL_CHANGED && detail.kind !== "support" && detail.kind !== "hint") {
     record(
       { type: "CORE_REVEAL_OBSERVED", core, revealKind: detail.kind || null },
-      { eventType: type, producer: "Core learner", componentBoundary: boundary },
+      {
+        eventType: type,
+        producer: "Core learner",
+        componentBoundary: boundary,
+        parentSequence: pendingRevealSequence[core],
+      },
     );
+    pendingRevealSequence[core] = null;
     return;
   }
   if (type === CORE_LEARNER_EVENTS.ACTIVITY_COMPLETED) {
@@ -247,6 +278,22 @@ function onWorkbenchEvent(event) {
     );
     return;
   }
+  if (detail.type === "ENTITY_PICKED") {
+    const requested = record(
+      {
+        type: "VISUAL_ACTION_REQUESTED",
+        sourceEntityRef: detail.entityRef || detail.request?.sourceEntityRef || null,
+        revision: detail.revision ?? workbench.snapshot?.revision ?? 0,
+      },
+      { producer: "semantic workbench", componentBoundary: "shared-clock-workbench" },
+    );
+    pendingVisualActionSequence = requested.sequence;
+    return;
+  }
+  if (detail.type === "INTERACTION_CANCELLED") {
+    pendingVisualActionSequence = null;
+    return;
+  }
   if (detail.type === "TRANSFER_ACCEPTED" || detail.type === "TRANSFER_REJECTED") {
     const semanticOutcome = detail.type === "TRANSFER_ACCEPTED" ? "ACCEPT" : "REJECT";
     record(
@@ -257,8 +304,13 @@ function onWorkbenchEvent(event) {
         eventKey: workbenchEventKey(detail),
         reason: detail.code || detail.type,
       },
-      { producer: "semantic workbench", componentBoundary: "shared-clock-workbench" },
+      {
+        producer: "semantic workbench",
+        componentBoundary: "shared-clock-workbench",
+        parentSequence: pendingVisualActionSequence,
+      },
     );
+    pendingVisualActionSequence = null;
   }
 }
 
@@ -309,10 +361,11 @@ function renderSummary() {
 }
 
 async function loadPackage() {
-  record(
+  const requested = record(
     { type: "PACKAGE_LOAD_REQUESTED" },
     { producer: "session shell", componentBoundary: "portable-package-loader" },
   );
+  packageLoadSequence = requested.sequence;
   if (diagnosticMode === "package-failure") {
     throw Object.assign(new Error("Diagnostic package failure"), { code: "SESSION_PORTABLE_PACKAGE_LOAD_FAILED" });
   }
@@ -330,8 +383,13 @@ async function loadPackage() {
   packageData = pkg;
   record(
     { type: "PACKAGE_READY" },
-    { producer: "session shell", componentBoundary: "portable-package-loader" },
+    {
+      producer: "session shell",
+      componentBoundary: "portable-package-loader",
+      parentSequence: packageLoadSequence,
+    },
   );
+  packageLoadSequence = null;
 }
 
 function resetCurrentRun() {
@@ -344,9 +402,10 @@ function resetCurrentRun() {
 }
 
 function retryNewRun() {
+  const previousRunId = runId();
   record({ type: "RETRY_REQUESTED" }, { producer: "session shell", componentBoundary: "session-retry" });
   const replay = replayMotionSessionTrace(recorder.events);
-  previousRuns.push({ run_id: runId(), trace: recorder.events, replay });
+  previousRuns.push({ run_id: previousRunId, trace: recorder.events, replay });
   runNumber += 1;
   recorder = createMotionSessionTraceRecorder({
     runId: runId(),
@@ -355,6 +414,10 @@ function retryNewRun() {
     initialState: createInitialMotionSessionState(),
   });
   record({ type: "SESSION_START" }, { producer: "session shell", componentBoundary: "session-shell" });
+  record(
+    { type: "RECOVERY_STARTED", previousRunId },
+    { producer: "session shell", componentBoundary: "session-retry" },
+  );
   record({ type: "IDENTITY_RESOLVED" }, { producer: "session shell", componentBoundary: "identity-resolver" });
   record({ type: "PACKAGE_READY" }, { producer: "session shell", componentBoundary: "portable-package-loader" });
   configureCore();
@@ -470,7 +533,11 @@ async function init() {
       try {
         recorder.record(
           { type: "PACKAGE_LOAD_FAILED", reason: error?.code || "SESSION_PACKAGE_LOAD_FAILED" },
-          { producer: "session shell", componentBoundary: "portable-package-loader" },
+          {
+            producer: "session shell",
+            componentBoundary: "portable-package-loader",
+            parentSequence: packageLoadSequence,
+          },
         );
       } catch (_) {}
     }
