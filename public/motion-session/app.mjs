@@ -210,11 +210,13 @@ function safeCoreEvent(core, type, detail = {}) {
       { type: "CORE_ATTEMPT_ACCEPTED", core, responsePresent: true },
       { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
-    const reveal = record(
-      { type: "CORE_REVEAL_REQUESTED", core },
-      { producer: "session shell", componentBoundary: boundary, parentSequence: attempt.sequence },
-    );
-    pendingRevealSequence[core] = reveal.sequence;
+    if (attempt.outcome !== "DENY") {
+      const reveal = record(
+        { type: "CORE_REVEAL_REQUESTED", core },
+        { producer: "session shell", componentBoundary: boundary, parentSequence: attempt.sequence },
+      );
+      pendingRevealSequence[core] = reveal.sequence;
+    }
     return;
   }
   if (type === CORE_LEARNER_EVENTS.SUPPORT_REQUESTED || type === CORE_LEARNER_EVENTS.HINT_REQUESTED) {
