@@ -73,6 +73,25 @@ class CrossCoreProgression(unittest.TestCase):
         )
         self.assertIn("SOURCE_DEMAND_NOT_YET_EVIDENCED", row["gaps"])
 
+    def test_motion2d_family_is_fully_migrated_without_source_anchor_drift(self):
+        report = core_progression.audit(REPO)
+        row = next(
+            item for item in report["families"]
+            if item["subject"] == "Physics"
+            and item["family_ref"] == "FAM-PHY-KIN-2D-PRACTICE"
+        )
+        self.assertEqual(len(row["source_anchors"]), 15)
+        self.assertEqual(
+            set(row["core2a_structured_refs"]),
+            set(row["core2a_question_refs"]),
+        )
+        self.assertEqual(
+            set(row["core2b_protected_refs"]),
+            set(row["core2b_question_refs"]),
+        )
+        self.assertNotIn("CORE2A_STRUCTURED_MIGRATION", row["gaps"])
+        self.assertNotIn("CORE2B_PROTECTED_MIGRATION", row["gaps"])
+
     def test_authored_practice_is_never_an_ordinary_core2_anchor(self):
         physics = REPO / "Physics"
         records = core_progression.ordinary_records(physics)
