@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 272,
-  "relation_count": 316,
+  "component_count": 275,
+  "relation_count": 317,
   "components_by_role": {
-    "CONTRACT": 7,
+    "CONTRACT": 8,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 46,
-    "TEST": 130,
-    "TOOLING": 59,
+    "TEST": 131,
+    "TOOLING": 60,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:5a4e2f1a8014acfe4690fa8c83465352e4bc56da972e8dd2da740dad58c121bd",
+  "digest": "sha256:7827c5f7b179ea9609b45780625a6738e0d79b4c55f7196dd4c2f870e3539d99",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -468,11 +468,18 @@
       "sha256": "396e8a8048e51c68493c949b3100ca8a76daa1172aac24ed12efcac6e1581a67"
     },
     {
+      "path": "Shared/roles/LEARNER-PRODUCT-TEMPLATES.md",
+      "role": "CONTRACT",
+      "role_description": "The six Core role specifications",
+      "bytes": 12708,
+      "sha256": "cf510ecc47d2dc92d59d8a4fd3c9fd43eb750d4d8458b30a47300b864f8847fe"
+    },
+    {
       "path": "Shared/roles/README.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4574,
-      "sha256": "1cc0553c84bf1732f11f3053273dfab09792454581e0829b7cbe428c7a00ca11"
+      "bytes": 5359,
+      "sha256": "411f7b8e45b336dadc6363dfc8a375906d7ce3ff0325da9964f8596082e6df30"
     },
     {
       "path": "Shared/tools/__init__.py",
@@ -641,6 +648,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 26713,
       "sha256": "413ba5f92c0df00b97337a3400446074a75f876cfbbca25a38b58525ddb5ecca"
+    },
+    {
+      "path": "Shared/tools/core_template_contract.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 10763,
+      "sha256": "2ddc18707147cfb57731aa294afe281b8cf1f6db8b10aaa5bc45c0130e5619f8"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -1327,6 +1341,13 @@
       "role_description": "Executable checks",
       "bytes": 30580,
       "sha256": "27b4b2c3e599ef9101ec5eb96cbdd70d6b626f9e31c5cc9d8c1c8e085a562534"
+    },
+    {
+      "path": "tests/test_core_template_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6116,
+      "sha256": "fd0b72ff5aea79924608bd961441c2c148bd0eba2c4aef1842f6529a50e9562c"
     },
     {
       "path": "tests/test_empirical_acceptance.py",
@@ -2873,6 +2894,11 @@
     {
       "from": "tests/test_core_projection_pipeline.py",
       "to": "Shared.publication_host.inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_template_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
