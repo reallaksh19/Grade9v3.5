@@ -136,6 +136,18 @@ test("Issue #251 trace replay is deterministic, privacy-safe and observational",
   const duplicateReplay = replayMotionSessionTrace(duplicate);
   assert.equal(duplicateReplay.ok, false);
   assert.equal(duplicateReplay.code, "TRACE_SEQUENCE_DUPLICATE_OR_REWIND");
+
+  const invalidParent = structuredClone(recorder.events);
+  invalidParent[5].parent_sequence = invalidParent[5].sequence;
+  const invalidParentReplay = replayMotionSessionTrace(invalidParent);
+  assert.equal(invalidParentReplay.ok, false);
+  assert.equal(invalidParentReplay.code, "TRACE_PARENT_SEQUENCE_INVALID");
+
+  const leakedResponse = structuredClone(recorder.events);
+  leakedResponse[0].requested_transition.response = "private learner response";
+  const leakedReplay = replayMotionSessionTrace(leakedResponse);
+  assert.equal(leakedReplay.ok, false);
+  assert.equal(leakedReplay.code, "SESSION_TRACE_RESPONSE_TEXT_FORBIDDEN");
 });
 
 test("Issue #251 stress transitions deny duplicates, out-of-order workbench events and cleanly reset", () => {
