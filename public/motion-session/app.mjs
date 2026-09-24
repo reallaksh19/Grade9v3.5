@@ -509,6 +509,16 @@ async function init() {
     configureCore();
     await loadPackage();
     renderCanonicalOrientation();
+    if (diagnosticMode === "workbench-delay") {
+      app.hidden = false;
+      unavailable.hidden = true;
+      record(
+        { type: "WORKBENCH_WAITING" },
+        { producer: "session shell", componentBoundary: "shared-clock-workbench" },
+      );
+      setStatus("Shared-clock representation is preparing…");
+      await new Promise((resolveDelay) => setTimeout(resolveDelay, 250));
+    }
     mountWorkbench();
     wireActions();
     app.hidden = false;
