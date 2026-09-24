@@ -1,19 +1,47 @@
 from __future__ import annotations
 
+import copy
 import json
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from Shared.contracts import ContractError
+from Shared.library.compile_inputs import compile_bucket
+from Shared.library.resolve import build_index
 from Shared.tools import build_core_learning_data
-from Shared.tools.core_learning_projection_adapter import _application
+from Shared.tools.core_learning_projection_adapter import (
+    _application,
+    adapt_compiled_bucket_with_status,
+)
 
 REPO = Path(__file__).resolve().parents[1]
 MOTION = REPO / "Physics/library/phy-kin-2d-motion.v1.json"
+RELATIVE = REPO / "Physics/library/relative-motion.v1.json"
 FAMILIAR = "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
 TRANSFER = "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
 CONCEPT = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
+
+
+def physics_packages() -> list[dict]:
+    return [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted((REPO / "Physics/library").glob("*.json"))
+    ]
+
+
+def compile_motion(packages: list[dict] | None = None) -> tuple[dict, dict]:
+    packages = packages or physics_packages()
+    records = build_index(packages)
+    compiled = compile_bucket(
+        records,
+        "BUCKET-PHY-KIN-2D-MOTION",
+        topic_id="TEST-CORE-LEARNER-MOTION2D",
+        title="Core learner Motion in 2D provider proof",
+        subject="Physics",
+        practice_control={"mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"},
+    )
+    return compiled, records
 
 
 class CoreLearningProductionAdapter(unittest.TestCase):
@@ -56,7 +84,7 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertFalse(b["projection"]["presentation"]["show_full_construction"])
         self.assertTrue(b["projection"]["concept"]["elicitation"]["prompt"])
 
-    def test_core2a_preserves_real_reasoning_crux_hints_and_scaffolds(self):
+    def test_core2a_preserves_reasoning_source_hints_solution_and_scaffolds(self):
         row = self.row(core="CORE2A", source=FAMILIAR)
         source = next(q for q in self.package["questions"] if q["id"] == FAMILIAR)
         app = row["projection"]["application"]
@@ -65,6 +93,8 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertEqual(app["hints"], source["hints"])
         self.assertEqual(app["scaffolds"], source["scaffolds"])
         self.assertEqual(app["check"], source["answer"]["check"])
+        self.assertEqual(app["solution"]["summary"], source["answer"]["summary"])
+        self.assertEqual(app["solution"]["steps"], source["answer"]["reasoning"])
         for field in ("source_refs", "origin", "subparts", "options", "conditions", "figure_refs"):
             self.assertEqual(app[field], source[field])
         self.assertEqual(app["original_number"], source.get("original_identifier"))
@@ -81,20 +111,56 @@ class CoreLearningProductionAdapter(unittest.TestCase):
             "options": ["A", "B"],
             "conditions": ["Assume a closed system."],
             "figure_refs": ["FIG-1"],
-            "answer": {"reasoning_route": [], "check": "Check units."},
+            "answer": {
+                "summary": "B",
+                "steps": ["Compare the conditions."],
+                "rubric": [{"criterion": "Chooses B.", "evidence_of": "Uses the stated condition."}],
+                "reasoning_route": [],
+                "check": "Check units.",
+            },
+            "repair_ref": "STEP-1",
         }
         app = _application(block)
         for field in ("source_refs", "origin", "original_number", "subparts", "options", "conditions", "figure_refs"):
             self.assertEqual(app[field], block[field])
+        self.assertEqual(app["solution"]["summary"], "B")
+        self.assertEqual(app["solution"]["rubric"], block["answer"]["rubric"])
+        self.assertEqual(app["repair"], {"step_ref": "STEP-1"})
 
-    def test_every_bucket_has_explicit_availability_or_finding(self):
+    def test_demand_bearing_figure_gets_semantic_learner_payload(self):
+        package = json.loads(RELATIVE.read_text(encoding="utf-8"))
+        records = build_index([package])
+        question = next(q for q in package["questions"] if q["figure_refs"])
+        block = {
+            "source_question_id": question["id"],
+            "family": question["family_ref"],
+            "stem": question["stem"],
+            "figure_refs": question["figure_refs"],
+            "answer": {
+                "summary": question["answer"]["summary"],
+                "steps": question["answer"]["reasoning"],
+                "check": question["answer"]["check"],
+            },
+        }
+        app = _application(block, records)
+        self.assertEqual([row["figure_ref"] for row in app["figures"]], question["figure_refs"])
+        self.assertTrue(app["figures"][0]["purpose"])
+        self.assertTrue(app["figures"][0]["read_order"])
+
+    def test_every_bucket_has_explicit_availability_and_all_provider_findings_are_retained(self):
         availability = self.payload["bucket_availability"]
         self.assertTrue(availability)
         self.assertEqual(len({(row["subject"], row["bucket_ref"]) for row in availability}), len(availability))
-        self.assertEqual(
-            {(row["subject"], row["bucket_ref"]) for row in self.payload["findings"]},
-            {(row["subject"], row["bucket_ref"]) for row in availability if row["status"] == "UNSUPPORTED"},
-        )
+        projected_findings = {
+            (row["subject"], row["bucket_ref"], finding["code"], finding.get("source_ref"))
+            for row in availability
+            for finding in row.get("findings", [])
+        }
+        payload_findings = {
+            (row["subject"], row["bucket_ref"], row["code"], row.get("source_ref"))
+            for row in self.payload["findings"]
+        }
+        self.assertEqual(projected_findings, payload_findings)
         for row in availability:
             self.assertIn(row["status"], {"AVAILABLE", "UNSUPPORTED"})
             if row["status"] == "AVAILABLE":
@@ -113,7 +179,7 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertTrue(all(row["status"] == "UNSUPPORTED" for row in availability))
         self.assertTrue(all(row["code"] == "BAD_SOURCE" for row in availability))
 
-    def test_core2b_preserves_protected_transfer_without_scaffold_leak(self):
+    def test_core2b_preserves_protected_transfer_with_explicit_pre_attempt_limits(self):
         row = self.row(core="CORE2B", source=TRANSFER)
         source = next(q for q in self.package["questions"] if q["id"] == TRANSFER)
         app = row["projection"]["application"]
@@ -122,8 +188,76 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertEqual(app["crux_move_ref"], protected)
         self.assertEqual(row["projection"]["presentation"]["protected_move_refs"], [protected])
         self.assertFalse(any(s["supports_move_ref"] == protected for s in app["scaffolds"]))
+        self.assertTrue(all(
+            scaffold["reveals"] == "CONCEPT"
+            for scaffold in app["scaffolds"][
+                :row["projection"]["presentation"]["pre_attempt_scaffold_limit"]
+            ]
+        ))
+        self.assertEqual(app["solution"]["rubric"], source["answer"]["rubric"])
+        self.assertEqual(app["repair"]["step_ref"], source["repair_ref"])
 
-    def test_shared_clock_explorer_is_resolved_from_canonical_resource(self):
+    def test_mature_core2a_does_not_require_core2b_or_interactive_explorer(self):
+        compiled, records = compile_motion()
+        compiled = copy.deepcopy(compiled)
+        compiled["plan"]["products"] = [
+            product for product in compiled["plan"]["products"]
+            if product["core"] != "CORE2B"
+        ]
+        records = copy.deepcopy(records)
+        for row in records.values():
+            if isinstance(row, dict) and row.get("_collection") == "representations":
+                row["interactive_resource_refs"] = []
+        rows, findings = adapt_compiled_bucket_with_status(compiled, records, subject="Physics")
+        familiar = [
+            row for row in rows
+            if row["projection"]["core"] == "CORE2A" and row["source_ref"] == FAMILIAR
+        ]
+        self.assertEqual(len(familiar), 1, findings)
+        self.assertIsNone(familiar[0]["explorer_locator"])
+        self.assertFalse(any(row["projection"]["core"] == "CORE2B" for row in rows))
+
+    def test_adapter_never_promotes_authored_practice_to_core2(self):
+        self.assertFalse(any(
+            row["projection"]["core"] == "CORE2"
+            for row in self.rows
+            if row["source_ref"] in {FAMILIAR, TRANSFER}
+        ))
+
+    def test_compiler_emitted_core2_can_project_without_teaching_pair(self):
+        block = {
+            "source_question_id": "Q-SOURCE-1",
+            "family": "F-SOURCE",
+            "stem": "Preserved source demand.",
+            "source_refs": ["SRC-1"],
+            "origin": "ORIGINAL",
+            "original_number": "12",
+            "subparts": [],
+            "options": ["A", "B"],
+            "conditions": ["Use the source condition."],
+            "figure_refs": [],
+            "answer": {
+                "summary": "A",
+                "steps": ["Source working."],
+                "check": "Check against the source key.",
+                "rubric": [{"criterion": "Selects A.", "evidence_of": "Matches the source key."}],
+            },
+            "hints": [{"text": "Source hint.", "reveals": "CONCEPT"}],
+            "family": "F-SOURCE",
+        }
+        compiled = {
+            "plan": {"products": [{"core": "CORE2", "units": [{"blocks": [block]}]}]},
+            "derived_from": {"microtopics": []},
+        }
+        rows, findings = adapt_compiled_bucket_with_status(compiled, {}, subject="Physics")
+        self.assertEqual(findings, [])
+        self.assertEqual(len(rows), 1)
+        projection = rows[0]["projection"]
+        self.assertEqual(projection["core"], "CORE2")
+        self.assertTrue(projection["presentation"]["show_solution_initially"])
+        self.assertEqual(projection["application"]["solution"]["summary"], "A")
+
+    def test_shared_clock_explorer_remains_available_when_canonical_resource_exists(self):
         row = self.row(core="CORE2A", source=FAMILIAR)
         self.assertEqual(
             row["explorer_locator"],
