@@ -106,7 +106,25 @@ window.GRADE9V3 = {
       "buckets": [],
       "matrices": [],
       "packages": [],
-      "library_available": false
+      "library_available": false,
+      "atlas_index_contract_version": "2.0",
+      "atlas_index": [],
+      "visual_targets": {},
+      "findings": [],
+      "coverage": {
+        "rung_count": 0,
+        "availability": {
+          "mapping": {},
+          "core": {},
+          "representation": {},
+          "activity": {},
+          "locator": {},
+          "portable_package": {},
+          "standalone": {}
+        },
+        "finding_counts": {},
+        "matrices": []
+      }
     },
     "Mathematics": {
       "contract": {
@@ -1094,7 +1112,281 @@ window.GRADE9V3 = {
           "admitted": true
         }
       ],
-      "library_available": true
+      "library_available": true,
+      "atlas_index_contract_version": "2.0",
+      "atlas_index": [
+        {
+          "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-CONSTRAINT",
+          "capability_ref": "CAP-MATH-SUBSTITUTE",
+          "teaching_step_refs": [
+            "MC-1",
+            "MC-2",
+            "MC-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-MATH-SUBSTITUTE"
+          ],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [
+            "REP-MATH-NUMBER-LINE"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-MATH-LINEAR-EQUATIONS/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-CONSTRAINT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-CONSTRAINT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-SUBSTITUTE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-CONSTRAINT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-LINEAR-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+          "rung": "R2",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-EQUIVALENT-OPS",
+          "capability_ref": "CAP-MATH-ISOLATE",
+          "teaching_step_refs": [
+            "ME-1",
+            "ME-2",
+            "ME-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-MATH-CONSTRAINT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-MATH-SUBSTITUTE"
+          ],
+          "representation_refs": [
+            "REP-MATH-NUMBER-LINE"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-MATH-LINEAR-EQUATIONS/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-EQUIVALENT-OPS",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-EQUIVALENT-OPS",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-ISOLATE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-EQUIVALENT-OPS",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-LINEAR-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+          "rung": "R3",
+          "ladder_position": 100,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-EXACT-SOLUTION",
+          "capability_ref": "CAP-MATH-EXACTNESS",
+          "teaching_step_refs": [
+            "MX-1",
+            "MX-2",
+            "MX-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-MATH-EQUIVALENT-OPS"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-MATH-ISOLATE"
+          ],
+          "representation_refs": [
+            "REP-MATH-NUMBER-LINE"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-MATH-LINEAR-EQUATIONS/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-EXACT-SOLUTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-EXACT-SOLUTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-EXACTNESS",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-EXACT-SOLUTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-LINEAR-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        }
+      ],
+      "visual_targets": {},
+      "findings": [
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-LINEAR-EQUATION",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        }
+      ],
+      "coverage": {
+        "rung_count": 3,
+        "availability": {
+          "mapping": {
+            "READY": 3
+          },
+          "core": {
+            "UNAVAILABLE": 3
+          },
+          "representation": {
+            "READY": 3
+          },
+          "activity": {
+            "UNAVAILABLE": 3
+          },
+          "locator": {
+            "UNAVAILABLE": 3
+          },
+          "portable_package": {
+            "UNAVAILABLE": 3
+          },
+          "standalone": {
+            "UNAVAILABLE": 3
+          }
+        },
+        "finding_counts": {
+          "CORE_PROJECTION_UNAVAILABLE": 3
+        },
+        "matrices": [
+          {
+            "matrix_id": "MATRIX-MATH-LINEAR-EQUATIONS",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "UNAVAILABLE": 3
+              },
+              "representation": {
+                "READY": 3
+              },
+              "activity": {
+                "UNAVAILABLE": 3
+              },
+              "locator": {
+                "UNAVAILABLE": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 3
+            }
+          }
+        ]
+      }
     },
     "Physics": {
       "contract": {
@@ -30363,7 +30655,8257 @@ window.GRADE9V3 = {
           "admitted": true
         }
       ],
-      "library_available": true
+      "library_available": true,
+      "atlas_index_contract_version": "2.0",
+      "atlas_index": [
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R1",
+          "ladder_position": 10,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+          "capability_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+          "teaching_step_refs": [
+            "ELEC-R1-1",
+            "ELEC-R1-2",
+            "ELEC-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-ELEC-CURRENT-CONSERVATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R2",
+          "ladder_position": 22,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R3",
+          "ladder_position": 34,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R4",
+          "ladder_position": 46,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+          "capability_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+          "teaching_step_refs": [
+            "ELEC-R4-1",
+            "ELEC-R4-2",
+            "ELEC-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-ELEC-OHMIC-MODEL-TEST",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R5",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R6",
+          "ladder_position": 74,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+          "rung": "R7",
+          "ladder_position": 88,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ELEC-CURRENT-OHM/R7",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-FLUID-R2",
+          "capability_ref": "CAP-PHY-FLUID-R2",
+          "teaching_step_refs": [
+            "FLUID-R2-1",
+            "FLUID-R2-2",
+            "FLUID-R2-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-FLUID-R2",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-FLUID-R2",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-FLUID-R2",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-FLUID-R2",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+          "rung": "R3",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-FLUID-R3",
+          "capability_ref": "CAP-PHY-FLUID-R3",
+          "teaching_step_refs": [
+            "FLUID-R3-1",
+            "FLUID-R3-2",
+            "FLUID-R3-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-FLUID-R3",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-FLUID-R3",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-FLUID-R3",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-FLUID-R3",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+          "rung": "R4",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-FLUID-R4",
+          "capability_ref": "CAP-PHY-FLUID-R4",
+          "teaching_step_refs": [
+            "FLUID-R4-1",
+            "FLUID-R4-2",
+            "FLUID-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-FLUID-R4",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-FLUID-R4",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-FLUID-R4",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-FLUID-R4",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+          "rung": "R5",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-GRAV-R1",
+          "capability_ref": "CAP-PHY-GRAV-R1",
+          "teaching_step_refs": [
+            "GRAV-R1-1",
+            "GRAV-R1-2",
+            "GRAV-R1-3",
+            "GRAV-R1-4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-R1",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-R1",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-R1",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-R1",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+          "capability_ref": "CAP-PHY-GRAV-INVERSE-SQUARE",
+          "teaching_step_refs": [
+            "GRAV-R2-1",
+            "GRAV-R2-2",
+            "GRAV-R2-3",
+            "GRAV-R2-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-PHY-GRAV-R1"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-PHY-GRAV-R1"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-INVERSE-SQUARE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R3",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-GRAV-FREE-FALL-G",
+          "capability_ref": "CAP-PHY-GRAV-FREE-FALL-G",
+          "teaching_step_refs": [
+            "GRAV-R3-1",
+            "GRAV-R3-2",
+            "GRAV-R3-3",
+            "GRAV-R3-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-PHY-GRAV-INVERSE-SQUARE",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-PHY-GRAV-INVERSE-SQUARE",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-FREE-FALL-G",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-FREE-FALL-G",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-FREE-FALL-G",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-FREE-FALL-G",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R3W",
+          "ladder_position": 58,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
+          "capability_ref": "CAP-PHY-GRAV-MASS-WEIGHT",
+          "teaching_step_refs": [
+            "GRAV-R3W-1",
+            "GRAV-R3W-2",
+            "GRAV-R3W-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-PHY-GRAV-FREE-FALL-G"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-PHY-GRAV-FREE-FALL-G"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R3W",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-MASS-WEIGHT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R4",
+          "ladder_position": 65,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-GRAV-R4",
+          "capability_ref": "CAP-PHY-GRAV-R4",
+          "teaching_step_refs": [
+            "GRAV-R4-1",
+            "GRAV-R4-2",
+            "GRAV-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-R4",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-R4",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-R4",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-R4",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+          "rung": "R5",
+          "ladder_position": 80,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-GRAV-R5",
+          "capability_ref": "CAP-PHY-GRAV-R5",
+          "teaching_step_refs": [
+            "GRAV-R5-1",
+            "GRAV-R5-2",
+            "GRAV-R5-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-GRAV-UNIVERSAL-LAW/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-GRAV-R5",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-GRAV-R5",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-GRAV-R5",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-GRAV-R5",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+          "capability_ref": "CAP-KIN-DISTANCE-DISPLACEMENT",
+          "teaching_step_refs": [
+            "KIN1-1",
+            "KIN1-2",
+            "KIN1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-DISTANCE-DISPLACEMENT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R2",
+          "ladder_position": 45,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-AVERAGE-RATES",
+          "capability_ref": "CAP-KIN-AVERAGE-RATES",
+          "teaching_step_refs": [
+            "KIN2-1",
+            "KIN2-2",
+            "KIN2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-AVERAGE-RATES",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-AVERAGE-RATES",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-AVERAGE-RATES",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-AVERAGE-RATES",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R3",
+          "ladder_position": 70,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+          "capability_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+          "teaching_step_refs": [
+            "KIN3-1",
+            "KIN3-2",
+            "KIN3-3",
+            "KIN3-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-DISTANCE-DISPLACEMENT"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-ZERO-V-NONZERO-A",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R4G",
+          "ladder_position": 82,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+          "capability_ref": "CAP-KIN-MOTION-GRAPHS",
+          "teaching_step_refs": [
+            "KIN-G1",
+            "KIN-G2",
+            "KIN-G3",
+            "KIN-G4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-AVERAGE-RATES"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-AVERAGE-RATES"
+          ],
+          "representation_refs": [
+            "REP-PHY-KIN-POSITION-TIME-GRAPH",
+            "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R4G",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-MOTION-GRAPHS",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R4",
+          "ladder_position": 90,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+          "capability_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+          "teaching_step_refs": [
+            "KIN4-1",
+            "KIN4-2",
+            "KIN4-3",
+            "KIN4-4",
+            "KIN4-5",
+            "KIN4-6"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-MOTION-GRAPHS"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-MOTION-GRAPHS"
+          ],
+          "representation_refs": [
+            "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-CONSTANT-ACCELERATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R5",
+          "ladder_position": 99,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+          "capability_ref": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+          "teaching_step_refs": [
+            "KIN5-1",
+            "KIN5-2",
+            "KIN5-3",
+            "KIN5-4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-KIN-CIRCULAR-DYNAMICS"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-UNIFORM-CIRCULAR-MOTION"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+          "rung": "R6",
+          "ladder_position": 100,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+          "capability_ref": "CAP-KIN-CIRCULAR-DYNAMICS-ROLE",
+          "teaching_step_refs": [
+            "KIN6-1",
+            "KIN6-2",
+            "KIN6-3",
+            "KIN6-4",
+            "KIN6-5",
+            "KIN6-6",
+            "KIN6-7",
+            "KIN6-8"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "representation_refs": [
+            "REP-KIN-CIRCULAR-FORCE-ROLE"
+          ],
+          "activity_refs": [
+            "ACT-KIN-CIRCULAR-DYNAMICS"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-1D-MOTION/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-CIRCULAR-DYNAMICS-ROLE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-CIRCULAR-FORCE-ROLE",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-CIRCULAR-DYNAMICS-ROLE"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-KIN-1D-MOTION",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+          "rung": "R1",
+          "ladder_position": 30,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+          "capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+          "teaching_step_refs": [
+            "K2D1-1",
+            "K2D1-2",
+            "K2D1-3",
+            "K2D1-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "representation_refs": [
+            "REP-KIN-2D-SHARED-CLOCK"
+          ],
+          "activity_refs": [
+            "ACT-KIN-2D-SHARED-CLOCK"
+          ],
+          "core_projection_refs": [
+            "physics:mic-phy-kin-2d-independent-components:core1a",
+            "physics:mic-phy-kin-2d-independent-components:core1b",
+            "physics:q-phy-kin-2d-2a-horizontal-launch-04:core2a",
+            "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b"
+          ],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "READY",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-2D-MOTION/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-2D-SHARED-CLOCK",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-SHARED-CLOCK",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-SHARED-CLOCK",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-SHARED-CLOCK",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+                }
+              }
+            ]
+          },
+          "findings": []
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+          "rung": "R2",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+          "capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+          "teaching_step_refs": [
+            "K2D2-1",
+            "K2D2-2",
+            "K2D2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "representation_refs": [
+            "REP-KIN-2D-SHARED-CLOCK",
+            "REP-KIN-2D-EVENT-CLOCK"
+          ],
+          "activity_refs": [
+            "ACT-KIN-2D-SHARED-CLOCK",
+            "ACT-KIN-2D-EVENT-CLOCK"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-2D-MOTION/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-2D-SHARED-CLOCK",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-SHARED-CLOCK",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-EVENT-CLOCK",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-EVENT-CLOCK",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-EVENT-CLOCK",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-EVENT-CLOCK",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-2D-CONSTANT-ACCELERATION"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+          "rung": "R3",
+          "ladder_position": 90,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+          "capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+          "teaching_step_refs": [
+            "K2D3-1",
+            "K2D3-2",
+            "K2D3-3",
+            "K2D3-4",
+            "K2D3-5",
+            "K2D3-6",
+            "K2D3-7"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-KIN-2D-CONSTANT-ACCELERATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-KIN-2D-CONSTANT-ACCELERATION"
+          ],
+          "representation_refs": [
+            "REP-KIN-2D-SHARED-CLOCK",
+            "REP-KIN-2D-EVENT-CLOCK",
+            "REP-KIN-2D-PROJECTILE-MODEL"
+          ],
+          "activity_refs": [
+            "ACT-KIN-2D-SHARED-CLOCK",
+            "ACT-KIN-2D-EVENT-CLOCK",
+            "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+            "ACT-KIN-2D-APEX-FALLACY",
+            "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
+            "ACT-KIN-2D-LANDING-GEOMETRY"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-KIN-2D-MOTION/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-KIN-PROJECTILE-MODEL",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-2D-SHARED-CLOCK",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-SHARED-CLOCK",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-EVENT-CLOCK",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-EVENT-CLOCK",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+                "asserted_by": {
+                  "record_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-APEX-FALLACY",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-APEX-FALLACY",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-PROJECTILE-MODEL"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-PROJECTILE-MODEL"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-LANDING-GEOMETRY",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-LANDING-GEOMETRY",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-PROJECTILE-MODEL"
+                }
+              },
+              {
+                "resource_ref": "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+                  "field": "supports_claims",
+                  "value": "CAP-KIN-PROJECTILE-MODEL"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R1",
+          "ladder_position": 10,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MAG-FIELD-DIRECTION",
+          "capability_ref": "CAP-MAG-FIELD-DIRECTION",
+          "teaching_step_refs": [
+            "MAG-R1-1",
+            "MAG-R1-2",
+            "MAG-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MAG-FIELD-DIRECTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MAG-FIELD-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MAG-FIELD-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MAG-FIELD-DIRECTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R2",
+          "ladder_position": 25,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MAG-FLUX-ORIENTATION",
+          "capability_ref": "CAP-MAG-FLUX-ORIENTATION",
+          "teaching_step_refs": [
+            "MAG-R2-1",
+            "MAG-R2-2",
+            "MAG-R2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-MAG-FIELD-DIRECTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-MAG-FIELD-DIRECTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MAG-FLUX-ORIENTATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MAG-FLUX-ORIENTATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MAG-FLUX-ORIENTATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MAG-FLUX-ORIENTATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R3",
+          "ladder_position": 40,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R4",
+          "ladder_position": 55,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+          "capability_ref": "CAP-MAG-REDIRECT-NOT-SPEED",
+          "teaching_step_refs": [
+            "MAG-R4-1",
+            "MAG-R4-2",
+            "MAG-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MAG-REDIRECT-NOT-SPEED",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R5",
+          "ladder_position": 70,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+          "rung": "R6",
+          "ladder_position": 85,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-MAG-FIELD-LORENTZ/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+          "capability_ref": "CAP-NLM-NET-ZERO-MOTION",
+          "teaching_step_refs": [
+            "NLM1-1",
+            "NLM1-2",
+            "NLM1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-NET-ZERO-MOTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R2",
+          "ladder_position": 45,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+          "capability_ref": "CAP-NLM-FORCES-SUM-ZERO",
+          "teaching_step_refs": [
+            "NLM2-1",
+            "NLM2-2",
+            "NLM2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-NET-ZERO-MOTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-NET-ZERO-MOTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-FORCES-SUM-ZERO",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R3",
+          "ladder_position": 70,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+          "capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+          "teaching_step_refs": [
+            "NLM3-1",
+            "NLM3-2",
+            "NLM3-3",
+            "NLM3-4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [
+            "REP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "activity_refs": [
+            "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+            "ACT-NLM-ACCELERATED-FRAMES"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                "asserted_by": {
+                  "record_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-FBD-BODY-OWNERSHIP"
+                }
+              },
+              {
+                "resource_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-FBD-BODY-OWNERSHIP"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R5",
+          "ladder_position": 78,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+          "capability_ref": "CAP-NLM-FRICTION",
+          "teaching_step_refs": [
+            "NLM5-1",
+            "NLM5-2",
+            "NLM5-3",
+            "NLM5-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-NLM-FRICTION-THRESHOLD"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-FRICTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-FRICTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-FRICTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-FRICTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-FRICTION-THRESHOLD",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-FRICTION-THRESHOLD",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-FRICTION"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R6",
+          "ladder_position": 86,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+          "capability_ref": "CAP-NLM-SECOND-LAW",
+          "teaching_step_refs": [
+            "NLM6-1",
+            "NLM6-2",
+            "NLM6-3",
+            "NLM6-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-KIN-CIRCULAR-DYNAMICS",
+            "ACT-NLM-ACCELERATED-FRAMES"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-SECOND-LAW",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-SECOND-LAW",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-SECOND-LAW",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-SECOND-LAW",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                "asserted_by": {
+                  "record_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-SECOND-LAW"
+                }
+              },
+              {
+                "resource_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-SECOND-LAW"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R8",
+          "ladder_position": 88,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "capability_ref": "CAP-NLM-FRICTION-QUANT",
+          "teaching_step_refs": [
+            "NLM8-1",
+            "NLM8-2",
+            "NLM8-3",
+            "NLM8-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FRICTION",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FRICTION",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ],
+          "activity_refs": [
+            "ACT-NLM-FRICTION-THRESHOLD"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R8",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-FRICTION-QUANT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-FRICTION-THRESHOLD",
+                "asserted_by": {
+                  "record_ref": "REP-NLM-FRICTION-THRESHOLD",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-NLM-FRICTION-THRESHOLD",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-FRICTION-THRESHOLD",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-FRICTION-QUANT"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R9",
+          "ladder_position": 90,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+          "capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+          "teaching_step_refs": [
+            "NLM9-1",
+            "NLM9-2",
+            "NLM9-3",
+            "NLM9-4",
+            "NLM9-5"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R9",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-CONNECTED-COMMON-ACCEL"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R10",
+          "ladder_position": 92,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+          "capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+          "teaching_step_refs": [
+            "NLM10-1",
+            "NLM10-2",
+            "NLM10-3",
+            "NLM10-4",
+            "NLM10-5"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R10",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-IDEAL-STRING-TENSION"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R11",
+          "ladder_position": 93,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+          "capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+          "teaching_step_refs": [
+            "NLM11-1",
+            "NLM11-2",
+            "NLM11-3",
+            "NLM11-4",
+            "NLM11-5"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-CONNECTED-COMMON-ACCEL",
+            "CAP-NLM-IDEAL-STRING-TENSION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-CONNECTED-COMMON-ACCEL",
+            "CAP-NLM-IDEAL-STRING-TENSION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R11",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-SINGLE-STRING-CONSTRAINT"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R7",
+          "ladder_position": 94,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW",
+          "capability_ref": "CAP-NLM-THIRD-LAW",
+          "teaching_step_refs": [
+            "NLM7-1",
+            "NLM7-2",
+            "NLM7-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "representation_refs": [],
+          "activity_refs": [
+            "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R7",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-THIRD-LAW",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-THIRD-LAW",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-THIRD-LAW",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-THIRD-LAW",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-THIRD-LAW"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+          "rung": "R4",
+          "ladder_position": 100,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+          "capability_ref": "CAP-NLM-FRAME-CHOICE",
+          "teaching_step_refs": [
+            "NLM4-1",
+            "NLM4-2",
+            "NLM4-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "representation_refs": [
+            "REP-NLM-ACCELERATING-FRAME-COMPARISON"
+          ],
+          "activity_refs": [
+            "ACT-NLM-ACCELERATED-FRAMES"
+          ],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-FIRST-LAW/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-FRAME-CHOICE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+              "field": "representation_refs"
+            },
+            "activity_refs": [
+              {
+                "resource_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                "asserted_by": {
+                  "record_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+                  "field": "interactive_resource_refs"
+                }
+              },
+              {
+                "resource_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                "asserted_by": {
+                  "record_ref": "ACT-NLM-ACCELERATED-FRAMES",
+                  "field": "supports_claims",
+                  "value": "CAP-NLM-FRAME-CHOICE"
+                }
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER",
+          "rung": "R1",
+          "ladder_position": 100,
+          "default_entry_eligible": false,
+          "microtopic_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+          "capability_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+          "teaching_step_refs": [
+            "NLM-MTR-1",
+            "NLM-MTR-2",
+            "NLM-MTR-3",
+            "NLM-MTR-4",
+            "NLM-MTR-5",
+            "NLM-MTR-6"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-THIRD-LAW"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-NLM-THIRD-LAW"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-NLM-MOMENTUM-TRANSFER-RATE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R1",
+          "ladder_position": 10,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-NORMAL-REFLECTION",
+          "capability_ref": "CAP-OPT-NORMAL-REFLECTION",
+          "teaching_step_refs": [
+            "OPT-R1-1",
+            "OPT-R1-2",
+            "OPT-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-NORMAL-REFLECTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-NORMAL-REFLECTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-NORMAL-REFLECTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-NORMAL-REFLECTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R2",
+          "ladder_position": 25,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+          "capability_ref": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+          "teaching_step_refs": [
+            "OPT-R2-1",
+            "OPT-R2-2",
+            "OPT-R2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-OPT-NORMAL-REFLECTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-NORMAL-REFLECTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-REAL-VIRTUAL-IMAGE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R3",
+          "ladder_position": 40,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-SIGN-CONVENTION",
+          "capability_ref": "CAP-OPT-SIGN-CONVENTION",
+          "teaching_step_refs": [
+            "OPT-R3-1",
+            "OPT-R3-2",
+            "OPT-R3-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-OPT-REAL-VIRTUAL-IMAGE"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-REAL-VIRTUAL-IMAGE"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-SIGN-CONVENTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-SIGN-CONVENTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-SIGN-CONVENTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-SIGN-CONVENTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R4",
+          "ladder_position": 55,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+          "capability_ref": "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION",
+          "teaching_step_refs": [
+            "OPT-R4-1",
+            "OPT-R4-2",
+            "OPT-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-SIGN-CONVENTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-SIGN-CONVENTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R5",
+          "ladder_position": 70,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-MIRROR-EQUATION",
+          "capability_ref": "CAP-OPT-MIRROR-EQUATION",
+          "teaching_step_refs": [
+            "OPT-R5-1",
+            "OPT-R5-2",
+            "OPT-R5-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-MIRROR-EQUATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-MIRROR-EQUATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-MIRROR-EQUATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-MIRROR-EQUATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+          "rung": "R6",
+          "ladder_position": 85,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
+          "capability_ref": "CAP-OPT-MIRROR-MAGNIFICATION",
+          "teaching_step_refs": [
+            "OPT-R6-1",
+            "OPT-R6-2",
+            "OPT-R6-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-MIRROR-EQUATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-MIRROR-EQUATION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-MIRROR-MAGNIFICATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R1",
+          "ladder_position": 10,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-REFRACTION-NORMAL",
+          "capability_ref": "CAP-OPT-REFRACTION-NORMAL",
+          "teaching_step_refs": [
+            "LENS-R1-1",
+            "LENS-R1-2",
+            "LENS-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-REFRACTION-NORMAL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-REFRACTION-NORMAL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-REFRACTION-NORMAL",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-REFRACTION-NORMAL",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R2",
+          "ladder_position": 25,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+          "capability_ref": "CAP-OPT-REFRACTIVE-INDEX-SNELL",
+          "teaching_step_refs": [
+            "LENS-R2-1",
+            "LENS-R2-2",
+            "LENS-R2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-REFRACTION-NORMAL"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-REFRACTION-NORMAL"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-REFRACTIVE-INDEX-SNELL",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R3",
+          "ladder_position": 40,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+          "capability_ref": "CAP-OPT-LENS-RAY-CONSTRUCTION",
+          "teaching_step_refs": [
+            "LENS-R3-1",
+            "LENS-R3-2",
+            "LENS-R3-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-REFRACTIVE-INDEX-SNELL"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-REFRACTIVE-INDEX-SNELL"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-LENS-RAY-CONSTRUCTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R4",
+          "ladder_position": 55,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-LENS-EQUATION",
+          "capability_ref": "CAP-OPT-LENS-EQUATION",
+          "teaching_step_refs": [
+            "LENS-R4-1",
+            "LENS-R4-2",
+            "LENS-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-LENS-RAY-CONSTRUCTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-LENS-RAY-CONSTRUCTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-LENS-EQUATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-LENS-EQUATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-LENS-EQUATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-LENS-EQUATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R5",
+          "ladder_position": 70,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-LENS-MAGNIFICATION",
+          "capability_ref": "CAP-OPT-LENS-MAGNIFICATION",
+          "teaching_step_refs": [
+            "LENS-R5-1",
+            "LENS-R5-2",
+            "LENS-R5-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-LENS-EQUATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-LENS-EQUATION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-LENS-MAGNIFICATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-LENS-MAGNIFICATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-LENS-MAGNIFICATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-LENS-MAGNIFICATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+          "rung": "R6",
+          "ladder_position": 85,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OPT-LENS-POWER",
+          "capability_ref": "CAP-OPT-LENS-POWER",
+          "teaching_step_refs": [
+            "LENS-R6-1",
+            "LENS-R6-2",
+            "LENS-R6-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-OPT-LENS-MAGNIFICATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-OPT-LENS-MAGNIFICATION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OPTICS-REFRACTION-LENSES/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OPT-LENS-POWER",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OPT-LENS-POWER",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OPT-LENS-POWER",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OPT-LENS-POWER",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
+          "capability_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+          "teaching_step_refs": [
+            "OSC-R1-1",
+            "OSC-R1-2",
+            "OSC-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OSC-SHM-WAVES/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OSC-STABLE-EQUILIBRIUM",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OSC-SHM-WAVES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OSC-SHM-WAVES/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+          "rung": "R3",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OSC-SHM-WAVES/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+          "rung": "R4",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-OSC-ENERGY-EXCHANGE",
+          "capability_ref": "CAP-OSC-ENERGY-EXCHANGE",
+          "teaching_step_refs": [
+            "OSC-R4-1",
+            "OSC-R4-2",
+            "OSC-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OSC-SHM-WAVES/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-OSC-ENERGY-EXCHANGE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-OSC-ENERGY-EXCHANGE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-OSC-ENERGY-EXCHANGE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-OSC-ENERGY-EXCHANGE",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-OSC-SHM-WAVES",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+          "rung": "R5",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-OSC-SHM-WAVES/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-ROT-R1",
+          "capability_ref": "CAP-PHY-ROT-R1",
+          "teaching_step_refs": [
+            "ROT-R1-1",
+            "ROT-R1-2",
+            "ROT-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ROT-RIGID-BODY/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-ROT-R1",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-ROT-R1",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-ROT-R1",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-ROT-R1",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ROT-RIGID-BODY/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+          "rung": "R3",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-ROT-R3",
+          "capability_ref": "CAP-PHY-ROT-R3",
+          "teaching_step_refs": [
+            "ROT-R3-1",
+            "ROT-R3-2",
+            "ROT-R3-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ROT-RIGID-BODY/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-ROT-R3",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-ROT-R3",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-ROT-R3",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-ROT-R3",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+          "rung": "R4",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-ROT-R4",
+          "capability_ref": "CAP-PHY-ROT-R4",
+          "teaching_step_refs": [
+            "ROT-R4-1",
+            "ROT-R4-2",
+            "ROT-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ROT-RIGID-BODY/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-ROT-R4",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-ROT-R4",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-ROT-R4",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-ROT-R4",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+          "rung": "R5",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-ROT-R5",
+          "capability_ref": "CAP-PHY-ROT-R5",
+          "teaching_step_refs": [
+            "ROT-R5-1",
+            "ROT-R5-2",
+            "ROT-R5-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-ROT-RIGID-BODY/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-ROT-R5",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-ROT-R5",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-ROT-R5",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-ROT-R5",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-ROT-RIGID-BODY",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+          "rung": "R1",
+          "ladder_position": 25,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-MACHINE-TRADEOFF",
+          "capability_ref": "CAP-MACHINE-TRADEOFF",
+          "teaching_step_refs": [
+            "SM1-1",
+            "SM1-2",
+            "SM1-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SIMPLE-MACHINES/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-MACHINE-TRADEOFF",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-MACHINE-TRADEOFF",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MACHINE-TRADEOFF",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-MACHINE-TRADEOFF",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+          "rung": "R2",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-MACHINE-MA",
+          "capability_ref": "CAP-MACHINE-MA",
+          "teaching_step_refs": [
+            "SM2-1",
+            "SM2-2",
+            "SM2-3",
+            "SM2-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-MACHINE-TRADEOFF"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-MACHINE-TRADEOFF"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SIMPLE-MACHINES/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-MACHINE-MA",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-MACHINE-MA",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MACHINE-MA",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-MACHINE-MA",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+          "rung": "R3",
+          "ladder_position": 90,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-MACHINE-COMPARE",
+          "capability_ref": "CAP-MACHINE-COMPARE",
+          "teaching_step_refs": [
+            "SM3-1",
+            "SM3-2",
+            "SM3-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-MACHINE-MA"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-MACHINE-MA"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SIMPLE-MACHINES/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-MACHINE-COMPARE",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-MACHINE-COMPARE",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MACHINE-COMPARE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-MACHINE-COMPARE",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SIMPLE-MACHINES",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SOUND",
+          "rung": "R1",
+          "ladder_position": 15,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+          "capability_ref": "CAP-SOUND-SOURCE-MEDIUM",
+          "teaching_step_refs": [
+            "SOUND1-1",
+            "SOUND1-1B",
+            "SOUND1-2",
+            "SOUND1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SOUND/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SOUND-SOURCE-MEDIUM",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SOUND",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SOUND",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+          "capability_ref": "CAP-SOUND-LONGITUDINAL",
+          "teaching_step_refs": [
+            "SOUND2-1",
+            "SOUND2-2",
+            "SOUND2-3",
+            "SOUND2-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-SOUND-SOURCE-MEDIUM"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SOUND-SOURCE-MEDIUM"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SOUND/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SOUND-LONGITUDINAL",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-SOUND-LONGITUDINAL",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SOUND",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SOUND",
+          "rung": "R3",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+          "capability_ref": "CAP-SOUND-WAVE-QUANTITIES",
+          "teaching_step_refs": [
+            "SOUND3-1",
+            "SOUND3-2",
+            "SOUND3-3",
+            "SOUND3-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-SOUND-LONGITUDINAL"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SOUND-LONGITUDINAL"
+          ],
+          "representation_refs": [
+            "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+            "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SOUND/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SOUND-WAVE-QUANTITIES",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SOUND",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SOUND",
+          "rung": "R4",
+          "ladder_position": 78,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-SOUND-PERCEPTION",
+          "capability_ref": "CAP-SOUND-PERCEPTION",
+          "teaching_step_refs": [
+            "SOUND4-1",
+            "SOUND4-2",
+            "SOUND4-3",
+            "SOUND4-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SOUND/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-SOUND-PERCEPTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-SOUND-PERCEPTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SOUND-PERCEPTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-SOUND-PERCEPTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SOUND",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-SOUND",
+          "rung": "R5",
+          "ladder_position": 95,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-SOUND-REFLECTION",
+          "capability_ref": "CAP-SOUND-REFLECTION",
+          "teaching_step_refs": [
+            "SOUND5-1",
+            "SOUND5-2",
+            "SOUND5-3",
+            "SOUND5-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-SOUND/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-SOUND-REFLECTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-SOUND-REFLECTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SOUND-REFLECTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-SOUND-REFLECTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-SOUND",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-THERMO-R1",
+          "capability_ref": "CAP-PHY-THERMO-R1",
+          "teaching_step_refs": [
+            "THERMO-R1-1",
+            "THERMO-R1-2",
+            "THERMO-R1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-THERMO-R1",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-THERMO-R1",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-THERMO-R1",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-THERMO-R1",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+          "rung": "R2",
+          "ladder_position": 35,
+          "default_entry_eligible": true,
+          "microtopic_ref": null,
+          "capability_ref": null,
+          "teaching_step_refs": [],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "UNAVAILABLE",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": null,
+            "microtopic_prerequisite_refs": null,
+            "capability_prerequisite_refs": null,
+            "representation_refs": null,
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "MICROTOPIC_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+            },
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": null,
+              "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+          "rung": "R3",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-THERMO-R3",
+          "capability_ref": "CAP-PHY-THERMO-R3",
+          "teaching_step_refs": [
+            "THERMO-R3-1",
+            "THERMO-R3-2",
+            "THERMO-R3-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-THERMO-R3",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-THERMO-R3",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-THERMO-R3",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-THERMO-R3",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+          "rung": "R4",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-THERMO-R4",
+          "capability_ref": "CAP-PHY-THERMO-R4",
+          "teaching_step_refs": [
+            "THERMO-R4-1",
+            "THERMO-R4-2",
+            "THERMO-R4-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-THERMO-R4",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-THERMO-R4",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-THERMO-R4",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-THERMO-R4",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+          "rung": "R5",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-THERMO-R5",
+          "capability_ref": "CAP-PHY-THERMO-R5",
+          "teaching_step_refs": [
+            "THERMO-R5-1",
+            "THERMO-R5-2",
+            "THERMO-R5-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-THERMO-R5",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-THERMO-R5",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-PHY-THERMO-R5",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-THERMO-R5",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+          "rung": "R1",
+          "ladder_position": 25,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-COMPONENT-SUM",
+          "capability_ref": "CAP-VEC-COMPONENT-SUM",
+          "teaching_step_refs": [
+            "VA-1",
+            "VA-2",
+            "VA-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-ADD-SUB/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-COMPONENT-SUM",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-COMPONENT-SUM",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-COMPONENT-SUM",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-COMPONENT-SUM",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-ADD-SUB",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+          "rung": "R2",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+          "capability_ref": "CAP-VEC-RESULTANT-CONSTRAINT",
+          "teaching_step_refs": [
+            "VC-1",
+            "VC-2",
+            "VC-3",
+            "VC-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-PHY-VEC-COMPONENT-SUM"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VEC-COMPONENT-SUM"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-ADD-SUB/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-RESULTANT-CONSTRAINT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-ADD-SUB",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+          "rung": "R3",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-SUB-ORDER",
+          "capability_ref": "CAP-VEC-SUB-ORDER",
+          "teaching_step_refs": [
+            "VEC3-1",
+            "VEC3-2",
+            "VEC3-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-ADD-SUB/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-SUB-ORDER",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-SUB-ORDER",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-SUB-ORDER",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-SUB-ORDER",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-ADD-SUB",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+          "rung": "R4",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+          "capability_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+          "teaching_step_refs": [
+            "VAD-1",
+            "VAD-2",
+            "VAD-3",
+            "VAD-4",
+            "VAD-5"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "PARENT_TRANSFER_PAIR_MISSING",
+            "detail": "No linked CORE2A/CORE2B question pair."
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-ADD-SUB/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-ANGLE-DECOMPOSITION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-ADD-SUB",
+              "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+          "rung": "R1",
+          "ladder_position": 30,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+          "capability_ref": "CAP-VEC-UNIT-NOTATION",
+          "teaching_step_refs": [
+            "VUN-1",
+            "VUN-2",
+            "VUN-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-DIRECTION-UNIT/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-UNIT-NOTATION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+          "rung": "R2",
+          "ladder_position": 65,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+          "capability_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+          "teaching_step_refs": [
+            "VDR-1",
+            "VDR-2",
+            "VDR-3",
+            "VDR-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-INVERSE-TRIG-DIRECTION-BRIDGE"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT",
+            "CAP-INVERSE-TRIG-DIRECTION-BRIDGE"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-DIRECTION-UNIT/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-DIRECTION-FROM-COMPONENTS",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+          "rung": "R3",
+          "ladder_position": 90,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+          "capability_ref": "CAP-VEC-UNIT-DIRECTION",
+          "teaching_step_refs": [
+            "VUD-1",
+            "VUD-2",
+            "VUD-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-VEC-UNIT-NOTATION",
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VEC-UNIT-NOTATION",
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VEC-DIRECTION-UNIT/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VEC-UNIT-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-WORK-DIRECTION",
+          "capability_ref": "CAP-WEP-WORK-DIRECTION",
+          "teaching_step_refs": [
+            "WEP1-1",
+            "WEP1-2",
+            "WEP1-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-WORK-DIRECTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-WORK-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-WORK-DIRECTION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-WORK-DIRECTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R2",
+          "ladder_position": 40,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
+          "capability_ref": "CAP-WEP-NET-WORK-SIGN",
+          "teaching_step_refs": [
+            "WEP2-1",
+            "WEP2-2",
+            "WEP2-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-NET-WORK-SIGN",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R3",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+          "capability_ref": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+          "teaching_step_refs": [
+            "WEP3-1",
+            "WEP3-2",
+            "WEP3-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-NET-WORK-SIGN"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-NET-WORK-SIGN"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-POTENTIAL-ELIGIBILITY",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R4",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+          "capability_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
+          "teaching_step_refs": [
+            "WEP4-0",
+            "WEP4-1",
+            "WEP4-2",
+            "WEP4-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-POTENTIAL-ELIGIBILITY"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-POTENTIAL-ELIGIBILITY"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-MECH-ENERGY-CONDITION",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R5",
+          "ladder_position": 85,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-POWER-RATES",
+          "capability_ref": "CAP-WEP-POWER-RATES",
+          "teaching_step_refs": [
+            "WEP5-1",
+            "WEP5-2",
+            "WEP5-3",
+            "WEP5-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-POWER-RATES",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-POWER-RATES",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-POWER-RATES",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-POWER-RATES",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R5D",
+          "ladder_position": 95,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+          "capability_ref": "CAP-WEP-ENERGY-DERIVATIONS",
+          "teaching_step_refs": [
+            "WEP7-1",
+            "WEP7-2",
+            "WEP7-3",
+            "WEP7-4",
+            "WEP7-5"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-WORK-DIRECTION",
+            "CAP-NLM-SECOND-LAW",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R5D",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-ENERGY-DERIVATIONS",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+          "rung": "R6",
+          "ladder_position": 100,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+          "capability_ref": "CAP-WEP-GRADE9-QUANT",
+          "teaching_step_refs": [
+            "WEP6-1",
+            "WEP6-2",
+            "WEP6-3",
+            "WEP6-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-WEP-MECH-ENERGY-CONDITION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-WEP-MECH-ENERGY-CONDITION"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-WORK-ENERGY-POWER/R6",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-WEP-GRADE9-QUANT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-PHY-WEP-GRADE9-QUANT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MEASURED-FROM",
+          "capability_ref": "CAP-MEASURED-FROM",
+          "teaching_step_refs": [
+            "RP0-1",
+            "RP0-2",
+            "RP0-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-RELATIVE-MOTION/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MEASURED-FROM",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MEASURED-FROM",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MEASURED-FROM",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MEASURED-FROM",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-RELATIVE-MOTION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+          "rung": "R3",
+          "ladder_position": 55,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-SAME-TIME",
+          "capability_ref": "CAP-SAME-TIME",
+          "teaching_step_refs": [
+            "RP-1",
+            "RP-2"
+          ],
+          "microtopic_prerequisite_refs": [
+            "CAP-SIGNED-PAIR"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SIGNED-PAIR"
+          ],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-RELATIVE-MOTION/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-SAME-TIME",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-SAME-TIME",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-SAME-TIME",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-SAME-TIME",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-RELATIVE-MOTION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+          "rung": "R4",
+          "ladder_position": 70,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-COMMON-INTERVAL",
+          "capability_ref": "CAP-RELATIVE-V",
+          "teaching_step_refs": [
+            "RV-1",
+            "RV-2",
+            "RV-3",
+            "RV-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-SAME-TIME"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-SAME-TIME"
+          ],
+          "representation_refs": [
+            "REP-REL-VECTOR"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-RELATIVE-MOTION/R4",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-COMMON-INTERVAL",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-COMMON-INTERVAL",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-RELATIVE-V",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-COMMON-INTERVAL",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-RELATIVE-MOTION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+          "rung": "R5",
+          "ladder_position": 85,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+          "capability_ref": "CAP-VECTOR-CHECK",
+          "teaching_step_refs": [
+            "GC-1",
+            "GC-2",
+            "GC-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-COMMON-INTERVAL",
+            "MIC-GRAPHICAL-SUBTRACTION"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-RELATIVE-V"
+          ],
+          "representation_refs": [
+            "REP-REL-VECTOR"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-RELATIVE-MOTION/R5",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-GEOMETRIC-CHECK",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-GEOMETRIC-CHECK",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VECTOR-CHECK",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-GEOMETRIC-CHECK",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-RELATIVE-MOTION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-VECTOR-VS-SCALAR",
+          "capability_ref": "CAP-VECTOR-VS-SCALAR",
+          "teaching_step_refs": [
+            "VS-1",
+            "VS-2",
+            "VS-3"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "UNAVAILABLE",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VECTOR-REPRESENTATION/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-VECTOR-VS-SCALAR",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-VECTOR-VS-SCALAR",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VECTOR-VS-SCALAR",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-VECTOR-VS-SCALAR",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-VECTOR-REPRESENTATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            },
+            {
+              "code": "VISUAL_REF_UNAVAILABLE",
+              "ref": null,
+              "detail": "No canonical representation or activity/resource link is authored for this rung."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+          "rung": "R2",
+          "ladder_position": 50,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-SIGNED-COMPONENT",
+          "capability_ref": "CAP-VECTOR-SIGNED-COMPONENT",
+          "teaching_step_refs": [
+            "SC-1",
+            "SC-2",
+            "SC-3"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-VECTOR-VS-SCALAR"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-VS-SCALAR",
+            "CAP-SIGNED-PAIR-BRIDGE"
+          ],
+          "representation_refs": [
+            "REP-VECTOR-COMPONENT"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VECTOR-REPRESENTATION/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-SIGNED-COMPONENT",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-SIGNED-COMPONENT",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-VECTOR-SIGNED-COMPONENT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-SIGNED-COMPONENT",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-VECTOR-REPRESENTATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+          "rung": "R3",
+          "ladder_position": 80,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-GRAPHICAL-SUBTRACTION",
+          "capability_ref": "CAP-GRAPHICAL-SUBTRACT",
+          "teaching_step_refs": [
+            "GS-1",
+            "GS-2",
+            "GS-3",
+            "GS-4"
+          ],
+          "microtopic_prerequisite_refs": [
+            "MIC-SIGNED-COMPONENT"
+          ],
+          "capability_prerequisite_refs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "representation_refs": [
+            "REP-VECTOR-SUBTRACTION-CONSTRUCTION"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "UNSUPPORTED",
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-PHY-VECTOR-REPRESENTATION/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-GRAPHICAL-SUBTRACTION",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-GRAPHICAL-SUBTRACTION",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-GRAPHICAL-SUBTRACT",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-GRAPHICAL-SUBTRACTION",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "BUCKET-VECTOR-REPRESENTATION",
+              "detail": "CORE_ROLES_MISSING: CORE2B"
+            }
+          ]
+        }
+      ],
+      "visual_targets": {
+        "ACT-KIN-2D-APEX-FALLACY": {
+          "resource_ref": "ACT-KIN-2D-APEX-FALLACY",
+          "representation_refs": [],
+          "locator": "public/physics/motion-2d/explorers/apex-fallacy/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [],
+            "capability_ref_sources": [
+              "CAP-KIN-PROJECTILE-MODEL"
+            ]
+          }
+        },
+        "ACT-KIN-2D-EQUAL-HEIGHT-STATE": {
+          "resource_ref": "ACT-KIN-2D-EQUAL-HEIGHT-STATE",
+          "representation_refs": [],
+          "locator": "public/physics/motion-2d/explorers/equal-height-state/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [],
+            "capability_ref_sources": [
+              "CAP-KIN-PROJECTILE-MODEL"
+            ]
+          }
+        },
+        "ACT-KIN-2D-EVENT-CLOCK": {
+          "resource_ref": "ACT-KIN-2D-EVENT-CLOCK",
+          "representation_refs": [
+            "REP-KIN-2D-EVENT-CLOCK"
+          ],
+          "locator": "public/physics/motion-2d/explorers/event-clock/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-KIN-2D-EVENT-CLOCK"
+            ],
+            "capability_ref_sources": [
+              "CAP-KIN-2D-CONSTANT-ACCELERATION"
+            ]
+          }
+        },
+        "ACT-KIN-2D-LANDING-GEOMETRY": {
+          "resource_ref": "ACT-KIN-2D-LANDING-GEOMETRY",
+          "representation_refs": [],
+          "locator": "public/physics/motion-2d/explorers/landing-geometry/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [],
+            "capability_ref_sources": [
+              "CAP-KIN-PROJECTILE-MODEL"
+            ]
+          }
+        },
+        "ACT-KIN-2D-PROJECTILE-MODEL-GATE": {
+          "resource_ref": "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
+          "representation_refs": [
+            "REP-KIN-2D-PROJECTILE-MODEL"
+          ],
+          "locator": "public/physics/motion-2d/explorers/projectile-model/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-KIN-2D-PROJECTILE-MODEL"
+            ],
+            "capability_ref_sources": [
+              "CAP-KIN-PROJECTILE-MODEL"
+            ]
+          }
+        },
+        "ACT-KIN-2D-SHARED-CLOCK": {
+          "resource_ref": "ACT-KIN-2D-SHARED-CLOCK",
+          "representation_refs": [
+            "REP-KIN-2D-SHARED-CLOCK"
+          ],
+          "locator": "public/physics/motion-2d/explorers/shared-clock/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": "REPO_BUNDLE",
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-KIN-2D-SHARED-CLOCK"
+            ],
+            "capability_ref_sources": [
+              "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+            ]
+          }
+        },
+        "ACT-KIN-CIRCULAR-DYNAMICS": {
+          "resource_ref": "ACT-KIN-CIRCULAR-DYNAMICS",
+          "representation_refs": [
+            "REP-KIN-CIRCULAR-FORCE-ROLE"
+          ],
+          "locator": "public/physics/motion-1d/explorers/circular-dynamics/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-KIN-CIRCULAR-FORCE-ROLE"
+            ],
+            "capability_ref_sources": [
+              "CAP-KIN-CIRCULAR-DYNAMICS-ROLE",
+              "CAP-KIN-UNIFORM-CIRCULAR-MOTION",
+              "CAP-NLM-SECOND-LAW"
+            ]
+          }
+        },
+        "ACT-NLM-ACCELERATED-FRAMES": {
+          "resource_ref": "ACT-NLM-ACCELERATED-FRAMES",
+          "representation_refs": [
+            "REP-NLM-ACCELERATING-FRAME-COMPARISON"
+          ],
+          "locator": "public/physics/nlm/explorers/accelerated-frames/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-NLM-ACCELERATING-FRAME-COMPARISON"
+            ],
+            "capability_ref_sources": [
+              "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "CAP-NLM-FRAME-CHOICE",
+              "CAP-NLM-SECOND-LAW"
+            ]
+          }
+        },
+        "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS": {
+          "resource_ref": "ACT-NLM-ATWOOD-PULLEY-CONSTRAINTS",
+          "representation_refs": [],
+          "locator": "public/physics/nlm/explorers/atwood-pulleys/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [],
+            "capability_ref_sources": [
+              "CAP-NLM-IDEAL-STRING-TENSION",
+              "CAP-NLM-SINGLE-STRING-CONSTRAINT"
+            ]
+          }
+        },
+        "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW": {
+          "resource_ref": "ACT-NLM-CONNECTED-BLOCKS-THIRD-LAW",
+          "representation_refs": [
+            "REP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "locator": "public/physics/nlm/explorers/connected-blocks/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-NLM-FBD-BODY-OWNERSHIP"
+            ],
+            "capability_ref_sources": [
+              "CAP-NLM-CONNECTED-COMMON-ACCEL",
+              "CAP-NLM-FBD-BODY-OWNERSHIP",
+              "CAP-NLM-THIRD-LAW"
+            ]
+          }
+        },
+        "ACT-NLM-FRICTION-THRESHOLD": {
+          "resource_ref": "ACT-NLM-FRICTION-THRESHOLD",
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ],
+          "locator": "public/physics/nlm/explorers/friction-threshold/index.html",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [
+              "REP-NLM-FRICTION-THRESHOLD"
+            ],
+            "capability_ref_sources": [
+              "CAP-NLM-FRICTION",
+              "CAP-NLM-FRICTION-QUANT"
+            ]
+          }
+        },
+        "SRC-PHET": {
+          "resource_ref": "SRC-PHET",
+          "representation_refs": [],
+          "locator": "https://phet.colorado.edu/en/simulations/vector-addition",
+          "delivery_kind": "EXISTING_ACTIVITY",
+          "delivery_profile": null,
+          "portable_package_ref": null,
+          "availability": {
+            "resource": "READY",
+            "locator": "READY",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "representation_ref_sources": [],
+            "capability_ref_sources": []
+          }
+        }
+      },
+      "findings": [
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "VISUAL_REF_UNAVAILABLE",
+          "ref": null,
+          "detail": "No canonical representation or activity/resource link is authored for this rung."
+        },
+        {
+          "code": "MICROTOPIC_REF_UNAVAILABLE",
+          "ref": null,
+          "detail": "Matrix rung has no authored microtopic_ref; the mapping is honestly unavailable."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": null,
+          "detail": "No Core projection can be bound because this rung has no authored microtopic_ref."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-KIN-1D-MOTION",
+          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-NLM-FIRST-LAW",
+          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
+          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-OSC-SHM-WAVES",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-ROT-RIGID-BODY",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-SIMPLE-MACHINES",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-SOUND",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-VEC-ADD-SUB",
+          "detail": "PARENT_TRANSFER_PAIR_MISSING: No linked CORE2A/CORE2B question pair."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-RELATIVE-MOTION",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "BUCKET-VECTOR-REPRESENTATION",
+          "detail": "CORE_ROLES_MISSING: CORE2B"
+        }
+      ],
+      "coverage": {
+        "rung_count": 102,
+        "availability": {
+          "mapping": {
+            "READY": 87,
+            "UNAVAILABLE": 15
+          },
+          "core": {
+            "READY": 1,
+            "UNAVAILABLE": 101
+          },
+          "representation": {
+            "READY": 14,
+            "UNAVAILABLE": 88
+          },
+          "activity": {
+            "READY": 14,
+            "UNAVAILABLE": 88
+          },
+          "locator": {
+            "READY": 14,
+            "UNAVAILABLE": 88
+          },
+          "portable_package": {
+            "UNAVAILABLE": 102
+          },
+          "standalone": {
+            "UNAVAILABLE": 102
+          }
+        },
+        "finding_counts": {
+          "CORE_PROJECTION_UNAVAILABLE": 101,
+          "MICROTOPIC_REF_UNAVAILABLE": 15,
+          "VISUAL_REF_UNAVAILABLE": 81
+        },
+        "matrices": [
+          {
+            "matrix_id": "MATRIX-PHY-ELEC-CURRENT-OHM",
+            "rung_count": 7,
+            "availability": {
+              "mapping": {
+                "READY": 2,
+                "UNAVAILABLE": 5
+              },
+              "core": {
+                "UNAVAILABLE": 7
+              },
+              "representation": {
+                "UNAVAILABLE": 7
+              },
+              "activity": {
+                "UNAVAILABLE": 7
+              },
+              "locator": {
+                "UNAVAILABLE": 7
+              },
+              "portable_package": {
+                "UNAVAILABLE": 7
+              },
+              "standalone": {
+                "UNAVAILABLE": 7
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 7,
+              "MICROTOPIC_REF_UNAVAILABLE": 5,
+              "VISUAL_REF_UNAVAILABLE": 7
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-FLUID-BERNOULLI-EQUATION",
+            "rung_count": 5,
+            "availability": {
+              "mapping": {
+                "READY": 3,
+                "UNAVAILABLE": 2
+              },
+              "core": {
+                "UNAVAILABLE": 5
+              },
+              "representation": {
+                "UNAVAILABLE": 5
+              },
+              "activity": {
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 5
+              },
+              "standalone": {
+                "UNAVAILABLE": 5
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 2,
+              "VISUAL_REF_UNAVAILABLE": 5
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-GRAV-UNIVERSAL-LAW",
+            "rung_count": 6,
+            "availability": {
+              "mapping": {
+                "READY": 6
+              },
+              "core": {
+                "UNAVAILABLE": 6
+              },
+              "representation": {
+                "UNAVAILABLE": 6
+              },
+              "activity": {
+                "UNAVAILABLE": 6
+              },
+              "locator": {
+                "UNAVAILABLE": 6
+              },
+              "portable_package": {
+                "UNAVAILABLE": 6
+              },
+              "standalone": {
+                "UNAVAILABLE": 6
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 6,
+              "VISUAL_REF_UNAVAILABLE": 6
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-KIN-1D-MOTION",
+            "rung_count": 7,
+            "availability": {
+              "mapping": {
+                "READY": 7
+              },
+              "core": {
+                "UNAVAILABLE": 7
+              },
+              "representation": {
+                "READY": 3,
+                "UNAVAILABLE": 4
+              },
+              "activity": {
+                "READY": 2,
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "READY": 2,
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 7
+              },
+              "standalone": {
+                "UNAVAILABLE": 7
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 7,
+              "VISUAL_REF_UNAVAILABLE": 3
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-KIN-2D-MOTION",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "READY": 1,
+                "UNAVAILABLE": 2
+              },
+              "representation": {
+                "READY": 3
+              },
+              "activity": {
+                "READY": 3
+              },
+              "locator": {
+                "READY": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 2
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-MAG-FIELD-LORENTZ",
+            "rung_count": 6,
+            "availability": {
+              "mapping": {
+                "READY": 3,
+                "UNAVAILABLE": 3
+              },
+              "core": {
+                "UNAVAILABLE": 6
+              },
+              "representation": {
+                "UNAVAILABLE": 6
+              },
+              "activity": {
+                "UNAVAILABLE": 6
+              },
+              "locator": {
+                "UNAVAILABLE": 6
+              },
+              "portable_package": {
+                "UNAVAILABLE": 6
+              },
+              "standalone": {
+                "UNAVAILABLE": 6
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 6,
+              "MICROTOPIC_REF_UNAVAILABLE": 3,
+              "VISUAL_REF_UNAVAILABLE": 6
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-NLM-FIRST-LAW",
+            "rung_count": 11,
+            "availability": {
+              "mapping": {
+                "READY": 11
+              },
+              "core": {
+                "UNAVAILABLE": 11
+              },
+              "representation": {
+                "READY": 3,
+                "UNAVAILABLE": 8
+              },
+              "activity": {
+                "READY": 9,
+                "UNAVAILABLE": 2
+              },
+              "locator": {
+                "READY": 9,
+                "UNAVAILABLE": 2
+              },
+              "portable_package": {
+                "UNAVAILABLE": 11
+              },
+              "standalone": {
+                "UNAVAILABLE": 11
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 11,
+              "VISUAL_REF_UNAVAILABLE": 2
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-NLM-MOMENTUM-TRANSFER",
+            "rung_count": 1,
+            "availability": {
+              "mapping": {
+                "READY": 1
+              },
+              "core": {
+                "UNAVAILABLE": 1
+              },
+              "representation": {
+                "UNAVAILABLE": 1
+              },
+              "activity": {
+                "UNAVAILABLE": 1
+              },
+              "locator": {
+                "UNAVAILABLE": 1
+              },
+              "portable_package": {
+                "UNAVAILABLE": 1
+              },
+              "standalone": {
+                "UNAVAILABLE": 1
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 1,
+              "VISUAL_REF_UNAVAILABLE": 1
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-OPTICS-REFLECTION-MIRRORS",
+            "rung_count": 6,
+            "availability": {
+              "mapping": {
+                "READY": 6
+              },
+              "core": {
+                "UNAVAILABLE": 6
+              },
+              "representation": {
+                "UNAVAILABLE": 6
+              },
+              "activity": {
+                "UNAVAILABLE": 6
+              },
+              "locator": {
+                "UNAVAILABLE": 6
+              },
+              "portable_package": {
+                "UNAVAILABLE": 6
+              },
+              "standalone": {
+                "UNAVAILABLE": 6
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 6,
+              "VISUAL_REF_UNAVAILABLE": 6
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-OPTICS-REFRACTION-LENSES",
+            "rung_count": 6,
+            "availability": {
+              "mapping": {
+                "READY": 6
+              },
+              "core": {
+                "UNAVAILABLE": 6
+              },
+              "representation": {
+                "UNAVAILABLE": 6
+              },
+              "activity": {
+                "UNAVAILABLE": 6
+              },
+              "locator": {
+                "UNAVAILABLE": 6
+              },
+              "portable_package": {
+                "UNAVAILABLE": 6
+              },
+              "standalone": {
+                "UNAVAILABLE": 6
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 6,
+              "VISUAL_REF_UNAVAILABLE": 6
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-OSC-SHM-WAVES",
+            "rung_count": 5,
+            "availability": {
+              "mapping": {
+                "READY": 2,
+                "UNAVAILABLE": 3
+              },
+              "core": {
+                "UNAVAILABLE": 5
+              },
+              "representation": {
+                "UNAVAILABLE": 5
+              },
+              "activity": {
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 5
+              },
+              "standalone": {
+                "UNAVAILABLE": 5
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 3,
+              "VISUAL_REF_UNAVAILABLE": 5
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-ROT-RIGID-BODY",
+            "rung_count": 5,
+            "availability": {
+              "mapping": {
+                "READY": 4,
+                "UNAVAILABLE": 1
+              },
+              "core": {
+                "UNAVAILABLE": 5
+              },
+              "representation": {
+                "UNAVAILABLE": 5
+              },
+              "activity": {
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 5
+              },
+              "standalone": {
+                "UNAVAILABLE": 5
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 1,
+              "VISUAL_REF_UNAVAILABLE": 5
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-SIMPLE-MACHINES",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "UNAVAILABLE": 3
+              },
+              "representation": {
+                "UNAVAILABLE": 3
+              },
+              "activity": {
+                "UNAVAILABLE": 3
+              },
+              "locator": {
+                "UNAVAILABLE": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 3,
+              "VISUAL_REF_UNAVAILABLE": 3
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-SOUND",
+            "rung_count": 5,
+            "availability": {
+              "mapping": {
+                "READY": 5
+              },
+              "core": {
+                "UNAVAILABLE": 5
+              },
+              "representation": {
+                "READY": 1,
+                "UNAVAILABLE": 4
+              },
+              "activity": {
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 5
+              },
+              "standalone": {
+                "UNAVAILABLE": 5
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "VISUAL_REF_UNAVAILABLE": 4
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-THERMO-FIRST-SECOND-LAW",
+            "rung_count": 5,
+            "availability": {
+              "mapping": {
+                "READY": 4,
+                "UNAVAILABLE": 1
+              },
+              "core": {
+                "UNAVAILABLE": 5
+              },
+              "representation": {
+                "UNAVAILABLE": 5
+              },
+              "activity": {
+                "UNAVAILABLE": 5
+              },
+              "locator": {
+                "UNAVAILABLE": 5
+              },
+              "portable_package": {
+                "UNAVAILABLE": 5
+              },
+              "standalone": {
+                "UNAVAILABLE": 5
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 5,
+              "MICROTOPIC_REF_UNAVAILABLE": 1,
+              "VISUAL_REF_UNAVAILABLE": 5
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-VEC-ADD-SUB",
+            "rung_count": 4,
+            "availability": {
+              "mapping": {
+                "READY": 4
+              },
+              "core": {
+                "UNAVAILABLE": 4
+              },
+              "representation": {
+                "UNAVAILABLE": 4
+              },
+              "activity": {
+                "UNAVAILABLE": 4
+              },
+              "locator": {
+                "UNAVAILABLE": 4
+              },
+              "portable_package": {
+                "UNAVAILABLE": 4
+              },
+              "standalone": {
+                "UNAVAILABLE": 4
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 4,
+              "VISUAL_REF_UNAVAILABLE": 4
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-VEC-DIRECTION-UNIT",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "UNAVAILABLE": 3
+              },
+              "representation": {
+                "UNAVAILABLE": 3
+              },
+              "activity": {
+                "UNAVAILABLE": 3
+              },
+              "locator": {
+                "UNAVAILABLE": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 3,
+              "VISUAL_REF_UNAVAILABLE": 3
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-WORK-ENERGY-POWER",
+            "rung_count": 7,
+            "availability": {
+              "mapping": {
+                "READY": 7
+              },
+              "core": {
+                "UNAVAILABLE": 7
+              },
+              "representation": {
+                "UNAVAILABLE": 7
+              },
+              "activity": {
+                "UNAVAILABLE": 7
+              },
+              "locator": {
+                "UNAVAILABLE": 7
+              },
+              "portable_package": {
+                "UNAVAILABLE": 7
+              },
+              "standalone": {
+                "UNAVAILABLE": 7
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 7,
+              "VISUAL_REF_UNAVAILABLE": 7
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-RELATIVE-MOTION",
+            "rung_count": 4,
+            "availability": {
+              "mapping": {
+                "READY": 4
+              },
+              "core": {
+                "UNAVAILABLE": 4
+              },
+              "representation": {
+                "READY": 2,
+                "UNAVAILABLE": 2
+              },
+              "activity": {
+                "UNAVAILABLE": 4
+              },
+              "locator": {
+                "UNAVAILABLE": 4
+              },
+              "portable_package": {
+                "UNAVAILABLE": 4
+              },
+              "standalone": {
+                "UNAVAILABLE": 4
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 4,
+              "VISUAL_REF_UNAVAILABLE": 2
+            }
+          },
+          {
+            "matrix_id": "MATRIX-PHY-VECTOR-REPRESENTATION",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "UNAVAILABLE": 3
+              },
+              "representation": {
+                "READY": 2,
+                "UNAVAILABLE": 1
+              },
+              "activity": {
+                "UNAVAILABLE": 3
+              },
+              "locator": {
+                "UNAVAILABLE": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 3,
+              "VISUAL_REF_UNAVAILABLE": 1
+            }
+          }
+        ]
+      }
     }
   }
 };

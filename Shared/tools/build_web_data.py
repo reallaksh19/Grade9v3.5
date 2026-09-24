@@ -24,6 +24,8 @@ from Shared.contracts import ContractError, load  # noqa: E402
 from Shared.library.compile_inputs import compile_bucket  # noqa: E402
 from Shared.library.intake import check  # noqa: E402
 from Shared.library.resolve import build_index, slice_for_bucket  # noqa: E402
+from Shared.tools import build_core_learning_data  # noqa: E402
+from Shared.tools.atlas_index import build_subject_index  # noqa: E402
 
 
 def subjects() -> list[str]:
@@ -239,6 +241,7 @@ def matrix_summary(subject: str, records: dict) -> list[dict]:
 
 def build() -> dict:
     payload = {"generated_by": "Shared/tools/build_web_data.py", "subjects": {}}
+    core_payload = build_core_learning_data.build()
     for subject in subjects():
         packages = [load(p) for p in sorted((REPO / subject / "library").glob("*.json"))]
         entry = {"contract": {}, "gates": gate_summary(subject), "buckets": [],
@@ -259,12 +262,16 @@ def build() -> dict:
                                   "admitted": check(p)["admitted"]} for p in packages]
             records = build_index(packages)
             entry["matrices"] = matrix_summary(subject, records)
+            boards = [load(path) for path in sorted((REPO / subject / "matrices").glob("*.rungs.json"))]
+            entry.update(build_subject_index(subject, boards, records, core_payload))
             for bucket_id in sorted(r for r, v in records.items() if v["_collection"] == "buckets"):
                 view = bucket_view(records, bucket_id)
                 view["compile_preview"] = compile_preview(records, bucket_id, subject)
                 entry["buckets"].append(view)
         else:
             entry["matrices"] = matrix_summary(subject, {})
+            boards = [load(path) for path in sorted((REPO / subject / "matrices").glob("*.rungs.json"))]
+            entry.update(build_subject_index(subject, boards, {}, core_payload))
         payload["subjects"][subject] = entry
     return payload
 
