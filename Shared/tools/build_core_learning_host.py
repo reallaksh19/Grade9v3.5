@@ -48,6 +48,10 @@ TEMPLATE = r'''<!doctype html>
         <button id="load-projection" type="button">Load</button>
       </div>
       <p id="projection-status" data-status role="status" aria-live="polite"></p>
+      <details id="availability-panel" hidden>
+        <summary>Unavailable or held activities</summary>
+        <ul id="availability-list"></ul>
+      </details>
     </section>
     <section class="explorer-panel" id="explorer-panel" aria-labelledby="explorer-title" hidden>
       <h2 id="explorer-title">Interactive scientific representation</h2>
@@ -64,10 +68,13 @@ TEMPLATE = r'''<!doctype html>
 
     const data = window.GRADE9V3_CORE;
     const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
+    const availability = Array.isArray(data?.bucket_availability) ? data.bucket_availability : [];
     const learner = document.getElementById("learner");
     const select = document.getElementById("projection-select");
     const loadButton = document.getElementById("load-projection");
     const status = document.getElementById("projection-status");
+    const availabilityPanel = document.getElementById("availability-panel");
+    const availabilityList = document.getElementById("availability-list");
     const explorerPanel = document.getElementById("explorer-panel");
     const explorerFrame = document.getElementById("explorer-frame");
     const registries = window.CORE_LEARNING_REGISTRIES || {};
@@ -79,6 +86,22 @@ TEMPLATE = r'''<!doctype html>
     }
 
     function setStatus(message) { status.textContent = message; }
+
+    function renderAvailability() {
+      const unavailable = availability.filter((row) =>
+        row?.status === "UNSUPPORTED" || (Array.isArray(row?.findings) && row.findings.length)
+      );
+      availabilityPanel.hidden = unavailable.length === 0;
+      availabilityList.replaceChildren();
+      for (const row of unavailable) {
+        const item = document.createElement("li");
+        const finding = Array.isArray(row.findings) && row.findings.length ? row.findings[0] : row;
+        const code = finding?.code || "UNAVAILABLE";
+        const detail = finding?.detail ? ` — ${finding.detail}` : "";
+        item.textContent = [row.subject, row.bucket_ref, code].filter(Boolean).join(" · ") + detail;
+        availabilityList.append(item);
+      }
+    }
 
     function explorerUrl(locator) {
       if (typeof locator !== "string" || !locator.startsWith("public/") || locator.includes("..")) return null;
@@ -118,10 +141,14 @@ TEMPLATE = r'''<!doctype html>
       select.append(option);
     }
 
+    renderAvailability();
+
     if (!select.options.length) {
       select.disabled = true;
       loadButton.disabled = true;
-      setStatus("No compiled Core learner projections are available in this generated data build.");
+      const first = availability.find((row) => row?.status === "UNSUPPORTED");
+      const reason = first?.code ? ` Reason: ${first.code}.` : "";
+      setStatus("No compiled Core learner projections are available in this generated data build." + reason);
     } else {
       loadButton.addEventListener("click", () => mount(select.value));
       select.addEventListener("change", () => setStatus(`Selected ${labelFor(rows.find((row) => row.id === select.value))}.`));
