@@ -472,16 +472,29 @@ export function replayMotionSessionTrace(eventsInput) {
       const code = event?.sequence < expectedSequence ? "TRACE_SEQUENCE_DUPLICATE_OR_REWIND" : "TRACE_SEQUENCE_GAP";
       return fail(code, expectedSequence, event?.sequence);
     }
+    if (event.parent_sequence != null) {
+      if (
+        !Number.isInteger(event.parent_sequence)
+        || event.parent_sequence < 1
+        || event.parent_sequence >= event.sequence
+      ) {
+        return fail("TRACE_PARENT_SEQUENCE_INVALID", "earlier sequence in same run", event.parent_sequence);
+      }
+    }
     if (!same(event.prior_state, state)) return fail("TRACE_PRIOR_STATE_MISMATCH", state, event.prior_state);
 
     let transition;
     try {
-      transition = transitionMotionSessionState(state, event.requested_transition);
+      const requested = sanitizeRequestedTransition(event.requested_transition);
+      transition = transitionMotionSessionState(state, requested);
     } catch (error) {
       return fail(error?.code || "TRACE_TRANSITION_IMPOSSIBLE", "valid transition", event.requested_transition);
     }
     if (transition.outcome !== event.outcome) return fail("TRACE_OUTCOME_MISMATCH", transition.outcome, event.outcome);
     if (transition.reason !== event.reason_code) return fail("TRACE_REASON_MISMATCH", transition.reason, event.reason_code);
+    if (!same(transition.invariantChecks, event.invariant_checks)) {
+      return fail("TRACE_INVARIANT_CHECK_MISMATCH", transition.invariantChecks, event.invariant_checks);
+    }
     if (!same(transition.state, event.resulting_state)) {
       return fail("TRACE_RESULT_STATE_MISMATCH", transition.state, event.resulting_state);
     }
