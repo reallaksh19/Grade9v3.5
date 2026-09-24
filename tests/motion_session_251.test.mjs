@@ -146,7 +146,10 @@ test("Issue #251 stress transitions deny duplicates, out-of-order workbench even
     return result;
   };
 
+  assert.equal(step({ type: "NAVIGATION_REQUESTED", stage: "core1b" }).outcome, "ACCEPT");
+  step({ type: "STAGE_EXITED", stage: "orient", nextStage: "core1b" });
   step({ type: "NAVIGATE", stage: "core1b" });
+  step({ type: "STAGE_ENTERED", stage: "core1b", previousStage: "orient" });
   assert.equal(step({ type: "CORE_ATTEMPT_REJECTED", core: "CORE1B", reason: "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED" }).outcome, "DENY");
   assert.equal(state.core1b.attemptCount, 0);
   assert.equal(step({ type: "CORE_ATTEMPT_ACCEPTED", core: "CORE1B", responsePresent: true }).outcome, "OBSERVE");
@@ -339,6 +342,14 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
 
     await driver.click(await driver.element("#start-session"));
     await driver.waitFor("return window.__motionSessionState.stage === 'core1b';");
+    const navigationTrace = await driver.execute("return window.__motionSessionTrace.slice(-4);");
+    assert.deepEqual(navigationTrace.map((e) => e.requested_transition.type), [
+      "NAVIGATION_REQUESTED", "STAGE_EXITED", "NAVIGATE", "STAGE_ENTERED",
+    ]);
+    assert.equal(navigationTrace[0].outcome, "ACCEPT");
+    assert.equal(navigationTrace[1].parent_sequence, navigationTrace[0].sequence);
+    assert.equal(navigationTrace[2].parent_sequence, navigationTrace[0].sequence);
+    assert.equal(navigationTrace[3].parent_sequence, navigationTrace[0].sequence);
     const before = await driver.execute(`
       const learner = document.querySelector("#core1b-learner");
       return { state: learner.state, html: learner.shadowRoot.innerHTML };
@@ -351,6 +362,9 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     await driver.click(await driver.shadowElement("#core1b-learner", '[data-action="commit"]'));
     await driver.waitFor("return window.__motionSessionTrace.some(e => e.event_type === 'attempt_rejected');");
     assert.equal(await driver.execute("return window.__motionSessionState.core1b.attemptCount;"), 0);
+    const deniedReveal = await driver.execute("return window.__motionSessionTrace.find(e => e.requested_transition.type === 'CORE_REVEAL_DENIED' && e.requested_transition.core === 'CORE1B');");
+    assert.equal(deniedReveal.outcome, "DENY");
+    assert.ok(deniedReveal.parent_sequence);
     assert.equal(await driver.execute("return document.querySelector('#core1b-learner').shadowRoot.activeElement?.dataset?.attemptInput !== undefined;"), true);
 
     const privateCore1 = "PRIVATE_CORE1_RESPONSE_SENTINEL";
@@ -358,6 +372,13 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     await driver.click(await driver.shadowElement("#core1b-learner", '[data-action="commit"]'));
     await driver.waitFor("return window.__motionSessionState.core1b.revealed === true;");
     assert.equal(await driver.execute("return JSON.stringify(window.__motionSessionTrace).includes('PRIVATE_CORE1_RESPONSE_SENTINEL');"), false);
+    const core1Reveal = await driver.execute(`
+      const trace = window.__motionSessionTrace;
+      const request = trace.find(e => e.requested_transition.type === "CORE_REVEAL_REQUESTED" && e.requested_transition.core === "CORE1B");
+      const granted = trace.find(e => e.requested_transition.type === "CORE_REVEAL_OBSERVED" && e.requested_transition.core === "CORE1B");
+      return { request, granted };
+    `);
+    assert.equal(core1Reveal.granted.parent_sequence, core1Reveal.request.sequence);
     await driver.click(await driver.element("#core1b-next"));
     await driver.waitFor("return window.__motionSessionState.stage === 'visual';");
 
@@ -380,6 +401,15 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     await driver.click(targetAfterReject);
     await driver.waitFor("return window.__motionSessionState.visual.acceptedCount === 1;");
     assert.match(await driver.execute("return document.querySelector('#shared-clock-workbench').textSummary;"), /simultaneous/i);
+    const visualCorrelation = await driver.execute(`
+      const trace = window.__motionSessionTrace;
+      const requests = trace.filter(e => e.requested_transition.type === "VISUAL_ACTION_REQUESTED");
+      const outcomes = trace.filter(e => e.requested_transition.type === "VISUAL_OUTCOME");
+      return { requests, outcomes };
+    `);
+    assert.equal(visualCorrelation.requests.length >= 2, true);
+    assert.equal(visualCorrelation.outcomes.length, 2);
+    assert.equal(visualCorrelation.outcomes.every(e => visualCorrelation.requests.some(r => r.sequence === e.parent_sequence)), true);
     await driver.click(await driver.element("#visual-next"));
     await driver.waitFor("return window.__motionSessionState.stage === 'core2b';");
 
@@ -409,6 +439,9 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.match(summaryText, /does not infer mastery/i);
     const browserTrace = await driver.execute("return window.__motionSessionTrace;");
     assert.equal(replayMotionSessionTrace(browserTrace).ok, true);
+    const packageRequested = browserTrace.find((e) => e.requested_transition.type === "PACKAGE_LOAD_REQUESTED");
+    const packageReady = browserTrace.find((e) => e.requested_transition.type === "PACKAGE_READY");
+    assert.equal(packageReady.parent_sequence, packageRequested.sequence);
 
     const oldRun = browserTrace[0].run_id;
     await driver.click(await driver.element("#retry-session"));
@@ -417,6 +450,8 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.notEqual(retry.run, oldRun);
     assert.equal(retry.previous.replay.ok, true);
     assert.equal(retry.previous.run_id, oldRun);
+    const recovery = await driver.execute("return window.__motionSessionTrace.find(e => e.requested_transition.type === 'RECOVERY_STARTED');");
+    assert.equal(recovery.requested_transition.previousRunId, oldRun);
 
     await driver.click(await driver.element("#reset-session"));
     assert.equal(await driver.execute("return window.__motionSessionState.resetCount;"), 1);
