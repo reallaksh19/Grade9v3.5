@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 249,
-  "relation_count": 287,
+  "component_count": 251,
+  "relation_count": 289,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 34,
-    "TEST": 121,
-    "TOOLING": 57,
+    "TEST": 122,
+    "TOOLING": 58,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:6c7b146673ea885f1784dd8cc21f06d8826410e0f7a65d33a0474c9b42b9268d",
+  "digest": "sha256:cbabfa9d48a2c796bcec34be87dbad0031571612794ce8c86003941244923026",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -380,8 +380,8 @@
       "path": "Shared/roles/CORE2B.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 4274,
-      "sha256": "25ae53ad1e612bcd559f6a673a2dbc648afb0a3fbeed392d711e2b9f3a380bf6"
+      "bytes": 5300,
+      "sha256": "396e8a8048e51c68493c949b3100ca8a76daa1172aac24ed12efcac6e1581a67"
     },
     {
       "path": "Shared/roles/README.md",
@@ -531,6 +531,13 @@
       "sha256": "9eef94d26a350f193c0d3e58268bda1a0bc6c5ddb85088652158418ce32717dd"
     },
     {
+      "path": "Shared/tools/core2b_inventory.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16948,
+      "sha256": "6faa564c24397cc98c1a8ee8434d3b251c11791062895063a8fe77242cadb12e"
+    },
+    {
       "path": "Shared/tools/core_focus.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -569,8 +576,8 @@
       "path": "Shared/tools/feedback.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19910,
-      "sha256": "6db1e691cb6bf9c1a69488d54a54f02e88de1f4dcefcf802c278a429cc84133e"
+      "bytes": 20787,
+      "sha256": "093a0cf9ba9d27e0368cf1d617001bf2846ad16c8c286c3d6bd4c9d3378690d3"
     },
     {
       "path": "Shared/tools/focus_inventory.py",
@@ -1147,6 +1154,13 @@
       "sha256": "bd6d8c744a75d28637388c096d567d3b5259db3ea01b158903cbfa8ea384771a"
     },
     {
+      "path": "tests/test_core2b_inventory.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7926,
+      "sha256": "eddf27635e266f84ed1d25c2db68f7da0bd6f8c2c022688a3c7493d52c489801"
+    },
+    {
       "path": "tests/test_core_issue19_integration.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1206,8 +1220,8 @@
       "path": "tests/test_feedback.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 42728,
-      "sha256": "2ded1ff5763c478cca0be39d70d15c50f3d9ea0f6d707218345b9669fb042d4d"
+      "bytes": 44414,
+      "sha256": "7ba06e98e91c61b839997b10dc2d3bc02b0db913fed15adb02904e25a227240f"
     },
     {
       "path": "tests/test_g9_nlm_examside_core2b_transfer.py",
@@ -2115,6 +2129,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/core2b_inventory.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/empirical_acceptance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2526,6 +2545,11 @@
     },
     {
       "from": "tests/test_core2a_inventory.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core2b_inventory.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

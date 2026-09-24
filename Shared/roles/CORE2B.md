@@ -8,6 +8,8 @@ Assess whether the learner can carry an established capability into a situation 
 
 Core2B is **not Core2A with less support**. Its defining property is a specified changed demand, and the learner decision created by that change must remain protected before the attempt.
 
+For new or materially revised transfer items, that claim is made executable rather than left implicit: the changed decision is a `DECIDE` move in `question.answer.reasoning_route[]`, named by `question.transfer.protected_move_ref`. Existing unstructured transfer items are migration debt; their labels are not upgraded merely because they predate the structured contract.
+
 ## What makes a Core2B task
 
 A task belongs here only if it changes a **specified** dimension of demand relative to prior exposure. State which one:
@@ -27,7 +29,9 @@ A task belongs here only if it changes a **specified** dimension of demand relat
 - **Full answer and rubric**, including what a good justification contains, not only the final result.
 - **A repair route** for the predictable failure, pointing back to the specific Core1A/Core1B construction that addresses it.
 - **An explicit statement of the changed demand** relative to prior exposure, so the reviewer can check the transfer claim.
-- **Exposure lineage**: what the learner has already seen that this builds on.
+- **Exposure lineage**: what the learner has already seen that this builds on. When an adapted transfer has a question parent, that parent belongs in the lineage so the changed demand can be compared pairwise.
+- **Established capability continuity**: the transfer may vary the demand, not silently add an untaught capability or model. A capability absent from the prior-exposure/prerequisite closure is upstream teaching work.
+- **Pre-attempt protection across channels**: source/question hints remain custody data, but learner-time support shown before an attempt must not disclose the protected decision. METHOD/ANSWER support belongs after commitment unless a reviewer has established that it cannot collapse the changed demand.
 
 ## Practice routing
 

@@ -64,6 +64,13 @@ jobs:
       - name: Core2A reasoning migration only moves forward
         run: python3 Shared/tools/core2a_inventory.py --enforce-forward
 
+      # Core2B is a changed-demand claim relative to prior exposure. Existing transfer
+      # debt is frozen; new or materially revised items must name and protect the changed
+      # decision, establish their capabilities from lineage, carry specific repair and
+      # rubric closure, and keep the adaptation parent inside the declared lineage.
+      - name: Core2B transfer integrity only moves forward
+        run: python3 Shared/tools/core2b_inventory.py --enforce-forward
+
       # A claim about a learner must be backed by what was seen, or say it is a waiver.
       # Enforcing from the start: the store landed with its gate, and both committed
       # profiles are waiver-backed with a null percentage, which is the honest value.
