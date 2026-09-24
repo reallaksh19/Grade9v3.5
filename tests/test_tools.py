@@ -551,17 +551,14 @@ class SpecDelivery(unittest.TestCase):
         self.assertNotIn("Predict first:", texts["CORE1A"])
         self.assertIn("A common wrong idea", texts["CORE1B"])
 
-    def test_hints_are_authored_and_carried(self):
-        # Hints still have to survive compilation, but an AUTHORED practice question no
-        # longer makes Core2 source custody renderable. Mathematics therefore proves both
-        # halves of the Phase-4 boundary at once: Core2 is honestly not compiled here,
-        # while the familiar-application product still carries the authored hints.
+    def test_source_hints_do_not_manufacture_core2_from_authored_practice(self):
+        # Core2 owns source-supplied hints, so an AUTHORED Mathematics practice question
+        # must not make that role appear delivered. The projection-pipeline tests cover
+        # preservation of question hints into legitimate practice blocks; this regression
+        # check protects the ownership boundary and the compiler's non-dropping projection.
         subject_rows = self.rows_for("Mathematics")
-        rows = {(r["role"], r["path"]): r["state"]
-                for r in subject_rows if "path" in r}
         core2 = [r for r in subject_rows if r["role"] == "CORE2" and "path" not in r]
         self.assertEqual(core2, [{"role": "CORE2", "state": "NOT_COMPILED_HERE"}])
-        self.assertEqual(rows[("CORE2A", "question.hints[]")], "DELIVERED")
         source = (REPO / "Shared/library/compile_inputs.py").read_text(encoding="utf-8")
         self.assertNotIn('"hints": []', source)
 
