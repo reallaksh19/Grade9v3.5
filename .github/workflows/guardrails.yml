@@ -92,6 +92,17 @@ jobs:
             --write-report /tmp/core1b-reconstruction-report.json
           diff -u docs/core1b-reconstruction-report.json /tmp/core1b-reconstruction-report.json
 
+      # Core1-family progression keeps one canonical conceptual truth across
+      # orientation, completed construction and learner reconstruction. Local Phase-2
+      # migration debt remains local; only new ownership/routing/progression drift fails.
+      - name: Cross-Core1 conceptual progression only moves forward
+        run: |
+          python3 -m Shared.library.core1_progression \
+            --check-baseline docs/core1-progression-baseline.json
+          python3 -m Shared.library.core1_progression \
+            --write-report /tmp/core1-progression-report.json
+          diff -u docs/core1-progression-report.json /tmp/core1-progression-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
