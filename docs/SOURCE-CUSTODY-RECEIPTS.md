@@ -73,8 +73,15 @@ It cannot retroactively manufacture evidence of product coverage.
 Core2 is a preservation product.
 
 For a receipt to support Core2, its evidenced questions must be canonical questions with
-`origin = ORIGINAL` or `ADAPTED` and must be bound through `source_refs` to a resource
-named by the receipt.
+`origin = ORIGINAL` or `ADAPTED`, must be bound through `source_refs` to a resource
+named by the receipt, **and must carry a resolved question-level source-custody proof**.
+
+The proof lives at `question.extensions.source_custody` and is validated against
+`Shared/library/source-question-custody.schema.json`. It pins the source digest and item
+locator, binds the current demand-bearing question signature, and records the custody state
+of identity, stem, subparts, options, conditions, figures/captions, hints and source
+answer/rubric. Missing, unresolved or stale proofs do not contribute to Core2 coverage even
+when the question record itself is REVIEWED/CURATED.
 
 An authored question can never close Core2, even if it is scientifically excellent and
 even if it is useful in Core2A/Core2B.

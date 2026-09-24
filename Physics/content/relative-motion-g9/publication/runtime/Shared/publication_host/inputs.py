@@ -16,6 +16,7 @@ PLACEMENTS = {"TEACHING", "ANSWER", "ELICITED_REVEAL"}
 # the answer before the last rung is refusable rather than arguable.
 REVEALS = {"CONCEPT", "METHOD", "ANSWER"}
 REASONING_KINDS = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM", "VERIFY"}
+APPLICATION_CRUX_KINDS = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM"}
 SCAFFOLD_KINDS = {"REPRESENT", "CONNECT", "EXECUTE"}
 # Read from the shared vocabulary, not copied. The inline set was the second place this
 # enum lived, and a fifth value added to one would not have reached the other.
@@ -206,7 +207,8 @@ def _structured_application(block, answer):
 
     crux = text(crux, "CRUX_MOVE_REQUIRED")
     require(crux in moves, "CRUX_MOVE_UNKNOWN", crux)
-    require(moves[crux]["kind"] == "DECIDE", "CRUX_MOVE_NOT_DECISION", crux)
+    require(moves[crux]["kind"] in APPLICATION_CRUX_KINDS,
+            "CRUX_MOVE_NOT_APPLICATION_BOTTLENECK", crux)
 
     require(isinstance(scaffolds, list), "SCAFFOLDS_INVALID")
     for position, scaffold in enumerate(scaffolds):

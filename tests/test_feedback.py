@@ -218,6 +218,40 @@ class FeedbackRuntime(unittest.TestCase):
         self.assertEqual(report["next_action"], "STOP")
         self.assertEqual(report["findings"][0]["point"], "FEEDBACK_QUESTION_UNKNOWN")
 
+    def test_pre_attempt_transfer_support_is_concept_only_for_every_dimension(self):
+        for dimension in ("model_choice", "representation_translation", "reasoning_steps", "novelty"):
+            with self.subTest(dimension=dimension):
+                question = {
+                    "hints": [
+                        {"text": "Inspect the invariant first.", "reveals": "CONCEPT"},
+                        {"text": "Use this method now.", "reveals": "METHOD"},
+                        {"text": "The answer is supplied.", "reveals": "ANSWER"},
+                    ],
+                    "transfer": {
+                        "dimension": dimension,
+                        "statement": "The learner must make the changed decision.",
+                        "builds_on": ["Q-PRIOR"],
+                    },
+                }
+                first = feedback.pre_attempt_safe_hint(question, [])
+                self.assertEqual(first["reveals"], "CONCEPT")
+                self.assertIsNone(feedback.pre_attempt_safe_hint(question, [0]))
+
+    def test_post_attempt_non_model_choice_transfer_can_escalate_to_method(self):
+        question = {
+            "hints": [
+                {"text": "Inspect the representation.", "reveals": "CONCEPT"},
+                {"text": "Translate the axes before calculating.", "reveals": "METHOD"},
+            ],
+            "transfer": {
+                "dimension": "representation_translation",
+                "statement": "The learner must choose the representation.",
+                "builds_on": ["Q-PRIOR"],
+            },
+        }
+        hint = feedback.next_safe_hint(question, [0])
+        self.assertEqual(hint["reveals"], "METHOD")
+
     def test_model_choice_transfer_never_receives_a_method_hint(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -54,6 +54,14 @@ It names:
 The manifest is explicit because exact source custody cannot be inferred safely from lossy
 text extraction.
 
+Every source-derived question in the manifest also carries a typed
+`extensions.source_custody` proof validated against
+`Shared/library/source-question-custody.schema.json`. The proof binds the question to the
+acquisition/resource digest, names the precise source item locus, records embedded-verbatim
+versus external-reference custody, and records the inspection state of each demand-bearing
+component. Candidate records may remain unresolved; unresolved custody cannot be promoted or
+used to establish Core2 sufficiency.
+
 The pipeline refuses:
 
 - resource ids that do not match the acquisition;
@@ -62,6 +70,8 @@ The pipeline refuses:
 - non-CANDIDATE resources/questions;
 - questions marked AUTHORED;
 - questions that do not cite the acquired resource;
+- question custody proofs whose acquisition/resource/digest or inspected item locus does not match;
+- internally inconsistent component claims such as a preserved figure with no figure identity;
 - unequal canonical id collisions;
 - any merged package that fails the package schema.
 

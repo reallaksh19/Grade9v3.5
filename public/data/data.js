@@ -572,15 +572,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 6,
             "questions": 1,
-            "obligations": 6,
+            "obligations": 5,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -2279,7 +2283,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -2553,7 +2557,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -3118,19 +3122,23 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 80,
             "questions": 1,
-            "obligations": 8,
+            "obligations": 7,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE1",
                 "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -4119,7 +4127,6 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A",
@@ -4127,8 +4134,13 @@ window.GRADE9V3 = {
             ],
             "atoms": 80,
             "questions": 19,
-            "obligations": 11,
+            "obligations": 10,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-CIRCULAR-FORCE-ROLE",
@@ -4830,7 +4842,6 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A",
@@ -4838,8 +4849,13 @@ window.GRADE9V3 = {
             ],
             "atoms": 80,
             "questions": 10,
-            "obligations": 7,
+            "obligations": 6,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-EVENT-CLOCK",
@@ -5112,7 +5128,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -6700,7 +6716,6 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A",
@@ -6708,8 +6723,13 @@ window.GRADE9V3 = {
             ],
             "atoms": 80,
             "questions": 38,
-            "obligations": 15,
+            "obligations": 14,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
@@ -7202,7 +7222,6 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A",
@@ -7210,8 +7229,13 @@ window.GRADE9V3 = {
             ],
             "atoms": 80,
             "questions": 10,
-            "obligations": 5,
+            "obligations": 4,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -7721,7 +7745,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -8270,7 +8294,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -8471,7 +8495,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -8816,7 +8840,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -9371,15 +9395,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 80,
             "questions": 2,
-            "obligations": 7,
+            "obligations": 6,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -10158,15 +10186,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 80,
             "questions": 5,
-            "obligations": 9,
+            "obligations": 8,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -10505,7 +10537,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -11026,7 +11058,6 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A",
@@ -11034,8 +11065,13 @@ window.GRADE9V3 = {
             ],
             "atoms": 80,
             "questions": 11,
-            "obligations": 8,
+            "obligations": 7,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PROSE_AUTHORING",
                 "core": "CORE1A",
@@ -11413,7 +11449,7 @@ window.GRADE9V3 = {
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
-                "detail": "the library holds no question for this bucket to take custody of"
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
               },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
@@ -12412,15 +12448,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 80,
             "questions": 7,
-            "obligations": 11,
+            "obligations": 10,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -12913,15 +12953,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 81,
             "questions": 1,
-            "obligations": 8,
+            "obligations": 7,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",
@@ -13237,15 +13281,19 @@ window.GRADE9V3 = {
             "compilable": true,
             "supported_products": [
               "CORE1",
-              "CORE2",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 81,
             "questions": 1,
-            "obligations": 7,
+            "obligations": 6,
             "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2B",

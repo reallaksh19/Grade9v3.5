@@ -77,13 +77,43 @@ class StructuredApplicationPipeline(unittest.TestCase):
         self.assertTrue(any(f["point"] == "REASONING_ROUTE" and "unique" in f["detail"]
                             for f in findings), findings)
 
-    def test_intake_requires_crux_to_name_a_decision_move(self):
+    def test_core2a_crux_can_truthfully_name_nondecision_application_bottleneck(self):
+        for kind in ("REPRESENT", "CONNECT", "TRANSFORM"):
+            with self.subTest(kind=kind):
+                package = package_fixture()
+                q = structured_question(package)
+                q["answer"]["reasoning_route"][0]["kind"] = kind
+                q["answer"]["crux_move_ref"] = "MOVE-REPRESENT"
+                report = intake.check(package)
+                self.assertTrue(report["admitted"], report["findings"])
+
+    def test_core2a_crux_cannot_be_a_verify_only_closure_move(self):
         package = package_fixture()
         q = structured_question(package)
-        q["answer"]["reasoning_route"][1]["kind"] = "TRANSFORM"
+        q["answer"]["reasoning_route"][0]["kind"] = "VERIFY"
+        q["answer"]["crux_move_ref"] = "MOVE-REPRESENT"
         findings = intake.check(package)["findings"]
-        self.assertTrue(any(f["point"] == "REASONING_ROUTE" and "DECIDE" in f["detail"]
-                            for f in findings), findings)
+        self.assertTrue(any(
+            f["point"] == "REASONING_ROUTE" and "application bottleneck" in f["detail"]
+            for f in findings
+        ), findings)
+
+    def test_core2b_protected_move_still_must_be_a_decision(self):
+        package = package_fixture()
+        q = structured_question(package)
+        q["exposure"].append({"core": "CORE2B", "role": "NEW_TRANSFER", "artifact_ref": None})
+        q["answer"]["reasoning_route"][1]["kind"] = "CONNECT"
+        q["transfer"] = {
+            "dimension": "model_choice",
+            "statement": "Changed demand requires the learner to choose the subtraction order.",
+            "builds_on": ["MIC-MEASURED-FROM"],
+            "protected_move_ref": "MOVE-DECIDE",
+        }
+        findings = intake.check(package)["findings"]
+        self.assertTrue(any(
+            f["point"] == "TRANSFER" and "must name a DECIDE move" in f["detail"]
+            for f in findings
+        ), findings)
 
     def test_reasoning_move_visual_stage_ownership_is_validated(self):
         package = package_fixture()
@@ -244,6 +274,34 @@ class PublicationBoundaryStructuredRefs(unittest.TestCase):
                 lambda block: block["answer"].__setitem__("crux_move_ref", "MOVE-MISSING")
             )
         self.assertEqual("CRUX_MOVE_UNKNOWN", raised.exception.code)
+
+    def test_publication_boundary_accepts_representational_core2a_crux(self):
+        def use_represent_crux(block):
+            block["answer"]["crux_move_ref"] = "MOVE-REPRESENT"
+
+        ctx = self.validate_after(use_represent_crux)
+        self.assertIn("CORE2A-Q-AUTHOR-REL-01", ctx["objects"])
+
+    def test_publication_boundary_rejects_verify_only_crux(self):
+        def make_verify(block):
+            block["answer"]["reasoning_route"][0]["kind"] = "VERIFY"
+            block["answer"]["crux_move_ref"] = "MOVE-REPRESENT"
+
+        with self.assertRaises(ContractError) as raised:
+            self.validate_after(make_verify)
+        self.assertEqual("CRUX_MOVE_NOT_APPLICATION_BOTTLENECK", raised.exception.code)
+
+    def test_publication_boundary_rejects_nondecision_protected_move(self):
+        def change_kind(block):
+            move = next(
+                row for row in block["answer"]["reasoning_route"]
+                if row["id"] == "MOVE-DECIDE"
+            )
+            move["kind"] = "CONNECT"
+
+        with self.assertRaises(ContractError) as raised:
+            self.validate_after(change_kind, transfer=True)
+        self.assertEqual("PROTECTED_MOVE_NOT_DECISION", raised.exception.code)
 
     def test_publication_boundary_rejects_protected_move_scaffold_disclosure(self):
         def disclose(block):
