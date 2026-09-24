@@ -103,6 +103,14 @@ jobs:
             --write-report /tmp/core1-progression-report.json
           diff -u docs/core1-progression-report.json /tmp/core1-progression-report.json
 
+      # Core1-family learner delivery must preserve the Phase-4 progression through
+      # compiler-backed projections and the shared static/runtime host. Unlike local
+      # construction debt, learner delivery admits no baseline exceptions.
+      - name: Core1-family learner delivery remains complete and semantically stable
+        run: |
+          python3 -m Shared.library.core1_delivery \
+            --check-report docs/core1-delivery-report.json
+
       # Core2A still permits legacy prose while the corpus migrates, but that debt is
       # frozen: a new or materially revised familiar-application item must use the
       # structured reasoning route and stable crux rather than creating more fallback debt.
