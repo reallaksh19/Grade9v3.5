@@ -114,13 +114,32 @@ class Core1OrientationAudit(unittest.TestCase):
         row = self.row(package)
         self.assertIn("PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING", row["finding_codes"])
 
-    def test_relationless_bucket_is_reported_as_not_compilable_without_inventing_debt(self):
+    def test_relationless_bucket_with_hard_transition_still_has_a_core1_map(self):
         package = package_fixture()
         package["microtopics"][0]["relation_refs"] = []
         row = self.row(package)
-        self.assertFalse(row["core1_compilable"])
-        self.assertEqual(row["core1_compilability_reason"], "NO_GOVERNING_RELATION_REF")
+        self.assertTrue(row["core1_compilable"])
+        self.assertEqual(
+            row["core1_compilability_reason"],
+            "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+        )
+        self.assertIn("HARD_TRANSITION_POINTERS", row["orientation_surfaces"])
         self.assertNotIn("RELATION_CONDITIONS_MISSING", row["finding_codes"])
+
+    def test_bucket_with_no_emittable_orientation_surface_is_not_compilable(self):
+        package = package_fixture()
+        package["microtopics"][0]["relation_refs"] = []
+        package["microtopics"][0]["intrinsic_badge"] = "EASY"
+        package["buckets"][0]["conventions"] = []
+        package["buckets"][0]["scope"] = {}
+        package["buckets"][0]["primary_representation_ref"] = None
+        row = self.row(package)
+        self.assertFalse(row["core1_compilable"])
+        self.assertEqual(
+            row["core1_compilability_reason"],
+            "NO_ORIENTABLE_CANONICAL_CONTENT",
+        )
+        self.assertEqual(row["orientation_surfaces"], [])
 
     def test_auditor_does_not_score_prose_or_compare_core1_against_teaching_path(self):
         package = package_fixture()
