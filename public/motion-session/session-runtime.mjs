@@ -54,11 +54,12 @@ function canonicalRefs(identity) {
 }
 
 export function resolveMotionSessionIdentity(webData, coreData, {
-  subject = "Physics",
+  subject,
   matrixId,
   rung = "R1",
   transferProjectionId,
 } = {}) {
+  requireString(subject, "SESSION_SUBJECT_REQUIRED");
   requireString(matrixId, "SESSION_MATRIX_ID_REQUIRED");
   requireString(rung, "SESSION_RUNG_REQUIRED");
   requireString(transferProjectionId, "SESSION_TRANSFER_PROJECTION_REQUIRED");
