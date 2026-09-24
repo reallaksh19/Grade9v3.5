@@ -18,6 +18,8 @@ from Shared.tools.core_learning_projection_adapter import (
 REPO = Path(__file__).resolve().parents[1]
 MOTION = REPO / "Physics/library/phy-kin-2d-motion.v1.json"
 RELATIVE = REPO / "Physics/library/relative-motion.v1.json"
+ORIENTATION_REPORT = REPO / "docs/core1-orientation-report.json"
+RECONSTRUCTION_REPORT = REPO / "docs/core1b-reconstruction-report.json"
 FAMILIAR = "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
 TRANSFER = "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
 CONCEPT = "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS"
@@ -82,7 +84,75 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertTrue(a["projection"]["presentation"]["show_full_construction"])
         self.assertTrue(b["projection"]["presentation"]["attempt_before_reveal"])
         self.assertFalse(b["projection"]["presentation"]["show_full_construction"])
-        self.assertTrue(b["projection"]["concept"]["elicitation"]["prompt"])
+        self.assertTrue(b["projection"]["concept"]["elicitation"]["predict"]["prompt"])
+
+    def test_every_core1_orientable_bucket_reaches_the_learner_provider(self):
+        report = json.loads(ORIENTATION_REPORT.read_text(encoding="utf-8"))
+        expected = {
+            (row["subject"], row["bucket_ref"])
+            for row in report["buckets"]
+            if row["core1_compilable"]
+        }
+        delivered = {
+            (row["subject"], row["source_ref"])
+            for row in self.rows
+            if row["projection"]["core"] == "CORE1"
+        }
+        self.assertEqual(delivered, expected)
+
+    def test_every_routed_concept_reaches_both_core1a_and_core1b(self):
+        report = json.loads(RECONSTRUCTION_REPORT.read_text(encoding="utf-8"))
+        routed = {
+            (row["subject"], row["microtopic_ref"])
+            for row in report["microtopics"]
+            if row["routing_state"] != "UNROUTED"
+        }
+        for core in ("CORE1A", "CORE1B"):
+            delivered = {
+                (row["subject"], row["source_ref"])
+                for row in self.rows
+                if row["projection"]["core"] == core
+            }
+            self.assertEqual(delivered, routed, core)
+
+    def test_core1_projection_preserves_compiler_orientation_blocks(self):
+        compiled, _ = compile_motion()
+        product = next(
+            row for row in compiled["plan"]["products"]
+            if row["core"] == "CORE1"
+        )
+        learner = self.row(core="CORE1", source="BUCKET-PHY-KIN-2D-MOTION")
+        projection = learner["projection"]
+        self.assertEqual(projection["orientation"]["bucket_ref"], "BUCKET-PHY-KIN-2D-MOTION")
+        self.assertEqual(
+            [row["id"] for row in projection["orientation"]["blocks"]],
+            [
+                block["id"]
+                for block in product["units"][0]["blocks"]
+                if block["kind"] in {"TEXT", "EQUATION", "FIGURE"}
+            ],
+        )
+        self.assertIsNone(projection["concept"])
+        self.assertIsNone(projection["application"])
+
+    def test_relationless_bucket_keeps_core1_delivery(self):
+        row = self.row(core="CORE1", source="BUCKET-PHY-ELEC-CURRENT-OHM")
+        blocks = row["projection"]["orientation"]["blocks"]
+        self.assertTrue(any(block["id"] == "CORE1-DEMAND" for block in blocks))
+        self.assertFalse(any(block["kind"] == "EQUATION" for block in blocks))
+
+    def test_core1_family_concept_payload_preserves_canonical_learning_cycle(self):
+        source = next(m for m in self.package["microtopics"] if m["id"] == CONCEPT)
+        a = self.row(core="CORE1A", concept=CONCEPT)["projection"]["concept"]
+        b = self.row(core="CORE1B", concept=CONCEPT)["projection"]["concept"]
+        self.assertEqual(a["inferential_jump"], source["inferential_jump"])
+        self.assertEqual(a["entry_assumptions"], source["entry_assumptions"])
+        self.assertEqual(a["teaching_path"], source["teaching_path"])
+        self.assertEqual(a["misconceptions"], source["misconceptions"])
+        self.assertEqual(a["representation_refs"], source["representation_refs"])
+        self.assertEqual(a["exit_task"], source["exit_task"])
+        self.assertEqual(b["elicitation"], source["elicitation"])
+        self.assertEqual(b["inferential_jump"], source["inferential_jump"])
 
     def test_core2a_preserves_reasoning_source_hints_solution_and_scaffolds(self):
         row = self.row(core="CORE2A", source=FAMILIAR)
