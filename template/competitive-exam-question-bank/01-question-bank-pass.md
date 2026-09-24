@@ -300,3 +300,50 @@ F. test results;
 G. PR linked to a dedicated question-bank issue.
 
 Do NOT build final question sets in this pass.
+
+
+## Machine-enforced activity contract
+
+The prose above defines intent. The following files make the activity mechanically checkable:
+
+- Shared/library/competitive-exam-bank.schema.json
+- Shared/library/exam-source-verification.schema.json
+- Shared/library/question-bank-run.schema.json
+- Shared/library/question-bank-publication.schema.json
+- Shared/tools/competitive_exam_bank.py
+- docs/question-bank/pass1/run-manifest.json
+
+Before claiming PASS, run:
+
+```bash
+python Shared/tools/competitive_exam_bank.py
+python -m unittest tests.test_competitive_exam_bank_contract tests.test_competitive_exam_question_bank
+```
+
+The run is gate-driven. Do not skip directly to local question editing:
+
+1. G0_SCOPE_FROZEN
+2. G1_CORPUS_ENUMERATED
+3. G2_SOURCE_AUTHORITY_CHECKED
+4. G3_SOURCE_DISPOSITIONS_COMPLETE
+5. G4_CANONICAL_ITEMS_VALID
+6. G5_CONCEPT_REFS_RESOLVED
+7. G6_ANSWERS_AND_DIFFICULTY_CHECKED
+8. G7_COVERAGE_CLOSED
+9. G8_PUBLICATION_CONTRACT_READY
+
+A blocking gate in HOLD or FAIL forbids a PASS claim. Coverage reports and publication views are projections of canonical bank truth; they must not become independent sources of question truth.
+
+```requires
+bank.extensions.grade9v3:pass_scope                 PASS 1 scope is explicit
+bank.extensions.grade9v3:generated_sets            no practice/final set assembly in PASS 1
+question.extensions.grade9v3:provenance_class      accepted provenance is explicit
+question.extensions.grade9v3:source_custody        verified parent identity and authority
+question.extensions.grade9v3:analysis              difficulty, concept, trap and transfer analysis
+question.answer.reasoning_route[]                   structured solution route
+question.answer.crux_move_ref                       stable application crux
+question.answer.check                               independent learner-runnable check
+question.scaffolds[]                                authored support separate from source hints
+run.gates[]                                         activity closure is gate-driven
+run.publication_contract                            fixture-quality semantics are declared
+```

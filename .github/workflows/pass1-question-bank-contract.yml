@@ -1,0 +1,31 @@
+name: pass1-question-bank-contract
+
+on:
+  push:
+    branches:
+      - question-bank/pass1-provenance
+  pull_request:
+    paths:
+      - 'Shared/library/*question-bank*.schema.json'
+      - 'Shared/library/competitive-exam-bank.schema.json'
+      - 'Shared/library/exam-source-verification.schema.json'
+      - 'Shared/tools/competitive_exam_bank.py'
+      - 'Physics/library/exam-bank/**'
+      - 'Chemistry/library/exam-bank/**'
+      - 'docs/question-bank/pass1/**'
+      - 'tests/test_competitive_exam_bank_contract.py'
+      - 'tests/test_competitive_exam_question_bank.py'
+      - 'template/competitive-exam-question-bank/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install jsonschema
+      - run: python Shared/tools/competitive_exam_bank.py
+      - run: python -m unittest tests.test_competitive_exam_bank_contract tests.test_competitive_exam_question_bank

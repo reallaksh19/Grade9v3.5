@@ -1,0 +1,153 @@
+{
+  "run_id": "QB-PASS1-2026-09",
+  "activity_type": "CANONICAL_COMPETITIVE_EXAM_BANK",
+  "pass": "PASS_1",
+  "scope": {
+    "topics": [
+      "Physics — Newton's Laws of Motion / NLM",
+      "Physics — Motion in 2D / Motion in a Plane — linear/projectile only",
+      "Physics — Motion in 1D — relative motion only",
+      "Chemistry — Redox Reactions",
+      "Chemistry — Some Basic Concepts / Mole Concept / Stoichiometry"
+    ],
+    "forbidden_outputs": [
+      "practice sets",
+      "mock exams",
+      "final exam assembly",
+      "authored filler questions"
+    ],
+    "forbidden_topics": ["circular motion"]
+  },
+  "bank_paths": [
+    "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
+    "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json"
+  ],
+  "ledger_path": "docs/question-bank/pass1/source-acquisition-ledger.json",
+  "coverage_path": "docs/question-bank/pass1/coverage-matrix.md",
+  "publication_contract": {
+    "profile_id": "G9_CANONICAL_BANK_REFERENCE_V1",
+    "format": "PDF",
+    "page_model": "QUESTION_REFERENCE",
+    "attempt_layer": [
+      "exam_identity",
+      "provenance_badge",
+      "question",
+      "conditions",
+      "first_move",
+      "official_source_link",
+      "concept_link"
+    ],
+    "support_layer": [
+      "h1",
+      "h2",
+      "crux",
+      "concept_custody",
+      "misconception",
+      "answer",
+      "independent_check"
+    ],
+    "answer_visibility": "SAME_PAGE_SEPARATED",
+    "source_link_required": true,
+    "topic_divider_required": true,
+    "qa": {
+      "render_all_pages": true,
+      "visual_inspection_required": true,
+      "blank_page_check": true,
+      "link_count_check": true,
+      "text_marker_check": true
+    }
+  },
+  "gates": [
+    {
+      "id": "G0_SCOPE_FROZEN",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": ["template/competitive-exam-question-bank/01-question-bank-pass.md"],
+      "findings": []
+    },
+    {
+      "id": "G1_CORPUS_ENUMERATED",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": ["docs/question-bank/pass1/source-acquisition-ledger.json"],
+      "findings": []
+    },
+    {
+      "id": "G2_SOURCE_AUTHORITY_CHECKED",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "docs/question-bank/pass1/source-acquisition-ledger.json",
+        "docs/question-bank/pass1/rejected-unverified-sources.md"
+      ],
+      "findings": []
+    },
+    {
+      "id": "G3_SOURCE_DISPOSITIONS_COMPLETE",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "docs/question-bank/pass1/source-acquisition-ledger.json",
+        "docs/question-bank/pass1/rejected-unverified-sources.md"
+      ],
+      "findings": []
+    },
+    {
+      "id": "G4_CANONICAL_ITEMS_VALID",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
+        "Chemistry/library/exam-bank/competitive-exam-question-bank.v2.json",
+        "tests/test_competitive_exam_question_bank.py"
+      ],
+      "findings": []
+    },
+    {
+      "id": "G5_CONCEPT_REFS_RESOLVED",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": ["docs/question-bank/pass1/concept-bucket-inventory.md"],
+      "findings": []
+    },
+    {
+      "id": "G6_ANSWERS_AND_DIFFICULTY_CHECKED",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "tests/test_competitive_exam_question_bank.py",
+        "docs/question-bank/pass1/test-results.md"
+      ],
+      "findings": []
+    },
+    {
+      "id": "G7_COVERAGE_CLOSED",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "docs/question-bank/pass1/coverage-matrix.md",
+        "docs/question-bank/pass1/source-acquisition-ledger.json"
+      ],
+      "findings": []
+    },
+    {
+      "id": "G8_PUBLICATION_CONTRACT_READY",
+      "status": "PASS",
+      "blocking": true,
+      "evidence_refs": [
+        "Shared/library/question-bank-publication.schema.json",
+        "tests/fixtures/real_pilots/examside-laws-of-motion.acceptance.json",
+        "tests/fixtures/real_pilots/examside-motion-in-plane-core.worksheet.json",
+        "tests/fixtures/real_pilots/neetprep-relative-motion.worksheet.json"
+      ],
+      "findings": []
+    }
+  ],
+  "completion": {
+    "status": "PASS",
+    "accepted_count": 77,
+    "source_identity_duplicates": 0,
+    "unresolved_accepted_items": 0,
+    "corpus_saturation_claimed": false
+  }
+}

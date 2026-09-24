@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:question-bank-publication:1.0.0",
+  "title": "Grade9V3 Question Bank Publication Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_id",
+    "format",
+    "page_model",
+    "attempt_layer",
+    "support_layer",
+    "answer_visibility",
+    "source_link_required",
+    "topic_divider_required",
+    "qa"
+  ],
+  "properties": {
+    "profile_id": {"type": "string", "minLength": 1},
+    "format": {"enum": ["PDF", "HTML", "INTERACTIVE_WEB"]},
+    "page_model": {"enum": ["QUESTION_REFERENCE", "STUDENT_ATTEMPT", "SOLUTION_APPENDIX"]},
+    "attempt_layer": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "exam_identity",
+          "provenance_badge",
+          "question",
+          "conditions",
+          "first_move",
+          "official_source_link",
+          "concept_link"
+        ]
+      }
+    },
+    "support_layer": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "h1",
+          "h2",
+          "h3",
+          "crux",
+          "concept_custody",
+          "misconception",
+          "answer",
+          "independent_check",
+          "repair_route"
+        ]
+      }
+    },
+    "answer_visibility": {
+      "enum": ["SAME_PAGE_SEPARATED", "SEPARATE_FROM_INITIAL_ATTEMPT", "APPENDIX_ONLY"]
+    },
+    "source_link_required": {"type": "boolean"},
+    "topic_divider_required": {"type": "boolean"},
+    "qa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "render_all_pages",
+        "visual_inspection_required",
+        "blank_page_check",
+        "link_count_check",
+        "text_marker_check"
+      ],
+      "properties": {
+        "render_all_pages": {"const": true},
+        "visual_inspection_required": {"const": true},
+        "blank_page_check": {"const": true},
+        "link_count_check": {"const": true},
+        "text_marker_check": {"const": true}
+      }
+    }
+  }
+}
