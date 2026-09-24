@@ -335,6 +335,11 @@ def _nlmaf_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-NLM-ACCELERATING-FRAME-EXTENSION")
 
 
+@mutates("FAL-CIRC-SYMBOL-NO-UNIT")
+def _circ_symbol_no_unit(data):
+    _drop_first_symbol_unit(data, "PHY-KIN-CIRCULAR-DYNAMICS-EXTENSION")
+
+
 @mutates("FAL-WEP9-SYMBOL-NO-UNIT")
 def _wep9_symbol_no_unit(data):
     _drop_first_symbol_unit(data, "PHY-WORK-ENERGY-GRADE9")
