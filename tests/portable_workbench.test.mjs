@@ -8,10 +8,12 @@ import { PortablePackageError, createDeclarativeAdapter, resolveCanonicalPortabl
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "..");
-const ids = ["portable-long-division", "portable-redox-electron-equivalence", "portable-integration-riemann"];
+const fixtureIds = ["portable-long-division", "portable-redox-electron-equivalence", "portable-integration-riemann"];
+const canonicalId = "portable-motion-shared-clock";
+const ids = [...fixtureIds, canonicalId];
 async function packageById(id) { return JSON.parse(await readFile(resolve(repo, `public/portable-workbench/packages/${id}.json`), "utf8")); }
 
-test("three packages validate under one portable version seam", async () => {
+test("fixture and canonical packages validate under one portable version seam", async () => {
   const versions = new Set();
   for (const id of ids) {
     const pkg = validatePortablePackage(await packageById(id));
@@ -86,8 +88,8 @@ test("AtlasIndex 2.0 visual target binding is exact-ID and fail-closed", async (
   assert.equal(binding.representationRef, "REP-KIN-2D-SHARED-CLOCK");
 });
 
-test("generic declarative adapter executes each proof without Core edits", async () => {
-  for (const id of ids) {
+test("generic declarative adapter executes each proof fixture without Core edits", async () => {
+  for (const id of fixtureIds) {
     const pkg = validatePortablePackage(await packageById(id));
     const rule = pkg.adapter.rules[0];
     const events = [];
@@ -98,6 +100,38 @@ test("generic declarative adapter executes each proof without Core edits", async
     assert.equal(runtime.snapshot.revision, 1);
     assert.equal(JSON.stringify(events).toLowerCase().includes("mastery"), false);
   }
+});
+
+test("canonical shared-clock package accepts same-time and rejects mixed-time reconstruction", async () => {
+  const pkg = validatePortablePackage(await packageById(canonicalId));
+  assert.equal(pkg.resourceRef, "ACT-KIN-2D-SHARED-CLOCK");
+  assert.equal(pkg.provenance.representationRef, "REP-KIN-2D-SHARED-CLOCK");
+  const same = pkg.adapter.rules.find((row) => row.id === "same-time");
+  const mixed = pkg.adapter.rules.find((row) => row.id === "mixed-time");
+  assert.equal(same.operation, "reconstruct-plane-state");
+  assert.equal(mixed.operation, same.operation);
+
+  const acceptedEvents = [];
+  const accepted = new WorkbenchRuntime(pkg.scene, createDeclarativeAdapter(pkg), {
+    injections: pkg.injections,
+    eventSink: (event) => acceptedEvents.push(event),
+  });
+  accepted.dispatch({ type: "PICK", entityRef: same.sourceEntityRef, channel: "test" });
+  const acceptedResult = accepted.dispatch({ type: "DROP", targetRef: same.targetRef, channel: "test" });
+  assert.equal(acceptedResult.type, "TRANSFER_ACCEPTED");
+  assert.equal(accepted.snapshot.revision, 1);
+
+  const rejectedEvents = [];
+  const rejected = new WorkbenchRuntime(pkg.scene, createDeclarativeAdapter(pkg), {
+    injections: pkg.injections,
+    eventSink: (event) => rejectedEvents.push(event),
+  });
+  rejected.dispatch({ type: "PICK", entityRef: mixed.sourceEntityRef, channel: "test" });
+  const rejectedResult = rejected.dispatch({ type: "DROP", targetRef: mixed.targetRef, channel: "test" });
+  assert.equal(rejectedResult.type, "TRANSFER_REJECTED");
+  assert.match(rejectedResult.reason, /single physical state/);
+  assert.equal(rejected.snapshot.revision, 0);
+  assert.equal(JSON.stringify([...acceptedEvents, ...rejectedEvents]).toLowerCase().includes("mastery"), false);
 });
 
 test("incompatible and executable packages fail closed", async () => {
@@ -287,6 +321,86 @@ test("portable workbench runs in repository, external and single-file hosts", { 
       assert.equal(JSON.stringify(events).toLowerCase().includes("mastery"), false);
     }
 
+    const acceptedEvents = [];
+    const rejectedEvents = [];
+    for (const path of hosts) {
+      const canonicalUrl = `${staticServer.origin}${path}?package=${canonicalId}`;
+
+      await driver.navigate(canonicalUrl);
+      await driver.waitFor("return window.__portableWorkbenchReady === true;");
+      assert.equal(await driver.execute("return window.__portablePackageId;"), canonicalId);
+      const sameSource = await driver.shadowElement(
+        "semantic-workbench",
+        '[data-role="entity"][data-projection-ref="shared-clock-same-time-candidate-projection"]',
+      );
+      const sameTarget = await driver.shadowElement(
+        "semantic-workbench",
+        '[data-role="target"][data-target-ref="shared-clock-plane-state"]',
+      );
+      await driver.click(sameSource);
+      await driver.click(sameTarget);
+      await driver.waitFor("return window.__portableEvents.some((event) => event.type === 'TRANSFER_ACCEPTED');");
+      const accepted = await driver.execute(`
+        const wb = document.querySelector("semantic-workbench");
+        return {
+          event: window.__portableEvents.find((event) => event.type === "TRANSFER_ACCEPTED"),
+          revision: wb.snapshot?.revision,
+          summary: wb.textSummary,
+        };
+      `);
+      assert.equal(accepted.revision, 1);
+      assert.match(accepted.summary, /simultaneous/i);
+      acceptedEvents.push(accepted.event);
+
+      await driver.navigate(canonicalUrl);
+      await driver.waitFor("return window.__portableWorkbenchReady === true;");
+      const mixedSource = await driver.shadowElement(
+        "semantic-workbench",
+        '[data-role="entity"][data-projection-ref="shared-clock-mixed-time-candidate-projection"]',
+      );
+      const mixedTarget = await driver.shadowElement(
+        "semantic-workbench",
+        '[data-role="target"][data-target-ref="shared-clock-plane-state"]',
+      );
+      await driver.click(mixedSource);
+      await driver.click(mixedTarget);
+      await driver.waitFor("return window.__portableEvents.some((event) => event.type === 'TRANSFER_REJECTED');");
+      const rejected = await driver.execute(`
+        const wb = document.querySelector("semantic-workbench");
+        return {
+          event: window.__portableEvents.find((event) => event.type === "TRANSFER_REJECTED"),
+          revision: wb.snapshot?.revision,
+          summary: wb.textSummary,
+        };
+      `);
+      assert.equal(rejected.revision, 0);
+      assert.match(rejected.event.reason, /single physical state/);
+      assert.match(rejected.summary, /single physical state/);
+      rejectedEvents.push(rejected.event);
+    }
+    for (const event of acceptedEvents.slice(1)) assert.deepEqual(event, acceptedEvents[0]);
+    for (const event of rejectedEvents.slice(1)) assert.deepEqual(event, rejectedEvents[0]);
+
+    await driver.navigate(`${staticServer.origin}/public/portable-workbench/index.html?package=${canonicalId}`);
+    await driver.waitFor("return window.__portableWorkbenchReady === true;");
+    const keyboardSource = await driver.shadowElement(
+      "semantic-workbench",
+      '[data-role="entity"][data-projection-ref="shared-clock-same-time-candidate-projection"]',
+    );
+    const keyboardTarget = await driver.shadowElement(
+      "semantic-workbench",
+      '[data-role="target"][data-target-ref="shared-clock-plane-state"]',
+    );
+    await driver.execute(`
+      arguments[0].focus();
+      arguments[0].dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true, composed: true }));
+    `, [driver.ref(keyboardSource)]);
+    await driver.execute(`
+      arguments[0].focus();
+      arguments[0].dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true, composed: true }));
+    `, [driver.ref(keyboardTarget)]);
+    await driver.waitFor("return window.__portableEvents.some((event) => event.type === 'TRANSFER_ACCEPTED' && event.request?.channel === 'keyboard');");
+
     for (const path of [
       "/public/portable-workbench/index.html?package=portable-does-not-exist",
       "/tests/fixtures/portable-workbench/external-host.html?package=portable-does-not-exist",
@@ -312,8 +426,9 @@ test("portable workbench runs in repository, external and single-file hosts", { 
       assert.equal(await driver.execute("return window.__portablePackageId;"), packageId);
     }
 
-    await driver.navigate(`${staticServer.origin}/standalone/portable-workbench/index.html`);
+    await driver.navigate(`${staticServer.origin}/standalone/portable-workbench/index.html?package=${canonicalId}`);
     await driver.waitFor("return window.__portableWorkbenchReady === true;");
+    assert.equal(await driver.execute("return window.__portablePackageId;"), canonicalId);
     assert.deepEqual(await driver.execute('return performance.getEntriesByType("resource").map((entry) => entry.name);'), []);
   } finally {
     await driver.close();

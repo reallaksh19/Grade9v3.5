@@ -5,7 +5,7 @@ import {
 
 export const PORTABLE_PACKAGE_VERSION = "1.0.0";
 export const PORTABLE_TRANSFORMATION_IR_VERSION = "0.1.0";
-export const PORTABLE_ADAPTER_API_VERSION = "0.1.0";
+export const PORTABLE_ADAPTER_API_VERSION = "0.2.0";
 export const PORTABLE_SCENE_PACKAGE_VERSION = "1.0.0";
 export const PORTABLE_ADAPTER_ID = "declarative-transfer-v1";
 export const NON_CANONICAL_PROVENANCE_AUTHORITY = "NON_CANONICAL_COMPILED_PROOF";
@@ -78,7 +78,14 @@ function validateAdapter(adapter, scene) {
     requirePortable(transform.sourceEntityRefs.includes(rule.sourceEntityRef), "PORTABLE_ADAPTER_SOURCE_MISMATCH", rule.id);
     requirePortable(transform.targetRef === rule.targetRef, "PORTABLE_ADAPTER_TARGET_MISMATCH", rule.id);
     requirePortable(targets.get(rule.targetRef)?.operation === rule.operation, "PORTABLE_ADAPTER_OPERATION_MISMATCH", rule.id);
-    requirePortable(rule.patch && typeof rule.patch === "object", "PORTABLE_ADAPTER_PATCH_REQUIRED", rule.id);
+    const outcome = rule.outcome ?? "ACCEPT";
+    requirePortable(["ACCEPT", "REJECT"].includes(outcome), "PORTABLE_ADAPTER_OUTCOME_INVALID", rule.id);
+    if (outcome === "REJECT") {
+      nonEmpty(rule.reason, "PORTABLE_ADAPTER_REJECTION_REASON_REQUIRED", rule.id);
+      requirePortable(!("patch" in rule), "PORTABLE_ADAPTER_REJECTION_PATCH_FORBIDDEN", rule.id);
+    } else {
+      requirePortable(rule.patch && typeof rule.patch === "object", "PORTABLE_ADAPTER_PATCH_REQUIRED", rule.id);
+    }
   }
 }
 
@@ -190,6 +197,13 @@ export function createDeclarativeAdapter(packageInput) {
           accepted: false,
           reason: "No compiled transformation rule authorizes this transfer.",
           allowedTargets: [...new Set(allowedTargets)],
+        };
+      }
+      if ((rule.outcome ?? "ACCEPT") === "REJECT") {
+        return {
+          accepted: false,
+          reason: rule.reason,
+          allowedTargets: [rule.targetRef],
         };
       }
       return {
