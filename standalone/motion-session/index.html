@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion in 2D: one shared clock</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:light dark;line-height:1.5}
+    *{box-sizing:border-box} body{margin:0;background:Canvas;color:CanvasText} button{font:inherit}
+    .shell{max-width:76rem;margin:0 auto;padding:1rem;display:grid;gap:1rem}
+    .topbar,.panel,.unavailable{border:1px solid color-mix(in srgb,CanvasText 28%,transparent);border-radius:.85rem;padding:1rem;background:Canvas}
+    .topbar{display:grid;gap:.85rem;position:sticky;top:0;z-index:5}
+    .topline{display:flex;gap:1rem;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+    h1,h2,h3,p{margin-top:0} h1{font-size:clamp(1.45rem,4vw,2.2rem);margin-bottom:.25rem}
+    .eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;opacity:.72}
+    .progress{margin:0;font-weight:650}
+    .stage-nav{display:grid;grid-template-columns:repeat(5,minmax(7.5rem,1fr));gap:.45rem}
+    .stage-nav button,.actions button{min-height:2.75rem;padding:.55rem .75rem;border:1px solid currentColor;border-radius:.55rem;background:Canvas;cursor:pointer}
+    .stage-nav button[aria-current="step"]{outline:3px solid Highlight;outline-offset:2px}
+    button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid Highlight;outline-offset:3px}
+    button:disabled{opacity:.45;cursor:not-allowed}
+    .panel{display:grid;gap:1rem}.lead{font-size:1.08rem;max-width:70ch}
+    .goal-card{border-left:.3rem solid Highlight;padding:.8rem 1rem;background:color-mix(in srgb,Highlight 10%,Canvas)}
+    .goal-card p:last-child{margin-bottom:0}
+    .actions{display:flex;gap:.65rem;flex-wrap:wrap;align-items:center}
+    .actions .primary{background:Highlight;color:HighlightText;border-color:Highlight}
+    .session-tools{display:flex;gap:.5rem;flex-wrap:wrap}
+    semantic-workbench{display:block;min-height:25rem}
+    .visual-frame{border:1px solid color-mix(in srgb,CanvasText 30%,transparent);border-radius:.7rem;padding:.75rem;overflow:auto}
+    .status-line{padding:.65rem .8rem;border-radius:.55rem;background:color-mix(in srgb,CanvasText 8%,Canvas)}
+    .summary-grid{display:grid;gap:.5rem}.summary-row{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid color-mix(in srgb,CanvasText 20%,transparent);padding:.55rem 0}
+    .observation-note{margin-top:.75rem;font-weight:650}
+    details{border-top:1px solid color-mix(in srgb,CanvasText 20%,transparent);padding-top:.75rem}
+    code{overflow-wrap:anywhere}.unavailable{border-color:Mark;color:CanvasText}.unavailable h2{color:Mark}
+    [hidden]{display:none!important}
+    @media(max-width:48rem){.shell{padding:.65rem}.topbar{position:static}.stage-nav{grid-template-columns:1fr 1fr}.stage-nav button:last-child{grid-column:1/-1}semantic-workbench{min-height:32rem}}
+    @media(max-width:28rem){.stage-nav{grid-template-columns:1fr}.stage-nav button:last-child{grid-column:auto}.actions button,.session-tools button{width:100%}.summary-row{display:grid;gap:.15rem}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="topline">
+        <div>
+          <div class="eyebrow">Grade 9 Physics · guided prototype</div>
+          <h1 id="session-topic">Motion in 2D: one shared clock</h1>
+          <p id="session-progress" class="progress" role="status" aria-live="polite">Preparing session…</p>
+        </div>
+        <div class="session-tools" aria-label="Session tools">
+          <button type="button" id="reset-session">Reset this run</button>
+          <button type="button" id="export-trace">Export diagnostic trace</button>
+        </div>
+      </div>
+      <nav class="stage-nav" aria-label="Session stages">
+        <button type="button" data-stage-nav="orient">1. Orient</button>
+        <button type="button" data-stage-nav="core1b">2. Build idea</button>
+        <button type="button" data-stage-nav="visual">3. Shared clock</button>
+        <button type="button" data-stage-nav="core2b">4. Changed case</button>
+        <button type="button" data-stage-nav="summary">5. Summary</button>
+      </nav>
+      <p id="session-status" role="status" aria-live="polite">Loading canonical session inputs…</p>
+    </header>
+
+    <section id="session-unavailable" class="unavailable" hidden role="alert">
+      <h2>Session unavailable</h2>
+      <p>The requested canonical learning chain could not be resolved safely. No substitute activity was loaded.</p>
+      <p><strong>Code:</strong> <code data-error-code></code></p>
+      <p data-error-detail></p>
+    </section>
+
+    <div id="session-app" hidden>
+      <section class="panel" data-session-stage="orient" aria-labelledby="orient-title">
+        <div>
+          <div class="eyebrow">Stage 1 · Orient</div>
+          <h2 id="orient-title" tabindex="-1">What you are building</h2>
+        </div>
+        <div class="goal-card">
+          <h3>Session goal</h3>
+          <p id="orientation-goal" class="lead"></p>
+        </div>
+        <div>
+          <h3>Central idea to test</h3>
+          <p id="orientation-idea" class="lead"></p>
+        </div>
+        <p>You will first commit your own explanation, then test component pairs in the canonical representation, then handle a changed-case transfer question. Protected reasoning stays hidden until you attempt it.</p>
+        <div class="actions">
+          <button class="primary" id="start-session" type="button">Start with my explanation</button>
+        </div>
+        <details>
+          <summary>Technical provenance</summary>
+          <ul id="provenance-list"></ul>
+        </details>
+      </section>
+
+      <section class="panel" data-session-stage="core1b" aria-labelledby="core1b-title" hidden>
+        <div>
+          <div class="eyebrow">Stage 2 · Build the idea</div>
+          <h2 id="core1b-title" tabindex="-1">Commit an explanation before reconstruction</h2>
+          <p class="lead">Use the learner activity below. Its existing attempt-before-reveal contract controls what becomes visible.</p>
+        </div>
+        <core-learning-page id="core1b-learner"></core-learning-page>
+        <div class="actions">
+          <button class="primary" id="core1b-next" type="button" disabled>Continue to the shared-clock test</button>
+        </div>
+      </section>
+
+      <section class="panel" data-session-stage="visual" aria-labelledby="visual-stage-title" hidden>
+        <div>
+          <div class="eyebrow">Stage 3 · Canonical representation</div>
+          <h2 id="visual-stage-title" tabindex="-1">Test component pairs</h2>
+          <p id="visual-title" class="lead"></p>
+          <p>Try the available candidate pairs. Continue after the representation itself has produced both an accepted and a rejected transfer, and read the text explanation for each outcome.</p>
+        </div>
+        <div class="visual-frame">
+          <semantic-workbench id="shared-clock-workbench"></semantic-workbench>
+        </div>
+        <p id="visual-status" class="status-line" role="status" aria-live="polite"></p>
+        <div class="actions">
+          <button class="primary" id="visual-next" type="button" disabled>Continue to the changed case</button>
+        </div>
+      </section>
+
+      <section class="panel" data-session-stage="core2b" aria-labelledby="core2b-title" hidden>
+        <div>
+          <div class="eyebrow">Stage 4 · Protected transfer</div>
+          <h2 id="core2b-title" tabindex="-1">Decide what changes in a new situation</h2>
+          <p class="lead">Commit your own response first. The existing Core2B contract controls disclosure of the protected decision and solution.</p>
+        </div>
+        <core-learning-page id="core2b-learner"></core-learning-page>
+        <div class="actions">
+          <button class="primary" id="core2b-next" type="button" disabled>Finish and view session summary</button>
+        </div>
+      </section>
+
+      <section class="panel" data-session-stage="summary" aria-labelledby="summary-title" hidden>
+        <div>
+          <div class="eyebrow">Stage 5 · Close</div>
+          <h2 id="summary-title" tabindex="-1">What happened in this run</h2>
+        </div>
+        <div id="session-summary" class="summary-grid"></div>
+        <div class="actions">
+          <button class="primary" id="retry-session" type="button">Retry as a new run</button>
+          <button type="button" onclick="document.getElementById('export-trace').click()">Export this diagnostic trace</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../public/data/data.js"></script>
+  <script src="../../public/core-learning/data.js"></script>
+  <script type="module" src="../../public/motion-session/app.mjs"></script>
+</body>
+</html>
