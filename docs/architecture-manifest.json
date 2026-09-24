@@ -6,7 +6,7 @@
     "adapter"
   ],
   "component_count": 242,
-  "relation_count": 271,
+  "relation_count": 283,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
@@ -17,7 +17,7 @@
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:9b1f1c311486612f46c125d38f17d7643660a8d9e9a2f78820adc12ed7d57ccd",
+  "digest": "sha256:c4334b0a1e626e01049f606bb39c52472ac82e0676ba1f2fe2118530233d52f3",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -1787,6 +1787,11 @@
     },
     {
       "from": "Shared/library/promote.py",
+      "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/promote.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
@@ -2242,6 +2247,11 @@
     },
     {
       "from": "Shared/tools/resolve_request.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/resolve_request.py",
       "to": "Shared.tools.author_brief",
       "kind": "IMPORTS"
     },
@@ -2376,6 +2386,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/study_session.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/study_start.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2451,6 +2466,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_chemistry_master_suites_audit.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core_issue19_integration.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_core_issue19_integration.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -2512,6 +2537,11 @@
     },
     {
       "from": "tests/test_explorer_design_contract.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_external_provider_bridge.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -2767,6 +2797,11 @@
     },
     {
       "from": "tests/test_library.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_library.py",
       "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
@@ -2876,8 +2911,23 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_practical_learner_evidence.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_publication_engine.py",
+      "to": "Shared.library.compile_inputs",
       "kind": "IMPORTS"
     },
     {
@@ -3032,7 +3082,17 @@
     },
     {
       "from": "tests/test_tools.py",
+      "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_tools.py",
+      "to": "Shared.tools.topic_independence_guard",
       "kind": "IMPORTS"
     },
     {
