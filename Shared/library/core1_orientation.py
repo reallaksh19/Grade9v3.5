@@ -65,9 +65,17 @@ def _finding(code: str, *, detail: str, ref: str | None = None) -> dict:
     return row
 
 
-def audit_bucket(subject: str, package_path: str, package: dict, bucket: dict) -> dict:
-    relations = _index(package, "relations")
-    representations = _index(package, "representations")
+def audit_bucket(
+    subject: str,
+    package_path: str,
+    package: dict,
+    bucket: dict,
+    *,
+    relation_index: dict[str, dict] | None = None,
+    representation_index: dict[str, dict] | None = None,
+) -> dict:
+    relations = relation_index or _index(package, "relations")
+    representations = representation_index or _index(package, "representations")
     microtopics = [
         row for row in package.get("microtopics", []) or []
         if isinstance(row, dict) and row.get("bucket_id") == bucket.get("id")
@@ -218,11 +226,29 @@ def audit_bucket(subject: str, package_path: str, package: dict, bucket: dict) -
 
 def audit(repo: Path) -> dict:
     rows = []
-    for subject, path, package in subject_packages(repo):
-        rel = str(path.relative_to(repo))
-        for bucket in package.get("buckets", []) or []:
-            if isinstance(bucket, dict):
-                rows.append(audit_bucket(subject, rel, package, bucket))
+    packages = list(subject_packages(repo))
+    by_subject: dict[str, list[tuple[Path, dict]]] = {}
+    for subject, path, package in packages:
+        by_subject.setdefault(subject, []).append((path, package))
+
+    for subject, subject_rows in sorted(by_subject.items()):
+        relations: dict[str, dict] = {}
+        representations: dict[str, dict] = {}
+        for _, package in subject_rows:
+            relations.update(_index(package, "relations"))
+            representations.update(_index(package, "representations"))
+        for path, package in subject_rows:
+            rel = str(path.relative_to(repo))
+            for bucket in package.get("buckets", []) or []:
+                if isinstance(bucket, dict):
+                    rows.append(audit_bucket(
+                        subject,
+                        rel,
+                        package,
+                        bucket,
+                        relation_index=relations,
+                        representation_index=representations,
+                    ))
     rows.sort(key=lambda row: (row["subject"], row["bucket_ref"] or ""))
     counts: dict[str, int] = {}
     for row in rows:
