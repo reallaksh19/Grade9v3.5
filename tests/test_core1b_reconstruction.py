@@ -72,6 +72,18 @@ class Core1BReconstructionAudit(unittest.TestCase):
             row["manual_review_obligations"],
         )
 
+    def test_unrouted_concept_is_phase4_handoff_not_core1b_elicitation_debt(self):
+        micro = fixture()
+        del micro["elicitation"]
+        row = self.row(micro, a=[], b=[])
+        self.assertEqual(row["routing_state"], "UNROUTED")
+        self.assertEqual(row["finding_codes"], [])
+        self.assertEqual(
+            row["phase4_handoff_codes"],
+            ["CROSS_CORE_ROUTING_UNRESOLVED"],
+        )
+        self.assertNotIn("ELICITATION_MISSING", row["finding_codes"])
+
     def test_core1a_coverage_cannot_disappear_from_core1b(self):
         row = self.row(b=[])
         self.assertIn("CORE1B_COVERAGE_MISSING", row["finding_codes"])
