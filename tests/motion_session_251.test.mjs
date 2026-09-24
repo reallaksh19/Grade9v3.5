@@ -375,8 +375,9 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     assert.match(await driver.execute("return document.querySelector('#shared-clock-workbench').textSummary;"), /single physical state/i);
 
     const same = await driver.shadowElement("#shared-clock-workbench", '[data-role="entity"][data-projection-ref="shared-clock-same-time-candidate-projection"]');
+    const targetAfterReject = await driver.shadowElement("#shared-clock-workbench", '[data-role="target"][data-target-ref="shared-clock-plane-state"]');
     await driver.click(same);
-    await driver.click(target);
+    await driver.click(targetAfterReject);
     await driver.waitFor("return window.__motionSessionState.visual.acceptedCount === 1;");
     assert.match(await driver.execute("return document.querySelector('#shared-clock-workbench').textSummary;"), /simultaneous/i);
     await driver.click(await driver.element("#visual-next"));
