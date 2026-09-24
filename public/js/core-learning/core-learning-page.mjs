@@ -1006,9 +1006,17 @@ export class CoreLearningPage extends HTMLElementBase {
   _bindActions() {
     if (!this.shadowRoot?.querySelector) return;
     const form = this.shadowRoot.querySelector("[data-attempt-form]");
+    const input = this.shadowRoot.querySelector("[data-attempt-input]");
+    input?.addEventListener("invalid", () => {
+      this._emit(CORE_LEARNER_EVENTS.ATTEMPT_REJECTED, {
+        reason: "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED",
+        responsePresent: Boolean(String(input.value ?? "").trim().length),
+      });
+      this._announce("Attempt not accepted. Enter a response before continuing.");
+      queueMicrotask(() => input.focus?.());
+    });
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
-      const input = this.shadowRoot.querySelector("[data-attempt-input]");
       try {
         this.commitAttempt(input?.value ?? "");
       } catch (error) {
