@@ -201,7 +201,8 @@ async function bootstrap() {
     const regs=globalThis.CORE_LEARNING_REGISTRIES || {};
     mountCore(core1b,globalThis.GRADE9V3_CORE,identity.core1b_projection_ref,regs);
     mountCore(core2b,globalThis.GRADE9V3_CORE,identity.core2b_projection_ref,regs);
-    guardAttempt(core1b,"CORE1B"); guardAttempt(core2b,"CORE2B"); wireCore(core1b,"CORE1B"); wireCore(core2b,"CORE2B");
+    if(core1b.dataset.sessionWired!=="1"){guardAttempt(core1b,"CORE1B");wireCore(core1b,"CORE1B");core1b.dataset.sessionWired="1";}
+    if(core2b.dataset.sessionWired!=="1"){guardAttempt(core2b,"CORE2B");wireCore(core2b,"CORE2B");core2b.dataset.sessionWired="1";}
   }
 
   function resetPortable() {
@@ -294,7 +295,9 @@ async function bootstrap() {
     const selector=requested==="unknown"?{...CASE,matrixId:"MATRIX-PHY-UNKNOWN-SESSION-CASE"}:CASE;
     identity=resolveMotionSessionIdentity(globalThis.GRADE9V3,globalThis.GRADE9V3_CORE,selector);
     const s=snap();record("IDENTITY_RESOLVED",{prior:s,result:s,outcome:"ACCEPT",reason:"SESSION_IDENTITY_RESOLVED"});
-    await import(cfg.semanticModule); await import(cfg.corePageModule); mountCore=(await import(cfg.coreHostModule)).mountCoreLearningPage;
+    const fromDocument=(ref)=>new URL(ref,document.baseURI).href;
+    await import(fromDocument(cfg.semanticModule)); await import(fromDocument(cfg.corePageModule));
+    mountCore=(await import(fromDocument(cfg.coreHostModule))).mountCoreLearningPage;
     configureCores(); render(); renderSummary();
     status.textContent="Ready. Commit your own reasoning before protected reconstruction or transfer reasoning is shown.";
   }catch(e){failClosed(e?.code||"SESSION_INITIALIZATION_FAILED",String(e?.message||e));}
