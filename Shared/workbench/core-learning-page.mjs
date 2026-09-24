@@ -519,13 +519,25 @@ function renderTeachingPath(path) {
 function renderConcept(projection, state) {
   if (!projection.concept) return "";
   const eliciting = isConceptReconstruction(projection) && !state.attempted;
+  const predict = projection.concept.elicitation?.predict ?? {};
+  const attempt = projection.concept.elicitation?.attempt ?? {};
   const text = eliciting
-    ? projection.concept.elicitation?.prompt ?? "Reconstruct the connection before revealing it."
+    ? predict.prompt ?? "Reconstruct the connection before revealing it."
     : projection.concept.inferential_jump;
-  const label = eliciting ? "Reconstruct" : "Concept target";
+  const label = eliciting ? "Predict and reconstruct" : "Concept target";
+  const production = eliciting && attempt.produces
+    ? `<p><strong>Produce:</strong> ${escapeHtml(attempt.produces)}</p>`
+    : "";
+  const assumptions = !eliciting && projection.concept.entry_assumptions.length
+    ? `<div class="entry-assumptions"><h4>What this assumes</h4><ul>${projection.concept.entry_assumptions.map(
+        (item) => `<li>${escapeHtml(item)}</li>`,
+      ).join("")}</ul></div>`
+    : "";
   return `<section class="concept" aria-labelledby="core-concept-title">
     <h3 id="core-concept-title">${label}</h3>
     <p>${escapeHtml(text)}</p>
+    ${production}
+    ${assumptions}
   </section>`;
 }
 
