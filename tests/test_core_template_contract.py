@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from Shared.tools import core_template_contract
+from Shared.tools import build_core_learning_data, core_template_contract
 
 
 REPO = Path(__file__).resolve().parents[1]
