@@ -180,14 +180,14 @@ function safeCoreEvent(core, type, detail = {}) {
   if (type === CORE_LEARNER_EVENTS.ATTEMPT_REJECTED) {
     record(
       { type: "CORE_ATTEMPT_REJECTED", core, reason: detail.reason || "CORE_LEARNING_ATTEMPT_REJECTED", responsePresent: Boolean(detail.responsePresent) },
-      { producer: "Core learner", componentBoundary: boundary },
+      { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
     return;
   }
   if (type === CORE_LEARNER_EVENTS.ATTEMPT_COMMITTED) {
     record(
       { type: "CORE_ATTEMPT_ACCEPTED", core, responsePresent: true },
-      { producer: "Core learner", componentBoundary: boundary },
+      { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
     return;
   }
@@ -200,21 +200,21 @@ function safeCoreEvent(core, type, detail = {}) {
         reason: detail.reason || null,
         supportKind: type === CORE_LEARNER_EVENTS.HINT_REQUESTED ? "hint" : "scaffold",
       },
-      { producer: "Core learner", componentBoundary: boundary },
+      { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
     return;
   }
   if (type === CORE_LEARNER_EVENTS.REVEAL_CHANGED && detail.kind !== "support" && detail.kind !== "hint") {
     record(
       { type: "CORE_REVEAL_OBSERVED", core, revealKind: detail.kind || null },
-      { producer: "Core learner", componentBoundary: boundary },
+      { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
     return;
   }
   if (type === CORE_LEARNER_EVENTS.ACTIVITY_COMPLETED) {
     record(
       { type: "CORE_ACTIVITY_COMPLETED", core },
-      { producer: "Core learner", componentBoundary: boundary },
+      { eventType: type, producer: "Core learner", componentBoundary: boundary },
     );
   }
 }
