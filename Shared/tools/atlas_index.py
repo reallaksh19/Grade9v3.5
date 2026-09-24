@@ -112,6 +112,47 @@ def _delivery_profile(resource: dict | None) -> str | None:
     return gcdr.get("delivery_profile", {}).get("profile")
 
 
+def _portable_release(
+    resource_ref: str,
+    representation_refs: list[str],
+    records: dict,
+) -> tuple[str | None, str, str]:
+    """Resolve only explicitly released canonical portable declarations.
+
+    A package_ref is necessary but not sufficient: the producer declaration must
+    separately release portable-package and standalone availability. Conflicting
+    released package refs fail closed to UNAVAILABLE rather than choosing by order.
+    """
+    released: list[tuple[str, str]] = []
+    for representation_ref in representation_refs:
+        representation = records.get(representation_ref)
+        if not isinstance(representation, dict):
+            continue
+        if resource_ref not in representation.get("interactive_resource_refs", []):
+            continue
+        for instance in representation.get("scene_instances", []):
+            portable = (instance.get("scene") or {}).get("portable_workbench")
+            if not isinstance(portable, dict):
+                continue
+            release = portable.get("release")
+            package_ref = portable.get("package_ref")
+            if not isinstance(release, dict) or release.get("portable_package") != READY:
+                continue
+            if not isinstance(package_ref, str) or not package_ref:
+                continue
+            standalone = READY if release.get("standalone") == READY else UNAVAILABLE
+            released.append((package_ref, standalone))
+
+    package_refs = sorted({package_ref for package_ref, _ in released})
+    if len(package_refs) != 1:
+        return None, UNAVAILABLE, UNAVAILABLE
+    package_ref = package_refs[0]
+    standalone = READY if any(
+        ref == package_ref and status == READY for ref, status in released
+    ) else UNAVAILABLE
+    return package_ref, READY, standalone
+
+
 def _visual_targets(records: dict) -> dict[str, dict]:
     representation_sources: dict[str, list[str]] = defaultdict(list)
     for row in records.values():
@@ -139,18 +180,29 @@ def _visual_targets(records: dict) -> dict[str, dict]:
         )
         locator = resource.get("locator") if valid_resource else None
         profile = _delivery_profile(resource if valid_resource else None)
+        representation_refs = sorted(set(representation_sources.get(resource_ref, [])))
+        package_ref, portable_status, released_standalone = _portable_release(
+            resource_ref,
+            representation_refs,
+            records,
+        )
+        standalone_status = (
+            READY
+            if released_standalone == READY or profile == "SINGLE_FILE_OFFLINE"
+            else UNAVAILABLE
+        )
         targets[resource_ref] = {
             "resource_ref": resource_ref,
-            "representation_refs": sorted(set(representation_sources.get(resource_ref, []))),
+            "representation_refs": representation_refs,
             "locator": locator,
             "delivery_kind": "EXISTING_ACTIVITY",
             "delivery_profile": profile,
-            "portable_package_ref": None,
+            "portable_package_ref": package_ref,
             "availability": {
                 "resource": READY if valid_resource else INVALID,
                 "locator": READY if valid_resource and locator else (INVALID if not valid_resource else UNAVAILABLE),
-                "portable_package": UNAVAILABLE,
-                "standalone": READY if profile == "SINGLE_FILE_OFFLINE" else UNAVAILABLE,
+                "portable_package": portable_status,
+                "standalone": standalone_status,
             },
             "provenance": {
                 "representation_ref_sources": sorted(set(representation_sources.get(resource_ref, []))),
@@ -232,6 +284,7 @@ def build_subject_index(
 
     rows: list[dict] = []
     global_findings: list[dict] = []
+    visual_targets = _visual_targets(records)
 
     for board in boards:
         matrix_id = board.get("matrix_id")
@@ -445,13 +498,22 @@ def build_subject_index(
                         "ACTIVITY resource has no browser/repository locator.",
                     ))
 
-            portable_status = UNAVAILABLE
-            profiles = [
-                _delivery_profile(records.get(ref))
-                for ref in activity_refs
-                if _record_is(records, ref, "resources")
-            ]
-            standalone_status = READY if "SINGLE_FILE_OFFLINE" in profiles else UNAVAILABLE
+            portable_status = (
+                READY
+                if any(
+                    visual_targets.get(ref, {}).get("availability", {}).get("portable_package") == READY
+                    for ref in activity_refs
+                )
+                else UNAVAILABLE
+            )
+            standalone_status = (
+                READY
+                if any(
+                    visual_targets.get(ref, {}).get("availability", {}).get("standalone") == READY
+                    for ref in activity_refs
+                )
+                else UNAVAILABLE
+            )
 
             if representation_status == UNAVAILABLE and activity_status == UNAVAILABLE:
                 findings.append(_finding(
@@ -534,7 +596,7 @@ def build_subject_index(
     return {
         "atlas_index_contract_version": CONTRACT_VERSION,
         "atlas_index": rows,
-        "visual_targets": _visual_targets(records),
+        "visual_targets": visual_targets,
         "findings": deduped_global,
         "coverage": _coverage(rows),
     }
