@@ -2268,18 +2268,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 2,
+            "obligations": 3,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -2542,18 +2538,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 3,
+            "obligations": 4,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -3122,19 +3114,15 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B",
               "CORE2A"
             ],
             "atoms": 80,
             "questions": 1,
-            "obligations": 7,
+            "obligations": 8,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -5113,18 +5101,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 3,
+            "obligations": 4,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -8480,18 +8464,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 2,
+            "obligations": 3,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -8825,18 +8805,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 4,
+            "obligations": 5,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
@@ -10522,18 +10498,14 @@ window.GRADE9V3 = {
           "compile_preview": {
             "compilable": true,
             "supported_products": [
+              "CORE1",
               "CORE1A",
               "CORE1B"
             ],
             "atoms": 80,
             "questions": 0,
-            "obligations": 4,
+            "obligations": 5,
             "authoring_requirements": [
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE1",
-                "detail": "the bucket declares no governing relation, so there is nothing for a map of it to orient a learner to"
-              },
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",

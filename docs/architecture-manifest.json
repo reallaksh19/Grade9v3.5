@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 267,
-  "relation_count": 310,
+  "component_count": 269,
+  "relation_count": 314,
   "components_by_role": {
     "CONTRACT": 7,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 44,
-    "TEST": 127,
+    "LIBRARY": 45,
+    "TEST": 128,
     "TOOLING": 59,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:92892907a36fc81d795594d7a72df75338836176b02b4b35e5163510d85b6296",
+  "digest": "sha256:4387a997923697c5e71680580492e5cfdd0b655ef2bb42045446d6c5cb06af02",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -72,15 +72,22 @@
       "path": "Shared/library/compile_inputs.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 46185,
-      "sha256": "2d9947d30a799572bb5c0b29731d9913eaf61d8e151a77c54722fa99d3af910e"
+      "bytes": 46765,
+      "sha256": "991889d32a3724326a67db313d42d4223c65192a3121fd350eb530b28a0bce51"
     },
     {
       "path": "Shared/library/core1_orientation.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 12940,
-      "sha256": "089f6e86e0fae3947e250bd6710104fe52d73338d1a73c33571558eefbcb4414"
+      "bytes": 15062,
+      "sha256": "470563ba8067b66db895748d9af54bb74131f1404c279b31b7edc2c855ef4ad6"
+    },
+    {
+      "path": "Shared/library/core1_progression.py",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 13019,
+      "sha256": "6146ebf173ab9de712cc9f8da3f7093e70a999402dc0b9e2e945411590700039"
     },
     {
       "path": "Shared/library/core1a_construction.py",
@@ -1234,8 +1241,15 @@
       "path": "tests/test_core1_orientation.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8317,
-      "sha256": "004c07230848c431c1d1d6093ccc55499cb48b742ffa15384f67ac435b890881"
+      "bytes": 9100,
+      "sha256": "79dac81e1f0845c9e8af0dfa969144fc8966b8632b07ab2ce1ed39953936785a"
+    },
+    {
+      "path": "tests/test_core1_progression.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6272,
+      "sha256": "9db86c1291088451ed8cd1a1840240ab583ff44c85ba7b55b44d8196be130413"
     },
     {
       "path": "tests/test_core1a_construction.py",
@@ -1857,8 +1871,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 2196621,
-      "sha256": "0c10a00a003e54182a742d1577608049b8c432fbe2ea54f8c3e9bf6a1ba51297"
+      "bytes": 2195081,
+      "sha256": "1f3b9d12c2a510e21f8dbb01cf9912f11f72ecb5fdad0fb7d27f5b7184ea8deb"
     },
     {
       "path": "tools/index.html",
@@ -1918,6 +1932,11 @@
     {
       "from": "Shared/library/compile_inputs.py",
       "to": "Shared.library.resolve",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/library/core1_progression.py",
+      "to": "Shared.library",
       "kind": "IMPORTS"
     },
     {
@@ -2713,6 +2732,21 @@
     {
       "from": "tests/test_core1_orientation.py",
       "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library.compile_inputs",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_core1_progression.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {

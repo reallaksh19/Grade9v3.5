@@ -8,7 +8,7 @@
   },
   "summary": {
     "bucket_count": 21,
-    "core1_compilable_buckets": 14,
+    "core1_compilable_buckets": 21,
     "buckets_with_structural_findings": 3,
     "finding_counts": {
       "PRIMARY_REPRESENTATION_CORE1_SCENE_MISSING": 3
@@ -21,7 +21,12 @@
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
       "title": "Linear equations in one unknown",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -72,8 +77,11 @@
       "package_path": "Physics/library/phy-elec-current-ohm.v1.json",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "title": "Current electricity: charge-flow foundation",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -107,8 +115,11 @@
       "package_path": "Physics/library/phy-fluid-bernoulli-equation.v1.json",
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "title": "Fluid statics, buoyancy and Bernoulli flow",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -148,8 +159,12 @@
       "package_path": "Physics/library/phy-grav-universal-law.v1.json",
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "title": "Universal gravitation, free fall and orbital motion",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "AUTHORED",
@@ -208,7 +223,13 @@
       "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "title": "One-dimensional motion",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 1,
       "scope_state": "AUTHORED",
@@ -347,7 +368,13 @@
       "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
       "title": "Two-dimensional kinematics and projectile model",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -411,8 +438,11 @@
       "package_path": "Physics/library/phy-mag-field-lorentz.v1.json",
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "title": "Magnetic fields and orientation reasoning",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -453,7 +483,13 @@
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "title": "Newton's first law and free-body diagrams",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -588,7 +624,13 @@
       "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
       "title": "Momentum-transfer force rate",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -633,7 +675,13 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "title": "Reflection and spherical mirrors",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 1,
       "scope_state": "AUTHORED",
@@ -703,7 +751,13 @@
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "title": "Refraction and spherical lenses",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -787,8 +841,11 @@
       "package_path": "Physics/library/phy-osc-shm-waves.v1.json",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "title": "Oscillation foundation: stable equilibrium",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -822,8 +879,11 @@
       "package_path": "Physics/library/phy-rot-rigid-body.v1.json",
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "title": "Rotational dynamics, angular momentum and rolling",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -870,7 +930,13 @@
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "title": "Simple machines",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 1,
       "scope_state": "AUTHORED",
@@ -916,7 +982,13 @@
       "bucket_ref": "BUCKET-PHY-SOUND",
       "title": "Sound",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -980,8 +1052,11 @@
       "package_path": "Physics/library/phy-thermo-first-second-law.v1.json",
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "title": "Thermodynamics and heat engines",
-      "core1_compilable": false,
-      "core1_compilability_reason": "NO_GOVERNING_RELATION_REF",
+      "core1_compilable": true,
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "NOT_AUTHORED",
       "convention_count": 0,
       "scope_state": "NOT_AUTHORED",
@@ -1028,7 +1103,13 @@
       "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "title": "Vector addition, subtraction and orientation",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 1,
       "scope_state": "AUTHORED",
@@ -1081,7 +1162,13 @@
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "title": "Vector direction and unit representation",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -1138,7 +1225,13 @@
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "title": "Work, energy and power",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -1254,7 +1347,14 @@
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "title": "Relative velocity in a plane",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
@@ -1312,7 +1412,14 @@
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
       "title": "Vector representation and subtraction",
       "core1_compilable": true,
-      "core1_compilability_reason": "GOVERNING_RELATION_PRESENT",
+      "core1_compilability_reason": "ORIENTABLE_CANONICAL_CONTENT_PRESENT",
+      "orientation_surfaces": [
+        "GOVERNING_RELATIONS",
+        "DECLARED_CONVENTIONS",
+        "DECLARED_SCOPE",
+        "HARD_TRANSITION_POINTERS",
+        "PRIMARY_REPRESENTATION"
+      ],
       "conventions_state": "AUTHORED",
       "convention_count": 2,
       "scope_state": "AUTHORED",
