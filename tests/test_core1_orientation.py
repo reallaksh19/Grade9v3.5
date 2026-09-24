@@ -153,6 +153,41 @@ class Core1OrientationAudit(unittest.TestCase):
             }],
         )
 
+    def test_subject_wide_relation_resolution_matches_compiler_indexing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            library = root / "Physics" / "library"
+            library.mkdir(parents=True)
+
+            consumer = package_fixture()
+            consumer["relations"] = []
+            producer = {
+                "subject": "Test",
+                "buckets": [],
+                "microtopics": [],
+                "relations": [{
+                    "id": "REL-TEST",
+                    "meaning": "A canonical test relation.",
+                    "conditions": ["The declared condition holds."],
+                }],
+                "representations": [],
+            }
+            (library / "consumer.json").write_text(
+                __import__("json").dumps(consumer),
+                encoding="utf-8",
+            )
+            (library / "producer.json").write_text(
+                __import__("json").dumps(producer),
+                encoding="utf-8",
+            )
+
+            report = core1_orientation.audit(root)
+            self.assertEqual(report["summary"]["bucket_count"], 1)
+            self.assertNotIn(
+                "RELATION_REF_UNRESOLVED",
+                report["buckets"][0]["finding_codes"],
+            )
+
     def test_repo_scan_ignores_nested_exam_bank_and_reads_ordinary_library_packages(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
