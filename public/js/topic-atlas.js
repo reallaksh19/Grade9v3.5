@@ -18,7 +18,10 @@
     diagnostic_rows: [],         // Validated external scanned gap rows
     validation_report: null,     // Import audit report
     overlay_active: true,
-    selected_target: null,       // Focus target (e.g. "R5.1.0")
+    selected_target: null,       // Diagnostic focus target (e.g. "R5.1.0")
+    selected_rung_key: null,      // Explicit Atlas interaction identity { matrix_id, rung }
+    atlas_finding: null,          // Visible browser/contract integrity finding
+    history_bound: false,
     request_config: {
       cores: ['CORE1A', 'CORE1B', 'CORE2A'],
       core2a_purpose: 'PRACTICE',
@@ -26,9 +29,406 @@
     }
   };
 
+
+
+  const ATLAS_INDEX_CONTRACT_VERSION = '2.0';
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function currentSubjectPayload() {
+    if (!window.GRADE9V3 || !window.GRADE9V3.subjects || !state.subject) return null;
+    return window.GRADE9V3.subjects[state.subject] || null;
+  }
+
+  function resolveAtlasComposite(subjectPayload, matrixId, rungId) {
+    if (!subjectPayload || subjectPayload.atlas_index_contract_version !== ATLAS_INDEX_CONTRACT_VERSION) {
+      return {
+        status: 'INVALID',
+        code: 'ATLAS_INDEX_VERSION_UNSUPPORTED',
+        message: 'AtlasIndex 2.0 is required for canonical browser navigation.',
+        row: null
+      };
+    }
+    const rows = Array.isArray(subjectPayload.atlas_index) ? subjectPayload.atlas_index : [];
+    const matches = rows.filter(row => row.matrix_id === matrixId && row.rung === rungId);
+    if (matches.length === 0) {
+      return {
+        status: 'INVALID',
+        code: 'ATLAS_TARGET_NOT_FOUND',
+        message: 'No canonical AtlasIndex row exists for ' + matrixId + ' / ' + rungId + '.',
+        row: null
+      };
+    }
+    if (matches.length !== 1) {
+      return {
+        status: 'INVALID',
+        code: 'ATLAS_DUPLICATE_KEY',
+        message: 'Canonical AtlasIndex identity is not unique for ' + matrixId + ' / ' + rungId + '.',
+        row: null
+      };
+    }
+    const row = matches[0];
+    const mapping = ((row.availability || {}).mapping || 'INVALID').toUpperCase();
+    if (mapping === 'INVALID') {
+      return {
+        status: 'INVALID',
+        code: 'ATLAS_MAPPING_INVALID',
+        message: 'The canonical AtlasIndex row is present but its mapping is INVALID.',
+        row
+      };
+    }
+    if (mapping !== 'READY') {
+      return {
+        status: 'UNAVAILABLE',
+        code: 'ATLAS_MAPPING_UNAVAILABLE',
+        message: 'The canonical AtlasIndex row is present but its mapping is not available.',
+        row
+      };
+    }
+    return { status: 'READY', code: null, message: null, row };
+  }
+
+  function resolveCoreDestinationsFor(row, corePayload) {
+    const availability = ((row || {}).availability || {}).core || 'UNAVAILABLE';
+    const refs = Array.isArray((row || {}).core_projection_refs) ? row.core_projection_refs : [];
+    if (availability !== 'READY') {
+      return { status: availability, refs, ready: [], unresolved: [] };
+    }
+    const projections = corePayload && Array.isArray(corePayload.core_projections)
+      ? corePayload.core_projections
+      : [];
+    const byId = new Map(projections.map(item => [item.id, item]));
+    const ready = refs.filter(ref => byId.has(ref));
+    const unresolved = refs.filter(ref => !byId.has(ref));
+    return { status: unresolved.length ? 'INVALID' : 'READY', refs, ready, unresolved };
+  }
+
+  function resolveVisualDestinationsFor(subjectPayload, row) {
+    const rowAvailability = (row || {}).availability || {};
+    const refs = Array.isArray((row || {}).activity_refs) ? row.activity_refs : [];
+    if (rowAvailability.activity !== 'READY' || rowAvailability.locator !== 'READY') {
+      return {
+        status: rowAvailability.locator === 'INVALID' || rowAvailability.activity === 'INVALID' ? 'INVALID' : 'UNAVAILABLE',
+        refs,
+        ready: [],
+        unresolved: refs
+      };
+    }
+    const targets = (subjectPayload && subjectPayload.visual_targets) || {};
+    const ready = [];
+    const unresolved = [];
+    refs.forEach(ref => {
+      const target = targets[ref];
+      const locatorState = target && target.availability ? target.availability.locator : null;
+      if (target && locatorState === 'READY' && typeof target.locator === 'string' && target.locator.trim()) {
+        ready.push({ ref, target });
+      } else {
+        unresolved.push(ref);
+      }
+    });
+    return { status: unresolved.length ? 'INVALID' : 'READY', refs, ready, unresolved };
+  }
+
+  function resolvePortableDestinationsFor(subjectPayload, row) {
+    const rowAvailability = (row || {}).availability || {};
+    const refs = Array.isArray((row || {}).activity_refs) ? row.activity_refs : [];
+    if (rowAvailability.portable_package !== 'READY') {
+      return { status: rowAvailability.portable_package || 'UNAVAILABLE', refs, ready: [], unresolved: refs };
+    }
+    const targets = (subjectPayload && subjectPayload.visual_targets) || {};
+    const ready = [];
+    const unresolved = [];
+    refs.forEach(ref => {
+      const target = targets[ref];
+      const availability = (target && target.availability) || {};
+      const packageRef = target && target.portable_package_ref;
+      if (
+        availability.portable_package === 'READY'
+        && typeof packageRef === 'string'
+        && packageRef.trim()
+      ) {
+        ready.push({
+          ref,
+          package_ref: packageRef,
+          standalone: availability.standalone === 'READY'
+        });
+      } else {
+        unresolved.push(ref);
+      }
+    });
+    return {
+      status: ready.length ? 'READY' : 'INVALID',
+      refs,
+      ready,
+      unresolved
+    };
+  }
+
+  function setAtlasFinding(code, message) {
+    state.atlas_finding = { code, message };
+  }
+
+  function clearAtlasFinding() {
+    state.atlas_finding = null;
+  }
+
+  function renderAtlasFatalFinding(code, message) {
+    const html = `
+      <div class="atlas-finding" role="alert" tabindex="-1"
+           style="border:1px solid var(--chip-hold-border);background:var(--chip-hold-bg);color:var(--chip-hold-text);padding:12px;border-radius:8px;margin:12px 0;">
+        <strong>${escapeHtml(code)}</strong> · ${escapeHtml(message)}
+      </div>
+    `;
+    ['progressionLaneContainer', 'rungCardsContainer', 'needMapContainer'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+    });
+    const first = document.querySelector ? document.querySelector('.atlas-finding') : null;
+    if (first && typeof first.focus === 'function') first.focus();
+  }
+
+  function atlasFindingHtml() {
+    if (!state.atlas_finding) return '';
+    return `
+      <div class="atlas-finding" role="status"
+           style="border:1px solid var(--chip-hold-border);background:var(--chip-hold-bg);color:var(--chip-hold-text);padding:10px 12px;border-radius:8px;margin-bottom:12px;">
+        <strong>${escapeHtml(state.atlas_finding.code)}</strong> · ${escapeHtml(state.atlas_finding.message)}
+      </div>
+    `;
+  }
+
+  function activityHref(locator) {
+    if (!locator) return null;
+    if (!locator.startsWith('public/')) return locator;
+
+    const target = locator.replace(/^public\//, '').split('/').filter(Boolean);
+    const current = window.location.pathname.split('/').filter(Boolean);
+    const publicIdx = current.lastIndexOf('public');
+    if (publicIdx === -1) return '../../' + target.join('/');
+
+    const currentDir = current.slice(publicIdx + 1, -1);
+    let common = 0;
+    while (common < currentDir.length && common < target.length && currentDir[common] === target[common]) {
+      common += 1;
+    }
+    const up = Array(Math.max(0, currentDir.length - common)).fill('..');
+    return [...up, ...target.slice(common)].join('/') || './';
+  }
+
+  function coreProjectionHref(projectionId) {
+    const base = activityHref('public/core-learning/index.html');
+    if (!base) return null;
+    return base + (base.includes('?') ? '&' : '?') + 'projection=' + encodeURIComponent(projectionId);
+  }
+
+  function portablePackageHref(packageRef) {
+    const base = activityHref('public/portable-workbench/index.html');
+    if (!base || !packageRef) return null;
+    return base + (base.includes('?') ? '&' : '?') + 'package=' + encodeURIComponent(packageRef);
+  }
+
+  function canonicalNavigationBlocked() {
+    return Boolean(
+      state.atlas_finding
+      && ['ATLAS_INDEX_VERSION_UNSUPPORTED', 'ATLAS_TARGET_INCOMPLETE', 'ATLAS_TARGET_NOT_FOUND', 'ATLAS_DUPLICATE_KEY']
+        .includes(state.atlas_finding.code)
+    );
+  }
+
+  function renderActivityAction(rungId, activity, label) {
+    if (canonicalNavigationBlocked()) {
+      return '<span class="badge hold">' + escapeHtml(label) + ': navigation disabled</span>';
+    }
+    const subjectPayload = currentSubjectPayload();
+    const resolved = resolveAtlasComposite(subjectPayload, state.matrix.matrix_id, rungId);
+    if (!resolved.row || resolved.status !== 'READY') {
+      return '<span class="badge neutral">' + escapeHtml(label) + ': unavailable</span>';
+    }
+    const visual = resolveVisualDestinationsFor(subjectPayload, resolved.row);
+    const match = visual.ready.find(item => item.ref === activity.id);
+    if (!match) {
+      return '<span class="badge neutral">' + escapeHtml(label) + ': ' + escapeHtml(activity.id) + ' unavailable</span>';
+    }
+    const href = activityHref(match.target.locator);
+    if (!href) {
+      return '<span class="badge hold">' + escapeHtml(label) + ': locator invalid</span>';
+    }
+    return `
+      <a href="${escapeHtml(href)}" class="btn primary-phy"
+         style="font-size:11px;padding:4px 9px;margin-right:6px;margin-top:6px;">
+        ${escapeHtml(label)}: ${escapeHtml(activity.title || activity.id)} ↗
+      </a>
+    `;
+  }
+
+  function renderCanonicalAtlasDetails(resolution) {
+    if (!resolution || !resolution.row) return '';
+    const row = resolution.row;
+    const availability = row.availability || {};
+    const subjectPayload = currentSubjectPayload();
+    const core = resolveCoreDestinationsFor(row, window.GRADE9V3_CORE || null);
+    const visual = resolveVisualDestinationsFor(subjectPayload, row);
+    const portable = resolvePortableDestinationsFor(subjectPayload, row);
+
+    let coreActions = '';
+    if (canonicalNavigationBlocked()) {
+      coreActions = '<span class="badge hold">Canonical navigation disabled by Atlas finding</span>';
+    } else if (availability.core === 'READY' && core.status === 'READY' && core.ready.length) {
+      coreActions = core.ready.map(ref => {
+        const href = coreProjectionHref(ref);
+        return href
+          ? `<a href="${escapeHtml(href)}" class="btn outline" style="font-size:11px;padding:4px 9px;margin:4px 6px 0 0;">Core · ${escapeHtml(ref)} ↗</a>`
+          : '';
+      }).join('');
+    } else if (availability.core === 'READY' && core.status !== 'READY') {
+      coreActions = '<span class="badge hold">CORE_PROJECTION_RUNTIME_UNRESOLVED</span>';
+    } else {
+      coreActions = '<span class="badge neutral">Core ' + escapeHtml(availability.core || 'UNAVAILABLE') + '</span>';
+    }
+
+    let visualActions = '';
+    if (canonicalNavigationBlocked()) {
+      visualActions = '<span class="badge hold">Visual navigation disabled by Atlas finding</span>';
+    } else if (visual.status === 'READY' && visual.ready.length) {
+      visualActions = visual.ready.map(item => {
+        const href = activityHref(item.target.locator);
+        return href
+          ? `<a href="${escapeHtml(href)}" class="btn primary-phy" style="font-size:11px;padding:4px 9px;margin:4px 6px 0 0;">Visual · ${escapeHtml(item.ref)} ↗</a>`
+          : '';
+      }).join('');
+    } else {
+      visualActions = '<span class="badge neutral">Visual ' + escapeHtml(visual.status || 'UNAVAILABLE') + '</span>';
+    }
+
+    let portableActions = '';
+    if (canonicalNavigationBlocked()) {
+      portableActions = '<span class="badge hold">Portable navigation disabled by Atlas finding</span>';
+    } else if (portable.status === 'READY' && portable.ready.length) {
+      portableActions = portable.ready.map(item => {
+        const href = portablePackageHref(item.package_ref);
+        const mode = item.standalone ? 'portable + standalone' : 'portable';
+        return href
+          ? `<a href="${escapeHtml(href)}" data-portable-package="${escapeHtml(item.package_ref)}" class="btn outline" style="font-size:11px;padding:4px 9px;margin:4px 6px 0 0;">Prototype · ${escapeHtml(item.package_ref)} (${mode}) ↗</a>`
+          : '';
+      }).join('');
+    } else {
+      portableActions = '<span class="badge neutral">Portable ' + escapeHtml(portable.status || 'UNAVAILABLE') + '</span>';
+    }
+
+    const findingRows = Array.isArray(row.findings) ? row.findings : [];
+    const findings = findingRows.length
+      ? '<div style="margin-top:8px;font-size:11px;color:var(--text-muted);"><strong>Canonical findings:</strong> ' +
+        findingRows.map(item => escapeHtml(item.code || String(item))).join(', ') + '</div>'
+      : '';
+
+    const microPrereqs = Array.isArray(row.microtopic_prerequisite_refs) ? row.microtopic_prerequisite_refs : [];
+    const capPrereqs = Array.isArray(row.capability_prerequisite_refs) ? row.capability_prerequisite_refs : [];
+
+    return `
+      <div class="block-subcard" style="margin:12px 0;border-color:var(--accent);">
+        <div class="subcard-heading">Canonical AtlasIndex 2.0</div>
+        <div style="font-size:12px;line-height:1.6;color:var(--text-secondary);">
+          <div><strong>Identity:</strong> <code>${escapeHtml(row.matrix_id)} / ${escapeHtml(row.rung)}</code></div>
+          <div><strong>Mapping:</strong> ${escapeHtml(availability.mapping || 'INVALID')} · <strong>Core:</strong> ${escapeHtml(availability.core || 'UNAVAILABLE')} · <strong>Representation:</strong> ${escapeHtml(availability.representation || 'UNAVAILABLE')} · <strong>Activity:</strong> ${escapeHtml(availability.activity || 'UNAVAILABLE')} · <strong>Locator:</strong> ${escapeHtml(availability.locator || 'UNAVAILABLE')} · <strong>Portable:</strong> ${escapeHtml(availability.portable_package || 'UNAVAILABLE')} · <strong>Standalone:</strong> ${escapeHtml(availability.standalone || 'UNAVAILABLE')}</div>
+          <div><strong>Microtopic prerequisites:</strong> ${escapeHtml(microPrereqs.join(', ') || 'None')}</div>
+          <div><strong>Capability prerequisites:</strong> ${escapeHtml(capPrereqs.join(', ') || 'None')}</div>
+          <div><strong>Representations:</strong> ${escapeHtml((row.representation_refs || []).join(', ') || 'None')}</div>
+          <div><strong>Activities:</strong> ${escapeHtml((row.activity_refs || []).join(', ') || 'None')}</div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">${coreActions}${visualActions}${portableActions}</div>
+        ${findings}
+      </div>
+    `;
+  }
+
+  function focusSelectedRung() {
+    if (!state.selected_rung_key) return;
+    const details = document.getElementById('card-' + state.selected_rung_key.rung);
+    if (!details) return;
+    details.open = true;
+    const summary = details.querySelector ? details.querySelector('summary') : null;
+    if (summary && typeof summary.focus === 'function') summary.focus({ preventScroll: true });
+    if (typeof details.scrollIntoView === 'function') details.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function readSelectionFromLocation(matrixId) {
+    if (!window.location || typeof URLSearchParams === 'undefined') return;
+    const params = new URLSearchParams(window.location.search || '');
+    const queryMatrix = params.get('matrix');
+    const queryRung = params.get('rung');
+
+    if (!queryMatrix && !queryRung) {
+      state.selected_rung_key = null;
+      clearAtlasFinding();
+      return;
+    }
+    if (!queryMatrix || !queryRung) {
+      state.selected_rung_key = null;
+      setAtlasFinding('ATLAS_TARGET_INCOMPLETE', 'Deep links require both matrix and rung.');
+      return;
+    }
+    if (queryMatrix !== matrixId) {
+      state.selected_rung_key = null;
+      setAtlasFinding('ATLAS_TARGET_NOT_FOUND', 'Deep-link matrix does not match this Atlas host: ' + queryMatrix + '.');
+      return;
+    }
+
+    const resolution = resolveAtlasComposite(currentSubjectPayload(), queryMatrix, queryRung);
+    state.selected_rung_key = resolution.row ? { matrix_id: queryMatrix, rung: queryRung } : null;
+    if (resolution.status === 'READY') clearAtlasFinding();
+    else setAtlasFinding(resolution.code, resolution.message);
+  }
+
+  function bindHistory(matrixId) {
+    if (state.history_bound || !window.addEventListener) return;
+    window.addEventListener('popstate', function() {
+      readSelectionFromLocation(matrixId);
+      renderProgressionLane();
+      renderMultiResolutionCards();
+      focusSelectedRung();
+    });
+    state.history_bound = true;
+  }
+
+  function selectRung(rungId, options) {
+    const opts = Object.assign({ pushHistory: true, focus: true }, options || {});
+    if (!state.matrix) return;
+    const resolution = resolveAtlasComposite(currentSubjectPayload(), state.matrix.matrix_id, rungId);
+    if (!resolution.row) {
+      state.selected_rung_key = null;
+      setAtlasFinding(resolution.code, resolution.message);
+      renderProgressionLane();
+      renderMultiResolutionCards();
+      return;
+    }
+
+    state.selected_rung_key = { matrix_id: state.matrix.matrix_id, rung: rungId };
+    if (resolution.status === 'READY') clearAtlasFinding();
+    else setAtlasFinding(resolution.code, resolution.message);
+
+    if (opts.pushHistory && window.history && window.location) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('matrix', state.matrix.matrix_id);
+      url.searchParams.set('rung', rungId);
+      window.history.pushState({ atlas: state.selected_rung_key }, '', url.href);
+    }
+
+    renderProgressionLane();
+    renderMultiResolutionCards();
+    if (opts.focus) focusSelectedRung();
+  }
+
   function initAtlas(matrixId) {
     if (!window.GRADE9V3 || !window.GRADE9V3.subjects) {
       console.error("window.GRADE9V3 is not loaded. Ensure public/data/data.js is linked.");
+      renderAtlasFatalFinding('ATLAS_DATA_UNAVAILABLE', 'Canonical generated Atlas data is not loaded.');
       return;
     }
 
@@ -50,14 +450,25 @@
 
     if (!foundMatrix) {
       console.error("Matrix not found in canonical records:", matrixId);
+      renderAtlasFatalFinding('ATLAS_TARGET_NOT_FOUND', 'Matrix not found in canonical records: ' + matrixId);
       return;
     }
 
     state.matrix = foundMatrix;
     state.subject = foundSubject;
 
-    // Load LocalStorage state if present, otherwise default to canonical neutral
+    const subjectPayload = currentSubjectPayload();
+    if (!subjectPayload || subjectPayload.atlas_index_contract_version !== ATLAS_INDEX_CONTRACT_VERSION) {
+      setAtlasFinding(
+        'ATLAS_INDEX_VERSION_UNSUPPORTED',
+        'Expected AtlasIndex 2.0 for ' + foundSubject + '; canonical navigation is disabled.'
+      );
+    }
+
+    // Learner evidence state remains independent from explicit Atlas inspection state.
     loadLocalStorageState();
+    bindHistory(matrixId);
+    readSelectionFromLocation(matrixId);
 
     // Render all surfaces
     renderHeader();
@@ -66,6 +477,7 @@
     renderMultiResolutionCards();
     renderNeedMap();
     renderCoreBuilder();
+    focusSelectedRung();
   }
 
   // --- Storage & State Persistence ---
@@ -111,25 +523,6 @@
       badge.textContent = text;
       badge.className = "badge ok";
     }
-  }
-
-  // Resolve canonical public/... resource locators from any Topic Atlas page.
-  // This keeps the same activity registry usable from file:// and hosted builds.
-  function activityHref(locator) {
-    if (!locator || !locator.startsWith('public/')) return locator || '#';
-
-    const target = locator.replace(/^public\//, '').split('/').filter(Boolean);
-    const current = window.location.pathname.split('/').filter(Boolean);
-    const publicIdx = current.lastIndexOf('public');
-    if (publicIdx === -1) return '../../' + target.join('/');
-
-    const currentDir = current.slice(publicIdx + 1, -1);
-    let common = 0;
-    while (common < currentDir.length && common < target.length && currentDir[common] === target[common]) {
-      common += 1;
-    }
-    const up = Array(Math.max(0, currentDir.length - common)).fill('..');
-    return [...up, ...target.slice(common)].join('/') || './';
   }
 
   function activityMatchesStep(activity, stepId) {
@@ -356,6 +749,7 @@
     reportBox.style.display = 'block';
     const rep = state.validation_report;
     reportBox.innerHTML = `
+      ${rep.fatal_error ? `<div style="font-size:12px;font-weight:700;color:var(--chip-hold-text);margin-bottom:8px;">${escapeHtml(rep.fatal_error)}</div>` : ''}
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <strong style="font-size: 13px; color: ${rep.rejected.length === 0 ? 'var(--chip-ok-text)' : 'var(--chip-warn-text)'};">
           📋 Diagnostic Validation Report: Accepted ${rep.accepted.length} / Rejected ${rep.rejected.length}
@@ -387,110 +781,105 @@
     const laneContainer = document.getElementById('progressionLaneContainer');
     if (!laneContainer) return;
 
-    const rungs = state.matrix.rungs;
+    const rungs = state.matrix.rungs || [];
     const defaultRungs = rungs.filter(r => r.default_entry_eligible);
     const nonDefaultRungs = rungs.filter(r => !r.default_entry_eligible);
+    const subjectPayload = currentSubjectPayload();
+    const contractReady = Boolean(
+      subjectPayload && subjectPayload.atlas_index_contract_version === ATLAS_INDEX_CONTRACT_VERSION
+    );
 
-    // Group default rungs into clusters based on position
-    const clusters = [
-      { title: "1. Foundation", min: 0, max: 70, rungs: [] },
-      { title: "2. Dynamics & Applications", min: 71, max: 87, rungs: [] },
-      { title: "3. Constraints & Quantitative", min: 88, max: 93, rungs: [] },
-      { title: "4. Interaction & Closure", min: 94, max: 99, rungs: [] }
-    ];
-
-    defaultRungs.forEach(r => {
-      let placed = false;
-      for (const c of clusters) {
-        if (r.ladder_position <= c.max) {
-          c.rungs.push(r);
-          placed = true;
-          break;
-        }
-      }
-      if (!placed) clusters[clusters.length - 1].rungs.push(r);
-    });
-
-    let clustersHtml = clusters.filter(c => c.rungs.length > 0).map(c => `
-      <div class="cluster-box">
-        <div class="cluster-title">
-          <span>${c.title}</span>
-          <span>Pos: ${c.rungs[0].ladder_position}–${c.rungs[c.rungs.length - 1].ladder_position}</span>
-        </div>
-        <div class="rung-flow">
-          ${c.rungs.map(r => renderRungNode(r, resolved)).join('')}
-        </div>
-      </div>
-    `).join('');
-
-    let nonDefaultHtml = nonDefaultRungs.map(r => `
-      <div class="extension-box">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
-          <div>
-            <span class="badge purple" style="margin-bottom: 4px;">Branch Extension</span>
-            <h4 style="font-size: 14px; font-weight: 700;">${r.rung} · ${r.microtopic ? r.microtopic.title : r.rung}</h4>
+    const defaultHtml = defaultRungs.map(r => renderRungNode(r, resolved, contractReady)).join('');
+    const nonDefaultHtml = nonDefaultRungs.map(r => {
+      const selected = state.selected_rung_key
+        && state.selected_rung_key.matrix_id === state.matrix.matrix_id
+        && state.selected_rung_key.rung === r.rung;
+      return `
+        <div class="extension-box">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div>
+              <span class="badge purple" style="margin-bottom:4px;">Non-Default · Explicit Demand</span>
+              <h4 style="font-size:14px;font-weight:700;">${escapeHtml(r.rung)} · ${escapeHtml(r.microtopic ? r.microtopic.title : r.rung)}</h4>
+            </div>
+            <span class="badge ${(r.microtopic || {}).intrinsic_badge === 'HARD' ? 'hold' : 'warn'}">${escapeHtml((r.microtopic || {}).intrinsic_badge || 'MEDIUM')}</span>
           </div>
-          <span class="badge hold">Hard</span>
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
+            <code>${escapeHtml(r.capability ? r.capability.id : 'NO_CAP')}</code> · Authored position ${escapeHtml(r.ladder_position)}
+          </p>
+          <button type="button" class="btn-sm" style="font-size:11px;padding:3px 8px;"
+                  aria-controls="card-${escapeHtml(r.rung)}" aria-pressed="${selected ? 'true' : 'false'}"
+                  ${contractReady ? '' : 'disabled'}
+                  onclick="window.ATLAS.openRung('${escapeHtml(r.rung)}')">
+            Inspect canonical rung ↓
+          </button>
         </div>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
-          <code>${r.capability ? r.capability.id : 'NO_CAP'}</code> (Pos: ${r.ladder_position}) &middot; Explicit Question Demand Only
-        </p>
-        <button class="btn-sm" style="font-size: 11px; padding: 3px 8px;" onclick="window.ATLAS.openRung('${r.rung}')">
-          View Rung Card ↓
-        </button>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     laneContainer.innerHTML = `
+      ${atlasFindingHtml()}
       <div class="lane-heading default">
-        <span>●</span> Default Instructional Route (${defaultRungs.length} Rungs)
+        <span>●</span> Authored Default Route (${defaultRungs.length} Rungs)
       </div>
       <div class="cluster-wrapper">
-        ${clustersHtml}
+        <div class="cluster-box">
+          <div class="cluster-title">
+            <span>Canonical authored order</span>
+            <span>Positions are labels, not browser-created curriculum phases</span>
+          </div>
+          <div class="rung-flow">
+            ${defaultHtml}
+          </div>
+        </div>
       </div>
       ${nonDefaultRungs.length > 0 ? `
         <div class="lane-heading non-default">
           <span>◆</span> Non-Default Explicit-Demand Extensions (${nonDefaultRungs.length} Rungs)
         </div>
-        <div class="non-default-grid">
-          ${nonDefaultHtml}
-        </div>
+        <div class="non-default-grid">${nonDefaultHtml}</div>
       ` : ''}
     `;
   }
 
-  function renderRungNode(rung, resolved) {
+  function renderRungNode(rung, resolved, contractReady) {
     const rId = rung.rung;
     const target = resolved.targets.find(t => t.rung === rId);
     const isQuickCheck = resolved.quickCheckRungs.includes(rId);
+    const selected = state.selected_rung_key
+      && state.selected_rung_key.matrix_id === state.matrix.matrix_id
+      && state.selected_rung_key.rung === rId;
 
     let badgeHtml = '';
     let nodeClass = 'rung-node';
+    if (selected) nodeClass += ' is-selected';
 
     if (state.overlay_active && target) {
       if (target.result === 'MISSING') {
         nodeClass += ' has-gap';
-        badgeHtml = `<span class="badge hold">GAP: ${target.error_stage}</span>`;
+        badgeHtml = `<span class="badge hold">GAP: ${escapeHtml(target.error_stage)}</span>`;
       } else if (target.result === 'UNCERTAIN') {
         nodeClass += ' has-uncertain';
-        badgeHtml = `<span class="badge warn">UNCERTAIN</span>`;
+        badgeHtml = '<span class="badge warn">UNCERTAIN</span>';
       }
     } else if (state.overlay_active && isQuickCheck) {
       nodeClass += ' is-quick-check';
-      badgeHtml = `<span class="badge phy">QUICK CHECK</span>`;
+      badgeHtml = '<span class="badge phy">QUICK CHECK</span>';
     }
 
     return `
-      <div class="${nodeClass}" onclick="window.ATLAS.openRung('${rId}')">
-        <div style="display: flex; align-items: center; gap: 8px; overflow: hidden;">
-          <span class="node-id">${rId}</span>
-          <span class="node-title">${rung.microtopic ? rung.microtopic.title : rung.rung}</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="badge neutral">${rung.ladder_position}</span>
+      <button type="button" class="${nodeClass}" style="width:100%;text-align:left;font:inherit;color:inherit;"
+              aria-controls="card-${escapeHtml(rId)}" aria-pressed="${selected ? 'true' : 'false'}"
+              ${contractReady ? '' : 'disabled'}
+              onclick="window.ATLAS.openRung('${escapeHtml(rId)}')">
+        <span style="display:flex;align-items:center;gap:8px;overflow:hidden;">
+          <span class="node-id">${escapeHtml(rId)}</span>
+          <span class="node-title">${escapeHtml(rung.microtopic ? rung.microtopic.title : rung.rung)}</span>
+        </span>
+        <span style="display:flex;align-items:center;gap:6px;">
+          <span class="badge neutral">${escapeHtml(rung.ladder_position)}</span>
           ${badgeHtml}
-        </div>
-      </div>
+        </span>
+      </button>
     `;
   }
 
@@ -508,6 +897,13 @@
       const cap = r.capability || {};
       const micro = r.microtopic || {};
       const tpath = micro.teaching_path || [];
+      const atlasResolution = resolveAtlasComposite(currentSubjectPayload(), state.matrix.matrix_id, r.rung);
+      const isSelected = Boolean(
+        state.selected_rung_key
+        && state.selected_rung_key.matrix_id === state.matrix.matrix_id
+        && state.selected_rung_key.rung === r.rung
+      );
+      const canonicalAtlasHtml = renderCanonicalAtlasDetails(atlasResolution);
 
 
       // Level 2 & 3: Semantic Leaves & Diagnostic Dimension Cells
@@ -536,13 +932,11 @@
           const mapping = gcdr && act.support_route.external_state_mapping
             ? ` · mapping ${act.support_route.external_state_mapping}`
             : '';
-          return `
-            <a href="${activityHref(act.locator)}" class="btn primary-phy"
-               style="font-size: 11px; padding: 4px 9px; margin-right: 6px; margin-top: 6px;"
-               title="${label} for ${step.id}${status}${audit ? ` · audit ${audit}` : ''}${mapping}">
-              🧪 ${label}: ${act.title} ${auditBadge} ↗
-            </a>
-          `;
+          return renderActivityAction(
+            r.rung,
+            act,
+            (gcdr ? 'Graphical breakdown' : 'Exact repair') + (audit ? ' · audit ' + audit : '')
+          );
         }).join('');
         
         // Level 3 dimensions remain independent; never average them into a rung score.
@@ -614,9 +1008,7 @@
                   ${(act.support_route.recommended_when || []).join(', ')}
                 </p>
               ` : ''}
-              <a href="${activityHref(act.locator)}" class="btn primary-phy" style="font-size: 11px; padding: 4px 10px;">
-                Launch Activity ↗
-              </a>
+              ${renderActivityAction(r.rung, act, 'Launch Activity')}
             </div>
           `;
         }).join('');
@@ -644,7 +1036,7 @@
       `).join('');
 
       return `
-        <details class="rung-card ${isDef ? '' : 'non-default'}" id="card-${r.rung}">
+        <details class="rung-card ${isDef ? '' : 'non-default'}" id="card-${r.rung}" ${isSelected ? 'open' : ''}>
           <summary class="rung-summary">
             <div class="summary-left">
               <span class="rung-num-pill">${r.rung}</span>
@@ -664,6 +1056,7 @@
           </summary>
 
           <div class="card-body">
+            ${canonicalAtlasHtml}
             <!-- Capability Metadata Row -->
             <div class="card-meta-row">
               <div class="meta-item">
@@ -782,12 +1175,11 @@
             .filter(act => activityMatchesStep(act, t.repair_ref));
           const exactActivityHtml = exactActivities.map(act => {
             const gcdr = act.support_route && act.support_route.kind === 'GCDR';
-            return `
-              <a href="${activityHref(act.locator)}" class="btn primary-phy"
-                 style="font-size: 11px; padding: 4px 9px; margin-top: 8px; margin-right: 6px;">
-                ${gcdr ? 'Open graphical breakdown' : 'Open exact repair'}: ${act.title} ↗
-              </a>
-            `;
+            return renderActivityAction(
+              t.rung,
+              act,
+              gcdr ? 'Open graphical breakdown' : 'Open exact repair'
+            );
           }).join('');
           return `
           <div style="background: var(--bg-panel); border: 1px solid ${idx === 0 ? 'var(--accent)' : 'var(--border)'}; border-radius: 8px; padding: 14px;">
@@ -1024,7 +1416,20 @@
         renderCoreBuilder();
         updateStorageStatusBadge('📂 Imported: ' + accepted.length + ' accepted, ' + rejected.length + ' isolated');
       } catch (err) {
-        alert('Diagnostic Import Error: ' + err.message);
+        state.validation_report = {
+          accepted: [...state.diagnostic_rows],
+          rejected: [{ index: null, raw: null, reason: err.message }],
+          warnings: [],
+          provenance: 'IMPORT_ERROR',
+          fatal_error: 'Diagnostic Import Error: ' + err.message
+        };
+        renderInputDrawer();
+        const reportBox = document.getElementById('importValidationReport');
+        if (reportBox) {
+          reportBox.setAttribute('role', 'alert');
+          reportBox.setAttribute('tabindex', '-1');
+          reportBox.focus();
+        }
       }
     };
     reader.readAsText(file);
@@ -1169,16 +1574,17 @@
       validateDiagnosticRow,
       deriveAtlasAddress,
       resolveNeedTargetsFor,
+      resolveAtlasComposite,
+      resolveCoreDestinationsFor,
+      resolveVisualDestinationsFor,
+      resolvePortableDestinationsFor,
+      portablePackageHref,
       buildAuthoringRequest,
       buildMeasurementPack,
       buildDiagnosticEnvelope
     },
     openRung: function(rungId) {
-      const el = document.getElementById('card-' + rungId);
-      if (el) {
-        el.open = true;
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      selectRung(rungId, { pushHistory: true, focus: true });
     },
     setKnowledgeSlider: function(val) {
       const num = parseInt(val, 10);
