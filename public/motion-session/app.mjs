@@ -62,7 +62,9 @@ function seedIdentity() {
 }
 
 function syncDiagnostics() {
-  window.__motionSessionReady = Boolean(identity && packageData && recorder && unavailable.hidden);
+  window.__motionSessionReady = Boolean(
+    identity && packageData && recorder && unavailable.hidden && recorder.state.visual.ready
+  );
   window.__motionSessionIdentity = identity ? structuredClone(identity) : null;
   window.__motionSessionState = recorder ? recorder.state : null;
   window.__motionSessionTrace = recorder ? recorder.events : [];
