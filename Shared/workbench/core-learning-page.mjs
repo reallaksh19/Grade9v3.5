@@ -515,7 +515,8 @@ function renderQuestionFigures(projection, state) {
 }
 
 function renderAttempt(projection, state) {
-  const needed = state.questionVisible || isConceptReconstruction(projection);
+  const needed = projection.core !== "CORE2"
+    && (state.questionVisible || isConceptReconstruction(projection));
   if (!needed || state.completed) return "";
   if (state.attempted) {
     return `<section class="attempt-panel" aria-label="Attempt status">
@@ -601,7 +602,7 @@ function renderReasoningRoute(projection, state) {
 
 function renderIndependentCheck(projection, state) {
   const check = projection.application?.check;
-  if (!state.reasoningVisible || !check) return "";
+  if (!(state.reasoningVisible || state.solutionVisible) || !check) return "";
   return `<section class="check-panel" aria-labelledby="core-check-title">
     <h3 id="core-check-title">Independent check</h3>
     <p>${escapeHtml(check)}</p>
@@ -841,9 +842,14 @@ export class CoreLearningPage extends HTMLElementBase {
     if (
       before.reconstructionVisible !== this._state.reconstructionVisible
       || before.reasoningVisible !== this._state.reasoningVisible
+      || before.solutionVisible !== this._state.solutionVisible
     ) {
       this._emit(CORE_LEARNER_EVENTS.REVEAL_CHANGED, {
-        kind: this._state.reconstructionVisible ? "reconstruction" : "reasoning",
+        kind: this._state.reconstructionVisible
+          ? "reconstruction"
+          : this._state.reasoningVisible
+            ? "reasoning"
+            : "solution",
         stage: this._state.stage,
       });
     }
