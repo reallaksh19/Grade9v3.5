@@ -534,11 +534,17 @@ test("Issue #215 carries canonical identity through Atlas, Core and portable hos
     `);
     assert.deepEqual(mathState.row.representation_refs, ["REP-MATH-NUMBER-LINE"]);
     assert.equal(mathState.row.availability.representation, "READY");
-    assert.equal(mathState.row.availability.core, "UNAVAILABLE");
+    assert.equal(mathState.row.availability.core, "READY");
     assert.equal(mathState.row.availability.activity, "UNAVAILABLE");
     assert.equal(mathState.row.availability.portable_package, "UNAVAILABLE");
     assert.equal(mathState.row.availability.standalone, "UNAVAILABLE");
-    assert.equal(mathState.coreActions, 0);
+    assert.equal(mathState.coreActions, 2);
+    assert.ok(
+      mathState.row.core_projection_refs.includes("mathematics:mic-math-constraint:core1a"),
+    );
+    assert.ok(
+      mathState.row.core_projection_refs.includes("mathematics:mic-math-constraint:core1b"),
+    );
     assert.equal(mathState.visualActions, 0);
     assert.equal(mathState.portableActions, 0);
   } finally {
