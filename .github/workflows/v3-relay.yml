@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: reallaksh19/Common
-          ref: 5676b61141c2cdc7816ca624a288a27b48f3e412
+          ref: 45301dc3e553b1b7be8ab66fac00512353479ee2
           path: _common_v31
           fetch-depth: 1
 
@@ -35,3 +35,7 @@ jobs:
 
       - name: Validate V3.1 recorder foundation
         run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/validate_foundation.py .
+
+      - name: Validate current PR task binding
+        if: ${{ github.event_name == 'pull_request' }}
+        run: python _common_v31/skills/engineering-pr-delivery-v3.1/scripts/validate_task_binding.py --root . --event "$GITHUB_EVENT_PATH"
