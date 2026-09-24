@@ -11,11 +11,12 @@ import {
   summarizeMotionSessionState,
 } from "./session-runtime.mjs";
 
+const routeRequest = window.GRADE9V3_SESSION_REQUEST || {};
 const SESSION_CASE = Object.freeze({
-  subject: "Physics",
-  matrixId: "MATRIX-PHY-KIN-2D-MOTION",
-  rung: "R1",
-  transferProjectionId: "physics:q-phy-kin-2d-2b-projectile-validity-04:core2b",
+  subject: routeRequest.subject,
+  matrixId: routeRequest.matrix_id,
+  rung: routeRequest.rung,
+  transferProjectionId: routeRequest.transfer_projection_id,
 });
 
 const webData = window.GRADE9V3;
@@ -424,7 +425,7 @@ function wireActions() {
 
 async function init() {
   const selection = diagnosticMode === "unknown-identity"
-    ? { ...SESSION_CASE, matrixId: "MATRIX-UNKNOWN-DIAGNOSTIC" }
+    ? { ...SESSION_CASE, rung: "__diagnostic_unknown_rung__" }
     : SESSION_CASE;
 
   try {
