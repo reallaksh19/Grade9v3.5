@@ -2176,12 +2176,12 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2190,12 +2190,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2204,12 +2204,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2218,12 +2218,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2268,12 +2268,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2315,12 +2315,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2329,12 +2329,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2343,12 +2343,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2357,12 +2357,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2371,12 +2371,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2385,12 +2385,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SOUND",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2399,12 +2399,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2427,12 +2427,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2A, CORE2B"
         }
       ],
       "projection_refs": []
@@ -2441,12 +2441,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2455,12 +2455,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2469,12 +2469,12 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
       "status": "UNSUPPORTED",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket.",
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B",
       "findings": [
         {
-          "code": "PROJECTION_UNAVAILABLE",
-          "detail": "No mature learner projection was produced from the compiled bucket."
+          "code": "CORE_ROLES_MISSING",
+          "detail": "CORE2B"
         }
       ],
       "projection_refs": []
@@ -2484,26 +2484,26 @@ window.GRADE9V3_CORE = {
     {
       "subject": "Mathematics",
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
@@ -2514,8 +2514,8 @@ window.GRADE9V3_CORE = {
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
@@ -2533,44 +2533,44 @@ window.GRADE9V3_CORE = {
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-SOUND",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
@@ -2581,26 +2581,26 @@ window.GRADE9V3_CORE = {
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2A, CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-RELATIVE-MOTION",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
-      "code": "PROJECTION_UNAVAILABLE",
-      "detail": "No mature learner projection was produced from the compiled bucket."
+      "code": "CORE_ROLES_MISSING",
+      "detail": "CORE2B"
     }
   ]
 };

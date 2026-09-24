@@ -1142,8 +1142,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -1181,7 +1181,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -1210,8 +1210,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -1249,7 +1249,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -1278,8 +1278,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -1317,7 +1317,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-LINEAR-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         }
@@ -1327,7 +1327,7 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-LINEAR-EQUATION",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         }
       ],
       "coverage": {
@@ -30720,8 +30720,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -30759,7 +30759,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -30783,8 +30783,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -30839,8 +30839,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -30899,8 +30899,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -30938,7 +30938,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -30962,8 +30962,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31018,8 +31018,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31074,8 +31074,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31130,8 +31130,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31190,8 +31190,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31229,7 +31229,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31257,8 +31257,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31296,7 +31296,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31324,8 +31324,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31363,7 +31363,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31387,8 +31387,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -31448,8 +31448,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31487,7 +31487,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31520,8 +31520,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31559,7 +31559,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31594,8 +31594,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31633,7 +31633,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31665,8 +31665,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31704,7 +31704,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31732,8 +31732,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31771,7 +31771,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -31799,8 +31799,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -31838,7 +31838,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32702,8 +32702,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -32741,7 +32741,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32773,8 +32773,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -32812,7 +32812,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32836,8 +32836,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -32896,8 +32896,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -32935,7 +32935,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -32959,8 +32959,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -33015,8 +33015,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -34039,8 +34039,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34078,7 +34078,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34110,8 +34110,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34149,7 +34149,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34181,8 +34181,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34220,7 +34220,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34252,8 +34252,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34291,7 +34291,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34323,8 +34323,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34362,7 +34362,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34394,8 +34394,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34433,7 +34433,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34461,8 +34461,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34500,7 +34500,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34532,8 +34532,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34571,7 +34571,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34603,8 +34603,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34642,7 +34642,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34674,8 +34674,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34713,7 +34713,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34745,8 +34745,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34784,7 +34784,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34816,8 +34816,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34855,7 +34855,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34883,8 +34883,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -34922,7 +34922,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -34946,8 +34946,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35002,8 +35002,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35062,8 +35062,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35101,7 +35101,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35125,8 +35125,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35185,8 +35185,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35224,7 +35224,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35248,8 +35248,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -35308,8 +35308,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35347,7 +35347,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35375,8 +35375,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35414,7 +35414,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35442,8 +35442,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35481,7 +35481,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35513,8 +35513,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35552,7 +35552,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35585,8 +35585,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35624,7 +35624,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35656,8 +35656,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35695,7 +35695,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35724,8 +35724,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35763,7 +35763,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SOUND",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35796,8 +35796,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35835,7 +35835,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SOUND",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -35871,8 +35871,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35910,7 +35910,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SOUND",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -35938,8 +35938,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -35977,7 +35977,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SOUND",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36010,8 +36010,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36049,7 +36049,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-SOUND",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36077,8 +36077,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36116,7 +36116,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36140,8 +36140,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "UNAVAILABLE",
@@ -36200,8 +36200,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36239,7 +36239,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36267,8 +36267,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36306,7 +36306,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36334,8 +36334,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36373,7 +36373,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36692,8 +36692,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36731,7 +36731,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36766,8 +36766,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36805,7 +36805,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36839,8 +36839,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2A, CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36878,7 +36878,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36906,8 +36906,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -36945,7 +36945,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -36977,8 +36977,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37016,7 +37016,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37048,8 +37048,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37087,7 +37087,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37120,8 +37120,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37159,7 +37159,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37192,8 +37192,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37231,7 +37231,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37269,8 +37269,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37308,7 +37308,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37341,8 +37341,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37380,7 +37380,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37408,8 +37408,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37447,7 +37447,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37478,8 +37478,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37517,7 +37517,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37552,8 +37552,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37591,7 +37591,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -37621,8 +37621,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37660,7 +37660,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-RELATIVE-MOTION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -37683,8 +37683,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37722,7 +37722,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             },
             {
               "code": "VISUAL_REF_UNAVAILABLE",
@@ -37757,8 +37757,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37796,7 +37796,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         },
@@ -37826,8 +37826,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [],
           "core_availability": {
             "status": "UNSUPPORTED",
-            "code": "PROJECTION_UNAVAILABLE",
-            "detail": "No mature learner projection was produced from the compiled bucket."
+            "code": "CORE_ROLES_MISSING",
+            "detail": "CORE2B"
           },
           "availability": {
             "mapping": "READY",
@@ -37865,7 +37865,7 @@ window.GRADE9V3 = {
             {
               "code": "CORE_PROJECTION_UNAVAILABLE",
               "ref": "BUCKET-VECTOR-REPRESENTATION",
-              "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+              "detail": "CORE_ROLES_MISSING: CORE2B"
             }
           ]
         }
@@ -38150,7 +38150,7 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "VISUAL_REF_UNAVAILABLE",
@@ -38170,12 +38170,12 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38195,7 +38195,7 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38255,37 +38255,37 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-OSC-SHM-WAVES",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-ROT-RIGID-BODY",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-SIMPLE-MACHINES",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-SOUND",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
@@ -38295,22 +38295,22 @@ window.GRADE9V3 = {
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2A, CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-PHY-WORK-ENERGY-POWER",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-RELATIVE-MOTION",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         },
         {
           "code": "CORE_PROJECTION_UNAVAILABLE",
           "ref": "BUCKET-VECTOR-REPRESENTATION",
-          "detail": "PROJECTION_UNAVAILABLE: No mature learner projection was produced from the compiled bucket."
+          "detail": "CORE_ROLES_MISSING: CORE2B"
         }
       ],
       "coverage": {
