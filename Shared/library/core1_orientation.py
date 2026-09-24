@@ -65,6 +65,61 @@ def _finding(code: str, *, detail: str, ref: str | None = None) -> dict:
     return row
 
 
+def orientation_surfaces(
+    bucket: dict,
+    microtopics: list[dict],
+    relation_refs: set[str] | list[str],
+    *,
+    representation_index: dict[str, dict] | None = None,
+) -> list[str]:
+    """Canonical content that can legitimately form the compact Core1 map.
+
+    Equation presence is one orientation surface, not the definition of orientation.
+    Core1 may also map declared conventions/scope, point at intrinsically difficult
+    transitions, or show a declared primary representation that actually has a Core1
+    scene. The helper names only content the compiler can emit without inventing prose.
+    """
+    surfaces: list[str] = []
+    if relation_refs:
+        surfaces.append("GOVERNING_RELATIONS")
+
+    conventions = bucket.get("conventions") or []
+    if any(
+        isinstance(row, dict)
+        and isinstance(row.get("statement"), str)
+        and row["statement"].strip()
+        for row in conventions
+    ):
+        surfaces.append("DECLARED_CONVENTIONS")
+
+    scope = bucket.get("scope") or {}
+    if (
+        isinstance(scope, dict)
+        and (
+            (isinstance(scope.get("covers"), str) and scope["covers"].strip())
+            or bool(scope.get("excluded"))
+        )
+    ):
+        surfaces.append("DECLARED_SCOPE")
+
+    if any(
+        isinstance(row, dict) and row.get("intrinsic_badge") in {"MEDIUM", "HARD"}
+        for row in microtopics
+    ):
+        surfaces.append("HARD_TRANSITION_POINTERS")
+
+    primary = bucket.get("primary_representation_ref")
+    if isinstance(primary, str) and primary and representation_index:
+        representation = representation_index.get(primary)
+        if isinstance(representation, dict) and any(
+            isinstance(scene, dict) and "CORE1" in (scene.get("cores") or [])
+            for scene in (representation.get("scene_instances") or [])
+        ):
+            surfaces.append("PRIMARY_REPRESENTATION")
+
+    return surfaces
+
+
 def audit_bucket(
     subject: str,
     package_path: str,
@@ -196,17 +251,24 @@ def audit_bucket(
                 ))
 
     finding_codes = sorted({row["code"] for row in findings})
+    surfaces = orientation_surfaces(
+        bucket,
+        microtopics,
+        set(relation_refs),
+        representation_index=representations,
+    )
     return {
         "subject": subject,
         "package_path": package_path,
         "bucket_ref": bucket.get("id"),
         "title": bucket.get("title"),
-        "core1_compilable": bool(relation_refs),
+        "core1_compilable": bool(surfaces),
         "core1_compilability_reason": (
-            "GOVERNING_RELATION_PRESENT"
-            if relation_refs
-            else "NO_GOVERNING_RELATION_REF"
+            "ORIENTABLE_CANONICAL_CONTENT_PRESENT"
+            if surfaces
+            else "NO_ORIENTABLE_CANONICAL_CONTENT"
         ),
+        "orientation_surfaces": surfaces,
         "conventions_state": "AUTHORED" if conventions else "NOT_AUTHORED",
         "convention_count": len(conventions) if isinstance(conventions, list) else 0,
         "scope_state": scope_state,
