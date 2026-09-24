@@ -537,10 +537,17 @@ def adapt_compiled_bucket_with_status(
         ),
     )
     if not result and not findings:
-        findings.append(_finding(
-            "PROJECTION_UNAVAILABLE",
-            "No mature learner projection was produced from the compiled bucket.",
-        ))
+        missing = [
+            core for core in ("CORE1A", "CORE1B", "CORE2A", "CORE2B")
+            if core not in products
+        ]
+        if missing:
+            findings.append(_finding("CORE_ROLES_MISSING", ", ".join(missing)))
+        else:
+            findings.append(_finding(
+                "PROJECTION_UNAVAILABLE",
+                "No mature learner projection was produced from the compiled bucket.",
+            ))
     return result, findings
 
 
