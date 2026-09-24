@@ -29,6 +29,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_core_learning_adapter
           node --test tests/core_learning_page.test.mjs
+      - name: Generate Phase-5 delivery evidence
+        run: |
+          python3 -m Shared.library.core1_delivery \
+            --write-report docs/core1-delivery-report.json
       - name: Regenerate governed artifacts
         run: python3 Shared/tools/build_manifest.py
       - name: Commit exact generated output
