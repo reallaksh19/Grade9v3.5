@@ -410,6 +410,18 @@ test("Issue #251 direct learner journey preserves protections, portable semantic
     await driver.waitFor("return window.__motionSessionTrace.some(e => e.reason_code === 'SESSION_DUPLICATE_ATTEMPT' && e.requested_transition?.core === 'CORE1B');");
     assert.equal(await driver.execute("return window.__motionSessionState.core1b.attemptCount;"), 1);
     assert.equal(await driver.execute("return JSON.stringify(window.__motionSessionTrace).includes('DUPLICATE_PRIVATE_SENTINEL');"), false);
+
+    await driver.click(await driver.element("#reset-session"));
+    await driver.waitFor("return window.__motionSessionState.stage === 'orient';");
+    assert.equal(await driver.execute("return document.querySelector('#core1b-learner').state.reconstructionVisible;"), false);
+    assert.equal(await driver.execute("return window.__motionSessionState.core1b.attemptCount;"), 0);
+    await driver.click(await driver.element("#start-session"));
+    await driver.waitFor("return window.__motionSessionState.stage === 'core1b';");
+    const resetAttempt = await driver.shadowElement("#core1b-learner", "[data-attempt-input]");
+    await driver.sendKeys(resetAttempt, "Rebuild the idea after reset: separate components, one shared time.");
+    await driver.click(await driver.shadowElement("#core1b-learner", '[data-action="commit"]'));
+    await driver.waitFor("return window.__motionSessionState.core1b.revealed === true;");
+
     await driver.click(await driver.element("#core1b-next"));
     await driver.waitFor("return window.__motionSessionState.stage === 'visual';");
 
