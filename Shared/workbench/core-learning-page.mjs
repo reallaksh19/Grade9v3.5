@@ -1,7 +1,7 @@
 export const CORE_LEARNING_PAGE_TAG = "core-learning-page";
 export const CORE_PROJECTION_CONTRACT_VERSION = "1.0";
 
-const CORE_MODES = new Set(["CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
+const CORE_MODES = new Set(["CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
 const SUPPORT_KINDS = new Set(["REPRESENT", "CONNECT", "EXECUTE"]);
 const REVEAL_KINDS = new Set(["CONCEPT", "METHOD", "ANSWER"]);
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -9,6 +9,7 @@ const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value
 export const CORE_LEARNER_EVENTS = Object.freeze({
   ATTEMPT_COMMITTED: "attempt_committed",
   SUPPORT_REQUESTED: "support_requested",
+  HINT_REQUESTED: "hint_requested",
   REVEAL_CHANGED: "reveal_changed",
   REPRESENTATION_MANIPULATED: "representation_manipulated",
   ACTIVITY_COMPLETED: "activity_completed",
@@ -202,6 +203,39 @@ export function validateCoreProjection(input) {
       projection.application.scaffolds,
       "CORE_PROJECTION_SCAFFOLDS_INVALID",
     );
+    projection.application.figures = optionalArray(
+      projection.application.figures,
+      "CORE_PROJECTION_FIGURES_INVALID",
+    );
+    for (const figure of projection.application.figures) {
+      requireObject(figure, "CORE_PROJECTION_FIGURE_INVALID");
+      requireString(figure.figure_ref, "CORE_PROJECTION_FIGURE_REF_REQUIRED");
+      figure.read_order = optionalStringArray(
+        figure.read_order,
+        "CORE_PROJECTION_FIGURE_READ_ORDER_INVALID",
+      );
+      figure.accessibility = optionalStringArray(
+        figure.accessibility,
+        "CORE_PROJECTION_FIGURE_ACCESSIBILITY_INVALID",
+      );
+    }
+    const solution = projection.application.solution == null
+      ? { summary: "", steps: [], rubric: [] }
+      : requireObject(projection.application.solution, "CORE_PROJECTION_SOLUTION_INVALID");
+    requireCondition(typeof (solution.summary ?? "") === "string", "CORE_PROJECTION_SOLUTION_SUMMARY_INVALID");
+    solution.summary = solution.summary ?? "";
+    solution.steps = optionalStringArray(solution.steps, "CORE_PROJECTION_SOLUTION_STEPS_INVALID");
+    solution.rubric = optionalArray(solution.rubric, "CORE_PROJECTION_SOLUTION_RUBRIC_INVALID");
+    for (const row of solution.rubric) {
+      requireObject(row, "CORE_PROJECTION_SOLUTION_RUBRIC_ROW_INVALID");
+      requireString(row.criterion, "CORE_PROJECTION_SOLUTION_RUBRIC_CRITERION_REQUIRED");
+      requireString(row.evidence_of, "CORE_PROJECTION_SOLUTION_RUBRIC_EVIDENCE_REQUIRED");
+    }
+    projection.application.solution = solution;
+    if (projection.application.repair != null) {
+      requireObject(projection.application.repair, "CORE_PROJECTION_REPAIR_INVALID");
+      requireString(projection.application.repair.step_ref, "CORE_PROJECTION_REPAIR_STEP_REQUIRED");
+    }
   }
 
   requireCondition(
@@ -216,11 +250,34 @@ export function validateCoreProjection(input) {
     projection.presentation.protected_move_refs,
     "CORE_PROJECTION_PROTECTED_MOVES_INVALID",
   );
+  if (projection.presentation.show_solution_initially == null) {
+    projection.presentation.show_solution_initially = projection.core === "CORE2";
+  }
+  requireCondition(
+    typeof projection.presentation.show_solution_initially === "boolean",
+    "CORE_PROJECTION_SOLUTION_POLICY_REQUIRED",
+  );
+  const scaffoldCount = projection.application?.scaffolds.length ?? 0;
+  const hintCount = projection.application?.hints.length ?? 0;
+  for (const [field, fallback, max] of [
+    ["pre_attempt_scaffold_limit", scaffoldCount, scaffoldCount],
+    ["pre_attempt_hint_limit", hintCount, hintCount],
+    ["post_attempt_hint_limit", hintCount, hintCount],
+  ]) {
+    if (projection.presentation[field] == null) projection.presentation[field] = fallback;
+    requireCondition(
+      Number.isInteger(projection.presentation[field])
+        && projection.presentation[field] >= 0
+        && projection.presentation[field] <= max,
+      "CORE_PROJECTION_PRESENTATION_LIMIT_INVALID",
+      field,
+    );
+  }
 
   if (["CORE1A", "CORE1B"].includes(projection.core)) {
     requireCondition(projection.concept != null, "CORE_PROJECTION_CONCEPT_REQUIRED", projection.core);
   }
-  if (["CORE2A", "CORE2B"].includes(projection.core)) {
+  if (["CORE2", "CORE2A", "CORE2B"].includes(projection.core)) {
     requireCondition(projection.application != null, "CORE_PROJECTION_APPLICATION_REQUIRED", projection.core);
   }
 
@@ -241,6 +298,7 @@ export function deriveCoreLearningState(input) {
   let stage = "ORIENTATION";
   if (projection.presentation.attempt_before_reveal) stage = "AWAITING_ATTEMPT";
   else if (projection.presentation.show_full_construction) stage = "CONSTRUCTION_VISIBLE";
+  else if (projection.presentation.show_solution_initially) stage = "SOURCE_CUSTODY_VISIBLE";
   else if (projection.application?.question_ref) stage = "QUESTION_VISIBLE";
 
   return {
@@ -251,8 +309,10 @@ export function deriveCoreLearningState(input) {
     attemptCount: 0,
     reconstructionVisible: stage === "CONSTRUCTION_VISIBLE",
     reasoningVisible: false,
+    solutionVisible: Boolean(projection.presentation.show_solution_initially),
     questionVisible: Boolean(projection.application?.question_ref),
     supportIndex: 0,
+    hintIndex: 0,
     protectedMoveRefs: clone(projection.presentation.protected_move_refs),
     currentVisualRef: projection.presentation.initial_visual_ref ?? null,
     currentVisualStageRef: projection.presentation.initial_visual_stage_ref ?? null,
@@ -273,6 +333,12 @@ function validateState(projection, state) {
     state.supportIndex <= (projection.application?.scaffolds.length ?? 0),
     "CORE_LEARNING_STATE_SUPPORT_INDEX_OUT_OF_RANGE",
   );
+  requireCondition(Number.isInteger(state.hintIndex) && state.hintIndex >= 0, "CORE_LEARNING_STATE_HINT_INDEX_INVALID");
+  requireCondition(
+    state.hintIndex <= (projection.application?.hints.length ?? 0),
+    "CORE_LEARNING_STATE_HINT_INDEX_OUT_OF_RANGE",
+  );
+  requireCondition(typeof state.solutionVisible === "boolean", "CORE_LEARNING_STATE_SOLUTION_FLAG_INVALID");
   if (!state.attempted) {
     requireCondition(state.attemptCount === 0, "CORE_LEARNING_STATE_ATTEMPT_FLAG_MISMATCH");
     requireCondition(!state.reasoningVisible, "CORE_LEARNING_STATE_REASONING_PREATTEMPT");
@@ -286,9 +352,32 @@ function validateState(projection, state) {
 function nextScaffold(projection, state) {
   const scaffold = projection.application?.scaffolds[state.supportIndex] ?? null;
   if (!scaffold) return { scaffold: null, blocked: false };
-  const blocked = !state.attempted
-    && projection.presentation.protected_move_refs.includes(scaffold.supports_move_ref);
+  const transferPreAttempt = projection.core === "CORE2B" && !state.attempted;
+  const blocked = !state.attempted && (
+    state.supportIndex >= projection.presentation.pre_attempt_scaffold_limit
+    || projection.presentation.protected_move_refs.includes(scaffold.supports_move_ref)
+    || (transferPreAttempt && scaffold.reveals !== "CONCEPT")
+  );
   return { scaffold, blocked };
+}
+
+function nextHint(projection, state) {
+  const hint = projection.application?.hints[state.hintIndex] ?? null;
+  if (!hint) return { hint: null, blocked: false };
+  const limit = state.attempted
+    ? projection.presentation.post_attempt_hint_limit
+    : projection.presentation.pre_attempt_hint_limit;
+  let blocked = state.hintIndex >= limit;
+  if (projection.core === "CORE2B") {
+    if (!state.attempted && hint.reveals !== "CONCEPT") blocked = true;
+    if (
+      state.attempted
+      && projection.application?.transfer?.dimension === "model_choice"
+      && hint.reveals !== "CONCEPT"
+    ) blocked = true;
+  }
+  if (projection.core !== "CORE2" && !state.attempted && hint.reveals === "ANSWER") blocked = true;
+  return { hint, blocked };
 }
 
 export function transitionCoreLearningState(input, currentState, command) {
@@ -298,6 +387,10 @@ export function transitionCoreLearningState(input, currentState, command) {
   requireString(command.type, "CORE_LEARNING_COMMAND_TYPE_REQUIRED");
 
   if (command.type === "COMMIT_ATTEMPT") {
+    const response = String(command.response ?? "");
+    if (projection.presentation.attempt_before_reveal) {
+      requireCondition(response.trim().length > 0, "CORE_LEARNING_GENUINE_ATTEMPT_REQUIRED");
+    }
     state.attempted = true;
     state.attemptCount += 1;
     if (isConceptReconstruction(projection)) {
@@ -305,7 +398,11 @@ export function transitionCoreLearningState(input, currentState, command) {
       state.stage = "RECONSTRUCTION_VISIBLE";
     } else if (projection.application?.reasoning_route.length) {
       state.reasoningVisible = true;
+      state.solutionVisible = true;
       state.stage = "REASONING_VISIBLE";
+    } else if (projection.application?.question_ref) {
+      state.solutionVisible = true;
+      state.stage = "SOLUTION_VISIBLE";
     } else {
       state.stage = "ATTEMPT_COMMITTED";
     }
@@ -325,9 +422,18 @@ export function transitionCoreLearningState(input, currentState, command) {
     return { state, changed: true, reason: "SUPPORT_REVEALED" };
   }
 
+  if (command.type === "REQUEST_HINT") {
+    const { hint, blocked } = nextHint(projection, state);
+    if (!hint) return { state, changed: false, reason: "HINT_EXHAUSTED" };
+    if (blocked) return { state, changed: false, reason: "HINT_PROTECTED_AT_THIS_STAGE" };
+    state.hintIndex += 1;
+    return { state, changed: true, reason: "HINT_REVEALED" };
+  }
+
   if (command.type === "COMPLETE_ACTIVITY") {
     const available = state.reconstructionVisible
       || state.reasoningVisible
+      || state.solutionVisible
       || state.stage === "CONSTRUCTION_VISIBLE";
     requireCondition(available, "CORE_LEARNING_COMPLETION_NOT_AVAILABLE");
     state.completed = true;
@@ -381,12 +487,30 @@ function renderQuestion(projection, state) {
     ? `<div class="question-parts"><h4>${label}</h4><ol>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>`
     : "";
   return `<section class="question" aria-labelledby="core-question-title">
-    <h3 id="core-question-title">Try</h3>
+    <h3 id="core-question-title">${projection.core === "CORE2" ? "Source question" : "Try"}</h3>
     <p>${escapeHtml(app.stem)}</p>
     ${source.length ? `<p class="source-identity">${source.map(escapeHtml).join(" · ")}</p>` : ""}
     ${list("Conditions", app.conditions)}
     ${list("Parts", app.subparts)}
     ${list("Options", app.options)}
+  </section>`;
+}
+
+function renderQuestionFigures(projection, state) {
+  if (!state.questionVisible || !projection.application?.figures.length) return "";
+  return `<section class="question-figures" aria-labelledby="core-question-figures-title">
+    <h3 id="core-question-figures-title">Question figure semantics</h3>
+    ${projection.application.figures.map((figure) => {
+      const description = figure.caption || figure.purpose || "Semantic description supplied by the canonical figure record.";
+      const order = figure.read_order.length
+        ? `<ol>${figure.read_order.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>`
+        : "";
+      return `<article data-figure-ref="${escapeHtml(figure.figure_ref)}">
+        <h4>${escapeHtml(figure.figure_ref)}</h4>
+        <p>${escapeHtml(description)}</p>
+        ${order}
+      </article>`;
+    }).join("")}
   </section>`;
 }
 
@@ -398,9 +522,14 @@ function renderAttempt(projection, state) {
       <p class="attempt-status">Attempt committed.</p>
     </section>`;
   }
+  const required = projection.presentation.attempt_before_reveal ? " required" : "";
+  const note = projection.presentation.attempt_before_reveal
+    ? '<p>Enter a genuine response before protected reasoning is revealed.</p>'
+    : "";
   return `<form class="attempt-panel" data-attempt-form>
     <label for="core-attempt">Your response</label>
-    <textarea id="core-attempt" data-attempt-input rows="3"></textarea>
+    ${note}
+    <textarea id="core-attempt" data-attempt-input rows="3"${required}></textarea>
     <button type="submit" data-action="commit">Commit attempt</button>
   </form>`;
 }
@@ -431,6 +560,29 @@ function renderSupport(projection, state) {
   </section>`;
 }
 
+function visibleHints(projection, state) {
+  return (projection.application?.hints ?? []).slice(0, state.hintIndex);
+}
+
+function renderHints(projection, state) {
+  const visible = visibleHints(projection, state);
+  const next = nextHint(projection, state);
+  if (!visible.length && (!next.hint || next.blocked)) return "";
+  const rows = visible.length
+    ? `<ol class="hint-list">${visible.map((item) => `<li data-hint-reveals="${escapeHtml(item.reveals)}">
+        <span>${escapeHtml(item.text)}</span>
+      </li>`).join("")}</ol>`
+    : "";
+  const button = next.hint && !next.blocked
+    ? '<button type="button" data-action="hint">Show source/question hint</button>'
+    : "";
+  return `<section class="hint-panel" aria-labelledby="core-hint-title">
+    <h3 id="core-hint-title">Source/question hints</h3>
+    ${rows}
+    ${button}
+  </section>`;
+}
+
 function renderReasoningRoute(projection, state) {
   if (!state.reasoningVisible || !projection.application?.reasoning_route.length) return "";
   const crux = projection.application.crux_move_ref;
@@ -453,6 +605,38 @@ function renderIndependentCheck(projection, state) {
   return `<section class="check-panel" aria-labelledby="core-check-title">
     <h3 id="core-check-title">Independent check</h3>
     <p>${escapeHtml(check)}</p>
+  </section>`;
+}
+
+function renderSolution(projection, state) {
+  if (!state.solutionVisible || !projection.application) return "";
+  const solution = projection.application.solution;
+  const hasSolution = Boolean(solution.summary || solution.steps.length || solution.rubric.length);
+  const repair = projection.application.repair;
+  if (!hasSolution && !repair) return "";
+  const title = projection.core === "CORE2" ? "Source answer" : "Solution";
+  const steps = solution.steps.length
+    ? `<ol class="solution-steps">${solution.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>`
+    : "";
+  const rubric = solution.rubric.length
+    ? `<div class="solution-rubric"><h4>Rubric</h4><ul>${solution.rubric.map((row) =>
+        `<li><strong>${escapeHtml(row.criterion)}</strong><span> — ${escapeHtml(row.evidence_of)}</span></li>`
+      ).join("")}</ul></div>`
+    : "";
+  const repairHtml = repair
+    ? `<div class="repair-route" data-repair-ref="${escapeHtml(repair.step_ref)}">
+        <h4>Repair route</h4>
+        <p><strong>${escapeHtml(repair.step_ref)}</strong>${repair.action ? `: ${escapeHtml(repair.action)}` : ""}</p>
+        ${repair.why_valid ? `<small>${escapeHtml(repair.why_valid)}</small>` : ""}
+        <p>Return to this activity after reviewing the named teaching step.</p>
+      </div>`
+    : "";
+  return `<section class="solution-panel" aria-labelledby="core-solution-title">
+    <h3 id="core-solution-title">${title}</h3>
+    ${solution.summary ? `<p>${escapeHtml(solution.summary)}</p>` : ""}
+    ${steps}
+    ${rubric}
+    ${repairHtml}
   </section>`;
 }
 
@@ -479,7 +663,7 @@ function renderRepresentation(state) {
 
 function renderCompletion(state) {
   if (state.completed) return '<p class="complete" role="status">Activity complete.</p>';
-  const available = state.reconstructionVisible || state.reasoningVisible || state.stage === "CONSTRUCTION_VISIBLE";
+  const available = state.reconstructionVisible || state.reasoningVisible || state.solutionVisible || state.stage === "CONSTRUCTION_VISIBLE";
   if (!available) return "";
   return '<button type="button" data-action="complete">Complete activity</button>';
 }
@@ -493,7 +677,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
   return `<style>
     :host { display:block; font:inherit; color:inherit; }
     .shell { display:grid; gap:1rem; max-width:72rem; margin:0 auto; }
-    .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.check-panel,.construction-panel,.representation-panel {
+    .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
       border:1px solid currentColor; border-radius:.75rem; padding:1rem;
     }
     .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
@@ -514,7 +698,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     @media (max-width: 36rem) {
-      .orientation,.concept,.question,.attempt-panel,.support-panel,.reasoning-panel,.check-panel,.construction-panel,.representation-panel { padding:.75rem; }
+      .orientation,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
@@ -529,12 +713,15 @@ export function renderCoreLearningProjection(input, stateInput = null) {
     </header>
     ${renderConcept(projection, state)}
     ${renderQuestion(projection, state)}
+    ${renderQuestionFigures(projection, state)}
     ${renderRepresentation(state)}
     ${renderAttempt(projection, state)}
+    ${renderHints(projection, state)}
     ${renderSupport(projection, state)}
     ${renderConstruction(projection, state)}
     ${renderReasoningRoute(projection, state)}
     ${renderIndependentCheck(projection, state)}
+    ${renderSolution(projection, state)}
     ${renderCompletion(state)}
   </article>`;
 }
@@ -643,7 +830,7 @@ export class CoreLearningPage extends HTMLElementBase {
     const result = transitionCoreLearningState(
       this._projection,
       this._state,
-      { type: "COMMIT_ATTEMPT" },
+      { type: "COMMIT_ATTEMPT", response: String(response ?? "") },
     );
     this._state = result.state;
     this._render();
@@ -688,6 +875,32 @@ export class CoreLearningPage extends HTMLElementBase {
         visualStageRef: this._state.currentVisualStageRef,
       });
       this._announce("Additional support is available.");
+    }
+    return this.state;
+  }
+
+  requestHint() {
+    this._requireProjection();
+    const before = this._state.hintIndex;
+    const result = transitionCoreLearningState(
+      this._projection,
+      this._state,
+      { type: "REQUEST_HINT" },
+    );
+    this._state = result.state;
+    this._render();
+    this._emit(CORE_LEARNER_EVENTS.HINT_REQUESTED, {
+      fromIndex: before,
+      toIndex: this._state.hintIndex,
+      revealed: result.changed,
+      reason: result.reason,
+    });
+    if (result.changed) {
+      this._emit(CORE_LEARNER_EVENTS.REVEAL_CHANGED, {
+        kind: "hint",
+        hintIndex: this._state.hintIndex,
+      });
+      this._announce("Source or question hint revealed.");
     }
     return this.state;
   }
@@ -782,6 +995,9 @@ export class CoreLearningPage extends HTMLElementBase {
     });
     this.shadowRoot.querySelector('[data-action="support"]')?.addEventListener("click", () => {
       this.requestSupport();
+    });
+    this.shadowRoot.querySelector('[data-action="hint"]')?.addEventListener("click", () => {
+      this.requestHint();
     });
     this.shadowRoot.querySelector('[data-action="complete"]')?.addEventListener("click", () => {
       this.completeActivity();
