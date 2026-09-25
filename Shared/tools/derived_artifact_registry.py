@@ -121,7 +121,7 @@ def current_entries(repo: Path = REPO) -> tuple[list[dict], dict]:
         projection_digest = digest(row)
         short = projection_digest.split(":", 1)[1][:20]
         refs = _refs(row, records_by_subject[subject])
-        artifact_id = f"ART-CORE-PROJECTION-{short}"
+        artifact_id = f"derived-core-projection-{short}"
         entries.append({
             "artifact_id": artifact_id,
             "artifact_type": "CORE_PROJECTION",
