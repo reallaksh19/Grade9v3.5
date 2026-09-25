@@ -466,7 +466,7 @@ def resolve(
     core_findings = []
     for segment in request["experience_segments"]:
         if segment["mode"] == "EXPLORE":
-            resolved_segments.append({**segment, "profile_ref": "XP-CANONICAL-EXPLORER@1.0.0"})
+            resolved_segments.append({**segment, "profile_ref": next((row.get("ref") for row in load(repo / EXPLORER_REGISTRY.relative_to(REPO)).get("profiles", []) if row.get("profile_kind") == "EXPLORE"), None)})
         else:
             resolved, segment_findings = _core_segment(
                 segment=segment,
