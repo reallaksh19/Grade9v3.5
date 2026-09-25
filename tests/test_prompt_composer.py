@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -140,6 +141,29 @@ class PromptComposerTests(unittest.TestCase):
         result = prompt_composer.compose(doc)
         self.assertIn("<script>globalThis.pwned=true</script>", result["agent_prompt"])
         self.assertEqual(result["prompt_brief"]["question_rows"][0]["summary"], "<script>globalThis.pwned=true</script>")
+
+
+    def test_browser_parity_syntax_and_generated_projection_checks(self):
+        commands = [
+            ["node", "--check", "public/js/core-prompt-composer.js"],
+            ["node", "--check", "public/js/topic-atlas.js"],
+            ["node", "--test", "tests/prompt_composer.test.mjs"],
+            ["python3", "Shared/tools/build_prompt_composer_data.py", "--check"],
+        ]
+        for command in commands:
+            completed = subprocess.run(
+                command,
+                cwd=REPO,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(
+                completed.returncode,
+                0,
+                f"{' '.join(command)} failed:\n{completed.stdout}",
+            )
 
 
 if __name__ == "__main__":
