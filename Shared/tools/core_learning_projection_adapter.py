@@ -267,6 +267,7 @@ def _application(block: dict, records: dict | None = None) -> dict:
     return {
         "question_ref": block["source_question_id"],
         "family_ref": block["family"],
+        "exposure": deepcopy(block.get("exposure") or []),
         "stem": block["stem"],
         "source_refs": list(block.get("source_refs") or []),
         "origin": block.get("origin"),
