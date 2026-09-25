@@ -1,9 +1,14 @@
 from __future__ import annotations
 
+import json
 import unittest
+from pathlib import Path
 
 from Shared.tools import core_template_contract
 from Shared.tools.core_learning_projection_adapter import _web_delivery
+
+
+REPO = Path(__file__).resolve().parents[1]
 
 
 class WebBlueprintProjectionTests(unittest.TestCase):
@@ -30,6 +35,28 @@ class WebBlueprintProjectionTests(unittest.TestCase):
         for core in core_template_contract.ROLE_ORDER:
             blueprint = core_template_contract.resolve_web_blueprint_for_core(core)
             self.assertIn(core, blueprint["core_roles"])
+
+    def test_generated_projection_blueprint_is_invariant_across_subject_rows(self):
+        path = REPO / "public/core-learning/data.js"
+        text = path.read_text(encoding="utf-8")
+        marker = "window.GRADE9V3_CORE = "
+        payload = json.loads(text[text.index(marker) + len(marker):].strip().rstrip(";"))
+        refs_by_core = {}
+        subjects_by_core = {}
+        for row in payload["core_projections"]:
+            core = row["projection"]["core"]
+            ref = row["projection"]["delivery"]["web"]["blueprint_ref"]
+            refs_by_core.setdefault(core, set()).add(ref)
+            subjects_by_core.setdefault(core, set()).add(row.get("subject"))
+        for core, refs in refs_by_core.items():
+            self.assertEqual(
+                len(refs),
+                1,
+                f"{core} must resolve one role-driven blueprint regardless of subject rows: {refs}",
+            )
+            expected = core_template_contract.resolve_web_blueprint_for_core(core)["ref"]
+            self.assertEqual(next(iter(refs)), expected)
+        self.assertTrue(any(len(subjects) > 1 for subjects in subjects_by_core.values()))
 
 
 if __name__ == "__main__":
