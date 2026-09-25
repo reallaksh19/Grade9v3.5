@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,26 @@ from Shared.tools import build_core_learning_data
 def digest(value: Any) -> str:
     body = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return "sha256:" + hashlib.sha256(body.encode("utf-8")).hexdigest()
+
+
+def _repository_basis(repo: Path) -> str | None:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo,
+        capture_output=True, text=True, check=False,
+    )
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
+def _canonical_input_digest(row: dict, refs: dict[str, list[str]], records: dict[str, dict]) -> str:
+    selected = {row.get("source_ref")}
+    for key, values in refs.items():
+        if key.endswith("_refs"):
+            selected.update(values)
+    selected.discard(None)
+    return digest({
+        ref: records.get(ref)
+        for ref in sorted(selected)
+    })
 
 
 def _subject_records(subject: str, repo: Path) -> dict[str, dict]:
@@ -118,9 +139,12 @@ def current_entries(repo: Path = REPO) -> tuple[list[dict], dict]:
         subject = row.get("subject")
         if subject not in records_by_subject:
             records_by_subject[subject] = _subject_records(subject, repo)
-        projection_digest = digest(row)
-        short = projection_digest.split(":", 1)[1][:20]
         refs = _refs(row, records_by_subject[subject])
+        projection_digest = digest(row)
+        canonical_digest = _canonical_input_digest(row, refs, records_by_subject[subject])
+        contract_version = (payload.get("provider") or {}).get("contract_version")
+        version_digest = digest([row.get("id"), canonical_digest, contract_version, projection_digest])
+        short = version_digest.split(":", 1)[1][:20]
         artifact_id = f"derived-core-projection-{short}"
         entries.append({
             "artifact_id": artifact_id,
@@ -130,8 +154,9 @@ def current_entries(repo: Path = REPO) -> tuple[list[dict], dict]:
             "core": (row.get("projection") or {}).get("core"),
             "source_ref": row.get("source_ref"),
             **refs,
-            "provider_contract_version": (payload.get("provider") or {}).get("contract_version"),
-            "canonical_input_digest": projection_digest,
+            "provider_contract_version": contract_version,
+            "repository_basis": _repository_basis(repo),
+            "canonical_input_digest": canonical_digest,
             "artifact_digest": projection_digest,
             "payload_path": f"core-projections/{artifact_id}.json",
             "status": "CURRENT",
@@ -192,7 +217,10 @@ def write(repo: Path = REPO) -> dict:
     core_dir.mkdir(parents=True, exist_ok=True)
     for row in current:
         path = core_dir / f'{row["artifact_id"]}.json'
-        if not path.exists():
+        if path.exists():
+            if digest(json.loads(path.read_text(encoding="utf-8"))) != row["artifact_digest"]:
+                raise ValueError(f"ARTIFACT_DIGEST_MISMATCH:{path}")
+        else:
             path.write_text(
                 json.dumps(row["_payload"], indent=2, ensure_ascii=False) + "\n",
                 encoding="utf-8",
@@ -210,7 +238,7 @@ def load_index(repo: Path = REPO) -> dict:
     path = repo / INDEX.relative_to(REPO)
     if path.is_file():
         return json.loads(path.read_text(encoding="utf-8"))
-    return build_index_payload(repo)
+    return {"contract_version": CONTRACT_VERSION, "artifacts": []}
 
 
 def search(
@@ -223,9 +251,11 @@ def search(
     repo: Path = REPO,
 ) -> list[dict]:
     index = load_index(repo)
+    if not index.get("artifacts"):
+        return []
     current_rows, _ = current_entries(repo)
     current_by_semantic = {
-        (row.get("subject"), row.get("core"), row.get("semantic_id")): row.get("artifact_digest")
+        (row.get("subject"), row.get("core"), row.get("semantic_id")): row
         for row in current_rows
     }
     results = []
@@ -250,10 +280,24 @@ def search(
         if text and text.lower() not in (row.get("search_text") or ""):
             continue
         key = (row.get("subject"), row.get("core"), row.get("semantic_id"))
-        current_digest = current_by_semantic.get(key)
-        if current_digest == row.get("artifact_digest"):
+        current = current_by_semantic.get(key)
+        payload_path = row.get("payload_path")
+        stored = repo / ROOT.relative_to(REPO) / payload_path if isinstance(payload_path, str) else None
+        valid_path = stored is not None and stored.resolve().is_relative_to((repo / ROOT.relative_to(REPO)).resolve())
+        try:
+            payload_valid = bool(valid_path and stored.is_file() and digest(json.loads(stored.read_text(encoding="utf-8"))) == row.get("artifact_digest"))
+        except (OSError, ValueError, json.JSONDecodeError):
+            payload_valid = False
+        if not payload_valid:
+            freshness, reuse = "INCOMPATIBLE", "FORBIDDEN"
+        elif (
+            current
+            and current["artifact_digest"] == row.get("artifact_digest")
+            and current["canonical_input_digest"] == row.get("canonical_input_digest")
+            and current["provider_contract_version"] == row.get("provider_contract_version")
+        ):
             freshness, reuse = "CURRENT", "DIRECT"
-        elif current_digest:
+        elif current:
             freshness, reuse = "STALE", "REGENERATE"
         else:
             freshness, reuse = "REFERENCE_ONLY", "REFERENCE_ONLY"

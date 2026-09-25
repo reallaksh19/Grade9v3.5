@@ -53,6 +53,7 @@ def compile_page_package(plan: dict, repo: Path = REPO) -> dict:
     _require(len(segments) == 1 and segments[0].get("mode") == "EXPLORE", "EXPLORE_SEGMENT_REQUIRED")
 
     subject = plan["subject"]
+    packaging_mode = plan["packaging_mode"]
     records = _records(subject, repo)
     refs = (plan.get("target") or {}).get("resolved_refs") or {}
     representation_refs = list(refs.get("representation_refs") or [])
@@ -78,7 +79,7 @@ def compile_page_package(plan: dict, repo: Path = REPO) -> dict:
             portable_package = portable_packages[package_ref]
             break
 
-    if selected_activity is None:
+    if selected_activity is None and packaging_mode not in {"OFFLINE_DIRECTORY", "SINGLE_FILE"}:
         for ref in activity_refs:
             target = visual_targets.get(ref) or {}
             if target.get("availability", {}).get("locator") == "READY" and target.get("locator"):
@@ -100,6 +101,10 @@ def compile_page_package(plan: dict, repo: Path = REPO) -> dict:
         mount_mode = "STATIC_FIGURE"
 
     _require(mount_mode is not None, "EXPLORE_DELIVERY_UNAVAILABLE")
+    if segments[0]["interaction_requirement"] == "REQUIRED":
+        _require(mount_mode in {"PORTABLE_SCENE", "LEGACY_IFRAME"}, "EXPLORE_REQUIRED_INTERACTION_UNAVAILABLE")
+    if packaging_mode in {"OFFLINE_DIRECTORY", "SINGLE_FILE"}:
+        _require(mount_mode != "LEGACY_IFRAME", "EXPLORE_OFFLINE_IFRAME_FORBIDDEN")
     profile = _profile(repo)
     if mount_mode == "LEGACY_IFRAME":
         _require(
@@ -238,7 +243,7 @@ def render_single_file(package: dict) -> bytes:
     stage = _static_representation(package.get("representation"))
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="grade9v3-packaging-mode" content="SINGLE_FILE"><title>Grade9V3 Explore</title>
-<style>body{{font:16px/1.45 system-ui,sans-serif;margin:0}}{_shell_style()}</style></head><body>{_shell("SINGLE_FILE")}
+<style>body{{font:16px/1.45 system-ui,sans-serif;margin:0}}{_shell_style()}</style></head><body>{_shell("SINGLE_FILE", package["profile"]["shell_ref"])}
 <main class="explore-shell" data-explorer-profile="{html.escape(package['profile']['ref'])}" data-mount-mode="STATIC_FIGURE">
 <section class="explore-stage">{stage}</section><aside class="explore-support"><h2>Static canonical delivery</h2></aside></main>
 {_shell_script()}</body></html>"""
@@ -247,6 +252,7 @@ def render_single_file(package: dict) -> bytes:
 
 def write_mode(package: dict, mode: str, out: Path) -> None:
     _require(mode in package["profile"]["packaging_modes"], "EXPLORE_PACKAGING_MODE_NOT_ALLOWED", mode)
+    _require(mode == package["resolution_plan"]["packaging_mode"], "EXPLORE_PLAN_PACKAGING_MISMATCH", mode)
     if mode == "SINGLE_FILE":
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(render_single_file(package))

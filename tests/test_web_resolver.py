@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import copy
+import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from Shared.tools import build_explore_page, derived_artifact_registry, web_resolver, web_validator
 
@@ -24,6 +29,79 @@ def request(subject, target, mode, *, core=None, interaction="OPTIONAL", packagi
         "target": target,
         "experience_segments": [segment],
         "packaging_mode": packaging,
+    }
+
+
+def prepared_route(exact_ref=FAMILIAR):
+    target_id = "TARGET-TEST"
+    move_id = "MOVE-TEST"
+    return {
+        "schema_version": "1.1.0",
+        "route_bundle_id": "ROUTE-TEST",
+        "subject": "Physics",
+        "learner_context": {
+            "evidence_state": "UNKNOWN", "owner_estimate_percent": None,
+            "owner_routing_waiver": False, "readiness_claim_allowed": False,
+            "support_policy": "STANDARD",
+        },
+        "targets": [{
+            "target_id": target_id, "owner_ref": exact_ref, "summary": "Target application",
+            "identity": {
+                "state": "EXACT_CONFIRMED", "exact_ref": exact_ref,
+                "candidate_refs": [exact_ref], "candidate_set_provenance": "Canonical ref",
+                "demand_fingerprint": {
+                    "setup": "Horizontal launch", "requested_output": "Range",
+                    "special_condition": None, "answer_type": "Numeric",
+                    "distinctive_transformation": "Separate component motion",
+                },
+                "discriminating_features": [], "rejected_candidates": [],
+                "resolution_decision": "Exact ref", "resolution_reviewer": "reviewer",
+                "identity_confidence": "HIGH",
+            },
+            "authority": {
+                "target_authority": "OWNER_FIXED", "direct_source_use": "ALLOWED",
+                "instructional_demand_use": "ALLOWED", "assessment_claim": "HOLD",
+            },
+            "source_custody_state": "PASS",
+            "demand_moves": [{
+                "move_id": move_id, "description": "Resolve components",
+                "decision_type": "DECIDE", "provenance_class": "CANONICAL_DERIVED",
+                "required_capability_refs": ["CAP-KIN-PROJECTILE-MODEL"],
+                "unresolved_capability_descriptions": [],
+                "closure": {
+                    "state": "ESTABLISHED_CURRENT_SCOPE",
+                    "canonical_refs": ["CAP-KIN-PROJECTILE-MODEL"],
+                    "bridge_candidate_ref": None, "hold_close_when": None,
+                },
+                "coverage": {
+                    "entry_task_ref": "ENTRY-TEST", "teaching_refs": ["TEACH-TEST"],
+                    "supported_attempt_refs": ["GUIDED-TEST"],
+                    "independent_evidence_refs": ["EVIDENCE-TEST"],
+                    "target_use_ref": target_id, "coverage_state": "INDEPENDENT_EVIDENCE",
+                },
+            }],
+            "coverage_state": "INDEPENDENT_EVIDENCE_COMPLETE",
+            "authorization_state": "READY", "preparation_state": "PREPARED",
+            "target_route": [
+                {"sequence": 1, "kind": "CORE2A", "ref": "PRACTICE-TEST",
+                 "prepares_move_refs": [move_id], "reason": "Familiar application"},
+                {"sequence": 2, "kind": "TARGET", "ref": target_id,
+                 "prepares_move_refs": [move_id], "reason": "Attempt target"},
+            ],
+            "terminal_block": None,
+        }],
+        "bridge_candidates": [],
+        "core_demand_influences": [],
+        "validation": {
+            "all_fixed_targets_accounted_for": True,
+            "all_required_moves_have_coverage_ledgers": True,
+            "generic_practice_not_used_as_target_closure": True,
+            "core1_family_scope_unchanged": True,
+            "owner_waiver_not_treated_as_mastery": True,
+            "owner_waiver_not_used_to_bypass_academic_review": True,
+            "blocked_target_counted_as_prepared": False,
+            "fixed_target_preparation_acceptance": "PASS",
+        },
     }
 
 
@@ -101,7 +179,7 @@ class WebResolverTests(unittest.TestCase):
         segment = plan["experience_segments"][0]
         self.assertEqual(segment["provider_status"], "READY_EXISTING")
         self.assertTrue(segment["projection_ref"])
-        self.assertEqual(segment["remembered_reuse"], "DIRECT")
+        self.assertIsNone(segment["remembered_reuse"])
 
     def test_core2a_exact_question_uses_provider_and_saved_artifact(self):
         plan = web_resolver.resolve(request(
@@ -111,7 +189,7 @@ class WebResolverTests(unittest.TestCase):
         self.assertEqual(plan["request_satisfaction"], "FULL")
         segment = plan["experience_segments"][0]
         self.assertEqual(segment["provider_status"], "READY_EXISTING")
-        self.assertEqual(segment["remembered_reuse"], "DIRECT")
+        self.assertIsNone(segment["remembered_reuse"])
         self.assertEqual(plan["target"]["resolved_refs"]["question_refs"], [FAMILIAR])
 
     def test_target_preparation_requires_286_receipt_and_independent_authorization(self):
@@ -123,7 +201,7 @@ class WebResolverTests(unittest.TestCase):
         self.assertEqual(missing["request_satisfaction"], "HOLD")
         self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_REQUIRED" for row in missing["findings"]))
 
-        route = {
+        forged = {
             "schema_version": "1.1.0",
             "route_bundle_id": "ROUTE-TEST",
             "subject": "Physics",
@@ -136,9 +214,91 @@ class WebResolverTests(unittest.TestCase):
                 "preparation_state": "PREPARED",
             }],
         }
+        held = web_resolver.resolve(req, route_artifact=forged)
+        self.assertEqual(held["request_satisfaction"], "HOLD")
+        self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_INVALID" for row in held["findings"]))
+
+        route = prepared_route()
         resolved = web_resolver.resolve(req, route_artifact=route)
         self.assertNotEqual(resolved["request_satisfaction"], "HOLD")
         self.assertEqual(resolved["target_route"]["contract_version"], "1.1.0")
+        self.assertEqual(resolved["target_route"]["demand_move_refs"], ["MOVE-TEST"])
+
+        broken = copy.deepcopy(route)
+        broken["targets"][0]["demand_moves"][0]["coverage"]["independent_evidence_refs"] = []
+        held = web_resolver.resolve(req, route_artifact=broken)
+        self.assertEqual(held["request_satisfaction"], "HOLD")
+        self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_INVALID" for row in held["findings"]))
+
+    def test_atlas_only_exact_ref_cannot_replace_canonical_record(self):
+        entry = {"atlas_index": [{
+            "matrix_id": MOTION, "rung": "R1",
+            "microtopic_ref": "MIC-EXISTS", "capability_ref": "CAP-EXISTS",
+            "representation_refs": ["REP-ATLAS-ONLY"],
+        }]}
+        resolved, _, findings = web_resolver._target_resolution(
+            request("Physics", {"exact_ref": "REP-ATLAS-ONLY"}, "EXPLORE"),
+            entry, {},
+        )
+        self.assertIsNone(resolved["canonical_collection"])
+        self.assertIn("WEB_CANONICAL_REF_INVALID", {row["code"] for row in findings})
+
+    def test_offline_explore_uses_static_fallback_instead_of_remote_locator(self):
+        plan = {
+            "build_action": "EXPLORE_PAGE_ADAPTER",
+            "request_satisfaction": "DEGRADED_ACCEPTABLE",
+            "subject": "Physics", "request_id": "TEST-OFFLINE",
+            "packaging_mode": "OFFLINE_DIRECTORY",
+            "experience_segments": [{"mode": "EXPLORE", "interaction_requirement": "OPTIONAL"}],
+            "target": {"resolved_refs": {
+                "representation_refs": ["REP-TEST"], "activity_refs": ["ACT-TEST"],
+            }},
+        }
+        representation = {"id": "REP-TEST", "_collection": "representations", "purpose": "Observe a model."}
+        web = {"subjects": {"Physics": {"visual_targets": {
+            "ACT-TEST": {
+                "resource_ref": "ACT-TEST", "locator": "https://example.org/remote",
+                "availability": {"portable_package": "UNAVAILABLE", "locator": "READY"},
+            },
+        }}}}
+        profile = {
+            "ref": "XP-TEST@1.0.0", "shell_ref": "G9-TABLET-SHELL-V1",
+            "representation_policy": {"legacy_iframe": "MIGRATION_ONLY"},
+            "packaging_modes": ["OFFLINE_DIRECTORY", "SINGLE_FILE"],
+        }
+        with (
+            patch.object(build_explore_page, "_records", return_value={"REP-TEST": representation}),
+            patch.object(build_explore_page, "_profile", return_value=profile),
+            patch.object(build_explore_page.build_web_data, "build", return_value=web),
+            patch.object(build_explore_page.build_portable_workbench, "packages", return_value=[]),
+        ):
+            package = build_explore_page.compile_page_package(plan)
+        self.assertEqual(package["mount_mode"], "STATIC_FIGURE")
+        html = build_explore_page.render_directory(package, "OFFLINE_DIRECTORY")["index.html"].decode()
+        self.assertNotIn("<iframe", html)
+        self.assertNotIn("https://example.org/remote", html)
+
+        plan["experience_segments"][0]["interaction_requirement"] = "REQUIRED"
+        with (
+            patch.object(build_explore_page, "_records", return_value={"REP-TEST": representation}),
+            patch.object(build_explore_page, "_profile", return_value=profile),
+            patch.object(build_explore_page.build_web_data, "build", return_value=web),
+            patch.object(build_explore_page.build_portable_workbench, "packages", return_value=[]),
+        ):
+            with self.assertRaisesRegex(
+                build_explore_page.ExplorePageBuildError, "EXPLORE_REQUIRED_INTERACTION_UNAVAILABLE",
+            ):
+                build_explore_page.compile_page_package(plan)
+
+    def test_static_single_file_explore_renders_declared_shell(self):
+        package = {
+            "mount_mode": "STATIC_FIGURE",
+            "profile": {"ref": "XP-TEST@1.0.0", "shell_ref": "G9-TABLET-SHELL-V1"},
+            "representation": {"purpose": "Read a canonical model.", "required_elements": ["axis"]},
+        }
+        html = build_explore_page.render_single_file(package).decode()
+        self.assertIn('data-shell-ref="G9-TABLET-SHELL-V1"', html)
+        self.assertIn("Read a canonical model.", html)
 
 
 class WebValidatorTests(unittest.TestCase):
@@ -169,12 +329,39 @@ class DerivedArtifactRegistryTests(unittest.TestCase):
         emitted = {row["core"] for row in rows}
         self.assertTrue({"CORE1","CORE1A","CORE1B","CORE2A","CORE2B"}.issubset(emitted))
         self.assertTrue(emitted.issubset({"CORE1","CORE1A","CORE1B","CORE2","CORE2A","CORE2B"}))
-        results = derived_artifact_registry.search(
-            subject="Physics", core="CORE2A", exact_ref=FAMILIAR,
-        )
-        self.assertEqual(len(results), 1)
-        self.assertEqual(results[0]["freshness"], "CURRENT")
-        self.assertEqual(results[0]["reuse"], "DIRECT")
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            row = next(
+                row for row in rows
+                if row["subject"] == "Physics" and row["core"] == "CORE2A"
+                and FAMILIAR in row["question_refs"]
+            )
+            root = repo / "publication/derived-artifacts"
+            root.mkdir(parents=True)
+            with patch.object(derived_artifact_registry, "current_entries", return_value=([row], {})):
+                self.assertEqual(derived_artifact_registry.search(
+                    subject="Physics", core="CORE2A", exact_ref=FAMILIAR, repo=repo,
+                ), [])
+                index = {"contract_version": "1.0.0", "artifacts": [{
+                    key: value for key, value in row.items() if key != "_payload"
+                }]}
+                (root / "derived-artifact-index.v1.json").write_text(json.dumps(index))
+                missing = derived_artifact_registry.search(
+                    subject="Physics", core="CORE2A", exact_ref=FAMILIAR, repo=repo,
+                )
+                self.assertEqual(missing[0]["reuse"], "FORBIDDEN")
+                stored = root / row["payload_path"]
+                stored.parent.mkdir(parents=True)
+                stored.write_text(json.dumps(row["_payload"]))
+                direct = derived_artifact_registry.search(
+                    subject="Physics", core="CORE2A", exact_ref=FAMILIAR, repo=repo,
+                )
+                self.assertEqual(direct[0]["reuse"], "DIRECT")
+                stored.write_text(json.dumps({"tampered": True}))
+                invalid = derived_artifact_registry.search(
+                    subject="Physics", core="CORE2A", exact_ref=FAMILIAR, repo=repo,
+                )
+                self.assertEqual(invalid[0]["reuse"], "FORBIDDEN")
 
 
 if __name__ == "__main__":

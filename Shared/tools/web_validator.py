@@ -38,7 +38,7 @@ def validate(
     compare_keys = (
         "subject", "target", "experience_segments", "availability",
         "artifact_buildable", "request_satisfaction", "build_action", "pins",
-        "target_route", "fallback_used",
+        "target_route", "fallback_used", "packaging_mode",
     )
     if any(plan.get(key) != fresh.get(key) for key in compare_keys):
         findings.append(_finding(

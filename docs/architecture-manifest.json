@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 309,
+  "component_count": 311,
   "relation_count": 348,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 49,
+    "LIBRARY": 50,
     "TEST": 144,
-    "TOOLING": 74,
+    "TOOLING": 75,
     "WEB": 9,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:f75cf551a368fcea7aff5b857c100ae807ba8f877d27b849a76449e8fe09ec09",
+  "digest": "sha256:ba74fdcb784e1649d4b1416c192d97edf41e744535b401e9d6678f3b1679e042",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -350,6 +350,13 @@
       "sha256": "06a0b67d60a9cd22134217bd22436b4b9179af0726c005cab9031bb32435d965"
     },
     {
+      "path": "Shared/library/target-demand-route.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 23374,
+      "sha256": "3ef3cb6d5aaa363344b8cc77c9aec8e3b21e460b68f5ba3a1fbb5e2789f05756"
+    },
+    {
       "path": "Shared/library/visual_support.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
@@ -367,8 +374,8 @@
       "path": "Shared/library/web-resolution-plan.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 11582,
-      "sha256": "39c8f7c78be139082b77b0eff458ced74da299cd477f40856c721edd025125c2"
+      "bytes": 11762,
+      "sha256": "a22c1f6fb6942aa30930191f86385f6ef0fb82b45b7150743cd6b38d8b0578a8"
     },
     {
       "path": "Shared/library/worksheet-map.schema.json",
@@ -577,8 +584,8 @@
       "path": "Shared/tools/build_explore_page.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 13350,
-      "sha256": "87dc7dae8608100d27c35765b0435143122218020fa026f4dd7623d2487938ad"
+      "bytes": 13918,
+      "sha256": "83d5253cd6fd6e57bc33d3775d9a9e60fc4497668495d21634d2ed29c4a016e0"
     },
     {
       "path": "Shared/tools/build_interactive_page.py",
@@ -731,8 +738,8 @@
       "path": "Shared/tools/derived_artifact_registry.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 11764,
-      "sha256": "0117d81a6c66b69def9eadac8c78894d9bd81d827fb60d841307aae58877c273"
+      "bytes": 13783,
+      "sha256": "92d54af28dea682468527f6cced4c698bd23f09fdc81d1143250b5be6212db5b"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -980,6 +987,13 @@
       "sha256": "9a0becdaea9f5f9058dd13b8cb48c65bd187952470d2d230bec9d59553fedc63"
     },
     {
+      "path": "Shared/tools/target_demand_routing_contract.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 14582,
+      "sha256": "ee240441af5282e438b59135e8f74f7b15f00327d29956411bfda7c6a0fcde7e"
+    },
+    {
       "bytes": 2871,
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
@@ -1004,22 +1018,22 @@
       "path": "Shared/tools/web_resolver.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 27092,
-      "sha256": "a5e140f50432de8a6cb2ada55ea7a1b0b84dfdf335622723c45b440df8ac4961"
+      "bytes": 29528,
+      "sha256": "82662713ed3da335ec7d6f22d5a90218ef5add635be9e0e76771ea6e03911b6f"
     },
     {
       "path": "Shared/tools/web_run_bundle.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 4531,
-      "sha256": "743ea201fb0b9c071a02167a5796943b76e2ed82025180fb1f52c684207ec98a"
+      "bytes": 4989,
+      "sha256": "253f957bcf6fb34fa5c6eec387d5482730e0f4db4de2b5a69fd79c687e957ddc"
     },
     {
       "path": "Shared/tools/web_validator.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5424,
-      "sha256": "21f042561abe7d453e157b707cfdccbd2ba5ae5e43abc2fff3ee7a940d033c7b"
+      "bytes": 5442,
+      "sha256": "6b4266963213817f1bf861f884fa44ab700446f6631355503c97fc6c204a8a85"
     },
     {
       "path": "Shared/tools/worksheet_study_plan.py",
@@ -2103,8 +2117,8 @@
       "path": "tests/test_web_resolver.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 8234,
-      "sha256": "82bbb9cc7fc9175e33171eb5add5afe074719d1ccb7d9cce4531c330625ff2db"
+      "bytes": 17932,
+      "sha256": "2a87cb43c7228a01f34e76cb12aad044673d825175b18928890a9c39bd3e3205"
     },
     {
       "path": "tests/test_workbench_runtime.py",

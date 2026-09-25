@@ -106,6 +106,8 @@ def write_bundle(
             "sha256": _digest(content),
         })
 
+    # Register the provider projections that this run actually used.
+    registry = derived_artifact_registry.write(repo)
     manifest = {
         "schema_version": "1.0.0",
         "request_id": request.get("request_id"),
@@ -115,6 +117,14 @@ def write_bundle(
         "pins": plan.get("pins"),
         "files": manifest_files,
         "fixture_promotion": "EXPLICIT_REVIEW_REQUIRED",
+        "registered_core_artifacts": [
+            row["artifact_id"]
+            for row in registry["artifacts"]
+            if row.get("artifact_type") == "CORE_PROJECTION"
+            and row.get("semantic_id") in {
+                item.get("projection_ref") for item in plan.get("experience_segments", [])
+            }
+        ],
     }
     manifest_content = _bytes(manifest)
     (out_dir / "manifest.json").write_bytes(manifest_content)

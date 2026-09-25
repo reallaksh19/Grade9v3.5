@@ -20,7 +20,7 @@ if __package__ in (None, ""):
 from Shared.contracts import load
 from Shared.library.resolve import build_index, load_packages
 from Shared.tools import (build_core_learning_data, build_web_data, derived_artifact_registry,
-                          renderer_registry)
+                          renderer_registry, target_demand_routing_contract)
 
 
 READY = "READY"
@@ -215,10 +215,10 @@ def _target_resolution(
         exact_ref = target["exact_ref"]
         direct = records.get(exact_ref)
         rows = _direct_exact_rows(entry, exact_ref)
-        if direct is None and not rows:
+        if direct is None:
             findings.append(_finding(
-                "WEB_TARGET_UNRESOLVED",
-                "Exact ref does not resolve in canonical records or AtlasIndex.",
+                "WEB_CANONICAL_REF_INVALID",
+                "Exact ref does not resolve in canonical subject records.",
                 exact_ref,
             ))
         collection = direct.get("_collection") if isinstance(direct, dict) else None
@@ -262,6 +262,7 @@ def _route_receipt(
     request: dict,
     route_artifact: dict | None,
     target: dict,
+    repo: Path,
 ) -> tuple[dict | None, list[dict]]:
     if not request["target"].get("preparation_request", False):
         return None, []
@@ -269,6 +270,12 @@ def _route_receipt(
         return None, [_finding(
             "WEB_TARGET_ROUTE_REQUIRED",
             "Target-preparation requests require the upstream Target Demand Route artifact.",
+        )]
+    validation = target_demand_routing_contract.validate_route_artifact(route_artifact, repo=repo)
+    if validation:
+        return None, [_finding(
+            "WEB_TARGET_ROUTE_INVALID",
+            "Target Demand Route failed schema/semantic validation: " + "; ".join(validation[:8]),
         )]
     findings = []
     if route_artifact.get("schema_version") != TARGET_ROUTING_CONTRACT_VERSION:
@@ -297,6 +304,36 @@ def _route_receipt(
         ))
         return None, findings
     row = candidates[0]
+    identity = row.get("identity") or {}
+    if exact_ref and identity.get("exact_ref") != exact_ref:
+        findings.append(_finding(
+            "WEB_TARGET_ROUTE_IDENTITY_MISMATCH",
+            "The route identity must name the requested exact canonical ref.",
+            exact_ref,
+        ))
+    if not any(
+        node.get("kind") == "TARGET"
+        and node.get("ref") in {row.get("target_id"), exact_ref}
+        for node in row.get("target_route") or []
+    ):
+        findings.append(_finding(
+            "WEB_TARGET_ROUTE_TERMINAL_MISSING",
+            "A prepared target requires an explicit matching TARGET step.",
+            exact_ref,
+        ))
+    requested_cores = {
+        segment.get("core") for segment in request["experience_segments"]
+        if segment.get("core")
+    }
+    route_cores = {
+        node.get("kind") for node in row.get("target_route") or []
+    }
+    if requested_cores - route_cores:
+        findings.append(_finding(
+            "WEB_TARGET_ROUTE_CORE_MISMATCH",
+            "The requested Core must be a step in the reviewed target route.",
+            exact_ref,
+        ))
     if row.get("preparation_state") != "PREPARED":
         findings.append(_finding(
             "WEB_TARGET_NOT_PREPARED",
@@ -321,6 +358,8 @@ def _route_receipt(
         "coverage_state": row.get("coverage_state"),
         "authorization_state": row.get("authorization_state"),
         "preparation_state": row.get("preparation_state"),
+        "demand_move_refs": [move["move_id"] for move in row.get("demand_moves") or []],
+        "route_steps": row.get("target_route") or [],
         "contract_path": "Shared/library/target-demand-route.schema.json",
         "contract_version": TARGET_ROUTING_CONTRACT_VERSION,
     }, findings
@@ -438,6 +477,7 @@ def resolve(
                 "renderer_registry_version": renderer_registry.CONTRACT_VERSION,
             },
             "target_route": None,
+            "packaging_mode": request.get("packaging_mode", "PUBLIC"),
             "fallback_used": [],
             "findings": input_findings,
         }
@@ -457,7 +497,7 @@ def resolve(
 
     target, atlas_rows, target_findings = _target_resolution(request, entry, records)
     findings.extend(target_findings)
-    route_receipt, route_findings = _route_receipt(request, route_artifact, target)
+    route_receipt, route_findings = _route_receipt(request, route_artifact, target, repo)
     findings.extend(route_findings)
 
     refs = target["resolved_refs"]
@@ -546,8 +586,28 @@ def resolve(
     static_ready = representation_status == READY and renderer_status == READY
     core_buildable = (not has_core) or core_ready
     explore_buildable = (not has_explore) or activity_usable or static_ready
+    canonical_refs_valid = all(
+        (records.get(ref) or {}).get("_collection") == collection
+        for key, collection in (
+            ("microtopic_refs", "microtopics"),
+            ("capability_refs", "capabilities"),
+            ("representation_refs", "representations"),
+            ("activity_refs", "resources"),
+        )
+        for ref in refs[key]
+    )
+    if mapping_status != READY:
+        findings.append(_finding(
+            "WEB_ATLAS_CANONICAL_DIVERGENCE",
+            "Selected Atlas mapping is not canonically verified as READY.",
+        ))
+    if not canonical_refs_valid:
+        findings.append(_finding(
+            "WEB_CANONICAL_REF_INVALID",
+            "One or more Atlas references cannot be verified in canonical subject records.",
+        ))
     artifact_buildable = (
-        not any(row["code"] in {"WEB_TARGET_UNRESOLVED","WEB_TARGET_AMBIGUOUS"} for row in findings)
+        not findings
         and core_buildable
         and explore_buildable
     )
@@ -652,6 +712,7 @@ def resolve(
             "renderer_registry_version": renderer_registry.CONTRACT_VERSION,
         },
         "target_route": route_receipt,
+        "packaging_mode": request["packaging_mode"],
         "fallback_used": fallback_used,
         "findings": findings,
     }
