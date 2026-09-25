@@ -37897,6 +37897,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -38280,6 +38281,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "A stone is launched horizontally at 15 m/s from a cliff 20 m above level ground. Take +y upward and g=10 m/s^2. Find the flight time, horizontal range and impact velocity.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -38486,6 +38488,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -38681,6 +38684,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "An ideal projectile is launched and later lands at the same height with u_x=12 m/s, u_y=16 m/s and g=8 m/s^2. Find the total flight time, range and landing velocity.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -38874,6 +38878,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -39067,6 +39072,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -39454,6 +39460,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -39663,6 +39670,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "A particle is described verbally: at t=0 it is at the origin, moving east at 6 m/s and north at 2 m/s; during the next interval its acceleration is 3 m/s^2 south and zero east-west. Without being given component equations, choose a coordinate convention and write the signed component state that should be used for later calculation.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -39870,6 +39878,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -40091,6 +40100,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
           "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+          "exposure": [],
           "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -40427,6 +40437,7 @@ window.GRADE9V3_CORE = {
         "application": {
           "question_ref": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
           "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+          "exposure": [],
           "stem": "A block rests on a rough fixed plane inclined at angle theta. The coefficient of static friction is mu_s. Determine the friction required for rest and derive the condition under which the static state is possible.",
           "source_refs": [
             "SRC-AUTHOR-NLM"
