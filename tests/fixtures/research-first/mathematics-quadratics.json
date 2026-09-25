@@ -1,0 +1,139 @@
+{
+  "fixture_note": "Quadratic equations job from raw owner input. One supplied question lies outside the supplied syllabus; research adds the subtopic that owns it. One syllabus subtopic has no supplied question; authoring adds practice for it.",
+  "request": {
+    "subject": "Mathematics",
+    "grade": "10",
+    "prompts": ["Teach quadratic equations from the start, using my questions as the practice set."],
+    "syllabus": "Standard form of a quadratic equation\nSolving quadratic equations by factorisation\nQuadratic formula and nature of roots using the discriminant",
+    "questions": [
+      "Solve x² − 5x + 6 = 0 by factorisation.",
+      "Find the discriminant of 2x² + 3x − 2 = 0 and state the nature of its roots.",
+      "Solve x² + 4x − 5 = 0 using the quadratic formula.",
+      "The product of two consecutive positive integers is 132. Find the integers."
+    ]
+  },
+  "content": {
+    "title": "Quadratic Equations — Study Book",
+    "introduction": "A quadratic equation asks where a parabola meets the x-axis. You will learn to write it in standard form, solve it by factorising or with the formula, and predict how many solutions to expect before you start.",
+    "diagnostic": [
+      {"prompt": "Expand (x + 3)(x − 2).", "answer": "x² + x − 6."},
+      {"prompt": "Find two numbers whose product is 12 and whose sum is 7.", "answer": "3 and 4."},
+      {"prompt": "What is √49 − √9?", "answer": "7 − 3 = 4."}
+    ],
+    "subtopics": [
+      {
+        "syllabus": "Standard form of a quadratic equation",
+        "title": "Standard form",
+        "key_idea": "A quadratic equation can always be rearranged into ax² + bx + c = 0 with a ≠ 0. Reading a, b and c correctly is the first step of every method.",
+        "explanation": [
+          "Move every term to one side, expand any brackets and collect like terms. What remains is ax² + bx + c = 0, where a, b and c are numbers and a is not zero.",
+          "Keep the sign with each coefficient: in x² − x − 10 = 0, a = 1, b = −1 and c = −10. Most errors later come from dropping a minus sign here.",
+          "Graphically, the solutions of ax² + bx + c = 0 are the x-values where the parabola y = ax² + bx + c crosses the x-axis."
+        ],
+        "misconception": "An equation such as x² = 4x is still quadratic; it simply has c = 0 after rearranging to x² − 4x = 0.",
+        "worked_example": {
+          "problem": "Write 3x(x − 2) = x + 5 in standard form and state a, b and c.",
+          "steps": [
+            "Expand the bracket on the left: 3x² − 6x = x + 5.",
+            "Move every term to the left side: 3x² − 6x − x − 5 = 0.",
+            "Collect like terms to reach standard form: 3x² − 7x − 5 = 0, so a = 3, b = −7 and c = −5."
+          ],
+          "result": "3x² − 7x − 5 = 0 with a = 3, b = −7, c = −5."
+        },
+        "visual": {"title": "Roots as x-axis crossings", "desc": "Parabola y = x² − 2x − 3 crossing the x-axis at x = −1 and x = 3.", "curve": {"a": 1, "b": -2, "c": -3, "x": [-2, 4]}, "marks": [{"at": [-1, 0], "label": "x = −1"}, {"at": [3, 0], "label": "x = 3"}]},
+        "reconstruct": {"prompt": "Explain why a must not be zero in ax² + bx + c = 0.", "model_answer": "If a were zero the x² term would vanish and the equation would be linear, bx + c = 0, with at most one solution. The x² term is what makes it quadratic."},
+        "practice": ["Write (x + 2)(x − 3) = 4 in the standard form ax² + bx + c = 0 and state a, b and c."]
+      },
+      {
+        "syllabus": "Solving quadratic equations by factorisation",
+        "title": "Solving by factorisation",
+        "key_idea": "If ax² + bx + c factorises into two brackets, each bracket equal to zero gives a root, because a product is zero only when a factor is zero.",
+        "explanation": [
+          "For x² + bx + c, look for two numbers whose product is c and whose sum is b. They give the factors (x + p)(x + q).",
+          "Set each factor to zero and solve. This works because if a product of two numbers is zero, at least one of them must be zero.",
+          "Always check each root by substituting it back into the original equation."
+        ],
+        "misconception": "Dividing both sides by x loses the root x = 0; factor x out instead.",
+        "worked_example": {
+          "problem": "Solve x² − 7x + 10 = 0 by factorisation.",
+          "steps": [
+            "Find two numbers with product 10 and sum −7: they are −2 and −5.",
+            "Write the factors: (x − 2)(x − 5) = 0.",
+            "Set each factor to zero: x = 2 or x = 5, and check: 4 − 14 + 10 = 0 and 25 − 35 + 10 = 0."
+          ],
+          "result": "x = 2 or x = 5."
+        },
+        "visual": {"title": "Factorised parabola", "desc": "Parabola y = (x − 1)(x − 4) crossing the x-axis at 1 and 4.", "curve": {"a": 1, "b": -5, "c": 4, "x": [0, 5]}, "marks": [{"at": [1, 0], "label": "1"}, {"at": [4, 0], "label": "4"}]},
+        "reconstruct": {"prompt": "Explain why (x − 2)(x − 5) = 0 means x = 2 or x = 5.", "model_answer": "A product is zero only if one of its factors is zero. So either x − 2 = 0, giving x = 2, or x − 5 = 0, giving x = 5."},
+        "practice": ["Solve x² − 5x + 6 = 0 by factorisation."]
+      },
+      {
+        "syllabus": "Quadratic formula and nature of roots using the discriminant",
+        "title": "The quadratic formula and the discriminant",
+        "key_idea": "Every quadratic ax² + bx + c = 0 has roots x = (−b ± √(b² − 4ac)) / 2a. The discriminant D = b² − 4ac tells you in advance how many real roots there are.",
+        "explanation": [
+          "The formula comes from completing the square on ax² + bx + c = 0, so it works even when the quadratic does not factorise neatly.",
+          "If D > 0 there are two different real roots, if D = 0 there is one repeated real root, and if D < 0 there are no real roots because the square root of a negative number is not real.",
+          "Compute D first. It checks your arithmetic and tells you what kind of answer to expect."
+        ],
+        "misconception": "Forgetting that b is squared with its sign gives the wrong discriminant; (−3)² is 9, not −9.",
+        "worked_example": {
+          "problem": "Solve x² − 6x + 7 = 0 with the quadratic formula.",
+          "steps": [
+            "Read the coefficients: a = 1, b = −6, c = 7.",
+            "Compute the discriminant: D = 36 − 28 = 8, which is positive, so expect two real roots.",
+            "Apply the formula: x = (6 ± √8) / 2 = 3 ± √2."
+          ],
+          "result": "x = 3 + √2 or x = 3 − √2."
+        },
+        "visual": {"title": "Repeated root when D = 0", "desc": "Parabola y = x² − 4x + 4 touching the x-axis at x = 2 only.", "curve": {"a": 1, "b": -4, "c": 4, "x": [0, 4]}, "marks": [{"at": [2, 0], "label": "D = 0: touches at 2"}]},
+        "reconstruct": {"prompt": "Without solving, explain how to decide whether x² + x + 1 = 0 has real roots.", "model_answer": "Compute D = b² − 4ac = 1 − 4 = −3. It is negative, so the square root in the formula is not real and there are no real roots."},
+        "practice": [
+          "Find the discriminant of 2x² + 3x − 2 = 0 and state the nature of its roots.",
+          "Solve x² + 4x − 5 = 0 using the quadratic formula."
+        ]
+      },
+      {
+        "syllabus": null,
+        "added_by_research": true,
+        "title": "Word problems that lead to quadratic equations",
+        "key_idea": "Name the unknown, turn each sentence into algebra, rearrange into standard form, solve, and keep only the roots that make sense in the story.",
+        "explanation": [
+          "Let the unknown be x and express every other quantity in terms of x. Consecutive integers are x and x + 1; a rectangle whose length is 3 more than its width has sides x and x + 3.",
+          "Write the condition as an equation, rearrange into ax² + bx + c = 0, then solve by factorisation or the formula.",
+          "Finally test each root against the story: a length cannot be negative, and a question about positive integers rejects negative roots."
+        ],
+        "misconception": "Reporting both roots without checking the context; one root is often impossible in the situation described.",
+        "worked_example": {
+          "problem": "The product of two consecutive positive integers is 20. Find them.",
+          "steps": [
+            "Let the integers be x and x + 1, so x(x + 1) = 20.",
+            "Rearrange into standard form: x² + x − 20 = 0, which factorises as (x + 5)(x − 4) = 0.",
+            "The roots are x = −5 and x = 4; the question asks for positive integers, so x = 4 and the integers are 4 and 5."
+          ],
+          "result": "4 and 5."
+        },
+        "visual": {"title": "Choosing the sensible root", "desc": "Parabola y = x² + x − 20 crossing at −5 (rejected) and 4 (accepted).", "curve": {"a": 1, "b": 1, "c": -20, "x": [-6, 5]}, "marks": [{"at": [-5, 0], "label": "−5 rejected"}, {"at": [4, 0], "label": "4 accepted"}]},
+        "reconstruct": {"prompt": "Explain why a word problem can give a root of the equation that is not an answer to the problem.", "model_answer": "The equation keeps only the algebraic condition. The story adds extra conditions, such as positive or whole numbers, which the equation does not know about, so some roots must be rejected afterwards."},
+        "practice": ["The product of two consecutive positive integers is 132. Find the integers."]
+      }
+    ],
+    "questions": [
+      {"text": "Write (x + 2)(x − 3) = 4 in the standard form ax² + bx + c = 0 and state a, b and c.", "hint": "Expand, then move 4 to the left.", "steps": ["Expand: x² − 3x + 2x − 6 = 4, so x² − x − 6 = 4.", "Move 4 across: x² − x − 10 = 0, giving a = 1, b = −1, c = −10."], "answer": "x² − x − 10 = 0; a = 1, b = −1, c = −10", "visual": {"title": "y = x² − x − 10", "desc": "Parabola of the rearranged equation.", "curve": {"a": 1, "b": -1, "c": -10, "x": [-4, 5]}, "marks": [{"at": [0, -10], "label": "c = −10"}]}},
+      {"text": "Solve x² − 5x + 6 = 0 by factorisation.", "hint": "Product 6, sum −5.", "steps": ["−2 and −3 have product 6 and sum −5, so (x − 2)(x − 3) = 0.", "x = 2 or x = 3."], "answer": "x = 2 or x = 3", "visual": {"title": "y = x² − 5x + 6", "desc": "Parabola crossing at 2 and 3.", "curve": {"a": 1, "b": -5, "c": 6, "x": [0, 5]}, "marks": [{"at": [2, 0], "label": "2"}, {"at": [3, 0], "label": "3"}]}},
+      {"text": "Find the discriminant of 2x² + 3x − 2 = 0 and state the nature of its roots.", "hint": "D = b² − 4ac with a = 2, b = 3, c = −2.", "steps": ["D = 3² − 4 × 2 × (−2) = 9 + 16 = 25.", "D > 0, so there are two distinct real roots (they are ½ and −2)."], "answer": "D = 25; two distinct real roots", "visual": {"title": "y = 2x² + 3x − 2", "desc": "Parabola crossing at −2 and 0.5.", "curve": {"a": 2, "b": 3, "c": -2, "x": [-3, 1.5]}, "marks": [{"at": [-2, 0], "label": "−2"}, {"at": [0.5, 0], "label": "½"}]}},
+      {"text": "Solve x² + 4x − 5 = 0 using the quadratic formula.", "hint": "a = 1, b = 4, c = −5.", "steps": ["D = 16 + 20 = 36, so √D = 6.", "x = (−4 ± 6) / 2, giving x = 1 or x = −5."], "answer": "x = 1 or x = −5", "visual": {"title": "y = x² + 4x − 5", "desc": "Parabola crossing at −5 and 1.", "curve": {"a": 1, "b": 4, "c": -5, "x": [-6, 2]}, "marks": [{"at": [-5, 0], "label": "−5"}, {"at": [1, 0], "label": "1"}]}},
+      {"text": "The product of two consecutive positive integers is 132. Find the integers.", "hint": "Let the integers be x and x + 1.", "steps": ["x(x + 1) = 132 gives x² + x − 132 = 0, which factorises as (x + 12)(x − 11) = 0.", "x = 11 or x = −12; only 11 is positive, so the integers are 11 and 12."], "answer": "11 and 12", "visual": {"title": "y = x² + x − 132", "desc": "Parabola crossing at −12 (rejected) and 11.", "curve": {"a": 1, "b": 1, "c": -132, "x": [-13, 12]}, "marks": [{"at": [-12, 0], "label": "−12"}, {"at": [11, 0], "label": "11"}]}}
+    ]
+  },
+  "evidence": {
+    "identities": [],
+    "research": [
+      {"covers": ["Teach quadratic equations from the start, using my questions as the practice set."], "kinds": ["interpret_prompt"], "sources": [{"locator": "owner prompt", "note": "Scope is the supplied syllabus plus whatever the supplied questions need."}]},
+      {"covers": ["Standard form of a quadratic equation"], "kinds": ["teach_subtopic", "author_practice"], "sources": [{"locator": "NCERT Mathematics Class X, Quadratic Equations: standard form", "note": "Definition ax² + bx + c = 0, a ≠ 0."}]},
+      {"covers": ["Solving quadratic equations by factorisation", "Solve x² − 5x + 6 = 0 by factorisation."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question"], "sources": [{"locator": "NCERT Mathematics Class X, Quadratic Equations: solution by factorisation", "note": "Splitting the middle term."}]},
+      {"covers": ["Quadratic formula and nature of roots using the discriminant", "Find the discriminant of 2x² + 3x − 2 = 0 and state the nature of its roots.", "Solve x² + 4x − 5 = 0 using the quadratic formula."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question"], "sources": [{"locator": "NCERT Mathematics Class X, Quadratic Equations: nature of roots", "note": "Discriminant cases."}]},
+      {"covers": ["The product of two consecutive positive integers is 132. Find the integers."], "kinds": ["solve_and_explain", "place_unmatched_question"], "sources": [{"locator": "NCERT Mathematics Class X, Quadratic Equations: representing situations as quadratic equations", "note": "Placed in a research-added subtopic on word problems."}]}
+    ]
+  }
+}

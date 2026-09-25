@@ -1,0 +1,123 @@
+{
+  "fixture_note": "Mole concept job from raw owner input. One question carries an owner label and a vague source hint; research could not match it to an original source, so no identity is claimed or displayed.",
+  "request": {
+    "subject": "Chemistry",
+    "prompts": ["Make study material on the mole concept for a beginner."],
+    "syllabus": [
+      "Mole and Avogadro constant",
+      "Molar mass and conversion between mass and amount of substance",
+      "Percentage composition of a compound"
+    ],
+    "questions": [
+      "How many moles are present in 36 g of water? (H = 1, O = 16)",
+      "How many molecules are present in 0.5 mol of carbon dioxide? (Avogadro constant = 6.022 × 10²³ per mol)",
+      "Calculate the mass of 3 mol of sodium chloride. (Na = 23, Cl = 35.5)",
+      {"text": "Q3. Find the percentage of oxygen by mass in water. (H = 1, O = 16)", "source_hint": "Board sample paper"}
+    ]
+  },
+  "content": {
+    "title": "The Mole Concept — Study Book",
+    "introduction": "Atoms are far too small to count one by one, so chemists count them in batches called moles. This book shows how the mole links a number of particles to a mass you can weigh on a balance.",
+    "diagnostic": [
+      {"prompt": "What is 6 × 10²³ divided by 2?", "answer": "3 × 10²³."},
+      {"prompt": "A water molecule is H₂O. How many hydrogen atoms does one molecule contain?", "answer": "Two."},
+      {"prompt": "What percentage is 8 out of 32?", "answer": "25%."}
+    ],
+    "subtopics": [
+      {
+        "syllabus": "Mole and Avogadro constant",
+        "title": "The mole and the Avogadro constant",
+        "key_idea": "One mole of any substance contains 6.022 × 10²³ particles. Number of particles = moles × Avogadro constant.",
+        "explanation": [
+          "The mole is the chemist's counting unit, like a dozen but far larger. One mole contains exactly 6.022 × 10²³ particles, the Avogadro constant.",
+          "The particles can be atoms, molecules or ions, so always say which particle you are counting. One mole of water molecules contains three moles of atoms.",
+          "To convert, multiply moles by 6.022 × 10²³ to get particles, or divide particles by 6.022 × 10²³ to get moles."
+        ],
+        "misconception": "A mole is not a mass; it is an amount (a count). Its mass depends on which substance you have.",
+        "worked_example": {
+          "problem": "How many atoms are in 2 mol of helium atoms?",
+          "steps": [
+            "Write the relationship: number of particles = moles × Avogadro constant.",
+            "Substitute the values: 2 × 6.022 × 10²³.",
+            "Calculate and state the particle: 1.2044 × 10²⁴ helium atoms."
+          ],
+          "result": "1.2044 × 10²⁴ atoms."
+        },
+        "visual": {"title": "Particles grow in step with moles", "desc": "Bars showing 6.022, 12.044 and 18.066 (×10²³ particles) for 1, 2 and 3 mol.", "bars": [{"label": "1 mol", "value": 6.022}, {"label": "2 mol", "value": 12.044}, {"label": "3 mol", "value": 18.066}], "unit": "×10²³"},
+        "reconstruct": {"prompt": "Explain in your own words why chemists count particles in moles rather than one by one.", "model_answer": "Particles are so small that even a drop of water contains about 10²¹ molecules. Grouping them in moles of 6.022 × 10²³ turns impossible counts into small numbers that link directly to weighable masses."},
+        "practice": ["How many molecules are present in 0.5 mol of carbon dioxide? (Avogadro constant = 6.022 × 10²³ per mol)"]
+      },
+      {
+        "syllabus": "Molar mass and conversion between mass and amount of substance",
+        "title": "Molar mass and mass–mole conversion",
+        "key_idea": "Molar mass is the mass of one mole, in g/mol, found by adding atomic masses. Moles = mass ÷ molar mass.",
+        "explanation": [
+          "Add the atomic masses of every atom in the formula to get the molar mass. For water, H₂O: 2 × 1 + 16 = 18 g/mol.",
+          "To find the amount of substance, divide the mass in grams by the molar mass. To find the mass, multiply the moles by the molar mass.",
+          "Keep units visible: g ÷ (g/mol) = mol, and mol × (g/mol) = g. The units check the direction of the calculation."
+        ],
+        "misconception": "Forgetting the subscript: the molar mass of H₂O counts two hydrogen atoms, not one.",
+        "worked_example": {
+          "problem": "How many moles are in 88 g of carbon dioxide? (C = 12, O = 16)",
+          "steps": [
+            "Molar mass of CO₂ = 12 + 2 × 16 = 44 g/mol.",
+            "Moles = mass ÷ molar mass = 88 ÷ 44.",
+            "Moles = 2 mol; check the units: g ÷ (g/mol) = mol."
+          ],
+          "result": "2 mol."
+        },
+        "visual": {"title": "Molar masses of common substances", "desc": "Bars for water 18, carbon dioxide 44 and sodium chloride 58.5 g/mol.", "bars": [{"label": "H₂O", "value": 18}, {"label": "CO₂", "value": 44}, {"label": "NaCl", "value": 58.5}], "unit": " g/mol"},
+        "reconstruct": {"prompt": "Explain how you would decide whether 10 g of water or 10 g of carbon dioxide contains more molecules.", "model_answer": "Convert each mass to moles by dividing by the molar mass: 10 ÷ 18 for water and 10 ÷ 44 for carbon dioxide. Water has the smaller molar mass, so it has more moles and therefore more molecules."},
+        "practice": [
+          "How many moles are present in 36 g of water? (H = 1, O = 16)",
+          "Calculate the mass of 3 mol of sodium chloride. (Na = 23, Cl = 35.5)"
+        ]
+      },
+      {
+        "syllabus": "Percentage composition of a compound",
+        "title": "Percentage composition",
+        "key_idea": "The percentage of an element in a compound is its total mass in one mole divided by the molar mass, times 100.",
+        "explanation": [
+          "Find the molar mass of the compound, then the mass contributed by the element in one mole, counting every atom of that element in the formula.",
+          "Divide that contribution by the molar mass and multiply by 100 to get the percentage by mass.",
+          "The percentages of all the elements in a compound add up to 100, which is a useful check."
+        ],
+        "misconception": "Using the number of atoms instead of their mass: water has two hydrogen atoms but hydrogen is only about 11% of its mass.",
+        "worked_example": {
+          "problem": "Find the percentage of carbon by mass in carbon dioxide. (C = 12, O = 16)",
+          "steps": [
+            "Molar mass of CO₂ = 12 + 32 = 44 g/mol.",
+            "Mass of carbon in one mole = 12 g.",
+            "Percentage of carbon = 12 ÷ 44 × 100 ≈ 27.3%; oxygen is therefore about 72.7%."
+          ],
+          "result": "About 27.3% carbon."
+        },
+        "visual": {"title": "Mass composition of carbon dioxide", "desc": "Bars for carbon 27.3% and oxygen 72.7% by mass.", "bars": [{"label": "C", "value": 27.3}, {"label": "O", "value": 72.7}], "unit": "%"},
+        "reconstruct": {"prompt": "Explain why the percentage of hydrogen in water is small even though water has twice as many hydrogen atoms as oxygen atoms.", "model_answer": "Percentage composition is by mass. Each hydrogen atom has mass 1 and the oxygen atom has mass 16, so the two hydrogens contribute only 2 of the 18 g in a mole, about 11%."},
+        "practice": ["Find the percentage of oxygen by mass in water. (H = 1, O = 16)"]
+      }
+    ],
+    "questions": [
+      {"text": "How many moles are present in 36 g of water? (H = 1, O = 16)", "hint": "Find the molar mass of H₂O first.", "steps": ["Molar mass of H₂O = 2 × 1 + 16 = 18 g/mol.", "Moles = 36 ÷ 18 = 2 mol."], "answer": "2 mol", "visual": {"title": "36 g of water as moles", "desc": "Bars for 18 g (1 mol) and 36 g (2 mol).", "bars": [{"label": "18 g", "value": 1}, {"label": "36 g", "value": 2}], "unit": " mol"}},
+      {"text": "How many molecules are present in 0.5 mol of carbon dioxide? (Avogadro constant = 6.022 × 10²³ per mol)", "hint": "Multiply moles by the Avogadro constant.", "steps": ["Molecules = 0.5 × 6.022 × 10²³.", "Molecules = 3.011 × 10²³."], "answer": "3.011 × 10²³ molecules", "visual": {"title": "Half a mole of molecules", "desc": "Bars for 1 mol (6.022) and 0.5 mol (3.011) ×10²³ molecules.", "bars": [{"label": "1 mol", "value": 6.022}, {"label": "0.5 mol", "value": 3.011}], "unit": "×10²³"}},
+      {"text": "Calculate the mass of 3 mol of sodium chloride. (Na = 23, Cl = 35.5)", "hint": "Mass = moles × molar mass.", "steps": ["Molar mass of NaCl = 23 + 35.5 = 58.5 g/mol.", "Mass = 3 × 58.5 = 175.5 g."], "answer": "175.5 g", "visual": {"title": "Mass of 3 mol of NaCl", "desc": "Bars for sodium 69 g and chlorine 106.5 g in 3 mol.", "bars": [{"label": "Na", "value": 69}, {"label": "Cl", "value": 106.5}], "unit": " g"}},
+      {"text": "Find the percentage of oxygen by mass in water. (H = 1, O = 16)", "hint": "Oxygen contributes 16 g of the 18 g in one mole.", "steps": ["Molar mass of H₂O = 18 g/mol, of which oxygen is 16 g.", "Percentage of oxygen = 16 ÷ 18 × 100 ≈ 88.9%."], "answer": "About 88.9%", "visual": {"title": "Mass composition of water", "desc": "Bars for hydrogen 11.1% and oxygen 88.9%.", "bars": [{"label": "H", "value": 11.1}, {"label": "O", "value": 88.9}], "unit": "%"}}
+    ]
+  },
+  "evidence": {
+    "identities": [
+      {
+        "question": "Find the percentage of oxygen by mass in water. (H = 1, O = 16)",
+        "status": "NOT_CLAIMED",
+        "search_note": "The owner hint 'Board sample paper' did not identify a specific paper; no original source text matching the question and its conditions was found, so no source identity is claimed or shown."
+      }
+    ],
+    "research": [
+      {"covers": ["Make study material on the mole concept for a beginner."], "kinds": ["interpret_prompt"], "sources": [{"locator": "owner prompt", "note": "Beginner start; full support."}]},
+      {"covers": ["Find the percentage of oxygen by mass in water. (H = 1, O = 16)"], "kinds": ["resolve_source_identity"], "sources": [{"locator": "search: board sample papers for the stated question text", "note": "No matching original; identity not claimed."}]},
+      {"covers": ["Mole and Avogadro constant", "How many molecules are present in 0.5 mol of carbon dioxide? (Avogadro constant = 6.022 × 10²³ per mol)"], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question"], "sources": [{"locator": "NCERT Chemistry Class XI Part I, Some Basic Concepts of Chemistry: mole concept", "note": "Avogadro constant 6.022 × 10²³ mol⁻¹."}]},
+      {"covers": ["Molar mass and conversion between mass and amount of substance", "How many moles are present in 36 g of water? (H = 1, O = 16)", "Calculate the mass of 3 mol of sodium chloride. (Na = 23, Cl = 35.5)"], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question"], "sources": [{"locator": "NCERT Chemistry Class XI Part I, Some Basic Concepts of Chemistry: molar mass", "note": "Mass–mole conversion."}]},
+      {"covers": ["Percentage composition of a compound", "Find the percentage of oxygen by mass in water. (H = 1, O = 16)"], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Chemistry Class XI Part I, Some Basic Concepts of Chemistry: percentage composition", "note": "Mass percent of an element."}]}
+    ]
+  }
+}

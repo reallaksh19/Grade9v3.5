@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 311,
-  "relation_count": 348,
+  "component_count": 320,
+  "relation_count": 351,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 50,
-    "TEST": 144,
-    "TOOLING": 75,
+    "TEST": 150,
+    "TOOLING": 78,
     "WEB": 9,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:d1492645d579f0a04b99bf8682ecb36bec866d26012041976c901e6ff675b4ba",
+  "digest": "sha256:5ffcb3f78165875e449a7949efd4f7f148d9e032611462f8c502298955ab4b75",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -735,6 +735,13 @@
       "sha256": "59a267a725a496635dd45daa0575380d98512d804e11addc6c770dfdb4f9e385"
     },
     {
+      "path": "Shared/tools/delivery_gate.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 18582,
+      "sha256": "d412d8f5ac3f0942ca935a6feab339f6efbfa4d71fa678ee5b6b774f6884d695"
+    },
+    {
       "path": "Shared/tools/derived_artifact_registry.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -819,6 +826,13 @@
       "sha256": "b25832a209f8e45e9e18909abe859d4f7a429198962001a89855e839be69ba2d"
     },
     {
+      "path": "Shared/tools/learner_product_render.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 21291,
+      "sha256": "62f1277d5b0c5ee8ca26f3b9ea7e4fbcf4ba524b1292a5cf2e899955d7976c1b"
+    },
+    {
       "path": "Shared/tools/learning_router.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -866,6 +880,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 1371,
       "sha256": "68a4d858826dda19ad2173907db94401c2c7e49c9d819f7002bbe5523e852421"
+    },
+    {
+      "path": "Shared/tools/raw_intake.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 10358,
+      "sha256": "e19b543dbb6eb1dd429da5c774517aeb42187de43522582d87ae8f31c172b212"
     },
     {
       "path": "Shared/tools/reachability.py",
@@ -994,10 +1015,10 @@
       "sha256": "ee240441af5282e438b59135e8f74f7b15f00327d29956411bfda7c6a0fcde7e"
     },
     {
-      "bytes": 2871,
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
+      "bytes": 2871,
       "sha256": "03baa08e5ca54716cb76a9a034dec3b77aba314a4120ce177329a1b02b19bc08"
     },
     {
@@ -1274,6 +1295,34 @@
       "sha256": "691ac37449d95f1156144d45a73c79a51dcead339c40b7e96b2f9db3bbcda8be"
     },
     {
+      "path": "tests/fixtures/research-first/chemistry-mole-concept.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 11487,
+      "sha256": "c6af24ec90ebc2c34e3c0300dd1a7551586045ad3fddba8ae7dfae79d43dc590"
+    },
+    {
+      "path": "tests/fixtures/research-first/mathematics-quadratics.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13866,
+      "sha256": "eb228269782b2279bdd1046c77a2b2bc68f03c268c8beb5487ef9e5f923f5653"
+    },
+    {
+      "path": "tests/fixtures/research-first/physics-motion-2d.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 39747,
+      "sha256": "3ea5e5d64dd4bbae856c65b6552dc497eb477876dbe66222597e4a7cab42a2f9"
+    },
+    {
+      "path": "tests/fixtures/research-first/pr288-regression/preview.html",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 33150,
+      "sha256": "fb790d45acf1a5378c9733f9d8e65b829574253a378b2eebe9fbd6379a7b57f7"
+    },
+    {
       "path": "tests/fixtures/source_ingest/acquisition.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1377,6 +1426,13 @@
       "role_description": "Executable checks",
       "bytes": 6180,
       "sha256": "fcfc3c53e1cf55f2355235b608b39d52598db55084c9d83170cc28bf4e55b0c4"
+    },
+    {
+      "path": "tests/raw_intake.test.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3209,
+      "sha256": "cc2499fa78243afbf7066df0c3b80f0c845216b4b3b556fb2388005394f22191"
     },
     {
       "path": "tests/readiness_join_215.test.mjs",
@@ -1953,10 +2009,10 @@
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
     },
     {
-      "bytes": 2538,
       "path": "tests/test_question_bank_web.py",
       "role": "TEST",
       "role_description": "Executable checks",
+      "bytes": 2538,
       "sha256": "aae0812fd10e0b55fde5f7b98636d3060b97a02c4c53f2e3debcea3fa8e62d96"
     },
     {
@@ -1972,6 +2028,13 @@
       "role_description": "Executable checks",
       "bytes": 11965,
       "sha256": "bc3fe7f9b50c470d7165402319284e02fea6fbe0e8dadde11ab1970652f72317"
+    },
+    {
+      "path": "tests/test_research_first_workflow.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 16911,
+      "sha256": "cac5a0d8015454ac4903cd61f1663a21adbdbc6ef7f477bf78219bdaf30d74d2"
     },
     {
       "path": "tests/test_review_authority.py",
@@ -2660,6 +2723,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/delivery_gate.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/derived_artifact_registry.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
@@ -2737,6 +2805,11 @@
     {
       "from": "Shared/tools/learner_evidence.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/learner_product_render.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -3741,8 +3814,8 @@
     },
     {
       "from": "tests/test_question_bank_web.py",
-      "kind": "IMPORTS",
-      "to": "Shared.tools"
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
     },
     {
       "from": "tests/test_release_authority.py",
@@ -3751,6 +3824,11 @@
     },
     {
       "from": "tests/test_release_authority.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_research_first_workflow.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

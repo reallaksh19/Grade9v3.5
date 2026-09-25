@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Start from your questions · Grade9V3</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="stylesheet" href="../css/core-prompt-composer.css">
+</head>
+<body>
+  <main class="composer-shell">
+    <header class="composer-hero">
+      <a href="../index.html" class="composer-back">← Grade9V3</a>
+      <p class="eyebrow">Research-first · local-only</p>
+      <h1>Start from your questions</h1>
+      <p>Paste the questions, syllabus and instructions you have, in any form. No question IDs, matrix, rung or learner profile are needed. The job researches the subject and sources, authors the teaching and visuals, and delivers a book, web pages, a question bank, atlas links and builder integration. Nothing is uploaded.</p>
+      <div class="composer-notice" role="note">Every question and syllabus subtopic you paste is reconciled into the final coverage ledger. A short label such as “Q15” is kept as your label, never treated as an exam identity until research matches the original text and conditions.</div>
+    </header>
+
+    <section class="composer-grid" aria-label="Research-first intake">
+      <form id="intakeForm" class="composer-panel">
+        <fieldset>
+          <legend><span>1</span> Subject</legend>
+          <div class="field-pair">
+            <label>Subject <input id="subject" placeholder="e.g. Physics" required></label>
+            <label>Grade (optional) <input id="grade" placeholder="e.g. 9"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><span>2</span> Questions</legend>
+          <p class="help">One question per block; leave a blank line between questions. You may start with your own label (<code>Q15: …</code>) and add a line <code>Source: …</code> if you know where it came from.</p>
+          <textarea id="questions" rows="9" spellcheck="false"></textarea>
+        </fieldset>
+        <fieldset>
+          <legend><span>3</span> Syllabus subtopics</legend>
+          <p class="help">One subtopic per line, as written in your syllabus.</p>
+          <textarea id="syllabus" rows="5"></textarea>
+        </fieldset>
+        <fieldset>
+          <legend><span>4</span> Instructions</legend>
+          <p class="help">Anything you want the job to know, one instruction per line.</p>
+          <textarea id="prompts" rows="3"></textarea>
+        </fieldset>
+        <fieldset>
+          <legend><span>5</span> Learner (optional)</legend>
+          <label for="knowledge">Your estimate of what the learner knows (0–100)</label>
+          <input id="knowledge" type="number" min="0" max="100" inputmode="numeric" placeholder="Leave blank to use the default start">
+          <p class="help">Blank is fine. The default start is foundation level with full support, then a short diagnostic adjusts from actual attempts.</p>
+        </fieldset>
+        <div class="action-row">
+          <button type="submit" class="composer-primary">Build research plan</button>
+        </div>
+        <p class="help">Already have canonical question refs and a confirmed rung? Use the <a href="../core-prompt-composer/index.html">mapped-job composer</a>.</p>
+      </form>
+
+      <section class="composer-panel composer-output" aria-labelledby="resultTitle">
+        <div class="output-head">
+          <div>
+            <p class="eyebrow">Deterministic preview</p>
+            <h2 id="resultTitle">Research plan</h2>
+          </div>
+          <span id="state" class="state-chip">Not built</span>
+        </div>
+        <div id="errors" class="composer-errors" role="alert" hidden></div>
+        <section>
+          <h3>Coverage ledger to fill</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kind</th><th>Id</th><th>Input</th><th>Research</th></tr></thead>
+              <tbody id="ledgerBody"><tr><td colspan="4">Build a plan to see every input and its research tasks.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+        <section>
+          <h3>Agent prompt</h3>
+          <pre id="promptPreview" class="prompt-preview">No plan built.</pre>
+        </section>
+        <div class="action-row output-actions">
+          <button type="button" id="copyPrompt" disabled>Copy prompt</button>
+          <button type="button" id="downloadRequest" disabled>Download raw-request.json</button>
+          <button type="button" id="downloadIntake" disabled>Download intake.json</button>
+          <button type="button" id="downloadPrompt" disabled>Download agent-prompt.md</button>
+        </div>
+        <p class="planner-command">Gate: <code>python3 Shared/tools/delivery_gate.py --manifest OUT/delivery.json</code></p>
+      </section>
+    </section>
+  </main>
+  <script src="../data/research-first-workflow.js"></script>
+  <script src="../js/raw-intake.js"></script>
+</body>
+</html>

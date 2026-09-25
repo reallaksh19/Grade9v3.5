@@ -1,0 +1,311 @@
+{
+  "fixture_note": "Motion in 2D regression job started from raw owner input. Source papers named 'Fixture Source Paper A/B' are fictional test sources used to exercise identity research; they are not real examinations.",
+  "request": {
+    "subject": "Physics",
+    "grade": "9",
+    "prompts": [
+      "Build a complete Motion in 2D study set for a Grade 9 learner starting from these questions and this syllabus."
+    ],
+    "syllabus": [
+      "Position and displacement vectors in a plane",
+      "Velocity and acceleration as vectors in two dimensions",
+      "Independence of perpendicular components of motion",
+      "Motion in a plane with constant acceleration",
+      "Projectile motion: time of flight, maximum height and range",
+      "Projectile launched horizontally from a height",
+      "Relative velocity in two dimensions",
+      "Uniform circular motion and centripetal acceleration"
+    ],
+    "questions": [
+      "A particle moves from point A (2 m, 3 m) to point B (8 m, 11 m). Find the magnitude of its displacement.",
+      "A student walks 30 m east and then 40 m north in 50 s. Find the magnitude of the displacement and the average velocity.",
+      "The position of a particle is x = 3t m and y = 4t m, with t in seconds. Find the speed of the particle.",
+      "A particle's velocity changes from 4 m/s along x to 3 m/s along y in 2 s. Find the magnitude of the average acceleration.",
+      "Two balls are 20 m above the ground. Ball A is dropped and ball B is thrown horizontally at 5 m/s at the same instant. Which reaches the ground first, and when? Take g = 10 m/s².",
+      "A ball rolls off a table top at 3 m/s and lands 0.4 s later. Find the horizontal distance from the table edge to the landing point.",
+      "A particle starts from rest at the origin with constant acceleration 2 m/s² along x and 1 m/s² along y. Find its position after 4 s.",
+      "A particle has initial velocity 3 m/s along x and constant acceleration 2 m/s² along y. Find its speed at t = 2 s.",
+      {"text": "Q15: A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s².", "source_hint": "Fixture Source Paper"},
+      "A ball is launched at 20 m/s at 30° above the horizontal. Find the maximum height it reaches. Take g = 10 m/s².",
+      "Find the horizontal range of a projectile launched at 20 m/s at 45° above level ground. Take g = 10 m/s².",
+      "A stone is thrown horizontally at 10 m/s from the top of a cliff 45 m high. Find the time to reach the ground and the horizontal distance travelled. Take g = 10 m/s².",
+      {"label": "Q7", "source_hint": "Fixture Source Paper A (2020)"},
+      "A boat moves at 4 m/s in still water. It heads straight across a river flowing at 3 m/s. Find the resultant speed of the boat relative to the bank.",
+      "Rain falls vertically at 6 m/s. A cyclist rides at 8 m/s. Find the speed of the rain relative to the cyclist.",
+      "A body moves in a circle of radius 2 m with a constant speed of 4 m/s. Find its centripetal acceleration."
+    ]
+  },
+  "content": {
+    "title": "Motion in Two Dimensions — Study Book",
+    "introduction": "Motion in a plane is two straight-line motions happening together on a shared clock. This book teaches you to split any motion into perpendicular parts, solve each part with the tools you already know from one-dimensional motion, and then join the parts back into one answer.",
+    "diagnostic": [
+      {"prompt": "A car moves 3 km east and then 4 km north. How far is it from the start?", "answer": "5 km, by Pythagoras: √(3² + 4²) = 5."},
+      {"prompt": "A ball is dropped from rest. How far does it fall in 2 s with g = 10 m/s²?", "answer": "s = ½gt² = ½ × 10 × 4 = 20 m."},
+      {"prompt": "Is velocity a scalar or a vector? Give one reason.", "answer": "A vector: it has a size (speed) and a direction, and two velocities add by the triangle rule."},
+      {"prompt": "What is sin 30° and cos 30°?", "answer": "sin 30° = 0.5 and cos 30° ≈ 0.866."}
+    ],
+    "subtopics": [
+      {
+        "syllabus": "Position and displacement vectors in a plane",
+        "title": "Position and displacement in a plane",
+        "key_idea": "A position in a plane needs two numbers, x and y. Displacement is the arrow from the start point to the end point, found by subtracting coordinates.",
+        "explanation": [
+          "Choose an origin and two perpendicular axes. Every point then has coordinates (x, y), and the position vector is the arrow from the origin to that point.",
+          "Displacement is the change in position: Δx = x₂ − x₁ and Δy = y₂ − y₁. Its magnitude is √(Δx² + Δy²), and it does not depend on the path actually followed between the two points.",
+          "Distance travelled counts every metre of the path, so it is never smaller than the magnitude of displacement."
+        ],
+        "misconception": "Adding the path lengths gives distance, not displacement. Displacement only compares the start and end points.",
+        "worked_example": {
+          "problem": "A robot moves from (1 m, 1 m) to (4 m, 5 m). Find its displacement.",
+          "steps": [
+            "Subtract the x-coordinates to get the horizontal part: Δx = 4 − 1 = 3 m.",
+            "Subtract the y-coordinates to get the vertical part: Δy = 5 − 1 = 4 m.",
+            "Join the two perpendicular parts with Pythagoras: |Δr| = √(3² + 4²) = 5 m.",
+            "State the direction as well: tan θ = 4/3, so θ ≈ 53° above the x-axis."
+          ],
+          "result": "5 m at about 53° above the x-axis."
+        },
+        "visual": {"title": "Displacement from start to end point", "desc": "Position vectors to two points and the displacement arrow joining them.", "vectors": [{"from": [0, 0], "to": [1, 1], "label": "r₁"}, {"from": [0, 0], "to": [4, 5], "label": "r₂"}, {"from": [1, 1], "to": [4, 5], "label": "Δr"}]},
+        "reconstruct": {"prompt": "Explain in your own words why two different paths between the same two points have the same displacement.", "model_answer": "Displacement is defined only by the start and end positions: Δr = r₂ − r₁. The path does not appear in the formula, so every path between the same two points gives the same arrow."},
+        "practice": [
+          "A particle moves from point A (2 m, 3 m) to point B (8 m, 11 m). Find the magnitude of its displacement.",
+          "A student walks 30 m east and then 40 m north in 50 s. Find the magnitude of the displacement and the average velocity."
+        ]
+      },
+      {
+        "syllabus": "Velocity and acceleration as vectors in two dimensions",
+        "title": "Velocity and acceleration as vectors",
+        "key_idea": "Velocity has an x-part and a y-part. Speed is the size of the velocity vector, and acceleration is the change in the velocity vector per second.",
+        "explanation": [
+          "If x and y change with time, the velocity components are vₓ = Δx/Δt and v_y = Δy/Δt. The velocity vector joins them, and its size is the speed √(vₓ² + v_y²).",
+          "Acceleration is the rate of change of the whole velocity vector. A change of direction alone, with the same speed, is still a change in velocity and so needs an acceleration.",
+          "Always subtract velocity vectors component by component: Δv = v_final − v_initial."
+        ],
+        "misconception": "Subtracting the speeds (4 − 3 = 1) instead of subtracting the vectors gives a wrong change in velocity when the direction changes.",
+        "worked_example": {
+          "problem": "A particle's velocity changes from (6 m/s, 0) to (0, 8 m/s) in 5 s. Find the average acceleration.",
+          "steps": [
+            "Write the change in each component: Δvₓ = 0 − 6 = −6 m/s and Δv_y = 8 − 0 = 8 m/s.",
+            "Find the size of the change in velocity: |Δv| = √(6² + 8²) = 10 m/s.",
+            "Divide by the time taken: a = 10 / 5 = 2 m/s²."
+          ],
+          "result": "2 m/s², directed along (−6, 8)."
+        },
+        "visual": {"title": "Change in velocity vector", "desc": "Initial and final velocity vectors and the change-in-velocity arrow from the tip of the first to the tip of the second.", "vectors": [{"from": [0, 0], "to": [6, 0], "label": "v₁"}, {"from": [0, 0], "to": [0, 8], "label": "v₂"}, {"from": [6, 0], "to": [0, 8], "label": "Δv"}]},
+        "reconstruct": {"prompt": "A car goes round a bend at a steady 20 m/s. Explain whether it is accelerating.", "model_answer": "Yes. Its speed is constant but the direction of its velocity changes, so the velocity vector changes, and any change in velocity per second is an acceleration."},
+        "practice": [
+          "The position of a particle is x = 3t m and y = 4t m, with t in seconds. Find the speed of the particle.",
+          "A particle's velocity changes from 4 m/s along x to 3 m/s along y in 2 s. Find the magnitude of the average acceleration."
+        ]
+      },
+      {
+        "syllabus": "Independence of perpendicular components of motion",
+        "title": "Perpendicular components are independent",
+        "key_idea": "Horizontal and vertical motions share the same clock but do not affect each other. Gravity changes only the vertical velocity.",
+        "explanation": [
+          "When a ball moves under gravity alone, the horizontal velocity stays constant because no horizontal force acts, while the vertical velocity grows at g every second.",
+          "Because both parts run on the same clock, the time found from the vertical motion is the same time used in the horizontal motion. That shared time links the two parts.",
+          "This is why a dropped ball and a ball thrown sideways from the same height land together."
+        ],
+        "misconception": "A faster sideways throw does not keep the ball in the air longer; the fall time depends only on the vertical motion.",
+        "worked_example": {
+          "problem": "A ball leaves a shelf 1.25 m high moving sideways at 2 m/s. How far from the shelf does it land? Take g = 10 m/s².",
+          "steps": [
+            "Use only the vertical motion to find the time: 1.25 = ½ × 10 × t², so t² = 0.25 and t = 0.5 s.",
+            "Use the same time in the horizontal motion, where velocity is constant: x = 2 × 0.5 = 1 m.",
+            "Check: the horizontal speed was never used to find the time, as independence requires."
+          ],
+          "result": "1 m from the shelf."
+        },
+        "visual": {"title": "Dropped and thrown balls fall together", "desc": "A straight vertical drop and a curved sideways path from the same height, marked at the same times.", "curve": {"a": -1.25, "b": 0, "c": 1.25, "x": [0, 1]}, "vectors": [{"from": [0, 1.25], "to": [0, 0], "label": "drop"}], "marks": [{"at": [0.5, 0.94], "label": "same t"}, {"at": [0, 0.94], "label": ""}]},
+        "reconstruct": {"prompt": "Explain why the time of fall for a horizontally thrown ball does not depend on how fast it was thrown.", "model_answer": "The time comes from the vertical motion alone: it starts with zero vertical velocity and accelerates at g through the same height. The horizontal speed is a separate, independent component, so it changes where the ball lands, not when."},
+        "practice": [
+          "Two balls are 20 m above the ground. Ball A is dropped and ball B is thrown horizontally at 5 m/s at the same instant. Which reaches the ground first, and when? Take g = 10 m/s².",
+          "A ball rolls off a table top at 3 m/s and lands 0.4 s later. Find the horizontal distance from the table edge to the landing point."
+        ]
+      },
+      {
+        "syllabus": "Motion in a plane with constant acceleration",
+        "title": "Constant acceleration in a plane",
+        "key_idea": "With constant acceleration, apply the one-dimensional equations of motion separately to x and to y, using the same time t.",
+        "explanation": [
+          "For each direction, v = u + at and s = ut + ½at² hold with that direction's own components of initial velocity and acceleration.",
+          "Solve the x-equations and the y-equations separately, then combine the results into a position vector or a velocity vector.",
+          "Only the time is shared between the two directions; every other quantity carries its own component."
+        ],
+        "misconception": "Using the total acceleration in the x-equation mixes directions; each equation takes only its own component.",
+        "worked_example": {
+          "problem": "A puck starts at the origin with velocity (2 m/s, 0) and acceleration (0, 3 m/s²). Find its position after 2 s.",
+          "steps": [
+            "Horizontal: x = uₓt + ½aₓt² = 2 × 2 + 0 = 4 m.",
+            "Vertical: y = u_yt + ½a_yt² = 0 + ½ × 3 × 4 = 6 m.",
+            "Combine the two components into one position: (4 m, 6 m), at a distance √(16 + 36) ≈ 7.2 m from the origin."
+          ],
+          "result": "(4 m, 6 m)."
+        },
+        "visual": {"title": "Components of position under constant acceleration", "desc": "The position vector split into its horizontal part and vertical part.", "vectors": [{"from": [0, 0], "to": [4, 0], "label": "x = 4 m"}, {"from": [4, 0], "to": [4, 6], "label": "y = 6 m"}, {"from": [0, 0], "to": [4, 6], "label": "r"}]},
+        "reconstruct": {"prompt": "Describe the steps you would follow to find the velocity of a body with constant acceleration in a plane at a given time.", "model_answer": "Split the initial velocity and the acceleration into x and y components, apply v = u + at to each direction with the same t, then combine the two velocity components using Pythagoras to get the speed and the direction."},
+        "practice": [
+          "A particle starts from rest at the origin with constant acceleration 2 m/s² along x and 1 m/s² along y. Find its position after 4 s.",
+          "A particle has initial velocity 3 m/s along x and constant acceleration 2 m/s² along y. Find its speed at t = 2 s."
+        ]
+      },
+      {
+        "syllabus": "Projectile motion: time of flight, maximum height and range",
+        "title": "Projectiles: time of flight, height and range",
+        "key_idea": "Split the launch velocity into u cos θ horizontally and u sin θ vertically. The vertical part decides the time and the height; the horizontal part, multiplied by the time, gives the range.",
+        "explanation": [
+          "A projectile launched at speed u and angle θ has uₓ = u cos θ, which stays constant, and u_y = u sin θ, which falls by g every second until it reaches zero at the top.",
+          "The time to the top is u sin θ / g, so on level ground the time of flight is T = 2u sin θ / g. The maximum height is H = (u sin θ)² / 2g.",
+          "The range is the horizontal velocity multiplied by the time of flight: R = u cos θ × T = u² sin 2θ / g, which is largest at 45°."
+        ],
+        "misconception": "At the top the velocity is not zero; only the vertical component is zero, and the horizontal component continues.",
+        "worked_example": {
+          "problem": "A ball is kicked at 10 m/s at 30° above level ground. Find the time of flight and the range. Take g = 10 m/s².",
+          "steps": [
+            "Split the launch velocity: u_y = 10 × sin 30° = 5 m/s and uₓ = 10 × cos 30° ≈ 8.66 m/s.",
+            "Time of flight from the vertical motion: T = 2u_y / g = 2 × 5 / 10 = 1 s.",
+            "Range from the horizontal motion using the same time: R = 8.66 × 1 ≈ 8.7 m."
+          ],
+          "result": "1 s and about 8.7 m."
+        },
+        "visual": {"title": "Projectile path on level ground", "desc": "Parabolic path of a projectile launched at 20 m/s and 30 degrees, with launch velocity components and the highest point marked.", "curve": {"a": -0.016667, "b": 0.57735, "c": 0, "x": [0, 34.64]}, "vectors": [{"from": [0, 0], "to": [8.66, 0], "label": "u cos θ"}, {"from": [0, 0], "to": [0, 5], "label": "u sin θ"}], "marks": [{"at": [17.32, 5], "label": "top: vᵧ = 0"}]},
+        "reconstruct": {"prompt": "Explain why the range on level ground is the same for launch angles of 30° and 60° at the same speed.", "model_answer": "Range is u² sin 2θ / g. For 30° and 60°, 2θ is 60° and 120°, which have the same sine. The steeper launch stays up longer but moves sideways more slowly, and the two effects balance."},
+        "practice": [
+          "A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s².",
+          "A ball is launched at 20 m/s at 30° above the horizontal. Find the maximum height it reaches. Take g = 10 m/s².",
+          "Find the horizontal range of a projectile launched at 20 m/s at 45° above level ground. Take g = 10 m/s²."
+        ]
+      },
+      {
+        "syllabus": "Projectile launched horizontally from a height",
+        "title": "Horizontal launch from a height",
+        "key_idea": "For a horizontal launch the vertical motion starts from rest, so the fall time comes from h = ½gt², and the horizontal distance is the launch speed times that time.",
+        "explanation": [
+          "When an object leaves a height h moving horizontally at u, its initial vertical velocity is zero. The fall time is therefore t = √(2h/g), exactly as for a dropped object.",
+          "During that time the horizontal velocity stays u, so the horizontal distance is x = u × t = u√(2h/g).",
+          "At landing the velocity has components u horizontally and gt vertically, so the landing speed is √(u² + (gt)²)."
+        ],
+        "misconception": "Using u in the vertical equation is a common slip; the launch speed is entirely horizontal.",
+        "worked_example": {
+          "problem": "A ball rolls off a 5 m high wall at 4 m/s. Find where it lands and its landing speed. Take g = 10 m/s².",
+          "steps": [
+            "Fall time from the vertical motion: 5 = ½ × 10 × t², so t = 1 s.",
+            "Horizontal distance: x = 4 × 1 = 4 m from the foot of the wall.",
+            "Vertical velocity at landing: v_y = gt = 10 m/s; landing speed = √(4² + 10²) ≈ 10.8 m/s."
+          ],
+          "result": "4 m from the wall, at about 10.8 m/s."
+        },
+        "visual": {"title": "Horizontal launch from a cliff", "desc": "Half-parabola path of a stone thrown horizontally at 10 m/s from a 45 m cliff, landing 30 m away.", "curve": {"a": -0.05, "b": 0, "c": 45, "x": [0, 30]}, "vectors": [{"from": [0, 45], "to": [10, 45], "label": "u"}], "marks": [{"at": [30, 0], "label": "lands at 30 m"}]},
+        "reconstruct": {"prompt": "Explain how you would find where a horizontally thrown object lands if you know only the launch speed and the height.", "model_answer": "Use the height with h = ½gt² to find the fall time, because the vertical motion starts from rest. Then multiply the unchanged horizontal speed by that time to get the horizontal distance."},
+        "practice": [
+          "A stone is thrown horizontally at 10 m/s from the top of a cliff 45 m high. Find the time to reach the ground and the horizontal distance travelled. Take g = 10 m/s².",
+          "Q7"
+        ]
+      },
+      {
+        "syllabus": "Relative velocity in two dimensions",
+        "title": "Relative velocity in two dimensions",
+        "key_idea": "The velocity of A relative to B is v_A − v_B. In two dimensions, subtract the vectors component by component or with a triangle.",
+        "explanation": [
+          "An observer moving with velocity v_B sees every other object with its own velocity minus v_B. This is why rain that falls straight down appears slanted to a moving cyclist.",
+          "For a boat crossing a river, the ground velocity is the boat's velocity through the water plus the water's velocity; the two are perpendicular when the boat heads straight across.",
+          "Draw the vectors head to tail and use Pythagoras for the size and the tangent for the direction."
+        ],
+        "misconception": "Adding the speeds (4 + 3 = 7) ignores direction; perpendicular velocities combine by Pythagoras.",
+        "worked_example": {
+          "problem": "A swimmer swims at 1.2 m/s straight across a river flowing at 0.5 m/s. Find the swimmer's speed relative to the bank.",
+          "steps": [
+            "The swimmer's velocity through the water and the river's velocity are perpendicular.",
+            "Combine them by Pythagoras: v = √(1.2² + 0.5²) = √(1.44 + 0.25) = 1.3 m/s.",
+            "Direction: tan φ = 0.5 / 1.2, so the swimmer drifts about 23° downstream of straight across."
+          ],
+          "result": "1.3 m/s, about 23° downstream."
+        },
+        "visual": {"title": "Boat velocity relative to the bank", "desc": "The boat's velocity across the river and the river flow combine into the resultant velocity.", "vectors": [{"from": [0, 0], "to": [0, 4], "label": "boat 4 m/s"}, {"from": [0, 4], "to": [3, 4], "label": "river 3 m/s"}, {"from": [0, 0], "to": [3, 4], "label": "resultant"}]},
+        "reconstruct": {"prompt": "Explain why rain falling straight down looks slanted to someone riding a bicycle.", "model_answer": "The cyclist sees the rain's velocity minus her own velocity. Subtracting her forward velocity adds a backward horizontal component to the rain's vertical velocity, so the rain appears to come towards her at a slant."},
+        "practice": [
+          "A boat moves at 4 m/s in still water. It heads straight across a river flowing at 3 m/s. Find the resultant speed of the boat relative to the bank.",
+          "Rain falls vertically at 6 m/s. A cyclist rides at 8 m/s. Find the speed of the rain relative to the cyclist."
+        ]
+      },
+      {
+        "syllabus": "Uniform circular motion and centripetal acceleration",
+        "title": "Uniform circular motion",
+        "key_idea": "Moving in a circle at constant speed still needs an acceleration of size v²/r, pointed towards the centre.",
+        "explanation": [
+          "In uniform circular motion the speed is constant, but the direction of the velocity turns continuously, so the velocity vector changes and there is an acceleration.",
+          "That acceleration always points to the centre of the circle and has magnitude a = v²/r. It is called centripetal acceleration.",
+          "A faster speed or a tighter circle both need a larger centripetal acceleration."
+        ],
+        "misconception": "Constant speed does not mean zero acceleration when the path curves.",
+        "worked_example": {
+          "problem": "A toy car moves round a circular track of radius 0.5 m at 1 m/s. Find its centripetal acceleration.",
+          "steps": [
+            "Identify the speed and radius: v = 1 m/s and r = 0.5 m.",
+            "Apply a = v²/r = 1² / 0.5 = 2 m/s².",
+            "State the direction: towards the centre of the track at every instant."
+          ],
+          "result": "2 m/s² towards the centre."
+        },
+        "visual": {"title": "Velocity and acceleration in circular motion", "desc": "A circle with the velocity vector tangent to it and the acceleration vector pointing to the centre.", "circles": [{"center": [0, 0], "r": 2}], "vectors": [{"from": [2, 0], "to": [2, 2], "label": "v"}, {"from": [2, 0], "to": [0.5, 0], "label": "a"}]},
+        "reconstruct": {"prompt": "Explain in your own words why a body moving round a circle at constant speed is accelerating.", "model_answer": "Its velocity keeps changing direction, and acceleration measures any change in velocity, not just a change in speed. The change always points towards the centre."},
+        "practice": [
+          "A body moves in a circle of radius 2 m with a constant speed of 4 m/s. Find its centripetal acceleration."
+        ]
+      }
+    ],
+    "questions": [
+      {"text": "A particle moves from point A (2 m, 3 m) to point B (8 m, 11 m). Find the magnitude of its displacement.", "hint": "Subtract coordinates first.", "steps": ["Δx = 8 − 2 = 6 m and Δy = 11 − 3 = 8 m.", "|Δr| = √(6² + 8²) = 10 m."], "answer": "10 m", "visual": {"title": "Displacement A to B", "desc": "Arrow from A to B with components 6 m and 8 m.", "vectors": [{"from": [2, 3], "to": [8, 3], "label": "6 m"}, {"from": [8, 3], "to": [8, 11], "label": "8 m"}, {"from": [2, 3], "to": [8, 11], "label": "Δr"}]}},
+      {"text": "A student walks 30 m east and then 40 m north in 50 s. Find the magnitude of the displacement and the average velocity.", "hint": "The two legs are perpendicular.", "steps": ["Displacement = √(30² + 40²) = 50 m.", "Average velocity = displacement / time = 50 / 50 = 1 m/s, directed about 53° north of east."], "answer": "50 m; 1 m/s at about 53° north of east", "visual": {"title": "Walk east then north", "desc": "Two perpendicular legs and the displacement arrow.", "vectors": [{"from": [0, 0], "to": [30, 0], "label": "30 m E"}, {"from": [30, 0], "to": [30, 40], "label": "40 m N"}, {"from": [0, 0], "to": [30, 40], "label": "50 m"}]}},
+      {"text": "The position of a particle is x = 3t m and y = 4t m, with t in seconds. Find the speed of the particle.", "hint": "Read off vₓ and v_y from how x and y change each second.", "steps": ["x grows by 3 m every second, so vₓ = 3 m/s; y grows by 4 m every second, so v_y = 4 m/s.", "Speed = √(3² + 4²) = 5 m/s."], "answer": "5 m/s", "visual": {"title": "Velocity components", "desc": "Velocity vector with components 3 and 4 m/s.", "vectors": [{"from": [0, 0], "to": [3, 0], "label": "3"}, {"from": [3, 0], "to": [3, 4], "label": "4"}, {"from": [0, 0], "to": [3, 4], "label": "v"}]}},
+      {"text": "A particle's velocity changes from 4 m/s along x to 3 m/s along y in 2 s. Find the magnitude of the average acceleration.", "hint": "Subtract the velocity vectors, not the speeds.", "steps": ["Δv = (0 − 4, 3 − 0) = (−4, 3) m/s, so |Δv| = 5 m/s.", "Average acceleration = 5 / 2 = 2.5 m/s²."], "answer": "2.5 m/s²", "visual": {"title": "Velocity change", "desc": "Initial and final velocities and the change between them.", "vectors": [{"from": [0, 0], "to": [4, 0], "label": "v₁"}, {"from": [0, 0], "to": [0, 3], "label": "v₂"}, {"from": [4, 0], "to": [0, 3], "label": "Δv"}]}},
+      {"text": "Two balls are 20 m above the ground. Ball A is dropped and ball B is thrown horizontally at 5 m/s at the same instant. Which reaches the ground first, and when? Take g = 10 m/s².", "hint": "Compare only the vertical motions.", "steps": ["Both start with zero vertical velocity and fall 20 m: 20 = ½ × 10 × t².", "t² = 4, so t = 2 s for both; they land together."], "answer": "They land together after 2 s.", "visual": {"title": "Drop versus sideways throw", "desc": "Vertical drop line and the sideways parabola from 20 m.", "curve": {"a": -0.2, "b": 0, "c": 20, "x": [0, 10]}, "vectors": [{"from": [0, 20], "to": [0, 0], "label": "A"}], "marks": [{"at": [10, 0], "label": "B lands"}]}},
+      {"text": "A ball rolls off a table top at 3 m/s and lands 0.4 s later. Find the horizontal distance from the table edge to the landing point.", "hint": "Horizontal velocity is constant.", "steps": ["Horizontal velocity stays 3 m/s throughout the flight.", "Distance = 3 × 0.4 = 1.2 m."], "answer": "1.2 m", "visual": {"title": "Ball leaving a table", "desc": "Half-parabola from the table edge landing 1.2 m away.", "curve": {"a": -0.5556, "b": 0, "c": 0.8, "x": [0, 1.2]}, "marks": [{"at": [1.2, 0], "label": "1.2 m"}]}},
+      {"text": "A particle starts from rest at the origin with constant acceleration 2 m/s² along x and 1 m/s² along y. Find its position after 4 s.", "hint": "Use s = ½at² for each direction.", "steps": ["x = ½ × 2 × 4² = 16 m.", "y = ½ × 1 × 4² = 8 m, so the position is (16 m, 8 m)."], "answer": "(16 m, 8 m)", "visual": {"title": "Position after 4 s", "desc": "Position vector with components 16 m and 8 m.", "vectors": [{"from": [0, 0], "to": [16, 0], "label": "16 m"}, {"from": [16, 0], "to": [16, 8], "label": "8 m"}, {"from": [0, 0], "to": [16, 8], "label": "r"}]}},
+      {"text": "A particle has initial velocity 3 m/s along x and constant acceleration 2 m/s² along y. Find its speed at t = 2 s.", "hint": "Only the y-velocity changes.", "steps": ["vₓ stays 3 m/s; v_y = 0 + 2 × 2 = 4 m/s.", "Speed = √(3² + 4²) = 5 m/s."], "answer": "5 m/s", "visual": {"title": "Velocity at 2 s", "desc": "Velocity components 3 and 4 m/s and the resultant.", "vectors": [{"from": [0, 0], "to": [3, 0], "label": "3 m/s"}, {"from": [3, 0], "to": [3, 4], "label": "4 m/s"}, {"from": [0, 0], "to": [3, 4], "label": "v"}]}},
+      {"text": "A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s².", "hint": "Find the vertical component of the launch velocity.", "steps": ["u_y = 20 × sin 30° = 10 m/s.", "T = 2u_y / g = 2 × 10 / 10 = 2 s."], "answer": "2 s", "visual": {"title": "Launch at 30 degrees", "desc": "Projectile path and launch components.", "curve": {"a": -0.016667, "b": 0.57735, "c": 0, "x": [0, 34.64]}, "vectors": [{"from": [0, 0], "to": [0, 10], "label": "10 m/s"}]}},
+      {"text": "A ball is launched at 20 m/s at 30° above the horizontal. Find the maximum height it reaches. Take g = 10 m/s².", "hint": "At the top the vertical velocity is zero.", "steps": ["u_y = 20 × sin 30° = 10 m/s.", "H = u_y² / 2g = 100 / 20 = 5 m."], "answer": "5 m", "visual": {"title": "Maximum height", "desc": "Projectile path with the top marked at 5 m.", "curve": {"a": -0.016667, "b": 0.57735, "c": 0, "x": [0, 34.64]}, "marks": [{"at": [17.32, 5], "label": "H = 5 m"}]}},
+      {"text": "Find the horizontal range of a projectile launched at 20 m/s at 45° above level ground. Take g = 10 m/s².", "hint": "Use R = u² sin 2θ / g.", "steps": ["sin 2θ = sin 90° = 1.", "R = 20² × 1 / 10 = 40 m."], "answer": "40 m", "visual": {"title": "Range at 45 degrees", "desc": "Projectile path landing at 40 m.", "curve": {"a": -0.025, "b": 1, "c": 0, "x": [0, 40]}, "marks": [{"at": [40, 0], "label": "R = 40 m"}]}},
+      {"text": "A stone is thrown horizontally at 10 m/s from the top of a cliff 45 m high. Find the time to reach the ground and the horizontal distance travelled. Take g = 10 m/s².", "hint": "The vertical motion starts from rest.", "steps": ["45 = ½ × 10 × t², so t² = 9 and t = 3 s.", "Horizontal distance = 10 × 3 = 30 m."], "answer": "3 s and 30 m", "visual": {"title": "Stone from a cliff", "desc": "Half-parabola from 45 m landing 30 m away.", "curve": {"a": -0.05, "b": 0, "c": 45, "x": [0, 30]}, "marks": [{"at": [30, 0], "label": "30 m"}]}},
+      {"supplied_as_label": "Q7", "text": "A package is released from an aeroplane flying horizontally at 50 m/s at a height of 80 m. How far ahead of the release point does it land? Take g = 10 m/s².", "hint": "The package keeps the aeroplane's horizontal velocity.", "steps": ["Fall time: 80 = ½ × 10 × t², so t = 4 s.", "Horizontal distance = 50 × 4 = 200 m."], "answer": "200 m", "visual": {"title": "Package released from a plane", "desc": "Half-parabola from 80 m landing 200 m ahead.", "curve": {"a": -0.002, "b": 0, "c": 80, "x": [0, 200]}, "marks": [{"at": [200, 0], "label": "200 m"}]}},
+      {"text": "A boat moves at 4 m/s in still water. It heads straight across a river flowing at 3 m/s. Find the resultant speed of the boat relative to the bank.", "hint": "The two velocities are perpendicular.", "steps": ["v = √(4² + 3²).", "v = 5 m/s."], "answer": "5 m/s", "visual": {"title": "Boat and river velocities", "desc": "Perpendicular velocity vectors and their resultant.", "vectors": [{"from": [0, 0], "to": [0, 4], "label": "4 m/s"}, {"from": [0, 4], "to": [3, 4], "label": "3 m/s"}, {"from": [0, 0], "to": [3, 4], "label": "5 m/s"}]}},
+      {"text": "Rain falls vertically at 6 m/s. A cyclist rides at 8 m/s. Find the speed of the rain relative to the cyclist.", "hint": "Subtract the cyclist's velocity from the rain's velocity.", "steps": ["v_rain − v_cyclist = (−8, −6) m/s.", "Relative speed = √(8² + 6²) = 10 m/s."], "answer": "10 m/s", "visual": {"title": "Rain relative to the cyclist", "desc": "Rain velocity, reversed cyclist velocity and the relative velocity.", "vectors": [{"from": [0, 0], "to": [0, -6], "label": "rain"}, {"from": [0, -6], "to": [-8, -6], "label": "−v cyclist"}, {"from": [0, 0], "to": [-8, -6], "label": "relative"}]}},
+      {"text": "A body moves in a circle of radius 2 m with a constant speed of 4 m/s. Find its centripetal acceleration.", "hint": "Use a = v²/r.", "steps": ["a = v²/r = 4² / 2.", "a = 8 m/s², directed towards the centre."], "answer": "8 m/s²", "visual": {"title": "Centripetal acceleration", "desc": "Circle of radius 2 m with velocity tangent and acceleration toward the centre.", "circles": [{"center": [0, 0], "r": 2}], "vectors": [{"from": [0, 2], "to": [-2, 2], "label": "v"}, {"from": [0, 2], "to": [0, 0.5], "label": "a"}]}}
+    ]
+  },
+  "evidence": {
+    "identities": [
+      {
+        "question": "A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s².",
+        "status": "RESOLVED",
+        "identity": {"label": "Fixture Source Paper A (2020), Q8", "locator": "tests/fixtures/research-first/sources#paper-a-2020-q8"},
+        "source_text": "Q8. A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. (Take g = 10 m/s².)",
+        "candidates_considered": [
+          {"label": "Fixture Source Paper A (2020), Q8", "conditions": ["20", "30", "10"]},
+          {"label": "Fixture Source Paper B (2021), Q1", "conditions": ["20", "60", "10"]}
+        ],
+        "discriminator": "The supplied launch angle is 30°. Paper B's question states 60°, so only Paper A matches both the text and the stated conditions."
+      },
+      {
+        "supplied_as_label": "Q7",
+        "status": "RESOLVED",
+        "identity": {"label": "Fixture Source Paper A (2020), Q7", "locator": "tests/fixtures/research-first/sources#paper-a-2020-q7"},
+        "source_text": "Q7. A package is released from an aeroplane flying horizontally at 50 m/s at a height of 80 m. How far ahead of the release point does it land? Take g = 10 m/s².",
+        "candidates_considered": [{"label": "Fixture Source Paper A (2020), Q7", "conditions": ["50", "80", "10"]}]
+      }
+    ],
+    "research": [
+      {"covers": ["Build a complete Motion in 2D study set for a Grade 9 learner starting from these questions and this syllabus."], "kinds": ["interpret_prompt"], "sources": [{"locator": "owner prompt", "note": "Scope: every supplied question and syllabus subtopic; learner starts at foundation with full support."}]},
+      {"covers": ["Q7", "A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s²."], "kinds": ["recover_question_text", "resolve_source_identity"], "sources": [{"locator": "tests/fixtures/research-first/sources#paper-a-2020", "note": "Original question text and conditions compared against both candidate papers."}]},
+      {"covers": ["Position and displacement vectors in a plane", "A particle moves from point A (2 m, 3 m) to point B (8 m, 11 m). Find the magnitude of its displacement.", "A student walks 30 m east and then 40 m north in 50 s. Find the magnitude of the displacement and the average velocity."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: position and displacement vectors", "note": "Definitions and the path-independence of displacement."}]},
+      {"covers": ["Velocity and acceleration as vectors in two dimensions", "The position of a particle is x = 3t m and y = 4t m, with t in seconds. Find the speed of the particle.", "A particle's velocity changes from 4 m/s along x to 3 m/s along y in 2 s. Find the magnitude of the average acceleration."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: velocity and acceleration", "note": "Component definitions of velocity and acceleration."}]},
+      {"covers": ["Independence of perpendicular components of motion", "Two balls are 20 m above the ground. Ball A is dropped and ball B is thrown horizontally at 5 m/s at the same instant. Which reaches the ground first, and when? Take g = 10 m/s².", "A ball rolls off a table top at 3 m/s and lands 0.4 s later. Find the horizontal distance from the table edge to the landing point."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: projectile motion", "note": "Independence of horizontal and vertical motion under gravity."}]},
+      {"covers": ["Motion in a plane with constant acceleration", "A particle starts from rest at the origin with constant acceleration 2 m/s² along x and 1 m/s² along y. Find its position after 4 s.", "A particle has initial velocity 3 m/s along x and constant acceleration 2 m/s² along y. Find its speed at t = 2 s."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: motion with constant acceleration", "note": "Componentwise equations of motion."}]},
+      {"covers": ["Projectile motion: time of flight, maximum height and range", "A ball is thrown with speed 20 m/s at 30° above the horizontal. Find the time of flight. Take g = 10 m/s².", "A ball is launched at 20 m/s at 30° above the horizontal. Find the maximum height it reaches. Take g = 10 m/s².", "Find the horizontal range of a projectile launched at 20 m/s at 45° above level ground. Take g = 10 m/s²."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: projectile motion", "note": "Time of flight, maximum height and range results."}]},
+      {"covers": ["Projectile launched horizontally from a height", "A stone is thrown horizontally at 10 m/s from the top of a cliff 45 m high. Find the time to reach the ground and the horizontal distance travelled. Take g = 10 m/s².", "Q7"], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: projectile motion (horizontal projection exercises)", "note": "Fall time from h = ½gt²."}]},
+      {"covers": ["Relative velocity in two dimensions", "A boat moves at 4 m/s in still water. It heads straight across a river flowing at 3 m/s. Find the resultant speed of the boat relative to the bank.", "Rain falls vertically at 6 m/s. A cyclist rides at 8 m/s. Find the speed of the rain relative to the cyclist."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: relative velocity in two dimensions", "note": "Rain–cyclist and river-crossing cases."}]},
+      {"covers": ["Uniform circular motion and centripetal acceleration", "A body moves in a circle of radius 2 m with a constant speed of 4 m/s. Find its centripetal acceleration."], "kinds": ["teach_subtopic", "solve_and_explain", "place_unmatched_question", "author_practice"], "sources": [{"locator": "NCERT Physics Class XI Part I, Motion in a Plane: uniform circular motion", "note": "Centripetal acceleration a = v²/r."}]}
+    ]
+  }
+}

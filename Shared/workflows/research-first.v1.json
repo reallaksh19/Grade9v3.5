@@ -1,0 +1,69 @@
+{
+  "schema": "research-first-workflow/v1",
+  "purpose": "Subject-neutral workflow invariants for jobs that start from an owner's raw questions, prompts and syllabus text. Research and authoring are part of the job from the first step; they are not a response to a hold. Canonical repository identifiers are optional references discovered during research, never prerequisites for starting.",
+  "invariants": [
+    {
+      "id": "no_profile_gate",
+      "rule": "No student profile is required. A missing knowledge percentage cannot block content creation.",
+      "enforced_by": [
+        "raw_intake: learner_start is always populated from default_learner_start and marked blocking=false",
+        "delivery_gate: diagnostic_missing when the rendered product has no short diagnostic"
+      ]
+    },
+    {
+      "id": "no_hold_output",
+      "rule": "A hold is never an output or a passing state. Missing examples, diagrams or explanations become research and authoring tasks inside the work cycle. Validation checks the rendered learner product, not whether gaps were labelled.",
+      "enforced_by": [
+        "raw_intake: status is always RESEARCH_AND_AUTHOR; every gap is emitted as a research task",
+        "delivery_gate: learner_text_placeholder, teaching_incomplete, practice_incomplete, research_open"
+      ]
+    },
+    {
+      "id": "no_ambiguous_source_claim",
+      "rule": "Question identity is researched against the original source. A short supplied label is never an identity. An exam identity is shown only when the source text and the question's stated conditions match; otherwise no identity is claimed.",
+      "enforced_by": [
+        "raw_intake: labels are kept as owner labels and raise resolve_source_identity research",
+        "delivery_gate: identity_unresolved, identity_text_mismatch, identity_condition_mismatch, identity_discriminator_missing, identity_displayed_without_claim"
+      ]
+    },
+    {
+      "id": "full_reconciliation",
+      "rule": "Every supplied question and syllabus subtopic is reconciled before building. A narrow bucket is not completion: the final coverage ledger links each input to teaching, practice and its learner-facing location.",
+      "enforced_by": [
+        "raw_intake: reconciliation lists questions outside the supplied syllabus and subtopics without questions",
+        "delivery_gate: input_not_in_ledger, location_unresolved, question_not_rendered"
+      ]
+    }
+  ],
+  "default_learner_start": {
+    "level": "foundation",
+    "support": "full",
+    "knowledge_percentage": null,
+    "diagnostic": {
+      "min_items": 3,
+      "rule": "Begin with a short diagnostic and adjust support from actual attempts, not from an estimate."
+    }
+  },
+  "deliverables": ["book", "webpages", "question_bank", "atlas_links", "builder_integration"],
+  "gate": {
+    "min_words_per_book_page": 40,
+    "min_worked_steps": 2,
+    "identity_text_overlap": 0.6,
+    "question_rendered_overlap": 0.8,
+    "forbidden_learner_text": [
+      "\\b[A-Z]+_HOLD\\b",
+      "\\bHOLD\\b",
+      "\\bTODO\\b",
+      "\\bTBD\\b",
+      "\\bFIXME\\b",
+      "(?i)\\bplaceholder\\b",
+      "(?i)lorem ipsum",
+      "(?i)\\bcoming soon\\b",
+      "(?i)\\bto be authored\\b",
+      "(?i)\\bnot yet authored\\b",
+      "(?i)\\bpending (?:academic )?review\\b",
+      "(?i)\\bcontent pending\\b",
+      "(?i)\\bnot publication[- ]ready\\b"
+    ]
+  }
+}
