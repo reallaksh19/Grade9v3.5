@@ -18,6 +18,9 @@ class PagesSiteTest(unittest.TestCase):
         for target in (
             "index.html",
             "core-prompt-composer/index.html",
+            "tools/index.html",
+            "tools/app.css",
+            "tools/library/index.html",
             "tools/run-builder/index.html",
             "tools/data.js",
             ".nojekyll",
