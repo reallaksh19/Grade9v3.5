@@ -36,6 +36,47 @@ Changing numbers alone produces practice **within a family**, not a new transfer
 
 Turning B into A with the nouns changed, or into A with random blanks punched into it, fails this rule.
 
+## Authority and dependency graph
+
+The six role specifications describe learner-product meaning, but they do not make requested
+production order into academic authority. [Core authority and dependency contract](CORE-AUTHORITY-CONTRACT.md)
+defines the cross-role authority graph used by planners, prompt generators, authoring agents,
+renderers and publishers.
+
+Its central rules are:
+
+- canonical academic truth owns Core1/Core1A/Core1B content;
+- authorized source custody owns ordinary Core2;
+- Core2A combines canonical truth with eligible reviewed demand or truthfully authored
+  practice, with learner support only as optional routing/support input;
+- Core2B additionally requires established prior exposure and a genuinely changed decision
+  inside already taught capability closure;
+- execution order is production control only and never changes those ownership boundaries;
+- per-question `question.primary_capability_ref` survives set-level topic/rung planning;
+- demand evidence and learner eligibility remain separate states;
+- unresolved authority dependencies remain explicit `HOLD` rather than being filled to
+  satisfy a requested product count.
+
+The machine-readable fenced block is validated by
+`Shared/tools/core_authority_contract.py`.
+
+## Learner-facing production templates
+
+The role files define **what each Core means**. [Core learner-product templates](LEARNER-PRODUCT-TEMPLATES.md)
+define the stable presentation anatomy and reveal order used to turn those semantics into
+learner-facing products.
+
+The template contract is intentionally narrower than the role specifications:
+
+- it does not own subject truth;
+- it does not create a seventh Core;
+- it does not set page-count quotas;
+- it does not replace canonical representation or source-custody records;
+- it does define ordered learner-facing blocks, reveal/withhold boundaries and structural
+  anti-collapse rules for all six roles.
+
+The machine-readable fenced block in `LEARNER-PRODUCT-TEMPLATES.md` is validated by
+`Shared/tools/core_template_contract.py`.
 
 ## Cross-lane Core projection contract
 

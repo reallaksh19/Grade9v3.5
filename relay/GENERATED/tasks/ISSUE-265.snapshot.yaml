@@ -1,0 +1,747 @@
+{
+  "schema_version": "relay-v3.1-task-snapshot",
+  "authority": "DERIVED_READ_MODEL",
+  "source_protocol": "V3_1",
+  "identity": {
+    "work_package": "ISSUE-265-CORE-TEMPLATES",
+    "ep": "ISSUE-265-PROVIDER-VIEW",
+    "issue": 265,
+    "delivery_vehicle": 268
+  },
+  "purpose": {
+    "programme_outcome": "Define durable learner-facing production templates for all six Core roles without redefining academic truth.",
+    "current_goal": "Harden the six-Core blueprint with an explicit authority/dependency graph, then keep the stacked template delivery reconstructable.",
+    "task_outcome": "Six-role template contract plus subject-neutral authority/dependency contract, role-aware renderer, canonical portable binding, and optional speed-toolkit/publication-audit contract.",
+    "why_this_task_exists": "Issue #265 requires a reusable production-template layer across the six existing Core roles."
+  },
+  "lineage": {
+    "predecessor_checkpoint": null,
+    "upstream_dependencies": [],
+    "roadmap_admission": {
+      "disposition": "ISSUE_LOCAL_PROVIDER_VIEW",
+      "revision": null,
+      "basis": [
+        "github:reallaksh19/Grade9V3#265"
+      ]
+    }
+  },
+  "parent_issue": {
+    "repository": "reallaksh19/Grade9V3",
+    "number": 265,
+    "title": "[Core Templates] Define learner-facing production templates for all six Core roles",
+    "state": "OPEN",
+    "url": "https://github.com/reallaksh19/Grade9V3/issues/265",
+    "baseline": null,
+    "current": {
+      "acceptance_items": [
+        {
+          "id": "AC-265-TEMPLATE",
+          "statement": "Six-role learner-product template contract remains distinct and reusable.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "PR #266"
+          ],
+          "trace_refs": [
+            "github:reallaksh19/Grade9V3#266"
+          ],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-265-RENDER",
+          "statement": "Role-specific learner rendering preserves reveal/withhold semantics.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "PR #267"
+          ],
+          "trace_refs": [
+            "github:reallaksh19/Grade9V3#267"
+          ],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-265-PORTABLE",
+          "statement": "Canonical portable workbenches bind generically by representation identity.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "PR #268"
+          ],
+          "trace_refs": [
+            "github:reallaksh19/Grade9V3#268"
+          ],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-265-AUDIT",
+          "statement": "Optional speed-toolkit/publication-audit contract is provenance-safe and structurally validated.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "PR #270 merged into #268"
+          ],
+          "trace_refs": [
+            "github:reallaksh19/Grade9V3#270"
+          ],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-265-FINAL",
+          "statement": "Integrated #265 responsibility is explicitly dispositioned with terminal TASK_RESULT.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Publish terminal TASK_RESULT after final integrated review."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        }
+      ]
+    },
+    "updates": [],
+    "disposition": "NO_CHANGE",
+    "relationships": [],
+    "handover_ledger": null
+  },
+  "programme_parent": null,
+  "planning": {
+    "state": "PRESENT",
+    "provider_ref": "github:reallaksh19/Grade9V3#265/comment-5826153493",
+    "revision": 5,
+    "digest": null,
+    "observed_at": "2026-09-24T17:30:09Z",
+    "responsibility_basis_ref": "github:reallaksh19/Grade9V3#265",
+    "responsibility_basis_digest": null,
+    "expected_next_observable": {
+      "statement": "A green blueprint authority contract on PR #266, followed by prompt-composer consumption on draft PR #275.",
+      "evidence": [
+        "github:reallaksh19/Grade9V3#265/comment-5826153493",
+        "github:reallaksh19/Grade9V3#266",
+        "github:reallaksh19/Grade9V3#275"
+      ]
+    }
+  },
+  "task_publications": [
+    {
+      "type": "IMPLEMENTATION_PLAN",
+      "ref": "github:reallaksh19/Grade9V3#265/comment-5816309329",
+      "observed_at": "2026-09-24T14:41:40Z",
+      "summary": "Initial six-role production-template implementation plan.",
+      "exact_head": null
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#265/comment-5818958027",
+      "observed_at": "2026-09-24T17:30:09Z",
+      "summary": "Rev 4 adds the architecture-compatible speed-toolkit and publication-audit slice.",
+      "exact_head": "5968a4c81441160b32a863336c6ad9269c085aac"
+    },
+    {
+      "type": "TASK_EVIDENCE",
+      "ref": "github:reallaksh19/Grade9V3#265/comment-5819233221",
+      "observed_at": "2026-09-24T17:48:51Z",
+      "summary": "Fourth slice delivered as PR #270; later merged into the #268 branch.",
+      "exact_head": "b05eb7f015479c942297d7ec7c2139f356e31b8a"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#265/comment-5826153493",
+      "observed_at": "2026-09-25T03:24:00Z",
+      "summary": "Blueprint-level RCA adds a subject-neutral Core authority/dependency graph and makes prompt generators consumers of that authority.",
+      "exact_head": "f9bd6cb21668cf8d76166a5370bb1c53b5e158a0"
+    }
+  ],
+  "programme_progress": null,
+  "work_issue_progress": {
+    "criteria": [
+      {
+        "id": "AC-265-TEMPLATE",
+        "statement": "Six-role template contract",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #266"
+        ],
+        "trace_refs": [
+          "github:reallaksh19/Grade9V3#266"
+        ],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-265-RENDER",
+        "statement": "Role-specific renderer",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #267"
+        ],
+        "trace_refs": [
+          "github:reallaksh19/Grade9V3#267"
+        ],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-265-PORTABLE",
+        "statement": "Canonical portable binding",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #268"
+        ],
+        "trace_refs": [
+          "github:reallaksh19/Grade9V3#268"
+        ],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-265-AUDIT",
+        "statement": "Optional speed-toolkit/publication-audit contract",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #270 merged into #268"
+        ],
+        "trace_refs": [
+          "github:reallaksh19/Grade9V3#270"
+        ],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-265-FINAL",
+        "statement": "Terminal integrated acceptance/TASK_RESULT",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Final integrated review and TASK_RESULT."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 4,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 1,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 5
+    },
+    "coverage": {
+      "satisfied": 4,
+      "applicable_total": 5,
+      "percent": 80,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "plan_progress": {
+    "criteria": [
+      {
+        "id": "STEP-265-1",
+        "statement": "Template contract slice",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #266"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-265-2",
+        "statement": "Role-specific renderer slice",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #267"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-265-3",
+        "statement": "Portable binding slice",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #268"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-265-4",
+        "statement": "Speed-toolkit/publication-audit slice",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "PR #270"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 4,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 0,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 4
+    },
+    "coverage": {
+      "satisfied": 4,
+      "applicable_total": 4,
+      "percent": 100,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "task_acceptance_progress": {
+    "criteria": [
+      {
+        "id": "TA-265-EXACT-HEAD",
+        "statement": "Integrated current #268 material head passes repository guardrails.",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "guardrails #5491"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-265-V31-BINDING",
+        "statement": "Current PR/issue Task Snapshot binding passes on the final Common V3.1 pin.",
+        "state": "PENDING",
+        "reason_class": "PROVIDER",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Run V3.1 binding validation after coordination update."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-265-RESULT",
+        "statement": "Terminal TASK_RESULT published for #265.",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Publish after final integrated review."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 2,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 3
+    },
+    "coverage": {
+      "satisfied": 1,
+      "applicable_total": 3,
+      "percent": 33.3,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "verification": {
+    "state": "PARTIAL",
+    "observations": [
+      {
+        "id": "V-265-GUARDRAILS",
+        "statement": "Current #268 integrated material head passes guardrails.",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "Grade9V3 Actions guardrails #5491"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "V-265-BINDING",
+        "statement": "Issue-local Task Snapshot binding on final V3.1 Common pin.",
+        "state": "PENDING",
+        "reason_class": "PROVIDER",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Await new v31-relay run."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "failure_origins": {
+      "PROVIDER": 1
+    }
+  },
+  "delivery": {
+    "pr": 266,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/266",
+    "lifecycle": "DRAFT",
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "head": "3263611efd49a6a00a998255f80cd77baa86ae06",
+    "mergeability": "MERGEABLE"
+  },
+  "delivery_stack": [
+    {
+      "pr": 266,
+      "url": "https://github.com/reallaksh19/Grade9V3/pull/266",
+      "title": "[Core Templates] Add six-role learner-product template contract",
+      "lifecycle": "DRAFT",
+      "relationship": "STACK_PARENT",
+      "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+      "head": "3263611efd49a6a00a998255f80cd77baa86ae06",
+      "mergeability": "MERGEABLE",
+      "note": "Blueprint slice now also carries the machine-readable Core authority/dependency contract; still draft against main."
+    },
+    {
+      "pr": 267,
+      "url": "https://github.com/reallaksh19/Grade9V3/pull/267",
+      "title": "[Core Templates] Render role-specific learner anatomy and canonical SVG fallbacks",
+      "lifecycle": "DRAFT",
+      "relationship": "STACK_PARENT",
+      "base": "fbc5d53680486f999738c62edcc3f036c79850ed",
+      "head": "b048e93b84e71a4060ad1a8c35dc325759af4e06",
+      "mergeability": "MERGEABLE",
+      "note": "Second owned slice."
+    },
+    {
+      "pr": 268,
+      "url": "https://github.com/reallaksh19/Grade9V3/pull/268",
+      "title": "[Core Templates] Bind canonical portable workbenches into learner products",
+      "lifecycle": "DRAFT",
+      "relationship": "PRIMARY",
+      "base": "b048e93b84e71a4060ad1a8c35dc325759af4e06",
+      "head": "fdde429c4802e1c5805e57970e95342d21d9cf75",
+      "mergeability": "MERGEABLE",
+      "note": "Current top delivery after #270 merged into this branch."
+    },
+    {
+      "pr": 270,
+      "url": "https://github.com/reallaksh19/Grade9V3/pull/270",
+      "title": "[Core Templates] Add optional speed-toolkit and publication-audit contracts",
+      "lifecycle": "MERGED",
+      "relationship": "STACK_CHILD",
+      "base": "5968a4c81441160b32a863336c6ad9269c085aac",
+      "head": "f9d031667fa25a4291ef781b59fc367fdf82281c",
+      "mergeability": null,
+      "note": "Merged into #268 branch at fdde429c4802e1c5805e57970e95342d21d9cf75; not merged to main."
+    },
+    {
+      "pr": 269,
+      "url": "https://github.com/reallaksh19/Grade9V3/pull/269",
+      "title": "[Curriculum & Handouts] Deliver all-cores strategic plan, speed hacks handout, and 11-gate verified canonical bank",
+      "lifecycle": "DRAFT",
+      "relationship": "RELATED",
+      "base": "226935eda36563ab3619dba871cb55da2b8f1a7c",
+      "head": "08446b534bef5a6cb364f0c355881d7d5cbda0b7",
+      "mergeability": "MERGEABLE",
+      "note": "Reviewed candidate; only architecture-compatible ideas were adopted, not the PR wholesale."
+    }
+  ],
+  "completion": {
+    "overall_state": "PARTIAL",
+    "headline": "#265 PARTIAL — four implementation slices are material; stack integration and terminal TASK_RESULT remain.",
+    "implementation": "COMPLETE",
+    "verification": "PARTIAL",
+    "delivery": "DRAFT",
+    "work_issue_acceptance": "PARTIAL",
+    "programme_contribution": "UNKNOWN",
+    "provider_issue": "OPEN",
+    "what_done": [
+      "PR #266 template contract is material and green.",
+      "PR #267 role-specific renderer is material and green.",
+      "PR #268 portable binding is material; current integrated head passes guardrails #5491.",
+      "PR #270 speed-toolkit/publication-audit slice was merged into the #268 branch.",
+      "Plan rev 4 expected material slice has occurred."
+    ],
+    "what_remains": [
+      "Pass the new issue-local V3.1 Task Snapshot binding check on the final Common pin.",
+      "Perform final integrated #265 acceptance review and publish TASK_RESULT.",
+      "Integrate the remaining draft stack toward main in dependency order when authorized."
+    ],
+    "dependencies": [],
+    "owner_decisions": []
+  },
+  "parent_issue_progress": {
+    "checklist": [
+      {
+        "id": "AC-265-TEMPLATE",
+        "statement": "Six-role template contract",
+        "state": "COMPLETE",
+        "evidence": [
+          "PR #266"
+        ]
+      },
+      {
+        "id": "AC-265-RENDER",
+        "statement": "Role-specific renderer",
+        "state": "COMPLETE",
+        "evidence": [
+          "PR #267"
+        ]
+      },
+      {
+        "id": "AC-265-PORTABLE",
+        "statement": "Canonical portable binding",
+        "state": "COMPLETE",
+        "evidence": [
+          "PR #268"
+        ]
+      },
+      {
+        "id": "AC-265-AUDIT",
+        "statement": "Optional speed-toolkit/publication-audit contract",
+        "state": "COMPLETE",
+        "evidence": [
+          "PR #270 merged into #268"
+        ]
+      },
+      {
+        "id": "AC-265-FINAL",
+        "statement": "Terminal integrated acceptance/TASK_RESULT",
+        "state": "PENDING",
+        "evidence": []
+      }
+    ],
+    "summary": {
+      "complete": 4,
+      "partial": 0,
+      "pending": 1,
+      "blocked": 0,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 5
+    }
+  },
+  "current_task_progress": {
+    "checklist": [
+      {
+        "id": "TA-265-EXACT-HEAD",
+        "statement": "Current #268 material guardrails",
+        "state": "COMPLETE",
+        "evidence": [
+          "guardrails #5491"
+        ]
+      },
+      {
+        "id": "TA-265-V31-BINDING",
+        "statement": "Current issue/PR Task Snapshot binding",
+        "state": "PENDING",
+        "evidence": []
+      },
+      {
+        "id": "TA-265-RESULT",
+        "statement": "Terminal TASK_RESULT",
+        "state": "PENDING",
+        "evidence": []
+      }
+    ],
+    "summary": {
+      "complete": 1,
+      "partial": 0,
+      "pending": 2,
+      "blocked": 0,
+      "total": 3
+    }
+  },
+  "offloads": [],
+  "pending_items": [],
+  "known_issues": [
+    "Previous v31-relay success validated recorder structure but did not prove #265 task relevance; the new binding check closes that gap."
+  ],
+  "improvement_vs_original_issue": {
+    "baseline_digest": null,
+    "items": []
+  },
+  "scope": {
+    "write": [
+      "Shared/roles/**",
+      "Shared/workbench/**",
+      "Shared/tools/**",
+      "tests/**",
+      "public/core-learning/**",
+      "standalone/core-learning/**",
+      "docs/architecture-manifest.json"
+    ],
+    "read": [
+      "Physics/**",
+      "Chemistry/**",
+      "Mathematics/**"
+    ],
+    "protected": [
+      "Existing six Core role semantics",
+      "Canonical subject truth",
+      "Source-custody semantics",
+      "Attempt-before-reveal boundaries"
+    ],
+    "prohibited": [
+      "No new Core role",
+      "No topic-specific Shared routing",
+      "No fabricated subject truth",
+      "No source/pedagogy provenance collapse"
+    ]
+  },
+  "inputs": [],
+  "benchmarks": [],
+  "benchmark_debt": {
+    "required_missing": [],
+    "stale": [],
+    "optional": []
+  },
+  "execution": {
+    "lifecycle": "ACTIVE",
+    "lease_or_custody": null,
+    "executor": "issue-265 primary agent",
+    "route": "PR:#266 / ISSUE:#265",
+    "branch": "issue-265/core-product-templates"
+  },
+  "material": {
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "current_head": "3263611efd49a6a00a998255f80cd77baa86ae06"
+  },
+  "acceptance": [
+    {
+      "id": "TA-265-EXACT-HEAD",
+      "state": "PASS",
+      "statement": "Current #268 material guardrails pass.",
+      "evidence": [
+        "guardrails #5491"
+      ]
+    },
+    {
+      "id": "TA-265-V31-BINDING",
+      "state": "PENDING",
+      "statement": "Current issue/PR Task Snapshot binding passes.",
+      "evidence": []
+    },
+    {
+      "id": "TA-265-RESULT",
+      "state": "PENDING",
+      "statement": "Terminal TASK_RESULT published.",
+      "evidence": []
+    }
+  ],
+  "controls": {
+    "material_write": [],
+    "checkpoint": [],
+    "handover": [],
+    "pr_ready": [],
+    "merge": [],
+    "release": []
+  },
+  "knowledge_state": {
+    "known_true": [
+      "The six-role template contract exists on PR #266.",
+      "The Core authority/dependency graph is explicit and machine-readable on PR #266.",
+      "Execution order is production control only and cannot rewrite Core authority.",
+      "PR #275 is stacked on PR #266 and consumes the authority contract.",
+      "#270 is merged into the #268 branch, not main."
+    ],
+    "known_false": [
+      "PR #269 was adopted wholesale.",
+      "PR #270 is merged to main."
+    ],
+    "unknown": [
+      "Whether final integrated #265 review will identify any remaining acceptance gap before TASK_RESULT."
+    ],
+    "assumptions": []
+  },
+  "negative_knowledge": [
+    "Do not treat the alternate #269 ontology/question-bank material as canonical #265 delivery.",
+    "Do not treat structural publication validation as source verification or academic review."
+  ],
+  "preserve": {
+    "accepted_do_not_reopen": []
+  },
+  "history": {
+    "recent_events": []
+  },
+  "next": {
+    "immediate_action": "Prove PR #266 exact-head guardrails/V3.1 binding on the authority-blueprint head, then validate the stacked prompt-composer consumer.",
+    "next_value_frontier": "Keep the authority graph reusable across prompt composition, question-set selection and downstream publication without topic-specific exceptions.",
+    "stop_conditions": [
+      "Do not claim #265 complete merely because #270 merged into #268.",
+      "Do not merge the product stack to main without the repository's normal merge authority/review path."
+    ]
+  },
+  "reconstruction_sources": [
+    "https://github.com/reallaksh19/Grade9V3/issues/265",
+    "https://github.com/reallaksh19/Grade9V3/issues/265#issuecomment-5818958027",
+    "https://github.com/reallaksh19/Grade9V3/issues/265#issuecomment-5819233221",
+    "https://github.com/reallaksh19/Grade9V3/pull/266",
+    "https://github.com/reallaksh19/Grade9V3/pull/267",
+    "https://github.com/reallaksh19/Grade9V3/pull/268",
+    "https://github.com/reallaksh19/Grade9V3/pull/270"
+  ]
+}
