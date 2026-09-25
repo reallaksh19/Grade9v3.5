@@ -23,10 +23,11 @@ from Shared.tools import core_authority_contract, study_map  # noqa: E402
 
 BRIEF_SCHEMA = REPO / "Shared/library/prompt-brief.schema.json"
 AUTHORING_SCHEMA = "Shared/library/authoring-request.schema.json"
-TEMPLATE_PATH = REPO / "template/core-prompt-composer/core-agent-prompt.v1.json"\nAUTHORITY_CONTRACT_PATH = REPO / "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
+TEMPLATE_PATH = REPO / "template/core-prompt-composer/core-agent-prompt.v1.json"
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 DEFAULT_EXECUTION_ORDER = ("CORE2", "CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
-HOLD_STATUSES = {"AGENT_PROPOSAL_PENDING_REVIEW", "IDENTITY_HOLD", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"}\nLEARNER_ELIGIBILITY = {"ELIGIBLE", "EXCLUDED", "HOLD", "NOT_ESTABLISHED"}
+HOLD_STATUSES = {"AGENT_PROPOSAL_PENDING_REVIEW", "IDENTITY_HOLD", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"}
+LEARNER_ELIGIBILITY = {"ELIGIBLE", "EXCLUDED", "HOLD", "NOT_ESTABLISHED"}
 
 
 def canonical_json(value: object) -> str:
@@ -478,7 +479,7 @@ def _difficulty(rows: list[dict]) -> list[str]:
     return sorted(bands, key=lambda value: (int(value[1:]) if value.startswith("D") and value[1:].isdigit() else 999, value))
 
 
-def render_prompt(brief: dict, template: dict) -> str:
+def render_prompt(brief: dict, template: dict, authority_contract: dict | None = None) -> str:
     role_refs = template["role_contract_refs"]
     role_guardrails = template["role_guardrails"]
     rows = brief["question_rows"]
@@ -508,9 +509,7 @@ def render_prompt(brief: dict, template: dict) -> str:
         f"- {core}: {role_guardrails[core]} Contract: {role_refs[core]}"
         for core in brief["requested_cores"]
     )
-    authority_contract = core_authority_contract.load_contract(
-        REPO / brief["authority_contract"]["path"]
-    )
+    authority_contract = authority_contract or core_authority_contract.load_contract()
     authority_lines = []
     for core in brief["requested_cores"]:
         rule = authority_contract["roles"][core]
@@ -588,9 +587,8 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
     questions = list(doc.get("questions") or [])
     owner_scope = doc.get("owner_confirmed_rung")
     template = load(repo / "template/core-prompt-composer/core-agent-prompt.v1.json")
-    authority = core_authority_contract.load_contract(
-        repo / "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
-    )
+    authority_path = core_authority_contract.discover_contract(repo / "Shared" / "roles")
+    authority = core_authority_contract.load_contract(authority_path)
     normalized = json.loads(canonical_json(doc))
     input_digest = digest(normalized)
     brief_id = "PB-" + input_digest.split(":", 1)[1][:16].upper()
@@ -647,7 +645,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         "repository_basis": repository_basis or doc.get("repository_basis") or git_basis(repo),
         "authority_contract": {
             "version": authority["version"],
-            "path": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
+            "path": str(authority_path.relative_to(repo)),
             "digest": digest(authority),
         },
         "input_digest": input_digest,
@@ -691,7 +689,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
             "note": "Composer PASS means only that the prompt bundle is structurally/mapping-ready for the existing planner; it does not mean any Core product is ready.",
         },
     }
-    prompt = render_prompt(brief, template)
+    prompt = render_prompt(brief, template, authority)
     brief["prompt_digest"] = digest(prompt)
     structure_findings = _validate_brief(brief, repo)
     if structure_findings:
