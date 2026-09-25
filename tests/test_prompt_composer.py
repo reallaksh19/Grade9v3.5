@@ -136,7 +136,7 @@ class PromptComposerTests(unittest.TestCase):
 
     def test_source_basis_never_accepts_canonical_question_ids(self):
         doc = self.load("projectile-stress-set.json")
-        doc["source_basis"] = ["PYQ-PHY-JEEADV-2023-P1-Q01"]
+        doc["source_basis"] = ["PYQ-PHY-JEEADV-2022-P1-Q08"]
         result = prompt_composer.compose(doc)
         self.assertFalse(result["passed"])
         self.assertNotIn("source_basis", result["authoring_request"])
