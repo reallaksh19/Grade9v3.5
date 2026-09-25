@@ -22,7 +22,10 @@ PAGES_MANIFEST = DOCS / ".pages-manifest.json"
 GENERATOR_VERSION = "1.1.0"
 
 EXTRA_SOURCES = {
+    "tools/app.css": "tools/app.css",
     "tools/data.js": "tools/data.js",
+    "tools/index.html": "tools/index.html",
+    "tools/library/index.html": "tools/library/index.html",
     "tools/run-builder/index.html": "tools/run-builder/index.html",
 }
 
@@ -32,6 +35,12 @@ TEXT_REWRITES = {
     ),
     "js/topic-atlas.js": (
         ("../../../tools/run-builder/index.html", "../../tools/run-builder/index.html"),
+    ),
+    "mathematics/vectors/explorers/vector_algebra/index.html": (
+        ("/mathematics/index.html", "../../../index.html"),
+    ),
+    "physics/motion-1d/explorers/motion_in_1d/index.html": (
+        ("/physics/index.html", "../../../index.html"),
     ),
 }
 
@@ -71,7 +80,7 @@ def _render_manifest(files: dict[str, tuple[str, bytes]]) -> bytes:
         "generator": "Shared/tools/build_pages_site.py",
         "generator_version": GENERATOR_VERSION,
         "site_root": "docs",
-        "source_roots": ["public", "tools/run-builder", "tools/data.js"],
+        "source_roots": ["public", "tools"],
         "files": rows,
     }
     return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
