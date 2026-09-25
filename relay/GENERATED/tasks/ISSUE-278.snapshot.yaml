@@ -342,7 +342,14 @@
   },
   "verification": {
     "state": "NOT_RUN",
-    "observations": [],
+    "observations": [
+      {
+        "kind": "TOPIC_INDEPENDENCE_FINDING",
+        "state": "RESOLVED",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36104432860",
+        "detail": "Initial guardrail found hard-coded subject names in the new generator/header; corrected by deriving labels from governed bank data and active navigation rather than allowlisting engine code."
+      }
+    ],
     "failure_origins": {}
   },
   "delivery": {
@@ -350,7 +357,7 @@
     "url": "https://github.com/reallaksh19/Grade9V3/pull/279",
     "lifecycle": "DRAFT",
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "head": "2e44606bf69dbe981bf7a54a1e60e8a31967ea51",
+    "head": "9e86bfbc3af1d99d3fc5c6170a2bcd46822fe94c",
     "mergeability": "MERGEABLE_AS_DRAFT"
   },
   "delivery_stack": [],
@@ -471,7 +478,7 @@
   },
   "material": {
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "current_head": "2e44606bf69dbe981bf7a54a1e60e8a31967ea51"
+    "current_head": "9e86bfbc3af1d99d3fc5c6170a2bcd46822fe94c"
   },
   "acceptance": [
     {
@@ -534,11 +541,16 @@
         "event": "DRAFT_PR",
         "ref": "github:reallaksh19/Grade9V3/pull/279",
         "detail": "Opened draft PR with fixed shell, canonical Question Bank and Pages mirror."
+      },
+      {
+        "event": "GUARDRAIL_FINDING_RESOLVED",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36104432860",
+        "detail": "Removed nine subject-name literals from engine/runtime code and refreshed generated browser/Pages assets."
       }
     ]
   },
   "next": {
-    "immediate_action": "Run exact-head V3.1 and repository guardrails; fix only evidenced failures before publishing task evidence.",
+    "immediate_action": "Run exact-head V3.1 and repository guardrails on the subject-neutral corrected delivery head; fix only evidenced failures.",
     "next_value_frontier": "A green, owner-reviewable Question Bank delivery on draft PR #279.",
     "stop_conditions": [
       "Do not mark PR ready or merge without explicit owner authorization.",
