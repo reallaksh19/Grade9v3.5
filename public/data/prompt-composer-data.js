@@ -41,6 +41,10 @@ window.GRADE9V3_PROMPT_COMPOSER = {
         "title": "Required production order"
       },
       {
+        "id": "AUTHORITY_GRAPH",
+        "title": "Core authority and dependency graph"
+      },
+      {
         "id": "TOPIC_BOUNDARY",
         "title": "Topic and rung boundary"
       },
@@ -4002,5 +4006,153 @@ window.GRADE9V3_PROMPT_COMPOSER = {
         }
       }
     }
+  },
+  "authority_contract": {
+    "version": "1.0",
+    "authority_classes": {
+      "CANONICAL_ACADEMIC_TRUTH": {
+        "description": "Canonical subject package records: bucket/microtopic/capability/relation/representation truth.",
+        "may_authorize": [
+          "CORE1",
+          "CORE1A",
+          "CORE1B",
+          "CORE2A",
+          "CORE2B"
+        ]
+      },
+      "AUTHORIZED_SOURCE_CUSTODY": {
+        "description": "Reviewed source/question custody sufficient for ordinary source-backed Core2.",
+        "may_authorize": [
+          "CORE2"
+        ]
+      },
+      "ELIGIBLE_REVIEWED_DEMAND": {
+        "description": "Demand evidence explicitly eligible for learner application.",
+        "may_authorize": [
+          "CORE2A",
+          "CORE2B"
+        ]
+      },
+      "AUTHORED_PRACTICE": {
+        "description": "Truthfully labelled authored application content grounded in canonical capability truth.",
+        "may_authorize": [
+          "CORE2A",
+          "CORE2B"
+        ]
+      },
+      "LEARNER_SUPPORT_INPUT": {
+        "description": "Scoped learner evidence, owner estimate or waiver used only where role contracts permit routing/support.",
+        "may_authorize": [
+          "CORE2A",
+          "CORE2B"
+        ]
+      },
+      "PRIOR_EXPOSURE": {
+        "description": "Recorded prior exposure/established route needed before transfer claims.",
+        "may_authorize": [
+          "CORE2B"
+        ]
+      }
+    },
+    "roles": {
+      "CORE1": {
+        "required_authority": [
+          "CANONICAL_ACADEMIC_TRUTH"
+        ],
+        "forbidden_authority_substitution": [
+          "AUTHORIZED_SOURCE_CUSTODY",
+          "LEARNER_SUPPORT_INPUT"
+        ]
+      },
+      "CORE1A": {
+        "required_authority": [
+          "CANONICAL_ACADEMIC_TRUTH"
+        ],
+        "forbidden_authority_substitution": [
+          "AUTHORIZED_SOURCE_CUSTODY",
+          "LEARNER_SUPPORT_INPUT"
+        ]
+      },
+      "CORE1B": {
+        "required_authority": [
+          "CANONICAL_ACADEMIC_TRUTH"
+        ],
+        "forbidden_authority_substitution": [
+          "AUTHORIZED_SOURCE_CUSTODY",
+          "LEARNER_SUPPORT_INPUT"
+        ]
+      },
+      "CORE2": {
+        "required_authority": [
+          "AUTHORIZED_SOURCE_CUSTODY"
+        ],
+        "forbidden_authority_substitution": [
+          "AUTHORED_PRACTICE",
+          "CANONICAL_ACADEMIC_TRUTH"
+        ]
+      },
+      "CORE2A": {
+        "required_authority": [
+          "CANONICAL_ACADEMIC_TRUTH"
+        ],
+        "one_of_authority": [
+          "ELIGIBLE_REVIEWED_DEMAND",
+          "AUTHORED_PRACTICE"
+        ],
+        "optional_authority": [
+          "LEARNER_SUPPORT_INPUT"
+        ],
+        "forbidden_authority_substitution": [
+          "LEARNER_SUPPORT_INPUT"
+        ]
+      },
+      "CORE2B": {
+        "required_authority": [
+          "CANONICAL_ACADEMIC_TRUTH",
+          "PRIOR_EXPOSURE"
+        ],
+        "one_of_authority": [
+          "ELIGIBLE_REVIEWED_DEMAND",
+          "AUTHORED_PRACTICE"
+        ],
+        "optional_authority": [
+          "LEARNER_SUPPORT_INPUT"
+        ],
+        "forbidden_authority_substitution": [
+          "LEARNER_SUPPORT_INPUT"
+        ]
+      }
+    },
+    "invariants": {
+      "execution_order_is_not_authority_order": true,
+      "core2_hold_does_not_rewrite_academic_authority": true,
+      "core2_hold_does_not_automatically_block_valid_study_roles": true,
+      "preserve_question_primary_capability_ref": true,
+      "set_scope_must_not_overwrite_question_primary": true,
+      "demand_evidence_and_learner_eligibility_are_distinct": true,
+      "source_hints_and_authored_scaffolds_are_distinct": true,
+      "extensions_require_canonical_admission_before_core1_family": true,
+      "learner_estimate_is_not_mastery_evidence": true,
+      "learner_estimate_cannot_change_core1_family_intrinsic_scope": true,
+      "prompt_and_planning_outputs_are_not_academic_authority": true,
+      "unresolved_authority_dependency_must_hold": true
+    },
+    "canonical_field_rules": {
+      "question_primary": "question.primary_capability_ref",
+      "source_hints": "question.hints[]",
+      "authored_scaffolds": "question.scaffolds[]",
+      "core1_family_crux": "microtopic.inferential_jump"
+    },
+    "planning_distinctions": {
+      "execution_order": "PRODUCTION_CONTROL_ONLY",
+      "set_level_scope": "COMPOSITION_CONTEXT_ONLY",
+      "demand_evidence": "MAY_EXIST_WITHOUT_LEARNER_ELIGIBILITY",
+      "learner_eligibility": "INDEPENDENT_REVIEW_STATE"
+    },
+    "allowed_dependency_states": [
+      "PASS",
+      "HOLD",
+      "FAIL"
+    ]
   }
 };
