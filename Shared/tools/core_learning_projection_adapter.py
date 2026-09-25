@@ -264,10 +264,15 @@ def _repair_payload(records: dict | None, repair_ref: str | None) -> dict | None
 def _application(block: dict, records: dict | None = None) -> dict:
     answer = block.get("answer") or {}
     figure_refs = list(block.get("figure_refs") or [])
+    question_ref = block["source_question_id"]
+    canonical_question = (records or {}).get(question_ref) or {}
+    exposure = block.get("exposure")
+    if exposure is None:
+        exposure = canonical_question.get("exposure") or []
     return {
-        "question_ref": block["source_question_id"],
+        "question_ref": question_ref,
         "family_ref": block["family"],
-        "exposure": deepcopy(block.get("exposure") or []),
+        "exposure": deepcopy(exposure),
         "stem": block["stem"],
         "source_refs": list(block.get("source_refs") or []),
         "origin": block.get("origin"),
