@@ -77,7 +77,8 @@ def audit_registry(registry: dict[str, Any] | None = None) -> dict[str, Any]:
     if registry.get("schema_version") != "1.0":
         findings.append(_finding("WEB_BLUEPRINT_SCHEMA_VERSION_UNSUPPORTED", detail=str(registry.get("schema_version"))))
     shell = registry.get("shell")
-    if not isinstance(shell, dict) or shell.get("id") != "G9-TABLET-SHELL-V1":
+    shell_id = shell.get("id") if isinstance(shell, dict) else None
+    if not isinstance(shell_id, str) or not shell_id:
         findings.append(_finding("WEB_BLUEPRINT_SHELL_INVALID"))
     rows = registry.get("blueprints")
     if not isinstance(rows, list):
@@ -97,7 +98,7 @@ def audit_registry(registry: dict[str, Any] | None = None) -> dict[str, Any]:
         roles = row.get("core_roles")
         if not isinstance(roles, list) or not roles or len(roles) != len(set(roles)) or any(role not in CORE_ROLES for role in roles):
             findings.append(_finding("WEB_BLUEPRINT_CORE_ROLES_INVALID", ref=ref))
-        if row.get("shell_ref") != "G9-TABLET-SHELL-V1":
+        if not shell_id or row.get("shell_ref") != shell_id:
             findings.append(_finding("WEB_BLUEPRINT_SHELL_REF_INVALID", ref=ref))
 
         slots = row.get("slots")
