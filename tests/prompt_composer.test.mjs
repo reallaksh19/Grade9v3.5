@@ -23,6 +23,18 @@ function runtime() {
   return window;
 }
 
+test('browser digest uses standard SHA-256 vectors', () => {
+  const w = runtime();
+  assert.equal(
+    w.PROMPT_COMPOSER.sha256('abc'),
+    'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+  );
+  assert.equal(
+    w.PROMPT_COMPOSER.sha256(''),
+    'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+  );
+});
+
 test('browser composition preserves the five-row canonical mapping and owner-confirmed R3 scope', () => {
   const w = runtime();
   const result = w.PROMPT_COMPOSER.composeDocument(fixture, w.GRADE9V3_PROMPT_COMPOSER, w.GRADE9V3);
