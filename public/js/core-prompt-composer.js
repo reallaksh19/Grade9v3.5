@@ -51,6 +51,57 @@
 
   const digest = value => 'sha256:' + sha256(typeof value === 'string' ? value : canonicalize(value));
 
+  function browserSubjectData(data, siteData, subject) {
+    const site = ((siteData || {}).subjects || {})[subject] || {};
+    const supplement = ((data.subjects || {})[subject] || {}).nested_questions || {};
+    const questions = Object.assign({}, supplement);
+    const capabilities = {};
+    const locations = {};
+    const matrices = Array.isArray(site.matrices) ? site.matrices : [];
+
+    matrices.forEach(board => {
+      (board.rungs || []).forEach(rung => {
+        const cap = rung.capability || {};
+        if (cap.id) {
+          capabilities[cap.id] = {
+            id: cap.id,
+            action: cap.action || null,
+            success_criterion: cap.success_criterion || null
+          };
+          if (!locations[cap.id]) locations[cap.id] = [];
+          locations[cap.id].push({
+            matrix_id: board.matrix_id,
+            bucket_id: board.bucket_id,
+            topic: board.topic,
+            subtopic: board.subtopic,
+            rung: rung.rung,
+            ladder_position: rung.ladder_position,
+            default_entry_eligible: rung.default_entry_eligible !== false,
+            microtopic_ref: rung.microtopic_ref
+          });
+        }
+        (rung.questions || []).forEach(q => {
+          if (!questions[q.id] && cap.id) {
+            questions[q.id] = {
+              id: q.id,
+              status: null,
+              primary_capability_ref: cap.id,
+              secondary_capability_refs: [],
+              analysis: null,
+              source_custody: null
+            };
+          }
+        });
+      });
+    });
+    Object.values(locations).forEach(rows => rows.sort((a,b) =>
+      String(a.matrix_id || '').localeCompare(String(b.matrix_id || '')) ||
+      Number(a.ladder_position || 0) - Number(b.ladder_position || 0) ||
+      String(a.rung || '').localeCompare(String(b.rung || ''))
+    ));
+    return {questions, capabilities, locations, matrices};
+  }
+
   function boardMap(subjectData) {
     return new Map((subjectData.matrices || []).map(row => [row.matrix_id, row]));
   }
@@ -207,7 +258,7 @@
     let holds=[];
     if(!subject)holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_REQUIRED',detail:'subject is required'});
     if(!(doc.questions||[]).length)holds.push({status:'UNMAPPED_HOLD',point:'QUESTION_SET_REQUIRED',detail:'at least one question row is required'});
-    if(subject && !(data.subjects||{})[subject])holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library'});
+    if(subject && !(((siteData || global.GRADE9V3 || {}).subjects || {})[subject]))holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library'});
     const rows=(doc.questions||[]).map(raw=>{const r=resolveRow(raw,subjectData,ownerScope);holds=holds.concat(r.holds);return r.row;});
     const scoped=resolveScope(rows,ownerScope,subjectData);holds=holds.concat(scoped.holds,coreOrderHolds(requested,order),sourceBasisHolds(doc.source_basis||[],rows));
     const seen=new Set();holds=holds.filter(h=>{const k=h.status+'|'+h.point+'|'+h.detail;if(seen.has(k))return false;seen.add(k);return true;});
@@ -245,16 +296,16 @@
   }
 
   function initUi(){
-    const data=global.GRADE9V3_PROMPT_COMPOSER;if(!data)return;
+    const data=global.GRADE9V3_PROMPT_COMPOSER, siteData=global.GRADE9V3;if(!data||!siteData)return;
     const $=id=>document.getElementById(id), subject=$('subjectSelect'), matrix=$('matrixSelect'), rung=$('rungSelect');
-    Object.keys(data.subjects).sort().forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;subject.appendChild(o);});
+    Object.keys(siteData.subjects || {}).sort().forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;subject.appendChild(o);});
     ALL_CORES.forEach(core=>{const label=document.createElement('label'),input=document.createElement('input'),span=document.createElement('span');input.type='checkbox';input.value=core;input.checked=true;span.textContent=core;label.append(input,span);$('coreChoices').appendChild(label);});
     function refreshMatrices(){
       matrix.replaceChildren(new Option('No owner-confirmed matrix',''));rung.replaceChildren(new Option('No owner-confirmed rung',''));
-      const d=data.subjects[subject.value];(d?d.matrices:[]).forEach(row=>matrix.appendChild(new Option((row.topic||row.matrix_id)+' · '+row.matrix_id,row.matrix_id)));
+      const d=siteData.subjects[subject.value];(d?d.matrices:[]).forEach(row=>matrix.appendChild(new Option((row.topic||row.matrix_id)+' · '+row.matrix_id,row.matrix_id)));
     }
     function refreshRungs(){
-      rung.replaceChildren(new Option('No owner-confirmed rung',''));const d=data.subjects[subject.value],b=d&&(d.matrices||[]).find(x=>x.matrix_id===matrix.value);
+      rung.replaceChildren(new Option('No owner-confirmed rung',''));const d=siteData.subjects[subject.value],b=d&&(d.matrices||[]).find(x=>x.matrix_id===matrix.value);
       (b?b.rungs:[]).forEach(row=>rung.appendChild(new Option(row.rung+' · '+row.microtopic_ref,row.rung)));
     }
     subject.addEventListener('change',refreshMatrices);matrix.addEventListener('change',refreshRungs);refreshMatrices();
@@ -262,7 +313,7 @@
     let current=null;
     try{
       const raw=sessionStorage.getItem(HANDOFF_KEY);
-      if(raw){sessionStorage.removeItem(HANDOFF_KEY);const h=JSON.parse(raw);if(h.subject&&data.subjects[h.subject]){subject.value=h.subject;refreshMatrices();}if(h.matrix_id){matrix.value=h.matrix_id;refreshRungs();}if(h.rung)rung.value=h.rung;if(typeof h.knowledge_percentage==='number')$('knowledgePercentage').value=String(h.knowledge_percentage);if(Array.isArray(h.requested_cores)){document.querySelectorAll('#coreChoices input').forEach(el=>el.checked=h.requested_cores.includes(el.value));}$('handoffStatus').textContent='Loaded one-shot Topic Atlas context. Question rows were not inferred; paste them above.';}
+      if(raw){sessionStorage.removeItem(HANDOFF_KEY);const h=JSON.parse(raw);if(h.subject&&siteData.subjects[h.subject]){subject.value=h.subject;refreshMatrices();}if(h.matrix_id){matrix.value=h.matrix_id;refreshRungs();}if(h.rung)rung.value=h.rung;if(typeof h.knowledge_percentage==='number')$('knowledgePercentage').value=String(h.knowledge_percentage);if(Array.isArray(h.requested_cores)){document.querySelectorAll('#coreChoices input').forEach(el=>el.checked=h.requested_cores.includes(el.value));}$('handoffStatus').textContent='Loaded one-shot Topic Atlas context. Question rows were not inferred; paste them above.';}
     }catch(err){$('handoffStatus').textContent='Topic Atlas handoff could not be read; no data was retained.';}
 
     function buildDoc(){
@@ -282,7 +333,7 @@
       ['copyPrompt','downloadBrief','downloadPrompt','downloadWorksheet','downloadRequest'].forEach(id=>$(id).disabled=false);
       if(b.holds.length){$('composerErrors').focus();}
     }
-    $('composerForm').addEventListener('submit',e=>{e.preventDefault();render(composeDocument(buildDoc(),data));});
+    $('composerForm').addEventListener('submit',e=>{e.preventDefault();render(composeDocument(buildDoc(),data,siteData));});
     $('resetComposer').addEventListener('click',()=>{location.reload();});
     $('copyPrompt').addEventListener('click',()=>{if(current&&navigator.clipboard)navigator.clipboard.writeText(current.agent_prompt);});
     $('downloadBrief').addEventListener('click',()=>current&&download('prompt-brief.json',JSON.stringify(current.prompt_brief,null,2)+'\n','application/json'));
@@ -291,6 +342,6 @@
     $('downloadRequest').addEventListener('click',()=>current&&download('authoring-request.json',JSON.stringify(current.authoring_request,null,2)+'\n','application/json'));
   }
 
-  global.PROMPT_COMPOSER={composeDocument,canonicalize,digest,sha256,parseRows,HANDOFF_KEY,__test:{resolveRow,resolveScope,fingerprint,traceRows,renderPrompt}};
+  global.PROMPT_COMPOSER={composeDocument,canonicalize,digest,sha256,parseRows,HANDOFF_KEY,__test:{browserSubjectData,resolveRow,resolveScope,fingerprint,traceRows,renderPrompt}};
   if(typeof document!=='undefined')document.addEventListener('DOMContentLoaded',initUi);
 })(typeof window!=='undefined'?window:globalThis);
