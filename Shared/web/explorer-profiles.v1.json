@@ -1,0 +1,40 @@
+{
+  "registry_version": "1.0.0",
+  "profiles": [
+    {
+      "id": "XP-CANONICAL-EXPLORER",
+      "version": "1.0.0",
+      "ref": "XP-CANONICAL-EXPLORER@1.0.0",
+      "profile_kind": "EXPLORE",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "STAGE_SUPPORT",
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.72,
+        "support_fraction": 0.28
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "authority_note": "Presentation profile only. Canonical representation/resource bindings own academic and interaction meaning."
+    }
+  ]
+}
