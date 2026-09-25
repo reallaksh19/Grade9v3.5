@@ -42,6 +42,20 @@ class WebResolverTests(unittest.TestCase):
         self.assertEqual(package["mount_mode"], "PORTABLE_SCENE")
         self.assertEqual(package["portable_package"]["id"], "portable-motion-shared-clock")
 
+    def test_motion_explore_adapter_emits_shell_and_local_portable_runtime(self):
+        plan = web_resolver.resolve(request(
+            "Physics", {"matrix_ref": MOTION, "rung": "R1"},
+            "EXPLORE", interaction="REQUIRED",
+        ))
+        package = build_explore_page.compile_page_package(plan)
+        rendered = build_explore_page.render_directory(package, "PUBLIC")
+        html = rendered["index.html"].decode("utf-8")
+        self.assertIn('data-shell-ref="G9-TABLET-SHELL-V1"', html)
+        self.assertIn("<semantic-workbench", html)
+        self.assertIn("portable-package.json", rendered)
+        self.assertIn("portable-host.mjs", rendered)
+        self.assertNotIn("https://", html)
+
     def test_nlm_r5_activity_does_not_invent_missing_rung_representation(self):
         plan = web_resolver.resolve(request(
             "Physics", {"matrix_ref": NLM, "rung": "R5"},
