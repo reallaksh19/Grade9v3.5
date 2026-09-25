@@ -217,7 +217,7 @@
     const byRef={}; fp.forEach(item=>item.evidence_refs.forEach(ref=>{if(!(ref in byRef))byRef[ref]=item.phrase;}));
     return rows.map((row,i)=>{
       const loc=row.primary_location||{}, key=row.canonical_question_ref||row.owner_question_id;
-      return {trace_id:'TRACE-Q'+String(i+1).padStart(2,'0'),question_ids:[row.owner_question_id],input_or_owner_decision:row.summary||row.owner_question_id,canonical_ref:row.canonical_question_ref||null,primary_capability_ref:row.primary_capability_ref||null,secondary_capability_refs:row.secondary_capability_refs||[],matrix_ref:loc.matrix_id||null,rung:loc.rung||null,keyword:byRef[key]||null,prompt_clause:'FIXED_SOURCE_QUESTIONS;KEYWORD_FINGERPRINT',mapping_basis:row.mapping_basis,provenance:[row.canonical_question_ref,loc.matrix_path,row.primary_capability_ref].filter(Boolean),status:row.mapping_status,finding:row.finding||null};
+      return {trace_id:'trace-q-'+String(i+1).padStart(2,'0'),question_ids:[row.owner_question_id],input_or_owner_decision:row.summary||row.owner_question_id,canonical_ref:row.canonical_question_ref||null,primary_capability_ref:row.primary_capability_ref||null,secondary_capability_refs:row.secondary_capability_refs||[],matrix_ref:loc.matrix_id||null,rung:loc.rung||null,keyword:byRef[key]||null,prompt_clause:'FIXED_SOURCE_QUESTIONS;KEYWORD_FINGERPRINT',mapping_basis:row.mapping_basis,provenance:[row.canonical_question_ref,loc.matrix_path,row.primary_capability_ref].filter(Boolean),status:row.mapping_status,finding:row.finding||null};
     });
   }
 
