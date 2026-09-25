@@ -4154,5 +4154,6 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "HOLD",
       "FAIL"
     ]
-  }
+  },
+  "authority_contract_ref": "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
 };
