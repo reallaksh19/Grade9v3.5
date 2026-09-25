@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import html
 import json
 import re
 from pathlib import Path
@@ -181,7 +182,7 @@ def _module(name: str) -> str:
     return (RUNTIME_DIR / name).read_text(encoding="utf-8")
 
 
-def _offline_index(packaging_mode: str = "OFFLINE_DIRECTORY") -> str:
+def html_escape(value: str) -> str:\n    return html.escape(str(value), quote=True)\n\n\ndef _offline_index(packaging_mode: str = "OFFLINE_DIRECTORY", shell_ref: str = "") -> str:
     html = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="grade9v3-packaging-mode" content="__PACKAGING_MODE__">
@@ -199,7 +200,7 @@ body{font:16px/1.45 system-ui,sans-serif;margin:0;background:#fff;color:#111}
 main{max-width:80rem;margin:auto;padding:1rem}
 .meta{font-size:.85rem;opacity:.75}
 </style></head><body>
-<header class="site-nav" data-shell-ref="G9-TABLET-SHELL-V1">
+<header class="site-nav" data-shell-ref="__SHELL_REF__">
 <button id="back" type="button" aria-label="Back">← Back</button>
 <a id="home" href="./index.html">Home</a>
 <span id="subject-context" class="context">Grade9V3</span>
@@ -230,7 +231,7 @@ document.querySelector("#display-up").addEventListener("click",()=>{{scale=Math.
 window.__interactivePageReady=true;
 </script></body></html>
 """
-    return html.replace("__PACKAGING_MODE__", packaging_mode)
+    return html.replace("__PACKAGING_MODE__", packaging_mode).replace("__SHELL_REF__", html_escape(shell_ref))
 
 
 def render_offline_directory(package: dict[str, Any], packaging_mode: str = "OFFLINE_DIRECTORY") -> dict[str, bytes]:
@@ -250,7 +251,7 @@ def render_offline_directory(package: dict[str, Any], packaging_mode: str = "OFF
         "bucket_availability": [],
     }
     return {
-        "index.html": _offline_index(packaging_mode).encode("utf-8"),
+        "index.html": _offline_index(packaging_mode, package["blueprint"]["shell_ref"]).encode("utf-8"),
         "data.js": (
             "window.GRADE9V3_CORE = "
             + json.dumps(payload, ensure_ascii=False, indent=2)
@@ -304,7 +305,7 @@ body{{font:16px/1.45 system-ui,sans-serif;margin:0;background:#fff;color:#111}}
 .site-nav details{{position:relative}}.site-nav details div{{position:absolute;right:0;top:100%;background:#fff;border:1px solid #bbb;border-radius:.5rem;padding:.5rem;min-width:12rem;z-index:30}}
 main{{max-width:80rem;margin:auto;padding:1rem}}.meta{{font-size:.85rem;opacity:.75}}
 </style></head><body>
-<header class="site-nav" data-shell-ref="G9-TABLET-SHELL-V1">
+<header class="site-nav" data-shell-ref="{html_escape(package["blueprint"]["shell_ref"])}">
 <button id="back" type="button" aria-label="Back">← Back</button><a href="./index.html">Home</a><span id="page-title" class="context">Grade9V3</span>
 <a href="./question-bank/index.html">Question Bank</a>
 <form id="site-search" role="search"><input id="site-search-input" type="search" aria-label="Search this page"><button type="submit">Search</button></form>
