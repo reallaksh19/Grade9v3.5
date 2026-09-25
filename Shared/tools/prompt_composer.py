@@ -19,14 +19,14 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import study_map  # noqa: E402
+from Shared.tools import core_authority_contract, study_map  # noqa: E402
 
 BRIEF_SCHEMA = REPO / "Shared/library/prompt-brief.schema.json"
 AUTHORING_SCHEMA = "Shared/library/authoring-request.schema.json"
-TEMPLATE_PATH = REPO / "template/core-prompt-composer/core-agent-prompt.v1.json"
+TEMPLATE_PATH = REPO / "template/core-prompt-composer/core-agent-prompt.v1.json"\nAUTHORITY_CONTRACT_PATH = REPO / "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 DEFAULT_EXECUTION_ORDER = ("CORE2", "CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
-HOLD_STATUSES = {"AGENT_PROPOSAL_PENDING_REVIEW", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"}
+HOLD_STATUSES = {"AGENT_PROPOSAL_PENDING_REVIEW", "IDENTITY_HOLD", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"}\nLEARNER_ELIGIBILITY = {"ELIGIBLE", "EXCLUDED", "HOLD", "NOT_ESTABLISHED"}
 
 
 def canonical_json(value: object) -> str:
@@ -92,8 +92,53 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
     owner_id = str(raw.get("question_id") or "").strip()
     summary = str(raw.get("summary") or "").strip()
     canonical_ref = raw.get("canonical_question_ref")
+    candidates = list(dict.fromkeys(raw.get("candidate_question_refs") or []))
     canonical = index["canonical_questions"].get(canonical_ref or "") if canonical_ref else None
     holds: list[dict] = []
+
+    eligibility = str(raw.get("learner_eligibility") or "NOT_ESTABLISHED").strip().upper()
+    if eligibility not in LEARNER_ELIGIBILITY:
+        holds.append({
+            "status": "UNMAPPED_HOLD",
+            "point": "LEARNER_ELIGIBILITY_INVALID",
+            "detail": f"{owner_id}: learner_eligibility {eligibility!r} is not recognized",
+        })
+        eligibility = "NOT_ESTABLISHED"
+    eligibility_basis = raw.get("learner_eligibility_basis")
+
+    if not canonical_ref and candidates:
+        valid_candidates = [ref for ref in candidates if ref in index["canonical_questions"]]
+        unknown_candidates = [ref for ref in candidates if ref not in index["canonical_questions"]]
+        detail = (
+            f"{owner_id}: multiple candidate question identities require explicit exact-ref confirmation: "
+            + ", ".join(valid_candidates or candidates)
+        )
+        if unknown_candidates:
+            detail += "; unknown candidate refs: " + ", ".join(unknown_candidates)
+        holds.append({
+            "status": "IDENTITY_HOLD",
+            "point": "QUESTION_IDENTITY_AMBIGUOUS",
+            "detail": detail,
+        })
+        return ({
+            "owner_question_id": owner_id,
+            "summary": summary,
+            "canonical_question_ref": None,
+            "candidate_question_refs": candidates,
+            "identity_status": "IDENTITY_HOLD",
+            "demand_evidence_refs": valid_candidates,
+            "learner_eligibility": eligibility,
+            "learner_eligibility_basis": eligibility_basis,
+            "mapping_basis": "UNMAPPED",
+            "mapping_status": "IDENTITY_HOLD",
+            "primary_capability_ref": None,
+            "secondary_capability_refs": [],
+            "primary_location": None,
+            "record_status": None,
+            "source_custody": None,
+            "analysis": None,
+            "finding": detail,
+        }, holds)
 
     if canonical_ref and canonical is not None:
         primary = canonical.get("primary_capability_ref")
@@ -111,6 +156,11 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "owner_question_id": owner_id,
             "summary": summary,
             "canonical_question_ref": canonical_ref,
+            "candidate_question_refs": candidates,
+            "identity_status": "EXACT_CONFIRMED",
+            "demand_evidence_refs": [canonical_ref],
+            "learner_eligibility": eligibility,
+            "learner_eligibility_basis": eligibility_basis,
             "mapping_basis": "CANONICAL_QUESTION",
             "mapping_status": status,
             "primary_capability_ref": primary,
@@ -128,6 +178,11 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "owner_question_id": owner_id,
             "summary": summary,
             "canonical_question_ref": canonical_ref,
+            "candidate_question_refs": candidates,
+            "identity_status": "UNMAPPED",
+            "demand_evidence_refs": [],
+            "learner_eligibility": eligibility,
+            "learner_eligibility_basis": eligibility_basis,
             "mapping_basis": "UNMAPPED",
             "mapping_status": "UNMAPPED_HOLD",
             "primary_capability_ref": None,
@@ -143,36 +198,36 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
     primary = raw.get("primary_capability_ref")
     secondary = list(raw.get("secondary_capability_refs") or [])
     location, location_finding = _location_for_primary(primary, index)
+    shared = {
+        "owner_question_id": owner_id,
+        "summary": summary,
+        "canonical_question_ref": None,
+        "candidate_question_refs": candidates,
+        "identity_status": "UNMAPPED",
+        "demand_evidence_refs": [],
+        "learner_eligibility": eligibility,
+        "learner_eligibility_basis": eligibility_basis,
+        "primary_capability_ref": primary,
+        "secondary_capability_refs": secondary,
+        "primary_location": location,
+        "record_status": None,
+        "source_custody": None,
+        "analysis": None,
+    }
     if basis == "AGENT_PROPOSAL":
         detail = f"{owner_id}: proposed mapping requires owner review before it can constrain a Core prompt"
         return ({
-            "owner_question_id": owner_id,
-            "summary": summary,
-            "canonical_question_ref": None,
+            **shared,
             "mapping_basis": "AGENT_PROPOSAL",
             "mapping_status": "AGENT_PROPOSAL_PENDING_REVIEW",
-            "primary_capability_ref": primary,
-            "secondary_capability_refs": secondary,
-            "primary_location": location,
-            "record_status": None,
-            "source_custody": None,
-            "analysis": None,
             "finding": detail,
         }, [{"status": "AGENT_PROPOSAL_PENDING_REVIEW", "point": "AGENT_MAPPING_REVIEW_REQUIRED", "detail": detail}])
 
     if basis == "MANUAL" and primary and location and owner_scope:
         return ({
-            "owner_question_id": owner_id,
-            "summary": summary,
-            "canonical_question_ref": None,
+            **shared,
             "mapping_basis": "MANUAL",
             "mapping_status": "OWNER_CONFIRMED_CANONICAL_RUNG",
-            "primary_capability_ref": primary,
-            "secondary_capability_refs": secondary,
-            "primary_location": location,
-            "record_status": None,
-            "source_custody": None,
-            "analysis": None,
             "finding": None,
         }, [])
 
@@ -180,17 +235,9 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
     if location_finding:
         detail += f" ({location_finding})"
     return ({
-        "owner_question_id": owner_id,
-        "summary": summary,
-        "canonical_question_ref": None,
+        **shared,
         "mapping_basis": "UNMAPPED",
         "mapping_status": "UNMAPPED_HOLD",
-        "primary_capability_ref": primary,
-        "secondary_capability_refs": secondary,
-        "primary_location": location,
-        "record_status": None,
-        "source_custody": None,
-        "analysis": None,
         "finding": detail,
     }, [{"status": "UNMAPPED_HOLD", "point": "QUESTION_MAPPING_UNRESOLVED", "detail": detail}])
 
