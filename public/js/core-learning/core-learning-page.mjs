@@ -1,7 +1,9 @@
 export const CORE_LEARNING_PAGE_TAG = "core-learning-page";
-export const CORE_PROJECTION_CONTRACT_VERSION = "1.0";
+export const CORE_PROJECTION_CONTRACT_VERSION = "1.1";
 
 const CORE_MODES = new Set(["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
+const WEB_MOUNT_MODES = new Set(["PORTABLE_SCENE", "COMPONENT", "STATIC_FIGURE"]);
+const WEB_PACKAGING_MODES = new Set(["PUBLIC", "PAGES", "OFFLINE_DIRECTORY", "SINGLE_FILE", "EMBED"]);
 const SUPPORT_KINDS = new Set(["REPRESENT", "CONNECT", "EXECUTE"]);
 const REVEAL_KINDS = new Set(["CONCEPT", "METHOD", "ANSWER"]);
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -148,6 +150,113 @@ export function validateCoreProjection(input) {
   projection.application = projection.application == null
     ? null
     : requireObject(projection.application, "CORE_PROJECTION_APPLICATION_INVALID");
+
+  projection.delivery = requireObject(
+    projection.delivery,
+    "CORE_PROJECTION_DELIVERY_REQUIRED",
+  );
+  const web = requireObject(
+    projection.delivery.web,
+    "CORE_PROJECTION_WEB_DELIVERY_REQUIRED",
+  );
+  requireString(web.blueprint_ref, "CORE_PROJECTION_WEB_BLUEPRINT_REF_REQUIRED");
+  requireString(web.blueprint_id, "CORE_PROJECTION_WEB_BLUEPRINT_ID_REQUIRED");
+  requireString(web.blueprint_version, "CORE_PROJECTION_WEB_BLUEPRINT_VERSION_REQUIRED");
+  requireCondition(
+    web.blueprint_ref === `${web.blueprint_id}@${web.blueprint_version}`,
+    "CORE_PROJECTION_WEB_BLUEPRINT_REF_MISMATCH",
+    web.blueprint_ref,
+  );
+  requireString(web.shell_ref, "CORE_PROJECTION_WEB_SHELL_REF_REQUIRED");
+  requireString(web.layout_family, "CORE_PROJECTION_WEB_LAYOUT_REQUIRED");
+  web.required_slots = optionalStringArray(
+    web.required_slots,
+    "CORE_PROJECTION_WEB_REQUIRED_SLOTS_INVALID",
+  );
+  web.slot_order = optionalStringArray(
+    web.slot_order,
+    "CORE_PROJECTION_WEB_SLOT_ORDER_INVALID",
+  );
+  requireCondition(
+    web.required_slots.every((slot) => web.slot_order.includes(slot)),
+    "CORE_PROJECTION_WEB_REQUIRED_SLOT_UNKNOWN",
+  );
+  const interactionPolicy = requireObject(
+    web.interaction_policy,
+    "CORE_PROJECTION_WEB_INTERACTION_POLICY_REQUIRED",
+  );
+  requireCondition(
+    ["FROM_PROJECTION", "ALWAYS", "NEVER"].includes(interactionPolicy.attempt_before_reveal),
+    "CORE_PROJECTION_WEB_ATTEMPT_POLICY_INVALID",
+  );
+  requireCondition(
+    typeof interactionPolicy.progressive_support === "boolean",
+    "CORE_PROJECTION_WEB_PROGRESSIVE_SUPPORT_INVALID",
+  );
+  requireString(
+    interactionPolicy.solution_policy,
+    "CORE_PROJECTION_WEB_SOLUTION_POLICY_REQUIRED",
+  );
+  const representationPolicy = requireObject(
+    web.representation_policy,
+    "CORE_PROJECTION_WEB_REPRESENTATION_POLICY_REQUIRED",
+  );
+  representationPolicy.preferred_mount_modes = optionalStringArray(
+    representationPolicy.preferred_mount_modes,
+    "CORE_PROJECTION_WEB_MOUNT_MODES_INVALID",
+  );
+  requireCondition(
+    representationPolicy.preferred_mount_modes.length > 0
+      && representationPolicy.preferred_mount_modes.every((mode) => WEB_MOUNT_MODES.has(mode)),
+    "CORE_PROJECTION_WEB_MOUNT_MODES_INVALID",
+  );
+  requireCondition(
+    representationPolicy.legacy_iframe === "MIGRATION_ONLY",
+    "CORE_PROJECTION_WEB_LEGACY_IFRAME_POLICY_INVALID",
+  );
+  const responsivePolicy = requireObject(
+    web.responsive_policy,
+    "CORE_PROJECTION_WEB_RESPONSIVE_POLICY_REQUIRED",
+  );
+  for (const field of ["compact", "medium", "expanded"]) {
+    requireString(responsivePolicy[field], "CORE_PROJECTION_WEB_RESPONSIVE_MODE_REQUIRED", field);
+  }
+  requireCondition(
+    typeof responsivePolicy.primary_fraction === "number"
+      && typeof responsivePolicy.support_fraction === "number"
+      && Math.abs(
+        responsivePolicy.primary_fraction + responsivePolicy.support_fraction - 1
+      ) < 1e-9,
+    "CORE_PROJECTION_WEB_RESPONSIVE_FRACTIONS_INVALID",
+  );
+  const touchPolicy = requireObject(
+    web.touch_policy,
+    "CORE_PROJECTION_WEB_TOUCH_POLICY_REQUIRED",
+  );
+  requireCondition(
+    Number.isInteger(touchPolicy.minimum_target_css_px)
+      && touchPolicy.minimum_target_css_px >= 48,
+    "CORE_PROJECTION_WEB_TOUCH_TARGET_INVALID",
+  );
+  requireCondition(
+    Number.isInteger(touchPolicy.minimum_control_gap_css_px)
+      && touchPolicy.minimum_control_gap_css_px >= 8,
+    "CORE_PROJECTION_WEB_TOUCH_GAP_INVALID",
+  );
+  web.packaging_modes = optionalStringArray(
+    web.packaging_modes,
+    "CORE_PROJECTION_WEB_PACKAGING_MODES_INVALID",
+  );
+  requireCondition(
+    WEB_PACKAGING_MODES.size === web.packaging_modes.length
+      && web.packaging_modes.every((mode) => WEB_PACKAGING_MODES.has(mode)),
+    "CORE_PROJECTION_WEB_PACKAGING_MODES_INVALID",
+  );
+  web.forbidden = optionalStringArray(
+    web.forbidden,
+    "CORE_PROJECTION_WEB_FORBIDDEN_INVALID",
+  );
+
   projection.presentation = requireObject(
     projection.presentation,
     "CORE_PROJECTION_PRESENTATION_REQUIRED",
@@ -359,6 +468,9 @@ export function deriveCoreLearningState(input) {
   return {
     contractVersion: projection.contract_version,
     core: projection.core,
+    webBlueprintRef: projection.delivery.web.blueprint_ref,
+    shellRef: projection.delivery.web.shell_ref,
+    layoutFamily: projection.delivery.web.layout_family,
     stage,
     attempted: false,
     attemptCount: 0,
@@ -911,7 +1023,7 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
     }
   </style>
-  <article class="shell" data-core="${escapeHtml(projection.core)}" data-stage="${escapeHtml(state.stage)}">
+  <article class="shell" data-core="${escapeHtml(projection.core)}" data-stage="${escapeHtml(state.stage)}" data-web-blueprint="${escapeHtml(projection.delivery.web.blueprint_ref)}" data-layout-family="${escapeHtml(projection.delivery.web.layout_family)}">
     <header class="orientation">
       <div class="eyebrow">${escapeHtml(projection.core)}</div>
       <h2>Current learning target</h2>

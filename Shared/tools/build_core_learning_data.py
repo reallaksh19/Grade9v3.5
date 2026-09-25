@@ -83,7 +83,7 @@ def build() -> dict:
         "provider_status": "PRODUCTION_COMPILED_CANONICAL",
         "provider": {
             "mode": "CANONICAL_LIBRARY_TO_COMPILE_BUCKET_TO_CORE_PROJECTION",
-            "contract_version": "1.0",
+            "contract_version": "1.1",
         },
         "core_projections": rows,
         "bucket_availability": availability,

@@ -19,7 +19,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import core_authority_contract, study_map  # noqa: E402
+from Shared.tools import core_authority_contract, core_template_contract, study_map  # noqa: E402
 
 BRIEF_SCHEMA = REPO / "Shared/library/prompt-brief.schema.json"
 AUTHORING_SCHEMA = "Shared/library/authoring-request.schema.json"
@@ -479,6 +479,59 @@ def _difficulty(rows: list[dict]) -> list[str]:
     return sorted(bands, key=lambda value: (int(value[1:]) if value.startswith("D") and value[1:].isdigit() else 999, value))
 
 
+def _web_blueprint_rows(requested: list[str]) -> list[dict]:
+    rows = []
+    for core in requested:
+        if core not in ALL_CORES:
+            continue
+        blueprint = core_template_contract.resolve_web_blueprint_for_core(core)
+        slots = blueprint.get("slots") or []
+        rows.append({
+            "core": core,
+            "blueprint_ref": blueprint["ref"],
+            "blueprint_id": blueprint["id"],
+            "blueprint_version": blueprint["version"],
+            "shell_ref": blueprint["shell_ref"],
+            "layout_family": blueprint["layout_family"],
+            "required_slots": [
+                slot["id"] for slot in slots
+                if isinstance(slot, dict) and slot.get("required") is True
+            ],
+            "slot_order": [
+                slot["id"] for slot in slots
+                if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+            ],
+            "interaction_policy": json.loads(canonical_json(blueprint["interaction_policy"])),
+            "representation_policy": json.loads(canonical_json(blueprint["representation_policy"])),
+            "responsive_policy": json.loads(canonical_json(blueprint["responsive_policy"])),
+            "touch_policy": json.loads(canonical_json(blueprint["touch_policy"])),
+            "packaging_modes": list(blueprint["packaging_modes"]),
+            "forbidden": list(blueprint["forbidden"]),
+        })
+    return rows
+
+
+def _web_blueprint_prompt(rows: list[dict]) -> str:
+    lines = []
+    for row in rows:
+        mounts = ", ".join(row["representation_policy"]["preferred_mount_modes"])
+        packages = ", ".join(row["packaging_modes"])
+        forbidden = ", ".join(row["forbidden"])
+        lines.append(
+            f"- {row['core']}: {row['blueprint_ref']}; shell={row['shell_ref']}; "
+            f"layout={row['layout_family']}; required slots={', '.join(row['required_slots']) or 'none'}; "
+            f"mount preference={mounts}; legacy iframe={row['representation_policy']['legacy_iframe']}; "
+            f"touch minimum={row['touch_policy']['minimum_target_css_px']}px/"
+            f"{row['touch_policy']['minimum_control_gap_css_px']}px gap; "
+            f"packaging={packages}; forbidden={forbidden}. "
+            "Use this exact versioned blueprint; do not invent a different page anatomy."
+        )
+    return "\n".join(lines) + (
+        "\nBlueprint selection is role-driven presentation authority only; academic truth remains canonical. "
+        "If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, HOLD rather than improvise."
+    )
+
+
 def render_prompt(brief: dict, template: dict, authority_contract: dict | None = None) -> str:
     role_refs = template["role_contract_refs"]
     role_guardrails = template["role_guardrails"]
@@ -509,6 +562,7 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         f"- {core}: {role_guardrails[core]} Contract: {role_refs[core]}"
         for core in brief["requested_cores"]
     )
+    web_blueprint_text = _web_blueprint_prompt(brief["web_blueprints"])
     authority_contract = authority_contract or core_authority_contract.load_contract()
     authority_lines = []
     for core in brief["requested_cores"]:
@@ -551,10 +605,11 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         "AUTHORITY_GRAPH": authority_text,
         "TOPIC_BOUNDARY": boundary,
         "CORE_OBLIGATIONS": core_lines,
+        "WEB_BLUEPRINTS": web_blueprint_text,
         "DIFFICULTY_PROGRESSION": diff + "\nPreserve intrinsic Core1A/Core1B depth regardless of the learner estimate.",
         "KEYWORD_FINGERPRINT": kws,
         "PROVENANCE_TRACE": trace + "\nUse only the cited repository/owner inputs. Do not expose or invent private reasoning traces.",
-        "ACCEPTANCE": "Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.",
+        "ACCEPTANCE": "Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.",
         "NON_GOALS": "Do not select a new canonical question set, create a seventh Core, infer mastery, fabricate source receipts, duplicate plan_request.py, or author/publish PDFs in this task.",
         "HOLD_FAIL": hold_text + "\nIf a composer HOLD is present, do not silently resolve it. If the planner requests source basis, prerequisites or owner input, preserve that HOLD.",
         "DOWNSTREAM_DELIVERABLE": downstream,
@@ -656,6 +711,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         "keyword_fingerprint": fingerprint,
         "learner_entry": doc.get("learner"),
         "requested_cores": requested,
+        "web_blueprints": _web_blueprint_rows(requested),
         "execution_order": order,
         "source_authoring_policy": {
             "question_identity_rule": "Exact canonical_question_ref may adopt stored mapping metadata without promoting record lifecycle status.",
@@ -666,6 +722,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         "scope_boundaries": [
             "Canonical subject/question records remain authority.",
             "Existing six Core role contracts remain authority; no seventh Core is created.",
+            "Web blueprint refs are presentation authority only and must not duplicate or override academic truth.",
             "Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.",
             "plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and product holds.",
             "Reusable question-set selection and strict exam mode remain outside this composer.",

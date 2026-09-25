@@ -3,7 +3,7 @@
   "projections": [
     {
       "id": "core1",
-      "contract_version": "1.0",
+      "contract_version": "1.1",
       "core": "CORE1",
       "orientation": {
         "bucket_ref": "BUCKET-FIXTURE",
@@ -46,6 +46,59 @@
       },
       "concept": null,
       "application": null,
+      "delivery": {
+        "web": {
+          "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+          "blueprint_id": "BP-CORE1-ORIENTATION",
+          "blueprint_version": "1.0.0",
+          "shell_ref": "G9-TABLET-SHELL-V1",
+          "layout_family": "READING_ORIENTATION",
+          "required_slots": [
+            "identity",
+            "orientation"
+          ],
+          "slot_order": [
+            "identity",
+            "orientation"
+          ],
+          "interaction_policy": {
+            "attempt_before_reveal": "FROM_PROJECTION",
+            "progressive_support": false,
+            "solution_policy": "FROM_PROJECTION"
+          },
+          "representation_policy": {
+            "preferred_mount_modes": [
+              "PORTABLE_SCENE",
+              "COMPONENT",
+              "STATIC_FIGURE"
+            ],
+            "legacy_iframe": "MIGRATION_ONLY"
+          },
+          "responsive_policy": {
+            "compact": "SINGLE_PANE",
+            "medium": "SINGLE_PANE",
+            "expanded": "SINGLE_PANE",
+            "primary_fraction": 1,
+            "support_fraction": 0
+          },
+          "touch_policy": {
+            "minimum_target_css_px": 48,
+            "minimum_control_gap_css_px": 8
+          },
+          "packaging_modes": [
+            "PUBLIC",
+            "PAGES",
+            "OFFLINE_DIRECTORY",
+            "SINGLE_FILE",
+            "EMBED"
+          ],
+          "forbidden": [
+            "PAGE_LOCAL_ACADEMIC_TRUTH",
+            "HOVER_ONLY_ESSENTIAL_INFORMATION",
+            "FULL_INFERENTIAL_CONSTRUCTION"
+          ]
+        }
+      },
       "presentation": {
         "attempt_before_reveal": false,
         "show_full_construction": false,
@@ -57,7 +110,7 @@
     },
     {
       "id": "core1a",
-      "contract_version": "1.0",
+      "contract_version": "1.1",
       "core": "CORE1A",
       "concept": {
         "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
@@ -131,6 +184,61 @@
         ]
       },
       "application": null,
+      "delivery": {
+        "web": {
+          "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+          "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+          "blueprint_version": "1.0.0",
+          "shell_ref": "G9-TABLET-SHELL-V1",
+          "layout_family": "READING_CONSTRUCTION",
+          "required_slots": [
+            "identity",
+            "construction",
+            "repair_closure"
+          ],
+          "slot_order": [
+            "identity",
+            "construction",
+            "repair_closure"
+          ],
+          "interaction_policy": {
+            "attempt_before_reveal": "FROM_PROJECTION",
+            "progressive_support": false,
+            "solution_policy": "FROM_PROJECTION"
+          },
+          "representation_policy": {
+            "preferred_mount_modes": [
+              "PORTABLE_SCENE",
+              "COMPONENT",
+              "STATIC_FIGURE"
+            ],
+            "legacy_iframe": "MIGRATION_ONLY"
+          },
+          "responsive_policy": {
+            "compact": "SINGLE_PANE",
+            "medium": "STACKED_SUPPORT",
+            "expanded": "STAGE_SUPPORT",
+            "primary_fraction": 0.68,
+            "support_fraction": 0.32
+          },
+          "touch_policy": {
+            "minimum_target_css_px": 48,
+            "minimum_control_gap_css_px": 8
+          },
+          "packaging_modes": [
+            "PUBLIC",
+            "PAGES",
+            "OFFLINE_DIRECTORY",
+            "SINGLE_FILE",
+            "EMBED"
+          ],
+          "forbidden": [
+            "PAGE_LOCAL_ACADEMIC_TRUTH",
+            "HOVER_ONLY_ESSENTIAL_INFORMATION",
+            "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+          ]
+        }
+      },
       "presentation": {
         "attempt_before_reveal": false,
         "show_full_construction": true,
@@ -141,7 +249,7 @@
     },
     {
       "id": "core1b",
-      "contract_version": "1.0",
+      "contract_version": "1.1",
       "core": "CORE1B",
       "concept": {
         "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
@@ -226,6 +334,61 @@
         "worked_anchors": []
       },
       "application": null,
+      "delivery": {
+        "web": {
+          "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+          "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+          "blueprint_version": "1.0.0",
+          "shell_ref": "G9-TABLET-SHELL-V1",
+          "layout_family": "GUIDED_RECONSTRUCTION",
+          "required_slots": [
+            "identity",
+            "attempt",
+            "reconstruction"
+          ],
+          "slot_order": [
+            "identity",
+            "attempt",
+            "reconstruction"
+          ],
+          "interaction_policy": {
+            "attempt_before_reveal": "FROM_PROJECTION",
+            "progressive_support": true,
+            "solution_policy": "POST_ATTEMPT"
+          },
+          "representation_policy": {
+            "preferred_mount_modes": [
+              "PORTABLE_SCENE",
+              "COMPONENT",
+              "STATIC_FIGURE"
+            ],
+            "legacy_iframe": "MIGRATION_ONLY"
+          },
+          "responsive_policy": {
+            "compact": "SINGLE_PANE",
+            "medium": "STACKED_SUPPORT",
+            "expanded": "STAGE_SUPPORT",
+            "primary_fraction": 0.68,
+            "support_fraction": 0.32
+          },
+          "touch_policy": {
+            "minimum_target_css_px": 48,
+            "minimum_control_gap_css_px": 8
+          },
+          "packaging_modes": [
+            "PUBLIC",
+            "PAGES",
+            "OFFLINE_DIRECTORY",
+            "SINGLE_FILE",
+            "EMBED"
+          ],
+          "forbidden": [
+            "PAGE_LOCAL_ACADEMIC_TRUTH",
+            "HOVER_ONLY_ESSENTIAL_INFORMATION",
+            "ANSWER_BEFORE_ATTEMPT"
+          ]
+        }
+      },
       "presentation": {
         "attempt_before_reveal": true,
         "show_full_construction": false,
@@ -236,7 +399,7 @@
     },
     {
       "id": "core2a",
-      "contract_version": "1.0",
+      "contract_version": "1.1",
       "core": "CORE2A",
       "concept": {
         "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
@@ -297,6 +460,62 @@
         "transfer": null,
         "check": "Check against the supplied condition."
       },
+      "delivery": {
+        "web": {
+          "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+          "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+          "blueprint_version": "1.0.0",
+          "shell_ref": "G9-TABLET-SHELL-V1",
+          "layout_family": "QUESTION_STUDY",
+          "required_slots": [
+            "identity",
+            "attempt",
+            "reasoning"
+          ],
+          "slot_order": [
+            "identity",
+            "attempt",
+            "support",
+            "reasoning"
+          ],
+          "interaction_policy": {
+            "attempt_before_reveal": "FROM_PROJECTION",
+            "progressive_support": true,
+            "solution_policy": "LEARNER_OPENABLE"
+          },
+          "representation_policy": {
+            "preferred_mount_modes": [
+              "PORTABLE_SCENE",
+              "COMPONENT",
+              "STATIC_FIGURE"
+            ],
+            "legacy_iframe": "MIGRATION_ONLY"
+          },
+          "responsive_policy": {
+            "compact": "SINGLE_PANE",
+            "medium": "STACKED_SUPPORT",
+            "expanded": "STAGE_SUPPORT",
+            "primary_fraction": 0.68,
+            "support_fraction": 0.32
+          },
+          "touch_policy": {
+            "minimum_target_css_px": 48,
+            "minimum_control_gap_css_px": 8
+          },
+          "packaging_modes": [
+            "PUBLIC",
+            "PAGES",
+            "OFFLINE_DIRECTORY",
+            "SINGLE_FILE",
+            "EMBED"
+          ],
+          "forbidden": [
+            "PAGE_LOCAL_ACADEMIC_TRUTH",
+            "HOVER_ONLY_ESSENTIAL_INFORMATION",
+            "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+          ]
+        }
+      },
       "presentation": {
         "attempt_before_reveal": false,
         "show_full_construction": false,
@@ -307,7 +526,7 @@
     },
     {
       "id": "core2b",
-      "contract_version": "1.0",
+      "contract_version": "1.1",
       "core": "CORE2B",
       "concept": {
         "microtopic_ref": "MIC-FIXTURE-SHARED-IDEA",
@@ -374,6 +593,61 @@
           "protected_move_ref": "R-PROTECTED"
         },
         "check": "Check the selected condition."
+      },
+      "delivery": {
+        "web": {
+          "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+          "blueprint_id": "BP-CORE2B-TRANSFER",
+          "blueprint_version": "1.0.0",
+          "shell_ref": "G9-TABLET-SHELL-V1",
+          "layout_family": "TRANSFER_ATTEMPT",
+          "required_slots": [
+            "identity",
+            "attempt",
+            "post_attempt"
+          ],
+          "slot_order": [
+            "identity",
+            "attempt",
+            "post_attempt"
+          ],
+          "interaction_policy": {
+            "attempt_before_reveal": "FROM_PROJECTION",
+            "progressive_support": true,
+            "solution_policy": "POST_ATTEMPT"
+          },
+          "representation_policy": {
+            "preferred_mount_modes": [
+              "PORTABLE_SCENE",
+              "COMPONENT",
+              "STATIC_FIGURE"
+            ],
+            "legacy_iframe": "MIGRATION_ONLY"
+          },
+          "responsive_policy": {
+            "compact": "SINGLE_PANE",
+            "medium": "STACKED_SUPPORT",
+            "expanded": "STAGE_SUPPORT",
+            "primary_fraction": 0.68,
+            "support_fraction": 0.32
+          },
+          "touch_policy": {
+            "minimum_target_css_px": 48,
+            "minimum_control_gap_css_px": 8
+          },
+          "packaging_modes": [
+            "PUBLIC",
+            "PAGES",
+            "OFFLINE_DIRECTORY",
+            "SINGLE_FILE",
+            "EMBED"
+          ],
+          "forbidden": [
+            "PAGE_LOCAL_ACADEMIC_TRUTH",
+            "HOVER_ONLY_ESSENTIAL_INFORMATION",
+            "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+          ]
+        }
       },
       "presentation": {
         "attempt_before_reveal": true,

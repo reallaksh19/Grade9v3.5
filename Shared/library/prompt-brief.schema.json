@@ -18,6 +18,7 @@
     "keyword_fingerprint",
     "learner_entry",
     "requested_cores",
+    "web_blueprints",
     "execution_order",
     "source_authoring_policy",
     "scope_boundaries",
@@ -566,6 +567,102 @@
         "digest": {
           "type": "string",
           "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "web_blueprints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "core",
+          "blueprint_ref",
+          "blueprint_id",
+          "blueprint_version",
+          "shell_ref",
+          "layout_family",
+          "required_slots",
+          "slot_order",
+          "interaction_policy",
+          "representation_policy",
+          "responsive_policy",
+          "touch_policy",
+          "packaging_modes",
+          "forbidden"
+        ],
+        "properties": {
+          "core": {
+            "enum": [
+              "CORE1",
+              "CORE2",
+              "CORE1A",
+              "CORE1B",
+              "CORE2A",
+              "CORE2B"
+            ]
+          },
+          "blueprint_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blueprint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blueprint_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "shell_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "layout_family": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required_slots": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "slot_order": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "interaction_policy": {
+            "type": "object"
+          },
+          "representation_policy": {
+            "type": "object"
+          },
+          "responsive_policy": {
+            "type": "object"
+          },
+          "touch_policy": {
+            "type": "object"
+          },
+          "packaging_modes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "forbidden": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
         }
       }
     }

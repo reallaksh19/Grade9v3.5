@@ -243,6 +243,18 @@
     return invalid.length?[{status:'UNMAPPED_HOLD',point:'SOURCE_BASIS_QUESTION_ID_INVALID',detail:'authoring-request source_basis is a source locator/receipt basis, not canonical question IDs: '+invalid.join(', ')}]:[];
   }
 
+  function webBlueprintRows(requested,data){
+    return requested.filter(core=>ALL_CORES.includes(core)).map(core=>{
+      const row=(data.web_blueprints||{})[core];
+      return row?JSON.parse(JSON.stringify(row)):null;
+    }).filter(Boolean);
+  }
+
+  function webBlueprintPrompt(rows){
+    const lines=rows.map(row=>'- '+row.core+': '+row.blueprint_ref+'; shell='+row.shell_ref+'; layout='+row.layout_family+'; required slots='+((row.required_slots||[]).join(', ')||'none')+'; mount preference='+((row.representation_policy||{}).preferred_mount_modes||[]).join(', ')+'; legacy iframe='+((row.representation_policy||{}).legacy_iframe||'')+'; touch minimum='+((row.touch_policy||{}).minimum_target_css_px)+'px/'+((row.touch_policy||{}).minimum_control_gap_css_px)+'px gap; packaging='+(row.packaging_modes||[]).join(', ')+'; forbidden='+(row.forbidden||[]).join(', ')+'. Use this exact versioned blueprint; do not invent a different page anatomy.');
+    return lines.join('\n')+'\nBlueprint selection is role-driven presentation authority only; academic truth remains canonical. If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, HOLD rather than improvise.';
+  }
+
   function difficulty(rows){
     const bands=[]; rows.forEach(r=>{const b=r.analysis&&r.analysis.difficulty&&r.analysis.difficulty.band;if(b&&!bands.includes(b))bands.push(b);});
     return bands.sort((a,b)=>{const ai=/^D\d+$/.test(a)?Number(a.slice(1)):999,bi=/^D\d+$/.test(b)?Number(b.slice(1)):999;return ai-bi||a.localeCompare(b);});
@@ -262,6 +274,7 @@
     const learner=brief.learner_entry?canonicalize(brief.learner_entry):'No learner input supplied.';
     const boundary='Subject: '+brief.subject+'. Matrix: '+(scope.matrix_ref||'UNRESOLVED')+'. Bucket: '+(scope.bucket_ref||'UNRESOLVED')+'. Canonical primary rungs represented: '+((scope.canonical_primary_rungs||[]).join(', ')||'none')+'. Composition scope status: '+scope.status+'.';
     const coreLines=brief.requested_cores.map(core=>'- '+core+': '+template.role_guardrails[core]+' Contract: '+template.role_contract_refs[core]).join('\n');
+    const webBlueprintText=webBlueprintPrompt(brief.web_blueprints||[]);
     const authority=brief.__authority_contract;
     const authorityLines=brief.requested_cores.map(core=>{
       const rule=authority.roles[core]||{}, required=(rule.required_authority||[]).join(', ')||'none';
@@ -283,10 +296,11 @@
       AUTHORITY_GRAPH:authorityText,
       TOPIC_BOUNDARY:boundary,
       CORE_OBLIGATIONS:coreLines,
+      WEB_BLUEPRINTS:webBlueprintText,
       DIFFICULTY_PROGRESSION:diff+'\nPreserve intrinsic Core1A/Core1B depth regardless of the learner estimate.',
       KEYWORD_FINGERPRINT:kws,
       PROVENANCE_TRACE:trace+'\nUse only the cited repository/owner inputs. Do not expose or invent private reasoning traces.',
-      ACCEPTANCE:'Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.',
+      ACCEPTANCE:'Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.',
       NON_GOALS:'Do not select a new canonical question set, create a seventh Core, infer mastery, fabricate source receipts, duplicate plan_request.py, or author/publish PDFs in this task.',
       HOLD_FAIL:hold+'\nIf a composer HOLD is present, do not silently resolve it. If the planner requests source basis, prerequisites or owner input, preserve that HOLD.',
       DOWNSTREAM_DELIVERABLE:'The intended downstream publication is one role-specific PDF for each valid/publishable requested Core. Do not render PDFs here; #273 owns PDF publication after validated learner products exist.'
@@ -315,7 +329,7 @@
       repository_basis:doc.repository_basis||data.repository_basis,authority_contract:{version:data.authority_contract.version,path:data.authority_contract_ref,digest:digest(data.authority_contract)},input_digest:inputDigest,prompt_digest:'sha256:'+'0'.repeat(64),subject,
       scope:scoped.scope,question_rows:rows,keyword_fingerprint:fp,learner_entry:doc.learner||null,requested_cores:requested,execution_order:order,
       source_authoring_policy:{question_identity_rule:'Exact canonical_question_ref may adopt stored mapping metadata without promoting record lifecycle status.',source_basis_rule:'authoring-request source_basis accepts source locator/receipt basis only; canonical question IDs remain in this brief/worksheet map.',source_receipt_rule:'The composer never creates or upgrades source receipts and never claims source-product readiness.',supplemental_question_policy:doc.supplemental_question_policy||null},
-      scope_boundaries:['Canonical subject/question records remain authority.','Existing six Core role contracts remain authority; no seventh Core is created.','Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.','plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and product holds.','Reusable question-set selection and strict exam mode remain outside this composer.','PDF publication remains downstream under issue #273.'],
+      scope_boundaries:['Canonical subject/question records remain authority.','Existing six Core role contracts remain authority; no seventh Core is created.','Web blueprint refs are presentation authority only and must not duplicate or override academic truth.','Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.','plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and product holds.','Reusable question-set selection and strict exam mode remain outside this composer.','PDF publication remains downstream under issue #273.'],
       validation:{composer_state:holds.length?'HOLD':'PASS',difficulty_bands:difficulty(rows),question_count:rows.length,mapped_question_count:rows.filter(r=>r.primary_capability_ref).length,core_order_exact:!holds.some(h=>h.point==='CORE_ORDER_INVALID'),source_basis_contains_question_ids:holds.some(h=>h.point==='SOURCE_BASIS_QUESTION_ID_INVALID')},
       trace_rows:trace,holds,planner_handoff:{state:holds.length?'COMPOSER_HOLD':'READY_FOR_PLANNER',authoring_request_schema:'Shared/library/authoring-request.schema.json',planner_command:'python3 Shared/tools/plan_request.py --plan <authoring-request.json>',run_builder:'tools/run-builder/index.html',note:'Composer PASS means only that the prompt bundle is structurally/mapping-ready for the existing planner; it does not mean any Core product is ready.'}
     };
