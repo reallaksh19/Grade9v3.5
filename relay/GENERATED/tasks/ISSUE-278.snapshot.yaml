@@ -148,6 +148,13 @@
       "observed_at": "2026-09-25T08:08:00Z",
       "summary": "#278 implementation complete and validated; PR #279 remains draft pending owner readiness/merge authorization.",
       "exact_head": "1c487d80afca69a0d88f17000f917159c67b8d70"
+    },
+    {
+      "type": "DELIVERY_AUTHORIZATION",
+      "ref": "github:reallaksh19/Grade9V3#278/comment-5829239836",
+      "observed_at": "2026-09-25T08:19:00Z",
+      "summary": "Owner explicitly authorized marking PR #279 ready and merging it into main.",
+      "exact_head": "847758565089914e63acea310e17dbb46fe960ab"
     }
   ],
   "programme_progress": null,
@@ -409,9 +416,9 @@
   "delivery": {
     "pr": 279,
     "url": "https://github.com/reallaksh19/Grade9V3/pull/279",
-    "lifecycle": "DRAFT",
+    "lifecycle": "MERGE_AUTHORIZED",
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "head": "1c487d80afca69a0d88f17000f917159c67b8d70",
+    "head": "847758565089914e63acea310e17dbb46fe960ab",
     "mergeability": "MERGEABLE_AS_DRAFT"
   },
   "delivery_stack": [],
@@ -420,7 +427,7 @@
     "headline": "#278 COMPLETE — validated fixed shell and scalable canonical Question Bank are implemented on draft PR #279.",
     "implementation": "COMPLETE",
     "verification": "PASS",
-    "delivery": "DRAFT",
+    "delivery": "MERGE_AUTHORIZED",
     "work_issue_acceptance": "PASS",
     "programme_contribution": "DELIVERED",
     "provider_issue": "OPEN",
@@ -437,14 +444,17 @@
       "Published TASK_EVIDENCE and REVIEW_FINDING."
     ],
     "what_remains": [
-      "Owner review of draft PR #279; readiness/merge requires explicit owner authorization."
+      "Validate this authorization-bound coordination head.",
+      "Mark PR #279 ready and merge into main if exact-head checks remain green.",
+      "Confirm main/docs contains the deployed Question Bank source."
     ],
     "dependencies": [
       "Canonical question/source authority remains in subject exam-bank records.",
       "Existing Pages builder remains the deployment authority for docs/."
     ],
     "owner_decisions": [
-      "Owner authorized implementation with “ok proceed” and “CONTINUE”. No merge/readiness authorization has been given."
+      "Owner authorized implementation with “ok proceed” and “CONTINUE”.",
+      "Owner explicitly authorized merge of PR #279 with “merge”."
     ]
   },
   "parent_issue_progress": {
@@ -525,7 +535,7 @@
     "optional": []
   },
   "execution": {
-    "lifecycle": "COMPLETE",
+    "lifecycle": "DELIVERY_TRANSITION",
     "lease_or_custody": null,
     "executor": "issue-278 implementation agent",
     "route": "ISSUE:#278",
@@ -649,15 +659,20 @@
         "event": "TASK_RESULT",
         "ref": "github:reallaksh19/Grade9V3#278/comment-5829120049",
         "detail": "#278 terminal task result published; delivery remains draft."
+      },
+      {
+        "event": "OWNER_MERGE_AUTHORIZATION",
+        "ref": "github:reallaksh19/Grade9V3#278/comment-5829239836",
+        "detail": "Owner explicitly authorized readiness/merge transition for PR #279."
       }
     ]
   },
   "next": {
-    "immediate_action": "Owner review of draft PR #279. Do not mark ready or merge without explicit owner authorization.",
-    "next_value_frontier": "Owner-controlled readiness/merge decision for the validated Question Bank UI.",
+    "immediate_action": "Require green exact-head validation for this authorization-bound snapshot, then mark PR #279 ready and merge into main.",
+    "next_value_frontier": "Merged main/docs Question Bank delivery.",
     "stop_conditions": [
-      "Do not mark PR ready or merge without explicit owner authorization.",
-      "Do not change canonical question/source authority."
+      "Do not merge if required V3.1 or guardrail checks fail.",
+      "Do not introduce new product scope during merge transition."
     ]
   },
   "reconstruction_sources": [
