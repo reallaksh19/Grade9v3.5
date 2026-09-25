@@ -448,6 +448,9 @@ def _trace(rows: list[dict], fingerprint: list[dict]) -> list[dict]:
             "question_ids": [row["owner_question_id"]],
             "input_or_owner_decision": row.get("summary") or row["owner_question_id"],
             "canonical_ref": row.get("canonical_question_ref"),
+            "candidate_question_refs": row.get("candidate_question_refs") or [],
+            "demand_evidence_refs": row.get("demand_evidence_refs") or [],
+            "learner_eligibility": row.get("learner_eligibility"),
             "primary_capability_ref": row.get("primary_capability_ref"),
             "secondary_capability_refs": row.get("secondary_capability_refs") or [],
             "matrix_ref": loc.get("matrix_id"),
@@ -487,7 +490,9 @@ def render_prompt(brief: dict, template: dict) -> str:
     fixed = "\n".join(
         f"- {row['owner_question_id']}: {row['summary'] or '(no summary supplied)'}"
         + (f" [canonical: {row['canonical_question_ref']}]" if row.get("canonical_question_ref") else "")
+        + (f" [candidates: {', '.join(row.get('candidate_question_refs') or [])}]" if row.get("candidate_question_refs") else "")
         + f" [mapping: {row['mapping_status']}]"
+        + f" [learner eligibility: {row.get('learner_eligibility') or 'NOT_ESTABLISHED'}]"
         for row in rows
     )
     learner = brief.get("learner_entry")
@@ -502,6 +507,29 @@ def render_prompt(brief: dict, template: dict) -> str:
     core_lines = "\n".join(
         f"- {core}: {role_guardrails[core]} Contract: {role_refs[core]}"
         for core in brief["requested_cores"]
+    )
+    authority_contract = core_authority_contract.load_contract(
+        REPO / brief["authority_contract"]["path"]
+    )
+    authority_lines = []
+    for core in brief["requested_cores"]:
+        rule = authority_contract["roles"][core]
+        required = ", ".join(rule.get("required_authority") or []) or "none"
+        one_of = ", ".join(rule.get("one_of_authority") or [])
+        optional = ", ".join(rule.get("optional_authority") or [])
+        line = f"- {core}: required authority = {required}"
+        if one_of:
+            line += f"; one of = {one_of}"
+        if optional:
+            line += f"; optional support = {optional}"
+        authority_lines.append(line)
+    authority_text = "\n".join(authority_lines) + (
+        "\nExecution order is production control only; it is not derivation or authority order."
+        "\nA Core2 HOLD does not become academic authority and does not automatically block valid Core1-family study products."
+        "\nPreserve question.primary_capability_ref; set-level topic/rung scope is composition context only."
+        "\nDemand evidence and learner eligibility are independent states."
+        "\nSource question.hints[] and authored question.scaffolds[] remain separate custody classes."
+        "\nExtension demands do not become Core1/Core1A/Core1B microtopics unless canonical academic authority admits them."
     )
     diff = " → ".join(brief["validation"].get("difficulty_bands") or []) or "Use the canonical/intrinsic difficulty information available in the referenced records; do not infer it from learner percentage."
     kws = "\n".join(f"- {item['phrase']} ({item['kind']}; evidence: {', '.join(item['evidence_refs'])})" for item in fingerprint)
@@ -520,13 +548,14 @@ def render_prompt(brief: dict, template: dict) -> str:
         "GOAL_OUTCOME": "Produce the requested six-Core authoring outputs from this fixed planning bundle without changing canonical curriculum, question identity, role semantics, or planner authority.",
         "FIXED_SOURCE_QUESTIONS": fixed,
         "LEARNER_PROFILE": learner_text + "\nA percentage is a starting coordinate only; it is not evidence of prerequisite mastery.",
-        "EXECUTION_ORDER": order + "\nTreat this as production control only. It does not override readiness or HOLD decisions.",
+        "EXECUTION_ORDER": order + "\nTreat this as production control only. It does not override readiness, HOLD decisions, or the authority graph.",
+        "AUTHORITY_GRAPH": authority_text,
         "TOPIC_BOUNDARY": boundary,
         "CORE_OBLIGATIONS": core_lines,
         "DIFFICULTY_PROGRESSION": diff + "\nPreserve intrinsic Core1A/Core1B depth regardless of the learner estimate.",
         "KEYWORD_FINGERPRINT": kws,
         "PROVENANCE_TRACE": trace + "\nUse only the cited repository/owner inputs. Do not expose or invent private reasoning traces.",
-        "ACCEPTANCE": "Keep every fixed question traceable to its mapping finding; preserve the requested Core set/order; distinguish source, adapted and authored material; and hand the unchanged authoring request to the existing planner.",
+        "ACCEPTANCE": "Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.",
         "NON_GOALS": "Do not select a new canonical question set, create a seventh Core, infer mastery, fabricate source receipts, duplicate plan_request.py, or author/publish PDFs in this task.",
         "HOLD_FAIL": hold_text + "\nIf a composer HOLD is present, do not silently resolve it. If the planner requests source basis, prerequisites or owner input, preserve that HOLD.",
         "DOWNSTREAM_DELIVERABLE": downstream,
@@ -559,6 +588,9 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
     questions = list(doc.get("questions") or [])
     owner_scope = doc.get("owner_confirmed_rung")
     template = load(repo / "template/core-prompt-composer/core-agent-prompt.v1.json")
+    authority = core_authority_contract.load_contract(
+        repo / "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
+    )
     normalized = json.loads(canonical_json(doc))
     input_digest = digest(normalized)
     brief_id = "PB-" + input_digest.split(":", 1)[1][:16].upper()
@@ -613,6 +645,11 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
             "path": str(TEMPLATE_PATH.relative_to(REPO)),
         },
         "repository_basis": repository_basis or doc.get("repository_basis") or git_basis(repo),
+        "authority_contract": {
+            "version": authority["version"],
+            "path": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
+            "digest": digest(authority),
+        },
         "input_digest": input_digest,
         "prompt_digest": "sha256:" + ("0" * 64),
         "subject": subject,
