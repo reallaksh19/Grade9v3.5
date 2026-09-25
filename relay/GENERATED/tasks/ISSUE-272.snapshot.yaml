@@ -1,0 +1,695 @@
+{
+  "schema_version": "relay-v3.1-task-snapshot",
+  "authority": "DERIVED_READ_MODEL",
+  "source_protocol": "V3_1",
+  "identity": {
+    "work_package": "ISSUE-272-CORE-PROMPT-COMPOSER",
+    "ep": "ISSUE-272-PROVIDER-VIEW",
+    "issue": 272,
+    "delivery_vehicle": 275
+  },
+  "purpose": {
+    "programme_outcome": "Turn an owner-supplied question set into a traceable concept fingerprint, reusable six-Core agent prompt, machine-readable prompt brief, and existing planner handoff without creating new curriculum, question, role, or planner authority.",
+    "current_goal": "Consume the shared six-Core authority blueprint in the prompt composer and falsify the original authority-inversion, identity, eligibility and extension-containment failure modes.",
+    "task_outcome": "Authority-aware deterministic prompt brief, prompt renderer, trace, worksheet-map and authoring-request exports with explicit identity/eligibility HOLD semantics and an offline browser surface.",
+    "why_this_task_exists": "Issue #272 asks for a question-set → concept fingerprint → Core-agent prompt workflow that reuses current canonical mappings and planning contracts."
+  },
+  "lineage": {
+    "predecessor_checkpoint": null,
+    "upstream_dependencies": [
+      "ISSUE-265-CORE-TEMPLATES",
+      "ISSUE-209-PASS2-PARKED"
+    ],
+    "roadmap_admission": {
+      "disposition": "ISSUE_LOCAL_PROVIDER_VIEW",
+      "revision": null,
+      "basis": [
+        "github:reallaksh19/Grade9V3#272"
+      ]
+    }
+  },
+  "parent_issue": {
+    "repository": "reallaksh19/Grade9V3",
+    "number": 272,
+    "title": "[Core Prompt Composer] Generate traceable agent prompts from question sets, rungs, and learner profiles",
+    "state": "OPEN",
+    "url": "https://github.com/reallaksh19/Grade9V3/issues/272",
+    "baseline": null,
+    "current": {
+      "acceptance_items": [
+        {
+          "id": "AC-272-COMPOSE",
+          "statement": "Question rows deterministically produce a subject-neutral prompt brief, keyword fingerprint, rendered prompt, trace, worksheet map and existing authoring request.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "github:reallaksh19/Grade9V3#272/comment-5826116635",
+            "github:reallaksh19/Grade9V3#272/comment-5826116914"
+          ],
+          "trace_refs": [],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-HONESTY",
+          "statement": "Short IDs, unresolved mappings, mixed subtopics, learner estimates and source basis fail closed without inventing authority.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "github:reallaksh19/Grade9V3#272/comment-5826116635",
+            "github:reallaksh19/Grade9V3#272/comment-5826116914"
+          ],
+          "trace_refs": [],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-BROWSER",
+          "statement": "Offline browser UI exposes build-from-question-set flow, trace and export/handoff without duplicating planner logic.",
+          "state": "PASS",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [
+            "github:reallaksh19/Grade9V3#272/comment-5826116635",
+            "github:reallaksh19/Grade9V3#272/comment-5826116914"
+          ],
+          "trace_refs": [],
+          "remaining": [],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-VALIDATION",
+          "statement": "Focused and repository guardrails pass on the exact delivery head.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Revalidate the authority-aware exact head."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        }
+      ]
+    },
+    "updates": [
+      {
+        "type": "PLAN_UPDATE",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5824798943",
+        "summary": "Rev 2 temporarily added downstream six-Core PDFs."
+      },
+      {
+        "type": "PLAN_UPDATE",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5824874619",
+        "summary": "Rev 3 restored #272 terminal scope to validated prompt bundle plus existing planner handoff; PDFs moved to #273."
+      }
+    ],
+    "disposition": "NO_CHANGE",
+    "relationships": [
+      {
+        "issue": 265,
+        "relationship": "UPSTREAM_CONTRACT_PROVIDER"
+      },
+      {
+        "issue": 209,
+        "relationship": "ADJACENT_PARKED_AUTHORITY"
+      },
+      {
+        "issue": 273,
+        "relationship": "DOWNSTREAM_PDF_PUBLICATION"
+      }
+    ],
+    "handover_ledger": null
+  },
+  "programme_parent": null,
+  "planning": {
+    "state": "PRESENT",
+    "provider_ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
+    "revision": 6,
+    "digest": null,
+    "observed_at": "2026-09-25T03:30:00Z",
+    "responsibility_basis_ref": "github:reallaksh19/Grade9V3#272",
+    "responsibility_basis_digest": null,
+    "expected_next_observable": {
+      "statement": "An exact-head green prompt-composer proof consuming the shared Core authority contract and holding ambiguous Q15 identity without collapsing demand evidence into learner eligibility.",
+      "evidence": [
+        "github:reallaksh19/Grade9V3#272/comment-5826266131",
+        "github:reallaksh19/Grade9V3#275"
+      ]
+    }
+  },
+  "task_publications": [
+    {
+      "type": "IMPLEMENTATION_PLAN",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5824743626",
+      "observed_at": "2026-09-25T00:59:14Z",
+      "summary": "Repository-grounded prompt-composer implementation plan.",
+      "exact_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5824874619",
+      "observed_at": "2026-09-25T01:07:00Z",
+      "summary": "Restored terminal boundary to prompt bundle and planner handoff; PDFs moved to #273.",
+      "exact_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5825565864",
+      "observed_at": "2026-09-25T02:15:00Z",
+      "summary": "Rev 5 records topic-independence evidence: generated browser data is declarative and trace IDs are neutralized.",
+      "exact_head": "d2e81b6a54dea824648b2712aa9e9d8baf609a11"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5825029828",
+      "observed_at": "2026-09-25T02:03:00Z",
+      "summary": "Rev 4 widened existing study_map canonical-question discovery to nested library records without changing question authority.",
+      "exact_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+    },
+    {
+      "type": "TASK_EVIDENCE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826116635",
+      "observed_at": "2026-09-25T03:19:00Z",
+      "summary": "Exact material head passed V3.1, generated-artifact checks, topic independence, 1250 tests and JSON parse.",
+      "exact_head": "dae246323ecec33bdeeba3ae9a9fe9f4adb8b085"
+    },
+    {
+      "type": "REVIEW_FINDING",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826116914",
+      "observed_at": "2026-09-25T03:19:00Z",
+      "summary": "No blocking implementation defect remains; boundary review clean.",
+      "exact_head": "dae246323ecec33bdeeba3ae9a9fe9f4adb8b085"
+    },
+    {
+      "type": "TASK_RESULT",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826120001",
+      "observed_at": "2026-09-25T03:20:00Z",
+      "summary": "#272 implementation complete; PR remains draft pending owner-controlled readiness/merge.",
+      "exact_head": "dae246323ecec33bdeeba3ae9a9fe9f4adb8b085"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826266131",
+      "observed_at": "2026-09-25T03:30:00Z",
+      "summary": "Rev 6 makes the prompt composer consume the shared Core authority blueprint and adds identity/eligibility/extension-containment falsifiers.",
+      "exact_head": "88046f47715cbbf88d94abc0b86fbe7055ca4727"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
+      "observed_at": "2026-09-25T03:47:00Z",
+      "summary": "Rev 6 records owner-authorized GitHub Pages /docs delivery mirror and merge transition.",
+      "exact_head": "7535d6dff8f0121d538fca9578773fa906c4c55b"
+    }
+  ],
+  "programme_progress": null,
+  "work_issue_progress": {
+    "criteria": [
+      {
+        "id": "AC-272-COMPOSE",
+        "statement": "Deterministic prompt bundle",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-HONESTY",
+        "statement": "Fail-closed mapping/source/learner semantics",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-BROWSER",
+        "statement": "Offline browser composer and Atlas handoff",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-VALIDATION",
+        "statement": "Focused plus repository validation",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Revalidate authority-aware exact head."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 1,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 4
+    },
+    "coverage": {
+      "satisfied": 3,
+      "applicable_total": 4,
+      "percent": 75,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "plan_progress": {
+    "criteria": [
+      {
+        "id": "STEP-272-1",
+        "statement": "Authoritative schema/template/composer and proof fixtures",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-2",
+        "statement": "Offline static data projection and browser UX",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-3",
+        "statement": "Homepage/Atlas handoff and parity/security/accessibility falsifiers",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826116635"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-4",
+        "statement": "Repository validation and task evidence",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Exact-head revalidation after blueprint-consumer correction."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 1,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 4
+    },
+    "coverage": {
+      "satisfied": 3,
+      "applicable_total": 4,
+      "percent": 75,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "task_acceptance_progress": {
+    "criteria": [
+      {
+        "id": "TA-272-EXACT-HEAD",
+        "statement": "Exact delivery head passes focused composer tests and repository guardrails.",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Validate current authority-aware material head."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-272-V31-BINDING",
+        "statement": "Issue-local Task Snapshot binding passes on the delivery branch.",
+        "state": "PENDING",
+        "reason_class": "PROVIDER",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Validate current authority-aware material head."
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-272-RESULT",
+        "statement": "Terminal TASK_RESULT published after implementation/review.",
+        "state": "PASS",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [
+          "github:reallaksh19/Grade9V3#272/comment-5826120001"
+        ],
+        "trace_refs": [],
+        "remaining": [],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 2,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 3
+    },
+    "coverage": {
+      "satisfied": 1,
+      "applicable_total": 3,
+      "percent": 33.3,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "verification": {
+    "state": "PARTIAL",
+    "observations": [
+      {
+        "kind": "BLUEPRINT_DEPENDENCY",
+        "state": "PASS",
+        "ref": "github:reallaksh19/Grade9V3#266",
+        "detail": "Shared Core authority contract is the upstream authority provider."
+      },
+      {
+        "kind": "EXACT_HEAD_REVALIDATION",
+        "state": "PENDING",
+        "ref": null,
+        "detail": "Current prompt-composer material head requires guardrails and V3.1 revalidation."
+      }
+    ],
+    "failure_origins": {}
+  },
+  "delivery": {
+    "pr": 275,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/275",
+    "lifecycle": "DRAFT_PAGES_VALIDATION",
+    "base": "db3e9df5bd73eb26e518f4b52465739aab55aca1",
+    "head": "4f7cacfa5b4450e1f955333046c0bc856be006aa",
+    "mergeability": "MERGEABLE_AS_DRAFT"
+  },
+  "delivery_stack": [],
+  "completion": {
+    "overall_state": "PARTIAL",
+    "headline": "#272 DELIVERY ACTIVE — implementation is validated; owner-authorized GitHub Pages /docs publication and merge are in progress.",
+    "implementation": "COMPLETE",
+    "verification": "PARTIAL",
+    "delivery": "DRAFT",
+    "work_issue_acceptance": "PARTIAL",
+    "programme_contribution": "IN_PROGRESS",
+    "provider_issue": "OPEN",
+    "what_done": [
+      "Existing prompt-composer functionality remains material.",
+      "PR #275 is stacked on the shared six-Core authority blueprint.",
+      "Prompt brief and rendered prompt now consume the authority contract.",
+      "Question rows distinguish candidate identity, demand evidence and learner eligibility.",
+      "Projectile stress fixture holds ambiguous Q15 identity rather than silently selecting one candidate.",
+      "Owner explicitly authorized PR #275 merge and GitHub Pages publication from main/docs.",
+      "Added deterministic docs/ Pages mirror builder and generated Pages tree."
+    ],
+    "what_remains": [
+      "Validate generated docs/ Pages mirror and repository guardrails on the current delivery head.",
+      "Update architecture manifest if required by the repository builder.",
+      "Move PR #275 out of draft and merge after green validation.",
+      "Confirm main/docs contains the deployable site; downstream PDF publication remains #273."
+    ],
+    "dependencies": [
+      "#265 remains an upstream contract provider; #272 does not change its six-Core meanings.",
+      "#209 remains owner of reusable set selection / strict exam mode.",
+      "#273 owns downstream PDF publication."
+    ],
+    "owner_decisions": [
+      "Owner explicitly authorized merging PR #275.",
+      "Owner explicitly requested GitHub Pages deployment compatibility using main /docs."
+    ]
+  },
+  "parent_issue_progress": {
+    "checklist": [],
+    "summary": {
+      "complete": 0,
+      "partial": 0,
+      "pending": 0,
+      "blocked": 0,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 0
+    }
+  },
+  "current_task_progress": {
+    "checklist": [],
+    "summary": {
+      "complete": 0,
+      "partial": 0,
+      "pending": 0,
+      "blocked": 0,
+      "total": 0
+    }
+  },
+  "offloads": [],
+  "pending_items": [],
+  "known_issues": [
+    "Direct git transport was unavailable in the execution environment; connected GitHub API was used as repository source of truth for reads/writes."
+  ],
+  "improvement_vs_original_issue": {
+    "baseline_digest": null,
+    "items": []
+  },
+  "scope": {
+    "write": [
+      "relay/GENERATED/tasks/ISSUE-272.snapshot.yaml",
+      "Shared/library/prompt-brief.schema.json",
+      "Shared/tools/prompt_composer.py",
+      "Shared/tools/build_prompt_composer_data.py",
+      "template/core-prompt-composer/core-agent-prompt.v1.json",
+      "public/core-prompt-composer/index.html",
+      "public/js/core-prompt-composer.js",
+      "public/css/core-prompt-composer.css",
+      "public/index.html",
+      "public/css/site.css",
+      "public/js/topic-atlas.js",
+      "public/data/prompt-composer-data.js",
+      "tests/test_prompt_composer.py",
+      "tests/prompt_composer.test.mjs",
+      "tests/fixtures/prompt-composer/**",
+      "docs/architecture-manifest.json",
+      "Shared/tools/study_map.py",
+      "Shared/tools/topic_independence_allowlist.json",
+      "Shared/tools/build_pages_site.py",
+      "tests/test_pages_site.py",
+      "docs/.nojekyll",
+      "docs/.pages-manifest.json",
+      "docs/<generated Pages mirror of public/**>",
+      "docs/tools/data.js",
+      "docs/tools/run-builder/index.html"
+    ],
+    "read": [
+      "Shared/library/**",
+      "Shared/tools/**",
+      "Shared/roles/**",
+      "Physics/**",
+      "Mathematics/**",
+      "Chemistry/**",
+      "public/**",
+      "tests/**"
+    ],
+    "protected": [
+      "Existing six Core role semantics",
+      "Canonical subject truth",
+      "Canonical question/source custody",
+      "Existing authoritative planner/readiness/source-receipt semantics"
+    ],
+    "prohibited": [
+      "No seventh Core",
+      "No canonical question selection/adaptation pipeline",
+      "No learner mastery inference from percentages",
+      "No source receipt fabrication",
+      "No browser-side planner clone",
+      "No PDF rendering under #272"
+    ]
+  },
+  "inputs": [],
+  "benchmarks": [],
+  "benchmark_debt": {
+    "required_missing": [],
+    "stale": [],
+    "optional": []
+  },
+  "execution": {
+    "lifecycle": "ACTIVE",
+    "lease_or_custody": null,
+    "executor": "issue-272 implementation agent",
+    "route": "ISSUE:#272",
+    "branch": "issue-272/core-prompt-composer"
+  },
+  "material": {
+    "base": "db3e9df5bd73eb26e518f4b52465739aab55aca1",
+    "current_head": "4f7cacfa5b4450e1f955333046c0bc856be006aa"
+  },
+  "acceptance": [
+    {
+      "id": "TA-272-EXACT-HEAD",
+      "state": "PENDING",
+      "statement": "Authority-aware prompt-composer head passes focused and repository guardrails.",
+      "evidence": []
+    },
+    {
+      "id": "TA-272-V31-BINDING",
+      "state": "PENDING",
+      "statement": "Current issue/branch Task Snapshot binding passes.",
+      "evidence": []
+    },
+    {
+      "id": "TA-272-RESULT",
+      "state": "PASS",
+      "statement": "Prior TASK_RESULT exists but must be superseded by new evidence for this material correction.",
+      "evidence": [
+        "github:reallaksh19/Grade9V3#272/comment-5826120001"
+      ]
+    }
+  ],
+  "controls": {
+    "material_write": [],
+    "checkpoint": [],
+    "handover": [],
+    "pr_ready": [],
+    "merge": [],
+    "release": []
+  },
+  "knowledge_state": {
+    "known_true": [
+      "The shared Core authority contract is the upstream cross-Core authority source.",
+      "#209 remains parked and owns reusable set selection / strict exam mode.",
+      "#272 prompt composition must not infer authority from requested execution order.",
+      "Ambiguous short question identity must HOLD until exact-ref confirmation.",
+      "Demand evidence and learner eligibility are independent states.",
+      "Learner estimates are routing/support coordinates only."
+    ],
+    "known_false": [
+      "Requested Core2-first execution makes Core2 the academic source for Core1-family content.",
+      "Short owner labels such as Q15 uniquely identify a source question.",
+      "Mapped demand evidence is automatically learner-eligible.",
+      "A 50% owner estimate proves prerequisite mastery.",
+      "The composer may create primary_concept_id as canonical truth."
+    ],
+    "unknown": [],
+    "assumptions": []
+  },
+  "negative_knowledge": [
+    "Do not bind short owner IDs to unrelated explorer records.",
+    "Do not auto-claim a unique canonical rung when mapped primaries span multiple rungs.",
+    "Do not convert parent-source provenance into a source receipt or planner-ready source basis."
+  ],
+  "preserve": {
+    "accepted_do_not_reopen": []
+  },
+  "history": {
+    "recent_events": [
+      {
+        "event": "VALIDATION_PASS",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36089643071",
+        "detail": "Guardrails #5598 passed on material head."
+      },
+      {
+        "event": "V31_PASS",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36089643093",
+        "detail": "V3.1 relay #1526 passed on material head."
+      },
+      {
+        "event": "TASK_RESULT",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5826120001",
+        "detail": "#272 implementation result published; delivery remains draft."
+      },
+      {
+        "event": "OWNER_MERGE_AUTHORIZATION",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
+        "detail": "Owner authorized merging PR #275 and publishing a GitHub Pages-compatible docs/ mirror."
+      },
+      {
+        "event": "PAGES_MIRROR_GENERATED",
+        "ref": "github:reallaksh19/Grade9V3/commit/7535d6dff8f0121d538fca9578773fa906c4c55b",
+        "detail": "Generated docs/ mirror from public/ plus Run Builder assets."
+      }
+    ]
+  },
+  "next": {
+    "immediate_action": "Validate the authority-aware + Pages delivery head, then leave readiness/merge to the owner-authorized delivery lane.",
+    "next_value_frontier": "A green main/docs GitHub Pages site with the Core Prompt Composer reachable from the site homepage.",
+    "stop_conditions": [
+      "Do not merge if required guardrails or V3.1 validation fail.",
+      "Keep downstream PDF publication out of #272."
+    ]
+  },
+  "reconstruction_sources": [
+    "https://github.com/reallaksh19/Grade9V3/issues/272",
+    "https://github.com/reallaksh19/Grade9V3/issues/272#issuecomment-5824743626",
+    "https://github.com/reallaksh19/Grade9V3/issues/272#issuecomment-5824874619",
+    "https://github.com/reallaksh19/Grade9V3/issues/265",
+    "https://github.com/reallaksh19/Grade9V3/issues/209"
+  ]
+}

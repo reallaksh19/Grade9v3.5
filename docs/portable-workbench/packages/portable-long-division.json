@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "portable-workbench-package",
+  "packageVersion": "1.0.0",
+  "componentApiVersion": "0.1.0",
+  "transformationIrVersion": "0.1.0",
+  "adapterApiVersion": "0.2.0",
+  "scenePackageVersion": "1.0.0",
+  "id": "portable-long-division",
+  "title": "Long division semantic transfer proof",
+  "sourceRefs": [
+    "tests/fixtures/workbench/arithmetic-division.json"
+  ],
+  "sceneRefs": [
+    "division-first-quotient-digit"
+  ],
+  "representationRefs": [
+    "division expression",
+    "working dividend",
+    "quotient"
+  ],
+  "assetRefs": [],
+  "accessibilityRefs": [
+    "keyboard transfer",
+    "text state"
+  ],
+  "questionBindings": [],
+  "provenance": {
+    "authority": "NON_CANONICAL_COMPILED_PROOF",
+    "sourceKind": "EXISTING_CORE_TEST_WITNESS",
+    "sourceRefs": [
+      "tests/fixtures/workbench/arithmetic-division.json"
+    ]
+  },
+  "scene": {
+    "apiVersion": "0.1.0",
+    "sceneVersion": "1.0.0",
+    "id": "division-first-quotient-digit",
+    "grids": [
+      {
+        "id": "division-work",
+        "label": "Long division work",
+        "rows": [
+          "working",
+          "result"
+        ],
+        "columns": [
+          "left",
+          "main",
+          "right"
+        ]
+      },
+      {
+        "id": "division-expression",
+        "label": "Division expression",
+        "rows": [
+          "problem"
+        ],
+        "columns": [
+          "main"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "id": "dividend-156",
+        "label": "156",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      },
+      {
+        "id": "divisor-12",
+        "label": "12",
+        "provenance": {
+          "kind": "SOURCE",
+          "sourceEntityRefs": []
+        }
+      }
+    ],
+    "projections": [
+      {
+        "id": "dividend-expression",
+        "entityRef": "dividend-156",
+        "label": "156 \u00f7 12",
+        "representation": "division expression",
+        "placement": {
+          "grid": "division-expression",
+          "row": "problem",
+          "column": "main"
+        }
+      },
+      {
+        "id": "dividend-place-value",
+        "entityRef": "dividend-156",
+        "label": "156 in long-division working form",
+        "representation": "working dividend",
+        "placement": {
+          "grid": "division-work",
+          "row": "working",
+          "column": "left"
+        }
+      },
+      {
+        "id": "divisor-expression",
+        "entityRef": "divisor-12",
+        "label": "12",
+        "representation": "divisor",
+        "placement": {
+          "grid": "division-work",
+          "row": "working",
+          "column": "main"
+        }
+      }
+    ],
+    "targets": [
+      {
+        "id": "quotient-first-digit",
+        "label": "First quotient digit",
+        "operation": "derive-first-quotient-digit",
+        "placement": {
+          "grid": "division-work",
+          "row": "result",
+          "column": "main"
+        }
+      },
+      {
+        "id": "remainder-final",
+        "label": "Final remainder",
+        "operation": "derive-final-remainder",
+        "placement": {
+          "grid": "division-work",
+          "row": "result",
+          "column": "right"
+        }
+      }
+    ],
+    "canonicalTransformations": [
+      {
+        "id": "choose-first-quotient-digit",
+        "sourceEntityRefs": [
+          "dividend-156",
+          "divisor-12"
+        ],
+        "targetRef": "quotient-first-digit"
+      }
+    ]
+  },
+  "adapter": {
+    "id": "declarative-transfer-v1",
+    "apiVersion": "0.2.0",
+    "rules": [
+      {
+        "id": "rule-first-quotient-digit",
+        "transformationRef": "choose-first-quotient-digit",
+        "sourceEntityRef": "dividend-156",
+        "targetRef": "quotient-first-digit",
+        "operation": "derive-first-quotient-digit",
+        "summary": "The first quotient digit is derived from the leading place-value comparison.",
+        "patch": {
+          "addEntities": [
+            {
+              "id": "quotient-digit-1",
+              "label": "1",
+              "provenance": {
+                "kind": "DERIVED",
+                "sourceEntityRefs": [
+                  "dividend-156",
+                  "divisor-12"
+                ]
+              }
+            }
+          ],
+          "addProjections": [
+            {
+              "id": "quotient-first-digit-result",
+              "entityRef": "quotient-digit-1",
+              "label": "1",
+              "representation": "first quotient digit",
+              "placement": {
+                "grid": "division-work",
+                "row": "result",
+                "column": "main"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "injections": []
+}

@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Independent Components, One Shared Clock</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--card:#21262d;--line:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.eyebrow{font:12px ui-monospace,monospace;color:var(--accent)}
+h1{margin:4px 0 8px;font-size:28px}.sub{color:var(--muted);max-width:820px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.wide{grid-column:1/-1}.k{font:12px ui-monospace,monospace;color:var(--muted)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px;font:11px ui-monospace,monospace}.leaf{border-color:#1f6feb;color:#79c0ff}
+input[type=range]{width:100%}button,a.btn{background:#238636;color:white;border:0;border-radius:6px;padding:8px 11px;text-decoration:none;cursor:pointer}button.secondary{background:#30363d}
+.value{font:700 18px ui-monospace,monospace}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+pre{white-space:pre-wrap;background:#0b0f14;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.choice{margin:5px 4px 0 0}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}.meter{height:10px;background:#0b0f14;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--accent)}
+</style></head>
+<body><main><div class="top"><div><div class="eyebrow">GRADE9V3 · MOTION IN 2D · REPAIR EXPLORER</div><h1>Independent Components, One Shared Clock</h1><div class="sub">Make the contradiction visible: x and y may use separate component equations, but a valid 2D state must sample both at the same physical instant.</div></div><a class="btn" href="../../index.html">← Topic Atlas</a></div>
+<div style="margin-top:12px"><span class="badge">R1</span><span class="badge">CAP-KIN-2D-INDEPENDENT-COMPONENTS</span><span class="badge leaf">K2D1-3</span><span class="badge leaf">K2D1-4</span></div>
+<div class="grid">
+ <section class="card"><h3>Build a state</h3><label for="tx">x sample time <span id="txv" class="value"></span></label><input id="tx" type="range" min="0" max="4" step=".1" value="2">
+ <label for="ty">y sample time <span id="tyv" class="value"></span></label><input id="ty" type="range" min="0" max="4" step=".1" value="3">
+ <div class="row"><button id="sync">Use one master clock</button><button class="secondary" id="split">Split clocks</button><button class="secondary" id="reset">Reset</button></div></section>
+ <section class="card"><h3>Component samples</h3><div>x(t)=4t → <span id="xv" class="value"></span> m</div><div>y(t)=10−2t² → <span id="yv" class="value"></span> m</div><hr><div id="verdict"></div></section>
+ <section class="card wide"><h3>Reasoning invariant</h3><pre>separate equations  ≠  separate events
+
+valid state:   ( x(t), y(t) )
+ghost state:   ( x(t₁), y(t₂) ) when t₁ ≠ t₂</pre><p id="stateText"></p></section>
+ </div></main><script>const tx=document.querySelector('#tx'),ty=document.querySelector('#ty');let locked=false;
+ function draw(){if(locked)ty.value=tx.value;const a=+tx.value,b=+ty.value,x=4*a,y=10-2*b*b;
+ txv.textContent=a.toFixed(1)+' s';tyv.textContent=b.toFixed(1)+' s';xv.textContent=x.toFixed(1);yv.textContent=y.toFixed(1);
+ const same=Math.abs(a-b)<1e-9;verdict.innerHTML=same?'<b class="ok">✓ VALID 2D STATE</b>':'<b class="bad">✕ GHOST STATE</b>';
+ stateText.textContent=same?'Both components describe the particle at t='+a.toFixed(1)+' s.':'x('+a.toFixed(1)+') and y('+b.toFixed(1)+') are individually meaningful, but their pair was never one physical state.';}
+ tx.oninput=draw;ty.oninput=()=>{locked=false;draw()};sync.onclick=()=>{locked=true;draw()};split.onclick=()=>{locked=false;ty.value=Math.min(4,+tx.value+1);draw()};reset.onclick=()=>{locked=false;tx.value=2;ty.value=3;draw()};draw();</script></body></html>

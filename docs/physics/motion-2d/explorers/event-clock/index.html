@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Event Clock</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--card:#21262d;--line:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.eyebrow{font:12px ui-monospace,monospace;color:var(--accent)}
+h1{margin:4px 0 8px;font-size:28px}.sub{color:var(--muted);max-width:820px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.wide{grid-column:1/-1}.k{font:12px ui-monospace,monospace;color:var(--muted)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px;font:11px ui-monospace,monospace}.leaf{border-color:#1f6feb;color:#79c0ff}
+input[type=range]{width:100%}button,a.btn{background:#238636;color:white;border:0;border-radius:6px;padding:8px 11px;text-decoration:none;cursor:pointer}button.secondary{background:#30363d}
+.value{font:700 18px ui-monospace,monospace}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+pre{white-space:pre-wrap;background:#0b0f14;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.choice{margin:5px 4px 0 0}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}.meter{height:10px;background:#0b0f14;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--accent)}
+</style></head>
+<body><main><div class="top"><div><div class="eyebrow">GRADE9V3 · MOTION IN 2D · REPAIR EXPLORER</div><h1>The Event Clock</h1><div class="sub">The event owns the time. One axis may be the easiest route to find t_event, but both component histories must be sampled at that same instant.</div></div><a class="btn" href="../../index.html">← Topic Atlas</a></div>
+<div style="margin-top:12px"><span class="badge">R2</span><span class="badge">CAP-KIN-2D-CONSTANT-ACCELERATION</span><span class="badge leaf">K2D2-3</span></div>
+<div class="grid"><section class="card"><h3>Choose the event</h3><label for="event">Physical event</label><select id="event"><option value="impact">Impact: Δy = −15 m</option><option value="apex">Apex: vᵧ = 0</option><option value="wall">Wall: x = 20 m</option></select><p class="k">uₓ=10 m/s · uᵧ=10 m/s · g=10 m/s²</p><div>Event time: <span id="te" class="value"></span></div><button class="secondary" id="reset">Reset</button></section>
+ <section class="card"><h3>Now sample x</h3><button class="choice" data-t="2">Use 2 s</button><button class="choice" data-t="event">Use event time</button><button class="choice" data-t="4">Use 4 s</button><div id="answer" style="margin-top:12px"></div></section>
+ <section class="card wide"><h3>Event → one clock → one state</h3><pre id="chain"></pre></section></div></main><script>const ev=document.querySelector('#event');let t=3;
+ function calc(){if(ev.value==='impact')t=3; if(ev.value==='apex')t=1; if(ev.value==='wall')t=2;te.textContent=t.toFixed(1)+' s';
+ chain.textContent=(ev.value==='impact'?'vertical landing condition':ev.value==='apex'?'vertical velocity condition':'horizontal wall condition')+'\n        ↓\n t_event = '+t.toFixed(1)+' s\n   ↙         ↘\nx(t_event)   y(t_event)';answer.textContent='Choose a time above.';}
+ ev.onchange=calc;document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{const chosen=b.dataset.t==='event'?t:+b.dataset.t;const ok=chosen===t;answer.innerHTML=ok?'<b class="ok">✓ Same event time. x = '+(10*chosen).toFixed(1)+' m.</b>':'<b class="bad">✕ Different instant. You changed the event.</b>';});reset.onclick=()=>{ev.value='impact';calc()};calc();</script></body></html>

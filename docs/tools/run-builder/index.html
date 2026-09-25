@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run builder · Grade9V3</title>
+<link rel="stylesheet" href="../app.css">
+</head>
+<body>
+<header>
+  <h1>Run builder</h1>
+  <nav>
+    <a href="../index.html">Workbench</a>
+    <a href="../library/index.html">Topic library</a>
+  </nav>
+</header>
+<main>
+  <div class="layout">
+    <div class="panel">
+      <h2>Configure</h2>
+      <label class="field"><span>Subject</span><select id="subject"></select></label>
+      <label class="field"><span>Bucket</span><select id="bucket"></select></label>
+      <label class="field"><span>Practice control</span>
+        <select id="mode">
+          <option value="DESIGN_PREVIEW">DESIGN_PREVIEW — no personalisation claimed</option>
+          <option value="OWNER_WAIVER">OWNER_WAIVER — owner-directed, knowledge unknown</option>
+          <option value="KNOWLEDGE">KNOWLEDGE — scoped capability evidence supplied</option>
+        </select>
+      </label>
+      <label class="field"><span>Purpose</span>
+        <select id="purpose">
+          <option>STARTER</option><option selected>PRACTICE</option>
+          <option>REVISION</option><option>COMPETITION</option>
+        </select>
+      </label>
+      <button class="primary" id="export">Export config JSON</button>
+    </div>
+    <div id="out"></div>
+  </div>
+</main>
+<script src="../data.js"></script>
+<script>
+const data = window.GRADE9V3;
+const $ = id => document.getElementById(id);
+const el = (tag, text, cls) => { const n = document.createElement(tag);
+  if (text !== undefined && text !== null) n.textContent = text; if (cls) n.className = cls; return n; };
+const chip = (t, c) => el('span', t, 'chip' + (c ? ' ' + c : ''));
+
+Object.keys(data.subjects).forEach(subject => {
+  const option = el('option', subject); option.value = subject; $('subject').appendChild(option);
+});
+
+function fillBuckets() {
+  const entry = data.subjects[$('subject').value];
+  $('bucket').textContent = '';
+  if (!entry.buckets.length) {
+    const option = el('option', 'no authored buckets'); option.value = ''; $('bucket').appendChild(option);
+  }
+  entry.buckets.forEach(bucket => {
+    const option = el('option', bucket.title); option.value = bucket.id; $('bucket').appendChild(option);
+  });
+  render();
+}
+
+function currentConfig() {
+  const subject = $('subject').value;
+  const entry = data.subjects[subject];
+  const bucket = entry.buckets.find(b => b.id === $('bucket').value);
+  const control = { mode: $('mode').value, purpose: $('purpose').value };
+  if (control.mode === 'OWNER_WAIVER') {
+    control.authorization_ref = '<reference to the owner instruction authorising this run>';
+    control.support_plan = '<what support is offered while knowledge stays unknown>';
+  }
+  if (control.mode === 'KNOWLEDGE') {
+    Object.assign(control, { percentage: 0, scope: '<capabilities the figure refers to>',
+      evidence_ref: '<observation record>', date: '<when observed>',
+      calibration_policy: '<how the figure was calibrated>', support_plan: '<support offered>' });
+  }
+  return { subject, bucket_id: bucket ? bucket.id : null,
+           topic_id: bucket ? 'RUN-' + bucket.id : null,
+           title: bucket ? bucket.title : null, practice_control: control };
+}
+
+function render() {
+  const out = $('out');
+  out.textContent = '';
+  const config = currentConfig();
+  const entry = data.subjects[config.subject];
+  const bucket = entry.buckets.find(b => b.id === config.bucket_id);
+
+  const status = el('div', undefined, 'panel');
+  status.appendChild(el('h2', 'What this run would produce'));
+  if (!bucket) {
+    status.appendChild(el('p', 'This subject has no authored library content, so nothing can be ' +
+      'compiled for it yet. Its contract and validator families exist; its library does not.', 'note hold'));
+    out.appendChild(status);
+    return;
+  }
+  const preview = bucket.compile_preview;
+  if (!preview.compilable) {
+    const note = el('p', undefined, 'note hold');
+    note.textContent = `This bucket cannot compile: ${preview.code}. ${preview.detail || ''}`;
+    status.appendChild(note);
+  } else {
+    const line = el('p');
+    line.appendChild(el('span', 'Products: '));
+    preview.supported_products.forEach(core => line.appendChild(chip(core, 'ok')));
+    ['CORE1A', 'CORE1B', 'CORE2A', 'CORE2B'].filter(c => !preview.supported_products.includes(c))
+      .forEach(core => line.appendChild(chip(core + ' unsupported', 'hold')));
+    status.appendChild(line);
+    status.appendChild(el('p', `${preview.atoms} data atoms · ${preview.questions} question(s) · ` +
+      `${preview.obligations} obligation(s)`, 'muted'));
+    status.appendChild(el('h4', 'Still requires authoring'));
+    const ul = el('ul');
+    preview.authoring_requirements.forEach(req => {
+      const li = el('li');
+      li.appendChild(el('strong', req.kind + (req.core ? ' · ' + req.core : '')));
+      li.appendChild(el('div', req.detail, 'muted'));
+      ul.appendChild(li);
+    });
+    status.appendChild(ul);
+  }
+  if (config.practice_control.mode !== 'DESIGN_PREVIEW') {
+    status.appendChild(el('p', 'Placeholders in the config below must be replaced with real references. ' +
+      'The publisher cannot authenticate a waiver or measure learning; these fields record what was ' +
+      'claimed, not what is true.', 'note'));
+  }
+  out.appendChild(status);
+
+  const commands = el('div', undefined, 'panel');
+  commands.appendChild(el('h2', 'Commands'));
+  commands.appendChild(el('p', 'Compile the publication inputs from the library, then publish them.', 'muted'));
+  commands.appendChild(el('pre',
+`python3 Shared/library/compile_inputs.py ${config.subject}/library/*.json \\
+  --bucket ${config.bucket_id} \\
+  --subject ${config.subject} \\
+  --topic-id ${config.topic_id} \\
+  --title "${config.title}" \\
+  --out runs/${config.bucket_id.toLowerCase()}/inputs
+
+python3 ${config.subject}/run.py publish \\
+  --plan runs/${config.bucket_id.toLowerCase()}/inputs/plan.json \\
+  --baseline runs/${config.bucket_id.toLowerCase()}/inputs/baseline.json \\
+  --source-root runs/${config.bucket_id.toLowerCase()}/inputs \\
+  --out runs/${config.bucket_id.toLowerCase()}/publication`));
+  out.appendChild(commands);
+
+  const json = el('div', undefined, 'panel');
+  json.appendChild(el('h2', 'Run config'));
+  json.appendChild(el('pre', JSON.stringify(config, null, 2)));
+  out.appendChild(json);
+}
+
+$('export').onclick = () => {
+  const blob = new Blob([JSON.stringify(currentConfig(), null, 2)], { type: 'application/json' });
+  const link = el('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'run-config.json';
+  link.click();
+  URL.revokeObjectURL(link.href);
+};
+['subject'].forEach(id => $(id).onchange = fillBuckets);
+['bucket', 'mode', 'purpose'].forEach(id => $(id).onchange = render);
+$('subject').value = Object.keys(data.subjects).find(s => data.subjects[s].buckets.length) ||
+                     Object.keys(data.subjects)[0];
+fillBuckets();
+</script>
+</body>
+</html>

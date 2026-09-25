@@ -1,0 +1,2087 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NLM Explorer 2 · Atwood Machine & Pulley String Constraints</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --bg-card-hover: #2d333b;
+      --border: #444c56;
+      --border-accent: #388bfd;
+      --text: #f0f6fc;
+      --text-muted: #919bb0;
+      --text-dim: #9aa4b2;
+      --accent: #58a6ff;
+      --accent-glow: rgba(56, 139, 253, 0.25);
+      --tension-color: #f0883e;
+      --accel-color: #56d364;
+      --mass1-color: #388bfd;
+      --mass2-color: #bc8cff;
+      --danger-color: #ff7b72;
+      --success-color: #56d364;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge.atwood {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    .badge.neutral {
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Governing Invariants Card */
+    .invariant-card {
+      background: rgba(56, 139, 253, 0.08);
+      border: 1px solid rgba(56, 139, 253, 0.3);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .invariant-card strong { color: var(--accent); }
+    .inv-item {
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .inv-num {
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 18px;
+    }
+
+    /* Preset & Transport Toolbar */
+    .toolbar-strip {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .preset-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .preset-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+    .btn-preset {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-preset:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-preset.active {
+      background: rgba(56, 139, 253, 0.15);
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+
+    .transport-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-transport {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-transport:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+    }
+    .btn-transport.primary {
+      background: var(--accent);
+      color: #0d1117;
+      border-color: var(--accent);
+    }
+    .btn-transport.primary:hover {
+      opacity: 0.92;
+    }
+
+    /* Grid Layout */
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 1080px) {
+      .grid-main { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(68, 76, 86, 0.4);
+      padding-bottom: 10px;
+    }
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Stage Canvas Container */
+    .stage-wrapper {
+      position: relative;
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Overlaid Toggles */
+    .canvas-hud-options {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      display: flex;
+      gap: 12px;
+      z-index: 5;
+      background: rgba(13, 17, 23, 0.88);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      backdrop-filter: blur(4px);
+    }
+    .canvas-hud-options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .canvas-hud-options input { accent-color: var(--accent); }
+
+    /* Mode Selector Pills */
+    .mode-pills {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .btn-pill {
+      background: rgba(13, 17, 23, 0.88);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: all 0.15s;
+    }
+    .btn-pill.active {
+      background: var(--accent);
+      color: #0d1117;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Controls Grid */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .control-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    /* Status Grid */
+    .status-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .stat-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-cell-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .stat-cell-value {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Newton-II & Kinematic Constraint Equations Card */
+    .equations-hud {
+      background: #111620;
+      border: 1px solid #233044;
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+    }
+    @media (max-width: 600px) {
+      .equations-hud { grid-template-columns: 1fr; }
+    }
+    .eq-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .eq-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .eq-body {
+      color: #c9d1d9;
+      line-height: 1.45;
+    }
+
+    /* Graph Container */
+    .graph-wrapper {
+      position: relative;
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      cursor: crosshair;
+    }
+    .graph-tooltip {
+      position: absolute;
+      background: rgba(13, 17, 23, 0.95);
+      border: 1px solid var(--border-accent);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+      line-height: 1.4;
+    }
+
+    /* Info Cards on Right */
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+    .info-card h4 {
+      color: var(--text);
+      font-size: 12px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Questions */
+    .questions-container {
+      margin-top: 32px;
+    }
+    .q-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .q-card:hover {
+      border-color: rgba(88, 166, 255, 0.4);
+    }
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .q-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .q-stem {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.15s ease;
+    }
+    .opt-label:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+    }
+    .opt-label input[type=radio] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+    }
+    .btn {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn.secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn.secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+    }
+    .solution-panel {
+      display: none;
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+    .solution-panel.active { display: block; }
+    .solution-panel.correct {
+      border: 1px solid var(--success-color);
+      background: rgba(46, 160, 67, 0.1);
+    }
+    .solution-panel.wrong {
+      border: 1px solid var(--danger-color);
+      background: rgba(248, 81, 73, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <span>🔬 NLM Explorer 2: Atwood Machine & Pulley String Constraints</span>
+    <span class="badge atwood">R10 &amp; R11 Interactive</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <button type="button" class="g9-display-trigger-btn btn-transport" onclick="window.Grade9Display.togglePopover()" title="Adjust Font Size and UI Zoom Scale">
+      <span>🔤 / 🔍 Display</span>
+    </button>
+    <a href="../../index.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">
+      ← Back to Laws of Motion Hub
+    </a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb">
+    <a href="../../../../index.html">Home</a>
+    <span>/</span>
+    <a href="../../../index.html">Physics</a>
+    <span>/</span>
+    <a href="../../index.html">Laws of Motion</a>
+    <span>/</span>
+    <span style="color: var(--text); font-weight: 600;">Atwood &amp; Pulley Constraints</span>
+  </div>
+
+  <!-- Invariant summary card with clean semantic math -->
+  <div class="invariant-card">
+    <div style="font-weight: 700; color: #fff; font-size: 14px;">⚡ Governing Model Invariants &amp; String Constraint Pedagogy:</div>
+    <div class="inv-item">
+      <div class="inv-num">1.</div>
+      <div>
+        <strong>String Tension is NOT Weight</strong>: For two masses m<sub>1</sub> &lt; m<sub>2</sub> over an ideal pulley, tension is the harmonic mean:
+        <code style="color: var(--tension-color); font-weight: bold; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px;">T = 2 m₁ m₂ g / (m₁ + m₂)</code>.
+        Notice that <code>m₁g &lt; T &lt; m₂g</code>. The heavier mass accelerates downward because <code>m₂g &gt; T</code>; the lighter mass accelerates upward because <code>T &gt; m₁g</code>!
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">2.</div>
+      <div>
+        <strong>Kinematic Inextensibility Invariant</strong>: Total rope length <code>L = y₁ + y₂ + πR = const</code> &rArr; <code>d²y₁/dt² + d²y₂/dt² = 0</code> &rArr; <code>a₁ = -a₂</code>. The bodies share identical acceleration magnitude:
+        <code style="color: var(--accel-color); font-weight: bold; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px;">a = (m₂ - m₁) g / (m₁ + m₂)</code>.
+      </div>
+    </div>
+    <div class="inv-item">
+      <div class="inv-num">3.</div>
+      <div>
+        <strong>Movable Pulley Kinematic Ratio</strong>: In a 2:1 movable pulley system, pulling the effort rope by &Delta;y lifts the load by only <code>&Delta;y / 2</code> &rArr; <code>a<sub>pull</sub> = 2 a<sub>load</sub></code>. Tension is halved (<code>T = ½ W<sub>load</sub></code> in static equilibrium), doubling mechanical advantage while doubling required rope travel!
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Presets & Transport Toolbar -->
+  <div class="toolbar-strip">
+    <div class="preset-group">
+      <span class="preset-label">Lab Experiments:</span>
+      <button class="btn-preset active" id="btn-preset-1" onclick="applyPreset(1)">
+        ① Balanced Equilibrium (m₁ = m₂ = 5 kg)
+      </button>
+      <button class="btn-preset" id="btn-preset-2" onclick="applyPreset(2)">
+        ② Extreme Free-Fall (m₁ = 1 kg, m₂ = 9 kg)
+      </button>
+      <button class="btn-preset" id="btn-preset-3" onclick="applyPreset(3)">
+        ③ Non-Average Tension Trap (m₁ = 2 kg, m₂ = 6 kg)
+      </button>
+      <button class="btn-preset" id="btn-preset-4" onclick="applyPreset(4)">
+        ④ Movable Pulley 2:1 Constraint (a<sub>pull</sub> = 2 a<sub>load</sub>)
+      </button>
+    </div>
+
+    <div class="transport-group">
+      <button class="btn-transport primary" id="btn-play" onclick="togglePlay()">⏸ Pause</button>
+      <button class="btn-transport" onclick="stepForward()">⏭ Step</button>
+      <button class="btn-transport" onclick="resetSim()">↺ Reset</button>
+      <div class="speed-slider-wrap" style="display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+          ⏱️ Speed:
+        </span>
+        <input type="range" id="slider-speed" min="0.05" max="1.5" step="0.05" value="1.0" 
+               style="width: 85px; accent-color: var(--accent); cursor: pointer; height: 6px;" 
+               oninput="setSimSpeed(this.value)" 
+               title="Drag left to slow down animation (slow-motion)">
+        <span id="label-speed" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
+      </div>
+      <div class="display-controls-wrap" style="display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 10px; border-radius: 6px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+          🔤 Font:
+        </span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(-0.05)" title="Decrease Font Size">A-</button>
+        <span class="g9-inline-font-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(0.05)" title="Increase Font Size">A+</button>
+
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-left: 4px;">
+          🔍 Zoom:
+        </span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(-0.05)" title="Zoom Out">−</button>
+        <span class="g9-inline-scale-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(0.05)" title="Zoom In">+</button>
+
+        <button type="button" class="btn-transport" style="padding: 2px 8px; font-size: 11px; border-radius: 4px; margin-left: 2px;" onclick="window.Grade9Display.togglePopover()" title="Open Display & Scale Settings">⚙️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Physical Grid -->
+  <div class="grid-main">
+
+    <!-- Left Column: Simulation Stage, Controls & Equations -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>Pulley Apparatus &amp; Free-Body Vectors</span>
+          <span id="motion-badge" class="badge atwood">Equilibrium (a = 0)</span>
+        </div>
+      </div>
+
+      <!-- Canvas Stage with Overlaid Toggles -->
+      <div class="stage-wrapper">
+        <canvas id="simCanvas" width="740" height="440"></canvas>
+
+        <div class="mode-pills">
+          <button class="btn-pill active" id="mode-atwood" onclick="switchMode('ATWOOD')">Classic Atwood</button>
+          <button class="btn-pill" id="mode-movable" onclick="switchMode('MOVABLE')">Movable Pulley (2:1)</button>
+        </div>
+
+        <div class="canvas-hud-options">
+          <label title="Show inline spring force scale on the rope">
+            <input type="checkbox" id="chk-dynamometer" checked onchange="redrawCanvas()"> Dynamometer Scales
+          </label>
+          <label title="Show isolated point-particle Free Body Diagram">
+            <input type="checkbox" id="chk-fbd" onchange="redrawCanvas()"> Isolated FBD
+          </label>
+          <label title="Show displacement height rulers">
+            <input type="checkbox" id="chk-ruler" checked onchange="redrawCanvas()"> Height Rulers
+          </label>
+        </div>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="controls-grid">
+        <div class="control-card">
+          <div class="control-top">
+            <span id="label-m1">Mass 1 (m₁ - Left)</span>
+            <span class="control-val" id="val-m1" style="color: var(--mass1-color);">5.0 kg</span>
+          </div>
+          <input type="range" id="slider-m1" min="0.5" max="15.0" step="0.5" value="5.0">
+        </div>
+
+        <div class="control-card">
+          <div class="control-top">
+            <span id="label-m2">Mass 2 (m₂ - Right)</span>
+            <span class="control-val" id="val-m2" style="color: var(--mass2-color);">5.0 kg</span>
+          </div>
+          <input type="range" id="slider-m2" min="0.5" max="15.0" step="0.5" value="5.0">
+        </div>
+
+        <div class="control-card">
+          <div class="control-top">
+            <span>Gravity (g)</span>
+            <span class="control-val" id="val-g">10.0 m/s²</span>
+          </div>
+          <input type="range" id="slider-g" min="1.6" max="25.0" step="0.2" value="10.0">
+        </div>
+      </div>
+
+      <!-- Live Dynamic Status Matrix -->
+      <div class="status-matrix">
+        <div class="stat-cell">
+          <span class="stat-cell-label">Acceleration (a)</span>
+          <span class="stat-cell-value" id="stat-a" style="color: var(--accel-color);">0.00 m/s²</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">String Tension (T)</span>
+          <span class="stat-cell-value" id="stat-t" style="color: var(--tension-color);">50.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Weight W₁ (m₁g)</span>
+          <span class="stat-cell-value" id="stat-w1">50.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Weight W₂ (m₂g)</span>
+          <span class="stat-cell-value" id="stat-w2">50.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Net Force F<sub>net,1</sub></span>
+          <span class="stat-cell-value" id="stat-fnet1">0.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Net Force F<sub>net,2</sub></span>
+          <span class="stat-cell-value" id="stat-fnet2">0.0 N</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell-label">Velocity (v)</span>
+          <span class="stat-cell-value" id="stat-v">0.00 m/s</span>
+        </div>
+      </div>
+
+      <!-- Live Newton's Second Law Equations HUD -->
+      <div class="equations-hud">
+        <div class="eq-col">
+          <span class="eq-title" id="title-eq1">Body 1 Equation of Motion</span>
+          <div class="eq-body" id="eq-body1-text">
+            T - m₁g = 50.0N - 50.0N = 0.0N &rarr; a₁ = 0.00 m/s² (Up)
+          </div>
+        </div>
+        <div class="eq-col">
+          <span class="eq-title" id="title-eq2">Body 2 Equation of Motion</span>
+          <div class="eq-body" id="eq-body2-text">
+            m₂g - T = 50.0N - 50.0N = 0.0N &rarr; a₂ = 0.00 m/s² (Down)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Phase-Space Graph & Invariants -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>Tension &amp; Acceleration vs Mass Ratio</span>
+          <span class="badge neutral">Draggable Phase-Space</span>
+        </div>
+      </div>
+
+      <div class="graph-wrapper" id="graphContainer">
+        <canvas id="graphCanvas" width="540" height="390"></canvas>
+        <div id="graphTooltip" class="graph-tooltip"></div>
+      </div>
+
+      <div style="font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
+        <span>💡 <em>Drag horizontally anywhere on the plot to scrub Mass Ratio (m₂ / m₁)!</em></span>
+        <span style="font-family: var(--font-mono);">Ratio: 0.1 &ndash; 5.0</span>
+      </div>
+
+      <div class="info-card">
+        <h4>⚖️ The Tension-Weight Asymmetry Proof</h4>
+        <p>
+          Students often guess that string tension is the arithmetic average: <code>(m₁ + m₂)g / 2</code>. This is physically impossible!
+        </p>
+        <p style="margin-top: 6px;">
+          • If T equaled the average weight, the net accelerating force on both bodies would be identical, but their masses are different, violating <code>a₁ = a₂</code>.<br>
+          • <strong>The Harmonic Mean Invariant</strong>: <code>T = 2 m₁ m₂ g / (m₁ + m₂)</code>. Notice that T is strictly <em>between</em> m₁g and m₂g.<br>
+          • When m₂ &gt; m₁, <code>m₂g &gt; T</code> causes body 2 to accelerate downward, while <code>T &gt; m₁g</code> pulls body 1 upward with equal acceleration.
+        </p>
+      </div>
+
+      <div class="info-card" style="border-left: 3px solid var(--tension-color);">
+        <h4 style="color: var(--tension-color);">⛓️ The Free-Fall Asymptotic Limit</h4>
+        <p>
+          As m₁ &rarr; 0 (e.g., m₁ = 0.1 kg while m₂ = 10 kg), the system approaches free fall: <code>a &rarr; g</code>. However, tension does <strong>NOT</strong> approach m₂g = 100 N; it vanishes towards <code>T &rarr; 2 m₁ g &approx; 2 N</code>! The heavy mass drops almost unhindered.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Diagnostic Challenges -->
+  <section class="questions-container">
+    <div class="panel-header">
+      <div class="panel-title" style="font-size: 15px;">
+        <span>🧠 Targeted Diagnostic Challenges</span>
+        <span class="badge neutral">Requires Explorer Invariants</span>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+      These challenges diagnose and eliminate common multi-body tension fallacies.
+    </p>
+
+    <!-- Question 1 -->
+    <div class="q-card" id="q1">
+      <div class="q-header">
+        <span class="q-title">Question 1 · The Arithmetic Average Tension Fallacy</span>
+        <span class="badge neutral">Diagnostic 2.1</span>
+      </div>
+      <div class="q-stem">
+        In an ideal Atwood machine with g = 10 m/s², m₁ = 2 kg and m₂ = 8 kg. What is the tension in the connecting string while the masses are in motion?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="A">
+          <span><strong>A.</strong> 50 N, because tension is the arithmetic average of the two weights: (20 + 80) / 2 = 50 N.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="B">
+          <span><strong>B.</strong> 80 N, because the heavier 8 kg block dictates the tension in the rope.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="C">
+          <span><strong>C.</strong> 32 N, because tension is the harmonic mean: 2(2)(8)(10) / (2 + 8) = 32 N.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q1_opt" value="D">
+          <span><strong>D.</strong> 60 N, which is the net unbalanced gravitational difference: (8 - 2)(10) = 60 N.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ1()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ1ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q1-solution">
+        <div id="q1-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> The arithmetic average (50 N) is a classic trap! If T were 50 N, then the 2 kg mass would accelerate at (50 - 20)/2 = 15 m/s², while the 8 kg mass would accelerate at (80 - 50)/8 = 3.75 m/s², violating the string length constraint! String inextensibility requires both bodies to have the same acceleration magnitude: a = (8 - 2)/(8 + 2) &times; 10 = 6 m/s². The tension is T = m₁(g + a) = 2(10 + 6) = 32 N (Option C).
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="q-card" id="q2">
+      <div class="q-header">
+        <span class="q-title">Question 2 · The Free-Fall Limiting Boundary</span>
+        <span class="badge neutral">Diagnostic 2.2</span>
+      </div>
+      <div class="q-stem">
+        A 10 kg mass m₂ is connected over an ideal pulley to an extremely light 0.1 kg mass m₁ (g = 10 m/s²). As m₂ accelerates downward, what is the approximate string tension?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="A">
+          <span><strong>A.</strong> Approximately 100 N, because the heavy 10 kg block pulls with almost its full weight.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="B">
+          <span><strong>B.</strong> Approximately 2 N, because T &rarr; 2 m₁ g as m₁ / m₂ &rarr; 0.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="C">
+          <span><strong>C.</strong> Exactly 0 N, because the string goes completely slack during any acceleration.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q2_opt" value="D">
+          <span><strong>D.</strong> 50 N, halfway between zero and 100 N.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ2()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ2ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q2-solution">
+        <div id="q2-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> When m₁ &ll; m₂, the system accelerates at almost free-fall: a = (10 - 0.1)/(10.1) &times; 10 &approx; 9.8 m/s². Because m₂ is almost in free fall, its apparent contact resistance is tiny! The tension is T = 2(0.1)(10)(10)/(10.1) &approx; 1.98 N &approx; 2 N. Notice that T is capped by 2 m₁ g, NOT by m₂ g!
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="q-card" id="q3">
+      <div class="q-header">
+        <span class="q-title">Question 3 · Movable Pulley Kinematic Constraint</span>
+        <span class="badge neutral">Diagnostic 2.3</span>
+      </div>
+      <div class="q-stem">
+        In a 2-segment movable pulley setup supporting a load of weight W, what is the relation between the pulling force F, the string tension T, and the accelerations of the pull hand (a<sub>pull</sub>) and load (a<sub>load</sub>)?
+      </div>
+      <div class="options-grid">
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="A">
+          <span><strong>A.</strong> F = W and a<sub>pull</sub> = a<sub>load</sub>, because one continuous string transfers motion directly.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="B">
+          <span><strong>B.</strong> F = W / 2, but a<sub>pull</sub> = 2 a<sub>load</sub>, because the rope length constraint L = 2 y<sub>load</sub> + y<sub>pull</sub> doubles the required pull displacement.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="C">
+          <span><strong>C.</strong> F = 2 W, and a<sub>pull</sub> = a<sub>load</sub> / 2.</span>
+        </label>
+        <label class="opt-label">
+          <input type="radio" name="q3_opt" value="D">
+          <span><strong>D.</strong> F = W / 4, because both the load and pulley halve the force twice.</span>
+        </label>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="checkQ3()">Check Answer</button>
+        <button class="btn secondary" onclick="loadQ3ToSim()">Test Scenario in Simulator</button>
+      </div>
+      <div class="solution-panel" id="q3-solution">
+        <div id="q3-feedback" style="font-weight: 700; margin-bottom: 6px;"></div>
+        <div>
+          <strong>Explorer Explanation:</strong> The two rope segments supporting the movable pulley each carry tension T = F. The upward equilibrium on the pulley is 2T = W &rArr; F = W / 2. However, by the conservation of string length L = 2 y<sub>load</sub> + y<sub>pull</sub> = const, differentiating twice gives 2 a<sub>load</sub> + a<sub>pull</sub> = 0 &rArr; |a<sub>pull</sub>| = 2 |a<sub>load</sub>|! Work input equals work output: (W/2) &times; 2d = W &times; d.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// -------------------------------------------------------------
+// PHYSICAL SYSTEM STATE
+// -------------------------------------------------------------
+let simMode = 'ATWOOD'; // 'ATWOOD' or 'MOVABLE'
+let m1 = 5.0; // kg (Left in Atwood / Movable load)
+let m2 = 5.0; // kg (Right in Atwood / Effort)
+let g = 10.0; // m/s^2
+
+let y1 = 220; // px (height of m1)
+let y2 = 220; // px (height of m2)
+let vel = 0;  // m/s
+let accel = 0;// m/s^2
+let pulleyAngle = 0; // rad (for fixed pulley)
+let movPulleyAngle = 0; // rad (for movable pulley)
+
+let isRunning = true;
+let simSpeed = 1.0;
+let lastTime = null;
+
+// DOM Elements
+const sliderM1 = document.getElementById('slider-m1');
+const sliderM2 = document.getElementById('slider-m2');
+const sliderG = document.getElementById('slider-g');
+
+const labelM1 = document.getElementById('label-m1');
+const labelM2 = document.getElementById('label-m2');
+const valM1 = document.getElementById('val-m1');
+const valM2 = document.getElementById('val-m2');
+const valG = document.getElementById('val-g');
+
+const statA = document.getElementById('stat-a');
+const statT = document.getElementById('stat-t');
+const statW1 = document.getElementById('stat-w1');
+const statW2 = document.getElementById('stat-w2');
+const statFnet1 = document.getElementById('stat-fnet1');
+const statFnet2 = document.getElementById('stat-fnet2');
+const statV = document.getElementById('stat-v');
+
+const motionBadge = document.getElementById('motion-badge');
+const titleEq1 = document.getElementById('title-eq1');
+const titleEq2 = document.getElementById('title-eq2');
+const eqBody1Text = document.getElementById('eq-body1-text');
+const eqBody2Text = document.getElementById('eq-body2-text');
+
+const chkDynamometer = document.getElementById('chk-dynamometer');
+const chkFbd = document.getElementById('chk-fbd');
+const chkRuler = document.getElementById('chk-ruler');
+
+const simCanvas = document.getElementById('simCanvas');
+const simCtx = simCanvas.getContext('2d');
+const graphCanvas = document.getElementById('graphCanvas');
+const graphCtx = graphCanvas.getContext('2d');
+const graphContainer = document.getElementById('graphContainer');
+const graphTooltip = document.getElementById('graphTooltip');
+
+// -------------------------------------------------------------
+// EVENT LISTENERS & PARAMETER BINDING
+// -------------------------------------------------------------
+function syncSliders() {
+  m1 = parseFloat(sliderM1.value);
+  m2 = parseFloat(sliderM2.value);
+  g = parseFloat(sliderG.value);
+
+  valM1.textContent = m1.toFixed(1) + ' kg';
+  valM2.textContent = m2.toFixed(1) + ' kg';
+  valG.textContent = g.toFixed(1) + ' m/s²';
+
+  clearPresetHighlight();
+  redrawCanvas();
+}
+
+sliderM1.oninput = syncSliders;
+sliderM2.oninput = syncSliders;
+sliderG.oninput = syncSliders;
+
+function clearPresetHighlight() {
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('btn-preset-' + i);
+    if (el) el.classList.remove('active');
+  }
+}
+
+function switchMode(mode) {
+  simMode = mode;
+  document.getElementById('mode-atwood').className = (mode === 'ATWOOD') ? 'btn-pill active' : 'btn-pill';
+  document.getElementById('mode-movable').className = (mode === 'MOVABLE') ? 'btn-pill active' : 'btn-pill';
+  
+  if (mode === 'MOVABLE') {
+    labelM1.innerHTML = 'Load Mass (m₁ - Movable)';
+    labelM2.innerHTML = 'Effort Mass (m₂ - Pull)';
+    titleEq1.textContent = 'Movable Load Equation (2T - m₁g = m₁ a₁)';
+    titleEq2.textContent = 'Effort Equation (m₂g - T = m₂ a₂)';
+  } else {
+    labelM1.innerHTML = 'Mass 1 (m₁ - Left)';
+    labelM2.innerHTML = 'Mass 2 (m₂ - Right)';
+    titleEq1.textContent = 'Body 1 Equation of Motion';
+    titleEq2.textContent = 'Body 2 Equation of Motion';
+  }
+
+  resetSim();
+}
+
+// -------------------------------------------------------------
+// CORE PHYSICS CALCULATIONS
+// -------------------------------------------------------------
+function getPhysics() {
+  let a = 0;
+  let a1 = 0;
+  let a2 = 0;
+  let T = 0;
+  const w1 = m1 * g;
+  const w2 = m2 * g;
+
+  if (simMode === 'ATWOOD') {
+    // Invariant: a = (m2 - m1) g / (m1 + m2)
+    const totalMass = m1 + m2;
+    a = totalMass > 0 ? ((m2 - m1) / totalMass) * g : 0;
+    a1 = a;
+    a2 = a;
+    // Invariant: T = 2 m1 m2 g / (m1 + m2)
+    T = totalMass > 0 ? (2 * m1 * m2 * g) / totalMass : 0;
+  } else {
+    // Movable Pulley Mode (m1 is load supported by 2 strands, m2 is effort)
+    // String constraint: a2 = 2 * a1  (effort accelerates 2x faster than load)
+    // Equations of motion:
+    // 2T - m1 g = m1 a1
+    // m2 g - T = m2 a2 = 2 m2 a1
+    // Multiply 2nd by 2: 2 m2 g - 2T = 4 m2 a1
+    // Add: (2 m2 - m1) g = (m1 + 4 m2) a1
+    const denom = m1 + 4 * m2;
+    a1 = denom > 0 ? ((2 * m2 - m1) / denom) * g : 0;
+    a2 = 2 * a1;
+    a = a2; // reference effort acceleration
+    T = m2 * (g - a2);
+    if (T < 0) T = 0;
+  }
+
+  const fnet1 = Math.abs(T - w1);
+  const fnet2 = Math.abs(w2 - T);
+
+  return { a, a1, a2, T, w1, w2, fnet1, fnet2 };
+}
+
+// -------------------------------------------------------------
+// PRESETS
+// -------------------------------------------------------------
+function applyPreset(num) {
+  clearPresetHighlight();
+  const btn = document.getElementById('btn-preset-' + num);
+  if (btn) btn.classList.add('active');
+
+  if (num === 1) { // Balanced
+    switchMode('ATWOOD');
+    sliderM1.value = 5.0;
+    sliderM2.value = 5.0;
+    sliderG.value = 10.0;
+  } else if (num === 2) { // Free-fall asymmetry
+    switchMode('ATWOOD');
+    sliderM1.value = 1.0;
+    sliderM2.value = 9.0;
+    sliderG.value = 10.0;
+  } else if (num === 3) { // Non-average trap
+    switchMode('ATWOOD');
+    sliderM1.value = 2.0;
+    sliderM2.value = 6.0;
+    sliderG.value = 10.0;
+  } else if (num === 4) { // Movable pulley
+    switchMode('MOVABLE');
+    sliderM1.value = 8.0;
+    sliderM2.value = 5.0;
+    sliderG.value = 10.0;
+  }
+  syncSliders();
+  resetSim();
+}
+
+// -------------------------------------------------------------
+// TRANSPORT CONTROLS
+// -------------------------------------------------------------
+function togglePlay() {
+  isRunning = !isRunning;
+  const btn = document.getElementById('btn-play');
+  btn.textContent = isRunning ? '⏸ Pause' : '▶ Play';
+  btn.className = isRunning ? 'btn-transport primary' : 'btn-transport';
+}
+
+function resetSim() {
+  if (simMode === 'ATWOOD') {
+    y1 = 220;
+    y2 = 220;
+  } else {
+    y1 = 240; // movable load starts mid-low
+    y2 = 180; // effort starts mid-high
+  }
+  vel = 0;
+  accel = 0;
+  pulleyAngle = 0;
+  movPulleyAngle = 0;
+  redrawCanvas();
+}
+
+function stepForward() {
+  const p = getPhysics();
+  updateSimulationState(0.04, p);
+  redrawCanvas();
+}
+
+function setSimSpeed(val) {
+  simSpeed = Math.max(0.05, Math.min(2.0, parseFloat(val)));
+  const slider = document.getElementById('slider-speed');
+  const label = document.getElementById('label-speed');
+  if (slider) slider.value = simSpeed;
+  if (label) label.textContent = simSpeed.toFixed(2) + 'x';
+  try {
+    localStorage.setItem('grade9v3_sim_speed', simSpeed.toString());
+  } catch (e) {}
+}
+
+// Global Speed initialization from localStorage
+(function initGlobalSpeed() {
+  try {
+    const saved = localStorage.getItem('grade9v3_sim_speed');
+    if (saved) {
+      setSimSpeed(saved);
+    }
+  } catch (e) {}
+})();
+
+// -------------------------------------------------------------
+// SIMULATION UPDATE STEP
+// -------------------------------------------------------------
+function updateSimulationState(dt, p) {
+  accel = p.a;
+  vel += accel * dt;
+
+  const dy = vel * dt * 32; // scaling for canvas (px)
+  
+  if (simMode === 'ATWOOD') {
+    y1 -= dy; // If m2 drops (+dy), m1 rises (-dy)
+    y2 += dy;
+    pulleyAngle += (dy / 30);
+
+    // Collision limits
+    if (y1 < 100 || y2 > 370) {
+      if (y1 < 100) { y1 = 100; y2 = 340; }
+      if (y2 > 370) { y2 = 370; y1 = 70; }
+      vel = 0;
+    }
+    if (y2 < 100 || y1 > 370) {
+      if (y2 < 100) { y2 = 100; y1 = 340; }
+      if (y1 > 370) { y1 = 370; y2 = 70; }
+      vel = 0;
+    }
+  } else {
+    // MOVABLE PULLEY: dy is effort displacement (m2)
+    // Movable pulley (m1) moves by dy / 2 in opposite direction
+    y2 += dy;
+    y1 -= dy * 0.5;
+
+    pulleyAngle += (dy / 25);
+    movPulleyAngle -= (dy * 0.5 / 25);
+
+    if (y1 < 120 || y2 > 375) {
+      if (y1 < 120) { y1 = 120; y2 = 360; }
+      if (y2 > 375) { y2 = 375; y1 = 130; }
+      vel = 0;
+    }
+    if (y2 < 110 || y1 > 360) {
+      if (y2 < 110) { y2 = 110; y1 = 350; }
+      if (y1 > 360) { y1 = 360; y2 = 120; }
+      vel = 0;
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// RENDERING: ATWOOD APPARATUS & FREE BODY DIAGRAM
+// -------------------------------------------------------------
+function renderSimStage(p) {
+  const w = simCanvas.width;
+  const h = simCanvas.height;
+  simCtx.clearRect(0, 0, w, h);
+
+  const isFbdOnly = chkFbd.checked;
+  const isRuler = chkRuler.checked;
+  const isDyno = chkDynamometer.checked;
+
+  const centerX = w / 2;
+
+  // Tension heat-color mapping (Sky-Blue -> Orange -> Vibrant Crimson)
+  const tensionRatio = Math.min(1.0, p.T / 100);
+  const ropeColor = `rgb(${Math.floor(56 + tensionRatio * 199)}, ${Math.floor(139 - tensionRatio * 50)}, ${Math.floor(253 - tensionRatio * 190)})`;
+
+  if (simMode === 'ATWOOD') {
+    // ---------------------------------------------------------
+    // CLASSIC ATWOOD SETUP (Wide laboratory frame with dual drops)
+    // ---------------------------------------------------------
+    const pulleyRadius = 65;
+    const pulleyY = 70;
+    const leftX = centerX - pulleyRadius;   // 305 px
+    const rightX = centerX + pulleyRadius; // 435 px
+
+    // 1. Ceiling Mount
+    simCtx.fillStyle = '#1e293b';
+    simCtx.fillRect(centerX - 100, 0, 200, 18);
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.strokeRect(centerX - 100, 0, 200, 18);
+
+    // Ceiling hatching
+    simCtx.strokeStyle = '#334155';
+    for (let x = centerX - 95; x <= centerX + 95; x += 12) {
+      simCtx.beginPath();
+      simCtx.moveTo(x, 18);
+      simCtx.lineTo(x - 8, 0);
+      simCtx.stroke();
+    }
+
+    // Heavy vertical steel hanger
+    simCtx.strokeStyle = '#94a3b8';
+    simCtx.lineWidth = 6;
+    simCtx.beginPath();
+    simCtx.moveTo(centerX, 18);
+    simCtx.lineTo(centerX, pulleyY);
+    simCtx.stroke();
+
+    // 2. Rope
+    simCtx.strokeStyle = ropeColor;
+    simCtx.lineWidth = 3.5;
+    simCtx.shadowColor = ropeColor;
+    simCtx.shadowBlur = Math.min(10, p.T * 0.1);
+
+    // Left segment
+    simCtx.beginPath();
+    simCtx.moveTo(leftX, y1);
+    simCtx.lineTo(leftX, pulleyY);
+    simCtx.stroke();
+
+    // Pulley top arc
+    simCtx.beginPath();
+    simCtx.arc(centerX, pulleyY, pulleyRadius, Math.PI, 0, false);
+    simCtx.stroke();
+
+    // Right segment
+    simCtx.beginPath();
+    simCtx.moveTo(rightX, pulleyY);
+    simCtx.lineTo(rightX, y2);
+    simCtx.stroke();
+
+    simCtx.shadowBlur = 0; // reset glow
+
+    // 3. Rotating Main Pulley
+    drawPulleyWheel(simCtx, centerX, pulleyY, pulleyRadius, pulleyAngle);
+
+    // 4. Inline Spring Dynamometers
+    if (isDyno && !isFbdOnly) {
+      drawSpringDynamometer(simCtx, leftX, (pulleyY + y1) / 2, p.T, 'left');
+      drawSpringDynamometer(simCtx, rightX, (pulleyY + y2) / 2, p.T, 'right');
+    }
+
+    // 5. Height Rulers
+    if (isRuler && !isFbdOnly) {
+      drawHeightRuler(simCtx, leftX - 70, 90, 370, y1, 'left');
+      drawHeightRuler(simCtx, rightX + 70, 90, 370, y2, 'right');
+    }
+
+    // 6. Masses
+    const size1 = Math.max(38, Math.min(68, 32 + m1 * 2.5));
+    const size2 = Math.max(38, Math.min(68, 32 + m2 * 2.5));
+
+    drawMassBlock(simCtx, leftX, y1, size1, size1 * 0.9, m1, '#388bfd', 'm₁', isFbdOnly);
+    drawMassBlock(simCtx, rightX, y2, size2, size2 * 0.9, m2, '#bc8cff', 'm₂', isFbdOnly);
+
+    // 7. Force Vectors (FBD)
+    const scale = 1.25; // px per N
+
+    // Body 1 Vectors
+    drawVectorArrow(simCtx, leftX, y1 - size1 / 2, leftX, y1 - size1 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'left');
+    drawVectorArrow(simCtx, leftX, y1 + size1 / 2, leftX, y1 + size1 / 2 + p.w1 * scale, '#94a3b8', 'W₁=' + p.w1.toFixed(0) + 'N', 'left');
+
+    if (Math.abs(p.a) > 0.05) {
+      const aDir1 = (p.a > 0) ? -1 : 1;
+      drawVectorArrow(simCtx, leftX - size1 / 2 - 20, y1, leftX - size1 / 2 - 20, y1 + aDir1 * Math.abs(p.a) * 8,
+        '#56d364', 'a₁=' + Math.abs(p.a).toFixed(2) + 'm/s²', 'left');
+    }
+
+    // Body 2 Vectors
+    drawVectorArrow(simCtx, rightX, y2 - size2 / 2, rightX, y2 - size2 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'right');
+    drawVectorArrow(simCtx, rightX, y2 + size2 / 2, rightX, y2 + size2 / 2 + p.w2 * scale, '#94a3b8', 'W₂=' + p.w2.toFixed(0) + 'N', 'right');
+
+    if (Math.abs(p.a) > 0.05) {
+      const aDir2 = (p.a > 0) ? 1 : -1;
+      drawVectorArrow(simCtx, rightX + size2 / 2 + 20, y2, rightX + size2 / 2 + 20, y2 + aDir2 * Math.abs(p.a) * 8,
+        '#56d364', 'a₂=' + Math.abs(p.a).toFixed(2) + 'm/s²', 'right');
+    }
+
+  } else {
+    // ---------------------------------------------------------
+    // MOVABLE PULLEY (2:1 MECHANICAL ADVANTAGE)
+    // ---------------------------------------------------------
+    const anchorX = centerX - 120; // 250 px
+    const movRadius = 32;
+    const movX = centerX - 120 + movRadius; // 282 px
+    const fixedRadius = 32;
+    const fixedX = centerX + 90; // 460 px
+    const fixedY = 60;
+    const pullX = fixedX + fixedRadius; // 492 px
+
+    // Movable pulley position is y1
+    const movY = y1;
+
+    // 1. Ceiling Mount Support across both anchors
+    simCtx.fillStyle = '#1e293b';
+    simCtx.fillRect(centerX - 160, 0, 340, 18);
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.strokeRect(centerX - 160, 0, 340, 18);
+
+    // Ceiling hatching
+    simCtx.strokeStyle = '#334155';
+    for (let x = centerX - 155; x <= centerX + 175; x += 14) {
+      simCtx.beginPath();
+      simCtx.moveTo(x, 18);
+      simCtx.lineTo(x - 8, 0);
+      simCtx.stroke();
+    }
+
+    // Left fixed anchor eyelet
+    simCtx.fillStyle = '#94a3b8';
+    simCtx.beginPath();
+    simCtx.arc(anchorX, 24, 6, 0, Math.PI * 2);
+    simCtx.fill();
+    simCtx.strokeStyle = '#475569';
+    simCtx.lineWidth = 2;
+    simCtx.stroke();
+
+    // Bracket hanging fixed pulley
+    simCtx.strokeStyle = '#94a3b8';
+    simCtx.lineWidth = 5;
+    simCtx.beginPath();
+    simCtx.moveTo(fixedX, 18);
+    simCtx.lineTo(fixedX, fixedY);
+    simCtx.stroke();
+
+    // 2. Continuous Rope Path
+    simCtx.strokeStyle = ropeColor;
+    simCtx.lineWidth = 3.5;
+    simCtx.shadowColor = ropeColor;
+    simCtx.shadowBlur = Math.min(10, p.T * 0.1);
+
+    // Segment 1: Ceiling anchor down to left edge of movable pulley
+    simCtx.beginPath();
+    simCtx.moveTo(anchorX, 24);
+    simCtx.lineTo(anchorX, movY);
+    simCtx.stroke();
+
+    // Segment 2: Under the movable pulley
+    simCtx.beginPath();
+    simCtx.arc(movX, movY, movRadius, Math.PI, 0, true);
+    simCtx.stroke();
+
+    // Segment 3: From right edge of movable pulley up to left edge of fixed pulley
+    const movRightX = movX + movRadius;
+    const fixedLeftX = fixedX - fixedRadius;
+    simCtx.beginPath();
+    simCtx.moveTo(movRightX, movY);
+    simCtx.lineTo(fixedLeftX, fixedY);
+    simCtx.stroke();
+
+    // Segment 4: Over top of fixed pulley
+    simCtx.beginPath();
+    simCtx.arc(fixedX, fixedY, fixedRadius, Math.PI, 0, false);
+    simCtx.stroke();
+
+    // Segment 5: Down to effort mass (m2)
+    simCtx.beginPath();
+    simCtx.moveTo(pullX, fixedY);
+    simCtx.lineTo(pullX, y2);
+    simCtx.stroke();
+
+    simCtx.shadowBlur = 0; // reset glow
+
+    // 3. Draw Pulleys
+    drawPulleyWheel(simCtx, fixedX, fixedY, fixedRadius, pulleyAngle);
+    drawPulleyWheel(simCtx, movX, movY, movRadius, movPulleyAngle);
+
+    // Movable Pulley Hook Down to Load Block (m1)
+    const loadHangerY = movY + movRadius;
+    simCtx.strokeStyle = '#cbd5e1';
+    simCtx.lineWidth = 3;
+    simCtx.beginPath();
+    simCtx.moveTo(movX, loadHangerY);
+    simCtx.lineTo(movX, movY + movRadius + 20);
+    simCtx.stroke();
+
+    // 4. Inline Dynamometers
+    if (isDyno && !isFbdOnly) {
+      drawSpringDynamometer(simCtx, anchorX, (24 + movY) / 2, p.T, 'left');
+      drawSpringDynamometer(simCtx, pullX, (fixedY + y2) / 2, p.T, 'right');
+    }
+
+    // 5. Height Rulers
+    if (isRuler && !isFbdOnly) {
+      drawHeightRuler(simCtx, anchorX - 50, 90, 370, movY, 'left');
+      drawHeightRuler(simCtx, pullX + 50, 90, 370, y2, 'right');
+    }
+
+    // 6. Masses
+    const size1 = Math.max(40, Math.min(70, 34 + m1 * 2.5));
+    const size2 = Math.max(36, Math.min(65, 30 + m2 * 2.5));
+
+    const block1Y = movY + movRadius + 20 + size1 / 2;
+    drawMassBlock(simCtx, movX, block1Y, size1, size1 * 0.85, m1, '#388bfd', 'Load (m₁)', isFbdOnly);
+    drawMassBlock(simCtx, pullX, y2, size2, size2 * 0.85, m2, '#bc8cff', 'Effort (m₂)', isFbdOnly);
+
+    // 7. Force Vectors (FBD)
+    const scale = 1.25;
+
+    // Load Block Vectors: Two upward tensions (2T) and Weight (m1*g)
+    drawVectorArrow(simCtx, movX - 10, movY, movX - 10, movY - p.T * scale, '#f0883e', 'T', 'left');
+    drawVectorArrow(simCtx, movX + 10, movY, movX + 10, movY - p.T * scale, '#f0883e', 'T', 'right');
+    drawVectorArrow(simCtx, movX, block1Y + size1 / 2, movX, block1Y + size1 / 2 + p.w1 * scale, '#94a3b8', 'W₁=' + p.w1.toFixed(0) + 'N', 'left');
+
+    if (Math.abs(p.a1) > 0.05) {
+      const aDir1 = (p.a1 > 0) ? -1 : 1;
+      drawVectorArrow(simCtx, movX - size1 / 2 - 20, block1Y, movX - size1 / 2 - 20, block1Y + aDir1 * Math.abs(p.a1) * 8,
+        '#56d364', 'a_load=' + Math.abs(p.a1).toFixed(2) + 'm/s²', 'left');
+    }
+
+    // Effort Block Vectors: Tension Up, Weight Down
+    drawVectorArrow(simCtx, pullX, y2 - size2 / 2, pullX, y2 - size2 / 2 - p.T * scale, '#f0883e', 'T=' + p.T.toFixed(1) + 'N', 'right');
+    drawVectorArrow(simCtx, pullX, y2 + size2 / 2, pullX, y2 + size2 / 2 + p.w2 * scale, '#94a3b8', 'W₂=' + p.w2.toFixed(0) + 'N', 'right');
+
+    if (Math.abs(p.a2) > 0.05) {
+      const aDir2 = (p.a2 > 0) ? 1 : -1;
+      drawVectorArrow(simCtx, pullX + size2 / 2 + 20, y2, pullX + size2 / 2 + 20, y2 + aDir2 * Math.abs(p.a2) * 8,
+        '#56d364', 'a_pull=' + Math.abs(p.a2).toFixed(2) + 'm/s²', 'right');
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// DRAWING HELPERS: PULLEY, BLOCKS, DYNAMOMETER, RULERS
+// -------------------------------------------------------------
+function drawPulleyWheel(ctx, cx, cy, radius, angle) {
+  // Pulley Outer Rim
+  ctx.fillStyle = '#1e293b';
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  // Brass inner bevel
+  ctx.strokeStyle = '#d97706';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius - 3, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Spokes
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2.5;
+  const numSpokes = 6;
+  for (let s = 0; s < numSpokes; s++) {
+    const spAngle = angle + (s * Math.PI * 2 / numSpokes);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(spAngle) * (radius - 5), cy + Math.sin(spAngle) * (radius - 5));
+    ctx.stroke();
+  }
+
+  // Heavy Center Hub
+  ctx.fillStyle = '#e2e8f0';
+  ctx.beginPath();
+  ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#0f172a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly) {
+  const topX = cx - w / 2;
+  const topY = cy - h / 2;
+
+  if (!isFbdOnly) {
+    // 3D Metallic / Beveled Weight Block
+    const grad = ctx.createLinearGradient(topX, topY, topX + w, topY + h);
+    grad.addColorStop(0, '#334155');
+    grad.addColorStop(0.5, '#1e293b');
+    grad.addColorStop(1, '#0f172a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(topX, topY, w, h);
+
+    // Colored Accent Border
+    ctx.strokeStyle = themeColor;
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(topX, topY, w, h);
+
+    // Eyelet ring at top for rope attachment
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.arc(cx, topY, 4.5, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Mass Label
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 12px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(massVal.toFixed(1) + ' kg', cx, cy + 4);
+
+    // Subtitle label
+    ctx.fillStyle = themeColor;
+    ctx.font = 'bold 10px monospace';
+    ctx.fillText(label, cx, topY - 8);
+  } else {
+    // Point-particle circle
+    ctx.fillStyle = themeColor;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 7.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 11px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${label} (${massVal.toFixed(1)}kg)`, cx, topY - 10);
+  }
+}
+
+function drawSpringDynamometer(ctx, x, y, tensionVal, side) {
+  const tubeW = 16;
+  const tubeH = 44;
+
+  // Outer transparent acrylic cylinder
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.fillRect(x - tubeW / 2, y - tubeH / 2, tubeW, tubeH);
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x - tubeW / 2, y - tubeH / 2, tubeW, tubeH);
+
+  // Brass caps at top and bottom
+  ctx.fillStyle = '#b45309';
+  ctx.fillRect(x - tubeW / 2 - 1, y - tubeH / 2 - 3, tubeW + 2, 4);
+  ctx.fillRect(x - tubeW / 2 - 1, y + tubeH / 2 - 1, tubeW + 2, 4);
+
+  // Internal Spring Coil: stretches with tension
+  const springStretch = Math.min(26, Math.max(8, 8 + (tensionVal / 100) * 18));
+  ctx.strokeStyle = '#f0883e';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  const startY = y - tubeH / 2 + 5;
+  ctx.moveTo(x, startY);
+  const coils = 6;
+  const step = springStretch / coils;
+  for (let i = 0; i < coils; i++) {
+    const cy_sub = startY + i * step;
+    ctx.lineTo(x + (i % 2 === 0 ? 4 : -4), cy_sub + step * 0.5);
+    ctx.lineTo(x, cy_sub + step);
+  }
+  ctx.stroke();
+
+  // Indicator Needle
+  const needleY = startY + springStretch;
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath();
+  ctx.arc(x, needleY, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Clean, non-overlapping floating badge with tension value
+  const badgeW = 54;
+  const badgeH = 18;
+  const badgeX = (side === 'left') ? (x - tubeW / 2 - badgeW - 8) : (x + tubeW / 2 + 8);
+  const badgeY = y - badgeH / 2;
+
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+  ctx.fillRect(badgeX, badgeY, badgeW, badgeH);
+  ctx.strokeStyle = '#f0883e';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(badgeX, badgeY, badgeW, badgeH);
+
+  ctx.fillStyle = '#f0883e';
+  ctx.font = 'bold 10px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(tensionVal.toFixed(1) + ' N', badgeX + badgeW / 2, badgeY + 12);
+}
+
+function drawHeightRuler(ctx, rx, minY, maxY, curY, side) {
+  // Vertical ruler backbone
+  ctx.strokeStyle = '#334155';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(rx, minY);
+  ctx.lineTo(rx, maxY);
+  ctx.stroke();
+
+  // Tick marks pointing towards the apparatus
+  const tickDir = (side === 'left') ? 1 : -1;
+  for (let y = minY; y <= maxY; y += 20) {
+    ctx.beginPath();
+    ctx.moveTo(rx, y);
+    ctx.lineTo(rx + tickDir * 5, y);
+    ctx.stroke();
+  }
+
+  // Pointer Triangle at current height
+  ctx.fillStyle = '#58a6ff';
+  ctx.beginPath();
+  if (side === 'left') {
+    ctx.moveTo(rx + 6, curY);
+    ctx.lineTo(rx + 13, curY - 4);
+    ctx.lineTo(rx + 13, curY + 4);
+  } else {
+    ctx.moveTo(rx - 6, curY);
+    ctx.lineTo(rx - 13, curY - 4);
+    ctx.lineTo(rx - 13, curY + 4);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Ruler height text: placed AWAY from apparatus so it never collides with mass blocks
+  ctx.font = 'bold 10px monospace';
+  ctx.fillStyle = '#94a3b8';
+  if (side === 'left') {
+    ctx.textAlign = 'right';
+    ctx.fillText(((370 - curY) / 25).toFixed(1) + ' m', rx - 8, curY + 3);
+  } else {
+    ctx.textAlign = 'left';
+    ctx.fillText(((370 - curY) / 25).toFixed(1) + ' m', rx + 8, curY + 3);
+  }
+}
+
+function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label, side) {
+  const headLen = 7;
+  const angle = Math.atan2(toY - fromY, toX - fromX);
+  const len = Math.hypot(toX - fromX, toY - fromY);
+
+  if (len < 1) return;
+
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 2.5;
+
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.stroke();
+
+  // Arrowhead
+  ctx.beginPath();
+  ctx.moveTo(toX, toY);
+  ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+  ctx.fill();
+
+  if (label) {
+    ctx.font = 'bold 11px monospace';
+    ctx.fillStyle = color;
+    if (side === 'left') {
+      ctx.textAlign = 'right';
+      ctx.fillText(label, toX - 8, toY + 4);
+    } else {
+      ctx.textAlign = 'left';
+      ctx.fillText(label, toX + 8, toY + 4);
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// RENDERING: INTERACTIVE DRAGGABLE PHASE-SPACE GRAPH (DUAL-AXIS)
+// -------------------------------------------------------------
+function renderGraph(p) {
+  const w = graphCanvas.width;
+  const h = graphCanvas.height;
+  graphCtx.clearRect(0, 0, w, h);
+
+  const padLeft = 52;
+  const padBottom = 42;
+  const padTop = 42;
+  const padRight = 50;
+
+  const plotW = w - padLeft - padRight;
+  const plotH = h - padBottom - padTop;
+
+  const maxRatio = 5.0; // m2 / m1 ratio on X axis
+  const maxTensionY = 120; // Tension scale (0 - 120 N) on Left Y axis
+  const maxAccelY = 10;   // Accel scale (0 - 10 m/s^2) on Right Y axis
+
+  const toScreenX = (ratio) => padLeft + (ratio / maxRatio) * plotW;
+  const toScreenYTension = (val) => (h - padBottom) - (val / maxTensionY) * plotH;
+  const toScreenYAccel = (val) => (h - padBottom) - (val / maxAccelY) * plotH;
+
+  // 1. Grid Lines
+  graphCtx.strokeStyle = '#1e293b';
+  graphCtx.lineWidth = 1;
+  for (let r = 1; r <= 5; r += 1) {
+    const sx = toScreenX(r);
+    graphCtx.beginPath();
+    graphCtx.moveTo(sx, padTop);
+    graphCtx.lineTo(sx, h - padBottom);
+    graphCtx.stroke();
+    graphCtx.fillStyle = '#64748b';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'center';
+    graphCtx.fillText(r + ':1', sx, h - padBottom + 16);
+  }
+
+  for (let t = 20; t <= maxTensionY; t += 20) {
+    const sy = toScreenYTension(t);
+    graphCtx.beginPath();
+    graphCtx.moveTo(padLeft, sy);
+    graphCtx.lineTo(w - padRight, sy);
+    graphCtx.stroke();
+    // Left axis tick label (Tension)
+    graphCtx.fillStyle = '#f0883e';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'right';
+    graphCtx.fillText(t, padLeft - 6, sy + 4);
+  }
+
+  // Right axis tick labels (Acceleration)
+  for (let a = 2; a <= maxAccelY; a += 2) {
+    const sy = toScreenYAccel(a);
+    graphCtx.fillStyle = '#56d364';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'left';
+    graphCtx.fillText(a + 'm/s²', w - padRight + 6, sy + 4);
+  }
+
+  // 2. Axes
+  graphCtx.strokeStyle = '#475569';
+  graphCtx.lineWidth = 1.5;
+  graphCtx.beginPath();
+  graphCtx.moveTo(padLeft, padTop);
+  graphCtx.lineTo(padLeft, h - padBottom);
+  graphCtx.lineTo(w - padRight, h - padBottom);
+  graphCtx.lineTo(w - padRight, padTop);
+  graphCtx.stroke();
+
+  // Axis Titles
+  graphCtx.fillStyle = '#f0883e';
+  graphCtx.font = 'bold 11px monospace';
+  graphCtx.textAlign = 'left';
+  graphCtx.fillText('— T (N)', padLeft, padTop - 14);
+
+  graphCtx.fillStyle = '#56d364';
+  graphCtx.textAlign = 'right';
+  graphCtx.fillText('— a (m/s²)', w - padRight, padTop - 14);
+
+  graphCtx.fillStyle = '#94a3b8';
+  graphCtx.textAlign = 'center';
+  graphCtx.fillText('Mass Ratio α = m₂ / m₁', padLeft + plotW / 2, h - 10);
+
+  // 3. Draw Tension Curve: T(α) = 2 m1 (α m1) g / (m1 + α m1) = 2 m1 g (α / (1 + α))
+  graphCtx.strokeStyle = '#f0883e';
+  graphCtx.lineWidth = 3;
+  graphCtx.beginPath();
+  for (let r = 0; r <= maxRatio; r += 0.05) {
+    const curT = (2 * m1 * (r * m1) * g) / (m1 + r * m1 || 1);
+    const sx = toScreenX(r);
+    const sy = toScreenYTension(curT);
+    if (r === 0) graphCtx.moveTo(sx, sy);
+    else graphCtx.lineTo(sx, sy);
+  }
+  graphCtx.stroke();
+
+  // Asymptotic Limit T -> 2 m1 g
+  const tLimit = 2 * m1 * g;
+  if (tLimit <= maxTensionY + 20) {
+    const limitY = toScreenYTension(tLimit);
+    graphCtx.strokeStyle = 'rgba(240, 136, 62, 0.45)';
+    graphCtx.lineWidth = 1.5;
+    graphCtx.setLineDash([4, 4]);
+    graphCtx.beginPath();
+    graphCtx.moveTo(padLeft, limitY);
+    graphCtx.lineTo(w - padRight, limitY);
+    graphCtx.stroke();
+    graphCtx.setLineDash([]);
+
+    graphCtx.fillStyle = '#f0883e';
+    graphCtx.font = '10px monospace';
+    graphCtx.textAlign = 'right';
+    graphCtx.fillText('Limit 2m₁g = ' + tLimit.toFixed(0) + 'N', w - padRight - 8, limitY - 5);
+  }
+
+  // 4. Draw Acceleration Curve: a(α) = (α - 1)/(α + 1) * g
+  graphCtx.strokeStyle = '#56d364';
+  graphCtx.lineWidth = 2.5;
+  graphCtx.beginPath();
+  for (let r = 0; r <= maxRatio; r += 0.05) {
+    const curA = Math.max(0, ((r - 1) / (r + 1)) * g);
+    const sx = toScreenX(r);
+    const sy = toScreenYAccel(curA);
+    if (r === 0) graphCtx.moveTo(sx, sy);
+    else graphCtx.lineTo(sx, sy);
+  }
+  graphCtx.stroke();
+
+  // 5. Current Operating Point Marker
+  const currentRatio = m1 > 0 ? m2 / m1 : 1.0;
+  const curX = toScreenX(Math.min(maxRatio, currentRatio));
+  const curY = toScreenYTension(p.T);
+
+  // Pulsing glow
+  graphCtx.fillStyle = 'rgba(240, 136, 62, 0.35)';
+  graphCtx.beginPath();
+  graphCtx.arc(curX, curY, 11, 0, Math.PI * 2);
+  graphCtx.fill();
+
+  // Center disc
+  graphCtx.fillStyle = '#ffffff';
+  graphCtx.beginPath();
+  graphCtx.arc(curX, curY, 6, 0, Math.PI * 2);
+  graphCtx.fill();
+  ctx = graphCtx;
+  ctx.strokeStyle = '#000000';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Text tag
+  graphCtx.font = 'bold 11px monospace';
+  graphCtx.fillStyle = '#f0883e';
+  graphCtx.textAlign = (curX > w - padRight - 70) ? 'right' : 'left';
+  const tagOffset = (curX > w - padRight - 70) ? -10 : 10;
+  graphCtx.fillText(`T = ${p.T.toFixed(1)}N`, curX + tagOffset, curY - 5);
+}
+
+// -------------------------------------------------------------
+// GRAPH INTERACTION / DRAGGING
+// -------------------------------------------------------------
+let isDraggingGraph = false;
+
+function handleGraphInteraction(e) {
+  const rect = graphCanvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  const padLeft = 52;
+  const padRight = 50;
+  const plotW = graphCanvas.width - padLeft - padRight;
+  const maxRatio = 5.0;
+
+  const clampedX = Math.max(padLeft, Math.min(graphCanvas.width - padRight, mouseX));
+  const newRatio = ((clampedX - padLeft) / plotW) * maxRatio;
+
+  // Set m2 = newRatio * m1
+  const newM2 = Math.min(15.0, Math.max(0.5, newRatio * m1));
+  sliderM2.value = newM2.toFixed(1);
+  syncSliders();
+
+  // Tooltip
+  const pPhys = getPhysics();
+  graphTooltip.style.display = 'block';
+  graphTooltip.style.left = (mouseX + 14) + 'px';
+  graphTooltip.style.top = (mouseY - 26) + 'px';
+  graphTooltip.innerHTML = `<strong>Ratio α = ${newRatio.toFixed(2)}</strong><br>Tension T = ${pPhys.T.toFixed(1)} N<br>Accel a = ${Math.abs(pPhys.a).toFixed(2)} m/s²`;
+}
+
+graphCanvas.addEventListener('mousedown', (e) => {
+  isDraggingGraph = true;
+  handleGraphInteraction(e);
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (isDraggingGraph) {
+    handleGraphInteraction(e);
+  }
+});
+
+window.addEventListener('mouseup', () => {
+  isDraggingGraph = false;
+  graphTooltip.style.display = 'none';
+});
+
+graphCanvas.addEventListener('mouseleave', () => {
+  if (!isDraggingGraph) graphTooltip.style.display = 'none';
+});
+
+// -------------------------------------------------------------
+// SYNCHRONIZED RE-DRAWING & UI STATUS UPDATE
+// -------------------------------------------------------------
+function redrawCanvas() {
+  const p = getPhysics();
+
+  statA.textContent = Math.abs(p.a).toFixed(2) + ' m/s²';
+  statT.textContent = p.T.toFixed(1) + ' N';
+  statW1.textContent = p.w1.toFixed(0) + ' N';
+  statW2.textContent = p.w2.toFixed(0) + ' N';
+  statFnet1.textContent = p.fnet1.toFixed(1) + ' N';
+  statFnet2.textContent = p.fnet2.toFixed(1) + ' N';
+  statV.textContent = Math.abs(vel).toFixed(2) + ' m/s';
+
+  if (Math.abs(p.a) < 0.01) {
+    motionBadge.className = 'badge neutral';
+    motionBadge.textContent = 'Balanced Equilibrium (a = 0)';
+  } else if (simMode === 'ATWOOD') {
+    if (p.a > 0) {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Accelerating: m₂ Down / m₁ Up (${p.a.toFixed(2)} m/s²)`;
+    } else {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Accelerating: m₁ Down / m₂ Up (${Math.abs(p.a).toFixed(2)} m/s²)`;
+    }
+  } else {
+    // MOVABLE
+    if (p.a1 > 0) {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Effort Drops (${p.a2.toFixed(2)} m/s²) → Load Rises (${p.a1.toFixed(2)} m/s²)`;
+    } else {
+      motionBadge.className = 'badge atwood';
+      motionBadge.textContent = `Load Drops (${Math.abs(p.a1).toFixed(2)} m/s²) → Effort Rises (${Math.abs(p.a2).toFixed(2)} m/s²)`;
+    }
+  }
+
+  // Update Equations HUD
+  if (simMode === 'ATWOOD') {
+    eqBody1Text.textContent = `T - m₁g = ${p.T.toFixed(1)}N - ${p.w1.toFixed(0)}N = ${(p.T - p.w1).toFixed(1)}N → a₁ = ${((p.T - p.w1)/m1).toFixed(2)} m/s² (Up)`;
+    eqBody2Text.textContent = `m₂g - T = ${p.w2.toFixed(0)}N - ${p.T.toFixed(1)}N = ${(p.w2 - p.T).toFixed(1)}N → a₂ = ${((p.w2 - p.T)/m2).toFixed(2)} m/s² (Down)`;
+  } else {
+    eqBody1Text.textContent = `2T - m₁g = ${(2*p.T).toFixed(1)}N - ${p.w1.toFixed(0)}N = ${(2*p.T - p.w1).toFixed(1)}N → a_load = ${p.a1.toFixed(2)} m/s²`;
+    eqBody2Text.textContent = `m₂g - T = ${p.w2.toFixed(0)}N - ${p.T.toFixed(1)}N = ${(p.w2 - p.T).toFixed(1)}N → a_effort = ${p.a2.toFixed(2)} m/s²`;
+  }
+
+  renderSimStage(p);
+  renderGraph(p);
+}
+
+// -------------------------------------------------------------
+// ANIMATION TICK LOOP (60 FPS)
+// -------------------------------------------------------------
+function tick(timestamp) {
+  if (!lastTime) lastTime = timestamp;
+  const rawDt = Math.min(0.05, (timestamp - lastTime) / 1000);
+  lastTime = timestamp;
+
+  if (isRunning) {
+    const dt = rawDt * simSpeed;
+    const p = getPhysics();
+    updateSimulationState(dt, p);
+  }
+
+  redrawCanvas();
+  requestAnimationFrame(tick);
+}
+
+// Start simulation loop
+requestAnimationFrame(tick);
+
+// -------------------------------------------------------------
+// DIAGNOSTIC QUESTIONS CHECKERS
+// -------------------------------------------------------------
+function checkQ1() {
+  const sel = document.querySelector('input[name="q1_opt"]:checked');
+  const sol = document.getElementById('q1-solution');
+  const fb = document.getElementById('q1-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'C') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! Tension is the harmonic mean (32 N), not the arithmetic average.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: Notice the arithmetic average trap!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ1ToSim() {
+  applyPreset(3);
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function checkQ2() {
+  const sel = document.querySelector('input[name="q2_opt"]:checked');
+  const sol = document.getElementById('q2-solution');
+  const fb = document.getElementById('q2-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! Tension approaches 2 m₁ g (~2 N), limited by the lighter mass.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: In near-free-fall, tension is tiny!';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ2ToSim() {
+  switchMode('ATWOOD');
+  sliderM1.value = 0.5;
+  sliderM2.value = 10.0;
+  sliderG.value = 10.0;
+  syncSliders();
+  resetSim();
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function checkQ3() {
+  const sel = document.querySelector('input[name="q3_opt"]:checked');
+  const sol = document.getElementById('q3-solution');
+  const fb = document.getElementById('q3-feedback');
+  sol.classList.add('active');
+
+  if (sel && sel.value === 'B') {
+    sol.className = 'solution-panel active correct';
+    fb.innerHTML = '✅ CORRECT! F = W/2, but string constraint requires a_pull = 2 a_load.';
+    fb.style.color = 'var(--success-color)';
+  } else {
+    sol.className = 'solution-panel active wrong';
+    fb.innerHTML = '❌ INCORRECT: Did you differentiate the string length constraint L = 2 y_load + y_pull?';
+    fb.style.color = 'var(--danger-color)';
+  }
+}
+
+function loadQ3ToSim() {
+  applyPreset(4);
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+</script>
+
+<script src="../../../../js/display-controls.js"></script>
+</body>
+</html>
