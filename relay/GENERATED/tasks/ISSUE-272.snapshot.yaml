@@ -1,0 +1,581 @@
+{
+  "schema_version": "relay-v3.1-task-snapshot",
+  "authority": "DERIVED_READ_MODEL",
+  "source_protocol": "V3_1",
+  "identity": {
+    "work_package": "ISSUE-272-CORE-PROMPT-COMPOSER",
+    "ep": "ISSUE-272-PROVIDER-VIEW",
+    "issue": 272,
+    "delivery_vehicle": null
+  },
+  "purpose": {
+    "programme_outcome": "Turn an owner-supplied question set into a traceable concept fingerprint, reusable six-Core agent prompt, machine-readable prompt brief, and existing planner handoff without creating new curriculum, question, role, or planner authority.",
+    "current_goal": "Implement the repository-grounded #272 prompt-composer slice on the exact main basis while preserving #265/#209 ownership boundaries.",
+    "task_outcome": "Deterministic prompt brief, prompt renderer, trace, worksheet-map and authoring-request exports with an offline browser surface and Atlas handoff.",
+    "why_this_task_exists": "Issue #272 asks for a question-set → concept fingerprint → Core-agent prompt workflow that reuses current canonical mappings and planning contracts."
+  },
+  "lineage": {
+    "predecessor_checkpoint": null,
+    "upstream_dependencies": [
+      "ISSUE-265-CORE-TEMPLATES",
+      "ISSUE-209-PASS2-PARKED"
+    ],
+    "roadmap_admission": {
+      "disposition": "ISSUE_LOCAL_PROVIDER_VIEW",
+      "revision": null,
+      "basis": [
+        "github:reallaksh19/Grade9V3#272"
+      ]
+    }
+  },
+  "parent_issue": {
+    "repository": "reallaksh19/Grade9V3",
+    "number": 272,
+    "title": "[Core Prompt Composer] Generate traceable agent prompts from question sets, rungs, and learner profiles",
+    "state": "OPEN",
+    "url": "https://github.com/reallaksh19/Grade9V3/issues/272",
+    "baseline": null,
+    "current": {
+      "acceptance_items": [
+        {
+          "id": "AC-272-COMPOSE",
+          "statement": "Question rows deterministically produce a subject-neutral prompt brief, keyword fingerprint, rendered prompt, trace, worksheet map and existing authoring request.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Implement authoritative composer and focused proof fixtures."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-HONESTY",
+          "statement": "Short IDs, unresolved mappings, mixed subtopics, learner estimates and source basis fail closed without inventing authority.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Implement falsifiers and source/learner boundary tests."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-BROWSER",
+          "statement": "Offline browser UI exposes build-from-question-set flow, trace and export/handoff without duplicating planner logic.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Implement static data projection and browser surface with parity checks."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        },
+        {
+          "id": "AC-272-VALIDATION",
+          "statement": "Focused and repository guardrails pass on the exact delivery head.",
+          "state": "PENDING",
+          "reason_class": "CURRENT_TASK",
+          "evidence": [],
+          "trace_refs": [],
+          "remaining": [
+            "Run focused tests and repository checks."
+          ],
+          "owner": null,
+          "weight": null,
+          "parent_mappings": []
+        }
+      ]
+    },
+    "updates": [
+      {
+        "type": "PLAN_UPDATE",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5824798943",
+        "summary": "Rev 2 temporarily added downstream six-Core PDFs."
+      },
+      {
+        "type": "PLAN_UPDATE",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5824874619",
+        "summary": "Rev 3 restored #272 terminal scope to validated prompt bundle plus existing planner handoff; PDFs moved to #273."
+      }
+    ],
+    "disposition": "NO_CHANGE",
+    "relationships": [
+      {
+        "issue": 265,
+        "relationship": "UPSTREAM_CONTRACT_PROVIDER"
+      },
+      {
+        "issue": 209,
+        "relationship": "ADJACENT_PARKED_AUTHORITY"
+      },
+      {
+        "issue": 273,
+        "relationship": "DOWNSTREAM_PDF_PUBLICATION"
+      }
+    ],
+    "handover_ledger": null
+  },
+  "programme_parent": null,
+  "planning": {
+    "state": "PRESENT",
+    "provider_ref": "github:reallaksh19/Grade9V3#272/comment-5824874619",
+    "revision": 3,
+    "digest": null,
+    "observed_at": "2026-09-25T01:11:27Z",
+    "responsibility_basis_ref": "github:reallaksh19/Grade9V3#272",
+    "responsibility_basis_digest": null,
+    "expected_next_observable": {
+      "statement": "A deterministic Phase-1 proof bundle for the five owner rows plus mixed/unknown/cross-subject falsifiers, followed by the offline browser surface and existing planner handoff.",
+      "evidence": [
+        "github:reallaksh19/Grade9V3#272/comment-5824743626",
+        "github:reallaksh19/Grade9V3#272/comment-5824874619"
+      ]
+    }
+  },
+  "task_publications": [
+    {
+      "type": "IMPLEMENTATION_PLAN",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5824743626",
+      "observed_at": "2026-09-25T00:59:14Z",
+      "summary": "Repository-grounded prompt-composer implementation plan.",
+      "exact_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5824874619",
+      "observed_at": "2026-09-25T01:07:00Z",
+      "summary": "Restored terminal boundary to prompt bundle and planner handoff; PDFs moved to #273.",
+      "exact_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+    }
+  ],
+  "programme_progress": null,
+  "work_issue_progress": {
+    "criteria": [
+      {
+        "id": "AC-272-COMPOSE",
+        "statement": "Deterministic prompt bundle",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implementation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-HONESTY",
+        "statement": "Fail-closed mapping/source/learner semantics",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implementation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-BROWSER",
+        "statement": "Offline browser composer and Atlas handoff",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implementation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "AC-272-VALIDATION",
+        "statement": "Focused plus repository validation",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Validation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 4,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 4
+    },
+    "coverage": {
+      "satisfied": 0,
+      "applicable_total": 4,
+      "percent": 0,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "plan_progress": {
+    "criteria": [
+      {
+        "id": "STEP-272-1",
+        "statement": "Authoritative schema/template/composer and proof fixtures",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implement"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-2",
+        "statement": "Offline static data projection and browser UX",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implement"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-3",
+        "statement": "Homepage/Atlas handoff and parity/security/accessibility falsifiers",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Implement and verify"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "STEP-272-4",
+        "statement": "Repository validation and task evidence",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Run checks and publish evidence"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 4,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 4
+    },
+    "coverage": {
+      "satisfied": 0,
+      "applicable_total": 4,
+      "percent": 0,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "task_acceptance_progress": {
+    "criteria": [
+      {
+        "id": "TA-272-EXACT-HEAD",
+        "statement": "Exact delivery head passes focused composer tests and repository guardrails.",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Run validation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-272-V31-BINDING",
+        "statement": "Issue-local Task Snapshot binding passes on the delivery branch.",
+        "state": "PENDING",
+        "reason_class": "PROVIDER",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Create draft PR and run workflow if authorized by repository automation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      },
+      {
+        "id": "TA-272-RESULT",
+        "statement": "Terminal TASK_RESULT published after implementation/review.",
+        "state": "PENDING",
+        "reason_class": "CURRENT_TASK",
+        "evidence": [],
+        "trace_refs": [],
+        "remaining": [
+          "Publish after validation"
+        ],
+        "owner": null,
+        "weight": null,
+        "parent_mappings": []
+      }
+    ],
+    "summary": {
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "not_run": 0,
+      "pending": 3,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 3
+    },
+    "coverage": {
+      "satisfied": 0,
+      "applicable_total": 3,
+      "percent": 0,
+      "basis": "UNWEIGHTED_CRITERIA"
+    }
+  },
+  "verification": {
+    "state": "PENDING",
+    "observations": [],
+    "failure_origins": {}
+  },
+  "delivery": {
+    "pr": null,
+    "url": null,
+    "lifecycle": "BRANCH_ONLY",
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "head": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "mergeability": null
+  },
+  "delivery_stack": [],
+  "completion": {
+    "overall_state": "PARTIAL",
+    "headline": "#272 ACTIVE — implementation branch established on the frozen main basis.",
+    "implementation": "PENDING",
+    "verification": "PENDING",
+    "delivery": "BRANCH_ONLY",
+    "work_issue_acceptance": "PENDING",
+    "programme_contribution": "UNKNOWN",
+    "provider_issue": "OPEN",
+    "what_done": [
+      "Re-grounded main and adjacent #265/#209 coordination state.",
+      "Frozen rev-3 terminal boundary and non-overlapping write fence.",
+      "Created issue-272/core-prompt-composer from exact main basis."
+    ],
+    "what_remains": [
+      "Implement authoritative composer/schema/template.",
+      "Implement offline browser and handoff.",
+      "Run focused/repository validation and publish TASK_EVIDENCE."
+    ],
+    "dependencies": [
+      "#265 remains draft/unmerged; consume current role semantics from main without copying unmerged template files."
+    ],
+    "owner_decisions": []
+  },
+  "parent_issue_progress": {
+    "checklist": [],
+    "summary": {
+      "complete": 0,
+      "partial": 0,
+      "pending": 0,
+      "blocked": 0,
+      "deferred": 0,
+      "not_applicable": 0,
+      "unknown": 0,
+      "total": 0
+    }
+  },
+  "current_task_progress": {
+    "checklist": [],
+    "summary": {
+      "complete": 0,
+      "partial": 0,
+      "pending": 0,
+      "blocked": 0,
+      "total": 0
+    }
+  },
+  "offloads": [],
+  "pending_items": [],
+  "known_issues": [
+    "Direct git transport is unavailable in the execution environment; connected GitHub API is the repository source of truth for reads/writes."
+  ],
+  "improvement_vs_original_issue": {
+    "baseline_digest": null,
+    "items": []
+  },
+  "scope": {
+    "write": [
+      "relay/GENERATED/tasks/ISSUE-272.snapshot.yaml",
+      "Shared/library/prompt-brief.schema.json",
+      "Shared/tools/prompt_composer.py",
+      "Shared/tools/build_prompt_composer_data.py",
+      "template/core-prompt-composer/core-agent-prompt.v1.json",
+      "public/core-prompt-composer/index.html",
+      "public/js/core-prompt-composer.js",
+      "public/css/core-prompt-composer.css",
+      "public/index.html",
+      "public/css/site.css",
+      "public/js/topic-atlas.js",
+      "public/data/prompt-composer-data.js",
+      "tests/test_prompt_composer.py",
+      "tests/prompt_composer.test.mjs",
+      "tests/fixtures/prompt-composer/**",
+      "docs/architecture-manifest.json"
+    ],
+    "read": [
+      "Shared/library/**",
+      "Shared/tools/**",
+      "Shared/roles/**",
+      "Physics/**",
+      "Mathematics/**",
+      "Chemistry/**",
+      "public/**",
+      "tests/**"
+    ],
+    "protected": [
+      "Existing six Core role semantics",
+      "Canonical subject truth",
+      "Canonical question/source custody",
+      "Existing authoritative planner/readiness/source-receipt semantics"
+    ],
+    "prohibited": [
+      "No seventh Core",
+      "No canonical question selection/adaptation pipeline",
+      "No learner mastery inference from percentages",
+      "No source receipt fabrication",
+      "No browser-side planner clone",
+      "No PDF rendering under #272"
+    ]
+  },
+  "inputs": [],
+  "benchmarks": [],
+  "benchmark_debt": {
+    "required_missing": [],
+    "stale": [],
+    "optional": []
+  },
+  "execution": {
+    "lifecycle": "ACTIVE",
+    "lease_or_custody": null,
+    "executor": "issue-272 implementation agent",
+    "route": "ISSUE:#272",
+    "branch": "issue-272/core-prompt-composer"
+  },
+  "material": {
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "current_head": "7982850a5d5d5ed133e3098522a889b89f1fc54a"
+  },
+  "acceptance": [
+    {
+      "id": "TA-272-EXACT-HEAD",
+      "state": "PENDING",
+      "statement": "Focused composer tests and repository guardrails pass on exact delivery head.",
+      "evidence": []
+    },
+    {
+      "id": "TA-272-V31-BINDING",
+      "state": "PENDING",
+      "statement": "Current issue/branch Task Snapshot binding passes.",
+      "evidence": []
+    },
+    {
+      "id": "TA-272-RESULT",
+      "state": "PENDING",
+      "statement": "Terminal TASK_RESULT published.",
+      "evidence": []
+    }
+  ],
+  "controls": {
+    "material_write": [],
+    "checkpoint": [],
+    "handover": [],
+    "pr_ready": [],
+    "merge": [],
+    "release": []
+  },
+  "knowledge_state": {
+    "known_true": [
+      "main is 7982850a5d5d5ed133e3098522a889b89f1fc54a at implementation start.",
+      "#265 remains a draft stack and has not landed on main.",
+      "#209 remains parked and owns reusable canonical set selection/strict exam mode.",
+      "#272 rev 3 ends at the validated prompt bundle plus existing planner handoff; PDF publication belongs to #273."
+    ],
+    "known_false": [
+      "Short owner labels such as Q23 are sufficient source identity.",
+      "A 50% owner estimate proves prerequisite mastery.",
+      "#272 may place canonical question IDs into authoring-request source_basis."
+    ],
+    "unknown": [
+      "Whether repository CI will identify additional integration constraints after the draft branch is material."
+    ],
+    "assumptions": []
+  },
+  "negative_knowledge": [
+    "Do not bind short owner IDs to unrelated explorer records.",
+    "Do not auto-claim a unique canonical rung when mapped primaries span multiple rungs.",
+    "Do not convert parent-source provenance into a source receipt or planner-ready source basis."
+  ],
+  "preserve": {
+    "accepted_do_not_reopen": []
+  },
+  "history": {
+    "recent_events": []
+  },
+  "next": {
+    "immediate_action": "Implement the deterministic authoritative composer and proof fixtures before the browser surface.",
+    "next_value_frontier": "Five-row projectile proof bundle with honest R3 owner-confirmed composition scope and full trace.",
+    "stop_conditions": [
+      "Stop before PR readiness or merge without explicit owner authorization.",
+      "Stop and publish PLAN_UPDATE if live main or upstream ownership materially invalidates the frozen write fence."
+    ]
+  },
+  "reconstruction_sources": [
+    "https://github.com/reallaksh19/Grade9V3/issues/272",
+    "https://github.com/reallaksh19/Grade9V3/issues/272#issuecomment-5824743626",
+    "https://github.com/reallaksh19/Grade9V3/issues/272#issuecomment-5824874619",
+    "https://github.com/reallaksh19/Grade9V3/issues/265",
+    "https://github.com/reallaksh19/Grade9V3/issues/209"
+  ]
+}
