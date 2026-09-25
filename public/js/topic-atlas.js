@@ -1366,6 +1366,9 @@
             <button type="button" class="btn primary-phy" onclick="window.ATLAS.exportCoreRequest()">
               💾 Export Authoring Request JSON
             </button>
+            <button type="button" class="btn outline" onclick="window.ATLAS.openPromptComposer()">
+              Build from a question set ↗
+            </button>
             <a href="../../../tools/run-builder/index.html" class="btn outline" target="_blank">
               Open Run Builder ↗
             </a>
@@ -1547,6 +1550,30 @@
     downloadJSON(requestDoc, 'authoring_request_' + m.matrix_id + '.json');
   }
 
+  function openPromptComposer() {
+    const m = state.matrix;
+    if (!m) return;
+    const requested = Array.isArray(state.request_config.cores) ? [...state.request_config.cores] : [];
+    const preferredOrder = ['CORE2', 'CORE1', 'CORE1A', 'CORE1B', 'CORE2A', 'CORE2B'];
+    const payload = {
+      version: 1,
+      subject: m.subject,
+      matrix_id: m.matrix_id,
+      rung: state.selected_rung_key && state.selected_rung_key.matrix_id === m.matrix_id
+        ? state.selected_rung_key.rung
+        : null,
+      knowledge_percentage: state.knowledge_percentage,
+      requested_cores: requested,
+      execution_order: preferredOrder.filter(core => requested.includes(core))
+    };
+    try {
+      sessionStorage.setItem('grade9v3_prompt_composer_handoff_v1', JSON.stringify(payload));
+    } catch (err) {
+      // Handoff remains optional. The composer can still be opened without stored context.
+    }
+    window.location.href = '../../core-prompt-composer/index.html';
+  }
+
   // --- Diagnostic Gap Envelope Exporter (GAP-WEB-005) ---
   function exportDiagnosticEnvelope() {
     const m = state.matrix;
@@ -1699,6 +1726,7 @@
     },
     exportMeasurementPack: exportMeasurementPack,
     exportCoreRequest: exportCoreRequest,
+    openPromptComposer: openPromptComposer,
     exportDiagnosticEnvelope: exportDiagnosticEnvelope
   };
 
