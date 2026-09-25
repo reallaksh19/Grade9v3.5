@@ -48,7 +48,7 @@ def _schema_findings(mapping: dict, repo: Path = REPO) -> list[dict]:
 
 def _canonical_questions(subject: str, repo: Path = REPO) -> dict[str, dict]:
     found: dict[str, dict] = {}
-    for path in sorted((repo / subject / "library").glob("*.json")):
+    for path in sorted((repo / subject / "library").rglob("*.json")):
         package = load(path)
         for question in package.get("questions", []):
             found[question["id"]] = question
