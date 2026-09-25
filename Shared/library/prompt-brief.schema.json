@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/prompt-brief.schema.json",
+  "title": "Core Prompt Composer brief",
+  "description": "Transient planning artifact produced from an owner-supplied question set. It is not curriculum authority, learner evidence, source custody, source receipt, planner readiness, or a seventh Core.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt_brief_id",
+    "template",
+    "repository_basis",
+    "input_digest",
+    "prompt_digest",
+    "subject",
+    "scope",
+    "question_rows",
+    "keyword_fingerprint",
+    "learner_entry",
+    "requested_cores",
+    "execution_order",
+    "source_authoring_policy",
+    "scope_boundaries",
+    "validation",
+    "trace_rows",
+    "holds",
+    "planner_handoff"
+  ],
+  "properties": {
+    "prompt_brief_id": {"type": "string", "pattern": "^PB-[A-F0-9]{16}$"},
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "path"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1}
+      }
+    },
+    "repository_basis": {"type": "string", "minLength": 1},
+    "input_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "prompt_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "subject": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "matrix_ref", "bucket_ref", "topic", "subtopic", "canonical_primary_rungs", "owner_confirmed_rung"],
+      "properties": {
+        "status": {"enum": ["CANONICAL_MATCH", "OWNER_CONFIRMED_CANONICAL_RUNG", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"]},
+        "matrix_ref": {"type": ["string", "null"]},
+        "bucket_ref": {"type": ["string", "null"]},
+        "topic": {"type": ["string", "null"]},
+        "subtopic": {"type": ["string", "null"]},
+        "canonical_primary_rungs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "owner_confirmed_rung": {
+          "type": ["object", "null"],
+          "properties": {
+            "matrix_id": {"type": "string"},
+            "rung": {"type": "string"},
+            "by": {"type": "string"}
+          },
+          "required": ["matrix_id", "rung"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "question_rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner_question_id",
+          "summary",
+          "canonical_question_ref",
+          "mapping_basis",
+          "mapping_status",
+          "primary_capability_ref",
+          "secondary_capability_refs",
+          "primary_location",
+          "record_status",
+          "source_custody",
+          "analysis",
+          "finding"
+        ],
+        "properties": {
+          "owner_question_id": {"type": "string", "minLength": 1},
+          "summary": {"type": "string"},
+          "canonical_question_ref": {"type": ["string", "null"]},
+          "mapping_basis": {"enum": ["CANONICAL_QUESTION", "MANUAL", "AGENT_PROPOSAL", "UNMAPPED"]},
+          "mapping_status": {"enum": ["CANONICAL_MATCH", "OWNER_CONFIRMED_CANONICAL_RUNG", "AGENT_PROPOSAL_PENDING_REVIEW", "UNMAPPED_HOLD"]},
+          "primary_capability_ref": {"type": ["string", "null"]},
+          "secondary_capability_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "primary_location": {"type": ["object", "null"]},
+          "record_status": {"type": ["string", "null"]},
+          "source_custody": {"type": ["object", "null"]},
+          "analysis": {"type": ["object", "null"]},
+          "finding": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "keyword_fingerprint": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyword_id", "phrase", "kind", "evidence_refs"],
+        "properties": {
+          "keyword_id": {"type": "string"},
+          "phrase": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["QUESTION_CRUX", "CAPABILITY_ACTION", "MATRIX_INVARIANT", "MATRIX_DIFFICULT_MOVE"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true}
+        }
+      }
+    },
+    "learner_entry": {"type": ["object", "null"]},
+    "requested_cores": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]}
+    },
+    "execution_order": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]}
+    },
+    "source_authoring_policy": {"type": "object"},
+    "scope_boundaries": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "validation": {"type": "object"},
+    "trace_rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trace_id",
+          "question_ids",
+          "input_or_owner_decision",
+          "canonical_ref",
+          "primary_capability_ref",
+          "secondary_capability_refs",
+          "matrix_ref",
+          "rung",
+          "keyword",
+          "prompt_clause",
+          "mapping_basis",
+          "provenance",
+          "status",
+          "finding"
+        ],
+        "properties": {
+          "trace_id": {"type": "string"},
+          "question_ids": {"type": "array", "items": {"type": "string"}},
+          "input_or_owner_decision": {"type": "string"},
+          "canonical_ref": {"type": ["string", "null"]},
+          "primary_capability_ref": {"type": ["string", "null"]},
+          "secondary_capability_refs": {"type": "array", "items": {"type": "string"}},
+          "matrix_ref": {"type": ["string", "null"]},
+          "rung": {"type": ["string", "null"]},
+          "keyword": {"type": ["string", "null"]},
+          "prompt_clause": {"type": "string"},
+          "mapping_basis": {"type": "string"},
+          "provenance": {"type": "array", "items": {"type": "string"}},
+          "status": {"type": "string"},
+          "finding": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "holds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "point", "detail"],
+        "properties": {
+          "status": {"enum": ["AGENT_PROPOSAL_PENDING_REVIEW", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"]},
+          "point": {"type": "string"},
+          "detail": {"type": "string"}
+        }
+      }
+    },
+    "planner_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "authoring_request_schema", "planner_command", "run_builder", "note"],
+      "properties": {
+        "state": {"enum": ["READY_FOR_PLANNER", "COMPOSER_HOLD"]},
+        "authoring_request_schema": {"const": "Shared/library/authoring-request.schema.json"},
+        "planner_command": {"type": "string"},
+        "run_builder": {"type": "string"},
+        "note": {"type": "string"}
+      }
+    }
+  }
+}
