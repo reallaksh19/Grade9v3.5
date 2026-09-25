@@ -48,11 +48,29 @@ def _hosts_equivalent() -> bool:
         public
         .replace("./data.js", "__DATA__")
         .replace("../js/core-learning", "__RUNTIME__")
+        .replace("../css/site.css", "__SITE_CSS__")
+        .replace("../js/display-controls.js", "__DISPLAY__")
+        .replace("../js/site-header.js", "__HEADER__")
+        .replace('data-site-root="../"', 'data-site-root="__SITE_ROOT__"')
+        .replace('data-site-parent="../index.html"', 'data-site-parent="__SITE_PARENT__"')
+        .replace('href="../index.html"', 'href="__SITE_ROOT__index.html"')
+        .replace('href="../question-bank/index.html"', 'href="__SITE_ROOT__question-bank/index.html"')
+        .replace('const siteRoot = "../";', 'const siteRoot = "__SITE_ROOT__";')
+        .replace('content="PUBLIC"', 'content="__PACKAGING_MODE__"')
     )
     normalized_standalone = (
         standalone
         .replace("../../public/core-learning/data.js", "__DATA__")
         .replace("../../public/js/core-learning", "__RUNTIME__")
+        .replace("../../public/css/site.css", "__SITE_CSS__")
+        .replace("../../public/js/display-controls.js", "__DISPLAY__")
+        .replace("../../public/js/site-header.js", "__HEADER__")
+        .replace('data-site-root="../../public/"', 'data-site-root="__SITE_ROOT__"')
+        .replace('data-site-parent="../../public/index.html"', 'data-site-parent="__SITE_PARENT__"')
+        .replace('href="../../public/index.html"', 'href="__SITE_ROOT__index.html"')
+        .replace('href="../../public/question-bank/index.html"', 'href="__SITE_ROOT__question-bank/index.html"')
+        .replace('const siteRoot = "../../public/";', 'const siteRoot = "__SITE_ROOT__";')
+        .replace('content="REPOSITORY_ALTERNATE_HOST"', 'content="__PACKAGING_MODE__"')
     )
     return normalized_public == normalized_standalone
 
