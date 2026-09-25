@@ -28,10 +28,10 @@ def subjects(repo: Path = REPO) -> list[str]:
 
 def planning_basis(repo: Path = REPO) -> str:
     try:
-        snapshot = json.loads((repo / SNAPSHOT.relative_to(REPO)).read_text(encoding="utf-8"))
-        base = ((snapshot.get("material") or {}).get("base"))
-        if base:
-            return f"main@{base}"
+        manifest = json.loads((repo / MANIFEST.relative_to(REPO)).read_text(encoding="utf-8"))
+        value = manifest.get("digest")
+        if value:
+            return f"architecture-manifest@{value}"
     except (OSError, json.JSONDecodeError):
         pass
     return "UNRESOLVED_REPOSITORY_BASIS"
