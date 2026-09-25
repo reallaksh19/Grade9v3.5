@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Core Prompt Composer · Grade9V3</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="stylesheet" href="../css/core-prompt-composer.css">
+</head>
+<body>
+  <main class="composer-shell">
+    <header class="composer-hero">
+      <a href="../index.html" class="composer-back">← Grade9V3</a>
+      <p class="eyebrow">Local-only planning tool</p>
+      <h1>Build from a question set</h1>
+      <p>Map owner-supplied rows to existing canonical capabilities, generate a concise concept fingerprint and Core-agent prompt, then export the existing planner handoff. Nothing is uploaded.</p>
+      <div class="composer-notice" role="note">This composer does not decide mastery, source readiness, prerequisites, Core semantics, or PDF publication. The repository planner remains authoritative.</div>
+    </header>
+
+    <section class="composer-grid" aria-label="Core Prompt Composer">
+      <form id="composerForm" class="composer-panel">
+        <fieldset>
+          <legend><span>1</span> Paste question rows</legend>
+          <p class="help">One row per line: <code>owner-id | exact canonical question ref | concise summary</code>. If an exact ref is unknown, leave it blank; the row will HOLD rather than fuzzy-match.</p>
+          <textarea id="questionRows" rows="9" spellcheck="false" placeholder="Q28 | PYQ-... | Velocity direction from x(t), y(t)"></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>2</span> Choose subject</legend>
+          <label for="subjectSelect">Subject</label>
+          <select id="subjectSelect"></select>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>3</span> Confirm composition scope</legend>
+          <div class="field-pair">
+            <label>Matrix
+              <select id="matrixSelect"><option value="">No owner-confirmed matrix</option></select>
+            </label>
+            <label>Rung
+              <select id="rungSelect"><option value="">No owner-confirmed rung</option></select>
+            </label>
+          </div>
+          <p class="help">This does not rewrite per-question primary mappings. It only fixes the composition scope when canonical primaries span multiple rungs.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>4</span> Learner entry</legend>
+          <label for="knowledgePercentage">Owner estimate (0–100, optional)</label>
+          <input id="knowledgePercentage" type="number" min="0" max="100" inputmode="numeric" placeholder="Unsupplied">
+          <p class="help">0% is different from blank. This estimate is never prerequisite or mastery evidence.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>5</span> Requested Cores and order</legend>
+          <div id="coreChoices" class="core-choices"></div>
+          <label for="executionOrder">Production order</label>
+          <input id="executionOrder" value="CORE2, CORE1, CORE1A, CORE1B, CORE2A, CORE2B">
+          <label for="sourceBasis">Optional source-basis locator(s), one per line</label>
+          <textarea id="sourceBasis" rows="3" placeholder="Leave blank unless you have a real source locator/receipt basis. Do not paste canonical question IDs here."></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>6</span> Compose and export</legend>
+          <div class="action-row">
+            <button type="submit" class="composer-primary">Compose prompt bundle</button>
+            <button type="button" id="resetComposer">Reset local draft</button>
+          </div>
+          <p id="handoffStatus" class="help" aria-live="polite"></p>
+        </fieldset>
+      </form>
+
+      <section class="composer-panel composer-output" aria-labelledby="resultTitle">
+        <div class="output-head">
+          <div>
+            <p class="eyebrow">Deterministic preview</p>
+            <h2 id="resultTitle">Prompt bundle</h2>
+          </div>
+          <span id="bundleState" class="state-chip">Not composed</span>
+        </div>
+        <div id="composerErrors" class="composer-errors" role="alert" tabindex="-1" hidden></div>
+
+        <section>
+          <h3>Keyword fingerprint</h3>
+          <ul id="fingerprintList" class="fingerprint-list"><li>Compose a bundle to see evidence-linked phrases.</li></ul>
+        </section>
+
+        <section>
+          <h3>Trace</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Question</th><th>Canonical ref</th><th>Capability</th><th>Matrix / rung</th><th>Status</th></tr></thead>
+              <tbody id="traceBody"><tr><td colspan="5">No trace yet.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h3>Agent prompt</h3>
+          <pre id="promptPreview" class="prompt-preview">No prompt composed.</pre>
+        </section>
+
+        <div class="action-row output-actions">
+          <button type="button" id="copyPrompt" disabled>Copy prompt</button>
+          <button type="button" id="downloadBrief" disabled>Download prompt-brief.json</button>
+          <button type="button" id="downloadPrompt" disabled>Download agent-prompt.md</button>
+          <button type="button" id="downloadWorksheet" disabled>Download worksheet-map.json</button>
+          <button type="button" id="downloadRequest" disabled>Download authoring-request.json</button>
+          <a href="../../tools/run-builder/index.html">Open Run Builder ↗</a>
+        </div>
+        <p class="planner-command">Planner: <code>python3 Shared/tools/plan_request.py --plan &lt;authoring-request.json&gt;</code></p>
+      </section>
+    </section>
+  </main>
+  <script src="../data/prompt-composer-data.js"></script>
+  <script src="../js/core-prompt-composer.js"></script>
+</body>
+</html>
