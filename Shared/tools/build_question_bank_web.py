@@ -149,9 +149,15 @@ def build(repo: Path = REPO) -> dict:
         "questions": questions,
         "destinations": [
             {"title": "Home", "path": "index.html", "kind": "page", "keywords": ["portal", "home"]},
-            {"title": "Physics", "path": "physics/index.html", "kind": "subject", "keywords": ["physics"]},
-            {"title": "Chemistry", "path": "chemistry/index.html", "kind": "subject", "keywords": ["chemistry"]},
-            {"title": "Mathematics", "path": "mathematics/index.html", "kind": "subject", "keywords": ["mathematics", "math"]},
+            *[
+                {
+                    "title": subject,
+                    "path": subject.lower() + "/index.html",
+                    "kind": "subject",
+                    "keywords": [subject.lower()],
+                }
+                for subject in sorted({q["subject"] for q in questions})
+            ],
             {"title": "Question Bank", "path": "question-bank/index.html", "kind": "tool", "keywords": ["questions", "practice", "pyq"]},
             {"title": "Core Prompt Composer", "path": "core-prompt-composer/index.html", "kind": "tool", "keywords": ["prompt", "cores", "composer"]},
             {"title": "Run Builder", "path": "tools/run-builder/index.html", "kind": "tool", "keywords": ["planner", "authoring", "run"]},
