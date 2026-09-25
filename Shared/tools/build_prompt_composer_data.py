@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Build the static offline data projection consumed by the Core Prompt Composer."""
+"""Build the small static supplement consumed by the Core Prompt Composer.
+
+The normal public/data/data.js remains the browser authority for canonical matrices,
+capabilities and top-level library questions. This supplement exists only because
+nested exam-bank questions are deliberately outside that existing web projection.
+"""
 from __future__ import annotations
 
 import argparse
@@ -12,7 +17,6 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import prompt_composer, study_map  # noqa: E402
 
 OUT = REPO / "public/data/prompt-composer-data.js"
 SNAPSHOT = REPO / "relay/GENERATED/tasks/ISSUE-272.snapshot.yaml"
@@ -43,29 +47,21 @@ def build(repo: Path = REPO) -> dict:
         "subjects": {},
     }
     for subject in subjects(repo):
-        index = study_map.subject_index(subject, repo)
         questions = {}
-        for qid, q in sorted(index["canonical_questions"].items()):
-            questions[qid] = {
-                "id": qid,
-                "status": q.get("status"),
-                "primary_capability_ref": q.get("primary_capability_ref"),
-                "secondary_capability_refs": list(q.get("secondary_capability_refs") or []),
-                "analysis": (q.get("extensions") or {}).get("grade9v3:analysis"),
-                "source_custody": (q.get("extensions") or {}).get("grade9v3:source_custody"),
-            }
-        payload["subjects"][subject] = {
-            "questions": questions,
-            "capabilities": {
-                key: {"id": key, "action": value.get("action"), "success_criterion": value.get("success_criterion")}
-                for key, value in sorted(index["capabilities"].items())
-            },
-            "locations": index["locations"],
-            "matrices": [
-                {key: value for key, value in board.items() if key != "_path"}
-                for board in prompt_composer._boards(subject, repo)
-            ],
-        }
+        library = repo / subject / "library"
+        for path in sorted(library.glob("*/*.json")):
+            package = load(path)
+            for q in package.get("questions", []):
+                ext = q.get("extensions") or {}
+                questions[q["id"]] = {
+                    "id": q["id"],
+                    "status": q.get("status"),
+                    "primary_capability_ref": q.get("primary_capability_ref"),
+                    "secondary_capability_refs": list(q.get("secondary_capability_refs") or []),
+                    "analysis": ext.get("grade9v3:analysis"),
+                    "source_custody": ext.get("grade9v3:source_custody"),
+                }
+        payload["subjects"][subject] = {"nested_questions": dict(sorted(questions.items()))}
     return payload
 
 
