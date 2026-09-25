@@ -36,24 +36,17 @@ TEXT_REWRITES = {
     "js/topic-atlas.js": (
         ("../../../tools/run-builder/index.html", "../../tools/run-builder/index.html"),
     ),
-    "mathematics/vectors/explorers/vector_algebra/index.html": (
-        ("/mathematics/index.html", "../../../index.html"),
-    ),
-    "physics/motion-1d/explorers/motion_in_1d/index.html": (
-        ("/physics/index.html", "../../../index.html"),
-    ),
-    "tools/index.html": (
-        ("../docs/architecture-manifest.json", "../architecture-manifest.json"),
-        ("../docs/PROGRAM-PLAN.md", "../PROGRAM-PLAN.md"),
-    ),
-}
-
-PRESERVED_DOC_TARGETS = {
-    "architecture-manifest.json",
-    "PROGRAM-PLAN.md",
 }
 
 HTML_LINK = re.compile(r"""\b(?:href|src)\s*=\s*["']([^"'<>]+)["']""", re.IGNORECASE)
+ROOT_PROJECT_LINK = re.compile(
+    r"""(\b(?:href|src)\s*=\s*["'])/([^/"'][^"']*)(["'])""",
+    re.IGNORECASE,
+)
+REPO_DOC_LINK = re.compile(
+    r"""(\b(?:href|src)\s*=\s*["'])\.\./docs/([^"']+)(["'])""",
+    re.IGNORECASE,
+)
 SKIP_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
 
 
@@ -61,15 +54,48 @@ def _sha256(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 
+def _relative_from(relative: str, target: str) -> str:
+    start = posixpath.dirname(relative) or "."
+    return posixpath.relpath(target, start)
+
+
 def _public_payload(relative: str, content: bytes) -> bytes:
-    rewrites = TEXT_REWRITES.get(relative)
-    if not rewrites:
+    rewrites = TEXT_REWRITES.get(relative, ())
+    needs_html_transform = relative.endswith(".html")
+    if not rewrites and not needs_html_transform:
         return content
+
     text = content.decode("utf-8")
     for before, after in rewrites:
         if before not in text:
             raise ValueError(f"expected Pages rewrite token missing for {relative}: {before}")
         text = text.replace(before, after)
+
+    if needs_html_transform:
+        # GitHub project Pages is served below /<repo>/, so domain-root links from
+        # static source pages must become paths relative to the mirrored document.
+        def root_repl(match: re.Match[str]) -> str:
+            raw = match.group(2)
+            split = urlsplit(raw)
+            target = split.path
+            rewritten = _relative_from(relative, target)
+            suffix = ""
+            if split.query:
+                suffix += "?" + split.query
+            if split.fragment:
+                suffix += "#" + split.fragment
+            return match.group(1) + rewritten + suffix + match.group(3)
+
+        text = ROOT_PROJECT_LINK.sub(root_repl, text)
+
+        # Static repository tools may link back into repo/docs. Once tools are
+        # mirrored under docs/tools, the docs directory is already the site root.
+        if relative.startswith("tools/"):
+            text = REPO_DOC_LINK.sub(
+                lambda match: match.group(1) + "../" + match.group(2) + match.group(3),
+                text,
+            )
+
     return text.encode("utf-8")
 
 
@@ -143,9 +169,18 @@ def _candidate_targets(path: str) -> tuple[str, ...]:
     return (path, path + "/index.html")
 
 
-def link_findings(files: dict[str, tuple[str, bytes]]) -> list[str]:
+def link_findings(
+    files: dict[str, tuple[str, bytes]],
+    repo: Path = REPO,
+) -> list[str]:
     """Return broken/escaping links in generated HTML using the intended Pages tree."""
-    available = set(files) | PRESERVED_DOC_TARGETS
+    docs = repo / "docs"
+    existing_docs = {
+        path.relative_to(docs).as_posix()
+        for path in docs.rglob("*")
+        if path.is_file()
+    }
+    available = set(files) | existing_docs
     findings: list[str] = []
     for target, (_source, content) in sorted(files.items()):
         if not target.endswith(".html"):
@@ -175,12 +210,8 @@ def link_findings(files: dict[str, tuple[str, bytes]]) -> list[str]:
 
 def check(repo: Path = REPO) -> list[str]:
     files = desired_files(repo)
-    findings = link_findings(files)
+    findings = link_findings(files, repo)
     docs = repo / "docs"
-
-    for relative in sorted(PRESERVED_DOC_TARGETS):
-        if not (docs / relative).is_file():
-            findings.append(f"preserved docs Pages target is missing: docs/{relative}")
 
     for relative, (_source, intended) in sorted(files.items()):
         target = docs / relative
