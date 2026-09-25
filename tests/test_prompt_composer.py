@@ -81,7 +81,7 @@ class PromptComposerTests(unittest.TestCase):
         self.assertIn("required authority = CANONICAL_ACADEMIC_TRUTH", text)
         self.assertIn("demand evidence and learner eligibility are independent states", text.lower())
         self.assertIn("question.primary_capability_ref", text)
-        self.assertIn("extension demands do not become Core1/Core1A/Core1B microtopics", text)
+        self.assertIn("extension demands do not become core1/core1a/core1b microtopics", text.lower())
         self.assertIn("#273 owns PDF publication", text)
         self.assertFalse(any(path.suffix == ".pdf" for path in (REPO / "public").rglob("*.pdf")))
 
