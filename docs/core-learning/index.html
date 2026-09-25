@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core learner</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:light dark}
+    body{margin:0;padding:1rem} main{max-width:72rem;margin:0 auto;display:grid;gap:1rem}
+    .chooser,.explorer-panel{display:grid;gap:.5rem;border:1px solid currentColor;border-radius:.75rem;padding:1rem}
+    .chooser-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:end}
+    label{display:grid;gap:.35rem;min-width:min(100%,28rem);flex:1}
+    select,button{font:inherit;min-height:2.75rem} button{padding:.5rem .85rem}
+    [data-status]{margin:0}.explorer-frame{width:100%;min-height:30rem;border:1px solid currentColor;border-radius:.5rem;background:Canvas}
+    [hidden]{display:none!important}
+    @media (max-width:36rem){body{padding:.5rem}.chooser,.explorer-panel{padding:.75rem}.explorer-frame{min-height:36rem}}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="chooser" aria-labelledby="projection-title">
+      <h1 id="projection-title">Core learner</h1>
+      <div class="chooser-row">
+        <label>
+          Compiled learning activity
+          <select id="projection-select" aria-describedby="projection-status"></select>
+        </label>
+        <button id="load-projection" type="button">Load</button>
+      </div>
+      <p id="projection-status" data-status role="status" aria-live="polite"></p>
+      <details id="availability-panel" hidden>
+        <summary>Unavailable or held activities</summary>
+        <ul id="availability-list"></ul>
+      </details>
+    </section>
+    <section class="explorer-panel" id="explorer-panel" aria-labelledby="explorer-title" hidden>
+      <h2 id="explorer-title">Interactive scientific representation</h2>
+      <iframe id="explorer-frame" class="explorer-frame" title="Interactive scientific representation"></iframe>
+    </section>
+    <core-learning-page id="learner"></core-learning-page>
+  </main>
+
+  <script src="./data.js"></script>
+  <script type="module">
+    import "../js/core-learning/semantic-workbench.mjs";
+    import "../js/core-learning/core-learning-page.mjs";
+    import { mountCoreLearningPage } from "../js/core-learning/core-learning-host.mjs";
+
+    const data = window.GRADE9V3_CORE;
+    const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
+    const availability = Array.isArray(data?.bucket_availability) ? data.bucket_availability : [];
+    const learner = document.getElementById("learner");
+    const select = document.getElementById("projection-select");
+    const loadButton = document.getElementById("load-projection");
+    const status = document.getElementById("projection-status");
+    const availabilityPanel = document.getElementById("availability-panel");
+    const availabilityList = document.getElementById("availability-list");
+    const explorerPanel = document.getElementById("explorer-panel");
+    const explorerFrame = document.getElementById("explorer-frame");
+    const registries = window.CORE_LEARNING_REGISTRIES || {};
+
+    function labelFor(row) {
+      const core = row?.projection?.core || "Core";
+      const source = row?.source_ref || row?.id || "activity";
+      return [row?.subject, core, source].filter(Boolean).join(" · ");
+    }
+
+    function setStatus(message) { status.textContent = message; }
+
+    function renderAvailability() {
+      const unavailable = availability.filter((row) =>
+        row?.status === "UNSUPPORTED" || (Array.isArray(row?.findings) && row.findings.length)
+      );
+      availabilityPanel.hidden = unavailable.length === 0;
+      availabilityList.replaceChildren();
+      for (const row of unavailable) {
+        const item = document.createElement("li");
+        const finding = Array.isArray(row.findings) && row.findings.length ? row.findings[0] : row;
+        const code = finding?.code || "UNAVAILABLE";
+        const detail = finding?.detail ? ` — ${finding.detail}` : "";
+        item.textContent = [row.subject, row.bucket_ref, code].filter(Boolean).join(" · ") + detail;
+        availabilityList.append(item);
+      }
+    }
+
+    function explorerUrl(locator) {
+      if (typeof locator !== "string" || !locator.startsWith("public/") || locator.includes("..")) return null;
+      return new URL("../../" + locator, window.location.href).href;
+    }
+
+    function mountExplorer(row) {
+      const url = explorerUrl(row?.explorer_locator);
+      explorerPanel.hidden = !url;
+      if (url) explorerFrame.src = url;
+      else explorerFrame.removeAttribute("src");
+    }
+
+    function mount(id, { updateUrl = true } = {}) {
+      try {
+        const row = rows.find((item) => item.id === id);
+        const result = mountCoreLearningPage(learner, data, id, registries);
+        select.value = result.id;
+        mountExplorer(row);
+        setStatus(`Loaded ${labelFor(row)}.`);
+        if (updateUrl) {
+          const url = new URL(window.location.href);
+          url.searchParams.set("projection", result.id);
+          history.replaceState(null, "", url);
+        }
+      } catch (error) {
+        const code = error?.code || error?.name || "CORE_LEARNING_LOAD_FAILED";
+        setStatus(`Unable to load activity: ${code}.`);
+      }
+    }
+
+    for (const row of rows) {
+      if (!row || typeof row.id !== "string" || !row.id) continue;
+      const option = document.createElement("option");
+      option.value = row.id;
+      option.textContent = labelFor(row);
+      select.append(option);
+    }
+
+    renderAvailability();
+
+    if (!select.options.length) {
+      select.disabled = true;
+      loadButton.disabled = true;
+      const first = availability.find((row) => row?.status === "UNSUPPORTED");
+      const reason = first?.code ? ` Reason: ${first.code}.` : "";
+      setStatus("No compiled Core learner projections are available in this generated data build." + reason);
+    } else {
+      loadButton.addEventListener("click", () => mount(select.value));
+      select.addEventListener("change", () => setStatus(`Selected ${labelFor(rows.find((row) => row.id === select.value))}.`));
+      const requested = new URL(window.location.href).searchParams.get("projection");
+      if (requested && rows.some((row) => row.id === requested)) mount(requested, { updateUrl: false });
+      else if (requested) {
+        select.value = rows[0].id;
+        setStatus("Requested projection was not found. Select an available compiled activity.");
+      } else mount(rows[0].id);
+    }
+
+    window.__coreLearningStaticHostReady = true;
+  </script>
+</body>
+</html>

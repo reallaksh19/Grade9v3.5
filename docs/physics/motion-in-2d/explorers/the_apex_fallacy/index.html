@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer #131 · The Apex Fallacy</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #090d16;
+      --card: #131b2e;
+      --card-hover: #1a253e;
+      --border: #23304d;
+      --border-focus: #3b82f6;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+      --primary: #3b82f6;
+      --accent-vx: #06b6d4;      /* Cyan */
+      --accent-vy: #a855f7;      /* Purple */
+      --accent-v: #f59e0b;       /* Amber */
+      --accent-a: #ef4444;       /* Red / Orange */
+      --accent-success: #10b981;  /* Emerald */
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      user-select: none;
+    }
+    input[type=range] {
+      accent-color: #3b82f6;
+    }
+    .apex-glow {
+      animation: apexPulse 1.8s infinite ease-in-out;
+    }
+    @keyframes apexPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.5)); }
+      50% { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.9)); }
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center">
+
+  <div class="w-full max-w-6xl space-y-6">
+
+    <!-- MASTER HEADER -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              Grade 9 Physics &middot; Issue #131
+            </span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">Kinematic Invariants &middot; Vector Decomposition</span>
+          </div>
+          <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
+            THE APEX FALLACY
+          </h1>
+          <p class="text-sm md:text-base text-slate-400 mt-1">
+            At the apex: <strong class="text-purple-400 font-mono">v&#7522; = 0</strong>, but <strong class="text-cyan-400 font-mono">v&#8339; = v&#8320;&#8339; &ne; 0</strong>, and <strong class="text-red-400 font-mono">a&#7522; = &minus;g &ne; 0</strong>. Downward acceleration never ceases!
+          </p>
+        </div>
+
+        <!-- QUICK SNAP BUTTONS -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="snapToApex()" class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-amber-950/40">
+            <span class="w-2 h-2 rounded-full bg-amber-400 apex-glow"></span>
+            Snap to Apex (v&#7522; = 0)
+          </button>
+          <button onclick="setAnglePreset(90)" id="btnPreset90" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-semibold transition">
+            90&deg; Vertical Launch
+          </button>
+        </div>
+      </div>
+
+      <!-- INVARIANT COMPARISON STRIP -->
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold">FALLACY</span>
+          <span class="text-slate-300">"At the peak, velocity is zero and the ball stops accelerating." &rarr; <strong class="text-red-300">FALSE.</strong></span>
+        </div>
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">INVARIANT</span>
+          <span class="text-slate-300">Only <span class="font-mono text-purple-300">v&#7522; = 0</span>. <span class="font-mono text-cyan-300">v&#8339; = v&#8320;&#8339;</span>, and <span class="font-mono text-red-300">a&#7522; = &minus;9.81 m/s&sup2;</span> continuously.</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- MAIN INTERACTIVE WORKSPACE (TRAJECTORY & LIVE TELEMETRY) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT: TRAJECTORY & VECTOR DECOMPOSITION CANVAS (8 COLS) -->
+      <div class="lg:col-span-8 space-y-4">
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-xl space-y-4">
+          
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+              <h2 class="font-bold text-sm tracking-wide text-white">TRAJECTORY &amp; VECTOR DECOMPOSITION</h2>
+            </div>
+            <!-- LEGEND -->
+            <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+              <span class="flex items-center gap-1 text-amber-400"><span class="w-3 h-0.5 bg-amber-400 inline-block"></span> Total v</span>
+              <span class="flex items-center gap-1 text-cyan-400"><span class="w-3 h-0.5 bg-cyan-400 inline-block"></span> v&#8339; (Const)</span>
+              <span class="flex items-center gap-1 text-purple-400"><span class="w-3 h-0.5 bg-purple-400 inline-block"></span> v&#7522;</span>
+              <span class="flex items-center gap-1 text-red-400"><span class="w-3 h-0.5 bg-red-400 inline-block"></span> a&#7522; = &minus;g</span>
+            </div>
+          </div>
+
+          <!-- SVG CANVAS -->
+          <div class="relative bg-slate-950 rounded-xl border border-slate-800 overflow-hidden" style="height: 360px;">
+            <svg id="trajSvg" class="w-full h-full" viewBox="0 0 600 360" preserveAspectRatio="none">
+              <defs>
+                <!-- Grid Pattern -->
+                <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.7"/>
+                </pattern>
+                <!-- Arrow Markers -->
+                <marker id="arrowV" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#f59e0b" />
+                </marker>
+                <marker id="arrowVx" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#06b6d4" />
+                </marker>
+                <marker id="arrowVy" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#a855f7" />
+                </marker>
+                <marker id="arrowA" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#ef4444" />
+                </marker>
+              </defs>
+
+              <!-- Grid background -->
+              <rect width="600" height="360" fill="url(#gridPattern)" />
+
+              <!-- Ground baseline -->
+              <line x1="40" y1="310" x2="570" y2="310" stroke="#334155" stroke-width="2"/>
+              <text x="530" y="326" fill="#64748b" font-family="monospace" font-size="11">Ground (y=0)</text>
+
+              <!-- Parabolic Trajectory Path -->
+              <path id="pathTrajectory" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4" opacity="0.6"/>
+
+              <!-- Apex Marker & Drop Lines -->
+              <g id="apexGroup">
+                <line id="apexLineX" x1="0" y1="310" x2="0" y2="0" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+                <circle id="apexDot" cx="0" cy="0" r="5" fill="#f59e0b" class="apex-glow"/>
+                <text id="apexText" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="11" font-weight="bold">APEX (v&#7522; = 0)</text>
+              </g>
+
+              <!-- Projectile Object Group (Ball + Vectors) -->
+              <g id="ballGroup" transform="translate(40, 310)">
+                <!-- Vector components -->
+                <!-- Acceleration vector a_y (always downward, pointing down from ball) -->
+                <line id="vecA" x1="0" y1="0" x2="0" y2="40" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowA)" />
+                <text id="lblA" x="8" y="42" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">a&#7522; = &minus;g</text>
+
+                <!-- Horizontal velocity component vx -->
+                <line id="vecVx" x1="0" y1="0" x2="45" y2="0" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowVx)" />
+                <text id="lblVx" x="48" y="-4" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v&#8339;</text>
+
+                <!-- Vertical velocity component vy -->
+                <line id="vecVy" x1="0" y1="0" x2="0" y2="-45" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrowVy)" />
+                <text id="lblVy" x="-26" y="-35" fill="#a855f7" font-family="monospace" font-size="10" font-weight="bold">v&#7522;</text>
+
+                <!-- Total velocity resultant vector v -->
+                <line id="vecV" x1="0" y1="0" x2="45" y2="-45" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowV)" />
+
+                <!-- The Projectile Ball -->
+                <circle cx="0" cy="0" r="7.5" fill="#3b82f6" stroke="#ffffff" stroke-width="2" />
+              </g>
+            </svg>
+
+            <!-- Overlay Badge at Apex -->
+            <div id="apexAlertBadge" class="hidden absolute top-3 left-3 bg-amber-950/80 border border-amber-500/60 rounded-xl px-3 py-1.5 text-xs text-amber-200 font-mono shadow-lg backdrop-blur">
+              &starf; <strong>AT APEX:</strong> v&#7522; = 0.00 m/s &middot; Speed = <span id="badgeApexSpeed" class="text-cyan-300 font-bold">--</span> &middot; a&#7522; = <span class="text-red-400 font-bold">&minus;9.81 m/s&sup2;</span>
+            </div>
+          </div>
+
+          <!-- PLAYBACK & TIME SCRUBBER CONTROLS -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <button id="btnPlayPause" onclick="togglePlay()" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition flex items-center gap-1">
+                  <span id="playIcon">&FilledSmallSquare; Play</span>
+                </button>
+                <button onclick="resetSimulation()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">
+                  Reset (t=0)
+                </button>
+                <button onclick="snapToApex()" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold transition">
+                  Snap to Apex
+                </button>
+              </div>
+              <div class="font-mono text-slate-400 flex items-center gap-3">
+                <span>Clock t = <strong id="lblClockT" class="text-amber-400 text-sm">0.00 s</strong> / <span id="lblTotalT">3.50 s</span></span>
+                <span class="text-slate-600">|</span>
+                <span>t&#7522;,apex = <strong id="lblApexT" class="text-amber-300">1.75 s</strong></span>
+              </div>
+            </div>
+
+            <!-- Time Slider -->
+            <input type="range" id="timeSlider" min="0" max="1" step="0.001" value="0" oninput="onTimeScrub(this.value)" class="w-full cursor-pointer h-2 bg-slate-800 rounded-lg">
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- RIGHT: LIVE TELEMETRY & LAUNCH PARAMETERS (4 COLS) -->
+      <div class="lg:col-span-4 space-y-4">
+
+        <!-- LAUNCH CONTROLS -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-xl space-y-4">
+          <h2 class="font-bold text-sm tracking-wide text-white border-b border-[var(--border)] pb-2 flex items-center justify-between">
+            <span>LAUNCH PARAMETERS</span>
+            <span class="text-xs font-mono text-slate-400">g = 9.81 m/s&sup2;</span>
+          </h2>
+
+          <!-- Initial Speed Slider -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">Initial Speed (v&#8320;):</span>
+              <span id="lblV0" class="text-amber-400 font-bold">25.0 m/s</span>
+            </div>
+            <input type="range" id="sliderV0" min="10" max="40" step="1" value="25" oninput="onParamChange()" class="w-full cursor-pointer h-2 bg-slate-800 rounded-lg">
+          </div>
+
+          <!-- Launch Angle Slider -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">Launch Angle (&theta;):</span>
+              <span id="lblTheta" class="text-cyan-400 font-bold">45&deg;</span>
+            </div>
+            <input type="range" id="sliderTheta" min="5" max="90" step="1" value="45" oninput="onParamChange()" class="w-full cursor-pointer h-2 bg-slate-800 rounded-lg">
+            <!-- Preset Buttons -->
+            <div class="flex items-center gap-1.5 pt-1">
+              <button onclick="setAnglePreset(30)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-mono">30&deg;</button>
+              <button onclick="setAnglePreset(45)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-mono">45&deg;</button>
+              <button onclick="setAnglePreset(60)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-mono">60&deg;</button>
+              <button onclick="setAnglePreset(90)" class="px-2 py-1 rounded bg-purple-900/60 hover:bg-purple-800/80 text-[11px] text-purple-300 font-mono border border-purple-700/50 font-bold">90&deg; (Vertical)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSTANTANEOUS VECTOR AUDIT CARD -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-xl space-y-3">
+          <h2 class="font-bold text-sm tracking-wide text-white border-b border-[var(--border)] pb-2 flex items-center justify-between">
+            <span>INSTANTANEOUS VECTOR STATE</span>
+            <span id="stateStatusTag" class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">ASCENDING</span>
+          </h2>
+
+          <div class="space-y-2 text-xs font-mono">
+            <!-- Horizontal Velocity -->
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-cyan-900/50 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                <span class="text-slate-300">v&#8339;(t) = v&#8320; cos&theta;</span>
+              </div>
+              <span id="valVx" class="text-cyan-300 font-bold text-sm">+17.68 m/s</span>
+            </div>
+
+            <!-- Vertical Velocity -->
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-purple-900/50 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+                <span class="text-slate-300">v&#7522;(t) = v&#8320;&#7522; &minus; gt</span>
+              </div>
+              <span id="valVy" class="text-purple-300 font-bold text-sm">+17.68 m/s</span>
+            </div>
+
+            <!-- Total Velocity Speed -->
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-amber-900/50 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="text-slate-300">Speed |v| = &radic;(v&#8339;&sup2; + v&#7522;&sup2;)</span>
+              </div>
+              <span id="valSpeed" class="text-amber-300 font-bold text-sm">25.00 m/s</span>
+            </div>
+
+            <!-- Vertical Acceleration -->
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-red-900/50 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                <span class="text-slate-300">a&#7522;(t) = dv&#7522;/dt</span>
+              </div>
+              <span id="valAy" class="text-red-400 font-bold text-sm">&minus;9.81 m/s&sup2;</span>
+            </div>
+          </div>
+
+          <!-- DYNAMIC VERDICT AT CURRENT INSTANT -->
+          <div id="instantVerdictBox" class="mt-2 p-3 rounded-xl border border-slate-800 bg-slate-950 text-xs leading-relaxed text-slate-300">
+            Projected upward. Vertical velocity decreasing by 9.81 m/s every second.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 4 SYNCHRONIZED KINEMATIC GRAPHS -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border)] pb-3">
+        <div>
+          <h2 class="font-bold text-base text-white tracking-wide flex items-center gap-2">
+            <span>COORDINATED KINEMATIC PROFILES</span>
+            <span class="text-xs font-normal text-slate-400">(All 4 graphs share one synchronized time clock)</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Observe that at the apex dashed line: v&#7522; crosses zero, but a&#7522; remains flat at &minus;g!</p>
+        </div>
+        <div class="text-xs font-mono text-amber-400 bg-amber-950/40 border border-amber-800/40 px-3 py-1 rounded-lg">
+          Sync Cursor: t = <span id="graphCursorTime">0.00</span> s
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Graph 1: vx(t) -->
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="text-cyan-400 font-bold">1. v&#8339;(t) [Horizontal]</span>
+            <span id="gValVx" class="text-cyan-300">--</span>
+          </div>
+          <div class="relative h-32 w-full bg-slate-900/60 rounded border border-slate-800/80 overflow-hidden">
+            <svg id="svgG1" class="w-full h-full" viewBox="0 0 200 120" preserveAspectRatio="none">
+              <line x1="25" y1="60" x2="190" y2="60" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
+              <!-- Line Plot -->
+              <path id="plotVx" d="" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+              <!-- Apex line -->
+              <line id="g1ApexLine" x1="100" y1="10" x2="100" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+              <!-- Cursor line -->
+              <line id="g1Cursor" x1="25" y1="5" x2="25" y2="115" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="text-[10px] text-slate-400 leading-tight">
+            Strictly constant: <span class="font-mono text-cyan-300">v&#8339; = v&#8320; cos&theta;</span>. Never drops at apex!
+          </div>
+        </div>
+
+        <!-- Graph 2: vy(t) -->
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="text-purple-400 font-bold">2. v&#7522;(t) [Vertical]</span>
+            <span id="gValVy" class="text-purple-300">--</span>
+          </div>
+          <div class="relative h-32 w-full bg-slate-900/60 rounded border border-slate-800/80 overflow-hidden">
+            <svg id="svgG2" class="w-full h-full" viewBox="0 0 200 120" preserveAspectRatio="none">
+              <!-- Zero Axis -->
+              <line x1="25" y1="60" x2="190" y2="60" stroke="#475569" stroke-width="1.2"/>
+              <text x="5" y="63" fill="#64748b" font-family="monospace" font-size="9">0</text>
+              <!-- Line Plot -->
+              <path id="plotVy" d="" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+              <!-- Apex marker -->
+              <line id="g2ApexLine" x1="100" y1="10" x2="100" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+              <circle id="g2ApexDot" cx="100" cy="60" r="4" fill="#f59e0b"/>
+              <!-- Cursor line -->
+              <line id="g2Cursor" x1="25" y1="5" x2="25" y2="115" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="text-[10px] text-slate-400 leading-tight">
+            Linear slope <span class="font-mono text-red-400">&minus;g</span>. Crosses zero axis at apex (<span class="font-mono text-purple-300">v&#7522; = 0</span>).
+          </div>
+        </div>
+
+        <!-- Graph 3: ay(t) -->
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="text-red-400 font-bold">3. a&#7522;(t) [Acceleration]</span>
+            <span id="gValAy" class="text-red-400 font-bold">&minus;9.81</span>
+          </div>
+          <div class="relative h-32 w-full bg-slate-900/60 rounded border border-slate-800/80 overflow-hidden">
+            <svg id="svgG3" class="w-full h-full" viewBox="0 0 200 120" preserveAspectRatio="none">
+              <!-- Zero Axis -->
+              <line x1="25" y1="25" x2="190" y2="25" stroke="#475569" stroke-width="1"/>
+              <text x="5" y="28" fill="#64748b" font-family="monospace" font-size="9">0</text>
+              <text x="5" y="85" fill="#ef4444" font-family="monospace" font-size="9">&minus;g</text>
+              <!-- Line Plot (Const -g) -->
+              <line x1="25" y1="82" x2="190" y2="82" stroke="#ef4444" stroke-width="3"/>
+              <!-- Apex line -->
+              <line id="g3ApexLine" x1="100" y1="10" x2="100" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+              <!-- Cursor line -->
+              <line id="g3Cursor" x1="25" y1="5" x2="25" y2="115" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="text-[10px] text-slate-400 leading-tight font-semibold text-red-300">
+            ZERO DIP! Acceleration is strictly constant at <span class="font-mono">&minus;g</span> throughout!
+          </div>
+        </div>
+
+        <!-- Graph 4: Speed |v|(t) -->
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="text-amber-400 font-bold">4. Speed |v|(t)</span>
+            <span id="gValSpeed" class="text-amber-300">--</span>
+          </div>
+          <div class="relative h-32 w-full bg-slate-900/60 rounded border border-slate-800/80 overflow-hidden">
+            <svg id="svgG4" class="w-full h-full" viewBox="0 0 200 120" preserveAspectRatio="none">
+              <line x1="25" y1="105" x2="190" y2="105" stroke="#475569" stroke-width="1"/>
+              <!-- Speed curve -->
+              <path id="plotSpeed" d="" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+              <!-- Apex line -->
+              <line id="g4ApexLine" x1="100" y1="10" x2="100" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+              <circle id="g4ApexDot" cx="100" cy="80" r="4" fill="#f59e0b"/>
+              <!-- Cursor line -->
+              <line id="g4Cursor" x1="25" y1="5" x2="25" y2="115" stroke="#ffffff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="text-[10px] text-slate-400 leading-tight">
+            Minimum at apex (= <span id="lblG4MinSpeed" class="font-mono text-amber-300">v&#8339;</span>). Only zero if &theta; = 90&deg;!
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- THE DEEP-DIVE: "WHY DESCENT BEGINS" & "CARTOON HOVER PARADOX" -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- CARD 1: THE MATHEMATICAL ENGINE OF DESCENT -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex items-center gap-2 text-amber-400 font-bold text-sm tracking-wide border-b border-[var(--border)] pb-3">
+          <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono text-xs font-bold">&Delta;</span>
+          <h3>WHY DESCENT BEGINS (EVEN THOUGH v&#7522; = 0)</h3>
+        </div>
+
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Students ask: <em>"If vertical velocity is zero at the peak, what pushes it down? Why doesn't it stay there?"</em>
+        </p>
+
+        <!-- Micro-Step Interval Timeline -->
+        <div class="space-y-2 font-mono text-xs">
+          <!-- Step -0.05s -->
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-400">t = t&#7522;,apex &minus; 0.05 s</span>
+            <span class="text-purple-300 font-bold">v&#7522; = +0.49 m/s &uarr;</span>
+            <span class="text-slate-400 text-[11px]">Rising gently</span>
+          </div>
+
+          <!-- Instant Apex -->
+          <div class="bg-amber-950/40 p-2.5 rounded-xl border border-amber-500/40 flex items-center justify-between">
+            <span class="text-amber-300 font-bold">t = t&#7522;,apex (Instant)</span>
+            <span class="text-white font-black bg-amber-500/30 px-2 py-0.5 rounded">v&#7522; = 0.00 m/s</span>
+            <span class="text-red-400 font-bold">a&#7522; = &minus;9.81 m/s&sup2; &darr;</span>
+          </div>
+
+          <!-- Step +0.05s -->
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between">
+            <span class="text-slate-400">t = t&#7522;,apex + 0.05 s</span>
+            <span class="text-purple-400 font-bold">v&#7522; = &minus;0.49 m/s &darr;</span>
+            <span class="text-slate-400 text-[11px]">Descent underway!</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <div class="font-bold text-white flex items-center gap-1.5">
+            <span class="text-emerald-400">&check;</span> The Governing Law:
+          </div>
+          <div>
+            Position follows velocity, but <strong class="text-amber-300">velocity follows acceleration</strong>:
+          </div>
+          <div class="font-mono text-center text-cyan-300 bg-slate-900 py-1.5 rounded border border-slate-800">
+            &Delta;v&#7522; = a&#7522; &middot; &Delta;t = (&minus;9.81 m/s&sup2;) &middot; &Delta;t &lt; 0
+          </div>
+          <div class="text-[11px] text-slate-400">
+            Because a&#7522; is negative, v&#7522; is driven into negative values immediately after the zero crossing.
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: CARTOON PHYSICS HOVER TEST & 90° BOUNDARY -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm tracking-wide border-b border-[var(--border)] pb-3">
+          <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-mono text-xs font-bold">!</span>
+          <h3>THE "CARTOON PHYSICS" HOVER TEST &amp; 90&deg; BOUNDARY</h3>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <!-- Counterfactual: What if a = 0 at apex? -->
+          <div class="bg-slate-950 p-3.5 rounded-xl border border-red-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-red-400">THOUGHT EXPERIMENT: What if a&#7522; = 0 at the peak?</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              If acceleration were zero whenever velocity is zero (<span class="font-mono text-red-300">v&#7522; = 0 &rArr; a&#7522; = 0</span>), then <span class="font-mono">&Delta;v&#7522; = 0 &middot; &Delta;t = 0</span>. 
+              The velocity would <strong>never change</strong> from zero. The projectile would freeze and hover in mid-air permanently!
+            </p>
+            <div class="p-2 bg-red-950/40 rounded border border-red-800/40 text-[11px] text-red-200">
+              Descent occurs precisely because gravity <strong>never takes a break</strong> at the apex.
+            </div>
+          </div>
+
+          <!-- 90 Degree Boundary Case -->
+          <div class="bg-slate-950 p-3.5 rounded-xl border border-purple-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-purple-300">BOUNDARY CASE: &theta; = 90&deg; (Vertical Launch)</span>
+              <button onclick="setAnglePreset(90)" class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-900/60 text-purple-300 border border-purple-600 hover:bg-purple-800">
+                Test 90&deg;
+              </button>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              When launched straight up, <span class="font-mono text-cyan-300">v&#8339; = 0</span> everywhere. At the peak, <span class="font-mono text-purple-300">v&#7522; = 0</span>, so total speed is <strong>momentarily zero</strong>.
+            </p>
+            <p class="text-slate-400 leading-relaxed text-[11px]">
+              Yet <span class="font-mono text-red-400 font-bold">a&#7522; = &minus;9.81 m/s&sup2;</span> downward! This boundary case definitively proves: <strong>zero instantaneous velocity does NOT imply zero acceleration.</strong>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIAGNOSTIC CONCEPTUAL CHECKPOINTS ("CHECK YOUR UNDERSTANDING") -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">?</div>
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR UNDERSTANDING &middot; DIAGNOSTIC CHECKPOINTS</h2>
+            <p class="text-xs text-slate-400">Targeting common misconceptions regarding velocity and acceleration at the apex</p>
+          </div>
+        </div>
+        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+          Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- QUESTION 1 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              An arrow is fired at a 30&deg; angle with an initial speed of 30 m/s. At the very highest point (apex) of its flight, what is its acceleration?
+            </span>
+            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Exactly 0 m/s&sup2;, because the arrow is momentarily at rest vertically.
+            </button>
+            <button onclick="answerQuiz(1, 'B')" class="q-btn-1-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> 9.81 m/s&sup2; directed horizontally in the direction of motion.
+            </button>
+            <button onclick="answerQuiz(1, 'C')" class="q-btn-1-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> 9.81 m/s&sup2; directed vertically downward.
+            </button>
+          </div>
+
+          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              A tennis ball is struck with initial speed v_0 = 20 m/s at an angle of 60&deg; above the horizontal. What is the ball's total speed at its apex?
+            </span>
+            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> 0 m/s, because it has reached the top of its path.
+            </button>
+            <button onclick="answerQuiz(2, 'B')" class="q-btn-2-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> 10.0 m/s, equal to its constant horizontal component v_0 &times; cos(60&deg;).
+            </button>
+            <button onclick="answerQuiz(2, 'C')" class="q-btn-2-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> 17.3 m/s, equal to its initial vertical component v_0 &times; sin(60&deg;).
+            </button>
+          </div>
+
+          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              A rock is thrown straight upward into the air (&theta; = 90&deg;). At the peak of its flight, why does it begin falling rather than hovering?
+            </span>
+            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Even though v_y = 0, downward acceleration a_y = &minus;g continuously changes the velocity: &Delta;v_y = a_y &Delta;t &lt; 0.
+            </button>
+            <button onclick="answerQuiz(3, 'B')" class="q-btn-3-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Air pressure from above pushes it downward once its upward inertia runs out.
+            </button>
+            <button onclick="answerQuiz(3, 'C')" class="q-btn-3-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Gravity turns back on only after the rock comes to a complete rest.
+            </button>
+          </div>
+
+          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+      Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #131: The Apex Fallacy
+    </footer>
+
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- JAVASCRIPT SIMULATION ENGINE                                      -->
+  <!-- ================================================================= -->
+  <script>
+    const g = 9.81;
+
+    let state = {
+      v0: 25.0,
+      thetaDeg: 45,
+      tCurrent: 0.0,
+      tApex: 0.0,
+      tFlight: 0.0,
+      xMax: 0.0,
+      yMax: 0.0,
+      isPlaying: false,
+      lastTimestamp: null
+    };
+
+    let quizAnswers = { 1: null, 2: null, 3: null };
+
+    // SVG coordinates config
+    const svgWidth = 600;
+    const svgHeight = 360;
+    const originX = 40;
+    const originY = 310;
+    const usableWidth = 520;
+    const usableHeight = 270;
+
+    function initPhysics() {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      state.tApex = v0y / g;
+      state.tFlight = (2 * v0y) / g;
+      state.yMax = (v0y * v0y) / (2 * g);
+      state.xMax = v0x * state.tFlight;
+
+      // Handle vertical boundary case
+      if (state.thetaDeg === 90) {
+        state.xMax = 10; // small dummy range for scaling
+      }
+
+      // Update parameter labels
+      document.getElementById('lblV0').textContent = `${state.v0.toFixed(1)} m/s`;
+      document.getElementById('lblTheta').textContent = `${state.thetaDeg}°`;
+      document.getElementById('lblTotalT').textContent = `${state.tFlight.toFixed(2)} s`;
+      document.getElementById('lblApexT').textContent = `${state.tApex.toFixed(2)} s`;
+
+      renderTrajectoryCurve();
+      renderGraphs();
+      updateInstantaneousState();
+    }
+
+    function onParamChange() {
+      state.v0 = parseFloat(document.getElementById('sliderV0').value);
+      state.thetaDeg = parseInt(document.getElementById('sliderTheta').value, 10);
+      
+      // Keep scrub fraction or clamp tCurrent
+      const oldFlight = state.tFlight || 1;
+      const scrubFrac = state.tCurrent / oldFlight;
+      initPhysics();
+      state.tCurrent = Math.min(scrubFrac * state.tFlight, state.tFlight);
+      document.getElementById('timeSlider').value = (state.tFlight > 0) ? (state.tCurrent / state.tFlight) : 0;
+      updateInstantaneousState();
+    }
+
+    function setAnglePreset(deg) {
+      document.getElementById('sliderTheta').value = deg;
+      onParamChange();
+    }
+
+    // Convert physics (x, y) to SVG (px, py)
+    function toSvg(x, y) {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const isVertical = (state.thetaDeg === 90);
+
+      const scaleY = usableHeight / Math.max(state.yMax * 1.25, 5);
+      const scaleX = isVertical ? (usableWidth / 2) : (usableWidth / Math.max(state.xMax, 10));
+
+      const px = isVertical ? (originX + usableWidth / 2) : (originX + x * scaleX);
+      const py = originY - y * scaleY;
+      return { px, py, scaleX, scaleY };
+    }
+
+    function renderTrajectoryCurve() {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      const steps = 60;
+      let dStr = '';
+
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * state.tFlight;
+        const x = v0x * t;
+        const y = Math.max(0, v0y * t - 0.5 * g * t * t);
+        const { px, py } = toSvg(x, y);
+        if (i === 0) dStr += `M ${px.toFixed(1)} ${py.toFixed(1)}`;
+        else dStr += ` L ${px.toFixed(1)} ${py.toFixed(1)}`;
+      }
+
+      document.getElementById('pathTrajectory').setAttribute('d', dStr);
+
+      // Apex position
+      const xApex = v0x * state.tApex;
+      const yApex = state.yMax;
+      const apexCoords = toSvg(xApex, yApex);
+
+      const apexDot = document.getElementById('apexDot');
+      apexDot.setAttribute('cx', apexCoords.px);
+      apexDot.setAttribute('cy', apexCoords.py);
+
+      const apexLineX = document.getElementById('apexLineX');
+      apexLineX.setAttribute('x1', apexCoords.px);
+      apexLineX.setAttribute('x2', apexCoords.px);
+      apexLineX.setAttribute('y1', originY);
+      apexLineX.setAttribute('y2', apexCoords.py);
+
+      const apexText = document.getElementById('apexText');
+      apexText.setAttribute('x', apexCoords.px + 10);
+      apexText.setAttribute('y', apexCoords.py - 10);
+      apexText.textContent = `APEX (v\u1d67=0, h=${state.yMax.toFixed(1)}m)`;
+    }
+
+    function updateInstantaneousState() {
+      const t = state.tCurrent;
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      const curX = v0x * t;
+      const curY = Math.max(0, v0y * t - 0.5 * g * t * t);
+      const curVx = v0x;
+      const curVy = v0y - g * t;
+      const curSpeed = Math.sqrt(curVx * curVx + curVy * curVy);
+
+      // Update DOM Readouts
+      document.getElementById('lblClockT').textContent = `${t.toFixed(2)} s`;
+      document.getElementById('graphCursorTime').textContent = t.toFixed(2);
+      document.getElementById('valVx').textContent = `${curVx >= 0 ? '+' : ''}${curVx.toFixed(2)} m/s`;
+      document.getElementById('valVy').textContent = `${curVy >= 0 ? '+' : ''}${curVy.toFixed(2)} m/s`;
+      document.getElementById('valSpeed').textContent = `${curSpeed.toFixed(2)} m/s`;
+      document.getElementById('valAy').textContent = `&minus;${g.toFixed(2)} m/s&sup2;`;
+
+      // Status Tag & Instant Verdict
+      const statusTag = document.getElementById('stateStatusTag');
+      const verdictBox = document.getElementById('instantVerdictBox');
+      const isAtApex = Math.abs(t - state.tApex) < 0.03;
+      const isNearApex = Math.abs(t - state.tApex) < 0.15;
+
+      const apexBadge = document.getElementById('apexAlertBadge');
+
+      if (isAtApex) {
+        statusTag.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40';
+        statusTag.textContent = 'AT APEX (PEAK)';
+        apexBadge.classList.remove('hidden');
+        document.getElementById('badgeApexSpeed').textContent = `${curSpeed.toFixed(2)} m/s`;
+        verdictBox.innerHTML = `<span class="text-amber-300 font-bold">&starf; Exact Apex Reached!</span> Vertical velocity <span class="text-purple-300 font-mono">v\u1d67 = 0.00 m/s</span>. Horizontal velocity is <strong class="text-cyan-300 font-mono">${curVx.toFixed(2)} m/s</strong>. Downward acceleration is constantly <strong class="text-red-400 font-mono">&minus;9.81 m/s&sup2;</strong>!`;
+      } else if (t < state.tApex) {
+        statusTag.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold';
+        statusTag.textContent = 'ASCENDING';
+        apexBadge.classList.add('hidden');
+        verdictBox.innerHTML = `Ball is rising. Vertical velocity <span class="font-mono text-purple-300">+${curVy.toFixed(2)} m/s</span> is decreasing under continuous downward acceleration <span class="font-mono text-red-400">&minus;9.81 m/s&sup2;</span>.`;
+      } else {
+        statusTag.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold';
+        statusTag.textContent = 'DESCENDING';
+        apexBadge.classList.add('hidden');
+        verdictBox.innerHTML = `Ball is falling. Downward acceleration <span class="font-mono text-red-400">&minus;9.81 m/s&sup2;</span> has pulled vertical velocity into negative values: <span class="font-mono text-purple-400">${curVy.toFixed(2)} m/s</span>.`;
+      }
+
+      // Position Ball on SVG
+      const { px, py } = toSvg(curX, curY);
+      const ballGroup = document.getElementById('ballGroup');
+      ballGroup.setAttribute('transform', `translate(${px.toFixed(1)}, ${py.toFixed(1)})`);
+
+      // Update Vectors at Ball
+      // Vector visual scale factor: 1.8 pixels per (m/s)
+      const vScale = 1.8;
+      const aScale = 3.5; // pixels per m/s^2
+
+      const vecVx = document.getElementById('vecVx');
+      const lblVx = document.getElementById('lblVx');
+      const vxLen = curVx * vScale;
+      vecVx.setAttribute('x2', vxLen);
+      lblVx.setAttribute('x', vxLen + 4);
+      vecVx.style.display = (state.thetaDeg === 90) ? 'none' : 'block';
+      lblVx.style.display = (state.thetaDeg === 90) ? 'none' : 'block';
+
+      const vecVy = document.getElementById('vecVy');
+      const lblVy = document.getElementById('lblVy');
+      // In SVG, -Y is up, so upward velocity (curVy > 0) draws upward (-curVy * vScale)
+      const vyLen = -curVy * vScale;
+      vecVy.setAttribute('y2', vyLen);
+      lblVy.setAttribute('y', vyLen + (curVy >= 0 ? -4 : 12));
+      if (Math.abs(curVy) < 0.2) {
+        vecVy.setAttribute('stroke-opacity', '0.2');
+      } else {
+        vecVy.setAttribute('stroke-opacity', '1.0');
+      }
+
+      const vecV = document.getElementById('vecV');
+      vecV.setAttribute('x2', vxLen);
+      vecV.setAttribute('y2', vyLen);
+
+      // a_y vector (always downward: +y in SVG)
+      const vecA = document.getElementById('vecA');
+      const lblA = document.getElementById('lblA');
+      const aLen = g * aScale;
+      vecA.setAttribute('y2', aLen);
+      lblA.setAttribute('y', aLen + 4);
+
+      // Sync Graphs Cursor
+      updateGraphsCursor(t);
+    }
+
+    function renderGraphs() {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      const tFlight = state.tFlight;
+      const tApex = state.tApex;
+
+      // X mapping: [0, tFlight] -> [25, 190]
+      const mapX = (t) => 25 + (t / tFlight) * (190 - 25);
+
+      // Graph 1: vx(t) [Constant]
+      // Y range: [0, 40] -> [105, 15]
+      const mapY1 = (vx) => 105 - (vx / 40) * 90;
+      const yVx = mapY1(v0x);
+      document.getElementById('plotVx').setAttribute('d', `M 25 ${yVx} L 190 ${yVx}`);
+      const g1ApexX = mapX(tApex);
+      document.getElementById('g1ApexLine').setAttribute('x1', g1ApexX);
+      document.getElementById('g1ApexLine').setAttribute('x2', g1ApexX);
+
+      // Graph 2: vy(t) [Linear from +v0y to -v0y]
+      // Y range: [-40, +40] -> [105, 15] (Zero at 60)
+      const mapY2 = (vy) => 60 - (vy / 40) * 45;
+      const yVy0 = mapY2(v0y);
+      const yVyEnd = mapY2(-v0y);
+      document.getElementById('plotVy').setAttribute('d', `M 25 ${yVy0} L 190 ${yVyEnd}`);
+      const g2ApexX = mapX(tApex);
+      document.getElementById('g2ApexLine').setAttribute('x1', g2ApexX);
+      document.getElementById('g2ApexLine').setAttribute('x2', g2ApexX);
+      document.getElementById('g2ApexDot').setAttribute('cx', g2ApexX);
+      document.getElementById('g2ApexDot').setAttribute('cy', mapY2(0));
+
+      // Graph 3: ay(t) [Constant -9.81]
+      const g3ApexX = mapX(tApex);
+      document.getElementById('g3ApexLine').setAttribute('x1', g3ApexX);
+      document.getElementById('g3ApexLine').setAttribute('x2', g3ApexX);
+
+      // Graph 4: Speed |v|(t)
+      const mapYS = (s) => 105 - (s / 40) * 90;
+      let dSpeed = '';
+      for (let i = 0; i <= 30; i++) {
+        const t = (i / 30) * tFlight;
+        const curVy = v0y - g * t;
+        const curSpd = Math.sqrt(v0x * v0x + curVy * curVy);
+        const gx = mapX(t);
+        const gy = mapYS(curSpd);
+        if (i === 0) dSpeed += `M ${gx.toFixed(1)} ${gy.toFixed(1)}`;
+        else dSpeed += ` L ${gx.toFixed(1)} ${gy.toFixed(1)}`;
+      }
+      document.getElementById('plotSpeed').setAttribute('d', dSpeed);
+      const g4ApexX = mapX(tApex);
+      document.getElementById('g4ApexLine').setAttribute('x1', g4ApexX);
+      document.getElementById('g4ApexLine').setAttribute('x2', g4ApexX);
+      document.getElementById('g4ApexDot').setAttribute('cx', g4ApexX);
+      document.getElementById('g4ApexDot').setAttribute('cy', mapYS(v0x));
+      document.getElementById('lblG4MinSpeed').textContent = (state.thetaDeg === 90) ? '0 m/s' : `${v0x.toFixed(1)} m/s`;
+    }
+
+    function updateGraphsCursor(t) {
+      const tFlight = state.tFlight;
+      const cursorX = 25 + (t / tFlight) * (190 - 25);
+
+      document.getElementById('g1Cursor').setAttribute('x1', cursorX);
+      document.getElementById('g1Cursor').setAttribute('x2', cursorX);
+      document.getElementById('g2Cursor').setAttribute('x1', cursorX);
+      document.getElementById('g2Cursor').setAttribute('x2', cursorX);
+      document.getElementById('g3Cursor').setAttribute('x1', cursorX);
+      document.getElementById('g3Cursor').setAttribute('x2', cursorX);
+      document.getElementById('g4Cursor').setAttribute('x1', cursorX);
+      document.getElementById('g4Cursor').setAttribute('x2', cursorX);
+
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+      const curVy = v0y - g * t;
+      const curSpd = Math.sqrt(v0x * v0x + curVy * curVy);
+
+      document.getElementById('gValVx').textContent = `${v0x.toFixed(1)} m/s`;
+      document.getElementById('gValVy').textContent = `${curVy >= 0 ? '+' : ''}${curVy.toFixed(1)} m/s`;
+      document.getElementById('gValSpeed').textContent = `${curSpd.toFixed(1)} m/s`;
+    }
+
+    function onTimeScrub(val) {
+      state.isPlaying = false;
+      document.getElementById('playIcon').textContent = '▶ Play';
+      state.tCurrent = parseFloat(val) * state.tFlight;
+      updateInstantaneousState();
+    }
+
+    function snapToApex() {
+      state.isPlaying = false;
+      document.getElementById('playIcon').textContent = '▶ Play';
+      state.tCurrent = state.tApex;
+      document.getElementById('timeSlider').value = state.tApex / state.tFlight;
+      updateInstantaneousState();
+    }
+
+    function resetSimulation() {
+      state.isPlaying = false;
+      document.getElementById('playIcon').textContent = '▶ Play';
+      state.tCurrent = 0;
+      document.getElementById('timeSlider').value = 0;
+      updateInstantaneousState();
+    }
+
+    function togglePlay() {
+      state.isPlaying = !state.isPlaying;
+      document.getElementById('playIcon').textContent = state.isPlaying ? '❚❚ Pause' : '▶ Play';
+      if (state.isPlaying) {
+        if (state.tCurrent >= state.tFlight) {
+          state.tCurrent = 0;
+        }
+        state.lastTimestamp = performance.now();
+        requestAnimationFrame(animLoop);
+      }
+    }
+
+    function animLoop(timestamp) {
+      if (!state.isPlaying) return;
+
+      const dt = (timestamp - state.lastTimestamp) / 1000.0;
+      state.lastTimestamp = timestamp;
+
+      // Realistic speed multiplier (1x real time)
+      state.tCurrent += dt;
+
+      if (state.tCurrent >= state.tFlight) {
+        state.tCurrent = state.tFlight;
+        state.isPlaying = false;
+        document.getElementById('playIcon').textContent = '▶ Play';
+      }
+
+      document.getElementById('timeSlider').value = state.tCurrent / state.tFlight;
+      updateInstantaneousState();
+
+      if (state.isPlaying) {
+        requestAnimationFrame(animLoop);
+      }
+    }
+
+
+    // =========================================================================
+    // DIAGNOSTIC QUIZ LOGIC
+    // =========================================================================
+    const quizData131 = {
+      1: {
+        correct: 'C',
+        textC: `<strong>&check; Correct! (Constant Downward Acceleration)</strong> In projectile flight (ignoring air resistance), downward gravity is the sole force acting at all times. Therefore, &Sigma;F\u1d67 = &minus;mg &rArr; a\u1d67 = &minus;9.81 m/s&sup2; downward constantly. It is never zero!`,
+        textA: `<strong>&cross; The Apex Fallacy:</strong> Instantaneous zero vertical velocity (v\u1d67 = 0) does NOT mean zero acceleration! If acceleration were zero, the arrow would never fall back down.`,
+        textB: `<strong>&cross; Misconception:</strong> There is zero horizontal acceleration (a\u2093 = 0). Acceleration points purely vertically downward towards Earth's center.`
+      },
+      2: {
+        correct: 'B',
+        textB: `<strong>&check; Correct! (Velocity Decomposition)</strong> At the apex, only the vertical velocity is zero (v\u1d67 = 0). The horizontal velocity is unchanged: v\u2093 = v\u2080 cos(60&deg;) = 20 &times; 0.5 = 10.0 m/s. Thus, total speed |v| = &radic;(10&sup2; + 0&sup2;) = 10.0 m/s!`,
+        textA: `<strong>&cross; Fallacy:</strong> The ball does not stop moving forward at the peak! It continues traveling horizontally at 10.0 m/s.`,
+        textC: `<strong>&cross; Incorrect:</strong> 17.3 m/s is the initial vertical speed v\u2080\u1d67 at launch, which has depleted to exactly 0 at the apex.`
+      },
+      3: {
+        correct: 'A',
+        textA: `<strong>&check; Correct! (Rate of Change Principle)</strong> Motion follows velocity, but velocity change is governed by acceleration: &Delta;v\u1d67 = a\u1d67 &Delta;t. With a\u1d67 = &minus;9.81 m/s&sup2;, v\u1d67 is immediately driven negative in the next fraction of a second, causing immediate downward descent.`,
+        textB: `<strong>&cross; Unphysical:</strong> Atmospheric pressure acts equally in all directions; downward descent is caused solely by Earth's gravitational acceleration.`,
+        textC: `<strong>&cross; Fallacy:</strong> Gravity never turns off! Earth's gravitational attraction is continuous throughout the entire upward and downward path.`
+      }
+    };
+
+    function answerQuiz(qNum, choice) {
+      quizAnswers[qNum] = choice;
+      const data = quizData131[qNum];
+      const isCorrect = (choice === data.correct);
+
+      ['A', 'B', 'C'].forEach(opt => {
+        const btn = document.querySelector(`.q-btn-${qNum}-${opt}`);
+        btn.classList.remove('bg-emerald-950', 'bg-red-950', 'border-emerald-500', 'border-red-500', 'font-bold');
+        btn.classList.add('bg-slate-900', 'border-slate-800');
+      });
+
+      const selBtn = document.querySelector(`.q-btn-${qNum}-${choice}`);
+      if (isCorrect) {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-emerald-950', 'border-emerald-500', 'font-bold');
+      } else {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-red-950', 'border-red-500', 'font-bold');
+      }
+
+      const badge = document.getElementById(`badgeQ${qNum}`);
+      if (isCorrect) {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.textContent = 'CORRECT';
+      } else {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.textContent = 'TRY AGAIN';
+      }
+
+      const explDiv = document.getElementById(`explQ${qNum}`);
+      explDiv.classList.remove('hidden');
+      if (isCorrect) {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      } else {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        if (quizAnswers[i] === quizData131[i].correct) score++;
+      }
+      document.getElementById('quizScore').textContent = `${score} / 3`;
+    }
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initPhysics();
+    });
+  </script>
+</body>
+</html>

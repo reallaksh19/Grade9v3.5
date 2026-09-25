@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer #132 · Same Height, Same Speed &ne; Same Velocity</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #090d16;
+      --card: #131b2e;
+      --card-hover: #1a253e;
+      --border: #23304d;
+      --border-focus: #3b82f6;
+      --foreground: #f8fafc;
+      --muted-foreground: #94a3b8;
+      --primary: #3b82f6;
+      --point-a: #06b6d4;       /* Cyan: Ascending */
+      --point-b: #ec4899;       /* Pink/Magenta: Descending */
+      --accent-diff: #ef4444;   /* Red: Delta v */
+      --accent-energy: #10b981; /* Emerald */
+      --accent-speed: #f59e0b;  /* Amber */
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      user-select: none;
+    }
+    input[type=range] {
+      accent-color: #3b82f6;
+    }
+    .point-a-glow {
+      animation: glowA 2s infinite ease-in-out;
+    }
+    .point-b-glow {
+      animation: glowB 2s infinite ease-in-out;
+    }
+    @keyframes glowA {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.5)); }
+      50% { filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.9)); }
+    }
+    @keyframes glowB {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(236, 72, 153, 0.5)); }
+      50% { filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.9)); }
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center">
+
+  <div class="w-full max-w-6xl space-y-6">
+
+    <!-- MASTER HEADER -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-pink-500/20 text-pink-400 border border-pink-500/30">
+              Grade 9 Physics &middot; Issue #132
+            </span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">Kinematic Symmetry &middot; Vector State Comparison</span>
+          </div>
+          <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
+            SAME HEIGHT, SAME SPEED &ne; SAME VELOCITY
+          </h1>
+          <p class="text-sm md:text-base text-slate-400 mt-1">
+            Equal elevation gives <strong class="text-amber-400 font-mono">|v_A| = |v_B|</strong> (speed), but <strong class="text-pink-400 font-mono">v_A &ne; v_B</strong> (vectors). Direction has inverted!
+          </p>
+        </div>
+
+        <!-- QUICK SCANNER PRESETS -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="setHeightPreset(0)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-semibold transition">
+            Ground (h = 0)
+          </button>
+          <button onclick="setHeightPreset(0.5)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-semibold transition">
+            Mid-Height (0.5 h_max)
+          </button>
+          <button onclick="setHeightPreset(0.98)" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition">
+            Near Apex (h &rarr; h_max)
+          </button>
+        </div>
+      </div>
+
+      <!-- INVARIANT COMPARISON STRIP -->
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold">FALLACY</span>
+          <span class="text-slate-300">"Since height is identical, velocity is identical." &rarr; <strong class="text-red-300">FALSE.</strong></span>
+        </div>
+        <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+          <span class="font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">INVARIANT</span>
+          <span class="text-slate-300">Magnitudes equal: <span class="font-mono text-amber-300">|v_A| = |v_B|</span>. Directions opposite: <span class="font-mono text-pink-300">v_By = &minus;v_Ay</span>.</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- MAIN WORKSPACE: TRAJECTORY SCANNER + TAIL-TO-TAIL COMPARATOR -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT: TRAJECTORY & ELEVATION SCANNER CANVAS (7 COLS) -->
+      <div class="lg:col-span-7 space-y-4">
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-xl space-y-4">
+          
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+              <h2 class="font-bold text-sm tracking-wide text-white">ELEVATION SCANNER &middot; CONJUGATE POINTS A &amp; B</h2>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="flex items-center gap-1.5 text-cyan-400"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Point A (Ascent)</span>
+              <span class="flex items-center gap-1.5 text-pink-400"><span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span> Point B (Descent)</span>
+            </div>
+          </div>
+
+          <!-- SVG TRAJECTORY CANVAS -->
+          <div class="relative bg-slate-950 rounded-xl border border-slate-800 overflow-hidden" style="height: 380px;">
+            <svg id="trajCanvas" class="w-full h-full" viewBox="0 0 540 380" preserveAspectRatio="none">
+              <defs>
+                <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+                  <path d="M 25 0 L 0 0 0 25" fill="none" stroke="#1e293b" stroke-width="0.7"/>
+                </pattern>
+                <!-- Arrow markers -->
+                <marker id="arrCyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#06b6d4" />
+                </marker>
+                <marker id="arrPink" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#ec4899" />
+                </marker>
+                <marker id="arrRed" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M 0 1 L 7 4 L 0 7 z" fill="#ef4444" />
+                </marker>
+              </defs>
+
+              <rect width="540" height="380" fill="url(#grid)" />
+
+              <!-- Ground line -->
+              <line x1="30" y1="330" x2="510" y2="330" stroke="#334155" stroke-width="2"/>
+              <text x="440" y="348" fill="#64748b" font-family="monospace" font-size="10">Ground (y = 0)</text>
+
+              <!-- Parabolic path -->
+              <path id="pathTrajectory" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" opacity="0.6"/>
+
+              <!-- Apex Point -->
+              <circle id="dotApex" cx="0" cy="0" r="4.5" fill="#f59e0b" opacity="0.8"/>
+              <text id="txtApex" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">APEX</text>
+
+              <!-- HORIZONTAL ELEVATION SCANNER LINE -->
+              <g id="scanLineGroup">
+                <line id="scanLine" x1="30" y1="200" x2="510" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
+                <rect id="scanTagBg" x="30" y="184" width="130" height="18" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+                <text id="scanTagTxt" x="36" y="197" fill="#fcd34d" font-family="monospace" font-size="10" font-weight="bold">Scan Elevation: 12.5 m</text>
+              </g>
+
+              <!-- POINT A (ASCENT) GROUP -->
+              <g id="groupPointA" transform="translate(100, 200)">
+                <!-- Tangent Velocity Vector vA -->
+                <line id="vecA" x1="0" y1="0" x2="40" y2="-30" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrCyan)"/>
+                <!-- Components (Dashed) -->
+                <line id="vecAx" x1="0" y1="0" x2="40" y2="0" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+                <line id="vecAy" x1="40" y1="0" x2="40" y2="-30" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+                <circle cx="0" cy="0" r="7" fill="#06b6d4" stroke="#ffffff" stroke-width="2" class="point-a-glow"/>
+                <text x="-16" y="-12" fill="#06b6d4" font-family="monospace" font-size="12" font-weight="bold">Point A</text>
+                <text id="lblVA" x="42" y="-34" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v_A</text>
+              </g>
+
+              <!-- POINT B (DESCENT) GROUP -->
+              <g id="groupPointB" transform="translate(350, 200)">
+                <!-- Tangent Velocity Vector vB -->
+                <line id="vecB" x1="0" y1="0" x2="40" y2="30" stroke="#ec4899" stroke-width="2.5" marker-end="url(#arrPink)"/>
+                <!-- Components (Dashed) -->
+                <line id="vecBx" x1="0" y1="0" x2="40" y2="0" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+                <line id="vecBy" x1="40" y1="0" x2="40" y2="30" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+                <circle cx="0" cy="0" r="7" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="point-b-glow"/>
+                <text x="8" y="-12" fill="#ec4899" font-family="monospace" font-size="12" font-weight="bold">Point B</text>
+                <text id="lblVB" x="42" y="38" fill="#ec4899" font-family="monospace" font-size="10" font-weight="bold">v_B</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- ELEVATION SCANNER SLIDER -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex justify-between items-center text-xs font-mono">
+              <span class="text-amber-400 font-bold flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                Elevation Scanner (h):
+              </span>
+              <span id="lblScanH" class="text-amber-300 font-bold text-sm">12.50 m</span>
+              <span class="text-slate-500">Max Peak: <span id="lblMaxH">25.00 m</span></span>
+            </div>
+            <input type="range" id="sliderH" min="0" max="1" step="0.005" value="0.5" oninput="onHeightChange(this.value)" class="w-full cursor-pointer h-2 bg-slate-800 rounded-lg">
+          </div>
+
+          <!-- LAUNCH CONTROLS SLIDERS -->
+          <div class="grid grid-cols-2 gap-4 bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs font-mono">
+            <div class="space-y-1">
+              <div class="flex justify-between text-slate-400">
+                <span>Speed v&#8320;:</span>
+                <span id="lblV0" class="text-white font-bold">25.0 m/s</span>
+              </div>
+              <input type="range" id="sliderV0" min="15" max="35" step="1" value="25" oninput="onParamChange()" class="w-full cursor-pointer h-1.5 bg-slate-800 rounded">
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-slate-400">
+                <span>Angle &theta;:</span>
+                <span id="lblTheta" class="text-white font-bold">53&deg;</span>
+              </div>
+              <input type="range" id="sliderTheta" min="20" max="80" step="1" value="53" oninput="onParamChange()" class="w-full cursor-pointer h-1.5 bg-slate-800 rounded">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- RIGHT: TAIL-TO-TAIL VECTOR COMPARATOR & IMPULSE (5 COLS) -->
+      <div class="lg:col-span-5 space-y-4">
+
+        <!-- TAIL-TO-TAIL COMPARATOR CARD -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-xl space-y-3">
+          <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+            <h2 class="font-bold text-sm tracking-wide text-white flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <span>TAIL-TO-TAIL VECTOR COMPARATOR</span>
+            </h2>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">ORIGIN (0,0)</span>
+          </div>
+
+          <!-- COMPARATOR SVG DISC -->
+          <div class="relative bg-slate-950 rounded-xl border border-slate-800 p-2 flex flex-col items-center">
+            <svg id="discSvg" width="280" height="240" viewBox="-140 -120 280 240">
+              <!-- Grid Axes -->
+              <line x1="-130" y1="0" x2="130" y2="0" stroke="#334155" stroke-width="1.2"/>
+              <line x1="0" y1="-110" x2="0" y2="110" stroke="#334155" stroke-width="1.2"/>
+              <text x="120" y="-5" fill="#64748b" font-family="monospace" font-size="9">+x</text>
+              <text x="5" y="-100" fill="#64748b" font-family="monospace" font-size="9">+y</text>
+
+              <!-- Constant Speed Circle -->
+              <circle id="circSpeed" cx="0" cy="0" r="80" fill="none" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+              <text id="txtSpeedRadius" x="5" y="-83" fill="#f59e0b" font-family="monospace" font-size="9">|v| = 20.2 m/s</text>
+
+              <!-- Vector Difference Δv (Stretches from tip vA to tip vB) -->
+              <line id="vecDiff" x1="60" y1="-50" x2="60" y2="50" stroke="#ef4444" stroke-width="3" marker-end="url(#arrRed)"/>
+              <text id="lblDiff" x="65" y="5" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">&Delta;v</text>
+
+              <!-- Vector A (Cyan) -->
+              <line id="compVecA" x1="0" y1="0" x2="60" y2="-50" stroke="#06b6d4" stroke-width="2.8" marker-end="url(#arrCyan)"/>
+              
+              <!-- Vector B (Pink) -->
+              <line id="compVecB" x1="0" y1="0" x2="60" y2="50" stroke="#ec4899" stroke-width="2.8" marker-end="url(#arrPink)"/>
+
+              <!-- Common Origin Dot -->
+              <circle cx="0" cy="0" r="4.5" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+            </svg>
+
+            <!-- Polar Disc Readout Caption -->
+            <div class="w-full text-center text-xs font-mono text-slate-300 pt-1 space-y-1">
+              <div class="flex justify-around border-t border-slate-800/80 pt-2">
+                <span class="text-cyan-400 font-bold">&theta;&#7522; = <span id="valAngleA">+35&deg;</span></span>
+                <span class="text-amber-300 font-bold">Radius |v| = <span id="valDiscSpeed">20.2 m/s</span></span>
+                <span class="text-pink-400 font-bold">&theta;&#7522; = <span id="valAngleB">&minus;35&deg;</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VECTOR DIFFERENCE (IMPULSE) MATH BOX -->
+          <div class="bg-slate-950 p-3.5 rounded-xl border border-red-500/30 text-xs font-mono space-y-1.5 leading-relaxed">
+            <div class="text-red-400 font-bold flex items-center justify-between">
+              <span>VECTOR DIFFERENCE &Delta;v = v_B &minus; v_A:</span>
+              <span id="badgeDiffPureY" class="text-[10px] px-1.5 py-0.5 rounded bg-red-950 text-red-300 border border-red-700">PURELY VERTICAL</span>
+            </div>
+            <div class="bg-slate-900/90 p-2 rounded text-slate-200 space-y-1">
+              <div>&Delta;v&#8339; = v_Bx &minus; v_Ax = <span class="text-cyan-300">v&#8320;&#8339;</span> &minus; <span class="text-cyan-300">v&#8320;&#8339;</span> = <strong class="text-white">0.00 m/s</strong></div>
+              <div>&Delta;v&#7522; = v_By &minus; v_Ay = <span class="text-pink-300">(&minus;|v&#7522;|)</span> &minus; <span class="text-cyan-300">(+|v&#7522;|)</span> = <strong class="text-red-400">&minus;2|v&#7522;| = <span id="lblDeltaVy">&minus;22.8 m/s</span></strong></div>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Gravity Impulse: <span class="font-mono text-amber-300">g &middot; &Delta;t = (9.81 m/s&sup2;) &middot; (<span id="lblDeltaT">2.32 s</span>) = <span id="lblGDeltaT">22.8 m/s</span> &check;</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- COMPARISON MATRIX: SCALAR INVARIANCE VS VECTOR TRANSFORMATION -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="border-b border-[var(--border)] pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="font-bold text-base text-white tracking-wide">
+            STATE COMPARISON AT ELEVATION h = <span id="matrixH" class="text-amber-400">12.50 m</span>
+          </h2>
+          <p class="text-xs text-slate-400">Side-by-side reconciliation of scalar invariants vs vector components</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono">
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-950/80 text-emerald-300 border border-emerald-700/50">&check; SCALAR SYMMETRY</span>
+          <span class="px-2.5 py-1 rounded-lg bg-pink-950/80 text-pink-300 border border-pink-700/50">&ne; VECTOR INVERSION</span>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-mono">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 uppercase text-[11px]">
+              <th class="py-2.5 px-3">Physical Quantity</th>
+              <th class="py-2.5 px-3 text-cyan-400">Point A (Ascending)</th>
+              <th class="py-2.5 px-3 text-pink-400">Point B (Descending)</th>
+              <th class="py-2.5 px-3 text-amber-400">Comparison Status</th>
+              <th class="py-2.5 px-3 text-slate-300">Physical Invariant Rationale</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 text-slate-300">
+            <tr>
+              <td class="py-2.5 px-3 font-semibold text-white">Event Time (t)</td>
+              <td id="tblTa" class="py-2.5 px-3 text-cyan-300 font-bold">0.86 s</td>
+              <td id="tblTb" class="py-2.5 px-3 text-pink-300 font-bold">3.18 s</td>
+              <td class="py-2.5 px-3 text-slate-400">t_A &ne; t_B</td>
+              <td class="py-2.5 px-3 text-slate-400">Symmetric about apex: t_apex = &frac12;(t_A + t_B)</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3 font-semibold text-white">Horizontal Velocity (v&#8339;)</td>
+              <td id="tblVax" class="py-2.5 px-3 text-cyan-300 font-bold">+15.04 m/s</td>
+              <td id="tblVbx" class="py-2.5 px-3 text-pink-300 font-bold">+15.04 m/s</td>
+              <td class="py-2.5 px-3 text-emerald-400 font-bold">EQUAL (=)</td>
+              <td class="py-2.5 px-3 text-slate-400">&Sigma;F&#8339; = 0 &rArr; No horizontal acceleration occurs</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3 font-semibold text-white">Vertical Velocity (v&#7522;)</td>
+              <td id="tblVay" class="py-2.5 px-3 text-cyan-300 font-bold">+11.41 m/s</td>
+              <td id="tblVby" class="py-2.5 px-3 text-pink-300 font-bold">&minus;11.41 m/s</td>
+              <td class="py-2.5 px-3 text-pink-400 font-bold">OPPOSITE (&minus;)</td>
+              <td class="py-2.5 px-3 text-slate-400">v_By = &minus;v_Ay; magnitude equal, direction inverted</td>
+            </tr>
+            <tr class="bg-amber-950/20">
+              <td class="py-2.5 px-3 font-bold text-amber-300">Total Speed (|v|)</td>
+              <td id="tblSa" class="py-2.5 px-3 text-amber-300 font-black">18.88 m/s</td>
+              <td id="tblSb" class="py-2.5 px-3 text-amber-300 font-black">18.88 m/s</td>
+              <td class="py-2.5 px-3 text-emerald-400 font-black">IDENTICAL (=)</td>
+              <td class="py-2.5 px-3 text-amber-200">&radic;(v&#8339;&sup2; + v&#7522;&sup2;) is identical because (&minus;v&#7522;)&sup2; = (+v&#7522;)&sup2;</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3 font-semibold text-white">Kinetic Energy (KE / m)</td>
+              <td id="tblKeA" class="py-2.5 px-3 text-emerald-300 font-bold">178.2 J/kg</td>
+              <td id="tblKeB" class="py-2.5 px-3 text-emerald-300 font-bold">178.2 J/kg</td>
+              <td class="py-2.5 px-3 text-emerald-400 font-bold">CONSERVED (=)</td>
+              <td class="py-2.5 px-3 text-slate-400">KE = &frac12;mv&sup2;; scalar depends strictly on speed squared</td>
+            </tr>
+            <tr class="bg-red-950/20">
+              <td class="py-2.5 px-3 font-bold text-red-300">Velocity Vector (v)</td>
+              <td id="tblVecA" class="py-2.5 px-3 text-cyan-300 font-bold">(15.0, +11.4)</td>
+              <td id="tblVecB" class="py-2.5 px-3 text-pink-300 font-bold">(15.0, &minus;11.4)</td>
+              <td class="py-2.5 px-3 text-red-400 font-black">NOT EQUAL (&ne;)</td>
+              <td class="py-2.5 px-3 text-red-200">Different vectors! One points upward-right, other downward-right</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <!-- DIAGNOSTIC CONCEPTUAL CHECKPOINTS ("CHECK YOUR UNDERSTANDING") -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center font-black">?</div>
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR UNDERSTANDING &middot; DIAGNOSTIC CHECKPOINTS</h2>
+            <p class="text-xs text-slate-400">Targeting misconceptions in speed vs velocity symmetry and equal-height vector differences</p>
+          </div>
+        </div>
+        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+          Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- QUESTION 1 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              A projectile is launched from ground level at an angle of 53&deg; with speed 25 m/s. When it returns to ground level (y = 0), how does its final velocity compare to its initial velocity?
+            </span>
+            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Its velocity is identical because it has returned to the exact same elevation.
+            </button>
+            <button onclick="answerQuiz(1, 'B')" class="q-btn-1-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Its speed is the same (25 m/s), but its velocity is not equal because its vertical component has reversed: v_y = &minus;v_0y.
+            </button>
+            <button onclick="answerQuiz(1, 'C')" class="q-btn-1-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Its speed is greater upon landing because downward gravity accelerated it.
+            </button>
+          </div>
+
+          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              Consider the two velocity vectors v_A (ascending) and v_B (descending) at equal elevation h. What is the direction of the vector difference &Delta;v = v_B &minus; v_A?
+            </span>
+            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Straight downward along the negative y-axis, with magnitude 2|v_y|.
+            </button>
+            <button onclick="answerQuiz(2, 'B')" class="q-btn-2-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Horizontally along the positive x-axis, with magnitude 2v_0x.
+            </button>
+            <button onclick="answerQuiz(2, 'C')" class="q-btn-2-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> &Delta;v is the zero vector because both velocities have identical magnitudes.
+            </button>
+          </div>
+
+          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-semibold text-sm text-white flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              Why does kinetic energy KE match at equal heights while linear momentum vector p does not?
+            </span>
+            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+            <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">A</strong> Kinetic energy is a scalar depending on speed squared (&frac12;mv&sup2;), whereas momentum is a vector (mv) requiring identical directions to be equal.
+            </button>
+            <button onclick="answerQuiz(3, 'B')" class="q-btn-3-B p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">B</strong> Momentum is conserved throughout the entire flight, but kinetic energy fluctuates.
+            </button>
+            <button onclick="answerQuiz(3, 'C')" class="q-btn-3-C p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
+              <strong class="text-slate-400 mr-1.5">C</strong> Gravity acts on momentum but cannot alter kinetic energy.
+            </button>
+          </div>
+
+          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+      Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #132: Same Height, Same Speed &ne; Same Velocity
+    </footer>
+
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- JAVASCRIPT SIMULATION LOGIC                                       -->
+  <!-- ================================================================= -->
+  <script>
+    const g = 9.81;
+
+    let state = {
+      v0: 25.0,
+      thetaDeg: 53,
+      hScanFraction: 0.5, // 0 to 1 of yMax
+      yMax: 0.0,
+      tApex: 0.0,
+      tFlight: 0.0,
+      xMax: 0.0,
+      hScan: 0.0
+    };
+
+    let quizAnswers = { 1: null, 2: null, 3: null };
+
+    // Canvas geometry
+    const svgW = 540;
+    const svgH = 380;
+    const origX = 40;
+    const origY = 330;
+    const useW = 460;
+    const useH = 280;
+
+    function initPhysics() {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      state.tApex = v0y / g;
+      state.tFlight = (2 * v0y) / g;
+      state.yMax = (v0y * v0y) / (2 * g);
+      state.xMax = v0x * state.tFlight;
+      state.hScan = state.hScanFraction * state.yMax;
+
+      // Update Labels
+      document.getElementById('lblV0').textContent = `${state.v0.toFixed(1)} m/s`;
+      document.getElementById('lblTheta').textContent = `${state.thetaDeg}°`;
+      document.getElementById('lblMaxH').textContent = `${state.yMax.toFixed(2)} m`;
+      document.getElementById('lblScanH').textContent = `${state.hScan.toFixed(2)} m`;
+      document.getElementById('matrixH').textContent = `${state.hScan.toFixed(2)} m`;
+
+      renderTrajectory();
+      updateScannerState();
+    }
+
+    function onParamChange() {
+      state.v0 = parseFloat(document.getElementById('sliderV0').value);
+      state.thetaDeg = parseInt(document.getElementById('sliderTheta').value, 10);
+      initPhysics();
+    }
+
+    function onHeightChange(val) {
+      state.hScanFraction = Math.min(0.995, Math.max(0.0, parseFloat(val)));
+      state.hScan = state.hScanFraction * state.yMax;
+      document.getElementById('lblScanH').textContent = `${state.hScan.toFixed(2)} m`;
+      document.getElementById('matrixH').textContent = `${state.hScan.toFixed(2)} m`;
+      updateScannerState();
+    }
+
+    function setHeightPreset(frac) {
+      document.getElementById('sliderH').value = frac;
+      onHeightChange(frac);
+    }
+
+    function toCanvas(x, y) {
+      const scaleX = useW / state.xMax;
+      const scaleY = useH / (state.yMax * 1.15);
+      const px = origX + x * scaleX;
+      const py = origY - y * scaleY;
+      return { px, py, scaleX, scaleY };
+    }
+
+    function renderTrajectory() {
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      const steps = 60;
+      let dStr = '';
+      for (let i = 0; i <= steps; i++) {
+        const t = (i / steps) * state.tFlight;
+        const x = v0x * t;
+        const y = Math.max(0, v0y * t - 0.5 * g * t * t);
+        const { px, py } = toCanvas(x, y);
+        if (i === 0) dStr += `M ${px.toFixed(1)} ${py.toFixed(1)}`;
+        else dStr += ` L ${px.toFixed(1)} ${py.toFixed(1)}`;
+      }
+      document.getElementById('pathTrajectory').setAttribute('d', dStr);
+
+      // Apex point
+      const xApex = v0x * state.tApex;
+      const yApex = state.yMax;
+      const ptApex = toCanvas(xApex, yApex);
+      document.getElementById('dotApex').setAttribute('cx', ptApex.px);
+      document.getElementById('dotApex').setAttribute('cy', ptApex.py);
+      const txtApex = document.getElementById('txtApex');
+      txtApex.setAttribute('x', ptApex.px - 14);
+      txtApex.setAttribute('y', ptApex.py - 12);
+    }
+
+    function updateScannerState() {
+      const h = state.hScan;
+      const rad = state.thetaDeg * Math.PI / 180.0;
+      const v0x = state.v0 * Math.cos(rad);
+      const v0y = state.v0 * Math.sin(rad);
+
+      // Solve for crossing times: y(t) = v0y*t - 0.5*g*t^2 = h
+      // 0.5*g*t^2 - v0y*t + h = 0
+      const disc = Math.max(0, v0y * v0y - 2 * g * h);
+      const sqrtDisc = Math.sqrt(disc);
+
+      const tA = (v0y - sqrtDisc) / g;
+      const tB = (v0y + sqrtDisc) / g;
+
+      const vyA = v0y - g * tA;      // +sqrtDisc
+      const vyB = v0y - g * tB;      // -sqrtDisc
+
+      const speedA = Math.sqrt(v0x * v0x + vyA * vyA);
+      const speedB = Math.sqrt(v0x * v0x + vyB * vyB);
+
+      const xA = v0x * tA;
+      const xB = v0x * tB;
+
+      // Positions on Canvas
+      const ptA = toCanvas(xA, h);
+      const ptB = toCanvas(xB, h);
+
+      // Update Scanner Line
+      const scanLine = document.getElementById('scanLine');
+      scanLine.setAttribute('y1', ptA.py);
+      scanLine.setAttribute('y2', ptA.py);
+      document.getElementById('scanTagBg').setAttribute('y', ptA.py - 18);
+      const scanTagTxt = document.getElementById('scanTagTxt');
+      scanTagTxt.setAttribute('y', ptA.py - 5);
+      scanTagTxt.textContent = `Scan Elevation: ${h.toFixed(2)} m`;
+
+      // Update Point A & B Groups
+      document.getElementById('groupPointA').setAttribute('transform', `translate(${ptA.px}, ${ptA.py})`);
+      document.getElementById('groupPointB').setAttribute('transform', `translate(${ptB.px}, ${ptB.py})`);
+
+      // Vector drawing scaling: pixels per (m/s)
+      const vScale = 1.8;
+      const vxLen = v0x * vScale;
+      const vyLenA = -vyA * vScale; // -y is up in SVG
+      const vyLenB = -vyB * vScale; // +y is down in SVG
+
+      // Point A vectors
+      const vecA = document.getElementById('vecA');
+      vecA.setAttribute('x2', vxLen);
+      vecA.setAttribute('y2', vyLenA);
+      document.getElementById('vecAx').setAttribute('x2', vxLen);
+      document.getElementById('vecAy').setAttribute('x1', vxLen);
+      document.getElementById('vecAy').setAttribute('x2', vxLen);
+      document.getElementById('vecAy').setAttribute('y2', vyLenA);
+      document.getElementById('lblVA').setAttribute('x', vxLen + 4);
+      document.getElementById('lblVA').setAttribute('y', vyLenA - 4);
+
+      // Point B vectors
+      const vecB = document.getElementById('vecB');
+      vecB.setAttribute('x2', vxLen);
+      vecB.setAttribute('y2', vyLenB);
+      document.getElementById('vecBx').setAttribute('x2', vxLen);
+      document.getElementById('vecBy').setAttribute('x1', vxLen);
+      document.getElementById('vecBy').setAttribute('x2', vxLen);
+      document.getElementById('vecBy').setAttribute('y2', vyLenB);
+      document.getElementById('lblVB').setAttribute('x', vxLen + 4);
+      document.getElementById('lblVB').setAttribute('y', vyLenB + 12);
+
+      // Update Tail-to-Tail Comparator Disc
+      updateComparatorDisc(v0x, vyA, vyB, speedA);
+
+      // Update Invariant Comparison Matrix Table
+      updateMatrixTable(tA, tB, v0x, vyA, vyB, speedA, speedB, h);
+    }
+
+    function updateComparatorDisc(vx, vyA, vyB, speed) {
+      // Disc scaling: pixels per (m/s)
+      const discScale = 3.6;
+      const rPx = speed * discScale;
+
+      const cVx = vx * discScale;
+      const cVyA = -vyA * discScale; // -y is up
+      const cVyB = -vyB * discScale; // +y is down
+
+      // Circle
+      document.getElementById('circSpeed').setAttribute('r', Math.min(115, Math.max(10, rPx)));
+      document.getElementById('txtSpeedRadius').textContent = `|v| = ${speed.toFixed(1)} m/s`;
+      document.getElementById('valDiscSpeed').textContent = `${speed.toFixed(1)} m/s`;
+
+      // Angle calculations
+      const angleA = Math.atan2(vyA, vx) * 180 / Math.PI;
+      const angleB = Math.atan2(vyB, vx) * 180 / Math.PI;
+      document.getElementById('valAngleA').textContent = `${angleA >= 0 ? '+' : ''}${angleA.toFixed(1)}°`;
+      document.getElementById('valAngleB').textContent = `${angleB.toFixed(1)}°`;
+
+      // Vectors on Disc
+      document.getElementById('compVecA').setAttribute('x2', cVx);
+      document.getElementById('compVecA').setAttribute('y2', cVyA);
+
+      document.getElementById('compVecB').setAttribute('x2', cVx);
+      document.getElementById('compVecB').setAttribute('y2', cVyB);
+
+      // Delta v: Vector from Tip A (cVx, cVyA) to Tip B (cVx, cVyB)
+      const vecDiff = document.getElementById('vecDiff');
+      vecDiff.setAttribute('x1', cVx);
+      vecDiff.setAttribute('y1', cVyA);
+      vecDiff.setAttribute('x2', cVx);
+      vecDiff.setAttribute('y2', cVyB);
+
+      const lblDiff = document.getElementById('lblDiff');
+      lblDiff.setAttribute('x', cVx + 8);
+      lblDiff.setAttribute('y', (cVyA + cVyB) / 2 + 4);
+
+      // Readouts for Delta v
+      const deltaVy = vyB - vyA; // -2 * vyA
+      document.getElementById('lblDeltaVy').textContent = `${deltaVy.toFixed(1)} m/s`;
+      const deltaT = Math.abs(deltaVy) / g;
+      document.getElementById('lblDeltaT').textContent = `${deltaT.toFixed(2)} s`;
+      document.getElementById('lblGDeltaT').textContent = `${Math.abs(deltaVy).toFixed(1)} m/s`;
+    }
+
+    function updateMatrixTable(tA, tB, vx, vyA, vyB, sA, sB, h) {
+      document.getElementById('tblTa').textContent = `${tA.toFixed(2)} s`;
+      document.getElementById('tblTb').textContent = `${tB.toFixed(2)} s`;
+
+      document.getElementById('tblVax').textContent = `+${vx.toFixed(2)} m/s`;
+      document.getElementById('tblVbx').textContent = `+${vx.toFixed(2)} m/s`;
+
+      document.getElementById('tblVay').textContent = `${vyA >= 0 ? '+' : ''}${vyA.toFixed(2)} m/s`;
+      document.getElementById('tblVby').textContent = `${vyB.toFixed(2)} m/s`;
+
+      document.getElementById('tblSa').textContent = `${sA.toFixed(2)} m/s`;
+      document.getElementById('tblSb').textContent = `${sB.toFixed(2)} m/s`;
+
+      const ke = 0.5 * sA * sA;
+      document.getElementById('tblKeA').textContent = `${ke.toFixed(1)} J/kg`;
+      document.getElementById('tblKeB').textContent = `${ke.toFixed(1)} J/kg`;
+
+      document.getElementById('tblVecA').textContent = `(${vx.toFixed(1)}, +${vyA.toFixed(1)})`;
+      document.getElementById('tblVecB').textContent = `(${vx.toFixed(1)}, ${vyB.toFixed(1)})`;
+    }
+
+
+    // =========================================================================
+    // DIAGNOSTIC QUIZ LOGIC
+    // =========================================================================
+    const quizData132 = {
+      1: {
+        correct: 'B',
+        textB: `<strong>&check; Correct! (Speed vs Velocity Invariant)</strong> Mechanical energy conservation ensures equal speed: |v| = &radic;(v&#8339;&sup2; + v&#7522;&sup2;) = 25 m/s. However, because the vertical velocity component has inverted from +v\u2080\u1d67 to &minus;v\u2080\u1d67, the velocity vector is NOT equal: v_initial = (v&#8339;, +v\u1d67) &ne; v_final = (v&#8339;, &minus;v\u1d67).`,
+        textA: `<strong>&cross; The Direction Fallacy:</strong> Vectors require both equal magnitude AND equal direction to be identical. Since one points 53&deg; upward and the other points 53&deg; downward, they are fundamentally different vectors!`,
+        textC: `<strong>&cross; Unphysical:</strong> Gravity only recovers the kinetic energy converted to potential energy during ascent; it does not add net energy to produce a higher speed in symmetric flat ground flight.`
+      },
+      2: {
+        correct: 'A',
+        textA: `<strong>&check; Correct! (Vector Subtraction &amp; Gravitational Impulse)</strong> &Delta;v = v_B &minus; v_A = (v&#8339; &minus; v&#8339;)i&#770; + (&minus;|v\u1d67| &minus; |v\u1d67|)j&#770; = &minus;2|v\u1d67|j&#770;. The horizontal change is zero, leaving a purely downward vector equal to the continuous downward gravitational impulse: a &middot; &Delta;t = &minus;g(t_B &minus; t_A)j&#770;.`,
+        textB: `<strong>&cross; Misconception:</strong> Horizontal velocity is constant (v_Ax = v_Bx), so &Delta;v&#8339; = 0. There is zero horizontal vector change.`,
+        textC: `<strong>&cross; Vector Fallacy:</strong> Subtracting two vectors of equal magnitude pointing in different directions does NOT yield zero! |v_B &minus; v_A| = 2|v\u1d67| &ne; 0.`
+      },
+      3: {
+        correct: 'A',
+        textA: `<strong>&check; Correct! (Scalar vs Vector Distinction)</strong> Kinetic energy KE = &frac12;mv&sup2; is a scalar invariant dependent only on speed squared: (+v\u1d67)&sup2; = (&minus;v\u1d67)&sup2;. Linear momentum p = mv is a vector; an upward vector cannot equal a downward vector even if their magnitudes match.`,
+        textB: `<strong>&cross; Incorrect:</strong> Total momentum is NOT conserved in projectile motion because external gravity exerts a continuous downward net force.`,
+        textC: `<strong>&cross; False:</strong> Gravity continuously changes kinetic energy throughout the flight (converting it into potential energy and back).`
+      }
+    };
+
+    function answerQuiz(qNum, choice) {
+      quizAnswers[qNum] = choice;
+      const data = quizData132[qNum];
+      const isCorrect = (choice === data.correct);
+
+      ['A', 'B', 'C'].forEach(opt => {
+        const btn = document.querySelector(`.q-btn-${qNum}-${opt}`);
+        btn.classList.remove('bg-emerald-950', 'bg-red-950', 'border-emerald-500', 'border-red-500', 'font-bold');
+        btn.classList.add('bg-slate-900', 'border-slate-800');
+      });
+
+      const selBtn = document.querySelector(`.q-btn-${qNum}-${choice}`);
+      if (isCorrect) {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-emerald-950', 'border-emerald-500', 'font-bold');
+      } else {
+        selBtn.classList.remove('bg-slate-900', 'border-slate-800');
+        selBtn.classList.add('bg-red-950', 'border-red-500', 'font-bold');
+      }
+
+      const badge = document.getElementById(`badgeQ${qNum}`);
+      if (isCorrect) {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.textContent = 'CORRECT';
+      } else {
+        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.textContent = 'TRY AGAIN';
+      }
+
+      const explDiv = document.getElementById(`explQ${qNum}`);
+      explDiv.classList.remove('hidden');
+      if (isCorrect) {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      } else {
+        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.innerHTML = data[`text${choice}`];
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        if (quizAnswers[i] === quizData132[i].correct) score++;
+      }
+      document.getElementById('quizScore').textContent = `${score} / 3`;
+    }
+
+    // --- INIT ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initPhysics();
+    });
+  </script>
+</body>
+</html>
