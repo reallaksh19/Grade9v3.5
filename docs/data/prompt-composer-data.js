@@ -5,7 +5,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
   "repository_basis": "architecture-manifest@sha256:16a4682f88f97987e1979fa95e680ca9333ba3fc2ebeac95d7b8c8352afba6e9",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Stable clause map for traceable Core-agent authoring prompts. Role meaning remains owned by Shared/roles/*.md.",
     "role_contract_refs": {
       "CORE1": "Shared/roles/CORE1.md",
@@ -51,6 +51,10 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       {
         "id": "CORE_OBLIGATIONS",
         "title": "Per-Core obligations"
+      },
+      {
+        "id": "WEB_BLUEPRINTS",
+        "title": "Web blueprint contract"
       },
       {
         "id": "DIFFICULTY_PROGRESSION",
@@ -231,6 +235,332 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     ]
   },
   "authority_contract_ref": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",
+  "web_blueprints": {
+    "CORE1": {
+      "core": "CORE1",
+      "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+      "blueprint_id": "BP-CORE1-ORIENTATION",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_ORIENTATION",
+      "required_slots": [
+        "identity",
+        "orientation"
+      ],
+      "slot_order": [
+        "identity",
+        "orientation"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": false,
+        "solution_policy": "FROM_PROJECTION"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "SINGLE_PANE",
+        "expanded": "SINGLE_PANE",
+        "primary_fraction": 1,
+        "support_fraction": 0
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "FULL_INFERENTIAL_CONSTRUCTION"
+      ]
+    },
+    "CORE2": {
+      "core": "CORE2",
+      "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.0.0",
+      "blueprint_id": "BP-CORE2-SOURCE-QUESTION",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_READER",
+      "required_slots": [
+        "identity",
+        "attempt",
+        "solution"
+      ],
+      "slot_order": [
+        "identity",
+        "attempt",
+        "support",
+        "solution"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT"
+      ]
+    },
+    "CORE1A": {
+      "core": "CORE1A",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+      "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_CONSTRUCTION",
+      "required_slots": [
+        "identity",
+        "construction",
+        "repair_closure"
+      ],
+      "slot_order": [
+        "identity",
+        "construction",
+        "repair_closure"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": false,
+        "solution_policy": "FROM_PROJECTION"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+      ]
+    },
+    "CORE1B": {
+      "core": "CORE1B",
+      "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+      "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "GUIDED_RECONSTRUCTION",
+      "required_slots": [
+        "identity",
+        "attempt",
+        "reconstruction"
+      ],
+      "slot_order": [
+        "identity",
+        "attempt",
+        "reconstruction"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ANSWER_BEFORE_ATTEMPT"
+      ]
+    },
+    "CORE2A": {
+      "core": "CORE2A",
+      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+      "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_STUDY",
+      "required_slots": [
+        "identity",
+        "attempt",
+        "reasoning"
+      ],
+      "slot_order": [
+        "identity",
+        "attempt",
+        "support",
+        "reasoning"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+      ]
+    },
+    "CORE2B": {
+      "core": "CORE2B",
+      "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+      "blueprint_id": "BP-CORE2B-TRANSFER",
+      "blueprint_version": "1.0.0",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "TRANSFER_ATTEMPT",
+      "required_slots": [
+        "identity",
+        "attempt",
+        "post_attempt"
+      ],
+      "slot_order": [
+        "identity",
+        "attempt",
+        "post_attempt"
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+      ]
+    }
+  },
   "subjects": {
     "Chemistry": {
       "nested_questions": {
