@@ -5,19 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 292,
-  "relation_count": 325,
+  "component_count": 299,
+  "relation_count": 333,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 47,
-    "TEST": 140,
-    "TOOLING": 66,
+    "TEST": 143,
+    "TOOLING": 68,
     "WEB": 9,
+    "WEB_CONTRACT": 2,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:16a4682f88f97987e1979fa95e680ca9333ba3fc2ebeac95d7b8c8352afba6e9",
+  "digest": "sha256:3724e52eb1dc2608502af8a83fc617d6b4edb7d2f0e9a3900e25ade04947375a",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -79,8 +80,8 @@
       "path": "Shared/library/core1_delivery.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 9123,
-      "sha256": "7049b35ab014fde5ea05927ebffb55ebc3d91568b6f2b64ecc3eff90e7399c29"
+      "bytes": 10546,
+      "sha256": "ca4dfbdc0680333f6052b87467d23227bbf36a0751aeca274c1836234ebc9de8"
     },
     {
       "path": "Shared/library/core1_orientation.py",
@@ -247,8 +248,8 @@
       "path": "Shared/library/prompt-brief.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 12825,
-      "sha256": "de6ba00b44dc3df28fd0ca2bb4c98c32557cd5086025cb6db63536ddaa816b03"
+      "bytes": 15145,
+      "sha256": "2803a2028e85c26524faec41f1702e5e28125691cbfb919d9818a669e39c6c62"
     },
     {
       "path": "Shared/library/question-bank-publication.schema.json",
@@ -485,15 +486,15 @@
       "path": "Shared/roles/LEARNER-PRODUCT-TEMPLATES.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 12708,
-      "sha256": "cf510ecc47d2dc92d59d8a4fd3c9fd43eb750d4d8458b30a47300b864f8847fe"
+      "bytes": 15139,
+      "sha256": "782c98683cbd6d685099bbba11c13b5c1633213315f022d0f69d4b3c4ed13f8c"
     },
     {
       "path": "Shared/roles/README.md",
       "role": "CONTRACT",
       "role_description": "The six Core role specifications",
-      "bytes": 6613,
-      "sha256": "63ef31d8d1fa7e99891850318b02198ae8d7aa5b1eeb10b23f88007bb7ce4201"
+      "bytes": 7697,
+      "sha256": "28afae1e799b5aa9b72f54c3e0b0aeebe5625b44420b030eef265ce5572438c4"
     },
     {
       "path": "Shared/tools/__init__.py",
@@ -542,14 +543,14 @@
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
       "bytes": 4248,
-      "sha256": "4a225ac823caffdacff14a32c552e4d5a5a9fe9b5b7ee738408367fd7698c918"
+      "sha256": "e7b5e761ecdc684c48e1570c378946e67e2c451d058761f44fdd5820790803fc"
     },
     {
       "path": "Shared/tools/build_core_learning_host.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 8711,
-      "sha256": "77a5c93bcc5487b2867a8a2c126ebe593469e42b237035e0b37dabf0d9b26405"
+      "bytes": 15050,
+      "sha256": "ae7de80df76a385094cd98a8cee86ecd85e7b2e18c667a34ca467716204bdee0"
     },
     {
       "path": "Shared/tools/build_core_learning_runtime.py",
@@ -559,11 +560,18 @@
       "sha256": "a5b4efe5d277b592e4224f6f4d4b2ea947f43e043a14f1ab9638c08aafc8f5fa"
     },
     {
+      "path": "Shared/tools/build_interactive_page.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 16007,
+      "sha256": "948f2e8db05beb7362673b9efb68a333c6e32a1e305ae85ab5d9f589699f654b"
+    },
+    {
       "path": "Shared/tools/build_manifest.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 9000,
-      "sha256": "0478b632e78cf579415f34a301f347fb9a60a92693ab138debdd360837ad66a7"
+      "bytes": 9092,
+      "sha256": "be17546d56fe1aa89256e63e8f66b2978292f012da372b701f48b2aa1ae4195c"
     },
     {
       "path": "Shared/tools/build_pages_site.py",
@@ -583,8 +591,8 @@
       "path": "Shared/tools/build_prompt_composer_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 3838,
-      "sha256": "f6a5959f58ad34d9c59e20962a97be81e3e09f9886caa4e39993d312475b4ff8"
+      "bytes": 5166,
+      "sha256": "419a004a61aedcb8a0c5182fb5f3f18b08ab61e147be121f4b581bf4c5d118c1"
     },
     {
       "path": "Shared/tools/build_question_bank_web.py",
@@ -688,15 +696,15 @@
       "path": "Shared/tools/core_learning_projection_adapter.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 26713,
-      "sha256": "413ba5f92c0df00b97337a3400446074a75f876cfbbca25a38b58525ddb5ecca"
+      "bytes": 28059,
+      "sha256": "45f478d9da8dd24cc8a443541aa18a926fa54f3121dcad714ffedbcf80504d8c"
     },
     {
       "path": "Shared/tools/core_template_contract.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10763,
-      "sha256": "2ddc18707147cfb57731aa294afe281b8cf1f6db8b10aaa5bc45c0130e5619f8"
+      "bytes": 12338,
+      "sha256": "59a267a725a496635dd45daa0575380d98512d804e11addc6c770dfdb4f9e385"
     },
     {
       "path": "Shared/tools/empirical_acceptance.py",
@@ -807,8 +815,8 @@
       "path": "Shared/tools/prompt_composer.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 36044,
-      "sha256": "4c3824f5d34c498961e2d0add491fc2abd07a41c61061675e7a007d3e35b8e07"
+      "bytes": 39083,
+      "sha256": "c8aa87d28d87de9b00639f1bd5547b5f60a79c0004493cf4157dd186304cf8e0"
     },
     {
       "path": "Shared/tools/publication_provenance.py",
@@ -951,11 +959,32 @@
       "sha256": "fb269abab036aaf465d963f587d5bbc61fdd2c01daf5418388dbedc7a5c2fad9"
     },
     {
+      "path": "Shared/tools/web_blueprint_contract.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 9451,
+      "sha256": "cfeeb43ada763fc32d93ff6a9b9e473da96024a973b8aae2a25afa4edde83408"
+    },
+    {
       "path": "Shared/tools/worksheet_study_plan.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
       "bytes": 26691,
       "sha256": "452778cf6035c7371c987c37d209f2a329b67db8bc506174d1fa924be06e2f6b"
+    },
+    {
+      "path": "Shared/web/interactive-page-blueprint.schema.json",
+      "role": "WEB_CONTRACT",
+      "role_description": "Subject-neutral interactive page blueprint contracts",
+      "bytes": 7545,
+      "sha256": "0a76a70543d23fb591a264620faf255202d12208bdeeaff90ff8935ee49c6225"
+    },
+    {
+      "path": "Shared/web/interactive-page-blueprints.v1.json",
+      "role": "WEB_CONTRACT",
+      "role_description": "Subject-neutral interactive page blueprint contracts",
+      "bytes": 12645,
+      "sha256": "d241d7dcd8b168ddc2c5ee34f2e7777ca1277a2422eb10d2a8294d4a06bdb0e0"
     },
     {
       "path": "Shared/workbench/README.md",
@@ -975,8 +1004,8 @@
       "path": "Shared/workbench/core-learning-page.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
-      "bytes": 50839,
-      "sha256": "3141c65380d646bdeaab6ada4c38a71e32033ed4422b277a05a038ed30054ece"
+      "bytes": 55277,
+      "sha256": "3f16d04089dc7b07ba9d00ac96c83966dcfeb5d8a58bda6e30fec28fb2cbc1f7"
     },
     {
       "path": "Shared/workbench/runtime.mjs",
@@ -996,15 +1025,15 @@
       "path": "public/core-learning/data.js",
       "role": "WEB",
       "role_description": "Static Core learner host and generated projection data",
-      "bytes": 1690810,
-      "sha256": "52c02ce4b950d25047481ab30061842a96db9d1085ddf9504df1ad411d82fb48"
+      "bytes": 2067930,
+      "sha256": "30c740897fc5100a40a3edcb1eaa2d21bf3bcba40686f66596f64ca36bac762f"
     },
     {
       "path": "public/core-learning/index.html",
       "role": "WEB",
       "role_description": "Static Core learner host and generated projection data",
-      "bytes": 6648,
-      "sha256": "ea4f9505a2a0fdf3c88687e3ac6547291e0510117ee46192192c5677a26861ce"
+      "bytes": 11899,
+      "sha256": "8aedba9b7a7a76fc497d14af2da6451f4af8548a901cf60c7256f2c43374a30f"
     },
     {
       "path": "public/js/core-learning/core-learning-host.mjs",
@@ -1017,8 +1046,8 @@
       "path": "public/js/core-learning/core-learning-page.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Generated public Core learner runtime",
-      "bytes": 50839,
-      "sha256": "3141c65380d646bdeaab6ada4c38a71e32033ed4422b277a05a038ed30054ece"
+      "bytes": 55277,
+      "sha256": "3f16d04089dc7b07ba9d00ac96c83966dcfeb5d8a58bda6e30fec28fb2cbc1f7"
     },
     {
       "path": "public/js/core-learning/runtime.mjs",
@@ -1038,8 +1067,8 @@
       "path": "standalone/core-learning/index.html",
       "role": "WEB",
       "role_description": "Generated standalone Core learner host",
-      "bytes": 6703,
-      "sha256": "4a3401a6e2f905975f14a109211a00c7399e29373eddfc56da60bde7d6731f2d"
+      "bytes": 12063,
+      "sha256": "e9459416a1c1820d78b28e4dfbb26760f76aedf71ffa4a1a6c54aebc7b1628d5"
     },
     {
       "path": "tests/core_learning_host.test.mjs",
@@ -1052,8 +1081,8 @@
       "path": "tests/core_learning_page.test.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 23538,
-      "sha256": "c104f4bf72704e6af394151697759d8bdc32bebb1d52a09fcc6fc4b9e23738c7"
+      "bytes": 25406,
+      "sha256": "7e059d4ed05e037fff10d0f54fef9b6d8bf2a7c951b09e92c3dde662f4bcfec0"
     },
     {
       "path": "tests/fixtures/agent_path_stress/cases.json",
@@ -1248,8 +1277,8 @@
       "path": "tests/fixtures/workbench/core-learning-projections.json",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13074,
-      "sha256": "d32c7109e2f5f6b9bd968f439a3dd7c9c98ef131efbd5fe90215507fb8b3ecf5"
+      "bytes": 21403,
+      "sha256": "01e132ff5135920d34dde1d4c3462921870be8d02f1ee835ea26c4db4aaf8655"
     },
     {
       "path": "tests/motion_session_251.test.mjs",
@@ -1416,8 +1445,8 @@
       "path": "tests/test_core_learning_adapter.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 17523,
-      "sha256": "422c9875e0bef93b05813b73c47b71137b029b8c18748b01d5bc7297eb6d2606"
+      "bytes": 19266,
+      "sha256": "ef3e15ca40ad01a73cb6872a618f5a24e897982874ce61802de4acc8b34af5cd"
     },
     {
       "path": "tests/test_core_progression.py",
@@ -1444,8 +1473,8 @@
       "path": "tests/test_core_template_contract.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5980,
-      "sha256": "abe818b330bf7c42ea08e4669d0fa81cbcec8d69c5cb99f7125427f717ebe212"
+      "bytes": 6739,
+      "sha256": "d8a32209fd3b92204089f2cf8103be6a234a41b03174af80d45a5a6cc3d46aea"
     },
     {
       "path": "tests/test_empirical_acceptance.py",
@@ -1693,6 +1722,13 @@
       "sha256": "2c9f3987e74913b14937f2a743b1a3fb73788e464d4ee9177bc19f80a3afc26c"
     },
     {
+      "path": "tests/test_interactive_page_builder.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 4129,
+      "sha256": "c59f6bd09d58dea97f263654d483b6cbc8c86e9208ba52fa17db49a76089cde1"
+    },
+    {
       "path": "tests/test_issue124_horse_cart_explorer.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1829,8 +1865,8 @@
       "path": "tests/test_prompt_composer.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9989,
-      "sha256": "8575f011c523459ed2fb6665fff6871a212e33bf469e4098dd476ccb84fbf41a"
+      "bytes": 10810,
+      "sha256": "9fb23a2dc5fbf4dda3f257eda3dfb330eb5ee43f880688fa947cc4a0ccc01919"
     },
     {
       "path": "tests/test_publication_engine.py",
@@ -1985,6 +2021,20 @@
       "role_description": "Executable checks",
       "bytes": 7622,
       "sha256": "4578635bbe72da972cd8ca52d0f25b3a1bf3cf3d80a7e9f585ec1361209a5b16"
+    },
+    {
+      "path": "tests/test_web_blueprint_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3242,
+      "sha256": "4297b2c0ef01ad9b5f58f94a62cb229a55e12f56069ddd687e535ce5ed5fcf76"
+    },
+    {
+      "path": "tests/test_web_blueprint_projection.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2702,
+      "sha256": "0885a16f4a0aea86a2a72623841ed1a5ed7717c37de60777697dc29aa9820f85"
     },
     {
       "path": "tests/test_workbench_runtime.py",
@@ -2326,6 +2376,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/build_interactive_page.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_interactive_page.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/build_manifest.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -2483,6 +2543,16 @@
     {
       "from": "Shared/tools/core2b_inventory.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/core_learning_projection_adapter.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/core_template_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -3276,6 +3346,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_interactive_page_builder.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_issue212_atlas_index.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -3673,6 +3748,21 @@
     {
       "from": "tests/test_vector_foundations_modernization.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_web_blueprint_contract.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_web_blueprint_projection.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_web_blueprint_projection.py",
+      "to": "Shared.tools.core_learning_projection_adapter",
       "kind": "IMPORTS"
     },
     {
