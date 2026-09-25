@@ -189,6 +189,10 @@ def write() -> dict:
     payload = build()
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(render(payload), encoding="utf-8", newline="\n")
+    # Persist current Core projections as derived production memory. The import is
+    # local to avoid a module cycle: the registry reads build(), never write().
+    from Shared.tools import derived_artifact_registry
+    derived_artifact_registry.write()
     return payload
 
 
