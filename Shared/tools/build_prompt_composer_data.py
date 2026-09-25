@@ -19,7 +19,7 @@ if __package__ in (None, ""):
 from Shared.contracts import load  # noqa: E402
 
 OUT = REPO / "public/data/prompt-composer-data.js"
-SNAPSHOT = REPO / "relay/GENERATED/tasks/ISSUE-272.snapshot.yaml"
+MANIFEST = REPO / "docs/architecture-manifest.json"
 
 
 def subjects(repo: Path = REPO) -> list[str]:
