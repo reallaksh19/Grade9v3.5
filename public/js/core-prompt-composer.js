@@ -19,6 +19,8 @@
     for (let i=0;i<bytes.length;i++) words[i>>2] |= bytes[i] << (24-(i%4)*8);
     words[bytes.length>>2] |= 0x80 << (24-(bytes.length%4)*8);
     words[(((bytes.length+8)>>6)+1)*16-1] = bytes.length*8;
+    // Sparse array holes must be explicit zero words before message expansion.
+    for (let i=0;i<words.length;i++) words[i] = words[i] || 0;
     const k = [], h = [];
     const isPrime = n => { for(let i=2;i*i<=n;i++) if(n%i===0) return false; return true; };
     const frac = (x,p) => ((x-Math.floor(x))*0x100000000)>>>0;
