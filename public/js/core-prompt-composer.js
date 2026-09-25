@@ -251,14 +251,16 @@
     return sections.join('\n\n').trim()+'\n';
   }
 
-  function composeDocument(doc,data){
-    const subject=String(doc.subject||'').trim(), subjectData=(data.subjects||{})[subject]||{questions:{},capabilities:{},locations:{},matrices:[]};
+  function composeDocument(doc,data,siteData){
+    const subject=String(doc.subject||'').trim();
+    const sitePayload=siteData || global.GRADE9V3 || {subjects:{}};
+    const subjectData=browserSubjectData(data, sitePayload, subject);
     const requested=[...(doc.requested_cores||[])], order=[...(doc.execution_order||requested)], ownerScope=doc.owner_confirmed_rung||null;
     const inputDigest=digest(JSON.parse(canonicalize(doc))), briefId='PB-'+inputDigest.split(':')[1].slice(0,16).toUpperCase();
     let holds=[];
     if(!subject)holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_REQUIRED',detail:'subject is required'});
     if(!(doc.questions||[]).length)holds.push({status:'UNMAPPED_HOLD',point:'QUESTION_SET_REQUIRED',detail:'at least one question row is required'});
-    if(subject && !(((siteData || global.GRADE9V3 || {}).subjects || {})[subject]))holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library'});
+    if(subject && !(((sitePayload || {}).subjects || {})[subject]))holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library'});
     const rows=(doc.questions||[]).map(raw=>{const r=resolveRow(raw,subjectData,ownerScope);holds=holds.concat(r.holds);return r.row;});
     const scoped=resolveScope(rows,ownerScope,subjectData);holds=holds.concat(scoped.holds,coreOrderHolds(requested,order),sourceBasisHolds(doc.source_basis||[],rows));
     const seen=new Set();holds=holds.filter(h=>{const k=h.status+'|'+h.point+'|'+h.detail;if(seen.has(k))return false;seen.add(k);return true;});
