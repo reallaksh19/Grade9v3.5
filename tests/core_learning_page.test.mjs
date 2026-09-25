@@ -498,6 +498,56 @@ test("rendering uses supplied projection text for Core1A and Core2A", () => {
   assert.match(core2a, /data-stage="QUESTION_VISIBLE"/);
 });
 
+test("blueprint slot order, responsive policy, and touch policy drive rendered anatomy", () => {
+  const rendered = renderCoreLearningProjection(byId.core2a);
+  const order = ["identity", "attempt", "support", "reasoning"].map(
+    (slot) => rendered.indexOf(`data-blueprint-slot="${slot}"`),
+  );
+  assert.ok(order.every((index) => index >= 0));
+  assert.deepEqual([...order].sort((a, b) => a - b), order);
+  assert.match(rendered, /data-expanded-layout="STAGE_SUPPORT"/);
+  assert.match(rendered, /--g9-primary:0\.68fr/);
+  assert.match(rendered, /--g9-support:0\.32fr/);
+  assert.match(rendered, /--g9-min-target:48px/);
+  assert.match(rendered, /grid-template-columns:minmax\(0,var\(--g9-primary\)\) minmax\(0,var\(--g9-support\)\)/);
+});
+
+test("Core2A learner-openable solution is an explicit reveal rather than commit side effect", () => {
+  const projection = byId.core2a;
+  const initial = deriveCoreLearningState(projection);
+  const before = renderCoreLearningProjection(projection, initial);
+  assert.match(before, /data-action="solution"/);
+  assert.match(before, /Open complete solution/);
+
+  const committed = transitionCoreLearningState(
+    projection,
+    initial,
+    { type: "COMMIT_ATTEMPT", response: "My attempt." },
+  ).state;
+  assert.equal(committed.reasoningVisible, true);
+  assert.equal(committed.solutionVisible, false);
+  assert.match(renderCoreLearningProjection(projection, committed), /Reasoning route/);
+  assert.doesNotMatch(renderCoreLearningProjection(projection, committed), /Solution<\/h3>/);
+
+  const revealed = transitionCoreLearningState(
+    projection,
+    committed,
+    { type: "REVEAL_SOLUTION" },
+  ).state;
+  assert.equal(revealed.solutionVisible, true);
+  assert.match(renderCoreLearningProjection(projection, revealed), /Solution<\/h3>/);
+});
+
+test("Core2A identity renders canonical family and exposure closure", () => {
+  const projection = structuredClone(byId.core2a);
+  projection.application.exposure = [
+    { core: "CORE2A", role: "FAMILIAR_SUPPORTED_APPLICATION" },
+  ];
+  const rendered = renderCoreLearningProjection(projection);
+  assert.match(rendered, new RegExp(projection.application.family_ref));
+  assert.match(rendered, /CORE2A · FAMILIAR_SUPPORTED_APPLICATION/);
+});
+
 test("generic learner-shell source contains no subject-specific or learner-classification routing vocabulary", async () => {
   const source = await readFile(resolve(here, "../Shared/workbench/core-learning-page.mjs"), "utf8");
   for (const forbidden of [
