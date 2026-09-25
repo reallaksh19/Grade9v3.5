@@ -55,21 +55,51 @@ The fenced block below is the authority for **template presence and ordering**. 
 second academic schema. The referenced canonical paths are inputs already owned by the role
 specifications and canonical library.
 
+Each role also carries one versioned `web_blueprint_ref`. That reference is presentation/delivery
+authority only: it selects the subject-neutral interactive-page blueprint that must render the
+ordered blocks. It does not move scientific, mathematical, chemical, question, source-custody or
+learner-evidence truth into the webpage layer. A missing or incompatible blueprint is a build HOLD,
+not permission for an agent to invent a page architecture.
+
 ```core-templates
 {
-  "version": "1.0",
+  "version": "1.1",
   "roles": {
     "CORE1": {
       "learner_job": "Orient to the bucket without replacing detailed teaching.",
       "ordered_blocks": [
-        {"id": "identity_scope", "visibility": "IMMEDIATE"},
-        {"id": "objects_conventions", "visibility": "IMMEDIATE"},
-        {"id": "canonical_representation", "visibility": "IMMEDIATE"},
-        {"id": "governing_relations", "visibility": "IMMEDIATE"},
-        {"id": "compact_anchor", "visibility": "IMMEDIATE"},
-        {"id": "hard_transition_map", "visibility": "IMMEDIATE"},
-        {"id": "exclusions_extensions", "visibility": "IMMEDIATE"},
-        {"id": "orientation_closure", "visibility": "IMMEDIATE"}
+        {
+          "id": "identity_scope",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "objects_conventions",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "canonical_representation",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "governing_relations",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "compact_anchor",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "hard_transition_map",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "exclusions_extensions",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "orientation_closure",
+          "visibility": "IMMEDIATE"
+        }
       ],
       "required_inputs": [
         "bucket.title",
@@ -89,22 +119,56 @@ specifications and canonical library.
         "FULL_INFERENTIAL_CONSTRUCTION",
         "FULL_MISCONCEPTION_REPAIR_LESSON",
         "PERSONALISED_PRACTICE_ROUTING"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0"
     },
     "CORE1A": {
       "learner_job": "Receive a complete declarative construction of the microtopic's inferential truth.",
       "ordered_blocks": [
-        {"id": "identity_entry_assumptions", "visibility": "IMMEDIATE"},
-        {"id": "convention_declaration", "visibility": "IMMEDIATE"},
-        {"id": "inferential_jump", "visibility": "IMMEDIATE"},
-        {"id": "completed_construction", "visibility": "IMMEDIATE"},
-        {"id": "representation_bridge", "visibility": "IMMEDIATE"},
-        {"id": "worked_conceptual_anchor", "visibility": "IMMEDIATE"},
-        {"id": "plausible_wrong_path", "visibility": "IMMEDIATE"},
-        {"id": "diagnose", "visibility": "IMMEDIATE"},
-        {"id": "repair", "visibility": "IMMEDIATE"},
-        {"id": "independent_checks", "visibility": "IMMEDIATE"},
-        {"id": "exit_task_closure", "visibility": "IMMEDIATE"}
+        {
+          "id": "identity_entry_assumptions",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "convention_declaration",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "inferential_jump",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "completed_construction",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "representation_bridge",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "worked_conceptual_anchor",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "plausible_wrong_path",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "diagnose",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "repair",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "independent_checks",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "exit_task_closure",
+          "visibility": "IMMEDIATE"
+        }
       ],
       "required_inputs": [
         "microtopic.entry_assumptions[]",
@@ -119,20 +183,48 @@ specifications and canonical library.
         "ATTEMPT_FIRST_AS_PRIMARY_MODE",
         "RANDOM_BLANK_DELETION",
         "UNANSWERED_PROMPT"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0"
     },
     "CORE1B": {
       "learner_job": "Reconstruct the same inferential truth before seeing the completed route.",
       "ordered_blocks": [
-        {"id": "identity_concept", "visibility": "IMMEDIATE"},
-        {"id": "predict", "visibility": "ATTEMPT_FIRST"},
-        {"id": "attempt", "visibility": "ATTEMPT_FIRST"},
-        {"id": "reconstruct", "visibility": "POST_ATTEMPT"},
-        {"id": "diagnose", "visibility": "POST_ATTEMPT"},
-        {"id": "repair", "visibility": "POST_ATTEMPT"},
-        {"id": "boundary_test", "visibility": "POST_ATTEMPT"},
-        {"id": "model_response_or_rubric", "visibility": "ON_REVEAL"},
-        {"id": "rejoin_inferential_jump", "visibility": "ON_REVEAL"}
+        {
+          "id": "identity_concept",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "predict",
+          "visibility": "ATTEMPT_FIRST"
+        },
+        {
+          "id": "attempt",
+          "visibility": "ATTEMPT_FIRST"
+        },
+        {
+          "id": "reconstruct",
+          "visibility": "POST_ATTEMPT"
+        },
+        {
+          "id": "diagnose",
+          "visibility": "POST_ATTEMPT"
+        },
+        {
+          "id": "repair",
+          "visibility": "POST_ATTEMPT"
+        },
+        {
+          "id": "boundary_test",
+          "visibility": "POST_ATTEMPT"
+        },
+        {
+          "id": "model_response_or_rubric",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "rejoin_inferential_jump",
+          "visibility": "ON_REVEAL"
+        }
       ],
       "required_inputs": [
         "microtopic.inferential_jump",
@@ -151,17 +243,36 @@ specifications and canonical library.
         "CORE1A_WITH_RANDOM_BLANKS",
         "ANSWER_BEFORE_ATTEMPT",
         "COVERAGE_REDUCTION_RELATIVE_TO_CORE1A"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0"
     },
     "CORE2": {
       "learner_job": "Preserve and expose the authentic assessment demand with source custody intact.",
       "ordered_blocks": [
-        {"id": "source_identity_provenance", "visibility": "IMMEDIATE"},
-        {"id": "source_question", "visibility": "IMMEDIATE"},
-        {"id": "source_figure", "visibility": "IMMEDIATE"},
-        {"id": "source_hint_ladder", "visibility": "ON_REVEAL"},
-        {"id": "source_answer_rubric", "visibility": "ON_REVEAL"},
-        {"id": "custody_status", "visibility": "IMMEDIATE"}
+        {
+          "id": "source_identity_provenance",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "source_question",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "source_figure",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "source_hint_ladder",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "source_answer_rubric",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "custody_status",
+          "visibility": "IMMEDIATE"
+        }
       ],
       "required_inputs": [
         "question.source_refs[]",
@@ -183,22 +294,56 @@ specifications and canonical library.
         "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
         "GENERATED_OFFICIAL_IDENTITY",
         "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.0.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",
       "ordered_blocks": [
-        {"id": "family_identity_provenance", "visibility": "IMMEDIATE"},
-        {"id": "question", "visibility": "IMMEDIATE"},
-        {"id": "initial_representation", "visibility": "IMMEDIATE"},
-        {"id": "pedagogical_scaffolds", "visibility": "ON_REVEAL"},
-        {"id": "reasoning_route", "visibility": "ON_REVEAL"},
-        {"id": "application_crux", "visibility": "ON_REVEAL"},
-        {"id": "bound_representation", "visibility": "ON_REVEAL"},
-        {"id": "complete_solution", "visibility": "ON_REVEAL"},
-        {"id": "independent_check", "visibility": "ON_REVEAL"},
-        {"id": "failure_signal_repair", "visibility": "ON_REVEAL"},
-        {"id": "exposure_family_closure", "visibility": "IMMEDIATE"}
+        {
+          "id": "family_identity_provenance",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "question",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "initial_representation",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "pedagogical_scaffolds",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "reasoning_route",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "application_crux",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "bound_representation",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "complete_solution",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "independent_check",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "failure_signal_repair",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "exposure_family_closure",
+          "visibility": "IMMEDIATE"
+        }
       ],
       "required_inputs": [
         "question.family_ref",
@@ -215,20 +360,48 @@ specifications and canonical library.
         "TRANSFER_CLAIM_FROM_NUMBER_CHANGE_ONLY",
         "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE",
         "MASTERY_CLAIM_FROM_SUCCESSFUL_GENERATION"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0"
     },
     "CORE2B": {
       "learner_job": "Carry an established capability into a changed demand while protecting the changed learner decision before commitment.",
       "ordered_blocks": [
-        {"id": "question_prior_exposure", "visibility": "IMMEDIATE"},
-        {"id": "safe_initial_representation", "visibility": "IMMEDIATE"},
-        {"id": "safe_pre_attempt_support", "visibility": "IMMEDIATE"},
-        {"id": "attempt_commitment", "visibility": "ATTEMPT_FIRST"},
-        {"id": "post_attempt_support", "visibility": "POST_ATTEMPT"},
-        {"id": "full_answer_rubric", "visibility": "ON_REVEAL"},
-        {"id": "changed_demand_review", "visibility": "ON_REVEAL"},
-        {"id": "repair_route", "visibility": "ON_REVEAL"},
-        {"id": "lineage_continuity_check", "visibility": "ON_REVEAL"}
+        {
+          "id": "question_prior_exposure",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "safe_initial_representation",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "safe_pre_attempt_support",
+          "visibility": "IMMEDIATE"
+        },
+        {
+          "id": "attempt_commitment",
+          "visibility": "ATTEMPT_FIRST"
+        },
+        {
+          "id": "post_attempt_support",
+          "visibility": "POST_ATTEMPT"
+        },
+        {
+          "id": "full_answer_rubric",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "changed_demand_review",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "repair_route",
+          "visibility": "ON_REVEAL"
+        },
+        {
+          "id": "lineage_continuity_check",
+          "visibility": "ON_REVEAL"
+        }
       ],
       "required_inputs": [
         "question.transfer.dimension",
@@ -248,7 +421,8 @@ specifications and canonical library.
         "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT",
         "NEW_UNTAUGHT_CAPABILITY_AS_TRANSFER",
         "TRANSFER_CLAIM_FROM_COVER_STORY_ONLY"
-      ]
+      ],
+      "web_blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0"
     }
   }
 }

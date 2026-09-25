@@ -78,15 +78,39 @@ The template contract is intentionally narrower than the role specifications:
 The machine-readable fenced block in `LEARNER-PRODUCT-TEMPLATES.md` is validated by
 `Shared/tools/core_template_contract.py`.
 
-## Cross-lane Core projection contract
+## Cross-lane Core projection and web-delivery contracts
 
-The role files above remain authoritative for learner-product meaning. The shared interface used by Core code, canonical Atlas/data authoring, and the interactive webpage builder is frozen in [Core Projection Contract v1.0](../../docs/CORE-PROJECTION-CONTRACT.md).
+The role files above remain authoritative for learner-product meaning. The durable cross-lane
+presentation authority is the machine-readable contract in
+[Core learner-product templates](LEARNER-PRODUCT-TEMPLATES.md), validated by
+`Shared/tools/core_template_contract.py`.
 
-The contract fixes these boundaries:
+That contract now binds each of the six Core roles to one exact versioned
+`web_blueprint_ref`. The referenced subject-neutral page blueprints live in
+`Shared/web/interactive-page-blueprints.v1.json` and are validated by
+`Shared/tools/web_blueprint_contract.py`.
 
-- Core1A/Core1B share the same conceptual truth; Core1A reveals the completed inference and Core1B elicits it before reconstruction/repair.
-- Core2A/Core2B share capability truth; Core2A scaffolds a familiar reasoning route and Core2B protects the changed decision required for transfer.
+The production Core projection boundary is implemented by
+`Shared/tools/core_learning_projection_adapter.py`: it consumes compiled canonical records,
+preserves the existing Core semantics, and copies the resolved web blueprint into explicit
+projection delivery metadata. Browser/runtime code consumes that metadata; it does not infer
+page architecture from subject names, question wording, learner percentages, or existing HTML.
+
+These contracts preserve the established boundaries:
+
+- Core1A/Core1B share the same conceptual truth; Core1A reveals the completed inference and
+  Core1B elicits it before reconstruction/repair.
+- Core2A/Core2B share capability truth; Core2A scaffolds a familiar reasoning route and Core2B
+  protects the changed decision required for transfer.
 - `microtopic.inferential_jump` is the Core1A/Core1B conceptual crux.
-- `answer.reasoning_route[]` + `answer.crux_move_ref` are the structured Core2A/Core2B application route when authored.
-- `question.hints[]` preserves the question/source hint ladder; `question.scaffolds[]` holds optional Core2A pedagogical support.
-- canonical representations remain academic truth; webpages consume reveal-stage bindings rather than inventing them.
+- `answer.reasoning_route[]` + `answer.crux_move_ref` are the structured Core2A/Core2B
+  application route when authored.
+- `question.hints[]` preserves the question/source hint ladder; `question.scaffolds[]` holds
+  optional Core2A/Core2B pedagogical support.
+- canonical representations remain academic truth; webpages consume representation bindings and
+  reveal stages rather than inventing them.
+- webpage blueprints own shell/layout/reveal mechanics only; they are not curriculum, source,
+  question, learner-evidence, or mastery authority.
+
+The historical #176 Core Projection Contract was interface-freeze evidence for the earlier
+parallel implementation. It is not restored as a second current authority.

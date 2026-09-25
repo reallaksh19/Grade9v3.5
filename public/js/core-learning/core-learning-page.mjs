@@ -1,7 +1,9 @@
 export const CORE_LEARNING_PAGE_TAG = "core-learning-page";
-export const CORE_PROJECTION_CONTRACT_VERSION = "1.0";
+export const CORE_PROJECTION_CONTRACT_VERSION = "1.1";
 
 const CORE_MODES = new Set(["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"]);
+const WEB_MOUNT_MODES = new Set(["PORTABLE_SCENE", "COMPONENT", "STATIC_FIGURE"]);
+const WEB_PACKAGING_MODES = new Set(["PUBLIC", "PAGES", "OFFLINE_DIRECTORY", "SINGLE_FILE", "EMBED"]);
 const SUPPORT_KINDS = new Set(["REPRESENT", "CONNECT", "EXECUTE"]);
 const REVEAL_KINDS = new Set(["CONCEPT", "METHOD", "ANSWER"]);
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -148,6 +150,113 @@ export function validateCoreProjection(input) {
   projection.application = projection.application == null
     ? null
     : requireObject(projection.application, "CORE_PROJECTION_APPLICATION_INVALID");
+
+  projection.delivery = requireObject(
+    projection.delivery,
+    "CORE_PROJECTION_DELIVERY_REQUIRED",
+  );
+  const web = requireObject(
+    projection.delivery.web,
+    "CORE_PROJECTION_WEB_DELIVERY_REQUIRED",
+  );
+  requireString(web.blueprint_ref, "CORE_PROJECTION_WEB_BLUEPRINT_REF_REQUIRED");
+  requireString(web.blueprint_id, "CORE_PROJECTION_WEB_BLUEPRINT_ID_REQUIRED");
+  requireString(web.blueprint_version, "CORE_PROJECTION_WEB_BLUEPRINT_VERSION_REQUIRED");
+  requireCondition(
+    web.blueprint_ref === `${web.blueprint_id}@${web.blueprint_version}`,
+    "CORE_PROJECTION_WEB_BLUEPRINT_REF_MISMATCH",
+    web.blueprint_ref,
+  );
+  requireString(web.shell_ref, "CORE_PROJECTION_WEB_SHELL_REF_REQUIRED");
+  requireString(web.layout_family, "CORE_PROJECTION_WEB_LAYOUT_REQUIRED");
+  web.required_slots = optionalStringArray(
+    web.required_slots,
+    "CORE_PROJECTION_WEB_REQUIRED_SLOTS_INVALID",
+  );
+  web.slot_order = optionalStringArray(
+    web.slot_order,
+    "CORE_PROJECTION_WEB_SLOT_ORDER_INVALID",
+  );
+  requireCondition(
+    web.required_slots.every((slot) => web.slot_order.includes(slot)),
+    "CORE_PROJECTION_WEB_REQUIRED_SLOT_UNKNOWN",
+  );
+  const interactionPolicy = requireObject(
+    web.interaction_policy,
+    "CORE_PROJECTION_WEB_INTERACTION_POLICY_REQUIRED",
+  );
+  requireCondition(
+    ["FROM_PROJECTION", "ALWAYS", "NEVER"].includes(interactionPolicy.attempt_before_reveal),
+    "CORE_PROJECTION_WEB_ATTEMPT_POLICY_INVALID",
+  );
+  requireCondition(
+    typeof interactionPolicy.progressive_support === "boolean",
+    "CORE_PROJECTION_WEB_PROGRESSIVE_SUPPORT_INVALID",
+  );
+  requireString(
+    interactionPolicy.solution_policy,
+    "CORE_PROJECTION_WEB_SOLUTION_POLICY_REQUIRED",
+  );
+  const representationPolicy = requireObject(
+    web.representation_policy,
+    "CORE_PROJECTION_WEB_REPRESENTATION_POLICY_REQUIRED",
+  );
+  representationPolicy.preferred_mount_modes = optionalStringArray(
+    representationPolicy.preferred_mount_modes,
+    "CORE_PROJECTION_WEB_MOUNT_MODES_INVALID",
+  );
+  requireCondition(
+    representationPolicy.preferred_mount_modes.length > 0
+      && representationPolicy.preferred_mount_modes.every((mode) => WEB_MOUNT_MODES.has(mode)),
+    "CORE_PROJECTION_WEB_MOUNT_MODES_INVALID",
+  );
+  requireCondition(
+    representationPolicy.legacy_iframe === "MIGRATION_ONLY",
+    "CORE_PROJECTION_WEB_LEGACY_IFRAME_POLICY_INVALID",
+  );
+  const responsivePolicy = requireObject(
+    web.responsive_policy,
+    "CORE_PROJECTION_WEB_RESPONSIVE_POLICY_REQUIRED",
+  );
+  for (const field of ["compact", "medium", "expanded"]) {
+    requireString(responsivePolicy[field], "CORE_PROJECTION_WEB_RESPONSIVE_MODE_REQUIRED", field);
+  }
+  requireCondition(
+    typeof responsivePolicy.primary_fraction === "number"
+      && typeof responsivePolicy.support_fraction === "number"
+      && Math.abs(
+        responsivePolicy.primary_fraction + responsivePolicy.support_fraction - 1
+      ) < 1e-9,
+    "CORE_PROJECTION_WEB_RESPONSIVE_FRACTIONS_INVALID",
+  );
+  const touchPolicy = requireObject(
+    web.touch_policy,
+    "CORE_PROJECTION_WEB_TOUCH_POLICY_REQUIRED",
+  );
+  requireCondition(
+    Number.isInteger(touchPolicy.minimum_target_css_px)
+      && touchPolicy.minimum_target_css_px >= 48,
+    "CORE_PROJECTION_WEB_TOUCH_TARGET_INVALID",
+  );
+  requireCondition(
+    Number.isInteger(touchPolicy.minimum_control_gap_css_px)
+      && touchPolicy.minimum_control_gap_css_px >= 8,
+    "CORE_PROJECTION_WEB_TOUCH_GAP_INVALID",
+  );
+  web.packaging_modes = optionalStringArray(
+    web.packaging_modes,
+    "CORE_PROJECTION_WEB_PACKAGING_MODES_INVALID",
+  );
+  requireCondition(
+    WEB_PACKAGING_MODES.size === web.packaging_modes.length
+      && web.packaging_modes.every((mode) => WEB_PACKAGING_MODES.has(mode)),
+    "CORE_PROJECTION_WEB_PACKAGING_MODES_INVALID",
+  );
+  web.forbidden = optionalStringArray(
+    web.forbidden,
+    "CORE_PROJECTION_WEB_FORBIDDEN_INVALID",
+  );
+
   projection.presentation = requireObject(
     projection.presentation,
     "CORE_PROJECTION_PRESENTATION_REQUIRED",
@@ -229,6 +338,15 @@ export function validateCoreProjection(input) {
         projection.application[field],
         `CORE_PROJECTION_${field.toUpperCase()}_INVALID`,
       );
+    }
+    projection.application.exposure = optionalArray(
+      projection.application.exposure,
+      "CORE_PROJECTION_EXPOSURE_INVALID",
+    );
+    for (const row of projection.application.exposure) {
+      requireObject(row, "CORE_PROJECTION_EXPOSURE_ROW_INVALID");
+      if (row.core != null) requireString(row.core, "CORE_PROJECTION_EXPOSURE_CORE_INVALID");
+      if (row.role != null) requireString(row.role, "CORE_PROJECTION_EXPOSURE_ROLE_INVALID");
     }
     if (projection.application.origin != null) {
       requireCondition(
@@ -359,6 +477,9 @@ export function deriveCoreLearningState(input) {
   return {
     contractVersion: projection.contract_version,
     core: projection.core,
+    webBlueprintRef: projection.delivery.web.blueprint_ref,
+    shellRef: projection.delivery.web.shell_ref,
+    layoutFamily: projection.delivery.web.layout_family,
     stage,
     attempted: false,
     attemptCount: 0,
@@ -448,20 +569,35 @@ export function transitionCoreLearningState(input, currentState, command) {
     }
     state.attempted = true;
     state.attemptCount += 1;
+    const solutionPolicy = projection.delivery.web.interaction_policy.solution_policy;
     if (isConceptReconstruction(projection)) {
       state.reconstructionVisible = true;
       state.stage = "RECONSTRUCTION_VISIBLE";
     } else if (projection.application?.reasoning_route.length) {
       state.reasoningVisible = true;
-      state.solutionVisible = true;
+      if (solutionPolicy !== "LEARNER_OPENABLE") state.solutionVisible = true;
       state.stage = "REASONING_VISIBLE";
     } else if (projection.application?.question_ref) {
-      state.solutionVisible = true;
-      state.stage = "SOLUTION_VISIBLE";
+      if (solutionPolicy !== "LEARNER_OPENABLE") state.solutionVisible = true;
+      state.stage = state.solutionVisible ? "SOLUTION_VISIBLE" : "ATTEMPT_COMMITTED";
     } else {
       state.stage = "ATTEMPT_COMMITTED";
     }
     return { state, changed: true, reason: "ATTEMPT_COMMITTED" };
+  }
+
+  if (command.type === "REVEAL_SOLUTION") {
+    const solutionPolicy = projection.delivery.web.interaction_policy.solution_policy;
+    requireCondition(
+      solutionPolicy === "LEARNER_OPENABLE"
+        || (solutionPolicy === "POST_ATTEMPT" && state.attempted)
+        || projection.presentation.show_solution_initially,
+      "CORE_LEARNING_SOLUTION_REVEAL_NOT_ALLOWED",
+    );
+    if (state.solutionVisible) return { state, changed: false, reason: "SOLUTION_ALREADY_VISIBLE" };
+    state.solutionVisible = true;
+    state.stage = "SOLUTION_VISIBLE";
+    return { state, changed: true, reason: "SOLUTION_REVEALED" };
   }
 
   if (command.type === "REQUEST_SUPPORT") {
@@ -856,7 +992,8 @@ function renderOrientationMap(projection) {
 }
 
 function renderRepresentation(state) {
-  const visualRef = state.currentVisualRef ? escapeHtml(state.currentVisualRef) : "";
+  if (!state.currentVisualRef) return "";
+  const visualRef = escapeHtml(state.currentVisualRef);
   const visualStage = state.currentVisualStageRef ? escapeHtml(state.currentVisualStageRef) : "";
   return `<section class="representation-panel" aria-labelledby="core-representation-title"
     data-visual-ref="${visualRef}" data-visual-stage-ref="${visualStage}">
@@ -866,6 +1003,71 @@ function renderRepresentation(state) {
       Interactive representation is supplied by the host when available.
     </p>
   </section>`;
+}
+
+function renderIdentity(projection, state) {
+  const rows = [];
+  if (projection.orientation) {
+    rows.push(["Bucket", projection.orientation.bucket_ref]);
+  }
+  if (projection.concept) {
+    rows.push(["Microtopic", projection.concept.microtopic_ref]);
+  }
+  if (projection.application) {
+    rows.push(["Family", projection.application.family_ref]);
+    rows.push(["Question", projection.application.question_ref]);
+  }
+  const exposure = (projection.application?.exposure ?? []).map((row) => {
+    const bits = [row.core, row.role, row.status].filter(Boolean);
+    return bits.length ? bits.join(" · ") : null;
+  }).filter(Boolean);
+  return `<section class="identity-panel" aria-labelledby="core-identity-title">
+    <div class="eyebrow">${escapeHtml(projection.core)}</div>
+    <h2 id="core-identity-title">Current learning target</h2>
+    <p class="status">${escapeHtml(state.stage.replaceAll("_", " ").toLowerCase())}</p>
+    <dl class="identity-grid">${rows.map(([label, value]) =>
+      `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`
+    ).join("")}</dl>
+    ${exposure.length ? `<div class="exposure-closure"><strong>Exposure</strong><ul>${exposure.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}
+    <p class="visually-hidden" aria-live="polite" data-live-status></p>
+  </section>`;
+}
+
+function renderSolutionControl(projection, state) {
+  const policy = projection.delivery.web.interaction_policy.solution_policy;
+  if (policy !== "LEARNER_OPENABLE" || state.solutionVisible || !projection.application) return "";
+  const solution = projection.application.solution ?? {};
+  const hasSolution = Boolean(solution.summary || solution.steps?.length || solution.rubric?.length || projection.application.repair);
+  if (!hasSolution) return "";
+  return `<section class="solution-control" aria-label="Solution controls">
+    <button type="button" data-action="solution">Open complete solution</button>
+  </section>`;
+}
+
+function renderBlueprintSlot(projection, state, slotId) {
+  let body = "";
+  if (slotId === "identity") body = renderIdentity(projection, state);
+  else if (slotId === "orientation") body = `${renderOrientationMap(projection)}${renderRepresentation(state)}`;
+  else if (slotId === "attempt") {
+    body = projection.concept
+      ? `${renderConcept(projection, state)}${renderAttempt(projection, state)}`
+      : `${renderQuestion(projection, state)}${renderQuestionFigures(projection, state)}${renderRepresentation(state)}${renderAttempt(projection, state)}`;
+  } else if (slotId === "support") body = `${renderHints(projection, state)}${renderSupport(projection, state)}`;
+  else if (slotId === "solution") body = `${renderReasoningRoute(projection, state)}${renderIndependentCheck(projection, state)}${renderSolutionControl(projection, state)}${renderSolution(projection, state)}${renderCompletion(state)}`;
+  else if (slotId === "construction") body = `${renderConcept(projection, state)}${renderRepresentation(state)}${renderConstruction(projection, state)}`;
+  else if (slotId === "repair_closure") body = renderCompletion(state);
+  else if (slotId === "reconstruction") body = `${renderConstruction(projection, state)}${renderCompletion(state)}`;
+  else if (slotId === "reasoning") body = `${renderReasoningRoute(projection, state)}${renderIndependentCheck(projection, state)}${renderSolutionControl(projection, state)}${renderSolution(projection, state)}${renderCompletion(state)}`;
+  else if (slotId === "post_attempt") body = `${renderHints(projection, state)}${renderSupport(projection, state)}${renderReasoningRoute(projection, state)}${renderIndependentCheck(projection, state)}${renderSolution(projection, state)}${renderCompletion(state)}`;
+  const required = projection.delivery.web.required_slots.includes(slotId);
+  if (!body && !required) return "";
+  return `<section class="blueprint-slot slot-${escapeHtml(slotId)}" data-blueprint-slot="${escapeHtml(slotId)}" data-required="${required ? "true" : "false"}>${body}</section>`;
+}
+
+function renderBlueprintSlots(projection, state) {
+  return projection.delivery.web.slot_order
+    .map((slotId) => renderBlueprintSlot(projection, state, slotId))
+    .join("");
 }
 
 function renderCompletion(state) {
@@ -880,12 +1082,23 @@ export function renderCoreLearningProjection(input, stateInput = null) {
   const state = stateInput
     ? validateState(projection, stateInput)
     : deriveCoreLearningState(projection);
+  const web = projection.delivery.web;
+  const touch = web.touch_policy;
+  const responsive = web.responsive_policy;
 
   return `<style>
     :host { display:block; font:inherit; color:inherit; }
-    .shell { display:grid; gap:1rem; max-width:72rem; margin:0 auto; }
-    .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel {
-      border:1px solid currentColor; border-radius:.75rem; padding:1rem;
+    .shell {
+      --g9-min-target:${touch.minimum_target_css_px}px;
+      --g9-control-gap:${touch.minimum_control_gap_css_px}px;
+      --g9-primary:${responsive.primary_fraction}fr;
+      --g9-support:${responsive.support_fraction}fr;
+      display:grid; gap:1rem; max-width:80rem; margin:0 auto;
+    }
+    .blueprint-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; align-items:start; }
+    .blueprint-slot { min-width:0; display:grid; gap:1rem; align-content:start; }
+    .identity-panel,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.solution-control,.construction-panel,.representation-panel {
+      border:1px solid currentColor; border-radius:.75rem; padding:1rem; background:Canvas;
     }
     .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
     h2,h3,p { margin:.25rem 0 .75rem; }
@@ -893,10 +1106,17 @@ export function renderCoreLearningProjection(input, stateInput = null) {
     li + li { margin-top:.65rem; }
     small { display:block; margin-top:.2rem; opacity:.8; }
     .source-identity { font-size:.85rem; opacity:.8; }
+    .identity-grid { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:.5rem 0; }
+    .identity-grid div { display:grid; grid-template-columns:auto minmax(0,1fr); gap:.35rem; }
+    .identity-grid dt { font-weight:700; }
+    .identity-grid dd { margin:0; overflow-wrap:anywhere; }
     .question-parts h4 { margin:.75rem 0 .25rem; }
     label { display:block; font-weight:600; margin-bottom:.35rem; }
-    textarea { box-sizing:border-box; width:100%; max-width:48rem; font:inherit; }
-    button { font:inherit; min-height:2.75rem; padding:.55rem .8rem; margin-top:.65rem; }
+    textarea { box-sizing:border-box; width:100%; max-width:48rem; min-height:7rem; font:inherit; }
+    button {
+      font:inherit; min-height:var(--g9-min-target); min-width:var(--g9-min-target);
+      padding:.55rem .8rem; margin-top:var(--g9-control-gap);
+    }
     .status { font-weight:600; }
     [data-crux="true"] { border-inline-start:.3rem solid currentColor; padding-inline-start:.75rem; }
     .crux-label { display:block; margin-bottom:.2rem; }
@@ -904,33 +1124,40 @@ export function renderCoreLearningProjection(input, stateInput = null) {
       position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
       clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
-    @media (max-width: 36rem) {
-      .orientation,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.construction-panel,.representation-panel { padding:.75rem; }
+    @media (min-width:64rem) {
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .blueprint-grid {
+        grid-template-columns:minmax(0,var(--g9-primary)) minmax(0,var(--g9-support));
+      }
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-identity { grid-column:1 / -1; }
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-support,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-repair_closure,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-reconstruction,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-post_attempt,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-solution { grid-column:2; }
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-attempt,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-construction,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-reasoning,
+      .shell[data-expanded-layout="STAGE_SUPPORT"] .slot-orientation { grid-column:1; }
+    }
+    @media (max-width:56rem) {
+      .blueprint-grid { grid-template-columns:minmax(0,1fr); }
+    }
+    @media (max-width:36rem) {
+      .identity-panel,.orientation-map,.concept,.question,.question-figures,.attempt-panel,.hint-panel,.support-panel,.reasoning-panel,.check-panel,.solution-panel,.solution-control,.construction-panel,.representation-panel { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { animation-duration:0s !important; transition-duration:0s !important; scroll-behavior:auto !important; }
     }
   </style>
-  <article class="shell" data-core="${escapeHtml(projection.core)}" data-stage="${escapeHtml(state.stage)}">
-    <header class="orientation">
-      <div class="eyebrow">${escapeHtml(projection.core)}</div>
-      <h2>Current learning target</h2>
-      <p class="status">${escapeHtml(state.stage.replaceAll("_", " ").toLowerCase())}</p>
-      <p class="visually-hidden" aria-live="polite" data-live-status></p>
-    </header>
-    ${renderOrientationMap(projection)}
-    ${renderConcept(projection, state)}
-    ${renderQuestion(projection, state)}
-    ${renderQuestionFigures(projection, state)}
-    ${renderRepresentation(state)}
-    ${renderAttempt(projection, state)}
-    ${renderHints(projection, state)}
-    ${renderSupport(projection, state)}
-    ${renderConstruction(projection, state)}
-    ${renderReasoningRoute(projection, state)}
-    ${renderIndependentCheck(projection, state)}
-    ${renderSolution(projection, state)}
-    ${renderCompletion(state)}
+  <article class="shell"
+    data-core="${escapeHtml(projection.core)}"
+    data-stage="${escapeHtml(state.stage)}"
+    data-web-blueprint="${escapeHtml(web.blueprint_ref)}"
+    data-layout-family="${escapeHtml(web.layout_family)}"
+    data-compact-layout="${escapeHtml(responsive.compact)}"
+    data-medium-layout="${escapeHtml(responsive.medium)}"
+    data-expanded-layout="${escapeHtml(responsive.expanded)}">
+    <div class="blueprint-grid">${renderBlueprintSlots(projection, state)}</div>
   </article>`;
 }
 
@@ -1129,6 +1356,25 @@ export class CoreLearningPage extends HTMLElementBase {
     return this.state;
   }
 
+  revealSolution() {
+    this._requireProjection();
+    const result = transitionCoreLearningState(
+      this._projection,
+      this._state,
+      { type: "REVEAL_SOLUTION" },
+    );
+    this._state = result.state;
+    this._render();
+    if (result.changed) {
+      this._emit(CORE_LEARNER_EVENTS.REVEAL_CHANGED, {
+        kind: "solution",
+        stage: this._state.stage,
+      });
+      this._announce("Complete solution revealed.");
+    }
+    return this.state;
+  }
+
   completeActivity() {
     this._requireProjection();
     const result = transitionCoreLearningState(
@@ -1234,6 +1480,9 @@ export class CoreLearningPage extends HTMLElementBase {
     });
     this.shadowRoot.querySelector('[data-action="hint"]')?.addEventListener("click", () => {
       this.requestHint();
+    });
+    this.shadowRoot.querySelector('[data-action="solution"]')?.addEventListener("click", () => {
+      this.revealSolution();
     });
     this.shadowRoot.querySelector('[data-action="complete"]')?.addEventListener("click", () => {
       this.completeActivity();

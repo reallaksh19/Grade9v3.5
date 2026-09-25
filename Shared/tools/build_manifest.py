@@ -32,6 +32,7 @@ ROLES = [
     ("Shared/library", "LIBRARY", "Topic library: intake, resolution, promotion, compilation"),
     ("Shared/gates", "GATES", "Technical gate schema and validator"),
     ("Shared/roles", "CONTRACT", "The six Core role specifications"),
+    ("Shared/web", "WEB_CONTRACT", "Subject-neutral interactive page blueprint contracts"),
     ("Shared/tools", "TOOLING", "Guardrails and generators"),
     ("public/core-learning", "WEB", "Static Core learner host and generated projection data"),
     ("public/js/core-learning", "WEB_RUNTIME", "Generated public Core learner runtime"),

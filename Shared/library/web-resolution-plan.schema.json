@@ -1,0 +1,517 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/web-resolution-plan.schema.json",
+  "title": "Web Resolution Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "subject",
+    "target",
+    "experience_segments",
+    "availability",
+    "artifact_buildable",
+    "request_satisfaction",
+    "build_action",
+    "packaging_mode",
+    "pins",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_kind",
+        "exact_ref",
+        "matrix_ref",
+        "rung",
+        "canonical_collection",
+        "resolved_refs"
+      ],
+      "properties": {
+        "entry_kind": {
+          "enum": [
+            "EXACT_REF",
+            "ATLAS_SELECTION"
+          ]
+        },
+        "exact_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "matrix_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rung": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_collection": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolved_refs": {
+          "type": "object"
+        }
+      }
+    },
+    "experience_segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mapping",
+        "core",
+        "representation",
+        "activity",
+        "locator",
+        "portable_package",
+        "standalone",
+        "renderer"
+      ],
+      "properties": {
+        "mapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "core": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "representation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "activity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "locator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "portable_package": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "standalone": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "renderer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "status"
+          ],
+          "properties": {
+            "requirement": {
+              "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NOT_REQUIRED"
+              ]
+            },
+            "status": {
+              "enum": [
+                "READY",
+                "DERIVABLE",
+                "UNAVAILABLE",
+                "INVALID",
+                "STALE",
+                "INCOMPATIBLE",
+                "UNAUTHORIZED",
+                "NOT_REQUIRED"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "detail": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "artifact_buildable": {
+      "type": "boolean"
+    },
+    "request_satisfaction": {
+      "enum": [
+        "FULL",
+        "DEGRADED_ACCEPTABLE",
+        "DEGRADED_REQUIRES_APPROVAL",
+        "HOLD"
+      ]
+    },
+    "build_action": {
+      "enum": [
+        "CORE_PAGE_ADAPTER",
+        "EXPLORE_PAGE_ADAPTER",
+        "COMPOSE_SEGMENTS",
+        "HOLD"
+      ]
+    },
+    "packaging_mode": {
+      "enum": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ]
+    },
+    "pins": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "atlas_index_contract_version",
+        "core_provider_contract_version",
+        "target_routing_contract_version",
+        "explorer_profile_registry_version",
+        "renderer_registry_version"
+      ],
+      "properties": {
+        "atlas_index_contract_version": {
+          "type": "string"
+        },
+        "core_provider_contract_version": {
+          "type": "string"
+        },
+        "target_routing_contract_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "explorer_profile_registry_version": {
+          "type": "string"
+        },
+        "renderer_registry_version": {
+          "type": "string"
+        }
+      }
+    },
+    "target_route": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "fallback_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

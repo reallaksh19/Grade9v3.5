@@ -17,7 +17,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.contracts import load  # noqa: E402
-from Shared.tools import core_authority_contract  # noqa: E402
+from Shared.tools import core_authority_contract, core_template_contract  # noqa: E402
 
 OUT = REPO / "public/data/prompt-composer-data.js"
 MANIFEST = REPO / "docs/architecture-manifest.json"
@@ -49,6 +49,31 @@ def build(repo: Path = REPO) -> dict:
         "template": template,
         "authority_contract": authority,
         "authority_contract_ref": str(authority_path.relative_to(repo)),
+        "web_blueprints": {
+            core: {
+                "core": core,
+                "blueprint_ref": (blueprint := core_template_contract.resolve_web_blueprint_for_core(core))["ref"],
+                "blueprint_id": blueprint["id"],
+                "blueprint_version": blueprint["version"],
+                "shell_ref": blueprint["shell_ref"],
+                "layout_family": blueprint["layout_family"],
+                "required_slots": [
+                    slot["id"] for slot in blueprint.get("slots") or []
+                    if isinstance(slot, dict) and slot.get("required") is True
+                ],
+                "slot_order": [
+                    slot["id"] for slot in blueprint.get("slots") or []
+                    if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+                ],
+                "interaction_policy": blueprint["interaction_policy"],
+                "representation_policy": blueprint["representation_policy"],
+                "responsive_policy": blueprint["responsive_policy"],
+                "touch_policy": blueprint["touch_policy"],
+                "packaging_modes": blueprint["packaging_modes"],
+                "forbidden": blueprint["forbidden"],
+            }
+            for core in core_template_contract.ROLE_ORDER
+        },
         "subjects": {},
     }
     for subject in subjects(repo):

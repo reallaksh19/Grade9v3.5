@@ -1,0 +1,487 @@
+{
+  "schema_version": "1.0",
+  "registry_version": "1.0.0",
+  "shell": {
+    "id": "G9-TABLET-SHELL-V1",
+    "fixed_header": true,
+    "controls": [
+      "BACK",
+      "HOME",
+      "SUBJECT_CONTEXT",
+      "QUESTION_BANK",
+      "SEARCH",
+      "REFRESH",
+      "DISPLAY",
+      "OVERFLOW"
+    ],
+    "responsive_modes": [
+      "COMPACT",
+      "MEDIUM",
+      "EXPANDED"
+    ]
+  },
+  "blueprints": [
+    {
+      "id": "BP-CORE1-ORIENTATION",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1"
+      ],
+      "learner_job": "Orient to the bucket without replacing detailed teaching.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_ORIENTATION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_scope"
+          ],
+          "required": true
+        },
+        {
+          "id": "orientation",
+          "accepts_blocks": [
+            "objects_conventions",
+            "canonical_representation",
+            "governing_relations",
+            "compact_anchor",
+            "hard_transition_map",
+            "exclusions_extensions",
+            "orientation_closure"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": false,
+        "solution_policy": "FROM_PROJECTION"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "SINGLE_PANE",
+        "expanded": "SINGLE_PANE",
+        "primary_fraction": 1,
+        "support_fraction": 0
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "FULL_INFERENTIAL_CONSTRUCTION"
+      ]
+    },
+    {
+      "id": "BP-CORE2-SOURCE-QUESTION",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2"
+      ],
+      "learner_job": "Preserve and expose authentic assessment demand with source custody intact.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_READER",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "source_identity_provenance"
+          ],
+          "required": true
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "source_question",
+            "source_figure"
+          ],
+          "required": true
+        },
+        {
+          "id": "support",
+          "accepts_blocks": [
+            "source_hint_ladder"
+          ],
+          "required": false
+        },
+        {
+          "id": "solution",
+          "accepts_blocks": [
+            "source_answer_rubric",
+            "custody_status"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT"
+      ]
+    },
+    {
+      "id": "BP-CORE1A-CONSTRUCTION",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1A"
+      ],
+      "learner_job": "Reveal and explain the complete conceptual construction at intrinsic subtopic depth.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_CONSTRUCTION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_entry_assumptions",
+            "convention_declaration"
+          ],
+          "required": true
+        },
+        {
+          "id": "construction",
+          "accepts_blocks": [
+            "inferential_jump",
+            "completed_construction",
+            "representation_bridge",
+            "worked_conceptual_anchor"
+          ],
+          "required": true
+        },
+        {
+          "id": "repair_closure",
+          "accepts_blocks": [
+            "plausible_wrong_path",
+            "diagnose",
+            "repair",
+            "independent_checks",
+            "exit_task_closure"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": false,
+        "solution_policy": "FROM_PROJECTION"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+      ]
+    },
+    {
+      "id": "BP-CORE1B-RECONSTRUCTION",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1B"
+      ],
+      "learner_job": "Elicit the conceptual decision before reconstruction, diagnosis and repair.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "GUIDED_RECONSTRUCTION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_concept"
+          ],
+          "required": true
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "predict",
+            "attempt"
+          ],
+          "required": true
+        },
+        {
+          "id": "reconstruction",
+          "accepts_blocks": [
+            "reconstruct",
+            "diagnose",
+            "repair",
+            "boundary_test",
+            "model_response_or_rubric",
+            "rejoin_inferential_jump"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ANSWER_BEFORE_ATTEMPT"
+      ]
+    },
+    {
+      "id": "BP-CORE2A-SUPPORTED-APPLICATION",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2A"
+      ],
+      "learner_job": "Teach a familiar application route with progressive support and complete closure.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_STUDY",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "family_identity_provenance"
+          ],
+          "required": true
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "question",
+            "initial_representation"
+          ],
+          "required": true
+        },
+        {
+          "id": "support",
+          "accepts_blocks": [
+            "pedagogical_scaffolds",
+            "application_crux",
+            "bound_representation"
+          ],
+          "required": false
+        },
+        {
+          "id": "reasoning",
+          "accepts_blocks": [
+            "reasoning_route",
+            "complete_solution",
+            "independent_check",
+            "failure_signal_repair",
+            "exposure_family_closure"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+      ]
+    },
+    {
+      "id": "BP-CORE2B-TRANSFER",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2B"
+      ],
+      "learner_job": "Protect the changed decision before commitment, then provide transfer review and repair.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "TRANSFER_ATTEMPT",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "question_prior_exposure"
+          ],
+          "required": true
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "safe_initial_representation",
+            "safe_pre_attempt_support",
+            "attempt_commitment"
+          ],
+          "required": true
+        },
+        {
+          "id": "post_attempt",
+          "accepts_blocks": [
+            "post_attempt_support",
+            "full_answer_rubric",
+            "changed_demand_review",
+            "repair_route",
+            "lineage_continuity_check"
+          ],
+          "required": true
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+      ]
+    }
+  ]
+}

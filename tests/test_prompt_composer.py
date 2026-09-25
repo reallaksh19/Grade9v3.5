@@ -71,7 +71,7 @@ class PromptComposerTests(unittest.TestCase):
         for clause in [
             "GOAL_OUTCOME", "FIXED_SOURCE_QUESTIONS", "LEARNER_PROFILE",
             "EXECUTION_ORDER", "AUTHORITY_GRAPH", "TOPIC_BOUNDARY", "CORE_OBLIGATIONS",
-            "DIFFICULTY_PROGRESSION", "PROVENANCE_TRACE", "ACCEPTANCE",
+            "WEB_BLUEPRINTS", "DIFFICULTY_PROGRESSION", "PROVENANCE_TRACE", "ACCEPTANCE",
             "NON_GOALS", "HOLD_FAIL", "DOWNSTREAM_DELIVERABLE",
         ]:
             self.assertIn(f"[{clause}]", text)
@@ -84,6 +84,20 @@ class PromptComposerTests(unittest.TestCase):
         self.assertIn("extension demands do not become core1/core1a/core1b microtopics", text.lower())
         self.assertIn("#273 owns PDF publication", text)
         self.assertFalse(any(path.suffix == ".pdf" for path in (REPO / "public").rglob("*.pdf")))
+
+    def test_requested_cores_receive_exact_web_blueprints_in_brief_and_prompt(self):
+        result = prompt_composer.compose(self.load("math-linear-equation.json"))
+        brief = result["prompt_brief"]
+        self.assertEqual(
+            [row["core"] for row in brief["web_blueprints"]],
+            brief["requested_cores"],
+        )
+        for row in brief["web_blueprints"]:
+            self.assertRegex(row["blueprint_ref"], r"^BP-[A-Z0-9-]+@[0-9]+\.[0-9]+\.[0-9]+$")
+            self.assertEqual(row["shell_ref"], "G9-TABLET-SHELL-V1")
+            self.assertGreaterEqual(row["touch_policy"]["minimum_target_css_px"], 48)
+            self.assertIn(row["blueprint_ref"], result["agent_prompt"])
+        self.assertIn("do not invent a different page anatomy", result["agent_prompt"].lower())
 
     def test_blueprint_contract_is_embedded_by_reference_not_reinvented(self):
         result = prompt_composer.compose(self.load("math-linear-equation.json"))

@@ -32,6 +32,9 @@ test("frozen CoreProjection fixtures derive the contract-defined initial states"
     const state = deriveCoreLearningState(byId[id]);
     assert.equal(state.contractVersion, CORE_PROJECTION_CONTRACT_VERSION);
     assert.equal(state.core, core);
+    assert.match(state.webBlueprintRef, /^BP-/);
+    assert.equal(state.shellRef, "G9-TABLET-SHELL-V1");
+    assert.ok(state.layoutFamily);
     assert.equal(state.stage, stage);
     assert.equal(state.reconstructionVisible, reconstructionVisible);
     assert.equal(state.reasoningVisible, false);
@@ -42,6 +45,24 @@ test("frozen CoreProjection fixtures derive the contract-defined initial states"
     assert.equal(state.hintIndex, 0);
     assert.equal(state.solutionVisible, false);
   }
+});
+
+test("CoreProjection fails closed without explicit web blueprint delivery", () => {
+  const projection = structuredClone(byId.core2a);
+  delete projection.delivery;
+  assert.throws(
+    () => validateCoreProjection(projection),
+    (error) => error instanceof CoreLearningPageError && error.code === "CORE_PROJECTION_DELIVERY_REQUIRED",
+  );
+});
+
+test("CoreProjection rejects a mismatched blueprint id/version ref", () => {
+  const projection = structuredClone(byId.core2a);
+  projection.delivery.web.blueprint_ref = "BP-WRONG@1.0.0";
+  assert.throws(
+    () => validateCoreProjection(projection),
+    (error) => error instanceof CoreLearningPageError && error.code === "CORE_PROJECTION_WEB_BLUEPRINT_REF_MISMATCH",
+  );
 });
 
 test("initial state follows supplied presentation policy rather than subject or identifier text", () => {
@@ -411,8 +432,9 @@ test("post-attempt closure renders solution rubric and repair without changing t
 
 test("Core2 source custody displays preserved identity hints and answer without inventing practice semantics", () => {
   const projection = {
-    contract_version: "1.0",
+    contract_version: "1.1",
     core: "CORE2",
+    delivery: {"web":{"blueprint_ref":"BP-CORE2-SOURCE-QUESTION@1.0.0","blueprint_id":"BP-CORE2-SOURCE-QUESTION","blueprint_version":"1.0.0","shell_ref":"G9-TABLET-SHELL-V1","layout_family":"QUESTION_READER","required_slots":["identity","attempt","solution"],"slot_order":["identity","attempt","support","solution"],"interaction_policy":{"attempt_before_reveal":"FROM_PROJECTION","progressive_support":true,"solution_policy":"LEARNER_OPENABLE"},"representation_policy":{"preferred_mount_modes":["PORTABLE_SCENE","COMPONENT","STATIC_FIGURE"],"legacy_iframe":"MIGRATION_ONLY"},"responsive_policy":{"compact":"SINGLE_PANE","medium":"STACKED_SUPPORT","expanded":"STAGE_SUPPORT","primary_fraction":0.68,"support_fraction":0.32},"touch_policy":{"minimum_target_css_px":48,"minimum_control_gap_css_px":8},"packaging_modes":["PUBLIC","PAGES","OFFLINE_DIRECTORY","SINGLE_FILE","EMBED"],"forbidden":["PAGE_LOCAL_ACADEMIC_TRUTH","HOVER_ONLY_ESSENTIAL_INFORMATION","AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT"]}},
     concept: null,
     application: {
       question_ref: "Q-SOURCE-1",
@@ -474,6 +496,56 @@ test("rendering uses supplied projection text for Core1A and Core2A", () => {
   const core2a = renderCoreLearningProjection(byId.core2a);
   assert.match(core2a, /Use the supplied representation to decide the next valid move/);
   assert.match(core2a, /data-stage="QUESTION_VISIBLE"/);
+});
+
+test("blueprint slot order, responsive policy, and touch policy drive rendered anatomy", () => {
+  const rendered = renderCoreLearningProjection(byId.core2a);
+  const order = ["identity", "attempt", "support", "reasoning"].map(
+    (slot) => rendered.indexOf(`data-blueprint-slot="${slot}"`),
+  );
+  assert.ok(order.every((index) => index >= 0));
+  assert.deepEqual([...order].sort((a, b) => a - b), order);
+  assert.match(rendered, /data-expanded-layout="STAGE_SUPPORT"/);
+  assert.match(rendered, /--g9-primary:0\.68fr/);
+  assert.match(rendered, /--g9-support:0\.32fr/);
+  assert.match(rendered, /--g9-min-target:48px/);
+  assert.match(rendered, /grid-template-columns:minmax\(0,var\(--g9-primary\)\) minmax\(0,var\(--g9-support\)\)/);
+});
+
+test("Core2A learner-openable solution is an explicit reveal rather than commit side effect", () => {
+  const projection = byId.core2a;
+  const initial = deriveCoreLearningState(projection);
+  const before = renderCoreLearningProjection(projection, initial);
+  assert.match(before, /data-action="solution"/);
+  assert.match(before, /Open complete solution/);
+
+  const committed = transitionCoreLearningState(
+    projection,
+    initial,
+    { type: "COMMIT_ATTEMPT", response: "My attempt." },
+  ).state;
+  assert.equal(committed.reasoningVisible, true);
+  assert.equal(committed.solutionVisible, false);
+  assert.match(renderCoreLearningProjection(projection, committed), /Reasoning route/);
+  assert.doesNotMatch(renderCoreLearningProjection(projection, committed), /Solution<\/h3>/);
+
+  const revealed = transitionCoreLearningState(
+    projection,
+    committed,
+    { type: "REVEAL_SOLUTION" },
+  ).state;
+  assert.equal(revealed.solutionVisible, true);
+  assert.match(renderCoreLearningProjection(projection, revealed), /Solution<\/h3>/);
+});
+
+test("Core2A identity renders canonical family and exposure closure", () => {
+  const projection = structuredClone(byId.core2a);
+  projection.application.exposure = [
+    { core: "CORE2A", role: "FAMILIAR_SUPPORTED_APPLICATION" },
+  ];
+  const rendered = renderCoreLearningProjection(projection);
+  assert.match(rendered, new RegExp(projection.application.family_ref));
+  assert.match(rendered, /CORE2A · FAMILIAR_SUPPORTED_APPLICATION/);
 });
 
 test("generic learner-shell source contains no subject-specific or learner-classification routing vocabulary", async () => {

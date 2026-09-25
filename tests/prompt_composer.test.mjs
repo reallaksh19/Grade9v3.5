@@ -65,6 +65,7 @@ test('browser and Python agree on mapping semantics and deterministic prompt dig
   assert.equal(run.status, 0, run.stderr || run.stdout);
   const python = JSON.parse(run.stdout);
   assert.equal(browser.prompt_brief.input_digest, python.prompt_brief.input_digest);
+  assert.deepEqual(JSON.parse(JSON.stringify(browser.prompt_brief.web_blueprints)), python.prompt_brief.web_blueprints);
   assert.equal(browser.prompt_brief.prompt_digest, python.prompt_brief.prompt_digest);
   assert.equal(browser.prompt_brief.scope.status, python.prompt_brief.scope.status);
   assert.deepEqual(JSON.parse(JSON.stringify(browser.prompt_brief.scope.canonical_primary_rungs)), python.prompt_brief.scope.canonical_primary_rungs);

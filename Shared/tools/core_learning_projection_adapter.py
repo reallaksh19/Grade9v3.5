@@ -10,6 +10,11 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any
 
+try:
+    from Shared.tools import core_template_contract
+except ModuleNotFoundError:  # direct script execution from Shared/tools
+    import core_template_contract
+
 CORE_ORDER = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 
 
@@ -259,9 +264,15 @@ def _repair_payload(records: dict | None, repair_ref: str | None) -> dict | None
 def _application(block: dict, records: dict | None = None) -> dict:
     answer = block.get("answer") or {}
     figure_refs = list(block.get("figure_refs") or [])
+    question_ref = block["source_question_id"]
+    canonical_question = (records or {}).get(question_ref) or {}
+    exposure = block.get("exposure")
+    if exposure is None:
+        exposure = canonical_question.get("exposure") or []
     return {
-        "question_ref": block["source_question_id"],
+        "question_ref": question_ref,
         "family_ref": block["family"],
+        "exposure": deepcopy(exposure),
         "stem": block["stem"],
         "source_refs": list(block.get("source_refs") or []),
         "origin": block.get("origin"),
@@ -409,6 +420,32 @@ def _safe_initial_visual(
     return None, None
 
 
+def _web_delivery(core: str) -> dict:
+    blueprint = core_template_contract.resolve_web_blueprint_for_core(core)
+    slots = blueprint.get("slots") or []
+    return {
+        "blueprint_ref": blueprint["ref"],
+        "blueprint_id": blueprint["id"],
+        "blueprint_version": blueprint["version"],
+        "shell_ref": blueprint["shell_ref"],
+        "layout_family": blueprint["layout_family"],
+        "required_slots": [
+            slot["id"] for slot in slots
+            if isinstance(slot, dict) and slot.get("required") is True
+        ],
+        "slot_order": [
+            slot["id"] for slot in slots
+            if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+        ],
+        "interaction_policy": deepcopy(blueprint["interaction_policy"]),
+        "representation_policy": deepcopy(blueprint["representation_policy"]),
+        "responsive_policy": deepcopy(blueprint["responsive_policy"]),
+        "touch_policy": deepcopy(blueprint["touch_policy"]),
+        "packaging_modes": list(blueprint["packaging_modes"]),
+        "forbidden": list(blueprint["forbidden"]),
+    }
+
+
 def _projection(
     *,
     core: str,
@@ -428,11 +465,14 @@ def _projection(
     )
     pre_hints, post_hints = _hint_limits(application, core=core)
     return {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": core,
         "orientation": deepcopy(orientation),
         "concept": deepcopy(concept),
         "application": deepcopy(application),
+        "delivery": {
+            "web": _web_delivery(core),
+        },
         "presentation": {
             "attempt_before_reveal": core in {"CORE1B", "CORE2B"},
             "show_full_construction": core == "CORE1A",

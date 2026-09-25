@@ -16,6 +16,11 @@ import re
 from pathlib import Path
 from typing import Any
 
+try:
+    from Shared.tools import web_blueprint_contract
+except ModuleNotFoundError:  # direct script execution from Shared/tools
+    import web_blueprint_contract
+
 REPO = Path(__file__).resolve().parents[2]
 ROLE_DIR = REPO / "Shared" / "roles"
 ROLE_ORDER = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
@@ -173,6 +178,11 @@ def audit(path: Path | None = None) -> dict[str, Any]:
         if not isinstance(learner_job, str) or not learner_job.strip():
             findings.append(_finding("CORE_TEMPLATE_LEARNER_JOB_MISSING", role_name))
 
+        findings.extend(
+            _finding(row["point"], role_name, row.get("detail") or row.get("ref") or "")
+            for row in web_blueprint_contract.validate_role_binding(role_name, role)
+        )
+
         blocks = role.get("ordered_blocks")
         if not isinstance(blocks, list) or not blocks:
             findings.append(_finding("CORE_TEMPLATE_BLOCKS_MISSING", role_name))
@@ -273,12 +283,37 @@ def audit(path: Path | None = None) -> dict[str, Any]:
         else:
             signatures[signature] = role_name
 
+    registry_report = web_blueprint_contract.audit_registry()
+    for row in registry_report["findings"]:
+        findings.append(_finding(row["point"], detail=row.get("detail") or row.get("ref") or ""))
+
     return {
         "contract_version": contract.get("version"),
         "roles_checked": sum(1 for role in ROLE_ORDER if role in roles),
+        "blueprint_refs": {
+            role: (roles.get(role) or {}).get("web_blueprint_ref")
+            for role in ROLE_ORDER
+        },
         "passed": not findings,
         "findings": findings,
     }
+
+
+def resolve_web_blueprint_for_core(core: str, path: Path | None = None) -> dict[str, Any]:
+    """Resolve the exact versioned web blueprint declared by the Core template contract."""
+    if core not in ROLE_ORDER:
+        raise CoreTemplateContractError(f"CORE_TEMPLATE_ROLE_UNKNOWN: {core}")
+    contract = load_contract(path)
+    role = (contract.get("roles") or {}).get(core)
+    if not isinstance(role, dict):
+        raise CoreTemplateContractError(f"CORE_TEMPLATE_ROLE_MISSING: {core}")
+    ref = role.get("web_blueprint_ref")
+    if not isinstance(ref, str) or not ref:
+        raise CoreTemplateContractError(f"WEB_BLUEPRINT_REF_MISSING: {core}")
+    try:
+        return web_blueprint_contract.resolve_blueprint(ref)
+    except web_blueprint_contract.WebBlueprintContractError as exc:
+        raise CoreTemplateContractError(str(exc)) from exc
 
 
 def main() -> int:
