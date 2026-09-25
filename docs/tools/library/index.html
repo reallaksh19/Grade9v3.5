@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topic library · Grade9V3</title>
+<link rel="stylesheet" href="../app.css">
+</head>
+<body>
+<header>
+  <h1>Topic library</h1>
+  <nav>
+    <a href="../index.html">Workbench</a>
+    <a href="../run-builder/index.html">Run builder</a>
+  </nav>
+  <label class="muted">Subject
+    <select id="subject"></select>
+  </label>
+</header>
+<main>
+  <div class="layout">
+    <div>
+      <div class="panel">
+        <h2>Buckets</h2>
+        <div class="list" id="buckets"></div>
+      </div>
+      <div class="panel">
+        <h2>Gates</h2>
+        <div class="list" id="gates"></div>
+      </div>
+    </div>
+    <div id="detail"></div>
+  </div>
+</main>
+<script src="../data.js"></script>
+<script>
+const data = window.GRADE9V3;
+const subjectSelect = document.getElementById('subject');
+const bucketList = document.getElementById('buckets');
+const gateList = document.getElementById('gates');
+const detail = document.getElementById('detail');
+let state = { subject: null, kind: 'bucket', id: null };
+
+const el = (tag, text, cls) => { const n = document.createElement(tag);
+  if (text !== undefined && text !== null) n.textContent = text; if (cls) n.className = cls; return n; };
+const chip = (text, cls) => el('span', text, 'chip' + (cls ? ' ' + cls : ''));
+const badgeClass = b => ({ HARD: 'hold', MEDIUM: 'warn', EASY: 'ok' })[b] || '';
+
+function panel(title) {
+  const box = el('div', undefined, 'panel');
+  if (title) box.appendChild(el('h2', title));
+  return box;
+}
+
+function list(items, render) {
+  const ul = el('ul');
+  items.forEach(item => { const li = el('li'); render(li, item); ul.appendChild(li); });
+  return ul;
+}
+
+Object.keys(data.subjects).forEach(subject => {
+  const option = el('option', subject);
+  option.value = subject;
+  subjectSelect.appendChild(option);
+});
+
+function selectSubject(subject) {
+  state.subject = subject;
+  const entry = data.subjects[subject];
+  bucketList.textContent = '';
+  gateList.textContent = '';
+  if (!entry.buckets.length) bucketList.appendChild(el('p', 'No authored buckets.', 'muted'));
+  entry.buckets.forEach(bucket => {
+    const button = el('button');
+    button.appendChild(el('span', bucket.title));
+    button.appendChild(document.createTextNode(' '));
+    button.appendChild(chip(bucket.badge, badgeClass(bucket.badge)));
+    button.onclick = () => { state.kind = 'bucket'; state.id = bucket.id; render(); };
+    button.dataset.id = bucket.id;
+    bucketList.appendChild(button);
+  });
+  if (!entry.gates.length) gateList.appendChild(el('p', 'No gate registry.', 'muted'));
+  entry.gates.forEach(gate => {
+    const button = el('button');
+    button.appendChild(el('span', gate.title));
+    button.appendChild(document.createTextNode(' '));
+    button.appendChild(chip('G' + gate.grade));
+    button.onclick = () => { state.kind = 'gate'; state.id = gate.gate_id; render(); };
+    button.dataset.id = gate.gate_id;
+    gateList.appendChild(button);
+  });
+  state.kind = 'bucket';
+  state.id = entry.buckets.length ? entry.buckets[0].id : null;
+  render();
+}
+
+function markCurrent() {
+  document.querySelectorAll('.list button').forEach(button => {
+    button.setAttribute('aria-current', String(button.dataset.id === state.id));
+  });
+}
+
+function renderBucket(bucket) {
+  detail.textContent = '';
+  const head = panel();
+  head.appendChild(el('h3', bucket.title));
+  const meta = el('p');
+  meta.appendChild(chip(bucket.badge, badgeClass(bucket.badge)));
+  meta.appendChild(chip(bucket.status || 'CANDIDATE'));
+  if (bucket.topic) meta.appendChild(chip(bucket.topic));
+  meta.appendChild(chip(bucket.record_count + ' records in slice'));
+  head.appendChild(meta);
+  (bucket.curriculum || []).forEach(mapping => {
+    const hold = mapping.scope_class !== 'PRESCRIBED';
+    const note = el('p', undefined, 'note' + (hold ? ' hold' : ' ok'));
+    note.textContent = `${mapping.board} grade ${mapping.grade}, ${mapping.track || 'track unstated'}: ` +
+      `${mapping.scope_class}. ${mapping.locator || ''}`;
+    head.appendChild(note);
+  });
+  if (bucket.prerequisites.length) {
+    head.appendChild(el('h4', 'Depends on'));
+    head.appendChild(list(bucket.prerequisites, (li, id) => li.appendChild(el('code', id))));
+  }
+  detail.appendChild(head);
+
+  const preview = bucket.compile_preview;
+  const box = panel('Compilation');
+  if (!preview.compilable) {
+    const note = el('p', undefined, 'note hold');
+    note.textContent = `This bucket cannot compile yet: ${preview.code}. ${preview.detail || ''}`;
+    box.appendChild(note);
+  } else {
+    const line = el('p');
+    line.appendChild(el('span', 'Products the library can support: '));
+    preview.supported_products.forEach(core => line.appendChild(chip(core, 'ok')));
+    box.appendChild(line);
+    box.appendChild(el('p', `${preview.atoms} data atoms · ${preview.questions} question(s) · ` +
+      `${preview.obligations} obligation(s)`, 'muted'));
+    preview.authoring_requirements.forEach(req => {
+      const note = el('p', undefined, 'note' + (req.kind === 'PRODUCT_UNSUPPORTED' ? ' hold' : ''));
+      note.textContent = `${req.kind}${req.core ? ' · ' + req.core : ''}: ${req.detail}`;
+      box.appendChild(note);
+    });
+  }
+  detail.appendChild(box);
+
+  const teaching = panel('Microtopics, in prerequisite order');
+  bucket.microtopics.forEach((micro, index) => {
+    const block = el('details');
+    const summary = el('summary');
+    summary.textContent = `${index + 1}. ${micro.title}  `;
+    summary.appendChild(chip(micro.badge, badgeClass(micro.badge)));
+    block.appendChild(summary);
+    if (micro.badge_reason) block.appendChild(el('p', micro.badge_reason, 'muted'));
+    if (micro.entry_assumptions.length) {
+      block.appendChild(el('h4', 'Assumes the learner can'));
+      block.appendChild(list(micro.entry_assumptions, (li, t) => li.textContent = t));
+    }
+    if (micro.inferential_jump) {
+      block.appendChild(el('h4', 'The inference to be learned'));
+      block.appendChild(el('p', micro.inferential_jump));
+    }
+    if (micro.teaching_path.length) {
+      block.appendChild(el('h4', 'Teaching path'));
+      block.appendChild(list(micro.teaching_path, (li, step) => {
+        li.appendChild(el('span', step.action));
+        li.appendChild(el('div', step.why_valid, 'muted'));
+        if (step.output) li.appendChild(el('div', '→ ' + step.output, 'muted'));
+      }));
+    }
+    (micro.misconceptions || []).forEach(item => {
+      block.appendChild(el('h4', 'Plausible wrong path'));
+      block.appendChild(el('p', item.wrong_idea));
+      block.appendChild(el('p', 'Diagnostic: ' + item.diagnostic_prompt, 'muted'));
+      block.appendChild(el('p', 'Repair: ' + item.repair, 'muted'));
+    });
+    if (micro.exit_task && micro.exit_task.prompt) {
+      block.appendChild(el('h4', 'Exit task'));
+      block.appendChild(el('p', micro.exit_task.prompt));
+      const answer = micro.exit_task.answer || {};
+      if (answer.summary) block.appendChild(el('p', 'Answer: ' + answer.summary, 'muted'));
+      if (answer.check) block.appendChild(el('p', 'Check: ' + answer.check, 'muted'));
+    }
+    teaching.appendChild(block);
+  });
+  detail.appendChild(teaching);
+
+  if (bucket.relations.length) {
+    const box = panel('Relations');
+    bucket.relations.forEach(relation => {
+      box.appendChild(el('p', relation.expression));
+      box.appendChild(el('p', relation.meaning, 'muted'));
+      if (relation.conditions.length) box.appendChild(list(relation.conditions, (li, t) => li.textContent = t));
+    });
+    detail.appendChild(box);
+  }
+  if (bucket.capabilities.length) {
+    const box = panel('Capabilities');
+    box.appendChild(list(bucket.capabilities, (li, capability) => {
+      li.appendChild(el('span', capability.action));
+      if (capability.provider) {
+        li.appendChild(document.createTextNode(' '));
+        li.appendChild(chip(capability.provider + ' · ' + capability.acceptance, 'hold'));
+      }
+    }));
+    detail.appendChild(box);
+  }
+  if (bucket.questions.length) {
+    const box = panel('Questions');
+    bucket.questions.forEach(question => {
+      box.appendChild(el('p', question.stem));
+      box.appendChild(el('p', `${question.origin} · ${question.answer || ''}`, 'muted'));
+    });
+    detail.appendChild(box);
+  }
+}
+
+function renderGate(gate) {
+  detail.textContent = '';
+  const head = panel();
+  head.appendChild(el('h3', gate.title));
+  const meta = el('p');
+  meta.appendChild(chip(gate.gate_id));
+  meta.appendChild(chip('grade ' + gate.grade));
+  meta.appendChild(chip(gate.tier));
+  meta.appendChild(chip(gate.scope_state, gate.scope_state === 'ACTIVE' ? 'ok' : 'hold'));
+  head.appendChild(meta);
+  const note = el('p', undefined, 'note' + (gate.scope_class === 'PRESCRIBED' ? ' ok' : ' hold'));
+  note.textContent = gate.scope_class === 'PRESCRIBED'
+    ? `Claims ${gate.chapter} is prescribed; this requires an exact curriculum binding.`
+    : `Carried as OWNER_EXTENSION against ${gate.chapter}: no board authority is claimed for it.`;
+  head.appendChild(note);
+  detail.appendChild(head);
+
+  const box = panel('What this gate requires');
+  box.appendChild(el('h4', 'Canonical concepts'));
+  box.appendChild(list(gate.concepts, (li, t) => li.textContent = t));
+  box.appendChild(el('h4', 'Misconceptions it must address'));
+  box.appendChild(list(gate.misconceptions, (li, t) => li.textContent = t));
+  if (gate.prerequisites.length) {
+    box.appendChild(el('h4', 'Prerequisite gates'));
+    box.appendChild(list(gate.prerequisites, (li, id) => li.appendChild(el('code', id))));
+  }
+  if (gate.external_prerequisites.length) {
+    box.appendChild(el('h4', 'External prerequisites'));
+    box.appendChild(list(gate.external_prerequisites, (li, id) => {
+      li.appendChild(el('code', id));
+      li.appendChild(document.createTextNode(' '));
+      li.appendChild(chip('provider review required', 'hold'));
+    }));
+  }
+  detail.appendChild(box);
+}
+
+function render() {
+  markCurrent();
+  const entry = data.subjects[state.subject];
+  if (!state.id) {
+    detail.textContent = '';
+    const box = panel();
+    box.appendChild(el('p', 'This subject has no authored library content yet.', 'muted'));
+    detail.appendChild(box);
+    return;
+  }
+  if (state.kind === 'bucket') renderBucket(entry.buckets.find(b => b.id === state.id));
+  else renderGate(entry.gates.find(g => g.gate_id === state.id));
+}
+
+subjectSelect.onchange = () => selectSubject(subjectSelect.value);
+selectSubject(Object.keys(data.subjects).find(s => data.subjects[s].buckets.length) ||
+              Object.keys(data.subjects)[0]);
+subjectSelect.value = state.subject;
+</script>
+</body>
+</html>

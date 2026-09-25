@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade9V3 · workbench</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <h1>Grade9V3 workbench</h1>
+  <nav>
+    <a href="library/index.html">Topic library</a>
+    <a href="run-builder/index.html">Run builder</a>
+    <a href="../docs/architecture-manifest.json">Architecture manifest</a>
+    <a href="../docs/PROGRAM-PLAN.md">Program plan</a>
+  </nav>
+</header>
+<main>
+  <div class="panel">
+    <p>Browsable surfaces over this repository's governed data. Everything here is generated from the
+      library, the gate registries and the subject contracts by
+      <code>Shared/tools/build_web_data.py</code>; nothing on these pages is authoritative in itself.</p>
+    <p class="muted">Static and offline-safe: data arrives as a script assignment rather than a fetch,
+      so these pages work opened directly from disk.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Governance invariants these surfaces respect</h2>
+    <ul>
+      <li>Machine checks establish structure, custody and supported computation. They do not establish
+        that an explanation teaches.</li>
+      <li>A board-scope claim without an exact binding reads <span class="chip hold">HELD</span>,
+        never assumed authority.</li>
+      <li>A product the library cannot support is reported unsupported, not padded.</li>
+      <li>No page here grants learner release, academic acceptance or measured fit.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h2>Subjects</h2>
+    <div id="subjects"></div>
+  </div>
+</main>
+<script src="data.js"></script>
+<script>
+const data = window.GRADE9V3;
+const host = document.getElementById('subjects');
+const el = (tag, text, cls) => { const n = document.createElement(tag);
+  if (text !== undefined) n.textContent = text; if (cls) n.className = cls; return n; };
+
+for (const [subject, entry] of Object.entries(data.subjects)) {
+  const box = el('div');
+  box.style.marginBottom = '14px';
+  const title = el('h3', subject);
+  box.appendChild(title);
+  const stats = el('p');
+  const implemented = entry.contract.validator_catalogue.filter(v => v.status === 'IMPLEMENTED').length;
+  const add = (text, cls) => stats.appendChild(el('span', text, 'chip' + (cls ? ' ' + cls : '')));
+  add(`${entry.gates.length} gate${entry.gates.length === 1 ? '' : 's'}`, entry.gates.length ? 'ok' : 'warn');
+  add(`${entry.buckets.length} bucket${entry.buckets.length === 1 ? '' : 's'}`, entry.buckets.length ? 'ok' : 'warn');
+  add(`${implemented}/${entry.contract.validator_catalogue.length} validators implemented`);
+  add(`${Object.keys(entry.contract.learner_products).length} learner products`);
+  box.appendChild(stats);
+  if (!entry.library_available) {
+    box.appendChild(el('p', 'No library packages yet. This subject declares its contract and validator ' +
+      'families but has no authored content, so nothing can compile for it.', 'muted'));
+  }
+  host.appendChild(box);
+}
+</script>
+</body>
+</html>
