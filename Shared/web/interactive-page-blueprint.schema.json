@@ -1,0 +1,325 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grade9v3:interactive-page-blueprints:1.0",
+  "title": "Grade9V3 Interactive Page Blueprint Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "shell",
+    "blueprints"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "registry_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "shell": {
+      "$ref": "#/$defs/shell"
+    },
+    "blueprints": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "$ref": "#/$defs/blueprint"
+      }
+    }
+  },
+  "$defs": {
+    "role": {
+      "enum": [
+        "CORE1",
+        "CORE2",
+        "CORE1A",
+        "CORE1B",
+        "CORE2A",
+        "CORE2B"
+      ]
+    },
+    "shell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "fixed_header",
+        "controls",
+        "responsive_modes"
+      ],
+      "properties": {
+        "id": {
+          "const": "G9-TABLET-SHELL-V1"
+        },
+        "fixed_header": {
+          "const": true
+        },
+        "controls": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "BACK",
+              "HOME",
+              "SUBJECT_CONTEXT",
+              "QUESTION_BANK",
+              "SEARCH",
+              "REFRESH",
+              "DISPLAY",
+              "OVERFLOW"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "responsive_modes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "COMPACT",
+              "MEDIUM",
+              "EXPANDED"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 3
+        }
+      }
+    },
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "accepts_blocks",
+        "required"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accepts_blocks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "blueprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "status",
+        "core_roles",
+        "learner_job",
+        "shell_ref",
+        "layout_family",
+        "slots",
+        "interaction_policy",
+        "representation_policy",
+        "responsive_policy",
+        "touch_policy",
+        "packaging_modes",
+        "forbidden"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^BP-[A-Z0-9-]+$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "status": {
+          "enum": [
+            "ACTIVE",
+            "DEPRECATED"
+          ]
+        },
+        "core_roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role"
+          }
+        },
+        "learner_job": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shell_ref": {
+          "const": "G9-TABLET-SHELL-V1"
+        },
+        "layout_family": {
+          "enum": [
+            "READING_ORIENTATION",
+            "READING_CONSTRUCTION",
+            "GUIDED_RECONSTRUCTION",
+            "QUESTION_READER",
+            "QUESTION_STUDY",
+            "TRANSFER_ATTEMPT",
+            "STAGE_SUPPORT",
+            "LIST_DETAIL",
+            "FULL_LAB"
+          ]
+        },
+        "slots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/slot"
+          }
+        },
+        "interaction_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "attempt_before_reveal",
+            "progressive_support",
+            "solution_policy"
+          ],
+          "properties": {
+            "attempt_before_reveal": {
+              "enum": [
+                "FROM_PROJECTION",
+                "ALWAYS",
+                "NEVER"
+              ]
+            },
+            "progressive_support": {
+              "type": "boolean"
+            },
+            "solution_policy": {
+              "enum": [
+                "FROM_PROJECTION",
+                "LEARNER_OPENABLE",
+                "POST_ATTEMPT",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "representation_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "preferred_mount_modes",
+            "legacy_iframe"
+          ],
+          "properties": {
+            "preferred_mount_modes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "PORTABLE_SCENE",
+                  "COMPONENT",
+                  "STATIC_FIGURE"
+                ]
+              }
+            },
+            "legacy_iframe": {
+              "const": "MIGRATION_ONLY"
+            }
+          }
+        },
+        "responsive_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "compact",
+            "medium",
+            "expanded",
+            "primary_fraction",
+            "support_fraction"
+          ],
+          "properties": {
+            "compact": {
+              "enum": [
+                "SINGLE_PANE"
+              ]
+            },
+            "medium": {
+              "enum": [
+                "SINGLE_PANE",
+                "STACKED_SUPPORT"
+              ]
+            },
+            "expanded": {
+              "enum": [
+                "SINGLE_PANE",
+                "STAGE_SUPPORT",
+                "LIST_DETAIL"
+              ]
+            },
+            "primary_fraction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "support_fraction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "touch_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum_target_css_px",
+            "minimum_control_gap_css_px"
+          ],
+          "properties": {
+            "minimum_target_css_px": {
+              "type": "integer",
+              "minimum": 48
+            },
+            "minimum_control_gap_css_px": {
+              "type": "integer",
+              "minimum": 8
+            }
+          }
+        },
+        "packaging_modes": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ]
+          }
+        },
+        "forbidden": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

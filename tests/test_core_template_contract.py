@@ -8,6 +8,20 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 class CoreTemplateContractTests(unittest.TestCase):
+    def test_all_six_roles_resolve_versioned_web_blueprints(self):
+        contract = core_template_contract.load_contract(
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
+        )
+        self.assertEqual(set(contract["roles"]), set(core_template_contract.ROLE_ORDER))
+        for role in core_template_contract.ROLE_ORDER:
+            ref = contract["roles"][role]["web_blueprint_ref"]
+            self.assertRegex(ref, r"^BP-[A-Z0-9-]+@[0-9]+\.[0-9]+\.[0-9]+$")
+            blueprint = core_template_contract.resolve_web_blueprint_for_core(role)
+            self.assertEqual(blueprint["ref"], ref)
+            self.assertIn(role, blueprint["core_roles"])
+            self.assertEqual(blueprint["shell_ref"], "G9-TABLET-SHELL-V1")
+
+
     @classmethod
     def setUpClass(cls):
         cls.projections = build_core_learning_data.build()["core_projections"]
@@ -35,7 +49,7 @@ class CoreTemplateContractTests(unittest.TestCase):
         report = core_template_contract.audit(REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md")
         self.assertTrue(report["passed"], report["findings"])
         self.assertEqual(report["roles_checked"], 6)
-        self.assertEqual(report["contract_version"], "1.0")
+        self.assertEqual(report["contract_version"], "1.1")
 
     def test_core1b_attempt_precedes_reconstruction(self):
         roles = core_template_contract.load_contract(
