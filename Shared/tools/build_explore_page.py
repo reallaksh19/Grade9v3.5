@@ -40,7 +40,7 @@ def _profile(repo: Path) -> dict:
     registry = load(repo / PROFILE_REGISTRY.relative_to(REPO))
     matches = [
         row for row in registry.get("profiles", [])
-        if row.get("ref") == "XP-CANONICAL-EXPLORER@1.0.0"
+        if row.get("profile_kind") == "EXPLORE"
     ]
     _require(len(matches) == 1, "EXPLORE_PROFILE_UNAVAILABLE")
     return matches[0]
@@ -122,8 +122,8 @@ def compile_page_package(plan: dict, repo: Path = REPO) -> dict:
     }
 
 
-def _shell(packaging_mode: str) -> str:
-    return f'''<header class="site-nav" data-shell-ref="G9-TABLET-SHELL-V1">
+def _shell(packaging_mode: str, shell_ref: str) -> str:
+    return f'''<header class="site-nav" data-shell-ref="{html.escape(shell_ref, quote=True)}">
 <button id="back" type="button">← Back</button><a href="./index.html">Home</a>
 <strong id="subject-context">Grade9V3 Explore</strong><a href="./question-bank/index.html">Question Bank</a>
 <form id="site-search" role="search"><input id="site-search-input" type="search" aria-label="Search this page"><button type="submit">Search</button></form>
@@ -213,7 +213,7 @@ window.__explorePageReady=true;
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="grade9v3-packaging-mode" content="{html.escape(packaging_mode)}"><title>Grade9V3 Explore</title>
 <style>body{{font:16px/1.45 system-ui,sans-serif;margin:0}}{_shell_style()}</style></head><body>
-{_shell(packaging_mode)}<main class="explore-shell" data-explorer-profile="{html.escape(package['profile']['ref'])}" data-mount-mode="{html.escape(mount)}">
+{_shell(packaging_mode, package["profile"]["shell_ref"])}<main class="explore-shell" data-explorer-profile="{html.escape(package['profile']['ref'])}" data-mount-mode="{html.escape(mount)}">
 <section class="explore-stage">{stage}</section><aside class="explore-support">{support}</aside></main>{_shell_script()}</body></html>"""
     files["index.html"] = page.encode("utf-8")
     files["explore-page-package.json"] = (
@@ -229,7 +229,7 @@ def render_single_file(package: dict) -> bytes:
         base = build_portable_workbench._offline_html([package["portable_package"]])
         base = base.replace(
             "<body><main>",
-            "<body>" + _shell("SINGLE_FILE") + "<main>",
+            "<body>" + _shell("SINGLE_FILE", package["profile"]["shell_ref"]) + "<main>",
             1,
         )
         base = base.replace("</body>", _shell_script() + "</body>")
