@@ -397,7 +397,7 @@ def _trace(rows: list[dict], fingerprint: list[dict]) -> list[dict]:
         loc = row.get("primary_location") or {}
         key = row.get("canonical_question_ref") or row["owner_question_id"]
         trace.append({
-            "trace_id": f"TRACE-Q{idx:02d}",
+            "trace_id": f"trace-q-{idx:02d}",
             "question_ids": [row["owner_question_id"]],
             "input_or_owner_decision": row.get("summary") or row["owner_question_id"],
             "canonical_ref": row.get("canonical_question_ref"),
