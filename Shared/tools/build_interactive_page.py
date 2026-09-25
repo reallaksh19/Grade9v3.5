@@ -335,10 +335,10 @@ document.querySelector("#page-title").textContent=[row.subject,row.projection.co
 document.querySelector("#delivery").textContent=row.projection.delivery.web.blueprint_ref+" · "+row.projection.delivery.web.layout_family;
 document.querySelector("#back").addEventListener("click",()=>history.length>1?history.back():null);
 document.querySelector("#refresh").addEventListener("click",()=>location.reload());
-document.querySelector("#site-search").addEventListener("submit",(event)=>{event.preventDefault();const q=document.querySelector("#site-search-input").value.trim();if(q&&typeof window.find==="function")window.find(q);});
+document.querySelector("#site-search").addEventListener("submit",(event)=>{{event.preventDefault();const q=document.querySelector("#site-search-input").value.trim();if(q&&typeof window.find==="function")window.find(q);}});
 let scale=1;const applyScale=()=>document.documentElement.style.fontSize=(16*scale)+"px";
-document.querySelector("#display-down").addEventListener("click",()=>{scale=Math.max(.8,scale-.1);applyScale();});
-document.querySelector("#display-up").addEventListener("click",()=>{scale=Math.min(1.5,scale+.1);applyScale();});
+document.querySelector("#display-down").addEventListener("click",()=>{{scale=Math.max(.8,scale-.1);applyScale();}});
+document.querySelector("#display-up").addEventListener("click",()=>{{scale=Math.min(1.5,scale+.1);applyScale();}});
 window.__interactivePageReady=true;
 </script></body></html>"""
     return html.encode("utf-8")
