@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/web-request.schema.json",
+  "title": "Interactive Web Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "subject",
+    "target",
+    "experience_segments",
+    "packaging_mode"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "exact_ref"
+          ]
+        },
+        {
+          "required": [
+            "matrix_ref",
+            "rung"
+          ]
+        }
+      ],
+      "properties": {
+        "exact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "matrix_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rung": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preparation_request": {
+          "type": "boolean"
+        }
+      }
+    },
+    "experience_segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "interaction_requirement"
+        ],
+        "properties": {
+          "mode": {
+            "enum": [
+              "EXPLORE",
+              "LEARN",
+              "PRACTICE"
+            ]
+          },
+          "core": {
+            "enum": [
+              "CORE1",
+              "CORE1A",
+              "CORE1B",
+              "CORE2",
+              "CORE2A",
+              "CORE2B"
+            ]
+          },
+          "interaction_requirement": {
+            "enum": [
+              "REQUIRED",
+              "PREFERRED",
+              "OPTIONAL"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "EXPLORE"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "not": {
+                "required": [
+                  "core"
+                ]
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "LEARN"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "required": [
+                "core"
+              ],
+              "properties": {
+                "core": {
+                  "enum": [
+                    "CORE1",
+                    "CORE1A",
+                    "CORE1B"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "PRACTICE"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "required": [
+                "core"
+              ],
+              "properties": {
+                "core": {
+                  "enum": [
+                    "CORE2",
+                    "CORE2A",
+                    "CORE2B"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "packaging_mode": {
+      "enum": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ]
+    }
+  }
+}
