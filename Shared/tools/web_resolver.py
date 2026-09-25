@@ -19,7 +19,8 @@ if __package__ in (None, ""):
 
 from Shared.contracts import load
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import build_core_learning_data, build_web_data, renderer_registry
+from Shared.tools import (build_core_learning_data, build_web_data, derived_artifact_registry,
+                          renderer_registry)
 
 
 READY = "READY"
@@ -370,6 +371,17 @@ def _core_segment(
         _add_unique(refs, values)
     if target.get("exact_ref"):
         _add_unique(refs, [target["exact_ref"]])
+    remembered = []
+    for ref in refs:
+        remembered = derived_artifact_registry.search(
+            subject=request["subject"],
+            core=segment["core"],
+            artifact_type="CORE_PROJECTION",
+            exact_ref=ref,
+        )
+        remembered = [item for item in remembered if item.get("reuse") == "DIRECT"]
+        if remembered:
+            break
     preflight = build_core_learning_data.preflight_projection(
         subject=request["subject"],
         core=segment["core"],
@@ -380,6 +392,8 @@ def _core_segment(
         **segment,
         "provider_status": preflight["status"],
         "projection_ref": preflight.get("projection_ref"),
+        "remembered_artifact_ref": remembered[0]["artifact_ref"] if remembered else None,
+        "remembered_reuse": remembered[0]["reuse"] if remembered else None,
     }
     findings = []
     if preflight["status"] != "READY_EXISTING":
