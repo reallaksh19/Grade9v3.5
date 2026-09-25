@@ -5,19 +5,19 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 289,
-  "relation_count": 324,
+  "component_count": 292,
+  "relation_count": 325,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 47,
-    "TEST": 139,
-    "TOOLING": 64,
+    "LIBRARY": 48,
+    "TEST": 140,
+    "TOOLING": 65,
     "WEB": 9,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:62de79e2cd1249dc25532bd822e7807b37e99e65a1f471193bcdf9abd800b748",
+  "digest": "sha256:bb5418ec873b7e285ec651b1799698b6ed9f5818b22aa792d33e9158c0e2f73d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -263,6 +263,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 4366,
       "sha256": "6ab684f6b97a127670f0d946b1f9444b066a79dd4541fd74b948ff4715732f70"
+    },
+    {
+      "bytes": 1371,
+      "path": "Shared/library/question-bank-views.v1.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "sha256": "68a4d858826dda19ad2173907db94401c2c7e49c9d819f7002bbe5523e852421"
     },
     {
       "path": "Shared/library/release-receipt.schema.json",
@@ -585,6 +592,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 3838,
       "sha256": "f6a5959f58ad34d9c59e20962a97be81e3e09f9886caa4e39993d312475b4ff8"
+    },
+    {
+      "bytes": 7913,
+      "path": "Shared/tools/build_question_bank_web.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "sha256": "df101cfb63419aa35a2c696b4c59d3bbe985065d5c2415e3526265c0bd6de96c"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -923,11 +937,11 @@
       "sha256": "9a0becdaea9f5f9058dd13b8cb48c65bd187952470d2d230bec9d59553fedc63"
     },
     {
+      "bytes": 2871,
       "path": "Shared/tools/topic_independence_allowlist.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 2463,
-      "sha256": "3aca298d1bef4d5d4b4f84f0505f34ede0f9b6723c98a62fac699ab99b8d20e9"
+      "sha256": "03baa08e5ca54716cb76a9a034dec3b77aba314a4120ce177329a1b02b19bc08"
     },
     {
       "path": "Shared/tools/topic_independence_guard.py",
@@ -1824,6 +1838,13 @@
       "role_description": "Executable checks",
       "bytes": 24889,
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "bytes": 2538,
+      "path": "tests/test_question_bank_web.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "sha256": "aae0812fd10e0b55fde5f7b98636d3060b97a02c4c53f2e3debcea3fa8e62d96"
     },
     {
       "path": "tests/test_readiness_join_215.py",
@@ -3488,6 +3509,11 @@
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
       "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_question_bank_web.py",
+      "kind": "IMPORTS",
+      "to": "Shared.tools"
     },
     {
       "from": "tests/test_release_authority.py",
