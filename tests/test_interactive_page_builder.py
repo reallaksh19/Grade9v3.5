@@ -86,6 +86,25 @@ class InteractivePageBuilderTests(unittest.TestCase):
         self.assertIn("URL.createObjectURL", html)
         self.assertIn("window.__interactivePageReady=true", html)
 
+    def test_offline_shell_instantiates_declared_tablet_controls(self):
+        package = build_interactive_page.compile_page_package(self.row("CORE2A"))
+        html = build_interactive_page.render_offline_directory(package)["index.html"].decode("utf-8")
+        self.assertIn('data-shell-ref="G9-TABLET-SHELL-V1"', html)
+        for control in ("back", "home", "subject-context", "question-bank", "site-search", "refresh", "display-down", "display-up"):
+            self.assertIn(f'id="{control}"', html)
+
+    def test_public_pages_and_embed_modes_write_real_html_not_contract_only(self):
+        package = build_interactive_page.compile_page_package(self.row("CORE2A"))
+        for mode in ("PUBLIC", "PAGES", "EMBED"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                target = Path(tmp) / mode.lower()
+                build_interactive_page.write_mode(package, mode, target)
+                self.assertTrue((target / "index.html").is_file())
+                html = (target / "index.html").read_text(encoding="utf-8")
+                self.assertIn(f'content="{mode}"', html)
+                self.assertTrue((target / "interactive-page-package.json").is_file())
+                self.assertTrue((target / "agent-contract.json").is_file())
+
     def test_cli_writes_true_single_file(self):
         package = build_interactive_page.compile_page_package(self.row("CORE1A"))
         with tempfile.TemporaryDirectory() as tmp:
