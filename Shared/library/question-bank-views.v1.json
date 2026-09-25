@@ -1,0 +1,44 @@
+{
+  "schema_version": "grade9v3-question-bank-views-v1",
+  "authority": "TRANSIENT_BROWSER_VIEW_CONFIG",
+  "description": "Saved Question Bank views resolve canonical question IDs but do not create question or source authority.",
+  "views": [
+    {
+      "id": "selected-d3d4-non-jee-advanced",
+      "title": "Selected D3/D4 Competitive-Exam Questions",
+      "short_title": "Selected D3/D4",
+      "description": "Seven D3/D4 Physics questions from the canonical bank, retaining IIT-JEE and JEE Main records while excluding JEE (Advanced).",
+      "match_mode": "EXACT_POLICY_SET",
+      "policy": {
+        "subjects": [
+          "Physics"
+        ],
+        "difficulty": [
+          "D3",
+          "D4"
+        ],
+        "include_exams": [
+          "IIT-JEE",
+          "JEE Main"
+        ],
+        "exclude_exams": [
+          "JEE (Advanced)"
+        ]
+      },
+      "resolved_question_refs": [
+        "PYQ-PHY-IITJEE-2007-P1-Q03",
+        "PYQ-PHY-IITJEE-2009-P2-Q40",
+        "PYQ-PHY-IITJEE-2009-P2-Q55",
+        "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+        "PYQ-PHY-IITJEE-2011-P2-Q33",
+        "PYQ-PHY-IITJEE-2012-P1-Q05",
+        "PYQ-PHY-IITJEE-2011-P2-Q26"
+      ],
+      "presentation": {
+        "source_label": "Owner-supplied tablet-study selection",
+        "default_mode": "study",
+        "badge": "7 questions · D3/D4"
+      }
+    }
+  ]
+}
