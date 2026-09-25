@@ -444,7 +444,7 @@ def render_prompt(brief: dict, template: dict) -> str:
         for row in rows
     )
     learner = brief.get("learner_entry")
-    learner_text = json.dumps(learner, ensure_ascii=False, sort_keys=True) if learner else "No learner input supplied."
+    learner_text = canonical_json(learner) if learner else "No learner input supplied."
     order = " → ".join(brief["execution_order"])
     boundary = (
         f"Subject: {brief['subject']}. Matrix: {scope.get('matrix_ref') or 'UNRESOLVED'}. "
