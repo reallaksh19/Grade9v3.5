@@ -39,15 +39,15 @@ def planning_basis(repo: Path = REPO) -> str:
 
 def build(repo: Path = REPO) -> dict:
     template = load(repo / "template/core-prompt-composer/core-agent-prompt.v1.json")
-    authority = core_authority_contract.load_contract(
-        repo / "Shared/roles/CORE-AUTHORITY-CONTRACT.md"
-    )
+    authority_path = core_authority_contract.discover_contract(repo / "Shared" / "roles")
+    authority = core_authority_contract.load_contract(authority_path)
     payload = {
         "generated_by": "Shared/tools/build_prompt_composer_data.py",
         "contract_version": "1.0.0",
         "repository_basis": planning_basis(repo),
         "template": template,
         "authority_contract": authority,
+        "authority_contract_ref": str(authority_path.relative_to(repo)),
         "subjects": {},
     }
     for subject in subjects(repo):
