@@ -270,6 +270,7 @@ def register_run_bundle(
     *,
     files: dict[str, bytes],
     plan: dict,
+    release_ready: bool = False,
     repo: Path = REPO,
 ) -> list[str]:
     """Archive and index the exact outputs of a completed web run."""
@@ -336,7 +337,7 @@ def register_run_bundle(
             "generator_digest": generator_digest,
             "payload_path": payload_path,
             "status": (
-                "CURRENT" if plan.get("request_satisfaction") in {"FULL", "DEGRADED_ACCEPTABLE"}
+                "CURRENT" if release_ready and plan.get("request_satisfaction") in {"FULL", "DEGRADED_ACCEPTABLE"}
                 else "HELD"
             ),
             "search_text": "",

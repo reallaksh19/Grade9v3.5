@@ -321,6 +321,16 @@ class WebValidatorTests(unittest.TestCase):
             for row in bad["findings"]
         ))
 
+    def test_persisting_core_does_not_invalidate_the_same_semantic_plan(self):
+        req = request("Physics", {"matrix_ref": MOTION, "rung": "R1"}, "LEARN", core="CORE1")
+        plan = web_resolver.resolve(req)
+        fresh = copy.deepcopy(plan)
+        fresh["experience_segments"][0]["remembered_artifact_ref"] = "ART-NEW"
+        fresh["experience_segments"][0]["remembered_reuse"] = "DIRECT"
+        with patch.object(web_validator.web_resolver, "resolve", return_value=fresh):
+            report = web_validator.validate(req, plan)
+        self.assertTrue(report["passed"], report["findings"])
+
 
 class DerivedArtifactRegistryTests(unittest.TestCase):
     def test_current_core_projections_are_searchable_by_exact_semantic_refs(self):
@@ -387,7 +397,7 @@ class DerivedArtifactRegistryTests(unittest.TestCase):
             with patch.object(derived_artifact_registry, "current_entries", return_value=([], {})):
                 derived_artifact_registry.write(repo)
                 registered = derived_artifact_registry.register_run_bundle(
-                    files=files, plan=plan, repo=repo,
+                    files=files, plan=plan, release_ready=True, repo=repo,
                 )
                 self.assertEqual(len(registered), len(files))
                 with patch.object(derived_artifact_registry, "_subject_records",
@@ -416,6 +426,17 @@ class DerivedArtifactRegistryTests(unittest.TestCase):
                         exact_ref="Q-TEST", repo=repo,
                     )
                 self.assertEqual(incompatible[0]["reuse"], "REGENERATE")
+                held_plan = {**plan, "request_id": "RUN-HELD"}
+                derived_artifact_registry.register_run_bundle(
+                    files=files, plan=held_plan, release_ready=False, repo=repo,
+                )
+                with patch.object(derived_artifact_registry, "_subject_records",
+                                  return_value={"Q-TEST": canonical_record}):
+                    held = derived_artifact_registry.search(
+                        subject="Physics", artifact_type="WEBPAGE",
+                        exact_ref="Q-TEST", repo=repo,
+                    )
+                self.assertEqual(next(row for row in held if row["semantic_id"].startswith("RUN-HELD"))["reuse"], "FORBIDDEN")
                 stored = repo / "publication/derived-artifacts" / found[0]["payload_path"]
                 stored.write_bytes(b"<html>Tampered</html>")
                 with patch.object(derived_artifact_registry, "_subject_records",

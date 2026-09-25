@@ -159,7 +159,8 @@ def write_bundle(
     manifest_content = _bytes(manifest)
     (out_dir / "manifest.json").write_bytes(manifest_content)
     derived_artifact_registry.register_run_bundle(
-        files={**files, "manifest.json": manifest_content}, plan=plan, repo=repo,
+        files={**files, "manifest.json": manifest_content}, plan=plan,
+        release_ready=validation["release_ready"], repo=repo,
     )
     return manifest
 

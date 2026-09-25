@@ -26,6 +26,16 @@ def _finding(code: str, detail: str) -> dict[str, str]:
     return {"code": code, "detail": detail}
 
 
+def _semantic_segments(plan: dict) -> list[dict]:
+    # Cache receipts may change when this very run persists a projection. They
+    # are provenance, not Core authority or a reason to invalidate the page.
+    return [
+        {key: value for key, value in segment.items()
+         if key not in {"remembered_artifact_ref", "remembered_reuse"}}
+        for segment in plan.get("experience_segments") or []
+    ]
+
+
 def validate(
     request: dict,
     plan: dict,
@@ -36,11 +46,14 @@ def validate(
     findings: list[dict[str, str]] = []
     fresh = web_resolver.resolve(request, route_artifact=route_artifact, repo=repo)
     compare_keys = (
-        "subject", "target", "experience_segments", "availability",
+        "subject", "target", "availability",
         "artifact_buildable", "request_satisfaction", "build_action", "pins",
         "target_route", "fallback_used", "packaging_mode",
     )
-    if any(plan.get(key) != fresh.get(key) for key in compare_keys):
+    if (
+        any(plan.get(key) != fresh.get(key) for key in compare_keys)
+        or _semantic_segments(plan) != _semantic_segments(fresh)
+    ):
         findings.append(_finding(
             "WEB_RESOLUTION_STALE_OR_DIVERGENT",
             "Independent canonical/Atlas/provider resolution no longer matches the supplied receipt.",
