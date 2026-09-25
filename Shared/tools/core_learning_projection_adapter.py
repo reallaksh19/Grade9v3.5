@@ -459,7 +459,7 @@ def _projection(
     )
     pre_hints, post_hints = _hint_limits(application, core=core)
     return {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": core,
         "orientation": deepcopy(orientation),
         "concept": deepcopy(concept),
