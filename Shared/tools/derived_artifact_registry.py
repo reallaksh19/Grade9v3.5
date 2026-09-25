@@ -14,6 +14,17 @@ ROOT = REPO / "publication" / "derived-artifacts"
 CORE_DIR = ROOT / "core-projections"
 INDEX = ROOT / "derived-artifact-index.v1.json"
 CONTRACT_VERSION = "1.0.0"
+WEB_GENERATOR_INPUTS = (
+    "Shared/tools/web_resolver.py",
+    "Shared/tools/build_explore_page.py",
+    "Shared/tools/build_interactive_page.py",
+    "Shared/tools/web_run_bundle.py",
+    "Shared/tools/web_validator.py",
+    "Shared/library/web-resolution-plan.schema.json",
+    "Shared/web/interactive-page-blueprints.v1.json",
+    "Shared/web/explorer-profiles.v1.json",
+    "Shared/workbench/core-learning-page.mjs",
+)
 
 if __package__ in (None, ""):
     import sys
@@ -28,12 +39,24 @@ def digest(value: Any) -> str:
     return "sha256:" + hashlib.sha256(body.encode("utf-8")).hexdigest()
 
 
+def bytes_digest(value: bytes) -> str:
+    return "sha256:" + hashlib.sha256(value).hexdigest()
+
+
 def _repository_basis(repo: Path) -> str | None:
     result = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo,
         capture_output=True, text=True, check=False,
     )
     return result.stdout.strip() if result.returncode == 0 else None
+
+
+def _web_generator_digest(repo: Path) -> str:
+    return digest({
+        relative: bytes_digest(path.read_bytes()) if path.is_file() else None
+        for relative in WEB_GENERATOR_INPUTS
+        for path in [repo / relative]
+    })
 
 
 def _canonical_input_digest(row: dict, refs: dict[str, list[str]], records: dict[str, dict]) -> str:
@@ -135,6 +158,7 @@ def current_entries(repo: Path = REPO) -> tuple[list[dict], dict]:
     payload = build_core_learning_data.build()
     records_by_subject: dict[str, dict] = {}
     entries = []
+    repository_basis = _repository_basis(repo)
     for row in payload.get("core_projections", []):
         subject = row.get("subject")
         if subject not in records_by_subject:
@@ -155,7 +179,7 @@ def current_entries(repo: Path = REPO) -> tuple[list[dict], dict]:
             "source_ref": row.get("source_ref"),
             **refs,
             "provider_contract_version": contract_version,
-            "repository_basis": _repository_basis(repo),
+            "repository_basis": repository_basis,
             "canonical_input_digest": canonical_digest,
             "artifact_digest": projection_digest,
             "payload_path": f"core-projections/{artifact_id}.json",
@@ -180,8 +204,9 @@ def build_index_payload(repo: Path = REPO, previous: dict | None = None) -> dict
         for row in current
     }
     for row in old:
-        key = (row.get("subject"), row.get("core"), row.get("semantic_id"))
-        row["status"] = "STALE" if key in current_semantic else "REFERENCE_ONLY"
+        if row.get("artifact_type") == "CORE_PROJECTION":
+            key = (row.get("subject"), row.get("core"), row.get("semantic_id"))
+            row["status"] = "STALE" if key in current_semantic else "REFERENCE_ONLY"
         row.pop("_payload", None)
     clean_current = []
     for row in current:
@@ -202,7 +227,7 @@ def build_index_payload(repo: Path = REPO, previous: dict | None = None) -> dict
         "authority": "DERIVED_PRODUCTION_MEMORY_ONLY",
         "provider": provider.get("provider"),
         "artifact_count": len(artifacts),
-        "current_count": len(clean_current),
+        "current_count": sum(row.get("status") == "CURRENT" for row in artifacts),
         "artifacts": artifacts,
     }
 
@@ -241,6 +266,92 @@ def load_index(repo: Path = REPO) -> dict:
     return {"contract_version": CONTRACT_VERSION, "artifacts": []}
 
 
+def register_run_bundle(
+    *,
+    files: dict[str, bytes],
+    plan: dict,
+    repo: Path = REPO,
+) -> list[str]:
+    """Archive and index the exact outputs of a completed web run."""
+    root = repo / ROOT.relative_to(REPO)
+    index = load_index(repo)
+    if index.get("contract_version") != CONTRACT_VERSION:
+        raise ValueError("ARTIFACT_INDEX_CONTRACT_INCOMPATIBLE")
+    basis = bytes_digest(files["canonical/canonical-slice.json"])
+    bundle_id = digest({path: bytes_digest(value) for path, value in sorted(files.items())}).split(":")[1][:20]
+    refs = (plan.get("target") or {}).get("resolved_refs") or {}
+    canonical_records = json.loads(files["canonical/canonical-slice.json"])["records"]
+    canonical_input_digest = digest({
+        "subject": plan["subject"],
+        "authority": "CANONICAL_SLICE_FOR_REPRODUCTION_ONLY",
+        "records": canonical_records,
+    })
+    kind_by_path = {
+        "request/web-request.json": "WEB_REQUEST",
+        "resolution/web-resolution-plan.json": "WEB_RESOLUTION_PLAN",
+        "resolution/target-demand-route.json": "TARGET_DEMAND_ROUTE",
+        "validation/web-validation.json": "VALIDATION_REPORT",
+        "manifest.json": "RUN_MANIFEST",
+        "outputs/index.html": "WEBPAGE",
+    }
+    existing = {row["artifact_id"]: row for row in index["artifacts"]}
+    registered = []
+    generator_digest = _web_generator_digest(repo)
+    for relative, content in sorted(files.items()):
+        artifact_type = kind_by_path.get(relative, "RUN_ARTIFACT")
+        semantic_id = f'{plan["request_id"]}:{relative}'
+        artifact_id = "derived-web-" + digest([
+            semantic_id, basis, plan.get("pins"), bytes_digest(content),
+        ]).split(":")[1][:20]
+        payload_path = f"run-bundles/{bundle_id}/{relative}"
+        path = root / payload_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if path.exists() and path.read_bytes() != content:
+            raise ValueError(f"ARTIFACT_DIGEST_MISMATCH:{path}")
+        if not path.exists():
+            path.write_bytes(content)
+        for old in index["artifacts"]:
+            if old.get("semantic_id") == semantic_id and old.get("artifact_id") != artifact_id:
+                old["status"] = "STALE"
+        existing[artifact_id] = {
+            "artifact_id": artifact_id,
+            "artifact_type": artifact_type,
+            "semantic_id": semantic_id,
+            "subject": plan["subject"],
+            "core": next(
+                (row.get("core") for row in plan.get("experience_segments") or [] if row.get("core")), None
+            ),
+            "source_ref": (plan.get("target") or {}).get("exact_ref"),
+            "matrix_ref": (plan.get("target") or {}).get("matrix_ref"),
+            "rung": (plan.get("target") or {}).get("rung"),
+            "canonical_record_refs": sorted(canonical_records),
+            **{key: refs.get(key) or [] for key in (
+                "bucket_refs", "microtopic_refs", "capability_refs", "question_refs",
+                "family_refs", "representation_refs", "activity_refs",
+            )},
+            "repository_basis": _repository_basis(repo),
+            "canonical_input_digest": canonical_input_digest,
+            "artifact_digest": bytes_digest(content),
+            "contract_versions": plan.get("pins"),
+            "generator_digest": generator_digest,
+            "payload_path": payload_path,
+            "status": (
+                "CURRENT" if plan.get("request_satisfaction") in {"FULL", "DEGRADED_ACCEPTABLE"}
+                else "HELD"
+            ),
+            "search_text": "",
+        }
+        registered.append(artifact_id)
+    index["artifacts"] = sorted(
+        existing.values(),
+        key=lambda row: (row.get("subject") or "", row.get("semantic_id") or "", row["artifact_id"]),
+    )
+    index["artifact_count"] = len(index["artifacts"])
+    index["current_count"] = sum(row.get("status") == "CURRENT" for row in index["artifacts"])
+    (root / INDEX.name).write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return registered
+
+
 def search(
     *,
     subject: str | None = None,
@@ -253,7 +364,10 @@ def search(
     index = load_index(repo)
     if not index.get("artifacts"):
         return []
+    if index.get("contract_version") != CONTRACT_VERSION:
+        raise ValueError("ARTIFACT_INDEX_CONTRACT_INCOMPATIBLE")
     current_rows, _ = current_entries(repo)
+    generator_digest = _web_generator_digest(repo)
     current_by_semantic = {
         (row.get("subject"), row.get("core"), row.get("semantic_id")): row
         for row in current_rows
@@ -274,6 +388,8 @@ def search(
             *(row.get("question_refs") or []),
             *(row.get("family_refs") or []),
             *(row.get("representation_refs") or []),
+            *(row.get("activity_refs") or []),
+            *(row.get("canonical_record_refs") or []),
         ]
         if exact_ref and exact_ref not in exact_fields:
             continue
@@ -285,7 +401,14 @@ def search(
         stored = repo / ROOT.relative_to(REPO) / payload_path if isinstance(payload_path, str) else None
         valid_path = stored is not None and stored.resolve().is_relative_to((repo / ROOT.relative_to(REPO)).resolve())
         try:
-            payload_valid = bool(valid_path and stored.is_file() and digest(json.loads(stored.read_text(encoding="utf-8"))) == row.get("artifact_digest"))
+            payload_valid = bool(
+                valid_path and stored.is_file()
+                and (
+                    digest(json.loads(stored.read_text(encoding="utf-8")))
+                    if row.get("artifact_type") == "CORE_PROJECTION"
+                    else bytes_digest(stored.read_bytes())
+                ) == row.get("artifact_digest")
+            )
         except (OSError, ValueError, json.JSONDecodeError):
             payload_valid = False
         if not payload_valid:
@@ -299,6 +422,27 @@ def search(
             freshness, reuse = "CURRENT", "DIRECT"
         elif current:
             freshness, reuse = "STALE", "REGENERATE"
+        elif row.get("artifact_type") != "CORE_PROJECTION":
+            records = _subject_records(row["subject"], repo)
+            canonical_slice = {
+                "subject": row["subject"],
+                "authority": "CANONICAL_SLICE_FOR_REPRODUCTION_ONLY",
+                "records": {
+                    ref: records[ref]
+                    for ref in row.get("canonical_record_refs") or []
+                    if ref in records
+                },
+            }
+            if row.get("status") == "HELD":
+                freshness, reuse = "INCOMPATIBLE", "FORBIDDEN"
+            elif (
+                row.get("status") == "CURRENT"
+                and digest(canonical_slice) == row.get("canonical_input_digest")
+                and row.get("generator_digest") == generator_digest
+            ):
+                freshness, reuse = "CURRENT", "DIRECT"
+            else:
+                freshness, reuse = "STALE", "REGENERATE"
         else:
             freshness, reuse = "REFERENCE_ONLY", "REFERENCE_ONLY"
         match_kind = "EXACT_REF" if exact_ref else ("TEXT" if text else "FILTER")

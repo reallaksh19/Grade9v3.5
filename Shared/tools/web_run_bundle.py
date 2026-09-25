@@ -16,7 +16,10 @@ if __package__ in (None, ""):
 
 from Shared.contracts import load
 from Shared.library.resolve import build_index, load_packages
-from Shared.tools import build_core_learning_data, derived_artifact_registry
+from Shared.tools import (
+    build_core_learning_data, build_explore_page, build_interactive_page,
+    derived_artifact_registry, web_validator,
+)
 
 
 def _bytes(value: Any) -> bytes:
@@ -84,6 +87,32 @@ def write_bundle(
     if route_artifact is not None:
         files["resolution/target-demand-route.json"] = _bytes(route_artifact)
 
+    validation = web_validator.validate(request, plan, route_artifact=route_artifact, repo=repo)
+    files["validation/web-validation.json"] = _bytes(validation)
+    if validation["release_ready"]:
+        if plan["build_action"] == "CORE_PAGE_ADAPTER":
+            projection_ref = plan["experience_segments"][0]["projection_ref"]
+            row = next(
+                row for row in build_core_learning_data.build()["core_projections"]
+                if row["id"] == projection_ref
+            )
+            package = build_interactive_page.compile_page_package(row)
+            if request["packaging_mode"] == "SINGLE_FILE":
+                outputs = {"index.html": build_interactive_page.render_single_file(package)}
+            else:
+                outputs = build_interactive_page.render_offline_directory(
+                    package, request["packaging_mode"],
+                )
+        elif plan["build_action"] == "EXPLORE_PAGE_ADAPTER":
+            package = build_explore_page.compile_page_package(plan, repo)
+            if request["packaging_mode"] == "SINGLE_FILE":
+                outputs = {"index.html": build_explore_page.render_single_file(package)}
+            else:
+                outputs = build_explore_page.render_directory(package, request["packaging_mode"])
+        else:
+            raise ValueError(f"WEB_BUILD_ACTION_UNSUPPORTED:{plan['build_action']}")
+        files.update({f"outputs/{name}": content for name, content in outputs.items()})
+
     remembered = []
     for segment in plan.get("experience_segments", []):
         ref = segment.get("remembered_artifact_ref")
@@ -121,6 +150,7 @@ def write_bundle(
             row["artifact_id"]
             for row in registry["artifacts"]
             if row.get("artifact_type") == "CORE_PROJECTION"
+            and row.get("status") == "CURRENT"
             and row.get("semantic_id") in {
                 item.get("projection_ref") for item in plan.get("experience_segments", [])
             }
@@ -128,6 +158,9 @@ def write_bundle(
     }
     manifest_content = _bytes(manifest)
     (out_dir / "manifest.json").write_bytes(manifest_content)
+    derived_artifact_registry.register_run_bundle(
+        files={**files, "manifest.json": manifest_content}, plan=plan, repo=repo,
+    )
     return manifest
 
 

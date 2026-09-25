@@ -239,6 +239,11 @@ window.__interactivePageReady=true;
 
 
 def render_offline_directory(package: dict[str, Any], packaging_mode: str = "OFFLINE_DIRECTORY") -> dict[str, bytes]:
+    if packaging_mode in {"OFFLINE_DIRECTORY", "SINGLE_FILE"}:
+        _require(
+            package["representation"]["mount_mode"] != "LEGACY_IFRAME",
+            "WEB_OFFLINE_LEGACY_IFRAME_FORBIDDEN",
+        )
     row = {
         "id": package["projection_id"],
         "subject": package["subject"],
@@ -276,6 +281,10 @@ def _js_string(value: str) -> str:
 
 
 def render_single_file(package: dict[str, Any]) -> bytes:
+    _require(
+        package["representation"]["mount_mode"] != "LEGACY_IFRAME",
+        "WEB_OFFLINE_LEGACY_IFRAME_FORBIDDEN",
+    )
     row = {
         "id": package["projection_id"],
         "subject": package["subject"],

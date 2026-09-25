@@ -64,6 +64,14 @@ def validate(
                     findings.append(_finding("WEB_CORE_PACKAGE_INVALID", str(exc)))
                 else:
                     blueprint = package.get("blueprint") or {}
+                    if (
+                        plan.get("packaging_mode") in {"OFFLINE_DIRECTORY", "SINGLE_FILE"}
+                        and (package.get("representation") or {}).get("mount_mode") == "LEGACY_IFRAME"
+                    ):
+                        findings.append(_finding(
+                            "WEB_OFFLINE_LEGACY_IFRAME_FORBIDDEN",
+                            "Offline Core delivery cannot depend on a locator iframe.",
+                        ))
                     touch = blueprint.get("touch_policy") or {}
                     if touch.get("minimum_target_css_px", 0) < 48:
                         findings.append(_finding(
@@ -90,6 +98,11 @@ def validate(
             findings.append(_finding(
                 "WEB_SEGMENT_COMPOSITION_INVALID",
                 "Composite build action requires multiple independently resolved segments.",
+            ))
+        else:
+            findings.append(_finding(
+                "WEB_SEGMENT_COMPOSITION_NOT_IMPLEMENTED",
+                "A composite page adapter must exist before a multi-segment plan can be released.",
             ))
     elif adapter == "HOLD":
         pass

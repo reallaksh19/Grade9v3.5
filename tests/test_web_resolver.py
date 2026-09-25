@@ -363,6 +363,67 @@ class DerivedArtifactRegistryTests(unittest.TestCase):
                 )
                 self.assertEqual(invalid[0]["reuse"], "FORBIDDEN")
 
+    def test_run_bundle_webpage_is_persisted_searchable_and_basis_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            canonical_record = {"id": "Q-TEST", "_collection": "questions", "stem": "Original question"}
+            canonical = {
+                "subject": "Physics", "authority": "CANONICAL_SLICE_FOR_REPRODUCTION_ONLY",
+                "records": {"Q-TEST": canonical_record},
+            }
+            plan = {
+                "request_id": "RUN-TEST", "subject": "Physics",
+                "request_satisfaction": "FULL", "experience_segments": [],
+                "pins": {"core_provider_contract_version": "1.1"},
+                "target": {"exact_ref": "Q-TEST", "matrix_ref": None, "rung": None,
+                           "resolved_refs": {"question_refs": ["Q-TEST"]}},
+            }
+            files = {
+                "canonical/canonical-slice.json": (json.dumps(canonical) + "\n").encode(),
+                "resolution/web-resolution-plan.json": (json.dumps(plan) + "\n").encode(),
+                "outputs/index.html": b"<html><body>Question</body></html>\n",
+                "manifest.json": b'{"request_id":"RUN-TEST"}\n',
+            }
+            with patch.object(derived_artifact_registry, "current_entries", return_value=([], {})):
+                derived_artifact_registry.write(repo)
+                registered = derived_artifact_registry.register_run_bundle(
+                    files=files, plan=plan, repo=repo,
+                )
+                self.assertEqual(len(registered), len(files))
+                with patch.object(derived_artifact_registry, "_subject_records",
+                                  return_value={"Q-TEST": canonical_record}):
+                    found = derived_artifact_registry.search(
+                        subject="Physics", artifact_type="WEBPAGE",
+                        exact_ref="Q-TEST", repo=repo,
+                    )
+                self.assertEqual(len(found), 1)
+                self.assertEqual(found[0]["reuse"], "DIRECT")
+                changed = {**canonical_record, "stem": "Revised canonical question"}
+                with patch.object(derived_artifact_registry, "_subject_records",
+                                  return_value={"Q-TEST": changed}):
+                    stale = derived_artifact_registry.search(
+                        subject="Physics", artifact_type="WEBPAGE",
+                        exact_ref="Q-TEST", repo=repo,
+                    )
+                self.assertEqual(stale[0]["reuse"], "REGENERATE")
+                generator = repo / "Shared/tools/web_resolver.py"
+                generator.parent.mkdir(parents=True)
+                generator.write_text("# updated delivery contract\n")
+                with patch.object(derived_artifact_registry, "_subject_records",
+                                  return_value={"Q-TEST": canonical_record}):
+                    incompatible = derived_artifact_registry.search(
+                        subject="Physics", artifact_type="WEBPAGE",
+                        exact_ref="Q-TEST", repo=repo,
+                    )
+                self.assertEqual(incompatible[0]["reuse"], "REGENERATE")
+                stored = repo / "publication/derived-artifacts" / found[0]["payload_path"]
+                stored.write_bytes(b"<html>Tampered</html>")
+                with patch.object(derived_artifact_registry, "_subject_records",
+                                  return_value={"Q-TEST": canonical_record}):
+                    self.assertEqual(derived_artifact_registry.search(
+                        artifact_type="WEBPAGE", exact_ref="Q-TEST", repo=repo,
+                    )[0]["reuse"], "FORBIDDEN")
+
 
 if __name__ == "__main__":
     unittest.main()

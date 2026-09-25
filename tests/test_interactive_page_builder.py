@@ -58,6 +58,11 @@ class InteractivePageBuilderTests(unittest.TestCase):
             package["blueprint"]["representation_policy"]["legacy_iframe"],
             "MIGRATION_ONLY",
         )
+        with self.assertRaisesRegex(
+            build_interactive_page.InteractivePageBuildError,
+            "WEB_OFFLINE_LEGACY_IFRAME_FORBIDDEN",
+        ):
+            build_interactive_page.render_offline_directory(package)
 
     def test_offline_directory_has_only_local_runtime_dependencies(self):
         package = build_interactive_page.compile_page_package(self.row("CORE1B"))
