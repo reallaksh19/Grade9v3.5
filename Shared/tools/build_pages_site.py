@@ -42,6 +42,15 @@ TEXT_REWRITES = {
     "physics/motion-1d/explorers/motion_in_1d/index.html": (
         ("/physics/index.html", "../../../index.html"),
     ),
+    "tools/index.html": (
+        ("../docs/architecture-manifest.json", "../architecture-manifest.json"),
+        ("../docs/PROGRAM-PLAN.md", "../PROGRAM-PLAN.md"),
+    ),
+}
+
+PRESERVED_DOC_TARGETS = {
+    "architecture-manifest.json",
+    "PROGRAM-PLAN.md",
 }
 
 HTML_LINK = re.compile(r"""\b(?:href|src)\s*=\s*["']([^"'<>]+)["']""", re.IGNORECASE)
@@ -59,7 +68,7 @@ def _public_payload(relative: str, content: bytes) -> bytes:
     text = content.decode("utf-8")
     for before, after in rewrites:
         if before not in text:
-            raise ValueError(f"expected Pages rewrite token missing in public/{relative}: {before}")
+            raise ValueError(f"expected Pages rewrite token missing for {relative}: {before}")
         text = text.replace(before, after)
     return text.encode("utf-8")
 
@@ -102,7 +111,7 @@ def desired_files(repo: Path = REPO) -> dict[str, tuple[str, bytes]]:
         source = repo / source_rel
         if not source.is_file():
             raise FileNotFoundError(f"Pages source missing: {source_rel}")
-        files[target_rel] = (source_rel, source.read_bytes())
+        files[target_rel] = (source_rel, _public_payload(target_rel, source.read_bytes()))
 
     files[".nojekyll"] = ("GENERATED", b"")
     manifest_bytes = _render_manifest(files)
@@ -136,7 +145,7 @@ def _candidate_targets(path: str) -> tuple[str, ...]:
 
 def link_findings(files: dict[str, tuple[str, bytes]]) -> list[str]:
     """Return broken/escaping links in generated HTML using the intended Pages tree."""
-    available = set(files)
+    available = set(files) | PRESERVED_DOC_TARGETS
     findings: list[str] = []
     for target, (_source, content) in sorted(files.items()):
         if not target.endswith(".html"):
@@ -168,6 +177,10 @@ def check(repo: Path = REPO) -> list[str]:
     files = desired_files(repo)
     findings = link_findings(files)
     docs = repo / "docs"
+
+    for relative in sorted(PRESERVED_DOC_TARGETS):
+        if not (docs / relative).is_file():
+            findings.append(f"preserved docs Pages target is missing: docs/{relative}")
 
     for relative, (_source, intended) in sorted(files.items()):
         target = docs / relative
