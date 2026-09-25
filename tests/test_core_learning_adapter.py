@@ -162,6 +162,7 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertEqual(app["crux_move_ref"], source["answer"]["crux_move_ref"])
         self.assertEqual(app["hints"], source["hints"])
         self.assertEqual(app["scaffolds"], source["scaffolds"])
+        self.assertEqual(app["exposure"], source["exposure"])
         self.assertEqual(app["check"], source["answer"]["check"])
         self.assertEqual(app["solution"]["summary"], source["answer"]["summary"])
         self.assertEqual(app["solution"]["steps"], source["answer"]["reasoning"])
