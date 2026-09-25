@@ -348,7 +348,7 @@
     }
   },
   "verification": {
-    "state": "NOT_RUN",
+    "state": "PARTIAL",
     "observations": [
       {
         "kind": "TOPIC_INDEPENDENCE_FINDING",
@@ -361,6 +361,18 @@
         "state": "RESOLVED",
         "ref": "github:reallaksh19/Grade9V3/actions/runs/36104842576",
         "detail": "Saved browser-view config moved out of Shared/library because that namespace is reserved for canonical topic-package shapes."
+      },
+      {
+        "kind": "FOCUSED_TESTS",
+        "state": "PASS",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36104842576",
+        "detail": "All six new QuestionBankWebTest cases passed; repository suite then exposed namespace/generated-output integration findings, which were corrected."
+      },
+      {
+        "kind": "GENERATED_OUTPUTS",
+        "state": "CORRECTED",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36105379449",
+        "detail": "Architecture manifest regenerated to sha256:16a4682f88f97987e1979fa95e680ca9333ba3fc2ebeac95d7b8c8352afba6e9; Question Bank and prompt-composer generated projections plus Pages mirror refreshed."
       }
     ],
     "failure_origins": {}
@@ -370,7 +382,7 @@
     "url": "https://github.com/reallaksh19/Grade9V3/pull/279",
     "lifecycle": "DRAFT",
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "head": "9e86bfbc3af1d99d3fc5c6170a2bcd46822fe94c",
+    "head": "f632395a2f49614090ee0e60cd5c9c78673567e4",
     "mergeability": "MERGEABLE_AS_DRAFT"
   },
   "delivery_stack": [],
@@ -392,9 +404,8 @@
       "Generated the GitHub Pages docs/ mirror for the new static surface."
     ],
     "what_remains": [
-      "Run exact-head focused and repository validation.",
-      "Resolve any generated-artifact or architecture-manifest drift.",
-      "Publish evidence/review/result after green validation.",
+      "Run exact-head full guardrails and V3.1 on the corrected material head.",
+      "Publish TASK_EVIDENCE, REVIEW_FINDING and TASK_RESULT after green validation.",
       "Keep PR #279 draft until owner explicitly authorizes readiness/merge."
     ],
     "dependencies": [
@@ -491,7 +502,7 @@
   },
   "material": {
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "current_head": "e21027cc6e7f37c25b2f9f1da1990c1c8e1d3d41"
+    "current_head": "f632395a2f49614090ee0e60cd5c9c78673567e4"
   },
   "acceptance": [
     {
@@ -568,7 +579,7 @@
     ]
   },
   "next": {
-    "immediate_action": "Run exact-head V3.1 and repository guardrails on the subject-neutral corrected delivery head; fix only evidenced failures.",
+    "immediate_action": "Run exact-head full guardrails and V3.1 on the corrected Question Bank delivery head; fix only evidenced failures.",
     "next_value_frontier": "A green, owner-reviewable Question Bank delivery on draft PR #279.",
     "stop_conditions": [
       "Do not mark PR ready or merge without explicit owner authorization.",
