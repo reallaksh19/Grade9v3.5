@@ -181,18 +181,35 @@ def _module(name: str) -> str:
     return (RUNTIME_DIR / name).read_text(encoding="utf-8")
 
 
-def _offline_index() -> str:
-    return """<!doctype html>
+def _offline_index(packaging_mode: str = "OFFLINE_DIRECTORY") -> str:
+    html = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="grade9v3-packaging-mode" content="__PACKAGING_MODE__">
 <title>Grade9V3 Interactive Page</title>
 <style>
 body{font:16px/1.45 system-ui,sans-serif;margin:0;background:#fff;color:#111}
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.75rem;min-height:3.5rem;padding:.4rem .75rem;border-bottom:1px solid #bbb;background:#fff}
-header button{min-width:3rem;min-height:3rem;font:inherit}
+.site-nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.5rem;min-height:3.5rem;padding:.4rem .75rem;border-bottom:1px solid #bbb;background:#fff;flex-wrap:wrap}
+.site-nav a,.site-nav button,.site-nav input,.site-nav summary{font:inherit;min-height:3rem;box-sizing:border-box}
+.site-nav a,.site-nav button,.site-nav summary{display:inline-flex;align-items:center;padding:.4rem .7rem;border:1px solid #999;border-radius:.5rem;text-decoration:none;color:inherit;background:#fff}
+.site-nav input{min-width:10rem;padding:.4rem .6rem}
+.site-nav form{display:flex;gap:.5rem}
+.site-nav .context{font-weight:700;margin-inline:auto}
+.site-nav details{position:relative}
+.site-nav details div{position:absolute;right:0;top:100%;background:#fff;border:1px solid #bbb;border-radius:.5rem;padding:.5rem;min-width:12rem;z-index:30}
 main{max-width:80rem;margin:auto;padding:1rem}
 .meta{font-size:.85rem;opacity:.75}
 </style></head><body>
-<header><button id="back" type="button" aria-label="Back">←</button><strong>Grade9V3</strong><span id="page-title"></span><button id="refresh" type="button" aria-label="Refresh">↻</button></header>
+<header class="site-nav" data-shell-ref="G9-TABLET-SHELL-V1">
+<button id="back" type="button" aria-label="Back">← Back</button>
+<a id="home" href="./index.html">Home</a>
+<span id="subject-context" class="context">Grade9V3</span>
+<a id="question-bank" href="./question-bank/index.html">Question Bank</a>
+<form id="site-search" role="search"><input id="site-search-input" type="search" aria-label="Search this page"><button type="submit">Search</button></form>
+<button id="refresh" type="button" aria-label="Refresh">↻ Refresh</button>
+<button id="display-down" type="button" aria-label="Decrease text size">A−</button>
+<button id="display-up" type="button" aria-label="Increase text size">A+</button>
+<details><summary>More</summary><div><p>Packaging: __PACKAGING_MODE__</p><p>Offline-safe learner page.</p></div></details>
+</header>
 <main><p class="meta" id="delivery"></p><core-learning-page id="learner"></core-learning-page></main>
 <script src="./data.js"></script>
 <script type="module">
@@ -201,15 +218,22 @@ import "./core-learning-page.mjs";
 import {mountCoreLearningPage} from "./core-learning-host.mjs";
 const data=window.GRADE9V3_CORE,row=data.core_projections[0],learner=document.querySelector("#learner");
 mountCoreLearningPage(learner,data,row.id,window.CORE_LEARNING_REGISTRIES||{});
-document.querySelector("#page-title").textContent=[row.subject,row.projection.core].filter(Boolean).join(" · ");
+document.querySelector("#subject-context").textContent=[row.subject,row.projection.core].filter(Boolean).join(" · ");
 document.querySelector("#delivery").textContent=row.projection.delivery.web.blueprint_ref+" · "+row.projection.delivery.web.layout_family;
 document.querySelector("#back").addEventListener("click",()=>history.length>1?history.back():null);
 document.querySelector("#refresh").addEventListener("click",()=>location.reload());
+document.querySelector("#site-search").addEventListener("submit",(event)=>{event.preventDefault();const q=document.querySelector("#site-search-input").value.trim();if(q&&typeof window.find==="function")window.find(q);});
+let scale=1;
+const applyScale=()=>document.documentElement.style.fontSize=(16*scale)+"px";
+document.querySelector("#display-down").addEventListener("click",()=>{scale=Math.max(.8,scale-.1);applyScale();});
+document.querySelector("#display-up").addEventListener("click",()=>{scale=Math.min(1.5,scale+.1);applyScale();});
+window.__interactivePageReady=true;
 </script></body></html>
 """
+    return html.replace("__PACKAGING_MODE__", packaging_mode)
 
 
-def render_offline_directory(package: dict[str, Any]) -> dict[str, bytes]:
+def render_offline_directory(package: dict[str, Any], packaging_mode: str = "OFFLINE_DIRECTORY") -> dict[str, bytes]:
     row = {
         "id": package["projection_id"],
         "subject": package["subject"],
@@ -226,7 +250,7 @@ def render_offline_directory(package: dict[str, Any]) -> dict[str, bytes]:
         "bucket_availability": [],
     }
     return {
-        "index.html": _offline_index().encode("utf-8"),
+        "index.html": _offline_index(packaging_mode).encode("utf-8"),
         "data.js": (
             "window.GRADE9V3_CORE = "
             + json.dumps(payload, ensure_ascii=False, indent=2)
@@ -273,10 +297,21 @@ def render_single_file(package: dict[str, Any]) -> bytes:
 <title>Grade9V3 Interactive Page</title>
 <style>
 body{{font:16px/1.45 system-ui,sans-serif;margin:0;background:#fff;color:#111}}
-header{{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.75rem;min-height:3.5rem;padding:.4rem .75rem;border-bottom:1px solid #bbb;background:#fff}}
-header button{{min-width:3rem;min-height:3rem;font:inherit}}main{{max-width:80rem;margin:auto;padding:1rem}}.meta{{font-size:.85rem;opacity:.75}}
+.site-nav{{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.5rem;min-height:3.5rem;padding:.4rem .75rem;border-bottom:1px solid #bbb;background:#fff;flex-wrap:wrap}}
+.site-nav a,.site-nav button,.site-nav input,.site-nav summary{{font:inherit;min-height:3rem;box-sizing:border-box}}
+.site-nav a,.site-nav button,.site-nav summary{{display:inline-flex;align-items:center;padding:.4rem .7rem;border:1px solid #999;border-radius:.5rem;text-decoration:none;color:inherit;background:#fff}}
+.site-nav input{{min-width:10rem;padding:.4rem .6rem}}.site-nav form{{display:flex;gap:.5rem}}.site-nav .context{{font-weight:700;margin-inline:auto}}
+.site-nav details{{position:relative}}.site-nav details div{{position:absolute;right:0;top:100%;background:#fff;border:1px solid #bbb;border-radius:.5rem;padding:.5rem;min-width:12rem;z-index:30}}
+main{{max-width:80rem;margin:auto;padding:1rem}}.meta{{font-size:.85rem;opacity:.75}}
 </style></head><body>
-<header><button id="back" type="button" aria-label="Back">←</button><strong>Grade9V3</strong><span id="page-title"></span><button id="refresh" type="button" aria-label="Refresh">↻</button></header>
+<header class="site-nav" data-shell-ref="G9-TABLET-SHELL-V1">
+<button id="back" type="button" aria-label="Back">← Back</button><a href="./index.html">Home</a><span id="page-title" class="context">Grade9V3</span>
+<a href="./question-bank/index.html">Question Bank</a>
+<form id="site-search" role="search"><input id="site-search-input" type="search" aria-label="Search this page"><button type="submit">Search</button></form>
+<button id="refresh" type="button" aria-label="Refresh">↻ Refresh</button>
+<button id="display-down" type="button" aria-label="Decrease text size">A−</button><button id="display-up" type="button" aria-label="Increase text size">A+</button>
+<details><summary>More</summary><div><p>Packaging: SINGLE_FILE</p><p>Offline-safe learner page.</p></div></details>
+</header>
 <main><p class="meta" id="delivery"></p><core-learning-page id="learner"></core-learning-page></main>
 <script type="module">
 const SOURCES={{
@@ -300,6 +335,10 @@ document.querySelector("#page-title").textContent=[row.subject,row.projection.co
 document.querySelector("#delivery").textContent=row.projection.delivery.web.blueprint_ref+" · "+row.projection.delivery.web.layout_family;
 document.querySelector("#back").addEventListener("click",()=>history.length>1?history.back():null);
 document.querySelector("#refresh").addEventListener("click",()=>location.reload());
+document.querySelector("#site-search").addEventListener("submit",(event)=>{event.preventDefault();const q=document.querySelector("#site-search-input").value.trim();if(q&&typeof window.find==="function")window.find(q);});
+let scale=1;const applyScale=()=>document.documentElement.style.fontSize=(16*scale)+"px";
+document.querySelector("#display-down").addEventListener("click",()=>{scale=Math.max(.8,scale-.1);applyScale();});
+document.querySelector("#display-up").addEventListener("click",()=>{scale=Math.min(1.5,scale+.1);applyScale();});
 window.__interactivePageReady=true;
 </script></body></html>"""
     return html.encode("utf-8")
@@ -312,16 +351,9 @@ def write_mode(package: dict[str, Any], mode: str, out: Path) -> None:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(render_single_file(package))
         return
-    if mode == "OFFLINE_DIRECTORY":
-        out.mkdir(parents=True, exist_ok=True)
-        for name, content in render_offline_directory(package).items():
-            (out / name).write_bytes(content)
-        return
     out.mkdir(parents=True, exist_ok=True)
-    (out / "interactive-page-package.json").write_text(
-        json.dumps(package, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    for name, content in render_offline_directory(package, mode).items():
+        (out / name).write_bytes(content)
     (out / "agent-contract.json").write_text(
         json.dumps(agent_contract(package), ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
