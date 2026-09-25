@@ -130,7 +130,7 @@
   "programme_parent": null,
   "planning": {
     "state": "PRESENT",
-    "provider_ref": "github:reallaksh19/Grade9V3#272/comment-5826266131",
+    "provider_ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
     "revision": 6,
     "digest": null,
     "observed_at": "2026-09-25T03:30:00Z",
@@ -200,6 +200,13 @@
       "observed_at": "2026-09-25T03:30:00Z",
       "summary": "Rev 6 makes the prompt composer consume the shared Core authority blueprint and adds identity/eligibility/extension-containment falsifiers.",
       "exact_head": "88046f47715cbbf88d94abc0b86fbe7055ca4727"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
+      "observed_at": "2026-09-25T03:47:00Z",
+      "summary": "Rev 6 records owner-authorized GitHub Pages /docs delivery mirror and merge transition.",
+      "exact_head": "7535d6dff8f0121d538fca9578773fa906c4c55b"
     }
   ],
   "programme_progress": null,
@@ -441,15 +448,15 @@
   "delivery": {
     "pr": 275,
     "url": "https://github.com/reallaksh19/Grade9V3/pull/275",
-    "lifecycle": "DRAFT",
+    "lifecycle": "DRAFT_PAGES_VALIDATION",
     "base": "db3e9df5bd73eb26e518f4b52465739aab55aca1",
-    "head": "88046f47715cbbf88d94abc0b86fbe7055ca4727",
+    "head": "7535d6dff8f0121d538fca9578773fa906c4c55b",
     "mergeability": "MERGEABLE_AS_DRAFT"
   },
   "delivery_stack": [],
   "completion": {
     "overall_state": "PARTIAL",
-    "headline": "#272 PARTIAL — authority-aware composer correction is material; exact-head revalidation is in progress.",
+    "headline": "#272 DELIVERY ACTIVE — implementation is validated; owner-authorized GitHub Pages /docs publication and merge are in progress.",
     "implementation": "COMPLETE",
     "verification": "PARTIAL",
     "delivery": "DRAFT",
@@ -461,12 +468,15 @@
       "PR #275 is stacked on the shared six-Core authority blueprint.",
       "Prompt brief and rendered prompt now consume the authority contract.",
       "Question rows distinguish candidate identity, demand evidence and learner eligibility.",
-      "Projectile stress fixture holds ambiguous Q15 identity rather than silently selecting one candidate."
+      "Projectile stress fixture holds ambiguous Q15 identity rather than silently selecting one candidate.",
+      "Owner explicitly authorized PR #275 merge and GitHub Pages publication from main/docs.",
+      "Added deterministic docs/ Pages mirror builder and generated Pages tree."
     ],
     "what_remains": [
-      "Pass exact-head guardrails and V3.1 binding after the authority-aware correction.",
-      "Refresh TASK_EVIDENCE/TASK_RESULT only after the new falsifiers are green.",
-      "Keep PR #275 draft pending owner-controlled readiness/merge."
+      "Validate generated docs/ Pages mirror and repository guardrails on the current delivery head.",
+      "Update architecture manifest if required by the repository builder.",
+      "Move PR #275 out of draft and merge after green validation.",
+      "Confirm main/docs contains the deployable site; downstream PDF publication remains #273."
     ],
     "dependencies": [
       "#265 remains an upstream contract provider; #272 does not change its six-Core meanings.",
@@ -474,7 +484,8 @@
       "#273 owns downstream PDF publication."
     ],
     "owner_decisions": [
-      "PR #275 remains draft; no readiness or merge authorization has been given."
+      "Owner explicitly authorized merging PR #275.",
+      "Owner explicitly requested GitHub Pages deployment compatibility using main /docs."
     ]
   },
   "parent_issue_progress": {
@@ -528,7 +539,14 @@
       "tests/fixtures/prompt-composer/**",
       "docs/architecture-manifest.json",
       "Shared/tools/study_map.py",
-      "Shared/tools/topic_independence_allowlist.json"
+      "Shared/tools/topic_independence_allowlist.json",
+      "Shared/tools/build_pages_site.py",
+      "tests/test_pages_site.py",
+      "docs/.nojekyll",
+      "docs/.pages-manifest.json",
+      "docs/<generated Pages mirror of public/**>",
+      "docs/tools/data.js",
+      "docs/tools/run-builder/index.html"
     ],
     "read": [
       "Shared/library/**",
@@ -571,7 +589,7 @@
   },
   "material": {
     "base": "db3e9df5bd73eb26e518f4b52465739aab55aca1",
-    "current_head": "88046f47715cbbf88d94abc0b86fbe7055ca4727"
+    "current_head": "7535d6dff8f0121d538fca9578773fa906c4c55b"
   },
   "acceptance": [
     {
@@ -646,14 +664,24 @@
         "event": "TASK_RESULT",
         "ref": "github:reallaksh19/Grade9V3#272/comment-5826120001",
         "detail": "#272 implementation result published; delivery remains draft."
+      },
+      {
+        "event": "OWNER_MERGE_AUTHORIZATION",
+        "ref": "github:reallaksh19/Grade9V3#272/comment-5826350416",
+        "detail": "Owner authorized merging PR #275 and publishing a GitHub Pages-compatible docs/ mirror."
+      },
+      {
+        "event": "PAGES_MIRROR_GENERATED",
+        "ref": "github:reallaksh19/Grade9V3/commit/7535d6dff8f0121d538fca9578773fa906c4c55b",
+        "detail": "Generated docs/ mirror from public/ plus Run Builder assets."
       }
     ]
   },
   "next": {
-    "immediate_action": "Run exact-head guardrails and V3.1 binding for the authority-aware composer, repair any falsifier failure, and publish new task evidence.",
-    "next_value_frontier": "Close the original prompt-generation RCA generically, then leave #209 to consume the same blueprint when its set-selection lane is activated.",
+    "immediate_action": "Validate the owner-authorized Pages delivery head, then mark PR #275 ready and merge if all required checks pass.",
+    "next_value_frontier": "A green main/docs GitHub Pages site with the Core Prompt Composer reachable from the site homepage.",
     "stop_conditions": [
-      "Stop before PR readiness or merge without explicit owner authorization.",
+      "Do not merge if required guardrails or V3.1 validation fail.",
       "Keep downstream PDF publication out of #272."
     ]
   },
