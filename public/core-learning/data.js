@@ -4,7 +4,7 @@ window.GRADE9V3_CORE = {
   "provider_status": "PRODUCTION_COMPILED_CANONICAL",
   "provider": {
     "mode": "CANONICAL_LIBRARY_TO_COMPILE_BUCKET_TO_CORE_PROJECTION",
-    "contract_version": "1.0"
+    "contract_version": "1.1"
   },
   "core_projections": [
     {
@@ -12,7 +12,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "BUCKET-LINEAR-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-LINEAR-EQUATION",
@@ -84,6 +84,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -106,7 +159,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -216,6 +269,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -238,7 +346,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -380,6 +488,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -402,7 +565,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-EQUIVALENT-OPS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -512,6 +675,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -534,7 +752,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-EQUIVALENT-OPS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -679,6 +897,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -701,7 +974,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-EXACT-SOLUTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -853,6 +1126,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -875,7 +1203,7 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "source_ref": "MIC-MATH-EXACT-SOLUTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -1048,6 +1376,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -1070,7 +1453,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-ELEC-CURRENT-OHM",
@@ -1090,6 +1473,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1112,7 +1548,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-FLUID-BERNOULLI-EQUATION",
@@ -1132,6 +1568,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1154,7 +1643,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-GRAV-UNIVERSAL-LAW",
@@ -1179,6 +1668,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1201,7 +1743,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-KIN-1D-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-KIN-1D-MOTION",
@@ -1231,6 +1773,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1253,7 +1848,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-KIN-2D-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
@@ -1283,6 +1878,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1305,7 +1953,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-MAG-FIELD-LORENTZ",
@@ -1325,6 +1973,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1347,7 +2048,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1377,6 +2078,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1399,7 +2153,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-NLM-MOMENTUM-TRANSFER",
@@ -1429,6 +2183,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1451,7 +2258,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-OPTICS-REFLECTION-MIRRORS",
@@ -1481,6 +2288,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1503,7 +2363,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-OPTICS-REFRACTION-LENSES",
@@ -1533,6 +2393,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1555,7 +2468,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-OSC-SHM-WAVES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-OSC-SHM-WAVES",
@@ -1575,6 +2488,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1597,7 +2563,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-ROT-RIGID-BODY",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-ROT-RIGID-BODY",
@@ -1617,6 +2583,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1639,7 +2658,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-SIMPLE-MACHINES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-SIMPLE-MACHINES",
@@ -1669,6 +2688,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1691,7 +2763,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-SOUND",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-SOUND",
@@ -1721,6 +2793,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1743,7 +2868,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-THERMO-FIRST-SECOND-LAW",
@@ -1763,6 +2888,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1785,7 +2963,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-VEC-ADD-SUB",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-VEC-ADD-SUB",
@@ -1815,6 +2993,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1837,7 +3068,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-VEC-DIRECTION-UNIT",
@@ -1867,6 +3098,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1889,7 +3173,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-PHY-WORK-ENERGY-POWER",
@@ -1919,6 +3203,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -1941,7 +3278,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-RELATIVE-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-RELATIVE-MOTION",
@@ -2032,6 +3369,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -2054,7 +3444,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "BUCKET-VECTOR-REPRESENTATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1",
         "orientation": {
           "bucket_ref": "BUCKET-VECTOR-REPRESENTATION",
@@ -2144,6 +3534,59 @@ window.GRADE9V3_CORE = {
         },
         "concept": null,
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1-ORIENTATION@1.0.0",
+            "blueprint_id": "BP-CORE1-ORIENTATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_ORIENTATION",
+            "required_slots": [
+              "identity",
+              "orientation"
+            ],
+            "slot_order": [
+              "identity",
+              "orientation"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "SINGLE_PANE",
+              "expanded": "SINGLE_PANE",
+              "primary_fraction": 1,
+              "support_fraction": 0
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "FULL_INFERENTIAL_CONSTRUCTION"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -2166,7 +3609,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-COMMON-INTERVAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -2294,6 +3737,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -2316,7 +3814,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-COMMON-INTERVAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -2481,6 +3979,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -2503,7 +4056,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-ELEC-CURRENT-CONSERVATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -2574,6 +4127,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -2596,7 +4204,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-ELEC-CURRENT-CONSERVATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -2717,6 +4325,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -2739,7 +4402,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -2811,6 +4474,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -2833,7 +4551,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -2959,6 +4677,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -2981,7 +4754,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-GEOMETRIC-CHECK",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -3137,6 +4910,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -3159,7 +4987,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-GEOMETRIC-CHECK",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -3352,6 +5180,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -3374,7 +5257,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-GRAPHICAL-SUBTRACTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -3526,6 +5409,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -3548,7 +5486,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-GRAPHICAL-SUBTRACTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -3710,6 +5648,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -3732,7 +5725,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-FIELD-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -3803,6 +5796,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -3825,7 +5873,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-FIELD-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -3946,6 +5994,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -3968,7 +6071,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-FLUX-ORIENTATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -4039,6 +6142,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -4061,7 +6219,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-FLUX-ORIENTATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -4182,6 +6340,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -4204,7 +6417,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -4276,6 +6489,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -4298,7 +6566,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -4424,6 +6692,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -4446,7 +6769,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MEASURED-FROM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -4517,6 +6840,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -4539,7 +6917,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-MEASURED-FROM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -4664,6 +7042,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -4686,7 +7119,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -4763,6 +7196,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -4785,7 +7273,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -4912,6 +7400,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -4934,7 +7477,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-MAGNIFICATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -5011,6 +7554,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -5033,7 +7631,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-MAGNIFICATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -5160,6 +7758,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -5182,7 +7835,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-POWER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -5259,6 +7912,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -5281,7 +7989,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-POWER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -5408,6 +8116,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -5430,7 +8193,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -5501,6 +8264,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -5523,7 +8341,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-LENS-RAY-CONSTRUCTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -5644,6 +8462,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -5666,7 +8539,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-MIRROR-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -5745,6 +8618,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -5767,7 +8695,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-MIRROR-EQUATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -5901,6 +8829,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -5923,7 +8906,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -6002,6 +8985,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -6024,7 +9062,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-MIRROR-MAGNIFICATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -6153,6 +9191,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -6175,7 +9268,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-NORMAL-REFLECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -6246,6 +9339,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -6268,7 +9416,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-NORMAL-REFLECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -6389,6 +9537,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -6411,7 +9614,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -6482,6 +9685,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -6504,7 +9762,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -6625,6 +9883,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -6647,7 +9960,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REFRACTION-NORMAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -6718,6 +10031,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -6740,7 +10108,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REFRACTION-NORMAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -6861,6 +10229,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -6883,7 +10306,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -6964,6 +10387,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -6986,7 +10464,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-REFRACTIVE-INDEX-SNELL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -7117,6 +10595,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -7139,7 +10672,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-SIGN-CONVENTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -7210,6 +10743,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -7232,7 +10820,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-SIGN-CONVENTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -7358,6 +10946,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -7380,7 +11023,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -7453,6 +11096,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -7475,7 +11173,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -7603,6 +11301,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -7625,7 +11378,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OSC-ENERGY-EXCHANGE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -7697,6 +11450,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -7719,7 +11527,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OSC-ENERGY-EXCHANGE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -7845,6 +11653,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -7867,7 +11730,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -7938,6 +11801,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -7960,7 +11878,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-OSC-STABLE-EQUILIBRIUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -8086,6 +12004,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -8108,7 +12081,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R2",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -8180,6 +12153,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -8202,7 +12230,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R2",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -8328,6 +12356,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -8350,7 +12433,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -8422,6 +12505,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -8444,7 +12582,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -8570,6 +12708,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -8592,7 +12785,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -8664,6 +12857,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -8686,7 +12934,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-FLUID-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -8812,6 +13060,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -8834,7 +13137,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-FREE-FALL-G",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -8929,6 +13232,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -8951,7 +13309,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-FREE-FALL-G",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -9101,6 +13459,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -9123,7 +13536,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -9216,6 +13629,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -9238,7 +13706,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -9390,6 +13858,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -9412,7 +13935,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -9491,6 +14014,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -9513,7 +14091,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-MASS-WEIGHT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -9641,6 +14219,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -9663,7 +14296,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -9755,6 +14388,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -9777,7 +14465,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -9923,6 +14611,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -9945,7 +14688,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -10017,6 +14760,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -10039,7 +14837,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -10165,6 +14963,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -10187,7 +15040,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -10259,6 +15112,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -10281,7 +15189,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-GRAV-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -10407,6 +15315,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -10429,7 +15392,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -10567,6 +15530,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -10589,7 +15607,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -10773,6 +15791,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -10795,7 +15868,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -10987,6 +16060,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -11009,7 +16137,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -11247,6 +16375,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -11269,7 +16452,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-AVERAGE-RATES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -11357,6 +16540,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -11379,7 +16617,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-AVERAGE-RATES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -11521,6 +16759,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -11543,7 +16836,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -11724,6 +17017,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -11746,7 +17094,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -11985,6 +17333,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -12007,7 +17410,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -12246,6 +17649,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -12268,7 +17726,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -12566,6 +18024,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -12588,7 +18101,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -12659,6 +18172,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -12681,7 +18249,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -12805,6 +18373,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -12827,7 +18450,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -13056,6 +18679,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -13078,7 +18756,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -13361,6 +19039,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -13383,7 +19116,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -13586,6 +19319,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -13608,7 +19396,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -13867,6 +19655,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -13889,7 +19732,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -13980,6 +19823,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -14002,7 +19900,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -14146,6 +20044,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -14168,7 +20121,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -14247,6 +20200,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -14269,7 +20277,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -14402,6 +20410,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -14424,7 +20487,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-COMPARE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -14501,6 +20564,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -14523,7 +20641,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-COMPARE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -14654,6 +20772,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -14676,7 +20849,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-MA",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -14773,6 +20946,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -14795,7 +21023,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-MA",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -14950,6 +21178,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -14972,7 +21255,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-TRADEOFF",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -15049,6 +21332,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -15071,7 +21409,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-MACHINE-TRADEOFF",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -15202,6 +21540,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -15224,7 +21617,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -15331,6 +21724,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -15353,7 +21801,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -15500,6 +21948,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -15522,7 +22025,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -15616,6 +22119,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -15638,7 +22196,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -15786,6 +22344,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -15808,7 +22421,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -15879,6 +22492,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -15901,7 +22569,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -16026,6 +22694,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -16048,7 +22771,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRAME-CHOICE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -16154,6 +22877,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -16176,7 +22954,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRAME-CHOICE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -16336,6 +23114,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -16358,7 +23191,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRICTION-QUANT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -16482,6 +23315,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -16504,7 +23392,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRICTION-QUANT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -16668,6 +23556,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -16690,7 +23633,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRICTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -16776,6 +23719,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -16798,7 +23796,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-FRICTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -16938,6 +23936,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -16960,7 +24013,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -17065,6 +24118,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -17087,7 +24195,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -17227,6 +24335,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -17249,7 +24412,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -17378,6 +24541,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -17400,7 +24618,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-MOMENTUM-TRANSFER-RATE",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -17569,6 +24787,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -17591,7 +24864,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -17662,6 +24935,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -17684,7 +25012,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -17808,6 +25136,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -17830,7 +25213,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-SECOND-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -17930,6 +25313,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -17952,7 +25390,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-SECOND-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -18105,6 +25543,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -18127,7 +25620,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -18230,6 +25723,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -18252,7 +25800,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -18390,6 +25938,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -18412,7 +26015,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-THIRD-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -18485,6 +26088,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -18507,7 +26165,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-NLM-THIRD-LAW",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -18633,6 +26291,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -18655,7 +26368,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -18726,6 +26439,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -18748,7 +26516,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -18873,6 +26641,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -18895,7 +26718,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -18967,6 +26790,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -18989,7 +26867,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -19115,6 +26993,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -19137,7 +27070,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -19209,6 +27142,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -19231,7 +27219,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -19357,6 +27345,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -19379,7 +27422,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -19451,6 +27494,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -19473,7 +27571,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-ROT-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -19599,6 +27697,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -19621,7 +27774,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-LONGITUDINAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -19708,6 +27861,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -19730,7 +27938,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-LONGITUDINAL",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -19867,6 +28075,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -19889,7 +28152,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-PERCEPTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -19978,6 +28241,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -20000,7 +28318,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-PERCEPTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -20138,6 +28456,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -20160,7 +28533,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-REFLECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -20259,6 +28632,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -20281,7 +28709,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-REFLECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -20434,6 +28862,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -20456,7 +28939,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -20537,6 +29020,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -20559,7 +29097,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-SOURCE-MEDIUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -20690,6 +29228,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -20712,7 +29305,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -20994,6 +29587,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -21016,7 +29664,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -21352,6 +30000,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -21374,7 +30077,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -21445,6 +30148,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -21467,7 +30225,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R1",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -21592,6 +30350,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -21614,7 +30427,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -21686,6 +30499,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -21708,7 +30576,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R3",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -21834,6 +30702,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -21856,7 +30779,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -21928,6 +30851,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -21950,7 +30928,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R4",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -22076,6 +31054,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -22098,7 +31131,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -22170,6 +31203,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -22192,7 +31280,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-THERMO-R5",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -22318,6 +31406,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -22340,7 +31483,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -22454,6 +31597,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -22476,7 +31674,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -22654,6 +31852,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -22676,7 +31929,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-COMPONENT-SUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -22755,6 +32008,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -22777,7 +32085,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-COMPONENT-SUM",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -22906,6 +32214,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -22928,7 +32291,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -23017,6 +32380,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -23039,7 +32457,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -23163,6 +32581,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -23185,7 +32658,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -23271,6 +32744,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -23293,7 +32821,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-RESULTANT-CONSTRAINT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -23429,6 +32957,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -23451,7 +33034,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-SUB-ORDER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -23526,6 +33109,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -23548,7 +33186,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-SUB-ORDER",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -23676,6 +33314,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -23698,7 +33391,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -23782,6 +33475,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -23804,7 +33552,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -23923,6 +33671,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -23945,7 +33748,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-UNIT-NOTATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -24020,6 +33823,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -24042,7 +33900,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-VEC-UNIT-NOTATION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -24147,6 +34005,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -24169,7 +34082,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -24284,6 +34197,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -24306,7 +34274,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -24477,6 +34445,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -24499,7 +34522,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-GRADE9-QUANT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -24603,6 +34626,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -24625,7 +34703,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-GRADE9-QUANT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -24783,6 +34861,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -24805,7 +34938,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -24895,6 +35028,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -24917,7 +35105,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -25061,6 +35249,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -25083,7 +35326,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -25156,6 +35399,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -25178,7 +35476,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-NET-WORK-SIGN",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -25304,6 +35602,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -25326,7 +35679,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -25397,6 +35750,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -25419,7 +35827,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -25544,6 +35952,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -25566,7 +36029,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-POWER-RATES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -25660,6 +36123,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -25682,7 +36200,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-POWER-RATES",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -25830,6 +36348,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -25852,7 +36425,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-WORK-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -25923,6 +36496,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -25945,7 +36573,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-PHY-WEP-WORK-DIRECTION",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -26070,6 +36698,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -26092,7 +36775,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-SAME-TIME",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -26174,6 +36857,61 @@ window.GRADE9V3_CORE = {
           ]
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -26196,7 +36934,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-SAME-TIME",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -26314,6 +37052,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -26336,7 +37129,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-SIGNED-COMPONENT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -26454,6 +37247,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -26476,7 +37324,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-SIGNED-COMPONENT",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -26620,6 +37468,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -26642,7 +37545,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-VECTOR-VS-SCALAR",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1A",
         "orientation": null,
         "concept": {
@@ -26713,6 +37616,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "READING_CONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "slot_order": [
+              "identity",
+              "construction",
+              "repair_closure"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": false,
+              "solution_policy": "FROM_PROJECTION"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": true,
@@ -26735,7 +37693,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "MIC-VECTOR-VS-SCALAR",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE1B",
         "orientation": null,
         "concept": {
@@ -26855,6 +37813,61 @@ window.GRADE9V3_CORE = {
           "worked_anchors": []
         },
         "application": null,
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+            "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "GUIDED_RECONSTRUCTION",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "reconstruction"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "ANSWER_BEFORE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -26877,7 +37890,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": null,
@@ -26995,6 +38008,62 @@ window.GRADE9V3_CORE = {
             "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -27017,7 +38086,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": {
@@ -27332,6 +38401,62 @@ window.GRADE9V3_CORE = {
             "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -27354,7 +38479,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": null,
@@ -27471,6 +38596,62 @@ window.GRADE9V3_CORE = {
             "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -27493,7 +38674,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": null,
@@ -27608,6 +38789,62 @@ window.GRADE9V3_CORE = {
             "output": "same-height event condition and its validity boundary"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -27630,7 +38867,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": null,
@@ -27745,6 +38982,62 @@ window.GRADE9V3_CORE = {
             "output": "one physically valid plane state reconstructed from simultaneous components"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": false,
           "show_full_construction": false,
@@ -27767,7 +39060,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2B",
         "orientation": null,
         "concept": null,
@@ -27888,6 +39181,61 @@ window.GRADE9V3_CORE = {
             "output": "per-axis model-validity decision"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -27912,7 +39260,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2B",
         "orientation": null,
         "concept": {
@@ -28229,6 +39577,61 @@ window.GRADE9V3_CORE = {
             "output": "gravity-only projectile acceleration state"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -28253,7 +39656,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2B",
         "orientation": null,
         "concept": null,
@@ -28381,6 +39784,61 @@ window.GRADE9V3_CORE = {
             "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -28405,7 +39863,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2B",
         "orientation": null,
         "concept": null,
@@ -28547,6 +40005,61 @@ window.GRADE9V3_CORE = {
             "output": "checked projectile consequence at one physical event"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -28571,7 +40084,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2B",
         "orientation": null,
         "concept": null,
@@ -28709,6 +40222,61 @@ window.GRADE9V3_CORE = {
             "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
           }
         },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
         "presentation": {
           "attempt_before_reveal": true,
           "show_full_construction": false,
@@ -28733,7 +40301,7 @@ window.GRADE9V3_CORE = {
       "subject": "Physics",
       "source_ref": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
       "projection": {
-        "contract_version": "1.0",
+        "contract_version": "1.1",
         "core": "CORE2A",
         "orientation": null,
         "concept": {
@@ -29003,6 +40571,62 @@ window.GRADE9V3_CORE = {
             "action": "Compare |f_required| with mu_s N.",
             "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
             "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
           }
         },
         "presentation": {
