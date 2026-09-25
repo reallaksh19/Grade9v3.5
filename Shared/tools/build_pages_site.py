@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parents[2]
 PUBLIC = REPO / "public"
 DOCS = REPO / "docs"
 PAGES_MANIFEST = DOCS / ".pages-manifest.json"
-GENERATOR_VERSION = "1.0.0"
+GENERATOR_VERSION = "1.1.0"
 
 EXTRA_SOURCES = {
     "tools/data.js": "tools/data.js",
@@ -56,14 +56,15 @@ def _public_payload(relative: str, content: bytes) -> bytes:
 
 
 def _render_manifest(files: dict[str, tuple[str, bytes]]) -> bytes:
+    # Keep the deployment manifest structural. Freshness is verified byte-for-byte
+    # by --check, so duplicating content digests here only makes remote generation
+    # needlessly expensive without adding authority.
     rows = []
     for target in sorted(files):
-        source, content = files[target]
+        source, _content = files[target]
         rows.append({
-            "target": target,
             "source": source,
-            "bytes": len(content),
-            "sha256": _sha256(content),
+            "target": target,
         })
     payload = {
         "schema_version": "grade9v3-pages-mirror-v1",
