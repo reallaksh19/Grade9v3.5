@@ -266,6 +266,7 @@ def render_single_file(package: dict[str, Any]) -> bytes:
     semantic = _module("semantic-workbench.mjs")
     page = _module("core-learning-page.mjs")
     host = _module("core-learning-host.mjs")
+    data_json = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="grade9v3-packaging-mode" content="SINGLE_FILE">
@@ -292,7 +293,7 @@ urls.host=URL.createObjectURL(new Blob([SOURCES.host.replace('"./core-learning-p
 await import(urls.semantic);
 await import(urls.page);
 const hostModule=await import(urls.host);
-const data={json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")};
+const data={data_json};
 const row=data.core_projections[0],learner=document.querySelector("#learner");
 hostModule.mountCoreLearningPage(learner,data,row.id,window.CORE_LEARNING_REGISTRIES||{{}});
 document.querySelector("#page-title").textContent=[row.subject,row.projection.core].filter(Boolean).join(" · ");
