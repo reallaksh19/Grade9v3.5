@@ -10,8 +10,8 @@
   },
   "purpose": {
     "programme_outcome": "Define durable learner-facing production templates for all six Core roles without redefining academic truth.",
-    "current_goal": "Converge the #265 stacked implementation and make its current delivery/review state reconstructable.",
-    "task_outcome": "Six-role template contract, role-aware renderer, canonical portable binding, and optional speed-toolkit/publication-audit contract.",
+    "current_goal": "Harden the six-Core blueprint with an explicit authority/dependency graph, then keep the stacked template delivery reconstructable.",
+    "task_outcome": "Six-role template contract plus subject-neutral authority/dependency contract, role-aware renderer, canonical portable binding, and optional speed-toolkit/publication-audit contract.",
     "why_this_task_exists": "Issue #265 requires a reusable production-template layer across the six existing Core roles."
   },
   "lineage": {
@@ -122,17 +122,18 @@
   "programme_parent": null,
   "planning": {
     "state": "PRESENT",
-    "provider_ref": "github:reallaksh19/Grade9V3#265/comment-5818958027",
-    "revision": 4,
+    "provider_ref": "github:reallaksh19/Grade9V3#265/comment-5826153493",
+    "revision": 5,
     "digest": null,
     "observed_at": "2026-09-24T17:30:09Z",
     "responsibility_basis_ref": "github:reallaksh19/Grade9V3#265",
     "responsibility_basis_digest": null,
     "expected_next_observable": {
-      "statement": "A fourth stacked draft PR with the speed-toolkit/publication-audit contracts and no topic-specific academic-content change.",
+      "statement": "A green blueprint authority contract on PR #266, followed by prompt-composer consumption on draft PR #275.",
       "evidence": [
-        "github:reallaksh19/Grade9V3#270",
-        "github:reallaksh19/Grade9V3#265/comment-5819233221"
+        "github:reallaksh19/Grade9V3#265/comment-5826153493",
+        "github:reallaksh19/Grade9V3#266",
+        "github:reallaksh19/Grade9V3#275"
       ]
     }
   },
@@ -157,6 +158,13 @@
       "observed_at": "2026-09-24T17:48:51Z",
       "summary": "Fourth slice delivered as PR #270; later merged into the #268 branch.",
       "exact_head": "b05eb7f015479c942297d7ec7c2139f356e31b8a"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#265/comment-5826153493",
+      "observed_at": "2026-09-25T03:24:00Z",
+      "summary": "Blueprint-level RCA adds a subject-neutral Core authority/dependency graph and makes prompt generators consumers of that authority.",
+      "exact_head": "f9bd6cb21668cf8d76166a5370bb1c53b5e158a0"
     }
   ],
   "programme_progress": null,
@@ -436,11 +444,11 @@
     }
   },
   "delivery": {
-    "pr": 268,
-    "url": "https://github.com/reallaksh19/Grade9V3/pull/268",
+    "pr": 266,
+    "url": "https://github.com/reallaksh19/Grade9V3/pull/266",
     "lifecycle": "DRAFT",
-    "base": "b048e93b84e71a4060ad1a8c35dc325759af4e06",
-    "head": "fdde429c4802e1c5805e57970e95342d21d9cf75",
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "head": "f9bd6cb21668cf8d76166a5370bb1c53b5e158a0",
     "mergeability": "MERGEABLE"
   },
   "delivery_stack": [
@@ -450,10 +458,10 @@
       "title": "[Core Templates] Add six-role learner-product template contract",
       "lifecycle": "DRAFT",
       "relationship": "STACK_PARENT",
-      "base": "226935eda36563ab3619dba871cb55da2b8f1a7c",
-      "head": "fbc5d53680486f999738c62edcc3f036c79850ed",
+      "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+      "head": "f9bd6cb21668cf8d76166a5370bb1c53b5e158a0",
       "mergeability": "MERGEABLE",
-      "note": "First owned slice; still draft against main."
+      "note": "Blueprint slice now also carries the machine-readable Core authority/dependency contract; still draft against main."
     },
     {
       "pr": 267,
@@ -655,12 +663,12 @@
     "lifecycle": "ACTIVE",
     "lease_or_custody": null,
     "executor": "issue-265 primary agent",
-    "route": "ISSUE:#265",
-    "branch": "issue-265/core-portable-binding"
+    "route": "PR:#266 / ISSUE:#265",
+    "branch": "issue-265/core-product-templates"
   },
   "material": {
-    "base": "226935eda36563ab3619dba871cb55da2b8f1a7c",
-    "current_head": "fdde429c4802e1c5805e57970e95342d21d9cf75"
+    "base": "7982850a5d5d5ed133e3098522a889b89f1fc54a",
+    "current_head": "f9bd6cb21668cf8d76166a5370bb1c53b5e158a0"
   },
   "acceptance": [
     {
@@ -694,9 +702,11 @@
   },
   "knowledge_state": {
     "known_true": [
-      "Four planned implementation slices exist.",
-      "#270 is merged into the #268 branch, not main.",
-      "#268 current material head fdde429c4802e1c5805e57970e95342d21d9cf75 passes guardrails #5491."
+      "The six-role template contract exists on PR #266.",
+      "The Core authority/dependency graph is explicit and machine-readable on PR #266.",
+      "Execution order is production control only and cannot rewrite Core authority.",
+      "PR #275 is stacked on PR #266 and consumes the authority contract.",
+      "#270 is merged into the #268 branch, not main."
     ],
     "known_false": [
       "PR #269 was adopted wholesale.",
@@ -718,8 +728,8 @@
     "recent_events": []
   },
   "next": {
-    "immediate_action": "Run the final Common-pinned V3.1 task-binding check on the open stack, then perform final integrated #265 acceptance review.",
-    "next_value_frontier": "Publish terminal TASK_RESULT if #265 acceptance remains satisfied; otherwise publish a bounded PLAN_UPDATE for the concrete residual gap.",
+    "immediate_action": "Refresh generated architecture metadata and prove PR #266 exact-head guardrails/V3.1 binding, then validate the stacked prompt-composer consumer.",
+    "next_value_frontier": "Keep the authority graph reusable across prompt composition, question-set selection and downstream publication without topic-specific exceptions.",
     "stop_conditions": [
       "Do not claim #265 complete merely because #270 merged into #268.",
       "Do not merge the product stack to main without the repository's normal merge authority/review path."
