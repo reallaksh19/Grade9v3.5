@@ -16,7 +16,8 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.contracts import load  # noqa: E402\nfrom Shared.tools import core_authority_contract  # noqa: E402
+from Shared.contracts import load  # noqa: E402
+from Shared.tools import core_authority_contract  # noqa: E402
 
 OUT = REPO / "public/data/prompt-composer-data.js"
 MANIFEST = REPO / "docs/architecture-manifest.json"
