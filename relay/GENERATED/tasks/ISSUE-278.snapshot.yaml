@@ -100,8 +100,8 @@
   "programme_parent": null,
   "planning": {
     "state": "PRESENT",
-    "provider_ref": "github:reallaksh19/Grade9V3#278/comment-5827916220",
-    "revision": 1,
+    "provider_ref": "github:reallaksh19/Grade9V3#278/comment-5828266805",
+    "revision": 2,
     "digest": null,
     "observed_at": "2026-09-25T06:26:00Z",
     "responsibility_basis_ref": "github:reallaksh19/Grade9V3#278",
@@ -120,6 +120,13 @@
       "observed_at": "2026-09-25T06:26:00Z",
       "summary": "Repository-grounded fixed-shell and scalable Question Bank implementation plan.",
       "exact_head": "ca0de27e307e4f532412ac52713a6faf14b216a4"
+    },
+    {
+      "type": "PLAN_UPDATE",
+      "ref": "github:reallaksh19/Grade9V3#278/comment-5828266805",
+      "observed_at": "2026-09-25T06:56:00Z",
+      "summary": "Moved transient saved-view config out of canonical topic-library package namespace and recorded downstream generated-output refresh.",
+      "exact_head": "e21027cc6e7f37c25b2f9f1da1990c1c8e1d3d41"
     }
   ],
   "programme_progress": null,
@@ -348,6 +355,12 @@
         "state": "RESOLVED",
         "ref": "github:reallaksh19/Grade9V3/actions/runs/36104432860",
         "detail": "Initial guardrail found hard-coded subject names in the new generator/header; corrected by deriving labels from governed bank data and active navigation rather than allowlisting engine code."
+      },
+      {
+        "kind": "LIBRARY_NAMESPACE_FINDING",
+        "state": "RESOLVED",
+        "ref": "github:reallaksh19/Grade9V3/actions/runs/36104842576",
+        "detail": "Saved browser-view config moved out of Shared/library because that namespace is reserved for canonical topic-package shapes."
       }
     ],
     "failure_origins": {}
@@ -425,7 +438,6 @@
   "scope": {
     "write": [
       "relay/GENERATED/tasks/ISSUE-278.snapshot.yaml",
-      "Shared/library/question-bank-views.v1.json",
       "Shared/tools/build_question_bank_web.py",
       "public/question-bank/**",
       "public/data/question-bank-data.js",
@@ -441,7 +453,8 @@
       "agents/relay/REPO_PROFILE.yaml",
       "tests/test_question_bank_web.py",
       "docs/<generated Pages mirror>",
-      "docs/architecture-manifest.json"
+      "docs/architecture-manifest.json",
+      "Shared/tools/question-bank-views.v1.json"
     ],
     "read": [
       "Physics/library/exam-bank/**",
@@ -478,7 +491,7 @@
   },
   "material": {
     "base": "ca0de27e307e4f532412ac52713a6faf14b216a4",
-    "current_head": "9e86bfbc3af1d99d3fc5c6170a2bcd46822fe94c"
+    "current_head": "e21027cc6e7f37c25b2f9f1da1990c1c8e1d3d41"
   },
   "acceptance": [
     {
@@ -546,6 +559,11 @@
         "event": "GUARDRAIL_FINDING_RESOLVED",
         "ref": "github:reallaksh19/Grade9V3/actions/runs/36104432860",
         "detail": "Removed nine subject-name literals from engine/runtime code and refreshed generated browser/Pages assets."
+      },
+      {
+        "event": "PLAN_UPDATE",
+        "ref": "github:reallaksh19/Grade9V3#278/comment-5828266805",
+        "detail": "Rev 2 records saved-view config namespace correction and generated-output refresh."
       }
     ]
   },

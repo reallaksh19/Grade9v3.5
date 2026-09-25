@@ -9,7 +9,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "public" / "data" / "question-bank-data.js"
-VIEWS = REPO / "Shared" / "library" / "question-bank-views.v1.json"
+VIEWS = REPO / "Shared" / "tools" / "question-bank-views.v1.json"
 BANK_NAME = "competitive-exam-question-bank.v2.json"
 
 
