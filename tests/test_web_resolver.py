@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from Shared.tools import build_explore_page, derived_artifact_registry, web_resolver
+from Shared.tools import build_explore_page, derived_artifact_registry, web_resolver, web_validator
 
 MOTION = "MATRIX-PHY-KIN-2D-MOTION"
 NLM = "MATRIX-PHY-NLM-FIRST-LAW"
@@ -139,6 +139,27 @@ class WebResolverTests(unittest.TestCase):
         resolved = web_resolver.resolve(req, route_artifact=route)
         self.assertNotEqual(resolved["request_satisfaction"], "HOLD")
         self.assertEqual(resolved["target_route"]["contract_version"], "1.1.0")
+
+
+class WebValidatorTests(unittest.TestCase):
+    def test_validator_re_reads_authority_and_rejects_tampered_receipt(self):
+        req = request(
+            "Physics", {"matrix_ref": MOTION, "rung": "R1"},
+            "EXPLORE", interaction="REQUIRED",
+        )
+        plan = web_resolver.resolve(req)
+        good = web_validator.validate(req, plan)
+        self.assertTrue(good["passed"])
+        self.assertTrue(good["release_ready"])
+
+        tampered = dict(plan)
+        tampered["request_satisfaction"] = "DEGRADED_ACCEPTABLE"
+        bad = web_validator.validate(req, tampered)
+        self.assertFalse(bad["passed"])
+        self.assertTrue(any(
+            row["code"] == "WEB_RESOLUTION_STALE_OR_DIVERGENT"
+            for row in bad["findings"]
+        ))
 
 
 class DerivedArtifactRegistryTests(unittest.TestCase):
