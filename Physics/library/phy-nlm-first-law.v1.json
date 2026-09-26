@@ -7645,6 +7645,262 @@
           "visual_stage_ref": "VIS-NLM-TOPF-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-CONTACT-LOSS-10-30",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the pushed and pulled blocks so the contact model is tested by the sign of N in each case.",
+      "required_elements": [
+        "A 2 kg and B 3 kg with 10 N on A and F on B",
+        "common a and contact force",
+        "contact decision per case"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "A 2 kg and B 3 kg with 10 N on A and F on B",
+        "common a and contact force",
+        "contact decision per case"
+      ],
+      "instance_constraints": [
+        "The floor is smooth.",
+        "The contact can push but not pull."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Keeping a common acceleration when N comes out negative."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CONTACT-LOSS-10-30.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CONTACTLOSS-V0",
+          "label": "The blocks",
+          "purpose": "Show A behind B, the 10 N push and the pull F.",
+          "visible_elements": [
+            "A 2 kg and B 3 kg with 10 N on A and F on B"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CONTACTLOSS-V1",
+          "label": "Assume contact",
+          "purpose": "Write the common acceleration and A's equation with the contact force.",
+          "visible_elements": [
+            "A 2 kg and B 3 kg with 10 N on A and F on B",
+            "common a and contact force"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CONTACTLOSS-V2",
+          "label": "Test N",
+          "purpose": "Keep contact only where N ≥ 0.",
+          "visible_elements": [
+            "A 2 kg and B 3 kg with 10 N on A and F on B",
+            "common a and contact force",
+            "contact decision per case"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CONTACTLOSS-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CONTACTLOSS-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CONTACTLOSS-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-HEAVY-PULLEY-3KG-1KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the two masses over a heavy pulley so the length constraint and the equal-tension model are judged separately.",
+      "required_elements": [
+        "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
+        "length relation kept, equal tension dropped",
+        "T_A = 18 N and T_B = 14 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "read_order": [
+        "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
+        "length relation kept, equal tension dropped",
+        "T_A = 18 N and T_B = 14 N"
+      ],
+      "instance_constraints": [
+        "No rotational law is supplied or invented.",
+        "Coordinates are measured away from the pulley."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Writing one T for both segments of a heavy pulley."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-HEAVY-PULLEY-3KG-1KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-HEAVYPULLEY-V0",
+          "label": "The set-up",
+          "purpose": "Show A and B over the heavy pulley with A's measured acceleration.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HEAVYPULLEY-V1",
+          "label": "Which relation survives",
+          "purpose": "Keep the length relation, drop equal tension.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
+            "length relation kept, equal tension dropped"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HEAVYPULLEY-V2",
+          "label": "Each segment's tension",
+          "purpose": "Find each tension from its own body.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
+            "length relation kept, equal tension dropped",
+            "T_A = 18 N and T_B = 14 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-HEAVYPULLEY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-HEAVYPULLEY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-HEAVYPULLEY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-LAB-AXES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block on the incline with lab axes so the stay-on-plane condition is written as a ratio of acceleration components.",
+      "required_elements": [
+        "2 kg block on a smooth 30° incline with lab axes",
+        "weight and normal force with lab equations",
+        "N, a_x, a_y and |a|"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2 kg block on a smooth 30° incline with lab axes",
+        "weight and normal force with lab equations",
+        "N, a_x, a_y and |a|"
+      ],
+      "instance_constraints": [
+        "The incline slopes down to the right.",
+        "The block stays on the smooth plane."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting a_y = 0 in lab axes."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-LAB-AXES.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LABAXES-V0",
+          "label": "The block and axes",
+          "purpose": "Show the block on the incline and Student B's lab axes.",
+          "visible_elements": [
+            "2 kg block on a smooth 30° incline with lab axes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LABAXES-V1",
+          "label": "Lab-axis equations",
+          "purpose": "Write both equations and the stay-on-plane condition in lab axes.",
+          "visible_elements": [
+            "2 kg block on a smooth 30° incline with lab axes",
+            "weight and normal force with lab equations"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LABAXES-V2",
+          "label": "Results",
+          "purpose": "Solve and compare with the plane-axis result.",
+          "visible_elements": [
+            "2 kg block on a smooth 30° incline with lab axes",
+            "weight and normal force with lab equations",
+            "N, a_x, a_y and |a|"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LABAXES-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LABAXES-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LABAXES-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -12420,10 +12676,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-CONTACT-LOSS-10-30",
+        "bound_ref": "REP-NLM-CONTACT-LOSS-10-30",
         "stage_refs": [
-          "VIS-NLM-FBD-V0"
+          "VIS-NLM-CONTACTLOSS-V0"
         ]
       },
       "failure_signal": "You wrote a = 40/5 = 8 m/s² for both blocks at F = 30 N: that needs the contact to pull A forward with 6 N, which it cannot do, so B pulls away.",
@@ -12621,10 +12877,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-HEAVY-PULLEY-3KG-1KG",
+        "bound_ref": "REP-NLM-HEAVY-PULLEY-3KG-1KG",
         "stage_refs": [
-          "VIS-NLM-FBD-V0"
+          "VIS-NLM-HEAVYPULLEY-V0"
         ]
       },
       "failure_signal": "You used one T = 15 N from the ideal Atwood result, or dropped a_A + a_B = 0 along with equal tension: the length relation still holds, but the two tensions, 18 N and 14 N, differ.",
@@ -13440,10 +13696,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-INCLINE-LAB-AXES",
+        "bound_ref": "REP-NLM-INCLINE-LAB-AXES",
         "stage_refs": [
-          "VIS-NLM-FBD-V0"
+          "VIS-NLM-LABAXES-V0"
         ]
       },
       "failure_signal": "You set a_y = 0 (or a_x = 0) in Student B's axes: neither lab component vanishes, because the acceleration points along the slope. Or you set N = mg, which would need zero vertical acceleration.",
