@@ -575,6 +575,57 @@
       ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-001",
+        "EV-PHY-11-MIP-05-002",
+        "EV-PHY-11-MIP-05-003",
+        "EV-PHY-11-MIP-05-004",
+        "EV-PHY-11-MIP-05-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-05-003",
+            "EV-PHY-11-MIP-05-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-05-006"
+          ]
+        }
+      },
+      "action": "Add or subtract any number of plane vectors by summing their components, and find the magnitude and direction of the resultant of two vectors from the law of cosines and the law of sines.",
+      "success_criterion": "Sums like components with their signs, rebuilds the resultant's magnitude and angle, and uses R^2 = A^2 + B^2 + 2AB cos(theta) only with theta taken between the vectors drawn tail to tail.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-04"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: addition and subtraction of vectors (analytical method using rectangular components)",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -1183,6 +1234,158 @@
         "CAP-PHY-MIP-03"
       ],
       "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-2-1"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-002",
+        "EV-PHY-11-MIP-05-001",
+        "EV-PHY-11-MIP-05-002",
+        "EV-PHY-11-MIP-05-006",
+        "EV-PHY-11-MIP-05-005",
+        "EV-PHY-11-MIP-05-007",
+        "EV-PHY-11-MIP-05-008",
+        "EV-PHY-11-MIP-05-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-002",
+            "EV-PHY-11-MIP-05-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-05-006"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-05-005",
+            "EV-PHY-11-MIP-05-006",
+            "EV-PHY-11-MIP-05-007",
+            "EV-PHY-11-MIP-05-008"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-05-009",
+            "EV-PHY-11-MIP-05-006",
+            "EV-PHY-11-MIP-05-008"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Vector addition: analytical method",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-05",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The algebra is routine, but choosing the correct angle for the law of cosines and keeping component signs straight across many vectors trips learners.",
+      "entry_assumptions": [
+        "Can resolve a vector into signed rectangular components and rebuild its magnitude and angle.",
+        "Can add vectors head to tail."
+      ],
+      "inferential_jump": "Because each component of a resultant is the sum of the corresponding components, vectors are added exactly by adding numbers axis by axis, and for two vectors the same geometry gives R^2 = A^2 + B^2 + 2AB cos(theta) with theta measured tail to tail.",
+      "teaching_path": [
+        {
+          "id": "MIP05-1",
+          "role": "DECLARE",
+          "action": "Declare one pair of axes for all the vectors.",
+          "why_valid": "Components can be summed only if they refer to the same axes.",
+          "inputs": [],
+          "output": "x and y axes shared by A, B, C, ..."
+        },
+        {
+          "id": "MIP05-2",
+          "role": "TRANSFORM",
+          "action": "Resolve every vector and add the x-components and the y-components separately.",
+          "why_valid": "Each component of the resultant is the sum of the corresponding components.",
+          "inputs": [],
+          "output": "R_x = A_x + B_x + ..., R_y = A_y + B_y + ...",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP05-3",
+          "role": "TRANSFORM",
+          "action": "Rebuild the resultant's magnitude and angle.",
+          "why_valid": "The magnitude-angle description follows from the components.",
+          "inputs": [],
+          "output": "R = sqrt(R_x^2 + R_y^2), tan(phi) = R_y/R_x"
+        },
+        {
+          "id": "MIP05-4",
+          "role": "TRANSFORM",
+          "action": "For exactly two vectors, use the law of cosines with the tail-to-tail angle.",
+          "why_valid": "The parallelogram geometry gives R^2 = A^2 + B^2 + 2AB cos(theta).",
+          "inputs": [],
+          "output": "R^2 = A^2 + B^2 + 2AB cos(theta)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP05-5",
+          "role": "VERIFY",
+          "action": "Compare with the textbook boat example: 25 km/h north with a 10 km/h current 60 degrees east of south.",
+          "why_valid": "The angle between north and 60 degrees east of south, tail to tail, is 120 degrees.",
+          "inputs": [],
+          "output": "R = sqrt(25^2 + 10^2 + 2(25)(10)cos120) = 22 km/h",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-05-COMPONENT-SUM",
+        "REL-PHY-MIP-05-LAW-OF-COSINES"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-05-COMPONENT-TABLE"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-05"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude of a resultant is the sum or difference of the magnitudes.",
+          "diagnostic_prompt": "Is |A + B| = |A| + |B| for two vectors at 90 degrees?",
+          "repair": "No. The resultant is a parallelogram diagonal, whose length is not a simple sum of the sides; here R^2 = A^2 + B^2."
+        },
+        {
+          "wrong_idea": "The angle in the law of cosines is whatever angle appears between the arrows in the problem's picture.",
+          "diagnostic_prompt": "A boat heads north and the current flows 60 degrees east of south. What theta goes into R^2 = A^2 + B^2 + 2AB cos(theta)?",
+          "repair": "theta is the angle between the vectors drawn from a common origin: north and 60 degrees east of south are 120 degrees apart, not 60 degrees."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Add A = 3i + 4j and B = -i + 2j by components, and give the magnitude of the resultant.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "R = 2i + 6j, with magnitude sqrt40, about 6.3.",
+          "reasoning": [
+            "R_x = 3 + (-1) = 2.",
+            "R_y = 4 + 2 = 6.",
+            "R = sqrt(2^2 + 6^2) = sqrt40 = 6.32."
+          ],
+          "check": "R is shorter than |A| + |B| = 5 + sqrt5 = 7.24, as it must be.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "Gives the exact component method and the law of cosines verified wording, with the textbook boat example pinning the tail-to-tail angle convention.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-04"
+      ],
+      "lineage": []
     }
   ],
   "relations": [
@@ -1717,6 +1920,173 @@
         "A is never smaller than |A_x| or |A_y|."
       ],
       "gate_relation_ref": "REL-PHY-MIP-04-MAGNITUDE-ANGLE"
+    },
+    {
+      "id": "REL-PHY-MIP-05-COMPONENT-SUM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-001",
+        "EV-PHY-11-MIP-05-004",
+        "EV-PHY-11-MIP-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-05-001"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-04-006"
+          ]
+        }
+      },
+      "expression": "R = A + B => R_x = A_x + B_x, R_y = A_y + B_y",
+      "meaning": "Each component of a resultant is the sum of the corresponding components of the vectors added, and the method extends to adding and subtracting any number of vectors.",
+      "symbols": [
+        {
+          "symbol": "A_x, A_y, B_x, B_y",
+          "meaning": "signed rectangular components of A and B",
+          "unit_or_domain": "real numbers, unit of the quantity"
+        },
+        {
+          "symbol": "R_x, R_y",
+          "meaning": "components of the resultant",
+          "unit_or_domain": "real numbers, unit of the quantity"
+        }
+      ],
+      "conditions": [
+        "All components are taken along the same pair of axes.",
+        "Components carry their signs, which depend on each vector's angle with the x-axis."
+      ],
+      "derivation": [
+        {
+          "id": "REL05S-1",
+          "role": "DECLARE",
+          "action": "Write both vectors in unit-vector form on one set of axes.",
+          "why_valid": "Resolution gives A = A_x i + A_y j and B = B_x i + B_y j.",
+          "inputs": [],
+          "output": "A = A_x i + A_y j, B = B_x i + B_y j"
+        },
+        {
+          "id": "REL05S-2",
+          "role": "TRANSFORM",
+          "action": "Add and group the i terms and the j terms.",
+          "why_valid": "Vector addition is commutative and associative, so terms may be regrouped.",
+          "inputs": [],
+          "output": "R = (A_x + B_x) i + (A_y + B_y) j",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "The component sums give R exactly; the accuracy of the graphical method is limited by the drawing."
+      ],
+      "checks": [
+        "Subtraction uses the same rule with B's components negated.",
+        "R_x = 0 means R lies along the y-axis."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-05-COMPONENT-SUM"
+    },
+    {
+      "id": "REL-PHY-MIP-05-LAW-OF-COSINES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-002",
+        "EV-PHY-11-MIP-05-003",
+        "EV-PHY-11-MIP-05-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-05-003"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-05-003"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-05-006"
+          ]
+        }
+      },
+      "expression": "R^2 = A^2 + B^2 + 2AB cos(theta); R/sin(theta) = A/sin(beta) = B/sin(alpha)",
+      "meaning": "For two vectors at angle theta, the law of cosines gives the magnitude of their resultant and the law of sines gives its direction.",
+      "symbols": [
+        {
+          "symbol": "A, B",
+          "meaning": "magnitudes of the two vectors",
+          "unit_or_domain": "non-negative"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "angle between A and B drawn from a common origin",
+          "unit_or_domain": "0 to 180 degrees"
+        },
+        {
+          "symbol": "R",
+          "meaning": "magnitude of the resultant",
+          "unit_or_domain": "non-negative"
+        },
+        {
+          "symbol": "alpha, beta",
+          "meaning": "angles the resultant makes with A and with B",
+          "unit_or_domain": "angles"
+        }
+      ],
+      "conditions": [
+        "theta is the angle between A and B when both are drawn from a common origin (tails together)."
+      ],
+      "derivation": [
+        {
+          "id": "REL05C-1",
+          "role": "DECLARE",
+          "action": "Draw A and B from a common origin O at angle theta and complete the parallelogram.",
+          "why_valid": "The diagonal OS is the resultant by the parallelogram law.",
+          "inputs": [],
+          "output": "OS = R"
+        },
+        {
+          "id": "REL05C-2",
+          "role": "TRANSFORM",
+          "action": "Resolve along A: the diagonal has components A + B cos(theta) and B sin(theta).",
+          "why_valid": "B's projection on A's line is B cos(theta); the perpendicular part is B sin(theta).",
+          "inputs": [],
+          "output": "R^2 = (A + B cos(theta))^2 + (B sin(theta))^2",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL05C-3",
+          "role": "TRANSFORM",
+          "action": "Expand and use cos^2 + sin^2 = 1.",
+          "why_valid": "Algebra.",
+          "inputs": [],
+          "output": "R^2 = A^2 + B^2 + 2AB cos(theta)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "For more than two vectors the component method is the practical route."
+      ],
+      "checks": [
+        "theta = 0 gives R = A + B; theta = 180 degrees gives R = |A - B|.",
+        "theta = 90 degrees gives R^2 = A^2 + B^2."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-05-LAW-OF-COSINES"
     }
   ],
   "representations": [
@@ -2012,6 +2382,74 @@
           "in_words": "The angle that fixes both component signs."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-05-COMPONENT-TABLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-001",
+        "EV-PHY-11-MIP-05-004",
+        "EV-PHY-11-MIP-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-05-004"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-04-006"
+          ]
+        }
+      },
+      "kind": "COMPONENT_SUM_TABLE",
+      "purpose": "List every vector's signed x and y components in two columns with a totals row, beside a sketch of the resultant, so exact addition is done column by column.",
+      "required_elements": [
+        "declared axes",
+        "one row per vector with signed x and y components",
+        "totals row R_x and R_y",
+        "resultant arrow built from the totals",
+        "magnitude and angle of the resultant"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-05-COMPONENT-SUM"
+      ],
+      "read_order": [
+        "declared axes",
+        "one row per vector with signed x and y components",
+        "totals row R_x and R_y",
+        "resultant arrow built from the totals",
+        "magnitude and angle of the resultant"
+      ],
+      "instance_constraints": [
+        "Every row uses the same axes.",
+        "Subtracted vectors enter with both components negated.",
+        "The resultant's angle is placed in the quadrant given by the signs of R_x and R_y."
+      ],
+      "accessibility": [
+        "Signs are written explicitly, including + signs.",
+        "The totals row is labelled in text."
+      ],
+      "misleading_alternatives": [
+        "Adding magnitudes in a single column.",
+        "Mixing components taken on different axes in one column."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "totals row R_x and R_y",
+          "symbol": "R_x, R_y",
+          "in_words": "The resultant's components, each the sum of its column."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -2206,6 +2644,54 @@
         "Q-PHY-MIP-04-NCERT-3-19",
         "Q-PHY-MIP-04-EXEMPLAR-4-3",
         "Q-PHY-MIP-04-EXEMPLAR-4-4"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-05",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Resultants by components and by the law of cosines",
+      "capability_refs": [
+        "CAP-PHY-MIP-05"
+      ],
+      "solution_structure": [
+        "Declare axes and resolve each vector.",
+        "Sum components or apply the law of cosines with the tail-to-tail angle.",
+        "Rebuild magnitude and direction and compare with the path or the options."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose components for many vectors, the law of cosines for two.",
+        "representation_translation": "Translate a route or an angle description into signed components.",
+        "reasoning_steps": "Resolve, sum, rebuild, interpret.",
+        "novelty": "The number of vectors, their angles and whether a difference is asked vary."
+      },
+      "safe_variations": [
+        "Change the turning angle or the number of legs of a route.",
+        "Ask for |A - B| instead of |A + B|."
+      ],
+      "transfer_boundaries": [
+        "Use the law of cosines only with the angle between the vectors drawn from a common origin."
+      ],
+      "common_wrong_routes": [
+        "Add magnitudes of legs to get a displacement.",
+        "Use the exterior angle in the law of cosines."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-05-NCERT-3-10",
+        "Q-PHY-MIP-05-EXEMPLAR-4-1",
+        "Q-PHY-MIP-05-EXEMPLAR-4-15"
       ]
     }
   ],
@@ -3475,6 +3961,314 @@
         }
       ],
       "repair_ref": "MIP04-3"
+    },
+    {
+      "id": "Q-PHY-MIP-05-NCERT-3-10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-010",
+        "EV-PHY-11-MIP-05-011",
+        "EV-PHY-11-MIP-05-001",
+        "EV-PHY-11-MIP-01-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-05-010"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-05-010"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-05-011",
+            "EV-PHY-11-MIP-05-001",
+            "EV-PHY-11-MIP-01-006"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.10",
+      "stem": "On an open ground, a motorist follows a track that turns to his left by an angle of 60 degrees after every 500 m. Starting from a given turn, specify the displacement of the motorist at the third, sixth and eighth turn. Compare the magnitude of the displacement with the total path length covered by the motorist in each case.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Each leg is 500 m long and each turn is 60 degrees to the left."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Third turn: 1 km at 60 degrees to the initial direction, path 1.5 km. Sixth turn: null displacement, path 3 km. Eighth turn: 866 m at 30 degrees to the initial direction, path 4 km.",
+        "reasoning": [
+          "Take the first leg along +x; leg k points at 60(k - 1) degrees.",
+          "Three legs: R_x = 500(1 + 0.5 - 0.5) = 500 m, R_y = 500(0 + 0.866 + 0.866) = 866 m, so R = 1000 m at 60 degrees.",
+          "Six legs close a regular hexagon, so the displacement is null while the path is 6 x 500 m = 3 km.",
+          "Eight legs end where two legs end: R_x = 500(1 + 0.5) = 750 m, R_y = 433 m, so R = 866 m at 30 degrees; path 8 x 500 m = 4 km.",
+          "In every case the path length exceeds the displacement magnitude because the direction keeps changing."
+        ],
+        "check": "After six turns the route repeats, so the eighth turn must match the second: 866 m at 30 degrees.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R05-10-REP",
+            "kind": "REPRESENT",
+            "action": "Write each 500 m leg as a vector at 0, 60, 120, ... degrees.",
+            "why_valid": "Each left turn adds 60 degrees to the heading.",
+            "inputs": [],
+            "output": "leg k at 60(k - 1) degrees"
+          },
+          {
+            "id": "R05-10-TR",
+            "kind": "TRANSFORM",
+            "action": "Sum the components of the legs up to each turn.",
+            "why_valid": "Each component of a resultant is the sum of the corresponding components.",
+            "inputs": [],
+            "output": "3 legs: (500, 866) m; 6 legs: (0, 0); 8 legs: (750, 433) m"
+          },
+          {
+            "id": "R05-10-CHK",
+            "kind": "VERIFY",
+            "action": "Rebuild magnitudes and compare with the path lengths.",
+            "why_valid": "Path length is legs x 500 m.",
+            "inputs": [],
+            "output": "1000 m < 1.5 km; 0 < 3 km; 866 m < 4 km"
+          }
+        ],
+        "crux_move_ref": "R05-10-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-05",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-05",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Draw the track: what regular shape do six legs with 60 degree left turns trace out?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R05-10-REP"
+        }
+      ],
+      "repair_ref": "MIP05-2"
+    },
+    {
+      "id": "Q-PHY-MIP-05-EXEMPLAR-4-1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-012",
+        "EV-PHY-11-MIP-04-002",
+        "EV-PHY-11-MIP-05-013",
+        "EV-PHY-11-MIP-04-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-05-012"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-002"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-05-013",
+            "EV-PHY-11-MIP-04-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.1",
+      "stem": "The angle between A = i + j and B = i - j is",
+      "subparts": [],
+      "options": [
+        "(a) 45 degrees",
+        "(b) 90 degrees",
+        "(c) -45 degrees",
+        "(d) 180 degrees"
+      ],
+      "conditions": [
+        "i and j are perpendicular unit vectors."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(b) 90 degrees.",
+        "reasoning": [
+          "A has components (1, 1), so it makes 45 degrees with the x-axis.",
+          "B has components (1, -1), so it makes -45 degrees with the x-axis.",
+          "The angle between them is 45 - (-45) = 90 degrees."
+        ],
+        "check": "|A + B| = |2i| = 2 and |A - B| = |2j| = 2 are equal, which happens only for perpendicular vectors of equal size.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R05-1-TR",
+            "kind": "TRANSFORM",
+            "action": "Find each vector's angle with the x-axis from its components.",
+            "why_valid": "tan(theta) = A_y/A_x with the quadrant from the signs.",
+            "inputs": [],
+            "output": "45 degrees and -45 degrees"
+          },
+          {
+            "id": "R05-1-CON",
+            "kind": "CONNECT",
+            "action": "Subtract the two angles.",
+            "why_valid": "Both are measured from the same axis.",
+            "inputs": [],
+            "output": "90 degrees => (b)"
+          }
+        ],
+        "crux_move_ref": "R05-1-TR"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-05",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-05",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Find the direction of each vector separately before comparing them.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R05-1-TR"
+        }
+      ],
+      "repair_ref": "MIP05-3"
+    },
+    {
+      "id": "Q-PHY-MIP-05-EXEMPLAR-4-15",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-05-014",
+        "EV-PHY-11-MIP-05-006",
+        "EV-PHY-11-MIP-05-015",
+        "EV-PHY-11-MIP-05-002",
+        "EV-PHY-11-MIP-03-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-05",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-05-014"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-05-006"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-05-015",
+            "EV-PHY-11-MIP-05-002",
+            "EV-PHY-11-MIP-03-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.15",
+      "stem": "For two vectors A and B, |A + B| = |A - B| is always true when",
+      "subparts": [],
+      "options": [
+        "(a) |A| = |B| != 0",
+        "(b) A is perpendicular to B",
+        "(c) |A| = |B| != 0 and A and B are parallel or anti parallel",
+        "(d) when either A or B is zero."
+      ],
+      "conditions": [
+        "theta is the angle between A and B drawn from a common origin."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(b) and (d).",
+        "reasoning": [
+          "|A + B|^2 = A^2 + B^2 + 2AB cos(theta).",
+          "A - B = A + (-B), and -B makes angle 180 - theta with A, so |A - B|^2 = A^2 + B^2 - 2AB cos(theta).",
+          "The two are equal exactly when AB cos(theta) = 0: theta = 90 degrees, or A = 0, or B = 0.",
+          "Equal magnitudes alone, (a) or (c), do not make cos(theta) zero."
+        ],
+        "check": "For parallel equal vectors |A + B| = 2A while |A - B| = 0, so (c) fails.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R05-15-CON",
+            "kind": "CONNECT",
+            "action": "Write both magnitudes with the law of cosines.",
+            "why_valid": "Reversing B changes cos(theta) to -cos(theta).",
+            "inputs": [],
+            "output": "|A +/- B|^2 = A^2 + B^2 +/- 2AB cos(theta)"
+          },
+          {
+            "id": "R05-15-DEC",
+            "kind": "DECIDE",
+            "action": "Find when the cross term vanishes.",
+            "why_valid": "The two expressions differ only by it.",
+            "inputs": [],
+            "output": "AB cos(theta) = 0 => (b), (d)"
+          }
+        ],
+        "crux_move_ref": "R05-15-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-05",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-05",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What changes in the law of cosines when B is replaced by -B?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R05-15-CON"
+        }
+      ],
+      "repair_ref": "MIP05-4"
     }
   ],
   "teaching_routes": [],
