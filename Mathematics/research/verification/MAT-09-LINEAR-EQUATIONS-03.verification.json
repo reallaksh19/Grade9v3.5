@@ -1,0 +1,97 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Mathematics",
+  "node_ref": "MAT-09-LINEAR-EQUATIONS-03",
+  "verified_by": "agent-verifier-4",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:cf3de703875ec11e7b4720659c8bfc9334272b44797188f59b0471b0c63628fb",
+  "questions": [
+    {
+      "card_ref": "EV-MAT-09-LEQ-03-008",
+      "independent_solution": [
+        "Open brackets: 3t - 9 = 10t + 5.",
+        "Subtract 3t and 5 from both sides: -14 = 7t, so t = -2.",
+        "Check: 3(-5) = -15 and 5(-3) = -15."
+      ],
+      "independent_answer": "t = -2",
+      "official_answer": "t = -2",
+      "agrees": true,
+      "numeric_check": "(-9-5)/(10-3)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-03-010",
+      "independent_solution": [
+        "Open brackets: 15z - 21 - 18z + 22 = 32z - 52 - 17, i.e. -3z + 1 = 32z - 69.",
+        "Add 3z and 69 to both sides: 70 = 35z, so z = 2.",
+        "Check: LHS 3(3) - 2(7) = -5, RHS 4(3) - 17 = -5."
+      ],
+      "independent_answer": "z = 2",
+      "official_answer": "z = 2",
+      "agrees": true,
+      "numeric_check": "(1+69)/(32+3)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-03-012",
+      "independent_solution": [
+        "Open brackets: f - 0.75 = 0.5f - 0.45.",
+        "Subtract 0.5f and add 0.75: 0.5f = 0.30, so f = 0.6.",
+        "Check: 0.25(2.4 - 3) = -0.15 and 0.05(6 - 9) = -0.15."
+      ],
+      "independent_answer": "f = 0.6",
+      "official_answer": "f = 0.6",
+      "agrees": true,
+      "numeric_check": "(0.75-0.45)/(1-0.5)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-03-014",
+      "independent_solution": [
+        "Combine each side: 8x - 3x - 7 = 5x - 7 and 6x - 2x - 3 = 4x - 3.",
+        "5x - 7 = 4x - 3: subtract 4x, add 7: x = 4.",
+        "Check: 32 - 7 - 12 = 13 and 24 - 8 - 3 = 13."
+      ],
+      "independent_answer": "x = 4",
+      "official_answer": "x = 4",
+      "agrees": true,
+      "numeric_check": "(7-3)/(5-4)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-03-016",
+      "independent_solution": [
+        "Open brackets: 5x - 5 - 2x - 16 = 0, so 3x - 21 = 0.",
+        "3x = 21, x = 7. Check: 5(6) - 2(15) = 0."
+      ],
+      "independent_answer": "x = 7",
+      "official_answer": "x = 7",
+      "agrees": true,
+      "numeric_check": "(5+16)/(5-2)"
+    }
+  ],
+  "records": [
+    {"record_ref": "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM", "checked_fields": ["action", "success_criterion"], "agrees": true},
+    {"record_ref": "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task", "elicitation", "construction_units", "compact_anchor", "badge_reason", "research_contribution"], "agrees": true},
+    {"record_ref": "REL-MAT-LEQ-03-REDUCTION", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REL-MAT-LEQ-03-REDUCED-OUTCOMES", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL", "checked_fields": ["purpose", "instance_constraints", "misleading_alternatives"], "agrees": true},
+    {"record_ref": "FAM-MAT-LEQ-03-REDUCTION", "checked_fields": ["solution_structure", "common_wrong_routes", "demand_dimensions", "transfer_boundaries"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-1A-OPEN-BRACKETS", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": false},
+    {"record_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q58", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q61", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true}
+  ],
+  "findings": [
+    {
+      "target": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10.scaffolds",
+      "duty_for": "AUTHOR",
+      "detail": "Core2B item, transfer.protected_move_ref = Q10-DEC (multiply both sides by 100). scaffolds[1] (hint_ladder order 2, labelled REPRESENT but an EXECUTE step) says 'Once f is found from the whole-number equation ... what is 30 / 50 as a decimal?'. That tells the learner a whole-number equation exists, which is the protected clearing decision, and it gives the final quotient 30/50 = 0.6 before the attempt. Replace this rung with one that neither implies clearing the decimals nor shows 30 and 50."
+    },
+    {
+      "target": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10.transfer.statement",
+      "duty_for": "AUTHOR",
+      "detail": "The novelty statement says 'in the earlier items no denominator was written, so the clearing step had nothing to cue it'. That is false for builds_on item Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS, whose stem x/2 + x/3 = 10 writes its denominators. The real novelty runs the other way: earlier the denominators were visible, and here they are hidden in decimals 0.25 and 0.05. Restate it so the claim is true."
+    }
+  ]
+}
