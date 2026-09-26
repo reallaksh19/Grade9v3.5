@@ -652,12 +652,11 @@
             "NLM1-2",
             "NLM1-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-PUCK-ZERO-NET",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3"
+            "VIS-NLM-PUCK-V0",
+            "VIS-NLM-PUCK-V1",
+            "VIS-NLM-PUCK-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-NET-ZERO-01",
           "misconception_indexes": [
@@ -839,12 +838,11 @@
             "NLM2-2",
             "NLM2-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-LAMP-CANCEL",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3"
+            "VIS-NLM-LAMP-V0",
+            "VIS-NLM-LAMP-V1",
+            "VIS-NLM-LAMP-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-CANCEL-01",
           "misconception_indexes": [
@@ -1454,13 +1452,11 @@
             "NLM6-3",
             "NLM6-4"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-RAMP-PULL-70N",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-RAMP70-V0",
+            "VIS-NLM-RAMP70-V1",
+            "VIS-NLM-RAMP70-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-SECOND-LAW-01",
           "misconception_indexes": [
@@ -3949,6 +3945,277 @@
           "visual_stage_ref": "VIS-NLM-FRAME-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-PUCK-ZERO-NET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the sliding puck with no horizontal force so 'moving' is separated from 'changing velocity'.",
+      "required_elements": [
+        "puck sliding at 4 m/s on smooth ice",
+        "horizontal force list",
+        "equal-time snapshots",
+        "unchanged velocity"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "puck sliding at 4 m/s on smooth ice",
+        "horizontal force list",
+        "equal-time snapshots",
+        "unchanged velocity"
+      ],
+      "instance_constraints": [
+        "Only the horizontal forces are listed; there are none.",
+        "The snapshots are equally spaced."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Drawing a forward force that keeps the puck moving."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-PUCK-ZERO-NET.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PUCK-V0",
+          "label": "The sliding puck",
+          "purpose": "Show the puck after the stick loses contact.",
+          "visible_elements": [
+            "puck sliding at 4 m/s on smooth ice"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUCK-V1",
+          "label": "Forces and snapshots",
+          "purpose": "List the horizontal forces and show equal-time snapshots.",
+          "visible_elements": [
+            "puck sliding at 4 m/s on smooth ice",
+            "horizontal force list",
+            "equal-time snapshots"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUCK-V2",
+          "label": "What zero net force predicts",
+          "purpose": "State the unchanged velocity and the resting case.",
+          "visible_elements": [
+            "puck sliding at 4 m/s on smooth ice",
+            "horizontal force list",
+            "equal-time snapshots",
+            "unchanged velocity"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PUCK-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PUCK-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PUCK-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-LAMP-CANCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the lamp's two nonzero forces as separate contributions whose signed sum is zero.",
+      "required_elements": [
+        "1.5 kg lamp at rest on a vertical cord",
+        "cord force 15 N up",
+        "weight 15 N down",
+        "net force zero",
+        "cut-cord prediction"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "1.5 kg lamp at rest on a vertical cord",
+        "cord force 15 N up",
+        "weight 15 N down",
+        "net force zero",
+        "cut-cord prediction"
+      ],
+      "instance_constraints": [
+        "Both forces are drawn and labelled although they sum to zero.",
+        "Up is positive."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Saying no forces act because the lamp is at rest."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-LAMP-CANCEL.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LAMP-V0",
+          "label": "The hanging lamp",
+          "purpose": "Show the lamp at rest on its cord.",
+          "visible_elements": [
+            "1.5 kg lamp at rest on a vertical cord"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LAMP-V1",
+          "label": "Each force",
+          "purpose": "List each force on the lamp as its own signed contribution.",
+          "visible_elements": [
+            "1.5 kg lamp at rest on a vertical cord",
+            "cord force 15 N up",
+            "weight 15 N down"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LAMP-V2",
+          "label": "Signed sum",
+          "purpose": "Add the forces with signs and predict the cut-cord case.",
+          "visible_elements": [
+            "1.5 kg lamp at rest on a vertical cord",
+            "cord force 15 N up",
+            "weight 15 N down",
+            "net force zero",
+            "cut-cord prediction"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LAMP-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LAMP-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LAMP-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-RAMP-PULL-70N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 10 kg crate on the 30° ramp with its three forces and axes along and across the contact.",
+      "required_elements": [
+        "10 kg crate on a smooth 30° ramp with a 70 N rope pull",
+        "weight, normal force and tension",
+        "along/across axes",
+        "acceleration and normal force"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "10 kg crate on a smooth 30° ramp with a 70 N rope pull",
+        "weight, normal force and tension",
+        "along/across axes",
+        "acceleration and normal force"
+      ],
+      "instance_constraints": [
+        "The rope is parallel to the ramp.",
+        "The perpendicular axis carries a_perp = 0 because the contact is fixed."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking N = mg on a slope.",
+        "Adding mg and its components as separate forces."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-RAMP-PULL-70N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-RAMP70-V0",
+          "label": "The ramp",
+          "purpose": "Show the crate, the ramp and the rope.",
+          "visible_elements": [
+            "10 kg crate on a smooth 30° ramp with a 70 N rope pull"
+          ]
+        },
+        {
+          "id": "VIS-NLM-RAMP70-V1",
+          "label": "Forces and axes",
+          "purpose": "Draw the forces on the crate and the contact-aligned axes.",
+          "visible_elements": [
+            "10 kg crate on a smooth 30° ramp with a 70 N rope pull",
+            "weight, normal force and tension",
+            "along/across axes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-RAMP70-V2",
+          "label": "Results",
+          "purpose": "Solve both axis equations.",
+          "visible_elements": [
+            "10 kg crate on a smooth 30° ramp with a 70 N rope pull",
+            "weight, normal force and tension",
+            "along/across axes",
+            "acceleration and normal force"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-RAMP70-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-RAMP70-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-RAMP70-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -4176,7 +4443,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-PUCK-ZERO-NET",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -4237,7 +4504,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-LAMP-CANCEL",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -4420,7 +4687,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-RAMP-PULL-70N",
         "stage_refs": []
       },
       "failure_signal": null,
