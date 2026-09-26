@@ -1376,7 +1376,7 @@
           "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
           "why_valid": "Contact friction resists relative sliding between the surfaces.",
           "inputs": [],
-          "output": "friction tangent to contact and opposite relative sliding/tendency."
+          "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right"
         },
         {
           "id": "NLM5-3",
@@ -1395,7 +1395,9 @@
           "output": "contact-state check -> friction may be zero when no tangential force is required."
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
       "representation_refs": [],
       "question_family_refs": [
         "FAM-PHY-NLM-INCLINE-MODELLING"
@@ -1495,24 +1497,41 @@
       "construction_units": [
         {
           "id": "CU-PHY-NLM-FRICTION-1",
-          "decision_from": "inferential_jump",
+          "decision": "Before giving friction a direction, imagine the contact made perfectly slippery and ask which way the surfaces would slide relative to each other; friction opposes that, and is zero if there is no such tendency.",
           "step_refs": [
             "NLM5-1",
             "NLM5-2",
             "NLM5-3",
             "NLM5-4"
           ],
-          "representation_ref": null,
-          "reveal_stage_refs": [],
-          "worked_anchor_ref": null,
+          "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "reveal_stage_refs": [
+            "VIS-NLM-FRICTION-V0",
+            "VIS-NLM-FRICTION-V1",
+            "VIS-NLM-FRICTION-V2",
+            "VIS-NLM-FRICTION-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
           "misconception_indexes": [
             0,
             1
           ],
-          "independent_checks": [],
-          "migrated_from": "teaching_path"
+          "independent_checks": [
+            {
+              "statement": "Compare with Newton's second law: if friction is the only horizontal force on the body, it must point the way the body's velocity is changing.",
+              "check_type": "SIGN_AND_DIRECTION"
+            },
+            {
+              "statement": "Remove every sideways push and every change of speed: the friction you predict must fall to zero.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A 2 kg box on a rough floor (μ_s = 0.5, g = 10 m/s²) is pushed sideways with 6 N and does not move. What friction acts on it?",
+        "result": "6 N, opposite the push: rest needs friction to balance the push, and 6 N is within the limit μ_s N = 0.5 × 20 = 10 N."
+      }
     },
     {
       "id": "MIC-PHY-NLM-THIRD-LAW",
@@ -1832,7 +1851,7 @@
       "construction_units": [
         {
           "id": "CU-PHY-NLM-FRICTION-QUANT-1",
-          "decision_from": "inferential_jump",
+          "decision": "Find the actual normal force and the friction that rest would need, compare that need with μ_s N, and use μ N as the friction value only at impending slip or once sliding.",
           "step_refs": [
             "NLM8-1",
             "NLM8-2",
@@ -1847,16 +1866,28 @@
             "VIS-NLM-FRICTION-V3",
             "VIS-NLM-FRICTION-V4"
           ],
-          "worked_anchor_ref": null,
+          "worked_anchor_ref": "Q-PHY-NLM-1A-FRICTION-TEST-01",
           "misconception_indexes": [
             0,
             1,
             2
           ],
-          "independent_checks": [],
-          "migrated_from": "teaching_path"
+          "independent_checks": [
+            {
+              "statement": "Put the friction and acceleration back into the horizontal equation: the pull minus the friction must equal mass times acceleration in each case.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Set the pull to zero: the method must return zero friction, not μ_s N, and zero acceleration.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
         }
-      ]
+      ],
+      "compact_anchor": {
+        "prompt": "A 2 kg block on a floor with μ_s = 0.5 and μ_k = 0.3 is pulled horizontally with 14 N (g = 10 m/s²). Does it stay put, and what is its acceleration?",
+        "result": "N = 20 N, so static friction can give at most 10 N; 14 N > 10 N, so it slides. Then f_k = 0.3 × 20 = 6 N and a = (14 − 6)/2 = 4 m/s²."
+      }
     },
     {
       "id": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
@@ -2019,7 +2050,76 @@
           "answer": "No. Once the constraint no longer keeps their separation fixed, their accelerations must be determined from their new individual dynamics.",
           "confirms": "Common acceleration is conditional on an active kinematic constraint."
         }
-      }
+      },
+      "compact_anchor": {
+        "prompt": "A 30 N push moves a 4 kg block and a 2 kg block together across a smooth floor, the first pressing on the second. What is their shared acceleration?",
+        "result": "The maintained contact fixes their separation, so a_A = a_B = 30/(4 + 2) = 5 m/s²."
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-CONNECTED-COMMON-ACCEL-1",
+          "decision": "Name the physical link that fixes the separation, give both bodies one sign convention, and write a separate Newton-II equation for each body with the interaction force kept in it.",
+          "step_refs": [
+            "NLM9-1",
+            "NLM9-2",
+            "NLM9-3"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Substitute the acceleration and the contact force into both body equations; each must balance on its own.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "The contact force must come out positive in the pushing sense: an ordinary contact can only push, so a negative value means the bodies have separated.",
+              "check_type": "SIGN_AND_DIRECTION"
+            }
+          ]
+        },
+        {
+          "id": "CU-PHY-NLM-CONNECTED-COMMON-ACCEL-2",
+          "decision": "Add the body equations into one system equation only where the internal pair should drop out, then isolate the body that makes the requested interaction force external.",
+          "step_refs": [
+            "NLM9-4",
+            "NLM9-5"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3",
+            "VIS-NLM-FBD-V4"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+          "misconception_indexes": [
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check the body you did not use: its own forces must give its mass times the same acceleration.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Reduce the driving force until the acceleration is zero: the internal force must then equal what simple balance of the isolated body gives.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
@@ -2175,7 +2275,75 @@
           "answer": "No. The ideal redirection assumption has been broken, so equal tension is no longer guaranteed by this model.",
           "confirms": "Uniform tension is model-conditional, not universal."
         }
-      }
+      },
+      "compact_anchor": {
+        "prompt": "A light string over a frictionless, light pulley joins two bodies. The string pulls one of them with 8 N. How hard does it pull the other?",
+        "result": "Also 8 N: under the ideal model T_A = T_B = T, and each pull acts on its own body along its own string segment."
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-IDEAL-STRING-TENSION-1",
+          "decision": "Declare the ideal string before writing a single T, then draw that tension on each attached body, pulling away from the body along its own segment.",
+          "step_refs": [
+            "NLM10-1",
+            "NLM10-2",
+            "NLM10-3"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-STRING-FBD-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "The hanging mass accelerates downward, so the tension on it must come out smaller than its weight; a tension above the weight would make it rise.",
+              "check_type": "SIGN_AND_DIRECTION"
+            },
+            {
+              "statement": "Every term of each body equation must be a force in newtons: a mass times an acceleration, a weight, or the tension.",
+              "check_type": "DIMENSIONAL_HOMOGENEITY"
+            }
+          ]
+        },
+        {
+          "id": "CU-PHY-NLM-IDEAL-STRING-TENSION-2",
+          "decision": "Check that nothing breaks the ideal model, then take the tension from a chosen body's signed Newton-II equation instead of setting it equal to a weight or an applied force.",
+          "step_refs": [
+            "NLM10-4",
+            "NLM10-5"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3",
+            "VIS-NLM-FBD-V4"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+          "misconception_indexes": [
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Let the downward acceleration reach g: the equation must give zero tension, a slack cord.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            },
+            {
+              "statement": "Upward acceleration must raise the tension above the weight and downward acceleration must lower it; a tension on the wrong side of mg shows a sign error.",
+              "check_type": "ORDER_OF_MAGNITUDE"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
@@ -2329,7 +2497,74 @@
           "answer": "No. A movable pulley changes which string segments vary, so the length equation must be rebuilt.",
           "confirms": "This capability is intentionally bounded to one fixed pulley."
         }
-      }
+      },
+      "compact_anchor": {
+        "prompt": "Over a fixed pulley, y_A and y_B are measured away from the pulley along the string. A accelerates away from the pulley at 3 m/s². What is a_B?",
+        "result": "y_A + y_B stays constant, so a_A + a_B = 0 and a_B = −3 m/s²: B accelerates toward the pulley at 3 m/s²."
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-SINGLE-STRING-CONSTRAINT-1",
+          "decision": "Measure both coordinates away from the fixed pulley, write the changing length as y_A + y_B = constant, and differentiate that one relation.",
+          "step_refs": [
+            "NLM11-1",
+            "NLM11-2",
+            "NLM11-3"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "Add the new segment lengths: they must still give the original total.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "If both coordinates grew at once the string would have to stretch, so one must shrink while the other grows.",
+              "check_type": "SIGN_AND_DIRECTION"
+            }
+          ]
+        },
+        {
+          "id": "CU-PHY-NLM-SINGLE-STRING-CONSTRAINT-2",
+          "decision": "Read the signed result back as motion, and keep the length argument for the accelerations separate from the ideal-pulley argument for equal tension.",
+          "step_refs": [
+            "NLM11-4",
+            "NLM11-5"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3",
+            "VIS-NLM-FBD-V4"
+          ],
+          "worked_anchor_ref": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+          "misconception_indexes": [
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Treat both masses as one system driven by the difference of their weights: the acceleration must match the one from the two body equations.",
+              "check_type": "DUAL_FORMALISM_EQUIVALENCE"
+            },
+            {
+              "statement": "Make the two masses equal: both accelerations must be zero and the tension must equal the common weight.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -3529,6 +3764,14 @@
         "Equal tension is what causes the equal-magnitude fixed-pulley acceleration constraint."
       ],
       "item_refs": [
+        "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+        "Q-PHY-NLM-1A-FRICTION-TEST-01",
+        "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+        "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+        "Q-PHY-NLM-1A-STRING-FBD-01",
+        "Q-PHY-NLM-1A-TENSION-VALUE-01",
+        "Q-PHY-NLM-1A-STRING-LENGTH-01",
+        "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
         "Q-PHY-NLM-2A-01",
         "Q-PHY-NLM-2A-COV-02",
         "Q-PHY-NLM-2A-COV-03",
@@ -3633,6 +3876,495 @@
     }
   ],
   "questions": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-FRICTION-DIRECTION-01",
+      "stem": "A book rests on a tray. A waiter first carries the tray at steady speed in a straight line, then speeds up forward; the book never slips. Find the friction force of the tray on the book in each stage, including whether it can be zero.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The book does not slip on the tray at any time.",
+        "The tray stays horizontal."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward.",
+        "reasoning": [
+          "Choose the book as the body; the contact is the tray's top surface, and friction acts along it.",
+          "Steady carry: if the tray became perfectly slippery, the book would keep moving with the tray, so there is no slip tendency and the friction is zero.",
+          "Speeding up: without friction the book would keep its old speed while the tray moved ahead, so the book would slip backward relative to the tray.",
+          "Static friction opposes that tendency, so the tray's friction on the book points forward, the same way the book is moving."
+        ],
+        "check": "The book speeds up forward and friction is the only horizontal force on it, so by F_net = m a that force must point forward, which agrees.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-FRICTION-TEST-01",
+      "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pull is horizontal in both trials.",
+        "The box starts at rest each time."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s².",
+        "reasoning": [
+          "Vertical balance gives N = mg = 4 × 10 = 40 N, so static friction can supply at most μ_s N = 0.5 × 40 = 20 N.",
+          "15 N trial: rest would need friction of 15 N, and 15 N ≤ 20 N, so the box stays at rest with f_s = 15 N and a = 0.",
+          "25 N trial: rest would need 25 N of friction, more than the 20 N available, so the box slides.",
+          "Once sliding, f_k = μ_k N = 0.4 × 40 = 16 N against the motion, so a = (25 − 16)/4 = 2.25 m/s² in the direction of the pull."
+        ],
+        "check": "Had friction been set to 20 N in the 15 N trial, the net force would be 5 N backward on a box at rest, which static friction can never produce.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-CONNECTED-BODIES-01",
+      "stem": "Blocks A (3 kg) and B (2 kg) touch on a smooth floor, A to the left of B. A 20 N force pushes A to the right into B, and a 5 N force pushes B to the left, back toward A. The blocks stay in contact. Write one Newton-II equation per block and solve for their acceleration and the contact force.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The floor is frictionless.",
+        "Take rightward as positive.",
+        "The blocks stay in contact."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The blocks accelerate together at 3 m/s² to the right, and the contact force between them is 11 N.",
+        "reasoning": [
+          "Maintained contact fixes the separation of A and B, so with rightward positive a_A = a_B = a.",
+          "For A: the 20 N push acts right and B pushes back on A with the contact force N, so 20 − N = 3a.",
+          "For B: A pushes B right with N and the 5 N force acts left, so N − 5 = 2a.",
+          "Adding the equations removes N: 15 = 5a, so a = 3 m/s². Then N = 5 + 2 × 3 = 11 N."
+        ],
+        "check": "Check A on its own: 20 − 11 = 9 N, and 3 kg × 3 m/s² = 9 N.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-SYSTEM-CHOICE-01",
+      "stem": "A 2 kg bucket hangs from a light rope tied under a 1 kg bucket. A second rope lifts the top bucket with a 45 N upward force. Take g = 10 m/s² and up as positive. Choose a system to find the acceleration, then a different system to find the tension in the rope between the buckets.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The ropes are light and stay taut.",
+        "Both buckets move together vertically."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The buckets accelerate upward at 5 m/s², and the rope between them carries 30 N.",
+        "reasoning": [
+          "For the acceleration, take both buckets as one system: the connecting rope's pulls are internal and drop out.",
+          "External forces on the system: 45 N up and weight (1 + 2) × 10 = 30 N down, so 45 − 30 = 3a and a = 5 m/s².",
+          "For the connecting rope, isolate the lower bucket: that rope's pull is external to it.",
+          "Lower bucket: T − 2 × 10 = 2 × 5, so T = 30 N."
+        ],
+        "check": "Check the top bucket alone: 45 − 10 − 30 = 5 N, and 1 kg × 5 m/s² = 5 N.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-STRING-FBD-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-STRING-FBD-01",
+      "stem": "A light, taut, inextensible string runs from a 2 kg cart on a smooth table, over a frictionless light pulley at the table's edge, down to a 1 kg hanging mass. Take g = 10 m/s². State the model that allows one tension T, list the forces on each body, and find the acceleration and T.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The table is frictionless.",
+        "The pulley is light and frictionless."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "One T is allowed by the ideal string and pulley. The acceleration is 10/3 ≈ 3.33 m/s² and T = 20/3 ≈ 6.67 N.",
+        "reasoning": [
+          "The string is light, taut and inextensible and the pulley is light and frictionless, so one tension T acts along the whole string.",
+          "On the cart: T pulls it toward the pulley; its weight and the table's normal force balance vertically.",
+          "On the hanging mass: T pulls it up and its 10 N weight pulls it down; both bodies share one acceleration magnitude a.",
+          "Cart: T = 2a. Hanging mass, down positive: 10 − T = 1 × a. Adding gives 10 = 3a, so a = 10/3 m/s² and T = 20/3 N."
+        ],
+        "check": "T ≈ 6.67 N is less than the 10 N weight, as it must be for a mass that accelerates downward.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-TENSION-VALUE-01",
+      "stem": "A 2 kg lamp hangs from a light cord inside a lift. Take up as positive and g = 10 m/s². Find the cord tension when the lift (a) moves up at steady speed, (b) accelerates upward at 2 m/s², and (c) accelerates downward at 3 m/s².",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The lamp moves with the lift.",
+        "The cord is light and stays taut."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The tension is 20 N, 24 N and 14 N in the three cases.",
+        "reasoning": [
+          "Only the cord and the lamp's weight act on the lamp, and nothing makes the cord non-ideal, so T comes from the lamp's own equation: T − 20 = 2a.",
+          "(a) Steady speed means a = 0, so T = 20 N.",
+          "(b) a = +2 m/s², so T = 20 + 2 × 2 = 24 N.",
+          "(c) a = −3 m/s², so T = 20 + 2 × (−3) = 14 N."
+        ],
+        "check": "In free fall, a = −10 m/s², the same equation gives T = 20 − 20 = 0: the cord goes slack, as expected.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-STRING-LENGTH-01",
+      "stem": "One taut inextensible string passes over a fixed pulley and holds A and B. With y_A and y_B measured downward from the pulley along each segment, y_A = 1.2 m and y_B = 0.8 m. A then moves down by 0.3 m. Find B's new position, and B's velocity at an instant when A moves down at 0.5 m/s.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The pulley is fixed.",
+        "The string stays taut and does not stretch."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "B rises to y_B = 0.5 m; when A moves down at 0.5 m/s, v_B = −0.5 m/s, that is 0.5 m/s upward.",
+        "reasoning": [
+          "Both coordinates are measured away from the pulley, so the changing length is y_A + y_B = 1.2 + 0.8 = 2.0 m, fixed.",
+          "After A moves down 0.3 m, y_A = 1.5 m, so y_B = 2.0 − 1.5 = 0.5 m: B has risen 0.3 m.",
+          "Differentiating y_A + y_B = 2.0 m gives v_A + v_B = 0.",
+          "With v_A = +0.5 m/s, v_B = −0.5 m/s: B moves toward the pulley at 0.5 m/s."
+        ],
+        "check": "The new lengths 1.5 m and 0.5 m still add to 2.0 m, so the string has neither stretched nor gone slack.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "evidence_refs": [],
+      "id": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-NLM",
+      "original_identifier": "AUTHOR-NLM-1A-CONSTRAINT-TENSION-01",
+      "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string over a fixed, frictionless, light pulley, with y_A and y_B measured downward from the pulley. Take g = 10 m/s². Using a_A + a_B = 0 and one tension T, find a_A, a_B and T, and name the assumption each of those two relations rests on.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "The string stays taut."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "a_A = +5 m/s² (down), a_B = −5 m/s² (up) and T = 15 N. The acceleration relation rests on the fixed string length; the single T rests on the ideal pulley and string.",
+        "reasoning": [
+          "The fixed total length gives a_A + a_B = 0 in these coordinates; this uses geometry only.",
+          "One tension T is licensed separately, because the string is light and the pulley is light and frictionless.",
+          "Down positive for each mass: A: 30 − T = 3a_A. B: 10 − T = 1 × a_B = −a_A.",
+          "Subtracting B's equation from A's: 20 = 4a_A, so a_A = 5 m/s², a_B = −5 m/s², and T = 30 − 3 × 5 = 15 N."
+        ],
+        "check": "As one system driven by the weight difference, (3 − 1) × 10 = 20 N on 4 kg gives 5 m/s², matching the two body equations.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-NLM-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
+    },
     {
       "id": "Q-PHY-NLM-2A-COV-05",
       "version": "0.1.0",
@@ -4034,21 +4766,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw only the box and the belt surface, with an arrow for how fast each moves. Mark which way the box would slide relative to the belt if the contact were perfectly slippery.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your friction arrow points left because the box 'lags behind': that is the way the box slips relative to the belt, and friction points the opposite way, to the right.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: friction's direction comes from the slip tendency at the contact, not from the object's velocity. The transfer task applies the same rule to a shoe pushing on the ground."
       }
     },
     {
@@ -4296,21 +5037,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw one diagram for each block. On the upper block the only horizontal force is the friction from the lower block; on the lower block, F and the partner of that friction.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your answer is F_max = μ_s m g: that is the friction limit itself, but F must accelerate both blocks, so the limit is scaled up by (M + m)/m.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: for a no-slip threshold, find the shared acceleration from the whole system, then test the friction one block needs against μ_s N. The transfer task leaves the contact state open, so you must first decide whether rest can hold at all."
       }
     },
     {
@@ -4387,21 +5137,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw A and B as two separate diagrams with the contact pair between them, then draw one dashed outline around both blocks.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your contact force equals F: the push on A is not passed to B undiminished, because part of F accelerates A itself; B needs only m_B a.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: maintained contact gives one acceleration, the whole system finds it, and the body that feels a contact force is isolated to find that force. The transfer task adds a third cart and leaves the choice of system to you."
       }
     },
     {
@@ -4481,21 +5240,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw cart A and cart B separately. Put the string's pull on each, along the string away from that cart, and give both the symbol T only after naming the ideal-string assumptions.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your tension equals F: the string has only to accelerate cart B, so T = m_B a, which is less than F.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: an ideal taut string gives one acceleration and one tension, and the tension comes from the body it pulls. The transfer task breaks one ideal assumption, a rough pulley axle, and asks what survives."
       }
     },
     {
@@ -4569,21 +5337,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Sketch the pulley and the two straight segments, and label y_A and y_B as lengths measured from the pulley along each segment.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote a_A = a_B: measured away from the pulley, one segment lengthens while the other shortens, so the signed accelerations must be opposite.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: one fixed pulley and one inextensible string give y_A + y_B = constant, so a_A + a_B = 0 in away-from-pulley coordinates. The transfer task gives the geometry in words with upward coordinates, so the length relation must be rebuilt."
       }
     },
     {
@@ -4770,7 +5547,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
           "MIC-PHY-NLM-FRICTION-QUANT"
-        ]
+        ],
+        "invariant": "The normal force from the actual force balance, the provisional no-slip requirement and its comparison with μ_s N all carry over; what changes is that the contact state is not given and must be decided."
       },
       "repair_ref": "NLM8-2",
       "hint_ladder": [
@@ -4789,9 +5567,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -4891,7 +5672,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-CONNECTED-02",
           "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
-        ]
+        ],
+        "invariant": "Maintained contact still gives one shared acceleration, and a contact force still belongs only in the equation of the body it acts on; what changes is that you choose which system to isolate."
       },
       "repair_ref": "NLM9-5",
       "hint_ladder": [
@@ -4910,9 +5692,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5011,7 +5795,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-IDEAL-STRING-03",
           "MIC-PHY-NLM-IDEAL-STRING-TENSION"
-        ]
+        ],
+        "invariant": "Each body still has its own tension force along its own string segment; what changes is whether the ideal assumptions that allowed one T still hold."
       },
       "repair_ref": "NLM10-4",
       "hint_ladder": [
@@ -5030,9 +5815,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5131,7 +5919,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FIXED-PULLEY-04",
           "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT"
-        ]
+        ],
+        "invariant": "One fixed pulley and one inextensible string still fix the total changing length; what changes is the coordinate direction, and that the geometry arrives in words."
       },
       "repair_ref": "NLM11-2",
       "hint_ladder": [
@@ -5150,9 +5939,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5347,21 +6138,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Sketch the crate and list every horizontal force you can name. If the list is empty, ask what a friction force would have to balance.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "You gave a non-zero friction such as μ_s mg: nothing pushes the crate sideways, so there is no slip tendency and nothing for friction to oppose.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: a rough contact supplies friction only when a slip tendency needs opposing, so a crate at rest with no sideways force has f = 0. The transfer task keeps this rule for a crate that moves together with its platform."
       }
     },
     {
@@ -5439,21 +6239,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the block with the 12 N pull, a friction arrow opposite it, the weight and the normal force. Label the friction f, not μ_s N.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your friction is 30 N: that is the most static friction can give, but a block at rest under a 12 N pull needs only 12 N; 30 N would drive it backward.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: static friction takes whatever value rest requires, up to μ_s N; the limit is a ceiling, not the value. The transfer task tilts the push, so the ceiling itself changes with the force."
       }
     },
     {
@@ -5527,21 +6336,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the sliding block with the 18 N pull to the right, its weight and normal force, and a kinetic-friction arrow pointing opposite the sliding.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your acceleration is 3.6 m/s² (18/5, friction left out) or 5.6 m/s² (friction added to the pull): kinetic friction of 10 N acts against the sliding and must be subtracted.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: once sliding is given, friction is fixed at μ_k N opposite the sliding, and Newton II gives the acceleration. The transfer task moves the applied force onto one block of a stacked pair, so the no-slip test has to be rebuilt."
       }
     },
     {
@@ -5627,7 +6445,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-COV-04",
           "MIC-PHY-NLM-FRICTION"
-        ]
+        ],
+        "invariant": "Friction still opposes the slip tendency at the contact, whatever the object's overall velocity; only the contact changes, from a belt and a box to a shoe and the ground."
       },
       "repair_ref": "NLM5-2",
       "hint_ladder": [
@@ -5646,9 +6465,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5736,7 +6557,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-ZERO-08",
           "MIC-PHY-NLM-FRICTION"
-        ]
+        ],
+        "invariant": "Friction still appears only where the contact has a slip tendency to oppose; what changes is that both surfaces are moving together."
       },
       "repair_ref": "NLM5-4",
       "hint_ladder": [
@@ -5749,9 +6571,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5848,7 +6673,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-STATIC-09",
           "MIC-PHY-NLM-FRICTION-QUANT"
-        ]
+        ],
+        "invariant": "Static friction is still at most μ_s N and equals it only at impending slip; what changes is that the push also presses the block into the floor, so N grows with P."
       },
       "repair_ref": "NLM8-1",
       "hint_ladder": [
@@ -5867,9 +6693,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -5966,7 +6795,8 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
           "MIC-PHY-NLM-FRICTION-QUANT"
-        ]
+        ],
+        "invariant": "The whole system still sets the shared acceleration, and the friction one block needs is still tested against μ_s N; what changes is which block needs the friction."
       },
       "repair_ref": "NLM8-2",
       "hint_ladder": [
@@ -5985,9 +6815,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -6066,21 +6898,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "For each case, draw the two blocks and an arrow for how the force moves A. Mark whether A presses into B or moves away from it.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "You gave both cases the acceleration F/(m_A + m_B): in case 2 that would need an ordinary contact to pull B along, and a contact can only push.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: a common acceleration holds only while a real constraint keeps the separation fixed, and a pushing contact cannot pull. The transfer task asks what each block does once the contact is actually lost."
       }
     },
     {
@@ -6158,21 +6999,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw one diagram per mass, with the tension up and the weight down on each, and mark A's acceleration up and B's down.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0",
+          "VIS-NLM-FBD-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your tension is m_A g or m_B g: while the masses accelerate, the string pulls A harder than A's weight and pulls B less than B's weight.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: the fixed string length gives equal acceleration magnitudes, the ideal pulley gives one T, and each mass's own equation places T between the two weights. The transfer task makes the pulley heavy, so these two claims have to be separated."
       }
     },
     {
@@ -6259,7 +7109,8 @@
         "statement": "The learner must decide that the common-acceleration connected-system model has ceased to apply, rather than being told that contact is maintained.",
         "builds_on": [
           "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11"
-        ]
+        ],
+        "invariant": "A common acceleration still needs an active constraint, and a contact force still can only push; what changes is that the constraint has actually been lost."
       },
       "repair_ref": "NLM9-1",
       "hint_ladder": [
@@ -6272,9 +7123,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -6365,7 +7218,8 @@
         "statement": "The learner must preserve the kinematic length constraint while rejecting the equal-tension model after only the force-transmission assumption changes.",
         "builds_on": [
           "Q-PHY-NLM-2A-ATWOOD-12"
-        ]
+        ],
+        "invariant": "The fixed string length still gives a_A + a_B = 0 in away-from-pulley coordinates; what changes is that the pulley is no longer ideal, so equal tension is no longer licensed."
       },
       "repair_ref": "NLM11-5",
       "hint_ladder": [
@@ -6378,9 +7232,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "stage_refs": [
+          "VIS-NLM-FBD-V0"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -6683,18 +7539,18 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
         "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V1",
-          "VIS-NLM-FRICTION-V3"
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You set the friction to μ_s mg cos θ at the start: that is only its limit. Rest needs mg sin θ, and that need is what gets compared with the limit.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: rest on an incline needs friction mg sin θ up the slope, which is possible only while tan θ ≤ μ_s. The transfer task adds a push along the slope, so the needed friction can shrink to zero or reverse."
       }
     },
     {
@@ -6773,21 +7629,30 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the block with axes along and perpendicular to the plane, mark the sliding direction, and put kinetic friction opposite it.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
-        "initial_ref": null,
+        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
         "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your acceleration is g(sin θ + μ_k cos θ): friction was added along the sliding, which would make the rough slope faster than a smooth one.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: on a fixed incline N = mg cos θ, and kinetic friction up the slope reduces the acceleration to g(sin θ − μ_k cos θ). The transfer task uses this acceleration inside a timing comparison to infer μ_k."
       }
     },
     {
@@ -7182,7 +8047,8 @@
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-STATIC-02",
           "MIC-PHY-NLM-FRICTION"
-        ]
+        ],
+        "invariant": "Friction still opposes the slip tendency the block would have without it; what changes is that a push along the slope can cancel that tendency or reverse it."
       },
       "repair_ref": "NLM5-2",
       "hint_ladder": [
@@ -7195,9 +8061,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
@@ -7368,7 +8237,8 @@
           "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
           "MIC-PHY-NLM-FRICTION-QUANT"
         ],
-        "protected_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION"
+        "protected_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION",
+        "invariant": "The normal force from the perpendicular balance, the friction that rest requires, and the test against μ_s N all carry over; what changes is that a horizontal push alters both N and the required friction at once."
       },
       "repair_ref": "NLM8-1",
       "scaffolds": [
@@ -7417,12 +8287,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
         "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V1",
-          "VIS-NLM-FRICTION-V2",
-          "VIS-NLM-FRICTION-V3"
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
         ]
       },
       "failure_signal": null,
@@ -7644,7 +8513,8 @@
         "statement": "The learner must combine the established rough-incline dynamics with an independent timing representation to infer the friction coefficient, rather than being asked directly for acceleration.",
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-SLIDING-03"
-        ]
+        ],
+        "invariant": "The rough-slope acceleration g(sin θ − μ_k cos θ) and the smooth-slope g sin θ still hold; what changes is that μ_k must be inferred from travel times instead of being used to find an acceleration."
       },
       "repair_ref": "NLM8-4",
       "hint_ladder": [
@@ -7663,9 +8533,12 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": null,
-        "bound_ref": null,
-        "stage_refs": []
+        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V0",
+          "VIS-NLM-FRICTION-V1"
+        ]
       },
       "failure_signal": null,
       "family_exposure": {
