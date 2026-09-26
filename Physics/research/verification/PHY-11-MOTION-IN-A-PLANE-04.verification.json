@@ -4,26 +4,35 @@
   "node_ref": "PHY-11-MOTION-IN-A-PLANE-04",
   "verified_by": "agent-verifier-1",
   "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:e56c256786011bab7a99668c9a5f21e87d926fe3c7ce48f2bfe7c24d474365f5",
+  "inputs_digest": "sha256:768899f00f04c1488e4b314b346d5505698f4f0f92cb821dd828215c23520f31",
   "questions": [
     {
       "card_ref": "EV-PHY-11-MIP-04-009",
       "independent_solution": [
-        "i + j has components (1, 1): magnitude sqrt(1+1) = sqrt2, tan(theta) = 1 -> 45 deg with the x-axis. i - j has components (1, -1): magnitude sqrt2 at -45 deg with the x-axis.",
-        "Unit vectors along them: n1 = (i+j)/sqrt2, n2 = (i-j)/sqrt2 (perpendicular). Component of A = 2i + 3j along n1 = A.n1 = (2+3)/sqrt2 = 5/sqrt2; along n2 = A.n2 = (2-3)/sqrt2 = -1/sqrt2.",
-        "Check: (5/sqrt2)^2 + (-1/sqrt2)^2 = 13 = 2^2 + 3^2 = |A|^2."
+        "i + j has components (1, 1): magnitude sqrt(1+1) = sqrt2, direction atan(1/1) = 45 deg above +x. i - j has components (1, -1): magnitude sqrt2, direction -45 deg (below +x).",
+        "Unit vectors along them: n1 = (i + j)/sqrt2, n2 = (i - j)/sqrt2. Component of A = 2i + 3j along n1 = A.n1 = (2 + 3)/sqrt2 = 5/sqrt2; along n2 = (2 - 3)/sqrt2 = -1/sqrt2.",
+        "Check: n1 and n2 are perpendicular, so (5/sqrt2)^2 + (1/sqrt2)^2 = 13 = |A|^2."
       ],
-      "independent_answer": "|i+j| = sqrt2 at 45 deg; |i-j| = sqrt2 at -45 deg with the x-axis; components of A: 5/sqrt2 along i+j and -1/sqrt2 along i-j.",
-      "official_answer": "45 deg with the x-axis for i+j (magnitude sqrt2); -45 deg with the x-axis for i-j (magnitude sqrt2); components 5/sqrt2 and -1/sqrt2.",
+      "independent_answer": "45 deg with the x-axis, magnitude sqrt2 (i + j); -45 deg, magnitude sqrt2 (i - j); components 5/sqrt2 and -1/sqrt2",
+      "official_answer": "45 deg with the x-axis for i+j (magnitude sqrt2); -45 deg with the x-axis for i-j (magnitude sqrt2); components (5/sqrt2, -1/sqrt2)",
       "agrees": true,
       "numeric_check": "degrees(atan2(1, 1))"
     },
     {
       "card_ref": "EV-PHY-11-MIP-04-011",
       "independent_solution": [
-        "Full stem and Fig. 4.1 read on pinned pages 1-2: u = a i + b j is drawn from O up and to the right; v starts at the head of u and points down and slightly to the right.",
-        "u in the first quadrant direction -> a > 0, b > 0; v points right and down -> p > 0, q < 0.",
-        "Only option (b) 'a, p and b are positive while q is negative' fits."
+        "From Fig. 4.1 (pinned page 1): u starts at O and points up and to the right, so a = u_x > 0 and b = u_y > 0.",
+        "v starts at the head of u and points down and slightly to the right, so p = v_x > 0 and q = v_y < 0. Only option (b) states a, p, b > 0 and q < 0."
+      ],
+      "independent_answer": "(b)",
+      "official_answer": "(b)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-04-015",
+      "independent_solution": [
+        "Continuation of Exemplar 4.3 (options). With u up-right (a, b > 0) and v down-right (p > 0, q < 0) read from Fig. 4.1,",
+        "option (a) fails (b > 0), (c) fails (p > 0, q < 0), (d) fails (q < 0); (b) is correct."
       ],
       "independent_answer": "(b)",
       "official_answer": "(b)",
@@ -32,10 +41,10 @@
     {
       "card_ref": "EV-PHY-11-MIP-04-013",
       "independent_solution": [
-        "r_x = r cos(theta), theta measured from the +X axis, with |r| fixed.",
-        "cos(theta) is largest (= 1) at theta = 0; along +/-Y r_x = 0; at 45 deg r_x = r/sqrt2 < r. So maximum when r is along +X."
+        "r_x = r cos(theta) with theta measured from the +X axis and |r| fixed.",
+        "cos(theta) is maximal (= 1) at theta = 0: along +Y or -Y r_x = 0, at 45 deg r_x = r/sqrt2 < r. So r along +X gives the maximum."
       ],
-      "independent_answer": "(b) r along the positive X-axis",
+      "independent_answer": "(b)",
       "official_answer": "(b)",
       "agrees": true
     }
@@ -57,8 +66,7 @@
       "record_ref": "CAP-PHY-MIP-04",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -104,8 +112,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -115,8 +122,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -127,8 +134,8 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -139,17 +146,11 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     }
   ],
-  "findings": [
-    {
-      "target": "EV-PHY-11-MIP-04-011",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote is only 'Figure 4.1 shows the orientation of two vectors u and v in the XY plane.'; the definitions 'If u = a i + b j and v = p i + q j', the question 'which of the following is correct?' and options (a)-(d) (pinned pages 1-2) are not quoted, yet the claim and the record stem Q-PHY-MIP-04-EXEMPLAR-4-3 carry them. Quote the rest of the question (a second card for the page-2 part if needed)."
-    }
-  ]
+  "findings": []
 }
