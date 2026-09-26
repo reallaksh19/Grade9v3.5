@@ -1,0 +1,153 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X3",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:b9eefbe38ae123a4f38c77ab8a473a050cebd8765c8a8ab8f25694228438afc0",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-008",
+      "independent_solution": [
+        "Fall: v = g t, so K = (1/2) m g^2 t^2 rises as t^2 (curving upward) to its value at impact.",
+        "Contact: force proportional to compression makes the ball decelerate smoothly (spring-like) to rest at maximum compression (K = 0) and re-accelerate; the ball returns to its original height, so K after contact equals K before.",
+        "Rise: K = (1/2) m (v0 - g t')^2 falls to zero at the top, the mirror image of the fall. The rendered options (pinned page 1) show this shape (smooth dip to zero between two symmetric parabolic arcs) only in (B)."
+      ],
+      "independent_answer": "(B)",
+      "official_answer": "(B)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-010",
+      "independent_solution": [
+        "Normal to the plane is at theta to the vertical; incoming vertical velocity v0 has v0 cos(theta) into the plane and v0 sin(theta) down the slope. Elastic rebound reverses only the normal part, so the rebound speed is v0 at 2 theta to the vertical.",
+        "Across the plane: u = v0 cos(theta), a = -g cos(theta) -> back on the plane after T = 2 v0/g.",
+        "Along (downhill): d = v0 sin(theta) T + (1/2) g sin(theta) T^2 = 4 v0^2 sin(theta)/g."
+      ],
+      "independent_answer": "4 v0^2 sin(theta)/g down the slope",
+      "official_answer": "A v0^2 sin(theta)/g as printed on pinned answers page 11 (the coefficient is printed as the letter 'A')",
+      "agrees": false
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X3-012",
+      "independent_solution": [
+        "The wall reverses the molecule's normal velocity component (200 cos30 m/s), so the molecule's own momentum changes by 2 m (200 cos30) along the normal; the wall receives the equal and opposite impulse, so the momentum of the molecule + wall system is conserved.",
+        "The molecule rebounds with the same speed (the massive wall takes negligible kinetic energy), so kinetic energy is conserved: the collision is elastic."
+      ],
+      "independent_answer": "Yes, for the molecule + wall system (not the molecule alone); elastic",
+      "official_answer": "Yes, momentum of the molecule + wall system is conserved; since kinetic energy is also conserved, the collision is elastic",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X3",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "extensions.grade9v3:interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X3",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X3-ELASTIC-REBOUND",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X3-INELASTIC-REBOUND",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X3-TWO-FLIGHTS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-JEEADV-2014-P2-Q1",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-EXEMPLAR-4-32-REBOUND",
+      "checked_fields": [
+        "stem",
+        "subparts",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds",
+        "adaptation"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X3-NCERT-5-14",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-X3-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card claim ends with a JEE Main sentence the quote does not support: 'The JEE Main syllabus could not be pinned (served only from the non-allowlisted cdnbbsr.s3waas.gov.in).' The quote is only 'Systems of particles; Centre of mass and its motion; Impulse; Elastic and inelastic collisions.' Remove that sentence from the claim (same defect as EV-PHY-11-MIP-X1-001)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X3-011",
+      "duty_for": "RESEARCHER",
+      "detail": "ANSWER_KEY card for Exemplar 4.32 does not state the answer (claim: '...the verifier must read the printed answer on the page'). The printed key on pinned answers page 11 reads 'A v0^2 sin θ / g' with the letter A where the coefficient belongs, while an independent derivation gives 4 v0^2 sin θ / g. Record the printed expression in the equation field, state the misprint, and find a second pinned source for the coefficient; see the same finding on EV-PHY-11-MIP-X2-011."
+    },
+    {
+      "target": "PHY-11-MOTION-IN-A-PLANE-X3",
+      "duty_for": "RESEARCHER",
+      "detail": "The node is 'Projectile rebounding from a surface with energy loss', but all three QUESTION cards (X3-008 returns to its original height; X3-010 rebounds elastically; X3-012 rebounds with the same speed) and every worked example are elastic. No card quantifies a rebound with energy loss (a restitution or kinetic-energy fraction), and REL-PHY-MIP-X3-INELASTIC-REBOUND.limits admits it stays qualitative. Harvest at least one pinned QUESTION + ANSWER_KEY pair and one WORKED_EXAMPLE or RELATION for a projectile or ball rebounding with a stated loss of speed or energy."
+    }
+  ]
+}
