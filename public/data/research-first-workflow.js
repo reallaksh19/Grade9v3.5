@@ -19,7 +19,7 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "enforced_by": [
     "raw_intake and research_first_policy.default_learner: knowledge_percentage 50, full support, blocking=false",
     "plan_request: an absent learner entry is replaced by the default median owner estimate",
-    "delivery_gate: diagnostic_missing when the rendered product has no short diagnostic"
+    "quality_gate: CONT_DIAGNOSTIC_MISSING when the product start page has fewer diagnostic items than learner_start.diagnostic.min_items"
    ]
   },
   {
@@ -27,7 +27,7 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "rule": "A hold is never an output or a passing state. Missing examples, diagrams or explanations become research and authoring tasks inside the work cycle. Validation checks the rendered learner product, not whether gaps were labelled.",
    "enforced_by": [
     "raw_intake: status is always RESEARCH_AND_AUTHOR; every gap is emitted as a research task",
-    "delivery_gate: learner_text_placeholder, teaching_incomplete, practice_incomplete, research_open"
+    "render_core: a missing record field is a typed gap (a board duty) and the product is only a draft; quality_gate: ALL-NO-PLACEHOLDER and PRODUCT-NO-ESCAPE-STATE on the rendered product"
    ]
   },
   {
@@ -35,7 +35,7 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "rule": "Question identity is researched against the original source. A short supplied label is never an identity. When several candidates exist, the agent compares each candidate's text and stated conditions with the supplied demand, selects the one that matches and records the discriminator. If no official source matches, the question is still used, labelled as the owner's question with no exam identity claimed. Ambiguity is resolved by research, never by a hold and never by guessing.",
    "enforced_by": [
     "raw_intake: labels are kept as owner labels and raise resolve_source_identity research",
-    "delivery_gate: identity_unresolved, identity_text_mismatch, identity_condition_mismatch, identity_discriminator_missing, identity_displayed_without_claim"
+    "evidence_check: a QUESTION card needs an ANSWER_KEY card and a quote re-found in a pinned official source (or the corroborated Tier C fallback); the verifier solves it independently"
    ]
   },
   {
@@ -43,7 +43,7 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "rule": "Every supplied question and syllabus subtopic is reconciled before building. A narrow bucket is not completion: the final coverage ledger links each input to teaching, practice and its learner-facing location.",
    "enforced_by": [
     "raw_intake: reconciliation lists questions outside the supplied syllabus and subtopics without questions",
-    "delivery_gate: input_not_in_ledger, location_unresolved, question_not_rendered"
+    "quality_gate: CONT_INPUT_UNRESOLVED and CONT_INPUT_NOT_RENDERED over the product manifest ledger built from the intake"
    ]
   }
  ],
@@ -175,5 +175,164 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "duty": "RECORD_REVIEW_STATUS",
    "do": "Deliver the product; state truthfully which human reviews have not happened. Missing review is a label, not a stop."
   }
- }
+ },
+ "depth_duties": {
+  "AUTHOR_CONSTRUCTION_UNITS": {
+   "role": "AUTHOR",
+   "fields": "microtopic.construction_units",
+   "do": "Split the teaching path into units of at most 4 decisions; each unit names its decision, steps, staged representation and worked anchor.",
+   "contract_rules": [
+    "C1A-ANCHOR-PER-DECISION"
+   ]
+  },
+  "AUTHOR_WORKED_ANCHOR": {
+   "role": "AUTHOR",
+   "fields": "construction_unit.worked_anchor_ref",
+   "do": "Author or select a CORE1A question whose route exercises exactly this unit's move.",
+   "contract_rules": [
+    "C1A-BLOCKS",
+    "C1A-ANCHOR-PER-DECISION"
+   ]
+  },
+  "AUTHOR_INDEPENDENT_CHECK": {
+   "role": "AUTHOR",
+   "fields": "construction_unit.independent_checks / question.independent_check or answer.check",
+   "do": "State a check that does not repeat the solution (units, limiting case, back-substitution), typed from the subject vocabulary.",
+   "contract_rules": [
+    "C1A-BLOCKS",
+    "C2A-BLOCKS"
+   ]
+  },
+  "MOUNT_REPRESENTATION": {
+   "role": "AUTHOR",
+   "fields": "construction_unit.representation_ref",
+   "do": "Bind the unit to the representation that stages its move.",
+   "contract_rules": [
+    "C1A-REPRESENTATION-BRIDGE",
+    "C1B-REPRESENTATION"
+   ]
+  },
+  "STAGE_REPRESENTATION": {
+   "role": "AUTHOR",
+   "fields": "representation.reveal_stages",
+   "do": "Give the representation at least two reveal stages that follow the construction.",
+   "contract_rules": [
+    "C1A-STAGED-REPRESENTATION"
+   ]
+  },
+  "BUILD_SCENE": {
+   "role": "RENDERER",
+   "fields": "representation.rendered_asset_refs",
+   "do": "ILLUSTRATOR: draw the staged SVG (<title>, <desc>, one <g data-g9-stage-id> per reveal stage) and reference it.",
+   "contract_rules": [
+    "C1A-REPRESENTATION-BRIDGE",
+    "C2A-REPRESENTATION",
+    "C2B-SAFE-REPRESENTATION"
+   ]
+  },
+  "TEACH_PREREQUISITE_BRIDGE": {
+   "role": "RESEARCHER",
+   "fields": "microtopic.prerequisite_refs (possibly '<Subject>:<capability>')",
+   "do": "Map the prerequisite to a library that teaches it, or research and author that capability (in its own subject).",
+   "contract_rules": [
+    "C1A-PREREQUISITES-BRIDGED"
+   ]
+  },
+  "AUTHOR_HINT_LADDER": {
+   "role": "AUTHOR",
+   "fields": "question.hint_ladder",
+   "do": "At least three item-specific rungs: orient, represent, first executable relation; source hints keep their provenance.",
+   "contract_rules": [
+    "C2A-LADDER"
+   ]
+  },
+  "AUTHOR_QUESTION_REPRESENTATION": {
+   "role": "AUTHOR",
+   "fields": "question.representation_roles.initial_ref (+ stage_refs)",
+   "do": "Show a question-aligned representation with the stem; list the stages safe before the attempt.",
+   "contract_rules": [
+    "C2A-REPRESENTATION"
+   ]
+  },
+  "AUTHOR_SAFE_REPRESENTATION": {
+   "role": "AUTHOR",
+   "fields": "question.representation_roles.safe_ref (+ stage_refs)",
+   "do": "Give the transfer task a representation that does not show the protected move.",
+   "contract_rules": [
+    "C2B-SAFE-REPRESENTATION"
+   ]
+  },
+  "AUTHOR_FAILURE_SIGNAL": {
+   "role": "AUTHOR",
+   "fields": "question.failure_signal",
+   "do": "Name the observable sign of this item's tempting wrong route.",
+   "contract_rules": [
+    "C2A-TRAP",
+    "C2A-SPECIFIC-SUPPORT"
+   ]
+  },
+  "AUTHOR_FAMILY_EXPOSURE": {
+   "role": "AUTHOR",
+   "fields": "question.family_exposure.closure",
+   "do": "State what this item establishes for its family, which transfer will build on.",
+   "contract_rules": [
+    "C2A-FAMILY-CLOSURE"
+   ]
+  },
+  "AUTHOR_LINEAGE_CHECK": {
+   "role": "AUTHOR",
+   "fields": "question.transfer.invariant",
+   "do": "State what stays valid from the prior exposure while the demand changes.",
+   "contract_rules": [
+    "C2B-LINEAGE"
+   ]
+  },
+  "REVIEW_MIGRATED_UNIT": {
+   "role": "AUTHOR",
+   "fields": "construction_unit.migrated_from",
+   "do": "Confirm or split the migrated unit, then remove migrated_from.",
+   "contract_rules": [
+    "C1A-ANCHOR-PER-DECISION"
+   ]
+  },
+  "AUTHOR_COMPACT_ANCHOR": {
+   "role": "AUTHOR",
+   "fields": "microtopic.compact_anchor",
+   "do": "One-line instance of the governing relation for the Core1 map.",
+   "contract_rules": [
+    "C1-RELATION"
+   ]
+  },
+  "AUTHOR_GOVERNING_RELATION": {
+   "role": "AUTHOR",
+   "fields": "microtopic.relation_refs",
+   "do": "Bind the relation (expression, meaning, conditions) that governs the microtopic.",
+   "contract_rules": [
+    "C1-RELATION"
+   ]
+  },
+  "AUTHOR_ELICITATION": {
+   "role": "AUTHOR",
+   "fields": "microtopic.elicitation",
+   "do": "Author predict, attempt, reconstruct and boundary test for Core1B.",
+   "contract_rules": [
+    "C1B-BLOCKS"
+   ]
+  },
+  "ACQUIRE_SOURCE": {
+   "role": "RESEARCHER",
+   "fields": "exam bank / QUESTION + ANSWER_KEY cards",
+   "do": "RESEARCHER: pin official source questions for Core2 with their keys.",
+   "contract_rules": [
+    "C2-BLOCKS"
+   ]
+  },
+  "AUTHOR_DIAGNOSTIC": {
+   "role": "AUTHOR",
+   "fields": "product manifest diagnostic",
+   "do": "Select at least the intake's minimum number of short diagnostic items for the start page.",
+   "contract_rules": []
+  }
+ },
+ "definition_of_complete": "A unit is complete only when its records carry no depth duty (package_depth.py) and its product passes the rendered quality gate (quality_gate.py). Structural presence, a label, a validation report or a COMPLETED duty status never counts."
 };

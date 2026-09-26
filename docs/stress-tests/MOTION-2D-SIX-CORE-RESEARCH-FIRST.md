@@ -344,17 +344,21 @@ authored-scaffold refs; reasoning refs; verification ref; provenance class; tran
 from canonical truth; prior-exposure refs (Core2B); protected move; duties performed; review
 labels. Do not expose private chain-of-thought.
 
-Distinguish `STRUCTURALLY_VALIDATED`, `SOURCE_VERIFIED`, `ACADEMICALLY_REVIEWED`,
-`PUBLICATION_READY`. You may claim only the first two; the others are labels for human
-review, and their absence does not stop delivery.
+There is no self-declared validation status. "Validated" means the tools below passed on the
+rendered product. Their reports are the evidence, and a prose claim is not.
 
-Run and make pass:
+Build the product through the one pipeline and make every gate pass:
 
 ```sh
+python3 Shared/tools/promote_verified.py --subject Physics --chapter PHY-11-MOTION-IN-A-PLANE --write
+python3 Shared/tools/library_board.py --subject Physics --depth          # must show no duty for your records
+python3 Shared/tools/product_manifest.py derive --package <package> --bank <bank> \
+  --product-id PRODUCT-PHY-MOTION-2D --title "Motion in 2D" --home ../../index.html --intake intake.json --out product.json
+python3 Shared/tools/render_core.py build --manifest product.json --out OUT   # exit 2 = gaps remain (duties)
+node tools/print/print-product.mjs OUT                                        # PDF = print of the page
+python3 Shared/tools/quality_gate.py OUT --subject Physics --product-id PRODUCT-PHY-MOTION-2D --report OUT/gate.json
+python3 Shared/tools/quality_contract.py calibrate                            # the contract still catches the audited defects
 python3 Shared/tools/escape_state_guard.py
-python3 Shared/tools/core_template_contract.py
-python3 Shared/tools/core_authority_contract.py
-python3 Shared/tools/topic_independence_guard.py
 python3 Shared/tools/build_manifest.py --check
 python3 Shared/tools/build_pages_site.py --check
 python3 -m unittest discover -s tests -p "test_*.py"
@@ -387,9 +391,13 @@ A pull request containing all of it.
 21. ACCEPTANCE — AND WHAT FAILS THIS STRESS TEST
 ======================================================================
 
-The work passes only if all five demands are accounted for, all six Cores are delivered
-complete with web pages, the Atlas/bank/builder are updated, and every check in section 19
-passes.
+The work passes only if:
+- `quality_gate.py` reports **PASS** on the rendered product, with its report committed;
+- every owner input in the ledger is resolved and rendered;
+- `library_board.py --depth` shows no duty for the product's records;
+- every command in section 19 passes.
+
+The gate report and those commands are the acceptance. Nothing you write about the product is.
 
 The stress test is failed by any of:
 

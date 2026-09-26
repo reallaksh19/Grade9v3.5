@@ -1,0 +1,402 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/learner-observation.schema.json",
+  "title": "What a learner product shows, normalized for the quality contract",
+  "description": "An extractor reads a delivered product (HTML pages, a PDF, Markdown) and records only what the learner can see or do: blocks of text, figures and when they appear, attempt controls, reveals and whether they are gated, support levels, and page shell facts. Shared/tools/quality_contract.py judges this record against Shared/quality/learner-quality.v1.json. Subject-neutral: subjects differ only in the vocabulary of figure kinds and check types (<Subject>/adapter/QualityVocabulary.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "product_id",
+    "subject",
+    "observed_by",
+    "provenance",
+    "escape_states",
+    "pages"
+  ],
+  "properties": {
+    "schema": {
+      "const": "learner-observation/v1"
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_by": {
+      "type": "string",
+      "description": "Extractor id (Shared/tools/quality_observe.py) or 'fixture' for hand-built samples."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "render_stamp",
+        "hand_authored"
+      ],
+      "properties": {
+        "render_stamp": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Stamp the governed renderer writes (records digest); null when absent."
+        },
+        "hand_authored": {
+          "type": "boolean"
+        }
+      }
+    },
+    "escape_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Escape-state tokens (HOLD, BLOCKED, …) presented to the learner as an outcome."
+    },
+    "roles_rendered": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/role"
+      },
+      "description": "Core roles delivered as their own learner product. Omit when the observation covers only part of a product."
+    },
+    "atlas": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "shared_runtime"
+      ],
+      "properties": {
+        "present": {
+          "type": "boolean"
+        },
+        "shared_runtime": {
+          "type": "boolean"
+        }
+      }
+    },
+    "print": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "from_page",
+        "figures",
+        "web_figures"
+      ],
+      "properties": {
+        "present": {
+          "type": "boolean"
+        },
+        "from_page": {
+          "type": "boolean",
+          "description": "Printed from the rendered page (not a separate generator)."
+        },
+        "figures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "web_figures": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/page"
+      }
+    }
+  },
+  "$defs": {
+    "role": {
+      "enum": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B",
+        "CORE2",
+        "CORE2A",
+        "CORE2B"
+      ]
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "path",
+        "shell",
+        "units"
+      ],
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/role"
+        },
+        "path": {
+          "type": "string"
+        },
+        "blueprint_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shell": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Null when the observation is not of a web page (a print reference, a sample unit).",
+          "additionalProperties": false,
+          "required": [
+            "home_link",
+            "shell_header",
+            "slot_markers",
+            "print_css"
+          ],
+          "properties": {
+            "home_link": {
+              "type": "boolean"
+            },
+            "shell_header": {
+              "type": "boolean"
+            },
+            "slot_markers": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "print_css": {
+              "type": "boolean"
+            }
+          }
+        },
+        "rendered": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Facts only a browser can measure (tools/site-audit/core-page-audit.mjs). Null when not measured; rules that need them are then skipped and reported as NOT_MEASURED.",
+          "additionalProperties": false,
+          "required": [
+            "small_targets",
+            "stage_support_layout"
+          ],
+          "properties": {
+            "small_targets": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "stage_support_layout": {
+              "type": "boolean"
+            },
+            "min_font_px": {
+              "type": "number"
+            }
+          }
+        },
+        "figures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/figure"
+          },
+          "description": "Page-level figures outside any unit."
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unit"
+          }
+        }
+      }
+    },
+    "figure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "titled"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "TEACHING",
+            "PRE_ATTEMPT",
+            "POST_ATTEMPT"
+          ]
+        },
+        "titled": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Representation kind from the subject's QualityVocabulary (null when the page does not say)."
+        },
+        "reveal_stages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "stages_total": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Stages the representation has in all; reveal_stages is how many are shown here."
+        }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "blocks",
+        "block_order",
+        "placeholders",
+        "figures",
+        "attempt",
+        "reveals",
+        "support_levels"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "CONCEPT",
+            "QUESTION"
+          ]
+        },
+        "concept_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "family_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "blocks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Contract block id -> the learner-visible text of that block. A block that is absent is not a key."
+        },
+        "block_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Block ids in the order the learner meets them."
+        },
+        "placeholders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Placeholder or internal-absence text shown to the learner."
+        },
+        "figures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/figure"
+          }
+        },
+        "representation_refs_unmounted": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Representations named in the text but not shown."
+        },
+        "attempt": {
+          "type": "boolean",
+          "description": "The learner has a control to record an attempt or commitment."
+        },
+        "reveals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "blocks",
+              "gated"
+            ],
+            "properties": {
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "gated": {
+                "type": "boolean",
+                "description": "Cannot be opened before an attempt is recorded."
+              }
+            }
+          }
+        },
+        "support_levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered support rungs (hints/scaffolds), least to most."
+        },
+        "check_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Independent-check types used (vocabulary: subject adapter)."
+        },
+        "decisions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct decisions/events in the unit's construction."
+        },
+        "worked_anchors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prerequisites_assumed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prerequisites_bridged": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Assumed prerequisites that link to a teaching unit."
+        },
+        "lineage_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

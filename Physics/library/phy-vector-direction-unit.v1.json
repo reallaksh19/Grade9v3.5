@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-VEC-DIRECTION-UNIT-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -328,7 +328,26 @@
           "answer": "Its coefficient is zero, so the term may be written as 0 i-hat or omitted without changing the vector.",
           "confirms": "The notation represents components rather than requiring both basis terms to appear visibly."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-UNIT-NOTATION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VUN-1",
+            "VUN-2",
+            "VUN-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
@@ -463,7 +482,27 @@
           "answer": "The vector points exactly along +y; report that axis direction directly and do not divide by v_x.",
           "confirms": "Axis cases are handled directly rather than forced through an invalid ratio."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-DIRECTION-FROM-COMPONENTS-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VDR-1",
+            "VDR-2",
+            "VDR-3",
+            "VDR-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-VEC-UNIT-DIRECTION",
@@ -593,7 +632,27 @@
           "answer": "No. Its magnitude is zero, so v/|v| would divide by zero and the zero vector has no direction to preserve.",
           "confirms": "The normalization relation is domain-restricted to nonzero vectors."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-UNIT-DIRECTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VUD-1",
+            "VUD-2",
+            "VUD-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [

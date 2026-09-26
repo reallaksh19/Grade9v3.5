@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-KIN-1D-MOTION-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -393,7 +393,26 @@
           "answer": "Both are zero: there is no travelled route and no change between start and finish.",
           "confirms": "The two quantities can agree in a boundary case without becoming the same concept."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-DISTANCE-DISPLACEMENT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "KIN1-1",
+            "KIN1-2",
+            "KIN1-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
@@ -540,7 +559,27 @@
           "answer": "No. With velocity unchanged at zero across the interval, this comparison supports zero acceleration.",
           "confirms": "The claim is not that zero velocity implies nonzero acceleration; it is that zero velocity alone does not decide acceleration."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-ZERO-V-NONZERO-A-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "KIN3-1",
+            "KIN3-2",
+            "KIN3-3",
+            "KIN3-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-AVERAGE-RATES",
@@ -693,7 +732,26 @@
           "answer": "Both are zero because both total distance and signed displacement are zero while elapsed time is positive.",
           "confirms": "The two rates can agree without being the same quantity."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-AVERAGE-RATES-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "KIN2-1",
+            "KIN2-2",
+            "KIN2-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
@@ -1053,7 +1111,27 @@
           "answer": "It vanishes in the straight constant-velocity limit.",
           "confirms": "The acceleration in uniform circular motion is tied to continuous change of direction."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "KIN5-1",
+            "KIN5-2",
+            "KIN5-3",
+            "KIN5-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-MOTION-GRAPHS",
@@ -1224,7 +1302,27 @@
           "answer": "The first means zero average velocity; the second means zero average acceleration over the interval.",
           "confirms": "Graph slope, not height alone, carries the rate information."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-MOTION-GRAPHS-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "KIN-G1",
+            "KIN-G2",
+            "KIN-G3",
+            "KIN-G4"
+          ],
+          "representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
@@ -3050,7 +3148,32 @@
           "text": "Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2A-COV-02",
@@ -3114,6 +3237,31 @@
           "displacement": "DAT-KIN-AVG-DISP",
           "dt": "DAT-KIN-AVG-DT"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -3181,6 +3329,31 @@
           "v": "DAT-KIN-CA-V",
           "t": "DAT-KIN-CA-T"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -3244,6 +3417,31 @@
           "radius": "DAT-KIN-CIRC-R",
           "period": "DAT-KIN-CIRC-T"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -3312,7 +3510,32 @@
           "text": "Average acceleration is signed velocity change divided by elapsed time.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-PRACTICAL-13",
@@ -3377,7 +3600,32 @@
           "text": "Use successive Delta x / Delta t values to build the velocity-time data before interpreting its slope.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2A-UPWARD-01",
@@ -3444,7 +3692,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2A-DROP-02",
@@ -3510,7 +3783,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2A-RETURN-03",
@@ -3577,7 +3875,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2A-DOWN-AXIS-04",
@@ -3643,7 +3966,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2A-APEX-05",
@@ -3708,7 +4056,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "KIN3-4"
+      "repair_ref": "KIN3-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2B-REVERSED-AXIS-01",
@@ -3803,7 +4176,32 @@
           "CTX-PHY-KIN-VERTICAL-GRAVITY"
         ]
       },
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2B-BALCONY-02",
@@ -3898,7 +4296,32 @@
           "CTX-PHY-KIN-VERTICAL-GRAVITY"
         ]
       },
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2B-SAME-HEIGHT-03",
@@ -3993,7 +4416,32 @@
           "CTX-PHY-KIN-VERTICAL-GRAVITY"
         ]
       },
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2B-DIRECTION-SWITCH-04",
@@ -4084,7 +4532,26 @@
           "CTX-PHY-KIN-VERTICAL-GRAVITY"
         ]
       },
-      "repair_ref": "KIN4-6"
+      "repair_ref": "KIN4-6",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-VERT-2B-VT-GRAPH-05",
@@ -4180,7 +4647,32 @@
           "CTX-PHY-KIN-VERTICAL-GRAVITY"
         ]
       },
-      "repair_ref": "KIN3-4"
+      "repair_ref": "KIN3-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-VERTICAL-GRAVITY",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-CIRC-2A-FORCE-ROLE-01",
@@ -4240,7 +4732,32 @@
           "text": "Use inward-positive Sigma F_r=m v^2/r.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-CIRC-2B-FLAT-CURVE-02",
@@ -4314,7 +4831,26 @@
           "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION"
         ]
       },
-      "repair_ref": "KIN6-5"
+      "repair_ref": "KIN6-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-CIRC-2B-VERTICAL-03",
@@ -4387,7 +4923,26 @@
           "Q-PHY-KIN-CIRC-2A-FORCE-ROLE-01"
         ]
       },
-      "repair_ref": "KIN6-7"
+      "repair_ref": "KIN6-7",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

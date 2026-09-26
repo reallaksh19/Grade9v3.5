@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 330,
-  "relation_count": 359,
+  "component_count": 354,
+  "relation_count": 372,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 152,
-    "TOOLING": 83,
-    "WEB": 9,
+    "TEST": 162,
+    "TOOLING": 94,
+    "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:8db7f23adbbfc2b5c0a5643438a02d584b973d496ff4072ebfc044d67b1df931",
+  "digest": "sha256:5884a21b146fc9fbc7be5ae673642f865f069123cffe552b812031729326008d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -143,8 +143,8 @@
       "path": "Shared/library/evidence-cards.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 6329,
-      "sha256": "65a895151747872bd057402ac1a23b7616960e1a34adca0ca00091829b50b656"
+      "bytes": 8865,
+      "sha256": "d14add5daa12bf80717e2a0ee17b2668880c3bd2342fa8b945dd27e9ed4cf82a"
     },
     {
       "path": "Shared/library/exam-source-verification.schema.json",
@@ -234,8 +234,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 81170,
-      "sha256": "6d6cd2ac5741dc7bfd26268c8cbbe625cb7fb6d6fe1ea1f9ceb5e807c550b8e5"
+      "bytes": 89667,
+      "sha256": "5f5dfc607bb4f1cbe1f904f92bd34067fe28de6e07d864f0c17e7bdce001483c"
     },
     {
       "path": "Shared/library/practice_inventory.py",
@@ -637,6 +637,13 @@
       "sha256": "853aeec33c1531aa378cf192fd58aed30aca9552e449f72137e68313f9d773c0"
     },
     {
+      "path": "Shared/tools/build_products.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 5819,
+      "sha256": "39c09df3973a2502bed74e050ac8236eefc73113489c33fb5e921093347030f6"
+    },
+    {
       "path": "Shared/tools/build_prompt_composer_data.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -656,6 +663,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 16238,
       "sha256": "cb29b5bd44e64c2c13f1f197adf8ee7ab1d068d26887f699884e21d1d0c0536f"
+    },
+    {
+      "path": "Shared/tools/calibration_corpus.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4031,
+      "sha256": "7250cdf5987a414303c2ba6c0bfb4f207639362091634dd11307f1f9c20d3a79"
     },
     {
       "path": "Shared/tools/capability_audit.py",
@@ -756,11 +770,11 @@
       "sha256": "59a267a725a496635dd45daa0575380d98512d804e11addc6c770dfdb4f9e385"
     },
     {
-      "path": "Shared/tools/delivery_gate.py",
+      "path": "Shared/tools/cost_ledger.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 19506,
-      "sha256": "e368176dc2aefdc0b9c1ef663e41850c3dcc4fdf7d4f3574b0868121fec2b00c"
+      "bytes": 3927,
+      "sha256": "a87cbd97efa982d7197e1df78c7190d5c5c754c60d36d7d5b8fd994ceb9ece86"
     },
     {
       "path": "Shared/tools/derived_artifact_registry.py",
@@ -787,8 +801,8 @@
       "path": "Shared/tools/evidence_check.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20274,
-      "sha256": "09e2c9e1dab9d753051955785de0d488fc61f9185df58721bc1209d57091e27f"
+      "bytes": 24111,
+      "sha256": "913e99a71278445d58bbe3b9d400a1dcaf93564d5e1a3d04dbc9c810f426b64b"
     },
     {
       "path": "Shared/tools/execute_authoring_run.py",
@@ -861,13 +875,6 @@
       "sha256": "b25832a209f8e45e9e18909abe859d4f7a429198962001a89855e839be69ba2d"
     },
     {
-      "path": "Shared/tools/learner_product_render.py",
-      "role": "TOOLING",
-      "role_description": "Guardrails and generators",
-      "bytes": 21610,
-      "sha256": "641ad8ad07989dd8475eddabedce69c4d7b3ad2d3a8916c7ed390a1b2c9eccb3"
-    },
-    {
       "path": "Shared/tools/learning_router.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -878,8 +885,8 @@
       "path": "Shared/tools/library_board.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 17879,
-      "sha256": "21778f801d8f19db94f8b85267a7286a330c5fd08fc937a6af80ad1120137158"
+      "bytes": 20261,
+      "sha256": "d7b037b827fa6c2420a6ee69e256656a9d74c5b527fcc1ec5ab29d4d6fda0285"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -896,11 +903,39 @@
       "sha256": "50161d23d57fa015341e3e9282367fd2f20c7927757eee7f2cd5e0405ab0396b"
     },
     {
+      "path": "Shared/tools/package_depth.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8089,
+      "sha256": "507c107614bd10021b3acbee6140f672894c89d2857c46460f5478f5eec360e0"
+    },
+    {
+      "path": "Shared/tools/package_migrate.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6967,
+      "sha256": "aa88fd1a0ab0091bf0ac04e45a61885d924f6cc6756a4f6a67c4d0e83f1e1b13"
+    },
+    {
       "path": "Shared/tools/plan_request.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
       "bytes": 21648,
       "sha256": "77a369ee88fbe31660a46eaa06424a943d5f948590bf7ad438c3742073e63f06"
+    },
+    {
+      "path": "Shared/tools/product_manifest.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4269,
+      "sha256": "e4308673900412e1afe7623e7113b7cccf5bafe2353da1d95d9678c94a51fe27"
+    },
+    {
+      "path": "Shared/tools/promote_verified.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6100,
+      "sha256": "6569e89e16b7416a80b0e1359077f7e426fb473075ed47f7dfbf6a9d64dc8c11"
     },
     {
       "path": "Shared/tools/prompt_composer.py",
@@ -915,6 +950,27 @@
       "role_description": "Guardrails and generators",
       "bytes": 8760,
       "sha256": "e3b7a543639d51e3e1cd89535774d88a5ba37b06ba69140885d732b9bfdd9d02"
+    },
+    {
+      "path": "Shared/tools/quality_contract.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 19618,
+      "sha256": "9bc9669df68cf1f86edea01af53d3b4bec04416178999bb47c1a56f64c9f6949"
+    },
+    {
+      "path": "Shared/tools/quality_gate.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6816,
+      "sha256": "fa716d0e9167cc34326f032948026578f4b530fa748602d35563da3635aaa017"
+    },
+    {
+      "path": "Shared/tools/quality_observe.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 28952,
+      "sha256": "e17be9a9469191f78f60b86fb2091f4002bc1a3918d72d95635095f245bb979c"
     },
     {
       "path": "Shared/tools/question-bank-views.v1.json",
@@ -943,6 +999,20 @@
       "role_description": "Guardrails and generators",
       "bytes": 15839,
       "sha256": "e343e48045525d2175d397fa3f919a8df7e8e04aaca270842c4322de2956db10"
+    },
+    {
+      "path": "Shared/tools/render_core.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 37918,
+      "sha256": "e0c5b59b51fa42226412b61cedf00baab530110c66a607906d997132f0a7f133"
+    },
+    {
+      "path": "Shared/tools/renderer_inventory.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4766,
+      "sha256": "d368dec23565ae2cd79755996e58ad2c2f5b61b91a7c0dd6b09855373567d1e6"
     },
     {
       "path": "Shared/tools/renderer_registry.py",
@@ -999,6 +1069,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 19756,
       "sha256": "5df15af8f50494d61b6d564813def18c42b39f5fbc980de538bd52667339fa25"
+    },
+    {
+      "path": "Shared/tools/site_nav_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7307,
+      "sha256": "6e3044f0987b354e8127a4e67f444ae05eecf6d39a244744846b3c66af0011c3"
     },
     {
       "path": "Shared/tools/source_pipeline.py",
@@ -1302,6 +1379,20 @@
       "sha256": "b2a254f8a940482fac5202f833bc1fdd493c1e8abdc276a2bea1386f1ac00a47"
     },
     {
+      "path": "tests/fixtures/quality/chem-core1a-mole-concept.observation.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3415,
+      "sha256": "dc3eed39b79fc952e6f6ae5c50bf5a02f5877d0ee89524d1807064c4860f675d"
+    },
+    {
+      "path": "tests/fixtures/quality/math-core2a-two-step-linear.observation.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3287,
+      "sha256": "54abf37fde84852d9380c74b66b3a0ffd84b8207dd1efb493a2b08b418fb444b"
+    },
+    {
       "path": "tests/fixtures/real_pilots/examside-laws-of-motion.acceptance.json",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -1377,6 +1468,13 @@
       "role_description": "Executable checks",
       "bytes": 33150,
       "sha256": "fb790d45acf1a5378c9733f9d8e65b829574253a378b2eebe9fbd6379a7b57f7"
+    },
+    {
+      "path": "tests/fixtures/site-audit/baseline.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13934,
+      "sha256": "dd62c2a40575879077eb4cd7d17e4117429b436a45b6b53e63f1972696f91195"
     },
     {
       "path": "tests/fixtures/source_ingest/acquisition.json",
@@ -1545,6 +1643,13 @@
       "role_description": "Executable checks",
       "bytes": 9757,
       "sha256": "2ead444655f964007968ba5cd122956d61250e3cf5908ba2dabb28f623ffebfa"
+    },
+    {
+      "path": "tests/test_calibration_corpus.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1739,
+      "sha256": "36382d96e92e4c60d4fe1c16b381bf869a927ba031c7874bba577f219da55ec2"
     },
     {
       "path": "tests/test_capability_delivery.py",
@@ -2037,6 +2142,13 @@
       "sha256": "f4cbdd128d94d9078c631e835e6757cf0cacdecf48479dc45e2b5e43b5675db8"
     },
     {
+      "path": "tests/test_package_depth.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5729,
+      "sha256": "3516ba9a2dd0e00cfa948f4f55c788c444896c1140599a8009f98e1ec87745ff"
+    },
+    {
       "path": "tests/test_pages_site.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2072,6 +2184,20 @@
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
     },
     {
+      "path": "tests/test_quality_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5450,
+      "sha256": "db66b5a6352067521621f0bcbf4fc4e501d91f86495000b569112855d83046db"
+    },
+    {
+      "path": "tests/test_quality_gate.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 9655,
+      "sha256": "5ef953ceae5eee94ff119b4a8d75971fef2af468bbd276952bd7ff27ba17082b"
+    },
+    {
       "path": "tests/test_question_bank_web.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2093,18 +2219,32 @@
       "sha256": "bc3fe7f9b50c470d7165402319284e02fea6fbe0e8dadde11ab1970652f72317"
     },
     {
+      "path": "tests/test_render_core.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 7388,
+      "sha256": "464d3448f1904947c3489ef2b8e661c890ae8f6720699691bcedd6724d8e5648"
+    },
+    {
+      "path": "tests/test_renderer_inventory.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1764,
+      "sha256": "5b254da97ffcaf9416f020a3ee650d92c2a8273e597fd68c1547dff85b7ec7e8"
+    },
+    {
       "path": "tests/test_research_first_workflow.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 18447,
-      "sha256": "2ff96e6fa1b33a6692b039419400cf74f8d5b42275bd79f7235921753ce3108b"
+      "bytes": 5605,
+      "sha256": "bfd6ff280bf3f6404ee97835a30f8aed437c591c47179277b62946fbf9b5f786"
     },
     {
       "path": "tests/test_research_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 20264,
-      "sha256": "2937df523a9982cd1165de20efd898a3a0b0e7260a69a899359ad4f517e52bc1"
+      "bytes": 23031,
+      "sha256": "bab7cef74b3094b8cb040004708eaa0891eb138adba2c5205cb6ea06499db041"
     },
     {
       "path": "tests/test_review_authority.py",
@@ -2133,6 +2273,13 @@
       "role_description": "Executable checks",
       "bytes": 11909,
       "sha256": "e4a2666ae570674a4f35001a879c94818b7148cac77e2f304abfe0188fca70b3"
+    },
+    {
+      "path": "tests/test_site_nav_audit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1845,
+      "sha256": "d30aa86254f7071683c0eb2c0441f904ec3431b56976e6d179d2b05db58ccf7d"
     },
     {
       "path": "tests/test_source_pipeline.py",
@@ -2317,6 +2464,13 @@
       "sha256": "329cec9f8490314ada611f13fd60fe77693ce63c27a6a6289896181b94d04646"
     },
     {
+      "path": "tools/print/print-product.mjs",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 2451,
+      "sha256": "272939429122378decfa84d70472569076e8630b4d29cdf4b4a77fbc73535fb4"
+    },
+    {
       "path": "tools/run-builder/index.html",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
@@ -2329,6 +2483,20 @@
       "role_description": "Browsable surfaces over generated data",
       "bytes": 6932,
       "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
+    },
+    {
+      "path": "tools/site-audit/core-page-audit.mjs",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 6588,
+      "sha256": "2e113e3d34e9340da730c364496ef5c1e8d5593d8f9850b8fe051ff52b873328"
+    },
+    {
+      "path": "tools/site-audit/tablet-audit.mjs",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 9805,
+      "sha256": "d010d72c5319cfd0fa933512a1c96df1c48430f4f85db9ef7718ac1a9a3d42da"
     }
   ],
   "relations": [
@@ -2633,6 +2801,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/build_products.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/build_prompt_composer_data.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2793,7 +2966,7 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "Shared/tools/delivery_gate.py",
+      "from": "Shared/tools/cost_ledger.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -2888,11 +3061,6 @@
       "kind": "IMPORTS"
     },
     {
-      "from": "Shared/tools/learner_product_render.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
       "from": "Shared/tools/learning_router.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2900,6 +3068,16 @@
     {
       "from": "Shared/tools/library_board.py",
       "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -2933,6 +3111,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/package_depth.py",
+      "to": "Shared.tools.package_migrate",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/plan_request.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2958,6 +3141,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/promote_verified.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/prompt_composer.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2970,6 +3158,16 @@
     {
       "from": "Shared/tools/publication_provenance.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/quality_contract.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/quality_gate.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -2990,6 +3188,11 @@
     {
       "from": "Shared/tools/release_authority.py",
       "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/render_core.py",
+      "to": "Shared.tools.package_migrate",
       "kind": "IMPORTS"
     },
     {
@@ -3823,6 +4026,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_package_depth.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_pages_site.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -3913,6 +4121,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_quality_contract.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_quality_gate.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_question_bank_web.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
@@ -3924,6 +4142,16 @@
     },
     {
       "from": "tests/test_release_authority.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_render_core.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_renderer_inventory.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -3974,6 +4202,11 @@
     },
     {
       "from": "tests/test_shared_topic_atlas_core.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_site_nav_audit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

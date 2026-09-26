@@ -1,0 +1,996 @@
+{
+  "schema": "learner-quality-contract/v1",
+  "version": "1.0.0",
+  "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
+  "families": {
+    "DEPTH": "Content a learner needs, at the depth the references show.",
+    "INTERACTION": "When content becomes visible: attempt before reveal, progressive support.",
+    "PAGE": "Standalone web page, shell and tablet policies.",
+    "INTEGRITY": "Where the product came from and what it may never show."
+  },
+  "measures": {
+    "STATIC": "Decidable from the delivered files.",
+    "RENDERED": "Needs a browser (tools/site-audit/core-page-audit.mjs); skipped as NOT_MEASURED when page.rendered is null."
+  },
+  "blocks": {
+    "CORE1": [
+      "scope",
+      "conventions",
+      "hard_transition",
+      "governing_relation",
+      "compact_anchor",
+      "exit_prompt"
+    ],
+    "CORE1A": [
+      "entry_assumptions",
+      "inferential_jump",
+      "construction",
+      "representation_bridge",
+      "worked_anchor",
+      "wrong_path",
+      "diagnose",
+      "repair",
+      "independent_check",
+      "exit_task",
+      "exit_answer"
+    ],
+    "CORE1B": [
+      "predict",
+      "attempt_prompt",
+      "reconstruct",
+      "diagnose",
+      "repair",
+      "model_response",
+      "rejoin_jump",
+      "boundary_test",
+      "boundary_answer"
+    ],
+    "CORE2": [
+      "source_identity",
+      "stem",
+      "conditions",
+      "options",
+      "source_hints",
+      "answer",
+      "working"
+    ],
+    "CORE2A": [
+      "provenance",
+      "family_identity",
+      "stem",
+      "conditions",
+      "trap",
+      "reasoning_route",
+      "solution",
+      "answer",
+      "independent_check",
+      "failure_signal",
+      "repair",
+      "exposure_closure"
+    ],
+    "CORE2B": [
+      "provenance",
+      "stem",
+      "lineage",
+      "conditions",
+      "invariant_changed",
+      "safe_support",
+      "commitment",
+      "changed_demand",
+      "protected_move",
+      "reasoning_route",
+      "answer",
+      "rubric",
+      "independent_check",
+      "repair",
+      "lineage_check"
+    ]
+  },
+  "thresholds": {
+    "max_decisions_per_anchor": 4,
+    "min_support_levels": 3,
+    "min_figure_reveal_stages": 2,
+    "placeholder_patterns": [
+      "none supplied by the governed record",
+      "not supplied",
+      "\\bTBD\\b",
+      "\\bTODO\\b",
+      "lorem ipsum",
+      "placeholder",
+      "use the linked canonical explorer where supplied",
+      "\\b(?:CAP|MIC|REP|FAM|REL|CU|VIS|SRC|ACT|Q|BUCKET|LIB)-[A-Z0-9][A-Z0-9]*(?:-[A-Z0-9]+){1,}\\b"
+    ],
+    "escape_state_tokens": [
+      "HOLD",
+      "BLOCKED",
+      "INCOMPLETE",
+      "FAILED",
+      "PENDING_OWNER",
+      "VISUAL_HOLD",
+      "HOLD_WORKED_ANCHOR"
+    ],
+    "calibration_note": "Values chosen on the corpus: max_decisions_per_anchor=4 flags only the compressed R3 construction (7 decisions, 1 anchor) among the 8 Core1A concepts of specimen S1, whose others have 3-4; min_support_levels=3 is the reference question bank's rung count (every item has 3). C2A-BLOCKS does not require a separate conditions block: 3 of the reference's 77 items have none."
+  },
+  "rules": [
+    {
+      "id": "C1-RELATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "governing_relation",
+          "compact_anchor"
+        ]
+      },
+      "audit_refs": [
+        "A1-001"
+      ],
+      "grammar": "R1:equation-meaning-validity bridge",
+      "text": "Each Core1 microtopic states its governing relation with meaning and validity conditions, and one compact anchor."
+    },
+    {
+      "id": "C1-REPRESENTATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "page_figures_min",
+        "min": 1
+      },
+      "audit_refs": [
+        "A1-001"
+      ],
+      "grammar": "R1:staged illustration/derivation",
+      "text": "The Core1 map mounts at least one canonical representation, not only links to it."
+    },
+    {
+      "id": "C1A-BLOCKS",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "entry_assumptions",
+          "inferential_jump",
+          "construction",
+          "worked_anchor",
+          "wrong_path",
+          "diagnose",
+          "repair",
+          "independent_check",
+          "exit_task"
+        ]
+      },
+      "audit_refs": [
+        "A1-003"
+      ],
+      "grammar": "R1:easy mistake",
+      "text": "Every Core1A concept has entry assumptions, the inferential jump, a reasoned construction, a worked anchor, wrong path, diagnosis, repair, an independent check and an exit task."
+    },
+    {
+      "id": "C1A-REPRESENTATION-BRIDGE",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "figures_min",
+        "min": 1,
+        "stages": [
+          "TEACHING",
+          "PRE_ATTEMPT"
+        ],
+        "no_unmounted_refs": true
+      },
+      "audit_refs": [
+        "A1-002"
+      ],
+      "grammar": "R1:staged illustration/derivation",
+      "text": "Every Core1A concept, canonical included, mounts its representation; naming a representation id is not a representation."
+    },
+    {
+      "id": "C1A-STAGED-REPRESENTATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S2",
+      "check": {
+        "op": "figure_reveal_stages_min",
+        "min_from": "min_figure_reveal_stages"
+      },
+      "audit_refs": [],
+      "grammar": "R1:staged illustration/derivation",
+      "text": "A Core1A representation builds up in at least two stages that follow the construction (the textbook reference's staged figures)."
+    },
+    {
+      "id": "C1A-ANCHOR-PER-DECISION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "decisions_per_anchor_max",
+        "max_from": "max_decisions_per_anchor"
+      },
+      "audit_refs": [
+        "A1-004"
+      ],
+      "grammar": "R1:model check",
+      "text": "A construction with many distinct decisions/events is split into units, each with a worked anchor that exercises that unit's move."
+    },
+    {
+      "id": "C1A-PREREQUISITES-BRIDGED",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "prerequisites_bridged"
+      },
+      "audit_refs": [
+        "A1-005"
+      ],
+      "grammar": "R1:physical/concept opening",
+      "text": "Every entry assumption links to a unit that teaches it (in this product or a named prior capability, possibly in another subject)."
+    },
+    {
+      "id": "C1B-BLOCKS",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "predict",
+          "attempt_prompt",
+          "reconstruct",
+          "diagnose",
+          "repair",
+          "boundary_test"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every Core1B concept runs predict, attempt, reconstruct, diagnose, repair and a boundary test."
+    },
+    {
+      "id": "C1B-REPRESENTATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "figures_min",
+        "min": 1,
+        "stages": [
+          "PRE_ATTEMPT",
+          "POST_ATTEMPT",
+          "TEACHING"
+        ]
+      },
+      "audit_refs": [
+        "A1-002"
+      ],
+      "grammar": "R1:staged illustration/derivation",
+      "text": "Every Core1B concept reconstructs with its representation."
+    },
+    {
+      "id": "C1B-REVEAL-GATED",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B"
+      ],
+      "unit_kind": "CONCEPT",
+      "severity": "S1",
+      "check": {
+        "op": "reveals_gated",
+        "blocks": [
+          "reconstruct",
+          "model_response",
+          "boundary_answer"
+        ]
+      },
+      "audit_refs": [
+        "A3-004"
+      ],
+      "grammar": null,
+      "text": "Reconstruction and model answers open only after the learner's attempt is recorded."
+    },
+    {
+      "id": "C2-BLOCKS",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "source_identity",
+          "stem",
+          "answer"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every source item shows its identity, its stem and (on reveal) its answer."
+    },
+    {
+      "id": "C2-ATTEMPT",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "attempt_present"
+      },
+      "audit_refs": [
+        "A1-006"
+      ],
+      "grammar": null,
+      "text": "Every source item gives the learner an attempt slot."
+    },
+    {
+      "id": "C2-ANSWER-ON-REVEAL",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "blocks_only_in_reveal",
+        "blocks": [
+          "answer",
+          "working"
+        ],
+        "gated": true
+      },
+      "audit_refs": [
+        "A1-006",
+        "A3-005"
+      ],
+      "grammar": null,
+      "text": "Source answers and working are behind a learner-opened reveal after an attempt."
+    },
+    {
+      "id": "C2A-BLOCKS",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "stem",
+          "solution",
+          "answer",
+          "independent_check"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": "R2:complete derivation",
+      "text": "Every supported-application item has its stem, a complete solution, the answer and an independent check. Conditions are shown when the item has any (3 of the reference's 77 items state none separately)."
+    },
+    {
+      "id": "C2A-ATTEMPT-FIRST",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S2",
+      "check": {
+        "op": "block_order",
+        "first": "stem",
+        "before": [
+          "solution",
+          "answer"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": "R2:attempt-first stem",
+      "text": "The stem comes before any solution content."
+    },
+    {
+      "id": "C2A-TRAP",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "failure_signal"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": "R2:conditions and trap warning",
+      "text": "Every item names its tempting wrong route (trap/failure signal)."
+    },
+    {
+      "id": "C2A-REPRESENTATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "figures_min",
+        "min": 1,
+        "stages": [
+          "PRE_ATTEMPT"
+        ]
+      },
+      "audit_refs": [
+        "A1-007"
+      ],
+      "grammar": "R2:question-aligned representation",
+      "text": "Every item shows a question-aligned representation the learner can use while attempting."
+    },
+    {
+      "id": "C2A-LADDER",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "support_levels_min",
+        "min_from": "min_support_levels"
+      },
+      "audit_refs": [
+        "A1-008",
+        "A3-008"
+      ],
+      "grammar": "R2:progressive H0-H4 support",
+      "text": "Every item has an ordered, question-specific support ladder of at least three rungs."
+    },
+    {
+      "id": "C2A-SPECIFIC-SUPPORT",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "distinct_across_page",
+        "fields": [
+          "support_levels",
+          "failure_signal"
+        ]
+      },
+      "audit_refs": [
+        "A1-008"
+      ],
+      "grammar": "R2:progressive H0-H4 support",
+      "text": "Support rungs and failure signals are specific to the item: no text repeats across items of the page."
+    },
+    {
+      "id": "C2A-PROVENANCE",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A",
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "provenance"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": "R2:provenance separation",
+      "text": "Every practice item says where it comes from (source identity, or authored practice), so source material and authored material stay distinguishable."
+    },
+    {
+      "id": "C2A-FAMILY-CLOSURE",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "family_identity",
+          "exposure_closure"
+        ]
+      },
+      "audit_refs": [
+        "A1-009"
+      ],
+      "grammar": null,
+      "text": "Every item names its family and closes the exposure that Core2B will build on."
+    },
+    {
+      "id": "C2A-REVEAL-GATED",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2A"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "reveals_gated",
+        "blocks": [
+          "solution",
+          "answer"
+        ]
+      },
+      "audit_refs": [
+        "A3-004"
+      ],
+      "grammar": null,
+      "text": "The full solution opens only after an attempt."
+    },
+    {
+      "id": "C2B-SAFE-REPRESENTATION",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "figures_min",
+        "min": 1,
+        "stages": [
+          "PRE_ATTEMPT"
+        ]
+      },
+      "audit_refs": [
+        "A1-010"
+      ],
+      "grammar": null,
+      "text": "Every transfer task shows a safe representation (no protected move) before commitment."
+    },
+    {
+      "id": "C2B-LINEAGE",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S2",
+      "check": {
+        "op": "blocks_present",
+        "blocks": [
+          "lineage_check",
+          "invariant_changed"
+        ],
+        "min_lineage_refs": 1
+      },
+      "audit_refs": [
+        "A1-011"
+      ],
+      "grammar": "R1:where-used/transfer closure",
+      "text": "Every transfer task links its prior exposure and checks which invariant held and which demand changed."
+    },
+    {
+      "id": "C2B-SAFE-SUPPORT-SPECIFIC",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S3",
+      "check": {
+        "op": "distinct_across_page",
+        "fields": [
+          "safe_support"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Safe pre-attempt support is specific to each task."
+    },
+    {
+      "id": "C2B-REVEAL-GATED",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE2B"
+      ],
+      "unit_kind": "QUESTION",
+      "severity": "S1",
+      "check": {
+        "op": "reveals_gated",
+        "blocks": [
+          "protected_move",
+          "answer",
+          "rubric"
+        ]
+      },
+      "audit_refs": [
+        "A3-004"
+      ],
+      "grammar": null,
+      "text": "The protected DECIDE move and the answer open only after commitment."
+    },
+    {
+      "id": "ALL-NO-PLACEHOLDER",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "no_placeholders"
+      },
+      "audit_refs": [
+        "A1-003",
+        "A1-012",
+        "S4-DELIVERY-GATE-13"
+      ],
+      "grammar": null,
+      "text": "No placeholder, internal-absence text or internal record id (CAP-…, MIC-…, REP-…, Q-…) reaches the learner; learners read titles and text, not identifiers."
+    },
+    {
+      "id": "ALL-PRE-ATTEMPT-FIGURE-PARTIAL",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "pre_attempt_figures_partial"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "A staged figure shown before the attempt stops before its final stage; the completed figure (which shows the result) appears only after the attempt."
+    },
+    {
+      "id": "ALL-FIGURES-TITLED",
+      "family": "PAGE",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S3",
+      "check": {
+        "op": "figures_titled"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Every figure has an accessible title."
+    },
+    {
+      "id": "ALL-FIGURE-KIND-KNOWN",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S3",
+      "check": {
+        "op": "figure_kinds_in_vocabulary"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "A figure that declares its kind uses a kind from the subject's QualityVocabulary."
+    },
+    {
+      "id": "ALL-CHECK-TYPES-KNOWN",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S3",
+      "check": {
+        "op": "check_types_in_vocabulary"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Declared independent-check types come from the subject's QualityVocabulary."
+    },
+    {
+      "id": "PAGE-HOME-LINK",
+      "family": "PAGE",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "page_flag",
+        "field": "home_link"
+      },
+      "audit_refs": [
+        "A3-001"
+      ],
+      "grammar": null,
+      "text": "Every Core page links to the app home."
+    },
+    {
+      "id": "PAGE-SHELL",
+      "family": "PAGE",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "page_flag",
+        "field": "shell_header"
+      },
+      "audit_refs": [
+        "A3-002"
+      ],
+      "grammar": null,
+      "text": "Every Core page renders the tablet shell header."
+    },
+    {
+      "id": "PAGE-SLOTS",
+      "family": "PAGE",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "page_flag",
+        "field": "slot_markers"
+      },
+      "audit_refs": [
+        "A3-003"
+      ],
+      "grammar": null,
+      "text": "Blueprint slots are rendered as structure, not only declared."
+    },
+    {
+      "id": "PAGE-PRINT-CSS",
+      "family": "PAGE",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "page_flag",
+        "field": "print_css"
+      },
+      "audit_refs": [
+        "A3-011"
+      ],
+      "grammar": null,
+      "text": "The page prints itself (print CSS); PDFs are prints of the page."
+    },
+    {
+      "id": "PAGE-TOUCH",
+      "family": "PAGE",
+      "measure": "RENDERED",
+      "roles": [
+        "*"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "rendered_zero",
+        "field": "small_targets"
+      },
+      "audit_refs": [
+        "A3-006"
+      ],
+      "grammar": null,
+      "text": "Every control is at least 48 CSS px on its short side."
+    },
+    {
+      "id": "PAGE-STAGE-SUPPORT",
+      "family": "PAGE",
+      "measure": "RENDERED",
+      "roles": [
+        "CORE1A",
+        "CORE1B",
+        "CORE2",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "rendered_flag",
+        "field": "stage_support_layout"
+      },
+      "audit_refs": [
+        "A3-007"
+      ],
+      "grammar": null,
+      "text": "Expanded tablets use the 0.68/0.32 stage-support layout."
+    },
+    {
+      "id": "PRODUCT-NO-ESCAPE-STATE",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S0",
+      "check": {
+        "op": "product_no_escape_states"
+      },
+      "audit_refs": [
+        "S3-HOLD-AS-OUTPUT",
+        "S4-DELIVERY-GATE-13"
+      ],
+      "grammar": null,
+      "text": "No escape state (HOLD, BLOCKED, …) is delivered to the learner as an outcome."
+    },
+    {
+      "id": "PRODUCT-RENDERED-FROM-RECORDS",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "product_render_stamp"
+      },
+      "audit_refs": [
+        "S3-NO-RENDERER"
+      ],
+      "grammar": null,
+      "text": "The product carries the governed renderer's stamp: compiled from library records, never hand-written."
+    },
+    {
+      "id": "PRODUCT-ALL-ROLES",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "product_roles",
+        "roles": [
+          "CORE1",
+          "CORE1A",
+          "CORE1B",
+          "CORE2",
+          "CORE2A",
+          "CORE2B"
+        ]
+      },
+      "audit_refs": [
+        "S5-NO-CORE2A-2B"
+      ],
+      "grammar": null,
+      "text": "A delivered product renders all six Core roles."
+    },
+    {
+      "id": "PRODUCT-SHARED-ATLAS",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S2",
+      "check": {
+        "op": "product_shared_atlas"
+      },
+      "audit_refs": [
+        "S5-OWN-ATLAS-BUILDER"
+      ],
+      "grammar": null,
+      "text": "The Atlas is the shared Atlas updated from library data, not a per-job page."
+    },
+    {
+      "id": "PRODUCT-PRINT-FROM-PAGE",
+      "family": "INTEGRITY",
+      "measure": "STATIC",
+      "roles": [
+        "*"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "product_print_from_page"
+      },
+      "audit_refs": [
+        "S2-PDF-FIGURES-ABSENT",
+        "S2-INHERITS-S1"
+      ],
+      "grammar": null,
+      "text": "A print product is a print of the web page and carries every figure the page has."
+    }
+  ],
+  "references": {
+    "R1": {
+      "grammar": [
+        "physical/concept opening",
+        "staged illustration/derivation",
+        "physics vocabulary",
+        "model check",
+        "equation-meaning-validity bridge",
+        "easy mistake",
+        "where-used/transfer closure"
+      ],
+      "calibration": "NOT_LOCATED: the compiled Core1A textbook is on no branch (benchmarks/quality-calibration/manifest.v1.json). Its grammar is encoded as rules; passing is checked once the file is located.",
+      "vocabulary_steps": [
+        "physics vocabulary"
+      ]
+    },
+    "R2": {
+      "grammar": [
+        "attempt-first stem",
+        "conditions and trap warning",
+        "question-aligned representation",
+        "progressive H0-H4 support",
+        "complete derivation",
+        "answer + independent check",
+        "provenance separation"
+      ],
+      "calibration": "PASS_REQUIRED on every rule whose grammar is an R2 step, for every question in the reference. Interaction rules are out of its scope: it is a print-oriented tablet edition whose hint rungs are open.",
+      "role": "CORE2A"
+    }
+  },
+  "grammar_step_notes": {
+    "R1:physics vocabulary": "Subject-specific: enforced through the subject adapter's QualityVocabulary (figure kinds, check types), not a separate rule.",
+    "R2:answer + independent check": "Covered by C2A-BLOCKS (answer, independent_check)."
+  }
+}

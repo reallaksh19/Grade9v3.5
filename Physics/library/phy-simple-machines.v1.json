@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-SIMPLE-MACHINES-G9",
   "version": "0.2.0",
   "status": "CANDIDATE",
@@ -295,7 +295,26 @@
           "answer": "No. Changing direction alone can be useful even without reducing the effort-force magnitude.",
           "confirms": "Machine usefulness is not identical to force multiplication."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-MACHINE-TRADEOFF-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SM1-1",
+            "SM1-2",
+            "SM1-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-MACHINE-MA",
@@ -464,7 +483,28 @@
           "answer": "They are equal in magnitude; the machine provides no force multiplication.",
           "confirms": "Mechanical advantage is specifically a force ratio."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-MACHINE-MA-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SM2-1",
+            "SM2-2",
+            "SM2-3",
+            "SM2-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-MACHINE-COMPARE",
@@ -610,7 +650,26 @@
           "answer": "Yes. It can still change force direction or make the task ergonomically easier.",
           "confirms": "Mechanical advantage is not the only form of machine usefulness."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-MACHINE-COMPARE-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SM3-1",
+            "SM3-2",
+            "SM3-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [
@@ -830,7 +889,26 @@
           "text": "Put the load force in the numerator and effort force in the denominator.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SIMPLE-MACHINES",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-MACHINE-PRACTICAL-11",
@@ -892,7 +970,32 @@
           "text": "For a fair comparison, keep the load fixed while changing only the intended setup feature.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SIMPLE-MACHINES",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

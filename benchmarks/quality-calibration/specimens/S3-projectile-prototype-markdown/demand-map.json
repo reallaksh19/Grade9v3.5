@@ -1,0 +1,161 @@
+{
+  "schema_version": "projectile-demand-map-v1",
+  "repository_basis": "main@ca0de27e307e4f532412ac52713a6faf14b216a4",
+  "canonical_package_ref": "Physics/library/phy-kin-2d-motion.v1.json",
+  "canonical_bucket_ref": "BUCKET-PHY-KIN-2D-MOTION",
+  "owner_set_ref": "tests/fixtures/prompt-composer/projectile-stress-set.json",
+  "demand_evidence_and_learner_eligibility_are_independent": true,
+  "owner_estimate": {
+    "knowledge_percentage": 50,
+    "provenance": "OWNER_ESTIMATE",
+    "measured_mastery": false,
+    "use": "support/routing input only where Core2A/Core2B permit"
+  },
+  "anchors": [
+    {
+      "owner_label": "Q28",
+      "demand": "Velocity direction from x(t) and y(t).",
+      "exact_repository_ref": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+      "candidate_refs": [],
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "secondary_capability_refs": [
+        "CAP-KIN-PROJECTILE-MODEL"
+      ],
+      "canonical_microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "canonical_rung": "R1",
+      "source_custody_status": "SOURCE_CUSTODY_HOLD_NON_VERBATIM_ADAPTATION",
+      "demand_evidence_status": "VALID_DEMAND_EVIDENCE",
+      "learner_eligibility_status": "NOT_ESTABLISHED",
+      "extension_gap_classification": "UNTaught_CAPABILITY_GAP",
+      "analysis": {
+        "A_canonical_capability": "The coordinate histories are x/y descriptions of one plane-motion state; the canonical mapping is independent components.",
+        "B_real_bottleneck": "Recognize that velocity direction is determined by instantaneous velocity components, not by the position vector direction.",
+        "C_prerequisite": "Differentiating x(t) and y(t) to obtain velocity components.",
+        "D_canonical_teaching": "One frame, separate x/y quantities, simultaneous recombination, and velocity direction from simultaneous components once those components are known.",
+        "E_extension_or_bridge": "Calculus differentiation of time-dependent position is explicitly outside this canonical packet.",
+        "F_core2_custody": "Insufficient for ordinary Core2: the bank stores a faithful non-verbatim restatement rather than the exact original stem/options.",
+        "G_learner_eligibility": "Not established by the current selector.",
+        "H_core2a": "Not from this anchor for this learner. Canonical authored same-family practice may be used instead; the calculus step must not be taught inside a solution.",
+        "I_core2b": "No. The anchor requires an untaught calculus prerequisite and its bank transfer profile is SAME_FAMILY_VARIATION.",
+        "J_hold_or_gap": "Learner eligibility is unestablished and the differentiation prerequisite is outside canonical teaching."
+      }
+    },
+    {
+      "owner_label": "Q15",
+      "demand": "Maximum projectile height after an energy-losing bounce.",
+      "exact_repository_ref": null,
+      "candidate_refs": [
+        "PYQ-PHY-JEEADV-2018-P2-Q08",
+        "PYQ-PHY-JEEADV-2023-P1-Q01"
+      ],
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "canonical_microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "canonical_rung": "R3",
+      "source_custody_status": "IDENTITY_HOLD_AND_SOURCE_CUSTODY_HOLD_NON_VERBATIM_ADAPTATIONS",
+      "demand_evidence_status": "VALID_DIAGNOSTIC_DEMAND_EVIDENCE_FOR_BOTH_CANDIDATES",
+      "learner_eligibility_status": "EXCLUDED",
+      "extension_gap_classification": "IDENTITY_HOLD",
+      "demand_boundary": "EXTENSION",
+      "analysis": {
+        "A_canonical_capability": "Both candidate records map primarily to the canonical projectile model.",
+        "B_real_bottleneck": "Translate collision/energy-loss information into the post-impact launch state before applying projectile-height reasoning.",
+        "C_prerequisite": "Energy/restitution or collision-state reasoning, depending on which candidate is the owner item.",
+        "D_canonical_teaching": "Projectile component model and apex/height reasoning after an already-known launch state.",
+        "E_extension_or_bridge": "The energy-loss/restitution event that creates the new launch state is outside the bounded Motion-in-2D teaching packet.",
+        "F_core2_custody": "No ordinary Core2 closure: owner identity is unresolved and both candidate bank records are non-verbatim adaptations.",
+        "G_learner_eligibility": "Excluded by owner policy for JEE Advanced; retained only as diagnostic demand evidence.",
+        "H_core2a": "No learner use of either source anchor. A canonical authored projectile practice item may cover already-taught apex reasoning without impersonating Q15.",
+        "I_core2b": "No. Identity is unresolved and the added impact/energy model is not established as prior-taught capability here.",
+        "J_hold_or_gap": "IDENTITY_HOLD plus learner exclusion and upstream impact/energy teaching gap."
+      }
+    },
+    {
+      "owner_label": "Q21",
+      "demand": "Gravity changes after the apex.",
+      "exact_repository_ref": "PYQ-PHY-JEEADV-2022-P1-Q08",
+      "candidate_refs": [],
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "canonical_microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "canonical_rung": "R3",
+      "source_custody_status": "SOURCE_CUSTODY_HOLD_NON_VERBATIM_ADAPTATION",
+      "demand_evidence_status": "VALID_DEMAND_EVIDENCE",
+      "learner_eligibility_status": "EXCLUDED",
+      "extension_gap_classification": "EXTENSION",
+      "analysis": {
+        "A_canonical_capability": "Projectile event reasoning and shared horizontal/vertical state.",
+        "B_real_bottleneck": "Recognize the apex as a model boundary and recompute the post-apex segment under a changed acceleration.",
+        "C_prerequisite": "Piecewise model reasoning when the acceleration parameter changes at an event boundary.",
+        "D_canonical_teaching": "Apex identification, one-clock component state, and the standard constant-g projectile model on an interval where it is valid.",
+        "E_extension_or_bridge": "Changed/variable gravity is explicitly outside the canonical packet; the post-apex model switch is extension demand.",
+        "F_core2_custody": "Insufficient for ordinary Core2 because the bank wording is a faithful non-verbatim restatement.",
+        "G_learner_eligibility": "Excluded by owner learner-set policy for JEE Advanced.",
+        "H_core2a": "No learner use of the source anchor; canonical apex practice is available without the altered-gravity extension.",
+        "I_core2b": "Not from this source demand. The changed-gravity scientific model is not established as already taught in this packet.",
+        "J_hold_or_gap": "Learner exclusion plus extension/upstream teaching gap for the changed model."
+      }
+    },
+    {
+      "owner_label": "Q26",
+      "demand": "Projectile trajectory through a specified point.",
+      "exact_repository_ref": "PYQ-PHY-JEEADV-2026-P1-Q06",
+      "candidate_refs": [],
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS"
+      ],
+      "canonical_microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "canonical_rung": "R3",
+      "source_custody_status": "SOURCE_CUSTODY_HOLD_NON_VERBATIM_ADAPTATION",
+      "demand_evidence_status": "VALID_DEMAND_EVIDENCE",
+      "learner_eligibility_status": "EXCLUDED",
+      "extension_gap_classification": "EXTENSION",
+      "analysis": {
+        "A_canonical_capability": "Canonical projectile model and event/state reconstruction.",
+        "B_real_bottleneck": "Use a prescribed point together with an apex-location decision rather than only a routine event time.",
+        "C_prerequisite": "Trajectory-equation/slope or equivalent advanced elimination reasoning.",
+        "D_canonical_teaching": "Gravity-only component model, event conditions, and checking velocity state at a selected event.",
+        "E_extension_or_bridge": "Trajectory-equation derivation and advanced projectile geometry are outside the canonical first slice.",
+        "F_core2_custody": "Insufficient for ordinary Core2 because the bank record is non-verbatim.",
+        "G_learner_eligibility": "Excluded by owner policy for JEE Advanced.",
+        "H_core2a": "No source-anchor learner use; canonical authored event-condition practice may be used instead.",
+        "I_core2b": "No. The source task requires extension machinery not established as prior taught capability.",
+        "J_hold_or_gap": "Learner exclusion and trajectory/geometry extension boundary."
+      }
+    },
+    {
+      "owner_label": "Q23",
+      "demand": "Projectile motion with linear drag.",
+      "exact_repository_ref": "PYQ-PHY-JEEADV-2025-P2-Q15",
+      "candidate_refs": [],
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [
+        "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+        "CAP-NLM-SECOND-LAW"
+      ],
+      "canonical_microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "canonical_rung": "R2",
+      "source_custody_status": "SOURCE_CUSTODY_HOLD_NON_VERBATIM_ADAPTATION",
+      "demand_evidence_status": "VALID_DEMAND_EVIDENCE",
+      "learner_eligibility_status": "EXCLUDED",
+      "extension_gap_classification": "UNTaught_CAPABILITY_GAP",
+      "analysis": {
+        "A_canonical_capability": "The repository deliberately preserves CAP-KIN-2D-CONSTANT-ACCELERATION as the primary capability mapping even though the demand tests its breakdown.",
+        "B_real_bottleneck": "Reject constant-acceleration projectile equations and solve the velocity-dependent horizontal dynamics.",
+        "C_prerequisite": "Newton II with velocity-dependent force plus differential-equation solution/integration.",
+        "D_canonical_teaching": "Check acceleration-model validity per component and reject the constant-a relation when its condition fails.",
+        "E_extension_or_bridge": "Linear drag dynamics and exponential integration are explicitly outside the Motion-in-2D canonical packet.",
+        "F_core2_custody": "Insufficient for ordinary Core2 because the bank item is a non-verbatim adaptation.",
+        "G_learner_eligibility": "Excluded by owner policy for JEE Advanced.",
+        "H_core2a": "No. Teaching the drag solution inside Core2A would silently add untaught scientific capability.",
+        "I_core2b": "No. A task requiring a never-taught drag model is an upstream teaching gap, not transfer.",
+        "J_hold_or_gap": "Learner exclusion and upstream teaching gap for linear-drag dynamics/calculus."
+      }
+    }
+  ]
+}

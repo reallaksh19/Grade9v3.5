@@ -1,0 +1,394 @@
+{
+  "schema": "quality-calibration-corpus/v1",
+  "phase": "0",
+  "purpose": "Frozen specimens and references used to calibrate the Phase-1 quality contract and the Phase-4 rendered gate: every NEGATIVE specimen must fail for its expected findings, every POSITIVE reference must pass. Files are byte-frozen by SHA-256.",
+  "specimens": [
+    {
+      "id": "S1",
+      "kind": "NEGATIVE",
+      "title": "Motion-in-2D six-Core projectile product (HTML)",
+      "dir": "specimens/S1-motion2d-six-core-html",
+      "source": {
+        "branch": "motion2d-six-core-20260926",
+        "commit": "d3fd51abb11ef5a886411ace9a5411ecf17f5e12",
+        "paths": "public/physics/motion-in-2d/projectile-demand/*.html",
+        "renderer": "Physics/tools/build_motion2d_projectile_product.py"
+      },
+      "expected_findings": [
+        {
+          "id": "A1-001",
+          "file": "core1.html",
+          "severity": "S2",
+          "rule": "Core1 governing relation (expression, meaning, conditions) and compact anchor materially present"
+        },
+        {
+          "id": "A1-002",
+          "file": "core1a.html",
+          "severity": "S1",
+          "rule": "every Core1A concept, canonical included, mounts a rendered representation (5 SVGs, all extensions; R1-R3 show text references)"
+        },
+        {
+          "id": "A1-003",
+          "file": "core1a.html",
+          "severity": "S2",
+          "rule": "no placeholder/fallback text; independent checks present ('None supplied by the governed record')"
+        },
+        {
+          "id": "A1-004",
+          "file": "core1a.html",
+          "severity": "S1",
+          "rule": "one construction unit per distinct decision/event, each with a worked anchor exercising that move"
+        },
+        {
+          "id": "A1-005",
+          "file": "core1a.html",
+          "severity": "S1",
+          "rule": "prerequisite bridges (derivative, trigonometric resolution, exponential decay) precede dependent extensions"
+        },
+        {
+          "id": "A1-006",
+          "file": "core2.html",
+          "severity": "S1",
+          "rule": "Core2 attempt slot and answer/working behind reveal"
+        },
+        {
+          "id": "A1-007",
+          "file": "core2a.html",
+          "severity": "S1",
+          "rule": "every Core2A item mounts a question-aligned representation"
+        },
+        {
+          "id": "A1-008",
+          "file": "core2a.html",
+          "severity": "S1",
+          "rule": "question-specific progressive hint ladder (>=3 rungs); item-specific failure signal"
+        },
+        {
+          "id": "A1-009",
+          "file": "core2a.html",
+          "severity": "S2",
+          "rule": "explicit family/exposure closure per Core2A item"
+        },
+        {
+          "id": "A1-010",
+          "file": "core2b.html",
+          "severity": "S1",
+          "rule": "safe pre-attempt representation per Core2B item"
+        },
+        {
+          "id": "A1-011",
+          "file": "core2b.html",
+          "severity": "S2",
+          "rule": "explicit lineage continuity check (invariant vs changed)"
+        },
+        {
+          "id": "A1-012",
+          "file": "core2.html",
+          "severity": "S2",
+          "rule": "no placeholder text in source questions ('Figures and captions: None supplied by the governed record' x6, 'Conditions: None supplied' x1)"
+        },
+        {
+          "id": "A3-001",
+          "file": "*",
+          "severity": "S1",
+          "rule": "every Core has a persistent link to the app home (not a sibling preview page)"
+        },
+        {
+          "id": "A3-002",
+          "file": "*",
+          "severity": "S1",
+          "rule": "every Core renders the G9-TABLET-SHELL-V1 header (home, back, search, display)"
+        },
+        {
+          "id": "A3-003",
+          "file": "*",
+          "severity": "S1",
+          "rule": "blueprint slots are rendered as structure (data-blueprint-slot), not only declared on <body>"
+        },
+        {
+          "id": "A3-004",
+          "file": "core1b.html core2a.html core2b.html",
+          "severity": "S1",
+          "rule": "reveal of reconstruction/solution/post-attempt material is gated on an attempt"
+        },
+        {
+          "id": "A3-005",
+          "file": "core2.html",
+          "severity": "S1",
+          "rule": "Core2 solution is learner-openable, not inline"
+        },
+        {
+          "id": "A3-006",
+          "file": "*",
+          "severity": "S2",
+          "rule": "every control is at least 48 CSS px on its short side"
+        },
+        {
+          "id": "A3-007",
+          "file": "core1a.html core1b.html core2.html core2a.html core2b.html",
+          "severity": "S2",
+          "rule": "expanded tablet viewport uses the 0.68/0.32 stage-support layout"
+        },
+        {
+          "id": "A3-008",
+          "file": "core2a.html core2b.html",
+          "severity": "S2",
+          "rule": "support is progressive (ordered levels), not one disclosure"
+        },
+        {
+          "id": "A3-011",
+          "file": "*",
+          "severity": "S2",
+          "rule": "the PDF is printed from the rendered page (no separate PDF generator)"
+        }
+      ],
+      "evidence_ref": "https://github.com/reallaksh19/Grade9V3/issues/296#issuecomment-5843480123",
+      "files": {
+        "specimens/S1-motion2d-six-core-html/core1.html": "1f8782967789f6632dd2459d8ed888f4fd6a505c1b654bca103a0f3123d34c85",
+        "specimens/S1-motion2d-six-core-html/core1a.html": "0d3db9d11403ca20967ec0f54f77adea309037587957736be3872fbd18a7374c",
+        "specimens/S1-motion2d-six-core-html/core1b.html": "2c71c0c32ff113257760ff2d94c9d3b04e5363b6e57400dd0853d2b7a94a7f22",
+        "specimens/S1-motion2d-six-core-html/core2.html": "3e3b6ac86ea0f9e4b6f687574d19021ee9b78643945152772c06bd38f834b780",
+        "specimens/S1-motion2d-six-core-html/core2a.html": "10ffe47a0224f3f1a81b3627527d6d124aa3582a521444ce20b7df79ecc0cd61",
+        "specimens/S1-motion2d-six-core-html/core2b.html": "ff02bd3fe320c34475e575f08fce794e2899bdfd33e1b1ec9df2d253cbf6e162",
+        "specimens/S1-motion2d-six-core-html/index.html": "78bc87d920866b02f077b4d23986f4d08e7bc522993815acd59304b1c268b1a5"
+      },
+      "observe": {
+        "extractor": "motion2d-generator-html",
+        "rendered_measurements": "docs/plans/phase0/audits/audit3-rendered-measurements.json"
+      },
+      "acknowledged_extra_rules": {
+        "C1A-STAGED-REPRESENTATION": "the 5 extension figures are single-stage; the R1 reference stages its figures (benchmark gap, not in Audit 1)",
+        "C2B-SAFE-SUPPORT-SPECIFIC": "the same safe-support sentence on all 5 transfer tasks (Audit 3 section 2)",
+        "PRODUCT-RENDERED-FROM-RECORDS": "no specimen comes from the governed renderer (it arrives in Phase 3)",
+        "C2A-PROVENANCE": "Core2B tasks show no provenance label (only 'CORE2B changed-demand transfer'), although the product's validation report claims AUTHORED_PRACTICE labels on Core2A and Core2B; found by the Phase 1 contract, not in Audit 1"
+      }
+    },
+    {
+      "id": "S2",
+      "kind": "NEGATIVE",
+      "title": "Motion-in-2D six-Core PDFs (owner upload)",
+      "dir": "specimens/S2-motion2d-six-core-pdf",
+      "source": {
+        "origin": "owner upload Grade9_Motion2D_SixCore_PDFs.zip, 2026-09-26",
+        "renderer": "external ReportLab script (not in repository)"
+      },
+      "expected_findings": [
+        {
+          "id": "S2-PDF-FIGURES-ABSENT",
+          "file": "*",
+          "severity": "S1",
+          "rule": "a print product carries every figure of its web page (0 drawing operators, 0 images; the HTML has 5 SVGs)"
+        },
+        {
+          "id": "S2-INHERITS-S1",
+          "file": "*",
+          "severity": "S1",
+          "rule": "all S1 content findings apply; PDF must be a print of the web page"
+        }
+      ],
+      "files": {
+        "specimens/S2-motion2d-six-core-pdf/Core1A_Motion2D_DetailedTeaching.pdf": "18819244fb691bc5021949bf3b44d6d03149ffecc2ce7feb96ce00d316e13c7c",
+        "specimens/S2-motion2d-six-core-pdf/Core1B_Motion2D_ReconstructionTutor.pdf": "ca2b7f1a3ce3d8ad1fd132a484cefc8a5689d5d7e9b0d0ee0e6e3c76a91d63f9",
+        "specimens/S2-motion2d-six-core-pdf/Core1_Motion2D_Orientation.pdf": "ac4fbcf4b817e8e8e3e04e74c9fdf3d29ecee522f5452f0ac8e0dd5a2095ca4d",
+        "specimens/S2-motion2d-six-core-pdf/Core2A_Motion2D_SupportedPractice.pdf": "f1e4c6c55a160a6f7c0af10f6d77e26a0f40734b0560f739475d4868a79b4695",
+        "specimens/S2-motion2d-six-core-pdf/Core2B_Motion2D_Transfer.pdf": "8b0b354d8b819e1ae53cc32f4ad8892fe4d25dce188e9b9ddd03061be4170bae",
+        "specimens/S2-motion2d-six-core-pdf/Core2_Motion2D_SourceCustody.pdf": "600694b1142ea0808bae3786925ddbf10c56d85e7aca3e981c68dade3377a287"
+      },
+      "observe": {
+        "extractor": "pdf-print",
+        "print_of": "S1"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
+      }
+    },
+    {
+      "id": "S3",
+      "kind": "NEGATIVE",
+      "title": "Hand-authored Markdown six-Core prototype with HOLD register",
+      "dir": "specimens/S3-projectile-prototype-markdown",
+      "source": {
+        "branch": "feat/projectile-six-core-prototype",
+        "commit": "179887e08b7b7bf600a6533325438c4794d57c28",
+        "renderer": "none (hand-written learner Markdown + preview.html)"
+      },
+      "expected_findings": [
+        {
+          "id": "S3-HOLD-AS-OUTPUT",
+          "file": "hold-register.json",
+          "severity": "S0",
+          "rule": "no escape state as a delivered outcome"
+        },
+        {
+          "id": "S3-NO-RENDERER",
+          "file": "*",
+          "severity": "S1",
+          "rule": "learner products are compiled from library records, never hand-written"
+        }
+      ],
+      "files": {
+        "specimens/S3-projectile-prototype-markdown/CORE1.md": "1dae44eb0528b3cc92399f2c67a373e7ca2830f5745a8de2cc483517ddc1209e",
+        "specimens/S3-projectile-prototype-markdown/CORE1A.md": "293902e360c72e33ac0646ba8a5766aaaea09d5f160337b9390bf72c99ad13a2",
+        "specimens/S3-projectile-prototype-markdown/CORE1B.md": "fe2d4abbb655fe00d751d552a8d20e6c930f11c335c34357ca19c1653fee2e47",
+        "specimens/S3-projectile-prototype-markdown/CORE2.md": "f4b32efc8cdecbfe2556c96e0e7ca741223be4e38a70c5635d242dc007c2e40f",
+        "specimens/S3-projectile-prototype-markdown/CORE2A.md": "d67b5b02a0a9d5e87e1d8b0019f72b3143be7ed561fb432ba114b059b4406ebc",
+        "specimens/S3-projectile-prototype-markdown/CORE2B.md": "f34dd2c5f4d6b601e357e00299626e121451f1b22c26100a7f315ededa6a823f",
+        "specimens/S3-projectile-prototype-markdown/README.md": "f8aff54872c19d53e5a245db42fa5e52307a5613c0065b8a49229af7ee299454",
+        "specimens/S3-projectile-prototype-markdown/demand-map.json": "bc888b834feda2b237c9a0f1cb14adec960a9bbe716f4c12c354120061fc07be",
+        "specimens/S3-projectile-prototype-markdown/hold-register.json": "e9df8d129e21c864144c725b9870f62d821f1a7e2205bbeb53fb90860c45aaff",
+        "specimens/S3-projectile-prototype-markdown/preview.html": "0ed16d83287ee82ea9b584412c50106e2a0da2d3ef5929da6b60bd7138749866",
+        "specimens/S3-projectile-prototype-markdown/traceability.json": "e953679274573b17f4c4990f0e83f465569d04f63c98a20293d2dd12652ce68c",
+        "specimens/S3-projectile-prototype-markdown/validation-report.md": "d9ac112b57c6ab863df00ad08e2a8b715dab19b31f7aa99499906719cda0bf4a"
+      },
+      "observe": {
+        "extractor": "markdown-prototype"
+      },
+      "acknowledged_extra_rules": {}
+    },
+    {
+      "id": "S4",
+      "kind": "NEGATIVE",
+      "title": "PR #288 Motion-in-2D rendered preview",
+      "dir": "specimens/S4-pr288-preview",
+      "source": {
+        "path": "tests/fixtures/research-first/pr288-regression/preview.html"
+      },
+      "expected_findings": [
+        {
+          "id": "S4-DELIVERY-GATE-13",
+          "file": "preview.html",
+          "severity": "S0",
+          "rule": "fails the research-first delivery gate with 13 distinct findings (holds as learner output, placeholders)"
+        }
+      ],
+      "files": {
+        "specimens/S4-pr288-preview/preview.html": "fb790d45acf1a5378c9733f9d8e65b829574253a378b2eebe9fbd6379a7b57f7"
+      },
+      "observe": {
+        "extractor": "research-first-preview"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
+      }
+    },
+    {
+      "id": "S5",
+      "kind": "NEGATIVE",
+      "title": "Research-first renderer output (PR #290) for the Physics fixture",
+      "dir": "specimens/S5-research-first-render",
+      "source": {
+        "renderer": "Shared/tools/learner_product_render.py",
+        "input": "tests/fixtures/research-first/physics-motion-2d.json"
+      },
+      "expected_findings": [
+        {
+          "id": "S5-NO-CORE2A-2B",
+          "file": "pages/*",
+          "severity": "S1",
+          "rule": "all six Core roles rendered through their blueprints (only data-core tags; no Core2A/Core2B products)"
+        },
+        {
+          "id": "S5-OWN-ATLAS-BUILDER",
+          "file": "atlas/index.html",
+          "severity": "S2",
+          "rule": "Atlas and builder updated from library data, not a per-job link page"
+        }
+      ],
+      "files": {
+        "specimens/S5-research-first-render/atlas/index.html": "2ca9503565bee12ac7b319ebac6281ac0dfa0b54bd6798b0a8ed8b285513618c",
+        "specimens/S5-research-first-render/bank/questions.json": "6a28ad14ede1c3852d1afce679c817134206339b812750e94fc794d9c3f1087e",
+        "specimens/S5-research-first-render/book/index.html": "13c77065437bb2f26c6a833f61bc8b82135bde7c1713e1793602f7e90b359b46",
+        "specimens/S5-research-first-render/builder/index.html": "d2d6ca06d657fc8081e074e9931d9bad564965828d13d9a2e0e832660fe72579",
+        "specimens/S5-research-first-render/builder/run.json": "75d7e70bc4f6d79d68d98494c7848928de2761fd8de76e166e58f88cd195bd09",
+        "specimens/S5-research-first-render/delivery.json": "3aba7f9e833a4831e4d0db33915d8b308641a400b4f84f4219d28f35ce2af22e",
+        "specimens/S5-research-first-render/pages/constant-acceleration-in-a-plane.html": "8890c3c2c67834705436843078ac34c0c43aaf3c780c9fe5e3dd69785278fce1",
+        "specimens/S5-research-first-render/pages/horizontal-launch-from-a-height.html": "58ac33b5c3e903a2f59cad56c4545d0dc614646a0c9878605298ba71ba9fcea4",
+        "specimens/S5-research-first-render/pages/perpendicular-components-are-independent.html": "34bcf0fdc928223ee70a121e4c6d985a421cd408384c79f2c051f1990f095880",
+        "specimens/S5-research-first-render/pages/position-and-displacement-in-a-plane.html": "608a59d3e5a1d93897cc46125b046ae24376767be1208f4abb9a4e5f96a079e6",
+        "specimens/S5-research-first-render/pages/projectiles-time-of-flight-height-and-range.html": "edbb35a27ec27cf570fb3eb199106962b1bdd812d2617fc2659f25c97376af0d",
+        "specimens/S5-research-first-render/pages/relative-velocity-in-two-dimensions.html": "a6c93b039018dc27459c1f3a6f0dbcf6406ca404b88d174b747d33a3925c62e9",
+        "specimens/S5-research-first-render/pages/uniform-circular-motion.html": "fdbcfe7fdac1684d1d1550ae0b005865d7800bff0abfb2df9b22cbe61ca39eb2",
+        "specimens/S5-research-first-render/pages/velocity-and-acceleration-as-vectors.html": "bfa765949a8240702de9e0bbe5add3cfcf03d902b943c884e55d15ac23ca1312"
+      },
+      "observe": {
+        "extractor": "research-first-render"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "R1",
+      "kind": "POSITIVE",
+      "title": "Owner compiled Core1A textbook reference: core1A-motion-in-a-plane-full-combined-fixed(5).pdf",
+      "custody": "NOT_LOCATED_IN_REPOSITORY",
+      "grammar": [
+        "physical/concept opening",
+        "staged illustration/derivation",
+        "physics vocabulary",
+        "model check",
+        "equation-meaning-validity bridge",
+        "easy mistake",
+        "where-used/transfer closure"
+      ],
+      "examples": [
+        "p.2 one-direction -> two-direction frame construction",
+        "p.5 one clock / two directions",
+        "p.6 rising -> apex -> falling with what remains non-zero",
+        "p.7 same-height event unlocks time/range",
+        "p.9 derivation bridge eliminating time",
+        "p.10 horizontal launch, vertical fall determines time"
+      ],
+      "grammar_source": "https://github.com/reallaksh19/Grade9V3/issues/296#issuecomment-5843480123",
+      "search": {
+        "method": "git ls-tree over every remote branch for *.pdf/*.html matching core1a|textbook|combined|question.?bank|tablet|study, and folders named reference(s)/exemplar(s)/golden",
+        "result": "the compiled Core1A textbook PDF is on no branch; its grammar is encoded here from the Audit 1 comment"
+      },
+      "closest_in_repository": {
+        "branch": "feat/all-cores-curriculum-and-speed-hacks",
+        "commit": "08446b534bef5a6cb364f0c355881d7d5cbda0b7",
+        "path": "public/physics/motion-in-2d/handout/Grade9V3_Formula_and_Speed_Hacks_Handout_10inch.pdf",
+        "sha256": "a15eb53068e9675cdf32e4ca71c2b968a800fc7e531b665b1f53b75a888f4f75",
+        "note": "6-page formula and speed-hack handbook in the same tablet reference edition; shares layout and verification filters, not the staged Core1A construction"
+      },
+      "agent_duty": "Agents search the repository for the textbook before each calibration run (see README); if found, pin its branch, commit and sha256 here"
+    },
+    {
+      "id": "R2",
+      "kind": "POSITIVE",
+      "title": "Owner tablet question-bank reference (canonical 77-question bank, 10-inch tablet edition)",
+      "custody": "REPOSITORY",
+      "grammar": [
+        "attempt-first stem",
+        "conditions and trap warning",
+        "question-aligned representation",
+        "progressive H0-H4 support",
+        "complete derivation",
+        "answer + independent check",
+        "provenance separation"
+      ],
+      "grammar_source": "https://github.com/reallaksh19/Grade9V3/issues/296#issuecomment-5843480123",
+      "source": {
+        "branch": "feat/all-cores-curriculum-and-speed-hacks",
+        "commit": "08446b534bef5a6cb364f0c355881d7d5cbda0b7",
+        "files": [
+          {
+            "path": "docs/question-bank/pass1/canonical_question_bank_10inch_tablet.html",
+            "sha256": "4e264fc62da5846e316ca49d69bbc62cb44cbf6dcfe5173c57f941fde64b47c0"
+          },
+          {
+            "path": "docs/question-bank/pass1/Grade9V3_Canonical_Question_Bank_10inch_Tablet.pdf",
+            "sha256": "4fd5ed058f58e78072d950b48d89b38691d428abeb38bfa84329b8efc6992a34"
+          },
+          {
+            "path": "docs/question-bank/pass1/canonical_77_questions.json"
+          }
+        ]
+      },
+      "observed_features": "77 questions; every question carries an inline SVG, a hint ladder, a trap warning and a verification block (counted in the HTML at the pinned commit)",
+      "located_by": "repository search across all remote branches (Phase 0)"
+    }
+  ]
+}

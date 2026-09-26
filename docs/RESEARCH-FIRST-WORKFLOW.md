@@ -37,14 +37,21 @@ Truthfulness is unchanged: nothing is fabricated to close a duty. Researched mat
 # 1. raw input -> intake plan (content-derived ids, reconciliation, research tasks)
 python3 Shared/tools/raw_intake.py --input request.json --out intake.json
 
-# 2. research + author -> job bundle {request, content, evidence}  (agent work)
+# 2. research + author into the research library (evidence cards -> staging -> verification)
+python3 Shared/tools/library_board.py --subject Physics --next RESEARCHER   # agents work the board
 
-# 3. render the learner product and the delivery manifest
-python3 Shared/tools/learner_product_render.py --bundle job.json --out OUT
+# 3. promote verified, deep-enough records into the canonical library
+python3 Shared/tools/promote_verified.py --subject Physics --write
 
-# 4. final gate on the rendered product (optionally against a reference benchmark)
-python3 Shared/tools/delivery_gate.py --manifest OUT/delivery.json \
-  --benchmark benchmarks/learner-product-reference/physics-motion-2d.json
+# 4. product manifest (selection only) with the owner's ledger and diagnostic from the intake
+python3 Shared/tools/product_manifest.py derive --package <Subject>/library/<package>.v1.json \
+  --bank <Subject>/library/exam-bank/competitive-exam-question-bank.v2.json \
+  --product-id P --title T --home ../../index.html --intake intake.json --out product.json
+
+# 5. render (gaps become duties; a product with gaps is only a draft) and gate the rendered pages
+python3 Shared/tools/render_core.py build --manifest product.json --out OUT
+node tools/print/print-product.mjs OUT           # PDF = print of the page
+python3 Shared/tools/quality_gate.py OUT --subject Physics --product-id P --report OUT/gate.json
 ```
 
 The public entry is [`public/raw-intake/`](../public/raw-intake/index.html). It computes the same intake as the Python tool (tested for exact equality) and exports the raw request, the intake plan and an agent prompt. The canonical-ref composer remains available for jobs that are already mapped; canonical ids are optional references discovered during research, never prerequisites.

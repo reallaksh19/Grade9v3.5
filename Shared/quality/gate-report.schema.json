@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/gate-report.schema.json",
+  "title": "Rendered quality gate report (tool-written)",
+  "description": "Written only by Shared/tools/quality_gate.py. It records which checks ran on which page digests and what they found; the verdict is computed from those findings. There is deliberately no free-text summary or claim field: a report cannot say PASS in prose.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "tool",
+    "contract_version",
+    "product_id",
+    "subject",
+    "render_stamp",
+    "pages",
+    "rules_evaluated",
+    "rendered_measured",
+    "not_measured",
+    "findings",
+    "continuity",
+    "verdict",
+    "fail_reasons"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gate-report/v1"
+    },
+    "tool": {
+      "const": "quality_gate/1"
+    },
+    "contract_version": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "render_stamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "sha256"
+        ],
+        "properties": {
+          "page": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "rules_evaluated": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "rendered_measured": {
+      "type": "boolean"
+    },
+    "not_measured": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule",
+          "severity",
+          "where",
+          "detail"
+        ],
+        "properties": {
+          "rule": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "S0",
+              "S1",
+              "S2",
+              "S3"
+            ]
+          },
+          "where": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "continuity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "detail"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "CONT_1A_1B_PARITY",
+              "CONT_LINK_UNRESOLVED",
+              "CONT_INPUT_UNRESOLVED",
+              "CONT_INPUT_NOT_RENDERED",
+              "CONT_DIAGNOSTIC_MISSING"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "fail_reasons": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "BLOCKING_FINDINGS",
+          "CONTINUITY",
+          "DRAFT",
+          "RENDERED_RULES_NOT_MEASURED"
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "PASS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "fail_reasons": {
+            "maxItems": 0
+          },
+          "continuity": {
+            "maxItems": 0
+          },
+          "rendered_measured": {
+            "const": true
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "const": "S3"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Motion in 2D · learner preview</title>
+<style>:root{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#172033;background:#f5f7fb;line-height:1.55}
+*{box-sizing:border-box}body{margin:0}.shell{max-width:1040px;margin:auto;padding:24px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 22px}nav a,.pill{border:1px solid #cbd5e1;border-radius:999px;padding:5px 10px;background:white;text-decoration:none;color:#26344d}
+header,.card,.concept,.question,.diagnostic{background:white;border:1px solid #dbe2ea;border-radius:14px;padding:20px;margin:16px 0}
+h1,h2,h3{line-height:1.2}.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#52627a}
+.extension{border-left:5px solid #64748b}.source{border-left:5px solid #475569}.attempt{border:2px solid #94a3b8;border-radius:10px;padding:14px;background:#f8fafc}
+textarea{width:100%;min-height:92px;margin-top:8px;border:1px solid #94a3b8;border-radius:8px;padding:10px;font:inherit}
+details{border:1px solid #cbd5e1;border-radius:9px;padding:10px 12px;margin:10px 0;background:#fff}summary{cursor:pointer;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border:1px solid #dbe2ea;padding:8px;vertical-align:top;text-align:left}
+.prov{font-size:.85rem;color:#52627a}.check{background:#f8fafc;border-left:4px solid #64748b;padding:10px 12px}
+figure{margin:16px 0}svg{width:100%;max-width:640px;height:auto;border:1px solid #dbe2ea;border-radius:10px;background:white}figcaption{font-size:.88rem;color:#52627a;margin-top:5px}
+.steps li{margin:6px 0}.warning{background:#fff7ed;border-left:4px solid #9a3412;padding:10px 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+@media(max-width:650px){.shell{padding:14px}header,.card,.concept,.question{padding:15px}}</style>
+</head>
+<body><main class="shell"><nav><a href="index.html">Preview</a><a href="core1.html">CORE1</a><a href="core2.html">CORE2</a><a href="core1a.html">CORE1A</a><a href="core1b.html">CORE1B</a><a href="core2a.html">CORE2A</a><a href="core2b.html">CORE2B</a></nav><header><div class="eyebrow">Learner preview</div><h1>Motion in 2D — Projectile Motion: Standard Model and Modified-Dynamics Demand</h1><p>Start with the three-item diagnostic. Then use Core1 for orientation, Core1A/Core1B for teaching and reconstruction, Core2A for supported application, and Core2B for changed-demand transfer.</p></header><section class="card"><h2>Diagnostic</h2><article class="diagnostic"><p>At one instant, x-motion gives t=2 s. May the y equation use t=3 s for the same particle state?</p><div class="attempt"><textarea aria-label="diagnostic attempt"></textarea></div><details><summary>Check</summary><p>No. Independent components use separate axis equations but one shared physical time.</p><p class="prov">Routes to MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS</p></details></article><article class="diagnostic"><p>A projectile is at its apex. Which quantity is zero: total velocity, horizontal velocity, or vertical velocity?</p><div class="attempt"><textarea aria-label="diagnostic attempt"></textarea></div><details><summary>Check</summary><p>Only the vertical velocity component is zero in the standard no-drag projectile model.</p><p class="prov">Routes to MIC-PHY-KIN-PROJECTILE-MODEL</p></details></article><article class="diagnostic"><p>If a force proportional to velocity acts during flight, may the ordinary constant-acceleration projectile equations be used unchanged?</p><div class="attempt"><textarea aria-label="diagnostic attempt"></textarea></div><details><summary>Check</summary><p>No. First decide the modified force model; velocity-dependent drag makes acceleration non-constant.</p><p class="prov">Routes to MIC-PHY-KIN-2D-LINEAR-DRAG</p></details></article></section><section class="card"><h2>Rendered extension visuals</h2><p>Each visual is bound to an admitted representation and carries an accessible description.</p><figure data-representation-ref="REP-KIN-2D-TANGENT-VELOCITY"><svg role="img" viewBox="0 0 620 290" aria-label="A curved trajectory with a point P, a ray from the origin to P, and a distinct tangent velocity arrow at P."><title>Separate the position ray from the tangent velocity direction.</title><desc>A curved trajectory with a point P, a ray from the origin to P, and a distinct tangent velocity arrow at P.</desc>
+<path d="M60 235 Q220 35 560 170" fill="none" stroke="#334155" stroke-width="3"/>
+<line x1="45" y1="250" x2="585" y2="250" stroke="#94a3b8"/><line x1="60" y1="270" x2="60" y2="35" stroke="#94a3b8"/>
+<circle cx="300" cy="105" r="6" fill="#0f172a"/><text x="310" y="100">P</text>
+<line x1="60" y1="250" x2="300" y2="105" stroke="#64748b" stroke-width="2"/><text x="175" y="165">r</text>
+<line x1="300" y1="105" x2="420" y2="95" stroke="#0f172a" stroke-width="4"/><text x="425" y="94">v tangent</text>
+<line x1="300" y1="105" x2="420" y2="105" stroke="#64748b"/><line x1="420" y1="105" x2="420" y2="95" stroke="#64748b"/>
+</svg><figcaption>Separate the position ray from the tangent velocity direction.</figcaption><details><summary>Accessible element list</summary><ul><li>trajectory</li><li>point P</li><li>position ray r</li><li>tangent v</li><li>v_x and v_y components</li></ul></details></figure><figure data-representation-ref="REP-PROJ-BOUNCE-ENERGY"><svg role="img" viewBox="0 0 620 290" aria-label="Incoming projectile arc reaches the ground, an impact boundary is marked with retained kinetic-energy fraction f, then a new rebound velocity points upward toward a lower apex."><title>Show impact as a boundary and the new launch state after energy loss.</title><desc>Incoming projectile arc reaches the ground, an impact boundary is marked with retained kinetic-energy fraction f, then a new rebound velocity points upward toward a lower apex.</desc>
+<path d="M55 245 Q185 45 330 245" fill="none" stroke="#334155" stroke-width="3"/>
+<circle cx="330" cy="245" r="7" fill="#0f172a"/><text x="290" y="270">impact</text>
+<text x="350" y="232">K₂ = fK₁</text><line x1="330" y1="245" x2="405" y2="170" stroke="#0f172a" stroke-width="4"/>
+<line x1="330" y1="245" x2="405" y2="245" stroke="#64748b"/><line x1="405" y1="245" x2="405" y2="170" stroke="#64748b"/>
+<path d="M330 245 Q430 120 555 245" fill="none" stroke="#64748b" stroke-width="3"/><text x="435" y="115">new apex</text>
+</svg><figcaption>Show impact as a boundary and the new launch state after energy loss.</figcaption><details><summary>Accessible element list</summary><ul><li>incoming arc</li><li>impact event</li><li>K_after=f K_before</li><li>rebound vector</li><li>new apex</li></ul></details></figure><figure data-representation-ref="REP-PROJ-PIECEWISE-G"><svg role="img" viewBox="0 0 620 290" aria-label="Projectile rises under g1 to an apex boundary and descends under g2, with the apex position and velocity carried across."><title>Show the apex boundary between two constant-gravity stages.</title><desc>Projectile rises under g1 to an apex boundary and descends under g2, with the apex position and velocity carried across.</desc>
+<path d="M55 245 Q190 55 305 85" fill="none" stroke="#334155" stroke-width="3"/>
+<line x1="305" y1="35" x2="305" y2="260" stroke="#64748b" stroke-dasharray="6 5"/>
+<circle cx="305" cy="85" r="7" fill="#0f172a"/><text x="315" y="75">apex boundary: (x_A,H,v_x,0)</text>
+<path d="M305 85 Q430 100 560 245" fill="none" stroke="#64748b" stroke-width="3"/>
+<text x="130" y="55">stage 1: g₁</text><text x="430" y="155">stage 2: g₂</text>
+</svg><figcaption>Show the apex boundary between two constant-gravity stages.</figcaption><details><summary>Accessible element list</summary><ul><li>stage 1</li><li>g1</li><li>apex state</li><li>stage 2</li><li>g2</li></ul></details></figure><figure data-representation-ref="REP-PROJ-TRAJECTORY-POINT"><svg role="img" viewBox="0 0 620 290" aria-label="Coordinate axes with a parabolic projectile path, marked point P, apex, and local tangent at P."><title>Bind a specified point to the path and show a local tangent for branch classification.</title><desc>Coordinate axes with a parabolic projectile path, marked point P, apex, and local tangent at P.</desc>
+<line x1="45" y1="250" x2="585" y2="250" stroke="#94a3b8"/><line x1="60" y1="270" x2="60" y2="35" stroke="#94a3b8"/>
+<path d="M60 250 Q300 30 560 245" fill="none" stroke="#334155" stroke-width="3"/>
+<circle cx="405" cy="104" r="7" fill="#0f172a"/><text x="415" y="100">P</text>
+<circle cx="300" cy="73" r="5" fill="#64748b"/><text x="260" y="60">apex</text>
+<line x1="350" y1="80" x2="470" y2="145" stroke="#64748b" stroke-width="3"/><text x="470" y="145">local tangent</text>
+</svg><figcaption>Bind a specified point to the path and show a local tangent for branch classification.</figcaption><details><summary>Accessible element list</summary><ul><li>axes</li><li>parabola</li><li>P</li><li>apex</li><li>local tangent</li></ul></details></figure><figure data-representation-ref="REP-KIN-2D-LINEAR-DRAG"><svg role="img" viewBox="0 0 620 290" aria-label="Graph of horizontal velocity against time starting at v_x0 and decaying exponentially, with time constant m/c marked."><title>Contrast constant horizontal speed with exponential decay under linear drag.</title><desc>Graph of horizontal velocity against time starting at v_x0 and decaying exponentially, with time constant m/c marked.</desc>
+<line x1="55" y1="250" x2="585" y2="250" stroke="#94a3b8"/><line x1="60" y1="270" x2="60" y2="35" stroke="#94a3b8"/>
+<path d="M60 70 C160 110 250 165 555 230" fill="none" stroke="#334155" stroke-width="4"/>
+<text x="72" y="60">vₓ₀</text><line x1="250" y1="45" x2="250" y2="250" stroke="#64748b" stroke-dasharray="6 5"/>
+<text x="205" y="38">time scale m/c</text><text x="510" y="275">t</text><text x="24" y="50">vₓ</text>
+</svg><figcaption>Contrast constant horizontal speed with exponential decay under linear drag.</figcaption><details><summary>Accessible element list</summary><ul><li>time axis</li><li>v_x axis</li><li>v_x0</li><li>exponential decay</li><li>m/c</li></ul></details></figure></section><section class="card"><h2>Attempt/reveal contract</h2><p>Core1B and Core2B place a learner commitment before protected reconstruction or transfer decisions. Open their disclosure controls only after writing an attempt.</p></section></main></body>
+</html>

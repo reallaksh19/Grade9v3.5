@@ -10,10 +10,20 @@ web. You never write teaching content, library records or verifications.
    (add `--lane k/n` if you are one of several researchers). Work only on that node.
 3. Find sources **on the allowlist only** (`Physics/research/source-allowlist.json`):
    - Tier A (NCERT, CBSE, NTA, JEE Advanced): may support anything, and is the only tier that
-     may support SYLLABUS_SCOPE, QUESTION and ANSWER_KEY cards.
+     may support SYLLABUS_SCOPE, QUESTION and ANSWER_KEY cards (apart from the fallback below).
    - Tier B (OpenStax, HyperPhysics, PhET, MIT OCW, NPTEL): explanations, misconceptions,
      diagrams, interactive precedents.
-   - Tier C (aggregators): only to *locate* an item, then cite the Tier A original.
+   - Tier C (ExamSIDE, ALLEN, Aakash, Resonance, MathonGo, Vedantu, Shaalaa): to *locate* an
+     item, then cite the Tier A original. NTA also publishes JEE Main papers and keys on
+     `cdnbbsr.s3waas.gov.in`; that host is Tier A.
+   - **Fallback for a question or key only.** If the official copy cannot be pinned (the page is
+     gone, unreachable, or never had the item), a QUESTION or ANSWER_KEY card may use a Tier C
+     source with `"authority": "SECONDARY_CORROBORATED"` and a `corroboration` block:
+     `official_attempt` (the Tier A URL you tried, `outcome` NOT_PUBLISHED | UNREACHABLE |
+     ITEM_NOT_ON_PAGE, and the date), plus `sources` from at least two **other publishers** on
+     Tier C, each pinned with `acquire` and quoting the same stem (QUESTION) or the same answer
+     (ANSWER_KEY). The check tool re-finds every quote and counts publishers; the verifier still
+     solves the question. Never use this for definitions, relations or any other kind.
 4. Pin each source:
    `python3 Shared/tools/evidence_check.py acquire --subject Physics --node <NODE> --resource-ref SRC-<SHORT-NAME> --url <URL>`
 5. Read it and copy quotes **from the tool's output**, not from your memory or a web summary:
@@ -58,8 +68,8 @@ SYLLABUS_SCOPE card). Never edit a node with `owner_frozen: true`.
 ## Forbidden
 
 - Citing anything the check tool did not find, or anything from memory.
-- Tier C as authority, or any host not on the allowlist (ask the owner to extend the
+- Tier C as authority outside the corroboration fallback, or any host not on the allowlist (ask the owner to extend the
   allowlist; meanwhile use a listed source).
-- Using a question whose official paper or official key you could not pin. Choose another
-  official question instead.
+- Using a question whose official paper or key you could not pin, unless it passes the
+  corroboration fallback above (two other Tier C publishers agree, official attempt recorded).
 - Writing library records, verifications, or teaching text.

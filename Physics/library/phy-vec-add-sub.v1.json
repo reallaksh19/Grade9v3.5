@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-VEC-ADD-SUB-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -370,7 +370,28 @@
           "answer": "Zero.",
           "confirms": "The compensating component exists only to satisfy the resultant constraint; it is not an intrinsic river-crossing rule."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-RESULTANT-CONSTRAINT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VC-1",
+            "VC-2",
+            "VC-3",
+            "VC-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-VEC-COMPONENT-SUM",
@@ -508,7 +529,27 @@
           "answer": "The zero vector: every component cancels.",
           "confirms": "Corresponding signed components, not magnitudes, are what combine in vector addition."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-COMPONENT-SUM-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VA-1",
+            "VA-2",
+            "VA-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-VEC-SUB-ORDER",
@@ -646,7 +687,26 @@
           "answer": "Both give the zero result. Its length is zero, so there is no direction to reverse.",
           "confirms": "The reversal statement applies to a directed nonzero result; the zero case is the limiting boundary."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-VEC-SUB-ORDER-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VEC3-1",
+            "VEC3-2",
+            "VEC3-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
@@ -1069,7 +1129,32 @@
           "text": "Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VECOPS-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2A-FROM-X-01",
@@ -1128,7 +1213,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "VAD-5"
+      "repair_ref": "VAD-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2A-FROM-Y-02",
@@ -1186,7 +1296,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "VAD-2"
+      "repair_ref": "VAD-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03",
@@ -1243,7 +1378,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "VAD-4"
+      "repair_ref": "VAD-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04",
@@ -1300,7 +1460,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "VAD-4"
+      "repair_ref": "VAD-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05",
@@ -1358,7 +1543,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "VAD-4"
+      "repair_ref": "VAD-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-VEC-DECOMP-2B-VERBAL-NW-01",
@@ -1437,6 +1647,25 @@
         "builds_on": [
           "Q-PHY-VEC-DECOMP-2A-FROM-Y-02"
         ]
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -1516,6 +1745,25 @@
         "builds_on": [
           "Q-PHY-VEC-DECOMP-2A-INITIAL-STATE-05"
         ]
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -1599,6 +1847,31 @@
         "builds_on": [
           "Q-PHY-VEC-DECOMP-2A-FROM-X-01"
         ]
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -1682,6 +1955,31 @@
         "builds_on": [
           "Q-PHY-VEC-DECOMP-2A-QUADRANT-IV-04"
         ]
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -1763,6 +2061,25 @@
         "builds_on": [
           "Q-PHY-VEC-DECOMP-2A-QUADRANT-II-03"
         ]
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-VEC-ANGLE-DECOMP-PRACTICE",
+        "closure": null
       }
     }
   ],
