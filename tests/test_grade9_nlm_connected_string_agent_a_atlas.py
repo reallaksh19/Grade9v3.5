@@ -127,9 +127,12 @@ class Grade9NlmConnectedStringAgentAAtlas(unittest.TestCase):
             self.assertIn(row["id"], inventory["CORE2B"])
 
     def test_packet_questions_are_authored_and_have_specific_repairs(self):
+        # Core1A worked anchors (added in the Phase 6 pilot, family *-WORKED-ANCHORS) teach the
+        # construction; they are not packet practice.
         rows = [
             row for row in self.package["questions"]
             if row["primary_capability_ref"] in self.packet_caps
+            and {e["core"] for e in row["exposure"]} != {"CORE1A"}
         ]
         self.assertEqual(len(rows), 10)
         for row in rows:

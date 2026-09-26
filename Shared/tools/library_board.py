@@ -316,7 +316,45 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fetch", action="store_true", help="download missing source snapshots")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--digest", metavar="NODE", help="print the inputs_digest a verification record must carry")
+    parser.add_argument("--products", action="store_true",
+                        help="product stage: gate verdict and gaps per product (products/status.v1.json)")
+    parser.add_argument("--budget", action="store_true", help="agent spend per unit against the cost ceiling")
+    parser.add_argument("--depth", action="store_true",
+                        help="depth duties: every gap between the subject's library packages and the learner quality contract")
     args = parser.parse_args(argv)
+    if args.products:
+        status = REPO / "products" / "status.v1.json"
+        rows = [r for r in (json.loads(status.read_text(encoding="utf-8")) if status.is_file() else [])
+                if r["subject"] == args.subject]
+        print("| Product | Verdict | Gaps | Blocking findings | Live |\n|---|---|---|---|---|")
+        for r in rows:
+            print(f"| {r['product']} | {r['verdict']} | {r['gaps']} | {r['blocking_findings']} | {r['published'] or '-'} |")
+        print(f"{sum(1 for r in rows if r['published'])} of {len(rows)} {args.subject} products live "
+              "(rebuild: python3 Shared/tools/build_products.py build)")
+        return 0
+    if args.budget:
+        from Shared.tools import cost_ledger  # noqa: PLC0415
+        rows = cost_ledger.summary(args.subject, evidence_check.spine(args.subject)["nodes"],
+                                   rules(args.subject)["cost_ceiling"], cost_ledger.load(args.subject))
+        for r in rows:
+            print(f"{r['signal']:8s} {r['node']:36s} ${r['usd']:.2f} of ${r['ceiling_usd']:.2f}")
+        print(f"${sum(r['usd'] for r in rows):.2f} recorded across {len(rows)} unit(s)")
+        return 0
+    if args.depth:
+        from Shared.tools import package_depth  # noqa: PLC0415
+        duties = package_depth.all_duties(args.subject)
+        if args.json:
+            print(json.dumps(duties, indent=2, ensure_ascii=False))
+        else:
+            print(package_depth.summary(duties))
+            if args.next:
+                mine = [d for d in duties if d["role"] == args.next]
+                for d in mine[:20]:
+                    print(f"- {d['duty']} {d['record']} ({d['package']}): {d['detail']}; contract {', '.join(d['contract_rules'])}")
+                if len(mine) > 20:
+                    print(f"… {len(mine) - 20} more for {args.next}")
+            print(f"{len(duties)} depth duties for {args.subject}")
+        return 0
     if args.digest:
         spine_nodes = {n["id"]: n for n in evidence_check.spine(args.subject)["nodes"]}
         node = spine_nodes[args.digest]

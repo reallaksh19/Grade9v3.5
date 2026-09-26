@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="rep-kin-sc-title rep-kin-sc-desc">
+  <title id="rep-kin-sc-title">One particle, one frame, one shared clock: x and y component histories recombined only at the same time</title>
+  <desc id="rep-kin-sc-desc">Stage 1: one particle moving along a curved path in a plane. Stage 2: one declared x-y frame with origin O, +x to the right and +y upward, and one shared clock reading t = 2 s for the whole particle. Stage 3: two separate component histories drawn against the same time axis, qualitatively and without values: the x-component history v_x(t), which stays constant and positive, and the y-component history v_y(t), which is zero at t = 0 and becomes more negative; one dashed line at t = 2 s runs through both histories, marking the shared time. Stage 4: the values of v_x and v_y at t = 2 s are marked on the dashed line and recombined into one simultaneous state, shown as the particle's velocity arrow at t = 2 s; the pair v_x at 2 s with v_y at 3 s is marked as non-simultaneous and rejected, because it is not a state of the particle at any one instant.</desc>
+  <defs>
+    <marker id="rep-kin-sc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-sc-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-SHARED-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M50 70 Q170 70 290 262" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="194" cy="139" r="9" fill="currentColor"/>
+    <text x="104" y="144">particle</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SHARED-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="50" y1="70" x2="290" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <line x1="50" y1="70" x2="50" y2="22" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <text x="296" y="75">+x</text>
+    <text x="58" y="28">+y</text>
+    <text x="30" y="90">O</text>
+    <text x="20" y="290">one declared x-y frame</text>
+    <circle cx="36" cy="324" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M36 324 V314 M36 324 H44" stroke="currentColor" stroke-width="2"/>
+    <text x="58" y="330" font-weight="600">shared clock: t = 2 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SHARED-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="340" y="28" font-weight="600">x-component history: v_x(t)</text>
+    <line x1="360" y1="150" x2="360" y2="42" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <line x1="360" y1="110" x2="625" y2="110" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <text x="318" y="60">v_x</text>
+    <text x="600" y="132">t (s)</text>
+    <line x1="360" y1="70" x2="610" y2="70" stroke="currentColor" stroke-width="2.5"/>
+    <text x="560" y="62">v_x &gt; 0</text>
+    <text x="340" y="195" font-weight="600">y-component history: v_y(t)</text>
+    <line x1="360" y1="340" x2="360" y2="208" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <line x1="360" y1="230" x2="625" y2="230" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-sc-arrow)"/>
+    <text x="318" y="225">v_y</text>
+    <text x="600" y="222">t (s)</text>
+    <line x1="360" y1="230" x2="605" y2="335" stroke="currentColor" stroke-width="2.5"/>
+    <text x="540" y="290">v_y &lt; 0</text>
+    <g font-size="14" text-anchor="middle">
+      <line x1="430" y1="105" x2="430" y2="115" stroke="currentColor"/><text x="430" y="128">1</text>
+      <line x1="570" y1="105" x2="570" y2="115" stroke="currentColor"/><text x="570" y="128">3</text>
+      <line x1="430" y1="225" x2="430" y2="235" stroke="currentColor"/><text x="430" y="222">1</text>
+      <line x1="570" y1="225" x2="570" y2="235" stroke="currentColor"/><text x="570" y="222">3</text>
+    </g>
+    <line x1="500" y1="44" x2="500" y2="342" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="500" y="375" text-anchor="middle" font-weight="600">t = 2 s (shared by both)</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SHARED-V3" font-family="system-ui,sans-serif" font-size="15">
+    <circle cx="500" cy="70" r="6" fill="#1f6fb2"/>
+    <circle cx="500" cy="290" r="6" fill="#1f6fb2"/>
+    <line x1="194" y1="139" x2="242" y2="185" stroke="#1f6fb2" stroke-width="3" marker-end="url(#rep-kin-sc-arrow-accent)"/>
+    <text x="226" y="132" fill="#1f6fb2">v at t = 2 s</text>
+    <circle cx="570" cy="320" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="585" y="350" fill="currentColor" font-size="14">3 s</text>
+    <text x="20" y="412" fill="#1f6fb2" font-weight="600">✓ (v_x(2 s), v_y(2 s)): simultaneous, one valid plane state</text>
+    <text x="20" y="442" fill="currentColor">✗ (v_x(2 s), v_y(3 s)): non-simultaneous, rejected (no single instant)</text>
+  </g>
+</svg>

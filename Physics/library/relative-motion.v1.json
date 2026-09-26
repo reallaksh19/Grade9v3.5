@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-RELATIVE-MOTION-SEED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -447,7 +447,26 @@
           "answer": "It is no longer usable, and that is the point: the description was never about the chair alone. It held for as long as what it was counted from stayed put.",
           "confirms": "That what a place is measured from is part of the description, not a detail outside it."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MEASURED-FROM-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "RP0-1",
+            "RP0-2",
+            "RP0-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-SAME-TIME",
@@ -577,7 +596,25 @@
           "answer": "(-4,3) m: 4 m west and 3 m north. Every component has reversed sign; the length of the arrow is unchanged.",
           "confirms": "That the order in 'A relative to B' is carried by the whole vector and not by which number was written first."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-SAME-TIME-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "RP-1",
+            "RP-2"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-COMMON-INTERVAL",
@@ -729,7 +766,27 @@
           "answer": "(0,0) m/s. B sees A holding still, at a fixed distance, even though both are moving quickly over the ground.",
           "confirms": "That relative velocity is about the separation changing, not about either object being still. A learner who reads 'zero velocity' as 'not moving' is caught here."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-COMMON-INTERVAL-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "RV-1",
+            "RV-2",
+            "RV-3",
+            "RV-4"
+          ],
+          "representation_ref": "REP-REL-VECTOR",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "Q-AUTHOR-REL-01",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-GEOMETRIC-CHECK",
@@ -872,7 +929,26 @@
           "answer": "40 m/s. Reversing the observer points the arrow the other way along the line and leaves the 40 unchanged.",
           "confirms": "That reversal leaves magnitude alone even when the magnitude is not either car's speed -- a learner checking only the number has no way to tell the two observers apart here."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-GEOMETRIC-CHECK-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GC-1",
+            "GC-2",
+            "GC-3"
+          ],
+          "representation_ref": "REP-REL-VECTOR",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [
@@ -1242,7 +1318,32 @@
           "text": "Subtract axis by axis before doing anything with lengths, and keep both signs; the magnitude is something you compute from the answer, not the answer itself.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-RELATIVE-V",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

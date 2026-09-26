@@ -304,6 +304,8 @@ def verification_candidate(records: dict, question: dict,
             if record.get("_collection") == "questions"
             and record.get("primary_capability_ref") == primary
             and record.get("id") not in attempted
+            # A Core1A worked anchor is shown with its full solution, so it cannot verify.
+            and {e.get("core") for e in record.get("exposure", [])} != {"CORE1A"}
         ),
         key=lambda row: row["id"],
     )

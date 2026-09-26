@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-KIN-2D-MOTION-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -324,7 +324,7 @@
                   "ordered-pair state"
                 ],
                 "relation": "same-time x and y samples reconstruct exactly one simultaneous particle state",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -651,7 +651,7 @@
                   "y-component evaluation"
                 ],
                 "relation": "the event marker and every component evaluation use the same solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -978,7 +978,7 @@
                   "component-acceleration readout"
                 ],
                 "relation": "the rendered projectile state equals the component reconstruction at one shared time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1307,7 +1307,7 @@
                   "speed readout"
                 ],
                 "relation": "at the apex v_y = 0 while a_y remains -g in the governed gravity model",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1635,7 +1635,7 @@
                   "speed comparison"
                 ],
                 "relation": "under the same no-drag gravity model, equal-height ascent and descent states have equal speed magnitude",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1966,7 +1966,7 @@
                   "horizontal range"
                 ],
                 "relation": "the impact marker lies on the landing surface and horizontal range equals x evaluated at the solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -2152,7 +2152,7 @@
           "inputs": [
             "CAP-VECTOR-SIGNED-COMPONENT"
           ],
-          "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)"
+          "output": "For x = 3t and y = 5t − t² at t = 1 s: (x, y) = (3, 4) m, (v_x, v_y) = (3, 3) m/s, (a_x, a_y) = (0, −2) m/s²"
         },
         {
           "id": "K2D1-3",
@@ -2160,7 +2160,7 @@
           "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
           "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
           "inputs": [],
-          "output": "two axis histories coupled by one clock"
+          "output": "x(1) = 3 × 1 = 3 m uses only x-quantities; y(1) = 5 × 1 − 1² = 4 m uses only y-quantities; both use t = 1 s"
         },
         {
           "id": "K2D1-4",
@@ -2171,7 +2171,9 @@
           "output": "one physically valid plane state reconstructed from simultaneous components"
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK"
       ],
@@ -2261,6 +2263,44 @@
           "answer": "Yes. That is exactly what independent component evolution permits.",
           "confirms": "One component can change while the other does not."
         }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1",
+          "decision": "Solve each axis on its own, but read both coordinates at one shared instant before calling the pair a position.",
+          "step_refs": [
+            "K2D1-1",
+            "K2D1-2",
+            "K2D1-3",
+            "K2D1-4"
+          ],
+          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-SHARED-V0",
+            "VIS-KIN-2D-SHARED-V1",
+            "VIS-KIN-2D-SHARED-V2",
+            "VIS-KIN-2D-SHARED-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "Substitute the reported t back into both component functions: each must return its reported coordinate. If one coordinate only matches at a different t, the pair is not a position.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Reverse the declared +y direction: every y-quantity must change sign together while no x-quantity changes, and the physical position stays the same.",
+              "check_type": "SIGN_AND_DIRECTION"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "A particle leaves the origin with u = (2, 0) m/s and constant a = (0, 6) m/s². Where is it at t = 1 s?",
+        "result": "Δx = 2 × 1 = 2 m and Δy = 0.5 × 6 × 1² = 3 m, both read at the same t = 1 s, so it is at (2, 3) m."
       }
     },
     {
@@ -2413,6 +2453,44 @@
           "answer": "No. The x relation may remain exact, but the y constant-acceleration relation is not exact over that interval.",
           "confirms": "Model validity is checked per component."
         }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1",
+          "decision": "Check on each axis that its acceleration component is constant, then run the one-dimensional equations once per axis with one shared time.",
+          "step_refs": [
+            "K2D2-1",
+            "K2D2-2",
+            "K2D2-3"
+          ],
+          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-SHARED-V0",
+            "VIS-KIN-2D-SHARED-V1",
+            "VIS-KIN-2D-SHARED-V2",
+            "VIS-KIN-2D-SHARED-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01",
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Every term of Δy = u_y t + 0.5 a_y t² must come out in metres: (m/s)(s) and (m/s²)(s²). A velocity term in m/s beside them means a t is missing.",
+              "check_type": "DIMENSIONAL_HOMOGENEITY"
+            },
+            {
+              "statement": "Set a_x = 0: the x equations must reduce to uniform motion, v_x = u_x and Δx = u_x t, whatever happens on y.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "u = (1, 2) m/s and a = (2, −2) m/s², both constant. What is the velocity at t = 2 s?",
+        "result": "v_x = 1 + 2 × 2 = 5 m/s and v_y = 2 − 2 × 2 = −2 m/s on the same clock, so v = (5, −2) m/s."
       }
     },
     {
@@ -2618,7 +2696,105 @@
           "answer": "No. The object is not in gravity-only free flight; its horizontal acceleration is not zero under that model.",
           "confirms": "Projectile equations are conditional consequences of a declared force/model state."
         }
-      }
+      },
+      "compact_anchor": {
+        "prompt": "An ideal projectile has u_x = 10 m/s and u_y = 5 m/s, with +y up and g = 10 m/s². Where is it, and how is it moving, 1 s after release?",
+        "result": "Δx = 10 m and Δy = 5 × 1 − 5 × 1² = 0 m, so it is back at launch height; v = (10, 5 − 10) = (10, −5) m/s."
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-PROJECTILE-MODEL-1",
+          "decision": "Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.",
+          "step_refs": [
+            "K2D3-1",
+            "K2D3-2"
+          ],
+          "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-PROJ-V0",
+            "VIS-KIN-2D-PROJ-V1",
+            "VIS-KIN-2D-PROJ-V2",
+            "VIS-KIN-2D-PROJ-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-MODEL-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "Set g = 0: the equations must reduce to straight-line uniform motion with the launch velocity (u_x, u_y).",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            },
+            {
+              "statement": "With +y up, v_y must fall by g every second whatever the launch direction; a v_y that grows while the object rises means the sign of g is wrong.",
+              "check_type": "SIGN_AND_DIRECTION"
+            }
+          ]
+        },
+        {
+          "id": "CU-PHY-KIN-PROJECTILE-MODEL-2",
+          "decision": "Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.",
+          "step_refs": [
+            "K2D3-3",
+            "K2D3-4",
+            "K2D3-5"
+          ],
+          "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-EVENT-V0",
+            "VIS-KIN-2D-EVENT-V1",
+            "VIS-KIN-2D-EVENT-V2",
+            "VIS-KIN-2D-EVENT-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
+          "misconception_indexes": [
+            2,
+            4
+          ],
+          "independent_checks": [
+            {
+              "statement": "For a return to launch height the flight time must be exactly twice the apex time, 2u_y/g against u_y/g, because the rise and the fall mirror each other.",
+              "check_type": "SYMMETRY_EXTREMAL_TEST"
+            },
+            {
+              "statement": "Set u_y = 0 in the apex condition: the apex must fall at t = 0, as it does for a launch that starts level.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        },
+        {
+          "id": "CU-PHY-KIN-PROJECTILE-MODEL-3",
+          "decision": "Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.",
+          "step_refs": [
+            "K2D3-6",
+            "K2D3-7"
+          ],
+          "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-EVENT-V0",
+            "VIS-KIN-2D-EVENT-V1",
+            "VIS-KIN-2D-EVENT-V2",
+            "VIS-KIN-2D-EVENT-V3"
+          ],
+          "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
+          "misconception_indexes": [
+            1,
+            3,
+            5
+          ],
+          "independent_checks": [
+            {
+              "statement": "The impact speed from the components must match v² = u² + 2gh for a drop h, a route that uses no time at all.",
+              "check_type": "ENERGY_CONSERVATION_DUAL_PROOF"
+            },
+            {
+              "statement": "Let the drop shrink to zero: the landing time must reduce to the same-height value 2u_y/g.",
+              "check_type": "LIMIT_CASE_ANALYSIS"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -2961,7 +3137,9 @@
         "Showing separate x and y clocks without marking a mismatch as invalid.",
         "Recombining x(t1) with y(t2) as though it were one physical state."
       ],
-      "rendered_asset_refs": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"
+      ],
       "scene_instances": [
         {
           "id": "SCENE-KIN-2D-SHARED-CLOCK-PORTABLE-01",
@@ -3172,7 +3350,9 @@
         "Solving unrelated convenient times on x and y for one physical event.",
         "Using a projectile shortcut before identifying the event condition that makes it valid."
       ],
-      "rendered_asset_refs": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-EVENT-CLOCK.svg"
+      ],
       "scene_instances": [],
       "correspondence": [
         {
@@ -3298,7 +3478,9 @@
         "Calling every launched or curved-path object an ideal projectile.",
         "Keeping a_x=0 while also showing an active horizontal rocket thrust."
       ],
-      "rendered_asset_refs": [],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-PROJECTILE-MODEL.svg"
+      ],
       "scene_instances": [],
       "correspondence": [
         {
@@ -3446,6 +3628,316 @@
   ],
   "questions": [
     {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "id": "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01",
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-1A-SHARED-CLOCK-01",
+      "stem": "A drone flies in a frame with origin at its launch pad, +x east, +y up and t = 0 at launch. Its position is x(t) = 6t m and y(t) = (8t − t²) m. Find its position at t = 2 s, and decide whether the pair x(2 s), y(4 s) is a position the drone ever occupies.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "One fixed frame and one clock serve the whole flight.",
+        "t is in seconds and both coordinates are in metres."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "At t = 2 s the drone is at (12, 12) m. The pair (12, 16) m mixes two instants and is not a position the drone ever occupies.",
+        "reasoning": [
+          "The frame, origin and clock are declared once for the whole flight, so both functions share one t.",
+          "At t = 2 s: x(2) = 6 × 2 = 12 m and y(2) = 8 × 2 − 2² = 12 m, so the drone is at (12, 12) m.",
+          "y(4) = 8 × 4 − 4² = 16 m, so the pair x(2 s), y(4 s) is (12, 16) m.",
+          "x = 12 m happens only at t = 2 s, when y is 12 m rather than 16 m, so (12, 16) m is never a position of the drone."
+        ],
+        "check": "At t = 4 s the drone is really at (24, 16) m: substituting t = 4 into both functions gives a genuine position, and its x differs from the mixed pair's.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "id": "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01",
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-2D-1A-CONSTANT-ACCEL-01",
+      "stem": "A puck on a tilted air table starts at the origin with velocity (4 i + 6 j) m/s, and its acceleration is (0 i − 2 j) m/s² throughout. Using the table's x-y frame, decide which constant-acceleration equations apply on each axis, find when the puck is next at y = 0, and find its x-position and velocity at that instant.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Both acceleration components stay constant for the whole motion.",
+        "The table's x-y frame is fixed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The puck is next at y = 0 at t = 6 s, at x = 24 m, moving with v = (4 i − 6 j) m/s.",
+        "reasoning": [
+          "a_x = 0 and a_y = −2 m/s² are both constant, so the constant-acceleration relations are exact on both axes.",
+          "On y: Δy = 6t − 0.5 × 2 × t² = 6t − t². Setting Δy = 0 gives t(6 − t) = 0, and the later root is t = 6 s.",
+          "On x, at the same t = 6 s: Δx = 4 × 6 = 24 m.",
+          "Velocity at t = 6 s: v_x = 4 m/s and v_y = 6 − 2 × 6 = −6 m/s, so v = (4 i − 6 j) m/s."
+        ],
+        "check": "v_y comes back with its starting size, 6 m/s, and the opposite sign, as v_y² = u_y² + 2a_y Δy requires when Δy = 0; v_x is unchanged because a_x = 0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "id": "Q-PHY-KIN-PROJ-1A-MODEL-01",
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-PROJ-1A-MODEL-01",
+      "stem": "A ball is thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s. After release only gravity acts, and air resistance is negligible. Take +y upward and g = 10 m/s². Decide whether the ideal projectile model applies, write its component relations, and find the ball's displacement and velocity 1 s after release.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Take +y upward and g = 10 m/s²."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The model applies with a = (0, −10) m/s². After 1 s the displacement is (8 i + 1 j) m and the velocity is (8 i − 4 j) m/s.",
+        "reasoning": [
+          "After release the only retained interaction is gravity, so the ideal model applies: a_x = 0 and a_y = −10 m/s².",
+          "Component relations: v_x = 8, v_y = 6 − 10t, Δx = 8t and Δy = 6t − 5t², in metres and seconds.",
+          "At t = 1 s: Δx = 8 m and Δy = 6 − 5 = 1 m, so the displacement is (8 i + 1 j) m.",
+          "At t = 1 s: v_x = 8 m/s and v_y = 6 − 10 = −4 m/s, so v = (8 i − 4 j) m/s."
+        ],
+        "check": "v_y is negative at 1 s, so the ball is already falling; its apex was at t = 6/10 = 0.6 s. Its speed squared, 8² + 4² = 80, equals u² − 2gΔy = 100 − 20.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "id": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-PROJ-1A-EVENTS-01",
+      "stem": "An ideal projectile is launched from level ground with u_x = 6 m/s and u_y = 15 m/s. Take +y upward and g = 10 m/s². Name the component condition for each event, then find the time and height of the apex, and the time and range when it lands back at launch height.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Launch and landing are at the same height."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Apex at t = 1.5 s, 11.25 m above launch, with velocity (6 i + 0 j) m/s; landing at t = 3 s, 18 m from launch.",
+        "reasoning": [
+          "Apex: the condition is v_y = 0, while v_x stays 6 m/s and a_y stays −10 m/s². 15 − 10t = 0 gives t = 1.5 s.",
+          "Apex height: Δy = 15 × 1.5 − 5 × 1.5² = 22.5 − 11.25 = 11.25 m.",
+          "Landing at launch height: the condition is Δy = 0. 15t − 5t² = 0 gives t = 0 (the launch) or t = 3 s, so the landing is at t = 3 s.",
+          "Range at the same t = 3 s: Δx = 6 × 3 = 18 m."
+        ],
+        "check": "The landing time is twice the apex time, 3 s = 2 × 1.5 s, and the apex height agrees with u_y²/(2g) = 225/20 = 11.25 m, found without any time.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "id": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
+      "original_identifier": "AUTHOR-KIN-PROJ-1A-UNEQUAL-01",
+      "stem": "A ball is thrown from the edge of a roof 25 m above level ground with u_x = 5 m/s and u_y = 20 m/s. Take +y upward and g = 10 m/s², and neglect air resistance. Find when it hits the ground, how far from the building it lands, and its impact velocity and speed.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "The ground is 25 m below the launch point."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Impact at t = 5 s, 25 m from the building, with v = (5 i − 30 j) m/s and a speed of about 30.4 m/s.",
+        "reasoning": [
+          "The landing event is Δy = −25 m, because the ground is below the launch point, and u_y = 20 m/s is kept: −25 = 20t − 5t².",
+          "Rearranged, 5t² − 20t − 25 = 0, so t² − 4t − 5 = 0 and (t − 5)(t + 1) = 0. The physical root is t = 5 s.",
+          "Reuse t = 5 s horizontally: Δx = 5 × 5 = 25 m.",
+          "At t = 5 s: v_x = 5 m/s and v_y = 20 − 10 × 5 = −30 m/s, so v = (5 i − 30 j) m/s and the speed is √(5² + 30²) = √925 ≈ 30.4 m/s."
+        ],
+        "check": "Without time: v² = u² + 2gh = (5² + 20²) + 2 × 10 × 25 = 425 + 500 = 925 m²/s², the same speed squared as from the components.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
+    },
+    {
       "id": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -3567,7 +4059,47 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-SHARED-V0",
+          "VIS-KIN-2D-SHARED-V1"
+        ]
+      },
+      "failure_signal": "Your position is (8, −8) m or (12, 2) m: one coordinate was read at t = 3 s (y(3) = −8 m, x(3) = 12 m) while the other used t = 2 s.",
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": "Established: a plane position is the pair x(t), y(t) read at one instant in one frame. The transfer task keeps the one frame and one clock but removes the given component functions, so the signed components must be built from words."
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
@@ -3696,7 +4228,47 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CA-MODEL"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-SHARED-V0",
+          "VIS-KIN-2D-SHARED-V1"
+        ]
+      },
+      "failure_signal": "You got v = (9 i + 7 j) m/s or Δy = 16.5 m: the −1 m/s² was used as +1, so the y-acceleration lost its sign.",
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": "Established: with both acceleration components constant, the one-dimensional relations run once per axis on a shared interval with their signs kept. The transfer task asks you first to decide, axis by axis, whether that condition holds at all."
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
@@ -3824,7 +4396,46 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-APEX-EVENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-EVENT-V0"
+        ]
+      },
+      "failure_signal": "Your apex line says the velocity or the acceleration is zero: only v_y vanishes there, so a zero speed at the top means the 12 m/s horizontal component was dropped, and a zero acceleration means gravity was switched off.",
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": "Established: the apex is the event v_y = 0, with v_x unchanged and a_y = −g still acting. The transfer task compares two equal-height events on one path using the same component facts, without solving for any time."
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
@@ -3964,7 +4575,46 @@
           "visual_ref": "REP-KIN-2D-EVENT-CLOCK",
           "visual_stage_ref": "VIS-KIN-2D-EVENT-V1"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-EVENT-V0"
+        ]
+      },
+      "failure_signal": "Your time came from the 15 m/s horizontal speed, for example 20/15 ≈ 1.33 s giving a 20 m range: the fall time must come from the 20 m drop alone.",
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": "Established: the drop fixes the fall time through the vertical equation, and that one time then sets the range. The transfer task asks whether the projectile model itself still holds when a force keeps acting after release."
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
@@ -4090,7 +4740,46 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-SAME-EVENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-EVENT-V0"
+        ]
+      },
+      "failure_signal": "Your flight time is 2 s and your range 24 m: 2 s is u_y/g, the time to the apex, which is half the flight; Δy = 0 has its non-zero root at 4 s.",
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": "Established: a same-height landing is the non-zero root of Δy = 0, and the range uses that same time. The transfer task drops the equal-height condition, so the landing event has to be written from the actual drop."
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
@@ -4228,7 +4917,8 @@
         "builds_on": [
           "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
         ],
-        "protected_move_ref": "R-KIN-2D-BREP-FRAME"
+        "protected_move_ref": "R-KIN-2D-BREP-FRAME",
+        "invariant": "One fixed frame and one shared clock still govern both components; only the source of the signed component values changes, from given functions to a verbal description."
       },
       "scaffolds": [
         {
@@ -4237,7 +4927,40 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BREP-FACTS"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-SHARED-V0"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
@@ -4370,7 +5093,8 @@
         "builds_on": [
           "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
         ],
-        "protected_move_ref": "R-KIN-2D-BMODEL-DECIDE"
+        "protected_move_ref": "R-KIN-2D-BMODEL-DECIDE",
+        "invariant": "Each axis is still handled with its own signed values over one shared time interval; what changes is that the constant-acceleration condition must be checked rather than assumed."
       },
       "scaffolds": [
         {
@@ -4379,7 +5103,35 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BMODEL-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-SHARED-V0",
+          "VIS-KIN-2D-SHARED-V1"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
@@ -4529,7 +5281,8 @@
         "builds_on": [
           "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
         ],
-        "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT"
+        "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
+        "invariant": "The gravity-only model, a_x = 0 and a_y = −g, and the rule that one event time serves both axes still hold; only the vertical condition that defines landing changes."
       },
       "scaffolds": [
         {
@@ -4538,7 +5291,40 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-EVENT-V0"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
@@ -4679,7 +5465,8 @@
         "builds_on": [
           "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
         ],
-        "protected_move_ref": "R-KIN-TRANSFER-MODEL"
+        "protected_move_ref": "R-KIN-TRANSFER-MODEL",
+        "invariant": "Component-by-component constant-acceleration kinematics with one shared clock still applies; what fails is only the special case a_x = 0 that the projectile model adds."
       },
       "scaffolds": [
         {
@@ -4690,7 +5477,35 @@
           "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
           "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+        "bound_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+        "stage_refs": [
+          "VIS-KIN-2D-PROJ-V0",
+          "VIS-KIN-2D-PROJ-V1"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
@@ -4844,7 +5659,8 @@
         "builds_on": [
           "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
         ],
-        "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE"
+        "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE",
+        "invariant": "v_x stays constant and a = (0, −g) at every instant of ideal flight, exactly as at the apex; the task changes from locating one event to comparing two."
       },
       "scaffolds": [
         {
@@ -4853,7 +5669,40 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-EVENT-V0"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

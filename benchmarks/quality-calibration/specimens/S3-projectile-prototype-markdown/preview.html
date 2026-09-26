@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projectile Motion · Six-Core review preview</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#16202a;background:#f5f7fa;line-height:1.55}
+*{box-sizing:border-box}body{margin:0}main{max-width:1120px;margin:auto;padding:24px}h1,h2,h3{line-height:1.2}code{background:#eef1f5;padding:.08rem .3rem;border-radius:4px}
+.banner,.hold,.ok,.note{padding:12px 14px;border-radius:10px;margin:12px 0;border:1px solid #bac4ce}.banner{background:#fff8df}.hold{background:#fff2f2}.ok{background:#eef9f0}.note{background:#eef6ff}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}nav a{padding:7px 10px;border:1px solid #b9c3cc;border-radius:999px;text-decoration:none;color:inherit;background:white}
+section{background:white;border:1px solid #d5dce3;border-radius:14px;padding:20px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.card{border:1px solid #d9e0e6;border-radius:12px;padding:14px;background:#fbfcfd}
+.status{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.status.h{color:#8b2525}.status.c{color:#285d36}
+.visual{border:2px solid #263746;border-radius:12px;padding:14px;background:#fcfdff}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0}.node{border:1px solid #778797;border-radius:8px;padding:8px 10px;background:#fff;min-width:120px}.arrow{font-weight:700}.reject{border-style:dashed}.srdesc{font-size:.9rem;border-left:4px solid #8aa0b4;padding-left:10px}
+.trybox{border:2px solid #657786;border-radius:12px;padding:14px;margin:14px 0;background:#fcfdff}.trybox textarea{width:100%;min-height:90px;padding:10px;border:1px solid #9ba9b5;border-radius:8px;font:inherit}.trybox button{margin-top:8px;padding:9px 12px;border:0;border-radius:8px;background:#263746;color:white;font-weight:700;cursor:pointer}.trybox button:disabled{opacity:.45;cursor:not-allowed}.reveal{margin-top:12px;padding:12px;border:1px solid #8ca3b5;border-radius:10px;background:#f3f8fc}.protected{font-weight:700}.small{font-size:.9rem;color:#4f5f6d}.route{margin:.5rem 0;padding-left:1.2rem}table{border-collapse:collapse;width:100%}th,td{border:1px solid #cbd4dc;padding:8px;text-align:left;vertical-align:top}details{margin:10px 0}summary{cursor:pointer;font-weight:700}
+@media(max-width:640px){main{padding:14px}.flow{align-items:stretch;flex-direction:column}.arrow{text-align:center;transform:rotate(90deg)}}
+@media print{nav,.trybox button{display:none}body{background:white}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<h1>Projectile Motion — six-Core review preview</h1>
+<div class="banner"><strong>Review preview.</strong> Learner release is not authorized. Repository basis: <code>main@ca0de27e307e4f532412ac52713a6faf14b216a4</code>. The canonical package and all three representation records are CANDIDATE.</div>
+<nav aria-label="Core navigation">
+<a href="#core1">Core1</a><a href="#core2">Core2</a><a href="#core1a">Core1A</a><a href="#core1b">Core1B</a><a href="#core2a">Core2A</a><a href="#core2b">Core2B</a><a href="#visuals">Visual review</a>
+</nav>
+
+<section id="core1">
+<h2>Core1 · semantic orientation</h2>
+<p>The canonical surface has exactly three concepts: <strong>independent x/y components with one clock</strong>, <strong>constant acceleration checked per axis</strong>, and <strong>the gravity-only projectile specialization plus an explicit event condition</strong>.</p>
+<div class="grid">
+<div class="card"><h3>R1 · one event</h3><p>Separate x from y, but use one frame and one elapsed time. Recombine only simultaneous components.</p></div>
+<div class="card"><h3>R2 · per-axis validity</h3><p><code>v_x=u_x+a_xt</code>, <code>v_y=u_y+a_yt</code> and matching displacement relations apply only where that axis's acceleration component is constant.</p></div>
+<div class="card"><h3>R3 · model then event</h3><p>Under ideal gravity-only free flight and +y upward: <code>a_x=0</code>, <code>a_y=-g</code>. Then choose apex, same-height return, or actual landing condition before solving.</p></div>
+</div>
+<div class="hold"><strong>Boundary:</strong> calculus differentiation (Q28), bounce/energy (Q15), altered gravity (Q21), trajectory-equation geometry (Q26), and linear drag (Q23) do not become new canonical microtopics.</div>
+</section>
+
+<section id="core2">
+<h2>Core2 · source custody</h2>
+<div class="hold"><span class="status h">HOLD</span><p>All fixed anchor bank records are faithful non-verbatim adaptations, not ordinary Core2 verbatim custody. Q15 is additionally identity-ambiguous between the 2018 P2 Q8 and 2023 P1 Q1 candidates.</p></div>
+<table>
+<thead><tr><th>Owner</th><th>Identity</th><th>Demand evidence</th><th>Learner eligibility</th></tr></thead>
+<tbody>
+<tr><td>Q28</td><td>PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29</td><td>Valid</td><td>NOT_ESTABLISHED</td></tr>
+<tr><td>Q15</td><td>2018-P2-Q08 or 2023-P1-Q01</td><td>Both retained diagnostically</td><td>EXCLUDED</td></tr>
+<tr><td>Q21</td><td>PYQ-PHY-JEEADV-2022-P1-Q08</td><td>Valid</td><td>EXCLUDED</td></tr>
+<tr><td>Q26</td><td>PYQ-PHY-JEEADV-2026-P1-Q06</td><td>Valid</td><td>EXCLUDED</td></tr>
+<tr><td>Q23</td><td>PYQ-PHY-JEEADV-2025-P2-Q15</td><td>Valid</td><td>EXCLUDED</td></tr>
+</tbody></table>
+<p class="small">No authored scaffold is displayed as a source hint. See <code>CORE2.md</code> for the exact closure requirements.</p>
+</section>
+
+<section id="core1a">
+<h2>Core1A · completed conceptual construction</h2>
+<details open><summary>1 · Independent components / shared clock</summary><p>Declare one frame → write signed x/y components → keep each axis's quantities separate while sharing one t → recombine only same-time values. Wrong path: “independent” means independent clocks. Repair: attach timestamps before pairing.</p></details>
+<details><summary>2 · Constant acceleration per component</summary><p>Check <code>a_x</code> and <code>a_y</code> separately → apply the 1D relation only on valid axes → if one axis finds an event time, reuse it on the other. Wrong path: use acceleration magnitude in both equations.</p></details>
+<details><summary>3 · Projectile model and event</summary><p>Inventory post-release interactions → accept gravity-only specialization only when valid → choose the event condition → reconstruct simultaneous components. At an apex only <code>v_y=0</code>; downward acceleration remains.</p></details>
+<p class="note">Full entry assumptions, inferential jumps, step validity, worked anchors, diagnostics, repairs, independent checks, exit tasks and model answers are in <code>CORE1A.md</code>.</p>
+</section>
+
+<section id="visuals">
+<h2>Canonical representation review</h2>
+<p>These are semantic review renderings, not independent subject geometry. Each is derived only from the corresponding canonical representation's declared required elements and purpose.</p>
+
+<div class="visual" aria-label="Shared clock semantic representation">
+<h3>REP-KIN-2D-SHARED-CLOCK <span class="status h">VISUAL_HOLD</span></h3>
+<p><strong>Purpose:</strong> keep independently evolving x/y descriptions attached to one object, one frame and one shared clock.</p>
+<div class="flow">
+<div class="node">one physical object<br>declared x-y frame</div><span class="arrow">→</span>
+<div class="node">shared time marker<br><strong>t = 2 s</strong></div><span class="arrow">→</span>
+<div class="node">x-history<br>x(2 s)</div><span class="arrow">+</span>
+<div class="node">y-history<br>y(2 s)</div><span class="arrow">→</span>
+<div class="node">simultaneous ordered-pair state</div>
+</div>
+<div class="flow">
+<div class="node reject">x(2 s)</div><span class="arrow">+</span><div class="node reject">y(3 s)</div><span class="arrow">→</span><div class="node reject"><strong>REJECT</strong><br>non-simultaneous state</div>
+</div>
+<p class="srdesc"><strong>Accessibility description:</strong> synchronization is stated with timestamps and text, not colour. The mixed-time pair is explicitly labelled non-simultaneous.</p>
+<p class="small">Required/present elements: physical object ✓ frame ✓ x-history ✓ y-history ✓ shared time marker ✓ simultaneous state ✓. Provenance: CANONICAL_DERIVED. Review: candidate only.</p>
+</div>
+
+<div class="visual" aria-label="Event clock semantic representation">
+<h3>REP-KIN-2D-EVENT-CLOCK <span class="status h">VISUAL_HOLD</span></h3>
+<div class="flow"><div class="node">physical event</div><span class="arrow">→</span><div class="node">event condition</div><span class="arrow">→</span><div class="node">one solved event time t*</div><span class="arrow">→</span><div class="node">x(t*) and y(t*)</div><span class="arrow">→</span><div class="node">reconstructed event state</div></div>
+<p class="srdesc"><strong>Accessibility description:</strong> event condition, event time and both component evaluations are stated textually. Cross-axis time reuse is explicit.</p>
+<p class="small">Required/present elements: physical event ✓ event condition ✓ shared timeline/time ✓ x evaluation ✓ y evaluation ✓ reconstructed state ✓. Provenance: CANONICAL_DERIVED. Review: candidate only.</p>
+</div>
+
+<div class="visual" aria-label="Projectile model gate semantic representation">
+<h3>REP-KIN-2D-PROJECTILE-MODEL <span class="status h">VISUAL_HOLD</span></h3>
+<div class="flow"><div class="node">launched object</div><span class="arrow">→</span><div class="node">post-release interaction inventory</div><span class="arrow">→</span><div class="node">gravity only?</div><span class="arrow">→</span><div class="node">a<sub>x</sub>=0<br>a<sub>y</sub>=−g</div><span class="arrow">→</span><div class="node">projectile specialization valid</div></div>
+<div class="flow"><div class="node reject">retained thrust / significant drag / contact</div><span class="arrow">→</span><div class="node reject"><strong>reject standard specialization</strong><br>use an already-established valid parent model</div></div>
+<p class="srdesc"><strong>Accessibility description:</strong> active interactions, acceleration readouts and model status are given in text; validity does not depend on path shape or colour.</p>
+<p class="small">Required/present elements: launched-object scene label ✓ interaction inventory ✓ gravity-only status ✓ horizontal/vertical acceleration readout ✓ model-status gate ✓. Provenance: CANONICAL_DERIVED. Review: candidate only.</p>
+</div>
+</section>
+
+<section id="core1b">
+<h2>Core1B · attempt before reconstruction</h2>
+<p>Each card requires a non-empty learner commitment before reconstruction text is inserted.</p>
+
+<div class="trybox" data-cycle="c1">
+<h3>Cycle 1 · what is actually independent?</h3>
+<p><strong>PREDICT:</strong> If x and y components are independent, does the object have two clocks? Explain.</p>
+<p><strong>ATTEMPT:</strong> describe what separates and what must stay shared.</p>
+<textarea aria-label="Cycle 1 attempt"></textarea><button disabled>Commit attempt & reveal</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox" data-cycle="c2">
+<h3>Cycle 2 · when is constant-a valid?</h3>
+<p><strong>PREDICT:</strong> If <code>a_x≠0</code> and <code>a_y=0</code>, which velocity component changes?</p>
+<p><strong>ATTEMPT:</strong> state the per-axis validity rule and the time rule.</p>
+<textarea aria-label="Cycle 2 attempt"></textarea><button disabled>Commit attempt & reveal</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox" data-cycle="c3">
+<h3>Cycle 3 · model, then event</h3>
+<p><strong>PREDICT:</strong> In ideal horizontal launch, which acceleration component is zero and which is −g?</p>
+<p><strong>ATTEMPT:</strong> list the post-release model decision and an event condition.</p>
+<textarea aria-label="Cycle 3 attempt"></textarea><button disabled>Commit attempt & reveal</button><div class="slot" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="core2a">
+<h2>Core2A · authored familiar practice</h2>
+<div class="hold"><span class="status h">LEARNER ACCEPTANCE HOLD</span><p>No scoped mastery evidence or explicit owner waiver exists. These are reviewable <code>AUTHORED_PRACTICE</code> items, not source PYQs.</p></div>
+<div class="grid">
+<div class="card"><h3>Shared clock</h3><p>x(t), y(t) at one requested t. Crux: <code>R-KIN-2D-CLOCK-PAIR</code>.</p></div>
+<div class="card"><h3>Component constant-a</h3><p>Signed x/y calculation with one interval. Crux: <code>R-KIN-2D-CA-MODEL</code>.</p></div>
+<div class="card"><h3>Apex</h3><p>Set only <code>v_y=0</code>. Crux: <code>R-KIN-2D-APEX-EVENT</code>.</p></div>
+<div class="card"><h3>Horizontal launch</h3><p>Ground condition determines time; reuse it in x. Crux: <code>R-KIN-LAUNCH-EVENT</code>.</p></div>
+<div class="card"><h3>Same-height return</h3><p>Select the later root of Δy=0. Crux: <code>R-KIN-2D-SAME-EVENT</code>.</p></div>
+</div>
+<p class="note">Complete stems, conditions, authored scaffold ladders, reasoning routes, solutions, independent checks, failure signals and repair pointers are in <code>CORE2A.md</code>.</p>
+</section>
+
+<section id="core2b">
+<h2>Core2B · protected changed decisions</h2>
+<div class="hold"><span class="status h">PRIOR-EXPOSURE HOLD</span><p>The canonical tasks have <code>builds_on</code> lineage, but actual learner exposure is not established. The cards below are reveal-behavior review fixtures, not a readiness claim.</p></div>
+
+<div class="trybox transfer" data-transfer="t1">
+<h3>Representation translation</h3>
+<p><strong>Prior exposure:</strong> Q-PHY-KIN-2D-2A-SHARED-CLOCK-01.</p>
+<p><strong>Changed demand:</strong> convert verbal east/north/south motion facts into signed components.</p>
+<p><strong>Safe pre-attempt support:</strong> list raw directions and magnitudes without signs.</p>
+<textarea aria-label="Transfer 1 attempt"></textarea><button disabled>Commit decision & reveal protected move</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox transfer" data-transfer="t2">
+<h3>Per-axis model choice</h3>
+<p><strong>Prior exposure:</strong> Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02.</p>
+<p><strong>Changed demand:</strong> with <code>a_x=2</code> and <code>a_y=3t</code>, decide where constant-a equations are exact.</p>
+<p><strong>Safe pre-attempt support:</strong> make separate rows for a<sub>x</sub>(t) and a<sub>y</sub>(t) and write the validity condition.</p>
+<textarea aria-label="Transfer 2 attempt"></textarea><button disabled>Commit decision & reveal protected move</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox transfer" data-transfer="t3">
+<h3>Unequal-height impact</h3>
+<p><strong>Prior exposure:</strong> Q-PHY-KIN-2D-2A-SAME-HEIGHT-05.</p>
+<p><strong>Changed demand:</strong> launch point is 15 m above ground; choose the impact condition before solving.</p>
+<p><strong>Safe pre-attempt support:</strong> mark launch level and ground relative to one vertical origin.</p>
+<textarea aria-label="Transfer 3 attempt"></textarea><button disabled>Commit decision & reveal protected move</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox transfer" data-transfer="t4">
+<h3>Projectile-model validity</h3>
+<p><strong>Prior exposure:</strong> Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04.</p>
+<p><strong>Changed demand:</strong> retained horizontal rocket thrust gives <code>a_x=2 m/s²</code>.</p>
+<p><strong>Safe pre-attempt support:</strong> list post-release interactions and the acceleration components they imply before naming a model.</p>
+<textarea aria-label="Transfer 4 attempt"></textarea><button disabled>Commit decision & reveal protected move</button><div class="slot" aria-live="polite"></div>
+</div>
+
+<div class="trybox transfer" data-transfer="t5">
+<h3>Equal-height state comparison</h3>
+<p><strong>Prior exposure:</strong> Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03.</p>
+<p><strong>Changed demand:</strong> compare ascent/descent state at equal height without calculating times.</p>
+<p><strong>Safe pre-attempt support:</strong> make rows for <code>v_x</code>, <code>v_y</code>, speed and acceleration; record only “same height / upward / downward”.</p>
+<textarea aria-label="Transfer 5 attempt"></textarea><button disabled>Commit decision & reveal protected move</button><div class="slot" aria-live="polite"></div>
+</div>
+</section>
+
+<section>
+<h2>Five-demand diagnostic boundary</h2>
+<table><thead><tr><th>Anchor</th><th>Classification</th><th>Why it is not forced into learner practice</th></tr></thead><tbody>
+<tr><td>Q28</td><td>UNTaught_CAPABILITY_GAP</td><td>instantaneous velocity requires differentiation; learner eligibility also NOT_ESTABLISHED.</td></tr>
+<tr><td>Q15</td><td>IDENTITY_HOLD + extension</td><td>two candidate identities; JEE Advanced excluded; bounce/energy model not established.</td></tr>
+<tr><td>Q21</td><td>EXTENSION</td><td>changed gravity after apex is outside the constant-g canonical packet.</td></tr>
+<tr><td>Q26</td><td>EXTENSION</td><td>trajectory-equation/specified-point geometry is outside first-slice teaching.</td></tr>
+<tr><td>Q23</td><td>UNTaught_CAPABILITY_GAP</td><td>linear drag requires velocity-dependent dynamics and calculus; not valid transfer.</td></tr>
+</tbody></table>
+</section>
+
+<script>
+const core1b={
+ c1:'<div class="reveal"><strong>RECONSTRUCT:</strong> one frame and one time origin; x stays with x and y with y; recombine only same-time values.<br><strong>DIAGNOSE:</strong> x(2 s)+y(3 s) is not one state.<br><strong>REPAIR:</strong> attach timestamps before pairing.<br><strong>BOUNDARY:</strong> a_x=0 with a_y≠0 may keep v_x constant while v_y changes.</div>',
+ c2:'<div class="reveal"><strong>RECONSTRUCT:</strong> check each acceleration component for constancy; apply the 1D relation only on valid axes; one event time is reused across axes.<br><strong>DIAGNOSE:</strong> |a| is not a component and one valid axis does not license the other.<br><strong>BOUNDARY:</strong> time-varying a_y makes the y constant-a relation non-exact.</div>',
+ c3:'<div class="reveal"><strong>RECONSTRUCT:</strong> gravity-only free flight → a_x=0, a_y=−g → choose event condition → reuse one event time.<br><strong>DIAGNOSE:</strong> at apex only v_y=0; gravity remains.<br><strong>BOUNDARY:</strong> retained thrust invalidates the standard projectile specialization.</div>'
+};
+const transfer={
+ t1:'<div class="reveal"><div class="protected">Protected move · R-KIN-2D-BREP-FRAME:</div> choose and declare a perpendicular positive-axis convention before assigning signs.<p><strong>Model:</strong> one valid choice is +x east, +y north → u_x=+6, u_y=+2, a_x=0, a_y=−3. Any consistent frame is acceptable.</p><p><strong>Check:</strong> reverse an axis; all affected signs must reverse together.</p></div>',
+ t2:'<div class="reveal"><div class="protected">Protected move · R-KIN-2D-BMODEL-DECIDE:</div> decide constancy separately on each axis.<p><strong>Model:</strong> x constant-a equations are exact; y constant-a equations are not exact over 0≤t≤4 s because a_y=3t varies.</p><p><strong>Check:</strong> a_y changes from 0 to 12 m/s².</p></div>',
+ t3:'<div class="reveal"><div class="protected">Protected move · R-KIN-2D-BHEIGHT-EVENT:</div> ground impact means Δy=−15 m, not Δy=0.<p><strong>Model:</strong> −15=10t−5t² gives physical t=3 s; range=10×3=30 m.</p><p><strong>Check:</strong> substituting 3 s returns −15 m.</p></div>',
+ t4:'<div class="reveal"><div class="protected">Protected move · R-KIN-TRANSFER-MODEL:</div> reject the gravity-only projectile specialization because a_x is not zero.<p><strong>Model:</strong> use the already-taught 2D constant-acceleration parent model with a_x=2 and a_y=−g while those components remain constant.</p><p><strong>Check:</strong> switching the motor off restores the standard specialization if drag remains negligible.</p></div>',
+ t5:'<div class="reveal"><div class="protected">Protected move · R-KIN-2D-BSTATE-DECIDE:</div> compare equal-height component invariants directly instead of solving event times.<p><strong>Model:</strong> same v_x; equal |v_y| with opposite sign; same speed; different velocity vectors; same acceleration (0,−g).</p><p><strong>Check:</strong> opposite v_y signs rule out identical velocity vectors.</p></div>'
+};
+document.querySelectorAll('.trybox').forEach(box=>{
+ const ta=box.querySelector('textarea'), btn=box.querySelector('button'), slot=box.querySelector('.slot');
+ ta.addEventListener('input',()=>{btn.disabled=!ta.value.trim()});
+ btn.addEventListener('click',()=>{
+   const key=box.dataset.cycle||box.dataset.transfer;
+   slot.innerHTML=box.dataset.cycle?core1b[key]:transfer[key];
+   btn.disabled=true; ta.disabled=true; btn.textContent='Attempt committed';
+ });
+});
+</script>
+</main>
+</body>
+</html>

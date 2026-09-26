@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-WORK-ENERGY-POWER-AUTHORED",
   "version": "0.2.0",
   "status": "CANDIDATE",
@@ -348,7 +348,26 @@
           "answer": "No. With no displacement, there is no along-path transfer to count as work in this account.",
           "confirms": "Work here requires displacement as well as force orientation."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-WORK-DIRECTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP1-1",
+            "WEP1-2",
+            "WEP1-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-NET-WORK-SIGN",
@@ -484,7 +503,26 @@
           "answer": "No. Zero net work means the kinetic energy does not change; it may remain nonzero.",
           "confirms": "The rule concerns change in kinetic energy, not the existence of kinetic energy."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-NET-WORK-SIGN-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP2-1",
+            "WEP2-2",
+            "WEP2-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-POTENTIAL-ELIGIBILITY",
@@ -619,7 +657,26 @@
           "answer": "No. A single matching pair does not remove the path dependence; changing the path can still change the frictional transfer.",
           "confirms": "Eligibility is about dependence on endpoints in general, not accidental equality in one example."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-POTENTIAL-ELIGIBILITY-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP3-1",
+            "WEP3-2",
+            "WEP3-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-MECH-ENERGY-CONDITION",
@@ -773,7 +830,28 @@
           "answer": "No. The actual transfer/work over the stated interval must be established; a named interaction alone is not enough.",
           "confirms": "The conservation decision is based on the actual account and transfer, not a keyword."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-MECH-ENERGY-CONDITION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP4-0",
+            "WEP4-1",
+            "WEP4-2",
+            "WEP4-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-POWER-RATES",
@@ -932,7 +1010,27 @@
           "answer": "Zero, because the signed force component along the velocity direction is zero.",
           "confirms": "Instantaneous power depends on force-velocity alignment, not force magnitude alone."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-POWER-RATES-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP5-1",
+            "WEP5-2",
+            "WEP5-3",
+            "WEP5-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-GRADE9-QUANT",
@@ -1099,7 +1197,27 @@
           "answer": "Zero.",
           "confirms": "K is nonnegative and vanishes at zero speed."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-WEP-GRADE9-QUANT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "WEP6-1",
+            "WEP6-2",
+            "WEP6-3",
+            "WEP6-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
@@ -1866,7 +1984,32 @@
           "text": "Compare the force direction with the actual displacement direction; only the along-path contribution can produce work.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-WEP-2A-COV-02",
@@ -1922,7 +2065,32 @@
           "text": "Combine the work of all acting forces to obtain net work, then match its sign to whether kinetic energy increases, stays unchanged, or decreases.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-WEP-2A-COV-03",
@@ -1978,7 +2146,32 @@
           "text": "Use potential energy only for interactions whose energy change is fixed by endpoints; keep path-dependent friction as an explicit transfer.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-WEP-2A-COV-04",
@@ -2041,6 +2234,31 @@
           "work": "DAT-WEP-POWER-WORK",
           "dt": "DAT-WEP-POWER-DT"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -2104,6 +2322,31 @@
           "mass": "DAT-WEP-KE-M",
           "speed": "DAT-WEP-KE-V"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -2169,7 +2412,38 @@
           "text": "For potential energy, make the lift slow enough that the applied force balances weight.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-WEP-PRACTICAL-09",
@@ -2233,7 +2507,32 @@
           "text": "The ideal equality is m g Delta h = 0.5 m v^2; real data should be compared with it, not forced to match it.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-WEP-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

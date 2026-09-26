@@ -1,0 +1,156 @@
+{
+  "schema_version": "projectile-hold-register-v1",
+  "repository_basis": "main@ca0de27e307e4f532412ac52713a6faf14b216a4",
+  "holds": [
+    {
+      "id": "H-CORE2-CUSTODY",
+      "status": "HOLD",
+      "classification": "SOURCE_CUSTODY_HOLD",
+      "affected": [
+        "CORE2",
+        "Q28",
+        "Q15",
+        "Q21",
+        "Q26",
+        "Q23"
+      ],
+      "reason": "Anchor bank records are faithful non-verbatim adaptations; ordinary Core2 requires exact original custody or an accepted component-by-component external-reference custody proof.",
+      "close_when": "Authorized source bytes/rights-aware exact item custody is retained and independently accepted with precise item locator and preservation status for stem, subparts, options, conditions, figures/captions, source hints, and source answer/rubric."
+    },
+    {
+      "id": "H-Q15-IDENTITY",
+      "status": "HOLD",
+      "classification": "IDENTITY_HOLD",
+      "affected": [
+        "Q15"
+      ],
+      "reason": "The owner label Q15 is ambiguous between PYQ-PHY-JEEADV-2018-P2-Q08 and PYQ-PHY-JEEADV-2023-P1-Q01.",
+      "close_when": "Authoritative owner/repository/source evidence establishes the exact owner-label identity. No candidate is selected by inference."
+    },
+    {
+      "id": "H-Q28-ELIGIBILITY",
+      "status": "HOLD",
+      "classification": "LEARNER_ELIGIBILITY_HOLD",
+      "affected": [
+        "Q28"
+      ],
+      "reason": "The current question-set selector records learner eligibility as NOT_ESTABLISHED.",
+      "close_when": "Repository/owner policy explicitly establishes learner eligibility for this exact question."
+    },
+    {
+      "id": "H-Q28-CALCULUS",
+      "status": "HOLD",
+      "classification": "UNTaught_CAPABILITY_GAP",
+      "affected": [
+        "Q28",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "reason": "Differentiating x(t), y(t) to obtain velocity is explicitly excluded from this canonical Motion-in-2D packet.",
+      "close_when": "An upstream canonical teaching package establishes the differentiation capability; do not expand this packet to close it."
+    },
+    {
+      "id": "H-Q15-EXTENSION",
+      "status": "HOLD",
+      "classification": "UNTaught_CAPABILITY_GAP",
+      "affected": [
+        "Q15",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "reason": "Energy-loss/restitution reasoning that generates the post-bounce launch state is not established by the canonical Motion-in-2D packet.",
+      "close_when": "Exact Q15 identity is resolved and the required impact/energy capability is canonically taught and learner-eligible."
+    },
+    {
+      "id": "H-Q21-EXTENSION",
+      "status": "HOLD",
+      "classification": "EXTENSION",
+      "affected": [
+        "Q21",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "reason": "Changed gravity after the apex lies outside the canonical constant-g projectile specialization.",
+      "close_when": "Upstream canonical teaching and learner eligibility establish the piecewise changed-acceleration model."
+    },
+    {
+      "id": "H-Q26-EXTENSION",
+      "status": "HOLD",
+      "classification": "EXTENSION",
+      "affected": [
+        "Q26",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "reason": "Trajectory-equation derivation/slope and advanced specified-point projectile geometry are outside the canonical first slice.",
+      "close_when": "Upstream canonical teaching and learner eligibility establish the required trajectory/geometry method."
+    },
+    {
+      "id": "H-Q23-DRAG",
+      "status": "HOLD",
+      "classification": "UNTaught_CAPABILITY_GAP",
+      "affected": [
+        "Q23",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "reason": "Linear drag requires velocity-dependent Newton-II/differential-equation treatment outside the canonical packet.",
+      "close_when": "Upstream canonical dynamics/calculus teaching and learner eligibility are established."
+    },
+    {
+      "id": "H-CORE2A-LEARNER",
+      "status": "HOLD",
+      "classification": "LEARNER_ELIGIBILITY_HOLD",
+      "affected": [
+        "CORE2A"
+      ],
+      "reason": "The 50% owner estimate is not scoped mastery evidence and no explicit owner waiver establishes personalized practice acceptance.",
+      "close_when": "Scoped capability evidence or an explicit owner waiver authorizes practice routing. Authored practice may remain a review preview meanwhile."
+    },
+    {
+      "id": "H-CORE2B-EXPOSURE",
+      "status": "HOLD",
+      "classification": "LEARNER_ELIGIBILITY_HOLD",
+      "affected": [
+        "CORE2B"
+      ],
+      "reason": "Transfer candidates have canonical builds_on lineage but this learner has no repository evidence of actually completing the prerequisite Core2A exposures.",
+      "close_when": "Prior exposure is recorded for the listed parent items and scoped capability evidence or an explicit owner waiver permits transfer routing."
+    },
+    {
+      "id": "H-VISUAL-REVIEW",
+      "status": "HOLD",
+      "classification": "VISUAL_HOLD",
+      "affected": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B",
+        "CORE2A",
+        "CORE2B",
+        "preview.html"
+      ],
+      "reason": "Canonical representations are CANDIDATE and lack academically reviewed rendered-asset closure.",
+      "close_when": "The representation bindings and rendered semantics are independently reviewed/promoted; until then visuals are review previews only."
+    },
+    {
+      "id": "H-ACADEMIC-REVIEW",
+      "status": "HOLD",
+      "classification": "ACADEMIC_REVIEW_HOLD",
+      "affected": [
+        "all"
+      ],
+      "reason": "The canonical Motion-in-2D package itself is CANDIDATE; structural conformance does not confer academic review.",
+      "close_when": "Independent academic review promotes the relevant canonical records and the six products."
+    },
+    {
+      "id": "H-PUBLICATION",
+      "status": "HOLD",
+      "classification": "PUBLICATION_HOLD",
+      "affected": [
+        "all"
+      ],
+      "reason": "Core2 custody, learner/prior-exposure routing, visual review and academic review are unresolved.",
+      "close_when": "All publication dependencies are explicitly closed; generating files alone is not closure."
+    }
+  ]
+}

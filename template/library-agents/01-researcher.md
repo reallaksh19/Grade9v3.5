@@ -44,9 +44,16 @@ Sources:
   the node's cards and commit message; never invent scope.
 
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - Nothing from memory. Never cite a host that is not on the allowlist.
-- Aggregator sites (Tier C) are only for locating an item; cite the official original.
-- If you cannot pin an official paper or key for a question, use a different official question.
+- Aggregator sites (Tier C) are for locating an item; cite the official original (NTA's CDN
+  `cdnbbsr.s3waas.gov.in` is official).
+- If no official copy of a question or key can be pinned, use the corroboration fallback in
+  RESEARCHER.md: `authority: SECONDARY_CORROBORATED`, the official URL you tried, and the same
+  stem or answer quoted from at least two other Tier C publishers. Otherwise choose another question.
 - Do not write library records, verifications or teaching text.
 - Do not edit any `owner_frozen` node or the allowlist.
 - There is no hold or stop state. Every board duty addressed to RESEARCHER is yours to complete.

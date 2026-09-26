@@ -35,7 +35,7 @@ is marked `AUTHORED_PEDAGOGICAL`.
 |---|---|---|
 | microtopic | `title`, `inferential_jump`, `misconceptions` | `entry_assumptions`, `teaching_path`, `exit_task`, repairs and prompts |
 | relation | `expression`, `meaning`, `conditions` | — |
-| question (source) | `stem`, `conditions`, `answer`, including a QUESTION and an ANSWER_KEY card | — |
+| question (source) | `stem`, `conditions`, `answer`, including a QUESTION and an ANSWER_KEY card; if either card is `SECONDARY_CORROBORATED`, set `extensions["grade9v3:source_authority"] = "SECONDARY_CORROBORATED"` so the page labels it as a secondary source | — |
 | question (authored practice) | — | all, with `origin: "AUTHORED"` |
 
 - Set `intrinsic_badge` (EASY/MEDIUM/HARD) with a `badge_reason`. For a **HARD** microtopic
@@ -47,6 +47,22 @@ is marked `AUTHORED_PEDAGOGICAL`.
 - Map every question's `primary_capability_ref` to a capability of this node or its
   prerequisite; never invent `primary_concept_id`.
 - Stay at the node's grade. A JEE_EXTENSION node may go beyond NCERT only as far as its cards.
+
+## Depth duties (schema 0.2.0)
+
+After your node's records pass, also clear the depth duties for them:
+
+```sh
+python3 Shared/tools/library_board.py --subject Physics --depth --next AUTHOR
+```
+
+Each duty names a field and the quality-contract rule it serves
+(docs/plans/phase2/DATA-MODEL.md). Keep these rules:
+- **Cite as usual.** Facts cite cards; teaching craft is `AUTHORED_PEDAGOGICAL`.
+- **Keep one source of truth.** A new hint rung has `text`; a migrated rung keeps `from`.
+- **Review migrated units.** When you review a migrated construction unit, remove
+  `migrated_from`. Split any microtopic with more than 4 decisions into units, each with its
+  own worked anchor.
 
 ## Forbidden
 

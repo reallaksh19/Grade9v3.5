@@ -7,7 +7,11 @@
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "0.1.0"
+      "enum": [
+        "0.1.0",
+        "0.2.0"
+      ],
+      "description": "0.2.0 adds the depth fields the learner quality contract (Shared/quality/learner-quality.v1.json) needs: microtopic.construction_units, question.hint_ladder, representation_roles, independent_check, failure_signal, family_exposure. They are optional in the schema so every package loads; Shared/tools/package_depth.py turns each missing one into a named duty. Migrate with Shared/tools/package_migrate.py."
     },
     "package_id": {
       "type": "string",
@@ -1186,7 +1190,8 @@
             "type": "string",
             "minLength": 1
           },
-          "minItems": 0
+          "minItems": 0,
+          "description": "Capability ids this microtopic assumes. A capability of another subject is written '<Subject>:<capability id>' (e.g. 'Mathematics:CAP-MATH-DERIVATIVE-RATE'); package_depth.py emits TEACH_PREREQUISITE_BRIDGE for any ref no library teaches."
         },
         "lineage": {
           "type": "array",
@@ -1287,6 +1292,27 @@
                   },
                   "minItems": 1,
                   "description": "Representative responses it rejects. A rubric with no rejected example has not been tested against anything."
+                },
+                "task": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "prompt"
+                  ],
+                  "description": "Schema 0.2.0: the concrete reconstruction task the learner performs (a body, givens, numbers or a situation). `produces` says what the attempt should contain; `task` is what the learner is asked to do. Rendered as the Core1B attempt.",
+                  "properties": {
+                    "prompt": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "givens": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
                 }
               },
               "required": [
@@ -1373,6 +1399,31 @@
             "reconstruct",
             "boundary_test"
           ]
+        },
+        "construction_units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/construction_unit"
+          }
+        },
+        "compact_anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "prompt",
+            "result"
+          ],
+          "description": "Schema 0.2.0: the Core1 compact anchor, a one-line instance of the governing relation that makes the map usable before Core1A.",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "minLength": 1
+            },
+            "result": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       },
       "required": [
@@ -2276,6 +2327,34 @@
               "type": "string",
               "minLength": 1,
               "description": "Stable reasoning-move id for the changed learner decision that pre-attempt help must not hand over."
+            },
+            "invariant": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Schema 0.2.0: what stays valid from the prior exposure (builds_on) while `statement` changes; the learner-facing lineage_continuity_check pairs the two."
+            },
+            "novelty": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "checked_against",
+                "why_new"
+              ],
+              "description": "Schema 0.2.0: the author's check that this transfer is not a restatement of something the learner has already seen answered (a Core1A worked anchor or diagnose/repair, a Core1B boundary test, a Core2A item). The verifier confirms it.",
+              "properties": {
+                "checked_against": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "why_new": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           },
           "required": [
@@ -2297,6 +2376,36 @@
           },
           "minItems": 0,
           "description": "References application_context records. These classify the scenario/application only and do not add prerequisite or mastery semantics."
+        },
+        "hint_ladder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hint_rung"
+          }
+        },
+        "representation_roles": {
+          "$ref": "#/$defs/representation_roles"
+        },
+        "independent_check": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/independent_check"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Schema 0.2.0: a structured independent check (with its check_type) when answer.check does not already state it. Not copied from answer.check by migration."
+        },
+        "failure_signal": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The observable sign that this item's learner took the tempting wrong route."
+        },
+        "family_exposure": {
+          "$ref": "#/$defs/family_exposure"
         }
       },
       "required": [
@@ -2963,6 +3072,231 @@
         "support_level",
         "visual_stage_ref"
       ]
+    },
+    "construction_unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One distinct decision/event of a microtopic's construction, taught as its own unit (Core1A) and reconstructed in Core1B.",
+      "required": [
+        "id",
+        "step_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^CU-[A-Z0-9-]+$"
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The move the learner must make in this unit, in words."
+        },
+        "step_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "teaching_path step ids this unit covers, in order."
+        },
+        "representation_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Representation that stages this unit."
+        },
+        "reveal_stage_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "That representation's reveal stages used by this unit, in order."
+        },
+        "worked_anchor_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Question (exposure CORE1A) whose route exercises this unit's move."
+        },
+        "misconception_indexes": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": "Indexes into microtopic.misconceptions (wrong path, diagnose, repair)."
+        },
+        "independent_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/independent_check"
+          }
+        },
+        "migrated_from": {
+          "type": "string",
+          "description": "Set by package_migrate.py when the unit was derived mechanically (e.g. 'teaching_path'); cleared when an author reviews it."
+        },
+        "decision_from": {
+          "enum": [
+            "inferential_jump"
+          ],
+          "description": "Set instead of `decision` when the unit's decision is the microtopic's own field (migration); one source of truth, no copied text."
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "decision"
+          ]
+        },
+        {
+          "required": [
+            "decision_from"
+          ]
+        }
+      ]
+    },
+    "independent_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "check_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "From <Subject>/adapter/QualityVocabulary.json check_types."
+        }
+      }
+    },
+    "hint_rung": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "order",
+        "purpose",
+        "provenance"
+      ],
+      "properties": {
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "purpose": {
+          "enum": [
+            "ORIENT",
+            "REPRESENT",
+            "FIRST_RELATION",
+            "CONNECT",
+            "CHECK",
+            "ANSWER"
+          ],
+          "description": "What the rung does for the learner; a ladder climbs from ORIENT to FIRST_RELATION before any ANSWER."
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "SOURCE_HINT",
+            "AUTHORED_HINT",
+            "AUTHORED_SCAFFOLD"
+          ]
+        },
+        "supports_move_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visual_stage_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^(hints|scaffolds)\\[[0-9]+\\]$",
+          "description": "The legacy hint or scaffold this rung is; its text is read from there (no copied text)."
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "text"
+          ]
+        },
+        {
+          "required": [
+            "from"
+          ]
+        }
+      ]
+    },
+    "representation_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "initial_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shown with the stem, before any attempt (Core2A initial_representation)."
+        },
+        "safe_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shown before commitment; must not show the protected move (Core2B)."
+        },
+        "bound_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shown with support or the solution (may show the move)."
+        },
+        "stage_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "family_exposure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_ref"
+      ],
+      "properties": {
+        "family_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "closure": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "What this item establishes for the family, which a later transfer (Core2B) builds on."
+        }
+      }
     }
   }
 }

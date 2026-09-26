@@ -81,6 +81,21 @@ class FeedbackRuntime(unittest.TestCase):
         self.assertEqual(report["repair"]["microtopic_ref"], "MIC-MATH-EQUIVALENT-OPS")
         self.assertEqual(report["after_repair"]["next_action"], "VERIFY")
         verification = report["after_repair"]["verification"]
+        # A fresh same-capability question is preferred: the transfer task added in the
+        # Phase 6 pilot. Core1A worked anchors never qualify (their solution is shown).
+        self.assertEqual(verification["kind"], "QUESTION")
+        self.assertEqual(verification["question_ref"], "Q-MATH-LINEAR-2B-01")
+        self.assertNotIn("answer", verification)
+
+    def test_exit_task_verifies_when_no_fresh_question_remains(self):
+        report = feedback.run(self.request(
+            attempt_number=3,
+            shown_hint_indices=[0, 1],
+            help_used="HINT",
+            attempted_question_refs=[self.QUESTION, "Q-MATH-LINEAR-2B-01"],
+            evaluation={"misconception_index": 0},
+        ))
+        verification = report["after_repair"]["verification"]
         self.assertEqual(verification["kind"], "EXIT_TASK")
         self.assertNotIn("answer", verification)
 

@@ -1,0 +1,49 @@
+name: learner-quality
+
+# The learner-product quality rebuild (docs/plans/LEARNER-PRODUCT-QUALITY-REBUILD.md):
+# frozen renderer inventory and calibration corpus, the quality contract and its
+# calibration, schema 0.2.0 packages, the one renderer, and the rendered gate.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  learner-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the calibration reference R2 is pinned by commit on another branch
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install tools
+        run: |
+          pip install --quiet jsonschema pypdf cffi
+          npm install --no-save --silent playwright@1.56
+          npx playwright install --with-deps chromium
+
+      - name: Renderer freeze (one renderer)
+        run: python3 Shared/tools/renderer_inventory.py --check
+
+      - name: Calibration corpus intact
+        run: python3 Shared/tools/calibration_corpus.py --check --refs
+
+      - name: Quality contract well formed and calibrated
+        run: |
+          python3 Shared/tools/quality_contract.py --check
+          python3 Shared/tools/quality_contract.py calibrate
+
+      - name: Packages migrated to schema 0.2.0
+        run: python3 Shared/tools/package_migrate.py --check
+
+      - name: Contract, renderer and rendered-gate tests
+        run: python3 -m unittest tests.test_quality_contract tests.test_package_depth tests.test_render_core tests.test_quality_gate tests.test_renderer_inventory tests.test_calibration_corpus tests.test_products_ratchet

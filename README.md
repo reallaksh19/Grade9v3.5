@@ -75,8 +75,8 @@ python3 Mathematics/run.py publish --plan /tmp/lineq/plan.json \
 
 # research-first job from raw questions/syllabus (see docs/RESEARCH-FIRST-WORKFLOW.md)
 python3 Shared/tools/raw_intake.py --input request.json
-python3 Shared/tools/learner_product_render.py --bundle job.json --out /tmp/job
-python3 Shared/tools/delivery_gate.py --manifest /tmp/job/delivery.json
+python3 Shared/tools/render_core.py build --manifest product.json --out /tmp/job
+python3 Shared/tools/quality_gate.py /tmp/job --subject Physics --product-id P
 
 python3 -m unittest discover -s tests -p "test_*.py"   # full suite
 python3 Shared/tools/topic_independence_guard.py       # engine carries no subject

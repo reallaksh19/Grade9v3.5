@@ -203,9 +203,10 @@
     }
     out.push('', '## Research and authoring tasks');
     plan.research_tasks.forEach(t => out.push(`- ${t.id} → ${t.needs.join(', ')}`));
-    out.push('', '## Deliver', 'Book, web pages, question bank, atlas links and builder integration, rendered with',
-      '`python3 Shared/tools/learner_product_render.py --bundle job.json --out OUT` and passed by',
-      '`python3 Shared/tools/delivery_gate.py --manifest OUT/delivery.json`. A hold is never an output.');
+    out.push('', '## Deliver', 'Research and author into the research library, promote verified records',
+      '(`python3 Shared/tools/promote_verified.py`), render the six Cores with',
+      '`python3 Shared/tools/render_core.py build --manifest product.json --out OUT` and pass',
+      '`python3 Shared/tools/quality_gate.py OUT`. A hold is never an output.');
     return out.join('\n') + '\n';
   }
 

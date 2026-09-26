@@ -51,7 +51,28 @@ Loop until your scope is done:
 6. Commit that one node (`author(<NODE>): staging records`), then `git pull --rebase` and
    `git push origin {{BRANCH}}`.
 
+Definition of complete (Shared/workflows/research-first.v1.json `definition_of_complete`):
+- **Records:** your records carry no depth duty on
+  `python3 Shared/tools/library_board.py --subject {{SUBJECT}} --depth --next AUTHOR`.
+  A duty names the exact field and the quality rule it serves.
+- **Product:** the product that uses them passes the rendered gate. Check with
+  `python3 Shared/tools/build_products.py build --only <package>` and `products/STATUS.md`.
+- **What "deep" means here:**
+  - one construction unit per decision (at most 4 decisions per worked anchor);
+  - a three-rung hint ladder specific to the item (orient, then represent, then the first relation);
+  - a failure signal naming this item's tempting wrong route;
+  - a family closure saying what the item establishes;
+  - a transfer invariant saying what stays valid while the demand changes;
+  - a compact anchor for Core1.
+
+  The model is the reference question bank: attempt-first stem, trap, aligned figure,
+  progressive hints, full derivation, and answer with an independent check.
+
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - No web. No facts, numbers or exam identities from memory.
 - Fact fields (`must_cite_cards`) cite passing cards. Never mark them `AUTHORED_PEDAGOGICAL`.
 - A source question cites both its QUESTION card and its ANSWER_KEY card. Keep

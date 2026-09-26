@@ -587,11 +587,12 @@ class SpecDelivery(unittest.TestCase):
                       spec_delivery.values_at(record, self.segments("hints[]")))
 
     def test_a_role_that_compiles_nothing_here_is_said_once_not_per_requirement(self):
-        # Core2B compiles no product for this bucket. Repeating that for each of its
-        # eleven requirements would bury the findings that are real.
+        # Core2 compiles no product for this Mathematics bucket (it has no source items yet;
+        # Core2B gained transfer tasks in the Phase 6 pilot). Repeating that for each of its
+        # requirements would bury the findings that are real.
         rows = self.rows_for("Mathematics")
-        core2b = [r for r in rows if r["role"] == "CORE2B"]
-        self.assertEqual(core2b, [{"role": "CORE2B", "state": "NOT_COMPILED_HERE"}])
+        core2 = [r for r in rows if r["role"] == "CORE2"]
+        self.assertEqual(core2, [{"role": "CORE2", "state": "NOT_COMPILED_HERE"}])
 
 
 class CapabilityCollisions(unittest.TestCase):
