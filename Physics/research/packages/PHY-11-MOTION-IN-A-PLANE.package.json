@@ -679,6 +679,56 @@
       ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-002",
+        "EV-PHY-11-MIP-07-003",
+        "EV-PHY-11-MIP-07-004",
+        "EV-PHY-11-MIP-07-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-002",
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-07-003",
+            "EV-PHY-11-MIP-07-004",
+            "EV-PHY-11-MIP-07-005"
+          ]
+        }
+      },
+      "action": "Solve plane motion with constant acceleration by writing the vector equations v = v0 + a t and r = r0 + v0 t + (1/2) a t^2 as two one-dimensional motions that share one time.",
+      "success_criterion": "Checks that the acceleration is constant before using the equations, finds the time from one axis, reuses it on the other axis, and recognises which general relations hold for arbitrary motion.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-06"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: motion in a plane, cases of uniform velocity and uniform acceleration",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -1592,6 +1642,156 @@
       "research_contribution": "Records the average/instantaneous velocity and acceleration definitions, the tangent direction, and the two carried-over one-dimensional errors, each with a verified quote.",
       "prerequisite_refs": [
         "CAP-PHY-MIP-05"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-001",
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-003",
+        "EV-PHY-11-MIP-07-002",
+        "EV-PHY-11-MIP-07-004",
+        "EV-PHY-11-MIP-07-005",
+        "EV-PHY-11-MIP-07-006",
+        "EV-PHY-11-MIP-07-007",
+        "EV-PHY-11-MIP-07-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-001",
+            "EV-PHY-11-MIP-07-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-07-003",
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-002"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-07-003",
+            "EV-PHY-11-MIP-07-004",
+            "EV-PHY-11-MIP-07-005",
+            "EV-PHY-11-MIP-07-006",
+            "EV-PHY-11-MIP-07-007"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-07-008",
+            "EV-PHY-11-MIP-07-004"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Motion in a plane with constant acceleration",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-07",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners apply the constant-acceleration equations without checking that the acceleration is constant, and lose the link between the axes by not reusing one time.",
+      "entry_assumptions": [
+        "Can use v = u + a t and s = u t + (1/2) a t^2 in one dimension.",
+        "Can resolve vectors into x and y components."
+      ],
+      "inferential_jump": "When the acceleration vector is constant, plane motion splits into two simultaneous one-dimensional constant-acceleration motions along perpendicular axes, coupled only by the time they share.",
+      "teaching_path": [
+        {
+          "id": "MIP07-1",
+          "role": "DECLARE",
+          "action": "Confirm the acceleration is constant and fix the axes.",
+          "why_valid": "The kinematic equations for uniform acceleration hold only then; uniform circular motion is excluded.",
+          "inputs": [],
+          "output": "a constant; axes x, y"
+        },
+        {
+          "id": "MIP07-2",
+          "role": "TRANSFORM",
+          "action": "Write the vector equations and resolve them.",
+          "why_valid": "The vector equations need no choice of axes and may be resolved along any two independent axes.",
+          "inputs": [],
+          "output": "x = x0 + v_0x t + (1/2) a_x t^2, y = y0 + v_0y t + (1/2) a_y t^2",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP07-3",
+          "role": "TRANSFORM",
+          "action": "Solve the axis that carries the given condition for t.",
+          "why_valid": "The condition on one coordinate fixes the common time.",
+          "inputs": [],
+          "output": "Example 3.5: 5.0 t + 1.5 t^2 = 84 => t = 6 s",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP07-4",
+          "role": "TRANSFORM",
+          "action": "Reuse that t on the other axis.",
+          "why_valid": "Both components describe the same instant.",
+          "inputs": [],
+          "output": "y = 1.0 (6)^2 = 36.0 m",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP07-5",
+          "role": "VERIFY",
+          "action": "Recombine the components into a speed or position.",
+          "why_valid": "A plane state needs both components at one time.",
+          "inputs": [],
+          "output": "speed = sqrt(v_x^2 + v_y^2) at t = 6 s"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-07-CONST-ACC-VELOCITY",
+        "REL-PHY-MIP-07-CONST-ACC-POSITION"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-07-TWO-AXIS-CLOCK"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-07"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The acceleration alone fixes the shape of the trajectory.",
+          "diagnostic_prompt": "Two stones fall under the same gravity, one dropped and one thrown sideways. Do they follow the same shape of path?",
+          "repair": "No. The shape also depends on the initial position and velocity: under the same gravity the path can be a straight line or a parabola."
+        },
+        {
+          "wrong_idea": "The constant-acceleration equations work for any motion whose acceleration has constant size.",
+          "diagnostic_prompt": "May r = r0 + v0 t + (1/2) a t^2 be used for uniform circular motion, where |a| is constant?",
+          "repair": "No. There the acceleration's direction keeps changing, so the acceleration vector is not constant and the equations do not apply."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle starts from rest at the origin with constant acceleration a = (2 i + 1 j) m/s^2. Where is it at t = 2 s?",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "At r = (4 i + 2 j) m.",
+          "reasoning": [
+            "x = (1/2)(2)(2^2) = 4 m.",
+            "y = (1/2)(1)(2^2) = 2 m.",
+            "Both use the same t = 2 s."
+          ],
+          "check": "Starting from rest, the particle moves along the direction of a, and (4, 2) is parallel to (2, 1).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "Anchors the vector constant-acceleration equations, their axis independence and their exclusion of circular motion to verified NCERT text, with Example 3.5 as the shared-time model.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-06"
       ],
       "lineage": []
     }
@@ -2521,6 +2721,195 @@
         "Units: m/s divided by s gives m/s^2."
       ],
       "gate_relation_ref": "REL-PHY-MIP-06-AVERAGE-ACCELERATION"
+    },
+    {
+      "id": "REL-PHY-MIP-07-CONST-ACC-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-003",
+        "EV-PHY-11-MIP-07-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-07-001"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-005"
+          ]
+        }
+      },
+      "expression": "v = v0 + a t; v_x = v_0x + a_x t, v_y = v_0y + a_y t",
+      "meaning": "When the acceleration is constant, the average acceleration over any interval equals it, so the velocity changes linearly with time, component by component.",
+      "symbols": [
+        {
+          "symbol": "v0",
+          "meaning": "velocity at t = 0",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "a",
+          "meaning": "constant acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "elapsed time",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "v",
+          "meaning": "velocity at time t",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "The acceleration vector is constant in magnitude and direction over the interval.",
+        "The vector equation needs no choice of axes and may be resolved along any two independent axes."
+      ],
+      "derivation": [
+        {
+          "id": "REL07V-1",
+          "role": "DECLARE",
+          "action": "Take a constant acceleration a.",
+          "why_valid": "Over any interval the average acceleration then equals a.",
+          "inputs": [],
+          "output": "a_avg = a"
+        },
+        {
+          "id": "REL07V-2",
+          "role": "TRANSFORM",
+          "action": "Write the average acceleration from t = 0 to t.",
+          "why_valid": "a_avg = (v - v0)/(t - 0).",
+          "inputs": [],
+          "output": "a = (v - v0)/t => v = v0 + a t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "Not valid for uniform circular motion, where the acceleration has constant magnitude but changing direction."
+      ],
+      "checks": [
+        "a = 0 gives constant velocity.",
+        "Each component obeys the one-dimensional form."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-07-CONST-ACC-VELOCITY"
+    },
+    {
+      "id": "REL-PHY-MIP-07-CONST-ACC-POSITION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-002",
+        "EV-PHY-11-MIP-07-003",
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-012"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-07-002",
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-07-002",
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-012",
+            "EV-PHY-11-MIP-07-003"
+          ]
+        }
+      },
+      "expression": "r = r0 + v0 t + (1/2) a t^2; x = x0 + v_0x t + (1/2) a_x t^2, y = y0 + v_0y t + (1/2) a_y t^2",
+      "meaning": "With constant acceleration the displacement is the average velocity (v0 + v)/2 times the interval, so motion in a plane is two separate simultaneous one-dimensional constant-acceleration motions along perpendicular directions.",
+      "symbols": [
+        {
+          "symbol": "r0",
+          "meaning": "position at t = 0",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "r",
+          "meaning": "position at time t",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "v0",
+          "meaning": "initial velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "a",
+          "meaning": "constant acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "elapsed time shared by both components",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "The acceleration is constant over the interval; for arbitrary motion only the definitions of average velocity and average acceleration hold.",
+        "Both component equations use the same elapsed time t."
+      ],
+      "derivation": [
+        {
+          "id": "REL07R-1",
+          "role": "TRANSFORM",
+          "action": "Use the average velocity for linearly changing velocity.",
+          "why_valid": "With constant a, the average of v over the interval is (v0 + v)/2.",
+          "inputs": [],
+          "output": "r - r0 = ((v0 + v)/2) t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL07R-2",
+          "role": "TRANSFORM",
+          "action": "Substitute v = v0 + a t.",
+          "why_valid": "The velocity at time t is known from the first relation.",
+          "inputs": [],
+          "output": "r = r0 + v0 t + (1/2) a t^2",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL07R-3",
+          "role": "TRANSFORM",
+          "action": "Resolve along x and y.",
+          "why_valid": "The vector equation may be resolved along any two independent axes.",
+          "inputs": [],
+          "output": "x = x0 + v_0x t + (1/2) a_x t^2; y = y0 + v_0y t + (1/2) a_y t^2",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "The trajectory's shape is not fixed by a alone; it also depends on r0 and v0."
+      ],
+      "checks": [
+        "Setting a = 0 gives straight-line motion at constant velocity.",
+        "Time found from one axis must be reused on the other."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-07-CONST-ACC-POSITION"
     }
   ],
   "representations": [
@@ -2958,6 +3347,70 @@
           "in_words": "The limit of delta r / delta t, tangent to the path."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-07-TWO-AXIS-CLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-07-003"
+          ]
+        }
+      },
+      "kind": "TWO_AXIS_SHARED_TIME_TABLE",
+      "purpose": "Set the x-motion and y-motion side by side as two one-dimensional constant-acceleration columns joined by one time row, so the time found on one axis is visibly reused on the other.",
+      "required_elements": [
+        "declared axes",
+        "x column: x0, v_0x, a_x",
+        "y column: y0, v_0y, a_y",
+        "shared time row t",
+        "recombined position or velocity at that t"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-07-CONST-ACC-VELOCITY",
+        "REL-PHY-MIP-07-CONST-ACC-POSITION"
+      ],
+      "read_order": [
+        "declared axes",
+        "x column: x0, v_0x, a_x",
+        "y column: y0, v_0y, a_y",
+        "shared time row t",
+        "recombined position or velocity at that t"
+      ],
+      "instance_constraints": [
+        "Only one value of t appears for a given event.",
+        "Each column uses only its own axis's quantities."
+      ],
+      "accessibility": [
+        "The shared time is stated in text.",
+        "Column headings name the axis in words."
+      ],
+      "misleading_alternatives": [
+        "Two different times for one event.",
+        "Putting a_x into the y equation."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "shared time row t",
+          "symbol": "t",
+          "in_words": "The one elapsed time used by both component equations."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -3248,6 +3701,54 @@
         "Q-PHY-MIP-06-NCERT-3-17",
         "Q-PHY-MIP-06-NCERT-3-9",
         "Q-PHY-MIP-06-EXEMPLAR-4-7"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-07",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Constant-acceleration plane motion and the validity of kinematic relations",
+      "capability_refs": [
+        "CAP-PHY-MIP-07"
+      ],
+      "solution_structure": [
+        "Check that the acceleration is constant.",
+        "Resolve the vector equations into x and y.",
+        "Get t from the constrained axis and reuse it; or judge which relations hold for arbitrary motion."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the constant-acceleration equations apply at all.",
+        "representation_translation": "Translate vector initial conditions into component columns.",
+        "reasoning_steps": "Solve one axis for t, substitute into the other, recombine.",
+        "novelty": "The constrained coordinate and the asked-for quantity change between items."
+      },
+      "safe_variations": [
+        "Constrain y instead of x.",
+        "Ask for speed instead of position at the found time."
+      ],
+      "transfer_boundaries": [
+        "Not for uniform circular motion or any motion with changing acceleration."
+      ],
+      "common_wrong_routes": [
+        "Use v_avg = (v1 + v2)/2 for arbitrary motion.",
+        "Take different times on the two axes."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-07-NCERT-3-18",
+        "Q-PHY-MIP-07-NCERT-3-20",
+        "Q-PHY-MIP-07-EXEMPLAR-4-13"
       ]
     }
   ],
@@ -5126,6 +5627,306 @@
         }
       ],
       "repair_ref": "MIP06-4"
+    },
+    {
+      "id": "Q-PHY-MIP-07-NCERT-3-18",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-009",
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-003",
+        "EV-PHY-11-MIP-07-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-07-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-07-001",
+            "EV-PHY-11-MIP-07-003"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-07-010",
+            "EV-PHY-11-MIP-07-003"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.18",
+      "stem": "A particle starts from the origin at t = 0 s with a velocity of 10.0 j m/s and moves in the x-y plane with a constant acceleration of (8.0 i + 2.0 j) m s^-2. (a) At what time is the x- coordinate of the particle 16 m? What is the y-coordinate of the particle at that time? (b) What is the speed of the particle at the time ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The acceleration is constant, so the constant-acceleration equations apply on each axis."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) t = 2 s and y = 24 m; (b) 21.26 m/s.",
+        "reasoning": [
+          "x-axis: x = (1/2)(8.0) t^2 = 4 t^2 = 16, so t = 2 s.",
+          "y-axis at the same time: y = 10.0(2) + (1/2)(2.0)(2^2) = 20 + 4 = 24 m.",
+          "v_x = 8.0 x 2 = 16 m/s; v_y = 10.0 + 2.0 x 2 = 14 m/s.",
+          "Speed = sqrt(16^2 + 14^2) = sqrt452 = 21.26 m/s."
+        ],
+        "check": "The time came from x alone and was reused unchanged for y and for both velocity components.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R07-18-REP",
+            "kind": "REPRESENT",
+            "action": "Split the motion into x and y columns.",
+            "why_valid": "Constant-acceleration plane motion is two one-dimensional motions.",
+            "inputs": [],
+            "output": "x: v_0x = 0, a_x = 8.0; y: v_0y = 10.0, a_y = 2.0"
+          },
+          {
+            "id": "R07-18-DEC",
+            "kind": "DECIDE",
+            "action": "Use the x column to find t.",
+            "why_valid": "The condition is on x.",
+            "inputs": [],
+            "output": "4 t^2 = 16 => t = 2 s"
+          },
+          {
+            "id": "R07-18-CON",
+            "kind": "CONNECT",
+            "action": "Carry t = 2 s into the y column and the velocity components.",
+            "why_valid": "Both axes share one clock.",
+            "inputs": [],
+            "output": "y = 24 m; v = (16, 14) m/s"
+          },
+          {
+            "id": "R07-18-CHK",
+            "kind": "VERIFY",
+            "action": "Recombine the velocity.",
+            "why_valid": "Speed is the magnitude of v.",
+            "inputs": [],
+            "output": "21.26 m/s"
+          }
+        ],
+        "crux_move_ref": "R07-18-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-07",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-07",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write the x-motion and the y-motion in two columns with one row for time.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R07-18-REP"
+        }
+      ],
+      "repair_ref": "MIP07-4"
+    },
+    {
+      "id": "Q-PHY-MIP-07-NCERT-3-20",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-011",
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-012",
+        "EV-PHY-11-MIP-06-001",
+        "EV-PHY-11-MIP-06-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-07-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-07-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-07-012",
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-004",
+            "EV-PHY-11-MIP-07-001"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.20",
+      "stem": "For any arbitrary motion in space, which of the following relations are true :",
+      "subparts": [],
+      "options": [
+        "(a) v_average = (1/2) (v(t1) + v(t2))",
+        "(b) v_average = [r(t2) - r(t1)] /(t2 - t1)",
+        "(c) v(t) = v(0) + a t",
+        "(d) r(t) = r(0) + v(0) t + (1/2) a t^2",
+        "(e) a_average = [v(t2) - v(t1)] /(t2 - t1)"
+      ],
+      "conditions": [
+        "'Arbitrary' means the acceleration need not be constant."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Only (b) and (e) are true.",
+        "reasoning": [
+          "(b) and (e) are the definitions of average velocity and average acceleration, true for any motion.",
+          "(a), (c) and (d) follow only when the acceleration is constant, so they fail for arbitrary motion."
+        ],
+        "check": "Every rejected relation contains a single acceleration a or assumes linear change of velocity.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R07-20-DEC",
+            "kind": "DECIDE",
+            "action": "Classify each relation as a definition or a constant-acceleration result.",
+            "why_valid": "Definitions hold always; derived kinematic equations need constant a.",
+            "inputs": [],
+            "output": "(b), (e) definitions; (a), (c), (d) constant-a results"
+          }
+        ],
+        "crux_move_ref": "R07-20-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-07",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-07",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Which of these relations did you derive by assuming the acceleration stays the same?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R07-20-DEC"
+        }
+      ],
+      "repair_ref": "MIP07-1"
+    },
+    {
+      "id": "Q-PHY-MIP-07-EXEMPLAR-4-13",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-07-013",
+        "EV-PHY-11-MIP-07-001",
+        "EV-PHY-11-MIP-07-014",
+        "EV-PHY-11-MIP-06-001",
+        "EV-PHY-11-MIP-06-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-07",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-07-013"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-07-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-07-014",
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.13",
+      "stem": "Following are four different relations about displacement, velocity and acceleration for the motion of a particle in general. Choose the incorrect one (s) :",
+      "subparts": [],
+      "options": [
+        "(a) v_av = (1/2)[v(t1) + v(t2)]",
+        "(b) v_av = [r(t2) - r(t1)]/(t2 - t1)",
+        "(c) r = (1/2)(v(t2) - v(t1))(t2 - t1)",
+        "(d) a_av = [v(t2) - v(t1)]/(t2 - t1)"
+      ],
+      "conditions": [
+        "'In general' means the acceleration need not be constant."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) and (c) are incorrect.",
+        "reasoning": [
+          "(b) and (d) are the definitions of average velocity and average acceleration.",
+          "(a) is true only when velocity changes linearly with time, i.e. for constant acceleration.",
+          "(c) is not a valid relation in general: the displacement is not fixed by the velocity change alone."
+        ],
+        "check": "The two correct relations are exactly the definitions, as in NCERT 3.20.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R07-13-DEC",
+            "kind": "DECIDE",
+            "action": "Mark each relation as a definition or not.",
+            "why_valid": "Only definitions hold for motion in general.",
+            "inputs": [],
+            "output": "(b), (d) correct; (a), (c) incorrect"
+          }
+        ],
+        "crux_move_ref": "R07-13-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-07",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-07",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Recall the defining formula for average velocity; which options match a definition word for word?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R07-13-DEC"
+        }
+      ],
+      "repair_ref": "MIP07-1"
     }
   ],
   "teaching_routes": [],
