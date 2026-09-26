@@ -1,0 +1,154 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X4",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:b50ceaede000aee7726366ecfdb1f2f8cdb788c9446f136aa5958ad0b02b4042",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X4-009",
+      "independent_solution": [
+        "Air resistance acts opposite to the velocity, so it has a horizontal component that keeps reducing v_x (no longer constant) and a vertical component that adds to gravity on the way up and opposes it on the way down.",
+        "Mechanical energy is lost throughout, so the maximum height and range are smaller than the vacuum parabola's, and the particle comes down more slowly horizontally than it went up.",
+        "Hence the path is not a parabola: an asymmetric curve with the apex shifted towards the landing point and a descending branch steeper than the ascending one."
+      ],
+      "independent_answer": "Lower, shorter, asymmetric curve whose fall is steeper than its rise, because energy and the horizontal velocity keep decreasing.",
+      "official_answer": "Due to air resistance, particle energy as well as horizontal component of velocity keep on decreasing making the fall steeper than rise",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X4-011",
+      "independent_solution": [
+        "Options read on the pinned page. Molecules hit the leading face with relative speed about u + v and the trailing face with about u - v; momentum flux goes as the square of the relative speed, so the pressure difference is proportional to (u+v)^2 - (u-v)^2 = 4uv: [A] true.",
+        "Resistive force = pressure difference x area, proportional to v: [B] true.",
+        "Then m dv/dt = F - k v: the acceleration decreases as v grows, so [C] is false; v approaches the terminal value F/k, where F balances the resistive force: [D] true. Answer A, B, D."
+      ],
+      "independent_answer": "[A], [B] and [D]",
+      "official_answer": "(A), (B), and (D)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X4-013",
+      "independent_solution": [
+        "Full question read on pinned page 20. Mass of the drop (water, 1000 kg/m^3): m = 1000 x (4/3) pi (2e-3)^3 = 3.35e-5 kg.",
+        "Work by gravity in each 250 m half: m g h = 3.35e-5 x 9.8 x 250 = 0.082 J (same in both halves; it does not depend on the drag).",
+        "Work-energy over the whole fall from rest: W_g + W_r = (1/2) m v^2 = 0.5 x 3.35e-5 x 100 = 1.68e-3 J, so W_r = 1.68e-3 - 0.164 = -0.163 J."
+      ],
+      "independent_answer": "0.082 J by gravity in each half; -0.163 J by the resistive force",
+      "official_answer": "0.082 J in each half; -0.163 J",
+      "agrees": true,
+      "numeric_check": "1000*(4/3)*pi*(2e-3)**3*9.8*250"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X4",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "extensions.grade9v3:interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X4",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X4-LINEAR-DRAG",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X4-TERMINAL-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X4-DRAG-VS-VACUUM",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X4-EXEMPLAR-4-23",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X4-JEEADV-2017-P1-Q1",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X4-NCERT-5-13",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-X4-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card claim ends with a JEE Main sentence the quote does not support: 'The JEE Main syllabus could not be pinned (served only from the non-allowlisted cdnbbsr.s3waas.gov.in).' The quote is only the fluids line 'Viscosity (Poiseuille's equation excluded), ... Stoke's law; Terminal velocity,'. Remove that sentence from the claim (same defect as EV-PHY-11-MIP-X1-001)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X4-013",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote stops after the set-up ('...moves with uniform speed thereafter.') and omits both questions: 'What is the work done by the gravitational force on the drop in the first and second half of its journey ? What is the work done by the resistive force in the entire journey if its speed on reaching the ground is 10 m s–1 ?' (same pinned page 20). The claim, the record stem Q-PHY-MIP-X4-NCERT-5-13 and the key '0.082 J in each half; -0.163 J' depend on them. Extend the quote."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X4-011",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote ends at 'Which of the following options is/are true?'; options [A]-[D] exist only in question.options, which the evidence check does not verify, yet the key '(A), (B), and (D)' refers to them. Quote the options from the pinned page."
+    }
+  ]
+}
