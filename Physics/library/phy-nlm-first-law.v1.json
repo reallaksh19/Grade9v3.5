@@ -1660,12 +1660,11 @@
             "NLM5-3",
             "NLM5-4"
           ],
-          "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "representation_ref": "REP-NLM-TRAY-BOOK-FRICTION",
           "reveal_stage_refs": [
-            "VIS-NLM-FRICTION-V0",
-            "VIS-NLM-FRICTION-V1",
-            "VIS-NLM-FRICTION-V2",
-            "VIS-NLM-FRICTION-V3"
+            "VIS-NLM-TRAY-V0",
+            "VIS-NLM-TRAY-V1",
+            "VIS-NLM-TRAY-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
           "misconception_indexes": [
@@ -1851,12 +1850,11 @@
             "NLM7-2",
             "NLM7-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-ASTRONAUT-SATELLITE",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3"
+            "VIS-NLM-SPACE-V0",
+            "VIS-NLM-SPACE-V1",
+            "VIS-NLM-SPACE-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-THIRD-LAW-01",
           "misconception_indexes": [
@@ -2062,13 +2060,11 @@
             "NLM8-3",
             "NLM8-4"
           ],
-          "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "representation_ref": "REP-NLM-BOX4-FRICTION-TEST",
           "reveal_stage_refs": [
-            "VIS-NLM-FRICTION-V0",
-            "VIS-NLM-FRICTION-V1",
-            "VIS-NLM-FRICTION-V2",
-            "VIS-NLM-FRICTION-V3",
-            "VIS-NLM-FRICTION-V4"
+            "VIS-NLM-BOX4-V0",
+            "VIS-NLM-BOX4-V1",
+            "VIS-NLM-BOX4-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-FRICTION-TEST-01",
           "misconception_indexes": [
@@ -4216,6 +4212,267 @@
           "visual_stage_ref": "VIS-NLM-RAMP70-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-TRAY-BOOK-FRICTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the book on the tray in its two stages so friction's direction is found from the slip tendency, including the zero case.",
+      "required_elements": [
+        "book on the tray in two stages",
+        "slip tendency in each stage",
+        "friction in each stage"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "book on the tray in two stages",
+        "slip tendency in each stage",
+        "friction in each stage"
+      ],
+      "instance_constraints": [
+        "The book never slips on the tray.",
+        "The tray stays horizontal."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Drawing friction backward because the tray moves forward.",
+        "Drawing friction whenever a contact is rough."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TRAY-BOOK-FRICTION.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TRAY-V0",
+          "label": "Two stages",
+          "purpose": "Show the tray carried at steady speed and then speeding up.",
+          "visible_elements": [
+            "book on the tray in two stages"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAY-V1",
+          "label": "Slip tendency",
+          "purpose": "Imagine the contact slippery and ask which way the book would slide.",
+          "visible_elements": [
+            "book on the tray in two stages",
+            "slip tendency in each stage"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAY-V2",
+          "label": "Friction",
+          "purpose": "Give friction the direction opposing the tendency, or zero.",
+          "visible_elements": [
+            "book on the tray in two stages",
+            "slip tendency in each stage",
+            "friction in each stage"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TRAY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TRAY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TRAY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ASTRONAUT-SATELLITE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the astronaut-satellite push with each force of the pair on its own body.",
+      "required_elements": [
+        "astronaut pushing satellite",
+        "astronaut on satellite +140 N",
+        "satellite on astronaut −140 N",
+        "each body's acceleration"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "astronaut pushing satellite",
+        "astronaut on satellite +140 N",
+        "satellite on astronaut −140 N",
+        "each body's acceleration"
+      ],
+      "instance_constraints": [
+        "Each force is labelled 'A on B' and drawn on body B.",
+        "No other forces act."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Cancelling the two forces of the pair inside one sum."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ASTRONAUT-SATELLITE.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-SPACE-V0",
+          "label": "The push",
+          "purpose": "Show the two bodies and the push.",
+          "visible_elements": [
+            "astronaut pushing satellite"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SPACE-V1",
+          "label": "The force pair",
+          "purpose": "Put each force of the interaction on the body it acts on.",
+          "visible_elements": [
+            "astronaut pushing satellite",
+            "astronaut on satellite +140 N",
+            "satellite on astronaut −140 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SPACE-V2",
+          "label": "Accelerations",
+          "purpose": "Divide each body's own force by its own mass.",
+          "visible_elements": [
+            "astronaut pushing satellite",
+            "astronaut on satellite +140 N",
+            "satellite on astronaut −140 N",
+            "each body's acceleration"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-SPACE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-SPACE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-SPACE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOX4-FRICTION-TEST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 4 kg box in its two trials so the friction need is compared with μ_s N before any friction value is taken.",
+      "required_elements": [
+        "4 kg box with 15 N and 25 N pulls",
+        "N = 40 N and limit 20 N",
+        "static and kinetic outcomes"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "4 kg box with 15 N and 25 N pulls",
+        "N = 40 N and limit 20 N",
+        "static and kinetic outcomes"
+      ],
+      "instance_constraints": [
+        "N is found from the vertical equation before the limit.",
+        "μ N is used only at impending slip or while sliding."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting static friction equal to μ_s N at rest."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOX4-FRICTION-TEST.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOX4-V0",
+          "label": "Two trials",
+          "purpose": "Show the box and the two pulls.",
+          "visible_elements": [
+            "4 kg box with 15 N and 25 N pulls"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX4-V1",
+          "label": "Normal force and limit",
+          "purpose": "Find the actual N and the static limit.",
+          "visible_elements": [
+            "4 kg box with 15 N and 25 N pulls",
+            "N = 40 N and limit 20 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX4-V2",
+          "label": "Decision and friction",
+          "purpose": "Compare each need with the limit, then take the friction value.",
+          "visible_elements": [
+            "4 kg box with 15 N and 25 N pulls",
+            "N = 40 N and limit 20 N",
+            "static and kinetic outcomes"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOX4-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOX4-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOX4-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -4748,7 +5005,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-ASTRONAUT-SATELLITE",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -4809,7 +5066,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-TRAY-BOOK-FRICTION",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -4870,7 +5127,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-BOX4-FRICTION-TEST",
         "stage_refs": []
       },
       "failure_signal": null,
