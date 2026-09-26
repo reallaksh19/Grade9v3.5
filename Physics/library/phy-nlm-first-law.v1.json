@@ -6019,6 +6019,261 @@
           "visual_stage_ref": "VIS-NLM-BUS-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-CRATE-ZERO-FRICTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the crate with no horizontal force so friction is set by the slip tendency, here none.",
+      "required_elements": [
+        "crate at rest, no horizontal force",
+        "weight and normal force only",
+        "friction zero"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "crate at rest, no horizontal force",
+        "weight and normal force only",
+        "friction zero"
+      ],
+      "instance_constraints": [
+        "The crate stays at rest.",
+        "No other horizontal interaction acts."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting friction to μ_s N because the floor is rough."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CRATE-ZERO-FRICTION.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CRATE0-V0",
+          "label": "The crate",
+          "purpose": "Show the crate at rest on the rough floor.",
+          "visible_elements": [
+            "crate at rest, no horizontal force"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRATE0-V1",
+          "label": "Forces",
+          "purpose": "List the forces and test for a slip tendency.",
+          "visible_elements": [
+            "crate at rest, no horizontal force",
+            "weight and normal force only"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRATE0-V2",
+          "label": "Friction",
+          "purpose": "State the friction.",
+          "visible_elements": [
+            "crate at rest, no horizontal force",
+            "weight and normal force only",
+            "friction zero"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CRATE0-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CRATE0-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CRATE0-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCK5-PULL12",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 5 kg block held at rest by static friction so the actual friction and its limit are kept apart.",
+      "required_elements": [
+        "5 kg block with a 12 N pull, μ_s = 0.6",
+        "N = 50 N and limit 30 N",
+        "actual friction 12 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "5 kg block with a 12 N pull, μ_s = 0.6",
+        "N = 50 N and limit 30 N",
+        "actual friction 12 N"
+      ],
+      "instance_constraints": [
+        "The block stays at rest.",
+        "The pull is horizontal."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Reporting the 30 N limit as the friction."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCK5-PULL12.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BLOCK12-V0",
+          "label": "The block",
+          "purpose": "Show the block, the pull and the rough floor.",
+          "visible_elements": [
+            "5 kg block with a 12 N pull, μ_s = 0.6"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCK12-V1",
+          "label": "Normal force and limit",
+          "purpose": "Find N and the static limit.",
+          "visible_elements": [
+            "5 kg block with a 12 N pull, μ_s = 0.6",
+            "N = 50 N and limit 30 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCK12-V2",
+          "label": "Actual friction",
+          "purpose": "Give the actual static friction.",
+          "visible_elements": [
+            "5 kg block with a 12 N pull, μ_s = 0.6",
+            "N = 50 N and limit 30 N",
+            "actual friction 12 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BLOCK12-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BLOCK12-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BLOCK12-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCK5-SLIDE18",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the already-sliding block so kinetic friction, opposite the sliding, sets the acceleration.",
+      "required_elements": [
+        "5 kg block sliding right, 18 N pull, μ_k = 0.20",
+        "kinetic friction 10 N",
+        "a = 1.6 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "5 kg block sliding right, 18 N pull, μ_k = 0.20",
+        "kinetic friction 10 N",
+        "a = 1.6 m/s²"
+      ],
+      "instance_constraints": [
+        "Relative sliding is already established.",
+        "The applied force is horizontal."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Using a static-friction comparison for a block that already slides."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCK5-SLIDE18.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BLOCK18-V0",
+          "label": "The sliding block",
+          "purpose": "Show the block already sliding and the pull.",
+          "visible_elements": [
+            "5 kg block sliding right, 18 N pull, μ_k = 0.20"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCK18-V1",
+          "label": "Kinetic friction",
+          "purpose": "Find the kinetic friction opposite the sliding.",
+          "visible_elements": [
+            "5 kg block sliding right, 18 N pull, μ_k = 0.20",
+            "kinetic friction 10 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCK18-V2",
+          "label": "Acceleration",
+          "purpose": "Apply Newton's second law.",
+          "visible_elements": [
+            "5 kg block sliding right, 18 N pull, μ_k = 0.20",
+            "kinetic friction 10 N",
+            "a = 1.6 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BLOCK18-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BLOCK18-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BLOCK18-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -9387,12 +9642,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-CRATE-ZERO-FRICTION",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-CRATE-ZERO-FRICTION",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-CRATE0-V0"
         ]
       },
       "failure_signal": "You gave a non-zero friction such as μ_s mg: nothing pushes the crate sideways, so there is no slip tendency and nothing for friction to oppose.",
@@ -9488,12 +9742,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-BLOCK5-PULL12",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-BLOCK5-PULL12",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-BLOCK12-V0"
         ]
       },
       "failure_signal": "Your friction is 30 N: that is the most static friction can give, but a block at rest under a 12 N pull needs only 12 N; 30 N would drive it backward.",
@@ -9585,12 +9838,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-BLOCK5-SLIDE18",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-BLOCK5-SLIDE18",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-BLOCK18-V0"
         ]
       },
       "failure_signal": "Your acceleration is 3.6 m/s² (18/5, friction left out) or 5.6 m/s² (friction added to the pull): kinetic friction of 10 N acts against the sliding and must be subtracted.",
