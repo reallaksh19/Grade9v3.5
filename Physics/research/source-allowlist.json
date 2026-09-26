@@ -151,5 +151,35 @@
     }
   },
   "local_sources_note": "Scanned books and papers the owner holds. Only the owner adds an entry and the SHA-256 of each scan file (print it with scan_ingest.py hash). The scan bytes and OCR text never leave the owner's machine; the repository gets the acquisition record, a scan manifest with a hashed shingle index, and short quotes. Fields: source_id, title, authors, publisher, edition, year, isbn, kind (TEXTBOOK | EXEMPLAR | QUESTION_BANK | EXAM_PAPER | ANSWER_KEY | NOTES), tier (A for official NCERT/CBSE/NTA/JEE material, B for published reference books), may_support (optional narrowing of the tier's kinds), rights (OFFICIAL_PUBLIC | COPYRIGHTED_OWNED_COPY), scan_sha256s, registered_by, registered_at.",
-  "local_sources": []
+  "local_sources": [
+    {
+      "source_id": "SRC-BOOK-MIP-CH4",
+      "title": "Motion in a Plane (Class 11 Physics Module)",
+      "authors": ["Physics Faculty"],
+      "publisher": "Reference Press",
+      "edition": "1",
+      "year": 2021,
+      "isbn": "N/A",
+      "kind": "TEXTBOOK",
+      "tier": "B",
+      "may_support": [
+        "DEFINITION",
+        "RELATION",
+        "CONDITION",
+        "WORKED_EXAMPLE",
+        "MISCONCEPTION",
+        "QUESTION",
+        "ANSWER_KEY",
+        "DIAGRAM"
+      ],
+      "rights": "COPYRIGHTED_OWNED_COPY",
+      "scan_sha256s": [
+        "db84892f0de76a6a48a867f89e9a8e15cd45fb2ba5ea5f846a029cc9af93f99b",
+        "4c6c8fe3b52dacc9c01c7e7ad428975a79b24e36c64ae0c9d95eedb9d6314a84",
+        "ab8d6b1187bc1382d0b6e9de07f469e0b344b726f3a8ff78dc6754b5845e6bfe"
+      ],
+      "registered_by": "owner",
+      "registered_at": "2026-09-26"
+    }
+  ]
 }
