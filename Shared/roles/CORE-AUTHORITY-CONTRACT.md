@@ -40,9 +40,10 @@ CORE2A / OTHER ESTABLISHED PRIOR EXPOSURE
   └── CORE2B
 ```
 
-Core2 source custody may independently be `HOLD`. That does not turn held source material
-into academic authority, and it does not force valid Core1-family study products to stop when
-their canonical academic inputs are complete.
+Missing Core2 source custody is a research duty: the agent finds and records the original source
+(an owner-supplied question text is itself custody of class `OWNER_SUPPLIED`). While that research
+is in progress, source material never becomes academic authority, and Core1-family study products
+are built from their canonical academic inputs regardless.
 
 ## Cross-cutting authority rules
 
@@ -54,24 +55,31 @@ may describe composition scope. It must not rewrite a question's canonical
 `question.primary_capability_ref`.
 
 **Demand evidence and learner eligibility are separate.** A question may be useful evidence
-about assessment demand while remaining excluded, held or not yet reviewed for learner use.
+about assessment demand while the owner has excluded it from learner use. Where the owner has
+not decided, learner eligibility takes the default median learner (`DEFAULT_ELIGIBLE`).
 
 **Source hints and authored scaffolds are different custody classes.**
 `question.hints[]` preserves supplied/source question help. `question.scaffolds[]` is
 authored pedagogical support. A downstream tool may render both, but may not relabel one as
 the other.
 
-**Extensions do not create curriculum by pressure.** A source question may require an
-advanced model, bridge concept or extension. That demand does not automatically create a new
-Core1A/Core1B microtopic. Canonical academic authority must admit the concept first.
+**Extensions are admitted explicitly, never silently.** A source question may require an
+advanced model, bridge concept or extension. The agent researches it, adds it to the subject
+library as a `CANDIDATE` extension microtopic through the package schema, and then teaches it in
+Core1A/Core1B marked `EXTENSION`. It never rewrites the existing canonical microtopics, and it is
+never left untaught because admission had not happened yet.
 
 **Learner estimates are not mastery evidence.** A percentage or owner estimate may influence
 Core2A/Core2B routing/support where their contracts permit. It cannot reduce, expand or
 replace Core1A/Core1B intrinsic conceptual scope.
 
-**HOLD is a valid result.** Missing source custody, learner eligibility, prior exposure,
-canonical teaching or visual review must remain explicit. Requested product count or
-requested generation order never authorizes fabricated closure.
+**No escape state.** HOLD, FAILED, INCOMPLETE, BLOCKED and WAITING are never an outcome.
+Missing source custody, learner data, prior exposure, canonical teaching, worked examples or
+visuals are research and authoring duties carried out in the same job (see
+`Shared/workflows/research-first.v1.json`, `escape_state_duties`). Missing learner data takes
+the default median learner. Closure is never fabricated either: researched material keeps its
+source provenance, authored material is labelled `AUTHORED_PEDAGOGICAL` or `AUTHORED_PRACTICE`,
+and a missing human review is stated as a label on the delivered product.
 
 **Planning tools are not academic authorities.** Prompt composers, worksheet maps, run
 builders and publication manifests may carry and validate references. They may not create
@@ -143,8 +151,8 @@ a new academic schema and it does not replace subject package schemas.
   },
   "invariants": {
     "execution_order_is_not_authority_order": true,
-    "core2_hold_does_not_rewrite_academic_authority": true,
-    "core2_hold_does_not_automatically_block_valid_study_roles": true,
+    "core2_custody_gap_does_not_rewrite_academic_authority": true,
+    "core2_custody_research_does_not_block_study_roles": true,
     "preserve_question_primary_capability_ref": true,
     "set_scope_must_not_overwrite_question_primary": true,
     "demand_evidence_and_learner_eligibility_are_distinct": true,
@@ -153,7 +161,7 @@ a new academic schema and it does not replace subject package schemas.
     "learner_estimate_is_not_mastery_evidence": true,
     "learner_estimate_cannot_change_core1_family_intrinsic_scope": true,
     "prompt_and_planning_outputs_are_not_academic_authority": true,
-    "unresolved_authority_dependency_must_hold": true
+    "unresolved_authority_dependency_becomes_research_duty": true
   },
   "canonical_field_rules": {
     "question_primary": "question.primary_capability_ref",
@@ -167,7 +175,7 @@ a new academic schema and it does not replace subject package schemas.
     "demand_evidence": "MAY_EXIST_WITHOUT_LEARNER_ELIGIBILITY",
     "learner_eligibility": "INDEPENDENT_REVIEW_STATE"
   },
-  "allowed_dependency_states": ["PASS", "HOLD", "FAIL"]
+  "allowed_dependency_states": ["PASS", "RESEARCH_AND_AUTHOR"]
 }
 ```
 
@@ -180,10 +188,10 @@ At minimum, a generated multi-Core prompt must make these facts recoverable:
 
 1. the requested execution order;
 2. the authority source for each requested role;
-3. any unresolved authority dependency as `HOLD`;
+3. any unresolved authority dependency as a named research or authoring duty;
 4. the distinction between set-level scope and per-question canonical primaries;
 5. the distinction between demand evidence and learner eligibility;
-6. extension demands that remain outside canonical Core1-family teaching;
+6. extension demands, and the CANDIDATE extension microtopic that admits each one;
 7. learner estimates as support inputs rather than mastery/curriculum authority.
 
 A consumer may use different wording or a machine-readable projection, but it may not collapse

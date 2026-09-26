@@ -153,7 +153,7 @@
           "product_state",
           "authoring_action",
           "reason",
-          "blockers",
+          "duties",
           "role",
           "target",
           "write_scope",
@@ -176,24 +176,18 @@
           "authoring_action": {
             "enum": [
               "BUILD_FROM_CANONICAL",
+              "RESEARCH_SOURCE",
               "AUTHOR_CANDIDATE_QUESTION",
-              "WAIT",
-              "WITHHELD",
-              "HOLD_SOURCE_CUSTODY",
-              "HOLD_ASSET",
-              "HOLD_ARCHITECTURE_ASSET",
-              "HOLD"
+              "AUTHOR_CANONICAL_CANDIDATE",
+              "AUTHOR_BRIDGE_THEN_BUILD",
+              "REPAIR_CANONICAL_TOPOLOGY",
+              "FIX_FINDINGS_THEN_BUILD",
+              "OWNER_EXCLUDED"
             ]
           },
           "reason": {
             "type": "string",
             "minLength": 1
-          },
-          "blockers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "role": {
             "type": "object",
@@ -223,6 +217,13 @@
           },
           "authority": {
             "type": "object"
+          },
+          "duties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Research/authoring duties the agent completes before building this Core. Never a reason to stop."
           }
         }
       }
@@ -233,8 +234,7 @@
     "packet_state": {
       "enum": [
         "READY",
-        "PARTIAL",
-        "BLOCKED"
+        "RESEARCH_AND_AUTHOR"
       ]
     },
     "summary": {

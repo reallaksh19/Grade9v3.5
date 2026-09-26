@@ -22,7 +22,7 @@ class OwnerDecisionApplication(unittest.TestCase):
     def artifact(self, request):
         return apply_owner_decisions.template(request)["artifact"]
 
-    def test_keep_drifted_source_reveals_next_policy_question(self):
+    def test_keep_drifted_source_then_agent_authors_uncovered_practice(self):
         request = self.request()
         artifact = self.artifact(request)
         artifact["decisions"]["SOURCE_BASIS_DRIFT_DECISION"] = {
@@ -34,13 +34,12 @@ class OwnerDecisionApplication(unittest.TestCase):
             report["request_after"]["source_basis_drift_acknowledgement"],
             "KEEP_SUPPLIED_DESPITE_DRIFT",
         )
-        self.assertIn("SUPPLEMENTAL_QUESTION_POLICY",
-                      report["remaining_owner_inputs"])
-        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION",
-                         report["remaining_owner_inputs"])
+        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION", report["remaining_overridable"])
+        self.assertIn("AUTHOR_SUPPLEMENTAL_PRACTICE", report["agent_actions"])
         core2 = next(row for row in report["plan_after"]["products"]
                      if row["core"] == "CORE2")
-        self.assertEqual(core2["state"], "BLOCKED_SOURCE_CUSTODY")
+        self.assertEqual(core2["state"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(core2["duty"]["duty"], "ACQUIRE_SOURCE")
 
     def test_change_source_basis_clears_stale_receipt_and_policy(self):
         request = self.request()
@@ -66,14 +65,12 @@ class OwnerDecisionApplication(unittest.TestCase):
         self.assertNotIn("source_basis_drift_acknowledgement", after)
         self.assertNotIn("supplemental_question_policy", after)
         self.assertIn("INSPECT_AND_INGEST_SOURCE_BASIS", report["agent_actions"])
-        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION",
-                         report["remaining_owner_inputs"])
-        self.assertNotIn("SUPPLEMENTAL_QUESTION_POLICY",
-                         report["remaining_owner_inputs"])
+        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION", report["remaining_overridable"])
         for core in ("CORE2", "CORE2A", "CORE2B"):
             product = next(row for row in report["plan_after"]["products"]
                            if row["core"] == core)
-            self.assertEqual(product["state"], "WAITING_FOR_SOURCE_RECEIPT")
+            self.assertEqual(product["state"], "RESEARCH_AND_AUTHOR")
+            self.assertEqual(product["duty"]["duty"], "ACQUIRE_SOURCE")
 
     def test_unoffered_replacement_is_rejected(self):
         request = self.request()
@@ -90,7 +87,8 @@ class OwnerDecisionApplication(unittest.TestCase):
     def test_unsolicited_decision_is_rejected(self):
         request = self.request()
         artifact = self.artifact(request)
-        artifact["decisions"]["SUPPLEMENTAL_QUESTION_POLICY"] = "SOURCE_ONLY"
+        # The request already names its source basis, so there is nothing to override.
+        artifact["decisions"]["SOURCE_BASIS"] = ["https://example.invalid/other.pdf"]
         report = apply_owner_decisions.apply(request, artifact)
         self.assertFalse(report["passed"])
         self.assertIn("OWNER_DECISION_UNSOLICITED",
@@ -121,7 +119,7 @@ class OwnerDecisionApplication(unittest.TestCase):
         self.assertIn("OWNER_DECISIONS_PLAN_STALE",
                       [row["point"] for row in report["findings"]])
 
-    def test_explicit_unknown_learner_resolves_owner_question_but_blocks_route(self):
+    def test_explicit_unknown_learner_takes_the_default_median(self):
         request = self.request()
         artifact = self.artifact(request)
         artifact["decisions"]["LEARNER_ENTRY"] = {
@@ -130,10 +128,11 @@ class OwnerDecisionApplication(unittest.TestCase):
         }
         report = apply_owner_decisions.apply(request, artifact)
         self.assertTrue(report["passed"], report["findings"])
-        self.assertNotIn("LEARNER_ENTRY", report["remaining_owner_inputs"])
         route = report["plan_after"]["learner_route"]
-        self.assertEqual(route["state"], "BLOCKED")
-        self.assertEqual(route["reason"], "LEARNER_ENTRY_EXPLICITLY_UNKNOWN")
+        self.assertNotEqual(route["state"], "BLOCKED")
+        learner = next(row for row in report["plan_after"]["defaults_applied"]
+                       if row["field"] == "learner")
+        self.assertEqual(learner["basis"], "DEFAULT_MEDIAN")
 
     def test_partial_decisions_are_legal(self):
         request = self.request()
@@ -141,10 +140,9 @@ class OwnerDecisionApplication(unittest.TestCase):
         artifact["decisions"]["CORE2A_PURPOSE"] = "PRACTICE"
         report = apply_owner_decisions.apply(request, artifact)
         self.assertTrue(report["passed"], report["findings"])
-        self.assertNotIn("CORE2A_PURPOSE", report["remaining_owner_inputs"])
-        self.assertIn("CORE2B_PURPOSE", report["remaining_owner_inputs"])
-        self.assertIn("SOURCE_BASIS_DRIFT_DECISION",
-                      report["remaining_owner_inputs"])
+        self.assertNotIn("CORE2A_PURPOSE", report["remaining_overridable"])
+        self.assertIn("CORE2B_PURPOSE", report["remaining_overridable"])
+        self.assertIn("SOURCE_BASIS_DRIFT_DECISION", report["remaining_overridable"])
 
     def test_audit_supports_every_planner_owner_input(self):
         report = apply_owner_decisions.audit()

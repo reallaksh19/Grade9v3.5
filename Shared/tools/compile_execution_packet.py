@@ -29,17 +29,18 @@ COMMON_PROHIBITIONS = [
     "Do not introduce untaught conceptual content under a Core2B transfer label.",
 ]
 
-OWNER_SCOPE = {
-    "LEARNER_ENTRY": LEARNER_CORES,
-    "CORE2A_PURPOSE": {"CORE2A"},
-    "CORE2B_PURPOSE": {"CORE2B"},
-    "SOURCE_BASIS": SOURCE_CORES,
-    "SOURCE_BASIS_DRIFT_DECISION": SOURCE_CORES,
-    "SUPPLEMENTAL_QUESTION_POLICY": {"CORE2A", "CORE2B"},
-}
 ACTION_SCOPE = {
     "INSPECT_AND_INGEST_SOURCE_BASIS": SOURCE_CORES,
+    "RESEARCH_SOURCE_BASIS": SOURCE_CORES,
+    "RESOLVE_SOURCE_BASIS_DRIFT": SOURCE_CORES,
+    "AUTHOR_SUPPLEMENTAL_PRACTICE": {"CORE2A", "CORE2B"},
     "SCHEDULE_PREREQUISITE_BRIDGES": LEARNER_CORES,
+}
+# Every work order is executable. Duties name what the agent researches or authors first.
+RUNNABLE_ACTIONS = {
+    "BUILD_FROM_CANONICAL", "RESEARCH_SOURCE", "AUTHOR_CANDIDATE_QUESTION",
+    "AUTHOR_CANONICAL_CANDIDATE", "AUTHOR_BRIDGE_THEN_BUILD", "REPAIR_CANONICAL_TOPOLOGY",
+    "FIX_FINDINGS_THEN_BUILD",
 }
 
 
@@ -91,50 +92,49 @@ def _segment(plan: dict) -> list[dict]:
     return [row for row in segment_rows if row["position"] >= positions[entry]]
 
 
-def _input_blockers(plan: dict, core: str) -> list[str]:
-    blockers = [f["point"] for f in plan.get("findings", [])]
-    for row in plan.get("required_owner_inputs", []):
-        if core in OWNER_SCOPE.get(row["id"], set()):
-            blockers.append(row["id"])
+def _duties(plan: dict, core: str) -> list[str]:
+    duties = [f["point"] for f in plan.get("findings", [])]
     for row in plan.get("agent_actions", []):
         if core in ACTION_SCOPE.get(row["id"], set()):
-            blockers.append(row["id"])
-    return sorted(set(blockers))
+            duties.append(row["id"])
+    return sorted(set(duties))
 
 
-def _action(request: dict, product: dict, blockers: list[str]) -> tuple[str, str]:
+def _action(request: dict, product: dict, duties: list[str]) -> tuple[str, str]:
     core, state = product["core"], product["state"]
-    if state == "WITHHELD":
-        return "WITHHELD", "The request/purpose intentionally withholds this product."
-    if blockers:
-        return "WAIT", "Resolve the listed owner or agent inputs before authoring this Core."
-    if state == "READY":
-        return "BUILD_FROM_CANONICAL", "All currently required inputs/assets for this Core are present."
-    if state == "BLOCKED_SOURCE_CUSTODY" and core == "CORE2":
-        return "HOLD_SOURCE_CUSTODY", (
-            "Verified inspection does not establish source question custody; authored generation cannot close Core2."
+    duty = (product.get("duty") or {}).get("duty")
+    source_only = request.get("supplemental_question_policy") == "SOURCE_ONLY"
+    if state == "OWNER_EXCLUDED":
+        return "OWNER_EXCLUDED", "The owner's declared purpose excludes this product."
+    if duty == "REPAIR_LADDER_TOPOLOGY":
+        return "REPAIR_CANONICAL_TOPOLOGY", "Correct the ladder/prerequisite contradiction in the canonical records, then build."
+    if duty == "ACQUIRE_SOURCE" or (core == "CORE2" and duty) or any(
+            d in {"INSPECT_AND_INGEST_SOURCE_BASIS", "RESEARCH_SOURCE_BASIS", "RESOLVE_SOURCE_BASIS_DRIFT"}
+            for d in duties):
+        return "RESEARCH_SOURCE", (
+            "Research and inspect the original source, write the source receipt and custody records "
+            "(stem, conditions, options, figures, answer), then build. Owner-supplied question text is "
+            "custody of class OWNER_SUPPLIED."
         )
-    if state == "BLOCKED_SOURCE_COVERAGE":
-        return "HOLD_ASSET", (
-            "The verified source receipt is insufficient and SOURCE_ONLY forbids authored supplementation."
+    if duty == "AUTHOR_PRACTICE" or "AUTHOR_SUPPLEMENTAL_PRACTICE" in duties:
+        if source_only:
+            return "RESEARCH_SOURCE", "SOURCE_ONLY: research further authorised sources to cover the practice."
+        return "AUTHOR_CANDIDATE_QUESTION", (
+            "Author truthful candidate practice inside the taught capability, labelled AUTHORED_PRACTICE."
         )
-    if state == "BLOCKED_ASSET":
-        if core == "CORE2":
-            return "HOLD_SOURCE_CUSTODY", (
-                "Core2 is custody, not generated content. Acquire/ingest an authorised source corpus."
+    if duty == "AUTHOR_ASSET":
+        if core in {"CORE2A", "CORE2B"} and not source_only:
+            return "AUTHOR_CANDIDATE_QUESTION", (
+                "Author truthful candidate practice inside the taught capability, labelled AUTHORED_PRACTICE."
             )
-        if core in {"CORE2A", "CORE2B"}:
-            if request.get("supplemental_question_policy") == "ALLOW_AUTHORED_CANDIDATES":
-                return "AUTHOR_CANDIDATE_QUESTION", (
-                    "Author a truthful candidate question only; it does not become Core2 source custody."
-                )
-            return "HOLD_ASSET", (
-                "Practice asset is missing and authored supplements are not authorised."
-            )
-        return "HOLD_ARCHITECTURE_ASSET", (
-            "The compiler lacks a governing canonical asset. Do not invent curriculum authority in a product."
+        return "AUTHOR_CANONICAL_CANDIDATE", (
+            "Research and author the missing canonical asset as a CANDIDATE library record, then build."
         )
-    return "HOLD", product.get("reason", f"product state is {state}")
+    if "SCHEDULE_PREREQUISITE_BRIDGES" in duties:
+        return "AUTHOR_BRIDGE_THEN_BUILD", "Author the prerequisite bridge teaching first, then build."
+    if duties:
+        return "FIX_FINDINGS_THEN_BUILD", "Fix the listed findings in the canonical records, then build."
+    return "BUILD_FROM_CANONICAL", "All currently required inputs/assets for this Core are present."
 
 
 def _write_scope(action: str, core: str) -> dict:
@@ -146,13 +146,32 @@ def _write_scope(action: str, core: str) -> dict:
             "origin": "AUTHORED",
             "note": "Write into the subject library only through its package/schema contract.",
         }
+    if action == "RESEARCH_SOURCE":
+        return {
+            "mode": "CANDIDATE_RECORDS_ONLY",
+            "collections": ["questions", "resources"],
+            "status": "CANDIDATE",
+            "origin": "ORIGINAL",
+            "origins": {"questions": ["ORIGINAL", "ADAPTED"], "resources": ["LOCAL", "WEB"]},
+            "note": "Record researched source custody and receipts; never present authored text as source.",
+        }
+    if action in {"AUTHOR_CANONICAL_CANDIDATE", "AUTHOR_BRIDGE_THEN_BUILD",
+                  "REPAIR_CANONICAL_TOPOLOGY", "FIX_FINDINGS_THEN_BUILD"}:
+        return {
+            "mode": "CANDIDATE_RECORDS_ONLY",
+            "collections": ["capabilities", "microtopics", "relations", "representations",
+                            "teaching_routes"],
+            "status": "CANDIDATE",
+            "origin": "AUTHORED",
+            "note": "Add or correct CANDIDATE canonical records through the package/schema contract, then build.",
+        }
     if action == "BUILD_FROM_CANONICAL":
         return {
             "mode": "PRODUCT_OUTPUT_ONLY",
             "collections": [],
             "note": "Compose the requested product from canonical records; do not rewrite curriculum truth.",
         }
-    return {"mode": "NO_WRITE", "collections": [], "note": "This work order is held or withheld."}
+    return {"mode": "NO_WRITE", "collections": [], "note": "The owner excluded this product."}
 
 
 def compile_packet(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
@@ -204,8 +223,8 @@ def compile_packet(request: dict, repo: Path = REPO, diagnostic: dict | None = N
 
     for product in plan.get("products", []):
         core = product["core"]
-        blockers = _input_blockers(plan, core)
-        action, reason = _action(request, product, blockers)
+        duties = _duties(plan, core)
+        action, reason = _action(request, product, duties)
         role = _role_snapshot(core, repo)
         target = {
             "bucket": plan.get("bucket"),
@@ -227,7 +246,7 @@ def compile_packet(request: dict, repo: Path = REPO, diagnostic: dict | None = N
             "product_state": product["state"],
             "authoring_action": action,
             "reason": reason,
-            "blockers": blockers,
+            "duties": duties,
             "role": role,
             "target": target,
             "write_scope": _write_scope(action, core),
@@ -242,22 +261,15 @@ def compile_packet(request: dict, repo: Path = REPO, diagnostic: dict | None = N
             },
         })
 
-    runnable = [row for row in packet["work_orders"]
-                if row["authoring_action"] in {"BUILD_FROM_CANONICAL", "AUTHOR_CANDIDATE_QUESTION"}]
-    waiting = [row for row in packet["work_orders"] if row["authoring_action"] == "WAIT"]
-    held = [row for row in packet["work_orders"]
-            if row["authoring_action"].startswith("HOLD")]
-    packet["packet_state"] = (
-        "READY" if runnable and not waiting and not held
-        else "PARTIAL" if runnable
-        else "BLOCKED"
-    )
+    runnable = [row for row in packet["work_orders"] if row["authoring_action"] in RUNNABLE_ACTIONS]
+    direct = [row for row in runnable if row["authoring_action"] == "BUILD_FROM_CANONICAL"]
+    packet["packet_state"] = "READY" if len(direct) == len(runnable) else "RESEARCH_AND_AUTHOR"
     packet["summary"] = {
         "runnable_cores": [row["core"] for row in runnable],
-        "waiting_cores": [row["core"] for row in waiting],
-        "held_cores": [row["core"] for row in held],
-        "withheld_cores": [row["core"] for row in packet["work_orders"]
-                           if row["authoring_action"] == "WITHHELD"],
+        "research_and_author_cores": [row["core"] for row in runnable
+                                      if row["authoring_action"] != "BUILD_FROM_CANONICAL"],
+        "owner_excluded_cores": [row["core"] for row in packet["work_orders"]
+                                 if row["authoring_action"] == "OWNER_EXCLUDED"],
     }
     return packet
 
@@ -339,11 +351,11 @@ def verify(packet: dict, request: dict, repo: Path = REPO, diagnostic: dict | No
 
     fresh = compile_packet(request, repo, diagnostic)
     current_orders = {
-        row["core"]: (row["product_state"], row["authoring_action"], row["blockers"])
+        row["core"]: (row["product_state"], row["authoring_action"], row["duties"])
         for row in fresh.get("work_orders", [])
     }
     pinned_orders = {
-        row["core"]: (row["product_state"], row["authoring_action"], row["blockers"])
+        row["core"]: (row["product_state"], row["authoring_action"], row["duties"])
         for row in packet.get("work_orders", [])
     }
     if current_orders != pinned_orders:

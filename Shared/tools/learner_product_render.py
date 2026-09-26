@@ -164,7 +164,12 @@ def question_block(q: dict, anchor: str, ident: dict | None, visual_uid: str) ->
         label = f'<p class="source">Source: {esc(ident["identity"]["label"])}</p>'
     elif q.get("owner_label"):
         label = f'<p class="source">Your question {esc(q["owner_label"])}</p>'
-    parts = [f'<article id="{esc(anchor)}" data-role="question">', label, f"<p>{esc(q['text'])}</p>"]
+    # Core2 is source custody: only a supplied (owner or researched source) question sits there.
+    # Practice the agent authored is Core2A and says so.
+    core = "CORE2A" if q.get("authored") else "CORE2"
+    if q.get("authored"):
+        label = '<p class="source">Authored practice (not from a source paper)</p>'
+    parts = [f'<article id="{esc(anchor)}" data-role="question" data-core="{core}">', label, f"<p>{esc(q['text'])}</p>"]
     if q.get("visual"):
         parts.append(svg(q["visual"], visual_uid))
     parts.append(attempt_block())
@@ -252,7 +257,7 @@ def build(bundle: dict) -> dict:
                 f"<p>{esc(sub.get('key_idea', ''))}</p></section>",
                 teaching_block(sub, f"teach-{sub['id']}", f"w-{sub['id']}"),
                 reconstruct_block(sub, f"rebuild-{sub['id']}"),
-                f'<section id="practice-{sub["id"]}" data-core="CORE2" data-role="practice"><h2>Practice</h2>']
+                f'<section id="practice-{sub["id"]}" data-role="practice"><h2>Practice</h2>']
         for n, qid in enumerate(sub["question_ids"]):
             q = authored.get(qid)
             if not q:

@@ -162,8 +162,8 @@ class WebResolverTests(unittest.TestCase):
             "EXPLORE", interaction="REQUIRED",
         ))
         self.assertTrue(required["artifact_buildable"])
-        self.assertEqual(required["request_satisfaction"], "HOLD")
-        self.assertEqual(required["build_action"], "HOLD")
+        self.assertEqual(required["request_satisfaction"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(required["build_action"], "AUTHOR_MISSING_INPUTS")
         self.assertTrue(any(
             row["code"] == "WEB_REQUIRED_INTERACTION_UNAVAILABLE"
             for row in required["findings"]
@@ -198,7 +198,7 @@ class WebResolverTests(unittest.TestCase):
             "PRACTICE", core="CORE2A", preparation=True,
         )
         missing = web_resolver.resolve(req)
-        self.assertEqual(missing["request_satisfaction"], "HOLD")
+        self.assertEqual(missing["request_satisfaction"], "RESEARCH_AND_AUTHOR")
         self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_REQUIRED" for row in missing["findings"]))
 
         forged = {
@@ -215,19 +215,19 @@ class WebResolverTests(unittest.TestCase):
             }],
         }
         held = web_resolver.resolve(req, route_artifact=forged)
-        self.assertEqual(held["request_satisfaction"], "HOLD")
+        self.assertEqual(held["request_satisfaction"], "RESEARCH_AND_AUTHOR")
         self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_INVALID" for row in held["findings"]))
 
         route = prepared_route()
         resolved = web_resolver.resolve(req, route_artifact=route)
-        self.assertNotEqual(resolved["request_satisfaction"], "HOLD")
+        self.assertNotEqual(resolved["request_satisfaction"], "RESEARCH_AND_AUTHOR")
         self.assertEqual(resolved["target_route"]["contract_version"], "1.1.0")
         self.assertEqual(resolved["target_route"]["demand_move_refs"], ["MOVE-TEST"])
 
         broken = copy.deepcopy(route)
         broken["targets"][0]["demand_moves"][0]["coverage"]["independent_evidence_refs"] = []
         held = web_resolver.resolve(req, route_artifact=broken)
-        self.assertEqual(held["request_satisfaction"], "HOLD")
+        self.assertEqual(held["request_satisfaction"], "RESEARCH_AND_AUTHOR")
         self.assertTrue(any(row["code"] == "WEB_TARGET_ROUTE_INVALID" for row in held["findings"]))
 
     def test_atlas_only_exact_ref_cannot_replace_canonical_record(self):

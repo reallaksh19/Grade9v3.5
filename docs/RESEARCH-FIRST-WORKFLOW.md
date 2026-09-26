@@ -6,10 +6,30 @@ The invariants are data in [`Shared/workflows/research-first.v1.json`](../Shared
 
 | Invariant | Rule | Enforced by |
 |---|---|---|
-| `no_profile_gate` | No student profile is required. Start at the documented default (foundation level, full support), run a short diagnostic, adjust from actual attempts. A missing knowledge percentage cannot block content creation. | intake always sets `learner_start`, `blocking=false`; gate `diagnostic_missing` |
+| `no_escape_state` | HOLD, FAILED, INCOMPLETE, BLOCKED, WAITING, PENDING, WITHHELD, NOT_ESTABLISHED and UNAVAILABLE are never an outcome or a reason to stop. Each condition that used to produce one is a duty in `escape_state_duties`, carried out in the same job. A gate finding is fixed and the gate re-run. | `research_first_policy.duty_for`; planner product states are `READY` or `RESEARCH_AND_AUTHOR` with a duty; composer `duties`; `escape_state_guard.py` over role contracts, templates, prompts, plans and work orders |
+| `no_profile_gate` | No student profile is required. Any missing learner fact takes the default median value (knowledge 50%, full support, `DEFAULT_MEDIAN`), then a short diagnostic adjusts from actual attempts. | intake and planner apply `default_learner_start` / `default_request_values`; gate `diagnostic_missing` |
 | `no_hold_output` | A hold is never an output or a passing state. Missing examples, diagrams or explanations become research and authoring tasks. Validation checks the rendered learner product. | intake status is always `RESEARCH_AND_AUTHOR`; gate `learner_text_placeholder`, `hold_as_state`, `teaching_incomplete`, `practice_incomplete`, `research_open` |
-| `no_ambiguous_source_claim` | A short label is never an identity. An exam identity is shown only when the original source text and the question's stated conditions match; with several candidates a discriminator is recorded. Otherwise no identity is claimed or displayed. | gate `identity_unresolved`, `identity_text_mismatch`, `identity_condition_mismatch`, `identity_discriminator_missing`, `identity_displayed_without_claim` |
+| `no_ambiguous_source_claim` | A short label is never an identity. The agent researches each candidate's original text and conditions, selects the match and records the discriminator. If none matches, the question is used as the owner's question with no exam identity claimed. | gate `identity_unresolved`, `identity_text_mismatch`, `identity_condition_mismatch`, `identity_discriminator_missing`, `identity_displayed_without_claim` |
 | `full_reconciliation` | Every supplied question and syllabus subtopic is reconciled before building. The final coverage ledger links each one to teaching, practice and its learner-facing location. | intake `reconciliation`; gate `input_not_in_ledger`, `location_unresolved`, `question_not_rendered`, `question_not_in_bank` |
+
+## Former holds and the duty that replaces each
+
+| Former state | Duty | What the agent does |
+|---|---|---|
+| `IDENTITY_HOLD` | `RESEARCH_SOURCE_IDENTITY` | compare each candidate's original text and conditions, pick the match, record the discriminator |
+| `UNMAPPED_HOLD`, `AGENT_PROPOSAL_PENDING_REVIEW` | `RESEARCH_CANONICAL_MAPPING` | map to a canonical capability, or add a `CANDIDATE` capability and map to it; agent mappings are used and labelled |
+| `MIXED_SUBTOPIC_HOLD`, owner rung confirmation | `COVER_EVERY_SUBTOPIC` | cover every matrix/rung, keep per-question primaries |
+| `WAITING_FOR_LEARNER_ENTRY`, `LEARNER_ELIGIBILITY_HOLD`, `NOT_ESTABLISHED` | `APPLY_DEFAULT_LEARNER` | default median learner, then diagnostic |
+| `WAITING_FOR_PURPOSE`, supplement policy | `APPLY_DEFAULT_PURPOSE` | `PRACTICE`, `ALLOW_AUTHORED_CANDIDATES` (owner may override) |
+| `BLOCKED_SOURCE_*`, `WAITING_FOR_SOURCE_*`, Core2 `HELD` | `ACQUIRE_SOURCE` | research the original source and record custody; owner-supplied text is custody of class `OWNER_SUPPLIED` |
+| `BLOCKED_SOURCE_COVERAGE` | `AUTHOR_PRACTICE` | author `AUTHORED_PRACTICE` inside the taught capability |
+| `BLOCKED_PREREQUISITE` | `TEACH_PREREQUISITE_BRIDGE` | author the bridge before the dependent Core |
+| untaught capability / extension | `AUTHOR_EXTENSION_TEACHING` | admit a `CANDIDATE` extension microtopic, teach it marked `EXTENSION` |
+| `BLOCKED_ASSET`, `VISUAL_HOLD`, `HOLD_WORKED_ANCHOR` | `AUTHOR_ASSET` | author the explanation, example, visual or binding as `AUTHORED_PEDAGOGICAL` |
+| Core2B `WITHHELD` for exposure | `SEQUENCE_PRIOR_EXPOSURE` | place and cite the Core1A/1B/2A items that establish exposure |
+| no human review yet | `RECORD_REVIEW_STATUS` | deliver; the missing review is a label (`OWNER_REVIEW`), not a stop |
+
+Truthfulness is unchanged: nothing is fabricated to close a duty. Researched material keeps its source provenance, authored material says it is authored, and exam identity is never guessed.
 
 ## Pipeline
 

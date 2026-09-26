@@ -1,7 +1,10 @@
 # Owner decision application
 
-The planner may ask the owner for a small number of decisions that the repository cannot
-derive. Those answers must not be applied by ad-hoc request editing.
+The planner never waits for the owner. Every input it used to ask for is filled with a
+default (median learner, `PRACTICE` purpose, `ALLOW_AUTHORED_CANDIDATES`) or given to the
+agent as a research duty (source basis, source drift); see `defaults_applied` and
+`agent_actions` in the plan. The owner may still **override** any of those defaults or duties.
+Overrides must not be applied by ad-hoc request editing.
 
 This layer turns owner answers into a typed, stale-detectable artifact and immediately
 re-plans the request after applying them.
@@ -13,9 +16,9 @@ short request
    ↓
 plan_request.py
    ↓
-required_owner_inputs
+defaults_applied / agent_actions   (overridable_decisions)
    ↓
-owner-decisions.json
+owner-decisions.json               (optional overrides)
    ↓
 apply_owner_decisions.py
    ↓
@@ -23,7 +26,7 @@ patched request
    ↓
 re-plan immediately
    ↓
-next owner inputs / agent actions / execution packet
+remaining overridable decisions / agent actions / execution packet
 ```
 
 The owner-decision artifact pins both:
@@ -36,7 +39,7 @@ decision is rejected as stale.
 
 ## Supported decisions
 
-The current typed contract covers every owner input the planner can emit:
+The current typed contract covers every override the planner can offer:
 
 - `LEARNER_ENTRY`
 - `CORE2A_PURPOSE`
@@ -45,31 +48,22 @@ The current typed contract covers every owner input the planner can emit:
 - `SOURCE_BASIS_DRIFT_DECISION`
 - `SUPPLEMENTAL_QUESTION_POLICY`
 
-CI scans every committed plan fixture and fails if the planner introduces a new
-`required_owner_input` with no typed decision field.
+CI scans every committed plan fixture and fails if the planner offers an override with no
+typed decision field, or if it ever lists a `required_owner_input` (the planner must default
+or research instead of waiting).
 
 ## Incremental answers are legal
 
 The owner does not need to answer every question at once.
 
-A decision artifact may answer only a subset of the currently requested owner inputs. The
-applier then re-plans and returns the remaining owner questions.
-
-This matters because source decisions are sequential:
-
-```text
-SOURCE_BASIS_DRIFT_DECISION
-        ↓
-keep supplied source
-        ↓
-SUPPLEMENTAL_QUESTION_POLICY may become relevant
-```
-
-The second question must not be asked before the first one is resolved.
+A decision artifact may override only a subset of the currently offered decisions. The
+applier then re-plans and returns the remaining overridable decisions.
 
 ## Source-basis drift
 
-When a verified receipt reports `DRIFT`, the planner offers:
+When a verified receipt reports `DRIFT`, the planner gives the agent the duty
+`RESOLVE_SOURCE_BASIS_DRIFT` (research which basis matches the topic). The owner may override
+with:
 
 ```text
 KEEP_SUPPLIED_DESPITE_DRIFT
@@ -81,7 +75,7 @@ CHANGE_SOURCE_BASIS:<receipt-backed replacement candidate>
 
 The applier records the drift acknowledgement and leaves the original receipt pinned.
 Re-planning then evaluates that source exactly as it currently exists. If practice coverage
-is insufficient, the supplemental-question policy may become the next owner decision.
+is insufficient, the agent receives `AUTHOR_SUPPLEMENTAL_PRACTICE`.
 
 ### Change source basis
 
@@ -104,26 +98,16 @@ No evidence or policy from the old source silently survives the replacement.
 
 ## Learner entry
 
-The owner may provide a learner profile ref, an explicit rung, an owner knowledge estimate,
-or explicit `unknown`.
-
-`unknown` is a real resolved owner answer. It stops the system from repeatedly asking the
-same question, but learner-routed products remain blocked because no reachability evidence
-exists.
-
-```text
-owner answered
-!=
-learner route is reachable
-```
+The owner may provide a learner profile ref, an explicit rung or an owner knowledge estimate.
+Without one — including an explicit `unknown` — the planner uses the default median learner
+(`owner_estimate.knowledge_percentage = 50`, basis `DEFAULT_MEDIAN`). Learner-routed products
+are never blocked for lack of learner data; a short diagnostic adjusts from actual attempts.
 
 ## Unsolicited decisions
 
-The applier accepts only decisions that the pinned planner result actually requested.
-
-For example, while source drift is unresolved the owner cannot pre-apply
-`SUPPLEMENTAL_QUESTION_POLICY`. That policy belongs to a later planning state and may
-become irrelevant if the source basis changes.
+The applier accepts only overrides of what the pinned plan defaulted or assigned to the agent.
+For example, once a request already names its source basis, a `SOURCE_BASIS` override is
+rejected as unsolicited.
 
 ## Commands
 

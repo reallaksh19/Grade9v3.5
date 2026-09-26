@@ -6,7 +6,7 @@ import subprocess
 import unittest
 from pathlib import Path
 
-from Shared.tools import prompt_composer, study_map
+from Shared.tools import prompt_composer, research_first_policy, study_map
 
 REPO = Path(__file__).resolve().parents[1]
 FIXTURES = REPO / "tests/fixtures/prompt-composer"
@@ -31,23 +31,26 @@ class PromptComposerTests(unittest.TestCase):
         report = study_map.resolve(mapping)
         self.assertTrue(report["passed"], report["findings"])
 
-    def test_projectile_stress_set_preserves_authority_boundaries_and_holds_ambiguous_identity(self):
+    def test_projectile_stress_set_turns_ambiguous_identity_into_research(self):
         result = prompt_composer.compose(self.load("projectile-stress-set.json"))
-        self.assertFalse(result["passed"])
+        self.assertTrue(result["passed"])
         brief = result["prompt_brief"]
         self.assertEqual(brief["scope"]["matrix_ref"], "MATRIX-PHY-KIN-2D-MOTION")
         self.assertEqual(brief["scope"]["status"], "OWNER_CONFIRMED_CANONICAL_RUNG")
         self.assertEqual(brief["scope"]["canonical_primary_rungs"], ["R1", "R2", "R3"])
         self.assertEqual(brief["scope"]["owner_confirmed_rung"]["rung"], "R3")
         q15 = next(row for row in brief["question_rows"] if row["owner_question_id"] == "Q15")
-        self.assertEqual(q15["identity_status"], "IDENTITY_HOLD")
-        self.assertEqual(q15["mapping_status"], "IDENTITY_HOLD")
+        self.assertEqual(q15["identity_status"], "RESEARCH_IDENTITY")
+        self.assertEqual(q15["mapping_status"], "RESEARCH_IDENTITY")
         self.assertEqual(
             set(q15["candidate_question_refs"]),
             {"PYQ-PHY-JEEADV-2018-P2-Q08", "PYQ-PHY-JEEADV-2023-P1-Q01"},
         )
         self.assertIsNone(q15["primary_capability_ref"])
-        self.assertTrue(any(h["point"] == "QUESTION_IDENTITY_AMBIGUOUS" for h in brief["holds"]))
+        duty = next(h for h in brief["duties"] if h["point"] == "QUESTION_IDENTITY_AMBIGUOUS")
+        self.assertEqual(duty["status"], "RESEARCH_SOURCE_IDENTITY")
+        self.assertIn("record the discriminator", duty["detail"])
+        self.assertIn("no exam identity claimed", duty["detail"])
         mapped = [row for row in brief["question_rows"] if row["primary_location"]]
         self.assertEqual(
             [row["primary_location"]["rung"] for row in mapped],
@@ -63,7 +66,9 @@ class PromptComposerTests(unittest.TestCase):
             brief["execution_order"],
             ["CORE2", "CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B"],
         )
-        self.assertEqual(brief["planner_handoff"]["state"], "COMPOSER_HOLD")
+        self.assertEqual(brief["planner_handoff"]["state"], "READY_FOR_PLANNER")
+        q28 = next(row for row in brief["question_rows"] if row["owner_question_id"] == "Q28")
+        self.assertEqual(q28["learner_eligibility"], "DEFAULT_ELIGIBLE")
 
     def test_prompt_contains_clause_ids_role_refs_and_downstream_pdf_intent_without_rendering_pdf(self):
         result = prompt_composer.compose(self.load("projectile-stress-set.json"))
@@ -72,7 +77,7 @@ class PromptComposerTests(unittest.TestCase):
             "GOAL_OUTCOME", "FIXED_SOURCE_QUESTIONS", "LEARNER_PROFILE",
             "EXECUTION_ORDER", "AUTHORITY_GRAPH", "TOPIC_BOUNDARY", "CORE_OBLIGATIONS",
             "WEB_BLUEPRINTS", "DIFFICULTY_PROGRESSION", "PROVENANCE_TRACE", "ACCEPTANCE",
-            "NON_GOALS", "HOLD_FAIL", "DOWNSTREAM_DELIVERABLE",
+            "NON_GOALS", "RESEARCH_DUTIES", "DOWNSTREAM_DELIVERABLE",
         ]:
             self.assertIn(f"[{clause}]", text)
         self.assertIn("Shared/roles/CORE1A.md", text)
@@ -81,7 +86,9 @@ class PromptComposerTests(unittest.TestCase):
         self.assertIn("required authority = CANONICAL_ACADEMIC_TRUTH", text)
         self.assertIn("demand evidence and learner eligibility are independent states", text.lower())
         self.assertIn("question.primary_capability_ref", text)
-        self.assertIn("extension demands do not become core1/core1a/core1b microtopics", text.lower())
+        self.assertIn("candidate extension microtopic", text.lower())
+        self.assertIn("there is no hold, fail or incomplete outcome", text.lower())
+        self.assertEqual(research_first_policy.escape_states(text), [])
         self.assertIn("#273 owns PDF publication", text)
         self.assertFalse(any(path.suffix == ".pdf" for path in (REPO / "public").rglob("*.pdf")))
 
@@ -109,25 +116,25 @@ class PromptComposerTests(unittest.TestCase):
         self.assertRegex(brief["authority_contract"]["digest"], r"^sha256:[a-f0-9]{64}$")
         self.assertNotIn("primary_concept_id", result["agent_prompt"])
         self.assertIn(
-            "A Core2 HOLD does not become academic authority",
+            "missing custody is a research duty, never academic authority",
             result["agent_prompt"],
         )
 
-    def test_mixed_subtopic_fails_closed(self):
+    def test_mixed_subtopic_covers_every_matrix(self):
         result = prompt_composer.compose(self.load("mixed-subtopic.json"))
-        self.assertFalse(result["passed"])
-        self.assertEqual(result["prompt_brief"]["scope"]["status"], "MIXED_SUBTOPIC_HOLD")
-        self.assertTrue(any(h["status"] == "MIXED_SUBTOPIC_HOLD" for h in result["prompt_brief"]["holds"]))
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["prompt_brief"]["scope"]["status"], "MULTI_MATRIX")
+        self.assertTrue(any(h["status"] == "COVER_EVERY_SUBTOPIC" for h in result["prompt_brief"]["duties"]))
 
     def test_unknown_exact_ref_does_not_fuzzy_match_short_label(self):
         result = prompt_composer.compose(self.load("unknown-question.json"))
-        self.assertFalse(result["passed"])
         row = result["prompt_brief"]["question_rows"][0]
-        self.assertEqual(row["mapping_status"], "UNMAPPED_HOLD")
+        self.assertEqual(row["mapping_status"], "RESEARCH_MAPPING")
         self.assertIsNone(row["primary_capability_ref"])
-        self.assertTrue(any(h["point"] == "CANONICAL_QUESTION_UNKNOWN" for h in result["prompt_brief"]["holds"]))
+        duty = next(h for h in result["prompt_brief"]["duties"] if h["point"] == "CANONICAL_QUESTION_UNKNOWN")
+        self.assertEqual(duty["status"], "RESEARCH_CANONICAL_MAPPING")
 
-    def test_agent_proposal_remains_pending_owner_review(self):
+    def test_agent_proposal_is_used_and_labelled(self):
         doc = self.load("projectile-stress-set.json")
         doc["questions"] = [{
             "question_id": "P",
@@ -137,8 +144,10 @@ class PromptComposerTests(unittest.TestCase):
             "secondary_capability_refs": ["CAP-KIN-2D-INDEPENDENT-COMPONENTS"],
         }]
         result = prompt_composer.compose(doc)
-        self.assertFalse(result["passed"])
-        self.assertEqual(result["prompt_brief"]["question_rows"][0]["mapping_status"], "AGENT_PROPOSAL_PENDING_REVIEW")
+        row = result["prompt_brief"]["question_rows"][0]
+        self.assertEqual(row["mapping_status"], "AGENT_PROPOSED")
+        self.assertEqual(row["primary_capability_ref"], "CAP-KIN-PROJECTILE-MODEL")
+        self.assertIn("P", [q["question_id"] for q in result["worksheet_map"]["questions"]])
 
     def test_explicit_zero_is_preserved_and_absent_is_null(self):
         math = prompt_composer.compose(self.load("math-linear-equation.json"))
@@ -154,11 +163,13 @@ class PromptComposerTests(unittest.TestCase):
         result = prompt_composer.compose(doc)
         self.assertFalse(result["passed"])
         self.assertNotIn("source_basis", result["authoring_request"])
-        self.assertTrue(any(h["point"] == "SOURCE_BASIS_QUESTION_ID_INVALID" for h in result["prompt_brief"]["holds"]))
+        invalid = next(h for h in result["prompt_brief"]["duties"] if h["point"] == "SOURCE_BASIS_QUESTION_ID_INVALID")
+        self.assertEqual(invalid["status"], "INPUT_INVALID")
+        self.assertEqual(result["prompt_brief"]["planner_handoff"]["state"], "INPUT_INVALID")
 
     def test_cross_subject_math_uses_same_composer(self):
         result = prompt_composer.compose(self.load("math-linear-equation.json"))
-        self.assertTrue(result["passed"], result["prompt_brief"]["holds"])
+        self.assertTrue(result["passed"], result["prompt_brief"]["duties"])
         row = result["prompt_brief"]["question_rows"][0]
         self.assertEqual(row["primary_capability_ref"], "CAP-MATH-ISOLATE")
         self.assertEqual(row["primary_location"]["matrix_id"], "MATRIX-MATH-LINEAR-EQUATIONS")

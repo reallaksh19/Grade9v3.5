@@ -17,7 +17,8 @@ from Shared.library.compile_inputs import compile_bucket
 from Shared.library.practice_inventory import coverage as practice_coverage
 from Shared.library.resolve import build_index, load_packages
 from Shared.tools import (academic_readiness, atlas_need, capability_graph, core_focus,
-                          focus_inventory, learner_evidence, resolve_request, source_receipts)
+                          focus_inventory, learner_evidence, research_first_policy, resolve_request,
+                          source_receipts)
 
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 PERSONALISED_TEACHING = ("CORE1A", "CORE1B")
@@ -173,51 +174,51 @@ def _rung_inventory(board: dict, mics: dict) -> list[dict]:
 def lifecycle_handoff(report: dict) -> dict:
     """Keep authoring, product build and learner release as distinct transitions.
 
-    Human academic review gates RELEASE, not AUTHORING. Otherwise a candidate could never
-    be written before it was reviewed. Build readiness remains stricter than authoring:
-    missing assets may be legitimate authoring work but they are not buildable products.
+    Nothing here is a stop. Findings and product duties are work the agent carries out in
+    the same job; the build is ready once no duty remains. Human academic review is the
+    owner's release decision: the product is still delivered, labelled with the reviews
+    that have not happened.
     """
     structural = [f["point"] for f in report.get("findings", [])]
-    owner = [row["id"] for row in report.get("required_owner_inputs", [])]
     actions = [row["id"] for row in report.get("agent_actions", [])]
-    product_holds = [
-        f'{row["core"]}:{row["state"]}' for row in report.get("products", [])
-        if row["state"] not in {"READY", "WITHHELD"}
+    product_duties = [
+        f'{row["core"]}:{row["duty"]["duty"]}' for row in report.get("products", [])
+        if row.get("duty")
     ]
 
-    authoring_blockers = sorted(set(structural + owner + actions))
-    build_blockers = sorted(set(authoring_blockers + product_holds))
-    release_blockers = list(build_blockers)
+    authoring_duties = sorted(set(structural + actions))
+    build_duties = sorted(set(authoring_duties + product_duties))
+    review_labels = []
     academic = report.get("academic_readiness") or {}
     if academic.get("mechanical_findings"):
-        release_blockers.append("ACADEMIC_READINESS")
+        review_labels.append("ACADEMIC_READINESS")
     if report.get("readiness", {}).get("ACADEMIC_REVIEW") != "REVIEWED":
-        release_blockers.append("ACADEMIC_REVIEW")
-    release_blockers = sorted(set(release_blockers))
+        review_labels.append("ACADEMIC_REVIEW")
 
     return {
-        "AUTHORING": {
-            "state": "READY_FOR_AUTHORING" if not authoring_blockers else "BLOCKED",
-            "blockers": authoring_blockers,
-        },
+        "AUTHORING": {"state": "READY_FOR_AUTHORING", "duties": authoring_duties},
         "BUILD": {
-            "state": "READY_FOR_BUILD" if not build_blockers else "BLOCKED",
-            "blockers": build_blockers,
+            "state": "READY_FOR_BUILD" if not build_duties else research_first_policy.RESEARCH_AND_AUTHOR,
+            "duties": build_duties,
         },
         "RELEASE": {
-            "state": "READY_FOR_RELEASE" if not release_blockers else "BLOCKED",
-            "blockers": release_blockers,
+            "state": "READY_FOR_RELEASE" if not build_duties and not review_labels else "OWNER_REVIEW",
+            "duties": build_duties,
+            "review_labels": sorted(review_labels),
         },
-        "rule": "Author candidates before review; build only supported products; release only reviewed ones.",
+        "rule": "Author and build every product in the job; release is the owner's decision on a delivered, truthfully labelled product.",
     }
 
 
 def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> dict:
+    workflow = research_first_policy.load_workflow()
+    request, defaults_applied = research_first_policy.apply_request_defaults(request, workflow)
     board, findings = resolve_board(request, repo)
     requested = list(request.get("requested_cores", []))
     if board is None:
         return {"mode": "PLAN_ONLY", "findings": findings, "passed": False,
-                "required_owner_inputs": [], "agent_actions": [], "products": []}
+                "defaults_applied": defaults_applied, "required_owner_inputs": [],
+                "agent_actions": [], "products": []}
 
     subject = request["subject"]
     caps, mics = capability_graph.subject_graph(subject, repo)
@@ -230,6 +231,18 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
                          "detail": compiler_error})
     practice = practice_coverage(records, board["bucket_id"])
     learner_route = _learner_route(request, board, caps, mics, repo)
+    if learner_route["state"] == "BLOCKED" and not learner_route.get("unresolved"):
+        # A dangling profile or an unplaceable entry falls back to the default learner.
+        fallback = {**request, "learner": {"owner_estimate": dict(
+            workflow["default_request_values"]["learner"]["owner_estimate"])}}
+        defaults_applied.append({"field": "learner", "value": fallback["learner"],
+                                 "basis": "DEFAULT_MEDIAN", "replaced": learner_route.get("reason")})
+        learner_route = _learner_route(fallback, board, caps, mics, repo)
+    if learner_route["state"] == "BLOCKED":
+        # Unresolved prerequisites are taught as bridges inside the product, never a stop.
+        learner_route = {**learner_route, "state": "READY_WITH_BRIDGES",
+                         "bridges": sorted(set(learner_route.get("bridges", []))
+                                           | set(learner_route.get("unresolved", [])))}
     purposes = resolve_request.purposes()
 
     diagnostic_focus = (
@@ -258,17 +271,8 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
         subject, board["bucket_id"], requested, focus_targets, repo
     )
 
-    owner_inputs = []
-    if any(c in LEARNER_ROUTED for c in requested) and not request.get("learner"):
-        owner_inputs.append({"id": "LEARNER_ENTRY", "choices": [
-            "profile/diagnostic", "owner_entry", "owner_estimate", "unknown"]})
     intent = request.get("practice", {})
-    if "CORE2A" in requested and not intent.get("CORE2A", {}).get("purpose"):
-        owner_inputs.append({"id": "CORE2A_PURPOSE",
-                             "choices": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]})
-    if "CORE2B" in requested and not intent.get("CORE2B", {}).get("purpose"):
-        owner_inputs.append({"id": "CORE2B_PURPOSE",
-                             "choices": ["PRACTICE", "REVISION", "COMPETITION", "NONE"]})
+    actions = []
 
     source_basis = request.get("source_basis", [])
     receipt = source_receipts.resolve(
@@ -279,7 +283,8 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
         findings.extend(receipt.get("findings", []))
 
     if any(c in SOURCE_PRODUCTS for c in requested) and not source_basis:
-        owner_inputs.append({"id": "SOURCE_BASIS", "choices": ["supply source reference"]})
+        actions.append({"id": "RESEARCH_SOURCE_BASIS", "owner": "AGENT",
+                        "detail": "Research the original sources for the requested questions and record them as the source basis; owner-supplied question text is custody of class OWNER_SUPPLIED."})
 
     coverage = receipt.get("coverage", {}) if receipt.get("verified") else {}
     basis_assessment = receipt.get("basis_assessment") or {}
@@ -291,25 +296,21 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
     )
     if unresolved_basis_drift:
         candidates = list(basis_assessment.get("replacement_candidates") or [])
-        owner_inputs.append({
-            "id": "SOURCE_BASIS_DRIFT_DECISION",
-            "choices": (
-                ["KEEP_SUPPLIED_DESPITE_DRIFT"]
-                + [f"CHANGE_SOURCE_BASIS:{candidate}" for candidate in candidates]
-            ),
+        actions.append({
+            "id": "RESOLVE_SOURCE_BASIS_DRIFT", "owner": "AGENT",
+            "candidates": candidates,
+            "detail": "Research which source basis matches the requested topic scope, record it, and inspect it.",
         })
 
     insufficient_practice = any(
         core in requested and (coverage.get(core) or {}).get("status") != "SUFFICIENT"
         for core in PRACTICE
     )
-    if (receipt.get("verified") and not unresolved_basis_drift
-            and insufficient_practice
-            and not request.get("supplemental_question_policy")):
-        owner_inputs.append({"id": "SUPPLEMENTAL_QUESTION_POLICY",
-                             "choices": ["SOURCE_ONLY", "ALLOW_AUTHORED_CANDIDATES"]})
+    if (receipt.get("verified") and not unresolved_basis_drift and insufficient_practice
+            and request.get("supplemental_question_policy") != "SOURCE_ONLY"):
+        actions.append({"id": "AUTHOR_SUPPLEMENTAL_PRACTICE", "owner": "AGENT",
+                        "detail": "Author practice inside the taught capability, labelled AUTHORED_PRACTICE, to cover what the source does not."})
 
-    actions = []
     if source_basis and receipt["state"] == "MISSING":
         actions.append({"id": "INSPECT_AND_INGEST_SOURCE_BASIS", "owner": "AGENT",
                         "detail": "Inspect the supplied source and write a verified source receipt before asking whether supplemental questions are allowed."})
@@ -322,13 +323,9 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
     for core in requested:
         state, reason = "READY", None
         if core not in ALL_CORES:
-            state, reason = "BLOCKED", "UNKNOWN_CORE"
+            state, reason = "INVALID_REQUEST", "UNKNOWN_CORE"
         elif topology_blocked and core in PERSONALISED_TEACHING:
             state, reason = "BLOCKED_TOPOLOGY", "ladder contradicts prerequisite topology"
-        elif core in PERSONALISED_TEACHING and learner_route["state"] == "WAITING_FOR_OWNER_INPUT":
-            state, reason = "WAITING_FOR_LEARNER_ENTRY", "learner entry has not been supplied"
-        elif core in PERSONALISED_TEACHING and learner_route["state"] == "BLOCKED":
-            state, reason = "BLOCKED_PREREQUISITE", "learner entry is not prerequisite-reachable"
         elif core in SOURCE_PRODUCTS and source_basis and receipt["state"] == "MISSING":
             state, reason = "WAITING_FOR_SOURCE_RECEIPT", "supplied source has no verified inspection receipt"
         elif core in SOURCE_PRODUCTS and receipt["state"] in {"INVALID", "DANGLING"}:
@@ -337,30 +334,26 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
             state, reason = "WAITING_FOR_SOURCE_BASIS_DECISION", "verified inspection found that the supplied source basis has drifted from the requested topic scope"
         elif core == "CORE2" and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT":
             state, reason = "BLOCKED_SOURCE_CUSTODY", "verified source receipt does not establish sufficient Core2 custody"
-        elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT" and not request.get("supplemental_question_policy"):
-            state, reason = "WAITING_FOR_SUPPLEMENT_POLICY", "verified source receipt does not establish source-derived coverage"
-        elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT" and request.get("supplemental_question_policy") == "SOURCE_ONLY":
-            state, reason = "BLOCKED_SOURCE_COVERAGE", "source-only policy forbids filling uncovered practice with authored candidates"
-        elif core in PRACTICE and learner_route["state"] == "WAITING_FOR_OWNER_INPUT":
-            state, reason = "WAITING_FOR_LEARNER_ENTRY", "practice routing requires learner evidence or an explicit owner decision"
-        elif core in PRACTICE and learner_route["state"] == "BLOCKED":
-            state, reason = "BLOCKED_PREREQUISITE", "learner practice route is not prerequisite-reachable"
+        elif core in PRACTICE and source_basis and (coverage.get(core) or {}).get("status") != "SUFFICIENT":
+            state, reason = "BLOCKED_SOURCE_COVERAGE", "source does not cover this practice; author labelled practice for the rest"
         elif core not in supported:
-            state, reason = "BLOCKED_ASSET", "compiler/library does not support this product"
-        elif core == "CORE2A" and not intent.get(core, {}).get("purpose"):
-            state, reason = "WAITING_FOR_PURPOSE", "support level is selected by purpose"
-        elif core == "CORE2B" and not intent.get(core, {}).get("purpose"):
-            state, reason = "WAITING_FOR_PURPOSE", "transfer routing is selected by purpose"
+            state, reason = "BLOCKED_ASSET", "compiler/library does not support this product yet"
         elif core == "CORE2B":
             purpose = intent[core]["purpose"]
             if purpose == "NONE" or (purpose in purposes and not purposes[purpose]["routes_transfer"]):
-                state, reason = "WITHHELD", "declared purpose does not route transfer"
-        products.append({"core": core, "state": state, **({"reason": reason} if reason else {})})
+                state, reason = "OWNER_EXCLUDED", "owner's declared purpose excludes transfer"
+        row = {"core": core, "state": state, **({"reason": reason} if reason else {})}
+        if state not in {"READY", "INVALID_REQUEST", "OWNER_EXCLUDED"}:
+            row = {"core": core, "state": research_first_policy.RESEARCH_AND_AUTHOR,
+                   "reason": reason, "duty": research_first_policy.duty_for(state, workflow)}
+        if state == "INVALID_REQUEST":
+            findings.append({"point": "UNKNOWN_CORE", "where": core, "detail": "not one of the six Core roles"})
+        products.append(row)
 
     academic = academic_readiness.board_report(board, subject, repo)
     review = academic["human_review"]
     expansion = ("READY" if not findings and academic["learner_release_ready"]
-                 else "BLOCKED")
+                 else research_first_policy.RESEARCH_AND_AUTHOR)
     report = {
         "mode": "PLAN_ONLY",
         "request_id": request.get("request_id"),
@@ -370,7 +363,7 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
         "matrix": board["_path"],
         "canonical_rungs": _rung_inventory(board, mics),
         "readiness": {
-            "STRUCTURE": "READY" if not findings else "BLOCKED",
+            "STRUCTURE": "READY" if not findings else research_first_policy.RESEARCH_AND_AUTHOR,
             "REACHABLE_TO_LEARN": learner_route["state"],
             "ACADEMIC_REVIEW": review["state"],
             "CONTENT_EXPANSION": expansion,
@@ -393,7 +386,9 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
         "focus_inventory": focused_inventory,
         "compiler_supported": sorted(supported),
         "products": products,
-        "required_owner_inputs": owner_inputs,
+        "defaults_applied": defaults_applied,
+        # Kept for callers: the planner never waits on the owner; defaults fill every input.
+        "required_owner_inputs": [],
         "agent_actions": actions,
         "academic_readiness": academic,
         "review": review,

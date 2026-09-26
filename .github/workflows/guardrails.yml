@@ -278,6 +278,14 @@ jobs:
           python3 Shared/tools/raw_intake.py --check-browser-data
           python3 -m unittest tests.test_research_first_workflow -v
 
+      # No agent-facing surface (role contracts, prompt templates, composer prompts,
+      # planner reports, execution packets) may offer HOLD/BLOCKED/WAITING as an outcome;
+      # every gap must arrive as a research or authoring duty with default learner values.
+      - name: No escape states on agent-facing surfaces
+        run: |
+          python3 Shared/tools/escape_state_guard.py
+          python3 -m unittest tests.test_escape_state_policy -v
+
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
 

@@ -19,8 +19,8 @@ BLOCK = re.compile(r"^```core-authority\s*$\n(.*?)^```\s*$", re.MULTILINE | re.D
 
 REQUIRED_INVARIANTS = (
     "execution_order_is_not_authority_order",
-    "core2_hold_does_not_rewrite_academic_authority",
-    "core2_hold_does_not_automatically_block_valid_study_roles",
+    "core2_custody_gap_does_not_rewrite_academic_authority",
+    "core2_custody_research_does_not_block_study_roles",
     "preserve_question_primary_capability_ref",
     "set_scope_must_not_overwrite_question_primary",
     "demand_evidence_and_learner_eligibility_are_distinct",
@@ -29,7 +29,7 @@ REQUIRED_INVARIANTS = (
     "learner_estimate_is_not_mastery_evidence",
     "learner_estimate_cannot_change_core1_family_intrinsic_scope",
     "prompt_and_planning_outputs_are_not_academic_authority",
-    "unresolved_authority_dependency_must_hold",
+    "unresolved_authority_dependency_becomes_research_duty",
 )
 
 EXPECTED_ROLE_RULES = {
@@ -182,7 +182,7 @@ def audit(path: Path | None = None) -> dict[str, Any]:
         findings.append("CORE_AUTHORITY_LEARNER_ELIGIBILITY_SEMANTICS_DRIFT")
 
     states = _texts(contract.get("allowed_dependency_states"))
-    if states != {"PASS", "HOLD", "FAIL"}:
+    if states != {"PASS", "RESEARCH_AND_AUTHOR"}:
         findings.append("CORE_AUTHORITY_DEPENDENCY_STATES_DRIFT")
 
     return {

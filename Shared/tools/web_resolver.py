@@ -26,6 +26,7 @@ from Shared.tools import (build_core_learning_data, build_web_data, derived_arti
 READY = "READY"
 UNAVAILABLE = "UNAVAILABLE"
 INVALID = "INVALID"
+RESEARCH_AND_AUTHOR = "RESEARCH_AND_AUTHOR"
 
 
 class WebResolutionError(ValueError):
@@ -348,8 +349,8 @@ def _route_receipt(
         ))
     if row.get("authorization_state") != "READY":
         findings.append(_finding(
-            "WEB_TARGET_AUTHORIZATION_HOLD",
-            "Target preparation is not academically authorized for delivery.",
+            "WEB_TARGET_AUTHORIZATION_MISSING",
+            "Target preparation is not yet academically authorized; complete and record the authorization evidence.",
             row.get("target_id"),
         ))
     return {
@@ -467,8 +468,8 @@ def resolve(
                 for key in ("mapping","core","representation","activity","locator","portable_package","standalone","renderer")
             },
             "artifact_buildable": False,
-            "request_satisfaction": "HOLD",
-            "build_action": "HOLD",
+            "request_satisfaction": "RESEARCH_AND_AUTHOR",
+            "build_action": "AUTHOR_MISSING_INPUTS",
             "pins": {
                 "atlas_index_contract_version": "2.0",
                 "core_provider_contract_version": "1.1",
@@ -617,29 +618,31 @@ def resolve(
         fallback_used.append("STATIC_RENDERER_INSTEAD_OF_INTERACTIVE_ACTIVITY")
 
     if any(row["code"].startswith("WEB_TARGET_ROUTE") or row["code"].startswith("WEB_TARGET_") and row["code"] in {
-        "WEB_TARGET_NOT_PREPARED","WEB_TARGET_COVERAGE_INCOMPLETE","WEB_TARGET_AUTHORIZATION_HOLD"
+        "WEB_TARGET_NOT_PREPARED","WEB_TARGET_COVERAGE_INCOMPLETE","WEB_TARGET_AUTHORIZATION_MISSING"
     } for row in findings):
-        satisfaction = "HOLD"
+        satisfaction = RESEARCH_AND_AUTHOR
     elif interaction_requirement == "REQUIRED" and not interactive_ready:
-        satisfaction = "HOLD"
+        satisfaction = RESEARCH_AND_AUTHOR
         findings.append(_finding(
             "WEB_REQUIRED_INTERACTION_UNAVAILABLE",
-            "The requested interaction is REQUIRED; a static fallback does not satisfy the request.",
+            "The requested interaction is REQUIRED and not yet authored; author the interactive activity, then resolve again.",
         ))
     elif interaction_requirement == "PREFERRED" and not interactive_ready and artifact_buildable:
-        satisfaction = "DEGRADED_REQUIRES_APPROVAL"
+        # Build the static page now; authoring the preferred interaction is the next duty.
+        satisfaction = "DEGRADED_ACCEPTABLE"
     elif fallback_used:
         satisfaction = "DEGRADED_ACCEPTABLE"
     elif artifact_buildable:
         satisfaction = "FULL"
     else:
-        satisfaction = "HOLD"
+        satisfaction = RESEARCH_AND_AUTHOR
 
     if not artifact_buildable:
-        satisfaction = "HOLD"
+        satisfaction = RESEARCH_AND_AUTHOR
 
-    if satisfaction == "HOLD":
-        build_action = "HOLD"
+    if satisfaction == RESEARCH_AND_AUTHOR:
+        # The findings name what to research or author before the page can be built.
+        build_action = "AUTHOR_MISSING_INPUTS"
     elif len(resolved_segments) > 1:
         build_action = "COMPOSE_SEGMENTS"
     elif has_explore:
@@ -724,8 +727,8 @@ def resolve(
     if plan_findings:
         plan["findings"].extend(plan_findings)
         plan["artifact_buildable"] = False
-        plan["request_satisfaction"] = "HOLD"
-        plan["build_action"] = "HOLD"
+        plan["request_satisfaction"] = RESEARCH_AND_AUTHOR
+        plan["build_action"] = "AUTHOR_MISSING_INPUTS"
     return plan
 
 
@@ -745,7 +748,7 @@ def main() -> int:
         args.out.write_text(body, encoding="utf-8")
     else:
         print(body, end="")
-    return 1 if args.enforce and plan["request_satisfaction"] == "HOLD" else 0
+    return 1 if args.enforce and plan["request_satisfaction"] == RESEARCH_AND_AUTHOR else 0
 
 
 if __name__ == "__main__":

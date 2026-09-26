@@ -217,11 +217,13 @@ def _validate_candidate_records(proposal: dict, packet: dict, order: dict,
                 "where": rid,
                 "detail": "candidate record must retain the work-order status",
             })
-        if record.get("origin") != order["write_scope"].get("origin"):
+        scope = order["write_scope"]
+        origins = (scope.get("origins") or {}).get(collection) or [scope.get("origin")]
+        if record.get("origin") not in origins:
             found.append({
                 "point": "AUTHORING_ORIGIN_OUT_OF_SCOPE",
                 "where": rid,
-                "detail": "candidate record must retain AUTHORED provenance",
+                "detail": f"candidate record must carry the work order's provenance ({', '.join(map(str, origins))})",
             })
         if collection == "questions":
             if record.get("primary_capability_ref") not in owned:
@@ -332,11 +334,9 @@ def validate_run(request: dict, packet: dict, proposal: dict, repo: Path = REPO)
              "execution packet does not contain this Core")
         return {"passed": False, "findings": found, "receipt": None,
                 "merged_package": None, "artifact_writes": []}
-    if order.get("blockers"):
-        fail("AUTHORING_WORK_ORDER_BLOCKED", order["core"],
-             "work order has unresolved blockers: " + ", ".join(order["blockers"]))
+    # Duties on a work order are the research/authoring this run performs, never a block.
     action = order.get("authoring_action")
-    if action not in {"BUILD_FROM_CANONICAL", "AUTHOR_CANDIDATE_QUESTION"}:
+    if action not in compile_execution_packet.RUNNABLE_ACTIONS:
         fail("AUTHORING_ACTION_NOT_RUNNABLE", order["core"],
              f"work order action {action} does not permit authoring")
 
@@ -448,9 +448,9 @@ def write_run(report: dict, proposal: dict, repo: Path = REPO,
 
 
 def audit(repo: Path = REPO) -> dict:
-    supported = {
-        ("AUTHOR_CANDIDATE_QUESTION", "CANDIDATE_RECORDS_ONLY"),
-        ("BUILD_FROM_CANONICAL", "PRODUCT_OUTPUT_ONLY"),
+    supported = {("BUILD_FROM_CANONICAL", "PRODUCT_OUTPUT_ONLY")} | {
+        (action, "CANDIDATE_RECORDS_ONLY")
+        for action in compile_execution_packet.RUNNABLE_ACTIONS - {"BUILD_FROM_CANONICAL"}
     }
     rows, findings = [], []
     for path in sorted((repo / "Requests").glob("*.author-request.json")):
@@ -460,7 +460,7 @@ def audit(repo: Path = REPO) -> dict:
         for order in packet.get("work_orders", []):
             action = order.get("authoring_action")
             mode = (order.get("write_scope") or {}).get("mode")
-            if action in {"AUTHOR_CANDIDATE_QUESTION", "BUILD_FROM_CANONICAL"} and (action, mode) not in supported:
+            if action in compile_execution_packet.RUNNABLE_ACTIONS and (action, mode) not in supported:
                 unsupported.append({"core": order.get("core"), "action": action, "mode": mode})
         row_findings = [{
             "point": "AUTHORING_EXECUTOR_SCOPE_UNSUPPORTED",

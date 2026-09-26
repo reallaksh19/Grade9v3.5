@@ -23,11 +23,11 @@ class AuthoringLifecycle(unittest.TestCase):
         report = plan_request.plan(self.request())
         self.assertEqual(report["lifecycle"]["AUTHORING"]["state"], "READY_FOR_AUTHORING")
         self.assertEqual(report["lifecycle"]["BUILD"]["state"], "READY_FOR_BUILD")
-        self.assertEqual(report["lifecycle"]["RELEASE"]["state"], "BLOCKED")
-        self.assertIn("ACADEMIC_REVIEW", report["lifecycle"]["RELEASE"]["blockers"])
-        self.assertIn("ACADEMIC_READINESS", report["lifecycle"]["RELEASE"]["blockers"])
+        self.assertEqual(report["lifecycle"]["RELEASE"]["state"], "OWNER_REVIEW")
+        self.assertIn("ACADEMIC_REVIEW", report["lifecycle"]["RELEASE"]["review_labels"])
+        self.assertIn("ACADEMIC_READINESS", report["lifecycle"]["RELEASE"]["review_labels"])
 
-    def test_practice_only_request_still_requires_learner_state(self):
+    def test_practice_only_request_uses_the_default_median_learner(self):
         request = {
             "request_id": "PRACTICE-ONLY",
             "subject": "Physics",
@@ -36,8 +36,10 @@ class AuthoringLifecycle(unittest.TestCase):
             "practice": {"CORE2A": {"purpose": "PRACTICE"}},
         }
         report = plan_request.plan(request)
-        self.assertIn("LEARNER_ENTRY",
-                      [row["id"] for row in report["required_owner_inputs"]])
+        self.assertEqual(report["required_owner_inputs"], [])
+        learner = next(row for row in report["defaults_applied"] if row["field"] == "learner")
+        self.assertEqual(learner["basis"], "DEFAULT_MEDIAN")
+        self.assertNotEqual(report["learner_route"]["state"], "WAITING_FOR_OWNER_INPUT")
 
 
 class ExecutionPacket(unittest.TestCase):
@@ -54,8 +56,7 @@ class ExecutionPacket(unittest.TestCase):
         self.assertEqual(packet["packet_state"], "READY")
         self.assertEqual(packet["summary"]["runnable_cores"],
                          ["CORE1", "CORE1A", "CORE1B"])
-        self.assertEqual(packet["summary"]["waiting_cores"], [])
-        self.assertEqual(packet["summary"]["held_cores"], [])
+        self.assertEqual(packet["summary"]["research_and_author_cores"], [])
         self.assertTrue(compile_execution_packet.verify(packet, request)["passed"])
 
     def test_packet_pins_role_matrix_library_and_request(self):
@@ -67,24 +68,24 @@ class ExecutionPacket(unittest.TestCase):
             self.assertRegex(order["role"]["sha256"], r"^[0-9a-f]{64}$")
             self.assertTrue(order["role"]["required_fields"])
 
-    def test_six_core_prompt_is_partial_not_all_or_nothing(self):
+    def test_six_core_prompt_runs_every_core_with_duties_first(self):
         packet = compile_execution_packet.compile_packet(self.request(self.SIX))
-        self.assertEqual(packet["packet_state"], "PARTIAL")
-        self.assertIn("CORE1", packet["summary"]["runnable_cores"])
-        self.assertIn("CORE2", packet["summary"]["waiting_cores"])
-        self.assertIn("CORE1A", packet["summary"]["waiting_cores"])
-        self.assertIn("CORE1B", packet["summary"]["waiting_cores"])
-        self.assertIn("CORE2A", packet["summary"]["waiting_cores"])
-        self.assertIn("CORE2B", packet["summary"]["waiting_cores"])
+        self.assertEqual(packet["packet_state"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(packet["summary"]["runnable_cores"],
+                         ["CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B"])
+        self.assertEqual(packet["summary"]["research_and_author_cores"],
+                         ["CORE2", "CORE2A", "CORE2B"])
+        for order in packet["work_orders"]:
+            self.assertNotEqual(order["write_scope"]["mode"], "NO_WRITE")
 
-    def test_source_drift_blocks_only_source_backed_work_orders(self):
+    def test_source_drift_is_researched_only_for_source_backed_work_orders(self):
         packet = compile_execution_packet.compile_packet(self.request(self.CURRENT))
         core1 = next(row for row in packet["work_orders"] if row["core"] == "CORE1")
         self.assertEqual(core1["authoring_action"], "BUILD_FROM_CANONICAL")
         for core in ("CORE2", "CORE2A", "CORE2B"):
             order = next(row for row in packet["work_orders"] if row["core"] == core)
-            self.assertEqual(order["authoring_action"], "WAIT")
-            self.assertIn("SOURCE_BASIS_DRIFT_DECISION", order["blockers"])
+            self.assertEqual(order["authoring_action"], "RESEARCH_SOURCE")
+            self.assertIn("RESOLVE_SOURCE_BASIS_DRIFT", order["duties"])
 
     def test_core2_source_custody_is_never_replaced_by_authored_generation(self):
         request = self.request(self.SIX)
@@ -103,9 +104,10 @@ class ExecutionPacket(unittest.TestCase):
         packet = compile_execution_packet.compile_packet(request)
         core2 = next(row for row in packet["work_orders"] if row["core"] == "CORE2")
         self.assertNotEqual(core2["authoring_action"], "AUTHOR_CANDIDATE_QUESTION")
-        self.assertEqual(core2["write_scope"]["mode"],
-                         "PRODUCT_OUTPUT_ONLY" if core2["product_state"] == "READY"
-                         else "NO_WRITE")
+        self.assertEqual(core2["authoring_action"],
+                         "BUILD_FROM_CANONICAL" if core2["product_state"] == "READY"
+                         else "RESEARCH_SOURCE")
+        self.assertNotEqual(core2["write_scope"].get("origin"), "AUTHORED")
 
     def test_authored_supplement_can_only_be_a_candidate_practice_question(self):
         request = self.request(self.SIX)

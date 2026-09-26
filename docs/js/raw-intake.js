@@ -146,9 +146,10 @@
     if (!subject) errors.push('subject is required (free text; no canonical id needed)');
     if (!(prompts.length || questions.length || syllabus.length)) errors.push('supply at least one prompt, question or syllabus subtopic');
     const owner = ((request.learner || {}).knowledge_percentage);
+    const ownerGiven = typeof owner === 'number' && Number.isFinite(owner);
     const learner = Object.assign({}, workflow.default_learner_start, {
-      source: owner == null ? 'DEFAULT' : 'OWNER_ESTIMATE_AS_START_ONLY',
-      knowledge_percentage: typeof owner === 'number' ? owner : null,
+      source: ownerGiven ? 'OWNER_ESTIMATE_AS_START_ONLY' : 'DEFAULT_MEDIAN',
+      knowledge_percentage: ownerGiven ? owner : workflow.default_learner_start.knowledge_percentage,
       blocking: false
     });
     const rec = reconcile(questions, syllabus);
@@ -187,8 +188,12 @@
     out.push('## Workflow invariants (Shared/workflows/research-first.v1.json)');
     workflow.invariants.forEach(r => out.push(`- **${r.id}** — ${r.rule}`));
     out.push('', '## Learner start');
-    out.push(`Start at ${plan.learner_start.level} level with ${plan.learner_start.support} support. ${plan.learner_start.diagnostic.rule}`);
-    out.push('A missing knowledge percentage never blocks authoring.', '');
+    out.push(`Start at the ${plan.learner_start.level} level (knowledge ${plan.learner_start.knowledge_percentage}%, ${plan.learner_start.source}) with ${plan.learner_start.support} support. ${plan.learner_start.diagnostic.rule}`);
+    out.push('Missing learner data takes the default median value and never blocks authoring.', '');
+    out.push('## No escape state');
+    out.push('There is no hold, fail or incomplete outcome. Every gap is a research or authoring duty completed in this job:');
+    Object.values(workflow.escape_state_duties).forEach(d => out.push(`- ${d.duty}: ${d.do}`));
+    out.push('');
     out.push('## Inputs to reconcile — every one must reach teaching, practice and a learner-facing location');
     plan.inputs.syllabus.forEach(r => out.push(`- [${r.id}] syllabus: ${r.text}`));
     plan.inputs.questions.forEach(r => out.push(`- [${r.id}] question${r.label ? ' (owner label ' + r.label + ', not an identity)' : ''}: ${r.text || '(label only: recover the original text)'}`));

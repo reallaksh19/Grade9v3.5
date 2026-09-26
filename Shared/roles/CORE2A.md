@@ -21,13 +21,13 @@ Per question:
 
 ## Practice routing
 
-Core2A consults **learner knowledge or an explicit owner waiver** — the only inputs of their kind in the six products, shared with Core2B.
+Core2A consults **learner knowledge, an explicit owner waiver or the default median learner** — the only inputs of their kind in the six products, shared with Core2B.
 
 - With scoped capability evidence: compare required capabilities against demonstrated, uncertain and missing ones. Do not infer mastery of a prerequisite from a high aggregate score.
 - With an owner waiver and unknown knowledge: follow the owner's requested demand and support. Keep UNKNOWN visible. Make no personalised-readiness claim.
-- With neither: personalised acceptance is held. Study products proceed unaffected.
+- With neither: use the default median learner (knowledge 50%, full support, `DEFAULT_MEDIAN`) from `Shared/workflows/research-first.v1.json`, start with a short diagnostic, and adjust from the learner's actual attempts. Nothing waits for a profile.
 
-An owner asking for the simplest questions stays effective even when an estimate is high. A high estimate with one missing critical prerequisite triggers a bridge or a scoped hold — never a silent assumption of readiness.
+An owner asking for the simplest questions stays effective even when an estimate is high. A high estimate with one missing critical prerequisite triggers an authored bridge placed before the dependent practice — never a silent assumption of readiness and never a stop.
 
 ## What Core2A must not do
 

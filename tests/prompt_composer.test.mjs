@@ -35,27 +35,27 @@ test('browser digest uses standard SHA-256 vectors', () => {
   );
 });
 
-test('browser composition preserves authority boundaries and holds ambiguous identity', () => {
+test('browser composition preserves authority boundaries and researches ambiguous identity', () => {
   const w = runtime();
   const result = w.PROMPT_COMPOSER.composeDocument(fixture, w.GRADE9V3_PROMPT_COMPOSER, w.GRADE9V3);
-  assert.equal(result.passed, false);
+  assert.equal(result.passed, true);
   assert.equal(result.prompt_brief.scope.status, 'OWNER_CONFIRMED_CANONICAL_RUNG');
   assert.deepEqual(JSON.parse(JSON.stringify(result.prompt_brief.scope.canonical_primary_rungs)), ['R1','R2','R3']);
   const q15 = result.prompt_brief.question_rows.find(row => row.owner_question_id === 'Q15');
-  assert.equal(q15.identity_status, 'IDENTITY_HOLD');
-  assert.equal(q15.mapping_status, 'IDENTITY_HOLD');
+  assert.equal(q15.identity_status, 'RESEARCH_IDENTITY');
+  assert.equal(q15.mapping_status, 'RESEARCH_IDENTITY');
   assert.deepEqual(JSON.parse(JSON.stringify(q15.candidate_question_refs)).sort(), [
     'PYQ-PHY-JEEADV-2018-P2-Q08',
     'PYQ-PHY-JEEADV-2023-P1-Q01'
   ]);
   assert.equal(q15.primary_capability_ref, null);
-  assert.equal(result.prompt_brief.holds.some(h => h.point === 'QUESTION_IDENTITY_AMBIGUOUS'), true);
+  assert.equal(result.prompt_brief.duties.some(h => h.point === 'QUESTION_IDENTITY_AMBIGUOUS' && h.status === 'RESEARCH_SOURCE_IDENTITY'), true);
   assert.deepEqual(
     JSON.parse(JSON.stringify(result.prompt_brief.question_rows.filter(row => row.primary_location).map(row => row.primary_location.rung))),
     ['R1','R3','R3','R2']
   );
   assert.equal(result.prompt_brief.learner_entry.owner_estimate.knowledge_percentage, 50);
-  assert.equal(result.prompt_brief.planner_handoff.state, 'COMPOSER_HOLD');
+  assert.equal(result.prompt_brief.planner_handoff.state, 'READY_FOR_PLANNER');
 });
 
 test('browser and Python agree on mapping semantics and deterministic prompt digests', () => {
@@ -84,7 +84,9 @@ test('browser prompt emits the blueprint authority graph explicitly', () => {
   const result = w.PROMPT_COMPOSER.composeDocument(fixture, w.GRADE9V3_PROMPT_COMPOSER, w.GRADE9V3);
   assert.match(result.agent_prompt, /\[AUTHORITY_GRAPH\]/);
   assert.match(result.agent_prompt, /Execution order is production control only/);
-  assert.match(result.agent_prompt, /A Core2 HOLD does not become academic authority/);
+  assert.match(result.agent_prompt, /missing custody is a research duty, never academic authority/);
+  assert.match(result.agent_prompt, /There is no hold, fail or incomplete outcome/);
+  assert.doesNotMatch(result.agent_prompt, /\b[A-Z_]*HOLD[A-Z_]*\b/);
   assert.match(result.agent_prompt, /Demand evidence and learner eligibility are independent states/);
   assert.match(result.agent_prompt, /question\.primary_capability_ref/);
   assert.doesNotMatch(result.agent_prompt, /primary_concept_id/);

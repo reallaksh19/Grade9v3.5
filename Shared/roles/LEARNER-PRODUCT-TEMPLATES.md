@@ -58,8 +58,9 @@ specifications and canonical library.
 Each role also carries one versioned `web_blueprint_ref`. That reference is presentation/delivery
 authority only: it selects the subject-neutral interactive-page blueprint that must render the
 ordered blocks. It does not move scientific, mathematical, chemical, question, source-custody or
-learner-evidence truth into the webpage layer. A missing or incompatible blueprint is a build HOLD,
-not permission for an agent to invent a page architecture.
+learner-evidence truth into the webpage layer. A missing or incompatible blueprint reference is
+resolved from the Core's registered blueprint in `Shared/web/interactive-page-blueprints.v1.json`;
+it is never permission for an agent to invent a page architecture.
 
 ```core-templates
 {
