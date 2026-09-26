@@ -31,6 +31,7 @@ spine node ──RESEARCHER──▶ evidence cards (quotes verified in pinned s
 | Researcher | [RESEARCHER.md](RESEARCHER.md) | `Physics/research/acquisitions/`, `Physics/research/evidence/`, new MICROTOPIC nodes in `syllabus-spine.json` |
 | Author | [AUTHOR.md](AUTHOR.md) | `Physics/research/packages/<chapter>.package.json` |
 | Verifier | [VERIFIER.md](VERIFIER.md) | `Physics/research/verification/` |
+| Scanner (local, optional) | [SCANNER.md](SCANNER.md) | `Physics/research/acquisitions/`, `Physics/research/scans/`, `Physics/research/evidence/` from owner-registered scans |
 
 ## How many agents
 
@@ -41,6 +42,12 @@ The researcher is the bottleneck. Author and verifier wait at first, because the
 and records to work on. Once the board shows a steady queue, extra capacity goes to research:
 a second researcher on `--lane 2/2` can replace one of the other roles for a while. An agent
 never authors or verifies a node it researched.
+
+The scanner is a researcher working on the owner's machine with scanned books and papers. Its
+cards go through the same checks, and CI verifies its quotes from a hashed page index, so the
+book's text is never published.
+
+Paste-ready prompts to start each agent are in [`template/library-agents/`](../../template/library-agents/00-README.md).
 
 ## Shared commands
 

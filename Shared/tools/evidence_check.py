@@ -64,6 +64,75 @@ def tier_of(url: str, allow: dict) -> tuple[str | None, dict | None]:
     return None, None
 
 
+SCAN_SCHEME = "scan://"
+SHINGLE_WORDS = 5
+SCAN_NUMERIC_KINDS = {"QUESTION", "ANSWER_KEY", "WORKED_EXAMPLE", "RELATION"}
+SECOND_READING_MIN_SIMILARITY = 0.85
+
+
+def local_source(acq: dict, allow: dict) -> dict | None:
+    """The owner-registered local source (a scanned book or paper) this acquisition pins."""
+    locator = acq.get("requested_locator", "")
+    if not locator.startswith(SCAN_SCHEME):
+        return None
+    source_id = locator[len(SCAN_SCHEME):].split("/", 1)[0]
+    for entry in allow.get("local_sources", []):
+        if entry["source_id"] == source_id and acq.get("sha256") in entry.get("scan_sha256s", []):
+            return entry
+    return None
+
+
+def source_tier(acq: dict, allow: dict) -> tuple[str | None, list[str]]:
+    """(tier, kinds it may support) for a URL or a registered local scan."""
+    local = local_source(acq, allow)
+    if local is not None:
+        tier = local["tier"]
+        return tier, list(local.get("may_support") or allow["tiers"][tier]["may_support"])
+    tier, _ = tier_of(acq.get("requested_locator", ""), allow)
+    return tier, (allow["tiers"][tier]["may_support"] if tier else [])
+
+
+def scan_manifest_path(subject: str, acq_id: str, repo: Path = REPO) -> Path:
+    return research_dir(subject, repo) / "scans" / f"{acq_id}.scan.json"
+
+
+def tokens(text: str) -> list[str]:
+    return re.findall(r"[0-9a-z]+", unicodedata.normalize("NFKC", text).lower())
+
+
+def shingle_hashes(words: list[str]) -> list[str]:
+    return [hashlib.sha256(" ".join(words[i:i + SHINGLE_WORDS]).encode()).hexdigest()[:8]
+            for i in range(len(words) - SHINGLE_WORDS + 1)]
+
+
+def page_shingles(pages: list[str]) -> list[str]:
+    """Per page, the hashed 5-word shingles (including ones running into the next page).
+
+    Committed instead of the text: a quote can be proven present without publishing the book.
+    """
+    out = []
+    for i, text in enumerate(pages):
+        words = tokens(text)
+        if i + 1 < len(pages):
+            words += tokens(pages[i + 1])[:SHINGLE_WORDS - 1]
+        out.append(" ".join(sorted(set(shingle_hashes(words)))))
+    return out
+
+
+def quote_in_shingles(quote: str, index: list[str], page: int) -> bool:
+    needed = set(shingle_hashes(tokens(quote)))
+    if not needed:
+        return False
+    for i in (page - 1, page - 2, page):
+        if 0 <= i < len(index) and needed <= set(index[i].split()):
+            return True
+    return False
+
+
+def numbers(text: str) -> list[str]:
+    return re.findall(r"\d+(?:\.\d+)?", unicodedata.normalize("NFKC", text))
+
+
 def acquisition_path(subject: str, acq_id: str, repo: Path = REPO) -> Path:
     return research_dir(subject, repo) / "acquisitions" / f"{acq_id}.json"
 
@@ -193,6 +262,48 @@ def _finding(code: str, where: str, detail: str) -> dict:
     return {"code": code, "where": where, "detail": detail}
 
 
+class _Index(list):
+    """Page shingle index standing in for page text when the scan is not on this machine."""
+
+
+def _is_index(pages: list) -> bool:
+    return isinstance(pages, _Index)
+
+
+def scan_pages(subject: str, acq: dict, repo: Path = REPO) -> list:
+    """OCR page text if the scan was ingested on this machine, else the committed shingle index."""
+    local = cache_path(acq).with_suffix(cache_path(acq).suffix + ".pages.json")
+    if local.is_file():
+        return load_json(local)["pages"]
+    manifest = scan_manifest_path(subject, acq["acquisition_id"], repo)
+    if manifest.is_file():
+        return _Index(load_json(manifest)["shingles"]["pages"])
+    return []
+
+
+def second_reading_findings(cid: str, card: dict) -> list[dict]:
+    """Numbers in a scanned card are OCR output until a second, independent reading agrees."""
+    import difflib  # noqa: PLC0415
+    check = card.get("scan_check")
+    if not check:
+        return [_finding("EVIDENCE_SCAN_SECOND_READING_MISSING", cid,
+                         "a scanned card with numbers needs scan_check.second_reading from a different reader")]
+    found = []
+    if check.get("second_reader") == card.get("harvested_by"):
+        found.append(_finding("EVIDENCE_SCAN_SECOND_READER_NOT_INDEPENDENT", cid,
+                              "the second reading must be made by someone other than the harvester"))
+    first, second = numbers(card.get("quote", "")), numbers(check.get("second_reading", ""))
+    if first != second:
+        found.append(_finding("EVIDENCE_SCAN_NUMBERS_DISAGREE", cid,
+                              f"OCR quote numbers {first} vs second reading {second}; compare with the page image"))
+    ratio = difflib.SequenceMatcher(None, normalize(card.get("quote", "")),
+                                    normalize(check.get("second_reading", ""))).ratio()
+    if ratio < SECOND_READING_MIN_SIMILARITY:
+        found.append(_finding("EVIDENCE_SCAN_SECOND_READING_DIFFERS", cid,
+                              f"second reading matches the OCR quote only {ratio:.0%}; it must be the same passage"))
+    return found
+
+
 def evidence_files(subject: str, node: str | None = None, repo: Path = REPO) -> list[Path]:
     folder = research_dir(subject, repo) / "evidence"
     files = sorted(folder.glob("*.cards.json"))
@@ -237,17 +348,24 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
             card_ok[cid] = False
             continue
         acq = load_json(acq_file)
-        tier, _ = tier_of(acq.get("requested_locator", ""), allow)
+        tier, may_support = source_tier(acq, allow)
         kind = card.get("kind")
+        scan = acq.get("requested_locator", "").startswith(SCAN_SCHEME)
         if tier is None:
-            findings.append(_finding("EVIDENCE_HOST_NOT_ALLOWED", cid, acq.get("requested_locator", "")))
-        elif kind not in allow["tiers"][tier]["may_support"]:
+            findings.append(_finding("EVIDENCE_HOST_NOT_ALLOWED", cid, acq.get("requested_locator", "") + (
+                " (scan is not registered by the owner in local_sources with this sha256)" if scan else "")))
+        elif kind not in may_support:
             findings.append(_finding("EVIDENCE_TIER_CANNOT_SUPPORT_KIND", cid,
                                      f"tier {tier} source cannot support a {kind} card"))
         words = re.findall(r"[A-Za-z0-9]+", card.get("quote", ""))
         if len(words) < MIN_QUOTE_WORDS:
             findings.append(_finding("EVIDENCE_QUOTE_TOO_SHORT", cid, f"quote has {len(words)} words; need {MIN_QUOTE_WORDS}"))
         acq_id = acq["acquisition_id"]
+        if acq_id not in texts and scan:
+            texts[acq_id] = scan_pages(subject, acq, repo)
+            if not texts[acq_id]:
+                findings.append(_finding("EVIDENCE_SCAN_MANIFEST_MISSING", acq_id,
+                                         "scanned source has no scan manifest; run scan_ingest.py"))
         if acq_id not in texts:
             snap, problem = ensure_snapshot(acq, fetch)
             if snap is None:
@@ -261,9 +379,12 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
         if pages:
             if not 1 <= page <= len(pages):
                 findings.append(_finding("EVIDENCE_PAGE_OUT_OF_RANGE", cid, f"page {page} of {len(pages)}"))
-            elif not quote_found(card.get("quote", ""), pages, page):
+            elif not (quote_in_shingles(card.get("quote", ""), pages, page) if scan and _is_index(pages)
+                      else quote_found(card.get("quote", ""), pages, page)):
                 findings.append(_finding("EVIDENCE_QUOTE_NOT_FOUND", cid,
                                          f"quote is not on page {page} (±1) of {acq_id}; copy it verbatim from `pages` output"))
+        if scan and kind in SCAN_NUMERIC_KINDS:
+            findings += second_reading_findings(cid, card)
         if kind == "QUESTION":
             q = card.get("question")
             if not q:
@@ -311,11 +432,17 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd in {"pages", "find"}:
         acq = load_json(acquisition_path(args.subject, args.acq))
-        snap, problem = ensure_snapshot(acq, args.fetch)
-        if snap is None:
-            print(problem)
-            return 1
-        pages = page_texts(snap, acq.get("media_type", ""))
+        if acq.get("requested_locator", "").startswith(SCAN_SCHEME):
+            pages = scan_pages(args.subject, acq)
+            if not pages or _is_index(pages):
+                print("the OCR text of this scan exists only on the machine that ingested it")
+                return 1
+        else:
+            snap, problem = ensure_snapshot(acq, args.fetch)
+            if snap is None:
+                print(problem)
+                return 1
+            pages = page_texts(snap, acq.get("media_type", ""))
         if args.cmd == "pages":
             chosen = [args.page] if args.page else range(1, len(pages) + 1)
             for n in chosen:

@@ -170,6 +170,40 @@
         "harvested_at": {
           "type": "string",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "scan_check": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Required on scanned-source cards of kind QUESTION, ANSWER_KEY, WORKED_EXAMPLE or RELATION. The quote is OCR output; the second reading is an independent clean transcription of the same passage from the page image. evidence_check compares their numbers itself.",
+          "required": [
+            "second_reading",
+            "second_reader",
+            "method"
+          ],
+          "properties": {
+            "second_reading": {
+              "type": "string",
+              "minLength": 20,
+              "description": "Clean transcription of exactly the quoted passage, read from the page image (math in plain text or LaTeX)."
+            },
+            "second_reader": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Agent or person id; must differ from harvested_by."
+            },
+            "method": {
+              "enum": [
+                "HUMAN",
+                "VISION_MODEL",
+                "SECOND_OCR_ENGINE"
+              ]
+            },
+            "image_crop_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$",
+              "description": "Optional digest of the page-image crop that was read (kept locally)."
+            }
+          }
         }
       }
     }
