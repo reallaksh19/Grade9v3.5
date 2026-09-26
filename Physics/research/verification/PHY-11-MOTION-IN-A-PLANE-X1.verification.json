@@ -1,0 +1,177 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X1",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:b244af810c673dcce9bd886f0029c02f866b9419a6fdede2229f6255438e016e",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X1-010",
+      "independent_solution": [
+        "In A's frame v_BA = v_B - v_A. B is seen moving perpendicular to A's line, so the component of v_B along A's line (at 60 - 30 = 30 deg to it) equals v_A: v_B cos30 = 100 sqrt3 -> v_B = 200 m/s.",
+        "Across A's line: |v_BA| = v_B sin30 = 100 m/s (A has no perpendicular component).",
+        "B, 500 m away across A's line, closes the gap at 100 m/s: t0 = 500/100 = 5 s."
+      ],
+      "independent_answer": "5 s",
+      "official_answer": "5",
+      "agrees": true,
+      "numeric_check": "500/((100*sqrt(3)/cos(radians(30)))*sin(radians(30)))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X1-012",
+      "independent_solution": [
+        "Rocket frame accelerates at +2 m/s^2 in gravity-free space, so each free ball has acceleration -2 m/s^2 relative to the rocket. Left ball: x1 = 0.3t - t^2; right ball: x2 = 4 - 0.2t - t^2 (m, from the left end).",
+        "Ignoring the walls, x2 - x1 = 4 - 0.5t = 0 at 8 s, but x1 = 0 again at t = 0.3 s: the left ball returns to the left wall long before, so it is at the left end (pressed there by the frame's acceleration).",
+        "The right ball reaches the left end when t^2 + 0.2t - 4 = 0 -> t = (-0.2 + sqrt(16.04))/2 = 1.90 s, i.e. about 2 s as an integer answer. The 8 s value requires ignoring the chamber wall."
+      ],
+      "independent_answer": "about 1.9 s, i.e. 2 (integer answer); 8 s is not physical because the first ball hits the left wall at 0.3 s",
+      "official_answer": "2 OR 8",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X1-014",
+      "independent_solution": [
+        "Full question read on pinned page 9. Ground velocity = velocity relative to water + water velocity (3 m/s east).",
+        "(a) Heading north: (3, 4) m/s -> 5 m/s at tan^-1(3/4) = 37 deg east of north.",
+        "(b) To reach B directly opposite, cancel the drift: 4 sin(phi) = 3 -> phi = sin^-1(3/4) = 48.6 deg (= tan^-1(3/sqrt7)) west of north; resultant speed sqrt(16 - 9) = sqrt7 = 2.65 m/s. (c) Crossing time = width/(northward speed): 4 > sqrt7, so case (a) is quicker."
+      ],
+      "independent_answer": "(a) 5 m/s at 37 deg east of north; (b) heading 48.6 deg (tan^-1(3/sqrt7)) west of north, speed sqrt7 m/s; (c) case (a) is faster",
+      "official_answer": "(a) 5 m/s at 37 deg to N; (b) (i) tan^-1(3/sqrt7) west of N, (ii) sqrt7 m/s; (c) in case (i) he reaches the opposite bank in shortest time",
+      "agrees": true,
+      "numeric_check": "sqrt(3**2 + 4**2)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X1-016",
+      "independent_solution": [
+        "Take i north, j vertically up; rain ground velocity v_r = a i + b j. Relative to the girl: v_r - v_girl.",
+        "At 5 m/s rain appears vertical: a - 5 = 0 -> a = 5. At 10 m/s it appears at 45 deg to the vertical: |a - 10| = |b| -> b = -5 (falling).",
+        "v_r = 5 i - 5 j: speed 5 sqrt2 = 7.07 m/s, falling at 45 deg to the vertical towards the north."
+      ],
+      "independent_answer": "v_r = 5 i - 5 j m/s: 7.07 m/s at 45 deg to the vertical, towards north",
+      "official_answer": "V_r = 5 i - 5 j",
+      "agrees": true,
+      "numeric_check": "10 - 5"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X1",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "extensions.grade9v3:interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X1",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X1-RELATIVE-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X1-FRAME-ADDITION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X1-FRAME-TRIANGLE",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X1-JEEADV-2014-P1-Q11",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X1-JEEADV-2014-P1-Q18",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": false
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X1-EXEMPLAR-4-34",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X1-EXEMPLAR-4-33",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-X1-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card claim adds a sentence the quote does not support: 'The JEE Main syllabus could not be pinned: NTA serves it only from cdnbbsr.s3waas.gov.in, which is not on the allowlist.' The quote is only the JEE (Advanced) line 'Kinematics in one and two dimensions (Cartesian coordinates only), projectiles; Uniform circular motion; Relative velocity.' Remove the JEE Main sentence from the claim (record the acquisition gap in the researcher summary or a known issue instead)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-X1-014",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote ends at '...reach opposite point B on north bank,' and omits the sub-questions '(a) which direction should he swim? (b) what will be his resultant speed? (c) From two different cases as mentioned in (a) and (b) above, in which case will he reach opposite bank in shorter time?' (same pinned page 9). The record stem Q-PHY-MIP-X1-EXEMPLAR-4-34 and the key (b)(i), (b)(ii), (c) depend on them. Extend the quote."
+    },
+    {
+      "target": "Q-PHY-MIP-X1-JEEADV-2014-P1-Q18",
+      "duty_for": "AUTHOR",
+      "detail": "answer.summary '2 s or 8 s' and check 'Both readings rest on the same relative-motion setup' present 8 s as an equally valid physical answer. It is not: in the rocket frame the left ball (x1 = 0.3t - t^2) is back at the left wall at t = 0.3 s, so the two balls can only meet at that end, when the right ball arrives at t = 1.90 s (about 2 s), as the record's own reasoning step 3 shows. Give about 1.9 s (integer answer 2) as the physical answer and mention 8 s only as the key's accepted alternative that comes from ignoring the chamber wall. Keeping it as an equal reading teaches the error."
+    }
+  ]
+}
