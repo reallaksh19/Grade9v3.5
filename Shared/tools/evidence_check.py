@@ -304,6 +304,62 @@ def second_reading_findings(cid: str, card: dict) -> list[dict]:
     return found
 
 
+CORROBORABLE_KINDS = {"QUESTION", "ANSWER_KEY"}
+
+
+def corroboration_findings(cid: str, card: dict, tier: str | None, acq: dict, allow: dict, subject: str,
+                           texts_for, repo: Path = REPO) -> list[dict]:
+    """Tier C fallback for a question or answer key no official page can supply.
+
+    The card's own source and at least `min_independent_publishers` corroborating sources must be
+    Tier C hosts with different publishers, each corroborating quote must be on its pinned page, and
+    the card must record the failed attempt on a Tier A page. See source-allowlist.json.
+    """
+    rule = allow["tiers"].get("C", {}).get("corroboration_fallback")
+    found: list[dict] = []
+    if not rule:
+        return [_finding("EVIDENCE_CORROBORATION_NOT_ALLOWED", cid, "this subject's allowlist has no corroboration_fallback")]
+    if card.get("kind") not in rule["applies_to"]:
+        return [_finding("EVIDENCE_CORROBORATION_WRONG_KIND", cid, f"only {', '.join(rule['applies_to'])} cards may be corroborated")]
+    if tier != "C":
+        return [_finding("EVIDENCE_CORROBORATION_WRONG_TIER", cid, f"the card's own source is tier {tier}; only a Tier C card is secondary")]
+    corr = card.get("corroboration") or {}
+    attempt = corr.get("official_attempt") or {}
+    if tier_of(attempt.get("url", ""), allow)[0] != "A":
+        found.append(_finding("EVIDENCE_OFFICIAL_ATTEMPT_MISSING", cid,
+                              "record the Tier A page you tried in corroboration.official_attempt.url"))
+    publishers = {tier_of(acq.get("requested_locator", ""), allow)[1]["publisher"]}
+    agreeing = 0
+    for i, src in enumerate(corr.get("sources", [])):
+        where = f"{cid}/corroboration/sources/{i}"
+        path = acquisition_path(subject, src.get("acquisition_ref", ""), repo)
+        if not path.is_file():
+            found.append(_finding("EVIDENCE_ACQUISITION_MISSING", where, f"{src.get('acquisition_ref')} has no acquisition record"))
+            continue
+        other = load_json(path)
+        other_tier, entry = tier_of(other.get("requested_locator", ""), allow)
+        if other_tier != "C":
+            found.append(_finding("EVIDENCE_CORROBORATION_WRONG_TIER", where,
+                                  "corroborating sources are Tier C hosts; if a Tier A copy exists, cite it as a PRIMARY card instead"))
+            continue
+        if entry["publisher"] in publishers:
+            found.append(_finding("EVIDENCE_CORROBORATION_NOT_INDEPENDENT", where,
+                                  f"{entry['publisher']} is already counted; use a different publisher"))
+            continue
+        pages = texts_for(other)
+        if pages and not quote_found(src.get("quote", ""), pages, src.get("page", 0)):
+            found.append(_finding("EVIDENCE_QUOTE_NOT_FOUND", where, f"quote is not on page {src.get('page')} (±1) of {other['acquisition_id']}"))
+            continue
+        if pages:
+            publishers.add(entry["publisher"])
+            agreeing += 1
+    need = rule["requires"]["min_independent_publishers"]
+    if agreeing < need:
+        found.append(_finding("EVIDENCE_CORROBORATION_INSUFFICIENT", cid,
+                              f"{agreeing} independent Tier C source(s) agree; need {need} besides the card's own"))
+    return found
+
+
 def evidence_files(subject: str, node: str | None = None, repo: Path = REPO) -> list[Path]:
     folder = research_dir(subject, repo) / "evidence"
     files = sorted(folder.glob("*.cards.json"))
@@ -340,6 +396,25 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
                 findings.append(_finding("EVIDENCE_DUPLICATE_CARD", cid, "card id used twice"))
             cards[cid] = {**card, "_file": rel, "_node": doc.get("node_ref")}
 
+    def texts_for(acq: dict) -> list[str]:
+        acq_id = acq["acquisition_id"]
+        if acq_id in texts:
+            return texts[acq_id]
+        if acq.get("requested_locator", "").startswith(SCAN_SCHEME):
+            texts[acq_id] = scan_pages(subject, acq, repo)
+            if not texts[acq_id]:
+                findings.append(_finding("EVIDENCE_SCAN_MANIFEST_MISSING", acq_id,
+                                         "scanned source has no scan manifest; run scan_ingest.py"))
+            return texts[acq_id]
+        snap, problem = ensure_snapshot(acq, fetch)
+        if snap is None:
+            code = "EVIDENCE_SNAPSHOT_DIGEST_MISMATCH" if problem == "DIGEST_CHANGED" else "EVIDENCE_SNAPSHOT_NOT_FETCHED"
+            findings.append(_finding(code, acq_id, problem or ""))
+            texts[acq_id] = []
+        else:
+            texts[acq_id] = page_texts(snap, acq.get("media_type", ""))
+        return texts[acq_id]
+
     for cid, card in cards.items():
         before = len(findings)
         acq_file = acquisition_path(subject, card.get("acquisition_ref", ""), repo)
@@ -354,27 +429,18 @@ def check(subject: str, node: str | None = None, fetch: bool = False, repo: Path
         if tier is None:
             findings.append(_finding("EVIDENCE_HOST_NOT_ALLOWED", cid, acq.get("requested_locator", "") + (
                 " (scan is not registered by the owner in local_sources with this sha256)" if scan else "")))
+        elif card.get("authority") == "SECONDARY_CORROBORATED":
+            findings += corroboration_findings(cid, card, tier, acq, allow, subject, texts_for, repo)
         elif kind not in may_support:
             findings.append(_finding("EVIDENCE_TIER_CANNOT_SUPPORT_KIND", cid,
-                                     f"tier {tier} source cannot support a {kind} card"))
+                                     f"tier {tier} source cannot support a {kind} card" + (
+                                         "; a Tier C question or key needs the corroboration fallback"
+                                         if tier == "C" and kind in CORROBORABLE_KINDS else "")))
         words = re.findall(r"[A-Za-z0-9]+", card.get("quote", ""))
         if len(words) < MIN_QUOTE_WORDS:
             findings.append(_finding("EVIDENCE_QUOTE_TOO_SHORT", cid, f"quote has {len(words)} words; need {MIN_QUOTE_WORDS}"))
         acq_id = acq["acquisition_id"]
-        if acq_id not in texts and scan:
-            texts[acq_id] = scan_pages(subject, acq, repo)
-            if not texts[acq_id]:
-                findings.append(_finding("EVIDENCE_SCAN_MANIFEST_MISSING", acq_id,
-                                         "scanned source has no scan manifest; run scan_ingest.py"))
-        if acq_id not in texts:
-            snap, problem = ensure_snapshot(acq, fetch)
-            if snap is None:
-                code = "EVIDENCE_SNAPSHOT_DIGEST_MISMATCH" if problem == "DIGEST_CHANGED" else "EVIDENCE_SNAPSHOT_NOT_FETCHED"
-                findings.append(_finding(code, acq_id, problem or ""))
-                texts[acq_id] = []
-            else:
-                texts[acq_id] = page_texts(snap, acq.get("media_type", ""))
-        pages = texts[acq_id]
+        pages = texts_for(acq)
         page = (card.get("locator") or {}).get("page", 0)
         if pages:
             if not 1 <= page <= len(pages):

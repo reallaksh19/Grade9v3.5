@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 334,
-  "relation_count": 360,
+  "component_count": 338,
+  "relation_count": 361,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 154,
-    "TOOLING": 84,
+    "TEST": 156,
+    "TOOLING": 86,
     "WEB": 10,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:2761acdfcf7e50bbab1ad2d7c0fda050fbffcc661304e641adaa7d19e3f271ed",
+  "digest": "sha256:ef8a0d8df056f45e37ffbbf2b26f223f080f084c2ab19955063f312d3a1d6108",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -143,8 +143,8 @@
       "path": "Shared/library/evidence-cards.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 6329,
-      "sha256": "65a895151747872bd057402ac1a23b7616960e1a34adca0ca00091829b50b656"
+      "bytes": 8865,
+      "sha256": "d14add5daa12bf80717e2a0ee17b2668880c3bd2342fa8b945dd27e9ed4cf82a"
     },
     {
       "path": "Shared/library/exam-source-verification.schema.json",
@@ -658,6 +658,13 @@
       "sha256": "cb29b5bd44e64c2c13f1f197adf8ee7ab1d068d26887f699884e21d1d0c0536f"
     },
     {
+      "path": "Shared/tools/calibration_corpus.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4031,
+      "sha256": "7250cdf5987a414303c2ba6c0bfb4f207639362091634dd11307f1f9c20d3a79"
+    },
+    {
       "path": "Shared/tools/capability_audit.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -787,8 +794,8 @@
       "path": "Shared/tools/evidence_check.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 20274,
-      "sha256": "09e2c9e1dab9d753051955785de0d488fc61f9185df58721bc1209d57091e27f"
+      "bytes": 24111,
+      "sha256": "913e99a71278445d58bbe3b9d400a1dcaf93564d5e1a3d04dbc9c810f426b64b"
     },
     {
       "path": "Shared/tools/execute_authoring_run.py",
@@ -943,6 +950,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 15839,
       "sha256": "e343e48045525d2175d397fa3f919a8df7e8e04aaca270842c4322de2956db10"
+    },
+    {
+      "path": "Shared/tools/renderer_inventory.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 4416,
+      "sha256": "30d01f2289210d859ecbc49b982eddac7226516ef31b05c88a39925da2ef3812"
     },
     {
       "path": "Shared/tools/renderer_registry.py",
@@ -1561,6 +1575,13 @@
       "sha256": "2ead444655f964007968ba5cd122956d61250e3cf5908ba2dabb28f623ffebfa"
     },
     {
+      "path": "tests/test_calibration_corpus.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1739,
+      "sha256": "36382d96e92e4c60d4fe1c16b381bf869a927ba031c7874bba577f219da55ec2"
+    },
+    {
       "path": "tests/test_capability_delivery.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2107,6 +2128,13 @@
       "sha256": "bc3fe7f9b50c470d7165402319284e02fea6fbe0e8dadde11ab1970652f72317"
     },
     {
+      "path": "tests/test_renderer_inventory.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1286,
+      "sha256": "a401de11ba9c8724a73fd00acaf15f5940715ac80906d12d5b08f7ca053b30fa"
+    },
+    {
       "path": "tests/test_research_first_workflow.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2117,8 +2145,8 @@
       "path": "tests/test_research_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 20264,
-      "sha256": "2937df523a9982cd1165de20efd898a3a0b0e7260a69a899359ad4f517e52bc1"
+      "bytes": 23031,
+      "sha256": "bab7cef74b3094b8cb040004708eaa0891eb138adba2c5205cb6ea06499db041"
     },
     {
       "path": "tests/test_review_authority.py",
@@ -3952,6 +3980,11 @@
     },
     {
       "from": "tests/test_release_authority.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_renderer_inventory.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

@@ -10,6 +10,9 @@ rules they point to live in `docs/library-agents/`; these files only start an ag
 | `03-verifier.md` | Verifier | cloud session | the board shows a node at the VERIFIER stage |
 | `04-scanner.md` | Scanner (scanned books) | owner's local machine | the owner has registered a scan in `local_sources` |
 
+**Phase 0 freeze** (docs/plans/phase0/FREEZE.md): these agents build cited records only. No agent
+generates learner pages, PDFs or handouts until Phase 4.
+
 Use at most three agents at once, one per role. The scanner counts as a researcher.
 Check the stages with:
 

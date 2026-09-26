@@ -35,7 +35,7 @@ is marked `AUTHORED_PEDAGOGICAL`.
 |---|---|---|
 | microtopic | `title`, `inferential_jump`, `misconceptions` | `entry_assumptions`, `teaching_path`, `exit_task`, repairs and prompts |
 | relation | `expression`, `meaning`, `conditions` | — |
-| question (source) | `stem`, `conditions`, `answer`, including a QUESTION and an ANSWER_KEY card | — |
+| question (source) | `stem`, `conditions`, `answer`, including a QUESTION and an ANSWER_KEY card; if either card is `SECONDARY_CORROBORATED`, set `extensions["grade9v3:source_authority"] = "SECONDARY_CORROBORATED"` so the page labels it as a secondary source | — |
 | question (authored practice) | — | all, with `origin: "AUTHORED"` |
 
 - Set `intrinsic_badge` (EASY/MEDIUM/HARD) with a `badge_reason`. For a **HARD** microtopic

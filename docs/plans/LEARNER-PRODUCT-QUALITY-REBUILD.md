@@ -253,13 +253,25 @@ stress different shapes of content:
 | Free-text validation reports | Tool-written reports (Phase 4) |
 | Parallel extension packages outside the research pipeline | Promoted, verified records only |
 
-## 5. Owner decisions needed
+## 5. Owner decisions (answered 2026-09-26)
 
-1. Approve this phase order and the "no new products until Phase 4" freeze. Existing pages stay
-   online.
-2. Custody of the owner's two quality references (repository, or local only with extracted
-   grammar committed).
-3. Who reviews calibration in Phase 1 and pilot units in Phase 6. The owner is the default.
-4. Whether JEE Main sources on `cdnbbsr.s3waas.gov.in` join the allowlist (it affects Phase 6
-   question coverage).
-5. Cost ceiling per unit for agent work.
+1. **Phase order and freeze:** approved. See [phase0/FREEZE.md](phase0/FREEZE.md).
+2. **Quality references:** they live in the repository and agents search for them. The tablet
+   question bank (R2) is pinned by commit in `benchmarks/quality-calibration/manifest.v1.json`.
+   The compiled Core1A textbook (R1) is on no branch today, so its grammar is encoded there and
+   agents re-search before each calibration run.
+3. **Reviewer:** the owner reviews calibration (Phase 1) and pilot units (Phase 6).
+4. **Sources:** `cdnbbsr.s3waas.gov.in` (NTA's CDN) is Tier A. When no official copy of a
+   question or answer key can be pinned, a Tier C copy counts as *secondary* authority only if
+   the official attempt is recorded and at least two other Tier C publishers carry the same
+   stem or answer. Tier C publishers: ExamSIDE, ALLEN, Aakash, Resonance, MathonGo, Vedantu,
+   Shaalaa. `evidence_check.py` enforces this, and pages label such questions as secondary.
+5. **Cost ceiling per unit (still open).** Agents are paid per token, so every subtopic costs
+   money to research, author, verify and render. The ceiling is the most the owner is willing
+   to spend on one subtopic (one "unit": its six Cores and question set) before the board
+   reports it for a look. It is not a stop state: the unit keeps its place, and the board shows
+   the spend next to the quality result so a runaway loop (an agent retrying the same failing
+   gate) is visible early. For scale, the Physics researcher pilot pinned 15 nodes for about
+   US$10.50, roughly $0.70 per node. Proposed default: **US$15 per unit across all roles**
+   (researcher $5, author $4, verifier $3, rendering and gate retries $3), reported on the board
+   at 100% and escalated to the owner at 200%. Phase 5 implements the logging.

@@ -1,5 +1,9 @@
 # Prompt: Tablet shell and navigation agent (local machine)
 
+> **Phase 0 freeze** (docs/plans/phase0/FREEZE.md): this agent changes site chrome and navigation only.
+> Do not add or edit learner content, and do not add a renderer:
+> `python3 Shared/tools/renderer_inventory.py --check` must still pass.
+
 Give this to a local agent with Python 3, Node.js and git. Copy everything below the line.
 
 ---

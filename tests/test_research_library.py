@@ -263,6 +263,58 @@ class Board(unittest.TestCase):
         self.assertNotEqual(first.splitlines()[0], second.splitlines()[0])
 
 
+KEY = b"<html><body><p>JEE Main 2021 26 Feb Shift 1 Question 12 answer key: the correct option is (3) 20 m</p></body></html>"
+KEY_QUOTE = "Question 12 answer key: the correct option is (3) 20 m"
+
+
+class CorroborationFallback(unittest.TestCase):
+    """A Tier C question or key is secondary authority only when other Tier C publishers agree."""
+
+    def setUp(self):
+        self.box = Sandbox()
+        self.own = self.box.pin(KEY, "https://questions.examside.com/past-years/jee/question/q12")
+        self.allen = self.box.pin(KEY + b" ", "https://www.allen.ac.in/jee-main/2021/key.html")
+        self.aakash = self.box.pin(KEY + b"  ", "https://www.aakash.ac.in/jee-main/2021/key.html")
+        self.examside2 = self.box.pin(KEY + b"   ", "https://www.examside.com/jee-main/2021/key.html")
+
+    def tearDown(self):
+        self.box.close()
+
+    def key_card(self, sources, attempt="https://jeemain.nta.nic.in/answer-key-2021"):
+        corr = {"official_attempt": {"url": attempt, "outcome": "UNREACHABLE", "attempted_at": "2026-09-26"},
+                "sources": [{"acquisition_ref": a, "page": 1, "quote": KEY_QUOTE} for a in sources]}
+        return card("EV-T-KEYC", "ANSWER_KEY", KEY_QUOTE, authority="SECONDARY_CORROBORATED", corroboration=corr)
+
+    def codes(self, row):
+        self.box.write_cards(NODE, [row], acq=self.own)
+        return {f["code"] for f in self.box.check()["findings"]}
+
+    def test_single_tier_c_host_cannot_support_a_key(self):
+        codes = self.codes(card("EV-T-KEYC", "ANSWER_KEY", KEY_QUOTE))
+        self.assertEqual(codes, {"EVIDENCE_TIER_CANNOT_SUPPORT_KIND"})
+
+    def test_two_independent_publishers_and_an_official_attempt_pass(self):
+        self.assertEqual(self.codes(self.key_card([self.allen, self.aakash])), set())
+
+    def test_same_publisher_does_not_count_twice(self):
+        codes = self.codes(self.key_card([self.allen, self.examside2]))
+        self.assertEqual(codes, {"EVIDENCE_CORROBORATION_NOT_INDEPENDENT", "EVIDENCE_CORROBORATION_INSUFFICIENT"})
+
+    def test_official_attempt_must_name_a_tier_a_page(self):
+        codes = self.codes(self.key_card([self.allen, self.aakash], attempt="https://example.org/key"))
+        self.assertEqual(codes, {"EVIDENCE_OFFICIAL_ATTEMPT_MISSING"})
+
+    def test_explanations_are_never_corroborated(self):
+        row = self.key_card([self.allen, self.aakash])
+        row["kind"] = "DEFINITION"
+        self.assertEqual(self.codes(row), {"EVIDENCE_CORROBORATION_WRONG_KIND"})
+
+    def test_nta_cdn_is_primary_authority(self):
+        tier, _ = evidence_check.tier_of("https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/key.pdf",
+                                         evidence_check.allowlist(SUBJECT))
+        self.assertEqual(tier, "A")
+
+
 if __name__ == "__main__":
     unittest.main()
 
