@@ -4647,15 +4647,15 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-              "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+              "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
               "origin": "AUTHORED",
-              "answer": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval."
+              "answer": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-              "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+              "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
               "origin": "AUTHORED",
-              "answer": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant."
+              "answer": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
@@ -4665,15 +4665,15 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-              "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+              "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
               "origin": "AUTHORED",
-              "answer": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events."
+              "answer": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-              "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+              "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
               "origin": "AUTHORED",
-              "answer": "Ground impact occurs at t=3 s and the horizontal range is 30 m."
+              "answer": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof."
             },
             {
               "id": "Q-PHY-KIN-PRACTICAL-13",
@@ -4876,7 +4876,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 123,
+          "record_count": 135,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4897,12 +4897,72 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-APEX-12-20",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-CONST-ACCEL-3S",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-DRONE-SHARED-CLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-EVENT-CLOCK",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-LEVEL-APEX-RETURN",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-PLANE-RELEASE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-PROJECTILE-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-PUCK-AXIS-CHECK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ROOF-LANDING-ROOTS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-SAME-HEIGHT-12-16",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-TWO-PUCK-MEETING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-VELOCITY-45-BELOW",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-VERBAL-COMPASS-STATE",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -17262,11 +17322,20 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "x(t) = 3t and y(t) = 4t on one clock, so at t = 5 s the boat is at (15, 20) m. A pair such as x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.",
                       "Separate x and y equations; same t for both."
                     ],
                     "rejected": [
                       "Use x acceleration in the y equation or assign unrelated times."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A boat crosses a river. Use the bank frame: origin at the starting jetty, +x downstream, +y straight across, t = 0 when the boat leaves. Relative to the bank the boat moves 3 m/s downstream and 4 m/s across, both steady. Set up an x column and a y column tied to one clock, then give the boat's position at t = 5 s and say which pair of values you would refuse to call its position.",
+                      "givens": [
+                        "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
+                        "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
+                        "Requested instant: t = 5 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17514,11 +17583,20 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "Both a_x = −1 m/s² and a_y = 2 m/s² are constant, so the 1D equations apply on each axis. v_x = 5 − t, v_y = 2t, x = 5t − ½t², y = t². At t = 4 s: v = (1 i + 8 j) m/s and r = (12 i + 16 j) m.",
                       "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
                     ],
                     "rejected": [
                       "Use |a| in both equations or use separate unrelated times."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A skater on smooth ice starts at the origin moving at 5 m/s along +x. A steady wind then gives her an acceleration of 1 m/s² along −x and 2 m/s² along +y for 4 s. Decide on each axis whether the constant-acceleration equations apply, write the x and y equations with one shared t, and find her velocity and position at t = 4 s.",
+                      "givens": [
+                        "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
+                        "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
+                        "Requested instant: t = 4 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17611,11 +17689,11 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-                  "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
-                  "answer": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+                  "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
+                  "answer": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-                  "repair_ref": "K2D2-1"
+                  "repair_ref": "K2D2-3"
                 }
               ],
               "activities": [
@@ -17790,11 +17868,21 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "After release only gravity acts, so a = (0, −10) m/s². x = 6t, y = 2 + 8t − 5t², v_x = 6, v_y = 8 − 10t. At t = 0.5 s the ball is at (3, 4.75) m with velocity (6 i + 3 j) m/s.",
                       "State assumptions, set component accelerations, then solve x/y with one t."
                     ],
                     "rejected": [
                       "Start from a memorized range/height formula without establishing the free-flight component model."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
+                      "givens": [
+                        "Release point: 2 m above the floor.",
+                        "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
+                        "g = 10 m/s²; air resistance negligible.",
+                        "Requested instant: t = 0.5 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17956,24 +18044,24 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-                  "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
-                  "answer": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+                  "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
+                  "answer": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-6"
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-                  "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
-                  "answer": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+                  "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
+                  "answer": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-1"
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-                  "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
-                  "answer": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+                  "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
+                  "answer": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-7"

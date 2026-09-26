@@ -2180,8 +2180,7 @@
         "REL-KIN-2D-DISPLACEMENT"
       ],
       "representation_refs": [
-        "REP-KIN-2D-SHARED-CLOCK",
-        "REP-KIN-2D-DRONE-SHARED-CLOCK"
+        "REP-KIN-2D-SHARED-CLOCK"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -2379,8 +2378,7 @@
       ],
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK",
-        "REP-KIN-2D-EVENT-CLOCK",
-        "REP-KIN-2D-PUCK-AXIS-CHECK"
+        "REP-KIN-2D-EVENT-CLOCK"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -2613,9 +2611,7 @@
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK",
         "REP-KIN-2D-EVENT-CLOCK",
-        "REP-KIN-2D-PROJECTILE-MODEL",
-        "REP-KIN-2D-LEVEL-APEX-RETURN",
-        "REP-KIN-2D-ROOF-UNEQUAL-LANDING"
+        "REP-KIN-2D-PROJECTILE-MODEL"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -3617,7 +3613,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "COMPONENT_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the drone of x(t) = 6t, y(t) = 8t − t² in one frame with one clock, so each axis is evaluated on its own and only same-time values are paired into a position.",
       "required_elements": [
         "drone flight from the launch pad",
@@ -3735,7 +3731,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "COMPONENT_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the air-table puck with u = (4, 6) m/s and a = (0, −2) m/s²: check that each axis's acceleration is constant, run the one-dimensional equations once per axis, and carry the one event time t = 6 s across both axes.",
       "required_elements": [
         "puck on the air table",
@@ -3863,7 +3859,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the level-ground launch with u = (6, 15) m/s and name each requested event as a component condition before its time is solved: v_y = 0 at the apex, Δy = 0 at the return to launch height.",
       "required_elements": [
         "level-ground launch with u = (6, 15) m/s",
@@ -3982,7 +3978,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the roof launch 25 m above the ground with u = (5, 20) m/s: the landing event is written from the actual drop, Δy = −25 m, with the actual u_y kept, and every requested quantity is read at that one time.",
       "required_elements": [
         "roof launch 25 m above ground with u = (5, 20) m/s",
@@ -4096,7 +4092,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "COMPONENT_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the particle with u = (3 i + 4 j) m/s and constant a = (2 i − 1 j) m/s² split into two signed one-dimensional problems that share the one 3 s interval.",
       "required_elements": [
         "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
@@ -4213,7 +4209,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the launch with u = (12, 20) m/s up to its apex, where only v_y is zero while v_x = 12 m/s continues and gravity still acts.",
       "required_elements": [
         "launch with u_x = 12 m/s and u_y = 20 m/s",
@@ -4322,7 +4318,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the same-height flight with u = (12, 16) m/s and g = 8 m/s²: the landing is the non-zero root of Δy = 0, and that one time gives the range and the landing velocity.",
       "required_elements": [
         "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
@@ -4435,7 +4431,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the particle described in compass words (east 6 m/s, north 2 m/s, 3 m/s² south) so the learner declares a frame before any sign is written.",
       "required_elements": [
         "particle with velocity and acceleration given in compass words",
@@ -4540,7 +4536,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "MOTION_DIAGRAM",
+      "kind": "VECTOR",
       "purpose": "Show the two air-table pucks in one frame with one clock, so a meeting is tested as the same point at the same time rather than as crossing paths.",
       "required_elements": [
         "two pucks with their start points, velocities and accelerations",
@@ -4649,7 +4645,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the launch 15 m up with u = (10, 10) m/s and the roof 3.75 m above launch from 8 m out, so the two roof-level roots are told apart by where the ball is at each.",
       "required_elements": [
         "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
@@ -4754,7 +4750,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the package released 80 m up from a plane flying at 50 m/s, so the projectile model is started at release with the package's own velocity in the ground frame.",
       "required_elements": [
         "plane at 50 m/s releasing a package 80 m up, with the ground frame",
@@ -4859,7 +4855,7 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "TRAJECTORY_PLOT",
+      "kind": "GRAPH",
       "purpose": "Show the cliff throw with u = (10, 20) m/s and the target direction 45° below the horizontal, so the event is written as a condition on the velocity components, not on the displacement.",
       "required_elements": [
         "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
