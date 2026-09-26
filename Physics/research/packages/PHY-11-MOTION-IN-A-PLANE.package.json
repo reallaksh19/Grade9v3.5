@@ -7661,7 +7661,6 @@
       ],
       "item_refs": [
         "Q-PHY-MIP-X2-EXEMPLAR-4-31",
-        "Q-PHY-MIP-X2-EXEMPLAR-4-32",
         "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6"
       ]
     },
@@ -11215,119 +11214,6 @@
       "repair_ref": "MIP-X2-2"
     },
     {
-      "id": "Q-PHY-MIP-X2-EXEMPLAR-4-32",
-      "version": "0.1.0",
-      "status": "CANDIDATE",
-      "source_refs": [
-        "SRC-NCERT-EXEMPLAR-KEEP304",
-        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
-      ],
-      "evidence_refs": [
-        "EV-PHY-11-MIP-X2-010",
-        "EV-PHY-11-MIP-X3-004",
-        "EV-PHY-11-MIP-X2-002",
-        "EV-PHY-11-MIP-X2-011"
-      ],
-      "extensions": {
-        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
-        "grade9v3:authored_by": "agent-author-1",
-        "grade9v3:citations": {
-          "stem": [
-            "EV-PHY-11-MIP-X2-010"
-          ],
-          "conditions": [
-            "EV-PHY-11-MIP-X3-004",
-            "EV-PHY-11-MIP-X2-002"
-          ],
-          "answer": [
-            "EV-PHY-11-MIP-X2-011",
-            "EV-PHY-11-MIP-X2-002",
-            "EV-PHY-11-MIP-X3-004"
-          ]
-        },
-        "grade9v3:figure_note": "Exemplar Fig. 4.7 shows the incline and the first impact point; read it on the cited page.",
-        "grade9v3:known_issue": "ISSUE-MIP-EX432-KEY"
-      },
-      "origin": "ORIGINAL",
-      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
-      "original_identifier": "EXEMPLAR-XI-4.32",
-      "stem": "A particle falling vertically from a height hits a plane surface inclined to horizontal at an angle theta with speed v0 and rebounds elastically (Fig 4.7). Find the distance along the plane where it will hit second time.",
-      "subparts": [],
-      "options": [],
-      "conditions": [
-        "The rebound is elastic: the particle leaves the surface with its incoming speed v0.",
-        "Air resistance neglected; axes along and perpendicular to the plane may be used."
-      ],
-      "figure_refs": [],
-      "answer": {
-        "kind": "EXACT",
-        "summary": "Author's derivation: 4 v0^2 sin(theta)/g along the plane. The official key's printed expression is a fraction in v0^2, sin(theta) and g whose leading factor is not legible in the text layer; see ISSUE-MIP-EX432-KEY.",
-        "reasoning": [
-          "Along/perpendicular to the plane the incoming velocity has v0 sin(theta) along the slope (downhill) and v0 cos(theta) into it.",
-          "An elastic rebound reverses the perpendicular part and keeps the along-slope part and the speed v0.",
-          "Perpendicular motion: u_y = v0 cos(theta), a_y = -g cos(theta), so it returns to the plane after T = 2 v0/g.",
-          "Along the slope: u_x = v0 sin(theta), a_x = g sin(theta) downhill, so d = v0 sin(theta)(2 v0/g) + (1/2) g sin(theta)(2 v0/g)^2 = 4 v0^2 sin(theta)/g."
-        ],
-        "check": "theta = 0 gives d = 0: on level ground the particle bounces straight back up to the same point.",
-        "acceptable_alternatives": [],
-        "subpart_answers": [],
-        "verification_status": "CHECKED_BY_AUTHOR",
-        "reasoning_route": [
-          {
-            "id": "R-X2-32-REP",
-            "kind": "REPRESENT",
-            "action": "Resolve the incoming velocity along and perpendicular to the plane.",
-            "why_valid": "The plane's normal is tilted by theta from the vertical.",
-            "inputs": [],
-            "output": "(v0 sin theta, -v0 cos theta)"
-          },
-          {
-            "id": "R-X2-32-DEC",
-            "kind": "DECIDE",
-            "action": "Apply the elastic rebound to the perpendicular part only.",
-            "why_valid": "The particle keeps its speed v0 after an elastic rebound.",
-            "inputs": [],
-            "output": "(v0 sin theta, +v0 cos theta)"
-          },
-          {
-            "id": "R-X2-32-TR",
-            "kind": "TRANSFORM",
-            "action": "Solve the tilted-axes flight.",
-            "why_valid": "Constant accelerations g sin(theta) and -g cos(theta).",
-            "inputs": [],
-            "output": "T = 2 v0/g; d = 4 v0^2 sin(theta)/g"
-          }
-        ],
-        "crux_move_ref": "R-X2-32-DEC"
-      },
-      "primary_capability_ref": "CAP-PHY-MIP-X2",
-      "secondary_capability_refs": [],
-      "family_ref": "FAM-PHY-MIP-X2",
-      "adaptation": null,
-      "exposure": [
-        {
-          "core": "CORE2B",
-          "role": "PRACTICE",
-          "artifact_ref": null
-        }
-      ],
-      "hints": [
-        {
-          "text": "Rest is similar to if particle is projected up the incline.",
-          "reveals": "METHOD"
-        }
-      ],
-      "scaffolds": [
-        {
-          "text": "Split the velocity just before impact into parts along and perpendicular to the slope.",
-          "support_kind": "REPRESENT",
-          "reveals": "METHOD",
-          "supports_move_ref": "R-X2-32-REP"
-        }
-      ],
-      "repair_ref": "MIP-X2-3"
-    },
-    {
       "id": "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -12362,12 +12248,10 @@
     },
     {
       "id": "ISSUE-MIP-EX432-KEY",
-      "affected_refs": [
-        "Q-PHY-MIP-X2-EXEMPLAR-4-32"
-      ],
+      "affected_refs": [],
       "classification": "SCIENTIFIC_REVIEW_REQUIRED",
-      "description": "The official Exemplar answer to 4.32 is printed as a fraction in v0, g and sin(theta) whose leading factor does not survive in the PDF text layer (cards EV-PHY-11-MIP-X2-011 and X3-011). The records state the author's derivation, 4 v0^2 sin(theta)/g, without claiming it matches the key.",
-      "next_action": "Verifier reads the printed answer on page 11 of keep316 and confirms or disputes the derived expression."
+      "description": "NCERT Exemplar 4.32 (elastic rebound on an incline) was withdrawn from this package: its printed key (keep316 answers page for Chapter 4) shows the letter 'A' where the numeric coefficient of v0^2 sin(theta)/g belongs, and no second pinned source fixes the coefficient. The author's derivation gives 4 v0^2 sin(theta)/g. Its records Q-PHY-MIP-X2-EXEMPLAR-4-32 and Q-PHY-MIP-X3-EXEMPLAR-4-32-REBOUND were removed with their cards.",
+      "next_action": "Researcher finds an incline projectile question with an official key for PHY-11-MOTION-IN-A-PLANE-X2; the author then adds its record."
     }
   ],
   "extensions": {},
