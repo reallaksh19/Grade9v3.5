@@ -12,6 +12,8 @@ sys.path.insert(0, str(REPO))
 
 from Shared.tools import package_depth, package_migrate  # noqa: E402
 
+# A frozen copy of Motion in a Plane before the Phase 6 pilot deepened it: the tests need a thin package.
+THIN = "tests/fixtures/render/thin-kin-2d-motion.v1.json"
 SCHEMA = json.loads((REPO / "Shared/library/package.schema.json").read_text(encoding="utf-8"))
 
 
@@ -37,7 +39,7 @@ class Migration(unittest.TestCase):
                 self.assertEqual(errors, [])
 
     def test_migration_restructures_but_never_invents(self):
-        pkg = json.loads(next(p for p in package_migrate.package_paths() if p.name == "phy-kin-2d-motion.v1.json").read_text(encoding="utf-8"))
+        pkg = json.loads((REPO / THIN).read_text(encoding="utf-8"))
         for m in pkg["microtopics"]:
             for u in m.get("construction_units", []):
                 self.assertEqual(u["decision_from"], "inferential_jump")
@@ -62,7 +64,7 @@ class Migration(unittest.TestCase):
 
 class Duties(unittest.TestCase):
     def setUp(self):
-        path = next(p for p in package_migrate.package_paths() if p.name == "phy-kin-2d-motion.v1.json")
+        path = REPO / THIN
         self.pkg = json.loads(path.read_text(encoding="utf-8"))
         self.taught = package_depth.taught_capabilities()
 

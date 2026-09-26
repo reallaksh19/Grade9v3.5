@@ -541,10 +541,28 @@ window.GRADE9V3 = {
           ],
           "questions": [
             {
+              "id": "Q-MATH-CONSTRAINT-1A",
+              "stem": "The unknown x ranges over the rationals. Test x = 3 and x = 4 in 2x + 5 = 11. Which of them, if either, is a solution?",
+              "origin": "AUTHORED",
+              "answer": "x = 3 is a solution; x = 4 is not."
+            },
+            {
+              "id": "Q-MATH-EXACT-1A",
+              "stem": "Solve 6x − 1 = 3 over the rationals. Give the exact solution, then decide whether 0.666 also satisfies the equation.",
+              "origin": "AUTHORED",
+              "answer": "x = 2/3; 0.666 is not a solution, because it makes the left side 2.996."
+            },
+            {
               "id": "Q-MATH-LINEAR-01",
               "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
               "origin": "AUTHORED",
               "answer": "x = 7/3."
+            },
+            {
+              "id": "Q-MATH-LINEAR-2B-01",
+              "stem": "Solve 3(x − 1) = 5 over the rationals. Give the exact solution and verify it in the original equation.",
+              "origin": "AUTHORED",
+              "answer": "x = 8/3."
             }
           ],
           "capabilities": [
@@ -567,28 +585,24 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 15,
+          "record_count": 18,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1",
               "CORE1A",
               "CORE1B",
-              "CORE2A"
+              "CORE2A",
+              "CORE2B"
             ],
-            "atoms": 6,
-            "questions": 1,
+            "atoms": 15,
+            "questions": 4,
             "obligations": 5,
             "authoring_requirements": [
               {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
                 "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
-              },
-              {
-                "kind": "PRODUCT_UNSUPPORTED",
-                "core": "CORE2B",
-                "detail": "the library holds no question exposed to this product for this bucket"
               },
               {
                 "kind": "PROSE_AUTHORING",
@@ -778,7 +792,16 @@ window.GRADE9V3 = {
                 "prerequisite_refs": [],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-MATH-CONSTRAINT-1A",
+                  "stem": "The unknown x ranges over the rationals. Test x = 3 and x = 4 in 2x + 5 = 11. Which of them, if either, is a solution?",
+                  "answer": "x = 3 is a solution; x = 4 is not.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-MATH-LINEAR",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             },
             {
@@ -946,6 +969,14 @@ window.GRADE9V3 = {
                   "origin": "AUTHORED",
                   "family_ref": "FAM-MATH-LINEAR",
                   "repair_ref": null
+                },
+                {
+                  "id": "Q-MATH-LINEAR-2B-01",
+                  "stem": "Solve 3(x − 1) = 5 over the rationals. Give the exact solution and verify it in the original equation.",
+                  "answer": "x = 8/3.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-MATH-LINEAR",
+                  "repair_ref": "ME-1"
                 }
               ],
               "activities": []
@@ -1103,7 +1134,16 @@ window.GRADE9V3 = {
                 ],
                 "acceptance_status": "CANDIDATE"
               },
-              "questions": [],
+              "questions": [
+                {
+                  "id": "Q-MATH-EXACT-1A",
+                  "stem": "Solve 6x − 1 = 3 over the rationals. Give the exact solution, then decide whether 0.666 also satisfies the equation.",
+                  "answer": "x = 2/3; 0.666 is not a solution, because it makes the left side 2.996.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-MATH-LINEAR",
+                  "repair_ref": null
+                }
+              ],
               "activities": []
             }
           ]
@@ -4164,7 +4204,7 @@ window.GRADE9V3 = {
                   "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
                   "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
                   "role": "TRANSFORM",
-                  "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)",
+                  "output": "For x = 3t and y = 5t − t² at t = 1 s: (x, y) = (3, 4) m, (v_x, v_y) = (3, 3) m/s, (a_x, a_y) = (0, −2) m/s²",
                   "inputs": [
                     "CAP-VECTOR-SIGNED-COMPONENT"
                   ]
@@ -4174,7 +4214,7 @@ window.GRADE9V3 = {
                   "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
                   "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
                   "role": "TRANSFORM",
-                  "output": "two axis histories coupled by one clock",
+                  "output": "x(1) = 3 × 1 = 3 m uses only x-quantities; y(1) = 5 × 1 − 1² = 4 m uses only y-quantities; both use t = 1 s",
                   "inputs": []
                 },
                 {
@@ -4564,6 +4604,18 @@ window.GRADE9V3 = {
               "answer": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval."
             },
             {
+              "id": "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01",
+              "stem": "A puck on a tilted air table starts at the origin with velocity (4 i + 6 j) m/s, and its acceleration is (0 i − 2 j) m/s² throughout. Using the table's x-y frame, decide which constant-acceleration equations apply on each axis, find when the puck is next at y = 0, and find its x-position and velocity at that instant.",
+              "origin": "AUTHORED",
+              "answer": "The puck is next at y = 0 at t = 6 s, at x = 24 m, moving with v = (4 i − 6 j) m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01",
+              "stem": "A drone flies in a frame with origin at its launch pad, +x east, +y up and t = 0 at launch. Its position is x(t) = 6t m and y(t) = (8t − t²) m. Find its position at t = 2 s, and decide whether the pair x(2 s), y(4 s) is a position the drone ever occupies.",
+              "origin": "AUTHORED",
+              "answer": "At t = 2 s the drone is at (12, 12) m. The pair (12, 16) m mixes two instants and is not a position the drone ever occupies."
+            },
+            {
               "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
               "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
               "origin": "AUTHORED",
@@ -4628,6 +4680,24 @@ window.GRADE9V3 = {
               "stem": "Design the inclined-plane motion practical needed to produce both a distance/position-time graph and a velocity-time graph. State what you measure, how you construct the two graphs, and what graph evidence would support approximately constant acceleration.",
               "origin": "AUTHORED",
               "answer": "Measure position along the incline at known times, plot position against time, calculate interval velocities from successive position changes over time changes, plot those velocities against representative times, and look for an approximately straight velocity-time trend whose slope is approximately constant."
+            },
+            {
+              "id": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
+              "stem": "An ideal projectile is launched from level ground with u_x = 6 m/s and u_y = 15 m/s. Take +y upward and g = 10 m/s². Name the component condition for each event, then find the time and height of the apex, and the time and range when it lands back at launch height.",
+              "origin": "AUTHORED",
+              "answer": "Apex at t = 1.5 s, 11.25 m above launch, with velocity (6 i + 0 j) m/s; landing at t = 3 s, 18 m from launch."
+            },
+            {
+              "id": "Q-PHY-KIN-PROJ-1A-MODEL-01",
+              "stem": "A ball is thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s. After release only gravity acts, and air resistance is negligible. Take +y upward and g = 10 m/s². Decide whether the ideal projectile model applies, write its component relations, and find the ball's displacement and velocity 1 s after release.",
+              "origin": "AUTHORED",
+              "answer": "The model applies with a = (0, −10) m/s². After 1 s the displacement is (8 i + 1 j) m and the velocity is (8 i − 4 j) m/s."
+            },
+            {
+              "id": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
+              "stem": "A ball is thrown from the edge of a roof 25 m above level ground with u_x = 5 m/s and u_y = 20 m/s. Take +y upward and g = 10 m/s², and neglect air resistance. Find when it hits the ground, how far from the building it lands, and its impact velocity and speed.",
+              "origin": "AUTHORED",
+              "answer": "Impact at t = 5 s, 25 m from the building, with v = (5 i − 30 j) m/s and a speed of about 30.4 m/s."
             },
             {
               "id": "Q-PHY-KIN-VERT-2A-APEX-05",
@@ -4806,7 +4876,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 118,
+          "record_count": 123,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4817,7 +4887,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 80,
-            "questions": 10,
+            "questions": 15,
             "obligations": 6,
             "authoring_requirements": [
               {
@@ -5432,7 +5502,7 @@ window.GRADE9V3 = {
                 {
                   "id": "NLM6-2",
                   "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
-                  "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+                  "why_valid": "The net external force on the chosen body sets its acceleration: F_net = m a holds for that one body, with m > 0, in an inertial frame.",
                   "role": "TRANSFORM",
                   "output": "F_net = signed sum; a = F_net / m.",
                   "inputs": [
@@ -5527,7 +5597,7 @@ window.GRADE9V3 = {
                   "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
                   "why_valid": "Contact friction resists relative sliding between the surfaces.",
                   "role": "TRANSFORM",
-                  "output": "friction tangent to contact and opposite relative sliding/tendency.",
+                  "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right",
                   "inputs": []
                 },
                 {
@@ -5609,7 +5679,7 @@ window.GRADE9V3 = {
                   "action": "Draw equal-length opposite arrows on the two different body diagrams.",
                   "why_valid": "Newton's third-law partners are equal in magnitude and opposite in direction for the same interaction.",
                   "role": "TRANSFORM",
-                  "output": "partner arrows: equal magnitude, opposite direction, different bodies.",
+                  "output": "A on B: +20 N on B's diagram.  B on A: −20 N on A's diagram.  Same size, opposite sign, different bodies.",
                   "inputs": []
                 },
                 {
@@ -6296,6 +6366,90 @@ window.GRADE9V3 = {
               "answer": "The v-t graph is a straight line starting at +u with constant slope -g. It crosses v=0 at t=u/g, the apex, and reaches v=-u at t=2u/g, the first return to launch level. Positive and negative triangular areas cancel, giving zero net displacement over the whole interval."
             },
             {
+              "id": "Q-PHY-NLM-1A-CANCEL-01",
+              "stem": "A 1.5 kg lamp hangs at rest from a ceiling cord. Take g = 10 m/s² and up as positive. List each force on the lamp with its size, find the net force, and say what would happen if the cord were cut.",
+              "origin": "AUTHORED",
+              "answer": "The cord pulls up with 15 N and gravity pulls down with 15 N; the net force is zero. If the cord were cut, the lamp would accelerate downward at 10 m/s²."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+              "stem": "Blocks A (3 kg) and B (2 kg) touch on a smooth floor, A to the left of B. A 20 N force pushes A to the right into B, and a 5 N force pushes B to the left, back toward A. The blocks stay in contact. Write one Newton-II equation per block and solve for their acceleration and the contact force.",
+              "origin": "AUTHORED",
+              "answer": "The blocks accelerate together at 3 m/s² to the right, and the contact force between them is 11 N."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+              "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string over a fixed, frictionless, light pulley, with y_A and y_B measured downward from the pulley. Take g = 10 m/s². Using a_A + a_B = 0 and one tension T, find a_A, a_B and T, and name the assumption each of those two relations rests on.",
+              "origin": "AUTHORED",
+              "answer": "a_A = +5 m/s² (down), a_B = −5 m/s² (up) and T = 15 N. The acceleration relation rests on the fixed string length; the single T rests on the ideal pulley and string."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
+              "stem": "A 60 kg person stands on a scale in a lift that accelerates upward at 2 m/s². Take g = 10 m/s² and up as positive. Find the scale reading using the ground frame, then again using the lift frame with a pseudo-force, and compare.",
+              "origin": "AUTHORED",
+              "answer": "Both descriptions give a scale reading of 720 N."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
+              "stem": "A 50 kg child stands on a 20 kg box that rests on the floor. Take g = 10 m/s². Build the free-body inventory of the box: name each force, its agent, its direction and its size.",
+              "origin": "AUTHORED",
+              "answer": "On the box: its weight 200 N down (Earth), the child's push 500 N down (child), and the floor's push 700 N up (floor). The child's own weight is not on the box's diagram."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+              "stem": "A book rests on a tray. A waiter first carries the tray at steady speed in a straight line, then speeds up forward; the book never slips. Find the friction force of the tray on the book in each stage, including whether it can be zero.",
+              "origin": "AUTHORED",
+              "answer": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+              "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
+              "origin": "AUTHORED",
+              "answer": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s²."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-NET-ZERO-01",
+              "stem": "An ice-hockey puck of mass 0.2 kg slides across smooth ice at 4 m/s after the stick loses contact. Friction and air resistance are negligible. What horizontal forces act on it, what is its velocity 3 s later, and would a puck at rest on the same ice start moving?",
+              "origin": "AUTHORED",
+              "answer": "No horizontal force acts. The puck still moves at 4 m/s, having covered 12 m, and a puck at rest stays at rest."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-SECOND-LAW-01",
+              "stem": "A 10 kg crate is pulled up a smooth ramp inclined at 30° by a rope parallel to the ramp with a force of 70 N. Take g = 10 m/s². Using axes along and perpendicular to the ramp, find the crate's acceleration and the normal force, and the pull that would give zero acceleration.",
+              "origin": "AUTHORED",
+              "answer": "a = 2 m/s² up the ramp, N ≈ 86.6 N, and a 50 N pull would give zero acceleration."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-STRING-FBD-01",
+              "stem": "A light, taut, inextensible string runs from a 2 kg cart on a smooth table, over a frictionless light pulley at the table's edge, down to a 1 kg hanging mass. Take g = 10 m/s². State the model that allows one tension T, list the forces on each body, and find the acceleration and T.",
+              "origin": "AUTHORED",
+              "answer": "One T is allowed by the ideal string and pulley. The acceleration is 10/3 ≈ 3.33 m/s² and T = 20/3 ≈ 6.67 N."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+              "stem": "One taut inextensible string passes over a fixed pulley and holds A and B. With y_A and y_B measured downward from the pulley along each segment, y_A = 1.2 m and y_B = 0.8 m. A then moves down by 0.3 m. Find B's new position, and B's velocity at an instant when A moves down at 0.5 m/s.",
+              "origin": "AUTHORED",
+              "answer": "B rises to y_B = 0.5 m; when A moves down at 0.5 m/s, v_B = −0.5 m/s, that is 0.5 m/s upward."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+              "stem": "A 2 kg bucket hangs from a light rope tied under a 1 kg bucket. A second rope lifts the top bucket with a 45 N upward force. Take g = 10 m/s² and up as positive. Choose a system to find the acceleration, then a different system to find the tension in the rope between the buckets.",
+              "origin": "AUTHORED",
+              "answer": "The buckets accelerate upward at 5 m/s², and the rope between them carries 30 N."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+              "stem": "A 2 kg lamp hangs from a light cord inside a lift. Take up as positive and g = 10 m/s². Find the cord tension when the lift (a) moves up at steady speed, (b) accelerates upward at 2 m/s², and (c) accelerates downward at 3 m/s².",
+              "origin": "AUTHORED",
+              "answer": "The tension is 20 N, 24 N and 14 N in the three cases."
+            },
+            {
+              "id": "Q-PHY-NLM-1A-THIRD-LAW-01",
+              "stem": "In space, a 70 kg astronaut pushes a 350 kg satellite with a force of 140 N. During the push, find the force on each body and each body's acceleration.",
+              "origin": "AUTHORED",
+              "answer": "Each body feels 140 N, in opposite directions: the satellite accelerates at 0.4 m/s² away from the astronaut, and the astronaut at 2 m/s² the other way."
+            },
+            {
               "id": "Q-PHY-NLM-2A-01",
               "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
               "origin": "AUTHORED",
@@ -6676,7 +6830,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 146,
+          "record_count": 160,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6687,7 +6841,7 @@ window.GRADE9V3 = {
               "CORE2B"
             ],
             "atoms": 80,
-            "questions": 38,
+            "questions": 52,
             "obligations": 14,
             "authoring_requirements": [
               {
@@ -17157,7 +17311,7 @@ window.GRADE9V3 = {
                     "role": "TRANSFORM",
                     "action": "Represent position, velocity and acceleration as signed x and y components in that same frame.",
                     "why_valid": "A plane vector is completely represented by its perpendicular Cartesian components once the frame is declared.",
-                    "output": "signed component state (x,y), (v_x,v_y), (a_x,a_y)",
+                    "output": "For x = 3t and y = 5t − t² at t = 1 s: (x, y) = (3, 4) m, (v_x, v_y) = (3, 3) m/s, (a_x, a_y) = (0, −2) m/s²",
                     "inputs": [
                       "CAP-VECTOR-SIGNED-COMPONENT"
                     ]
@@ -17167,7 +17321,7 @@ window.GRADE9V3 = {
                     "role": "TRANSFORM",
                     "action": "Keep x-quantities in the x description and y-quantities in the y description while using one shared elapsed time.",
                     "why_valid": "The perpendicular component equations are independent in Cartesian kinematics, but both describe the same object during the same physical interval.",
-                    "output": "two axis histories coupled by one clock",
+                    "output": "x(1) = 3 × 1 = 3 m uses only x-quantities; y(1) = 5 × 1 − 1² = 4 m uses only y-quantities; both use t = 1 s",
                     "inputs": []
                   },
                   {
@@ -17190,6 +17344,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01",
+                  "stem": "A drone flies in a frame with origin at its launch pad, +x east, +y up and t = 0 at launch. Its position is x(t) = 6t m and y(t) = (8t − t²) m. Find its position at t = 2 s, and decide whether the pair x(2 s), y(4 s) is a position the drone ever occupies.",
+                  "answer": "At t = 2 s the drone is at (12, 12) m. The pair (12, 16) m mixes two instants and is not a position the drone ever occupies.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
                   "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
@@ -17431,6 +17593,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01",
+                  "stem": "A puck on a tilted air table starts at the origin with velocity (4 i + 6 j) m/s, and its acceleration is (0 i − 2 j) m/s² throughout. Using the table's x-y frame, decide which constant-acceleration equations apply on each axis, find when the puck is next at y = 0, and find its x-position and velocity at that instant.",
+                  "answer": "The puck is next at y = 0 at t = 6 s, at x = 24 m, moving with v = (4 i − 6 j) m/s.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
                   "stem": "A particle starts with velocity (3 i + 4 j) m/s and has constant acceleration (2 i - 1 j) m/s^2 for 3 s. Find its velocity and displacement after 3 s.",
@@ -17736,6 +17906,30 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-KIN-PROJ-1A-MODEL-01",
+                  "stem": "A ball is thrown from a balcony with u_x = 8 m/s and u_y = 6 m/s. After release only gravity acts, and air resistance is negligible. Take +y upward and g = 10 m/s². Decide whether the ideal projectile model applies, write its component relations, and find the ball's displacement and velocity 1 s after release.",
+                  "answer": "The model applies with a = (0, −10) m/s². After 1 s the displacement is (8 i + 1 j) m and the velocity is (8 i − 4 j) m/s.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
+                  "stem": "An ideal projectile is launched from level ground with u_x = 6 m/s and u_y = 15 m/s. Take +y upward and g = 10 m/s². Name the component condition for each event, then find the time and height of the apex, and the time and range when it lands back at launch height.",
+                  "answer": "Apex at t = 1.5 s, 11.25 m above launch, with velocity (6 i + 0 j) m/s; landing at t = 3 s, 18 m from launch.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
+                  "stem": "A ball is thrown from the edge of a roof 25 m above level ground with u_x = 5 m/s and u_y = 20 m/s. Take +y upward and g = 10 m/s², and neglect air resistance. Find when it hits the ground, how far from the building it lands, and its impact velocity and speed.",
+                  "answer": "Impact at t = 5 s, 25 m from the building, with v = (5 i − 30 j) m/s and a speed of about 30.4 m/s.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
                   "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
@@ -18746,6 +18940,14 @@ window.GRADE9V3 = {
               },
               "questions": [
                 {
+                  "id": "Q-PHY-NLM-1A-NET-ZERO-01",
+                  "stem": "An ice-hockey puck of mass 0.2 kg slides across smooth ice at 4 m/s after the stick loses contact. Friction and air resistance are negligible. What horizontal forces act on it, what is its velocity 3 s later, and would a puck at rest on the same ice start moving?",
+                  "answer": "No horizontal force acts. The puck still moves at 4 m/s, having covered 12 m, and a puck at rest stays at rest.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
                   "id": "Q-PHY-NLM-2A-01",
                   "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
                   "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
@@ -18910,6 +19112,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-CANCEL-01",
+                  "stem": "A 1.5 kg lamp hangs at rest from a ceiling cord. Take g = 10 m/s² and up as positive. List each force on the lamp with its size, find the net force, and say what would happen if the cord were cut.",
+                  "answer": "The cord pulls up with 15 N and gravity pulls down with 15 N; the net force is zero. If the cord were cut, the lamp would accelerate downward at 10 m/s².",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-COV-02",
                   "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
@@ -19099,6 +19309,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
+                  "stem": "A 50 kg child stands on a 20 kg box that rests on the floor. Take g = 10 m/s². Build the free-body inventory of the box: name each force, its agent, its direction and its size.",
+                  "answer": "On the box: its weight 200 N down (Earth), the child's push 500 N down (child), and the floor's push 700 N up (floor). The child's own weight is not on the box's diagram.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-COV-03",
                   "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
@@ -19299,7 +19517,7 @@ window.GRADE9V3 = {
                     "role": "TRANSFORM",
                     "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
                     "why_valid": "Contact friction resists relative sliding between the surfaces.",
-                    "output": "friction tangent to contact and opposite relative sliding/tendency.",
+                    "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right",
                     "inputs": []
                   },
                   {
@@ -19330,6 +19548,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+                  "stem": "A book rests on a tray. A waiter first carries the tray at steady speed in a straight line, then speeds up forward; the book never slips. Find the friction force of the tray on the book in each stage, including whether it can be zero.",
+                  "answer": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-COV-04",
                   "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
@@ -19538,7 +19764,7 @@ window.GRADE9V3 = {
                     "id": "NLM6-2",
                     "role": "TRANSFORM",
                     "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
-                    "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+                    "why_valid": "The net external force on the chosen body sets its acceleration: F_net = m a holds for that one body, with m > 0, in an inertial frame.",
                     "output": "F_net = signed sum; a = F_net / m.",
                     "inputs": [
                       "REL-NEWTON-SECOND-LAW"
@@ -19575,6 +19801,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-SECOND-LAW-01",
+                  "stem": "A 10 kg crate is pulled up a smooth ramp inclined at 30° by a rope parallel to the ramp with a force of 70 N. Take g = 10 m/s². Using axes along and perpendicular to the ramp, find the crate's acceleration and the normal force, and the pull that would give zero acceleration.",
+                  "answer": "a = 2 m/s² up the ramp, N ≈ 86.6 N, and a 50 N pull would give zero acceleration.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-COV-05",
                   "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
@@ -19826,6 +20060,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+                  "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
+                  "answer": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s².",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
                   "stem": "A small block of mass m rests on a larger block of mass M. The floor under the larger block is smooth. A horizontal force F is applied to the larger block. The coefficient of static friction between the blocks is mu_s. Derive the largest value of F for which the two blocks can move together without slipping.",
@@ -20109,6 +20351,22 @@ window.GRADE9V3 = {
               },
               "questions": [
                 {
+                  "id": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+                  "stem": "Blocks A (3 kg) and B (2 kg) touch on a smooth floor, A to the left of B. A 20 N force pushes A to the right into B, and a 5 N force pushes B to the left, back toward A. The blocks stay in contact. Write one Newton-II equation per block and solve for their acceleration and the contact force.",
+                  "answer": "The blocks accelerate together at 3 m/s² to the right, and the contact force between them is 11 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+                  "stem": "A 2 kg bucket hangs from a light rope tied under a 1 kg bucket. A second rope lifts the top bucket with a 45 N upward force. Take g = 10 m/s² and up as positive. Choose a system to find the acceleration, then a different system to find the tension in the rope between the buckets.",
+                  "answer": "The buckets accelerate upward at 5 m/s², and the rope between them carries 30 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
                   "id": "Q-PHY-NLM-2A-CONNECTED-02",
                   "stem": "Two blocks A and B of masses m_A and m_B remain in contact on a smooth horizontal floor. A horizontal force F pushes A toward B, and the contact is maintained. Derive their common acceleration and the magnitude of the contact force exerted by A on B.",
                   "answer": "The fixed contact keeps the blocks at one common acceleration a = F/(m_A+m_B). For block B alone, the contact force is its only horizontal force, so N_AB = m_B a = m_B F/(m_A+m_B).",
@@ -20337,6 +20595,22 @@ window.GRADE9V3 = {
               },
               "questions": [
                 {
+                  "id": "Q-PHY-NLM-1A-STRING-FBD-01",
+                  "stem": "A light, taut, inextensible string runs from a 2 kg cart on a smooth table, over a frictionless light pulley at the table's edge, down to a 1 kg hanging mass. Take g = 10 m/s². State the model that allows one tension T, list the forces on each body, and find the acceleration and T.",
+                  "answer": "One T is allowed by the ideal string and pulley. The acceleration is 10/3 ≈ 3.33 m/s² and T = 20/3 ≈ 6.67 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+                  "stem": "A 2 kg lamp hangs from a light cord inside a lift. Take up as positive and g = 10 m/s². Find the cord tension when the lift (a) moves up at steady speed, (b) accelerates upward at 2 m/s², and (c) accelerates downward at 3 m/s².",
+                  "answer": "The tension is 20 N, 24 N and 14 N in the three cases.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
                   "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
                   "stem": "Two carts A and B of masses m_A and m_B are connected by one taut massless inextensible string on a smooth horizontal track. A horizontal force F pulls cart A away from B along the string. Derive the common acceleration and the string tension. Then name one model change that would make equal tension throughout the connector no longer guaranteed.",
                   "answer": "The string constraint gives one acceleration a = F/(m_A+m_B). For B, T = m_B a, so T = m_B F/(m_A+m_B). Equal tension relies on the ideal massless-string model; a connector with significant mass or a nonideal redirection can invalidate one common T.",
@@ -20555,6 +20829,22 @@ window.GRADE9V3 = {
               },
               "questions": [
                 {
+                  "id": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+                  "stem": "One taut inextensible string passes over a fixed pulley and holds A and B. With y_A and y_B measured downward from the pulley along each segment, y_A = 1.2 m and y_B = 0.8 m. A then moves down by 0.3 m. Find B's new position, and B's velocity at an instant when A moves down at 0.5 m/s.",
+                  "answer": "B rises to y_B = 0.5 m; when A moves down at 0.5 m/s, v_B = −0.5 m/s, that is 0.5 m/s upward.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
+                  "id": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+                  "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string over a fixed, frictionless, light pulley, with y_A and y_B measured downward from the pulley. Take g = 10 m/s². Using a_A + a_B = 0 and one tension T, find a_A, a_B and T, and name the assumption each of those two relations rests on.",
+                  "answer": "a_A = +5 m/s² (down), a_B = −5 m/s² (up) and T = 15 N. The acceleration relation rests on the fixed string length; the single T rests on the ideal pulley and string.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
+                {
                   "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
                   "stem": "One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B's signed acceleration in these coordinates.",
                   "answer": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley.",
@@ -20729,7 +21019,7 @@ window.GRADE9V3 = {
                     "role": "TRANSFORM",
                     "action": "Draw equal-length opposite arrows on the two different body diagrams.",
                     "why_valid": "Newton's third-law partners are equal in magnitude and opposite in direction for the same interaction.",
-                    "output": "partner arrows: equal magnitude, opposite direction, different bodies.",
+                    "output": "A on B: +20 N on B's diagram.  B on A: −20 N on A's diagram.  Same size, opposite sign, different bodies.",
                     "inputs": []
                   },
                   {
@@ -20752,6 +21042,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-THIRD-LAW-01",
+                  "stem": "In space, a 70 kg astronaut pushes a 350 kg satellite with a force of 140 N. During the push, find the force on each body and each body's acceleration.",
+                  "answer": "Each body feels 140 N, in opposite directions: the satellite accelerates at 0.4 m/s² away from the astronaut, and the astronaut at 2 m/s² the other way.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-COV-06",
                   "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
@@ -20934,6 +21232,14 @@ window.GRADE9V3 = {
                 "acceptance_status": "CANDIDATE"
               },
               "questions": [
+                {
+                  "id": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
+                  "stem": "A 60 kg person stands on a scale in a lift that accelerates upward at 2 m/s². Take g = 10 m/s² and up as positive. Find the scale reading using the ground frame, then again using the lift frame with a pseudo-force, and compare.",
+                  "answer": "Both descriptions give a scale reading of 720 N.",
+                  "origin": "AUTHORED",
+                  "family_ref": "FAM-PHY-NLM-PRACTICE",
+                  "repair_ref": null
+                },
                 {
                   "id": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
                   "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",

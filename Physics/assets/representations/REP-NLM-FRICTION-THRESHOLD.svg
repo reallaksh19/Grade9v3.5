@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470" role="img" aria-labelledby="rep-nlm-fr-title rep-nlm-fr-desc">
+  <title id="rep-nlm-fr-title">Friction threshold: static friction answers the no-slip demand up to mu_s N; kinetic friction only after sliding</title>
+  <desc id="rep-nlm-fr-desc">Drawn qualitatively, without values. Stage 1: a crate on a horizontal floor is pulled by a force P directed to the right and upward at angle θ above the horizontal. Stage 2: the crate is the chosen body, outlined heavily; axes +x to the right and +y upward; the floor under the crate is the rough contact surface with coefficients mu_s and mu_k. Stage 3: the non-friction forces: the weight mg, Earth on crate, downward, and the normal force N, floor on crate, upward, drawn shorter than mg because N comes from the actual y equation and is not assumed equal to mg. Stage 4: the static-friction arrow f_s, floor on crate, points left, opposite the tendency to slip right; the contact state reads static (no slip), feasible while the required friction is within the limit; a meter compares the no-slip demand |f_required| with the limit mu_s N, and equality |f_s| = mu_s N is marked only at impending slip. Stage 5: the kinetic branch: if |f_required| exceeds mu_s N the crate slides to the right, the contact state reads sliding, and the kinetic-friction arrow f_k of magnitude mu_k N points left, opposite the sliding.</desc>
+  <defs>
+    <marker id="rep-nlm-fr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-nlm-fr-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-NLM-FRICTION-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="20" y1="250" x2="385" y2="250" stroke="currentColor" stroke-width="2"/>
+    <rect x="140" y="180" width="100" height="70" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="146" y="205">crate</text>
+    <line x1="240" y1="195" x2="323" y2="147" stroke="currentColor" stroke-width="3.5" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <text x="330" y="146" font-weight="600">P</text>
+    <line x1="240" y1="195" x2="300" y2="195" stroke="currentColor" stroke-dasharray="3 3"/>
+    <path d="M280 195 A40 40 0 0 0 275 175" fill="none" stroke="currentColor"/>
+    <text x="284" y="190" font-size="14">θ</text>
+  </g>
+  <g data-g9-stage-id="VIS-NLM-FRICTION-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <rect x="140" y="180" width="100" height="70" fill="none" stroke="currentColor" stroke-width="5"/>
+    <text x="20" y="28" font-weight="600">chosen body: crate</text>
+    <line x1="30" y1="110" x2="85" y2="110" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <line x1="30" y1="110" x2="30" y2="55" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <text x="70" y="130">+x</text>
+    <text x="38" y="64">+y</text>
+    <path d="M30 250 l-10 10 M50 250 l-10 10 M70 250 l-10 10 M90 250 l-10 10 M110 250 l-10 10 M130 250 l-10 10 M150 250 l-10 10 M170 250 l-10 10 M190 250 l-10 10 M210 250 l-10 10 M230 250 l-10 10 M250 250 l-10 10 M270 250 l-10 10 M290 250 l-10 10 M310 250 l-10 10 M330 250 l-10 10 M350 250 l-10 10 M370 250 l-10 10" stroke="currentColor"/>
+    <text x="20" y="280">rough contact</text>
+    <text x="20" y="298">surface (μ_s, μ_k)</text>
+  </g>
+  <g data-g9-stage-id="VIS-NLM-FRICTION-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="190" y1="215" x2="190" y2="325" stroke="currentColor" stroke-width="3" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <text x="198" y="322">mg (Earth on crate)</text>
+    <line x1="222" y1="250" x2="222" y2="165" stroke="currentColor" stroke-width="3" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <text x="215" y="160" text-anchor="end">N (floor on crate)</text>
+    <text x="20" y="360">N comes from the y equation;</text>
+    <text x="20" y="382">it is not assumed equal to mg.</text>
+  </g>
+  <g data-g9-stage-id="VIS-NLM-FRICTION-V3" font-family="system-ui,sans-serif" font-size="15">
+    <line x1="150" y1="244" x2="80" y2="244" stroke="#1f6fb2" stroke-width="3.5" marker-end="url(#rep-nlm-fr-arrow-accent)"/>
+    <text x="66" y="236" fill="#1f6fb2" font-weight="600">f_s</text>
+    <text x="415" y="28" fill="currentColor" font-weight="600">Friction demand vs limit</text>
+    <line x1="410" y1="80" x2="610" y2="80" stroke="currentColor" stroke-width="2"/>
+    <line x1="410" y1="72" x2="410" y2="88" stroke="currentColor" stroke-width="2"/>
+    <text x="410" y="106" text-anchor="middle" fill="currentColor">0</text>
+    <line x1="560" y1="66" x2="560" y2="94" stroke="currentColor" stroke-width="3"/>
+    <text x="560" y="112" text-anchor="middle" fill="currentColor">μ_s N</text>
+    <text x="560" y="130" text-anchor="middle" fill="currentColor" font-size="14">(limit)</text>
+    <path d="M482 64 L498 64 L490 76 Z" fill="#1f6fb2"/>
+    <text x="490" y="56" text-anchor="middle" fill="#1f6fb2">|f_required|</text>
+    <text x="415" y="160" fill="#1f6fb2" font-weight="600">Contact state: static (no slip)</text>
+    <text x="415" y="182" fill="currentColor">feasible while |f_required| ≤ μ_s N;</text>
+    <text x="415" y="204" fill="currentColor">then f_s = f_required.</text>
+    <text x="415" y="226" fill="currentColor">|f_s| = μ_s N holds only</text>
+    <text x="415" y="246" fill="currentColor">at impending slip.</text>
+  </g>
+  <g data-g9-stage-id="VIS-NLM-FRICTION-V4" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <rect x="408" y="262" width="262" height="198" rx="8" fill="none" stroke="currentColor" stroke-dasharray="6 4"/>
+    <text x="418" y="280" font-weight="600">If |f_required| &gt; μ_s N:</text>
+    <text x="418" y="300" font-weight="600">Contact state: sliding</text>
+    <line x1="418" y1="390" x2="660" y2="390" stroke="currentColor" stroke-width="2"/>
+    <rect x="490" y="340" width="60" height="50" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <line x1="500" y1="326" x2="560" y2="326" stroke="currentColor" stroke-width="2" marker-end="url(#rep-nlm-fr-arrow)"/>
+    <text x="566" y="331">sliding</text>
+    <line x1="498" y1="385" x2="440" y2="385" stroke="#1f6fb2" stroke-width="3.5" marker-end="url(#rep-nlm-fr-arrow-accent)"/>
+    <text x="418" y="372" fill="#1f6fb2" font-weight="600">f_k</text>
+    <text x="418" y="418">|f_k| = μ_k N,</text>
+    <text x="418" y="440">opposite the sliding.</text>
+  </g>
+</svg>

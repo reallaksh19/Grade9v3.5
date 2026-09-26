@@ -100,7 +100,7 @@ class Gate(unittest.TestCase):
         self.assertEqual(report["verdict"], "PASS", [f for f in report["findings"] if f["severity"] != "S3"] + report["continuity"] + report["fail_reasons"])
 
     def test_thin_real_product_fails_as_a_draft(self):
-        m = product_manifest.derive("Physics/library/phy-kin-2d-motion.v1.json",
+        m = product_manifest.derive("tests/fixtures/render/thin-kin-2d-motion.v1.json",
                                     ["Physics/library/exam-bank/competitive-exam-question-bank.v2.json"],
                                     "PRODUCT-PHY-KIN-2D", "Motion in a Plane", "../index.html")
         path = self.tmp / "m.json"
