@@ -8156,6 +8156,91 @@
           "visual_stage_ref": "VIS-NLM-WEDGE-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-TIMING-SMOOTH-ROUGH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the two trials over the same distance on the same incline so the times become an acceleration ratio.",
+      "required_elements": [
+        "smooth and rough trials over the same s",
+        "a_0, a and s = ½ a t²",
+        "μ_k formula and value"
+      ],
+      "relation_refs": [
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "smooth and rough trials over the same s",
+        "a_0, a and s = ½ a t²",
+        "μ_k formula and value"
+      ],
+      "instance_constraints": [
+        "Both trials start from rest at the same point.",
+        "μ_k is constant in the rough trial."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Comparing times directly instead of through s = ½ a t²."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-TIMING-SMOOTH-ROUGH.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TIMING-V0",
+          "label": "Two trials",
+          "purpose": "Show the smooth and rough trials over the same distance.",
+          "visible_elements": [
+            "smooth and rough trials over the same s"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TIMING-V1",
+          "label": "Accelerations",
+          "purpose": "Write each acceleration and the shared-distance relation.",
+          "visible_elements": [
+            "smooth and rough trials over the same s",
+            "a_0, a and s = ½ a t²"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TIMING-V2",
+          "label": "μ_k",
+          "purpose": "Turn the times into an acceleration ratio and solve.",
+          "visible_elements": [
+            "smooth and rough trials over the same s",
+            "a_0, a and s = ½ a t²",
+            "μ_k formula and value"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TIMING-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TIMING-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TIMING-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -14814,11 +14899,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-INCLINE-TIMING-SMOOTH-ROUGH",
+        "bound_ref": "REP-NLM-INCLINE-TIMING-SMOOTH-ROUGH",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-TIMING-V0"
         ]
       },
       "failure_signal": "You wrote a/a_0 = t/t_0 or t_0/t: with s fixed, s = ½at² makes a proportional to 1/t², so the ratio is t_0²/t².",
