@@ -10,7 +10,8 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from Shared.library import practice_inventory  # noqa: E402
-from Shared.tools import academic_readiness, capability_graph, plan_request, resolve_request  # noqa: E402
+from Shared.tools import (academic_readiness, capability_graph, plan_request,  # noqa: E402
+                          research_first_policy, resolve_request)
 
 
 class CapabilityTopology(unittest.TestCase):
@@ -85,64 +86,75 @@ class ThirdAgentGoldenPath(unittest.TestCase):
         self.assertTrue(report["no_content_authored"])
         self.assertEqual(report["findings"], [])
 
-    def test_only_non_derivable_owner_inputs_are_requested(self):
+    def duties(self, report):
+        return {row["core"]: row["duty"]["duty"] for row in report["products"] if row.get("duty")}
+
+    def test_missing_owner_inputs_take_defaults_instead_of_waiting(self):
         report = self.report()
+        self.assertEqual(report["required_owner_inputs"], [])
         self.assertEqual(
-            [row["id"] for row in report["required_owner_inputs"]],
-            ["LEARNER_ENTRY", "CORE2A_PURPOSE", "CORE2B_PURPOSE"],
+            [row["field"] for row in report["defaults_applied"]],
+            ["learner", "practice.CORE2A.purpose", "practice.CORE2B.purpose",
+             "supplemental_question_policy"],
         )
+        learner = report["defaults_applied"][0]
+        self.assertEqual(learner["basis"], "DEFAULT_MEDIAN")
+        self.assertEqual(learner["value"], {"owner_estimate": {"knowledge_percentage": 50}})
         self.assertEqual(
             [row["id"] for row in report["agent_actions"]],
             ["INSPECT_AND_INGEST_SOURCE_BASIS"],
         )
-        self.assertNotIn("SUPPLEMENTAL_QUESTION_POLICY",
-                         [row["id"] for row in report["required_owner_inputs"]])
 
-    def test_source_permission_is_asked_only_after_verified_receipt_finds_a_gap(self):
+    def test_verified_receipt_gap_becomes_authored_practice_duty(self):
         request = json.loads(self.FIXTURE.read_text(encoding="utf-8"))
         request["source_receipt_ref"] = "SRCREC-NCERT-KEPH103-RELATIVE-MOTION-LEGACY"
         report = plan_request.plan(request)
-        self.assertIn("SUPPLEMENTAL_QUESTION_POLICY",
-                      [row["id"] for row in report["required_owner_inputs"]])
-        self.assertNotIn("INSPECT_AND_INGEST_SOURCE_BASIS",
-                         [row["id"] for row in report["agent_actions"]])
+        actions = [row["id"] for row in report["agent_actions"]]
+        self.assertIn("AUTHOR_SUPPLEMENTAL_PRACTICE", actions)
+        self.assertNotIn("INSPECT_AND_INGEST_SOURCE_BASIS", actions)
+        self.assertEqual(self.duties(report)["CORE2A"], "AUTHOR_PRACTICE")
 
-    def test_verified_source_drift_is_an_owner_decision_before_supplement_policy(self):
+    def test_verified_source_drift_is_researched_by_the_agent(self):
         request = json.loads(
             (REPO / "Requests/relative-motion-six-core.ncert-current.plan-request.json")
             .read_text(encoding="utf-8")
         )
         report = plan_request.plan(request)
-        ids = [row["id"] for row in report["required_owner_inputs"]]
-        self.assertIn("SOURCE_BASIS_DRIFT_DECISION", ids)
-        self.assertNotIn("SUPPLEMENTAL_QUESTION_POLICY", ids)
-        self.assertEqual(
-            report["source"]["basis_assessment"]["status"], "DRIFT")
+        self.assertEqual(report["required_owner_inputs"], [])
+        self.assertIn("RESOLVE_SOURCE_BASIS_DRIFT", [row["id"] for row in report["agent_actions"]])
+        self.assertEqual(report["source"]["basis_assessment"]["status"], "DRIFT")
         for core in ("CORE2", "CORE2A", "CORE2B"):
             product = next(row for row in report["products"] if row["core"] == core)
-            self.assertEqual(product["state"], "WAITING_FOR_SOURCE_BASIS_DECISION")
+            self.assertEqual(product["state"], "RESEARCH_AND_AUTHOR")
+            self.assertEqual(product["duty"]["duty"], "ACQUIRE_SOURCE")
 
-    def test_acknowledged_source_drift_then_exposes_supplement_policy(self):
+    def test_acknowledged_source_drift_then_authors_uncovered_practice(self):
         request = json.loads(
             (REPO / "Requests/relative-motion-six-core.ncert-current.plan-request.json")
             .read_text(encoding="utf-8")
         )
         request["source_basis_drift_acknowledgement"] = "KEEP_SUPPLIED_DESPITE_DRIFT"
         report = plan_request.plan(request)
-        ids = [row["id"] for row in report["required_owner_inputs"]]
-        self.assertNotIn("SOURCE_BASIS_DRIFT_DECISION", ids)
-        self.assertIn("SUPPLEMENTAL_QUESTION_POLICY", ids)
-        core2 = next(row for row in report["products"] if row["core"] == "CORE2")
-        self.assertEqual(core2["state"], "BLOCKED_SOURCE_CUSTODY")
+        actions = [row["id"] for row in report["agent_actions"]]
+        self.assertNotIn("RESOLVE_SOURCE_BASIS_DRIFT", actions)
+        self.assertIn("AUTHOR_SUPPLEMENTAL_PRACTICE", actions)
+        self.assertEqual(self.duties(report)["CORE2"], "ACQUIRE_SOURCE")
 
     def test_buildability_reachability_and_review_are_separate_axes(self):
         report = self.report()
         self.assertEqual(report["invariant"], "READY_TO_BUILD != REACHABLE_TO_LEARN")
-        self.assertEqual(report["readiness"]["REACHABLE_TO_LEARN"],
-                         "WAITING_FOR_OWNER_INPUT")
+        self.assertEqual(report["readiness"]["REACHABLE_TO_LEARN"], "READY")
         self.assertEqual(report["readiness"]["ACADEMIC_REVIEW"], "NOT_REVIEWED")
-        self.assertEqual(report["readiness"]["CONTENT_EXPANSION"], "BLOCKED")
-        self.assertEqual(report["execution"]["state"], "BLOCKED")
+        self.assertEqual(report["readiness"]["CONTENT_EXPANSION"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(report["execution"]["state"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(report["lifecycle"]["RELEASE"]["state"], "OWNER_REVIEW")
+
+    def test_no_product_state_is_an_escape_state(self):
+        report = self.report()
+        self.assertEqual(research_first_policy.escape_states(
+            [row["state"] for row in report["products"]]
+            + [report["lifecycle"][k]["state"] for k in ("AUTHORING", "BUILD", "RELEASE")]
+            + list(report["readiness"].values())), [])
 
     def test_provenance_is_not_collapsed_into_existence_or_review(self):
         rung = self.report()["canonical_rungs"][0]

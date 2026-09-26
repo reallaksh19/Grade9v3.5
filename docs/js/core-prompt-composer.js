@@ -122,24 +122,26 @@
     const candidates = [...new Set(raw.candidate_question_refs || [])];
     const canonical = ref ? subjectData.questions[ref] : null;
     const holds = [];
-    const allowedEligibility = new Set(['ELIGIBLE','EXCLUDED','HOLD','NOT_ESTABLISHED']);
-    let learnerEligibility = String(raw.learner_eligibility || 'NOT_ESTABLISHED').trim().toUpperCase();
+    const allowedEligibility = new Set(['ELIGIBLE','EXCLUDED','DEFAULT_ELIGIBLE']);
+    let learnerEligibility = String(raw.learner_eligibility || 'DEFAULT_ELIGIBLE').trim().toUpperCase();
+    // Older inputs used these for "not decided"; the default median learner decides instead.
+    if(learnerEligibility==='HOLD' || learnerEligibility==='NOT_ESTABLISHED') learnerEligibility='DEFAULT_ELIGIBLE';
     if(!allowedEligibility.has(learnerEligibility)){
-      holds.push({status:'UNMAPPED_HOLD',point:'LEARNER_ELIGIBILITY_INVALID',detail:ownerId+': learner_eligibility '+JSON.stringify(learnerEligibility)+' is not recognized'});
-      learnerEligibility='NOT_ESTABLISHED';
+      holds.push({status:'INPUT_INVALID',point:'LEARNER_ELIGIBILITY_INVALID',detail:ownerId+': learner_eligibility '+JSON.stringify(learnerEligibility)+' is not recognized'});
+      learnerEligibility='DEFAULT_ELIGIBLE';
     }
     const learnerEligibilityBasis = raw.learner_eligibility_basis || null;
 
     if(!ref && candidates.length){
       const valid=candidates.filter(x=>subjectData.questions[x]);
       const unknown=candidates.filter(x=>!subjectData.questions[x]);
-      let detail=ownerId+': multiple candidate question identities require explicit exact-ref confirmation: '+(valid.length?valid:candidates).join(', ');
+      let detail=ownerId+": research each candidate's original source text and stated conditions against the supplied demand, select the matching identity and record the discriminator; if none matches, present the question as the owner's question with no exam identity claimed. Candidates: "+(valid.length?valid:candidates).join(', ');
       if(unknown.length) detail+='; unknown candidate refs: '+unknown.join(', ');
-      holds.push({status:'IDENTITY_HOLD',point:'QUESTION_IDENTITY_AMBIGUOUS',detail});
+      holds.push({status:'RESEARCH_SOURCE_IDENTITY',point:'QUESTION_IDENTITY_AMBIGUOUS',detail});
       return {row:{
         owner_question_id:ownerId,summary,canonical_question_ref:null,candidate_question_refs:candidates,
-        identity_status:'IDENTITY_HOLD',demand_evidence_refs:valid,learner_eligibility:learnerEligibility,
-        learner_eligibility_basis:learnerEligibilityBasis,mapping_basis:'UNMAPPED',mapping_status:'IDENTITY_HOLD',
+        identity_status:'RESEARCH_IDENTITY',demand_evidence_refs:valid,learner_eligibility:learnerEligibility,
+        learner_eligibility_basis:learnerEligibilityBasis,mapping_basis:'UNMAPPED',mapping_status:'RESEARCH_IDENTITY',
         primary_capability_ref:null,secondary_capability_refs:[],primary_location:null,record_status:null,
         source_custody:null,analysis:null,finding:detail
       },holds};
@@ -148,23 +150,23 @@
       const primary = canonical.primary_capability_ref;
       const secondary = canonical.secondary_capability_refs || [];
       const found = primaryLocation(subjectData, primary);
-      if (found.finding) holds.push({status:'UNMAPPED_HOLD',point:'PRIMARY_LOCATION_UNRESOLVED',detail:ownerId + ': ' + found.finding});
+      if (found.finding) holds.push({status:'RESEARCH_CANONICAL_MAPPING',point:'PRIMARY_LOCATION_UNRESOLVED',detail:ownerId + ': ' + found.finding});
       return {row:{
         owner_question_id:ownerId,summary,canonical_question_ref:ref,candidate_question_refs:candidates,
         identity_status:'EXACT_CONFIRMED',demand_evidence_refs:[ref],learner_eligibility:learnerEligibility,
         learner_eligibility_basis:learnerEligibilityBasis,mapping_basis:'CANONICAL_QUESTION',
-        mapping_status:found.location?'CANONICAL_MATCH':'UNMAPPED_HOLD',primary_capability_ref:primary,
+        mapping_status:found.location?'CANONICAL_MATCH':'RESEARCH_MAPPING',primary_capability_ref:primary,
         secondary_capability_refs:[...secondary],primary_location:found.location,record_status:canonical.status || null,
         source_custody:canonical.source_custody || null,analysis:canonical.analysis || null,finding:found.finding
       },holds};
     }
     if (ref && !canonical) {
-      const detail=ownerId + ': exact canonical_question_ref ' + ref + ' is not present; short labels or summaries are not source identity';
+      const detail=ownerId + ': exact canonical_question_ref ' + ref + " is not present; research the question's source and canonical capability and record them";
       return {row:{owner_question_id:ownerId,summary,canonical_question_ref:ref,candidate_question_refs:candidates,
         identity_status:'UNMAPPED',demand_evidence_refs:[],learner_eligibility:learnerEligibility,
-        learner_eligibility_basis:learnerEligibilityBasis,mapping_basis:'UNMAPPED',mapping_status:'UNMAPPED_HOLD',
+        learner_eligibility_basis:learnerEligibilityBasis,mapping_basis:'UNMAPPED',mapping_status:'RESEARCH_MAPPING',
         primary_capability_ref:null,secondary_capability_refs:[],primary_location:null,record_status:null,
-        source_custody:null,analysis:null,finding:detail},holds:[{status:'UNMAPPED_HOLD',point:'CANONICAL_QUESTION_UNKNOWN',detail}]};
+        source_custody:null,analysis:null,finding:detail},holds:[{status:'RESEARCH_CANONICAL_MAPPING',point:'CANONICAL_QUESTION_UNKNOWN',detail}]};
     }
     const primary=raw.primary_capability_ref || null, secondary=[...(raw.secondary_capability_refs || [])];
     const found=primary ? primaryLocation(subjectData,primary) : {location:null,finding:'primary capability is not supplied'};
@@ -173,33 +175,34 @@
       learner_eligibility_basis:learnerEligibilityBasis,primary_capability_ref:primary,
       secondary_capability_refs:secondary,primary_location:found.location,record_status:null,source_custody:null,analysis:null};
     if(raw.mapping_basis==='AGENT_PROPOSAL'){
-      const detail=ownerId + ': proposed mapping requires owner review before it can constrain a Core prompt';
-      return {row:{...shared,mapping_basis:'AGENT_PROPOSAL',mapping_status:'AGENT_PROPOSAL_PENDING_REVIEW',finding:detail},holds:[{status:'AGENT_PROPOSAL_PENDING_REVIEW',point:'AGENT_MAPPING_REVIEW_REQUIRED',detail}]};
+      const detail=ownerId + ': agent-proposed mapping is used and labelled AGENT_PROPOSED; owner review is a label, not a stop';
+      return {row:{...shared,mapping_basis:'AGENT_PROPOSAL',mapping_status:'AGENT_PROPOSED',finding:detail},holds:[]};
     }
     if(raw.mapping_basis==='MANUAL' && primary && found.location && ownerScope){
       return {row:{...shared,mapping_basis:'MANUAL',mapping_status:'OWNER_CONFIRMED_CANONICAL_RUNG',finding:null},holds:[]};
     }
-    let detail=ownerId + ': no exact canonical question mapping or owner-confirmed manual canonical mapping is available';
+    let detail=ownerId + ': research the canonical capability this question exercises; if none exists, add a CANDIDATE capability to the library and map to it';
     if(found.finding) detail+=' ('+found.finding+')';
-    return {row:{...shared,mapping_basis:'UNMAPPED',mapping_status:'UNMAPPED_HOLD',finding:detail},holds:[{status:'UNMAPPED_HOLD',point:'QUESTION_MAPPING_UNRESOLVED',detail}]};
+    return {row:{...shared,mapping_basis:'UNMAPPED',mapping_status:'RESEARCH_MAPPING',finding:detail},holds:[{status:'RESEARCH_CANONICAL_MAPPING',point:'QUESTION_MAPPING_UNRESOLVED',detail}]};
   }
 
   function resolveScope(rows, ownerScope, subjectData) {
     const locations=rows.map(r=>r.primary_location).filter(Boolean);
     const matrices=[...new Set(locations.map(x=>x.matrix_id))].sort();
-    if(!matrices.length) return {scope:{status:'UNMAPPED_HOLD',matrix_ref:null,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[],owner_confirmed_rung:ownerScope||null},holds:[{status:'UNMAPPED_HOLD',point:'COMPOSITION_SCOPE_UNMAPPED',detail:'No unique canonical primary teaching matrix can be established from the question rows.'}]};
-    if(matrices.length>1) return {scope:{status:'MIXED_SUBTOPIC_HOLD',matrix_ref:null,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[...new Set(locations.map(x=>x.rung).filter(Boolean))].sort(),owner_confirmed_rung:ownerScope||null},holds:[{status:'MIXED_SUBTOPIC_HOLD',point:'MIXED_PRIMARY_MATRICES',detail:'Primary question mappings span multiple matrices: '+matrices.join(', ')}]};
+    if(!matrices.length) return {scope:{status:'RESEARCH_MAPPING',matrix_ref:null,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[],owner_confirmed_rung:ownerScope||null},holds:[{status:'RESEARCH_CANONICAL_MAPPING',point:'COMPOSITION_SCOPE_UNMAPPED',detail:'Research the canonical teaching matrix for the question rows; map each question before composing.'}]};
+    if(matrices.length>1) return {scope:{status:'MULTI_MATRIX',matrix_ref:null,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[...new Set(locations.map(x=>x.rung).filter(Boolean))].sort(),owner_confirmed_rung:ownerScope||null},holds:[{status:'COVER_EVERY_SUBTOPIC',point:'MIXED_PRIMARY_MATRICES',detail:'Cover every matrix the questions span, keeping each per-question primary capability: '+matrices.join(', ')}]};
     const matrixId=matrices[0], board=boardMap(subjectData).get(matrixId);
-    if(!board) return {scope:{status:'UNMAPPED_HOLD',matrix_ref:matrixId,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[],owner_confirmed_rung:ownerScope||null},holds:[{status:'UNMAPPED_HOLD',point:'MATRIX_RECORD_MISSING',detail:matrixId+' is referenced by capability locations but its matrix record is unavailable.'}]};
+    if(!board) return {scope:{status:'RESEARCH_MAPPING',matrix_ref:matrixId,bucket_ref:null,topic:null,subtopic:null,canonical_primary_rungs:[],owner_confirmed_rung:ownerScope||null},holds:[{status:'RESEARCH_CANONICAL_MAPPING',point:'MATRIX_RECORD_MISSING',detail:matrixId+' is referenced by capability locations but its matrix record is missing; author the matrix record.'}]};
     const rungs=[...new Set(locations.map(x=>x.rung).filter(Boolean))].sort();
     const holds=[]; let status='CANONICAL_MATCH';
     const ownerValid=ownerScope && ownerScope.matrix_id===matrixId && (board.rungs||[]).some(r=>r.rung===ownerScope.rung);
     if(rungs.length>1){
-      if(!ownerScope){holds.push({status:'UNMAPPED_HOLD',point:'OWNER_RUNG_CONFIRMATION_REQUIRED',detail:'Question primaries span canonical rungs '+rungs.join(', ')+'; confirm one composition rung without rewriting per-question mappings.'});status='UNMAPPED_HOLD';}
-      else if(!ownerValid){holds.push({status:'UNMAPPED_HOLD',point:'OWNER_RUNG_CONFIRMATION_INVALID',detail:"The owner-confirmed composition rung does not resolve inside the question set's canonical matrix."});status='UNMAPPED_HOLD';}
+      // Compose across every canonical rung the questions touch; per-question rungs stay.
+      if(!ownerScope){status='CANONICAL_MULTI_RUNG';}
+      else if(!ownerValid){holds.push({status:'INPUT_INVALID',point:'OWNER_RUNG_CONFIRMATION_INVALID',detail:"The owner-confirmed composition rung does not resolve inside the question set's canonical matrix."});status='CANONICAL_MULTI_RUNG';}
       else status='OWNER_CONFIRMED_CANONICAL_RUNG';
     } else if(ownerScope){
-      if(!ownerValid){holds.push({status:'UNMAPPED_HOLD',point:'OWNER_RUNG_CONFIRMATION_INVALID',detail:'The owner-confirmed composition rung does not resolve inside the canonical matrix.'});status='UNMAPPED_HOLD';}
+      if(!ownerValid){holds.push({status:'INPUT_INVALID',point:'OWNER_RUNG_CONFIRMATION_INVALID',detail:'The owner-confirmed composition rung does not resolve inside the canonical matrix.'});status='CANONICAL_MATCH';}
       else status='OWNER_CONFIRMED_CANONICAL_RUNG';
     }
     return {scope:{status,matrix_ref:matrixId,bucket_ref:board.bucket_id||null,topic:board.topic||null,subtopic:board.subtopic||null,canonical_primary_rungs:rungs,owner_confirmed_rung:ownerScope||null},holds};
@@ -225,22 +228,22 @@
       add(family.invariant_demand,'MATRIX_INVARIANT',[scope.matrix_ref]);
       add(family.difficult_move,'MATRIX_DIFFICULT_MOVE',[scope.matrix_ref]);
     }
-    if(!items.length) add('No trustworthy concept fingerprint can be emitted until the question mapping is resolved.','CAPABILITY_ACTION',['COMPOSER_HOLD']);
+    if(!items.length) add('Research the question mapping first; the concept fingerprint follows from the mapped capabilities.','CAPABILITY_ACTION',['RESEARCH_CANONICAL_MAPPING']);
     return items;
   }
 
   function coreOrderHolds(requested,order){
     const holds=[],unknown=[...new Set(requested.concat(order).filter(x=>!ALL_CORES.includes(x)))].sort();
-    if(unknown.length) holds.push({status:'UNMAPPED_HOLD',point:'UNKNOWN_CORE',detail:'Unknown Core role(s): '+unknown.join(', ')});
-    if(new Set(requested).size!==requested.length) holds.push({status:'UNMAPPED_HOLD',point:'DUPLICATE_REQUESTED_CORE',detail:'requested_cores must not contain duplicates.'});
-    if(new Set(order).size!==order.length || order.length!==requested.length || requested.some(x=>!order.includes(x))) holds.push({status:'UNMAPPED_HOLD',point:'CORE_ORDER_INVALID',detail:'execution_order must contain every requested Core exactly once and no others.'});
+    if(unknown.length) holds.push({status:'INPUT_INVALID',point:'UNKNOWN_CORE',detail:'Unknown Core role(s): '+unknown.join(', ')});
+    if(new Set(requested).size!==requested.length) holds.push({status:'INPUT_INVALID',point:'DUPLICATE_REQUESTED_CORE',detail:'requested_cores must not contain duplicates.'});
+    if(new Set(order).size!==order.length || order.length!==requested.length || requested.some(x=>!order.includes(x))) holds.push({status:'INPUT_INVALID',point:'CORE_ORDER_INVALID',detail:'execution_order must contain every requested Core exactly once and no others.'});
     return holds;
   }
 
   function sourceBasisHolds(sourceBasis,rows){
     const refs=new Set(rows.map(r=>r.canonical_question_ref).filter(Boolean));
     const invalid=sourceBasis.filter(x=>refs.has(x));
-    return invalid.length?[{status:'UNMAPPED_HOLD',point:'SOURCE_BASIS_QUESTION_ID_INVALID',detail:'authoring-request source_basis is a source locator/receipt basis, not canonical question IDs: '+invalid.join(', ')}]:[];
+    return invalid.length?[{status:'INPUT_INVALID',point:'SOURCE_BASIS_QUESTION_ID_INVALID',detail:'authoring-request source_basis is a source locator/receipt basis, not canonical question IDs: '+invalid.join(', ')}]:[];
   }
 
   function webBlueprintRows(requested,data){
@@ -252,7 +255,7 @@
 
   function webBlueprintPrompt(rows){
     const lines=rows.map(row=>'- '+row.core+': '+row.blueprint_ref+'; shell='+row.shell_ref+'; layout='+row.layout_family+'; required slots='+((row.required_slots||[]).join(', ')||'none')+'; mount preference='+((row.representation_policy||{}).preferred_mount_modes||[]).join(', ')+'; legacy iframe='+((row.representation_policy||{}).legacy_iframe||'')+'; touch minimum='+((row.touch_policy||{}).minimum_target_css_px)+'px/'+((row.touch_policy||{}).minimum_control_gap_css_px)+'px gap; packaging='+(row.packaging_modes||[]).join(', ')+'; forbidden='+(row.forbidden||[]).join(', ')+'. Use this exact versioned blueprint; do not invent a different page anatomy.');
-    return lines.join('\n')+'\nBlueprint selection is role-driven presentation authority only; academic truth remains canonical. If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, HOLD rather than improvise.';
+    return lines.join('\n')+'\nBlueprint selection is role-driven presentation authority only; academic truth remains canonical. If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, resolve the Core\'s registered blueprint from Shared/web/interactive-page-blueprints.v1.json; never improvise page anatomy.';
   }
 
   function difficulty(rows){
@@ -264,14 +267,14 @@
     const byRef={}; fp.forEach(item=>item.evidence_refs.forEach(ref=>{if(!(ref in byRef))byRef[ref]=item.phrase;}));
     return rows.map((row,i)=>{
       const loc=row.primary_location||{}, key=row.canonical_question_ref||row.owner_question_id;
-      return {trace_id:'trace-q-'+String(i+1).padStart(2,'0'),question_ids:[row.owner_question_id],input_or_owner_decision:row.summary||row.owner_question_id,canonical_ref:row.canonical_question_ref||null,candidate_question_refs:row.candidate_question_refs||[],demand_evidence_refs:row.demand_evidence_refs||[],learner_eligibility:row.learner_eligibility||'NOT_ESTABLISHED',primary_capability_ref:row.primary_capability_ref||null,secondary_capability_refs:row.secondary_capability_refs||[],matrix_ref:loc.matrix_id||null,rung:loc.rung||null,keyword:byRef[key]||null,prompt_clause:'FIXED_SOURCE_QUESTIONS;KEYWORD_FINGERPRINT',mapping_basis:row.mapping_basis,provenance:[row.canonical_question_ref,loc.matrix_path,row.primary_capability_ref].filter(Boolean),status:row.mapping_status,finding:row.finding||null};
+      return {trace_id:'trace-q-'+String(i+1).padStart(2,'0'),question_ids:[row.owner_question_id],input_or_owner_decision:row.summary||row.owner_question_id,canonical_ref:row.canonical_question_ref||null,candidate_question_refs:row.candidate_question_refs||[],demand_evidence_refs:row.demand_evidence_refs||[],learner_eligibility:row.learner_eligibility||'DEFAULT_ELIGIBLE',primary_capability_ref:row.primary_capability_ref||null,secondary_capability_refs:row.secondary_capability_refs||[],matrix_ref:loc.matrix_id||null,rung:loc.rung||null,keyword:byRef[key]||null,prompt_clause:'FIXED_SOURCE_QUESTIONS;KEYWORD_FINGERPRINT',mapping_basis:row.mapping_basis,provenance:[row.canonical_question_ref,loc.matrix_path,row.primary_capability_ref].filter(Boolean),status:row.mapping_status,finding:row.finding||null};
     });
   }
 
   function renderPrompt(brief,template){
     const rows=brief.question_rows,fp=brief.keyword_fingerprint,scope=brief.scope;
-    const fixed=rows.map(row=>'- '+row.owner_question_id+': '+(row.summary||'(no summary supplied)')+(row.canonical_question_ref?' [canonical: '+row.canonical_question_ref+']':'')+((row.candidate_question_refs||[]).length?' [candidates: '+row.candidate_question_refs.join(', ')+']':'')+' [mapping: '+row.mapping_status+'] [learner eligibility: '+(row.learner_eligibility||'NOT_ESTABLISHED')+']').join('\n');
-    const learner=brief.learner_entry?canonicalize(brief.learner_entry):'No learner input supplied.';
+    const fixed=rows.map(row=>'- '+row.owner_question_id+': '+(row.summary||'(no summary supplied)')+(row.canonical_question_ref?' [canonical: '+row.canonical_question_ref+']':'')+((row.candidate_question_refs||[]).length?' [candidates: '+row.candidate_question_refs.join(', ')+']':'')+' [mapping: '+row.mapping_status+'] [learner eligibility: '+(row.learner_eligibility||'DEFAULT_ELIGIBLE')+']').join('\n');
+    const learner=brief.learner_entry?canonicalize(brief.learner_entry):'No learner input supplied: use the default median learner (knowledge 50%, full support) and adjust support from a short diagnostic.';
     const boundary='Subject: '+brief.subject+'. Matrix: '+(scope.matrix_ref||'UNRESOLVED')+'. Bucket: '+(scope.bucket_ref||'UNRESOLVED')+'. Canonical primary rungs represented: '+((scope.canonical_primary_rungs||[]).join(', ')||'none')+'. Composition scope status: '+scope.status+'.';
     const coreLines=brief.requested_cores.map(core=>'- '+core+': '+template.role_guardrails[core]+' Contract: '+template.role_contract_refs[core]).join('\n');
     const webBlueprintText=webBlueprintPrompt(brief.web_blueprints||[]);
@@ -283,16 +286,16 @@
       if((rule.optional_authority||[]).length) line+='; optional support = '+rule.optional_authority.join(', ');
       return line;
     }).join('\n');
-    const authorityText=authorityLines+'\nExecution order is production control only; it is not derivation or authority order.\nA Core2 HOLD does not become academic authority and does not automatically block valid Core1-family study products.\nPreserve question.primary_capability_ref; set-level topic/rung scope is composition context only.\nDemand evidence and learner eligibility are independent states.\nSource question.hints[] and authored question.scaffolds[] remain separate custody classes.\nExtension demands do not become Core1/Core1A/Core1B microtopics unless canonical academic authority admits them.';
+    const authorityText=authorityLines+'\nExecution order is production control only; it is not derivation or authority order.\nCore2 source custody is researched from the original source; missing custody is a research duty, never academic authority and never a reason to stop the Core1 family.\nPreserve question.primary_capability_ref; set-level topic/rung scope is composition context only.\nDemand evidence and learner eligibility are independent states.\nSource question.hints[] and authored question.scaffolds[] remain separate custody classes.\nAn extension demand is researched, added to the library as a CANDIDATE extension microtopic and taught marked EXTENSION; it never silently rewrites the canonical microtopics.';
     const diff=(brief.validation.difficulty_bands||[]).join(' → ')||'Use the canonical/intrinsic difficulty information available in the referenced records; do not infer it from learner percentage.';
     const kws=fp.map(item=>'- '+item.phrase+' ('+item.kind+'; evidence: '+item.evidence_refs.join(', ')+')').join('\n');
     const trace=brief.trace_rows.map(row=>'- '+row.trace_id+': '+row.question_ids.join(', ')+' → '+(row.primary_capability_ref||'UNMAPPED')+' → '+(row.matrix_ref||'UNMAPPED')+'/'+(row.rung||'UNMAPPED')+'; status='+row.status).join('\n');
-    const hold=brief.holds.length?brief.holds.map(h=>'- '+h.status+' / '+h.point+': '+h.detail).join('\n'):'- No composer-level HOLD. Downstream planner holds still apply.';
+    const hold=brief.duties.length?brief.duties.map(h=>'- '+h.status+' / '+h.point+': '+h.detail).join('\n'):'- No composer-level duty. Complete every planner duty in the same job.';
     const content={
       GOAL_OUTCOME:'Produce the requested six-Core authoring outputs from this fixed planning bundle without changing canonical curriculum, question identity, role semantics, or planner authority.',
       FIXED_SOURCE_QUESTIONS:fixed,
       LEARNER_PROFILE:learner+'\nA percentage is a starting coordinate only; it is not evidence of prerequisite mastery.',
-      EXECUTION_ORDER:brief.execution_order.join(' → ')+'\nTreat this as production control only. It does not override readiness, HOLD decisions, or the authority graph.',
+      EXECUTION_ORDER:brief.execution_order.join(' → ')+"\nTreat this as production control only. It does not override the planner's duties or the authority graph.",
       AUTHORITY_GRAPH:authorityText,
       TOPIC_BOUNDARY:boundary,
       CORE_OBLIGATIONS:coreLines,
@@ -300,9 +303,9 @@
       DIFFICULTY_PROGRESSION:diff+'\nPreserve intrinsic Core1A/Core1B depth regardless of the learner estimate.',
       KEYWORD_FINGERPRINT:kws,
       PROVENANCE_TRACE:trace+'\nUse only the cited repository/owner inputs. Do not expose or invent private reasoning traces.',
-      ACCEPTANCE:'Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.',
+      ACCEPTANCE:'Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; teach extension demand only after adding it to the library as a CANDIDATE extension microtopic marked EXTENSION; and hand the unchanged authoring request to the existing planner.',
       NON_GOALS:'Do not select a new canonical question set, create a seventh Core, infer mastery, fabricate source receipts, duplicate plan_request.py, or author/publish PDFs in this task.',
-      HOLD_FAIL:hold+'\nIf a composer HOLD is present, do not silently resolve it. If the planner requests source basis, prerequisites or owner input, preserve that HOLD.',
+      RESEARCH_DUTIES:hold+'\nThere is no hold, fail or incomplete outcome. Carry out every duty above and every planner duty inside this job: research sources and identities, author missing teaching, examples, visuals and practice with truthful provenance, and use the default median learner where learner data is missing. A gate finding is fixed and the gate re-run; it is never the result.',
       DOWNSTREAM_DELIVERABLE:'The intended downstream publication is one role-specific PDF for each valid/publishable requested Core. Do not render PDFs here; #273 owns PDF publication after validated learner products exist.'
     };
     const sections=['# Core-agent authoring prompt\n\nPrompt brief: '+brief.prompt_brief_id+'\nRepository basis: '+brief.repository_basis];
@@ -317,21 +320,22 @@
     const requested=[...(doc.requested_cores||[])], order=[...(doc.execution_order||requested)], ownerScope=doc.owner_confirmed_rung||null;
     const inputDigest=digest(JSON.parse(canonicalize(doc))), briefId='PB-'+inputDigest.split(':')[1].slice(0,16).toUpperCase();
     let holds=[];
-    if(!subject)holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_REQUIRED',detail:'subject is required'});
-    if(!(doc.questions||[]).length)holds.push({status:'UNMAPPED_HOLD',point:'QUESTION_SET_REQUIRED',detail:'at least one question row is required'});
-    if(subject && !(((sitePayload || {}).subjects || {})[subject]))holds.push({status:'UNMAPPED_HOLD',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library'});
+    if(!subject)holds.push({status:'INPUT_INVALID',point:'SUBJECT_REQUIRED',detail:'subject is required'});
+    if(!(doc.questions||[]).length)holds.push({status:'INPUT_INVALID',point:'QUESTION_SET_REQUIRED',detail:'at least one question row is required'});
+    if(subject && !(((sitePayload || {}).subjects || {})[subject]))holds.push({status:'RESEARCH_CANONICAL_MAPPING',point:'SUBJECT_UNKNOWN',detail:subject+' has no canonical subject library; research and author its CANDIDATE library'});
     const rows=(doc.questions||[]).map(raw=>{const r=resolveRow(raw,subjectData,ownerScope);holds=holds.concat(r.holds);return r.row;});
     const scoped=resolveScope(rows,ownerScope,subjectData);holds=holds.concat(scoped.holds,coreOrderHolds(requested,order),sourceBasisHolds(doc.source_basis||[],rows));
     const seen=new Set();holds=holds.filter(h=>{const k=h.status+'|'+h.point+'|'+h.detail;if(seen.has(k))return false;seen.add(k);return true;});
+    const inputInvalid=holds.some(h=>h.status==='INPUT_INVALID');
     const fp=fingerprint(rows,scoped.scope,subjectData), trace=traceRows(rows,fp);
     const brief={
       prompt_brief_id:briefId,template:{id:data.template.template_id,version:data.template.version,path:'template/core-prompt-composer/core-agent-prompt.v1.json'},
       repository_basis:doc.repository_basis||data.repository_basis,authority_contract:{version:data.authority_contract.version,path:data.authority_contract_ref,digest:digest(data.authority_contract)},input_digest:inputDigest,prompt_digest:'sha256:'+'0'.repeat(64),subject,
       scope:scoped.scope,question_rows:rows,keyword_fingerprint:fp,learner_entry:doc.learner||null,requested_cores:requested,web_blueprints:webBlueprintRows(requested,data),execution_order:order,
       source_authoring_policy:{question_identity_rule:'Exact canonical_question_ref may adopt stored mapping metadata without promoting record lifecycle status.',source_basis_rule:'authoring-request source_basis accepts source locator/receipt basis only; canonical question IDs remain in this brief/worksheet map.',source_receipt_rule:'The composer never creates or upgrades source receipts and never claims source-product readiness.',supplemental_question_policy:doc.supplemental_question_policy||null},
-      scope_boundaries:['Canonical subject/question records remain authority.','Existing six Core role contracts remain authority; no seventh Core is created.','Web blueprint refs are presentation authority only and must not duplicate or override academic truth.','Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.','plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and product holds.','Reusable question-set selection and strict exam mode remain outside this composer.','PDF publication remains downstream under issue #273.'],
-      validation:{composer_state:holds.length?'HOLD':'PASS',difficulty_bands:difficulty(rows),question_count:rows.length,mapped_question_count:rows.filter(r=>r.primary_capability_ref).length,core_order_exact:!holds.some(h=>h.point==='CORE_ORDER_INVALID'),source_basis_contains_question_ids:holds.some(h=>h.point==='SOURCE_BASIS_QUESTION_ID_INVALID')},
-      trace_rows:trace,holds,planner_handoff:{state:holds.length?'COMPOSER_HOLD':'READY_FOR_PLANNER',authoring_request_schema:'Shared/library/authoring-request.schema.json',planner_command:'python3 Shared/tools/plan_request.py --plan <authoring-request.json>',run_builder:'tools/run-builder/index.html',note:'Composer PASS means only that the prompt bundle is structurally/mapping-ready for the existing planner; it does not mean any Core product is ready.'}
+      scope_boundaries:['Canonical subject/question records remain authority.','Existing six Core role contracts remain authority; no seventh Core is created.','Web blueprint refs are presentation authority only and must not duplicate or override academic truth.','Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.','plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and research/authoring duties.','Reusable question-set selection and strict exam mode remain outside this composer.','PDF publication remains downstream under issue #273.'],
+      validation:{composer_state:inputInvalid?'INPUT_INVALID':'PASS',difficulty_bands:difficulty(rows),question_count:rows.length,mapped_question_count:rows.filter(r=>r.primary_capability_ref).length,core_order_exact:!holds.some(h=>h.point==='CORE_ORDER_INVALID'),source_basis_contains_question_ids:holds.some(h=>h.point==='SOURCE_BASIS_QUESTION_ID_INVALID')},
+      trace_rows:trace,duties:holds,planner_handoff:{state:inputInvalid?'INPUT_INVALID':'READY_FOR_PLANNER',authoring_request_schema:'Shared/library/authoring-request.schema.json',planner_command:'python3 Shared/tools/plan_request.py --plan <authoring-request.json>',run_builder:'tools/run-builder/index.html',note:'Composer PASS means the prompt bundle is ready for the planner with its research duties listed; it does not mean any Core product is built yet.'}
     };
     Object.defineProperty(brief,'__authority_contract',{value:data.authority_contract,enumerable:false});
     const prompt=renderPrompt(brief,data.template);brief.prompt_digest=digest(prompt);
@@ -340,7 +344,7 @@
     if(scoped.scope.bucket_ref)request.bucket_id=scoped.scope.bucket_ref;else if(scoped.scope.subtopic)request.subtopic=scoped.scope.subtopic;
     if(doc.learner)request.learner=doc.learner;if(doc.practice)request.practice=doc.practice;if(doc.supplemental_question_policy)request.supplemental_question_policy=doc.supplemental_question_policy;
     if((doc.source_basis||[]).length&&!holds.some(h=>h.point==='SOURCE_BASIS_QUESTION_ID_INVALID'))request.source_basis=[...doc.source_basis];
-    return {prompt_brief:brief,agent_prompt:prompt,worksheet_map:worksheet,authoring_request:request,passed:!holds.length};
+    return {prompt_brief:brief,agent_prompt:prompt,worksheet_map:worksheet,authoring_request:request,passed:!inputInvalid};
   }
 
   function parseRows(text){
@@ -388,12 +392,12 @@
     function render(result){
       current=result;const b=result.prompt_brief;
       $('bundleState').textContent=b.validation.composer_state;$('bundleState').dataset.state=b.validation.composer_state;
-      $('composerErrors').hidden=!b.holds.length;$('composerErrors').textContent=b.holds.map(h=>h.status+' / '+h.point+': '+h.detail).join('\n');
+      $('composerErrors').hidden=!b.duties.length;$('composerErrors').textContent=b.duties.map(h=>h.status+' / '+h.point+': '+h.detail).join('\n');
       $('fingerprintList').replaceChildren(...b.keyword_fingerprint.map(item=>{const li=document.createElement('li');li.textContent=item.phrase+' — '+item.kind+' — '+item.evidence_refs.join(', ');return li;}));
       $('traceBody').replaceChildren(...b.trace_rows.map(row=>{const tr=document.createElement('tr');[row.question_ids.join(', '),row.canonical_ref||'—',row.primary_capability_ref||'—',(row.matrix_ref||'—')+' / '+(row.rung||'—'),row.status].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td);});return tr;}));
       $('promptPreview').textContent=result.agent_prompt;
       ['copyPrompt','downloadBrief','downloadPrompt','downloadWorksheet','downloadRequest'].forEach(id=>$(id).disabled=false);
-      if(b.holds.length){$('composerErrors').focus();}
+      if(b.duties.some(h=>h.status==='INPUT_INVALID')){$('composerErrors').focus();}
     }
     $('composerForm').addEventListener('submit',e=>{e.preventDefault();render(composeDocument(buildDoc(),data,siteData));});
     $('resetComposer').addEventListener('click',()=>{location.reload();});

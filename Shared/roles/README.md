@@ -19,7 +19,9 @@ Six learner products per subtopic bucket. These specifications are **subject-neu
 
 **Depth is intrinsic, not personal.** Core1A/Core1B depth is set by the subtopic's intrinsic badge (EASY / MEDIUM / HARD) and does not shrink because a learner is estimated to know more. Only Core2A/Core2B consult learner knowledge or an owner waiver, and only for practice routing.
 
-**No manufactured knowledge.** A knowledge percentage is an estimate with a scope and a provenance, not a diagnosis. Absent evidence and absent waiver, personalised practice acceptance is held — study products continue regardless. Seeing a worked solution is not evidence of independent mastery.
+**No manufactured knowledge.** A knowledge percentage is an estimate with a scope and a provenance, not a diagnosis. Absent evidence and absent waiver, practice routing uses the default median learner (`DEFAULT_MEDIAN`, knowledge 50%, full support) and a short diagnostic, then adjusts from actual attempts. Seeing a worked solution is not evidence of independent mastery.
+
+**No escape state.** HOLD, FAILED, INCOMPLETE, BLOCKED and WAITING are never an outcome of an agent's work. Every gap — source custody, question identity, mapping, prerequisite, extension, worked example, visual, learner data — is a research or authoring duty completed in the same job, with truthful provenance. See `Shared/workflows/research-first.v1.json`.
 
 **Engineering detail is not a learner product.** Technical gates, routing infrastructure and owner boards specify and audit the work; they are not a seventh book. Learner navigation stays simple; engineering detail belongs in the owner view.
 
@@ -54,8 +56,8 @@ Its central rules are:
 - execution order is production control only and never changes those ownership boundaries;
 - per-question `question.primary_capability_ref` survives set-level topic/rung planning;
 - demand evidence and learner eligibility remain separate states;
-- unresolved authority dependencies remain explicit `HOLD` rather than being filled to
-  satisfy a requested product count.
+- unresolved authority dependencies become named research or authoring duties, completed with
+  truthful provenance rather than fabricated to satisfy a requested product count.
 
 The machine-readable fenced block is validated by
 `Shared/tools/core_authority_contract.py`.

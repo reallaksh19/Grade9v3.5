@@ -24,7 +24,7 @@
     "scope_boundaries",
     "validation",
     "trace_rows",
-    "holds",
+    "duties",
     "planner_handoff"
   ],
   "properties": {
@@ -88,8 +88,9 @@
           "enum": [
             "CANONICAL_MATCH",
             "OWNER_CONFIRMED_CANONICAL_RUNG",
-            "MIXED_SUBTOPIC_HOLD",
-            "UNMAPPED_HOLD"
+            "CANONICAL_MULTI_RUNG",
+            "MULTI_MATRIX",
+            "RESEARCH_MAPPING"
           ]
         },
         "matrix_ref": {
@@ -198,9 +199,9 @@
             "enum": [
               "CANONICAL_MATCH",
               "OWNER_CONFIRMED_CANONICAL_RUNG",
-              "AGENT_PROPOSAL_PENDING_REVIEW",
-              "IDENTITY_HOLD",
-              "UNMAPPED_HOLD"
+              "AGENT_PROPOSED",
+              "RESEARCH_IDENTITY",
+              "RESEARCH_MAPPING"
             ]
           },
           "primary_capability_ref": {
@@ -256,7 +257,7 @@
           "identity_status": {
             "enum": [
               "EXACT_CONFIRMED",
-              "IDENTITY_HOLD",
+              "RESEARCH_IDENTITY",
               "UNMAPPED"
             ]
           },
@@ -271,8 +272,7 @@
             "enum": [
               "ELIGIBLE",
               "EXCLUDED",
-              "HOLD",
-              "NOT_ESTABLISHED"
+              "DEFAULT_ELIGIBLE"
             ]
           },
           "learner_eligibility_basis": {
@@ -482,37 +482,8 @@
             "enum": [
               "ELIGIBLE",
               "EXCLUDED",
-              "HOLD",
-              "NOT_ESTABLISHED"
+              "DEFAULT_ELIGIBLE"
             ]
-          }
-        }
-      }
-    },
-    "holds": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "status",
-          "point",
-          "detail"
-        ],
-        "properties": {
-          "status": {
-            "enum": [
-              "AGENT_PROPOSAL_PENDING_REVIEW",
-              "IDENTITY_HOLD",
-              "MIXED_SUBTOPIC_HOLD",
-              "UNMAPPED_HOLD"
-            ]
-          },
-          "point": {
-            "type": "string"
-          },
-          "detail": {
-            "type": "string"
           }
         }
       }
@@ -531,7 +502,7 @@
         "state": {
           "enum": [
             "READY_FOR_PLANNER",
-            "COMPOSER_HOLD"
+            "INPUT_INVALID"
           ]
         },
         "authoring_request_schema": {
@@ -665,6 +636,35 @@
           }
         }
       }
+    },
+    "duties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status",
+          "point",
+          "detail"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "RESEARCH_SOURCE_IDENTITY",
+              "RESEARCH_CANONICAL_MAPPING",
+              "COVER_EVERY_SUBTOPIC",
+              "INPUT_INVALID"
+            ]
+          },
+          "point": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Research duties the agent performs inside the job. INPUT_INVALID marks an owner form error in the composer input; nothing here is a hold."
     }
   }
 }

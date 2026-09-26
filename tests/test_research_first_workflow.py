@@ -74,8 +74,8 @@ class IntakeTests(unittest.TestCase):
         request = {"subject": "Anything", "questions": ["Explain why the sky looks blue at noon."]}
         plan = raw_intake.intake(request)
         self.assertEqual(plan["status"], "RESEARCH_AND_AUTHOR")
-        self.assertIsNone(plan["learner_start"]["knowledge_percentage"])
-        self.assertEqual(plan["learner_start"]["source"], "DEFAULT")
+        self.assertEqual(plan["learner_start"]["knowledge_percentage"], 50)
+        self.assertEqual(plan["learner_start"]["source"], "DEFAULT_MEDIAN")
         zero = raw_intake.intake({**request, "learner": {"knowledge_percentage": 0}})
         self.assertEqual(zero["learner_start"]["knowledge_percentage"], 0)
         self.assertFalse(zero["learner_start"]["blocking"])
@@ -194,13 +194,38 @@ class DeliveryGateTests(unittest.TestCase):
         page = job.page("factorisation")
 
         def swap(t):
-            q = re.search(r'<article id="q[0-9a-f]+" data-role="question">.*?</article>', t, re.S).group(0)
+            q = re.search(r'<article id="q[0-9a-f]+" data-role="question" data-core="CORE2">.*?</article>', t, re.S).group(0)
             attempt = re.search(r'<div data-role="attempt">.*?</div>', q, re.S).group(0)
             answer = re.search(r'<details data-role="answer">.*?</details>', q, re.S).group(0)
             moved = q.replace(attempt, "").replace(answer, answer.replace("<details", "<div").replace("</details>", "</div>") + attempt)
             return t.replace(q, moved)
         job.edit(page, swap)
         self.assertFails(job.gate(), "answer_before_attempt")
+
+    def test_supplied_questions_are_core2_and_authored_practice_is_core2a(self):
+        job = self.job("physics-motion-2d")
+        bank = json.loads((job.dir / "bank/questions.json").read_text(encoding="utf-8"))["units"]
+        for rel in sorted((job.dir / "pages").glob("*.html")):
+            text = rel.read_text(encoding="utf-8")
+            for unit in bank:
+                tag = re.search(rf'<article id="{unit["id"]}" data-role="question" data-core="(CORE2A?)">', text)
+                if tag:
+                    self.assertEqual(tag.group(1), "CORE2A" if unit["authored"] else "CORE2", unit["id"])
+        self.assertEqual(job.gate()["findings"], [])
+
+    def test_authored_practice_presented_as_core2_fails(self):
+        bundle = load("mathematics-quadratics")
+        bundle["content"]["questions"].append({
+            **copy.deepcopy(bundle["content"]["questions"][0]),
+            "text": "Authored: factorise x^2 + 7x + 12 = 0 and solve it.",
+        })
+        sub = next(s for s in bundle["content"]["subtopics"] if bundle["content"]["questions"][0]["text"] in s.get("practice", []))
+        sub["practice"].append("Authored: factorise x^2 + 7x + 12 = 0 and solve it.")
+        job = self.job("", bundle)
+        self.assertEqual(job.gate()["findings"], [])
+        for rel in sorted((job.dir / "pages").glob("*.html")):
+            job.edit(f"pages/{rel.name}", lambda t: t.replace('data-core="CORE2A"', 'data-core="CORE2"'))
+        self.assertFails(job.gate(), "authored_as_core2")
 
     def test_supplied_question_must_be_rendered_where_the_ledger_says(self):
         job = self.job("chemistry-mole-concept")

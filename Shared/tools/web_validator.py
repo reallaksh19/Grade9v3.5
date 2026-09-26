@@ -117,7 +117,7 @@ def validate(
                 "WEB_SEGMENT_COMPOSITION_NOT_IMPLEMENTED",
                 "A composite page adapter must exist before a multi-segment plan can be released.",
             ))
-    elif adapter == "HOLD":
+    elif adapter == "AUTHOR_MISSING_INPUTS":
         pass
     else:
         findings.append(_finding("WEB_BUILD_ACTION_UNKNOWN", str(adapter)))
@@ -129,7 +129,7 @@ def validate(
             passed
             and plan.get("artifact_buildable") is True
             and plan.get("request_satisfaction") in {"FULL", "DEGRADED_ACCEPTABLE"}
-            and plan.get("build_action") != "HOLD"
+            and plan.get("build_action") != "AUTHOR_MISSING_INPUTS"
         ),
         "request_id": plan.get("request_id"),
         "request_satisfaction": plan.get("request_satisfaction"),

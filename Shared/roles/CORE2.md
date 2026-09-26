@@ -17,7 +17,7 @@ Per question:
 
 ## The custody rule
 
-Core2 is a preservation product. Its contents are **not** generated. If a bucket has no frozen or authorised question corpus, Core2 is `HELD` and says so plainly, naming what acquisition would close the hold. It is never closed by:
+Core2 is a preservation product. Its contents are **not** generated. If a bucket has no frozen or authorised question corpus, acquiring one is the agent's research duty inside the same job: find the original papers or textbooks for the supplied questions, record the source receipt and custody, and preserve each item exactly. Questions the owner supplied are custody in their own right (provenance class `OWNER_SUPPLIED`) and appear verbatim, with an exam identity only where research has matched the original. Core2 is never delivered empty and never "held". It is never filled by:
 
 - inventing an official exam, year, paper or question number;
 - promoting an author-created review corpus to "frozen" status;
@@ -35,7 +35,7 @@ This proof complements rather than replaces digest-bound review authority: acqui
 
 ## Downstream consequence
 
-Core2A and Core2B depend on Core2's custody for any claim about assessment demand, exposure or transfer boundaries. While Core2 is held, those products may still be built from authored candidates, but their acceptance inherits the hold: practice can be produced, and it can be honest, but it cannot claim to reflect the real assessment surface of the bucket.
+Core2A and Core2B depend on Core2's custody for any claim about assessment demand, exposure or transfer boundaries. Where researched source custody does not cover a demand, those products are completed with truthfully authored practice (`AUTHORED_PRACTICE`); the product states which items are source-backed and which are authored, and makes no claim about the real assessment surface beyond the source-backed items.
 
 ## What this role requires the library to hold
 
@@ -60,7 +60,7 @@ question.answer.rubric[]                 or rubric the source provides
 question.origin                          supplied original, adapted, or authored
 question.adaptation.parent_ref           adapted, with parent identity
 question.adaptation.changed_fields[]     and the exact changed fields
-issue.classification                     Core2 is HELD and says so plainly
-issue.affected_refs[]                    which bucket the hold is on
-issue.next_action                        naming what acquisition would close the hold
+issue.classification                     the open source-acquisition research, recorded plainly
+issue.affected_refs[]                    which bucket the open source research is on
+issue.next_action                        naming the acquisition the agent is carrying out
 ```

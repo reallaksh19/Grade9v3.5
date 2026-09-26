@@ -36,7 +36,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import raw_intake  # noqa: E402
+from Shared.tools import raw_intake, research_first_policy  # noqa: E402
 
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 HIDDEN = {"script", "style"}
@@ -175,9 +175,20 @@ class Gate:
                 match = pattern.search(text)
                 if match:
                     self.fail("learner_text_placeholder", rel, f"learner-facing text contains {match.group(0)!r}")
-        status = json.dumps({k: self.manifest.get(k) for k in ("status", "ledger")})
-        if re.search(r"\b[A-Z_]*HOLD\b", status):
-            self.fail("hold_as_state", "delivery.json", "a hold is recorded as a delivery or ledger state")
+        escapes = research_first_policy.escape_states(
+            {k: self.manifest.get(k) for k in ("status", "ledger")}, self.workflow)
+        if escapes:
+            self.fail("hold_as_state", "delivery.json",
+                      "an escape state is recorded as a delivery or ledger state: " + ", ".join(escapes))
+        authored = {u.get("id") for u in self._bank_units() if u.get("authored")}
+        for rel in products.get("pages", []):
+            page = self.page(rel)
+            if page is None:
+                continue
+            for item in page.find(lambda n: role(n, "question")):
+                if item.attrs.get("id") in authored and item.attrs.get("data-core") == "CORE2":
+                    self.fail("authored_as_core2", f"{rel}#{item.attrs.get('id')}",
+                              "authored practice is presented as Core2 source custody")
 
     def check_ledger(self) -> None:
         intake = self.manifest.get("intake", {})
@@ -202,6 +213,9 @@ class Gate:
             if practice is not None:
                 self.check_practice(practice, f"{input_id}.practice")
             if kind == "question":
+                if practice is not None and practice.attrs.get("data-core") not in (None, "CORE2"):
+                    self.fail("supplied_question_not_core2", input_id,
+                              "a supplied question is source custody and must be presented as Core2")
                 if input_id not in bank_ids:
                     self.fail("question_not_in_bank", input_id, "supplied question is missing from the question bank")
                 q = questions[input_id]

@@ -36,6 +36,31 @@ def plan_digest(plan: dict) -> str:
     return digest(plan)
 
 
+DEFAULT_FIELDS = {
+    "learner": "LEARNER_ENTRY",
+    "practice.CORE2A.purpose": "CORE2A_PURPOSE",
+    "practice.CORE2B.purpose": "CORE2B_PURPOSE",
+    "supplemental_question_policy": "SUPPLEMENTAL_QUESTION_POLICY",
+}
+ACTION_DECISIONS = {
+    "RESEARCH_SOURCE_BASIS": "SOURCE_BASIS",
+    "RESOLVE_SOURCE_BASIS_DRIFT": "SOURCE_BASIS_DRIFT_DECISION",
+}
+
+
+def overridable(plan: dict) -> list[str]:
+    """Owner decisions that may override what the planner defaulted or assigned to the agent.
+
+    The planner never waits for these: it applies a default or gives the agent a research
+    duty. The owner may still override either, and only those.
+    """
+    ids = {DEFAULT_FIELDS[row["field"]] for row in plan.get("defaults_applied", [])
+           if row["field"] in DEFAULT_FIELDS}
+    ids |= {ACTION_DECISIONS[row["id"]] for row in plan.get("agent_actions", [])
+            if row["id"] in ACTION_DECISIONS}
+    return sorted(ids)
+
+
 def template(request: dict, repo: Path = REPO) -> dict:
     plan = plan_request.plan(request, repo)
     artifact = {
@@ -48,7 +73,7 @@ def template(request: dict, repo: Path = REPO) -> dict:
     }
     return {
         "artifact": artifact,
-        "required_owner_inputs": plan.get("required_owner_inputs", []),
+        "overridable_decisions": overridable(plan),
     }
 
 
@@ -105,12 +130,12 @@ def apply(request: dict, decisions: dict, repo: Path = REPO) -> dict:
         fail("OWNER_DECISIONS_PLAN_STALE", request.get("request_id", ""),
              "planner output changed after these decisions were prepared")
 
-    required = {row["id"]: row for row in current_plan.get("required_owner_inputs", [])}
+    legal = set(overridable(current_plan))
     supplied = decisions.get("decisions", {})
     for decision_id in supplied:
-        if decision_id not in required:
+        if decision_id not in legal:
             fail("OWNER_DECISION_UNSOLICITED", decision_id,
-                 "planner did not request this owner decision in the pinned plan")
+                 "the pinned plan neither defaulted this input nor assigned it to the agent")
 
     patched = copy.deepcopy(request)
     if found:
@@ -197,13 +222,13 @@ def apply(request: dict, decisions: dict, repo: Path = REPO) -> dict:
         "applied_decisions": sorted(supplied),
         "request_after": patched,
         "plan_after": after,
-        "remaining_owner_inputs": [row["id"] for row in after.get("required_owner_inputs", [])],
+        "remaining_overridable": overridable(after),
         "agent_actions": [row["id"] for row in after.get("agent_actions", [])],
     }
 
 
 def audit(repo: Path = REPO) -> dict:
-    """Prove every owner question emitted by planner fixtures has a typed application path."""
+    """Prove every owner override the planner offers has a typed application path."""
     schema = load(repo / "Shared/library/owner-decisions.schema.json")
     supported = set(
         schema["properties"]["decisions"]["properties"]
@@ -212,16 +237,19 @@ def audit(repo: Path = REPO) -> dict:
     for path in sorted((repo / "Requests").glob("*.plan-request.json")):
         request = load(path)
         plan = plan_request.plan(request, repo)
-        required = [row["id"] for row in plan.get("required_owner_inputs", [])]
-        unsupported = sorted(set(required) - supported)
+        offered = overridable(plan)
+        unsupported = sorted(set(offered) - supported)
         row_findings = [{
             "point": "OWNER_DECISION_APPLICATION_UNSUPPORTED",
             "where": decision_id,
-            "detail": "planner emits an owner decision with no typed application contract",
+            "detail": "planner offers an owner override with no typed application contract",
         } for decision_id in unsupported]
+        if plan.get("required_owner_inputs"):
+            row_findings.append({"point": "PLANNER_WAITS_ON_OWNER", "where": str(path.relative_to(repo)),
+                                 "detail": "the planner must default or research, never wait"})
         rows.append({
             "path": str(path.relative_to(repo)),
-            "required_owner_inputs": required,
+            "overridable_decisions": offered,
             "supported": not unsupported,
             "findings": row_findings,
         })

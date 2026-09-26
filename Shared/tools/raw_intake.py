@@ -192,9 +192,10 @@ def intake(request: dict, workflow: dict | None = None) -> dict:
 
     learner = dict(workflow["default_learner_start"])
     owner = (request.get("learner") or {}).get("knowledge_percentage")
+    owner_given = isinstance(owner, (int, float)) and not isinstance(owner, bool)
     learner.update({
-        "source": "DEFAULT" if owner is None else "OWNER_ESTIMATE_AS_START_ONLY",
-        "knowledge_percentage": owner if isinstance(owner, (int, float)) else None,
+        "source": "OWNER_ESTIMATE_AS_START_ONLY" if owner_given else "DEFAULT_MEDIAN",
+        "knowledge_percentage": owner if owner_given else learner["knowledge_percentage"],
         "blocking": False,
     })
     rec = reconcile(questions, syllabus)

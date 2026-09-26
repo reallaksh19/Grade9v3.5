@@ -1,12 +1,23 @@
 {
   "schema": "research-first-workflow/v1",
-  "purpose": "Subject-neutral workflow invariants for jobs that start from an owner's raw questions, prompts and syllabus text. Research and authoring are part of the job from the first step; they are not a response to a hold. Canonical repository identifiers are optional references discovered during research, never prerequisites for starting.",
+  "purpose": "Subject-neutral workflow invariants for every agent job. A job starts from the owner's raw questions, prompts and syllabus text, researches the subject and its sources, and delivers the six Cores, web pages, question bank, Atlas entries and builder data. Research and authoring are the job from the first step. No state exists in which an agent may stop short of a delivered product: every gap is a research or authoring duty with a named output.",
   "invariants": [
     {
-      "id": "no_profile_gate",
-      "rule": "No student profile is required. A missing knowledge percentage cannot block content creation.",
+      "id": "no_escape_state",
+      "rule": "HOLD, FAILED, INCOMPLETE, BLOCKED, WAITING, PENDING, WITHHELD, NOT_ESTABLISHED and UNAVAILABLE are never an agent's outcome, a product state, or a reason to stop. Each condition that used to produce one is converted into a duty listed under escape_state_duties and carried out inside the same job. A gate that finds a defect returns the defect as a duty; the agent fixes it and re-runs the gate until it passes.",
       "enforced_by": [
-        "raw_intake: learner_start is always populated from default_learner_start and marked blocking=false",
+        "research_first_policy: duty_for() maps every former hold/blocked/waiting state to a named research or authoring duty",
+        "plan_request: owner inputs are filled from defaults and product states are READY or RESEARCH_AND_AUTHOR with duties",
+        "prompt_composer: unresolved identity, mapping and scope become research tasks; composer_state is never HOLD",
+        "escape_state_guard: agent-facing contracts, templates and generated prompts may not offer an escape state"
+      ]
+    },
+    {
+      "id": "no_profile_gate",
+      "rule": "No student profile is required. Any missing learner fact takes the documented default (median) value in default_learner_start, recorded with provenance DEFAULT_MEDIAN. A short diagnostic then adjusts support from actual attempts. Missing learner data never blocks, narrows or delays any Core.",
+      "enforced_by": [
+        "raw_intake and research_first_policy.default_learner: knowledge_percentage 50, full support, blocking=false",
+        "plan_request: an absent learner entry is replaced by the default median owner estimate",
         "delivery_gate: diagnostic_missing when the rendered product has no short diagnostic"
       ]
     },
@@ -20,7 +31,7 @@
     },
     {
       "id": "no_ambiguous_source_claim",
-      "rule": "Question identity is researched against the original source. A short supplied label is never an identity. An exam identity is shown only when the source text and the question's stated conditions match; otherwise no identity is claimed.",
+      "rule": "Question identity is researched against the original source. A short supplied label is never an identity. When several candidates exist, the agent compares each candidate's text and stated conditions with the supplied demand, selects the one that matches and records the discriminator. If no official source matches, the question is still used, labelled as the owner's question with no exam identity claimed. Ambiguity is resolved by research, never by a hold and never by guessing.",
       "enforced_by": [
         "raw_intake: labels are kept as owner labels and raise resolve_source_identity research",
         "delivery_gate: identity_unresolved, identity_text_mismatch, identity_condition_mismatch, identity_discriminator_missing, identity_displayed_without_claim"
@@ -36,15 +47,24 @@
     }
   ],
   "default_learner_start": {
-    "level": "foundation",
+    "level": "median",
     "support": "full",
-    "knowledge_percentage": null,
+    "knowledge_percentage": 50,
+    "knowledge_basis": "DEFAULT_MEDIAN",
+    "prior_exposure": "established by the product's own sequence: Core1 -> Core1A -> Core1B -> Core2A precede Core2B",
     "diagnostic": {
       "min_items": 3,
       "rule": "Begin with a short diagnostic and adjust support from actual attempts, not from an estimate."
     }
   },
-  "deliverables": ["book", "webpages", "question_bank", "atlas_links", "builder_integration"],
+  "deliverables": [
+    "six_cores",
+    "book",
+    "webpages",
+    "question_bank",
+    "atlas_links",
+    "builder_integration"
+  ],
   "gate": {
     "min_words_per_book_page": 40,
     "min_worked_steps": 2,
@@ -65,5 +85,94 @@
       "(?i)\\bcontent pending\\b",
       "(?i)\\bnot publication[- ]ready\\b"
     ]
+  },
+  "default_request_values": {
+    "learner": {
+      "owner_estimate": {
+        "knowledge_percentage": 50
+      },
+      "basis": "DEFAULT_MEDIAN"
+    },
+    "practice": {
+      "CORE2A": {
+        "purpose": "PRACTICE"
+      },
+      "CORE2B": {
+        "purpose": "PRACTICE"
+      }
+    },
+    "supplemental_question_policy": "ALLOW_AUTHORED_CANDIDATES"
+  },
+  "forbidden_outcome_states": [
+    "HOLD",
+    "HELD",
+    "FAIL",
+    "FAILED",
+    "INCOMPLETE",
+    "BLOCKED",
+    "WAITING",
+    "PENDING",
+    "WITHHELD",
+    "NOT_ESTABLISHED",
+    "UNAVAILABLE",
+    "DEFERRED"
+  ],
+  "escape_state_duties": {
+    "IDENTITY": {
+      "duty": "RESEARCH_SOURCE_IDENTITY",
+      "do": "Find the original paper for each candidate, compare text, figures and stated conditions with the supplied demand, select the match and record the discriminator. If none matches, present the question as the owner's question without an exam identity."
+    },
+    "MAPPING": {
+      "duty": "RESEARCH_CANONICAL_MAPPING",
+      "do": "Map the question to an existing canonical capability; if none fits, author a CANDIDATE capability/microtopic record in the subject library and map to it."
+    },
+    "SCOPE": {
+      "duty": "COVER_EVERY_SUBTOPIC",
+      "do": "When inputs span several matrices, subtopics or rungs, cover each one; keep every per-question primary_capability_ref."
+    },
+    "SOURCE_CUSTODY": {
+      "duty": "ACQUIRE_SOURCE",
+      "do": "Research and record the original source (stem, conditions, options, figures, answer). An owner-supplied question text is itself custody of class OWNER_SUPPLIED; it is shown verbatim."
+    },
+    "SOURCE_COVERAGE": {
+      "duty": "AUTHOR_PRACTICE",
+      "do": "Author practice inside the taught capability, labelled AUTHORED_PRACTICE, to cover what the source does not."
+    },
+    "LEARNER_ENTRY": {
+      "duty": "APPLY_DEFAULT_LEARNER",
+      "do": "Use default_learner_start (median) and the diagnostic."
+    },
+    "PREREQUISITE": {
+      "duty": "TEACH_PREREQUISITE_BRIDGE",
+      "do": "Author the bridge teaching for the missing prerequisite inside the product, before the dependent Core."
+    },
+    "UNTAUGHT_CAPABILITY": {
+      "duty": "AUTHOR_EXTENSION_TEACHING",
+      "do": "Research the model, add it to the library as a CANDIDATE extension microtopic, teach it in Core1A/Core1B marked EXTENSION, then use it in practice."
+    },
+    "ASSET": {
+      "duty": "AUTHOR_ASSET",
+      "do": "Author the missing explanation, worked example, visual or representation binding with provenance AUTHORED_PEDAGOGICAL."
+    },
+    "PURPOSE": {
+      "duty": "APPLY_DEFAULT_PURPOSE",
+      "do": "Use the default practice purpose."
+    },
+    "TRANSFER_EXPOSURE": {
+      "duty": "SEQUENCE_PRIOR_EXPOSURE",
+      "do": "Place the Core1A/Core1B/Core2A items that establish exposure before each Core2B task and cite them."
+    },
+    "TOPOLOGY": {
+      "duty": "REPAIR_LADDER_TOPOLOGY",
+      "do": "Correct the ladder or capability prerequisites so they agree, then plan again."
+    },
+    "GATE_FINDING": {
+      "duty": "FIX_AND_REGATE",
+      "do": "Fix the defect the gate named in the product and run the gate again."
+    },
+    "REVIEW": {
+      "duty": "RECORD_REVIEW_STATUS",
+      "do": "Deliver the product; state truthfully which human reviews have not happened. Missing review is a label, not a stop."
+    }
   }
 }

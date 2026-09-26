@@ -40,15 +40,15 @@ class CoreAuthorityContractTests(unittest.TestCase):
                 row["forbidden_authority_substitution"],
             )
 
-    def test_core2_requires_source_custody_and_may_hold_without_rewriting_study_truth(self):
+    def test_core2_requires_source_custody_and_custody_research_never_rewrites_study_truth(self):
         row = self.contract["roles"]["CORE2"]
         self.assertEqual(row["required_authority"], ["AUTHORIZED_SOURCE_CUSTODY"])
         self.assertTrue(
-            self.contract["invariants"]["core2_hold_does_not_rewrite_academic_authority"]
+            self.contract["invariants"]["core2_custody_gap_does_not_rewrite_academic_authority"]
         )
         self.assertTrue(
             self.contract["invariants"][
-                "core2_hold_does_not_automatically_block_valid_study_roles"
+                "core2_custody_research_does_not_block_study_roles"
             ]
         )
 

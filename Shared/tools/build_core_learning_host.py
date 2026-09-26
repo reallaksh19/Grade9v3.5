@@ -213,9 +213,9 @@ TEMPLATE = r'''<!doctype html>
       const web = row?.projection?.delivery?.web;
       if (!web) {
         deliveryChip.textContent = "Blueprint unavailable";
-        blueprintRef.textContent = "HOLD";
-        layoutFamily.textContent = "HOLD";
-        packagingModes.textContent = "HOLD";
+        blueprintRef.textContent = "Not assigned";
+        layoutFamily.textContent = "Not assigned";
+        packagingModes.textContent = "Not assigned";
         return;
       }
       deliveryChip.textContent = web.layout_family;

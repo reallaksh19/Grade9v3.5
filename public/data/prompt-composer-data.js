@@ -2,7 +2,7 @@
 window.GRADE9V3_PROMPT_COMPOSER = {
   "generated_by": "Shared/tools/build_prompt_composer_data.py",
   "contract_version": "1.0.0",
-  "repository_basis": "architecture-manifest@sha256:5ffcb3f78165875e449a7949efd4f7f148d9e032611462f8c502298955ab4b75",
+  "repository_basis": "architecture-manifest@sha256:946aedd919b13171518eda7ca1eed7569a096f6f5bb42a7ece33deb9de46bc2c",
   "template": {
     "template_id": "CORE-AGENT-PROMPT",
     "version": "1.1.0",
@@ -77,8 +77,8 @@ window.GRADE9V3_PROMPT_COMPOSER = {
         "title": "Non-goals"
       },
       {
-        "id": "HOLD_FAIL",
-        "title": "HOLD / FAIL behavior"
+        "id": "RESEARCH_DUTIES",
+        "title": "Research and authoring duties"
       },
       {
         "id": "DOWNSTREAM_DELIVERABLE",
@@ -204,8 +204,8 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "invariants": {
       "execution_order_is_not_authority_order": true,
-      "core2_hold_does_not_rewrite_academic_authority": true,
-      "core2_hold_does_not_automatically_block_valid_study_roles": true,
+      "core2_custody_gap_does_not_rewrite_academic_authority": true,
+      "core2_custody_research_does_not_block_study_roles": true,
       "preserve_question_primary_capability_ref": true,
       "set_scope_must_not_overwrite_question_primary": true,
       "demand_evidence_and_learner_eligibility_are_distinct": true,
@@ -214,7 +214,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
       "learner_estimate_is_not_mastery_evidence": true,
       "learner_estimate_cannot_change_core1_family_intrinsic_scope": true,
       "prompt_and_planning_outputs_are_not_academic_authority": true,
-      "unresolved_authority_dependency_must_hold": true
+      "unresolved_authority_dependency_becomes_research_duty": true
     },
     "canonical_field_rules": {
       "question_primary": "question.primary_capability_ref",
@@ -230,8 +230,7 @@ window.GRADE9V3_PROMPT_COMPOSER = {
     },
     "allowed_dependency_states": [
       "PASS",
-      "HOLD",
-      "FAIL"
+      "RESEARCH_AND_AUTHOR"
     ]
   },
   "authority_contract_ref": "Shared/roles/CORE-AUTHORITY-CONTRACT.md",

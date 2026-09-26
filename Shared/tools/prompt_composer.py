@@ -26,8 +26,11 @@ AUTHORING_SCHEMA = "Shared/library/authoring-request.schema.json"
 TEMPLATE_PATH = REPO / "template/core-prompt-composer/core-agent-prompt.v1.json"
 ALL_CORES = ("CORE1", "CORE2", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
 DEFAULT_EXECUTION_ORDER = ("CORE2", "CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B")
-HOLD_STATUSES = {"AGENT_PROPOSAL_PENDING_REVIEW", "IDENTITY_HOLD", "MIXED_SUBTOPIC_HOLD", "UNMAPPED_HOLD"}
-LEARNER_ELIGIBILITY = {"ELIGIBLE", "EXCLUDED", "HOLD", "NOT_ESTABLISHED"}
+# Composer duties are research the agent performs inside the job; INPUT_INVALID is an owner form error.
+DUTY_STATUSES = {"RESEARCH_SOURCE_IDENTITY", "RESEARCH_CANONICAL_MAPPING", "COVER_EVERY_SUBTOPIC", "INPUT_INVALID"}
+LEARNER_ELIGIBILITY = {"ELIGIBLE", "EXCLUDED", "DEFAULT_ELIGIBLE"}
+# Older inputs used these for "not decided"; the default median learner decides instead.
+LEGACY_UNDECIDED_ELIGIBILITY = {"HOLD", "NOT_ESTABLISHED"}
 
 
 def canonical_json(value: object) -> str:
@@ -97,27 +100,31 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
     canonical = index["canonical_questions"].get(canonical_ref or "") if canonical_ref else None
     holds: list[dict] = []
 
-    eligibility = str(raw.get("learner_eligibility") or "NOT_ESTABLISHED").strip().upper()
+    eligibility = str(raw.get("learner_eligibility") or "DEFAULT_ELIGIBLE").strip().upper()
+    if eligibility in LEGACY_UNDECIDED_ELIGIBILITY:
+        eligibility = "DEFAULT_ELIGIBLE"
     if eligibility not in LEARNER_ELIGIBILITY:
         holds.append({
-            "status": "UNMAPPED_HOLD",
+            "status": "INPUT_INVALID",
             "point": "LEARNER_ELIGIBILITY_INVALID",
             "detail": f"{owner_id}: learner_eligibility {eligibility!r} is not recognized",
         })
-        eligibility = "NOT_ESTABLISHED"
+        eligibility = "DEFAULT_ELIGIBLE"
     eligibility_basis = raw.get("learner_eligibility_basis")
 
     if not canonical_ref and candidates:
         valid_candidates = [ref for ref in candidates if ref in index["canonical_questions"]]
         unknown_candidates = [ref for ref in candidates if ref not in index["canonical_questions"]]
         detail = (
-            f"{owner_id}: multiple candidate question identities require explicit exact-ref confirmation: "
+            f"{owner_id}: research each candidate's original source text and stated conditions against the supplied demand, "
+            "select the matching identity and record the discriminator; if none matches, present the question as the owner's "
+            "question with no exam identity claimed. Candidates: "
             + ", ".join(valid_candidates or candidates)
         )
         if unknown_candidates:
             detail += "; unknown candidate refs: " + ", ".join(unknown_candidates)
         holds.append({
-            "status": "IDENTITY_HOLD",
+            "status": "RESEARCH_SOURCE_IDENTITY",
             "point": "QUESTION_IDENTITY_AMBIGUOUS",
             "detail": detail,
         })
@@ -126,12 +133,12 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "summary": summary,
             "canonical_question_ref": None,
             "candidate_question_refs": candidates,
-            "identity_status": "IDENTITY_HOLD",
+            "identity_status": "RESEARCH_IDENTITY",
             "demand_evidence_refs": valid_candidates,
             "learner_eligibility": eligibility,
             "learner_eligibility_basis": eligibility_basis,
             "mapping_basis": "UNMAPPED",
-            "mapping_status": "IDENTITY_HOLD",
+            "mapping_status": "RESEARCH_IDENTITY",
             "primary_capability_ref": None,
             "secondary_capability_refs": [],
             "primary_location": None,
@@ -146,10 +153,10 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
         secondary = list(canonical.get("secondary_capability_refs") or [])
         location, location_finding = _location_for_primary(primary, index)
         finding = location_finding
-        status = "CANONICAL_MATCH" if location else "UNMAPPED_HOLD"
+        status = "CANONICAL_MATCH" if location else "RESEARCH_MAPPING"
         if location_finding:
             holds.append({
-                "status": "UNMAPPED_HOLD",
+                "status": "RESEARCH_CANONICAL_MAPPING",
                 "point": "PRIMARY_LOCATION_UNRESOLVED",
                 "detail": f"{owner_id}: {location_finding}",
             })
@@ -174,7 +181,7 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
         }, holds)
 
     if canonical_ref and canonical is None:
-        detail = f"{owner_id}: exact canonical_question_ref {canonical_ref} is not present; short labels or summaries are not source identity"
+        detail = f"{owner_id}: exact canonical_question_ref {canonical_ref} is not present; research the question's source and canonical capability and record them"
         return ({
             "owner_question_id": owner_id,
             "summary": summary,
@@ -185,7 +192,7 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "learner_eligibility": eligibility,
             "learner_eligibility_basis": eligibility_basis,
             "mapping_basis": "UNMAPPED",
-            "mapping_status": "UNMAPPED_HOLD",
+            "mapping_status": "RESEARCH_MAPPING",
             "primary_capability_ref": None,
             "secondary_capability_refs": [],
             "primary_location": None,
@@ -193,7 +200,7 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "source_custody": None,
             "analysis": None,
             "finding": detail,
-        }, [{"status": "UNMAPPED_HOLD", "point": "CANONICAL_QUESTION_UNKNOWN", "detail": detail}])
+        }, [{"status": "RESEARCH_CANONICAL_MAPPING", "point": "CANONICAL_QUESTION_UNKNOWN", "detail": detail}])
 
     basis = raw.get("mapping_basis")
     primary = raw.get("primary_capability_ref")
@@ -216,13 +223,13 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
         "analysis": None,
     }
     if basis == "AGENT_PROPOSAL":
-        detail = f"{owner_id}: proposed mapping requires owner review before it can constrain a Core prompt"
+        detail = f"{owner_id}: agent-proposed mapping is used and labelled AGENT_PROPOSED; owner review is a label, not a stop"
         return ({
             **shared,
             "mapping_basis": "AGENT_PROPOSAL",
-            "mapping_status": "AGENT_PROPOSAL_PENDING_REVIEW",
+            "mapping_status": "AGENT_PROPOSED",
             "finding": detail,
-        }, [{"status": "AGENT_PROPOSAL_PENDING_REVIEW", "point": "AGENT_MAPPING_REVIEW_REQUIRED", "detail": detail}])
+        }, [])
 
     if basis == "MANUAL" and primary and location and owner_scope:
         return ({
@@ -232,15 +239,15 @@ def _resolve_question_row(raw: dict, index: dict, owner_scope: dict | None) -> t
             "finding": None,
         }, [])
 
-    detail = f"{owner_id}: no exact canonical question mapping or owner-confirmed manual canonical mapping is available"
+    detail = f"{owner_id}: research the canonical capability this question exercises; if none exists, add a CANDIDATE capability to the library and map to it"
     if location_finding:
         detail += f" ({location_finding})"
     return ({
         **shared,
         "mapping_basis": "UNMAPPED",
-        "mapping_status": "UNMAPPED_HOLD",
+        "mapping_status": "RESEARCH_MAPPING",
         "finding": detail,
-    }, [{"status": "UNMAPPED_HOLD", "point": "QUESTION_MAPPING_UNRESOLVED", "detail": detail}])
+    }, [{"status": "RESEARCH_CANONICAL_MAPPING", "point": "QUESTION_MAPPING_UNRESOLVED", "detail": detail}])
 
 
 def _resolve_scope(subject: str, rows: list[dict], owner_scope: dict | None, repo: Path) -> tuple[dict, list[dict]]:
@@ -251,58 +258,54 @@ def _resolve_scope(subject: str, rows: list[dict], owner_scope: dict | None, rep
 
     if not matrix_ids:
         return ({
-            "status": "UNMAPPED_HOLD", "matrix_ref": None, "bucket_ref": None,
+            "status": "RESEARCH_MAPPING", "matrix_ref": None, "bucket_ref": None,
             "topic": None, "subtopic": None, "canonical_primary_rungs": [],
             "owner_confirmed_rung": owner_scope,
-        }, [{"status": "UNMAPPED_HOLD", "point": "COMPOSITION_SCOPE_UNMAPPED",
-             "detail": "No unique canonical primary teaching matrix can be established from the question rows."}])
+        }, [{"status": "RESEARCH_CANONICAL_MAPPING", "point": "COMPOSITION_SCOPE_UNMAPPED",
+             "detail": "Research the canonical teaching matrix for the question rows; map each question before composing."}])
 
     if len(matrix_ids) > 1:
-        detail = "Primary question mappings span multiple matrices: " + ", ".join(matrix_ids)
+        detail = "Cover every matrix the questions span, keeping each per-question primary capability: " + ", ".join(matrix_ids)
         return ({
-            "status": "MIXED_SUBTOPIC_HOLD", "matrix_ref": None, "bucket_ref": None,
+            "status": "MULTI_MATRIX", "matrix_ref": None, "bucket_ref": None,
             "topic": None, "subtopic": None,
             "canonical_primary_rungs": sorted({row.get("rung") for row in locations if row.get("rung")}),
             "owner_confirmed_rung": owner_scope,
-        }, [{"status": "MIXED_SUBTOPIC_HOLD", "point": "MIXED_PRIMARY_MATRICES", "detail": detail}])
+        }, [{"status": "COVER_EVERY_SUBTOPIC", "point": "MIXED_PRIMARY_MATRICES", "detail": detail}])
 
     matrix_id = matrix_ids[0]
     board = boards.get(matrix_id)
     if board is None:
         return ({
-            "status": "UNMAPPED_HOLD", "matrix_ref": matrix_id, "bucket_ref": None,
+            "status": "RESEARCH_MAPPING", "matrix_ref": matrix_id, "bucket_ref": None,
             "topic": None, "subtopic": None, "canonical_primary_rungs": [],
             "owner_confirmed_rung": owner_scope,
-        }, [{"status": "UNMAPPED_HOLD", "point": "MATRIX_RECORD_MISSING",
-             "detail": f"{matrix_id} is referenced by capability locations but its matrix record is unavailable."}])
+        }, [{"status": "RESEARCH_CANONICAL_MAPPING", "point": "MATRIX_RECORD_MISSING",
+             "detail": f"{matrix_id} is referenced by capability locations but its matrix record is missing; author the matrix record."}])
 
     primary_rungs = sorted({row.get("rung") for row in locations if row.get("rung")})
     status = "CANONICAL_MATCH"
     if len(primary_rungs) > 1:
         if not owner_scope:
-            holds.append({
-                "status": "UNMAPPED_HOLD",
-                "point": "OWNER_RUNG_CONFIRMATION_REQUIRED",
-                "detail": "Question primaries span canonical rungs " + ", ".join(primary_rungs) + "; confirm one composition rung without rewriting per-question mappings.",
-            })
-            status = "UNMAPPED_HOLD"
+            # Compose across every canonical rung the questions touch; per-question rungs stay.
+            status = "CANONICAL_MULTI_RUNG"
         elif owner_scope.get("matrix_id") != matrix_id or _find_rung(board, owner_scope.get("rung", "")) is None:
             holds.append({
-                "status": "UNMAPPED_HOLD",
+                "status": "INPUT_INVALID",
                 "point": "OWNER_RUNG_CONFIRMATION_INVALID",
                 "detail": "The owner-confirmed composition rung does not resolve inside the question set's canonical matrix.",
             })
-            status = "UNMAPPED_HOLD"
+            status = "CANONICAL_MULTI_RUNG"
         else:
             status = "OWNER_CONFIRMED_CANONICAL_RUNG"
     elif owner_scope:
         if owner_scope.get("matrix_id") != matrix_id or _find_rung(board, owner_scope.get("rung", "")) is None:
             holds.append({
-                "status": "UNMAPPED_HOLD",
+                "status": "INPUT_INVALID",
                 "point": "OWNER_RUNG_CONFIRMATION_INVALID",
                 "detail": "The owner-confirmed composition rung does not resolve inside the canonical matrix.",
             })
-            status = "UNMAPPED_HOLD"
+            status = "CANONICAL_MATCH"
         else:
             status = "OWNER_CONFIRMED_CANONICAL_RUNG"
 
@@ -350,8 +353,8 @@ def _fingerprint(rows: list[dict], scope: dict, subject: str, repo: Path, index:
         add(family.get("invariant_demand"), "MATRIX_INVARIANT", [matrix_id])
         add(family.get("difficult_move"), "MATRIX_DIFFICULT_MOVE", [matrix_id])
     if not items:
-        add("No trustworthy concept fingerprint can be emitted until the question mapping is resolved.",
-            "CAPABILITY_ACTION", ["COMPOSER_HOLD"])
+        add("Research the question mapping first; the concept fingerprint follows from the mapped capabilities.",
+            "CAPABILITY_ACTION", ["RESEARCH_CANONICAL_MAPPING"])
     return items
 
 
@@ -359,13 +362,13 @@ def _validate_core_order(requested: list[str], order: list[str]) -> list[dict]:
     holds = []
     unknown = sorted({core for core in requested + order if core not in ALL_CORES})
     if unknown:
-        holds.append({"status": "UNMAPPED_HOLD", "point": "UNKNOWN_CORE",
+        holds.append({"status": "INPUT_INVALID", "point": "UNKNOWN_CORE",
                       "detail": "Unknown Core role(s): " + ", ".join(unknown)})
     if len(requested) != len(set(requested)):
-        holds.append({"status": "UNMAPPED_HOLD", "point": "DUPLICATE_REQUESTED_CORE",
+        holds.append({"status": "INPUT_INVALID", "point": "DUPLICATE_REQUESTED_CORE",
                       "detail": "requested_cores must not contain duplicates."})
     if len(order) != len(set(order)) or set(order) != set(requested):
-        holds.append({"status": "UNMAPPED_HOLD", "point": "CORE_ORDER_INVALID",
+        holds.append({"status": "INPUT_INVALID", "point": "CORE_ORDER_INVALID",
                       "detail": "execution_order must contain every requested Core exactly once and no others."})
     return holds
 
@@ -375,7 +378,7 @@ def _source_basis_hold(source_basis: list[str], rows: list[dict]) -> list[dict]:
     invalid = [item for item in source_basis if item in canonical_refs]
     if not invalid:
         return []
-    return [{"status": "UNMAPPED_HOLD", "point": "SOURCE_BASIS_QUESTION_ID_INVALID",
+    return [{"status": "INPUT_INVALID", "point": "SOURCE_BASIS_QUESTION_ID_INVALID",
              "detail": "authoring-request source_basis is a source locator/receipt basis, not canonical question IDs: " + ", ".join(invalid)}]
 
 
@@ -528,7 +531,8 @@ def _web_blueprint_prompt(rows: list[dict]) -> str:
         )
     return "\n".join(lines) + (
         "\nBlueprint selection is role-driven presentation authority only; academic truth remains canonical. "
-        "If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, HOLD rather than improvise."
+        "If a blueprint ref is missing, unknown, version-incompatible, or Core-incompatible, resolve the Core's registered "
+        "blueprint from Shared/web/interactive-page-blueprints.v1.json; never improvise page anatomy."
     )
 
 
@@ -538,7 +542,7 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
     rows = brief["question_rows"]
     fingerprint = brief["keyword_fingerprint"]
     scope = brief["scope"]
-    holds = brief["holds"]
+    holds = brief["duties"]
     sections = []
 
     fixed = "\n".join(
@@ -546,11 +550,13 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         + (f" [canonical: {row['canonical_question_ref']}]" if row.get("canonical_question_ref") else "")
         + (f" [candidates: {', '.join(row.get('candidate_question_refs') or [])}]" if row.get("candidate_question_refs") else "")
         + f" [mapping: {row['mapping_status']}]"
-        + f" [learner eligibility: {row.get('learner_eligibility') or 'NOT_ESTABLISHED'}]"
+        + f" [learner eligibility: {row.get('learner_eligibility') or 'DEFAULT_ELIGIBLE'}]"
         for row in rows
     )
     learner = brief.get("learner_entry")
-    learner_text = canonical_json(learner) if learner else "No learner input supplied."
+    learner_text = canonical_json(learner) if learner else (
+        "No learner input supplied: use the default median learner (knowledge 50%, full support) "
+        "and adjust support from a short diagnostic.")
     order = " → ".join(brief["execution_order"])
     boundary = (
         f"Subject: {brief['subject']}. Matrix: {scope.get('matrix_ref') or 'UNRESOLVED'}. "
@@ -578,11 +584,11 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         authority_lines.append(line)
     authority_text = "\n".join(authority_lines) + (
         "\nExecution order is production control only; it is not derivation or authority order."
-        "\nA Core2 HOLD does not become academic authority and does not automatically block valid Core1-family study products."
+        "\nCore2 source custody is researched from the original source; missing custody is a research duty, never academic authority and never a reason to stop the Core1 family."
         "\nPreserve question.primary_capability_ref; set-level topic/rung scope is composition context only."
         "\nDemand evidence and learner eligibility are independent states."
         "\nSource question.hints[] and authored question.scaffolds[] remain separate custody classes."
-        "\nExtension demands do not become Core1/Core1A/Core1B microtopics unless canonical academic authority admits them."
+        "\nAn extension demand is researched, added to the library as a CANDIDATE extension microtopic and taught marked EXTENSION; it never silently rewrites the canonical microtopics."
     )
     diff = " → ".join(brief["validation"].get("difficulty_bands") or []) or "Use the canonical/intrinsic difficulty information available in the referenced records; do not infer it from learner percentage."
     kws = "\n".join(f"- {item['phrase']} ({item['kind']}; evidence: {', '.join(item['evidence_refs'])})" for item in fingerprint)
@@ -591,7 +597,7 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         f" → {row['matrix_ref'] or 'UNMAPPED'}/{row['rung'] or 'UNMAPPED'}; status={row['status']}"
         for row in brief["trace_rows"]
     )
-    hold_text = "\n".join(f"- {h['status']} / {h['point']}: {h['detail']}" for h in holds) or "- No composer-level HOLD. Downstream planner holds still apply."
+    hold_text = "\n".join(f"- {h['status']} / {h['point']}: {h['detail']}" for h in holds) or "- No composer-level duty. Complete every planner duty in the same job."
     downstream = (
         "The intended downstream publication is one role-specific PDF for each valid/publishable requested Core. "
         "Do not render PDFs here; #273 owns PDF publication after validated learner products exist."
@@ -601,7 +607,7 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         "GOAL_OUTCOME": "Produce the requested six-Core authoring outputs from this fixed planning bundle without changing canonical curriculum, question identity, role semantics, or planner authority.",
         "FIXED_SOURCE_QUESTIONS": fixed,
         "LEARNER_PROFILE": learner_text + "\nA percentage is a starting coordinate only; it is not evidence of prerequisite mastery.",
-        "EXECUTION_ORDER": order + "\nTreat this as production control only. It does not override readiness, HOLD decisions, or the authority graph.",
+        "EXECUTION_ORDER": order + "\nTreat this as production control only. It does not override the planner's duties or the authority graph.",
         "AUTHORITY_GRAPH": authority_text,
         "TOPIC_BOUNDARY": boundary,
         "CORE_OBLIGATIONS": core_lines,
@@ -609,9 +615,9 @@ def render_prompt(brief: dict, template: dict, authority_contract: dict | None =
         "DIFFICULTY_PROGRESSION": diff + "\nPreserve intrinsic Core1A/Core1B depth regardless of the learner estimate.",
         "KEYWORD_FINGERPRINT": kws,
         "PROVENANCE_TRACE": trace + "\nUse only the cited repository/owner inputs. Do not expose or invent private reasoning traces.",
-        "ACCEPTANCE": "Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; do not promote extension demand into Core1-family teaching without canonical admission; and hand the unchanged authoring request to the existing planner.",
+        "ACCEPTANCE": "Use the exact versioned web blueprint declared for each requested Core; do not invent page architecture. Keep every fixed question traceable to its mapping finding; preserve per-question primary_capability_ref independently from set-level scope; keep demand evidence separate from learner eligibility; preserve the requested Core set/order without treating order as authority; distinguish source hints from authored scaffolds and source/adapted/authored material; teach extension demand only after adding it to the library as a CANDIDATE extension microtopic marked EXTENSION; and hand the unchanged authoring request to the existing planner.",
         "NON_GOALS": "Do not select a new canonical question set, create a seventh Core, infer mastery, fabricate source receipts, duplicate plan_request.py, or author/publish PDFs in this task.",
-        "HOLD_FAIL": hold_text + "\nIf a composer HOLD is present, do not silently resolve it. If the planner requests source basis, prerequisites or owner input, preserve that HOLD.",
+        "RESEARCH_DUTIES": hold_text + "\nThere is no hold, fail or incomplete outcome. Carry out every duty above and every planner duty inside this job: research sources and identities, author missing teaching, examples, visuals and practice with truthful provenance, and use the default median learner where learner data is missing. A gate finding is fixed and the gate re-run; it is never the result.",
         "DOWNSTREAM_DELIVERABLE": downstream,
     }
 
@@ -650,17 +656,17 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
 
     holds: list[dict] = []
     if not subject:
-        holds.append({"status": "UNMAPPED_HOLD", "point": "SUBJECT_REQUIRED", "detail": "subject is required"})
+        holds.append({"status": "INPUT_INVALID", "point": "SUBJECT_REQUIRED", "detail": "subject is required"})
     if not questions:
-        holds.append({"status": "UNMAPPED_HOLD", "point": "QUESTION_SET_REQUIRED", "detail": "at least one question row is required"})
+        holds.append({"status": "INPUT_INVALID", "point": "QUESTION_SET_REQUIRED", "detail": "at least one question row is required"})
 
     if subject and (repo / subject / "library").is_dir():
         index = study_map.subject_index(subject, repo)
     else:
         index = {"canonical_questions": {}, "capabilities": {}, "locations": {}}
         if subject:
-            holds.append({"status": "UNMAPPED_HOLD", "point": "SUBJECT_UNKNOWN",
-                          "detail": f"{subject} has no canonical subject library"})
+            holds.append({"status": "RESEARCH_CANONICAL_MAPPING", "point": "SUBJECT_UNKNOWN",
+                          "detail": f"{subject} has no canonical subject library; research and author its CANDIDATE library"})
 
     rows = []
     for raw in questions:
@@ -669,7 +675,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         holds.extend(row_holds)
 
     scope, scope_holds = _resolve_scope(subject, rows, owner_scope, repo) if subject else ({
-        "status": "UNMAPPED_HOLD", "matrix_ref": None, "bucket_ref": None, "topic": None,
+        "status": "RESEARCH_MAPPING", "matrix_ref": None, "bucket_ref": None, "topic": None,
         "subtopic": None, "canonical_primary_rungs": [], "owner_confirmed_rung": owner_scope,
     }, [])
     holds.extend(scope_holds)
@@ -689,6 +695,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
             seen_holds.add(key)
             unique_holds.append(hold)
     holds = unique_holds
+    input_invalid = any(hold["status"] == "INPUT_INVALID" for hold in holds)
 
     brief = {
         "prompt_brief_id": brief_id,
@@ -724,12 +731,12 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
             "Existing six Core role contracts remain authority; no seventh Core is created.",
             "Web blueprint refs are presentation authority only and must not duplicate or override academic truth.",
             "Learner percentage is a routing coordinate only and cannot shrink CORE1A/CORE1B intrinsic depth.",
-            "plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and product holds.",
+            "plan_request.py remains authoritative for readiness, prerequisite bridges, source receipts and research/authoring duties.",
             "Reusable question-set selection and strict exam mode remain outside this composer.",
             "PDF publication remains downstream under issue #273.",
         ],
         "validation": {
-            "composer_state": "HOLD" if holds else "PASS",
+            "composer_state": "INPUT_INVALID" if input_invalid else "PASS",
             "difficulty_bands": _difficulty(rows),
             "question_count": len(rows),
             "mapped_question_count": sum(1 for row in rows if row.get("primary_capability_ref")),
@@ -737,13 +744,13 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
             "source_basis_contains_question_ids": any(h["point"] == "SOURCE_BASIS_QUESTION_ID_INVALID" for h in holds),
         },
         "trace_rows": trace_rows,
-        "holds": holds,
+        "duties": holds,
         "planner_handoff": {
-            "state": "COMPOSER_HOLD" if holds else "READY_FOR_PLANNER",
+            "state": "INPUT_INVALID" if input_invalid else "READY_FOR_PLANNER",
             "authoring_request_schema": AUTHORING_SCHEMA,
             "planner_command": "python3 Shared/tools/plan_request.py --plan <authoring-request.json>",
             "run_builder": "tools/run-builder/index.html",
-            "note": "Composer PASS means only that the prompt bundle is structurally/mapping-ready for the existing planner; it does not mean any Core product is ready.",
+            "note": "Composer PASS means the prompt bundle is ready for the planner with its research duties listed; it does not mean any Core product is built yet.",
         },
     }
     prompt = render_prompt(brief, template, authority)
@@ -761,7 +768,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
 
     study_report = study_map.resolve(worksheet, repo) if worksheet["questions"] else {
         "worksheet_id": worksheet["worksheet_id"], "subject": subject, "questions": [],
-        "findings": [{"point": "WORKSHEET_MAP_EMPTY_AFTER_HOLDS", "detail": "No mapped question can be exported."}],
+        "findings": [{"point": "WORKSHEET_MAP_AWAITS_RESEARCH", "detail": "No question is mapped yet; complete the mapping research duties."}],
         "passed": False,
     }
     return {
@@ -770,7 +777,7 @@ def compose(doc: dict, repo: Path = REPO, repository_basis: str | None = None) -
         "worksheet_map": worksheet,
         "worksheet_resolution": study_report,
         "authoring_request": authoring_request,
-        "passed": not holds and study_report.get("passed", False),
+        "passed": not input_invalid and (study_report.get("passed", False) or not worksheet["questions"]),
     }
 
 

@@ -35,11 +35,11 @@ A task belongs here only if it changes a **specified** dimension of demand relat
 
 ## Practice routing
 
-Same inputs as [Core2A](CORE2A.md) — scoped capability evidence or an explicit owner waiver — with the same prohibitions on manufactured diagnosis. Transfer tasks in particular must not be routed to a learner on the assumption that a high aggregate estimate implies the prerequisites are in place.
+Same inputs as [Core2A](CORE2A.md) — scoped capability evidence, an explicit owner waiver or the default median learner — with the same prohibitions on manufactured diagnosis. Prior exposure is established by the product's own sequence: the Core1A/Core1B/Core2A items that teach the capability come before each Core2B task and are cited by it. Transfer tasks in particular must not be routed to a learner on the assumption that a high aggregate estimate implies the prerequisites are in place.
 
 ## What Core2B must not do
 
-- Introduce new scientific content under a transfer label. A task requiring a model the learner was never taught is a coverage gap, not a transfer assessment.
+- Introduce new scientific content under a transfer label. A task requiring a model the learner was never taught is a coverage gap: the agent researches the model, admits it as a `CANDIDATE` extension microtopic, teaches it in Core1A/Core1B marked `EXTENSION`, and only then may a later Core2B task transfer it.
 - Depend on a live tutor for closure.
 - Treat low measured similarity as evidence of genuine transfer. Similarity is a screening signal; transfer is a claim about demand, and it is established by review.
 

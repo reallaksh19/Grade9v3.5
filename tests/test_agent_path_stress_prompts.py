@@ -89,22 +89,23 @@ class FrozenAgentPathStressPrompts(unittest.TestCase):
                 self.assertIn("CORE1B", products)
                 self.assertEqual(products["CORE1A"]["state"], products["CORE1B"]["state"])
 
-    def test_source_backed_practice_without_source_stays_explicit(self):
-        for case in self.suite()["cases"]:
-            expected = case["expected"]
-            if "SOURCE_BASIS" not in expected["required_owner_inputs"]:
-                continue
+    def test_source_backed_practice_without_source_becomes_research(self):
+        cases = [case for case in self.suite()["cases"]
+                 if "RESEARCH_SOURCE_BASIS" in case["expected"].get("agent_actions", [])]
+        self.assertTrue(cases)
+        for case in cases:
             report = plan_request.plan(case["request"])
             with self.subTest(case=case["case_id"]):
                 self.assertEqual(report["source"]["basis"], [])
                 self.assertIn(
-                    "SOURCE_BASIS",
-                    [row["id"] for row in report["required_owner_inputs"]],
+                    "RESEARCH_SOURCE_BASIS",
+                    [row["id"] for row in report["agent_actions"]],
                 )
                 self.assertIn(
-                    "SOURCE_BASIS",
-                    report["lifecycle"]["AUTHORING"]["blockers"],
+                    "RESEARCH_SOURCE_BASIS",
+                    report["lifecycle"]["AUTHORING"]["duties"],
                 )
+                self.assertEqual(report["lifecycle"]["AUTHORING"]["state"], "READY_FOR_AUTHORING")
 
     def test_fixture_is_system_evidence_only(self):
         serialized = self.CASES.read_text(encoding="utf-8")

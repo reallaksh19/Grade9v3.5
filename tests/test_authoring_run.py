@@ -101,7 +101,7 @@ class AuthoringRun(unittest.TestCase):
         order = next(row for row in packet["work_orders"] if row["core"] == "CORE2B")
         self.assertEqual(order["authoring_action"], "AUTHOR_CANDIDATE_QUESTION")
         self.assertEqual(order["write_scope"]["mode"], "CANDIDATE_RECORDS_ONLY")
-        self.assertEqual(order["blockers"], [])
+        self.assertEqual(order["duties"], ["AUTHOR_SUPPLEMENTAL_PRACTICE"])
 
     def test_valid_candidate_run_emits_receipt_without_mutating_dry_run(self):
         request = self.request(self.CORE2B)

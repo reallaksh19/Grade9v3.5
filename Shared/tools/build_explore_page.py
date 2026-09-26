@@ -48,7 +48,7 @@ def _profile(repo: Path) -> dict:
 
 def compile_page_package(plan: dict, repo: Path = REPO) -> dict:
     _require(plan.get("build_action") == "EXPLORE_PAGE_ADAPTER", "EXPLORE_PLAN_ACTION_INVALID")
-    _require(plan.get("request_satisfaction") != "HOLD", "EXPLORE_PLAN_HELD")
+    _require(plan.get("request_satisfaction") != "RESEARCH_AND_AUTHOR", "EXPLORE_PLAN_NEEDS_AUTHORING")
     segments = plan.get("experience_segments") or []
     _require(len(segments) == 1 and segments[0].get("mode") == "EXPLORE", "EXPLORE_SEGMENT_REQUIRED")
 
