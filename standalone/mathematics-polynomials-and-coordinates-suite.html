@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- KaTeX for crisp mathematical typography (Local with CDN fallback) -->
+  <link rel="stylesheet" href="../public/vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
+  <script src="../public/vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
+  <script src="../public/vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) { window.renderAllMath(); }"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Polynomials & Coordinate Geometry · Interactive Research Suite</title>
@@ -442,6 +446,50 @@
       border-radius: 999px;
       color: var(--muted);
       width: fit-content;
+    }
+
+    /* Mathematical Typography Styling */
+    .formula-math, .formula-card {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+    }
+    .math-inline, .math-display {
+      font-family: "KaTeX_Math", "Cambria Math", "Latin Modern Math", "STIX Two Math", Georgia, serif;
+    }
+    .math-display {
+      display: block;
+      text-align: center;
+      margin: 8px 0;
+      font-size: 1.15em;
+    }
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: -0.55em;
+      padding: 0 0.25em;
+      text-align: center;
+      font-size: 0.88em;
+      line-height: 1.1;
+      font-style: normal;
+    }
+    .math-num {
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .math-denom {
+      padding-top: 1px;
+    }
+    .math-sqrt-wrap {
+      display: inline-flex;
+      align-items: center;
+      font-style: normal;
+    }
+    .math-sqrt {
+      border-top: 1.5px solid currentColor;
+      padding-top: 1px;
+      margin-left: 1px;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-style: normal;
     }
   </style>
 </head>
@@ -955,6 +1003,7 @@
           b.setAttribute('aria-selected', 'false');
         });
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        setTimeout(renderAllMath, 50);
 
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
@@ -1482,6 +1531,94 @@
     window.addEventListener('resize', () => {
       resizeCanvas();
       drawCoordGrid();
+    });
+
+    /* Math Typography & KaTeX Auto-Rendering */
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'canvas'],
+            throwOnError: false
+          });
+          return;
+        } catch (e) {
+          console.warn('KaTeX render error:', e);
+        }
+      }
+      fallbackRenderMath(document.body);
+    }
+
+    function fallbackRenderMath(root) {
+      if (!root) root = document.body;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.parentElement && !['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'CANVAS'].includes(node.parentElement.tagName)) {
+          if (node.nodeValue.includes('$') || node.nodeValue.includes('\\')) {
+            textNodes.push(node);
+          }
+        }
+      }
+
+      textNodes.forEach(tNode => {
+        let val = tNode.nodeValue;
+        if (!val.includes('$') && !val.includes('\\')) return;
+        val = val.replace(/\$\$([\s\S]+?)\$\$/g, (m, math) => `<span class="math-display">${formatMathString(math)}</span>`);
+        val = val.replace(/\$([^\$]+?)\$/g, (m, math) => `<span class="math-inline">${formatMathString(math)}</span>`);
+        if (val !== tNode.nodeValue) {
+          const span = document.createElement('span');
+          span.innerHTML = val;
+          tNode.parentNode.replaceChild(span, tNode);
+        }
+      });
+    }
+
+    function formatMathString(str) {
+      return str
+        .replace(/\\text\{([^\}]+)\}/g, '$1')
+        .replace(/\\implies/g, '&rArr;')
+        .replace(/\\approx/g, '&asymp;')
+        .replace(/\\times/g, '&times;')
+        .replace(/\\le/g, '&le;')
+        .replace(/\\ge/g, '&ge;')
+        .replace(/\\quad/g, '&emsp;')
+        .replace(/\\qquad/g, '&emsp;&emsp;')
+        .replace(/\\frac\{([^\}]+)\}\{([^\}]+)\}/g, '<span class="math-frac"><span class="math-num">$1</span><span class="math-denom">$2</span></span>')
+        .replace(/\\sqrt\{([^\}]+)\}/g, '<span class="math-sqrt-wrap">&radic;<span class="math-sqrt">$1</span></span>')
+        .replace(/\^2/g, '&sup2;')
+        .replace(/\^3/g, '&sup3;')
+        .replace(/\^\{([^\}]+)\}/g, '<sup>$1</sup>')
+        .replace(/_\{([^\}]+)\}/g, '<sub>$1</sub>')
+        .replace(/_([a-zA-Z0-9])/g, '<sub>$1</sub>');
+    }
+
+    // Details elements toggle listener for hint ladder
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) setTimeout(renderAllMath, 50);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllMath();
+      let pollCount = 0;
+      const poll = setInterval(() => {
+        pollCount++;
+        if (window.renderMathInElement) {
+          clearInterval(poll);
+          renderAllMath();
+        } else if (pollCount > 20) {
+          clearInterval(poll);
+        }
+      }, 100);
     });
   </script>
 </body>
