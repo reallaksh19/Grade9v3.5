@@ -6274,6 +6274,266 @@
           "visual_stage_ref": "VIS-NLM-BLOCK18-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-UNGLUED-PUSH-PULL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the same force pushing and pulling unglued blocks, so the common acceleration is tied to a maintained contact.",
+      "required_elements": [
+        "unglued blocks A and B in two cases",
+        "case 1 contact maintained",
+        "case 2 contact lost"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "unglued blocks A and B in two cases",
+        "case 1 contact maintained",
+        "case 2 contact lost"
+      ],
+      "instance_constraints": [
+        "The contact force is an ordinary normal force.",
+        "The floor is frictionless."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Imposing one acceleration on bodies that merely touch."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-UNGLUED-PUSH-PULL.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PUSHPULL-V0",
+          "label": "Two cases",
+          "purpose": "Show the same force pushing A into B and pulling A away.",
+          "visible_elements": [
+            "unglued blocks A and B in two cases"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUSHPULL-V1",
+          "label": "Case 1",
+          "purpose": "Check the contact force in the pushing case.",
+          "visible_elements": [
+            "unglued blocks A and B in two cases",
+            "case 1 contact maintained"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUSHPULL-V2",
+          "label": "Case 2",
+          "purpose": "Check whether the contact could hold B.",
+          "visible_elements": [
+            "unglued blocks A and B in two cases",
+            "case 1 contact maintained",
+            "case 2 contact lost"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PUSHPULL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PUSHPULL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PUSHPULL-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ATWOOD-SYMBOLIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the symbolic Atwood machine with T and each weight drawn on its own mass, so T is found rather than set equal to a weight.",
+      "required_elements": [
+        "m_A and m_B over a fixed pulley, m_B > m_A",
+        "T and weights on each mass",
+        "per-mass equations",
+        "a, T and the comparison"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION",
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "m_A and m_B over a fixed pulley, m_B > m_A",
+        "T and weights on each mass",
+        "per-mass equations",
+        "a, T and the comparison"
+      ],
+      "instance_constraints": [
+        "The string and pulley are ideal.",
+        "Each mass uses its own positive direction along its motion."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting T = m_A g or T = m_B g."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ATWOOD-SYMBOLIC.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ATWOODSYM-V0",
+          "label": "The machine",
+          "purpose": "Show m_A and m_B over the fixed pulley.",
+          "visible_elements": [
+            "m_A and m_B over a fixed pulley, m_B > m_A"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ATWOODSYM-V1",
+          "label": "Forces and equations",
+          "purpose": "Draw T and the weight on each mass and write each equation.",
+          "visible_elements": [
+            "m_A and m_B over a fixed pulley, m_B > m_A",
+            "T and weights on each mass",
+            "per-mass equations"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ATWOODSYM-V2",
+          "label": "Results",
+          "purpose": "Solve and compare T with the weights.",
+          "visible_elements": [
+            "m_A and m_B over a fixed pulley, m_B > m_A",
+            "T and weights on each mass",
+            "per-mass equations",
+            "a, T and the comparison"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ATWOODSYM-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ATWOODSYM-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ATWOODSYM-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-SMOOTH-INCLINE-RELEASE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block on the smooth incline with axes along and across the contact so the maintained contact gives N directly.",
+      "required_elements": [
+        "block m on a smooth plane at θ",
+        "weight and normal force with plane axes",
+        "N and a"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "block m on a smooth plane at θ",
+        "weight and normal force with plane axes",
+        "N and a"
+      ],
+      "instance_constraints": [
+        "The plane is fixed and smooth.",
+        "0 < θ < 90°."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking N = mg on the incline."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-SMOOTH-INCLINE-RELEASE.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-SMOOTH-V0",
+          "label": "The block",
+          "purpose": "Show the block on the smooth plane.",
+          "visible_elements": [
+            "block m on a smooth plane at θ"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SMOOTH-V1",
+          "label": "Forces and axes",
+          "purpose": "Draw the two forces and the contact-aligned axes.",
+          "visible_elements": [
+            "block m on a smooth plane at θ",
+            "weight and normal force with plane axes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SMOOTH-V2",
+          "label": "Results",
+          "purpose": "Solve both components.",
+          "visible_elements": [
+            "block m on a smooth plane at θ",
+            "weight and normal force with plane axes",
+            "N and a"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-SMOOTH-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-SMOOTH-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-SMOOTH-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -10746,12 +11006,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-UNGLUED-PUSH-PULL",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-UNGLUED-PUSH-PULL",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-PUSHPULL-V0"
         ]
       },
       "failure_signal": "You gave both cases the acceleration F/(m_A + m_B): in case 2 that would need an ordinary contact to pull B along, and a contact can only push.",
@@ -10847,12 +11106,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-ATWOOD-SYMBOLIC",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-ATWOOD-SYMBOLIC",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-ATWOODSYM-V0"
         ]
       },
       "failure_signal": "Your tension is m_A g or m_B g: while the masses accelerate, the string pulls A harder than A's weight and pulls B less than B's weight.",
@@ -11357,12 +11615,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-SMOOTH-INCLINE-RELEASE",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-SMOOTH-INCLINE-RELEASE",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-SMOOTH-V0"
         ]
       },
       "failure_signal": "You wrote N = mg or a = g: the plane supports only the perpendicular part of the weight, mg cos θ, and only mg sin θ drives the block along it.",
