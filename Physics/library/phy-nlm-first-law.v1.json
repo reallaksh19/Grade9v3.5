@@ -5248,6 +5248,261 @@
           "visual_stage_ref": "VIS-NLM-BOOKHAND-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-FRIDGE-MAGNET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the magnet on the vertical door with its four forces and, separately, where each third-law partner acts.",
+      "required_elements": [
+        "0.1 kg magnet at rest on a vertical steel door",
+        "four forces on the magnet",
+        "third-law partners"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "0.1 kg magnet at rest on a vertical steel door",
+        "four forces on the magnet",
+        "third-law partners"
+      ],
+      "instance_constraints": [
+        "The magnet does not slide.",
+        "Each force names its agent."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Pairing the magnetic pull with the normal push as third-law partners."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-FRIDGE-MAGNET.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-MAGNET-V0",
+          "label": "The magnet",
+          "purpose": "Show the magnet at rest on the vertical door.",
+          "visible_elements": [
+            "0.1 kg magnet at rest on a vertical steel door"
+          ]
+        },
+        {
+          "id": "VIS-NLM-MAGNET-V1",
+          "label": "Forces on the magnet",
+          "purpose": "List each force on the magnet with its agent, direction and size.",
+          "visible_elements": [
+            "0.1 kg magnet at rest on a vertical steel door",
+            "four forces on the magnet"
+          ]
+        },
+        {
+          "id": "VIS-NLM-MAGNET-V2",
+          "label": "Partners",
+          "purpose": "Name each force's third-law partner and the body it acts on.",
+          "visible_elements": [
+            "0.1 kg magnet at rest on a vertical steel door",
+            "four forces on the magnet",
+            "third-law partners"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-MAGNET-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-MAGNET-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-MAGNET-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-TRUCK-BRAKE-CRATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the crate on the braking truck so friction's direction and size come from the crate's own deceleration.",
+      "required_elements": [
+        "20 kg crate on a truck slowing at 3 m/s²",
+        "crate acceleration 3 m/s² backward",
+        "friction 60 N backward"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "20 kg crate on a truck slowing at 3 m/s²",
+        "crate acceleration 3 m/s² backward",
+        "friction 60 N backward"
+      ],
+      "instance_constraints": [
+        "The crate moves with the truck throughout.",
+        "The truck moves forward while slowing."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Pointing friction forward, the way the truck moves."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TRUCK-BRAKE-CRATE.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TRUCKCRATE-V0",
+          "label": "The braking truck",
+          "purpose": "Show the crate on the bed while the truck slows.",
+          "visible_elements": [
+            "20 kg crate on a truck slowing at 3 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRUCKCRATE-V1",
+          "label": "Crate's acceleration",
+          "purpose": "Find the crate's acceleration and the only horizontal force on it.",
+          "visible_elements": [
+            "20 kg crate on a truck slowing at 3 m/s²",
+            "crate acceleration 3 m/s² backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRUCKCRATE-V2",
+          "label": "Friction",
+          "purpose": "Give friction the direction and size of m a.",
+          "visible_elements": [
+            "20 kg crate on a truck slowing at 3 m/s²",
+            "crate acceleration 3 m/s² backward",
+            "friction 60 N backward"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TRUCKCRATE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TRUCKCRATE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TRUCKCRATE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOOK-TABLE-PARTNERS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the book on the table with its two forces and each force's third-law partner on the other body.",
+      "required_elements": [
+        "book at rest on a table, with the Earth",
+        "weight and table push on the book",
+        "book on Earth and book on table"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "book at rest on a table, with the Earth",
+        "weight and table push on the book",
+        "book on Earth and book on table"
+      ],
+      "instance_constraints": [
+        "Partners are drawn on the Earth and on the table, not on the book."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Calling the weight and the table's push a third-law pair."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOOK-TABLE-PARTNERS.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOOKPARTNERS-V0",
+          "label": "The book",
+          "purpose": "Show the book, the table and the Earth.",
+          "visible_elements": [
+            "book at rest on a table, with the Earth"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOOKPARTNERS-V1",
+          "label": "Forces on the book",
+          "purpose": "Show the two forces that act on the book.",
+          "visible_elements": [
+            "book at rest on a table, with the Earth",
+            "weight and table push on the book"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOOKPARTNERS-V2",
+          "label": "Partners",
+          "purpose": "Draw each partner on the body it acts on.",
+          "visible_elements": [
+            "book at rest on a table, with the Earth",
+            "weight and table push on the book",
+            "book on Earth and book on table"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOOKPARTNERS-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOOKPARTNERS-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOOKPARTNERS-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -6684,12 +6939,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-FRIDGE-MAGNET",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FRIDGE-MAGNET",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-MAGNET-V0"
         ]
       },
       "failure_signal": "You named the normal push as the partner of the magnetic pull, or the friction as the partner of the weight: those pairs both act on the magnet, so they balance each other and are not third-law partners.",
@@ -6789,12 +7043,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-TRUCK-BRAKE-CRATE",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-TRUCK-BRAKE-CRATE",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-TRUCKCRATE-V0"
         ]
       },
       "failure_signal": "Your friction points forward, 'the way the crate is going', or is zero because nothing pushes the crate: the crate would slide forward relative to the slowing bed, so friction points backward, 60 N.",
@@ -6891,12 +7144,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-BOOK-TABLE-PARTNERS",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-BOOK-TABLE-PARTNERS",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-BOOKPARTNERS-V0"
         ]
       },
       "failure_signal": "You named the table's upward push as the partner of the book's weight: both act on the book and come from different agents. The weight's partner is the book's pull on the Earth.",
