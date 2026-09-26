@@ -79,3 +79,26 @@ trimmed to what their quotes say, and the JEE Main sentence was removed from X1�
     reachable only via cdnbbsr.s3waas.gov.in.
   - Two JEE Advanced items would qualify for X3 if their official keys were reachable:
     2023 P1 Q1 (restitution 1/√3) and 2018 P2 Q8 (the ball loses half its KE on the bounce).
+
+## Run 3: X2 and X5 questions (agent-researcher-1, 2026-09-26)
+
+- **X5, done.** Added JEE (Main) 2023, 29 Jan shift 2, Q25 (a car on a 600 m circle with
+  a_t = a_c; answer t = 40). Cards X5-015/016 are `SECONDARY_CORROBORATED`.
+  - Official attempt: the NTA 2023 Session 1 final key on cdnbbsr.s3waas.gov.in. It lists
+    question IDs only (ITEM_NOT_ON_PAGE).
+  - Own source: Resonance. Corroborated by ExamSIDE and Vedantu; all three carry the same stem
+    and the answer 40.
+- **X2, closest official question.** Added NCERT Exemplar 5.35 (sliding down smooth and rough
+  45° inclines; key µ = 1 − 1/p²).
+  - The only incline-projectile item found is JEE Main 2019, 10 Apr evening (20 cm). No official
+    copy exists.
+  - Its answer is stated by only two allowlisted publishers (Vedantu, ALLEN). ExamSIDE shows no
+    answer text for MCQs, shaalaa.com returns 403, and Aakash (cloudfront) and ALLEN shift PDFs
+    (S3) are off the allowlist. MathonGo downloads are behind a nonce gate.
+  - jeeadv.ac.in 2018–2025 papers have no keys and no incline projectile in their text layer
+    (2019 is image-only).
+- **Node 06 duty** (EV-PHY-11-MIP-00-001) was already fixed in e9a24d99. The quote now carries
+  the whole Chapter-3 entry. Only a fresh verification clears the stale finding.
+- **Tool fix:** `evidence_check.py` no longer reports EVIDENCE_CORROBORATION_INSUFFICIENT for
+  corroborating sources whose snapshot is simply not cached. Before the fix, the
+  committed-evidence unit test failed on the first corroborated card.
