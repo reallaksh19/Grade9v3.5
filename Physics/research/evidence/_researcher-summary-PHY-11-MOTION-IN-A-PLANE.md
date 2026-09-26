@@ -53,3 +53,29 @@ I did not change the spine; the owner should decide how to handle these extensio
    and say so in the claim. For 4.32 the printed answer must be read on the page image.
 5. **OpenStax licence.** The OpenStax pages carry a notice restricting use in LLM training
    or ingestion. The owner may want to review whether Tier B OpenStax suits this pipeline.
+
+## Verifier-findings run (agent-researcher-1, 2026-09-26)
+
+Fixed every card-level finding on 02, 03, 04, 05, 06 (chapter card EV-PHY-11-MIP-00-001), 07,
+X1, X2, X3, X4 and X5. Quotes now carry whole questions and options. Where a question crosses a
+page break, a continuation QUESTION card was added: 03-017, 04-015 and 07-015. Claims were
+trimmed to what their quotes say, and the JEE Main sentence was removed from X1–X5 SYLLABUS_SCOPE.
+
+- **Exemplar 4.32 removed from X2 and X3.** The printed key on keep316 p.123 is
+  "A v0^2 sin θ / g", with the letter A standing where the coefficient belongs. The only other
+  allowlisted official edition, the Hindi exemplar (khep316 p.124), prints the same "A", so no
+  source pins the coefficient. As a result the author records that cite X2-010/011 and
+  X3-010/011 must be withdrawn.
+- **X3 now has lossy-rebound evidence.** It adds NCERT Exemplar 5.24 (an object rebounds with
+  half its speed; newly pinned keep305) with its key "(a) 12.5 N s (b) 18.75 kg m s–1". It also
+  adds MIT OCW 8.01SC Ch.15 (Tier B, newly pinned): the definition of the coefficient of
+  restitution, and e < 1 ⇒ kinetic energy decreases.
+- **Still open, with no allowlisted source found:**
+  - X2 is one QUESTION short: there is no incline-projectile question with an official key.
+  - X5 has no QUESTION + ANSWER_KEY pair asking for a_T, a_c or the total acceleration with
+    changing speed.
+  - Searched: NCERT XI textbook ch.2–6 and answers; Exemplar ch.3–7 and answers; jeeadv.ac.in
+    2014, 2017 and 2026 papers with answers. The 2018–2025 papers have no keys, and JEE Main is
+    reachable only via cdnbbsr.s3waas.gov.in.
+  - Two JEE Advanced items would qualify for X3 if their official keys were reachable:
+    2023 P1 Q1 (restitution 1/√3) and 2018 P2 Q8 (the ball loses half its KE on the bounce).
