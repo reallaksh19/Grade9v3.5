@@ -66,6 +66,10 @@ Record each problem in your verification findings, with `duty_for` AUTHOR or ILL
 You may not verify a product whose records you authored or illustrated.
 
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - Never agree with an answer you did not derive yourself. Never copy the key into your solution.
 - Never verify a node you researched or authored, and never fix what you find: report it.
 - A node changed after your verification must be verified again. The board detects this from

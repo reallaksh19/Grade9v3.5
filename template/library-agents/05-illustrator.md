@@ -31,6 +31,10 @@ BUILD_SCENE / STAGE_REPRESENTATION duty on the depth board:
 4. Commit per representation, then `git pull --rebase` and `git push origin {{BRANCH}}`.
 
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - No value, label or element that is not in the records.
 - The last stage may show the result; earlier stages must not.
 - Do not open pull requests; the owner's session merges.

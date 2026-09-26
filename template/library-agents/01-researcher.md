@@ -44,6 +44,10 @@ Sources:
   the node's cards and commit message; never invent scope.
 
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - Nothing from memory. Never cite a host that is not on the allowlist.
 - Aggregator sites (Tier C) are for locating an item; cite the official original (NTA's CDN
   `cdnbbsr.s3waas.gov.in` is official).
