@@ -504,7 +504,13 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "Zero net force allows steady motion",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
       "primary_capability_ref": "CAP-NLM-NET-ZERO-MOTION",
@@ -594,11 +600,19 @@
             }
           ],
           "accepted": [
-            "'The moving cart keeps moving steadily; the resting cart stays at rest. Neither has to change velocity.'"
+            "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
           ],
           "rejected": [
             "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
-          ]
+          ],
+          "task": {
+            "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+            "givens": [
+              "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+              "Driving force 2000 N forward.",
+              "Resistive forces (air and rolling) act backward."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -674,7 +688,13 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "Nonzero forces can cancel",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
       "primary_capability_ref": "CAP-NLM-FORCES-SUM-ZERO",
@@ -766,11 +786,19 @@
             }
           ],
           "accepted": [
-            "'Left push present; right push present; equal and opposite, so the net force is zero.'"
+            "Earth pulls it down with 30 N, the string pulls up with 10 N and the floor pushes up with 20 N. The net force is zero, although all three forces are nonzero; the floor's push is 20 N, not 30 N."
           ],
           "rejected": [
             "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
-          ]
+          ],
+          "task": {
+            "prompt": "A 3 kg box rests on the floor while a string pulls straight up on it with 10 N; the box does not move. Take g = 10 m/s². List every force on the box with its agent, direction and size, and find the net force.",
+            "givens": [
+              "Mass 3 kg; g = 10 m/s².",
+              "String pull 10 N vertically upward.",
+              "The box stays at rest on the floor."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -848,7 +876,12 @@
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION"
+        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "A free-body diagram belongs to one chosen body",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -958,11 +991,18 @@
             }
           ],
           "accepted": [
-            "'Cart: horse pushes cart forward. Horse: cart pushes horse backward.' The two arrows are on different diagrams."
+            "On the boat: its weight 1300 N down (Earth), the man's push 700 N down (man) and the water's push 2000 N up (water). The man's weight acts on the man, not on the boat."
           ],
           "rejected": [
             "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
-          ]
+          ],
+          "task": {
+            "prompt": "A 70 kg man stands in a 130 kg boat floating at rest on a lake. Take g = 10 m/s². Build the free-body inventory of the boat: every force, its agent, its direction and its size.",
+            "givens": [
+              "Man 70 kg; boat 130 kg; g = 10 m/s².",
+              "Everything is at rest."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1042,7 +1082,13 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "An accelerating observer needs a declared pseudo-force convention",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
       "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
@@ -1138,11 +1184,18 @@
             }
           ],
           "accepted": [
-            "'Roadside: physical forces only. Accelerating bus: same physical forces plus a backward pseudo-force for the bus description.'"
+            "Platform: no horizontal force acts, so the ball keeps its speed while the train slows under it. Train: the ball accelerates forward at 2 m/s², explained by a pseudo-force of 0.5 × 2 = 1 N pointing forward. No physical force has been added."
           ],
           "rejected": [
             "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
-          ]
+          ],
+          "task": {
+            "prompt": "A 0.5 kg ball rests on the smooth floor of a train moving along a straight track. The train brakes, slowing at 2 m/s². Describe the ball's horizontal forces and motion as seen from the platform, then as seen from inside the train, and give the size and direction of any pseudo-force.",
+            "givens": [
+              "Ball 0.5 kg on a frictionless train floor.",
+              "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1223,7 +1276,12 @@
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9",
-        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION"
+        "agent_a:incline_integration": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Net force, not any one force, sets acceleration",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1344,11 +1402,18 @@
             }
           ],
           "accepted": [
-            "+12 N on 4 kg -> +3 m/s^2."
+            "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
           ],
           "rejected": [
             "Using the direction of velocity to choose acceleration sign."
-          ]
+          ],
+          "task": {
+            "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
+            "givens": [
+              "Mass 1200 kg; initial velocity +20 m/s.",
+              "Road friction 5400 N backward; air drag 600 N backward."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1430,7 +1495,12 @@
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9",
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Friction opposes relative sliding at a contact",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1540,11 +1610,19 @@
             }
           ],
           "accepted": [
-            "Belt outruns box -> box slips left relative to belt -> friction on box points right."
+            "Without friction the block would slide down the wall, so friction points up. It must balance the 20 N weight, so f = 20 N (the limit is 0.6 × 50 = 30 N). At 80 N the limit rises to 48 N, but the friction stays 20 N up because the need has not changed."
           ],
           "rejected": [
             "Friction must point left because the box moves right."
-          ]
+          ],
+          "task": {
+            "prompt": "A 2 kg block is pressed against a vertical wall by a 50 N horizontal push and does not slide. μ_s = 0.6 and g = 10 m/s². Give the direction and size of the friction on the block, then say what happens to the friction when the push is increased to 80 N.",
+            "givens": [
+              "Block 2 kg; g = 10 m/s².",
+              "Horizontal push 50 N, then 80 N.",
+              "μ_s = 0.6 between block and wall."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1625,7 +1703,12 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Third-law partner forces act on different bodies",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1720,11 +1803,19 @@
             }
           ],
           "accepted": [
-            "swimmer on water backward; water on swimmer forward; different bodies."
+            "The partner is the gas pushing on the rocket, 5000 N forward. It acts on the rocket, while the engine's push acts on the gas. The rocket's acceleration is 5000/400 = 12.5 m/s² forward."
           ],
           "rejected": [
             "Both arrows cancel on the swimmer."
-          ]
+          ],
+          "task": {
+            "prompt": "A 400 kg rocket far from any planet fires its engine, which pushes exhaust gas backward with a force of 5000 N. Name the partner force and the body it acts on, and find the rocket's acceleration.",
+            "givens": [
+              "Rocket mass 400 kg (take it as constant for this instant).",
+              "Engine's push on the gas: 5000 N backward.",
+              "No other forces act."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -1803,7 +1894,12 @@
       "evidence_refs": [],
       "extensions": {
         "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Quantitative static and kinetic friction conditions",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -1916,7 +2012,18 @@
         "attempt": {
           "produces": "A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established."
+          "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
+          "task": {
+            "prompt": "A 5 kg box rests on a floor with μ_s = 0.5 and μ_k = 0.4; take g = 10 m/s². A 30 N horizontal push is applied. Decide whether the box moves, and find the friction and the acceleration. Then repeat with a second child pressing straight down on the lid with 20 N while the same 30 N push acts.",
+            "givens": [
+              "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
+              "Horizontal push 30 N.",
+              "Second trial: an extra 20 N downward press."
+            ]
+          },
+          "accepted": [
+            "Trial 1: N = 50 N, limit 25 N < 30 N, so the box slides; friction is 0.4 × 50 = 20 N and a = (30 − 20)/5 = 2 m/s². Trial 2: N = 70 N, limit 35 N ≥ 30 N, so the box stays at rest with 30 N of static friction."
+          ]
         },
         "reconstruct": {
           "route": [
@@ -2001,7 +2108,12 @@
       "evidence_refs": [],
       "extensions": {
         "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Connected bodies and a justified common acceleration",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -2119,7 +2231,18 @@
         "attempt": {
           "produces": "A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations."
+          "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations.",
+          "task": {
+            "prompt": "A 1000 kg car tows a 500 kg trailer with a light rigid tow bar on a level road. The road pushes the car's drive wheels forward with 3000 N; ignore all resistance. State the constraint, write one Newton-II equation for the car and one for the trailer, and find the acceleration and the tow-bar force.",
+            "givens": [
+              "Car 1000 kg; trailer 500 kg.",
+              "Driving force on the car 3000 N forward.",
+              "Rigid bar: the separation stays fixed."
+            ]
+          },
+          "accepted": [
+            "The fixed bar gives one acceleration. Car: 3000 − T = 1000a. Trailer: T = 500a. Adding gives a = 2 m/s², so T = 1000 N; check with the car: 3000 − 1000 = 2000 = 1000 × 2."
+          ]
         },
         "reconstruct": {
           "route": [
@@ -2233,7 +2356,12 @@
       "evidence_refs": [],
       "extensions": {
         "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "Ideal-string tension belongs to each body-specific FBD",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -2349,7 +2477,18 @@
         "attempt": {
           "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions."
+          "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions.",
+          "task": {
+            "prompt": "On a smooth track a hand pulls a light string attached to a 2 kg cart with 15 N. A second light string ties that cart to a 3 kg cart behind it. State the model, find the acceleration and the tension in each string, and say which body each tension force acts on.",
+            "givens": [
+              "Front cart 2 kg; rear cart 3 kg; smooth track.",
+              "Hand's pull 15 N on the front string.",
+              "Both strings light and taut."
+            ]
+          },
+          "accepted": [
+            "Each light string has one tension along its length. a = 15/5 = 3 m/s². The front string's tension is 15 N and acts on the front cart. The rear string's tension is 3 × 3 = 9 N and acts backward on the front cart and forward on the rear cart. The two strings have different tensions."
+          ]
         },
         "reconstruct": {
           "route": [
@@ -2457,7 +2596,12 @@
       "evidence_refs": [],
       "extensions": {
         "issue105:preparation_authority": "CONFIRMED_EXAMSIDE",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "title": "One fixed-pulley string gives one length constraint",
       "bucket_id": "BUCKET-PHY-NLM-FIRST-LAW",
@@ -2571,7 +2715,18 @@
         "attempt": {
           "produces": "A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0."
+          "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0.",
+          "task": {
+            "prompt": "A taut inextensible string over a fixed pulley holds masses A and B, with y_A and y_B measured downward from the pulley. Now y_A = 0.6 m and y_B = 1.0 m. Find y_B after A has risen by 0.1 m. At an instant when A moves up at 0.2 m/s with an acceleration of 1.5 m/s² downward, find B's velocity and acceleration.",
+            "givens": [
+              "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
+              "A rises by 0.1 m.",
+              "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+            ]
+          },
+          "accepted": [
+            "y_A + y_B = 1.6 m, so y_B = 1.6 − 0.5 = 1.1 m. v_B = −v_A = +0.2 m/s (moving down), and a_B = −a_A = −1.5 m/s² (1.5 m/s² upward)."
+          ]
         },
         "reconstruct": {
           "route": [
@@ -4826,7 +4981,7 @@
     },
     {
       "id": "Q-PHY-NLM-2A-COV-05",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -4834,25 +4989,38 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-COVERAGE-05",
-      "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+      "stem": "A 2.5 kg trolley on a level track is pulled forward with 9 N while a 4 N drag acts backward. Take forward as positive. Find its acceleration. Then the pull is removed while the trolley is still moving forward: find its acceleration now.",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The drag stays 4 N backward while the trolley moves forward.",
+        "Forward is the positive direction."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The acceleration is +3 m/s^2.",
+        "summary": "With the pull: a = +2 m/s². After the pull is removed: a = −1.6 m/s², backward while the trolley still moves forward.",
         "reasoning": [
-          "Use F_net = m a for the chosen body.",
-          "a = +12 N / 4 kg = +3 m/s^2.",
-          "The positive sign matches the net-force direction."
+          "With the pull: F_net = +9 − 4 = +5 N, so a = 5/2.5 = +2 m/s².",
+          "Without the pull: F_net = −4 N, so a = −4/2.5 = −1.6 m/s².",
+          "The trolley is still moving forward, but its acceleration now points backward, so it slows down."
         ],
-        "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+        "check": "Multiply back: 2.5 × 2 = 5 N = 9 − 4, and 2.5 × (−1.6) = −4 N, the drag alone.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -4871,11 +5039,11 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: Which body are we solving for?",
+          "text": "Which forces act on the trolley along the track, and which way does each one point?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow.",
+          "text": "Add the signed forces first, then divide the sum by the mass; after the pull is removed, only the drag is left in the sum.",
           "reveals": "METHOD"
         }
       ],
@@ -4896,7 +5064,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the body as a dot on the declared axis with a single arrow for the +12 N net force.",
+          "text": "Draw the trolley as a dot on a forward +x axis, with a 9 N arrow forward and a 4 N arrow backward; cross out the 9 N arrow for the second part.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -4915,15 +5083,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": "Your answer is 48 m/s² or 1/3 m/s²: F_net = m a means dividing the net force by the mass, 12/4, not multiplying them or dividing the other way.",
+      "failure_signal": "You got 3.6 m/s² (9 N alone) or 5.2 m/s² (9 + 4): the drag opposes the pull, so F_net = 9 − 4 = 5 N. Or you said the second acceleration is zero or forward because the trolley still moves forward: it points along the net force, which is now backward.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: with the net force known, a = F_net/m, pointing along the net force. The transfer task sets up the same law on an incline in two different choices of axes."
+        "closure": "Established: acceleration is the signed net force divided by the mass, and it can point against the velocity. The transfer task sets up the same law on an incline with two different choices of axes."
       }
     },
     {
       "id": "Q-PHY-NLM-2A-01",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -4931,25 +5099,38 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2A-01",
-      "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+      "stem": "An 80 kg skydiver falls at a steady 50 m/s. Take g = 10 m/s². Find the air resistance on the skydiver and the net force. Just after the parachute opens, the skydiver is still moving downward but slowing: is the net force then zero, upward or downward?",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The steady fall is in a straight vertical line.",
+        "g = 10 m/s²."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+        "summary": "In the steady fall the air resistance is 800 N upward and the net force is zero. Just after the parachute opens the net force points upward, even though the skydiver is still moving down.",
         "reasoning": [
-          "Rest is a zero velocity that stays zero.",
-          "Steady straight motion is a nonzero velocity that stays unchanged.",
-          "The shared condition is no change of velocity, not no motion."
+          "A steady 50 m/s means the velocity is not changing, so the net force is zero.",
+          "Weight = 80 × 10 = 800 N down, so the air resistance must be 800 N up.",
+          "After the parachute opens the downward velocity is shrinking, so the acceleration, and with it the net force, points upward."
         ],
-        "check": "Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.",
+        "check": "The size of the velocity plays no part: the same zero net force would hold at a steady 5 m/s or at rest. Only a change of velocity needs a net force.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -4968,11 +5149,11 @@
       ],
       "hints": [
         {
-          "text": "Start by asking yourself: After the hand leaves the cart, is the hand still exerting the forward push?",
+          "text": "During the steady fall, is the skydiver's velocity changing?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion.",
+          "text": "Zero net force goes with an unchanging velocity, however large; a slowing fall is a change of velocity, so ask which way that change points.",
           "reveals": "METHOD"
         }
       ],
@@ -4986,7 +5167,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw each cart with its velocity arrow and, separately, its net-force arrow; leave the net-force arrow empty if nothing changes that cart's velocity.",
+          "text": "Draw the skydiver twice, in the steady fall and just after the parachute opens, each with a velocity arrow and a separate net-force arrow. Leave the net-force arrow empty where the velocity is not changing.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -5005,15 +5186,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": "You said the moving cart needs a forward force to keep going: that confuses having a velocity with changing it; steady straight motion needs zero net force, just as rest does.",
+      "failure_signal": "You said the steady fall needs a net downward force because the skydiver is moving down, or that the net force stays downward after the parachute opens: the net force follows the change of velocity, not the velocity.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: zero net force means an unchanging velocity, and rest is the case where that velocity is zero. Later tasks read steady straight motion as a balanced-force state."
+        "closure": "Established: zero net force means an unchanging velocity, and a slowing motion has a net force opposite the velocity. Later tasks read steady straight motion as a balanced-force state."
       }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-02",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -5021,25 +5202,38 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-COVERAGE-02",
-      "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+      "stem": "A 2 kg book lies at rest on a table while a hand presses straight down on it with 5 N. Take g = 10 m/s². List every force on the book with its agent and size, find the table's push, and state the net force and what it predicts about the book's velocity.",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The book stays at rest.",
+        "g = 10 m/s²; take up as positive."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
+        "summary": "Earth pulls the book down with 20 N, the hand pushes down with 5 N and the table pushes up with 25 N. The net force is zero, so the book's velocity (zero) does not change, though three nonzero forces act.",
         "reasoning": [
-          "Each force remains an actual interaction on the body.",
-          "Opposite equal directional effects cancel only when combined.",
-          "A zero net force is consistent with unchanged velocity."
+          "List the agents: Earth (20 N down), hand (5 N down), table (up, size unknown).",
+          "The book stays at rest, so the signed sum is zero: N − 20 − 5 = 0, giving N = 25 N.",
+          "A zero net force predicts no change of velocity; it does not mean no forces act."
         ],
-        "check": "Increase both forces equally; the net remains zero even though neither individual force disappears.",
+        "check": "Remove the hand: the same sum gives N = 20 N, so the table's push adjusts to what the other forces need.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -5058,11 +5252,11 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: Before adding anything, how many pushes are physically acting on the box?",
+          "text": "Before adding anything, how many bodies touch or attract the book?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces.",
+          "text": "List each force with its agent and signed size, then set the sum to match the book's acceleration, which is zero here.",
           "reveals": "METHOD"
         }
       ],
@@ -5076,7 +5270,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the object with both arrows at full length, then write their signed sum beside the diagram without erasing either arrow.",
+          "text": "Draw the book with three arrows at full length (Earth, hand, table) and write their signed sum beside it without erasing any arrow.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -5095,15 +5289,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": "You wrote that no forces act: both forces are present and non-zero; only their sum is zero.",
+      "failure_signal": "You gave the table's push as 20 N, the book's weight: the hand's 5 N press must also be balanced, so N = 25 N. Or you wrote that no forces act because the book is at rest.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: forces can be real and non-zero while their sum is zero, and it is the sum that sets the change of velocity. Later tasks keep every force listed on a free-body diagram before any are combined."
+        "closure": "Established: forces can be real and nonzero while their sum is zero, and it is the sum that sets the change of velocity. Later tasks keep every force listed on a free-body diagram before any are combined."
       }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-03",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -5111,25 +5305,38 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-COVERAGE-03",
-      "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+      "stem": "A 0.1 kg magnet is stuck at rest on a vertical steel fridge door; the door's magnetic pull on it is 3 N. Take g = 10 m/s². List every force on the magnet with its agent, direction and size. For each one, name its third-law partner and the body that partner acts on.",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The magnet does not slide.",
+        "g = 10 m/s²."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+        "summary": "On the magnet: weight 1 N down (Earth), magnetic pull 3 N toward the door (fridge), normal push 3 N away from the door (door surface), static friction 1 N up (door surface). Partners: the magnet pulls the Earth up 1 N, pulls the fridge toward itself 3 N, presses into the door 3 N and drags the door's surface down 1 N. None of the partners is on the magnet's diagram.",
         "reasoning": [
-          "Choose the box first.",
-          "Ask which member of the contact pair acts on the box.",
-          "The partner acts on the person, so it cannot cancel the first force on the box diagram."
+          "Choose the magnet and ask who acts on it: Earth, the fridge's magnetism, and the door surface (a normal push and friction).",
+          "At rest: the normal push balances the 3 N pull, and friction balances the 1 N weight.",
+          "Swap agent and target for each force to get its partner; each partner acts on the Earth or on the fridge."
         ],
-        "check": "Switch the chosen body to the person; the membership of the two partner arrows must switch with it.",
+        "check": "Switch the chosen body to the fridge door: the four partner arrows now appear on its diagram and the magnet's four forces leave it.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -5148,13 +5355,13 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: Which single body are you describing first?",
+          "text": "Which single body are you describing first, and which bodies touch or attract it?",
           "reveals": "CONCEPT",
           "visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
           "visual_stage_ref": "VIS-NLM-FBD-V1"
         },
         {
-          "text": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen.",
+          "text": "For each force on the magnet, write 'X on magnet', then swap the names to get its partner 'magnet on X'. That partner goes on X's diagram.",
           "reveals": "METHOD",
           "visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
           "visual_stage_ref": "VIS-NLM-FBD-V2"
@@ -5170,7 +5377,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the box and the person as two separate outlines, then draw each contact force on the outline of the body it acts on.",
+          "text": "Draw the magnet and the door as two separate outlines. Put each 'on magnet' arrow on the magnet and each partner on the door (or the Earth).",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -5189,15 +5396,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": "You put both partner arrows on the box and let them cancel: the box's push on the person acts on the person, so it cannot be part of the box's sum.",
+      "failure_signal": "You named the normal push as the partner of the magnetic pull, or the friction as the partner of the weight: those pairs both act on the magnet, so they balance each other and are not third-law partners.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: a diagram holds only the forces on its own body, so a partner force never cancels on it. The transfer task finds the same kind of double count hidden in resolved components on an incline."
+        "closure": "Established: a diagram holds only the forces on its own body, so a partner force never cancels on it. The transfer task finds the partners of a block's contact forces on the wedge it slides on."
       }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-04",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -5206,25 +5413,38 @@
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
         "issue19:donor": "PR9",
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-COVERAGE-04",
-      "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+      "stem": "A 20 kg crate rides on the flat bed of a truck. The truck brakes, slowing at 3 m/s², and the crate does not slip on the bed. Which way does friction from the bed act on the crate, and how large is it?",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The crate moves with the truck throughout (no slipping).",
+        "The truck moves forward while slowing at 3 m/s²."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The friction force on the box points to the right.",
+        "summary": "Friction on the crate points backward, against its motion, with size 20 × 3 = 60 N.",
         "reasoning": [
-          "Relative to the belt, the box tends to slip left at the contact.",
-          "Friction opposes that relative slip tendency.",
-          "Therefore the belt's friction on the box points right and accelerates it."
+          "Imagine the bed perfectly slippery: the crate would keep going while the bed slows, so it would slide forward relative to the bed.",
+          "Friction opposes that slip tendency, so it points backward on the crate.",
+          "The crate slows with the truck at 3 m/s², so the friction is m a = 20 × 3 = 60 N."
         ],
-        "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+        "check": "The same rule gives forward friction when the truck speeds up: the direction follows the slip tendency, and here it happens to be against the motion.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -5243,11 +5463,11 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: Which two surfaces are in contact?",
+          "text": "Which two surfaces are in contact, and how is each moving while the truck brakes?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Decide the relative sliding tendency at the contact first; friction opposes that tendency.",
+          "text": "Imagine the bed perfectly slippery: which way would the crate slide relative to the bed? Friction on the crate opposes that.",
           "reveals": "METHOD"
         }
       ],
@@ -5262,7 +5482,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw only the box and the belt surface, with an arrow for how fast each moves. Mark which way the box would slide relative to the belt if the contact were perfectly slippery.",
+          "text": "Draw the crate on the bed with a velocity arrow for each, and mark which way the crate would slide relative to the bed if the bed were slippery.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -5281,15 +5501,15 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": "Your friction arrow points left because the box 'lags behind': that is the way the box slips relative to the belt, and friction points the opposite way, to the right.",
+      "failure_signal": "Your friction points forward, 'the way the crate is going', or is zero because nothing pushes the crate: the crate would slide forward relative to the slowing bed, so friction points backward, 60 N.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: friction's direction comes from the slip tendency at the contact, not from the object's velocity. The transfer task applies the same rule to a shoe pushing on the ground."
+        "closure": "Established: friction's direction comes from the slip tendency at the contact, not from the object's velocity. The transfer task applies the same rule to a walker's shoe on a plank, and follows the partner force onto the plank."
       }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-06",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -5297,25 +5517,37 @@
       "evidence_refs": [],
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
-        "issue19:donor": "PR9"
+        "issue19:donor": "PR9",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-COVERAGE-06",
-      "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+      "stem": "A book rests on a table. Name the third-law partner of (a) the book's weight and (b) the table's upward push on the book. For each partner, say which body it acts on and which way it points.",
       "subparts": [],
       "options": [],
-      "conditions": [],
+      "conditions": [
+        "The book is at rest on a horizontal table."
+      ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+        "summary": "(a) The partner of the Earth's pull on the book is the book's pull on the Earth, acting on the Earth and pointing up. (b) The partner of the table's push on the book is the book's push on the table, acting on the table and pointing down. The weight and the table's push both act on the book, so they are not partners.",
         "reasoning": [
-          "The interaction is swimmer-water contact.",
-          "Swimmer on water acts on the water.",
-          "Water on swimmer acts on the swimmer in the opposite direction."
+          "The weight is the Earth-book gravitational interaction, so its partner is the book on the Earth.",
+          "The table's push is the table-book contact interaction, so its partner is the book on the table.",
+          "Weight and normal push are equal here because the book is at rest, not because of the third law."
         ],
-        "check": "Only the water-on-swimmer force belongs on the swimmer's free-body diagram.",
+        "check": "Press down on the book: the table's push grows but the weight does not, so the two cannot be a partner pair.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
@@ -5334,11 +5566,11 @@
       ],
       "hints": [
         {
-          "text": "Start by asking: What is the interaction?",
+          "text": "For each force on the book, which two bodies take part in that interaction?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "No. Put each partner on the body it acts on; only then sum forces for one body.",
+          "text": "Swap agent and target: 'Earth on book' pairs with 'book on Earth', and 'table on book' pairs with 'book on table'.",
           "reveals": "METHOD"
         }
       ],
@@ -5352,7 +5584,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the swimmer and a parcel of water as two separate outlines, and label each arrow 'swimmer on water' or 'water on swimmer'.",
+          "text": "Draw the book, the table and the Earth as three outlines, and label every arrow 'A on B'.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -5371,7 +5603,7 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": "You said the two forces cancel, so the swimmer cannot move: they act on different bodies, and the swimmer's own sum contains only the water's forward push.",
+      "failure_signal": "You named the table's upward push as the partner of the book's weight: both act on the book and come from different agents. The weight's partner is the book's pull on the Earth.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
         "closure": "Established: third-law partners are equal and opposite but act on different bodies, so each belongs to a different body's sum. Later tasks keep interaction pairs apart in connected-body problems."
@@ -7873,7 +8105,11 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "scaffolds": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -8015,7 +8251,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
-          "text": "Assume rest provisionally. Use the perpendicular equation to find N, then the tangential equation to find the friction value that rest would require; do not set it equal to mu_s N.",
+          "text": "With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
@@ -8023,7 +8259,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         },
         {
-          "text": "Now test whether the required friction magnitude is within the static bound before simplifying the inequality.",
+          "text": "Divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
