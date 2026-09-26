@@ -4,38 +4,35 @@
   "node_ref": "PHY-11-MOTION-IN-A-PLANE-X4",
   "verified_by": "agent-verifier-1",
   "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:b50ceaede000aee7726366ecfdb1f2f8cdb788c9446f136aa5958ad0b02b4042",
+  "inputs_digest": "sha256:f4966e1174a20433dc6eb0a8fcf46103d7f26a8edccda66d04403e10117da259",
   "questions": [
     {
       "card_ref": "EV-PHY-11-MIP-X4-009",
       "independent_solution": [
-        "Air resistance acts opposite to the velocity, so it has a horizontal component that keeps reducing v_x (no longer constant) and a vertical component that adds to gravity on the way up and opposes it on the way down.",
-        "Mechanical energy is lost throughout, so the maximum height and range are smaller than the vacuum parabola's, and the particle comes down more slowly horizontally than it went up.",
-        "Hence the path is not a parabola: an asymmetric curve with the apex shifted towards the landing point and a descending branch steeper than the ascending one."
+        "Drag opposes the velocity, so it has a horizontal component that steadily reduces v_x and a vertical component that adds to gravity on the way up and opposes it on the way down.",
+        "Energy is lost throughout, so the peak is lower and the range shorter than the vacuum parabola; with v_x smaller on the way down, the descending branch is steeper than the ascending branch (asymmetric curve)."
       ],
-      "independent_answer": "Lower, shorter, asymmetric curve whose fall is steeper than its rise, because energy and the horizontal velocity keep decreasing.",
+      "independent_answer": "Asymmetric, lower and shorter than the parabola, with the fall steeper than the rise because energy and v_x keep decreasing",
       "official_answer": "Due to air resistance, particle energy as well as horizontal component of velocity keep on decreasing making the fall steeper than rise",
       "agrees": true
     },
     {
       "card_ref": "EV-PHY-11-MIP-X4-011",
       "independent_solution": [
-        "Options read on the pinned page. Molecules hit the leading face with relative speed about u + v and the trailing face with about u - v; momentum flux goes as the square of the relative speed, so the pressure difference is proportional to (u+v)^2 - (u-v)^2 = 4uv: [A] true.",
-        "Resistive force = pressure difference x area, proportional to v: [B] true.",
-        "Then m dv/dt = F - k v: the acceleration decreases as v grows, so [C] is false; v approaches the terminal value F/k, where F balances the resistive force: [D] true. Answer A, B, D."
+        "Molecules hit the leading face at relative speed ~ (u + v) and the trailing face at ~ (u - v); momentum flux ~ n m (relative speed)^2, so delta P ~ (u+v)^2 - (u-v)^2 = 4uv: [A] true, and the resistive force = delta P x area ~ v (u fixed): [B] true.",
+        "Then m dv/dt = F - k v: the acceleration falls as v grows, so [C] is false, and v approaches F/k where F balances the resistive force: [D] true."
       ],
-      "independent_answer": "[A], [B] and [D]",
+      "independent_answer": "[A], [B], [D]",
       "official_answer": "(A), (B), and (D)",
       "agrees": true
     },
     {
       "card_ref": "EV-PHY-11-MIP-X4-013",
       "independent_solution": [
-        "Full question read on pinned page 20. Mass of the drop (water, 1000 kg/m^3): m = 1000 x (4/3) pi (2e-3)^3 = 3.35e-5 kg.",
-        "Work by gravity in each 250 m half: m g h = 3.35e-5 x 9.8 x 250 = 0.082 J (same in both halves; it does not depend on the drag).",
+        "Mass of a 2 mm radius water drop: m = 1000 x (4/3) pi (2e-3)^3 = 3.35e-5 kg. Gravity's work in each 250 m half: m g h = 3.35e-5 x 9.8 x 250 = 0.082 J (drag does not change gravity's work).",
         "Work-energy over the whole fall from rest: W_g + W_r = (1/2) m v^2 = 0.5 x 3.35e-5 x 100 = 1.68e-3 J, so W_r = 1.68e-3 - 0.164 = -0.163 J."
       ],
-      "independent_answer": "0.082 J by gravity in each half; -0.163 J by the resistive force",
+      "independent_answer": "0.082 J in each half; -0.163 J",
       "official_answer": "0.082 J in each half; -0.163 J",
       "agrees": true,
       "numeric_check": "1000*(4/3)*pi*(2e-3)**3*9.8*250"
@@ -51,7 +48,7 @@
         "teaching_path",
         "misconceptions",
         "exit_task",
-        "extensions.grade9v3:interactive_idea"
+        "interactive_idea"
       ],
       "agrees": true
     },
@@ -59,8 +56,7 @@
       "record_ref": "CAP-PHY-MIP-X4",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -69,6 +65,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -81,6 +78,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -94,8 +92,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -105,8 +102,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -117,8 +114,8 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -128,27 +125,22 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
-      "agrees": true
+      "agrees": false
     }
   ],
   "findings": [
     {
-      "target": "EV-PHY-11-MIP-X4-001",
-      "duty_for": "RESEARCHER",
-      "detail": "SYLLABUS_SCOPE card claim ends with a JEE Main sentence the quote does not support: 'The JEE Main syllabus could not be pinned (served only from the non-allowlisted cdnbbsr.s3waas.gov.in).' The quote is only the fluids line 'Viscosity (Poiseuille's equation excluded), ... Stoke's law; Terminal velocity,'. Remove that sentence from the claim (same defect as EV-PHY-11-MIP-X1-001)."
+      "target": "Q-PHY-MIP-X4-NCERT-5-13",
+      "duty_for": "AUTHOR",
+      "detail": "answer.reasoning[1] gets the drop's mass from the answer key ('The key's 0.082 J per half corresponds to m = 0.082/(9.8 x 250) = 3.35 x 10^-5 kg'), so the worked solution is circular: a learner without the key cannot follow it. Compute the mass forward, m = rho_water x (4/3) pi r^3 = 1000 x (4/3) pi (2 x 10^-3)^3 = 3.35 x 10^-5 kg, then W_g = m g (250 m) = 0.082 J per half. Replace conditions[1] ('density ... the question leaves implicit') with 'the drop is water, density 1.0 x 10^3 kg m^-3' and cite the density card the researcher adds (see the RESEARCHER finding on this node). Update the reasoning_route to match."
     },
     {
-      "target": "EV-PHY-11-MIP-X4-013",
+      "target": "PHY-11-MOTION-IN-A-PLANE-X4",
       "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote stops after the set-up ('...moves with uniform speed thereafter.') and omits both questions: 'What is the work done by the gravitational force on the drop in the first and second half of its journey ? What is the work done by the resistive force in the entire journey if its speed on reaching the ground is 10 m s–1 ?' (same pinned page 20). The claim, the record stem Q-PHY-MIP-X4-NCERT-5-13 and the key '0.082 J in each half; -0.163 J' depend on them. Extend the quote."
-    },
-    {
-      "target": "EV-PHY-11-MIP-X4-011",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote ends at 'Which of the following options is/are true?'; options [A]-[D] exist only in question.options, which the evidence check does not verify, yet the key '(A), (B), and (D)' refers to them. Quote the options from the pinned page."
+      "detail": "No card gives the density of water, which NCERT 5.13 (EV-PHY-11-MIP-X4-013) needs to turn the 2 mm radius into a mass. The pinned NCERT Part II Chapter 9 snapshot ACQ-3FF64C89DCBFAF99ECEC, page 2, states 'The density of water at 4 oC (277 K) is 1.0 x 10 3 kg m -3.' Harvest it as a CONDITION or DEFINITION card on this node so the author can cite it in Q-PHY-MIP-X4-NCERT-5-13.conditions."
     }
   ]
 }
