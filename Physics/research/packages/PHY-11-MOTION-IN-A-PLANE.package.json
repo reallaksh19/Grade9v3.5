@@ -271,6 +271,39 @@
       ],
       "selection_reason": "Allowlisted source pinned by the researcher as ACQ-51F5FD0ECC709AAAC4BC.",
       "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-UP1-2-2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-AE04CF1E1465CE913631"
+      },
+      "title": "OpenStax University Physics Volume 1, section 2.2 Coordinate Systems and Components of a Vector",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/university-physics-volume-1/pages/2-2-coordinate-systems-and-components-of-a-vector",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-AE04CF1E1465CE913631",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/ae04cf1e1465ce913631626ea4d1a7061e47b1242882705b4632829eb24bf8ee.html",
+      "snapshot_digest": "sha256:ae04cf1e1465ce913631626ea4d1a7061e47b1242882705b4632829eb24bf8ee",
+      "role": [
+        "EXPLANATION"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-AE04CF1E1465CE913631.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -488,6 +521,55 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
           "locator": "Class XI Unit II Chapter 3: addition and subtraction of vectors",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-001",
+        "EV-PHY-11-MIP-04-003",
+        "EV-PHY-11-MIP-04-004",
+        "EV-PHY-11-MIP-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-04-001",
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-004",
+            "EV-PHY-11-MIP-04-006"
+          ]
+        }
+      },
+      "action": "Resolve a plane vector into signed rectangular components from its magnitude and angle, and rebuild the magnitude and angle from the components.",
+      "success_criterion": "Writes A = A_x i + A_y j with A_x = A cos(theta) and A_y = A sin(theta), gives each component its correct sign from theta, and recovers A = sqrt(A_x^2 + A_y^2) with the angle placed in the right quadrant.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-03"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: unit vector; resolution of a vector in a plane, rectangular components",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -944,6 +1026,163 @@
         "CAP-PHY-MIP-02"
       ],
       "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-2-2"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-002",
+        "EV-PHY-11-MIP-04-001",
+        "EV-PHY-11-MIP-04-005",
+        "EV-PHY-11-MIP-04-003",
+        "EV-PHY-11-MIP-04-004",
+        "EV-PHY-11-MIP-04-006",
+        "EV-PHY-11-MIP-04-002",
+        "EV-PHY-11-MIP-04-007",
+        "EV-PHY-11-MIP-04-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-002",
+            "EV-PHY-11-MIP-04-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-04-001",
+            "EV-PHY-11-MIP-04-005",
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-004",
+            "EV-PHY-11-MIP-04-006"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-04-001",
+            "EV-PHY-11-MIP-04-002",
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-004",
+            "EV-PHY-11-MIP-04-006",
+            "EV-PHY-11-MIP-04-007"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-04-008",
+            "EV-PHY-11-MIP-04-006",
+            "EV-PHY-11-MIP-04-007"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Resolution of vectors into components",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-04",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners reach for A cos(theta) automatically, then lose the sign in other quadrants or treat the number A_x as if it were itself a vector.",
+      "entry_assumptions": [
+        "Can find the sides of a right triangle from its hypotenuse and one angle.",
+        "Can add vectors head to tail and scale them by real numbers."
+      ],
+      "inferential_jump": "Any plane vector splits into multiples of two non-collinear directions; with the perpendicular unit vectors i and j the multipliers become the signed components A cos(theta) and A sin(theta), which hold the same information as the magnitude and angle.",
+      "teaching_path": [
+        {
+          "id": "MIP04-1",
+          "role": "DECLARE",
+          "action": "Fix the x-axis and y-axis and the unit vectors i and j along them.",
+          "why_valid": "A unit vector has magnitude one, no dimension and only specifies a direction.",
+          "inputs": [],
+          "output": "i along +x, j along +y",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP04-2",
+          "role": "TRANSFORM",
+          "action": "Write A as the sum of a multiple of i and a multiple of j.",
+          "why_valid": "Any plane vector is a sum of real multiples of two non-zero vectors with different directions.",
+          "inputs": [],
+          "output": "A = A_x i + A_y j",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP04-3",
+          "role": "TRANSFORM",
+          "action": "Find the multipliers from the magnitude and the angle with the x-axis.",
+          "why_valid": "Simple trigonometry on the right triangle gives the components.",
+          "inputs": [],
+          "output": "A_x = A cos(theta), A_y = A sin(theta)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP04-4",
+          "role": "TRANSFORM",
+          "action": "Read each component's sign from the quadrant of theta.",
+          "why_valid": "A component can be positive, negative or zero depending on theta.",
+          "inputs": [],
+          "output": "theta = 315 degrees: A_x > 0, A_y < 0",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP04-5",
+          "role": "VERIFY",
+          "action": "Rebuild the magnitude and angle from the components.",
+          "why_valid": "Either description specifies the vector completely.",
+          "inputs": [],
+          "output": "A = sqrt(A_x^2 + A_y^2), tan(theta) = A_y/A_x",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-04-TWO-DIRECTION-RESOLUTION",
+        "REL-PHY-MIP-04-RECT-COMPONENTS",
+        "REL-PHY-MIP-04-MAGNITUDE-ANGLE"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-04-COMPONENT-RECTANGLE"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-04"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The component A_x is itself a vector.",
+          "diagnostic_prompt": "Is A_x a vector, or is A_x i the vector?",
+          "repair": "A_x is a signed number; A_x i is the component vector. Only the product with the unit vector has a direction."
+        },
+        {
+          "wrong_idea": "Components are always positive, because they are lengths of triangle sides.",
+          "diagnostic_prompt": "A 200 m displacement points at 315 degrees from the +x axis. What is the sign of its y-component?",
+          "repair": "Negative: A_y = A sin(315 degrees) < 0. A component's sign depends on theta, and a component can also be zero."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A displacement of 10 m points at 210 degrees measured anticlockwise from the +x axis. Without a calculator, state the sign of each rectangular component and explain how you know.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Both components are negative.",
+          "reasoning": [
+            "210 degrees lies between 180 and 270 degrees, the third quadrant.",
+            "There cos(theta) and sin(theta) are both negative, so A_x = A cos(theta) < 0 and A_y = A sin(theta) < 0."
+          ],
+          "check": "Drawing the arrow shows it pointing left and down, which agrees with both signs.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Only the signs of the components are asked for; no component value is computed."
+        }
+      },
+      "research_contribution": "Connects the general two-direction resolution, the unit-vector form and the magnitude-angle form through verified NCERT quotes, with the sign and scalar-component traps each tied to a card.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-03"
+      ],
+      "lineage": []
     }
   ],
   "relations": [
@@ -1234,6 +1473,250 @@
         "|A - B| equals |A + B| only in special orientations, not in general."
       ],
       "gate_relation_ref": "REL-PHY-MIP-03-SUBTRACTION"
+    },
+    {
+      "id": "REL-PHY-MIP-04-TWO-DIRECTION-RESOLUTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-001",
+        "EV-PHY-11-MIP-04-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-04-001"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-04-001"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-005"
+          ]
+        }
+      },
+      "expression": "A = lambda a + mu b",
+      "meaning": "A vector in a plane can be written as the sum of real multiples of any two given vectors of that plane, so two independent directions are enough to describe every vector in it.",
+      "symbols": [
+        {
+          "symbol": "A",
+          "meaning": "vector to be resolved",
+          "unit_or_domain": "vector in the plane"
+        },
+        {
+          "symbol": "a, b",
+          "meaning": "two given vectors in the plane",
+          "unit_or_domain": "non-zero, different directions"
+        },
+        {
+          "symbol": "lambda, mu",
+          "meaning": "real multipliers found by the resolution",
+          "unit_or_domain": "real numbers"
+        }
+      ],
+      "conditions": [
+        "a and b must be non-zero vectors in the same plane with different directions."
+      ],
+      "derivation": [
+        {
+          "id": "REL04G-1",
+          "role": "DECLARE",
+          "action": "Draw A from O and draw lines through O parallel to a and b.",
+          "why_valid": "The two directions span the plane when they are not collinear.",
+          "inputs": [],
+          "output": "two reference lines through O"
+        },
+        {
+          "id": "REL04G-2",
+          "role": "TRANSFORM",
+          "action": "Complete the parallelogram with A as its diagonal.",
+          "why_valid": "The parallelogram law writes A as the sum of two vectors along the reference lines.",
+          "inputs": [],
+          "output": "A = OP + OQ"
+        },
+        {
+          "id": "REL04G-3",
+          "role": "TRANSFORM",
+          "action": "Express each side as a real multiple of a or b.",
+          "why_valid": "A vector parallel to a is a real multiple of a.",
+          "inputs": [],
+          "output": "OP = lambda a, OQ = mu b => A = lambda a + mu b",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "If a and b are collinear the resolution fails for any A off their line."
+      ],
+      "checks": [
+        "Recombining lambda a + mu b head to tail must reproduce A."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-04-TWO-DIRECTION-RESOLUTION"
+    },
+    {
+      "id": "REL-PHY-MIP-04-RECT-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-003",
+        "EV-PHY-11-MIP-04-008",
+        "EV-PHY-11-MIP-04-002",
+        "EV-PHY-11-MIP-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-008"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-002"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-002",
+            "EV-PHY-11-MIP-04-006"
+          ]
+        }
+      },
+      "expression": "A = A_x i + A_y j, with A_x = A cos(theta) and A_y = A sin(theta)",
+      "meaning": "Along the perpendicular unit vectors i and j, the multipliers are the rectangular components, found by trigonometry from the magnitude A and the angle theta that A makes with the x-axis.",
+      "symbols": [
+        {
+          "symbol": "A",
+          "meaning": "magnitude of the vector",
+          "unit_or_domain": "non-negative, unit of the quantity"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "angle of A measured from the positive x-axis",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "A_x, A_y",
+          "meaning": "rectangular (scalar) components",
+          "unit_or_domain": "real numbers, unit of the quantity"
+        },
+        {
+          "symbol": "i, j",
+          "meaning": "unit vectors along x and y",
+          "unit_or_domain": "magnitude 1, no dimension"
+        }
+      ],
+      "conditions": [
+        "i and j are unit vectors: magnitude one, no dimension or unit.",
+        "A component can be positive, negative or zero depending on theta."
+      ],
+      "derivation": [
+        {
+          "id": "REL04R-1",
+          "role": "DECLARE",
+          "action": "Choose a = i and b = j in the two-direction resolution.",
+          "why_valid": "i and j are non-zero and perpendicular, so they satisfy its condition.",
+          "inputs": [],
+          "output": "A = A_x i + A_y j"
+        },
+        {
+          "id": "REL04R-2",
+          "role": "TRANSFORM",
+          "action": "Project A onto each axis with the right triangle it forms.",
+          "why_valid": "Adjacent side = hypotenuse x cos(theta); opposite side = hypotenuse x sin(theta).",
+          "inputs": [],
+          "output": "A_x = A cos(theta), A_y = A sin(theta)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "The formulas need theta measured from the positive x-axis; an angle measured from another line must be converted first."
+      ],
+      "checks": [
+        "The two component formulas together must give back the magnitude A.",
+        "theta = 90 degrees gives A_x = 0."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-04-RECT-COMPONENTS"
+    },
+    {
+      "id": "REL-PHY-MIP-04-MAGNITUDE-ANGLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-004",
+        "EV-PHY-11-MIP-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-04-004"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-04-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-006"
+          ]
+        }
+      },
+      "expression": "A = sqrt(A_x^2 + A_y^2); tan(theta) = A_y / A_x",
+      "meaning": "The magnitude-and-angle description and the component description carry the same information, so either can be recovered from the other.",
+      "symbols": [
+        {
+          "symbol": "A",
+          "meaning": "magnitude",
+          "unit_or_domain": "non-negative"
+        },
+        {
+          "symbol": "A_x, A_y",
+          "meaning": "rectangular components",
+          "unit_or_domain": "real numbers"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "angle from the positive x-axis",
+          "unit_or_domain": "angle"
+        }
+      ],
+      "conditions": [
+        "A_x and A_y are components along perpendicular axes; their signs, which depend on theta, fix the quadrant of theta."
+      ],
+      "derivation": [
+        {
+          "id": "REL04B-1",
+          "role": "TRANSFORM",
+          "action": "Square and add the component formulas.",
+          "why_valid": "cos^2 + sin^2 = 1.",
+          "inputs": [],
+          "output": "A_x^2 + A_y^2 = A^2"
+        },
+        {
+          "id": "REL04B-2",
+          "role": "TRANSFORM",
+          "action": "Divide the component formulas.",
+          "why_valid": "sin/cos = tan.",
+          "inputs": [],
+          "output": "A_y / A_x = tan(theta)"
+        }
+      ],
+      "limits": [
+        "tan(theta) alone cannot distinguish angles 180 degrees apart; the signs of the components decide."
+      ],
+      "checks": [
+        "A is never smaller than |A_x| or |A_y|."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-04-MAGNITUDE-ANGLE"
     }
   ],
   "representations": [
@@ -1455,6 +1938,80 @@
           "in_words": "B turned round, used to form A - B."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-04-COMPONENT-RECTANGLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-003",
+        "EV-PHY-11-MIP-04-004",
+        "EV-PHY-11-MIP-04-006",
+        "EV-PHY-11-MIP-04-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-04-003",
+            "EV-PHY-11-MIP-04-004"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-04-006",
+            "EV-PHY-11-MIP-04-008"
+          ]
+        }
+      },
+      "kind": "COMPONENT_RECTANGLE",
+      "purpose": "Draw A from the origin with the rectangle whose sides are its x and y component vectors, so the signed components and the magnitude-angle description are read from one figure.",
+      "required_elements": [
+        "declared x and y axes with i and j",
+        "vector A from the origin",
+        "angle theta from the +x axis",
+        "component vector A_x i along the x-axis",
+        "component vector A_y j along the y-axis"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-04-RECT-COMPONENTS",
+        "REL-PHY-MIP-04-MAGNITUDE-ANGLE"
+      ],
+      "read_order": [
+        "declared x and y axes with i and j",
+        "vector A from the origin",
+        "angle theta from the +x axis",
+        "component vector A_x i along the x-axis",
+        "component vector A_y j along the y-axis"
+      ],
+      "instance_constraints": [
+        "The two component vectors placed head to tail end at the head of A.",
+        "A component pointing along -x or -y is drawn in that direction and labelled with a negative value."
+      ],
+      "accessibility": [
+        "Each component's sign is written as text beside it.",
+        "The angle is stated numerically, not only drawn."
+      ],
+      "misleading_alternatives": [
+        "Labelling side lengths without signs.",
+        "Measuring theta from the y-axis while using A cos(theta) for A_x."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "component vector A_x i along the x-axis",
+          "symbol": "A_x i",
+          "in_words": "The part of A along x, a signed number times the unit vector i."
+        },
+        {
+          "element": "angle theta from the +x axis",
+          "symbol": "theta",
+          "in_words": "The angle that fixes both component signs."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -1601,6 +2158,54 @@
         "Q-PHY-MIP-03-NCERT-3-6",
         "Q-PHY-MIP-03-NCERT-3-7",
         "Q-PHY-MIP-03-EXEMPLAR-4-26"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-04",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Signed components, unit vectors and resolution along given directions",
+      "capability_refs": [
+        "CAP-PHY-MIP-04"
+      ],
+      "solution_structure": [
+        "Declare axes and unit vectors.",
+        "Resolve along the required directions, keeping signs.",
+        "Recombine or compare components to answer the question."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose the directions to resolve along, rectangular or given.",
+        "representation_translation": "Translate between magnitude-angle, unit-vector and figure descriptions.",
+        "reasoning_steps": "Resolve, sign-check, then rebuild or compare.",
+        "novelty": "The given information switches between angle form, component form and a drawn orientation."
+      },
+      "safe_variations": [
+        "Change the quadrant of the vector.",
+        "Resolve along two perpendicular directions other than the axes."
+      ],
+      "transfer_boundaries": [
+        "Resolution along two directions requires them to be non-collinear."
+      ],
+      "common_wrong_routes": [
+        "Drop the sign of a component outside the first quadrant.",
+        "Call A_x a vector."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-04-NCERT-3-19",
+        "Q-PHY-MIP-04-EXEMPLAR-4-3",
+        "Q-PHY-MIP-04-EXEMPLAR-4-4"
       ]
     }
   ],
@@ -2558,6 +3163,318 @@
         }
       ],
       "repair_ref": "MIP03-2"
+    },
+    {
+      "id": "Q-PHY-MIP-04-NCERT-3-19",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-009",
+        "EV-PHY-11-MIP-04-002",
+        "EV-PHY-11-MIP-04-010",
+        "EV-PHY-11-MIP-04-001",
+        "EV-PHY-11-MIP-04-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-04-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-002"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-04-010",
+            "EV-PHY-11-MIP-04-001",
+            "EV-PHY-11-MIP-04-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.19",
+      "stem": "i and j are unit vectors along x- and y- axis respectively. What is the magnitude and direction of the vectors i + j, and i - j ? What are the components of a vector A = 2i + 3j along the directions of i + j and i - j ? [You may use graphical method]",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "i and j are perpendicular unit vectors along the x- and y-axes."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "|i + j| = sqrt2 at 45 degrees with the x-axis; |i - j| = sqrt2 at -45 degrees with the x-axis. The components of A along i + j and i - j are 5/sqrt2 and -1/sqrt2.",
+        "reasoning": [
+          "i + j has components (1, 1): magnitude sqrt(1 + 1) = sqrt2, tan(theta) = 1, theta = 45 degrees.",
+          "i - j has components (1, -1): magnitude sqrt2, theta = -45 degrees.",
+          "Write A = lambda(i + j) + mu(i - j): lambda + mu = 2 and lambda - mu = 3, so lambda = 5/2 and mu = -1/2.",
+          "Along i + j the component is lambda |i + j| = (5/2) sqrt2 = 5/sqrt2; along i - j it is mu |i - j| = -1/sqrt2."
+        ],
+        "check": "(5/sqrt2)^2 + (-1/sqrt2)^2 = 13 = 2^2 + 3^2, so the new components rebuild |A|.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R04-19-TR",
+            "kind": "TRANSFORM",
+            "action": "Find magnitude and angle of i + j and i - j from their components.",
+            "why_valid": "A = sqrt(A_x^2 + A_y^2) and tan(theta) = A_y/A_x.",
+            "inputs": [],
+            "output": "sqrt2 at 45 degrees; sqrt2 at -45 degrees"
+          },
+          {
+            "id": "R04-19-REP",
+            "kind": "REPRESENT",
+            "action": "Resolve A along the two new directions as A = lambda(i + j) + mu(i - j).",
+            "why_valid": "i + j and i - j are non-zero and non-collinear, so they can serve as resolution directions.",
+            "inputs": [],
+            "output": "lambda + mu = 2, lambda - mu = 3"
+          },
+          {
+            "id": "R04-19-CON",
+            "kind": "CONNECT",
+            "action": "Turn the multipliers into components along each direction.",
+            "why_valid": "A multiple of a vector of length sqrt2 has component lambda x sqrt2 along it.",
+            "inputs": [],
+            "output": "5/sqrt2 and -1/sqrt2"
+          },
+          {
+            "id": "R04-19-CHK",
+            "kind": "VERIFY",
+            "action": "Check that the new components rebuild |A|.",
+            "why_valid": "i + j and i - j are perpendicular, so their components add in quadrature.",
+            "inputs": [],
+            "output": "25/2 + 1/2 = 13"
+          }
+        ],
+        "crux_move_ref": "R04-19-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-04",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-04",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Treat i + j and i - j as your two resolution directions and write A as a multiple of each.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R04-19-REP"
+        }
+      ],
+      "repair_ref": "MIP04-2"
+    },
+    {
+      "id": "Q-PHY-MIP-04-EXEMPLAR-4-3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-011",
+        "EV-PHY-11-MIP-04-006",
+        "EV-PHY-11-MIP-04-012"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-04-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-006"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-04-012",
+            "EV-PHY-11-MIP-04-006"
+          ]
+        },
+        "grade9v3:figure_note": "Exemplar Fig. 4.1 fixes the directions of u and v; read it on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.3",
+      "stem": "Figure 4.1 shows the orientation of two vectors u and v in the XY plane. If u = a i + b j and v = p i + q j, which of the following is correct?",
+      "subparts": [],
+      "options": [
+        "(a) a and p are positive while b and q are negative.",
+        "(b) a, p and b are positive while q is negative.",
+        "(c) a, q and b are positive while p is negative.",
+        "(d) a, b, p and q are all positive."
+      ],
+      "conditions": [
+        "The signs of a, b, p and q follow from the quadrant each drawn vector points into."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(b): a, p and b are positive while q is negative.",
+        "reasoning": [
+          "A component is positive, negative or zero depending on the vector's angle with the x-axis.",
+          "A vector pointing into the first quadrant has both components positive; one pointing right and downward (fourth quadrant) has p > 0 and q < 0.",
+          "The official key (b) corresponds to u in the first quadrant and v in the fourth; confirm both directions on Fig. 4.1."
+        ],
+        "check": "Exactly one of the four components is negative, which only option (b) states.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R04-3-REP",
+            "kind": "REPRESENT",
+            "action": "Read the quadrant each vector points into from the figure.",
+            "why_valid": "The quadrant fixes the sign of each component.",
+            "inputs": [],
+            "output": "u: first quadrant; v: fourth quadrant"
+          },
+          {
+            "id": "R04-3-DEC",
+            "kind": "DECIDE",
+            "action": "Assign signs to a, b, p, q and pick the matching option.",
+            "why_valid": "Positive x and y for the first quadrant; positive x, negative y for the fourth.",
+            "inputs": [],
+            "output": "a, b, p > 0; q < 0 => (b)"
+          }
+        ],
+        "crux_move_ref": "R04-3-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-04",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-04",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "For each vector, does its head lie to the right or left of O, and above or below it?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R04-3-REP"
+        }
+      ],
+      "repair_ref": "MIP04-4"
+    },
+    {
+      "id": "Q-PHY-MIP-04-EXEMPLAR-4-4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-04-013",
+        "EV-PHY-11-MIP-04-014",
+        "EV-PHY-11-MIP-04-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-04",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-04-013"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-04-013"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-04-014",
+            "EV-PHY-11-MIP-04-003"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.4",
+      "stem": "The component of a vector r along X-axis will have maximum value if",
+      "subparts": [],
+      "options": [
+        "(a) r is along positive Y-axis",
+        "(b) r is along positive X-axis",
+        "(c) r makes an angle of 45 degrees with the X-axis",
+        "(d) r is along negative Y-axis"
+      ],
+      "conditions": [
+        "The magnitude of r is fixed; only its direction changes."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(b) r is along the positive X-axis.",
+        "reasoning": [
+          "r_x = r cos(theta), where theta is the angle with the positive x-axis.",
+          "cos(theta) is largest, equal to 1, at theta = 0.",
+          "Along either Y direction r_x = 0, and at 45 degrees r_x = r/sqrt2 < r."
+        ],
+        "check": "At theta = 0 the component equals the whole magnitude, the largest a component can be.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R04-4-CON",
+            "kind": "CONNECT",
+            "action": "Link the x-component to the angle.",
+            "why_valid": "r_x = r cos(theta).",
+            "inputs": [],
+            "output": "r_x = r cos(theta)"
+          },
+          {
+            "id": "R04-4-DEC",
+            "kind": "DECIDE",
+            "action": "Maximise cos(theta) over the options.",
+            "why_valid": "cos(0) = 1 is the largest value.",
+            "inputs": [],
+            "output": "theta = 0 => (b)"
+          }
+        ],
+        "crux_move_ref": "R04-4-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-04",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-04",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write the x-component in terms of r and the angle with the x-axis.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R04-4-CON"
+        }
+      ],
+      "repair_ref": "MIP04-3"
     }
   ],
   "teaching_routes": [],
