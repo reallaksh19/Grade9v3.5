@@ -7901,6 +7901,261 @@
           "visual_stage_ref": "VIS-NLM-LABAXES-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-P-THREE-TRIALS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block on the rough incline with P up the slope so friction's direction is read from a signed value in each trial.",
+      "required_elements": [
+        "4 kg block on a rough 30° incline with P up the slope",
+        "signed friction equation and limit",
+        "friction in each trial"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "4 kg block on a rough 30° incline with P up the slope",
+        "signed friction equation and limit",
+        "friction in each trial"
+      ],
+      "instance_constraints": [
+        "P acts exactly parallel to the plane.",
+        "The block stays at rest in all trials."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Always pointing static friction up the slope."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-P-THREE-TRIALS.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-P3-V0",
+          "label": "The block and P",
+          "purpose": "Show the block and the force up the slope.",
+          "visible_elements": [
+            "4 kg block on a rough 30° incline with P up the slope"
+          ]
+        },
+        {
+          "id": "VIS-NLM-P3-V1",
+          "label": "Signed friction",
+          "purpose": "Write friction as a signed unknown along the slope.",
+          "visible_elements": [
+            "4 kg block on a rough 30° incline with P up the slope",
+            "signed friction equation and limit"
+          ]
+        },
+        {
+          "id": "VIS-NLM-P3-V2",
+          "label": "Each trial",
+          "purpose": "Evaluate f in each trial and check the limit.",
+          "visible_elements": [
+            "4 kg block on a rough 30° incline with P up the slope",
+            "signed friction equation and limit",
+            "friction in each trial"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-P3-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-P3-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-P3-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-HORIZONTAL-THRESHOLD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the horizontal push on the block on a rough incline so friction's need is signed before it is compared with μ_s N.",
+      "required_elements": [
+        "block on a rough incline with horizontal P",
+        "N and signed f_required",
+        "rest condition"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "block on a rough incline with horizontal P",
+        "N and signed f_required",
+        "rest condition"
+      ],
+      "instance_constraints": [
+        "The applied force is horizontal.",
+        "The friction direction is not assumed."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Fixing friction up the slope before the sign is known."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-HORIZONTAL-THRESHOLD.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-HTHRESH-V0",
+          "label": "The push",
+          "purpose": "Show the block, the rough incline and the horizontal P.",
+          "visible_elements": [
+            "block on a rough incline with horizontal P"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HTHRESH-V1",
+          "label": "N and need",
+          "purpose": "Write N and the signed friction rest requires.",
+          "visible_elements": [
+            "block on a rough incline with horizontal P",
+            "N and signed f_required"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HTHRESH-V2",
+          "label": "Condition",
+          "purpose": "Use the sign for direction and test the size against μ_s N.",
+          "visible_elements": [
+            "block on a rough incline with horizontal P",
+            "N and signed f_required",
+            "rest condition"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-HTHRESH-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-HTHRESH-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-HTHRESH-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-WEDGE-FBD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the wedge under the sliding block so its diagram carries the block's normal push, not the block's weight.",
+      "required_elements": [
+        "2 kg block on a 5 kg wedge, 30°",
+        "block's normal push on the wedge and the wedge's force list",
+        "floor normal 65 N and friction ≈ 8.7 N left"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2 kg block on a 5 kg wedge, 30°",
+        "block's normal push on the wedge and the wedge's force list",
+        "floor normal 65 N and friction ≈ 8.7 N left"
+      ],
+      "instance_constraints": [
+        "The sloping face is smooth.",
+        "The wedge does not move."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Putting the block's weight on the wedge's diagram."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-WEDGE-FBD.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-WEDGE-V0",
+          "label": "The wedge",
+          "purpose": "Show the block sliding down the wedge's smooth face.",
+          "visible_elements": [
+            "2 kg block on a 5 kg wedge, 30°"
+          ]
+        },
+        {
+          "id": "VIS-NLM-WEDGE-V1",
+          "label": "Wedge's forces",
+          "purpose": "List only the forces that act on the wedge.",
+          "visible_elements": [
+            "2 kg block on a 5 kg wedge, 30°",
+            "block's normal push on the wedge and the wedge's force list"
+          ]
+        },
+        {
+          "id": "VIS-NLM-WEDGE-V2",
+          "label": "Floor forces",
+          "purpose": "Balance the wedge in x and y.",
+          "visible_elements": [
+            "2 kg block on a 5 kg wedge, 30°",
+            "block's normal push on the wedge and the wedge's force list",
+            "floor normal 65 N and friction ≈ 8.7 N left"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-WEDGE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-WEDGE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-WEDGE-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -13893,11 +14148,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-INCLINE-P-THREE-TRIALS",
+        "bound_ref": "REP-NLM-INCLINE-P-THREE-TRIALS",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-P3-V0"
         ]
       },
       "failure_signal": "You drew friction up the slope in all three trials, and got 5 N, 0 and −6 N 'up': at 26 N the push beats the weight's pull down the slope, so the block would slide up and friction points down.",
@@ -14140,11 +14394,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-INCLINE-HORIZONTAL-THRESHOLD",
+        "bound_ref": "REP-NLM-INCLINE-HORIZONTAL-THRESHOLD",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-HTHRESH-V0"
         ]
       },
       "failure_signal": "You used N = mg cos θ, or tested mg sin θ − P cos θ ≤ μ_s N without the absolute value: the push adds P sin θ to N, and for a large P the block would tend to slide up, so the need can be negative.",
@@ -14348,11 +14601,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-WEDGE-FBD",
+        "bound_ref": "REP-NLM-WEDGE-FBD",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-WEDGE-V0"
         ]
       },
       "failure_signal": "You put the block's 20 N weight on the wedge and got 70 N from the floor with no floor friction: the block acts on the wedge only through its 17.3 N contact push at 30° from the vertical, so the floor gives 65 N and must also supply 8.7 N of friction.",
