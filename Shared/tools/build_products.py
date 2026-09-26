@@ -6,7 +6,10 @@ For every product manifest in products/<subject>/*.manifest.json:
 2. print the PDFs from the pages;
 3. run the rendered quality gate.
 
-Only a product whose gate verdict is PASS is copied to public/products/<subject>/<name>/.
+A product is copied to public/products/<subject>/<name>/ only when its gate verdict is PASS AND an
+independent product review of this exact render (products/verification/<name>.review.json, with
+`render_digest` equal to the render receipt's digest) records no open S0 or S1 finding. A product
+that is not cleared has any earlier public copy removed.
 The status report (products/STATUS.md and products/status.v1.json) lists every product with
 its verdict, its gap count and its duties, so the board and the owner see why a product is
 not live.
@@ -33,6 +36,21 @@ from Shared.tools import package_migrate, product_manifest, quality_gate, render
 PRODUCTS = REPO / "products"
 WORK = REPO / "publication" / "products"          # git-ignored build area
 PUBLIC = REPO / "public" / "products"
+REVIEWS = PRODUCTS / "verification"
+REVIEW_BLOCKING = {"S0", "S1"}
+
+
+def review_clearance(name: str, digest: str, reviews: Path = REVIEWS) -> str | None:
+    """None when an independent review of this render leaves nothing blocking; else why not."""
+    path = reviews / f"{name}.review.json"
+    if not path.is_file():
+        return "NO_REVIEW"
+    review = json.loads(path.read_text(encoding="utf-8"))
+    if review.get("render_digest") != digest:
+        return "REVIEW_STALE"                          # the review saw a different render
+    if any(f.get("severity") in REVIEW_BLOCKING and not f.get("resolved") for f in review.get("findings", [])):
+        return "REVIEW_BLOCKING"
+    return None
 
 
 def manifests() -> list[Path]:
@@ -74,17 +92,18 @@ def build_one(manifest: Path, static: bool) -> dict:
     report = quality_gate.gate(out, m["subject"], m["product_id"], static=static)
     (out / "gate-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     published = None
-    if report["verdict"] == "PASS":
-        dest = PUBLIC / manifest.parent.name / name
-        if dest.exists():
-            shutil.rmtree(dest)
+    review = review_clearance(name, receipt["digest"]) if report["verdict"] == "PASS" else None
+    dest = PUBLIC / manifest.parent.name / name
+    if dest.exists():
+        shutil.rmtree(dest)                            # nothing stays live that is not cleared now
+    if report["verdict"] == "PASS" and review is None:
         shutil.copytree(out, dest, ignore=shutil.ignore_patterns("*.pdf"))   # PDF = print of the page, on demand
         published = str(dest.relative_to(REPO))
     return {"product": name, "subject": m["subject"], "product_id": m["product_id"], "verdict": report["verdict"],
             "fail_reasons": report["fail_reasons"], "gaps": len(receipt["gaps"]),
             "gap_kinds": dict(collections.Counter(g["duty"] for g in receipt["gaps"])),
             "blocking_findings": sum(1 for f in report["findings"] if f["severity"] in quality_gate.BLOCKING),
-            "published": published}
+            "render_digest": receipt["digest"], "review": review, "published": published}
 
 
 def status_markdown(rows: list[dict]) -> str:
@@ -94,10 +113,13 @@ def status_markdown(rows: list[dict]) -> str:
              "rendered quality gate passes; until then its gaps are duties on the board",
              "(`library_board.py --subject <S> --depth`).", "",
              f"{live} of {len(rows)} products live.", "",
-             "| Product | Subject | Verdict | Gaps | Blocking findings | Largest gap kinds |", "|---|---|---|---|---|---|"]
+             "A product that passes the gate still waits for an independent product review of its exact render",
+             "(`products/verification/<name>.review.json` with `render_digest`) with no open S0/S1 finding.", "",
+             "| Product | Subject | Verdict | Review | Gaps | Blocking findings | Largest gap kinds |", "|---|---|---|---|---|---|---|"]
     for r in rows:
         top = ", ".join(f"{k} {v}" for k, v in sorted(r["gap_kinds"].items(), key=lambda kv: -kv[1])[:3])
-        lines.append(f"| {r['product']} | {r['subject']} | {r['verdict']} | {r['gaps']} | {r['blocking_findings']} | {top} |")
+        review = "live" if r["published"] else (r.get("review") or "—")
+        lines.append(f"| {r['product']} | {r['subject']} | {r['verdict']} | {review} | {r['gaps']} | {r['blocking_findings']} | {top} |")
     return "\n".join(lines) + "\n"
 
 
@@ -152,7 +174,10 @@ def main(argv: list[str] | None = None) -> int:
     if not a.only:
         (PRODUCTS / "status.v1.json").write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
         (PRODUCTS / "STATUS.md").write_text(status_markdown(rows), encoding="utf-8")
-    print(f"{sum(1 for r in rows if r['published'])} of {len(rows)} products passed the gate and are live")
+    waiting = [f"{r['product']} ({r['review']})" for r in rows if r["verdict"] == "PASS" and not r["published"]]
+    if waiting:
+        print("gate PASS, waiting for product review: " + ", ".join(waiting) + f"; the review must carry render_digest")
+    print(f"{sum(1 for r in rows if r['published'])} of {len(rows)} products passed the gate and review and are live")
     return 0
 
 

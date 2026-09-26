@@ -419,8 +419,24 @@ def core2b(ctx: Ctx, q: dict) -> str:
 
     def _short(text: str) -> str:
         return text if len(text) <= 90 else text[:87].rsplit(" ", 1)[0] + "…"
-    lineage = "".join(f'<li><a data-g9-lineage href="core2a.html#{esc(b)}">{esc(_short(qs[b]["stem"]) if b in qs else "Earlier practice item")}</a></li>'
-                      for b in tr.get("builds_on") or [])
+    sel = ctx.manifest.get("selection") or {}
+
+    def _where(b: str) -> str | None:
+        """The page and unit where the earlier item is rendered: its Core2A article, or the Core1A
+        microtopic that uses it as a worked anchor. None when this product does not show it."""
+        if b in (sel.get("core2a") or []):
+            return f"core2a.html#{b}"
+        for m in ctx.index("microtopics").values():
+            if m["id"] in (sel.get("microtopics") or []) and any(
+                    u.get("worked_anchor_ref") == b for u in m.get("construction_units") or []):
+                return f"core1a.html#{m['id']}"
+        return None
+
+    def _earlier(b: str) -> str:
+        label = esc(_short(qs[b]["stem"]) if b in qs else "Earlier practice item")
+        href = _where(b)
+        return f'<li><a data-g9-lineage href="{esc(href)}">{label}</a></li>' if href else f"<li>{label}</li>"
+    lineage = "".join(_earlier(b) for b in tr.get("builds_on") or [])
     check = (q.get("independent_check") or {}).get("statement") or ans.get("check")
     protected = next((s for s in ans.get("reasoning_route") or [] if s.get("id") == tr.get("protected_move_ref")), None)
     # Safe pre-attempt support is the item's own first rung (orientation), never a generic sentence.

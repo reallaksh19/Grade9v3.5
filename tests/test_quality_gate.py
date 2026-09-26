@@ -127,6 +127,16 @@ class Gate(unittest.TestCase):
         self.assertIn("C2A-REVEAL-GATED", {f["rule"] for f in report["findings"]})
         self.assertIn("CONT_LINK_UNRESOLVED", {c["code"] for c in report["continuity"]})
 
+    def test_lineage_to_a_core1a_worked_anchor_links_to_its_microtopic(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        m["selection"]["core2a"] = []                  # the earlier item is shown only as the Core1A worked anchor
+        manifest.write_text(json.dumps(m), encoding="utf-8")
+        out = self.build(manifest, draft=True)         # no Core2A practice is a gap; only the link matters here
+        self.assertIn('href="core1a.html#MIC-MATH-CONSTRAINT"', (out / "core2b.html").read_text(encoding="utf-8"))
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertNotIn("CONT_LINK_UNRESOLVED", {c["code"] for c in report["continuity"]})
+
     def test_pre_attempt_figure_that_shows_the_result_fails(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))

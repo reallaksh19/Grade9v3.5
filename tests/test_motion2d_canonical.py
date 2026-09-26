@@ -126,7 +126,8 @@ class Motion2DCanonicalData(unittest.TestCase):
             REP_EVENT: "ACT-KIN-2D-EVENT-CLOCK",
             REP_MODEL: "ACT-KIN-2D-PROJECTILE-MODEL-GATE",
         }
-        self.assertEqual(set(expected), set(self.representations))
+        # The canonical three must exist; item-specific figures (ALL-FIGURE-SPECIFIC) may be added beside them.
+        self.assertLessEqual(set(expected), set(self.representations))
         for rep_id, activity_id in expected.items():
             rep = self.representations[rep_id]
             self.assertEqual(rep["interactive_resource_refs"], [activity_id])
