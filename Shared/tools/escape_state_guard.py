@@ -25,7 +25,7 @@ if __package__ in (None, ""):
 from Shared.tools import (compile_execution_packet, plan_request, prompt_composer,  # noqa: E402
                           research_first_policy)
 
-TEXT_SURFACES = ("Shared/roles/*.md", "template/core-prompt-composer/*.json")
+TEXT_SURFACES = ("Shared/roles/*.md", "template/core-prompt-composer/*.json", "docs/library-agents/*.md")
 # Schema -> the outcome properties an agent acts on (None = every enum in the schema).
 # Availability dimensions (READY/UNAVAILABLE per resource) describe inputs, not outcomes.
 SCHEMA_SURFACES = {

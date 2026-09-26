@@ -1,0 +1,34 @@
+{
+  "schema": "research-source-allowlist/v1",
+  "subject": "Physics",
+  "purpose": "Which hosts a research agent may cite, and for what. Tier A is primary authority (curriculum, official papers and answer keys). Tier B may support explanations only. Tier C may be used to LOCATE an item, never as authority. Any host not listed cannot be cited.",
+  "tiers": {
+    "A": {
+      "may_support": ["SYLLABUS_SCOPE", "DEFINITION", "RELATION", "CONDITION", "WORKED_EXAMPLE", "MISCONCEPTION", "DIAGRAM", "QUESTION", "ANSWER_KEY"],
+      "hosts": [
+        {"host": "ncert.nic.in", "publisher": "NCERT", "covers": "Textbooks and exemplar problems, Classes 9-12"},
+        {"host": "cbseacademic.nic.in", "publisher": "CBSE", "covers": "Curriculum, sample question papers, marking schemes"},
+        {"host": "cbse.gov.in", "publisher": "CBSE", "covers": "Board circulars and question papers"},
+        {"host": "nta.ac.in", "publisher": "National Testing Agency", "covers": "JEE Main information bulletin and syllabus"},
+        {"host": "jeemain.nta.nic.in", "publisher": "National Testing Agency", "covers": "JEE Main papers, provisional and final answer keys"},
+        {"host": "jeeadv.ac.in", "publisher": "IITs (JEE Advanced)", "covers": "JEE Advanced papers, answer keys, syllabus"}
+      ]
+    },
+    "B": {
+      "may_support": ["DEFINITION", "RELATION", "CONDITION", "WORKED_EXAMPLE", "MISCONCEPTION", "DIAGRAM", "INTERACTIVE_PRECEDENT"],
+      "hosts": [
+        {"host": "openstax.org", "publisher": "OpenStax (Rice University)", "covers": "University Physics, College Physics"},
+        {"host": "hyperphysics.phy-astr.gsu.edu", "publisher": "Georgia State University", "covers": "Concept explanations"},
+        {"host": "phet.colorado.edu", "publisher": "University of Colorado Boulder", "covers": "Interactive simulations (precedent for interactive pages)"},
+        {"host": "ocw.mit.edu", "publisher": "MIT OpenCourseWare", "covers": "Course notes and problem sets"},
+        {"host": "nptel.ac.in", "publisher": "NPTEL (IITs/IISc)", "covers": "Course notes"}
+      ]
+    },
+    "C": {
+      "may_support": ["LOCATOR_HINT"],
+      "hosts": [
+        {"host": "questions.examside.com", "publisher": "ExamSIDE", "covers": "Aggregated past questions; locate only, confirm identity and answer on tier A"}
+      ]
+    }
+  }
+}

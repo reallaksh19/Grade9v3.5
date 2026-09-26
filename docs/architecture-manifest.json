@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 323,
-  "relation_count": 353,
+  "component_count": 329,
+  "relation_count": 357,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
-    "LIBRARY": 50,
-    "TEST": 151,
-    "TOOLING": 80,
+    "LIBRARY": 53,
+    "TEST": 152,
+    "TOOLING": 82,
     "WEB": 9,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:946aedd919b13171518eda7ca1eed7569a096f6f5bb42a7ece33deb9de46bc2c",
+  "digest": "sha256:b0ae72762879c111acb20c9f759ec5ab44d3a5fe381a50169955d85533b75768",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -138,6 +138,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 6165,
       "sha256": "8a66e6f338996f7c4b849d380776f2dc620b4b6dff091e7c6b5a1d49d6a89f42"
+    },
+    {
+      "path": "Shared/library/evidence-cards.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 4948,
+      "sha256": "d70c1e2c7eb5b654230f345e23c303280e3cf8bf98b75fcc3dc2c65b2a90a8ef"
     },
     {
       "path": "Shared/library/exam-source-verification.schema.json",
@@ -287,6 +294,13 @@
       "sha256": "f90f9f91c6df1f974f4be00344aef921ae1a6f993728211d504fe8a0d86feb74"
     },
     {
+      "path": "Shared/library/research-verification.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2836,
+      "sha256": "35fe97ef97d5cfc5e27d2d57afdf5a374bd8b3b3b5903dddca818fdd743be28b"
+    },
+    {
       "path": "Shared/library/resolve.py",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
@@ -348,6 +362,13 @@
       "role_description": "Topic library: intake, resolution, promotion, compilation",
       "bytes": 11099,
       "sha256": "06a0b67d60a9cd22134217bd22436b4b9179af0726c005cab9031bb32435d965"
+    },
+    {
+      "path": "Shared/library/syllabus-spine.schema.json",
+      "role": "LIBRARY",
+      "role_description": "Topic library: intake, resolution, promotion, compilation",
+      "bytes": 2401,
+      "sha256": "09c416bead45d662bf01987a2ab97a8a76537998f852965c22ef4e6c38a1e16d"
     },
     {
       "path": "Shared/library/target-demand-route.schema.json",
@@ -759,8 +780,15 @@
       "path": "Shared/tools/escape_state_guard.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5684,
-      "sha256": "a085190937dad3179970c1a56258f3eeef70c10fbb791e36de521df25b5e5c47"
+      "bytes": 5712,
+      "sha256": "10e8ebff5d287be860abbf16469d54ca7000d869a5676fd9a3b1edf6737900c6"
+    },
+    {
+      "path": "Shared/tools/evidence_check.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 14633,
+      "sha256": "fb89b0b6f3905294a11f06b5779e5f8cfd44b6af2e5923fe41d01db7f1dc8662"
     },
     {
       "path": "Shared/tools/execute_authoring_run.py",
@@ -845,6 +873,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 24205,
       "sha256": "80f85ae3274b729c8ac83f06af8600fc6c04afb98908f9569e7b9e062bfe455a"
+    },
+    {
+      "path": "Shared/tools/library_board.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 17879,
+      "sha256": "21778f801d8f19db94f8b85267a7286a330c5fd08fc937a6af80ad1120137158"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -2058,6 +2093,13 @@
       "sha256": "2ff96e6fa1b33a6692b039419400cf74f8d5b42275bd79f7235921753ce3108b"
     },
     {
+      "path": "tests/test_research_library.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 14749,
+      "sha256": "311449c21287bcff995f3334e7e1af6e36b42b80d1c09236c63cd31ad3a04faa"
+    },
+    {
       "path": "tests/test_review_authority.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2769,6 +2811,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/evidence_check.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/execute_authoring_run.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -2841,6 +2888,16 @@
     {
       "from": "Shared/tools/learning_router.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -3860,6 +3917,11 @@
     },
     {
       "from": "tests/test_research_first_workflow.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_research_library.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
