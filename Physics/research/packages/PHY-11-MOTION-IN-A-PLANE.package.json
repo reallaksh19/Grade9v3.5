@@ -73,6 +73,72 @@
       "fallback": []
     },
     {
+      "id": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-8752D0000D712E1F605F"
+      },
+      "title": "NCERT Exemplar Problems Physics Class XI, Chapter 4 Motion in a Plane (keep304)",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/pdf/publication/exemplarproblem/classXI/physics/keep304.pdf",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-8752D0000D712E1F605F",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/8752d0000d712e1f605f733d572c63d98f743d052986d06a7e5e03734bd83d35.pdf",
+      "snapshot_digest": "sha256:8752d0000d712e1f605f733d572c63d98f743d052986d06a7e5e03734bd83d35",
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-8752D0000D712E1F605F.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-AEB6A3B2D170E8436294"
+      },
+      "title": "NCERT Exemplar Problems Physics Class XI, Answers (keep316)",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/pdf/publication/exemplarproblem/classXI/physics/keep316.pdf",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-AEB6A3B2D170E8436294",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/aeb6a3b2d170e84362941a119fe255a44c373540295ceb4e26141b33d1c3ccb7.pdf",
+      "snapshot_digest": "sha256:aeb6a3b2d170e84362941a119fe255a44c373540295ceb4e26141b33d1c3ccb7",
+      "role": [
+        "SCIENTIFIC_CHECK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-AEB6A3B2D170E8436294.",
+      "fallback": []
+    },
+    {
       "id": "SRC-NCERT-KEPH103",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -377,6 +443,56 @@
       ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-001",
+        "EV-PHY-11-MIP-03-004",
+        "EV-PHY-11-MIP-03-006",
+        "EV-PHY-11-MIP-03-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-004",
+            "EV-PHY-11-MIP-03-006"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-004",
+            "EV-PHY-11-MIP-03-007"
+          ]
+        }
+      },
+      "action": "Add and subtract vectors by drawing them head to tail (or as a parallelogram from a common tail) and read the resultant's size and direction from the drawing.",
+      "success_criterion": "Places each tail at the previous head, draws the resultant from the first tail to the last head, forms A - B as A + (-B), and bounds the resultant between the difference and the sum of the magnitudes.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-02"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: addition and subtraction of vectors",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -669,12 +785,163 @@
           "verification_status": "CHECKED_BY_AUTHOR"
         },
         "oracle": {
-          "held_by": "ISSUE-PHY-MIP-EXIT-NO-VALIDATOR"
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
         }
       },
       "research_contribution": "Records the sign, size and dimension rules for scalar multiples with the null-vector edge case, each tied to a verified quote.",
       "prerequisite_refs": [
         "CAP-PHY-MIP-01"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN",
+        "SRC-OPENSTAX-UP1-2-1"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-002",
+        "EV-PHY-11-MIP-03-001",
+        "EV-PHY-11-MIP-03-006",
+        "EV-PHY-11-MIP-03-007",
+        "EV-PHY-11-MIP-03-004",
+        "EV-PHY-11-MIP-03-010",
+        "EV-PHY-11-MIP-05-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-002",
+            "EV-PHY-11-MIP-03-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-006",
+            "EV-PHY-11-MIP-03-007",
+            "EV-PHY-11-MIP-03-004"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-004",
+            "EV-PHY-11-MIP-03-006",
+            "EV-PHY-11-MIP-03-007"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-03-010",
+            "EV-PHY-11-MIP-05-009"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Addition and subtraction of vectors: graphical method",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-03",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The construction is mechanical, but learners keep adding magnitudes as numbers and confuse the resultant of two velocities with the velocity of one object relative to another.",
+      "entry_assumptions": [
+        "Can draw an arrow to scale and measure its length and angle.",
+        "Can reverse a vector and scale it by a real number."
+      ],
+      "inferential_jump": "Placing vectors head to tail makes the resultant the single arrow from the first tail to the last head, so its size depends on the angle between the vectors and lies between the difference and the sum of their magnitudes; subtracting is adding the reversed vector.",
+      "teaching_path": [
+        {
+          "id": "MIP03-1",
+          "role": "DECLARE",
+          "action": "Choose a starting point and a scale for the drawing.",
+          "why_valid": "Every arrow must use the same scale so lengths can be compared.",
+          "inputs": [],
+          "output": "origin O and a length scale"
+        },
+        {
+          "id": "MIP03-2",
+          "role": "TRANSFORM",
+          "action": "Draw A, then draw B with its tail at A's head, and join the tail of A to the head of B.",
+          "why_valid": "This line is the sum R of A and B.",
+          "inputs": [],
+          "output": "R = A + B from tail of A to head of B",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP03-3",
+          "role": "TRANSFORM",
+          "action": "Redraw A and B from a common tail and complete the parallelogram.",
+          "why_valid": "The parallelogram diagonal and the triangle construction give the same resultant.",
+          "inputs": [],
+          "output": "diagonal of parallelogram = R",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP03-4",
+          "role": "TRANSFORM",
+          "action": "Subtract by reversing B and adding.",
+          "why_valid": "The difference A - B is defined as A + (-B).",
+          "inputs": [],
+          "output": "A - B = A + (-B)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP03-5",
+          "role": "VERIFY",
+          "action": "Check the resultant's length against the sum and the difference of the magnitudes.",
+          "why_valid": "A side of a triangle is never longer than the sum of the other two nor shorter than their difference; equality holds only for collinear vectors.",
+          "inputs": [],
+          "output": "||A| - |B|| <= |R| <= |A| + |B|",
+          "source_ref": "SRC-NCERT-KEPH1AN"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-03-TRIANGLE-LAW",
+        "REL-PHY-MIP-03-SUBTRACTION"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-03-HEAD-TO-TAIL"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-03"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The resultant of two velocities acting on one object is the same thing as the velocity of one object relative to another.",
+          "diagnostic_prompt": "Rain falls with velocity v_r and wind adds velocity v_w to the drops. Is the drops' velocity v_r + v_w or v_r - v_w?",
+          "repair": "Two velocities acting on one object combine as v = v1 + v2; the relative velocity of object 1 with respect to object 2 is the different vector v12 = v1 - v2."
+        },
+        {
+          "wrong_idea": "The magnitude of a resultant is the sum (or difference) of the two magnitudes.",
+          "diagnostic_prompt": "A 3-unit and a 4-unit vector are perpendicular. Is their resultant 7 units long?",
+          "repair": "No. The resultant is a triangle side or parallelogram diagonal, whose length is not a simple sum of side lengths; 7 units arises only when the vectors point the same way."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two forces of 3 N and 4 N act at one point. Between what least and greatest values can the magnitude of their resultant lie, and in which arrangement is each reached?",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "From 1 N (forces opposite) to 7 N (forces in the same direction).",
+          "reasoning": [
+            "The resultant's length lies between the difference and the sum of the magnitudes.",
+            "4 N - 3 N = 1 N when the forces are antiparallel.",
+            "3 N + 4 N = 7 N when the forces are parallel."
+          ],
+          "check": "Both extremes need collinear forces, which is when equality holds in the triangle inequality.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "Ties the triangle and parallelogram constructions, commutativity, associativity, subtraction and the triangle inequality to verified NCERT quotes and names the v1 + v2 versus v1 - v2 confusion.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-02"
       ],
       "lineage": []
     }
@@ -775,6 +1042,198 @@
         "The unit of the result is the unit of lambda times the unit of A."
       ],
       "gate_relation_ref": "REL-PHY-MIP-02-SCALAR-MULTIPLE"
+    },
+    {
+      "id": "REL-PHY-MIP-03-TRIANGLE-LAW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-001",
+        "EV-PHY-11-MIP-03-002",
+        "EV-PHY-11-MIP-03-003",
+        "EV-PHY-11-MIP-03-006",
+        "EV-PHY-11-MIP-01-005",
+        "EV-PHY-11-MIP-02-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-002",
+            "EV-PHY-11-MIP-03-003"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-002",
+            "EV-PHY-11-MIP-03-006"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-01-005",
+            "EV-PHY-11-MIP-02-008"
+          ]
+        }
+      },
+      "expression": "R = A + B, drawn with the tail of B at the head of A; A + B = B + A; (A + B) + C = A + (B + C)",
+      "meaning": "The sum of two vectors is the arrow from the tail of the first to the head of the second when they are placed head to tail; the order and the grouping of the additions do not change the resultant, and the parallelogram construction gives the same result.",
+      "symbols": [
+        {
+          "symbol": "A, B, C",
+          "meaning": "vectors being added",
+          "unit_or_domain": "vectors of one kind and dimension"
+        },
+        {
+          "symbol": "R",
+          "meaning": "resultant (sum) vector",
+          "unit_or_domain": "same kind and dimension as A and B"
+        }
+      ],
+      "conditions": [
+        "The vectors are free vectors, so each may be moved parallel to itself to place it head to tail.",
+        "The vectors added must be of the same kind and dimension; adding any two vectors is not meaningful."
+      ],
+      "derivation": [
+        {
+          "id": "REL03A-1",
+          "role": "DECLARE",
+          "action": "Draw A with its tail at a chosen point O.",
+          "why_valid": "A free vector may be drawn from any point.",
+          "inputs": [],
+          "output": "A from O to P"
+        },
+        {
+          "id": "REL03A-2",
+          "role": "TRANSFORM",
+          "action": "Move B parallel to itself so its tail sits at the head of A.",
+          "why_valid": "Shifting a free vector parallel to itself leaves it unchanged.",
+          "inputs": [],
+          "output": "B from P to Q",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL03A-3",
+          "role": "TRANSFORM",
+          "action": "Join the tail of A to the head of B.",
+          "why_valid": "That line is defined as the sum of A and B.",
+          "inputs": [],
+          "output": "R = OQ = A + B",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL03A-4",
+          "role": "VERIFY",
+          "action": "Repeat with B first.",
+          "why_valid": "The same R is obtained, so addition is commutative.",
+          "inputs": [],
+          "output": "B + A = A + B = R",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "A drawing gives the resultant only to the accuracy of the drawing.",
+        "The law does not apply to a localised vector whose line of application matters."
+      ],
+      "checks": [
+        "|A| - |B| <= |R| <= |A| + |B| in magnitude.",
+        "Reversing the order of addition must reproduce the same R."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-03-TRIANGLE-LAW"
+    },
+    {
+      "id": "REL-PHY-MIP-03-SUBTRACTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-004",
+        "EV-PHY-11-MIP-03-005",
+        "EV-PHY-11-MIP-02-002",
+        "EV-PHY-11-MIP-02-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-03-004",
+            "EV-PHY-11-MIP-03-005"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-03-004",
+            "EV-PHY-11-MIP-03-005"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-004"
+          ]
+        }
+      },
+      "expression": "A - B = A + (-B); A + (-A) = 0",
+      "meaning": "Subtracting a vector means adding its reverse, and adding a vector to its own reverse gives the null vector, which has zero magnitude.",
+      "symbols": [
+        {
+          "symbol": "A, B",
+          "meaning": "vectors",
+          "unit_or_domain": "vectors of one kind and dimension"
+        },
+        {
+          "symbol": "-B",
+          "meaning": "vector of the same magnitude as B, pointing the opposite way",
+          "unit_or_domain": "same kind as B"
+        },
+        {
+          "symbol": "0",
+          "meaning": "null (zero) vector",
+          "unit_or_domain": "zero magnitude, no specifiable direction"
+        }
+      ],
+      "conditions": [
+        "-B has magnitude |B| and the direction opposite to B.",
+        "The null vector has zero magnitude, so its direction cannot be specified."
+      ],
+      "derivation": [
+        {
+          "id": "REL03S-1",
+          "role": "DECLARE",
+          "action": "Form -B by reversing B.",
+          "why_valid": "Multiplying by -1 reverses a vector without changing its magnitude.",
+          "inputs": [],
+          "output": "-B = (-1)B"
+        },
+        {
+          "id": "REL03S-2",
+          "role": "TRANSFORM",
+          "action": "Add A and -B head to tail.",
+          "why_valid": "The difference is defined as that sum.",
+          "inputs": [],
+          "output": "A - B = A + (-B)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL03S-3",
+          "role": "VERIFY",
+          "action": "Set B = A.",
+          "why_valid": "Equal and opposite vectors give a resultant of zero magnitude.",
+          "inputs": [],
+          "output": "A - A = 0",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "A - B and B - A are opposite vectors, not equal ones."
+      ],
+      "checks": [
+        "(A - B) + B returns A.",
+        "|A - B| equals |A + B| only in special orientations, not in general."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-03-SUBTRACTION"
     }
   ],
   "representations": [
@@ -922,6 +1381,80 @@
           "in_words": "An arrow 1.5 times as long as A, pointing the opposite way."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-03-HEAD-TO-TAIL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-001",
+        "EV-PHY-11-MIP-03-006",
+        "EV-PHY-11-MIP-02-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-006"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-03-006",
+            "EV-PHY-11-MIP-02-002"
+          ]
+        }
+      },
+      "kind": "HEAD_TO_TAIL_TRIANGLE",
+      "purpose": "Show A and B placed head to tail with the resultant closing the triangle, beside the same pair drawn from a common tail as a parallelogram, so both constructions visibly give one R.",
+      "required_elements": [
+        "arrow A from the start point",
+        "arrow B starting at the head of A",
+        "resultant R from the tail of A to the head of B",
+        "parallelogram built on A and B from a common tail",
+        "reversed arrow -B for the difference"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-03-TRIANGLE-LAW",
+        "REL-PHY-MIP-03-SUBTRACTION"
+      ],
+      "read_order": [
+        "arrow A from the start point",
+        "arrow B starting at the head of A",
+        "resultant R from the tail of A to the head of B",
+        "parallelogram built on A and B from a common tail",
+        "reversed arrow -B for the difference"
+      ],
+      "instance_constraints": [
+        "The resultant in the triangle and the diagonal of the parallelogram are the same length and direction.",
+        "-B is drawn with the same length as B.",
+        "All arrows share one scale."
+      ],
+      "accessibility": [
+        "Each arrow is named in text with its role (addend, resultant, reversed).",
+        "The head-to-tail joins are described in words, not only drawn."
+      ],
+      "misleading_alternatives": [
+        "Drawing R from the head of A to the tail of B.",
+        "Drawing the parallelogram's other diagonal as A + B."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "resultant R from the tail of A to the head of B",
+          "symbol": "R = A + B",
+          "in_words": "The single displacement equivalent to doing A and then B."
+        },
+        {
+          "element": "reversed arrow -B for the difference",
+          "symbol": "-B",
+          "in_words": "B turned round, used to form A - B."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -1020,6 +1553,54 @@
         "Q-PHY-MIP-02-NCERT-3-4",
         "Q-PHY-MIP-02-NCERT-3-3",
         "Q-PHY-MIP-02-NCERT-3-21"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-03",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Graphical vector sums, differences and their bounds",
+      "capability_refs": [
+        "CAP-PHY-MIP-03"
+      ],
+      "solution_structure": [
+        "Rewrite every relation as a head-to-tail sum.",
+        "Place the arrows head to tail and read off the closing side.",
+        "Use the triangle inequality to bound magnitudes and identify the collinear equality cases."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose between reading a relation as a sum, a difference or a closed polygon.",
+        "representation_translation": "Translate symbolic relations into arrow arrangements and back.",
+        "reasoning_steps": "Rearrange, draw, and compare lengths or orientations.",
+        "novelty": "The number of vectors and the form of the relation change while the head-to-tail rule stays fixed."
+      },
+      "safe_variations": [
+        "Change the relation between three vectors while keeping one of them as the closing side.",
+        "Replace a sum by a difference by reversing one vector."
+      ],
+      "transfer_boundaries": [
+        "Graphical answers are approximate; exact magnitudes belong to the analytical method."
+      ],
+      "common_wrong_routes": [
+        "Add magnitudes as plain numbers.",
+        "Draw the difference A - B from the head of A to the head of B the wrong way round."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-03-NCERT-3-6",
+        "Q-PHY-MIP-03-NCERT-3-7",
+        "Q-PHY-MIP-03-EXEMPLAR-4-26"
       ]
     }
   ],
@@ -1655,6 +2236,328 @@
         }
       ],
       "repair_ref": "MIP02-4"
+    },
+    {
+      "id": "Q-PHY-MIP-03-NCERT-3-6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-011",
+        "EV-PHY-11-MIP-03-016",
+        "EV-PHY-11-MIP-03-007",
+        "EV-PHY-11-MIP-03-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-03-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-03-011"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-03-016",
+            "EV-PHY-11-MIP-03-007",
+            "EV-PHY-11-MIP-03-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.6",
+      "stem": "Establish the following vector inequalities geometrically or otherwise : (a) |a+b| <= |a| + |b| (b) |a+b| >= ||a| - |b|| (c) |a-b| <= |a| + |b| (d) |a-b| >= ||a| - |b||. When does the equality sign above apply?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "a and b are any two vectors of the same kind."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "RUBRIC",
+        "summary": "Draw a, b and a + b (or a - b = a + (-b)) as a triangle; the triangle's side rules give all four inequalities, and equality holds only when a and b are collinear.",
+        "reasoning": [
+          "Place a and b head to tail; the resultant a + b is the third side, so |a + b| <= |a| + |b|.",
+          "The same triangle gives |a + b| >= ||a| - |b||, since one side is never shorter than the difference of the other two.",
+          "Replace b by -b, which has the same magnitude, to obtain (c) and (d) for a - b.",
+          "The triangle collapses to a line only when a and b are parallel or antiparallel, which is when the equality signs apply."
+        ],
+        "check": "Setting b parallel to a turns (a) into an equality and (d) into an equality simultaneously.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R03-6-REP",
+            "kind": "REPRESENT",
+            "action": "Draw a, b and a + b as the three sides of one triangle.",
+            "why_valid": "Head-to-tail addition makes the resultant the closing side.",
+            "inputs": [],
+            "output": "triangle with sides |a|, |b|, |a + b|"
+          },
+          {
+            "id": "R03-6-CON",
+            "kind": "CONNECT",
+            "action": "Apply the triangle side rules to that triangle, then to the triangle for a + (-b).",
+            "why_valid": "-b has the same length as b, so the same rules bound |a - b|.",
+            "inputs": [],
+            "output": "(a)-(d) established"
+          },
+          {
+            "id": "R03-6-DEC",
+            "kind": "DECIDE",
+            "action": "Identify when the triangle degenerates.",
+            "why_valid": "A triangle becomes a straight line only when the sides are collinear.",
+            "inputs": [],
+            "output": "equality for collinear a and b"
+          }
+        ],
+        "crux_move_ref": "R03-6-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-03",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-03",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "The sum (difference) of any two sides of a triangle is never less (greater) than the third side.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Sketch the triangle formed by a, b and a + b before writing any inequality.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R03-6-REP"
+        }
+      ],
+      "repair_ref": "MIP03-5"
+    },
+    {
+      "id": "Q-PHY-MIP-03-NCERT-3-7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-012",
+        "EV-PHY-11-MIP-03-005",
+        "EV-PHY-11-MIP-03-013",
+        "EV-PHY-11-MIP-03-007",
+        "EV-PHY-11-MIP-02-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-03-012"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-03-012",
+            "EV-PHY-11-MIP-03-005"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-03-013",
+            "EV-PHY-11-MIP-03-007",
+            "EV-PHY-11-MIP-02-002"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.7",
+      "stem": "Given a + b + c + d = 0, which of the following statements are correct : (a) a, b, c, and d must each be a null vector, (b) The magnitude of ( a + c) equals the magnitude of ( b + d), (c) The magnitude of a can never be greater than the sum of the magnitudes of b, c, and d, (d) b + c must lie in the plane of a and d if a and d are not collinear, and in the line of a and d, if they are collinear ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The four vectors add head to tail to the null vector, so they close a polygon."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "All statements except (a) are correct.",
+        "reasoning": [
+          "(a) is false: four non-zero vectors can close a quadrilateral and still sum to zero.",
+          "(b) is true: a + c = -(b + d), and a vector and its reverse have equal magnitudes.",
+          "(c) is true: a = -(b + c + d), and the magnitude of a sum never exceeds the sum of the magnitudes.",
+          "(d) is true: b + c = -(a + d), so b + c lies along the resultant of a and d, which is in their plane (or on their line)."
+        ],
+        "check": "Every true statement comes from moving vectors across the equation, which reverses them.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R03-7-REP",
+            "kind": "REPRESENT",
+            "action": "Read a + b + c + d = 0 as a closed head-to-tail polygon.",
+            "why_valid": "A zero resultant means the last head returns to the first tail.",
+            "inputs": [],
+            "output": "closed quadrilateral"
+          },
+          {
+            "id": "R03-7-TR",
+            "kind": "TRANSFORM",
+            "action": "Move groups of vectors across the equation.",
+            "why_valid": "Subtracting a vector from both sides adds its reverse.",
+            "inputs": [],
+            "output": "a + c = -(b + d); a = -(b + c + d); b + c = -(a + d)"
+          },
+          {
+            "id": "R03-7-CHK",
+            "kind": "VERIFY",
+            "action": "Test (a) with a counterexample.",
+            "why_valid": "One non-zero closed polygon disproves 'must'.",
+            "inputs": [],
+            "output": "(a) false"
+          }
+        ],
+        "crux_move_ref": "R03-7-TR"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-03",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-03",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Rewrite the given equation so that the vectors in each statement stand alone on one side.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R03-7-TR"
+        }
+      ],
+      "repair_ref": "MIP03-4"
+    },
+    {
+      "id": "Q-PHY-MIP-03-EXEMPLAR-4-26",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-03-014",
+        "EV-PHY-11-MIP-03-015",
+        "EV-PHY-11-MIP-03-001",
+        "EV-PHY-11-MIP-03-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-03",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-03-014"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-03-014"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-03-015",
+            "EV-PHY-11-MIP-03-001",
+            "EV-PHY-11-MIP-03-004"
+          ]
+        },
+        "grade9v3:figure_note": "Column II of Exemplar 4.26 consists of four drawn orientations (i)-(iv); read them on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.26",
+      "stem": "Given below in column I are the relations between vectors a, b and c and in column II are the orientations of a, b and c in the XY plane. Match the relation in column I to correct orientations in column II. Column I: (a) a + b = c, (b) a - c = b, (c) b - a = c, (d) a + b + c = 0.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Each relation corresponds to exactly one drawn orientation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii).",
+        "reasoning": [
+          "(a) a + b = c: c runs from the tail of a to the head of b.",
+          "(b) a - c = b is a = b + c: a is the closing side of b and c placed head to tail.",
+          "(c) b - a = c is b = a + c: b is the closing side of a and c.",
+          "(d) a + b + c = 0: the three arrows run head to tail round a closed triangle.",
+          "Matching these descriptions to the drawn orientations gives the key's pairing."
+        ],
+        "check": "Only (d) has no vector acting as a closing side; every arrow follows the previous head.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R03-26-TR",
+            "kind": "TRANSFORM",
+            "action": "Rewrite each relation with a single vector alone on one side.",
+            "why_valid": "A - C = B is equivalent to A = B + C.",
+            "inputs": [],
+            "output": "a = b + c; b = a + c; c = a + b; a + b + c = 0"
+          },
+          {
+            "id": "R03-26-REP",
+            "kind": "REPRESENT",
+            "action": "Name the closing side in each rewritten sum.",
+            "why_valid": "The vector standing alone is the arrow from the first tail to the last head.",
+            "inputs": [],
+            "output": "closing side c, a, b, none"
+          },
+          {
+            "id": "R03-26-CON",
+            "kind": "CONNECT",
+            "action": "Match each closing-side description to a figure.",
+            "why_valid": "Each figure shows exactly one head-to-tail arrangement.",
+            "inputs": [],
+            "output": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)"
+          }
+        ],
+        "crux_move_ref": "R03-26-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-03",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-03",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "In each relation, which vector is the one that joins the first tail to the last head?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R03-26-REP"
+        }
+      ],
+      "repair_ref": "MIP03-2"
     }
   ],
   "teaching_routes": [],
@@ -1662,7 +2565,7 @@
   "evidence": [],
   "known_issues": [
     {
-      "id": "ISSUE-PHY-MIP-EXIT-NO-VALIDATOR",
+      "id": "ISSUE-MIP-EXIT-ORACLE",
       "affected_refs": [],
       "classification": "CAPABILITY_LIMIT",
       "description": "Exit-task answers that state a computed value were checked by the author only; this staging package binds no subject validator or data records to them.",
