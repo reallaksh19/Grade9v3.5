@@ -344,8 +344,10 @@ def plan(request: dict, repo: Path = REPO, diagnostic: dict | None = None) -> di
                 state, reason = "OWNER_EXCLUDED", "owner's declared purpose excludes transfer"
         row = {"core": core, "state": state, **({"reason": reason} if reason else {})}
         if state not in {"READY", "INVALID_REQUEST", "OWNER_EXCLUDED"}:
+            # Core2 is custody: whatever it lacks is acquired from sources, never authored.
+            duty_state = "BLOCKED_SOURCE_CUSTODY" if core == "CORE2" else state
             row = {"core": core, "state": research_first_policy.RESEARCH_AND_AUTHOR,
-                   "reason": reason, "duty": research_first_policy.duty_for(state, workflow)}
+                   "reason": reason, "duty": research_first_policy.duty_for(duty_state, workflow)}
         if state == "INVALID_REQUEST":
             findings.append({"point": "UNKNOWN_CORE", "where": core, "detail": "not one of the six Core roles"})
         products.append(row)

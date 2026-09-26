@@ -83,6 +83,19 @@ class EscapeStatePolicy(unittest.TestCase):
                         if row["state"] == "RESEARCH_AND_AUTHOR":
                             self.assertTrue(row["duty"]["duty"])
 
+    def test_core2_gaps_are_always_source_research_never_authoring(self):
+        request = json.loads((REPO / "tests/fixtures/prompt-composer/projectile-stress-set.json")
+                             .read_text(encoding="utf-8"))
+        report = plan_request.plan({
+            "request_id": "MOTION-2D-STRESS", "subject": "Physics",
+            "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
+            "requested_cores": request["requested_cores"], "learner": request["learner"],
+        })
+        core2 = next(row for row in report["products"] if row["core"] == "CORE2")
+        self.assertEqual(core2["state"], "RESEARCH_AND_AUTHOR")
+        self.assertEqual(core2["duty"]["duty"], "ACQUIRE_SOURCE")
+        self.assertIn("RESEARCH_SOURCE_BASIS", [row["id"] for row in report["agent_actions"]])
+
     def test_guard_flags_the_old_hold_wording_and_allows_the_definition(self):
         old = ("If a composer HOLD is present, do not silently resolve it.\n"
                "A missing or incompatible blueprint is a build HOLD.\n"
