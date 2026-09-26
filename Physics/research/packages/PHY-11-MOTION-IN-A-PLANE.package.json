@@ -10735,14 +10735,14 @@
       "figure_refs": [],
       "answer": {
         "kind": "EXACT",
-        "summary": "2 s or 8 s (the official key accepts both).",
+        "summary": "About 1.9 s, so the integer answer is 2. The official key also accepts 8, which comes only from ignoring the chamber wall.",
         "reasoning": [
           "Relative to the rocket each ball has acceleration -2 m/s^2, because the rocket frame accelerates at +2 m/s^2.",
-          "Relative to each other the accelerations cancel, so the gap closes at 0.3 + 0.2 = 0.5 m/s: 4/0.5 = 8 s if both stay in flight.",
-          "But the left ball, x1 = 0.3t - t^2, returns to the left end at t = 0.3 s; the right ball, x2 = 4 - 0.2t - t^2, reaches that end when t^2 + 0.2t = 4, t = 1.9 s, about 2 s.",
-          "Reading the collision as the right ball reaching the left ball at the left end gives about 2 s; ignoring the walls gives 8 s."
+          "Relative to each other the accelerations cancel, so the gap would close at 0.3 + 0.2 = 0.5 m/s, giving 4/0.5 = 8 s, but only if neither ball met a wall first.",
+          "The left ball, x1 = 0.3t - t^2, is back at the left wall at t = 0.3 s and stays pressed there; the right ball, x2 = 4 - 0.2t - t^2, reaches the left end when t^2 + 0.2t = 4, t = 1.90 s.",
+          "So the balls meet at the left end at about 1.9 s, integer answer 2. The 8 s value in the key ignores the chamber wall and is not the physical answer."
         ],
-        "check": "Both readings rest on the same relative-motion setup; the key accepts either.",
+        "check": "At t = 1.90 s, x2 = 4 - 0.38 - 3.61 = 0.01 m, about 0: the right ball is at the left end, where the left ball has rested since 0.3 s. At 8 s the free left ball would be at x1 = 2.4 - 64 = -61.6 m, far outside the 4 m chamber, so 8 s is unphysical.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
