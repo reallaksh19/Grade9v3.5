@@ -1,0 +1,159 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-09",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:1150fee1f6aa4130dc9d5bdd4d0d57310f98ce2407087056406b86a767bdc6ce",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-09-009",
+      "independent_solution": [
+        "Uniform circular motion, R = 0.80 m, frequency nu = 14/25 = 0.56 rev/s -> omega = 2 pi nu = 3.52 rad/s.",
+        "a_c = omega^2 R = (3.52)^2 x 0.80 = 9.91 m/s^2.",
+        "Constant speed, so the acceleration is centripetal: along the string (radius) towards the centre at every point."
+      ],
+      "independent_answer": "9.9 m/s^2, along the radius towards the centre",
+      "official_answer": "9.9 m/s^2, along the radius at every point towards the centre",
+      "agrees": true,
+      "numeric_check": "(2*pi*14/25)**2*0.80"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-011",
+      "independent_solution": [
+        "v = 900 km/h = 900 x 1000/3600 = 250 m/s; R = 1000 m.",
+        "a_c = v^2/R = 62500/1000 = 62.5 m/s^2; a_c/g = 62.5/9.8 = 6.4, so a_c is about 6.4 g."
+      ],
+      "independent_answer": "about 6.4 g (62.5 m/s^2)",
+      "official_answer": "6.4 g",
+      "agrees": true,
+      "numeric_check": "(900*1000/3600)**2/1000/9.8"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-013",
+      "independent_solution": [
+        "(a) If the speed changes there is a tangential component dv/dt besides v^2/R, so the net acceleration is not radial: false (true only for uniform circular motion).",
+        "(b) Velocity is the limit of delta r/delta t, which lies along the tangent: true.",
+        "(c) Average acceleration over one cycle = [v(T) - v(0)]/T = 0 because the velocity returns to its initial value: true."
+      ],
+      "independent_answer": "(a) False; (b) True; (c) True",
+      "official_answer": "(a) False (true only for uniform circular motion) (b) True, (c) True",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-09-015",
+      "independent_solution": [
+        "(a) Uniform circular motion has constant speed: true. (b) Velocity is tangent to the circle, hence perpendicular to the radius vector: true.",
+        "(c) Acceleration always points to the centre, so its direction rotates with the particle: true.",
+        "(d) Angular momentum about the centre L = m v R, perpendicular to the plane, is constant in magnitude and direction: false. Answer (a), (b), (c)."
+      ],
+      "independent_answer": "(a), (b), (c)",
+      "official_answer": "(a), (b), (c)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-09",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-09",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-09-CENTRIPETAL",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-09-ANGULAR-SPEED",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-09-TURNING-VELOCITY",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-09-NCERT-3-14",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-09-NCERT-3-15",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-09-NCERT-3-16",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-09-EXEMPLAR-4-14",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": []
+}
