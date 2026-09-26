@@ -154,6 +154,13 @@ def _no_placeholders(unit, check, ctx):
     return [f"placeholder shown: {p[:70]}" for p in unit["placeholders"]]
 
 
+@op("pre_attempt_figures_partial")
+def _pre_attempt_partial(unit, check, ctx):
+    full = [f for f in unit["figures"] if f["stage"] == "PRE_ATTEMPT" and f.get("stages_total", 1) > 1
+            and f.get("reveal_stages", 1) >= f["stages_total"]]
+    return [f"{len(full)} pre-attempt figure(s) show every stage, including the result"] if full else []
+
+
 @op("figures_titled")
 def _titled(unit, check, ctx):
     n = sum(1 for f in unit["figures"] if not f["titled"])

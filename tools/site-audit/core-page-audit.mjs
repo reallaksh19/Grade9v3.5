@@ -45,12 +45,13 @@ for (const file of files) {
     const r = await page.evaluate((minTarget) => {
       const visible = el => { const b = el.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select')].filter(visible);
-      const small = controls.filter(el => { const b = el.getBoundingClientRect(); return Math.min(b.width, b.height) < minTarget && el.tagName !== 'TEXTAREA'; });
+      // Inline text links inside a paragraph, list item or table cell are exempt (WCAG 2.5.8), as in tablet-audit.mjs.
+      const small = controls.filter(el => { const b = el.getBoundingClientRect(); return Math.min(b.width, b.height) < minTarget && el.tagName !== 'TEXTAREA' && !(el.tagName === 'A' && el.closest('p,li,td')); });
       const texts = [...document.querySelectorAll('body *')].filter(el => el.childElementCount === 0 && el.textContent.trim() && visible(el));
       const minFont = Math.min(...texts.map(el => parseFloat(getComputedStyle(el).fontSize)));
       const wide = [...document.querySelectorAll('svg,table,pre,figure,.math,math')].filter(el => el.getBoundingClientRect().right > document.documentElement.clientWidth + 1).length;
       const homeLinks = [...document.querySelectorAll('a[href]')].filter(a => /(^|\/)(\.\.\/)+index\.html$|^\/$|^\/Grade9V3\/?$/.test(a.getAttribute('href')) || /home/i.test(a.textContent)).map(a => a.getAttribute('href'));
-      const nav = document.querySelector('nav');
+      const nav = document.querySelector('[data-g9-shell-header]') || document.querySelector('nav');
       const navFixed = nav ? ['fixed', 'sticky'].includes(getComputedStyle(nav).position) : false;
       const sheetText = [...document.styleSheets].flatMap(s => { try { return [...s.cssRules].map(r => r.cssText); } catch { return []; } }).join('\n');
       const figs = [...document.querySelectorAll('svg')];

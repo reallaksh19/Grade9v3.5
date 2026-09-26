@@ -42,6 +42,11 @@ DUTIES = {
     "AUTHOR_FAMILY_EXPOSURE": ("AUTHOR", ["C2A-FAMILY-CLOSURE"]),
     "AUTHOR_LINEAGE_CHECK": ("AUTHOR", ["C2B-LINEAGE"]),
     "REVIEW_MIGRATED_UNIT": ("AUTHOR", ["C1A-ANCHOR-PER-DECISION"]),
+    "AUTHOR_COMPACT_ANCHOR": ("AUTHOR", ["C1-RELATION"]),
+    "AUTHOR_GOVERNING_RELATION": ("AUTHOR", ["C1-RELATION"]),
+    "AUTHOR_ELICITATION": ("AUTHOR", ["C1B-BLOCKS"]),
+    "ACQUIRE_SOURCE": ("RESEARCHER", ["C2-BLOCKS"]),
+    "AUTHOR_DIAGNOSTIC": ("AUTHOR", []),
 }
 
 
@@ -91,6 +96,12 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
                 add("MOUNT_REPRESENTATION", u["id"], "unit names no representation")
             elif u["representation_ref"] not in reps:
                 add("MOUNT_REPRESENTATION", u["id"], f"{u['representation_ref']} is not a representation of this package")
+        if not m.get("compact_anchor"):
+            add("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor for the Core1 map")
+        if not m.get("relation_refs"):
+            add("AUTHOR_GOVERNING_RELATION", m["id"], "no governing relation")
+        if not m.get("elicitation"):
+            add("AUTHOR_ELICITATION", m["id"], "no predict/attempt/reconstruct/boundary cycle for Core1B")
         for ref in m.get("prerequisite_refs", []):
             if ref not in taught:
                 add("TEACH_PREREQUISITE_BRIDGE", m["id"], f"prerequisite {ref} is taught by no library")

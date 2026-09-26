@@ -25,7 +25,8 @@ PY_HTML = re.compile(r"<!doctype html|<html[\s>]", re.IGNORECASE)
 PY_PDF = re.compile(r"\b(reportlab|fpdf|weasyprint|pdfkit|xhtml2pdf)\b|\.pdf\(")
 JS_RENDER = re.compile(r"\binnerHTML\b|\binsertAdjacentHTML\b|document\.createElement\(")
 SKIP_PARTS = {"node_modules", "__pycache__", ".git", "tests", "docs", ".source-cache", "publication"}
-CLASSES = {"ENGINE_KEEP", "MIGRATE", "RETIRE", "OUT_OF_SCOPE", "FROZEN_SNAPSHOT"}
+CLASSES = {"RENDERER", "ENGINE_KEEP", "MIGRATE", "RETIRE", "OUT_OF_SCOPE", "FROZEN_SNAPSHOT"}
+THE_RENDERER = "Shared/tools/render_core.py"
 
 
 def candidates(repo: Path = REPO) -> dict[str, str]:
@@ -63,6 +64,10 @@ def check(repo: Path = REPO) -> dict:
             findings.append({"code": "UNCLASSIFIED_RENDERER", "path": path, "detail": kind})
         elif listed[path]["classification"] not in CLASSES:
             findings.append({"code": "BAD_CLASSIFICATION", "path": path, "detail": listed[path]["classification"]})
+    for path, row in sorted(listed.items()):
+        if row["classification"] == "RENDERER" and path != THE_RENDERER:
+            findings.append({"code": "SECOND_RENDERER", "path": path,
+                             "detail": f"only {THE_RENDERER} renders learner pages; extend it instead"})
     for path in sorted(set(listed) - set(found)):
         if "*" in path or " " in path:
             continue  # grouped entries (explorers, snapshots) are described, not file paths

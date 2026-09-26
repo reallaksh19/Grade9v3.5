@@ -146,6 +146,10 @@ records can carry what Phase 1 requires:
 
 ### Phase 3 — One pipeline, one renderer
 
+> **Status (2026-09-26):** built. See [phase3/RENDERER-AND-GATE.md](phase3/RENDERER-AND-GATE.md).
+> render_core is the only renderer and the #290 renderer and gate are retired. 0 of 21 products pass
+> yet, and every gap is a duty.
+
 1. **Merge the pipelines.** The research library (evidence → staging → verification) becomes
    the **only** way content enters the canonical library. Promotion from staging to canonical
    is a tool step (`promote_verified.py`) that requires a current verification and a passing
@@ -171,6 +175,10 @@ records can carry what Phase 1 requires:
 - PDFs are produced by print.
 
 ### Phase 4 — Gates on the rendered learner experience
+
+> **Status (2026-09-26):** built. See [phase3/RENDERER-AND-GATE.md](phase3/RENDERER-AND-GATE.md).
+> Negatives fail and a complete fixture passes with browser measurement. The CI workflow is added but
+> has not run (Actions budget).
 
 1. **Rendered quality gate** (`Shared/tools/quality_gate.py`, driving Chromium) runs on every
    built page:

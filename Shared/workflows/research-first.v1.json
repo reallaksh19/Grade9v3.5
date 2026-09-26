@@ -18,7 +18,7 @@
       "enforced_by": [
         "raw_intake and research_first_policy.default_learner: knowledge_percentage 50, full support, blocking=false",
         "plan_request: an absent learner entry is replaced by the default median owner estimate",
-        "delivery_gate: diagnostic_missing when the rendered product has no short diagnostic"
+        "quality_gate: CONT_DIAGNOSTIC_MISSING when the product start page has fewer diagnostic items than learner_start.diagnostic.min_items"
       ]
     },
     {
@@ -26,7 +26,7 @@
       "rule": "A hold is never an output or a passing state. Missing examples, diagrams or explanations become research and authoring tasks inside the work cycle. Validation checks the rendered learner product, not whether gaps were labelled.",
       "enforced_by": [
         "raw_intake: status is always RESEARCH_AND_AUTHOR; every gap is emitted as a research task",
-        "delivery_gate: learner_text_placeholder, teaching_incomplete, practice_incomplete, research_open"
+        "render_core: a missing record field is a typed gap (a board duty) and the product is only a draft; quality_gate: ALL-NO-PLACEHOLDER and PRODUCT-NO-ESCAPE-STATE on the rendered product"
       ]
     },
     {
@@ -34,7 +34,7 @@
       "rule": "Question identity is researched against the original source. A short supplied label is never an identity. When several candidates exist, the agent compares each candidate's text and stated conditions with the supplied demand, selects the one that matches and records the discriminator. If no official source matches, the question is still used, labelled as the owner's question with no exam identity claimed. Ambiguity is resolved by research, never by a hold and never by guessing.",
       "enforced_by": [
         "raw_intake: labels are kept as owner labels and raise resolve_source_identity research",
-        "delivery_gate: identity_unresolved, identity_text_mismatch, identity_condition_mismatch, identity_discriminator_missing, identity_displayed_without_claim"
+        "evidence_check: a QUESTION card needs an ANSWER_KEY card and a quote re-found in a pinned official source (or the corroborated Tier C fallback); the verifier solves it independently"
       ]
     },
     {
@@ -42,7 +42,7 @@
       "rule": "Every supplied question and syllabus subtopic is reconciled before building. A narrow bucket is not completion: the final coverage ledger links each input to teaching, practice and its learner-facing location.",
       "enforced_by": [
         "raw_intake: reconciliation lists questions outside the supplied syllabus and subtopics without questions",
-        "delivery_gate: input_not_in_ledger, location_unresolved, question_not_rendered"
+        "quality_gate: CONT_INPUT_UNRESOLVED and CONT_INPUT_NOT_RENDERED over the product manifest ledger built from the intake"
       ]
     }
   ],

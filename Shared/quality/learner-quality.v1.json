@@ -97,7 +97,8 @@
       "\\bTODO\\b",
       "lorem ipsum",
       "placeholder",
-      "use the linked canonical explorer where supplied"
+      "use the linked canonical explorer where supplied",
+      "\\b(?:CAP|MIC|REP|FAM|REL|CU|VIS|SRC|ACT|Q|BUCKET|LIB)-[A-Z0-9][A-Z0-9]*(?:-[A-Z0-9]+){1,}\\b"
     ],
     "escape_state_tokens": [
       "HOLD",
@@ -686,7 +687,24 @@
         "S4-DELIVERY-GATE-13"
       ],
       "grammar": null,
-      "text": "No placeholder or internal-absence text reaches the learner."
+      "text": "No placeholder, internal-absence text or internal record id (CAP-…, MIC-…, REP-…, Q-…) reaches the learner; learners read titles and text, not identifiers."
+    },
+    {
+      "id": "ALL-PRE-ATTEMPT-FIGURE-PARTIAL",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "pre_attempt_figures_partial"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "A staged figure shown before the attempt stops before its final stage; the completed figure (which shows the result) appears only after the attempt."
     },
     {
       "id": "ALL-FIGURES-TITLED",

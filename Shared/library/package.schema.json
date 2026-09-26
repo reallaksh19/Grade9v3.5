@@ -1384,6 +1384,25 @@
           "items": {
             "$ref": "#/$defs/construction_unit"
           }
+        },
+        "compact_anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "prompt",
+            "result"
+          ],
+          "description": "Schema 0.2.0: the Core1 compact anchor, a one-line instance of the governing relation that makes the map usable before Core1A.",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "minLength": 1
+            },
+            "result": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       },
       "required": [

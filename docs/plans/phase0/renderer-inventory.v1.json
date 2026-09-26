@@ -7,9 +7,19 @@
     "MIGRATE": "stays until its function is served by render_core.py, then reduced to runtime or removed",
     "RETIRE": "parallel product path; must not be merged or extended; deleted in Phase 3",
     "OUT_OF_SCOPE": "not learner teaching content (navigation, owner tools)",
-    "FROZEN_SNAPSHOT": "pinned assets or snapshots; not generators"
+    "FROZEN_SNAPSHOT": "pinned assets or snapshots; not generators",
+    "RENDERER": "The one learner-page renderer (Phase 3). No other file may hold this class."
   },
   "renderers": [
+    {
+      "path": "Shared/tools/render_core.py",
+      "kind": "PYTHON_HTML",
+      "classification": "RENDERER",
+      "renders": "All six Core roles of a product from library records + product manifest, through blueprint slots, inside the tablet shell",
+      "location": "main",
+      "reason": "Phase 3 single renderer",
+      "phase3_action": "none; every learner page is produced here"
+    },
     {
       "path": "Shared/tools/build_interactive_page.py",
       "kind": "PYTHON_HTML",
@@ -153,15 +163,6 @@
       "location": "main",
       "reason": "Owner tool, not learner content",
       "phase3_action": "None"
-    },
-    {
-      "path": "Shared/tools/learner_product_render.py",
-      "kind": "PYTHON_HTML",
-      "classification": "RETIRE",
-      "renders": "Research-first book/pages/bank/atlas/builder renderer (PR #290)",
-      "location": "main",
-      "reason": "Parallel renderer that bypasses CoreProjection and blueprints; Core roles only as data-core tags",
-      "phase3_action": "Delete in Phase 3 together with delivery_gate.py; raw_intake.py stays as intake"
     },
     {
       "path": "Physics/tools/build_motion2d_projectile_product.py",

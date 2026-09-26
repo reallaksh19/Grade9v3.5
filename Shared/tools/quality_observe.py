@@ -144,6 +144,7 @@ def shell_facts(root: Node, raw: str) -> dict:
         href = a.attrs.get("href", "")
         if re.fullmatch(r"(\.\./)+(index\.html)?|/|/Grade9V3/?", href) or a.content().strip().lower() in {"home", "app home"}:
             home = True
+    home = home or root.first("a", attr="data-g9-home") is not None
     return {"home_link": home,
             "shell_header": root.first(attr="data-g9-shell-header") is not None,
             "slot_markers": sum(1 for _ in root.find_all(attr="data-blueprint-slot")),
@@ -444,6 +445,87 @@ def observe_question_bank(raw: str, product_id: str) -> list[dict]:
              "pages": [{"role": "CORE2A", "path": "canonical_question_bank_10inch_tablet.html", "blueprint_ref": None,
                         "shell": None, "rendered": None, "figures": [], "units": units}]}
             for subject, units in sorted(by_subject.items())]
+
+
+# ------------------------------------------------------------------ render_core output
+
+def _render_core_unit(article: Node) -> dict:
+    blocks: dict[str, str] = {}
+    order: list[str] = []
+    for n in article.find_all(attr="data-g9-block"):
+        name = n.attrs["data-g9-block"]
+        blocks[name] = (blocks.get(name, "") + " " + n.content()).strip()
+        if name not in order:
+            order.append(name)
+    figures = []
+    for f in article.find_all("figure", attr="data-g9-figure"):
+        svg = f.first("svg")
+        figures.append({"stage": f.attrs.get("data-g9-stage", "TEACHING"),
+                        "titled": svg is not None and (svg.first("title") is not None or bool(svg.attrs.get("aria-label"))),
+                        "kind": f.attrs.get("data-g9-kind") or None,
+                        "reveal_stages": int(f.attrs.get("data-reveal-stages", "1") or 1),
+                        "stages_total": max(1, sum(1 for n in f.iter() if n.tag and "data-g9-stage-id" in n.attrs))})
+    reveals = []
+    for d in article.find_all("details", attr="data-g9-reveal"):
+        inside = sorted({n.attrs["data-g9-block"] for n in d.find_all(attr="data-g9-block")})
+        reveals.append({"blocks": inside, "gated": "data-requires-attempt" in d.attrs})
+    prereqs = list(article.find_all("li", attr="data-g9-prereq"))
+    return {
+        "id": article.attrs["data-g9-unit"], "kind": article.attrs.get("data-g9-kind", "CONCEPT"),
+        "concept_ref": article.attrs["data-g9-unit"] if article.attrs.get("data-g9-kind") == "CONCEPT" else None,
+        "family_ref": None, "blocks": blocks, "block_order": order,
+        "placeholders": placeholders_in(article.content()), "figures": figures,
+        "representation_refs_unmounted": [],
+        "attempt": article.first("textarea", attr="data-g9-attempt") is not None,
+        "reveals": reveals,
+        "support_levels": [li.content() for li in article.find_all("li", attr="data-g9-rung")],
+        "decisions": sum(1 for _ in article.find_all("li", attr="data-g9-step")),
+        "worked_anchors": sum(1 for n in article.find_all(attr="data-g9-block") if n.attrs["data-g9-block"] == "worked_anchor"),
+        "prerequisites_assumed": [li.attrs["data-g9-prereq"] for li in prereqs],
+        "prerequisites_bridged": [li.attrs["data-g9-prereq"] for li in prereqs if li.attrs.get("data-bridged") == "true"],
+        "lineage_refs": [a.attrs.get("href") for a in article.find_all("a", attr="data-g9-lineage")],
+    }
+
+
+def observe_render_core(folder: Path, product_id: str | None = None, subject: str | None = None,
+                        rendered: dict | None = None) -> dict:
+    """Observation of a render_core product directory (core*.html, optional print receipt)."""
+    pages, roles, escape, stamp, draft = [], [], set(), None, False
+    web_figures = 0
+    for path in sorted(folder.glob("core*.html")):
+        raw = path.read_text(encoding="utf-8")
+        root = parse(raw)
+        html_el = root.first("html")
+        role = html_el.attrs.get("data-g9-role")
+        draft = draft or "data-g9-draft" in html_el.attrs
+        meta = next((m for m in root.find_all("meta") if m.attrs.get("name") == "g9-render"), None)
+        stamp = stamp or (meta.attrs.get("content") if meta is not None else None)
+        body = root.first("body")
+        roles.append(role)
+        escape |= set(escape_states_in(body.content()))
+        units = [_render_core_unit(a) for a in body.find_all("article", attr="data-g9-unit")]
+        web_figures += sum(len(u["figures"]) for u in units)
+        r = (rendered or {}).get(path.name)
+        pages.append({"role": role, "path": path.name, "blueprint_ref": body.attrs.get("data-blueprint-ref"),
+                      "shell": shell_facts(root, raw),
+                      "rendered": None if r is None else {
+                          "small_targets": r["viewports"]["android-landscape"]["smallTargets"],
+                          "stage_support_layout": r["viewports"]["android-landscape"]["stageSupportLayout"],
+                          "min_font_px": r["viewports"]["android-landscape"]["minFontPx"]},
+                      "figures": [], "units": units})
+    receipt = folder / "print-receipt.json"
+    print_obs = None
+    if receipt.is_file():
+        rec = json.loads(receipt.read_text(encoding="utf-8"))
+        print_obs = {"present": True, "from_page": rec.get("tool", "").startswith("print-product/"),
+                     "figures": sum(p.get("figures", 0) for p in rec["pages"]), "web_figures": web_figures}
+    render_receipt = folder / "render-receipt.json"
+    meta = json.loads(render_receipt.read_text(encoding="utf-8")) if render_receipt.is_file() else {}
+    return {"schema": "learner-observation/v1", "product_id": product_id or meta.get("manifest", folder.name),
+            "subject": subject or "Physics", "observed_by": "render-core-html",
+            "provenance": {"render_stamp": None if draft else stamp, "hand_authored": False},
+            "escape_states": sorted(escape), "roles_rendered": sorted(set(roles)),
+            "atlas": None, "print": print_obs, "pages": pages}
 
 
 # ------------------------------------------------------------------ corpus entry points

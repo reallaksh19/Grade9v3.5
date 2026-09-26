@@ -1,6 +1,7 @@
 """Phase-0 freeze: no learner-content renderer may exist in main unless it is inventoried."""
 from __future__ import annotations
 
+import json
 import sys
 import tempfile
 import unittest
@@ -26,6 +27,14 @@ class RendererInventory(unittest.TestCase):
             found = renderer_inventory.candidates(root)
         self.assertEqual(found["Physics/tools/new_product.py"], "PYTHON_HTML")
         self.assertEqual(found["Physics/tools/new_pdf.py"], "PYTHON_PDF")
+
+
+class OneRenderer(unittest.TestCase):
+    def test_render_core_is_the_only_renderer_class(self):
+        inventory = json.loads(renderer_inventory.INVENTORY.read_text(encoding="utf-8"))
+        rows = [r["path"] for r in inventory["renderers"] if r["classification"] == "RENDERER"]
+        self.assertEqual(rows, [renderer_inventory.THE_RENDERER])
+        self.assertEqual([f for f in renderer_inventory.check()["findings"] if f["code"] == "SECOND_RENDERER"], [])
 
 
 if __name__ == "__main__":
