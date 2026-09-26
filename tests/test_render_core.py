@@ -14,7 +14,8 @@ sys.path.insert(0, str(REPO))
 
 from Shared.tools import package_depth, package_migrate, product_manifest, promote_verified, render_core  # noqa: E402
 
-PKG = "Physics/library/phy-kin-2d-motion.v1.json"
+# Frozen pre-pilot Motion in a Plane: the tests need a product that still has gaps.
+PKG = "tests/fixtures/render/thin-kin-2d-motion.v1.json"
 BANK = "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
 
 

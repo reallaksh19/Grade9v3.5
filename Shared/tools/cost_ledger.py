@@ -25,6 +25,9 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
 
+DEFAULT_CEILING = {"per_unit_usd": 15}   # proposed default until the owner confirms (plan section 5)
+
+
 def ledger_path(subject: str, repo: Path = REPO) -> Path:
     return repo / subject / "research" / "cost-ledger.json"
 
@@ -47,6 +50,10 @@ def summary(subject: str, spine_nodes: list[dict], ceiling: dict, ledger: dict) 
             share = row["usd"] / len(by_chapter[row["scope"]])
             for nid in by_chapter[row["scope"]]:
                 spend[nid] += share
+    spine_ids = set(spend)
+    for row in ledger["rows"]:                  # products and other scopes outside the spine count as their own unit
+        if row["scope"] not in spine_ids and row["scope"] not in by_chapter:
+            spend[row["scope"]] = spend.get(row["scope"], 0.0) + row["usd"]
     limit = ceiling["per_unit_usd"]
     out = []
     for nid, usd in spend.items():
@@ -77,8 +84,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"recorded ${args.usd:.2f} for {args.scope}")
         return 0
     from Shared.tools import evidence_check  # noqa: PLC0415
-    rules = json.loads((REPO / args.subject / "research" / "work-rules.json").read_text(encoding="utf-8"))
-    rows = summary(args.subject, evidence_check.spine(args.subject)["nodes"], rules["cost_ceiling"], load(args.subject))
+    rules_path = REPO / args.subject / "research" / "work-rules.json"
+    rules = json.loads(rules_path.read_text(encoding="utf-8")) if rules_path.is_file() else {"cost_ceiling": DEFAULT_CEILING}
+    spine_path = REPO / args.subject / "research" / "syllabus-spine.json"
+    nodes = evidence_check.spine(args.subject)["nodes"] if spine_path.is_file() else []
+    rows = summary(args.subject, nodes, rules.get("cost_ceiling", DEFAULT_CEILING), load(args.subject))
     total = sum(r["usd"] for r in rows)
     for r in rows:
         print(f"{r['signal']:8s} {r['node']:36s} ${r['usd']:.2f} of ${r['ceiling_usd']:.2f}")
