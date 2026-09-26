@@ -291,11 +291,17 @@ def core1b(ctx: Ctx, m: dict) -> str:
     att = e.get("attempt") or {}
     bt = e.get("boundary_test") or {}
     model = att.get("model_response") or "; ".join(r.get("criterion", "") for r in att.get("rubric") or [])
+    task = att.get("task")
+    if not task:
+        # `produces` describes the expected answer; it is not a task the learner can act on.
+        ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
     return (slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
             + slot("attempt",
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
                    + figure(ctx, unit.get("representation_ref"), "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True)
-                   + block("attempt_prompt", para(att.get("produces")), title="Attempt")
+                   + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens")) + (
+                       f'<p class="g9-prov">Your answer should contain: {esc(att["produces"])}</p>' if att.get("produces") else ""))
+                       if task else "", title="Attempt")
                    + attempt_box("Your attempt"), True)
             + slot("reconstruction",
                    reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
@@ -404,6 +410,11 @@ def core2b(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SAFE_REPRESENTATION", q["id"], "no safe pre-commitment representation", "CORE2B")
     if not tr.get("invariant"):
         ctx.gap("AUTHOR_LINEAGE_CHECK", q["id"], "no invariant-versus-changed statement", "CORE2B")
+    novelty = tr.get("novelty") or {}
+    if not (novelty.get("checked_against") and novelty.get("why_new")):
+        ctx.gap("AUTHOR_TRANSFER_NOVELTY", q["id"],
+                "no record of which earlier items (Core1A anchors, Core1B boundary tests, Core2A items) this "
+                "task was checked against and why its decision is new", "CORE2B")
     qs = ctx.index("questions")
 
     def _short(text: str) -> str:
@@ -412,24 +423,31 @@ def core2b(ctx: Ctx, q: dict) -> str:
                       for b in tr.get("builds_on") or [])
     check = (q.get("independent_check") or {}).get("statement") or ans.get("check")
     protected = next((s for s in ans.get("reasoning_route") or [] if s.get("id") == tr.get("protected_move_ref")), None)
+    # Safe pre-attempt support is the item's own first rung (orientation), never a generic sentence.
+    rung = next((r for r in sorted(q.get("hint_ladder") or [], key=lambda r: r["order"]) if r.get("purpose") == "ORIENT"), None)
+    rung_text = (rung.get("text") or "") if rung else ""
+    if rung and not rung_text and rung.get("from"):
+        kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", rung["from"]).groups()
+        rung_text = (q.get(kind) or [])[int(i)]["text"]
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
                  + block("stem", f"<h2>{esc(q['stem'])}</h2>")
                  + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on"), True)
             + slot("attempt", block("conditions", items(q.get("conditions")), title="Conditions")
                    + figure(ctx, roles.get("safe_ref"), "PRE_ATTEMPT", "CORE2B", q["id"], allowed=roles.get("stage_refs"))
-                   + block("commitment", para("Commit to a model or representation and your first relation before opening support."))
-                   + attempt_box("Your commitment"), True)
-            + slot("post_attempt", reveal("Review and solution",
-                                          block("changed_demand", para(tr.get("statement")), title="What changed")
-                                          + block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
-                                          + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
-                                          + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
-                                          + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
-                                          + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
-                                          + block("independent_check", para(check), title="Independent check")
-                                          + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")
-                                          + block("lineage_check", para(tr.get("invariant")) and (para(tr.get("invariant")) + para(tr.get("statement"))),
-                                                  title="Lineage check")), True))
+                   + block("safe_support", para(rung_text), title="Where to start")
+                   + attempt_box("Your commitment: the model or representation you choose, and your first relation"), True)
+            + slot("post_attempt",
+                   block("lineage_check", para("Before you open the solution: what from the earlier item still holds here, "
+                                               "and what is different?") if tr.get("invariant") else "", title="Lineage check")
+                   + reveal("Review and solution",
+                            block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
+                            + block("changed_demand", para(tr.get("statement")), title="What changed")
+                            + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
+                            + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
+                            + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
+                            + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
+                            + block("independent_check", para(check), title="Independent check")
+                            + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")), True))
 
 
 RENDER = {"CORE1": core1, "CORE1A": core1a, "CORE1B": core1b, "CORE2": core2, "CORE2A": core2a, "CORE2B": core2b}

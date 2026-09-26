@@ -36,6 +36,9 @@ def complete_fixture(tmp: Path) -> Path:
     m = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
     m["compact_anchor"] = {"prompt": "Is x = 2 a solution of 3x + 2 = 9?",
                            "result": "No: 3 × 2 + 2 = 8, and 8 ≠ 9, so the claim is false for x = 2."}
+    m["elicitation"]["attempt"]["task"] = {
+        "prompt": "Decide, without solving, whether x = 5 makes 2x + 1 = 11 true, and whether x = 4 does. Show each substitution.",
+        "givens": ["2x + 1 = 11", "candidates x = 5 and x = 4"]}
     for u in m["construction_units"]:
         u.pop("migrated_from", None)
         u["worked_anchor_ref"] = "Q-MATH-LINEAR-01"
@@ -55,7 +58,9 @@ def complete_fixture(tmp: Path) -> Path:
               "transfer": {"dimension": "model_choice", "builds_on": ["Q-MATH-LINEAR-01"],
                            "statement": "The addition now sits inside the multiplication, so the undo order reverses: divide by 3 first.",
                            "invariant": "Each step is an equivalent operation on both sides, and the answer stays an exact fraction.",
-                           "protected_move_ref": None}})
+                           "protected_move_ref": None,
+                           "novelty": {"checked_against": ["Q-MATH-LINEAR-01", "MIC-MATH-CONSTRAINT:boundary_test"],
+                                       "why_new": "The earlier item undoes an addition then a multiplication; here the bracket reverses the undo order, which no earlier item shows."}}})
     t["answer"] = dict(q["answer"], summary="x = 7/3.",
                        reasoning=["Divide both sides by 3: x + 2 = 13/3.", "Subtract 2: x = 13/3 − 6/3 = 7/3.",
                                   "Check: 3(7/3 + 2) = 3 × 13/3 = 13."],
@@ -143,6 +148,20 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         codes = [c["code"] for c in report["continuity"]]
         self.assertEqual(sorted(codes), ["CONT_INPUT_NOT_RENDERED", "CONT_INPUT_UNRESOLVED"])
+
+    def test_one_scene_reused_for_different_items_fails(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        twin = copy.deepcopy(next(x for x in pkg["questions"] if x["id"] == "Q-MATH-LINEAR-01"))
+        twin.update(id="Q-MATH-LINEAR-TWIN", stem="Solve 5x + 1 = 12 over the rationals.")
+        pkg["questions"].append(twin)
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        m["selection"]["core2a"].append("Q-MATH-LINEAR-TWIN")
+        manifest.write_text(json.dumps(m), encoding="utf-8")
+        report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-FIGURE-SPECIFIC", {f["rule"] for f in report["findings"]})
 
     def test_a_report_cannot_claim_pass_with_findings(self):
         report = quality_gate.gate(self.build(complete_fixture(self.tmp)), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)

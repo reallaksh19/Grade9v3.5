@@ -254,6 +254,20 @@
           "type": "integer",
           "minimum": 1,
           "description": "Stages the representation has in all; reveal_stages is how many are shown here."
+        },
+        "representation_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The representation this figure mounts (null when the page does not say)."
+        },
+        "mount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The construction unit or question the figure is staged for (Core1A unit id, or the question itself)."
         }
       }
     },

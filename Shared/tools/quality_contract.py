@@ -204,6 +204,20 @@ def _distinct(page, check, ctx):
     return out
 
 
+@op("figures_specific_across_page")
+def _figures_specific(page, check, ctx):
+    """A teaching or pre-attempt figure is staged for one unit or question, not reused for others."""
+    mounts: dict[str, set] = {}
+    for unit in page["units"]:
+        for f in unit["figures"]:
+            if f["stage"] in check["stages"] and f.get("representation_ref"):
+                mounts.setdefault(f["representation_ref"], set()).add(f.get("mount") or unit["id"])
+    shared = {rep: sorted(ms) for rep, ms in mounts.items() if len(ms) > 1}
+    return [f"{rep} is the {'/'.join(check['stages']).lower()} figure for {len(ms)} different units or questions "
+            f"({', '.join(ms[:3])}{'…' if len(ms) > 3 else ''}); each needs a figure that depicts its own situation"
+            for rep, ms in shared.items()]
+
+
 @op("page_figures_min")
 def _page_figures(page, check, ctx):
     n = len(page.get("figures", [])) + sum(len(u["figures"]) for u in page["units"])

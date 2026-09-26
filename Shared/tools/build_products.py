@@ -122,6 +122,8 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--only")
     r = sub.add_parser("ratchet", help="gap counts may only go down; --write lowers the baseline")
     r.add_argument("--write", action="store_true")
+    r.add_argument("--raise-bar", metavar="REASON",
+                   help="the contract or duties got stricter: rebaseline to today's counts and record why")
     a = p.parse_args(argv)
     if a.cmd == "ratchet":
         now = current_gaps()
@@ -129,8 +131,17 @@ def main(argv: list[str] | None = None) -> int:
         worse = {k: (base[k], v) for k, v in now.items() if k in base and v > base[k]}
         for k, (was, is_) in worse.items():
             print(f"RATCHET: {k} gaps rose from {was} to {is_}", file=sys.stderr)
+        if a.raise_bar:
+            doc = json.loads(RATCHET.read_text(encoding="utf-8")) if RATCHET.is_file() else {"schema": "product-ratchet/v1"}
+            history = doc.get("bar_raises", [])
+            history.append({"reason": a.raise_bar, "from_total": sum(base.values()), "to_total": sum(now.values())})
+            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": now, "bar_raises": history},
+                                          indent=2) + "\n", encoding="utf-8")
+            print(f"bar raised: baseline {sum(base.values())} -> {sum(now.values())} ({a.raise_bar})")
+            return 0
         if a.write and not worse:
-            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": {k: min(v, base.get(k, v)) for k, v in now.items()}},
+            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": {k: min(v, base.get(k, v)) for k, v in now.items()},
+                                           "bar_raises": json.loads(RATCHET.read_text(encoding="utf-8")).get("bar_raises", []) if RATCHET.is_file() else []},
                                           indent=2) + "\n", encoding="utf-8")
         print(f"{sum(now.values())} gaps across {len(now)} products (baseline {sum(base.values()) if base else 'none'})")
         return 1 if worse else 0

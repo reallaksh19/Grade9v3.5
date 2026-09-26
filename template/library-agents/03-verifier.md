@@ -62,6 +62,11 @@ of at least 3 rendered units per Core against Audits 1 and 3:
 - check that the hints climb;
 - check that the transfer states its invariant.
 
+For every Core2B task, read its `transfer.novelty` claim and check it: if its deciding move is
+already shown answered in a Core1A worked anchor or diagnose/repair, a Core1B boundary test or a
+Core2A item of the same capability, the claim is false. That is an S1 finding for AUTHOR. For each
+pre-attempt figure, check it depicts that item's own situation (launch, heights, bodies, forces).
+
 Record each problem in your verification findings, with `duty_for` AUTHOR or ILLUSTRATOR.
 You may not verify a product whose records you authored or illustrated.
 

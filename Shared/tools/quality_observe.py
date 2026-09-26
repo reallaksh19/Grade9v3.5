@@ -464,7 +464,10 @@ def _render_core_unit(article: Node) -> dict:
                         "titled": svg is not None and (svg.first("title") is not None or bool(svg.attrs.get("aria-label"))),
                         "kind": f.attrs.get("data-g9-kind") or None,
                         "reveal_stages": int(f.attrs.get("data-reveal-stages", "1") or 1),
-                        "stages_total": max(1, sum(1 for n in f.iter() if n.tag and "data-g9-stage-id" in n.attrs))})
+                        "stages_total": max(1, sum(1 for n in f.iter() if n.tag and "data-g9-stage-id" in n.attrs)),
+                        "representation_ref": f.attrs.get("data-g9-representation"),
+                        "mount": next((a.attrs["data-g9-cu"] for a in f.ancestors() if a.tag and "data-g9-cu" in a.attrs),
+                                      article.attrs["data-g9-unit"])})
     reveals = []
     for d in article.find_all("details", attr="data-g9-reveal"):
         inside = sorted({n.attrs["data-g9-block"] for n in d.find_all(attr="data-g9-block")})
