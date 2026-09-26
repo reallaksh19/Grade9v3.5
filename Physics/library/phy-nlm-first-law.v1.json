@@ -5759,6 +5759,266 @@
           "visual_stage_ref": "VIS-NLM-ABF-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-CARTS-STRING-F",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the two carts on one string pulled by F, with T on each cart and B isolated for the tension.",
+      "required_elements": [
+        "carts m_A and m_B on a string with F on A",
+        "T on each cart",
+        "pair and B equations",
+        "a, T and the model condition"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION",
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "carts m_A and m_B on a string with F on A",
+        "T on each cart",
+        "pair and B equations",
+        "a, T and the model condition"
+      ],
+      "instance_constraints": [
+        "The string is massless, taut and inextensible.",
+        "There is no pulley."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking the tension as equal to F."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CARTS-STRING-F.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARTSF-V0",
+          "label": "The carts",
+          "purpose": "Show the two carts, the string and F on A.",
+          "visible_elements": [
+            "carts m_A and m_B on a string with F on A"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTSF-V1",
+          "label": "Tension on each cart",
+          "purpose": "Draw T on each cart along the string and write the equations.",
+          "visible_elements": [
+            "carts m_A and m_B on a string with F on A",
+            "T on each cart",
+            "pair and B equations"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTSF-V2",
+          "label": "Results",
+          "purpose": "Solve and name what the equal-T model needs.",
+          "visible_elements": [
+            "carts m_A and m_B on a string with F on A",
+            "T on each cart",
+            "pair and B equations",
+            "a, T and the model condition"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARTSF-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARTSF-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARTSF-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-FIXED-PULLEY-YAYB",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show one string over a fixed pulley with both coordinates measured away from it, so the length relation is a sum.",
+      "required_elements": [
+        "one string over a fixed pulley with y_A, y_B",
+        "y_A + y_B = constant and its derivatives",
+        "a_B = −a"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "one string over a fixed pulley with y_A, y_B",
+        "y_A + y_B = constant and its derivatives",
+        "a_B = −a"
+      ],
+      "instance_constraints": [
+        "Both coordinates are positive away from the pulley.",
+        "Only the two straight segments change length."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Writing a_A = a_B in these coordinates."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-FIXED-PULLEY-YAYB.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-YSYM-V0",
+          "label": "Coordinates",
+          "purpose": "Show the two segments and their away-from-pulley coordinates.",
+          "visible_elements": [
+            "one string over a fixed pulley with y_A, y_B"
+          ]
+        },
+        {
+          "id": "VIS-NLM-YSYM-V1",
+          "label": "Length relation",
+          "purpose": "Write the fixed-length relation and differentiate.",
+          "visible_elements": [
+            "one string over a fixed pulley with y_A, y_B",
+            "y_A + y_B = constant and its derivatives"
+          ]
+        },
+        {
+          "id": "VIS-NLM-YSYM-V2",
+          "label": "Signed result",
+          "purpose": "Apply it to A accelerating away from the pulley.",
+          "visible_elements": [
+            "one string over a fixed pulley with y_A, y_B",
+            "y_A + y_B = constant and its derivatives",
+            "a_B = −a"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-YSYM-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-YSYM-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-YSYM-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BUS-SHELF-FRAMES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the accelerating bus and the loose object so the two observers' accounts are compared, with the pseudo-force only in the bus frame.",
+      "required_elements": [
+        "bus accelerating right, loose object on smooth shelf, two observers",
+        "roadside physical forces",
+        "pseudo-force in the bus frame"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "bus accelerating right, loose object on smooth shelf, two observers",
+        "roadside physical forces",
+        "pseudo-force in the bus frame"
+      ],
+      "instance_constraints": [
+        "The shelf is smooth.",
+        "The roadside frame is treated as inertial."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Giving the object a real backward force in the roadside account."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BUS-SHELF-FRAMES.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BUS-V0",
+          "label": "The bus",
+          "purpose": "Show the accelerating bus, the smooth shelf and both observers.",
+          "visible_elements": [
+            "bus accelerating right, loose object on smooth shelf, two observers"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BUS-V1",
+          "label": "Roadside account",
+          "purpose": "Describe the object with physical forces only.",
+          "visible_elements": [
+            "bus accelerating right, loose object on smooth shelf, two observers",
+            "roadside physical forces"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BUS-V2",
+          "label": "Passenger account",
+          "purpose": "Add the pseudo-force only in the accelerating frame.",
+          "visible_elements": [
+            "bus accelerating right, loose object on smooth shelf, two observers",
+            "roadside physical forces",
+            "pseudo-force in the bus frame"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BUS-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BUS-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BUS-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -7798,12 +8058,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-CARTS-STRING-F",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-CARTS-STRING-F",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-CARTSF-V0"
         ]
       },
       "failure_signal": "Your tension equals F: the string has only to accelerate cart B, so T = m_B a, which is less than F.",
@@ -7895,12 +8154,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-FIXED-PULLEY-YAYB",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-FIXED-PULLEY-YAYB",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-YSYM-V0"
         ]
       },
       "failure_signal": "You wrote a_A = a_B: measured away from the pulley, one segment lengthens while the other shortens, so the signed accelerations must be opposite.",
@@ -7992,12 +8250,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+        "initial_ref": "REP-NLM-BUS-SHELF-FRAMES",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+        "bound_ref": "REP-NLM-BUS-SHELF-FRAMES",
         "stage_refs": [
-          "VIS-NLM-FRAME-V0",
-          "VIS-NLM-FRAME-V1"
+          "VIS-NLM-BUS-V0"
         ]
       },
       "failure_signal": "You gave the object a backward physical force in the roadside account: nothing new touches it; the backward term exists only in the passenger's accelerating description.",
