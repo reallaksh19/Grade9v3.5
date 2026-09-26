@@ -2280,12 +2280,11 @@
             "NLM9-2",
             "NLM9-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-BLOCKS-3KG-2KG",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3"
+            "VIS-NLM-AB32-V0",
+            "VIS-NLM-AB32-V1",
+            "VIS-NLM-AB32-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
           "misconception_indexes": [
@@ -2311,13 +2310,11 @@
             "NLM9-4",
             "NLM9-5"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-BUCKETS-45N",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-BUCKETS-V0",
+            "VIS-NLM-BUCKETS-V1",
+            "VIS-NLM-BUCKETS-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
           "misconception_indexes": [
@@ -2521,12 +2518,11 @@
             "NLM10-2",
             "NLM10-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-TABLE-CART-HANGING",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3"
+            "VIS-NLM-TABLE-V0",
+            "VIS-NLM-TABLE-V1",
+            "VIS-NLM-TABLE-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-STRING-FBD-01",
           "misconception_indexes": [
@@ -4473,6 +4469,268 @@
           "visual_stage_ref": "VIS-NLM-BOX4-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-BLOCKS-3KG-2KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show blocks A (3 kg) and B (2 kg) pushed together by 20 N and 5 N, each isolated with the contact force in its own equation.",
+      "required_elements": [
+        "blocks A 3 kg and B 2 kg with 20 N and 5 N pushes",
+        "per-block equations with contact force N",
+        "a = 3 m/s² and N = 11 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "blocks A 3 kg and B 2 kg with 20 N and 5 N pushes",
+        "per-block equations with contact force N",
+        "a = 3 m/s² and N = 11 N"
+      ],
+      "instance_constraints": [
+        "The floor is frictionless.",
+        "Rightward is positive and one a serves both blocks while they touch."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Leaving the contact force out of a single block's equation."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCKS-3KG-2KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-AB32-V0",
+          "label": "The two blocks",
+          "purpose": "Show the touching blocks and both pushes.",
+          "visible_elements": [
+            "blocks A 3 kg and B 2 kg with 20 N and 5 N pushes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-AB32-V1",
+          "label": "One equation per block",
+          "purpose": "Isolate each block with the contact force kept in its equation.",
+          "visible_elements": [
+            "blocks A 3 kg and B 2 kg with 20 N and 5 N pushes",
+            "per-block equations with contact force N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-AB32-V2",
+          "label": "Solve",
+          "purpose": "Solve for a and N.",
+          "visible_elements": [
+            "blocks A 3 kg and B 2 kg with 20 N and 5 N pushes",
+            "per-block equations with contact force N",
+            "a = 3 m/s² and N = 11 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-AB32-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-AB32-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-AB32-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BUCKETS-45N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the two buckets and the 45 N lift, with one system boundary for the acceleration and another for the rope tension.",
+      "required_elements": [
+        "1 kg and 2 kg buckets with a 45 N lift",
+        "whole-system boundary and a",
+        "lower-bucket boundary and T"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "1 kg and 2 kg buckets with a 45 N lift",
+        "whole-system boundary and a",
+        "lower-bucket boundary and T"
+      ],
+      "instance_constraints": [
+        "The ropes are light and stay taut.",
+        "Both boundaries carry the same a = 5 m/s²."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Finding the inner tension from the whole-system equation."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BUCKETS-45N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BUCKETS-V0",
+          "label": "The buckets",
+          "purpose": "Show the two buckets, the ropes and the 45 N lift.",
+          "visible_elements": [
+            "1 kg and 2 kg buckets with a 45 N lift"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BUCKETS-V1",
+          "label": "Whole system",
+          "purpose": "Box both buckets so the inner rope drops out.",
+          "visible_elements": [
+            "1 kg and 2 kg buckets with a 45 N lift",
+            "whole-system boundary and a"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BUCKETS-V2",
+          "label": "Lower bucket",
+          "purpose": "Box the lower bucket so the tension is external.",
+          "visible_elements": [
+            "1 kg and 2 kg buckets with a 45 N lift",
+            "whole-system boundary and a",
+            "lower-bucket boundary and T"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BUCKETS-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BUCKETS-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BUCKETS-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-TABLE-CART-HANGING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 2 kg cart and 1 kg hanging mass on one ideal string, with the one tension drawn on each body along its own segment.",
+      "required_elements": [
+        "2 kg cart, pulley and 1 kg hanging mass",
+        "T on the cart and on the mass",
+        "per-body equations",
+        "a and T"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2 kg cart, pulley and 1 kg hanging mass",
+        "T on the cart and on the mass",
+        "per-body equations",
+        "a and T"
+      ],
+      "instance_constraints": [
+        "The table and pulley are frictionless and the string is ideal.",
+        "T is drawn pulling away from each body along its own segment."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting T equal to the hanging weight."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TABLE-CART-HANGING.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TABLE-V0",
+          "label": "The set-up",
+          "purpose": "Show the cart, pulley, string and hanging mass.",
+          "visible_elements": [
+            "2 kg cart, pulley and 1 kg hanging mass"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TABLE-V1",
+          "label": "Tension on each body",
+          "purpose": "Declare the ideal string and draw T on each attached body.",
+          "visible_elements": [
+            "2 kg cart, pulley and 1 kg hanging mass",
+            "T on the cart and on the mass",
+            "per-body equations"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TABLE-V2",
+          "label": "Solve",
+          "purpose": "Solve the two equations.",
+          "visible_elements": [
+            "2 kg cart, pulley and 1 kg hanging mass",
+            "T on the cart and on the mass",
+            "per-body equations",
+            "a and T"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TABLE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TABLE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TABLE-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -5189,7 +5447,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-BLOCKS-3KG-2KG",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -5250,7 +5508,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-BUCKETS-45N",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -5311,7 +5569,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-TABLE-CART-HANGING",
         "stage_refs": []
       },
       "failure_signal": null,
