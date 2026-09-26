@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- KaTeX Typography (Khan Academy Standard) -->
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Motions in 2D · Master Suite &middot; Grade 9 Physics</title>
@@ -32,25 +37,37 @@
       accent-color: #3b82f6;
     }
     .tab-btn-active {
-      background-color: #3b82f6;
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
-      font-weight: 700;
+      background-color: #1865f2 !important; /* Calm Royal Blue (Khan Academy) */
+      color: #ffffff !important;
+      box-shadow: none !important; /* Zero neon glow */
+      font-weight: 600 !important;
+      border: 1px solid #1865f2 !important;
+      border-radius: 8px !important;
     }
     .tab-btn-inactive {
-      background-color: #131b2e;
-      color: #94a3b8;
-      border: 1px solid #23304d;
+      background-color: #1e293b !important;
+      color: #94a3b8 !important;
+      border: 1px solid #334155 !important;
+      box-shadow: none !important;
+      border-radius: 8px !important;
     }
     .tab-btn-inactive:hover {
-      background-color: #1a253e;
-      color: #ffffff;
+      background-color: #27354f !important;
+      color: #f1f5f9 !important;
+      border-color: #475569 !important;
     }
-    .ghost-glow {
-      animation: ghostGlow 1.8s infinite ease-in-out;
+    /* Calm matte cards (Khan Academy Perseus Standard) */
+    .bg-slate-950, .bg-slate-900\/90, .bg-slate-900 {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+      box-shadow: none !important;
     }
-    @keyframes ghostGlow {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6)); }
+    body {
+      background-color: #0f172a !important; /* Matte deep slate */
+      color: #f8fafc !important;
+    }
+    
+    
       50% { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.9)); }
     }
     .apex-glow {
@@ -171,7 +188,7 @@
         </div>
 
         <div class="flex items-center gap-2.5 flex-shrink-0">
-          <button id="btnJeeHubModal" onclick="openJeeHubModal()" class="touch-target px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600/40 to-indigo-600/40 hover:from-purple-600/60 hover:to-indigo-600/60 text-purple-200 border border-purple-500/50 text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-purple-950/40">
+          <button id="btnJeeHubModal" onclick="openJeeHubModal()" class="touch-target px-4 py-2 rounded-xl px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition flex items-center gap-2">
             <span>&#128218;</span>
             <span>IIT-JEE Questions Hub</span>
             <span class="px-1.5 py-0.5 rounded bg-purple-500/30 text-[10px] font-mono font-black text-purple-300">104 Qs</span>
@@ -205,9 +222,8 @@
         <button id="nav-quiz" onclick="switchTab('quiz')" class="tab-btn-inactive px-3 py-2 rounded-xl transition whitespace-nowrap">
           8. IIT-JEE Diagnostic Hub
         </button>
-        <button id="nav-sandbox" onclick="switchTab('sandbox')" class="tab-btn-inactive px-3 py-2 rounded-xl transition whitespace-nowrap flex items-center gap-1.5 border border-dashed border-amber-500/40 text-amber-300">
-          <span class="px-1 py-0.2 rounded bg-amber-500/20 text-[10px] font-bold">Draft</span>
-          <span>9. Master Sandbox</span>
+        <button id="nav-sandbox" onclick="switchTab('sandbox')" class="tab-btn-inactive px-3.5 py-2.5 rounded-lg transition whitespace-nowrap text-slate-300 font-medium">
+          9. Master Sandbox
         </button>
       </nav>
     </header>
@@ -1711,17 +1727,17 @@
       </div>
 
         <div class="flex items-center gap-3 border-b border-[var(--border)] pb-3">
-          <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">TOPIC 6 &middot; ISSUE #133</span>
-          <h2 class="text-xl font-bold text-white">Unequal Landing Elevation: The &Delta;y = 0 Fallacy</h2>
+          <span class="px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 font-semibold text-xs border border-blue-500/20">Topic 6</span>
+          <h2 class="text-xl font-bold text-slate-100">Elevated Landings &amp; Cliffs: Asymmetric Trajectories</h2>
         </div>
-        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
-          The familiar textbook formula <span class="font-mono text-amber-300">t_flight = 2 v&#8320;&#7522; / g</span> is only valid when landing at the exact same elevation (&Delta;y = 0). When landing on an elevated platform (h_land &ne; 0), symmetry breaks down!
+        <p class="text-sm text-slate-300 leading-relaxed">
+          The familiar textbook formula <span class="text-blue-300 font-semibold">\(t_{\text{flight}} = \frac{2v_{0y}}{g}\)</span> is valid <em>only</em> when landing at the exact same elevation (\(\Delta y = 0\)). When landing on an elevated platform (\(h_{\text{platform}} \neq 0\)), vertical symmetry breaks down and the flight time is truncated!
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3">
-            <div class="h-80 w-full relative">
-              <svg id="t6Canvas" class="w-full h-full" viewBox="0 0 540 300">
+            <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
+              <svg id="t6Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
                 <path id="t6Traj" d="" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
 
@@ -1747,17 +1763,17 @@
               <input type="range" id="t6SliderH" min="1" max="14" step="0.5" value="7" oninput="t6Update()" class="w-full cursor-pointer h-2 bg-slate-800 rounded">
             </div>
 
-            <div class="space-y-2 pt-2">
-              <div class="p-2.5 rounded bg-slate-900 border border-red-500/30">
-                <span class="text-red-400 font-bold">NAIVE FORMULA (&Delta;y = 0):</span>
-                <div class="text-slate-300">t = 2v&#8320;&#7522; / g = <strong id="t6NaiveT" class="text-red-300">3.60 s</strong></div>
-                <div class="text-[10px] text-red-400 font-sans">INVALID! Misses platform contact.</div>
+            <div class="space-y-3 pt-2">
+              <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-700">
+                <div class="text-amber-400 font-semibold text-xs uppercase tracking-wider">Naive Formula (\(\Delta y = 0\))</div>
+                <div class="text-slate-200 mt-1.5 text-sm">\(t = \frac{2v_{0y}}{g} =\) <strong id="t6NaiveT" class="text-amber-300">3.60 s</strong></div>
+                <div class="text-xs text-slate-400 mt-1">Symmetric ground assumption; misses elevated platform.</div>
               </div>
 
-              <div class="p-2.5 rounded bg-slate-900 border border-emerald-500/30">
-                <span class="text-emerald-400 font-bold">ACTUAL TIME (QUADRATIC):</span>
-                <div class="text-slate-300">t_land = <strong id="t6ActualT" class="text-emerald-300">3.15 s</strong></div>
-                <div class="text-[10px] text-emerald-400 font-sans">Flight truncated by platform elevation!</div>
+              <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-700">
+                <div class="text-emerald-400 font-semibold text-xs uppercase tracking-wider">Actual Time (Quadratic Root)</div>
+                <div class="text-slate-200 mt-1.5 text-sm">\(t_{\text{land}} =\) <strong id="t6ActualT" class="text-emerald-300">3.15 s</strong></div>
+                <div class="text-xs text-slate-400 mt-1">Trajectory truncated upon platform contact at \(y = 7.0\text{ m}\).</div>
               </div>
             </div>
           </div>
@@ -4665,7 +4681,7 @@
       const auditStatus = q.audit?.status || 'unknown';
       const auditNote = q.audit?.note || '';
       modal.innerHTML = `
-        <div class="bg-slate-950 border-2 border-amber-500/50 rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
+        <div class="bg-slate-950 border-2 border-amber-500/50 rounded-2xl max-w-4xl w-full max-h-[86vh] overflow-y-auto shadow-2xl">
           <div class="sticky top-0 z-10 bg-slate-950/95 backdrop-blur border-b border-amber-500/30 p-4 flex items-start justify-between gap-3">
             <div>
               <div class="text-[10px] uppercase tracking-widest font-black text-amber-300">Teacher's Chalkboard · ${q.id}</div>
@@ -4758,7 +4774,7 @@
               <span class="text-[10px] font-mono text-slate-500">${q.year}</span>
             </div>
 
-            <p class="text-slate-200 text-xs font-medium leading-relaxed">${q.q}</p>
+            <p class="text-slate-100 text-sm font-normal leading-relaxed">${q.q}</p>
 
             <div class="p-2.5 rounded-lg bg-emerald-950/35 border border-emerald-500/30">
               <div class="text-[9px] uppercase tracking-wider font-black text-emerald-300">Answer</div>
@@ -4790,6 +4806,7 @@
             </div>
           </div>`;
       }).join('');
+      if (window.renderAllMath) window.renderAllMath();
     }
 
     // =================================================================
@@ -5205,7 +5222,7 @@
   <!-- FULL 104-QUESTION JEE PAST YEARS MASTER HUB MODAL (10" TABLET)     -->
   <!-- ================================================================= -->
   <div id="jeeHubModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 md:p-6">
-    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl max-w-5xl w-full max-h-[86vh] flex flex-col shadow-2xl overflow-hidden">
       
       <!-- Modal Header -->
       <div class="p-5 border-b border-[var(--border)] flex items-center justify-between gap-3 bg-slate-950/60">
@@ -5236,41 +5253,41 @@
 
         <!-- Concept Bucket Filter Pills (Horizontal Scroll on Tablet) -->
         <div class="flex tablet-scroll-x gap-1.5 pb-1 text-xs">
-          <button id="pill-b0" onclick="filterJeeBucket(0)" class="px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition whitespace-nowrap">
+          <button id="pill-b0" onclick="filterJeeBucket(0)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-purple-600 text-white font-bold transition whitespace-nowrap">
             All (104)
           </button>
-          <button id="pill-b1" onclick="filterJeeBucket(1)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b1" onclick="filterJeeBucket(1)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             1. Kinematics (14)
           </button>
-          <button id="pill-b2" onclick="filterJeeBucket(2)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b2" onclick="filterJeeBucket(2)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             2. Projectile Fund. (39)
           </button>
-          <button id="pill-b3" onclick="filterJeeBucket(3)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b3" onclick="filterJeeBucket(3)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             3. Trajectory Eq. (8)
           </button>
-          <button id="pill-b4" onclick="filterJeeBucket(4)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b4" onclick="filterJeeBucket(4)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             4. Complementary (11)
           </button>
-          <button id="pill-b5" onclick="filterJeeBucket(5)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b5" onclick="filterJeeBucket(5)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             5. Cliffs &amp; Roofs (10)
           </button>
-          <button id="pill-b6" onclick="filterJeeBucket(6)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b6" onclick="filterJeeBucket(6)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             6. Interception (3)
           </button>
-          <button id="pill-b7" onclick="filterJeeBucket(7)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b7" onclick="filterJeeBucket(7)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             7. Relative Motion (8)
           </button>
-          <button id="pill-b8" onclick="filterJeeBucket(8)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b8" onclick="filterJeeBucket(8)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             8. River-Boat (9)
           </button>
-          <button id="pill-b9" onclick="filterJeeBucket(9)" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
+          <button id="pill-b9" onclick="filterJeeBucket(9)" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition whitespace-nowrap">
             9. Rain-Man (5)
           </button>
         </div>
       </div>
 
       <!-- Dynamic Question Cards List (Scrollable Area) -->
-      <div id="jeeQuestionsContainer" class="p-4 md:p-6 overflow-y-auto space-y-3.5 flex-1 bg-slate-950/40">
+      <div id="jeeQuestionsContainer" class="p-5 md:p-7 overflow-y-auto space-y-4 flex-1 bg-slate-950/40" style="padding-bottom: 96px;">
         <!-- Rendered Dynamically by JS -->
       </div>
 
