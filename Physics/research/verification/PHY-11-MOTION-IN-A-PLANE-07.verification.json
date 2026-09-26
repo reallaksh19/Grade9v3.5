@@ -4,16 +4,15 @@
   "node_ref": "PHY-11-MOTION-IN-A-PLANE-07",
   "verified_by": "agent-verifier-1",
   "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:b56ee07024aeb79f17239c86cd5780a18a7818caca42327e0c40509df6136a5b",
+  "inputs_digest": "sha256:46b1f6775d9d68bd6f35d361fde45ad54dfa8a84fc0825f9d9e5946a59d543d6",
   "questions": [
     {
       "card_ref": "EV-PHY-11-MIP-07-009",
       "independent_solution": [
-        "Constant acceleration: x = v_0x t + (1/2) a_x t^2 = 0 + 4.0 t^2; set x = 16 m -> t^2 = 4 -> t = 2 s.",
-        "Same t on y: y = 10.0(2) + (1/2)(2.0)(2)^2 = 20 + 4 = 24 m.",
-        "v_x = 8.0 x 2 = 16 m/s, v_y = 10.0 + 2.0 x 2 = 14 m/s -> speed = sqrt(256 + 196) = sqrt452 = 21.26 m/s."
+        "x-axis: v_0x = 0, a_x = 8.0, so x = 4t^2 = 16 m gives t = 2 s. y-axis at the same t: y = 10.0(2) + (1/2)(2.0)(2)^2 = 24 m.",
+        "Velocity at t = 2 s: v_x = 8.0(2) = 16 m/s, v_y = 10.0 + 2.0(2) = 14 m/s; speed = sqrt(16^2 + 14^2) = sqrt(452) = 21.26 m/s."
       ],
-      "independent_answer": "t = 2 s, y = 24 m; speed 21.26 m/s",
+      "independent_answer": "2 s, 24 m, 21.26 m/s",
       "official_answer": "2 s, 24 m, 21.26 m/s",
       "agrees": true,
       "numeric_check": "sqrt(16/(0.5*8.0))"
@@ -21,8 +20,8 @@
     {
       "card_ref": "EV-PHY-11-MIP-07-011",
       "independent_solution": [
-        "Options read on pinned page 22. For arbitrary motion only definitions hold: (b) average velocity = displacement/interval and (e) average acceleration = change in velocity/interval are definitions -> true.",
-        "(a) v_avg = (v1 + v2)/2 needs velocity linear in time (constant a); (c) v = v0 + a t and (d) r = r0 + v0 t + a t^2/2 need constant a -> not true for arbitrary motion."
+        "(b) is the definition of average velocity and (e) of average acceleration, so both hold for any motion.",
+        "(a) needs v linear in t, (c) and (d) need a constant a; e.g. for a(t) = kt, v = v0 + kt^2/2 != v0 + a(t)t. So (a), (c), (d) are not true in general."
       ],
       "independent_answer": "(b) and (e)",
       "official_answer": "(b) and (e)",
@@ -31,11 +30,20 @@
     {
       "card_ref": "EV-PHY-11-MIP-07-013",
       "independent_solution": [
-        "Options read on pinned pages 3-4: (a) v_av = (1/2)[v(t1) + v(t2)], (b) v_av = [r(t2) - r(t1)]/(t2 - t1), (c) r = (1/2)[v(t2) - v(t1)](t2 - t1), (d) a_av = [v(t2) - v(t1)]/(t2 - t1).",
-        "(b) and (d) are definitions -> correct in general. (a) holds only for constant acceleration; (c) is not a kinematic relation at all (for constant velocity it gives r = 0 for any displacement) -> incorrect.",
-        "Incorrect ones: (a) and (c)."
+        "Read options from the pinned pages 3-4 (rendered): (a) v_av = (1/2)[v(t1)+v(t2)], (b) v_av = [r(t2)-r(t1)]/(t2-t1), (c) r = (1/2)(v(t2)-v(t1))(t2-t1), (d) a_av = [v(t2)-v(t1)]/(t2-t1).",
+        "(b) and (d) are definitions, always correct. (a) holds only for constant acceleration; (c) is wrong in general (even for constant a the displacement is (1/2)(v1+v2)(t2-t1), and a body at constant velocity would give r = 0). Incorrect ones: (a) and (c)."
       ],
-      "independent_answer": "(a) and (c) are incorrect",
+      "independent_answer": "(a), (c)",
+      "official_answer": "(a), (c)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-015",
+      "independent_solution": [
+        "Continuation of Exemplar 4.13 holding options (c) and (d).",
+        "(c) r = (1/2)(v(t2)-v(t1))(t2-t1) is incorrect in general (uniform motion gives v(t2) = v(t1) but non-zero displacement); (d) is the definition of average acceleration and is correct."
+      ],
+      "independent_answer": "(a), (c)",
       "official_answer": "(a), (c)",
       "agrees": true
     }
@@ -57,8 +65,7 @@
       "record_ref": "CAP-PHY-MIP-07",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -67,6 +74,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -79,6 +87,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -92,8 +101,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -103,8 +111,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -115,8 +123,8 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -127,22 +135,11 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     }
   ],
-  "findings": [
-    {
-      "target": "EV-PHY-11-MIP-07-011",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote is only the lead line 'For any arbitrary motion in space, which of the following relations are true :'; options (a)-(e) exist only in question.options, which the evidence check does not verify. The key '(b) and (e)' is meaningless without them. Quote the options (pinned page 22, equation field for garbled symbols)."
-    },
-    {
-      "target": "EV-PHY-11-MIP-07-013",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card has neither quoted nor listed options: the quote ends at 'Choose the incorrect one (s) :' and question.options is absent, yet record Q-PHY-MIP-07-EXEMPLAR-4-13 has four options and the key '(a), (c)' refers to them. Add options (a)-(d) from pinned pages 3-4 (equation field for the garbled formulas)."
-    }
-  ]
+  "findings": []
 }
