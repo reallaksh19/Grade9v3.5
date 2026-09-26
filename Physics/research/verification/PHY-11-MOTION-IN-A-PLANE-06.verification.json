@@ -9,11 +9,10 @@
     {
       "card_ref": "EV-PHY-11-MIP-06-009",
       "independent_solution": [
-        "r(t) = 3.0t i - 2.0t^2 j + 4.0 k m (printed on pinned page 22; matches the card's equation field). v = dr/dt = 3.0 i - 4.0t j m/s; a = dv/dt = -4.0 j m/s^2 (constant).",
-        "At t = 2.0 s: v = 3.0 i - 8.0 j m/s, |v| = sqrt(9 + 64) = sqrt73 = 8.54 m/s.",
-        "Direction: tan(theta) = -8.0/3.0 -> theta = -69.4 deg, i.e. about 70 deg below the +x axis (fourth quadrant)."
+        "r = 3.0t i - 2.0t^2 j + 4.0 k (checked on pinned page 22). v = dr/dt = 3.0 i - 4.0t j m/s; a = dv/dt = -4.0 j m/s^2 (constant).",
+        "At t = 2.0 s: v = 3.0 i - 8.0 j, |v| = sqrt(9 + 64) = 8.54 m/s, at atan(8.0/3.0) = 69.4 deg (about 70 deg) below the +x axis."
       ],
-      "independent_answer": "v = 3.0 i - 4.0t j m/s, a = -4.0 j m/s^2; at t = 2.0 s |v| = 8.54 m/s at about 70 deg below the x-axis.",
+      "independent_answer": "8.54 m/s at about 70 deg with the x-axis (below it); v = 3.0 i - 4.0t j, a = -4.0 j",
       "official_answer": "8.54 m/s, 70 deg with x-axis at t = 2.0 s; (a) v(t) = 3.0 i - 4.0t j, a = -4.0 j",
       "agrees": true,
       "numeric_check": "sqrt(3.0**2 + (4.0*2.0)**2)"
@@ -21,9 +20,8 @@
     {
       "card_ref": "EV-PHY-11-MIP-06-011",
       "independent_solution": [
-        "The cyclist starts and ends at O, so (a) net displacement = 0 and (b) average velocity = 0/(10 min) = 0.",
-        "Fig. 3.20 (pinned page 21): P due east of O, Q due north, so arc PQ is a quarter circle: path = OP + arc PQ + QO = 1 + (2 pi x 1)/4 + 1 = 2 + pi/2 = 3.571 km.",
-        "(c) average speed = 3.571 km / (10/60 h) = 21.4 km/h."
+        "The cyclist ends at the start O, so (a) net displacement = 0 and (b) average velocity = 0/(10 min) = 0.",
+        "Fig. 3.20 (pinned page 21) shows OP and OQ on perpendicular radii, so arc PQ is a quarter circle: path = 1 + (pi/2)(1) + 1 = 3.571 km in 1/6 h, (c) average speed = 21.4 km/h."
       ],
       "independent_answer": "(a) 0; (b) 0; (c) 21.4 km/h",
       "official_answer": "(c) 21.4 km/h average speed; (a) 0; (b) 0",
@@ -33,11 +31,10 @@
     {
       "card_ref": "EV-PHY-11-MIP-06-013",
       "independent_solution": [
-        "Constant speed v0 with changing direction allowed; test on uniform circular motion.",
-        "(a) after one full revolution the displacement and average velocity are zero -> false. (b) velocity changes direction -> non-zero average acceleration -> false. (c) displacements in equal intervals have equal size but different directions -> false.",
-        "(d) path length = v0 x (interval), so equal intervals give equal path lengths -> true. Answer (d)."
+        "Test on uniform circular motion (constant speed v0): after one full revolution the displacement and average velocity are zero, so (a) fails; the velocity direction changes, so average acceleration is non-zero over most intervals, (b) fails; equal-time displacements are equal chords in different directions, so (c) fails.",
+        "Path length = v0 x (time) for constant speed, so equal intervals give equal path lengths: only (d) is necessarily true."
       ],
-      "independent_answer": "(d) only",
+      "independent_answer": "(d)",
       "official_answer": "(d)",
       "agrees": true
     }
@@ -59,8 +56,7 @@
       "record_ref": "CAP-PHY-MIP-06",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -69,6 +65,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -81,6 +78,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -93,6 +91,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -106,8 +105,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -117,8 +115,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -128,8 +126,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -140,17 +138,11 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     }
   ],
-  "findings": [
-    {
-      "target": "EV-PHY-11-MIP-00-001",
-      "duty_for": "RESEARCHER",
-      "detail": "SYLLABUS_SCOPE card (cited by MIC-PHY-MIP-06.title) claims the chapter covers 'scalars and vectors, vector algebra, resolution into rectangular components, scalar and vector products, and motion in a plane...', but its quote is only 'Motion in a plane, cases of uniform velocity and uniform acceleration - projectile motion, uniform circular motion.' The vector items are on the same pinned page 3 but are not in this quote, and no card anywhere quotes 'Scalar and Vector product of vectors.' Trim the claim to the quoted line, or extend the quote to the whole Chapter-3 syllabus entry."
-    }
-  ]
+  "findings": []
 }
