@@ -7388,6 +7388,263 @@
           "visual_stage_ref": "VIS-NLM-PLANK-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-LIFT-CRATE-FRICTION-ZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the crate in the upward-accelerating lift so N is found from the vertical equation and friction from the absence of any sideways need.",
+      "required_elements": [
+        "50 kg crate on a rough lift floor, a = 2 m/s² up",
+        "N = 600 N",
+        "friction zero"
+      ],
+      "relation_refs": [
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "50 kg crate on a rough lift floor, a = 2 m/s² up",
+        "N = 600 N",
+        "friction zero"
+      ],
+      "instance_constraints": [
+        "The lift floor is horizontal.",
+        "The crate moves with the lift."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting friction to μ_s N = 240 N."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-LIFT-CRATE-FRICTION-ZERO.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LIFTCRATE-V0",
+          "label": "The lift",
+          "purpose": "Show the crate on the lift floor and the upward acceleration.",
+          "visible_elements": [
+            "50 kg crate on a rough lift floor, a = 2 m/s² up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTCRATE-V1",
+          "label": "Normal force",
+          "purpose": "Write the vertical equation.",
+          "visible_elements": [
+            "50 kg crate on a rough lift floor, a = 2 m/s² up",
+            "N = 600 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTCRATE-V2",
+          "label": "Friction",
+          "purpose": "Test for a sideways need.",
+          "visible_elements": [
+            "50 kg crate on a rough lift floor, a = 2 m/s² up",
+            "N = 600 N",
+            "friction zero"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LIFTCRATE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LIFTCRATE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LIFTCRATE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-PUSH-BELOW-HORIZONTAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the downward-angled push so the friction need and the limit both grow with P and the sign of their difference decides.",
+      "required_elements": [
+        "block m pushed by P at θ below the horizontal",
+        "N, need and rest inequality",
+        "P_max or no-start condition"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "block m pushed by P at θ below the horizontal",
+        "N, need and rest inequality",
+        "P_max or no-start condition"
+      ],
+      "instance_constraints": [
+        "0 < θ < 90°.",
+        "The sign of cos θ − μ_s sin θ is not assumed."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Dividing by cos θ − μ_s sin θ without checking its sign."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-PUSH-BELOW-HORIZONTAL.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PUSHDOWN-V0",
+          "label": "The push",
+          "purpose": "Show the block and the push at θ below the horizontal.",
+          "visible_elements": [
+            "block m pushed by P at θ below the horizontal"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUSHDOWN-V1",
+          "label": "Need and limit",
+          "purpose": "Write N, the friction need and the rest inequality.",
+          "visible_elements": [
+            "block m pushed by P at θ below the horizontal",
+            "N, need and rest inequality"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PUSHDOWN-V2",
+          "label": "Sign check",
+          "purpose": "Check the sign before dividing.",
+          "visible_elements": [
+            "block m pushed by P at θ below the horizontal",
+            "N, need and rest inequality",
+            "P_max or no-start condition"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PUSHDOWN-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PUSHDOWN-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PUSHDOWN-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-FORCE-ON-UPPER-BLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the stack with F on the upper block so the friction needed by the lower block sets the limit.",
+      "required_elements": [
+        "2 kg block on a 4 kg block, F on the upper block",
+        "friction on the lower block and F_max",
+        "separate accelerations"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "2 kg block on a 4 kg block, F on the upper block",
+        "friction on the lower block and F_max",
+        "separate accelerations"
+      ],
+      "instance_constraints": [
+        "The floor is smooth.",
+        "F acts on the upper block only."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Keeping one acceleration after the blocks slip."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-FORCE-ON-UPPER-BLOCK.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TOPF-V0",
+          "label": "The stack",
+          "purpose": "Show the stack, F on the upper block and the coefficients.",
+          "visible_elements": [
+            "2 kg block on a 4 kg block, F on the upper block"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOPF-V1",
+          "label": "Moving together",
+          "purpose": "Find what friction the lower block needs.",
+          "visible_elements": [
+            "2 kg block on a 4 kg block, F on the upper block",
+            "friction on the lower block and F_max"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOPF-V2",
+          "label": "F = 12 N",
+          "purpose": "Give each block its own equation once they slip.",
+          "visible_elements": [
+            "2 kg block on a 4 kg block, F on the upper block",
+            "friction on the lower block and F_max",
+            "separate accelerations"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TOPF-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TOPF-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TOPF-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -11342,11 +11599,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-LIFT-CRATE-FRICTION-ZERO",
+        "bound_ref": "REP-NLM-LIFT-CRATE-FRICTION-ZERO",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-LIFTCRATE-V0"
         ]
       },
       "failure_signal": "You wrote f = μ_s N = 240 N (or 200 N from μ_s mg): that is only the limit. Nothing asks the crate to slide sideways, so the friction is zero.",
@@ -11551,11 +11807,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-PUSH-BELOW-HORIZONTAL",
+        "bound_ref": "REP-NLM-PUSH-BELOW-HORIZONTAL",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-PUSHDOWN-V0"
         ]
       },
       "failure_signal": "You divided by cos θ − μ_s sin θ without checking its sign, and reported a negative or infinite P_max at steep angles. When tan θ ≥ 1/μ_s the push presses the block down faster than it pushes it along, and no P can start it.",
@@ -11763,10 +12018,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-FORCE-ON-UPPER-BLOCK",
+        "bound_ref": "REP-NLM-FORCE-ON-UPPER-BLOCK",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0"
+          "VIS-NLM-TOPF-V0"
         ]
       },
       "failure_signal": "You kept one acceleration, 12/6 = 2 m/s², at F = 12 N: that needs 8 N of friction on the lower block, above the 6 N limit, so the blocks slip and move at 4 m/s² and 1 m/s².",
