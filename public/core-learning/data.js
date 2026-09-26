@@ -22827,7 +22827,18 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations."
+              "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations.",
+              "task": {
+                "prompt": "A 1000 kg car tows a 500 kg trailer with a light rigid tow bar on a level road. The road pushes the car's drive wheels forward with 3000 N; ignore all resistance. State the constraint, write one Newton-II equation for the car and one for the trailer, and find the acceleration and the tow-bar force.",
+                "givens": [
+                  "Car 1000 kg; trailer 500 kg.",
+                  "Driving force on the car 3000 N forward.",
+                  "Rigid bar: the separation stays fixed."
+                ]
+              },
+              "accepted": [
+                "The fixed bar gives one acceleration. Car: 3000 − T = 1000a. Trailer: T = 500a. Adding gives a = 2 m/s², so T = 1000 N; check with the car: 3000 − 1000 = 2000 = 1000 × 2."
+              ]
             },
             "reconstruct": {
               "route": [
@@ -23222,11 +23233,18 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "'Cart: horse pushes cart forward. Horse: cart pushes horse backward.' The two arrows are on different diagrams."
+                "On the boat: its weight 1300 N down (Earth), the man's push 700 N down (man) and the water's push 2000 N up (water). The man's weight acts on the man, not on the boat."
               ],
               "rejected": [
                 "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
-              ]
+              ],
+              "task": {
+                "prompt": "A 70 kg man stands in a 130 kg boat floating at rest on a lake. Take g = 10 m/s². Build the free-body inventory of the boat: every force, its agent, its direction and its size.",
+                "givens": [
+                  "Man 70 kg; boat 130 kg; g = 10 m/s².",
+                  "Everything is at rest."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -23591,11 +23609,19 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "'Left push present; right push present; equal and opposite, so the net force is zero.'"
+                "Earth pulls it down with 30 N, the string pulls up with 10 N and the floor pushes up with 20 N. The net force is zero, although all three forces are nonzero; the floor's push is 20 N, not 30 N."
               ],
               "rejected": [
                 "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
-              ]
+              ],
+              "task": {
+                "prompt": "A 3 kg box rests on the floor while a string pulls straight up on it with 10 N; the box does not move. Take g = 10 m/s². List every force on the box with its agent, direction and size, and find the net force.",
+                "givens": [
+                  "Mass 3 kg; g = 10 m/s².",
+                  "String pull 10 N vertically upward.",
+                  "The box stays at rest on the floor."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -23979,11 +24005,18 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "'Roadside: physical forces only. Accelerating bus: same physical forces plus a backward pseudo-force for the bus description.'"
+                "Platform: no horizontal force acts, so the ball keeps its speed while the train slows under it. Train: the ball accelerates forward at 2 m/s², explained by a pseudo-force of 0.5 × 2 = 1 N pointing forward. No physical force has been added."
               ],
               "rejected": [
                 "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
-              ]
+              ],
+              "task": {
+                "prompt": "A 0.5 kg ball rests on the smooth floor of a train moving along a straight track. The train brakes, slowing at 2 m/s². Describe the ball's horizontal forces and motion as seen from the platform, then as seen from inside the train, and give the size and direction of any pseudo-force.",
+                "givens": [
+                  "Ball 0.5 kg on a frictionless train floor.",
+                  "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -24631,7 +24664,18 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established."
+              "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
+              "task": {
+                "prompt": "A 5 kg box rests on a floor with μ_s = 0.5 and μ_k = 0.4; take g = 10 m/s². A 30 N horizontal push is applied. Decide whether the box moves, and find the friction and the acceleration. Then repeat with a second child pressing straight down on the lid with 20 N while the same 30 N push acts.",
+                "givens": [
+                  "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
+                  "Horizontal push 30 N.",
+                  "Second trial: an extra 20 N downward press."
+                ]
+              },
+              "accepted": [
+                "Trial 1: N = 50 N, limit 25 N < 30 N, so the box slides; friction is 0.4 × 50 = 20 N and a = (30 − 20)/5 = 2 m/s². Trial 2: N = 70 N, limit 35 N ≥ 30 N, so the box stays at rest with 30 N of static friction."
+              ]
             },
             "reconstruct": {
               "route": [
@@ -25045,11 +25089,19 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "Belt outruns box -> box slips left relative to belt -> friction on box points right."
+                "Without friction the block would slide down the wall, so friction points up. It must balance the 20 N weight, so f = 20 N (the limit is 0.6 × 50 = 30 N). At 80 N the limit rises to 48 N, but the friction stays 20 N up because the need has not changed."
               ],
               "rejected": [
                 "Friction must point left because the box moves right."
-              ]
+              ],
+              "task": {
+                "prompt": "A 2 kg block is pressed against a vertical wall by a 50 N horizontal push and does not slide. μ_s = 0.6 and g = 10 m/s². Give the direction and size of the friction on the block, then say what happens to the friction when the push is increased to 80 N.",
+                "givens": [
+                  "Block 2 kg; g = 10 m/s².",
+                  "Horizontal push 50 N, then 80 N.",
+                  "μ_s = 0.6 between block and wall."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -25658,7 +25710,18 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions."
+              "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions.",
+              "task": {
+                "prompt": "On a smooth track a hand pulls a light string attached to a 2 kg cart with 15 N. A second light string ties that cart to a 3 kg cart behind it. State the model, find the acceleration and the tension in each string, and say which body each tension force acts on.",
+                "givens": [
+                  "Front cart 2 kg; rear cart 3 kg; smooth track.",
+                  "Hand's pull 15 N on the front string.",
+                  "Both strings light and taut."
+                ]
+              },
+              "accepted": [
+                "Each light string has one tension along its length. a = 15/5 = 3 m/s². The front string's tension is 15 N and acts on the front cart. The rear string's tension is 3 × 3 = 9 N and acts backward on the front cart and forward on the rear cart. The two strings have different tensions."
+              ]
             },
             "reconstruct": {
               "route": [
@@ -26468,11 +26531,19 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "'The moving cart keeps moving steadily; the resting cart stays at rest. Neither has to change velocity.'"
+                "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
               ],
               "rejected": [
                 "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
-              ]
+              ],
+              "task": {
+                "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+                "givens": [
+                  "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+                  "Driving force 2000 N forward.",
+                  "Resistive forces (air and rolling) act backward."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -26864,11 +26935,18 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "+12 N on 4 kg -> +3 m/s^2."
+                "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
               ],
               "rejected": [
                 "Using the direction of velocity to choose acceleration sign."
-              ]
+              ],
+              "task": {
+                "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
+                "givens": [
+                  "Mass 1200 kg; initial velocity +20 m/s.",
+                  "Road friction 5400 N backward; air drag 600 N backward."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -27478,7 +27556,18 @@ window.GRADE9V3_CORE = {
             "attempt": {
               "produces": "A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0."
+              "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0.",
+              "task": {
+                "prompt": "A taut inextensible string over a fixed pulley holds masses A and B, with y_A and y_B measured downward from the pulley. Now y_A = 0.6 m and y_B = 1.0 m. Find y_B after A has risen by 0.1 m. At an instant when A moves up at 0.2 m/s with an acceleration of 1.5 m/s² downward, find B's velocity and acceleration.",
+                "givens": [
+                  "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
+                  "A rises by 0.1 m.",
+                  "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+                ]
+              },
+              "accepted": [
+                "y_A + y_B = 1.6 m, so y_B = 1.6 − 0.5 = 1.1 m. v_B = −v_A = +0.2 m/s (moving down), and a_B = −a_A = −1.5 m/s² (1.5 m/s² upward)."
+              ]
             },
             "reconstruct": {
               "route": [
@@ -27840,11 +27929,19 @@ window.GRADE9V3_CORE = {
                 }
               ],
               "accepted": [
-                "swimmer on water backward; water on swimmer forward; different bodies."
+                "The partner is the gas pushing on the rocket, 5000 N forward. It acts on the rocket, while the engine's push acts on the gas. The rocket's acceleration is 5000/400 = 12.5 m/s² forward."
               ],
               "rejected": [
                 "Both arrows cancel on the swimmer."
-              ]
+              ],
+              "task": {
+                "prompt": "A 400 kg rocket far from any planet fires its engine, which pushes exhaust gas backward with a force of 5000 N. Name the partner force and the body it acts on, and find the rocket's acceleration.",
+                "givens": [
+                  "Rocket mass 400 kg (take it as constant for this instant).",
+                  "Engine's push on the gas: 5000 N backward.",
+                  "No other forces act."
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -42718,7 +42815,7 @@ window.GRADE9V3_CORE = {
               "visual_stage_ref": "VIS-NLM-FRICTION-V1"
             },
             {
-              "text": "Assume rest provisionally. Use the perpendicular equation to find N, then the tangential equation to find the friction value that rest would require; do not set it equal to mu_s N.",
+              "text": "With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
@@ -42726,7 +42823,7 @@ window.GRADE9V3_CORE = {
               "visual_stage_ref": "VIS-NLM-FRICTION-V2"
             },
             {
-              "text": "Now test whether the required friction magnitude is within the static bound before simplifying the inequality.",
+              "text": "Divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
               "support_kind": "EXECUTE",
               "reveals": "METHOD",
               "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
@@ -42827,6 +42924,552 @@ window.GRADE9V3_CORE = {
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/nlm/explorers/friction-threshold/index.html"
+    },
+    {
+      "id": "physics:q-phy-nlm-incline-2b-friction-direction-02:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "title": "Quantitative static and kinetic friction conditions",
+          "intrinsic_badge": "HARD",
+          "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+          "entry_assumptions": [
+            "Can determine friction direction from relative slip tendency.",
+            "Can write Newton-II equations for a chosen body."
+          ],
+          "teaching_path": [
+            {
+              "id": "NLM8-1",
+              "role": "DECLARE",
+              "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+              "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+              "inputs": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "perpendicular force equation -> actual N >= 0"
+            },
+            {
+              "id": "NLM8-2",
+              "role": "TRANSFORM",
+              "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+              "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+              "inputs": [
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "no-slip dynamics -> f_s = f_required"
+            },
+            {
+              "id": "NLM8-3",
+              "role": "VERIFY",
+              "action": "Compare |f_required| with mu_s N.",
+              "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+              "inputs": [],
+              "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+            },
+            {
+              "id": "NLM8-4",
+              "role": "TRANSFORM",
+              "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+              "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+              "inputs": [],
+              "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+            }
+          ],
+          "elicitation": null,
+          "misconceptions": [
+            {
+              "wrong_idea": "Friction always equals mu N.",
+              "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+              "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+            },
+            {
+              "wrong_idea": "The normal force is always mg.",
+              "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+              "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+            },
+            {
+              "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+              "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+              "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+            }
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ],
+          "representations": [
+            {
+              "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "correspondence": [
+                {
+                  "element": "normal-force arrow",
+                  "symbol": "N",
+                  "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+                },
+                {
+                  "element": "static-friction arrow",
+                  "symbol": "f_s",
+                  "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+                },
+                {
+                  "element": "kinetic-friction arrow",
+                  "symbol": "f_k",
+                  "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+                }
+              ],
+              "scenes": []
+            }
+          ],
+          "relation_checks": [
+            "A zero tangential demand permits f_s = 0 even if mu_s N is positive.",
+            "At impending slip the inequality reaches equality.",
+            "The force direction must reverse if the relative sliding direction reverses.",
+            "Units reduce to newtons because mu_k is dimensionless."
+          ],
+          "exit_task": {
+            "prompt": "A contact has known normal reaction N and coefficient mu_s. The no-slip force equation requires tangential friction f_required. State the test for whether static contact is possible, when equality with mu_s N is justified, and what changes once sliding is established.",
+            "source_ref": "SRC-AUTHOR-NLM",
+            "answer": {
+              "kind": "MODEL_RESPONSE",
+              "summary": "Static contact is possible when |f_required| <= mu_s N. Equality |f_s| = mu_s N is justified only at impending slip. After relative sliding is established, use the kinetic model |f_k| = mu_k N with direction opposite the relative sliding.",
+              "reasoning": [
+                "Static friction supplies the required no-slip value rather than an automatic maximum.",
+                "The limiting value mu_s N is a bound and becomes an equality only at the threshold of slipping.",
+                "The kinetic model belongs to a different contact state: established relative sliding."
+              ],
+              "check": "If f_required = 0, the rule must allow f_s = 0 even when mu_s N is nonzero; that falsifies the unconditional f = mu N shortcut.",
+              "acceptable_alternatives": [],
+              "subpart_answers": [],
+              "verification_status": "CHECKED_BY_AUTHOR"
+            },
+            "oracle": {
+              "no_numeric_claim": "The exit compares a symbolic friction demand with a symbolic static bound and distinguishes contact states; no numerical force is computed."
+            }
+          },
+          "worked_anchors": [
+            {
+              "question_ref": "Q-PHY-NLM-1A-CANCEL-01",
+              "stem": "A 1.5 kg lamp hangs at rest from a ceiling cord. Take g = 10 m/s² and up as positive. List each force on the lamp with its size, find the net force, and say what would happen if the cord were cut.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The cord pulls up with 15 N and gravity pulls down with 15 N; the net force is zero. If the cord were cut, the lamp would accelerate downward at 10 m/s².",
+                "reasoning": [
+                  "Two agents act on the lamp: the Earth, through its weight, and the cord, through its tension.",
+                  "Weight: 1.5 × 10 = 15 N, so −15 N on the declared axis.",
+                  "The lamp is at rest, so F_net = 0: T − 15 = 0 and T = +15 N. Both forces are real and non-zero.",
+                  "Cut the cord and only the weight remains: F_net = −15 N and a = −15/1.5 = −10 m/s²."
+                ],
+                "check": "The cut-cord case shows that the 15 N weight was acting all along; the tension had been cancelling it, not removing it."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+              "stem": "Blocks A (3 kg) and B (2 kg) touch on a smooth floor, A to the left of B. A 20 N force pushes A to the right into B, and a 5 N force pushes B to the left, back toward A. The blocks stay in contact. Write one Newton-II equation per block and solve for their acceleration and the contact force.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The blocks accelerate together at 3 m/s² to the right, and the contact force between them is 11 N.",
+                "reasoning": [
+                  "Maintained contact fixes the separation of A and B, so with rightward positive a_A = a_B = a.",
+                  "For A: the 20 N push acts right and B pushes back on A with the contact force N, so 20 − N = 3a.",
+                  "For B: A pushes B right with N and the 5 N force acts left, so N − 5 = 2a.",
+                  "Adding the equations removes N: 15 = 5a, so a = 3 m/s². Then N = 5 + 2 × 3 = 11 N."
+                ],
+                "check": "Check A on its own: 20 − 11 = 9 N, and 3 kg × 3 m/s² = 9 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+              "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string over a fixed, frictionless, light pulley, with y_A and y_B measured downward from the pulley. Take g = 10 m/s². Using a_A + a_B = 0 and one tension T, find a_A, a_B and T, and name the assumption each of those two relations rests on.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "a_A = +5 m/s² (down), a_B = −5 m/s² (up) and T = 15 N. The acceleration relation rests on the fixed string length; the single T rests on the ideal pulley and string.",
+                "reasoning": [
+                  "The fixed total length gives a_A + a_B = 0 in these coordinates; this uses geometry only.",
+                  "One tension T is licensed separately, because the string is light and the pulley is light and frictionless.",
+                  "Down positive for each mass: A: 30 − T = 3a_A. B: 10 − T = 1 × a_B = −a_A.",
+                  "Subtracting B's equation from A's: 20 = 4a_A, so a_A = 5 m/s², a_B = −5 m/s², and T = 30 − 3 × 5 = 15 N."
+                ],
+                "check": "As one system driven by the weight difference, (3 − 1) × 10 = 20 N on 4 kg gives 5 m/s², matching the two body equations."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
+              "stem": "A 60 kg person stands on a scale in a lift that accelerates upward at 2 m/s². Take g = 10 m/s² and up as positive. Find the scale reading using the ground frame, then again using the lift frame with a pseudo-force, and compare.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "Both descriptions give a scale reading of 720 N.",
+                "reasoning": [
+                  "Ground frame: the physical forces are the scale's push N up and the weight 600 N down, and the person accelerates at +2 m/s².",
+                  "Ground-frame equation: N − 600 = 60 × 2, so N = 720 N.",
+                  "Lift frame: the person is at rest, and the frame accelerates at +2 m/s², so add F_pseudo = −m a_frame = −120 N.",
+                  "Lift-frame equation: N − 600 − 120 = 0, so N = 720 N, the same reading."
+                ],
+                "check": "With the lift at rest or moving steadily, a_frame = 0, the pseudo-force vanishes and both frames give N = 600 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
+              "stem": "A 50 kg child stands on a 20 kg box that rests on the floor. Take g = 10 m/s². Build the free-body inventory of the box: name each force, its agent, its direction and its size.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "On the box: its weight 200 N down (Earth), the child's push 500 N down (child), and the floor's push 700 N up (floor). The child's own weight is not on the box's diagram.",
+                "reasoning": [
+                  "Chosen body: the box. Every arrow must answer 'who acts on the box?'.",
+                  "Earth on box: weight 20 × 10 = 200 N down. Child on box: a contact push down; the child is at rest, so it equals the child's weight, 500 N.",
+                  "Floor on box: the box is at rest, so the floor pushes up with 200 + 500 = 700 N.",
+                  "The child's 500 N weight acts on the child, and the box's 500 N upward push acts on the child too; both belong on the child's diagram."
+                ],
+                "check": "Taking child and box together, the floor supports a total weight of 700 N, the same floor force the box's own diagram gives."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+              "stem": "A book rests on a tray. A waiter first carries the tray at steady speed in a straight line, then speeds up forward; the book never slips. Find the friction force of the tray on the book in each stage, including whether it can be zero.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward.",
+                "reasoning": [
+                  "Choose the book as the body; the contact is the tray's top surface, and friction acts along it.",
+                  "Steady carry: if the tray became perfectly slippery, the book would keep moving with the tray, so there is no slip tendency and the friction is zero.",
+                  "Speeding up: without friction the book would keep its old speed while the tray moved ahead, so the book would slip backward relative to the tray.",
+                  "Static friction opposes that tendency, so the tray's friction on the book points forward, the same way the book is moving."
+                ],
+                "check": "The book speeds up forward and friction is the only horizontal force on it, so by F_net = m a that force must point forward, which agrees."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+              "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s².",
+                "reasoning": [
+                  "Vertical balance gives N = mg = 4 × 10 = 40 N, so static friction can supply at most μ_s N = 0.5 × 40 = 20 N.",
+                  "15 N trial: rest would need friction of 15 N, and 15 N ≤ 20 N, so the box stays at rest with f_s = 15 N and a = 0.",
+                  "25 N trial: rest would need 25 N of friction, more than the 20 N available, so the box slides.",
+                  "Once sliding, f_k = μ_k N = 0.4 × 40 = 16 N against the motion, so a = (25 − 16)/4 = 2.25 m/s² in the direction of the pull."
+                ],
+                "check": "Had friction been set to 20 N in the 15 N trial, the net force would be 5 N backward on a box at rest, which static friction can never produce."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-NET-ZERO-01",
+              "stem": "An ice-hockey puck of mass 0.2 kg slides across smooth ice at 4 m/s after the stick loses contact. Friction and air resistance are negligible. What horizontal forces act on it, what is its velocity 3 s later, and would a puck at rest on the same ice start moving?",
+              "figure_refs": [],
+              "answer": {
+                "summary": "No horizontal force acts. The puck still moves at 4 m/s, having covered 12 m, and a puck at rest stays at rest.",
+                "reasoning": [
+                  "Once the stick loses contact, nothing touches the puck horizontally, so the horizontal net force is zero.",
+                  "F_net = m a gives a = 0/0.2 = 0 m/s², so the velocity does not change: after 3 s it is still 4 m/s.",
+                  "Equal times give equal advances: 4 m in each second, 12 m in 3 s.",
+                  "A puck at rest under the same zero net force keeps its zero velocity, so it stays at rest."
+                ],
+                "check": "With even a small friction force added, the puck would slow down: the force changes the velocity rather than keeping it up."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-SECOND-LAW-01",
+              "stem": "A 10 kg crate is pulled up a smooth ramp inclined at 30° by a rope parallel to the ramp with a force of 70 N. Take g = 10 m/s². Using axes along and perpendicular to the ramp, find the crate's acceleration and the normal force, and the pull that would give zero acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "a = 2 m/s² up the ramp, N ≈ 86.6 N, and a 50 N pull would give zero acceleration.",
+                "reasoning": [
+                  "Body: the crate. +x up the ramp, +y out of the ramp. Forces: the 70 N pull along +x, the 100 N weight vertically down, the normal force N along +y.",
+                  "Resolve the weight: 100 × sin 30° = 50 N down the ramp and 100 × cos 30° ≈ 86.6 N into the ramp.",
+                  "Along the ramp: F_net = 70 − 50 = 20 N, so a = 20/10 = 2 m/s² up the ramp.",
+                  "Across the ramp the crate keeps contact, so a_y = 0 and N ≈ 86.6 N. A 50 N pull would make F_net = 0 along the ramp, so a = 0."
+                ],
+                "check": "Units: 20 N / 10 kg = 2 m/s². On level ground (0°) the same method gives N = 100 N and no down-slope weight component."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-STRING-FBD-01",
+              "stem": "A light, taut, inextensible string runs from a 2 kg cart on a smooth table, over a frictionless light pulley at the table's edge, down to a 1 kg hanging mass. Take g = 10 m/s². State the model that allows one tension T, list the forces on each body, and find the acceleration and T.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "One T is allowed by the ideal string and pulley. The acceleration is 10/3 ≈ 3.33 m/s² and T = 20/3 ≈ 6.67 N.",
+                "reasoning": [
+                  "The string is light, taut and inextensible and the pulley is light and frictionless, so one tension T acts along the whole string.",
+                  "On the cart: T pulls it toward the pulley; its weight and the table's normal force balance vertically.",
+                  "On the hanging mass: T pulls it up and its 10 N weight pulls it down; both bodies share one acceleration magnitude a.",
+                  "Cart: T = 2a. Hanging mass, down positive: 10 − T = 1 × a. Adding gives 10 = 3a, so a = 10/3 m/s² and T = 20/3 N."
+                ],
+                "check": "T ≈ 6.67 N is less than the 10 N weight, as it must be for a mass that accelerates downward."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+              "stem": "One taut inextensible string passes over a fixed pulley and holds A and B. With y_A and y_B measured downward from the pulley along each segment, y_A = 1.2 m and y_B = 0.8 m. A then moves down by 0.3 m. Find B's new position, and B's velocity at an instant when A moves down at 0.5 m/s.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "B rises to y_B = 0.5 m; when A moves down at 0.5 m/s, v_B = −0.5 m/s, that is 0.5 m/s upward.",
+                "reasoning": [
+                  "Both coordinates are measured away from the pulley, so the changing length is y_A + y_B = 1.2 + 0.8 = 2.0 m, fixed.",
+                  "After A moves down 0.3 m, y_A = 1.5 m, so y_B = 2.0 − 1.5 = 0.5 m: B has risen 0.3 m.",
+                  "Differentiating y_A + y_B = 2.0 m gives v_A + v_B = 0.",
+                  "With v_A = +0.5 m/s, v_B = −0.5 m/s: B moves toward the pulley at 0.5 m/s."
+                ],
+                "check": "The new lengths 1.5 m and 0.5 m still add to 2.0 m, so the string has neither stretched nor gone slack."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+              "stem": "A 2 kg bucket hangs from a light rope tied under a 1 kg bucket. A second rope lifts the top bucket with a 45 N upward force. Take g = 10 m/s² and up as positive. Choose a system to find the acceleration, then a different system to find the tension in the rope between the buckets.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The buckets accelerate upward at 5 m/s², and the rope between them carries 30 N.",
+                "reasoning": [
+                  "For the acceleration, take both buckets as one system: the connecting rope's pulls are internal and drop out.",
+                  "External forces on the system: 45 N up and weight (1 + 2) × 10 = 30 N down, so 45 − 30 = 3a and a = 5 m/s².",
+                  "For the connecting rope, isolate the lower bucket: that rope's pull is external to it.",
+                  "Lower bucket: T − 2 × 10 = 2 × 5, so T = 30 N."
+                ],
+                "check": "Check the top bucket alone: 45 − 10 − 30 = 5 N, and 1 kg × 5 m/s² = 5 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+              "stem": "A 2 kg lamp hangs from a light cord inside a lift. Take up as positive and g = 10 m/s². Find the cord tension when the lift (a) moves up at steady speed, (b) accelerates upward at 2 m/s², and (c) accelerates downward at 3 m/s².",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The tension is 20 N, 24 N and 14 N in the three cases.",
+                "reasoning": [
+                  "Only the cord and the lamp's weight act on the lamp, and nothing makes the cord non-ideal, so T comes from the lamp's own equation: T − 20 = 2a.",
+                  "(a) Steady speed means a = 0, so T = 20 N.",
+                  "(b) a = +2 m/s², so T = 20 + 2 × 2 = 24 N.",
+                  "(c) a = −3 m/s², so T = 20 + 2 × (−3) = 14 N."
+                ],
+                "check": "In free fall, a = −10 m/s², the same equation gives T = 20 − 20 = 0: the cord goes slack, as expected."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-THIRD-LAW-01",
+              "stem": "In space, a 70 kg astronaut pushes a 350 kg satellite with a force of 140 N. During the push, find the force on each body and each body's acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "Each body feels 140 N, in opposite directions: the satellite accelerates at 0.4 m/s² away from the astronaut, and the astronaut at 2 m/s² the other way.",
+                "reasoning": [
+                  "The interaction is the contact between hand and satellite: astronaut on satellite and satellite on astronaut.",
+                  "Astronaut on satellite: 140 N, on the satellite's diagram. Satellite on astronaut: 140 N the opposite way, on the astronaut's diagram.",
+                  "Satellite: a = 140/350 = 0.4 m/s².",
+                  "Astronaut: a = 140/70 = 2 m/s², in the opposite direction. Neither diagram contains both forces, so they do not cancel."
+                ],
+                "check": "Mass times acceleration gives 350 × 0.4 = 140 N and 70 × 2 = 140 N: both equal the one shared interaction force."
+              }
+            }
+          ]
+        },
+        "application": {
+          "question_ref": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+          "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "A 4 kg block rests on a rough fixed 30° incline with μ_s = 0.5; take g = 10 m/s². A force P acts on it up the slope, parallel to the plane. In three trials P = 15 N, 20 N and 26 N, and the block stays at rest each time. In each trial find the direction and size of the static friction, without assuming it points uphill, and check that it is within the static limit.",
+          "source_refs": [
+            "SRC-AUTHOR-NLM"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The plane is fixed.",
+            "The block remains at rest in all three trials.",
+            "P acts exactly parallel to the plane."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-NLM-2B-SLOPEF-TENDENCY",
+              "kind": "REPRESENT",
+              "action": "Along the slope, compare P with the weight's down-slope part, 20 N, with friction removed.",
+              "why_valid": "The friction direction depends on the net tendency of the other forces along the contact.",
+              "inputs": [
+                "mg sin 30° = 20 N",
+                "P = 15, 20, 26 N"
+              ],
+              "output": "Net tendency P − 20 N."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-DIRECTION",
+              "kind": "DECIDE",
+              "action": "Point friction against the tendency in each trial: up when P < 20 N, none at 20 N, down when P > 20 N.",
+              "why_valid": "Static friction opposes the slip that would occur without it.",
+              "inputs": [
+                "P − 20 = −5, 0, +6 N"
+              ],
+              "output": "Up, zero, down."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-SIZE",
+              "kind": "TRANSFORM",
+              "action": "Size = |P − 20|: 5 N, 0 and 6 N.",
+              "why_valid": "At rest the forces along the slope balance.",
+              "inputs": [
+                "balance along slope"
+              ],
+              "output": "5 N, 0, 6 N."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-LIMIT",
+              "kind": "VERIFY",
+              "action": "N = 34.6 N, so μ_s N ≈ 17.3 N, above every need.",
+              "why_valid": "Rest is only possible within the limit.",
+              "inputs": [
+                "μ_s = 0.5"
+              ],
+              "output": "All three trials possible."
+            }
+          ],
+          "crux_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+          "hints": [
+            {
+              "text": "Temporarily remove friction from the model. Which way would the block tend to move in each trial?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "How does the push in each trial compare with the part of the weight that pulls down the slope?",
+              "reveals": "CONCEPT"
+            }
+          ],
+          "scaffolds": [],
+          "transfer": {
+            "dimension": "model_choice",
+            "statement": "The learner must choose the static-friction direction from the changed slip tendency, including a zero-friction boundary, instead of carrying over the familiar downhill-gravity case.",
+            "builds_on": [
+              "Q-PHY-NLM-INCLINE-2A-STATIC-02"
+            ],
+            "invariant": "Friction still opposes the slip tendency the block would have without it; what changes is that a push along the slope can cancel that tendency or reverse it.",
+            "protected_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): friction on a book on a level tray, forward or zero; there is no slope, and it never reverses.",
+                "MIC-PHY-NLM-FRICTION misconceptions (Core1A diagnose/repair): friction can point with the motion, or be zero, for carried bodies on level contacts.",
+                "MIC-PHY-NLM-FRICTION boundary test (Core1B): zero friction with no slip tendency; here the tendency comes from a push that can reverse it.",
+                "Q-PHY-NLM-2A-COV-04 (Core2A): the braking truck's crate, one direction with no reversal.",
+                "Q-PHY-NLM-2A-FRICTION-ZERO-08 (Core2A): zero friction with no horizontal force at all; here zero needs P = mg sin 30° exactly.",
+                "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A, parent): friction on a slope with no applied force, always uphill at mg sin θ."
+              ],
+              "why_new": "In the earlier items the slip tendency comes from a single cause (a tray or truck changing speed, or gravity alone on a slope), so friction has one fixed direction. Here a push along the slope competes with gravity. The learner must find the net tendency in each trial, and the friction comes out 5 N up, zero, then 6 N down. No earlier item shows friction on one contact reversing as a force is changed."
+            }
+          },
+          "check": "The signed friction up the slope is 20 − P: +5, 0, −6 N. It changes sign exactly at P = mg sin 30°.",
+          "solution": {
+            "summary": "When P<mg sin(theta) static friction acts up the slope, when P>mg sin(theta) it acts down the slope, and at P = mg sin(theta) the required static friction is zero. Here mg sin 30° = 20 N: at P = 15 N friction is 5 N up the slope, at 20 N it is zero, and at 26 N it is 6 N down the slope. The limit is 0.5 × 34.6 ≈ 17.3 N, so all three are possible at rest.",
+            "steps": [
+              "Along the slope, without friction the net push is P − 20 N (up the slope positive).",
+              "P = 15 N: the block would slide down, so friction points up with 5 N.",
+              "P = 20 N: no tendency, so friction is zero.",
+              "P = 26 N: the block would slide up, so friction points down with 6 N.",
+              "N = mg cos 30° ≈ 34.6 N, so μ_s N ≈ 17.3 N, above all three needs."
+            ],
+            "rubric": [
+              {
+                "criterion": "Finds each trial's slip tendency from P against mg sin 30°.",
+                "evidence_of": "Uses the no-friction tendency, not a rule that friction points uphill."
+              },
+              {
+                "criterion": "Gives 5 N up, zero and 6 N down.",
+                "evidence_of": "Lets friction reverse or vanish."
+              },
+              {
+                "criterion": "Checks each against μ_s mg cos 30° ≈ 17.3 N.",
+                "evidence_of": "Keeps the limit as a ceiling, not a value."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "NLM5-2",
+            "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+            "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+            "why_valid": "Contact friction resists relative sliding between the surfaces.",
+            "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right"
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-NLM-2B-SLOPEF-DIRECTION"
+          ],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
     }
   ],
   "bucket_availability": [
@@ -42983,7 +43626,77 @@ window.GRADE9V3_CORE = {
         {
           "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
           "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONTACT-LOSS-06"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRAME-SELECTION-05"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-STATE-01"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-WALKING-02"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-ZERO-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-STRING-MODEL-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-AXES-01"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
           "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-TIMING-05"
         }
       ],
       "projection_refs": [
@@ -43010,7 +43723,8 @@ window.GRADE9V3_CORE = {
         "physics:mic-phy-nlm-single-string-constraint:core1b",
         "physics:mic-phy-nlm-third-law:core1a",
         "physics:mic-phy-nlm-third-law:core1b",
-        "physics:q-phy-nlm-incline-2a-static-02:core2a"
+        "physics:q-phy-nlm-incline-2a-static-02:core2a",
+        "physics:q-phy-nlm-incline-2b-friction-direction-02:core2b"
       ]
     },
     {
@@ -43267,7 +43981,105 @@ window.GRADE9V3_CORE = {
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
       "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONTACT-LOSS-06"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRAME-SELECTION-05"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-STATE-01"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-WALKING-02"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-ZERO-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-STRING-MODEL-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-AXES-01"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
       "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-TIMING-05"
     }
   ]
 };
