@@ -1,0 +1,65 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Mathematics",
+  "node_ref": "MAT-09-LINEAR-EQUATIONS-01",
+  "verified_by": "agent-verifier-4",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:d1fddd18f8b208ac0db689f80cdd31d737acaf0a066813d8230c068b91ba9489",
+  "questions": [
+    {
+      "card_ref": "EV-MAT-09-LEQ-01-007",
+      "independent_solution": [
+        "The expressions are equal when 3x - 4 = 2x + 1.",
+        "Subtract 2x from both sides: x - 4 = 1; add 4: x = 5.",
+        "Check: 3(5) - 4 = 11 and 2(5) + 1 = 11. 5 is option (c) in the list (-3, 0, 5, 1)."
+      ],
+      "independent_answer": "x = 5, option (c)",
+      "official_answer": "(c), i.e. 5",
+      "agrees": true,
+      "numeric_check": "(1+4)/(3-2)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-01-009",
+      "independent_solution": [
+        "3x - 4 = 1 - 2x. Add 2x to both sides: 5x - 4 = 1.",
+        "Add 4: 5x = 5, so x = 1.",
+        "Check: 3(1) - 4 = -1 and 1 - 2(1) = -1."
+      ],
+      "independent_answer": "x = 1",
+      "official_answer": "1",
+      "agrees": true,
+      "numeric_check": "(1+4)/(3+2)"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-01-011",
+      "independent_solution": [
+        "Let the blank be k: 9x - k = -21 must hold at x = -2.",
+        "9(-2) - k = -21 -> -18 - k = -21 -> k = 21 - 18 = 3.",
+        "Check: 9(-2) - 3 = -21."
+      ],
+      "independent_answer": "3",
+      "official_answer": "3",
+      "agrees": true,
+      "numeric_check": "9*(-2) + 21"
+    }
+  ],
+  "records": [
+    {"record_ref": "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK", "checked_fields": ["action", "success_criterion"], "agrees": true},
+    {"record_ref": "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task", "elicitation", "construction_units", "compact_anchor", "badge_reason", "research_contribution"], "agrees": true},
+    {"record_ref": "REL-MAT-LEQ-01-SOLUTION-CONDITION", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE", "checked_fields": ["purpose", "instance_constraints", "reveal_stages", "support_stage_map", "correspondence"], "agrees": true},
+    {"record_ref": "FAM-MAT-LEQ-01-SUBSTITUTION", "checked_fields": ["solution_structure", "common_wrong_routes", "demand_dimensions", "transfer_boundaries"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-01-1A-EVALUATE-SIDES", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q6", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q17", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q20", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure", "transfer", "independent_check"], "agrees": false}
+  ],
+  "findings": [
+    {
+      "target": "Q-MAT-LEQ-01-EXEMPLAR8-Q20.scaffolds",
+      "duty_for": "AUTHOR",
+      "detail": "Core2B item with transfer.protected_move_ref = Q20-DEC (substitute x = -2 before solving). scaffolds[1] ('what number taken away from -18 leaves -21?') states -18, the output of that protected move, and scaffolds[2] ('computing 9(-2) minus it') tells the learner to substitute x = -2. Pre-attempt help therefore hands over the protected decision. hint_ladder order 2 also labels scaffolds[1] purpose REPRESENT although it is an EXECUTE step. Rewrite these rungs so they do not perform or reveal the substitution of x = -2. The answer, failure_signal (39 and -3) and transfer.novelty claim are otherwise correct."
+    }
+  ]
+}
