@@ -1,0 +1,54 @@
+{
+  "schema": "learner-observation/v1",
+  "product_id": "SAMPLE-CHEM-MOLE-CONCEPT",
+  "subject": "Chemistry",
+  "observed_by": "fixture",
+  "provenance": {"render_stamp": null, "hand_authored": false},
+  "escape_states": [],
+  "pages": [
+    {
+      "role": "CORE1A",
+      "path": "core1a.html",
+      "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+      "shell": null,
+      "rendered": null,
+      "figures": [],
+      "units": [
+        {
+          "id": "MIC-CHEM-MOLE-MASS-PARTICLES",
+          "kind": "CONCEPT",
+          "concept_ref": "MIC-CHEM-MOLE-MASS-PARTICLES",
+          "family_ref": null,
+          "blocks": {
+            "entry_assumptions": "Can read relative atomic masses from a table. Can compute with ratios and powers of ten.",
+            "inferential_jump": "Particles are too small to count, but a fixed number of them (one mole, 6.022 × 10^23) always has a mass in grams equal to the relative formula mass, so weighing becomes counting.",
+            "construction": "Decide which quantity you have (mass, moles or particles). Why valid: every conversion passes through moles. Convert mass to moles with n = m / M, where M is the molar mass in g/mol. Why valid: M is the mass of one mole, so dividing by it counts moles. Convert moles to particles with N = n × N_A. Why valid: each mole contains N_A particles by definition.",
+            "representation_bridge": "The mole map: mass ⇄ moles ⇄ particles, with ÷M and ×N_A on the arrows; it is revealed one arrow at a time.",
+            "worked_anchor": "How many molecules are in 9.0 g of water? M(H2O) = 2 × 1.0 + 16.0 = 18.0 g/mol, so n = 9.0 / 18.0 = 0.50 mol and N = 0.50 × 6.022 × 10^23 = 3.0 × 10^23 molecules.",
+            "wrong_path": "Divide 9.0 g directly by 6.022 × 10^23.",
+            "diagnose": "Does dividing grams by a pure number of particles give moles, particles, or neither?",
+            "repair": "Go through moles: first divide by the molar mass, then multiply by N_A.",
+            "independent_check": "Units: g ÷ (g/mol) = mol, then mol × (1/mol) = a pure count. Size: 9 g is half of 18 g, so half a mole, about 3 × 10^23 molecules.",
+            "exit_task": "How many atoms of carbon are in 6.0 g of carbon (relative atomic mass 12.0)?",
+            "exit_answer": "n = 6.0 / 12.0 = 0.50 mol; N = 0.50 × 6.022 × 10^23 ≈ 3.0 × 10^23 atoms."
+          },
+          "block_order": ["entry_assumptions", "inferential_jump", "construction", "representation_bridge", "worked_anchor", "wrong_path", "diagnose", "repair", "independent_check", "exit_task", "exit_answer"],
+          "placeholders": [],
+          "figures": [
+            {"stage": "TEACHING", "titled": true, "kind": "MOLE_MAP", "reveal_stages": 3}
+          ],
+          "representation_refs_unmounted": [],
+          "attempt": true,
+          "reveals": [{"blocks": ["exit_answer"], "gated": true}],
+          "support_levels": [],
+          "check_types": ["DIMENSIONAL_HOMOGENEITY", "SUBSTITUTION_BACK_CHECK"],
+          "decisions": 3,
+          "worked_anchors": 1,
+          "prerequisites_assumed": ["Chemistry:ATOMIC_STRUCTURE relative atomic mass", "Mathematics:RATIO_PROPORTION ratios and powers of ten"],
+          "prerequisites_bridged": ["Chemistry:ATOMIC_STRUCTURE relative atomic mass", "Mathematics:RATIO_PROPORTION ratios and powers of ten"],
+          "lineage_refs": []
+        }
+      ]
+    }
+  ]
+}

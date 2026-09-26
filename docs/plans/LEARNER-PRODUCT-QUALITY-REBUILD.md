@@ -77,6 +77,10 @@ outputs are shared: none is specific to Motion in 2D.
 
 ### Phase 1 — Learner Product Quality Contract (subject-neutral)
 
+> **Status (2026-09-26):** built and calibrated. See [phase1/QUALITY-CONTRACT.md](phase1/QUALITY-CONTRACT.md).
+> R2 passes its grammar and all 28 audited findings are caught. R1 is not located, and the
+> owner's calibration review is pending.
+
 Turn the owner's references and the audit findings into a machine-readable contract,
 `Shared/quality/learner-quality.v1.json`, validated by `Shared/tools/quality_contract.py`.
 It extends the existing `LEARNER-PRODUCT-TEMPLATES` blocks with **depth rules**, for example:

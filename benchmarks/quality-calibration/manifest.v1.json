@@ -151,6 +151,16 @@
         "specimens/S1-motion2d-six-core-html/core2a.html": "10ffe47a0224f3f1a81b3627527d6d124aa3582a521444ce20b7df79ecc0cd61",
         "specimens/S1-motion2d-six-core-html/core2b.html": "ff02bd3fe320c34475e575f08fce794e2899bdfd33e1b1ec9df2d253cbf6e162",
         "specimens/S1-motion2d-six-core-html/index.html": "78bc87d920866b02f077b4d23986f4d08e7bc522993815acd59304b1c268b1a5"
+      },
+      "observe": {
+        "extractor": "motion2d-generator-html",
+        "rendered_measurements": "docs/plans/phase0/audits/audit3-rendered-measurements.json"
+      },
+      "acknowledged_extra_rules": {
+        "C1A-STAGED-REPRESENTATION": "the 5 extension figures are single-stage; the R1 reference stages its figures (benchmark gap, not in Audit 1)",
+        "C2B-SAFE-SUPPORT-SPECIFIC": "the same safe-support sentence on all 5 transfer tasks (Audit 3 section 2)",
+        "PRODUCT-RENDERED-FROM-RECORDS": "no specimen comes from the governed renderer (it arrives in Phase 3)",
+        "C2A-PROVENANCE": "Core2B tasks show no provenance label (only 'CORE2B changed-demand transfer'), although the product's validation report claims AUTHORED_PRACTICE labels on Core2A and Core2B; found by the Phase 1 contract, not in Audit 1"
       }
     },
     {
@@ -183,6 +193,13 @@
         "specimens/S2-motion2d-six-core-pdf/Core2A_Motion2D_SupportedPractice.pdf": "f1e4c6c55a160a6f7c0af10f6d77e26a0f40734b0560f739475d4868a79b4695",
         "specimens/S2-motion2d-six-core-pdf/Core2B_Motion2D_Transfer.pdf": "8b0b354d8b819e1ae53cc32f4ad8892fe4d25dce188e9b9ddd03061be4170bae",
         "specimens/S2-motion2d-six-core-pdf/Core2_Motion2D_SourceCustody.pdf": "600694b1142ea0808bae3786925ddbf10c56d85e7aca3e981c68dade3377a287"
+      },
+      "observe": {
+        "extractor": "pdf-print",
+        "print_of": "S1"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
       }
     },
     {
@@ -222,7 +239,11 @@
         "specimens/S3-projectile-prototype-markdown/preview.html": "0ed16d83287ee82ea9b584412c50106e2a0da2d3ef5929da6b60bd7138749866",
         "specimens/S3-projectile-prototype-markdown/traceability.json": "e953679274573b17f4c4990f0e83f465569d04f63c98a20293d2dd12652ce68c",
         "specimens/S3-projectile-prototype-markdown/validation-report.md": "d9ac112b57c6ab863df00ad08e2a8b715dab19b31f7aa99499906719cda0bf4a"
-      }
+      },
+      "observe": {
+        "extractor": "markdown-prototype"
+      },
+      "acknowledged_extra_rules": {}
     },
     {
       "id": "S4",
@@ -242,6 +263,12 @@
       ],
       "files": {
         "specimens/S4-pr288-preview/preview.html": "fb790d45acf1a5378c9733f9d8e65b829574253a378b2eebe9fbd6379a7b57f7"
+      },
+      "observe": {
+        "extractor": "research-first-preview"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
       }
     },
     {
@@ -282,6 +309,12 @@
         "specimens/S5-research-first-render/pages/relative-velocity-in-two-dimensions.html": "a6c93b039018dc27459c1f3a6f0dbcf6406ca404b88d174b747d33a3925c62e9",
         "specimens/S5-research-first-render/pages/uniform-circular-motion.html": "fdbcfe7fdac1684d1d1550ae0b005865d7800bff0abfb2df9b22cbe61ca39eb2",
         "specimens/S5-research-first-render/pages/velocity-and-acceleration-as-vectors.html": "bfa765949a8240702de9e0bbe5add3cfcf03d902b943c884e55d15ac23ca1312"
+      },
+      "observe": {
+        "extractor": "research-first-render"
+      },
+      "acknowledged_extra_rules": {
+        "PRODUCT-RENDERED-FROM-RECORDS": "as S1"
       }
     }
   ],

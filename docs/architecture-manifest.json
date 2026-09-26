@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 339,
-  "relation_count": 361,
+  "component_count": 344,
+  "relation_count": 363,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 156,
-    "TOOLING": 86,
+    "TEST": 159,
+    "TOOLING": 88,
     "WEB": 11,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:66d6cc329c028c1a062dbfe2334d1dbb983ba1398d7a458fc6e619a2e3f594d8",
+  "digest": "sha256:16ea977d58343ac92ef364e80e2d88adb5c98983ed656ffbea1345271adbe199",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -924,6 +924,20 @@
       "sha256": "e3b7a543639d51e3e1cd89535774d88a5ba37b06ba69140885d732b9bfdd9d02"
     },
     {
+      "path": "Shared/tools/quality_contract.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 19265,
+      "sha256": "27c7bef3804fbb231e896f7e5c4801907c9407c663e3bb83ef831b640c015fa5"
+    },
+    {
+      "path": "Shared/tools/quality_observe.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 23761,
+      "sha256": "cfd6aba4b727d76eb9c848f466f673eb2ec062af494021fbc4fa0a8b218cb603"
+    },
+    {
       "path": "Shared/tools/question-bank-views.v1.json",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -1321,6 +1335,20 @@
       "role_description": "Executable checks",
       "bytes": 447,
       "sha256": "b2a254f8a940482fac5202f833bc1fdd493c1e8abdc276a2bea1386f1ac00a47"
+    },
+    {
+      "path": "tests/fixtures/quality/chem-core1a-mole-concept.observation.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3415,
+      "sha256": "dc3eed39b79fc952e6f6ae5c50bf5a02f5877d0ee89524d1807064c4860f675d"
+    },
+    {
+      "path": "tests/fixtures/quality/math-core2a-two-step-linear.observation.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3287,
+      "sha256": "54abf37fde84852d9380c74b66b3a0ffd84b8207dd1efb493a2b08b418fb444b"
     },
     {
       "path": "tests/fixtures/real_pilots/examside-laws-of-motion.acceptance.json",
@@ -2105,6 +2133,13 @@
       "role_description": "Executable checks",
       "bytes": 24889,
       "sha256": "0cdddb6a3b20bfebbe316807a5a470c6b06a71349afa03795c7d81576c34e5b2"
+    },
+    {
+      "path": "tests/test_quality_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5450,
+      "sha256": "db66b5a6352067521621f0bcbf4fc4e501d91f86495000b569112855d83046db"
     },
     {
       "path": "tests/test_question_bank_web.py",
@@ -3033,6 +3068,11 @@
     {
       "from": "Shared/tools/publication_provenance.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/quality_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
@@ -3973,6 +4013,11 @@
     {
       "from": "tests/test_publication_engine.py",
       "to": "Shared.tools.republish",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_quality_contract.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {

@@ -1,0 +1,55 @@
+{
+  "schema": "learner-observation/v1",
+  "product_id": "SAMPLE-MATH-LINEAR-EQUATIONS",
+  "subject": "Mathematics",
+  "observed_by": "fixture",
+  "provenance": {"render_stamp": null, "hand_authored": false},
+  "escape_states": [],
+  "pages": [
+    {
+      "role": "CORE2A",
+      "path": "core2a.html",
+      "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+      "shell": null,
+      "rendered": null,
+      "figures": [],
+      "units": [
+        {
+          "id": "Q-MATH-LIN-2A-TRIPLE-PLUS-SEVEN",
+          "kind": "QUESTION",
+          "concept_ref": "MIC-MATH-LIN-TWO-STEP",
+          "family_ref": "FAM-MATH-LIN-UNDO-IN-REVERSE",
+          "blocks": {
+            "provenance": "AUTHORED_PRACTICE: written for this unit; not a source question.",
+            "family_identity": "Family: two-operation linear equations solved by undoing operations in reverse order.",
+            "stem": "A number is tripled and then 7 is added. The result is 25. Find the number.",
+            "conditions": "The number is a real number; 'tripled' means multiplied by 3.",
+            "reasoning_route": "Translate the words into 3x + 7 = 25, then undo the last operation first.",
+            "solution": "3x + 7 = 25. Subtract 7 from both sides: 3x = 18, because adding 7 was the last operation applied to x. Divide both sides by 3: x = 6, because tripling was the first operation.",
+            "answer": "x = 6",
+            "independent_check": "Substitute back: 3 × 6 + 7 = 18 + 7 = 25, which matches the stated result. Estimate: 25 is a little over 3 × 6, so a number near 6 is plausible.",
+            "failure_signal": "Dividing by 3 before removing the 7 gives 25/3 − 7 ≈ 1.33; this undoes the operations in the order they were applied instead of in reverse.",
+            "repair": "Return to the bar model: remove the extra 7 from the whole bar before splitting the rest into three equal parts (Core1A unit MIC-MATH-LIN-TWO-STEP, step 2).",
+            "exposure_closure": "Exposure recorded: you undid a multiply-then-add equation in reverse order. Core2B changes the order of operations (add first, then multiply) and asks you to decide the undo order yourself."
+          },
+          "block_order": ["provenance", "family_identity", "stem", "conditions", "reasoning_route", "solution", "answer", "independent_check", "failure_signal", "repair", "exposure_closure"],
+          "placeholders": [],
+          "figures": [
+            {"stage": "PRE_ATTEMPT", "titled": true, "kind": "BAR_MODEL", "reveal_stages": 3}
+          ],
+          "attempt": true,
+          "reveals": [
+            {"blocks": ["reasoning_route", "solution", "answer", "independent_check", "failure_signal", "repair", "exposure_closure"], "gated": true}
+          ],
+          "support_levels": [
+            "Rung 1 (orientation): What was done to the unknown number, and in which order?",
+            "Rung 2 (representation): Draw one bar split into three equal parts for the tripled number, then attach a block of 7; the whole bar is 25.",
+            "Rung 3 (first executable relation): Write 3x + 7 = 25 and decide which operation to undo first."
+          ],
+          "check_types": ["SUBSTITUTION_BACK_CHECK", "ESTIMATION"],
+          "lineage_refs": []
+        }
+      ]
+    }
+  ]
+}
