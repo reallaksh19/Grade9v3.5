@@ -232,6 +232,8 @@ records can carry what Phase 1 requires:
 
 ### Phase 6 — Pilot across subjects
 
+> **Status (2026-09-26):** running. See [phase3/PILOT-PHASE6-7.md](phase3/PILOT-PHASE6-7.md).
+
 Run the full pipeline end-to-end, from spine to published pages, on four units chosen to
 stress different shapes of content:
 
@@ -248,6 +250,8 @@ stress different shapes of content:
 - measured cost and time per unit are recorded.
 
 ### Phase 7 — Scale-out and backfill
+
+> **Status (2026-09-26):** the ratchets are in place; scale-out waits for pilot acceptance.
 
 - Work the board chapter by chapter per subject, driven by the syllabus spine (Classes 9–11,
   JEE extensions).

@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 354,
-  "relation_count": 372,
+  "component_count": 355,
+  "relation_count": 373,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 162,
+    "TEST": 163,
     "TOOLING": 94,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:5884a21b146fc9fbc7be5ae673642f865f069123cffe552b812031729326008d",
+  "digest": "sha256:9fae7fdc61be5db5ff060400c3f3d652493128b266320000fdbe0644ad00dd79",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -640,8 +640,8 @@
       "path": "Shared/tools/build_products.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 5819,
-      "sha256": "39c09df3973a2502bed74e050ac8236eefc73113489c33fb5e921093347030f6"
+      "bytes": 7065,
+      "sha256": "1aca29da464f8e6fc5c3f47c11198f5dfc104a6466f0e6720777f0a84c6a96d2"
     },
     {
       "path": "Shared/tools/build_prompt_composer_data.py",
@@ -2168,6 +2168,13 @@
       "role_description": "Executable checks",
       "bytes": 12990,
       "sha256": "8e30c88716883adb596157c8b85c32eee5bab7a642e6ec77cd05a6799318a653"
+    },
+    {
+      "path": "tests/test_products_ratchet.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1099,
+      "sha256": "d28c101397d4dd8d70fa0c0618ca4014c62323cc5a6ace7e18cdab20887480ad"
     },
     {
       "path": "tests/test_prompt_composer.py",
@@ -4057,6 +4064,11 @@
     },
     {
       "from": "tests/test_practical_learner_evidence.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_products_ratchet.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

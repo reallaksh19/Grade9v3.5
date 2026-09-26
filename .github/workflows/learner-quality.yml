@@ -46,4 +46,4 @@ jobs:
         run: python3 Shared/tools/package_migrate.py --check
 
       - name: Contract, renderer and rendered-gate tests
-        run: python3 -m unittest tests.test_quality_contract tests.test_package_depth tests.test_render_core tests.test_quality_gate tests.test_renderer_inventory tests.test_calibration_corpus
+        run: python3 -m unittest tests.test_quality_contract tests.test_package_depth tests.test_render_core tests.test_quality_gate tests.test_renderer_inventory tests.test_calibration_corpus tests.test_products_ratchet

@@ -101,6 +101,18 @@ def status_markdown(rows: list[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+RATCHET = PRODUCTS / "ratchet.v1.json"
+
+
+def current_gaps() -> dict[str, int]:
+    """Render every product in memory and count its gaps (no browser, no files)."""
+    out = {}
+    for m in manifests():
+        _, gaps, _ = render_core.build(m)
+        out[m.name.replace(".manifest.json", "")] = len(gaps)
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -108,7 +120,20 @@ def main(argv: list[str] | None = None) -> int:
     b = sub.add_parser("build")
     b.add_argument("--static", action="store_true")
     b.add_argument("--only")
+    r = sub.add_parser("ratchet", help="gap counts may only go down; --write lowers the baseline")
+    r.add_argument("--write", action="store_true")
     a = p.parse_args(argv)
+    if a.cmd == "ratchet":
+        now = current_gaps()
+        base = json.loads(RATCHET.read_text(encoding="utf-8"))["gaps"] if RATCHET.is_file() else {}
+        worse = {k: (base[k], v) for k, v in now.items() if k in base and v > base[k]}
+        for k, (was, is_) in worse.items():
+            print(f"RATCHET: {k} gaps rose from {was} to {is_}", file=sys.stderr)
+        if a.write and not worse:
+            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": {k: min(v, base.get(k, v)) for k, v in now.items()}},
+                                          indent=2) + "\n", encoding="utf-8")
+        print(f"{sum(now.values())} gaps across {len(now)} products (baseline {sum(base.values()) if base else 'none'})")
+        return 1 if worse else 0
     if a.cmd == "derive":
         print(f"{len(derive_all())} product manifests")
         return 0
