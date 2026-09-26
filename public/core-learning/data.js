@@ -21,7 +21,7 @@ window.GRADE9V3_CORE = {
             {
               "id": "CORE1-QUANTITIES",
               "kind": "TEXT",
-              "text": "The quantities this bucket works with.\na: Coefficient of the unknown in the worked equation (3 dimensionless)\nb: Constant added on the left of the worked equation (2 dimensionless)\nc: Value the left side must equal in the worked equation (9 dimensionless)\nx: The solution of the worked equation, recorded exactly (7/3 dimensionless)\nx~: A twelve-digit truncation of the solution, which is a different number (2.333333333333 dimensionless)"
+              "text": "The quantities this bucket works with.\na: Coefficient of the unknown in the worked equation (3 dimensionless)\nb: Constant added on the left of the worked equation (2 dimensionless)\nc: Value the left side must equal in the worked equation (9 dimensionless)\na: Coefficient of the unknown in 2x + 5 = 11 (2 dimensionless)\nb: Constant added on the left in 2x + 5 = 11 (5 dimensionless)\nc: Right-hand side of 2x + 5 = 11 (11 dimensionless)\na: Coefficient of the unknown in 6x − 1 = 3 (6 dimensionless)\nb: Constant added on the left in 6x − 1 = 3 (-1 dimensionless)\nc: Right-hand side of 6x − 1 = 3 (3 dimensionless)\nx: The solution of the worked equation, recorded exactly (7/3 dimensionless)\na: Coefficient of the unknown in 3(x − 1) = 5, expanded as 3x − 3 = 5 (3 dimensionless)\nb: Constant added on the left in 3(x − 1) = 5, expanded as 3x − 3 = 5 (-3 dimensionless)\nc: Right-hand side of 3(x − 1) = 5, expanded as 3x − 3 = 5 (5 dimensionless)\nx~: A twelve-digit truncation of the solution, which is a different number (2.333333333333 dimensionless)"
             },
             {
               "id": "CORE1-REL-MATH-LINEAR-SOLUTION",
@@ -1528,6 +1528,403 @@ window.GRADE9V3_CORE = {
           "pre_attempt_scaffold_limit": 0,
           "pre_attempt_hint_limit": 0,
           "post_attempt_hint_limit": 0
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-math-linear-01:core2a",
+      "subject": "Mathematics",
+      "source_ref": "Q-MATH-LINEAR-01",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2A",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MATH-LINEAR-01",
+          "family_ref": "FAM-MATH-LINEAR",
+          "exposure": [
+            {
+              "core": "CORE1A",
+              "role": "PLANNED_WORKED_ANCHOR",
+              "artifact_ref": null
+            },
+            {
+              "core": "CORE2A",
+              "role": "PLANNED_WORKED_ANCHOR",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
+          "source_refs": [
+            "SRC-MATH-AUTHOR"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-MATH-01",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The unknown ranges over the rationals.",
+            "Give the solution exactly, not as a rounded decimal."
+          ],
+          "figure_refs": [
+            "REP-MATH-NUMBER-LINE"
+          ],
+          "figures": [
+            {
+              "figure_ref": "REP-MATH-NUMBER-LINE",
+              "kind": "NUMBER_LINE",
+              "caption": "x = 7/3 is the solution; 2.333333333333 is a different point, closed on the line but open as a solution because substituting it gives 8.999999999999, not 9.",
+              "purpose": "Place the exact solution between its bracketing integers so that it is visibly not equal to either.",
+              "read_order": [
+                "Identify the declared domain.",
+                "Locate the bracketing integers.",
+                "Read the marked exact value and confirm it coincides with neither."
+              ],
+              "accessibility": [
+                "Label every mark in text as well as by position.",
+                "State the exact value in the caption, since position alone cannot convey it."
+              ]
+            }
+          ],
+          "reasoning_route": [
+            {
+              "id": "R-MATH-2A-READ",
+              "kind": "REPRESENT",
+              "action": "Read 3x + 2 = 9 as a claim about x: x is first multiplied by 3, then 2 is added.",
+              "why_valid": "Undoing needs the order in which operations were applied to the unknown.",
+              "inputs": [
+                "3x + 2 = 9"
+              ],
+              "output": "x is tripled, then 2 is added."
+            },
+            {
+              "id": "R-MATH-2A-UNDO-ADD",
+              "kind": "DECIDE",
+              "action": "Undo the last operation first: subtract 2 from both sides.",
+              "why_valid": "Subtracting the same number from both sides is reversible, so the solution set is unchanged.",
+              "inputs": [
+                "3x + 2 = 9"
+              ],
+              "output": "3x = 7"
+            },
+            {
+              "id": "R-MATH-2A-UNDO-MULT",
+              "kind": "TRANSFORM",
+              "action": "Divide both sides by 3.",
+              "why_valid": "3 is non-zero, so dividing by it is reversible.",
+              "inputs": [
+                "3x = 7"
+              ],
+              "output": "x = 7/3"
+            },
+            {
+              "id": "R-MATH-2A-CHECK",
+              "kind": "VERIFY",
+              "action": "Substitute x = 7/3 into the original equation.",
+              "why_valid": "A solution must make the original claim true exactly.",
+              "inputs": [
+                "x = 7/3"
+              ],
+              "output": "3 × 7/3 + 2 = 7 + 2 = 9, as required."
+            }
+          ],
+          "crux_move_ref": "R-MATH-2A-UNDO-ADD",
+          "hints": [
+            {
+              "text": "The equation is a claim about x, not an instruction. What single operation on both sides would leave x with nothing added to it?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "Take 2 off both sides first, then deal with the 3 that multiplies x. Say, for each step, why it can be undone.",
+              "reveals": "METHOD"
+            },
+            {
+              "text": "x = 7/3. Writing it as 2.33 would be a different claim: substituting 2.33 gives 8.99, not 9.",
+              "reveals": "ANSWER"
+            }
+          ],
+          "scaffolds": [],
+          "transfer": null,
+          "check": "The truncation 2.333333333333 gives 8.999999999999, not 9, so the exact fraction is the solution and the decimal is not.",
+          "solution": {
+            "summary": "x = 7/3.",
+            "steps": [
+              "Subtract 2 from both sides; the operation is reversible, giving 3x = 7.",
+              "Divide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.",
+              "Substitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required."
+            ],
+            "rubric": []
+          },
+          "repair": null
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+            "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "QUESTION_STUDY",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "reasoning"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "support",
+              "reasoning"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "LEARNER_OPENABLE"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": false,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 3
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
+    },
+    {
+      "id": "mathematics:q-math-linear-2b-01:core2b",
+      "subject": "Mathematics",
+      "source_ref": "Q-MATH-LINEAR-2B-01",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": null,
+        "application": {
+          "question_ref": "Q-MATH-LINEAR-2B-01",
+          "family_ref": "FAM-MATH-LINEAR",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "Solve 3(x − 1) = 5 over the rationals. Give the exact solution and verify it in the original equation.",
+          "source_refs": [
+            "SRC-MATH-AUTHOR"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-MATH-LINEAR-2B-01",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The unknown ranges over the rationals.",
+            "Give the solution exactly, not as a rounded decimal."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-MATH-2B-READ",
+              "kind": "REPRESENT",
+              "action": "Read how the unknown is wrapped: 1 is taken from x first, and the whole bracket is then multiplied by 3.",
+              "why_valid": "The order in which operations were applied to x fixes the order in which they must be undone.",
+              "inputs": [
+                "3(x − 1) = 5"
+              ],
+              "output": "Outer operation: multiply by 3. Inner operation: subtract 1."
+            },
+            {
+              "id": "R-MATH-2B-ORDER",
+              "kind": "DECIDE",
+              "action": "Undo the outer operation first: divide both sides by 3.",
+              "why_valid": "Dividing by the non-zero 3 is reversible and removes the multiplication that encloses the bracket.",
+              "inputs": [
+                "outer operation is multiplication by 3"
+              ],
+              "output": "x − 1 = 5/3"
+            },
+            {
+              "id": "R-MATH-2B-ISOLATE",
+              "kind": "TRANSFORM",
+              "action": "Add 1 to both sides, written as 3/3.",
+              "why_valid": "Adding the same quantity to both sides is reversible.",
+              "inputs": [
+                "x − 1 = 5/3"
+              ],
+              "output": "x = 8/3"
+            },
+            {
+              "id": "R-MATH-2B-VERIFY",
+              "kind": "VERIFY",
+              "action": "Substitute 8/3 into the original equation.",
+              "why_valid": "Checking against the original catches an error introduced at any step.",
+              "inputs": [
+                "x = 8/3"
+              ],
+              "output": "3 × (8/3 − 1) = 3 × 5/3 = 5"
+            }
+          ],
+          "crux_move_ref": "R-MATH-2B-ORDER",
+          "hints": [
+            {
+              "text": "Before touching the equation, say which operation was applied to x last: the subtraction inside the bracket, or the multiplication outside it?",
+              "reveals": "CONCEPT"
+            }
+          ],
+          "scaffolds": [],
+          "transfer": {
+            "dimension": "model_choice",
+            "builds_on": [
+              "Q-MATH-LINEAR-01"
+            ],
+            "statement": "The subtraction now sits inside a bracket that is multiplied by 3, so the undo order reverses: divide by 3 first, then add 1.",
+            "invariant": "Every step is still an operation applied to both sides that can be undone, the only divisor is the non-zero 3, and the answer is still an exact fraction checked in the original equation.",
+            "protected_move_ref": "R-MATH-2B-ORDER"
+          },
+          "check": "Expanding first gives 3x − 3 = 5, so 3x = 8 and x = 8/3 again; the cut-off 2.66 would give 3 × 1.66 = 4.98, not 5.",
+          "solution": {
+            "summary": "x = 8/3.",
+            "steps": [
+              "Divide both sides by 3, which is not zero: x − 1 = 5/3.",
+              "Add 1 to both sides, writing 1 as 3/3: x = 5/3 + 3/3 = 8/3.",
+              "Check in the original: 3(8/3 − 1) = 3 × 5/3 = 5."
+            ],
+            "rubric": [
+              {
+                "criterion": "Decides which operation to undo first from how the bracket groups the unknown, and says why.",
+                "evidence_of": "Choosing the undo order from the structure rather than from a memorised sequence."
+              },
+              {
+                "criterion": "Divides only by the non-zero 3 and names that condition.",
+                "evidence_of": "Keeping every step reversible."
+              },
+              {
+                "criterion": "Reports 8/3 exactly and checks it in 3(x − 1) = 5, not in an intermediate line.",
+                "evidence_of": "Exactness and verification carried over from the earlier item."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "ME-1",
+            "microtopic_ref": "MIC-MATH-EQUIVALENT-OPS",
+            "action": "Subtract b from both sides.",
+            "why_valid": "Adding the same quantity to both sides can be undone, so the solution set is unchanged.",
+            "output": "a*x = c - b"
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-MATH-2B-ORDER"
+          ],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 1,
+          "post_attempt_hint_limit": 1
         }
       },
       "scene_ref": null,
@@ -42298,15 +42695,9 @@ window.GRADE9V3_CORE = {
       "subject": "Mathematics",
       "bucket_ref": "BUCKET-LINEAR-EQUATION",
       "status": "AVAILABLE",
-      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
-      "findings": [
-        {
-          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
-          "source_ref": "Q-MATH-LINEAR-2B-01"
-        }
-      ],
+      "code": null,
+      "detail": null,
+      "findings": [],
       "projection_refs": [
         "mathematics:bucket-linear-equation:core1",
         "mathematics:mic-math-constraint:core1a",
@@ -42314,7 +42705,9 @@ window.GRADE9V3_CORE = {
         "mathematics:mic-math-equivalent-ops:core1a",
         "mathematics:mic-math-equivalent-ops:core1b",
         "mathematics:mic-math-exact-solution:core1a",
-        "mathematics:mic-math-exact-solution:core1b"
+        "mathematics:mic-math-exact-solution:core1b",
+        "mathematics:q-math-linear-01:core2a",
+        "mathematics:q-math-linear-2b-01:core2b"
       ]
     },
     {
@@ -42730,13 +43123,6 @@ window.GRADE9V3_CORE = {
     }
   ],
   "findings": [
-    {
-      "subject": "Mathematics",
-      "bucket_ref": "BUCKET-LINEAR-EQUATION",
-      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
-      "source_ref": "Q-MATH-LINEAR-2B-01"
-    },
     {
       "subject": "Physics",
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",

@@ -595,7 +595,7 @@ window.GRADE9V3 = {
               "CORE2A",
               "CORE2B"
             ],
-            "atoms": 6,
+            "atoms": 15,
             "questions": 4,
             "obligations": 5,
             "authoring_requirements": [
@@ -1185,8 +1185,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
@@ -1250,8 +1250,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",
@@ -1315,8 +1315,8 @@ window.GRADE9V3 = {
           ],
           "core_availability": {
             "status": "AVAILABLE",
-            "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
-            "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled."
+            "code": null,
+            "detail": null
           },
           "availability": {
             "mapping": "READY",

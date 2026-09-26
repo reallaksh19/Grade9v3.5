@@ -78,7 +78,7 @@ def build_one(manifest: Path, static: bool) -> dict:
         dest = PUBLIC / manifest.parent.name / name
         if dest.exists():
             shutil.rmtree(dest)
-        shutil.copytree(out, dest)
+        shutil.copytree(out, dest, ignore=shutil.ignore_patterns("*.pdf"))   # PDF = print of the page, on demand
         published = str(dest.relative_to(REPO))
     return {"product": name, "subject": m["subject"], "product_id": m["product_id"], "verdict": report["verdict"],
             "fail_reasons": report["fail_reasons"], "gaps": len(receipt["gaps"]),
