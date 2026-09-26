@@ -2125,7 +2125,12 @@
         "SRC-EXAMSIDE-MIP-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "Split one plane-motion event into independent x/y components with one clock",
       "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
       "primary_capability_ref": "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
@@ -2233,11 +2238,20 @@
             }
           ],
           "accepted": [
+            "x(t) = 3t and y(t) = 4t on one clock, so at t = 5 s the boat is at (15, 20) m. A pair such as x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.",
             "Separate x and y equations; same t for both."
           ],
           "rejected": [
             "Use x acceleration in the y equation or assign unrelated times."
-          ]
+          ],
+          "task": {
+            "prompt": "A boat crosses a river. Use the bank frame: origin at the starting jetty, +x downstream, +y straight across, t = 0 when the boat leaves. Relative to the bank the boat moves 3 m/s downstream and 4 m/s across, both steady. Set up an x column and a y column tied to one clock, then give the boat's position at t = 5 s and say which pair of values you would refuse to call its position.",
+            "givens": [
+              "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
+              "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
+              "Requested instant: t = 5 s."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -2312,7 +2326,12 @@
         "SRC-EXAMSIDE-MIP-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "Apply constant-acceleration kinematics component by component",
       "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
       "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
@@ -2424,11 +2443,20 @@
             }
           ],
           "accepted": [
+            "Both a_x = −1 m/s² and a_y = 2 m/s² are constant, so the 1D equations apply on each axis. v_x = 5 − t, v_y = 2t, x = 5t − ½t², y = t². At t = 4 s: v = (1 i + 8 j) m/s and r = (12 i + 16 j) m.",
             "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
           ],
           "rejected": [
             "Use |a| in both equations or use separate unrelated times."
-          ]
+          ],
+          "task": {
+            "prompt": "A skater on smooth ice starts at the origin moving at 5 m/s along +x. A steady wind then gives her an acceleration of 1 m/s² along −x and 2 m/s² along +y for 4 s. Decide on each axis whether the constant-acceleration equations apply, write the x and y equations with one shared t, and find her velocity and position at t = 4 s.",
+            "givens": [
+              "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
+              "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
+              "Requested instant: t = 4 s."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -2503,7 +2531,12 @@
         "SRC-EXAMSIDE-MIP-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
       "title": "Select the gravity-only projectile model before using projectile consequences",
       "bucket_id": "BUCKET-PHY-KIN-2D-MOTION",
       "primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
@@ -2659,11 +2692,21 @@
             }
           ],
           "accepted": [
+            "After release only gravity acts, so a = (0, −10) m/s². x = 6t, y = 2 + 8t − 5t², v_x = 6, v_y = 8 − 10t. At t = 0.5 s the ball is at (3, 4.75) m with velocity (6 i + 3 j) m/s.",
             "State assumptions, set component accelerations, then solve x/y with one t."
           ],
           "rejected": [
             "Start from a memorized range/height formula without establishing the free-flight component model."
-          ]
+          ],
+          "task": {
+            "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
+            "givens": [
+              "Release point: 2 m above the floor.",
+              "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
+              "g = 10 m/s²; air resistance negligible.",
+              "Requested instant: t = 0.5 s."
+            ]
+          }
         },
         "reconstruct": {
           "route": [
@@ -4769,7 +4812,11 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "scaffolds": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
@@ -4876,7 +4923,7 @@
           "supports_move_ref": "R-KIN-2D-CLOCK-REPRESENT"
         },
         {
-          "text": "Label the time beside each evaluated component before you pair the coordinates.",
+          "text": "With x(2) = 4 × 2 and y(2) = 10 − 2 × 2² worked out, write them as one pair (x, y). For the second part, write the time label next to x(2 s) and next to y(3 s): two different labels mean two different events.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
@@ -4933,7 +4980,11 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "scaffolds": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
@@ -5045,7 +5096,7 @@
           "supports_move_ref": "R-KIN-2D-CA-REPRESENT"
         },
         {
-          "text": "Run the constant-acceleration relation once on x and once on y while keeping one shared 3 s interval.",
+          "text": "Substitute with signs: on x, v_x = 3 + 2(3) and Δx = 3(3) + ½(2)(3²); on y, v_y = 4 + (−1)(3) and Δy = 4(3) + ½(−1)(3²). Then assemble v and Δr from the two columns.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CA-MODEL"
@@ -5102,7 +5153,11 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "scaffolds": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
@@ -5213,7 +5268,7 @@
           "supports_move_ref": "R-KIN-2D-APEX-REPRESENT"
         },
         {
-          "text": "At the apex, decide which velocity component changes sign and set only that component to zero.",
+          "text": "From 0 = 20 − 10t you have the apex time. At that same t, v_x is still 12 m/s and a is still (0, −10) m/s²; get the height from Δy = 20t − 5t² (or from v_y² = u_y² − 2gΔy with v_y = 0).",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-APEX-EVENT"
@@ -5269,7 +5324,12 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
@@ -5390,7 +5450,7 @@
           "visual_stage_ref": "VIS-KIN-2D-SHARED-V1"
         },
         {
-          "text": "Name the physical condition that says the stone has reached the ground before solving for the event time.",
+          "text": "The ground is 20 m below the launch point and u_y = 0, so the landing condition is −20 = 0·t − ½(10)t². Solve it for t, then use that same t in x = 15t and in v_y = −10t.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-LAUNCH-EVENT",
@@ -5432,7 +5492,7 @@
           "VIS-KIN-2D-EVENT-V0"
         ]
       },
-      "failure_signal": "Your time came from the 15 m/s horizontal speed, for example 20/15 ≈ 1.33 s giving a 20 m range: the fall time must come from the 20 m drop alone.",
+      "failure_signal": "Your fall time is about 1.41 s (range about 21 m): that is √(h/g) with the ½ dropped. Or you wrote +20 = −5t² and found no real root: the drop is Δy = −20 m. Or you used the same-height formula 2u_y/g and got 0 s: it does not apply to a fall from a cliff. −20 = −5t² gives t = 2 s.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
         "closure": "Established: the drop fixes the fall time through the vertical equation, and that one time then sets the range. The transfer task asks whether the projectile model itself still holds when a force keeps acting after release."
@@ -5613,7 +5673,13 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
@@ -5740,7 +5806,16 @@
           "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
         ],
         "protected_move_ref": "R-KIN-2D-BREP-FRAME",
-        "invariant": "One fixed frame and one shared clock still govern both components; only the source of the signed component values changes, from given functions to a verbal description."
+        "invariant": "One fixed frame and one shared clock still govern both components; only the source of the signed component values changes, from given functions to a verbal description.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01 (Core1A worked anchor): the drone's x(t) and y(t) are given; no sign has to be chosen for the verbal task.",
+            "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS misconceptions (Core1A diagnose/repair): two clocks and arbitrary pairing; neither translates compass words into signs.",
+            "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS boundary test (Core1B): a_x = 0 with a_y nonzero arrives already signed, unlike the south acceleration here.",
+            "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01 (Core2A): the tracker gives x(t) = 4t and y(t) = 10 − 2t², so the frame work is already done there."
+          ],
+          "why_new": "Every earlier item of this capability hands the learner component functions (x(t) = 6t, y(t) = 8t − t²; x(t) = 4t, y(t) = 10 − 2t²) or already-signed components (the Core1B a_x = 0 test). Here there are only compass words, including an acceleration opposite to one velocity component, so the learner must choose the axes and assign every sign. No earlier item shows that translation answered."
+        }
       },
       "scaffolds": [
         {
@@ -5778,15 +5853,15 @@
           "VIS-KIN-2D-SHARED-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote a_y = +3 m/s²: 'south' was read as a magnitude, not as the negative y direction when +y is north. Or you used a different t for the east and north columns.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-        "closure": null
+        "closure": "Established: a verbal description becomes a signed x/y state only after one frame and one sign convention are chosen; the same clock still ties both columns."
       }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -5794,92 +5869,122 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
       "original_identifier": "AUTHOR-KIN-2D-2B-MODEL-VALIDITY-02",
-      "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+      "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The acceleration components are given as functions of time.",
-        "No numerical integration is required; the task is model selection."
+        "Both pucks are described in the same fixed frame with the same clock.",
+        "Each puck's acceleration is constant for the whole motion.",
+        "Treat the pucks as points."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+        "summary": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y.",
         "reasoning": [
-          "Check each acceleration component separately.",
-          "a_x=2 is constant, so the 1D constant-acceleration x relations are valid.",
-          "a_y=3t varies with time, so the constant-a y relations are not exact over the whole interval."
+          "A: x_A = 4t, y_A = ½(2)t² = t². B: x_B = 12, y_B = 2t.",
+          "A's path is y = (x/4)² = x²/16; B's path is the line x = 12. They cross where x = 12 and y = 144/16 = 9 m, at (12, 9) m.",
+          "A collision needs x_A = x_B and y_A = y_B at one and the same t.",
+          "x_A = x_B gives 4t = 12, so t = 3 s is the only instant the x-coordinates agree.",
+          "At t = 3 s: y_A = 9 m but y_B = 6 m. The y-coordinates differ, so there is no collision. B reaches y = 9 m only at t = 9/2 = 4.5 s, after A has left.",
+          "For a collision B must be at y = 9 m at t = 3 s: v_B × 3 = 9, so v_B = 3 m/s along +y."
         ],
-        "check": "A constant total direction or a constant x component does not make the y component constant.",
-        "acceptable_alternatives": [],
+        "check": "With v_B = 3 m/s, y_A − y_B = t² − 3t = t(t − 3), which is zero at t = 0 and t = 3 s; x_A − x_B = 4t − 12 is zero only at t = 3 s. Both differences vanish together only at t = 3 s, at (12, 9) m, so exactly one collision occurs.",
+        "acceptable_alternatives": [
+          "Solving y_A = y_B first (t² = 2t gives t = 0 or 2 s) and showing x_A ≠ x_B at both (0 ≠ 12 m, 8 ≠ 12 m) is an equally valid proof that they do not collide."
+        ],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Checks x and y acceleration components separately.",
-            "evidence_of": "Model validity is treated per component."
+            "criterion": "Writes x and y for both pucks against one shared t.",
+            "evidence_of": "Two bodies are described in one frame on one clock."
           },
           {
-            "criterion": "Accepts constant-acceleration equations only on x.",
-            "evidence_of": "Does not let one valid axis license the other."
+            "criterion": "Treats a collision as both coordinate equalities at the same t, and rejects the crossing point of the paths as proof of a collision.",
+            "evidence_of": "A meeting is an event in time, not a point in the plane."
+          },
+          {
+            "criterion": "Finds v_B = 3 m/s by requiring y_B = y_A at the time fixed by the x-equation.",
+            "evidence_of": "Uses the consistency condition to design, not only to test."
           }
         ],
         "reasoning_route": [
           {
-            "id": "R-KIN-2D-BMODEL-REPRESENT",
+            "id": "R-KIN-2D-BMEET-REPRESENT",
             "kind": "REPRESENT",
-            "action": "Write the acceleration histories separately over the interval: a_x(t)=2 and a_y(t)=3t.",
-            "why_valid": "The familiar component method remains available, but model validity must now be checked from how each acceleration component behaves with time.",
+            "action": "Write x_A(t) = 4t, y_A(t) = t², x_B(t) = 12 and y_B(t) = 2t in one table with a single t column.",
+            "why_valid": "Each puck's axes are separate constant-acceleration problems, and both pucks share the frame and clock declared in the stem.",
             "inputs": [
-              "0<=t<=4 s",
-              "a_x=2",
-              "a_y=3t"
+              "A: r0 = (0, 0), u = (4, 0), a = (0, 2)",
+              "B: r0 = (12, 0), u = (0, 2), a = (0, 0)"
             ],
-            "output": "One component is time-independent while the other explicitly varies with t."
+            "output": "Four component equations on one clock."
           },
           {
-            "id": "R-KIN-2D-BMODEL-DECIDE",
+            "id": "R-KIN-2D-BMEET-DECIDE",
             "kind": "DECIDE",
-            "action": "Decide separately for each axis whether the constant-acceleration condition is satisfied over the whole interval.",
-            "why_valid": "The standard constant-acceleration equations require the relevant acceleration component to remain constant; validity on one axis does not license the other.",
+            "action": "Define the collision as x_A = x_B and y_A = y_B holding at the same t, and do not accept the crossing point of the two paths as a collision.",
+            "why_valid": "Two points coincide only if every coordinate agrees at one instant; a path records where a body has been, not when, so a shared point on two paths can be visited at different times.",
             "inputs": [
-              "a_x(t)=2",
-              "a_y(t)=3t",
-              "constant-acceleration condition"
+              "four component equations",
+              "paths cross at (12, 9) m"
             ],
-            "output": "The model is exact on x and not exact on y over the interval."
+            "output": "Two equations in one unknown t, which must have a common root."
           },
           {
-            "id": "R-KIN-2D-BMODEL-BOUND",
+            "id": "R-KIN-2D-BMEET-TEST",
+            "kind": "TRANSFORM",
+            "action": "Solve the x-equality for t = 3 s and test the y-equality at that t: 9 m against 6 m.",
+            "why_valid": "The x-equation has a single root, so it is the only candidate time; the y-equation must also hold there.",
+            "inputs": [
+              "4t = 12",
+              "y_A(3) = 9 m",
+              "y_B(3) = 6 m"
+            ],
+            "output": "No common root, so no collision."
+          },
+          {
+            "id": "R-KIN-2D-BMEET-DESIGN",
             "kind": "CONNECT",
-            "action": "Use ordinary constant-acceleration relations only for x and withhold them from y unless a different valid treatment is supplied.",
-            "why_valid": "A model may be used only where its defining condition holds; rejecting it on y does not invalidate the independently valid x component.",
+            "action": "Require y_B(3 s) = y_A(3 s) = 9 m and solve 3v_B = 9 for v_B = 3 m/s.",
+            "why_valid": "The x-motion alone fixes the only possible meeting time, so the y-motion of B must be designed to match at that instant.",
             "inputs": [
-              "x condition satisfied",
-              "y condition violated"
+              "t = 3 s",
+              "y_A(3) = 9 m",
+              "y_B = v_B t"
             ],
-            "output": "Constant-acceleration equations are licensed on x only."
+            "output": "v_B = 3 m/s along +y."
           },
           {
-            "id": "R-KIN-2D-BMODEL-CHECK",
+            "id": "R-KIN-2D-BMEET-CHECK",
             "kind": "VERIFY",
-            "action": "Compare endpoint accelerations: a_x is 2 at both ends, whereas a_y changes from 0 to 12 m/s^2.",
-            "why_valid": "Endpoint comparison independently demonstrates constancy of x and non-constancy of y without relying on the equation choice.",
+            "action": "With v_B = 3 m/s, factor the two coordinate differences and confirm they share exactly one root, t = 3 s.",
+            "why_valid": "Factoring the differences checks the result without reusing the step that produced it.",
             "inputs": [
-              "t=0",
-              "t=4 s",
-              "a_x(t)",
-              "a_y(t)"
+              "x_A − x_B = 4t − 12",
+              "y_A − y_B = t(t − 3)"
             ],
-            "output": "The component-by-component model decision is confirmed."
+            "output": "Both vanish together only at t = 3 s, at (12, 9) m."
           }
         ],
-        "crux_move_ref": "R-KIN-2D-BMODEL-DECIDE"
+        "crux_move_ref": "R-KIN-2D-BMEET-DECIDE"
       },
       "primary_capability_ref": "CAP-KIN-2D-CONSTANT-ACCELERATION",
       "secondary_capability_refs": [
@@ -5893,7 +5998,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Changes a guaranteed constant-acceleration calculation into a model-validity decision."
+        "reason": "Moves from one body's component equations to two bodies whose component equations must agree at a common instant."
       },
       "exposure": [
         {
@@ -5904,26 +6009,41 @@
       ],
       "hints": [
         {
-          "text": "Is 'constant acceleration' one global label here, or must each component be checked over the interval?",
+          "text": "Put both pucks in one frame on one clock: which four quantities describe the two pucks at a given t?",
           "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find every t at which the x-coordinates agree, then test the y-coordinates at exactly those times.",
+          "reveals": "METHOD"
         }
       ],
-      "repair_ref": "K2D2-1",
+      "repair_ref": "K2D2-3",
       "transfer": {
-        "dimension": "model_choice",
-        "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
+        "dimension": "reasoning_steps",
+        "statement": "The learner must turn 'do they collide?' into two coordinate equations that share one unknown t, test whether they have a common root, and then design a value that makes them agree. Crossing paths is the tempting substitute.",
         "builds_on": [
-          "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
+          "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+          "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01"
         ],
-        "protected_move_ref": "R-KIN-2D-BMODEL-DECIDE",
-        "invariant": "Each axis is still handled with its own signed values over one shared time interval; what changes is that the constant-acceleration condition must be checked rather than assumed."
+        "protected_move_ref": "R-KIN-2D-BMEET-DECIDE",
+        "invariant": "Each body's axes still run the 1D constant-acceleration equations with their own signed values on one shared clock, exactly as in the single-particle item. What changes is that two bodies must satisfy two coordinate equations at one common t.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01 (Core1A worked anchor): one puck, time from y = 0, then x read at 6 s; no second body and no common-root test.",
+            "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION misconceptions (Core1A diagnose/repair): magnitude in both equations, per-axis validity, reusing t; none compares two bodies.",
+            "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION boundary test (Core1B): whether a_y = 3t allows the constant-a equations; a validity question, not a meeting.",
+            "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02 (Core2A): one particle's v and Δr after a given 3 s; the time is handed over, not tested for consistency.",
+            "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01 (Core1A anchor, secondary capability): rejects a mixed-time pair for one drone, not a crossing point of two paths."
+          ],
+          "why_new": "Every earlier item of this capability follows one body: find a time from one axis (y = 0 at 6 s, or a given 3 s) and read the other axis there. The Core1B test and the diagnose/repair prompts ask whether the equations apply or which t to reuse. None has two bodies, and none asks whether two equations in the same t have a common root. The shared-clock anchor rejects a mixed-time pair for one body; here the learner must reject a real crossing point of two paths because the two bodies reach it at different times, and then design v_B so they do not."
+        }
       },
       "scaffolds": [
         {
-          "text": "Make one row for a_x(t) and one for a_y(t), and write the validity condition each row must satisfy.",
+          "text": "Make one table with columns t, x_A, y_A, x_B and y_B, and fill in the four expressions before substituting any time.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
-          "supports_move_ref": "R-KIN-2D-BMODEL-REPRESENT"
+          "supports_move_ref": "R-KIN-2D-BMEET-REPRESENT"
         }
       ],
       "hint_ladder": [
@@ -5938,6 +6058,12 @@
           "purpose": "REPRESENT",
           "from": "scaffolds[0]",
           "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
         }
       ],
       "representation_roles": {
@@ -5949,15 +6075,15 @@
           "VIS-KIN-2D-SHARED-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You answered 'yes, they collide at (12, 9) m' because the paths cross there: A is at that point at t = 3 s, but B only at t = 4.5 s. Or you paired the x-match time (3 s) with the y-match time (2 s) as though they were one event.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-        "closure": null
+        "closure": "Established: two bodies meet only when all their coordinates agree at one instant; a shared point on their paths is not enough."
       }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -5965,102 +6091,119 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
       "original_identifier": "AUTHOR-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-      "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+      "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
       "subparts": [],
       "options": [],
       "conditions": [
         "Air resistance is neglected.",
-        "Ground is 15 m below the launch point.",
+        "The roof is 3.75 m above the launch point and occupies horizontal distances from 8 m to beyond 30 m.",
         "The initial velocity components are already resolved."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+        "summary": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof.",
         "reasoning": [
-          "Use the vertical impact condition Delta y=-15=10t-5t^2.",
-          "Solve 5t^2-10t-15=0, giving the physical root t=3 s.",
-          "Reuse t=3 s horizontally: Delta x=10(3)=30 m.",
-          "The same-height shortcut would use the wrong event condition here."
+          "Roof level relative to launch: Δy = +3.75 m, so 3.75 = 10t − 5t².",
+          "5t² − 10t + 3.75 = 0, or t² − 2t + 0.75 = 0 = (t − 0.5)(t − 1.5), so t = 0.5 s or t = 1.5 s.",
+          "At t = 0.5 s, x = 10(0.5) = 5 m. The roof starts at 8 m, so there is no roof there; the ball is still rising (v_y = +5 m/s).",
+          "The ball clears the roof edge: at x = 8 m, t = 0.8 s and Δy = 8 − 3.2 = 4.8 m, which is above 3.75 m.",
+          "At t = 1.5 s, x = 15 m, which is on the roof, and v_y = 10 − 15 = −5 m/s, so the ball is falling onto it.",
+          "Landing: t = 1.5 s, 15 m from launch horizontally, v = (10 i − 5 j) m/s."
         ],
-        "check": "Substitution into the vertical displacement gives -15 m; the nonzero same-height time 2u_y/g=2 s is not the ground-impact time.",
+        "check": "v_y² = u_y² − 2gΔy = 100 − 2(10)(3.75) = 25, so |v_y| = 5 m/s at roof level, matching the ±5 m/s at the two roots. The apex is 5 m above launch (u_y²/2g), above the roof level, so the path does reach 3.75 m twice.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Uses the actual vertical displacement -15 m rather than a same-height shortcut.",
-            "evidence_of": "Selects the event condition from geometry."
+            "criterion": "Writes the landing condition as Δy = +3.75 m from the actual geometry.",
+            "evidence_of": "Selects the event condition from the stated heights."
           },
           {
-            "criterion": "Reuses the physical impact time in the horizontal equation.",
-            "evidence_of": "Preserves the one-clock invariant."
+            "criterion": "Keeps both positive roots and chooses between them from x at each root and the roof's horizontal extent.",
+            "evidence_of": "Selects the root with the other axis rather than by habit."
+          },
+          {
+            "criterion": "Reports the landing velocity from components at the chosen time, with v_y negative.",
+            "evidence_of": "Reads every quantity at one event time."
           }
         ],
         "reasoning_route": [
           {
             "id": "R-KIN-2D-BHEIGHT-REPRESENT",
             "kind": "REPRESENT",
-            "action": "Use the launch point as vertical reference and mark the ground 15 m below it while retaining the gravity-only model.",
-            "why_valid": "The changed geometry is an event condition, not a new physical law; one reference converts the height difference into vertical displacement.",
+            "action": "Use the launch point as origin: the roof is the region y = +3.75 m, x ≥ 8 m.",
+            "why_valid": "The landing surface is a region in both coordinates, so both its height and its horizontal extent enter the event.",
             "inputs": [
               "launch 15 m above ground",
-              "+y upward",
-              "u_x=10",
-              "u_y=10",
-              "g=10"
+              "roof 18.75 m above ground",
+              "roof from x = 8 m"
             ],
-            "output": "Ground impact lies at Delta y=-15 m from launch."
+            "output": "Event: y = +3.75 m while x ≥ 8 m."
+          },
+          {
+            "id": "R-KIN-2D-BHEIGHT-ROOTS",
+            "kind": "TRANSFORM",
+            "action": "Solve 3.75 = 10t − 5t² for t = 0.5 s and t = 1.5 s.",
+            "why_valid": "A launch that rises above a level crosses it twice, so the vertical condition has two positive roots.",
+            "inputs": [
+              "u_y = 10 m/s",
+              "g = 10 m/s²",
+              "Δy = 3.75 m"
+            ],
+            "output": "Two candidate times, 0.5 s and 1.5 s."
           },
           {
             "id": "R-KIN-2D-BHEIGHT-EVENT",
             "kind": "DECIDE",
-            "action": "Choose Delta y=-15 m as the impact condition instead of reusing the familiar same-height condition Delta y=0.",
-            "why_valid": "The landing surface is below launch, so the actual geometry—not familiarity with the parent problem—determines the event condition.",
+            "action": "Choose the landing root by evaluating x at each root against the roof's extent: x = 5 m at 0.5 s is short of the roof; x = 15 m at 1.5 s is on it.",
+            "why_valid": "The vertical equation only says when the ball is at roof level; whether roof is there depends on x at the same instant.",
             "inputs": [
-              "ground 15 m below launch",
-              "parent same-height condition Delta y=0"
+              "x = 10t",
+              "roof from x = 8 m",
+              "t = 0.5 s, 1.5 s"
             ],
-            "output": "The correct event equation is -15=10t-5t^2."
-          },
-          {
-            "id": "R-KIN-2D-BHEIGHT-SOLVE",
-            "kind": "TRANSFORM",
-            "action": "Solve the event equation and select the positive physical root t=3 s.",
-            "why_valid": "Only a nonnegative post-launch time can represent the stated future ground-impact event.",
-            "inputs": [
-              "-15=10t-5t^2"
-            ],
-            "output": "Ground-impact time t=3 s."
+            "output": "Landing at t = 1.5 s."
           },
           {
             "id": "R-KIN-2D-BHEIGHT-REUSE",
             "kind": "CONNECT",
-            "action": "Reuse t=3 s in horizontal motion to obtain Delta x=30 m.",
-            "why_valid": "Horizontal range and vertical ground contact describe the same impact event, so both components must share its time.",
+            "action": "Read x = 15 m and v = (10, 10 − 15) = (10, −5) m/s at t = 1.5 s.",
+            "why_valid": "All requested quantities belong to the one landing event.",
             "inputs": [
-              "t_impact=3 s",
-              "u_x=10 m/s",
-              "a_x=0"
+              "t = 1.5 s",
+              "u_x = 10 m/s",
+              "v_y = 10 − 10t"
             ],
-            "output": "Horizontal range=30 m."
+            "output": "Lands 15 m out at (10 i − 5 j) m/s."
           },
           {
             "id": "R-KIN-2D-BHEIGHT-CHECK",
             "kind": "VERIFY",
-            "action": "Substitute t=3 s into vertical displacement and compare with the same-height shortcut time 2 s.",
-            "why_valid": "Back-substitution must reproduce -15 m, whereas 2 s reproduces Delta y=0 and therefore identifies the wrong event.",
+            "action": "Check |v_y| at roof level from v_y² = u_y² − 2gΔy, and check that the ball clears the roof edge at x = 8 m.",
+            "why_valid": "The time-free relation and the edge check test the result by a route that does not reuse the quadratic.",
             "inputs": [
-              "t=3 s",
-              "candidate t=2 s",
-              "vertical displacement equation"
+              "v_y² = 100 − 75",
+              "at x = 8 m, Δy = 4.8 m"
             ],
-            "output": "t=3 s gives -15 m and the familiar 2 s shortcut is falsified for ground impact."
+            "output": "|v_y| = 5 m/s and the edge is cleared."
           }
         ],
         "crux_move_ref": "R-KIN-2D-BHEIGHT-EVENT"
@@ -6077,7 +6220,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Changes the landing geometry while preserving the same gravity-only projectile model."
+        "reason": "The landing surface is above the launch point and exists only beyond a horizontal edge, so both roots of the height equation are later times and x must choose between them."
       },
       "exposure": [
         {
@@ -6088,27 +6231,40 @@
       ],
       "hints": [
         {
-          "text": "What vertical displacement identifies ground impact relative to the launch point?",
+          "text": "Where is the roof relative to the launch point, vertically and horizontally?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Find the physical root from the y equation, then use that same time in x.",
+          "text": "Solve the vertical equation for every time the ball is at roof height, then find x at each of those times.",
           "reveals": "METHOD"
         }
       ],
       "repair_ref": "K2D3-6",
       "transfer": {
         "dimension": "reasoning_steps",
-        "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
+        "statement": "The landing condition has two positive roots, and the learner must use the horizontal extent of the landing surface, evaluated at each root, to decide which is the landing.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
         ],
         "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
-        "invariant": "The gravity-only model, a_x = 0 and a_y = −g, and the rule that one event time serves both axes still hold; only the vertical condition that defines landing changes."
+        "invariant": "The gravity-only model, a_x = 0 and a_y = −g, still holds, the landing condition still comes from the actual Δy, and one event time still serves both axes. What changes is that the vertical condition alone no longer picks out the event.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): state at a given 1 s after release; no landing surface and no root choice.",
+            "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): level-ground roots 0 and 3 s; only the launch root is discarded.",
+            "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): roof 25 m up, landing below launch; the negative root is discarded and the positive root is the landing.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): the same-height shortcut is refused when the heights differ; no two later roots are compared.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): a thrust that stays on breaks a_x = 0; not a landing question.",
+            "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): a single v_y = 0 root at 2 s; nothing to choose.",
+            "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): −20 = −5t² has one positive root, so the landing time is forced.",
+            "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): roots 0 and 4 s, and the choice is launch against landing, never between two later crossings."
+          ],
+          "why_new": "In every earlier landing the roots split as 'launch or negative' against 'landing': 0 and 3 s on level ground (Core1A events anchor), a negative root and 5 s from the roof (Core1A unequal-height anchor), 0 and 4 s (Core2A same-height item), a single positive root from the cliff (Core2A horizontal launch). The learner has only ever discarded the zero or negative root. Here both roots are later positive times at the landing height, and only x at each root against the roof's edge decides the landing. No earlier item shows that decision."
+        }
       },
       "scaffolds": [
         {
-          "text": "Sketch only the launch level and ground relative to one vertical origin before writing an event equation.",
+          "text": "Sketch the launch point, the roof level 3.75 m above it and the roof edge 8 m out, all from one origin, before writing any equation.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
@@ -6142,15 +6298,15 @@
           "VIS-KIN-2D-EVENT-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "Your answer is t = 0.5 s at 5 m: that root is the ball rising through roof level before the roof begins at 8 m. Or you used the ground (Δy = −15 m) and got 3 s and 30 m: the roof is in the way.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-        "closure": null
+        "closure": "Established: a height condition gives candidate times; the landing is the candidate at which the other coordinate puts the body on the surface."
       }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -6158,40 +6314,58 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
       "original_identifier": "AUTHOR-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-      "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+      "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "Air resistance is neglected.",
-        "The horizontal rocket thrust remains active after release.",
-        "The question asks for model selection, not a full trajectory calculation."
+        "Air resistance on the package is negligible.",
+        "The plane keeps flying horizontally at a steady 50 m/s after the release.",
+        "Ground frame: origin at the ground point directly below the release, +x in the plane's direction of travel, +y up."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+        "summary": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m.",
         "reasoning": [
-          "The standard projectile specialization requires gravity-only free flight.",
-          "The active rocket motor adds a retained horizontal acceleration.",
-          "Therefore use the parent 2D constant-acceleration capability rather than the gravity-only projectile specialization."
+          "After release the engine pushes the plane, not the package; with air resistance negligible only gravity acts, so a_x = 0 and a_y = −10 m/s².",
+          "Just before release the package moves with the plane, so its initial velocity in the ground frame is u = (50, 0) m/s, not zero.",
+          "Vertical: −80 = 0·t − 5t², so t = 4 s.",
+          "Horizontal: x = 50 × 4 = 200 m ahead of the release point.",
+          "The plane also covers 50 × 4 = 200 m, so it is directly above the landing point, 80 m up.",
+          "Impact velocity: (50 i − 40 j) m/s."
         ],
-        "check": "If the motor is switched off after release and drag remains negligible, the standard a_x=0 projectile model becomes valid from that later instant.",
+        "check": "In the plane's frame the package starts at rest and has only the vertical acceleration g, so it falls straight down below the plane. That agrees with the ground-frame result that plane and package are both 200 m ahead after 4 s.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Rejects the gravity-only projectile specialization.",
-            "evidence_of": "Checks model conditions before formula use."
+            "criterion": "Declares gravity-only free flight after release (a_x = 0), since the engine acts on the plane and not on the package.",
+            "evidence_of": "The model comes from the interactions after release."
           },
           {
-            "criterion": "Falls back to the general component constant-acceleration model.",
-            "evidence_of": "Chooses the smallest valid parent model rather than inventing a new law."
+            "criterion": "Takes u = (50, 0) m/s in the ground frame as the package's launch velocity.",
+            "evidence_of": "The initial state is the velocity at release, even though nothing throws the package."
+          },
+          {
+            "criterion": "Finds t = 4 s from the 80 m drop alone, and 200 m, with the plane directly overhead.",
+            "evidence_of": "Keeps one clock across the axes and both bodies."
           }
         ],
         "difficult_move": 2,
@@ -6199,56 +6373,70 @@
           {
             "id": "R-KIN-TRANSFER-INTERACTIONS",
             "kind": "REPRESENT",
-            "action": "Inventory the interactions and acceleration components that remain after release before assigning a named motion model.",
-            "why_valid": "Model validity follows from the retained post-release interactions, not from the fact that the object was launched or follows a curved path.",
+            "action": "List what acts on the package after release: gravity only. The engine thrust acts on the plane, and air resistance is negligible.",
+            "why_valid": "The model after release follows from the interactions on the released body, not from the motion of the vehicle it left.",
             "inputs": [
-              "horizontal rocket thrust remains active",
-              "a_x=2 m/s^2",
-              "a_y=-g"
+              "plane engine",
+              "gravity",
+              "negligible air resistance"
             ],
-            "output": "Post-release motion has nonzero horizontal acceleration and gravitational vertical acceleration.",
+            "output": "Only gravity acts on the package after release.",
             "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
             "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
           },
           {
+            "id": "R-KIN-TRANSFER-ACCEL",
+            "kind": "TRANSFORM",
+            "action": "Turn the interaction list into component accelerations: a_x = 0, a_y = −10 m/s².",
+            "why_valid": "Gravity is vertical, and no horizontal interaction remains on the package.",
+            "inputs": [
+              "gravity only",
+              "+y up"
+            ],
+            "output": "a = (0, −10) m/s².",
+            "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+            "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
+          },
+          {
             "id": "R-KIN-TRANSFER-MODEL",
             "kind": "DECIDE",
-            "action": "Reject the standard gravity-only projectile specialization because its defining horizontal-acceleration condition is violated.",
-            "why_valid": "The standard specialization requires gravity-only free flight and therefore a_x=0, while the active motor gives a_x=2 m/s^2.",
+            "action": "Start the ideal projectile model at the instant of release with the package's velocity at that instant, u = (50, 0) m/s in the ground frame. Reject u = 0 ('it drops straight down') and reject keeping the plane's thrust.",
+            "why_valid": "Until release the package moves with the plane, and release changes the forces, not the velocity. Free flight begins from the velocity the body already has.",
             "inputs": [
-              "projectile condition a_x=0",
-              "actual a_x=2 m/s^2",
-              "active post-release thrust"
+              "plane velocity 50 m/s horizontal",
+              "a = (0, −10) m/s²",
+              "release instant"
             ],
-            "output": "The standard ideal projectile specialization is invalid for this interval.",
+            "output": "Projectile with u = (50, 0) m/s and a = (0, −10) m/s² from the release.",
             "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
             "visual_stage_ref": "VIS-KIN-2D-PROJ-V3"
           },
           {
-            "id": "R-KIN-TRANSFER-PARENT",
+            "id": "R-KIN-TRANSFER-SOLVE",
             "kind": "CONNECT",
-            "action": "Use the parent two-dimensional constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as both components remain constant.",
-            "why_valid": "Rejecting a specialization does not discard the more general component model whose validity conditions are still satisfied.",
+            "action": "Get t = 4 s from −80 = −5t², then x = 50 × 4 = 200 m, and put the plane at 50 × 4 = 200 m at the same t.",
+            "why_valid": "The landing is one event; the package's two axes and the plane share its time.",
             "inputs": [
-              "constant a_x=2 m/s^2",
-              "constant a_y=-g",
-              "one shared time"
+              "Δy = −80 m",
+              "u_y = 0",
+              "u_x = 50 m/s",
+              "plane speed 50 m/s"
             ],
-            "output": "Use component constant-acceleration equations in x and y with one common clock.",
+            "output": "Lands 200 m ahead after 4 s, with the plane directly above.",
             "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
             "visual_stage_ref": "VIS-KIN-2D-SHARED-V2"
           },
           {
             "id": "R-KIN-TRANSFER-CHECK",
             "kind": "VERIFY",
-            "action": "Check the model boundary by switching the motor off while keeping drag negligible.",
-            "why_valid": "Once the horizontal thrust ends, a_x returns to zero and gravity-only free flight licenses the standard projectile specialization from that later instant.",
+            "action": "Redo the motion in the plane's frame: the package starts at rest there and falls straight down under g.",
+            "why_valid": "A second frame gives the same relative position without reusing the ground-frame arithmetic.",
             "inputs": [
-              "motor off",
-              "drag negligible",
-              "gravity retained"
+              "plane frame",
+              "package initially at rest in it",
+              "a = (0, −10) m/s²"
             ],
-            "output": "The specialization becomes valid exactly when its defining interaction condition is restored."
+            "output": "The package stays directly below the plane, as the ground-frame result says."
           }
         ],
         "crux_move_ref": "R-KIN-TRANSFER-MODEL"
@@ -6265,7 +6453,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Changes a gravity-only horizontal-launch practice item into a post-release force-model validity decision by keeping horizontal propulsion active."
+        "reason": "The horizontal launch speed is no longer given as a throw: the learner must get it from the moving carrier at release and decide the model from what acts after release."
       },
       "exposure": [
         {
@@ -6283,21 +6471,42 @@
       "repair_ref": "K2D3-1",
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
+        "statement": "No launch velocity is stated. The learner must decide that the free-flight model starts at release with the carrier's velocity, not from rest and not with the carrier's thrust.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
         ],
         "protected_move_ref": "R-KIN-TRANSFER-MODEL",
-        "invariant": "Component-by-component constant-acceleration kinematics with one shared clock still applies; what fails is only the special case a_x = 0 that the projectile model adds."
+        "invariant": "The fall time still comes from the vertical drop alone with u_y = 0, and one clock still serves both axes, as in the cliff launch. What changes is that the horizontal launch speed must be found from the release situation.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): the balcony throw states u = (8, 6) m/s, so the launch velocity is given.",
+            "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): u = (6, 15) m/s is stated; the decision there is the event condition.",
+            "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): the roof throw states u = (5, 20) m/s; the decision there is the drop.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): an existing v_x persists without a force; it does not ask where a released body's v_x comes from.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): a thrust stays on after release; here the thrust stays with the plane, and the package's launch state is at issue.",
+            "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): the launch components 12 and 20 m/s are given, already resolved.",
+            "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): the stone is launched at a stated 15 m/s; the launch speed is not reconstructed.",
+            "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): u = (12, 16) m/s is stated, and the root choice is the demand."
+          ],
+          "why_new": "Every earlier item of this capability states the launch components (u_x = 8, 6, 5, 12, 15 or 12 m/s). The Core1B boundary test decides whether a thrust that stays on breaks a_x = 0, and the diagnose/repair says an existing v_x persists without a force. None asks where a launch velocity comes from when nothing throws the body. Here the learner must build u from the carrier's motion at release, where the tempting routes are u_x = 0 or the plane's thrust. No earlier item shows that initial-state decision answered."
+        }
       },
       "scaffolds": [
         {
-          "text": "List the post-release interactions and the acceleration components they imply before you name any motion model.",
+          "text": "List the post-release interactions on the package, and the acceleration components they imply, before you name any motion model.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-TRANSFER-INTERACTIONS",
           "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
           "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
+        },
+        {
+          "text": "Write the vertical equation for the 80 m fall with the vertical launch component you chose, and find its time before touching x.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-KIN-TRANSFER-SOLVE",
+          "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+          "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
         }
       ],
       "hint_ladder": [
@@ -6312,6 +6521,12 @@
           "purpose": "REPRESENT",
           "from": "scaffolds[0]",
           "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
         }
       ],
       "representation_roles": {
@@ -6323,15 +6538,15 @@
           "VIS-KIN-2D-PROJ-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You put the landing directly below the release point (x = 0), or behind the plane: that treats the package as starting from rest horizontally. At release it already moves at 50 m/s with the plane, and nothing slows it.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-        "closure": null
+        "closure": "Established: a released body begins free flight with the velocity it had at release; the model after release comes from what acts on the body itself."
       }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
@@ -6339,106 +6554,113 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "MOTION_IN_2D",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "hints": "AUTHORED_PEDAGOGICAL",
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION",
       "original_identifier": "AUTHOR-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-      "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+      "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
       "subparts": [],
       "options": [],
       "conditions": [
         "Air resistance is neglected.",
-        "Both events occur on the same trajectory at the same vertical position.",
-        "Take +y upward."
+        "The cliff is high enough that the stone has not landed at the instants in question.",
+        "Positions are measured from the launch point with +x in the direction of the throw and +y up."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+        "summary": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s.",
         "reasoning": [
-          "Horizontal velocity remains constant because a_x=0.",
-          "At equal height in the same gravity-only trajectory, the vertical speed magnitude matches on ascent and descent, with opposite signs.",
-          "Combining the components gives equal speed magnitudes but different velocity directions.",
-          "Gravity gives the same downward acceleration at both events."
+          "45° below the horizontal means v_y/v_x = −1, so v_y = −v_x.",
+          "v_x stays 10 m/s, so the condition is v_y = −10 m/s.",
+          "v_y = 20 − 10t = −10 gives t = 3 s.",
+          "Position at t = 3 s: x = 10 × 3 = 30 m, Δy = 20 × 3 − 5 × 9 = 15 m above launch.",
+          "Speed = √(10² + 10²) = 10√2 ≈ 14.1 m/s."
         ],
-        "check": "The two velocity vectors cannot be identical because one has upward v_y and the other downward v_y.",
+        "check": "Time-free check: v² = u² − 2gΔy = (100 + 400) − 2(10)(15) = 200, so v = 10√2 m/s. The stone is still above its launch point because its launch angle is steeper than 45° (tan θ = 20/10 = 2).",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Keeps v_x unchanged across the two events.",
-            "evidence_of": "Uses the horizontal component invariant."
+            "criterion": "Translates '45° below the horizontal' into a condition on velocity components, v_y = −v_x.",
+            "evidence_of": "A direction becomes a component ratio at one instant."
           },
           {
-            "criterion": "Gives v_y equal magnitude and opposite sign.",
-            "evidence_of": "Understands same-height vertical-state symmetry without confusing vector equality."
+            "criterion": "Uses the constant v_x and solves v_y(t) = −10 m/s for t = 3 s.",
+            "evidence_of": "Uses the component invariants of the model."
           },
           {
-            "criterion": "Distinguishes equal speed from equal velocity.",
-            "evidence_of": "Recombines components conceptually rather than comparing only magnitudes."
+            "criterion": "Reports position and speed at that same t, and does not use the direction of the displacement.",
+            "evidence_of": "Keeps velocity direction and position direction distinct."
           }
         ],
         "reasoning_route": [
           {
             "id": "R-KIN-2D-BSTATE-REPRESENT",
             "kind": "REPRESENT",
-            "action": "Represent the two events at the same height on one ideal trajectory, one ascending and one descending, and compare the requested quantities component by component.",
-            "why_valid": "The task asks for a relation between two states rather than their times, so shared height and direction of travel are the demand-bearing event facts.",
+            "action": "Write the component histories: v_x = 10, v_y = 20 − 10t, x = 10t, Δy = 20t − 5t².",
+            "why_valid": "Ideal flight gives a_x = 0 and a_y = −g on one shared clock.",
             "inputs": [
-              "same projectile",
-              "same height",
-              "ascending event",
-              "descending event"
+              "u = (10, 20) m/s",
+              "g = 10 m/s²"
             ],
-            "output": "A two-event comparison frame for v_x, v_y, speed and acceleration without event times."
+            "output": "Velocity and position components as functions of t."
           },
           {
             "id": "R-KIN-2D-BSTATE-DECIDE",
             "kind": "DECIDE",
-            "action": "Choose direct component invariants at equal height as the comparison method instead of solving for the two event times.",
-            "why_valid": "In ideal flight a_x=0 fixes v_x, while constant vertical acceleration gives equal vertical speed magnitude at the same height; ascent and descent determine opposite signs.",
+            "action": "Express '45° below the horizontal' as a condition on the velocity components, v_y/v_x = tan(−45°) = −1, rather than on the displacement.",
+            "why_valid": "The direction of motion at an instant is the direction of the velocity vector, fixed by the ratio of its components; the displacement direction describes where the stone is, not where it is heading.",
             "inputs": [
-              "a_x=0",
-              "a_y=-g",
-              "same vertical position",
-              "ascent versus descent"
+              "direction 45° below horizontal",
+              "v_x = 10 m/s"
             ],
-            "output": "Compare v_x directly and compare v_y by equal magnitude with opposite direction, without a time calculation."
+            "output": "Event condition v_y = −10 m/s."
+          },
+          {
+            "id": "R-KIN-2D-BSTATE-SOLVE",
+            "kind": "TRANSFORM",
+            "action": "Solve 20 − 10t = −10 for t = 3 s.",
+            "why_valid": "v_y is linear in t, so the condition has one root.",
+            "inputs": [
+              "v_y = 20 − 10t",
+              "v_y = −10 m/s"
+            ],
+            "output": "t = 3 s."
           },
           {
             "id": "R-KIN-2D-BSTATE-RECOMBINE",
             "kind": "CONNECT",
-            "action": "Combine the component relations to conclude that speed magnitudes are equal while velocity vectors differ because v_y changes sign.",
-            "why_valid": "Speed depends on v_x^2+v_y^2, whereas vector equality also requires matching component signs.",
+            "action": "Evaluate x = 30 m and Δy = 15 m at t = 3 s, and combine v = (10, −10) m/s into a speed of 10√2 m/s.",
+            "why_valid": "Position and speed belong to the same instant as the direction condition.",
             "inputs": [
-              "same v_x",
-              "equal |v_y|",
-              "opposite v_y signs"
+              "t = 3 s"
             ],
-            "output": "The speeds are equal, but the velocity vectors are different."
-          },
-          {
-            "id": "R-KIN-2D-BSTATE-ACCEL",
-            "kind": "CONNECT",
-            "action": "Keep acceleration a=(0,-g) at both events.",
-            "why_valid": "Gravity is the same retained interaction at both locations, so acceleration does not reverse when vertical velocity reverses.",
-            "inputs": [
-              "gravity-only ideal projectile model"
-            ],
-            "output": "Acceleration is identical and downward at both events."
+            "output": "30 m out, 15 m above launch, speed ≈ 14.1 m/s."
           },
           {
             "id": "R-KIN-2D-BSTATE-CHECK",
             "kind": "VERIFY",
-            "action": "Check vector equality explicitly: ascent has positive v_y and descent has negative v_y, so identical velocity vectors are impossible.",
-            "why_valid": "A sign difference in any Cartesian component distinguishes two vectors even when their magnitudes match.",
+            "action": "Check the speed with v² = u² − 2gΔy, and check that Δy > 0 is consistent with a launch steeper than 45°.",
+            "why_valid": "The time-free relation tests the result without reusing the time.",
             "inputs": [
-              "v_y,up>0",
-              "v_y,down<0"
+              "u² = 500",
+              "Δy = 15 m"
             ],
-            "output": "Equal speed is not mistaken for equal velocity."
+            "output": "v² = 200, matching 10√2 m/s."
           }
         ],
         "crux_move_ref": "R-KIN-2D-BSTATE-DECIDE"
@@ -6455,7 +6677,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Changes a single apex-state calculation into a two-event equal-height state comparison requiring component invariants rather than event-time computation."
+        "reason": "The event is set by the direction of the velocity rather than by a single component vanishing, as at the apex."
       },
       "exposure": [
         {
@@ -6466,27 +6688,40 @@
       ],
       "hints": [
         {
-          "text": "At the same height, which horizontal quantity is unchanged throughout ideal flight, and what must differ between ascent and descent?",
+          "text": "During the flight, which velocity component changes and which stays fixed?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Compare component signs first; only then compare speed magnitudes.",
+          "text": "Write the direction condition as a relation between v_x and v_y at one instant, then solve v_y(t) for that value.",
           "reveals": "METHOD"
         }
       ],
       "repair_ref": "K2D3-7",
       "transfer": {
-        "dimension": "reasoning_steps",
-        "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
+        "dimension": "representation_translation",
+        "statement": "The event is given as a direction of motion, and the learner must translate it into a ratio of velocity components at one instant before any equation can be solved.",
         "builds_on": [
           "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
         ],
         "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE",
-        "invariant": "v_x stays constant and a = (0, −g) at every instant of ideal flight, exactly as at the apex; the task changes from locating one event to comparing two."
+        "invariant": "v_x stays constant and v_y = u_y − gt, as at the apex, and the event time still serves both axes. What changes is that the event condition is a ratio of the two components instead of one component reaching zero.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): the event is a given instant, 1 s, not a direction of motion.",
+            "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): events set by v_y = 0 and Δy = 0, each a single component.",
+            "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): impact set by Δy = −25 m; the impact direction is only an output.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): compares two equal-height states and finds no event time; no direction condition.",
+            "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): whether a_x = 0 holds under thrust; no event is located.",
+            "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): the apex, where one component (v_y) vanishes; the parent this task generalises to a component ratio.",
+            "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): the event is ground impact, Δy = −20 m.",
+            "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): the event is a same-height return, Δy = 0."
+          ],
+          "why_new": "Every earlier event of this capability is fixed by one component: a given time (1 s), v_y = 0 at the apex, Δy = 0 at a same-height return, or Δy = −h at impact. The same-height diagnose/repair compares two states without finding a time. Impact direction appears only as an output, after the time is known. Here the event itself is a direction of motion, and the learner must build the condition v_y = −v_x from the two components and must not use the displacement direction (Δy = −Δx, which gives 6 s). No earlier item shows that translation answered."
+        }
       },
       "scaffolds": [
         {
-          "text": "Make a comparison table for v_x, v_y, speed and acceleration; enter only ‘same height’, ‘upward’ and ‘downward’ before choosing a method.",
+          "text": "Draw the velocity arrow at an unknown later instant with its two components labelled, and mark the 45° angle below the horizontal on it.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
@@ -6520,10 +6755,10 @@
           "VIS-KIN-2D-EVENT-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You got t = 6 s: you made the displacement point 45° below the horizontal (20t − 5t² = −10t), not the velocity. Or you got t = 2 s from v_y = 0: that is the apex, where the motion is horizontal.",
       "family_exposure": {
         "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-        "closure": null
+        "closure": "Established: a direction of motion is a ratio of velocity components at one instant, and it can define the event whose time is sought."
       }
     }
   ],
