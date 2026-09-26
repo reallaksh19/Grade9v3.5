@@ -86,7 +86,7 @@
         "limits",
         "checks"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "record_ref": "REP-PHY-MIP-05-COMPONENT-TABLE",
@@ -140,16 +140,6 @@
       "target": "Q-PHY-MIP-05-EXEMPLAR-4-1",
       "duty_for": "AUTHOR",
       "detail": "answer.check is wrong physics: '|A + B| = |A - B| ... happens only for perpendicular vectors of equal size'. |A+B| = |A-B| holds for perpendicular vectors of any magnitudes (|A+B|^2 - |A-B|^2 = 4AB cos(theta)), as this package's own Q-PHY-MIP-05-EXEMPLAR-4-15 answer shows. Drop 'of equal size' (e.g. 'which happens exactly when A and B are perpendicular')."
-    },
-    {
-      "target": "REL-PHY-MIP-05-LAW-OF-COSINES",
-      "duty_for": "AUTHOR",
-      "detail": "expression includes the law of sines 'R/sin(theta) = A/sin(beta) = B/sin(alpha)' (the physics and the alpha/beta meanings are correct), but the cited cards EV-PHY-11-MIP-05-002 (law of cosines only) and EV-PHY-11-MIP-05-003 (names 'Eq. (3.24d) as the Law of sines' without stating it) do not contain that formula. Re-cite to a card quoting Eq. (3.24d) once it exists, or remove the law-of-sines part from expression."
-    },
-    {
-      "target": "PHY-11-MOTION-IN-A-PLANE-05",
-      "duty_for": "RESEARCHER",
-      "detail": "No card quotes the law of sines, Eq. (3.24d) R/sin(theta) = A/sin(beta) = B/sin(alpha) (NCERT p.34, pinned page 8; extracted text 'R A sin sin sin B (3.24d)' with the derivation 'PM = A sin a = B sin b' above it). Add a RELATION card so REL-PHY-MIP-05-LAW-OF-COSINES.expression can cite it."
     },
     {
       "target": "EV-PHY-11-MIP-05-014",
