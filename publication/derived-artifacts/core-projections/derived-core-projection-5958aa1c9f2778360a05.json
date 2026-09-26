@@ -1,0 +1,148 @@
+{
+  "id": "physics:mic-phy-nlm-net-zero-motion:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+      "title": "Zero net force allows steady motion",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Zero net force does not mean zero motion; it means velocity does not change, so rest and steady motion are both compatible with the same condition.",
+      "entry_assumptions": [
+        "Can tell whether an object's velocity is changing."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM1-1",
+          "role": "DECLARE",
+          "action": "Separate the statement 'is moving' from the statement 'is changing its velocity.'",
+          "why_valid": "Motion and change of motion are different observations, and only the second identifies acceleration.",
+          "inputs": [],
+          "output": "state A: moving steadily.  state B: speeding up, slowing down, or turning."
+        },
+        {
+          "id": "NLM1-2",
+          "role": "TRANSFORM",
+          "action": "Imagine a low-friction cart after the hand has stopped touching it and compare successive equal-time snapshots.",
+          "why_valid": "Once the hand is gone, a continuing steady velocity can be observed without a continuing forward push.",
+          "inputs": [],
+          "output": "successive equal-time snapshots -> equal forward position advances; velocity unchanged."
+        },
+        {
+          "id": "NLM1-3",
+          "role": "VERIFY",
+          "action": "Compare the released moving cart with a cart that starts at rest under the same zero-net-force condition.",
+          "why_valid": "If both keep their initial velocities, the rule is about unchanged velocity rather than about rest.",
+          "inputs": [],
+          "output": "moving cart: stays steady.  resting cart: stays at rest.  both show no velocity change."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A force must keep acting in the direction of motion or the object must stop.",
+          "diagnostic_prompt": "A low-friction cart is pushed and then released. After the hand loses contact, what horizontal force is required merely to keep it moving steadily?",
+          "repair": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+          "reasoning": [
+            "Rest is a zero velocity that stays zero.",
+            "Steady straight motion is a nonzero velocity that stays unchanged.",
+            "The shared condition is no change of velocity, not no motion."
+          ],
+          "check": "Ask whether the motion description contains speeding up, slowing down, or turning. If none occurs, zero net force remains compatible.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies motion qualitatively and asserts no computed force or acceleration."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

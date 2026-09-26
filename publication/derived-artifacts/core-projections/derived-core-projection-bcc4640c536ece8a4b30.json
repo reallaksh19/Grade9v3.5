@@ -1,0 +1,359 @@
+{
+  "id": "physics:mic-phy-sound-wave-quantities:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+      "title": "Sound graphs separate amplitude, wavelength, period, frequency and speed",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A spatial graph gives wavelength from repeat distance, a temporal graph gives period from repeat time, amplitude comes from vertical extent, f=1/T, and for one wave in one medium/state v=fλ; changing medium can change v.",
+      "entry_assumptions": [
+        "Can distinguish the wave pattern from local particle motion and can read labelled graph axes."
+      ],
+      "teaching_path": [
+        {
+          "id": "SOUND3-1",
+          "role": "DECLARE",
+          "action": "Compare the sampled spatial snapshot with the sampled time trace and read each horizontal-axis label before naming a repeat interval.",
+          "why_valid": "Repeat distance on a position axis is wavelength, while repeat time on a time axis is period; the axis determines the physical meaning.",
+          "inputs": [
+            "CAP-SOUND-LONGITUDINAL",
+            "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+            "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+          ],
+          "output": "spatial repeat: lambda = 1.7 m; temporal repeat: T = 0.005 s; vertical amplitude = 1 cm."
+        },
+        {
+          "id": "SOUND3-2",
+          "role": "TRANSFORM",
+          "action": "Take the reciprocal of the positive period read from the temporal graph.",
+          "why_valid": "REL-FREQUENCY-PERIOD owns the conversion from time per cycle to cycles per second.",
+          "inputs": [
+            "REL-FREQUENCY-PERIOD"
+          ],
+          "output": "f = 1/T = 1/0.005 s = 200 Hz."
+        },
+        {
+          "id": "SOUND3-3",
+          "role": "TRANSFORM",
+          "action": "Follow one repeated phase: in one period T the travelling pattern advances one wavelength lambda, then replace 1/T with f.",
+          "why_valid": "Speed is distance per time for the same pattern, and the gate-owned relations bind T and f for the same wave.",
+          "inputs": [
+            "REL-FREQUENCY-PERIOD",
+            "REL-WAVE-SPEED"
+          ],
+          "output": "v = lambda/T = f lambda = 200 Hz × 1.7 m = 340 m/s."
+        },
+        {
+          "id": "SOUND3-4",
+          "role": "VERIFY",
+          "action": "Change only the plotted vertical amplitude while holding repeat spacing fixed.",
+          "why_valid": "Amplitude measures disturbance size, whereas period/frequency and wavelength measure repeat spacing on different axes.",
+          "inputs": [],
+          "output": "amplitude can change from 1 cm to 2 cm while T = 0.005 s, f = 200 Hz, and lambda = 1.7 m remain unchanged."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A taller wave automatically has a higher frequency.",
+          "diagnostic_prompt": "Two traces have the same horizontal repeat time but different vertical amplitudes. Must their frequencies differ?",
+          "repair": "Read the horizontal time spacing for period/frequency; amplitude comes from vertical extent."
+        },
+        {
+          "wrong_idea": "The same frequency and wavelength values can be mixed across different media to infer one universal sound speed.",
+          "diagnostic_prompt": "A sound enters a different medium. Can you keep the old wavelength and the new frequency in v=fλ without checking that they describe the same wave state?",
+          "repair": "Use f and λ from the same wave/medium state. Medium change can change propagation speed and wavelength."
+        }
+      ],
+      "representation_refs": [
+        "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+        "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+          "correspondence": [
+            {
+              "element": "position coordinates along the medium",
+              "symbol": "lambda",
+              "in_words": "The horizontal separation between matching phases in this spatial snapshot is the wavelength lambda."
+            },
+            {
+              "element": "repeated spatial pattern",
+              "symbol": "v",
+              "in_words": "The travelling repetition is the spatial pattern whose propagation speed is v; the static picture alone does not give v without time information."
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SCENE-PHY-SOUND-SPATIAL-01",
+              "cores": [
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "datum_refs": [
+                "DAT-SOUND-GRAPH-X0",
+                "DAT-SOUND-GRAPH-X1",
+                "DAT-SOUND-GRAPH-X2",
+                "DAT-SOUND-GRAPH-X3",
+                "DAT-SOUND-GRAPH-X4",
+                "DAT-SOUND-GRAPH-X5",
+                "DAT-SOUND-GRAPH-X6",
+                "DAT-SOUND-GRAPH-X7",
+                "DAT-SOUND-GRAPH-X8",
+                "DAT-SOUND-GRAPH-Y0",
+                "DAT-SOUND-GRAPH-YPLUS",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              "scene": {
+                "kind": "GRAPH",
+                "frame": "spatial snapshot of a repeating sound disturbance",
+                "caption": "Sampled disturbance versus position: adjacent positive peaks are 1.7 m apart and the amplitude is 1 cm.",
+                "x_label": "position (m)",
+                "y_label": "disturbance (cm)",
+                "x_unit": "m",
+                "y_unit": "cm",
+                "points": [
+                  [
+                    "DAT-SOUND-GRAPH-X0",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X1",
+                    "DAT-SOUND-GRAPH-YPLUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X2",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X3",
+                    "DAT-SOUND-GRAPH-YMINUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X4",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X5",
+                    "DAT-SOUND-GRAPH-YPLUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X6",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X7",
+                    "DAT-SOUND-GRAPH-YMINUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-X8",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "representation_ref": "REP-PHY-SOUND-TEMPORAL-WAVE-GRAPH",
+          "correspondence": [
+            {
+              "element": "time coordinates at one location",
+              "symbol": "T",
+              "in_words": "The elapsed time between matching phases on this time trace is the period T."
+            },
+            {
+              "element": "repeated temporal pattern",
+              "symbol": "f",
+              "in_words": "The repetition rate of this same trace is frequency f = 1/T."
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SCENE-PHY-SOUND-TEMPORAL-01",
+              "cores": [
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-PHY-SOUND-WAVE-QUANTITIES",
+              "datum_refs": [
+                "DAT-SOUND-GRAPH-T0",
+                "DAT-SOUND-GRAPH-T1",
+                "DAT-SOUND-GRAPH-T2",
+                "DAT-SOUND-GRAPH-T3",
+                "DAT-SOUND-GRAPH-T4",
+                "DAT-SOUND-GRAPH-T5",
+                "DAT-SOUND-GRAPH-T6",
+                "DAT-SOUND-GRAPH-T7",
+                "DAT-SOUND-GRAPH-T8",
+                "DAT-SOUND-GRAPH-Y0",
+                "DAT-SOUND-GRAPH-YPLUS",
+                "DAT-SOUND-GRAPH-YMINUS"
+              ],
+              "scene": {
+                "kind": "GRAPH",
+                "frame": "temporal trace of a repeating sound disturbance at one location",
+                "caption": "Sampled disturbance versus time: adjacent positive peaks are 0.005 s apart and the amplitude is 1 cm.",
+                "x_label": "time (s)",
+                "y_label": "disturbance (cm)",
+                "x_unit": "s",
+                "y_unit": "cm",
+                "points": [
+                  [
+                    "DAT-SOUND-GRAPH-T0",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T1",
+                    "DAT-SOUND-GRAPH-YPLUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T2",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T3",
+                    "DAT-SOUND-GRAPH-YMINUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T4",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T5",
+                    "DAT-SOUND-GRAPH-YPLUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T6",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T7",
+                    "DAT-SOUND-GRAPH-YMINUS"
+                  ],
+                  [
+                    "DAT-SOUND-GRAPH-T8",
+                    "DAT-SOUND-GRAPH-Y0"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "relation_checks": [
+        "f T = 1.",
+        "Longer period means lower frequency.",
+        "Hz times m gives m/s.",
+        "At fixed medium speed, increasing f requires decreasing lambda."
+      ],
+      "exit_task": {
+        "prompt": "A spatial sound graph has adjacent positive peaks 1.7 m apart, and a time trace of the same wave at one location has adjacent positive peaks 0.005 s apart. The vertical amplitude is 1 cm. Identify wavelength, period and amplitude, then find frequency and wave speed.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "lambda = 1.7 m, T = 0.005 s, amplitude = 1 cm, f = 200 Hz, and v = 340 m/s.",
+          "reasoning": [
+            "The spatial repeat distance gives wavelength: lambda = 1.7 m.",
+            "The temporal repeat interval gives period: T = 0.005 s.",
+            "The vertical extreme gives amplitude: 1 cm.",
+            "f = 1/T = 200 Hz.",
+            "One wavelength advances in one period, so v = lambda/T = f lambda = 340 m/s."
+          ],
+          "check": "The units confirm Hz × m = m/s, and changing amplitude alone would not alter the repeat spacings.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "WAVE_SPEED",
+            "bindings": {
+              "frequency": "DAT-SOUND-FREQUENCY",
+              "wavelength": "DAT-SOUND-LAMBDA"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

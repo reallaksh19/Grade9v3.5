@@ -1,0 +1,230 @@
+{
+  "id": "physics:mic-phy-nlm-second-law:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-SECOND-LAW",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+      "title": "Net force, not any one force, sets acceleration",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "For a chosen body of positive mass in the Grade 9 inertial-frame model, acceleration points with the signed net external force and satisfies F_net = m a.",
+      "entry_assumptions": [
+        "Can choose one body, draw its external forces, and distinguish zero from nonzero net force."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM6-1",
+          "role": "DECLARE",
+          "action": "Choose one body, declare a positive direction, and list only external forces acting on that body.",
+          "why_valid": "The net-force relation applies to one body's external force sum.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "one body; one signed axis; signed external-force list."
+        },
+        {
+          "id": "NLM6-2",
+          "role": "TRANSFORM",
+          "action": "Add the signed forces to obtain F_net, then use F_net = m a.",
+          "why_valid": "REL-NEWTON-SECOND-LAW is the gate-owned relation for the chosen body.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW"
+          ],
+          "output": "F_net = signed sum; a = F_net / m."
+        },
+        {
+          "id": "NLM6-3",
+          "role": "VERIFY",
+          "action": "Return to an equal-opposite force case.",
+          "why_valid": "The relation must recover zero acceleration when the signed force sum is zero.",
+          "inputs": [],
+          "output": "F_net = 0 -> a = 0 for m > 0."
+        },
+        {
+          "id": "NLM6-4",
+          "role": "DECLARE",
+          "action": "Choose axes that make the active constraint easy to express; for a fixed inclined contact, use parallel/perpendicular axes when helpful, resolve the physical forces into those axes, and write separate signed Newton-II equations.",
+          "why_valid": "Newton II is coordinate-independent. Aligning one axis with the contact makes maintained contact explicit as a_perp=0 while leaving the tangential acceleration free to be nonzero.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "output": "contact-aligned model: Sigma F_parallel = m a_parallel; Sigma F_perp = m a_perp, with maintained fixed contact -> a_perp = 0"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A body moves right while its net external force points left. Which way is its acceleration?",
+          "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
+        },
+        "attempt": {
+          "produces": "A one-body signed force sum and a signed acceleration.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Sums forces before using F = ma.",
+              "evidence_of": "Using net external force rather than a selected force."
+            },
+            {
+              "criterion": "Keeps the acceleration sign consistent with the chosen axis.",
+              "evidence_of": "Maintaining direction through the scalar component equation."
+            }
+          ],
+          "accepted": [
+            "+12 N on 4 kg -> +3 m/s^2."
+          ],
+          "rejected": [
+            "Using the direction of velocity to choose acceleration sign."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which body are we solving for?",
+              "why_this_ask": "It fixes force ownership.",
+              "from_step_ref": "NLM6-1"
+            },
+            {
+              "ask": "What is the signed sum of forces on that body?",
+              "why_this_ask": "It constructs the quantity the law uses."
+            },
+            {
+              "ask": "What positive mass belongs to that same body?",
+              "why_this_ask": "It prevents cross-body substitution."
+            },
+            {
+              "ask": "Does the zero-net-force boundary give zero acceleration?",
+              "why_this_ask": "It independently checks the result.",
+              "from_step_ref": "NLM6-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier."
+        },
+        "boundary_test": {
+          "prompt": "If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?",
+          "answer": "Zero acceleration.",
+          "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Acceleration points with whichever individual force looks largest in the diagram.",
+          "diagnostic_prompt": "Two 10 N forces act opposite each other on a body. Does either force make the body accelerate in its direction?",
+          "repair": "Add all signed external forces first; acceleration follows the net force, not an isolated arrow."
+        },
+        {
+          "wrong_idea": "If a block on a fixed incline has zero acceleration perpendicular to the plane, its total acceleration must be zero.",
+          "diagnostic_prompt": "Can a block remain in contact with a fixed plane while speeding up down the plane?",
+          "repair": "Yes. Maintained contact sets only a_perp=0. The parallel component a_parallel is determined independently by the net force along the plane."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Equal opposite forces give F_net = 0 and therefore a = 0.",
+        "For fixed mass, reversing F_net reverses a."
+      ],
+      "exit_task": {
+        "prompt": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The acceleration is +3 m/s^2.",
+          "reasoning": [
+            "Use F_net = m a for the chosen body.",
+            "a = +12 N / 4 kg = +3 m/s^2.",
+            "The positive sign matches the net-force direction."
+          ],
+          "check": "Multiplying 4 kg by +3 m/s^2 recovers +12 N.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "NEWTON_SECOND_LAW",
+            "bindings": {
+              "mass": "DAT-NLM-MASS",
+              "acceleration": "DAT-NLM-ACCEL"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

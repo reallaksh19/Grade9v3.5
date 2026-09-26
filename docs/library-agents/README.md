@@ -47,6 +47,8 @@ The scanner is a researcher working on the owner's machine with scanned books an
 cards go through the same checks, and CI verifies its quotes from a hashed page index, so the
 book's text is never published.
 
+Paste-ready prompts to start each agent are in [`template/library-agents/`](../../template/library-agents/00-README.md).
+
 ## Shared commands
 
 ```sh

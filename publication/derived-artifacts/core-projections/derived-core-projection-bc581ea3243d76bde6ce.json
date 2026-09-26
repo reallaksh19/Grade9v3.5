@@ -1,0 +1,202 @@
+{
+  "id": "physics:mic-measured-from:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-MEASURED-FROM",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-MEASURED-FROM",
+      "title": "A number alone does not say where something is",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "\"Where is it?\" has no answer until you say measured from what. Position is a relation, not a property of the object.",
+      "entry_assumptions": [
+        "Can say where a thing is by pointing or counting paces."
+      ],
+      "teaching_path": [
+        {
+          "id": "RP0-1",
+          "action": "Count paces from the door to the chair: four. Now count from the window to the same chair: four again.",
+          "why_valid": "Both counts are honest measurements of the same chair, made without moving it, so neither can be dismissed as a mistake.",
+          "inputs": [],
+          "output": "door -> chair: 4 paces.  window -> chair: 4 paces.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "RP0-2",
+          "action": "Say each answer in full, out loud: four paces from the door, walking toward the window; four paces from the window, walking toward the door.",
+          "why_valid": "Adding what each count started from is the only change made, and the two answers stop matching -- so the bare four was hiding the difference rather than describing it.",
+          "inputs": [],
+          "output": "\"4 paces from the door, toward the window\"  and  \"4 paces from the window, toward the door\"",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "RP0-3",
+          "action": "Hand someone the number four on its own and ask them to put the chair back where it was.",
+          "why_valid": "They cannot do it, and what they ask for is exactly what was left out: what the four was counted from.",
+          "inputs": [],
+          "output": "\"Four from where?\" -- the question the listener has to ask back.",
+          "role": "VERIFY"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "You and a friend are each asked where the same chair is, and you both answer \"four paces\". Before reading on: does that mean you agree?",
+          "defensible_answer": "Not necessarily. Four paces from one starting place and four paces from another put the chair in two different places, and nothing said so far rules that out."
+        },
+        "attempt": {
+          "produces": "A sketch of a room with two starting places marked, and one chair that is four paces from both.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Two different starting places are marked, and the chair is four paces from each.",
+              "evidence_of": "Holding both counts as correct at once, rather than deciding one of them must be a mistake."
+            },
+            {
+              "criterion": "Each answer is written out with the place it was counted from attached.",
+              "evidence_of": "Treating what it was measured from as part of the answer rather than as background."
+            }
+          ],
+          "accepted": [
+            "Two starting places marked -- say the door and the window -- with the chair drawn four paces from each, and both answers written out as \"four paces from the door\" and \"four paces from the window\"."
+          ],
+          "rejected": [
+            "One starting place marked and the second answer treated as a miscount to be corrected. The sketch then shows one place for the chair, so the collision that makes the bare number look incomplete never appears, and the learner leaves agreeing with a rule they were told rather than one they hit."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "You counted four. What did you start counting from?",
+              "why_this_ask": "It asks for the piece the learner already used and did not say, which is easier to notice as missing than to define in advance.",
+              "from_step_ref": "RP0-1"
+            },
+            {
+              "ask": "Your friend also counted four, starting somewhere else. Is the chair in the same place in both answers?",
+              "why_this_ask": "It puts two correct answers in conflict, which is the only thing that makes the bare number look incomplete."
+            },
+            {
+              "ask": "Say your answer again, this time in a way your friend could use to walk to the chair.",
+              "why_this_ask": "The repair is produced by the learner as a sentence that has to work for someone else, rather than received as a rule.",
+              "from_step_ref": "RP0-2"
+            },
+            {
+              "ask": "What did you have to add, and why could the number not do that job on its own?",
+              "why_this_ask": "It names the jump in the learner's own words at the point where they have just made it.",
+              "from_step_ref": "RP0-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path demonstrates the collision and then names what was missing. Here the learner is asked to hand their own answer to somebody else, discovers it does not work, and supplies the missing piece before it has a name."
+        },
+        "boundary_test": {
+          "prompt": "Someone says the chair is four paces from the door. The next day the door has been moved. Is the description still right?",
+          "answer": "It is no longer usable, and that is the point: the description was never about the chair alone. It held for as long as what it was counted from stayed put.",
+          "confirms": "That what a place is measured from is part of the description, not a detail outside it."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Position is a property the object carries with it.",
+          "diagnostic_prompt": "Two people give different answers for where the same chair is. Can both be right?",
+          "repair": "Say what you measured from, then give the number; the number alone is not the answer."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two people are asked where the same chair is. Both answer \"four paces\". Say whether they have described the same place, and what each would have to add before anyone could tell.",
+        "source_ref": "SRC-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Not yet decidable: both answers are incomplete in the same way, and each needs what it was counted from.",
+          "reasoning": [
+            "Four is a count, and a count on its own does not name a place.",
+            "If both counted from the door they agree; if one counted from the door and one from the window they do not, and the two answers given cannot tell those cases apart.",
+            "What is missing from each is the thing it was counted from, together with which way the paces went."
+          ],
+          "check": "Ask someone else to put the chair back using only what was said. If they cannot, the description is still incomplete.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer asserts no computed value. It decides whether two descriptions are distinguishable, and the learner's own check is whether a second person can act on what was said."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

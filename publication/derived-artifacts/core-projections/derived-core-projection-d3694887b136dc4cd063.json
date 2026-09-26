@@ -1,0 +1,198 @@
+{
+  "id": "physics:mic-elec-current-conservation:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-ELEC-CURRENT-CONSERVATION",
+      "title": "Charge flow is not consumed by a component",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Current is a rate of charge passing a boundary; charge is not used up by a resistor.",
+      "entry_assumptions": [
+        "Can count charge carriers or total charge crossing a point over a time interval."
+      ],
+      "teaching_path": [
+        {
+          "id": "ELEC-R1-1",
+          "role": "DECLARE",
+          "action": "Mark an entry boundary and an exit boundary around one component, and compare charge passage over matching time windows.",
+          "why_valid": "Matching intervals make the two flow statements comparable; otherwise a difference could come only from observing for different lengths of time.",
+          "inputs": [],
+          "output": "entry boundary = one count window; exit boundary = the same count window"
+        },
+        {
+          "id": "ELEC-R1-2",
+          "role": "TRANSFORM",
+          "action": "Suppose the entry flow were persistently larger than the exit flow while the circuit stayed steady.",
+          "why_valid": "The difference would have to remain inside the component as accumulating charge, so a permanent mismatch contradicts the stated steady condition.",
+          "inputs": [],
+          "output": "more in than out -> charge pile-up; steady no-pile-up -> matching flow"
+        },
+        {
+          "id": "ELEC-R1-3",
+          "role": "VERIFY",
+          "action": "Repeat the boundary comparison after replacing the component with a different ordinary component while keeping a single unbranched path.",
+          "why_valid": "The conservation argument depends on the steady one-path condition, not on the component's particular construction.",
+          "inputs": [],
+          "output": "single steady path -> same flow at entry and exit"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a lamp glows in a steady one-path circuit, should less charge per second leave the lamp than entered it?",
+          "defensible_answer": "No. A lasting difference would imply charge continuously collecting inside the lamp."
+        },
+        "attempt": {
+          "produces": "A boundary ledger showing what crosses into and out of one component during the same interval, plus a sentence accounting for any proposed mismatch.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The entry and exit observations use the same time interval.",
+              "evidence_of": "Making the two flow-rate claims comparable."
+            },
+            {
+              "criterion": "Any proposed mismatch is traced to charge accumulation inside the component.",
+              "evidence_of": "Using conservation rather than the vague claim that current stays the same."
+            }
+          ],
+          "accepted": [
+            "The ledger compares matching windows and says a persistent excess entering would pile charge up inside, so a steady case requires matching entry and exit flow."
+          ],
+          "rejected": [
+            "The response says the component uses some current and therefore less leaves, but names no place where the missing charge accumulates."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What two boundaries would you watch if you wanted to know whether charge disappeared inside the component?",
+              "why_this_ask": "It turns a vague flow idea into a closed accounting region.",
+              "from_step_ref": "ELEC-R1-1"
+            },
+            {
+              "ask": "If more charge keeps entering than leaving, what must happen inside that region over time?",
+              "why_this_ask": "The consequence of the misconception is easier to test than the rule itself.",
+              "from_step_ref": "ELEC-R1-2"
+            },
+            {
+              "ask": "Does changing the component remove that accounting requirement while the path remains single and steady?",
+              "why_this_ask": "It tests whether the learner attached the result to conservation rather than to one device.",
+              "from_step_ref": "ELEC-R1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path presents the boundary ledger; the elicitation route begins with the learner's own consumption prediction and makes them locate the supposedly missing charge."
+        },
+        "boundary_test": {
+          "prompt": "Could entry and exit flow differ briefly while charge is building up on part of a circuit?",
+          "answer": "Yes. The steady-state conclusion does not forbid a transient interval in which charge distribution is still changing.",
+          "confirms": "The conservation claim is tied to the stated steady condition rather than asserted as an exceptionless slogan."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Current gets smaller after charge passes through a resistor.",
+          "diagnostic_prompt": "One ampere enters a resistor in a single unbranched path. In steady operation, what current leaves it?",
+          "repair": "Track charge through the boundary: steady current cannot accumulate charge inside the resistor."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A steady single-path circuit carries charge through one component. Say whether the charge-flow rate can be persistently smaller at the exit than at the entry and justify the answer without appealing to what the component does with energy.",
+        "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It cannot be persistently smaller in the stated steady one-path case, because the missing charge would otherwise have to accumulate inside the component.",
+          "reasoning": [
+            "Compare entry and exit over the same time window so the two flow statements refer to the same interval.",
+            "A sustained excess entering over leaving would increase the charge stored inside the component.",
+            "The stated steady condition excludes continuing accumulation, so the entry and exit flow rates must match."
+          ],
+          "check": "Ask where the difference would physically go if the two steady flow rates were unequal; if no accumulating store is allowed, the mismatch is inconsistent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer is a conservation argument about equality of steady flow, not a computation of a numerical electrical quantity."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

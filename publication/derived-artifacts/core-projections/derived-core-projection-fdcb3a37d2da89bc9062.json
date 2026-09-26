@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-elec-ohmic-model-test:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-ELEC-OHMIC-MODEL-TEST",
+      "title": "Ohmic behavior is a tested model, not a permanent label",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A constant-resistance Ohmic model is supported only when one device keeps the same voltage-to-current ratio across operating points while the relevant conditions are held fixed; changing the operating condition can make that model stop fitting.",
+      "entry_assumptions": [
+        "Can read paired voltage and current measurements for one device.",
+        "Can compare repeated ratios without treating a device name as evidence."
+      ],
+      "teaching_path": [
+        {
+          "id": "ELEC-R4-1",
+          "role": "DECLARE",
+          "action": "Fix one device and one thermal condition, then place several measured voltage-current pairs in a table before naming any model.",
+          "why_valid": "The model is a claim about a repeatable relationship under stated conditions, so device identity and condition must be held fixed before the measurements can test it.",
+          "inputs": [],
+          "output": "same device + same thermal condition -> compare one V-I table"
+        },
+        {
+          "id": "ELEC-R4-2",
+          "role": "TRANSFORM",
+          "action": "For the first table, divide each voltage by its paired current and compare the results.",
+          "why_valid": "A single constant-resistance model predicts one unchanged proportionality across the measured operating points, so the repeated ratio is the direct test of that model.",
+          "inputs": [],
+          "output": "2/1 = 2 Ω; 4/2 = 2 Ω; 6/3 = 2 Ω -> one constant ratio"
+        },
+        {
+          "id": "ELEC-R4-3",
+          "role": "VERIFY",
+          "action": "Repeat the same ratio check for a second table in which the device condition has changed, and refuse to carry the first model across automatically.",
+          "why_valid": "Evidence collected under one condition does not authorize the same parameter under a changed condition; re-testing distinguishes a model from a permanent device label.",
+          "inputs": [],
+          "output": "condition A: one ratio pattern; condition B: changed ratio pattern -> re-test the model"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A component is called a resistor. Before seeing any measurements, is that name enough to prove one constant resistance describes it at every operating point?",
+          "defensible_answer": "No. The constant-resistance claim must be tested against measured voltage-current pairs under stated conditions."
+        },
+        "attempt": {
+          "produces": "A model decision for each of two V-I tables, with the repeated-ratio evidence written beside the decision.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The decision is based on whether the voltage-to-current ratio stays constant across all listed pairs.",
+              "evidence_of": "Testing the model against the whole measured pattern rather than one convenient point."
+            },
+            {
+              "criterion": "The stated fixed condition is kept attached to the conclusion.",
+              "evidence_of": "Treating constant resistance as a conditional model rather than a permanent device property."
+            }
+          ],
+          "accepted": [
+            "Table A supports one constant resistance because the same ratio pattern persists at every measured point under the fixed condition; table B does not because its ratio pattern changes."
+          ],
+          "rejected": [
+            "Both tables are called Ohmic because each contains voltage and current values; no comparison across operating points is made."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What must stay fixed before measurements from different operating points can test one model?",
+              "why_this_ask": "It prevents a condition change from being mistaken for failure or success of the same model.",
+              "from_step_ref": "ELEC-R4-1"
+            },
+            {
+              "ask": "What comparison can you repeat for every voltage-current pair without assuming the answer first?",
+              "why_this_ask": "The learner discovers the proportionality test from the data rather than receiving a device label.",
+              "from_step_ref": "ELEC-R4-2"
+            },
+            {
+              "ask": "If that comparison is unchanged in one table and changes in another, which table supports one constant parameter?",
+              "why_this_ask": "This turns the numerical pattern into the model-choice claim the rung teaches."
+            },
+            {
+              "ask": "What should you do after the device temperature changes?",
+              "why_this_ask": "The final ask tests whether the learner understands the stated condition as part of the model.",
+              "from_step_ref": "ELEC-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path starts with a declared measurement condition and performs the ratio test; the elicitation route first challenges the device-label shortcut and makes the learner identify what evidence could justify the model."
+        },
+        "boundary_test": {
+          "prompt": "If only one voltage-current pair has been measured, can that single point establish that the ratio will remain constant as the operating point changes?",
+          "answer": "No. One point can be fitted by a constant parameter, but it cannot show that the same parameter persists across other operating points.",
+          "confirms": "The rung is about evidence for a relationship across conditions, not about attaching a resistance label from one measurement."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Every electrical component has one fixed resistance, so a constant-resistance model always applies.",
+          "diagnostic_prompt": "If doubling the voltage more than doubles the current, is one constant ratio enough to describe the device over those measurements?",
+          "repair": "Use the measured voltage-current pattern first; keep one constant resistance only when the ratio stays unchanged under the stated fixed conditions."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two voltage-current tables come from devices tested under fixed conditions. In table A the voltage-to-current ratio stays the same across all measured points; in table B it changes. Decide which table supports one constant-resistance Ohmic model and state the evidence.",
+        "source_ref": "SRC-AUTHOR-ELEC-CURRENT-OHM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Table A supports the constant-resistance model because its voltage-to-current ratio is unchanged across the measurements; table B does not because that ratio changes.",
+          "reasoning": [
+            "Treat each table as evidence rather than assuming a model from the device name.",
+            "Compare the voltage-to-current ratio across every operating point in the same table.",
+            "Keep the constant-resistance model only for the table whose ratio remains unchanged under the stated fixed conditions."
+          ],
+          "check": "A different pair from the same table should lead to the same model decision; if one pair changes the ratio pattern, the constant-resistance claim is not supported over the full set.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer classifies whether a constant-ratio model is supported; it reports no computed resistance value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

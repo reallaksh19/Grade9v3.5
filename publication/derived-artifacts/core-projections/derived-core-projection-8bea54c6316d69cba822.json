@@ -1,0 +1,148 @@
+{
+  "id": "physics:mic-opt-real-virtual-image:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-REAL-VIRTUAL-IMAGE",
+      "title": "Real and virtual describe how light paths meet",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "An image location is determined by where reflected rays actually meet or where their backward extensions appear to meet; virtual describes ray geometry, not whether a camera can record it.",
+      "entry_assumptions": [
+        "R1: reflection direction is fixed by equal angles measured from the normal."
+      ],
+      "teaching_path": [
+        {
+          "id": "OPT-R2-1",
+          "role": "DECLARE",
+          "action": "Trace at least two reflected light paths from the same object point and keep their physical forward portions solid.",
+          "why_valid": "One path cannot locate an image point; two or more paths reveal whether the light itself converges.",
+          "inputs": [],
+          "output": "two reflected paths -> enough geometry to test a meeting point"
+        },
+        {
+          "id": "OPT-R2-2",
+          "role": "TRANSFORM",
+          "action": "When the reflected paths diverge, extend them backward with a visibly different line style until the extensions meet.",
+          "why_valid": "The extensions are a geometric inference about apparent origin, not additional light travelling behind the mirror, so changing the line style preserves that distinction.",
+          "inputs": [],
+          "output": "solid paths diverge -> dashed backward extensions meet behind the mirror"
+        },
+        {
+          "id": "OPT-R2-3",
+          "role": "VERIFY",
+          "action": "Place an eye or camera where it can receive the reflected bundle and ask whether collecting those diverging paths changes where their backward extensions meet.",
+          "why_valid": "A detector can refocus incoming light without converting the mirror's apparent-origin geometry into an actual meeting point at the mirror.",
+          "inputs": [],
+          "output": "camera receives reflected bundle -> apparent mirror-image location remains virtual"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A virtual image is not a usable image and therefore cannot be photographed.",
+          "diagnostic_prompt": "A camera points at a plane mirror and records your reflection. Does that make the mirror image real?",
+          "repair": "Separate image geometry from recording: the mirror sends diverging rays that a camera lens can collect and refocus."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Given two reflected light paths from one object point, classify the image location from whether the physical paths meet or only their backward extensions meet, and explain why visibility or photography does not change that classification.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "An actual meeting of reflected light paths gives a real image point; a meeting only of backward extensions gives a virtual image point, and either ray bundle can still enter an eye or camera.",
+          "reasoning": [
+            "Use more than one reflected path so an intersection is a geometric fact rather than an assumption.",
+            "Distinguish physical forward paths from backward extensions by line style and direction.",
+            "Classify the image from which kind of intersection occurs, not from whether a detector can receive the light."
+          ],
+          "check": "Remove the observer or camera from the drawing. The path intersection or backward-extension intersection that defines the image should not move.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer classifies path geometry and detector independence; it asserts no computed distance or image size."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

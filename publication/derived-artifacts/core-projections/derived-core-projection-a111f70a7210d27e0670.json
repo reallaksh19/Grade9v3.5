@@ -1,0 +1,149 @@
+{
+  "id": "physics:mic-phy-thermo-r5:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-THERMO-R5",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-THERMO-R5",
+      "title": "Heat engines require heat rejection and obey a reservoir-temperature ceiling",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A heat engine cannot convert all absorbed heat into work; even an ideal reversible engine between finite-temperature reservoirs has a maximum efficiency set by those reservoir temperatures.",
+      "entry_assumptions": [
+        "Can read a cyclic energy-flow diagram with heat entering, work leaving, and heat rejected.",
+        "Can compare hot- and cold-reservoir temperatures qualitatively."
+      ],
+      "teaching_path": [
+        {
+          "id": "THERMO-R5-1",
+          "role": "DECLARE",
+          "action": "Draw a cyclic engine between one hot reservoir and one colder reservoir, with absorbed heat entering, work leaving, and rejected heat leaving toward the cold reservoir.",
+          "why_valid": "A cyclic heat engine returns its working substance to its starting state, so sustained work output requires an energy-flow ledger across the cycle rather than storage inside the engine.",
+          "inputs": [],
+          "output": "hot reservoir -> heat in -> engine -> work out + heat out -> cold reservoir"
+        },
+        {
+          "id": "THERMO-R5-2",
+          "role": "TRANSFORM",
+          "action": "Imagine removing friction and other mechanical losses while keeping the same two finite-temperature reservoirs.",
+          "why_valid": "Removing dissipative losses can improve performance, but it does not remove the thermodynamic requirement that a cyclic engine reject some heat to the colder reservoir.",
+          "inputs": [],
+          "output": "mechanical losses: present -> removed; rejected heat: remains required; efficiency: improves but stays below complete conversion"
+        },
+        {
+          "id": "THERMO-R5-3",
+          "role": "VERIFY",
+          "action": "Lower the cold-reservoir temperature while holding the hot-reservoir temperature fixed, then compare the reversible performance ceiling.",
+          "why_valid": "The maximum reversible efficiency depends on the separation of the reservoir temperatures, so changing the cold reservoir changes the ceiling without changing mechanical friction.",
+          "inputs": [],
+          "output": "hot reservoir fixed; cold temperature -> lower; reversible efficiency ceiling -> higher, still below complete conversion for finite temperatures"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "An ideal engine can reach 100% efficiency if friction and other mechanical losses are removed.",
+          "diagnostic_prompt": "An engine absorbs heat from a hot reservoir and rejects none to a colder reservoir. Is that allowed merely because the engine is otherwise frictionless?",
+          "repair": "The second-law limitation is not a mechanical-loss correction; some heat rejection is unavoidable for a cyclic heat engine between finite-temperature reservoirs."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A frictionless cyclic heat engine operates between finite hot and cold reservoirs. Explain why frictionlessness does not permit complete conversion of absorbed heat into work and how making the cold reservoir colder changes the ideal ceiling.",
+        "source_ref": "SRC-AUTHOR-PHY-THERMO",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Eliminating mechanical losses does not remove the need to reject some heat to the colder reservoir; lowering the cold-reservoir temperature raises the reversible efficiency ceiling but does not make a finite-temperature engine a complete heat-to-work converter.",
+          "reasoning": [
+            "Mechanical friction is one source of loss, but the second-law restriction is not caused by friction.",
+            "A cyclic engine between finite reservoirs must reject heat to the colder reservoir.",
+            "Increasing the temperature separation can raise the reversible ceiling, yet the existence of the cold-reservoir heat flow remains part of the cycle."
+          ],
+          "check": "Compare two real engines between the same reservoirs; neither may be justified as exceeding the reversible benchmark simply by claiming better bearings or less friction.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response compares qualitative efficiency limits and heat-flow requirements without calculating an efficiency percentage."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

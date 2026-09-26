@@ -1,0 +1,156 @@
+{
+  "id": "physics:mic-phy-kin-zero-v-nonzero-a:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-ZERO-V-NONZERO-A",
+      "title": "Zero velocity at an instant does not mean zero acceleration",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Velocity and acceleration answer different questions: velocity can be zero at one instant while a nonzero acceleration determines the change through that instant.",
+      "entry_assumptions": [
+        "Can distinguish the direction of motion just before and just after a turning point."
+      ],
+      "teaching_path": [
+        {
+          "id": "KIN3-1",
+          "role": "DECLARE",
+          "action": "Record three moments around a vertical turning point: just before the top, at the top, and just after.",
+          "why_valid": "A single snapshot hides change; neighbouring moments reveal whether the zero-velocity state persists.",
+          "inputs": [],
+          "output": "before: moving upward.  top: velocity zero.  after: moving downward."
+        },
+        {
+          "id": "KIN3-2",
+          "role": "TRANSFORM",
+          "action": "Compare the direction of the velocity change across those three moments.",
+          "why_valid": "Going from upward through zero to downward requires the velocity to keep changing through the top instant.",
+          "inputs": [],
+          "output": "velocity change through the top: downward, including at the zero-velocity instant."
+        },
+        {
+          "id": "KIN3-3",
+          "role": "VERIFY",
+          "action": "Contrast the turning point with an object that is simply resting on a shelf.",
+          "why_valid": "Both can have zero velocity now, but only one immediately changes velocity, so zero velocity alone cannot determine acceleration.",
+          "inputs": [],
+          "output": "turning point: zero velocity with continuing change.  shelf: zero velocity with no motion change in the comparison."
+        },
+        {
+          "id": "KIN3-4",
+          "role": "VERIFY",
+          "action": "Use v=0 only as the event condition for the vertical turning point while keeping the signed gravitational acceleration nonzero in the same instant.",
+          "why_valid": "Velocity describes the instantaneous state of motion; acceleration describes how that velocity is changing. At the apex the upward velocity has just decreased to zero and immediately continues toward negative values under the same downward acceleration.",
+          "inputs": [],
+          "output": "apex event: v=0 at one instant; acceleration remains downward, so +up gives a=-g and +down gives a=+g"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "If velocity is zero at an instant, acceleration must also be zero at that instant.",
+          "diagnostic_prompt": "At the highest point of a vertically thrown object, velocity is momentarily zero. Does the next moment have the same velocity?",
+          "repair": "Compare moments immediately before and after the top; the velocity changes from upward to downward, so acceleration remains nonzero through the zero-velocity instant."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two objects have zero velocity at one instant: one is at the top of a vertical flight, the other is resting on a shelf. What can you conclude about their accelerations from velocity alone?",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Nothing definite from the zero velocity alone. The turning object can have nonzero downward acceleration while the resting object can have zero acceleration in the stated comparison.",
+          "reasoning": [
+            "Velocity describes motion at the instant.",
+            "Acceleration describes how velocity is changing through the instant.",
+            "Neighbouring moments distinguish the turning point from sustained rest."
+          ],
+          "check": "Look immediately before and after the instant: a changing velocity signals nonzero acceleration even when the middle velocity is zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer distinguishes zero/nonzero acceleration qualitatively and gives no computed acceleration value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

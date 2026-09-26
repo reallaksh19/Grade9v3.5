@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-osc-energy-exchange:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-OSC-ENERGY-EXCHANGE",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OSC-ENERGY-EXCHANGE",
+      "title": "Energy trades twice during one displacement cycle",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "In an ideal oscillator, energy shifts between motion and displacement storage while the total stays fixed; the energy state is the same at equal-magnitude displacements on opposite sides, so the kinetic-potential pattern repeats twice during one full displacement cycle.",
+      "entry_assumptions": [
+        "Can identify turning points and equilibrium crossings in a repeated back-and-forth motion.",
+        "Can read a quantity as nonnegative even when position lies on the negative side of equilibrium."
+      ],
+      "teaching_path": [
+        {
+          "id": "OSC-R4-1",
+          "role": "DECLARE",
+          "action": "Mark five ordered checkpoints for one full displacement cycle: positive turning point, center crossing, negative turning point, second center crossing, and return to the positive turning point.",
+          "why_valid": "The energy pattern can only be counted against a complete position cycle if the cycle's repeated geometric checkpoints are fixed first.",
+          "inputs": [],
+          "output": "+turn -> center -> -turn -> center -> +turn"
+        },
+        {
+          "id": "OSC-R4-2",
+          "role": "TRANSFORM",
+          "action": "Assign the dominant energy form at each checkpoint while keeping the same total mechanical-energy level across the row.",
+          "why_valid": "At turning points the instantaneous motion is absent while displacement storage is greatest; at center crossings the displacement storage is least while motion is greatest.",
+          "inputs": [],
+          "output": "turn: KE low / PE high ; center: KE high / PE low ; turn: KE low / PE high ; center: KE high / PE low"
+        },
+        {
+          "id": "OSC-R4-3",
+          "role": "VERIFY",
+          "action": "Compare the positive and negative turning points, then count the center crossings before the displacement pattern returns to its start.",
+          "why_valid": "Opposite equal-magnitude displacements produce the same energy state, so sign reversal does not make stored energy negative; two center crossings give two kinetic-energy maxima per position cycle.",
+          "inputs": [],
+          "output": "+turn energy state = -turn energy state ; 1 displacement cycle -> 2 KE maxima"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "During one complete back-and-forth position cycle, do you expect kinetic energy to peak once or more than once?",
+          "defensible_answer": "It peaks twice, because the oscillator passes through equilibrium twice before returning to the starting turning point."
+        },
+        "attempt": {
+          "produces": "A five-checkpoint position row with kinetic and potential energy marked high or low at each checkpoint and one constant-total line beneath it.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both equilibrium crossings are marked as kinetic-energy maxima.",
+              "evidence_of": "Coordinating the energy pattern with the full displacement cycle rather than counting only half a cycle."
+            },
+            {
+              "criterion": "Opposite turning points are assigned the same stored-energy state and the total is kept fixed.",
+              "evidence_of": "Separating position sign from energy sign and applying ideal mechanical-energy conservation."
+            }
+          ],
+          "accepted": [
+            "The row shows high kinetic energy at both center crossings, high potential energy at both turning points, and one unchanged total across all five checkpoints."
+          ],
+          "rejected": [
+            "The negative turning point is assigned negative potential energy and only one center crossing is counted before the cycle is declared complete."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What ordered checkpoints must you pass before the displacement pattern has truly returned to its starting state?",
+              "why_this_ask": "The learner must define a complete cycle before counting energy events.",
+              "from_step_ref": "OSC-R4-1"
+            },
+            {
+              "ask": "At a turning point, which energy share is largest and which is smallest?",
+              "why_this_ask": "This anchors the energy bookkeeping at a state with no instantaneous motion.",
+              "from_step_ref": "OSC-R4-2"
+            },
+            {
+              "ask": "How many center crossings occur before the position cycle closes, and what energy event occurs at each?",
+              "why_this_ask": "This produces the twice-per-cycle pattern from the motion rather than stating it.",
+              "from_step_ref": "OSC-R4-3"
+            },
+            {
+              "ask": "Why should the two opposite turning points have the same stored-energy state?",
+              "why_this_ask": "The final ask directly tests the misconception that negative position implies negative stored energy."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path lays out the five checkpoints before assigning energy; the elicitation route makes the learner define the cycle boundary and discover the repeated energy state by counting crossings."
+        },
+        "boundary_test": {
+          "prompt": "If mechanical energy is lost to an external dissipative interaction, should the constant-total row still be used unchanged?",
+          "answer": "No. The constant-total claim belongs to the ideal oscillator case; with an energy-losing interaction the mechanical total can decrease.",
+          "confirms": "The conservation statement is tied to the ideal model rather than asserted for every real oscillation."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Potential energy becomes negative whenever displacement is on the negative side of equilibrium.",
+          "diagnostic_prompt": "At equal distances on opposite sides of equilibrium, should the ideal oscillator have different stored-energy amounts just because one position has a negative sign?",
+          "repair": "Treat the side of equilibrium and the stored-energy amount separately: opposite equal-magnitude displacements have the same potential-energy state."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Follow one ideal oscillation from a positive turning point back to the same turning point. How many times does kinetic energy reach a maximum, and why does the total mechanical energy not rise and fall with those maxima?",
+        "source_ref": "SRC-AUTHOR-OSC-SHM-WAVES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Kinetic energy reaches a maximum twice, once at each equilibrium crossing, while the total mechanical energy stays constant because kinetic and potential energy exchange rather than being created or destroyed.",
+          "reasoning": [
+            "One full displacement cycle crosses equilibrium twice before returning to the starting turning point.",
+            "Each center crossing is the state of greatest motion and least displacement storage, so kinetic energy peaks at both crossings.",
+            "At the turning points the balance reverses; the changing shares add to the same total throughout the ideal cycle."
+          ],
+          "check": "Lay the energy sequence under the five position checkpoints; the first and last energy states must match, and the two center checkpoints must carry the two kinetic-energy maxima.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer gives a qualitative cycle count and conservation explanation; it computes no energy value, frequency, or oscillator parameter."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

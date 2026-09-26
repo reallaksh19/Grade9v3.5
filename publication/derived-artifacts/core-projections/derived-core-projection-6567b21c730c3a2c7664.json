@@ -1,0 +1,242 @@
+{
+  "id": "physics:mic-common-interval:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-COMMON-INTERVAL",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-COMMON-INTERVAL",
+      "title": "From relative position to relative velocity",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "Subtract two relative-position equations before dividing by a common time interval.",
+      "entry_assumptions": [
+        "Can construct relative position and interpret displacement over time."
+      ],
+      "teaching_path": [
+        {
+          "id": "RV-1",
+          "action": "Write relative position at t1 and t2.",
+          "why_valid": "Apply the same relation at both instants.",
+          "inputs": [
+            "REL-RELATIVE-POSITION"
+          ],
+          "output": "r_A/B(t2) - r_A/B(t1) = [r_A(t2)-r_A(t1)] - [r_B(t2)-r_B(t1)]",
+          "role": "DECLARE"
+        },
+        {
+          "id": "RV-2",
+          "action": "Group the displacement changes.",
+          "why_valid": "Vector subtraction distributes through the two same-time equations.",
+          "inputs": [],
+          "output": "Delta r_A/B = Delta r_A - Delta r_B",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "RV-3",
+          "action": "Divide each term by the same nonzero Delta t.",
+          "why_valid": "Each quotient is average velocity over that interval.",
+          "inputs": [],
+          "output": "vbar_A/B = vbar_A - vbar_B",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "RV-4",
+          "action": "For this constant-velocity teaching case, use v for each constant average.",
+          "why_valid": "No instantaneous calculus limit is needed in this case.",
+          "inputs": [],
+          "output": "v_A/B = v_A - v_B",
+          "role": "DECLARE"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A walks east at 3 m/s and B walks north at 4 m/s. Predict the speed of A as seen by B, and say whether you can get it by subtracting 3 from 4.",
+          "defensible_answer": "5 m/s, and no. The two motions are at right angles, so nothing cancels; subtracting the speeds throws away the directions that decide the answer."
+        },
+        "attempt": {
+          "produces": "The relative velocity as a pair of signed components, and then its magnitude, with a note on which of the two the question asked for.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Components are subtracted axis by axis before any magnitude is taken.",
+              "evidence_of": "Treating velocity as a pair of numbers that must both survive the subtraction."
+            },
+            {
+              "criterion": "The answer says whether it is a velocity or a speed, and does not offer a magnitude where a direction was asked for.",
+              "evidence_of": "Knowing that a magnitude is something computed from the answer, not the answer."
+            }
+          ],
+          "accepted": [
+            "v_A/B = (3,0) - (0,4) = (3,-4) m/s; its magnitude is 5 m/s. A appears to B to move east and south."
+          ],
+          "rejected": [
+            "4 - 3 = 1 m/s. The arithmetic is right and the two directions were dropped before it was done, which is what made the answer wrong rather than the subtraction."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write down where A is relative to B at the start of the second, and again at the end of it.",
+              "why_this_ask": "Relative velocity is a change in relative position, and nothing else shows that as directly as two of them side by side.",
+              "from_step_ref": "RV-1"
+            },
+            {
+              "ask": "Subtract the first from the second. Whose displacements appear in what you are left with?",
+              "why_this_ask": "The grouping falls out of the subtraction the learner has just done rather than being presented as a distribution rule.",
+              "from_step_ref": "RV-2"
+            },
+            {
+              "ask": "You have a change in separation over one second. What do you divide by, and why is it the same number for both objects?",
+              "why_this_ask": "The shared interval is the step learners skip, and asking why it is shared is the only way to make it visible.",
+              "from_step_ref": "RV-3"
+            },
+            {
+              "ask": "Go back to A east at 3 and B north at 4. What do your components say now, and is it 1?",
+              "why_this_ask": "It brings the prediction back at the point where the learner can settle it themselves."
+            }
+          ],
+          "differs_from_teaching_path": "The expert states the relation at two instants and derives forward. Here the learner starts from a prediction they have reason to doubt, and the two instants arrive as the way to settle it."
+        },
+        "boundary_test": {
+          "prompt": "A and B both walk east, A at 5 m/s and B at 5 m/s. What is v_A/B, and what does B see?",
+          "answer": "(0,0) m/s. B sees A holding still, at a fixed distance, even though both are moving quickly over the ground.",
+          "confirms": "That relative velocity is about the separation changing, not about either object being still. A learner who reads 'zero velocity' as 'not moving' is caught here."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Subtracting the two speeds always gives relative speed.",
+          "diagnostic_prompt": "If one object moves east and the other north, do their directions disappear?",
+          "repair": "Compute signed vector components first, then take the magnitude if requested."
+        }
+      ],
+      "representation_refs": [
+        "REP-REL-VECTOR"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-REL-VECTOR",
+          "correspondence": [
+            {
+              "element": "Labelled v_A, v_B and -v_B",
+              "symbol": "v_A",
+              "in_words": "how fast A goes over the ground, and which way"
+            },
+            {
+              "element": "Labelled v_A, v_B and -v_B",
+              "symbol": "v_B",
+              "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+            },
+            {
+              "element": "Resultant labelled v_A/B, with tail/head and scale",
+              "symbol": "v_A/B",
+              "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+            }
+          ],
+          "scenes": []
+        }
+      ],
+      "relation_checks": [
+        "If A and B occupy the same point, r_A/B is zero.",
+        "Reversing A and B reverses the vector.",
+        "Equal velocity vectors give zero relative velocity.",
+        "A stationary observer gives v_A/B = v_A.",
+        "Swapping A and B reverses direction."
+      ],
+      "exit_task": {
+        "prompt": "Why must both displacement changes be divided by the same time interval in this derivation?",
+        "source_ref": "SRC-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The relation compares how the simultaneous separation changes over one shared interval.",
+          "reasoning": [
+            "Write the positions of both objects at t1 and again at t2.",
+            "Subtract those two relative positions.",
+            "Different intervals describe different displacement changes and do not form this comparison."
+          ],
+          "check": "For equal constant velocity vectors, the separation must stay constant.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task asks why one shared interval is required. Its answer is a justification of the derivation, not a value computed from data."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-REL-VECTOR",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

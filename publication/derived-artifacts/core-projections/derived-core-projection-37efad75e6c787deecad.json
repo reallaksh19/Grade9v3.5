@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-phy-fluid-r4:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-FLUID-R4",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-FLUID-R4",
+      "title": "Pressure, speed and height trade along an ideal-flow path",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Along a streamline in steady ideal flow, pressure, kinetic, and gravitational energy-per-volume contributions trade; a speed increase alone does not determine the pressure change unless the other contributions are controlled.",
+      "entry_assumptions": [
+        "Can relate section area to flow speed for steady incompressible flow.",
+        "Can compare heights and distinguish static pressure from flow speed."
+      ],
+      "teaching_path": [
+        {
+          "id": "FLUID-R4-1",
+          "role": "DECLARE",
+          "action": "Choose two marked points on the same ideal-flow path and list three ledger columns at each point: static pressure, motion contribution, and height contribution.",
+          "why_valid": "The comparison is only interpretable when both points belong to the same applicable flow path and all energy-per-volume contributions are kept visible.",
+          "inputs": [],
+          "output": "point 1: pressure | motion | height ; point 2: pressure | motion | height"
+        },
+        {
+          "id": "FLUID-R4-2",
+          "role": "TRANSFORM",
+          "action": "First narrow a horizontal section so speed rises while the two point heights remain equal.",
+          "why_valid": "With height fixed in this controlled case, the increased motion contribution must be balanced by a decrease in the static-pressure contribution along the ideal-flow path.",
+          "inputs": [],
+          "output": "horizontal narrowing: height = same; speed -> higher; static pressure -> lower"
+        },
+        {
+          "id": "FLUID-R4-3",
+          "role": "VERIFY",
+          "action": "Now move the faster point to a lower height and ask whether speed alone still fixes the pressure ordering.",
+          "why_valid": "Changing height adds another ledger change, so the earlier two-variable conclusion cannot be transferred without considering the full comparison.",
+          "inputs": [],
+          "output": "speed at point 2: higher | height at point 2: lower | pressure ordering: not decidable from speed alone"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "Point 2 on an ideal-flow path has higher speed than point 1, but it is also lower. Can you conclude immediately that its static pressure is lower?",
+          "defensible_answer": "No. Height changed too, so the full energy-per-volume ledger must be considered before ranking the pressures."
+        },
+        "attempt": {
+          "produces": "A two-point three-column ledger marking which of pressure, motion, and height contributions are known to rise, fall, or remain unknown.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The speed change is recorded in the motion column rather than turned directly into a pressure verdict.",
+              "evidence_of": "The learner keeps separate contributions separate."
+            },
+            {
+              "criterion": "The height change is recorded before pressure is ranked.",
+              "evidence_of": "The learner recognizes why the horizontal special case cannot be overgeneralized."
+            }
+          ],
+          "accepted": [
+            "The ledger marks motion higher and height lower at point 2, leaving static pressure to be determined from the complete balance rather than from speed alone."
+          ],
+          "rejected": [
+            "The response writes 'faster means lower pressure' immediately and ignores the changed height."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which three contributions must be kept visible at each comparison point?",
+              "why_this_ask": "It prevents the learner from reducing the situation to a pressure-speed slogan.",
+              "from_step_ref": "FLUID-R4-1"
+            },
+            {
+              "ask": "What does a horizontal narrowing show when height is deliberately held fixed?",
+              "why_this_ask": "It establishes the familiar special case under controlled conditions.",
+              "from_step_ref": "FLUID-R4-2"
+            },
+            {
+              "ask": "What extra contribution changes when the faster point is also lower?",
+              "why_this_ask": "It creates the reason the special-case inference can fail."
+            },
+            {
+              "ask": "Can speed alone still decide the pressure ordering?",
+              "why_this_ask": "The learner must withdraw the overgeneralization explicitly.",
+              "from_step_ref": "FLUID-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The declarative path builds a full ledger, demonstrates the horizontal special case, then breaks one held condition; the elicitation starts from the tempting pressure slogan and makes the learner discover which missing column blocks it."
+        },
+        "boundary_test": {
+          "prompt": "If the fluid has substantial dissipative loss between the two points, is this ideal-flow ledger sufficient by itself?",
+          "answer": "No. The rung's comparison assumes the stated ideal-flow model; appreciable loss means the model choice must be reconsidered.",
+          "confirms": "The learner treats the pressure-speed relation as conditional on both the full ledger and the model assumptions."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Wherever fluid speed is higher, static pressure must be lower, regardless of height or losses.",
+          "diagnostic_prompt": "Point 2 has higher speed than point 1 but is also much lower. Can speed alone determine which point has higher pressure?",
+          "repair": "Use all Bernoulli terms between points on the same streamline and state the ideal-flow assumptions before drawing a pressure conclusion."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two points lie on one steady ideal-flow path. Point 2 has higher speed and lower height than point 1. Explain why speed alone is insufficient to rank the static pressures and identify what must be considered.",
+        "source_ref": "SRC-AUTHOR-PHY-FLUID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The static-pressure ordering cannot be inferred from speed alone because both the motion contribution and the height contribution change between the points; the complete ideal-flow energy ledger must be compared.",
+          "reasoning": [
+            "A higher speed increases the motion contribution at point 2.",
+            "A lower height decreases the gravitational contribution at point 2.",
+            "Those two changes act in different parts of the ledger, so static pressure must be determined from the whole balance rather than a slogan about speed."
+          ],
+          "check": "Return the two points to equal height while keeping the ideal-flow assumptions; only then does the controlled horizontal narrowing support the simpler higher-speed/lower-static-pressure comparison.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer identifies which qualitative energy contributions change and does not calculate a pressure value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,202 @@
+{
+  "id": "physics:q-phy-kin-2d-2a-projectile-apex-03:core2a",
+  "subject": "Physics",
+  "source_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE2A",
+    "orientation": null,
+    "concept": null,
+    "application": {
+      "question_ref": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "stem": "An ideal projectile is launched with already-resolved components u_x=12 m/s and u_y=20 m/s. Take +y upward and g=10 m/s^2. Find the time to the apex, the velocity at the apex, the acceleration at the apex, and the height gained above launch.",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "origin": "AUTHORED",
+      "original_number": "AUTHOR-KIN-2D-2A-PROJECTILE-APEX-03",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "After release, gravity is the only retained force.",
+        "The given initial components are already resolved."
+      ],
+      "figure_refs": [],
+      "figures": [],
+      "reasoning_route": [
+        {
+          "id": "R-KIN-2D-APEX-REPRESENT",
+          "kind": "REPRESENT",
+          "action": "Represent ideal flight with a_x=0, a_y=-g, constant v_x=u_x and v_y=u_y-gt in the upward-positive frame.",
+          "why_valid": "Gravity-only free flight leaves horizontal velocity constant while vertical velocity changes under a constant downward acceleration.",
+          "inputs": [
+            "u_x=12 m/s",
+            "u_y=20 m/s",
+            "g=10 m/s^2"
+          ],
+          "output": "The apex can be located from vertical velocity while v_x remains 12 m/s."
+        },
+        {
+          "id": "R-KIN-2D-APEX-EVENT",
+          "kind": "DECIDE",
+          "action": "Identify the apex by v_y=0, not by setting the full velocity or acceleration to zero.",
+          "why_valid": "At a vertical turning point v_y changes sign, while horizontal motion continues and gravity remains present.",
+          "inputs": [
+            "v_y=u_y-gt",
+            "v_x nonzero",
+            "a_y=-g"
+          ],
+          "output": "The correct apex event equation is 0=20-10t."
+        },
+        {
+          "id": "R-KIN-2D-APEX-CALCULATE",
+          "kind": "TRANSFORM",
+          "action": "Solve t=2 s, then evaluate velocity, acceleration and height gain at that same event time.",
+          "why_valid": "Every requested quantity describes the same apex event, so the time obtained from v_y=0 must be reused across both components.",
+          "inputs": [
+            "t_apex=2 s",
+            "u_x=12",
+            "u_y=20",
+            "g=10"
+          ],
+          "output": "v=(12i+0j) m/s, a=(0i-10j) m/s^2 and height gained=20 m."
+        },
+        {
+          "id": "R-KIN-2D-APEX-CHECK",
+          "kind": "VERIFY",
+          "action": "Confirm that only v_y vanishes at the apex while v_x and downward acceleration remain nonzero.",
+          "why_valid": "This component check distinguishes a vertical turning point from the false claim that the projectile stops or gravity vanishes.",
+          "inputs": [
+            "apex component values",
+            "gravity-only acceleration"
+          ],
+          "output": "The apex state is consistent with continuous horizontal motion and unchanged gravity."
+        }
+      ],
+      "crux_move_ref": "R-KIN-2D-APEX-EVENT",
+      "hints": [
+        {
+          "text": "Which component condition defines the apex?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Set only v_y to zero, solve for the shared time, then evaluate the other requested quantities at that time.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Write separate horizontal and vertical rules before deciding what condition defines the top of the path.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-2D-APEX-REPRESENT"
+        },
+        {
+          "text": "At the apex, decide which velocity component changes sign and set only that component to zero.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-KIN-2D-APEX-EVENT"
+        }
+      ],
+      "transfer": null,
+      "check": "Only v_y is zero at the apex; neither the full velocity nor the acceleration is zero.",
+      "solution": {
+        "summary": "The apex occurs at t=2 s. There v=(12 i + 0 j) m/s, a=(0 i - 10 j) m/s^2, and the height gained is 20 m.",
+        "steps": [
+          "At the apex set v_y=u_y-gt=0, so t=20/10=2 s.",
+          "Horizontal acceleration is zero, so v_x remains 12 m/s.",
+          "Gravity still acts at the apex, so a_y=-10 m/s^2.",
+          "Delta y=20(2)-0.5(10)(2^2)=20 m."
+        ],
+        "rubric": []
+      },
+      "repair": {
+        "step_ref": "K2D3-4",
+        "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+        "action": "For an apex event, set v_y=0 while keeping v_x=u_x and a_y=-g.",
+        "why_valid": "At the highest point only the vertical velocity component is momentarily zero; gravity still accelerates downward and horizontal motion continues.",
+        "output": "apex condition v_y=0 with nonzero horizontal velocity and nonzero downward acceleration"
+      }
+    },
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+        "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "QUESTION_STUDY",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reasoning"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "support",
+          "reasoning"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "LEARNER_OPENABLE"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 2,
+      "pre_attempt_hint_limit": 2,
+      "post_attempt_hint_limit": 2
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,198 @@
+{
+  "id": "physics:mic-mag-flux-orientation:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-MAG-FLUX-ORIENTATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-MAG-FLUX-ORIENTATION",
+      "title": "Through-going field depends on surface orientation",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Magnetic flux measures the component of magnetic field through an oriented area; changing the surface orientation changes flux even when B and area size stay fixed.",
+      "entry_assumptions": [
+        "R1: magnetic field B is an axial directed quantity with explicit in-plane and out-of-plane representation conventions."
+      ],
+      "teaching_path": [
+        {
+          "id": "MAG-R2-1",
+          "role": "DECLARE",
+          "action": "Attach a normal arrow to the surface before comparing orientations, so the face has an explicit through-direction.",
+          "why_valid": "A flat surface alone has no preferred side; the normal supplies the orientation needed to distinguish with-through from against-through.",
+          "inputs": [],
+          "output": "surface orientation = chosen normal direction"
+        },
+        {
+          "id": "MAG-R2-2",
+          "role": "TRANSFORM",
+          "action": "Rotate the same loop from face-on to tilted to edge-on while leaving its size and the surrounding field unchanged.",
+          "why_valid": "Only orientation changes, so any change in through-going field is attributable to how the surface faces the field rather than to a stronger field or larger loop.",
+          "inputs": [],
+          "output": "face-on -> most through; tilted -> less through; edge-on -> none through"
+        },
+        {
+          "id": "MAG-R2-3",
+          "role": "VERIFY",
+          "action": "Keep the physical surface fixed but reverse which normal arrow is declared positive.",
+          "why_valid": "Changing the chosen orientation reverses the sign convention while leaving the physical setup unchanged, separating signed description from apparatus.",
+          "inputs": [],
+          "output": "normal one way -> one sign; reversed normal -> opposite sign"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If the field and loop size stay fixed, can simply turning the loop change how much field passes through its face?",
+          "defensible_answer": "Yes. Turning the loop changes how its oriented face meets the field even though neither magnitude nor area changes."
+        },
+        "attempt": {
+          "produces": "Three sketches of the same loop at face-on, tilted, and edge-on orientations, each with a normal arrow and a qualitative through-going ranking.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Only orientation changes across the three sketches.",
+              "evidence_of": "Isolating orientation as the cause of the changed through-going field."
+            },
+            {
+              "criterion": "Every sketch carries an explicit normal arrow.",
+              "evidence_of": "Treating the surface as oriented rather than as an unsigned patch."
+            }
+          ],
+          "accepted": [
+            "The same-sized loop is shown in all three cases, with face-on ranked above tilted and edge-on ranked at none, and every face has a declared normal."
+          ],
+          "rejected": [
+            "The face-on case is drawn with a larger loop or stronger field, so the ranking can no longer be attributed to orientation alone."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which quantities are staying fixed while the loop is turned?",
+              "why_this_ask": "The learner must isolate orientation before making a comparison.",
+              "from_step_ref": "MAG-R2-2"
+            },
+            {
+              "ask": "What arrow could you attach to the face so 'through this side' has a definite meaning?",
+              "why_this_ask": "This elicits the need for an oriented surface before naming it.",
+              "from_step_ref": "MAG-R2-1"
+            },
+            {
+              "ask": "If you reverse only that arrow, what changed physically and what changed only in the description?",
+              "why_this_ask": "It separates sign convention from the unchanged apparatus.",
+              "from_step_ref": "MAG-R2-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path supplies a normal first; the elicitation route starts from an unexplained orientation effect and makes the learner invent the missing face-direction needed to describe it."
+        },
+        "boundary_test": {
+          "prompt": "What happens to the through-going field when the loop is exactly edge-on to the field?",
+          "answer": "It reaches the limiting case of none passing through the face even though the field itself remains present and unchanged.",
+          "confirms": "The comparison depends on how the surface faces the field, not merely on field presence."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Flux is just magnetic-field strength times area, so orientation does not matter.",
+          "diagnostic_prompt": "A loop with fixed area rotates from face-on to edge-on in a uniform field. What must happen to its flux?",
+          "repair": "Project the oriented area along the field direction: the dot product selects the component through the surface."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Three identical loops sit in the same uniform magnetic field: one face-on, one tilted, and one edge-on. Rank the amount of field passing through them and explain the role of the chosen surface normal.",
+        "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The face-on loop has the greatest through-going field, the tilted loop has less, and the edge-on loop has none; the normal states which side counts as the positive orientation.",
+          "reasoning": [
+            "The field strength and loop area are held fixed, so orientation is the only changing feature.",
+            "A face presented to the field admits the greatest through-going component, while an edge presented to it admits none.",
+            "Reversing the named normal changes the sign convention but not the physical loop or field."
+          ],
+          "check": "Imagine rotating only the loop continuously from face-on to edge-on; the ranking should change smoothly without any appeal to a stronger or weaker field.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer ranks orientations and explains sign choice qualitatively; it contains no computed numerical result."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,195 @@
+{
+  "id": "physics:mic-signed-component:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-SIGNED-COMPONENT",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-SIGNED-COMPONENT",
+      "title": "Choosing axes and keeping components signed",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "The physical vector stays fixed when axes are redeclared; only the signed numerical description changes according to the declared positive directions.",
+      "entry_assumptions": [
+        "Can distinguish vector information from magnitude-only information.",
+        "Signed coordinate reading on one axis is available or bridged."
+      ],
+      "teaching_path": [
+        {
+          "id": "SC-1",
+          "role": "DECLARE",
+          "action": "Declare positive directions for both axes before reading any component.",
+          "why_valid": "A component sign has meaning only relative to a stated positive axis direction.",
+          "inputs": [
+            "CAP-SIGNED-PAIR-BRIDGE"
+          ],
+          "output": "For example: east is +x and north is +y."
+        },
+        {
+          "id": "SC-2",
+          "role": "TRANSFORM",
+          "action": "Read the component along each axis with the sign fixed by whether the arrow points with or against that positive direction.",
+          "why_valid": "The sign records orientation along the declared axis; it is not an after-the-fact label.",
+          "inputs": [
+            "CAP-SIGNED-PAIR-BRIDGE"
+          ],
+          "output": "A westward horizontal component is negative when east is declared positive."
+        },
+        {
+          "id": "SC-3",
+          "role": "VERIFY",
+          "action": "Reverse one declared positive axis while keeping the physical arrow unchanged and update only the component on that axis.",
+          "why_valid": "Changing the coordinate convention changes the signed description, not the physical vector.",
+          "inputs": [],
+          "output": "Exactly one component sign flips when exactly one positive axis is reversed."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A component should be made positive because the object is moving 'forward'.",
+          "diagnostic_prompt": "If east is declared positive and the vector points west, is the x-component positive or negative?",
+          "repair": "Use only the declared positive axis. A component pointing against it is negative regardless of the story's word 'forward'."
+        },
+        {
+          "wrong_idea": "Changing the axis convention changes the physical vector.",
+          "diagnostic_prompt": "If the positive x-direction is reversed while the arrow stays fixed, did the arrow itself reverse?",
+          "repair": "Keep the arrow fixed and change only the signed coordinate description. The convention changes; the physical vector does not."
+        }
+      ],
+      "representation_refs": [
+        "REP-VECTOR-COMPONENT"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-VECTOR-COMPONENT",
+          "correspondence": [
+            {
+              "element": "Labelled vector with tail at the origin and arrowhead at the endpoint",
+              "symbol": "P",
+              "in_words": "the arrow itself, whose length is the magnitude and whose slant is the direction"
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SI-VECTOR-COMPONENTS",
+              "cores": [
+                "CORE1A"
+              ],
+              "microtopic_ref": "MIC-SIGNED-COMPONENT",
+              "datum_refs": [
+                "DAT-W-X",
+                "DAT-W-Y"
+              ],
+              "scene": {
+                "kind": "VECTOR",
+                "symbol": "w",
+                "unit": "m/s",
+                "x_atom": "DAT-W-X",
+                "y_atom": "DAT-W-Y",
+                "x_label": "east (m/s)",
+                "y_label": "north (m/s)",
+                "frame": "One common east/north frame, equal scale on both axes.",
+                "caption": "w = (3, 4) m/s: the arrow's position is fixed by its two signed components, and its length is a consequence of them rather than a third independent number."
+              }
+            }
+          ]
+        }
+      ],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Under east-positive and north-positive axes a vector is (5,-2). The x-axis stays the same, but south is now declared positive. State the new signed components and explain which sign changed.",
+        "source_ref": "SRC-AUTHOR-VEC",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The new components are (5,2). Only the vertical sign changes because only the vertical positive direction was reversed.",
+          "reasoning": [
+            "The east-positive x-axis is unchanged, so the x-component remains +5.",
+            "South is now positive instead of north, so the same downward component is +2 rather than -2.",
+            "The physical vector was not changed; only its coordinate description was."
+          ],
+          "check": "Restore north-positive and the vertical component returns to -2.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The numbers are declared in the prompt; the task checks sign transformation under an axis reversal rather than a derived magnitude."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-VECTOR-COMPONENT",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

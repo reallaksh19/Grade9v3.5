@@ -1,0 +1,148 @@
+{
+  "id": "physics:mic-mag-field-direction:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-MAG-FIELD-DIRECTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-MAG-FIELD-DIRECTION",
+      "title": "One magnetic direction, several page marks",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Magnetic field B is an axial vector: its direction is tied to an oriented rotation convention, and dot/cross marks encode out-of-page and into-page directions rather than particle paths.",
+      "entry_assumptions": [
+        "Can distinguish a location in a diagram from a direction assigned at that location."
+      ],
+      "teaching_path": [
+        {
+          "id": "MAG-R1-1",
+          "role": "DECLARE",
+          "action": "Fix the page convention before interpreting the drawing: a dot means toward the viewer and a cross means away from the viewer.",
+          "why_valid": "The marks are projections of one directed quantity; declaring their viewing meaning first prevents a symbol from being mistaken for a physical object.",
+          "inputs": [],
+          "output": "dot = toward viewer; cross = away from viewer"
+        },
+        {
+          "id": "MAG-R1-2",
+          "role": "TRANSFORM",
+          "action": "Turn the same physical setup so a direction that was drawn in the page now points toward the viewer, then redraw only its direction mark.",
+          "why_valid": "Changing the viewpoint changes the page mark while leaving the physical direction fixed, so agreement across the two drawings tests interpretation rather than memorization.",
+          "inputs": [],
+          "output": "same physical B: in-page arrow -> dot after the viewpoint turns"
+        },
+        {
+          "id": "MAG-R1-3",
+          "role": "VERIFY",
+          "action": "Trace one direction line around and through a bar magnet instead of stopping at a pole.",
+          "why_valid": "A direction map must remain continuous; following the same line through the material exposes the error in treating the outside segment as an endpoint.",
+          "inputs": [],
+          "output": "outside N -> S; inside S -> N; no endpoint"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Magnetic field lines begin at a north pole and end at a south pole everywhere.",
+          "diagnostic_prompt": "Trace one magnetic field line through and around a bar magnet. Where can it stop?",
+          "repair": "Treat field lines as a direction map: they continue in closed loops, including through the magnet."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A diagram shows one magnetic direction once as an arrow and once with a page mark after the view is changed. Explain how both can describe the same physical direction and say whether the associated direction line may terminate at a pole.",
+        "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The page mark changes with the view, but the physical magnetic direction does not; a field-direction line is continued through the magnet rather than terminated at a pole.",
+          "reasoning": [
+            "Bind every page mark to the declared viewing convention instead of reading dot or cross as an object.",
+            "Compare the physical direction before and after the viewpoint change; only its two-dimensional depiction has changed.",
+            "Continue the direction line through the magnet so the apparent outside endpoint is seen as part of a closed path."
+          ],
+          "check": "Rotate the imagined viewpoint back. The mark should recover the original arrow direction, and tracing the same line should never require an endpoint.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer makes a directional classification and continuity argument; it asserts no computed numerical value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

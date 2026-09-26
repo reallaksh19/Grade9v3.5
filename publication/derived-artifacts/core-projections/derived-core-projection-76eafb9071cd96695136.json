@@ -1,0 +1,208 @@
+{
+  "id": "physics:mic-phy-machine-compare:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-MACHINE-COMPARE",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-MACHINE-COMPARE",
+      "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A lever, pulley or inclined plane should be analysed by its input/output force, direction and distance tradeoff rather than by a memorized claim that every simple machine reduces force.",
+      "entry_assumptions": [
+        "Can explain the ideal force-distance tradeoff and compute mechanical advantage."
+      ],
+      "teaching_path": [
+        {
+          "id": "SM3-1",
+          "role": "DECLARE",
+          "action": "For each machine, identify the effort point/direction and the load motion.",
+          "why_valid": "The same input-output language lets different machine types be compared without separate memorized rules.",
+          "inputs": [
+            "CAP-MACHINE-MA"
+          ],
+          "output": "lever, pulley and ramp each have named effort and load sides."
+        },
+        {
+          "id": "SM3-2",
+          "role": "TRANSFORM",
+          "action": "Compare whether the machine mainly changes force magnitude, force direction, or required input distance in the stated setup.",
+          "why_valid": "Simple-machine benefit is a geometric/input-output tradeoff, not a universal force reduction.",
+          "inputs": [
+            "REL-IDEAL-MACHINE-WORK"
+          ],
+          "output": "fixed pulley may change direction; force-advantage setups require extra input distance; incline spreads a height gain over a longer path."
+        },
+        {
+          "id": "SM3-3",
+          "role": "VERIFY",
+          "action": "Use an ideal fixed pulley as the counterexample to 'all machines reduce effort force'.",
+          "why_valid": "A direction-changing machine can be useful with no force multiplication.",
+          "inputs": [],
+          "output": "machine usefulness can be directional even when MA = 1."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a fixed pulley does not reduce force magnitude, can it still count as a useful simple machine?",
+          "defensible_answer": "Yes. It can change the direction in which the effort force is applied."
+        },
+        "attempt": {
+          "produces": "One input-output tradeoff for a pulley, lever or incline.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies the actual input/output change.",
+              "evidence_of": "Comparing machines by function rather than name."
+            },
+            {
+              "criterion": "Does not claim energy creation.",
+              "evidence_of": "Keeping the inherited work ledger."
+            }
+          ],
+          "accepted": [
+            "Fixed pulley: direction change; incline: smaller force over longer path."
+          ],
+          "rejected": [
+            "Every simple machine always multiplies force."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where is the effort applied?",
+              "why_this_ask": "It fixes the input side.",
+              "from_step_ref": "SM3-1"
+            },
+            {
+              "ask": "What motion must the load complete?",
+              "why_this_ask": "It fixes the useful output."
+            },
+            {
+              "ask": "Which quantity changes most clearly: force, direction or distance?",
+              "why_this_ask": "It classifies the machine benefit.",
+              "from_step_ref": "SM3-2"
+            },
+            {
+              "ask": "Does a fixed pulley falsify 'all machines reduce force'?",
+              "why_this_ask": "It tests overgeneralization.",
+              "from_step_ref": "SM3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares named machines in one framework; the learner route begins from a specific setup and reconstructs the functional category."
+        },
+        "boundary_test": {
+          "prompt": "Can a machine be useful if its mechanical advantage is exactly one?",
+          "answer": "Yes. It can still change force direction or make the task ergonomically easier.",
+          "confirms": "Mechanical advantage is not the only form of machine usefulness."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Every pulley, lever or inclined plane must reduce the effort force.",
+          "diagnostic_prompt": "What useful change can an ideal fixed pulley provide even when effort and load force magnitudes are equal?",
+          "repair": "It can reverse the direction of the required effort. Identify the actual setup before claiming force advantage."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "A force advantage greater than one requires a corresponding distance disadvantage in the ideal model."
+      ],
+      "exit_task": {
+        "prompt": "Compare an ideal fixed pulley with a long inclined plane used to raise the same load. State one useful change each machine can provide without claiming that either creates energy.",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The fixed pulley can change the effort direction; the inclined plane can reduce the required force by spreading the same height gain over a longer input path.",
+          "reasoning": [
+            "The fixed pulley can redirect the pull even when force magnitude is not reduced.",
+            "The incline increases the distance over which the load reaches the same height.",
+            "Both are input-output tradeoffs consistent with work conservation in the ideal model."
+          ],
+          "check": "Neither description requires useful output work to exceed ideal input work.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit compares qualitative machine functions without a calculated device-specific force formula."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

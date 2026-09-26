@@ -1,0 +1,255 @@
+{
+  "id": "physics:mic-phy-vec-angle-decomposition:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-VEC-ANGLE-DECOMPOSITION",
+      "title": "Resolve magnitude-and-angle vectors into signed perpendicular components",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A magnitude-and-angle description and a signed perpendicular-component pair can represent the same vector. Projection converts between those representations; it does not by itself describe how a vector such as velocity changes later in time.",
+      "entry_assumptions": [
+        "Can read signed components against declared axes.",
+        "Basic sine/cosine right-triangle ratios are available through the declared Mathematics bridge."
+      ],
+      "teaching_path": [
+        {
+          "id": "VAD-1",
+          "role": "DECLARE",
+          "action": "Decide whether the vector still needs decomposition. If it is given by magnitude plus angle, declare the perpendicular axes and mark exactly which axis the angle is measured from; if signed components are already supplied, keep them rather than applying trigonometry again.",
+          "why_valid": "Projection is a representation conversion, not a compulsory formula step. The angle reference and axis convention determine which projection geometry is relevant.",
+          "inputs": [],
+          "output": "representation decision + declared axes + explicit angle reference"
+        },
+        {
+          "id": "VAD-2",
+          "role": "DECLARE",
+          "action": "Identify which component direction is adjacent to the stated angle and which is opposite before writing sine or cosine.",
+          "why_valid": "Cosine and sine attach to adjacent/opposite geometry; x and y receive those labels only after the reference axis is known.",
+          "inputs": [
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "output": "adjacent component identified; opposite component identified"
+        },
+        {
+          "id": "VAD-3",
+          "role": "TRANSFORM",
+          "action": "Compute the component magnitudes with V cos(theta) for the adjacent leg and V sin(theta) for the opposite leg.",
+          "why_valid": "The original vector magnitude is the right-triangle hypotenuse and the perpendicular component magnitudes are its projections.",
+          "inputs": [
+            "CAP-TRIG-RATIO-BRIDGE"
+          ],
+          "output": "V_adj = V cos(theta); V_opp = V sin(theta)"
+        },
+        {
+          "id": "VAD-4",
+          "role": "TRANSFORM",
+          "action": "Attach signs from the declared positive directions and label the pair with the vector role named by the problem; for an initial velocity this means u_x and u_y at the chosen initial instant.",
+          "why_valid": "Projection gives component magnitudes, while the coordinate frame supplies signs and the problem context supplies the state label. The decomposition itself does not license any later-time evolution claim.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "signed, role-bound component pair such as (V_x,V_y) or initial (u_x,u_y)"
+        },
+        {
+          "id": "VAD-5",
+          "role": "VERIFY",
+          "action": "Reconstruct the original magnitude and check that the component signs/quadrant agree with the drawn vector.",
+          "why_valid": "A correct decomposition is an equivalent representation of the same vector, so magnitude and orientation must be consistent.",
+          "inputs": [],
+          "output": "component pair independently checked against original vector"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "Before calculating, if an acute angle is measured from +y, which component should use cosine: x or y?",
+          "defensible_answer": "The y-component magnitude, because y is adjacent to the stated angle."
+        },
+        "attempt": {
+          "produces": "A representation decision, labelled vector sketch, and signed component pair with the correct contextual labels.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Checks whether decomposition is needed before applying trigonometry.",
+              "evidence_of": "Distinguishing representation choice from mechanical formula use."
+            },
+            {
+              "criterion": "Identifies the angle reference and adjacent/opposite components before sine/cosine.",
+              "evidence_of": "Correct projection geometry."
+            },
+            {
+              "criterion": "Applies signs from the declared axes and uses the problem's vector-role labels.",
+              "evidence_of": "Preserving direction and state meaning."
+            }
+          ],
+          "accepted": [
+            "From +x in quadrant I: V_x=V cos(theta), V_y=V sin(theta); for launch velocity label these u_x,u_y at t=0."
+          ],
+          "rejected": [
+            "Always write x=V cos(theta) without checking the angle reference, or assume resolved initial components are automatically later-time constants."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Is the vector already given as signed components, or does it need conversion from magnitude plus angle?",
+              "why_this_ask": "Prevents unnecessary or inappropriate trigonometric decomposition.",
+              "from_step_ref": "VAD-1"
+            },
+            {
+              "ask": "Which axis is the angle measured from, and which component is adjacent to it?",
+              "why_this_ask": "Recovers the cosine/sine assignment from geometry.",
+              "from_step_ref": "VAD-2"
+            },
+            {
+              "ask": "Which way does each component point relative to the declared positive axes?",
+              "why_this_ask": "Restores component signs.",
+              "from_step_ref": "VAD-4"
+            },
+            {
+              "ask": "What does the problem call this vector—initial velocity, force, displacement, or something else?",
+              "why_this_ask": "Binds the numerical pair to the correct physical state without adding dynamics.",
+              "from_step_ref": "VAD-4"
+            },
+            {
+              "ask": "Does the reconstructed magnitude and quadrant match the original vector?",
+              "why_this_ask": "Closes the representation conversion with an independent check.",
+              "from_step_ref": "VAD-5"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching presents the conversion sequence; reconstruction begins by deciding whether conversion is needed, then rebuilds the projection from geometry and closes by checking equivalence."
+        },
+        "boundary_test": {
+          "prompt": "A launch velocity is already given as u=(12 i + 5 j) m/s. What should vector decomposition do before the Motion-in-2D solver begins?",
+          "answer": "Nothing further is required for magnitude-angle decomposition: the initial velocity is already in signed component form. Motion-in-2D may now use u_x=12 and u_y=5 in its own model.",
+          "confirms": "The vector capability owns representation conversion, not later kinematic evolution."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "The x-component is always V cos(theta), regardless of which axis theta is measured from.",
+          "diagnostic_prompt": "If theta is measured from the +y axis instead of +x, which component is adjacent to theta?",
+          "repair": "Name the angle reference first. Cosine goes with the adjacent component and sine with the opposite component; x/y labels follow only after the geometry is fixed."
+        },
+        {
+          "wrong_idea": "Sine and cosine automatically provide the component signs.",
+          "diagnostic_prompt": "A vector points left and upward. If its acute reference angle is used in a right triangle, must both resolved components be positive?",
+          "repair": "Use trigonometry for component magnitudes, then use the declared axis directions to attach signs."
+        },
+        {
+          "wrong_idea": "Whenever a vector question contains components, trigonometric decomposition must be performed.",
+          "diagnostic_prompt": "A velocity is already supplied as (-6 i + 8 j) m/s. Is another sine/cosine decomposition required before using those components?",
+          "repair": "No. The vector is already in component form. Decomposition is needed when converting from a magnitude-angle description to components."
+        },
+        {
+          "wrong_idea": "After an initial velocity is resolved into u_x and u_y, vector decomposition proves that both components keep those same values later.",
+          "diagnostic_prompt": "Does writing u_y=u sin(theta) at launch prove that v_y remains u_y during later projectile motion?",
+          "repair": "No. Decomposition describes the initial vector only. Later velocity components are determined by the motion model; vector decomposition does not supply that evolution."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "sqrt(V_adj^2+V_opp^2)=V.",
+        "The component signs place the reconstructed vector in the same quadrant/directions as the original.",
+        "A small angle from an axis gives a larger adjacent than opposite component."
+      ],
+      "exit_task": {
+        "prompt": "A launch velocity of magnitude 20 m/s points 30 degrees above +x. Resolve only the initial velocity into signed components, label them correctly, and state what this calculation does not yet tell you about later motion.",
+        "source_ref": "SRC-AUTHOR-VEC-ANGLE-DECOMP-PRACTICE",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "u_x=20 cos(30°)=10√3 m/s and u_y=20 sin(30°)=10 m/s, both positive. These are the t=0 velocity components; decomposition alone does not determine their later values.",
+          "reasoning": [
+            "The angle is measured from +x, so x is adjacent and y is opposite.",
+            "The vector points right and up, so both initial component signs are positive.",
+            "Label the pair u_x,u_y because the problem names an initial velocity.",
+            "Any later v_x,v_y requires a motion model in addition to this representation step."
+          ],
+          "check": "sqrt(u_x^2+u_y^2)=20 m/s and the signs place the vector in the first quadrant.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exact components follow directly from the declared 20 m/s, 30° vector; the final sentence is a scope boundary, not a claim about a particular projectile model."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

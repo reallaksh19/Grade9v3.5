@@ -1,0 +1,200 @@
+{
+  "id": "physics:q-phy-kin-2d-2a-shared-clock-01:core2a",
+  "subject": "Physics",
+  "source_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE2A",
+    "orientation": null,
+    "concept": null,
+    "application": {
+      "question_ref": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "stem": "A tracker reports x(t)=4t metres and y(t)=10-2t^2 metres for one particle in one fixed frame. Find the particle's position at t=2 s, and explain why x(2 s) may not be paired with y(3 s) to describe one position.",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "origin": "AUTHORED",
+      "original_number": "AUTHOR-KIN-2D-2A-SHARED-CLOCK-01",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The two functions refer to the same particle and the same time coordinate.",
+        "Use the declared fixed x-y frame."
+      ],
+      "figure_refs": [],
+      "figures": [],
+      "reasoning_route": [
+        {
+          "id": "R-KIN-2D-CLOCK-REPRESENT",
+          "kind": "REPRESENT",
+          "action": "Treat x(t) and y(t) as two coordinate projections of the same particle in one fixed frame, tied to one common event time t.",
+          "why_valid": "A single plane position is defined by simultaneous coordinates of one particle; independent component functions do not create independent clocks.",
+          "inputs": [
+            "x(t)=4t m",
+            "y(t)=10-2t^2 m",
+            "requested t=2 s"
+          ],
+          "output": "Both coordinates must be evaluated at the same t before they can form one position."
+        },
+        {
+          "id": "R-KIN-2D-CLOCK-EVALUATE",
+          "kind": "TRANSFORM",
+          "action": "Substitute t=2 s into both component functions to obtain x(2)=8 m and y(2)=2 m.",
+          "why_valid": "The requested state is the event labelled t=2 s, so both component functions must be sampled at that event.",
+          "inputs": [
+            "x(t)=4t",
+            "y(t)=10-2t^2",
+            "t=2 s"
+          ],
+          "output": "The simultaneous coordinate values are x=8 m and y=2 m."
+        },
+        {
+          "id": "R-KIN-2D-CLOCK-PAIR",
+          "kind": "CONNECT",
+          "action": "Pair the two simultaneous values as the position (8,2) m and reject x(2) paired with y(3) as a single physical state.",
+          "why_valid": "Coordinates form one state only when they refer to the same object, frame and instant; changing one timestamp changes the event.",
+          "inputs": [
+            "x(2)=8 m",
+            "y(2)=2 m",
+            "y(3) belongs to t=3 s"
+          ],
+          "output": "The valid t=2 s position is (8,2) m; x(2),y(3) is not one position."
+        },
+        {
+          "id": "R-KIN-2D-CLOCK-CHECK",
+          "kind": "VERIFY",
+          "action": "Attach the timestamp to each component value and confirm the two timestamps match before calling the pair a position.",
+          "why_valid": "Timestamp agreement is an independent event-identity check that does not depend on the arithmetic values themselves.",
+          "inputs": [
+            "x(2)",
+            "y(2)"
+          ],
+          "output": "Both values carry t=2 s, so the reconstructed state is temporally consistent."
+        }
+      ],
+      "crux_move_ref": "R-KIN-2D-CLOCK-PAIR",
+      "hints": [
+        {
+          "text": "What must be the same when x(t) and y(t) describe one particle at one instant?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Evaluate both component functions at the requested t before pairing them.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Write x(t) and y(t) in two columns connected to one clock t before substituting any number.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-2D-CLOCK-REPRESENT"
+        },
+        {
+          "text": "Label the time beside each evaluated component before you pair the coordinates.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
+        }
+      ],
+      "transfer": null,
+      "check": "The answer must use one t for both components; mixing timestamps produces no real single-time state.",
+      "solution": {
+        "summary": "At t=2 s, x=8 m and y=2 m, so the position is (8,2) m in the declared frame. x(2 s) and y(3 s) cannot form one position because they refer to different instants.",
+        "steps": [
+          "Evaluate both component descriptions at the same requested time.",
+          "x(2)=4(2)=8.",
+          "y(2)=10-2(2^2)=2.",
+          "A physical plane state is a simultaneous component pair."
+        ],
+        "rubric": []
+      },
+      "repair": {
+        "step_ref": "K2D1-4",
+        "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+        "action": "Recombine only component values that refer to the same frame and the same instant.",
+        "why_valid": "Mixing x at one time with y at another does not describe any single physical state of the object.",
+        "output": "one physically valid plane state reconstructed from simultaneous components"
+      }
+    },
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE2A-SUPPORTED-APPLICATION@1.0.0",
+        "blueprint_id": "BP-CORE2A-SUPPORTED-APPLICATION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "QUESTION_STUDY",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reasoning"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "support",
+          "reasoning"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "LEARNER_OPENABLE"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 2,
+      "pre_attempt_hint_limit": 2,
+      "post_attempt_hint_limit": 2
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

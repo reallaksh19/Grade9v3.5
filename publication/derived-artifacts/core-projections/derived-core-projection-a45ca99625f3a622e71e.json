@@ -1,0 +1,187 @@
+{
+  "id": "mathematics:mic-math-constraint:core1a",
+  "subject": "Mathematics",
+  "source_ref": "MIC-MATH-CONSTRAINT",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-MATH-CONSTRAINT",
+      "title": "An equation constrains an unknown",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Read a*x + b = c as a statement that is true for some values of the unknown and false for others, rather than as an instruction to work out a left-hand side.",
+      "entry_assumptions": [
+        "Can evaluate an arithmetic expression containing a given number."
+      ],
+      "teaching_path": [
+        {
+          "id": "MC-1",
+          "action": "Declare the domain the unknown ranges over.",
+          "why_valid": "A solution set has no meaning until the admissible values are fixed.",
+          "inputs": [],
+          "output": "x ranges over the rationals.",
+          "role": "DECLARE"
+        },
+        {
+          "id": "MC-2",
+          "action": "Substitute a candidate value and evaluate both sides separately.",
+          "why_valid": "Membership of the solution set is decided by substitution, which is the definition of a solution.",
+          "inputs": [],
+          "output": "For x = 2: 3(2) + 2 = 8, and the right side is 9, so 8 = 9 is false.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "MC-3",
+          "action": "Try a second value that fails, and say why it fails.",
+          "why_valid": "A constraint is only understood once a non-solution has been seen.",
+          "inputs": [],
+          "output": "Evidence that the equation selects values rather than computing one.",
+          "role": "VERIFY"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "The equals sign means work out the left side and write the answer on the right.",
+          "diagnostic_prompt": "In 3x + 2 = 9, what would you 'work out' before you know x?",
+          "repair": "Read the statement aloud as a claim about the unknown, then test one value by substitution before manipulating anything."
+        }
+      ],
+      "representation_refs": [
+        "REP-MATH-NUMBER-LINE"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-MATH-NUMBER-LINE",
+          "correspondence": [
+            {
+              "element": "Marked solution with its exact label",
+              "symbol": "x",
+              "in_words": "the one point on the line where substituting gives 9 and nothing is left over"
+            },
+            {
+              "element": "Bracketing integer ticks",
+              "symbol": "x~",
+              "in_words": "the whole numbers either side, which the truncated decimal sits between without landing on the marked point"
+            }
+          ],
+          "scenes": []
+        }
+      ],
+      "relation_checks": [
+        "Substituting the result into the original statement reproduces it exactly.",
+        "If c equals b then x is zero."
+      ],
+      "exit_task": {
+        "prompt": "Does x = 2 satisfy 3x + 2 = 9? Show how you decided.",
+        "source_ref": "SRC-MATH-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "No: substituting gives 8, not 9.",
+          "reasoning": [
+            "Substitute 2 for x on the left: 3 times 2, plus 2, is 8.",
+            "Compare with the required right-hand side, 9.",
+            "8 and 9 differ, so 2 is not in the solution set."
+          ],
+          "check": "A value that satisfied the equation would make both sides identical, not merely close.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISS-MATH-LIST-BINDING"
+        }
+      },
+      "worked_anchors": [
+        {
+          "question_ref": "Q-MATH-LINEAR-01",
+          "stem": "Solve 3x + 2 = 9 over the rationals. Give the exact solution and verify it.",
+          "figure_refs": [
+            "REP-MATH-NUMBER-LINE"
+          ],
+          "answer": {
+            "summary": "x = 7/3.",
+            "reasoning": [
+              "Subtract 2 from both sides; the operation is reversible, giving 3x = 7.",
+              "Divide both sides by 3, which is non-zero and therefore reversible, giving x = 7/3.",
+              "Substitute back: 3 times 7/3 is 7, and 7 plus 2 is 9, exactly as required."
+            ],
+            "check": "The truncation 2.333333333333 gives 8.999999999999, not 9, so the exact fraction is the solution and the decimal is not."
+          }
+        }
+      ]
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-MATH-NUMBER-LINE",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

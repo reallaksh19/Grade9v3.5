@@ -1,0 +1,152 @@
+{
+  "id": "physics:mic-phy-vec-unit-notation:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-NOTATION",
+      "title": "Translate signed components to i-hat/j-hat notation",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "The component pair and v_x i-hat + v_y j-hat are two notations for the same 2-D vector; coefficients carry the same signs and units as the original components.",
+      "entry_assumptions": [
+        "Can read signed x/y components against declared positive axes."
+      ],
+      "teaching_path": [
+        {
+          "id": "VUN-1",
+          "role": "DECLARE",
+          "action": "Declare +x and +y and identify i-hat with the +x unit direction and j-hat with the +y unit direction.",
+          "why_valid": "The basis symbols are meaningless without the axes they name.",
+          "inputs": [],
+          "output": "i-hat = +x unit direction; j-hat = +y unit direction"
+        },
+        {
+          "id": "VUN-2",
+          "role": "TRANSFORM",
+          "action": "Replace the ordered pair (v_x,v_y) by v_x i-hat + v_y j-hat, carrying each coefficient sign unchanged.",
+          "why_valid": "The coefficients are exactly the signed components along the two basis directions.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "(v_x,v_y) <-> v_x i-hat + v_y j-hat"
+        },
+        {
+          "id": "VUN-3",
+          "role": "VERIFY",
+          "action": "Read the two coefficients back from the i-hat/j-hat expression and compare with the original component pair.",
+          "why_valid": "A notation translation is correct only if the original signed components are recovered.",
+          "inputs": [],
+          "output": "recovered pair equals the starting pair"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A negative coefficient should be made positive because i-hat and j-hat already contain the direction.",
+          "diagnostic_prompt": "If v_x is negative while +x is declared to the right, what sign must multiply i-hat?",
+          "repair": "Keep the coefficient sign. The hat symbol names the positive basis direction; a negative coefficient reverses that component."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Reading the coefficients back must recover the original signed component pair."
+      ],
+      "exit_task": {
+        "prompt": "With declared +x/+y axes, a vector has components (a,-b), where a and b are positive. Write it in i-hat/j-hat notation and state how you would recover the component pair.",
+        "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "v = a i-hat - b j-hat, and the coefficients recover the pair (a,-b).",
+          "reasoning": [
+            "i-hat names +x and j-hat names +y.",
+            "The x component is +a, so its coefficient is +a.",
+            "The y component is -b, so its coefficient is -b."
+          ],
+          "check": "Read the two signed coefficients back; they must be exactly (a,-b).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer is a symbolic representation translation and asserts no computed numerical value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

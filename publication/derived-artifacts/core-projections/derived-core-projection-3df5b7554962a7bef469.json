@@ -1,0 +1,201 @@
+{
+  "id": "physics:mic-phy-kin-distance-displacement:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-DISTANCE-DISPLACEMENT",
+      "title": "Path travelled is not start-to-finish change",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Distance counts the whole route travelled, while displacement records only the directed change from start to finish; a return to the start leaves zero displacement after a nonzero journey.",
+      "entry_assumptions": [
+        "Can trace a route from a marked start to a marked finish on a straight line."
+      ],
+      "teaching_path": [
+        {
+          "id": "KIN1-1",
+          "role": "DECLARE",
+          "action": "Mark a start point on a straight path and declare east as the positive direction.",
+          "why_valid": "A directed change is only readable once the line has a stated positive way.",
+          "inputs": [],
+          "output": "start: S.  east: positive.  west: opposite."
+        },
+        {
+          "id": "KIN1-2",
+          "role": "TRANSFORM",
+          "action": "Trace a walk away from S and then back to S, counting every part of the route.",
+          "why_valid": "The route count accumulates what was travelled even though the final place can match the initial place.",
+          "inputs": [],
+          "output": "route travelled: nonzero.  start-to-finish change: zero because finish = S."
+        },
+        {
+          "id": "KIN1-3",
+          "role": "VERIFY",
+          "action": "Compare that return trip with a one-way trip chosen to have the same total route length.",
+          "why_valid": "Holding route length fixed while changing the finish isolates the information displacement carries.",
+          "inputs": [],
+          "output": "same route length; different finish -> different displacement."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A person walks away from a marker and later returns exactly to it. Before naming any quantities, has every measure of the journey returned to zero?",
+          "defensible_answer": "No. The start-to-finish change is zero, but the travelled route is still nonzero."
+        },
+        "attempt": {
+          "produces": "Two short descriptions of the same return trip: one that records the whole route and one that records only start versus finish.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The whole-route description remains nonzero.",
+              "evidence_of": "Keeping travelled path information after the return."
+            },
+            {
+              "criterion": "The start-versus-finish description is zero.",
+              "evidence_of": "Using endpoints rather than retracing the route for displacement."
+            }
+          ],
+          "accepted": [
+            "'The traveller covered a nonzero route, but finished where they started, so the endpoint change is zero.'"
+          ],
+          "rejected": [
+            "'Both are zero because the traveller ended where they began.' This erases the path that was actually travelled."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Did the traveller move along any part of the path before returning?",
+              "why_this_ask": "It makes the existence of travelled path undeniable before the endpoint comparison is introduced.",
+              "from_step_ref": "KIN1-2"
+            },
+            {
+              "ask": "Where is the finish compared with the start?",
+              "why_this_ask": "It switches from the history of the route to the endpoint relation."
+            },
+            {
+              "ask": "Which description should keep the detour: the whole route or the start-to-finish change?",
+              "why_this_ask": "The learner has to assign the two pieces of information to different quantities rather than memorize names.",
+              "from_step_ref": "KIN1-3"
+            },
+            {
+              "ask": "If another route has the same total travel but ends elsewhere, which description must change?",
+              "why_this_ask": "The comparison tests whether the endpoint information has actually been separated from path length."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels the two descriptions after a constructed return trip. The learner route first notices the contradiction between real travel and a zero endpoint change, then assigns each description a job."
+        },
+        "boundary_test": {
+          "prompt": "If the traveller never leaves the starting marker, what happens to both descriptions?",
+          "answer": "Both are zero: there is no travelled route and no change between start and finish.",
+          "confirms": "The two quantities can agree in a boundary case without becoming the same concept."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Distance travelled and displacement are always the same number.",
+          "diagnostic_prompt": "A walker leaves a marker, turns around, and finishes back at the marker. Is the journey length zero just because the final change in position is zero?",
+          "repair": "Count every part of the route for distance; compare only the start and finish for displacement, keeping the declared direction."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Route A leaves a marker and returns to it. Route B travels the same total amount but ends away from the marker. Without calculating a value, compare their distance and displacement.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The routes can have the same distance, but Route A has zero displacement while Route B has a nonzero directed displacement.",
+          "reasoning": [
+            "Distance follows the whole route, so equal total travel can give equal distance.",
+            "Displacement compares only the finish with the start.",
+            "Returning to the marker erases the start-to-finish change, not the travelled route."
+          ],
+          "check": "Ignore the middle of each route and look only at the two endpoints; only Route A has matching endpoints.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response makes only qualitative zero/nonzero and same/different comparisons; it asserts no computed magnitude."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

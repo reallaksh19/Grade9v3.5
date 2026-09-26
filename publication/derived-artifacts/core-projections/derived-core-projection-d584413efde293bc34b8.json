@@ -1,0 +1,184 @@
+{
+  "id": "physics:mic-phy-nlm-connected-common-accel:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+      "title": "Connected bodies and a justified common acceleration",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "Bodies share an acceleration component only when a physical constraint keeps their relative separation fixed along that coordinate; the shared acceleration can link separate Newton-II equations, while internal partner forces cancel only if the bodies are deliberately treated as one system.",
+      "entry_assumptions": [
+        "Can draw one FBD per chosen body.",
+        "Can apply signed Newton II to one chosen body."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM9-1",
+          "role": "DECLARE",
+          "action": "Identify the connection/contact condition and state exactly which relative separation is fixed.",
+          "why_valid": "A common acceleration is a kinematic consequence of a constraint, not a default property of nearby bodies.",
+          "inputs": [],
+          "output": "fixed relative separation along chosen coordinate -> common constrained acceleration component"
+        },
+        {
+          "id": "NLM9-2",
+          "role": "DECLARE",
+          "action": "Choose one compatible sign convention for every body equation and assign the constrained acceleration component consistently.",
+          "why_valid": "The same physical acceleration cannot change sign merely because the equation changed bodies.",
+          "inputs": [],
+          "output": "same-sense coordinates -> a_A = a_B = a"
+        },
+        {
+          "id": "NLM9-3",
+          "role": "TRANSFORM",
+          "action": "Write one Newton-II force sum for each body, keeping every inter-body force on the body it acts on.",
+          "why_valid": "The interaction forces are external to each individual body and therefore belong in its own equation.",
+          "inputs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "body A: Sigma F_A = m_A a; body B: Sigma F_B = m_B a"
+        },
+        {
+          "id": "NLM9-4",
+          "role": "VERIFY",
+          "action": "If treating A+B as one system, add the two body equations and cancel only the internal A-on-B/B-on-A pair in that system sum.",
+          "why_valid": "Internal partner forces cancel in the combined system equation because both members are included, not because either force is absent from a body FBD.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "system: Sigma F_external = (m_A + m_B) a; internal pair absent only after equations are combined"
+        },
+        {
+          "id": "NLM9-5",
+          "role": "VERIFY",
+          "action": "Match the chosen system boundary to the requested quantity: use the combined constrained system when internal forces are irrelevant to the shared acceleration, then isolate the body or subsystem that makes a requested interaction force external.",
+          "why_valid": "An internal interaction disappears from a whole-system force sum, so that boundary is efficient for acceleration but cannot by itself determine the internal force that was cancelled.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP",
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "target shared acceleration -> whole constrained system; target internal/contact force -> isolate a body or subsystem while carrying the same justified acceleration."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Any two touching or connected bodies automatically have the same acceleration.",
+          "diagnostic_prompt": "If two blocks are touching but one loses contact, what keeps their accelerations equal after separation?",
+          "repair": "Name the active constraint first. Equal acceleration is justified only while the relative-separation condition remains enforced."
+        },
+        {
+          "wrong_idea": "The contact force between two bodies can be cancelled from each individual FBD because it is an internal force of the pair.",
+          "diagnostic_prompt": "On body A alone, is the force from body B external to A?",
+          "repair": "Yes. Keep it in A's equation. It cancels only after A and B are deliberately combined into one system equation."
+        },
+        {
+          "wrong_idea": "Bodies with the same acceleration must have the same net force.",
+          "diagnostic_prompt": "Two connected bodies of different masses share acceleration a. Must their individual net forces be equal?",
+          "repair": "No. The constraint can make their accelerations equal while Newton II gives different net forces m_A a and m_B a when the masses differ."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "The relation must cease to be imposed if the stated constraint is removed."
+      ],
+      "exit_task": {
+        "prompt": "Two bodies are constrained to keep a fixed separation along one straight coordinate. State the acceleration relation, write the form of the two body equations, and explain when their interaction force can disappear from an equation.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "With same-sense coordinates the constraint gives a_A = a_B = a. Each body keeps the interaction force in its own Newton-II equation; the equal-and-opposite pair cancels only in a combined A+B system equation.",
+          "reasoning": [
+            "Fixed relative separation implies equal velocity and acceleration components along the constrained coordinate.",
+            "Each individual body experiences the partner force as an external force.",
+            "When both bodies are included in one system, the internal partner pair cancels in the summed equation."
+          ],
+          "check": "If the connection breaks, the acceleration equality must no longer be asserted automatically.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit states symbolic acceleration and force-sum structure for constrained bodies; no numerical acceleration or force is computed."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

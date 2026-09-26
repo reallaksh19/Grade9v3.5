@@ -1,0 +1,163 @@
+{
+  "id": "physics:mic-phy-nlm-friction:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-FRICTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+      "title": "Friction opposes relative sliding at a contact",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Friction is a contact force along the surface that opposes relative sliding, or the tendency for relative sliding, between the contacting surfaces; it is not defined by the object's overall velocity alone.",
+      "entry_assumptions": [
+        "Can choose one body and identify external contact interactions acting on it."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM5-1",
+          "role": "DECLARE",
+          "action": "Choose the body and mark the contact surface before deciding a friction direction.",
+          "why_valid": "Friction belongs to a specific contact interaction, so its direction must be read from relative motion at that contact.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "chosen body; named contact; tangent direction available."
+        },
+        {
+          "id": "NLM5-2",
+          "role": "TRANSFORM",
+          "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+          "why_valid": "Contact friction resists relative sliding between the surfaces.",
+          "inputs": [],
+          "output": "friction tangent to contact and opposite relative sliding/tendency."
+        },
+        {
+          "id": "NLM5-3",
+          "role": "VERIFY",
+          "action": "Check a conveyor-belt case where the belt can frictionally accelerate an object in the same direction as the object's motion.",
+          "why_valid": "The counterexample falsifies the shortcut 'friction always points opposite velocity'.",
+          "inputs": [],
+          "output": "friction direction follows contact slip tendency, not a universal page-direction rule."
+        },
+        {
+          "id": "NLM5-4",
+          "role": "VERIFY",
+          "action": "Decide whether any tangential friction is required at all; allow friction to be zero when the contact has neither relative sliding nor a tendency to slide.",
+          "why_valid": "Friction is a responsive tangential contact force, not an automatic nonzero force merely because two rough surfaces touch.",
+          "inputs": [],
+          "output": "contact-state check -> friction may be zero when no tangential force is required."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Friction always points opposite the object's velocity.",
+          "diagnostic_prompt": "A moving conveyor belt speeds up a box resting on it. Can the friction on the box point in the same direction as the box's motion?",
+          "repair": "Decide the relative sliding tendency at the contact first; friction opposes that tendency."
+        },
+        {
+          "wrong_idea": "Two rough surfaces in contact must always exert a nonzero friction force.",
+          "diagnostic_prompt": "A crate and rough platform already move together at constant velocity. If no horizontal force is otherwise required, must the friction force be nonzero merely because the surfaces are rough?",
+          "repair": "No. Ask what relative sliding or slip tendency would occur without friction. If none exists and no tangential force is required, friction can be zero."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The friction force on the box points to the right.",
+          "reasoning": [
+            "Relative to the belt, the box tends to slip left at the contact.",
+            "Friction opposes that relative slip tendency.",
+            "Therefore the belt's friction on the box points right and accelerates it."
+          ],
+          "check": "The answer is allowed to point with the box's motion because friction is defined by the contact slip tendency, not by the box's velocity alone.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit asserts only the contact-force direction in a qualitative conveyor-belt case."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

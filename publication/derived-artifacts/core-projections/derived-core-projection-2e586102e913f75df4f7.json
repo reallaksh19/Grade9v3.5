@@ -1,0 +1,197 @@
+{
+  "id": "physics:mic-vector-vs-scalar:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-VECTOR-VS-SCALAR",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-VECTOR-VS-SCALAR",
+      "title": "Vector information versus magnitude-only information",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Equal magnitude alone does not determine a vector because direction is part of the quantity.",
+      "entry_assumptions": [
+        "Can compare ordinary nonnegative sizes and recognise that an arrow has an orientation."
+      ],
+      "teaching_path": [
+        {
+          "id": "VS-1",
+          "role": "DECLARE",
+          "action": "Place two equal-length arrows from the same start, one pointing east and one west.",
+          "why_valid": "Holding the drawn length fixed isolates direction as the only changed feature.",
+          "inputs": [],
+          "output": "Two arrows with the same magnitude and opposite directions."
+        },
+        {
+          "id": "VS-2",
+          "role": "TRANSFORM",
+          "action": "State the magnitude of each arrow, then state the direction of each arrow separately.",
+          "why_valid": "Magnitude answers only how large; the direction statement carries information the shared magnitude does not.",
+          "inputs": [],
+          "output": "Both magnitudes are equal, but the vectors are different because their directions differ."
+        },
+        {
+          "id": "VS-3",
+          "role": "VERIFY",
+          "action": "Reverse one arrow without changing its length and check which description changes.",
+          "why_valid": "A pure reversal preserves magnitude while changing the vector, directly testing whether magnitude alone identifies the directed quantity.",
+          "inputs": [],
+          "output": "Magnitude unchanged; vector changed."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two arrows have equal length but point in opposite directions. Before reading on, are they the same vector?",
+          "defensible_answer": "No. Equal length gives equal magnitude, but opposite directions make the vectors different."
+        },
+        "attempt": {
+          "produces": "A one-sentence comparison naming what is shared and what differs.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Names equal magnitude as the shared property.",
+              "evidence_of": "Separating size from full vector identity."
+            },
+            {
+              "criterion": "Names opposite direction as the difference.",
+              "evidence_of": "Treating direction as part of the vector."
+            }
+          ],
+          "accepted": [
+            "Same magnitude, opposite direction, therefore different vectors."
+          ],
+          "rejected": [
+            "They are the same because both arrows have the same length."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What did we hold fixed when the two arrow lengths were made equal?",
+              "why_this_ask": "It isolates magnitude as the shared quantity.",
+              "from_step_ref": "VS-1"
+            },
+            {
+              "ask": "What changed when one arrow was reversed?",
+              "why_this_ask": "It makes direction the single distinguishing feature.",
+              "from_step_ref": "VS-3"
+            },
+            {
+              "ask": "If the magnitude stayed fixed while the vector changed, what extra information must a vector contain?",
+              "why_this_ask": "The learner states the distinction rather than receiving it as a definition."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path states the two descriptions explicitly; reconstruction starts from the reversal test and asks the learner to infer what magnitude omits."
+        },
+        "boundary_test": {
+          "prompt": "If two arrows have equal length and also point in the same direction, what else would have to differ for them not to represent the same free vector?",
+          "answer": "Nothing about the free vector itself; with the same magnitude and direction they represent the same free vector even if drawn in different places.",
+          "confirms": "Magnitude plus direction identifies the free vector; drawing location is not another vector property."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Two directed quantities with the same magnitude are the same vector.",
+          "diagnostic_prompt": "Two arrows are both 5 units long, one east and one west. Are they the same vector?",
+          "repair": "Keep the length fixed and compare direction. Equal magnitude does not make two oppositely directed quantities the same vector."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two arrows have equal length. One points north and the other south. State what is the same, what is different, and whether they are the same vector.",
+        "source_ref": "SRC-AUTHOR-VEC",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "They have the same magnitude but opposite directions, so they are not the same vector.",
+          "reasoning": [
+            "The equal arrow lengths represent equal magnitude.",
+            "North and south are different directions.",
+            "A vector is identified by magnitude together with direction, so equal magnitude alone is insufficient."
+          ],
+          "check": "Reverse the south-pointing arrow without changing its length; it can then match the north-pointing vector.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task checks the vector-versus-magnitude distinction without requiring component arithmetic."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

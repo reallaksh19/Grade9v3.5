@@ -1,0 +1,228 @@
+{
+  "id": "physics:q-phy-kin-2d-2b-same-height-velocity-05:core2b",
+  "subject": "Physics",
+  "source_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE2B",
+    "orientation": null,
+    "concept": null,
+    "application": {
+      "question_ref": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "origin": "AUTHORED",
+      "original_number": "AUTHOR-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Both events occur on the same trajectory at the same vertical position.",
+        "Take +y upward."
+      ],
+      "figure_refs": [],
+      "figures": [],
+      "reasoning_route": [
+        {
+          "id": "R-KIN-2D-BSTATE-REPRESENT",
+          "kind": "REPRESENT",
+          "action": "Represent the two events at the same height on one ideal trajectory, one ascending and one descending, and compare the requested quantities component by component.",
+          "why_valid": "The task asks for a relation between two states rather than their times, so shared height and direction of travel are the demand-bearing event facts.",
+          "inputs": [
+            "same projectile",
+            "same height",
+            "ascending event",
+            "descending event"
+          ],
+          "output": "A two-event comparison frame for v_x, v_y, speed and acceleration without event times."
+        },
+        {
+          "id": "R-KIN-2D-BSTATE-DECIDE",
+          "kind": "DECIDE",
+          "action": "Choose direct component invariants at equal height as the comparison method instead of solving for the two event times.",
+          "why_valid": "In ideal flight a_x=0 fixes v_x, while constant vertical acceleration gives equal vertical speed magnitude at the same height; ascent and descent determine opposite signs.",
+          "inputs": [
+            "a_x=0",
+            "a_y=-g",
+            "same vertical position",
+            "ascent versus descent"
+          ],
+          "output": "Compare v_x directly and compare v_y by equal magnitude with opposite direction, without a time calculation."
+        },
+        {
+          "id": "R-KIN-2D-BSTATE-RECOMBINE",
+          "kind": "CONNECT",
+          "action": "Combine the component relations to conclude that speed magnitudes are equal while velocity vectors differ because v_y changes sign.",
+          "why_valid": "Speed depends on v_x^2+v_y^2, whereas vector equality also requires matching component signs.",
+          "inputs": [
+            "same v_x",
+            "equal |v_y|",
+            "opposite v_y signs"
+          ],
+          "output": "The speeds are equal, but the velocity vectors are different."
+        },
+        {
+          "id": "R-KIN-2D-BSTATE-ACCEL",
+          "kind": "CONNECT",
+          "action": "Keep acceleration a=(0,-g) at both events.",
+          "why_valid": "Gravity is the same retained interaction at both locations, so acceleration does not reverse when vertical velocity reverses.",
+          "inputs": [
+            "gravity-only ideal projectile model"
+          ],
+          "output": "Acceleration is identical and downward at both events."
+        },
+        {
+          "id": "R-KIN-2D-BSTATE-CHECK",
+          "kind": "VERIFY",
+          "action": "Check vector equality explicitly: ascent has positive v_y and descent has negative v_y, so identical velocity vectors are impossible.",
+          "why_valid": "A sign difference in any Cartesian component distinguishes two vectors even when their magnitudes match.",
+          "inputs": [
+            "v_y,up>0",
+            "v_y,down<0"
+          ],
+          "output": "Equal speed is not mistaken for equal velocity."
+        }
+      ],
+      "crux_move_ref": "R-KIN-2D-BSTATE-DECIDE",
+      "hints": [
+        {
+          "text": "At the same height, which horizontal quantity is unchanged throughout ideal flight, and what must differ between ascent and descent?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Compare component signs first; only then compare speed magnitudes.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Make a comparison table for v_x, v_y, speed and acceleration; enter only ‘same height’, ‘upward’ and ‘downward’ before choosing a method.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
+        ],
+        "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE"
+      },
+      "check": "The two velocity vectors cannot be identical because one has upward v_y and the other downward v_y.",
+      "solution": {
+        "summary": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+        "steps": [
+          "Horizontal velocity remains constant because a_x=0.",
+          "At equal height in the same gravity-only trajectory, the vertical speed magnitude matches on ascent and descent, with opposite signs.",
+          "Combining the components gives equal speed magnitudes but different velocity directions.",
+          "Gravity gives the same downward acceleration at both events."
+        ],
+        "rubric": [
+          {
+            "criterion": "Keeps v_x unchanged across the two events.",
+            "evidence_of": "Uses the horizontal component invariant."
+          },
+          {
+            "criterion": "Gives v_y equal magnitude and opposite sign.",
+            "evidence_of": "Understands same-height vertical-state symmetry without confusing vector equality."
+          },
+          {
+            "criterion": "Distinguishes equal speed from equal velocity.",
+            "evidence_of": "Recombines components conceptually rather than comparing only magnitudes."
+          }
+        ]
+      },
+      "repair": {
+        "step_ref": "K2D3-7",
+        "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+        "action": "At the selected event time, reconstruct the requested velocity, speed, direction, displacement or range from simultaneous components and check qualitative limits.",
+        "why_valid": "The reported projectile result is a consequence of one component model and one event, so its components must refer to the same instant and satisfy a_x=0, a_y=-g.",
+        "output": "checked projectile consequence at one physical event"
+      }
+    },
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+        "blueprint_id": "BP-CORE2B-TRANSFER",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "TRANSFER_ATTEMPT",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "post_attempt"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "post_attempt"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [
+        "R-KIN-2D-BSTATE-DECIDE"
+      ],
+      "pre_attempt_scaffold_limit": 1,
+      "pre_attempt_hint_limit": 1,
+      "post_attempt_hint_limit": 2
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

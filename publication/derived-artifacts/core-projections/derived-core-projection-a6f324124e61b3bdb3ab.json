@@ -1,0 +1,156 @@
+{
+  "id": "physics:mic-opt-mirror-equation:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-MIRROR-EQUATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-MIRROR-EQUATION",
+      "title": "The mirror equation is a signed paraxial model of the ray geometry",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "The equation 1/v + 1/u = 1/f does not replace the ray picture: signed u, v and f must refer to the same mirror geometry and the formula is used only within the paraxial/small-angle model.",
+      "entry_assumptions": [
+        "Can construct a spherical-mirror image with principal rays and apply the declared Cartesian sign convention."
+      ],
+      "teaching_path": [
+        {
+          "id": "OPT-R5-1",
+          "role": "DECLARE",
+          "action": "Before substitution, mark the pole/origin and positive longitudinal direction, then assign signed u and f from the diagram.",
+          "why_valid": "REL-MIRROR-EQUATION relates signed coordinates, so signs must come from the declared coordinate system rather than memorized object/image labels.",
+          "inputs": [
+            "CAP-OPT-SPHERICAL-RAY-CONSTRUCTION"
+          ],
+          "output": "one mirror diagram with signed u and f"
+        },
+        {
+          "id": "OPT-R5-2",
+          "role": "TRANSFORM",
+          "action": "Use 1/v + 1/u = 1/f and rearrange it to the requested unknown without discarding signs.",
+          "why_valid": "REL-MIRROR-EQUATION owns the algebraic relation for the same paraxial mirror state.",
+          "inputs": [
+            "REL-MIRROR-EQUATION"
+          ],
+          "output": "1/v = 1/f - 1/u, or an equivalent signed rearrangement"
+        },
+        {
+          "id": "OPT-R5-3",
+          "role": "VERIFY",
+          "action": "Compare the sign/region predicted for v with the principal-ray construction and state the paraxial/small-angle condition behind the equation.",
+          "why_valid": "A sign or region disagreement reveals a coordinate/construction error, while wide-aperture disagreement can reveal a model-limit issue.",
+          "inputs": [],
+          "output": "equation prediction and ray construction agree within the stated model"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "The mirror formula is an exact law for every ray on any part of a spherical mirror, so ray height and aperture never matter.",
+          "diagnostic_prompt": "If rays strike far from the principal axis at large angles and fail to meet at one point, must the algebra be wrong?",
+          "repair": "Not necessarily. State the paraxial/small-angle approximation before using the simple mirror equation; wide-aperture disagreement can be a model-limit effect."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "u, v and f have the same length dimension.",
+        "The sign/region predicted for v agrees with a valid principal-ray construction.",
+        "The coordinate convention is declared before numerical substitution."
+      ],
+      "exit_task": {
+        "prompt": "A concave-mirror diagram uses the declared Cartesian convention with a real object and real image in front of the mirror, so u < 0 and the ray construction says v < 0. Write the mirror equation rearranged for 1/v, state the sign you expect for v, and name the model condition that must be satisfied before trusting the equation.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Use 1/v = 1/f - 1/u; the physical ray construction requires v to be negative in this convention, and the spherical-mirror equation is used in the paraxial/small-angle regime.",
+          "reasoning": [
+            "Keep the signs attached to u and f when rearranging.",
+            "Use the ray construction as an independent sign/region check on v.",
+            "State the paraxial model boundary rather than treating the formula as exact for arbitrary wide-aperture rays."
+          ],
+          "check": "If the algebra predicts an image region inconsistent with two valid principal rays, revisit signs/model use before accepting the result.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit checks symbolic rearrangement, sign consistency and model validity; no numerical image distance is asserted."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

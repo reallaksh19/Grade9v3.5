@@ -1,0 +1,205 @@
+{
+  "id": "physics:mic-phy-vec-sub-order:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-VEC-SUB-ORDER",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-VEC-SUB-ORDER",
+      "title": "Operand order reverses a subtraction result",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Swapping which directed quantity comes first in a subtraction reverses the result's direction while leaving its length unchanged.",
+      "entry_assumptions": [
+        "Can construct one graphical subtraction by reversing the second arrow before tail-to-head addition."
+      ],
+      "teaching_path": [
+        {
+          "id": "VEC3-1",
+          "role": "DECLARE",
+          "action": "Write two ordered requests for the same pair: A minus B, then B minus A.",
+          "why_valid": "Keeping the pair fixed isolates order as the only change.",
+          "inputs": [],
+          "output": "case 1: A minus B.  case 2: B minus A."
+        },
+        {
+          "id": "VEC3-2",
+          "role": "TRANSFORM",
+          "action": "For A minus B, follow A and then the reversed B arrow using the already-learned subtraction construction.",
+          "why_valid": "The prerequisite construction gives a directed result for the stated order without introducing a new rule.",
+          "inputs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "output": "A - B -> one completed arrow from the common start to the construction endpoint."
+        },
+        {
+          "id": "VEC3-3",
+          "role": "VERIFY",
+          "action": "Repeat with the order swapped and place both completed arrows from the same start for comparison.",
+          "why_valid": "Only the order changed, so direct superposition exposes what order does to orientation.",
+          "inputs": [
+            "CAP-GRAPHICAL-SUBTRACT"
+          ],
+          "output": "B minus A: same drawn length as the first result, pointing exactly the opposite way."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A minus B has already been drawn pointing southeast. Before drawing anything else, where do you expect B minus A to point?",
+          "defensible_answer": "Northwest, because swapping the order reverses the completed directed result while keeping its length."
+        },
+        "attempt": {
+          "produces": "A second arrow, drawn from the same start as the first, showing the predicted direction for B minus A plus one sentence naming what changed.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The second arrow points exactly opposite the first.",
+              "evidence_of": "Treating operand order as directional information."
+            },
+            {
+              "criterion": "The explanation says order changed while the input pair stayed fixed.",
+              "evidence_of": "Isolating the cause of the reversal instead of appealing to a memorized sign change."
+            }
+          ],
+          "accepted": [
+            "A northwest arrow from the same start, the same length as the southeast arrow, with the note 'same pair; order swapped, so direction reverses.'"
+          ],
+          "rejected": [
+            "Another southeast arrow labelled B minus A. This treats subtraction as if swapping operands left the directed result unchanged."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which of the two original arrows is second in A minus B, and what does the construction do to that second arrow?",
+              "why_this_ask": "It reconnects the new order question to the already-owned graphical construction.",
+              "from_step_ref": "VEC3-2"
+            },
+            {
+              "ask": "Now make B the first quantity. Which arrow is second this time?",
+              "why_this_ask": "The learner has to identify the single structural change before seeing the result."
+            },
+            {
+              "ask": "Draw the swapped-order result from the same start as the first. Which way does it point relative to the first?",
+              "why_this_ask": "Superposition turns the order change into a visible orientation change.",
+              "from_step_ref": "VEC3-3"
+            },
+            {
+              "ask": "What stayed unchanged when the order swapped?",
+              "why_this_ask": "Naming the unchanged length prevents the learner from treating reversal as an unrelated second calculation."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path demonstrates both orders. The learner route begins with a prediction from one completed order, then reconstructs the second and uses superposition to test the prediction."
+        },
+        "boundary_test": {
+          "prompt": "Suppose A and B are identical arrows. What do both subtraction orders produce, and what happens to the idea of an opposite direction?",
+          "answer": "Both give the zero result. Its length is zero, so there is no direction to reverse.",
+          "confirms": "The reversal statement applies to a directed nonzero result; the zero case is the limiting boundary."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Vector subtraction is commutative in the same way as vector addition.",
+          "diagnostic_prompt": "If A minus B points east, must B minus A point east too?",
+          "repair": "Keep the same two inputs, swap only their order, and compare the two completed arrows from one start; the second points opposite the first."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two labelled arrows A and B are shown, and a completed construction for A minus B points southeast. Without recalculating its length, describe the direction of B minus A and explain the check you used.",
+        "source_ref": "SRC-AUTHOR-VEC-ADD-SUB",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "B minus A points northwest: exactly opposite to the shown result, with the same length.",
+          "reasoning": [
+            "The two requests use the same pair and differ only in order.",
+            "Swapping the order swaps which arrow is reversed in the known construction.",
+            "Placing both results from one start makes the second point opposite the first."
+          ],
+          "check": "Swap the labels again; the direction must return to southeast without changing the length.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer asserts no computed magnitude. It checks the qualitative reversal caused by swapping operand order."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

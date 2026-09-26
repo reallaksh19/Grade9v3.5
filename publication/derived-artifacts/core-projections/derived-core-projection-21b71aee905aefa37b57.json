@@ -1,0 +1,224 @@
+{
+  "id": "physics:q-phy-kin-2d-2b-unequal-height-03:core2b",
+  "subject": "Physics",
+  "source_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE2B",
+    "orientation": null,
+    "concept": null,
+    "application": {
+      "question_ref": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "origin": "AUTHORED",
+      "original_number": "AUTHOR-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected.",
+        "Ground is 15 m below the launch point.",
+        "The initial velocity components are already resolved."
+      ],
+      "figure_refs": [],
+      "figures": [],
+      "reasoning_route": [
+        {
+          "id": "R-KIN-2D-BHEIGHT-REPRESENT",
+          "kind": "REPRESENT",
+          "action": "Use the launch point as vertical reference and mark the ground 15 m below it while retaining the gravity-only model.",
+          "why_valid": "The changed geometry is an event condition, not a new physical law; one reference converts the height difference into vertical displacement.",
+          "inputs": [
+            "launch 15 m above ground",
+            "+y upward",
+            "u_x=10",
+            "u_y=10",
+            "g=10"
+          ],
+          "output": "Ground impact lies at Delta y=-15 m from launch."
+        },
+        {
+          "id": "R-KIN-2D-BHEIGHT-EVENT",
+          "kind": "DECIDE",
+          "action": "Choose Delta y=-15 m as the impact condition instead of reusing the familiar same-height condition Delta y=0.",
+          "why_valid": "The landing surface is below launch, so the actual geometry—not familiarity with the parent problem—determines the event condition.",
+          "inputs": [
+            "ground 15 m below launch",
+            "parent same-height condition Delta y=0"
+          ],
+          "output": "The correct event equation is -15=10t-5t^2."
+        },
+        {
+          "id": "R-KIN-2D-BHEIGHT-SOLVE",
+          "kind": "TRANSFORM",
+          "action": "Solve the event equation and select the positive physical root t=3 s.",
+          "why_valid": "Only a nonnegative post-launch time can represent the stated future ground-impact event.",
+          "inputs": [
+            "-15=10t-5t^2"
+          ],
+          "output": "Ground-impact time t=3 s."
+        },
+        {
+          "id": "R-KIN-2D-BHEIGHT-REUSE",
+          "kind": "CONNECT",
+          "action": "Reuse t=3 s in horizontal motion to obtain Delta x=30 m.",
+          "why_valid": "Horizontal range and vertical ground contact describe the same impact event, so both components must share its time.",
+          "inputs": [
+            "t_impact=3 s",
+            "u_x=10 m/s",
+            "a_x=0"
+          ],
+          "output": "Horizontal range=30 m."
+        },
+        {
+          "id": "R-KIN-2D-BHEIGHT-CHECK",
+          "kind": "VERIFY",
+          "action": "Substitute t=3 s into vertical displacement and compare with the same-height shortcut time 2 s.",
+          "why_valid": "Back-substitution must reproduce -15 m, whereas 2 s reproduces Delta y=0 and therefore identifies the wrong event.",
+          "inputs": [
+            "t=3 s",
+            "candidate t=2 s",
+            "vertical displacement equation"
+          ],
+          "output": "t=3 s gives -15 m and the familiar 2 s shortcut is falsified for ground impact."
+        }
+      ],
+      "crux_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
+      "hints": [
+        {
+          "text": "What vertical displacement identifies ground impact relative to the launch point?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Find the physical root from the y equation, then use that same time in x.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Sketch only the launch level and ground relative to one vertical origin before writing an event equation.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
+        }
+      ],
+      "transfer": {
+        "dimension": "reasoning_steps",
+        "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
+        "builds_on": [
+          "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
+        ],
+        "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT"
+      },
+      "check": "Substitution into the vertical displacement gives -15 m; the nonzero same-height time 2u_y/g=2 s is not the ground-impact time.",
+      "solution": {
+        "summary": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+        "steps": [
+          "Use the vertical impact condition Delta y=-15=10t-5t^2.",
+          "Solve 5t^2-10t-15=0, giving the physical root t=3 s.",
+          "Reuse t=3 s horizontally: Delta x=10(3)=30 m.",
+          "The same-height shortcut would use the wrong event condition here."
+        ],
+        "rubric": [
+          {
+            "criterion": "Uses the actual vertical displacement -15 m rather than a same-height shortcut.",
+            "evidence_of": "Selects the event condition from geometry."
+          },
+          {
+            "criterion": "Reuses the physical impact time in the horizontal equation.",
+            "evidence_of": "Preserves the one-clock invariant."
+          }
+        ]
+      },
+      "repair": {
+        "step_ref": "K2D3-6",
+        "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+        "action": "For any unequal-height landing, use the actual Delta y=y_f-y_i in the vertical position equation and retain the actual u_y; for a horizontal launch specifically, set u_y=0, then obtain the event time vertically and share it with x.",
+        "why_valid": "Initial vertical velocity and landing displacement describe different facts. The landing event is fixed by the actual vertical geometry, while u_y=0 is only the horizontal-launch initial condition.",
+        "output": "Delta y=y_f-y_i=u_y t_event-0.5g t_event^2; for horizontal launch u_y=0; reuse the solved t_event on x"
+      }
+    },
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+        "blueprint_id": "BP-CORE2B-TRANSFER",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "TRANSFER_ATTEMPT",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "post_attempt"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "post_attempt"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [
+        "R-KIN-2D-BHEIGHT-EVENT"
+      ],
+      "pre_attempt_scaffold_limit": 1,
+      "pre_attempt_hint_limit": 1,
+      "post_attempt_hint_limit": 2
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

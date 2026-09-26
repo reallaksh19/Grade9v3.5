@@ -1,0 +1,161 @@
+{
+  "id": "physics:mic-phy-vec-unit-direction:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-VEC-UNIT-DIRECTION",
+      "title": "Normalize a nonzero vector to unit direction",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Dividing every component of the same nonzero vector by its positive magnitude removes units and scale while preserving the component ratio and therefore the direction.",
+      "entry_assumptions": [
+        "Can express the vector in signed components or i-hat/j-hat notation.",
+        "Can obtain the nonnegative magnitude from perpendicular components through the declared Mathematics bridge."
+      ],
+      "teaching_path": [
+        {
+          "id": "VUD-1",
+          "role": "DECLARE",
+          "action": "Confirm that the vector is nonzero and identify its positive magnitude |v|.",
+          "why_valid": "Normalization divides by |v|, so |v| must be greater than zero.",
+          "inputs": [
+            "CAP-RIGHT-TRIANGLE-BRIDGE"
+          ],
+          "output": "|v|>0"
+        },
+        {
+          "id": "VUD-2",
+          "role": "TRANSFORM",
+          "action": "Divide every signed component by the same magnitude: v_hat = (v_x/|v|) i-hat + (v_y/|v|) j-hat.",
+          "why_valid": "Multiplication by the same positive scalar reciprocal changes length but preserves direction and component signs.",
+          "inputs": [
+            "CAP-VEC-UNIT-NOTATION"
+          ],
+          "output": "v_hat = v/|v|"
+        },
+        {
+          "id": "VUD-3",
+          "role": "VERIFY",
+          "action": "Recompute the magnitude of the normalized components and confirm it is 1.",
+          "why_valid": "A unit vector is defined to have magnitude 1.",
+          "inputs": [],
+          "output": "sqrt((v_x/|v|)^2+(v_y/|v|)^2)=1"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A unit vector keeps the original physical unit because it points in the same direction.",
+          "diagnostic_prompt": "If every component is divided by a magnitude carrying the same unit, what unit remains in the ratio?",
+          "repair": "The units cancel. A unit vector carries direction and has magnitude 1; it is dimensionless in this representation."
+        },
+        {
+          "wrong_idea": "The zero vector can be normalized by dividing each zero component by its magnitude.",
+          "diagnostic_prompt": "What is the magnitude of the zero vector, and what denominator would normalization require?",
+          "repair": "Its magnitude is zero, so normalization would divide by zero. The zero vector has no unit direction."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "The normalized magnitude is 1.",
+        "The signs and component ratio match the original vector."
+      ],
+      "exit_task": {
+        "prompt": "A nonzero vector has symbolic components (a,b) and magnitude M>0. Write its unit-direction vector in component and i-hat/j-hat form, then give the magnitude check.",
+        "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The unit direction is (a/M,b/M) = (a/M)i-hat + (b/M)j-hat, and its magnitude is 1.",
+          "reasoning": [
+            "M is the positive magnitude of the original nonzero vector.",
+            "Dividing both components by the same positive M preserves direction.",
+            "sqrt((a/M)^2+(b/M)^2)=sqrt(a^2+b^2)/M=M/M=1."
+          ],
+          "check": "Confirm M>0 first; if M=0 the normalization is undefined.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer is symbolic; the magnitude-one check is algebraic and asserts no computed numerical measurement."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

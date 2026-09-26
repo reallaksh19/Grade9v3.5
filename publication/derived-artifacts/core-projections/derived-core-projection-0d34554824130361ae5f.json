@@ -1,0 +1,230 @@
+{
+  "id": "physics:mic-phy-sound-reflection:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-SOUND-REFLECTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-SOUND-REFLECTION",
+      "title": "Reflected sound can form echoes, reverberation and echolocation cues",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Reflected-sound timing measures an outward-and-return path. One-way range is half that path for a stationary simple geometry; whether a return is heard as a distinct echo versus reverberation depends on delay/conditions rather than one universal distance constant.",
+      "entry_assumptions": [
+        "Can use wave speed and elapsed time and can distinguish one-way from round-trip travel."
+      ],
+      "teaching_path": [
+        {
+          "id": "SOUND5-1",
+          "role": "DECLARE",
+          "action": "Trace the sound path from source to reflector and back to the receiver before writing a timing relation.",
+          "why_valid": "The measured echo delay covers both outward and return legs.",
+          "inputs": [
+            "CAP-SOUND-WAVE-QUANTITIES"
+          ],
+          "output": "total reflected path = outward leg + return leg"
+        },
+        {
+          "id": "SOUND5-2",
+          "role": "TRANSFORM",
+          "action": "For a stationary reflector and one clear round-trip delay in the same medium, use d = v t_echo / 2.",
+          "why_valid": "v times the full delay gives the total path length; the one-way range is half that in the simple geometry.",
+          "inputs": [
+            "REL-ECHO-DISTANCE"
+          ],
+          "output": "one-way reflector distance = v t_echo / 2"
+        },
+        {
+          "id": "SOUND5-3",
+          "role": "DECLARE",
+          "action": "Classify clearly separated returns as echo-like and densely overlapping returns as reverberation, while treating the perceptual boundary as condition-dependent.",
+          "why_valid": "Echo and reverberation are distinguished by temporal separation/overlap of reflected sound, not by one universal wall distance.",
+          "inputs": [],
+          "output": "distinct return vs overlapping reflected sound"
+        },
+        {
+          "id": "SOUND5-4",
+          "role": "VERIFY",
+          "action": "Use echolocation/ranging as a transfer case: emitted sound plus measured return delay provides a range cue only after the round-trip path is recognized.",
+          "why_valid": "The factor-of-two geometry is the reusable invariant across simple echo-ranging contexts.",
+          "inputs": [],
+          "output": "known v + round-trip delay -> range cue"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a wall is twice as far away and sound speed is unchanged, what happens to the echo delay?",
+          "defensible_answer": "It doubles because both the outward and return path lengths double."
+        },
+        "attempt": {
+          "produces": "A round-trip path statement, one echo-distance calculation, and an echo-versus-reverberation classification.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses half the round-trip path for one-way distance.",
+              "evidence_of": "Accounting for outward and reflected travel."
+            },
+            {
+              "criterion": "Distinguishes separate echo from overlapping reverberation.",
+              "evidence_of": "Using delay structure rather than treating all reflection effects as identical."
+            }
+          ],
+          "accepted": [
+            "340 m/s x 0.40 s / 2 = 68 m; distinct delayed return = echo."
+          ],
+          "rejected": [
+            "340 x 0.40 = 136 m as the one-way wall distance."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where does the sound travel before you hear the return?",
+              "why_this_ask": "It exposes both legs.",
+              "from_step_ref": "SOUND5-1"
+            },
+            {
+              "ask": "What distance does v times the whole delay represent?",
+              "why_this_ask": "It identifies total round-trip path."
+            },
+            {
+              "ask": "How do you recover one-way range?",
+              "why_this_ask": "It reconstructs the factor one half.",
+              "from_step_ref": "SOUND5-2"
+            },
+            {
+              "ask": "When do multiple returns merge into a prolonged sound instead of a separate echo?",
+              "why_this_ask": "It distinguishes reverberation.",
+              "from_step_ref": "SOUND5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path lays out reflection categories; the learner route starts from the timing calculation and reconstructs the physical path."
+        },
+        "boundary_test": {
+          "prompt": "If echo delay is zero in this simple stationary-path model, what one-way distance does the relation return?",
+          "answer": "Zero.",
+          "confirms": "The factor-of-two relation is tied to a nonnegative round-trip path."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Echo delay time corresponds to one-way travel from source to wall.",
+          "diagnostic_prompt": "A clap returns after 0.4 s. Did the sound spend all 0.4 s travelling only outward?",
+          "repair": "No. The delay includes outward and return travel, so v t is the round-trip path and one-way range is half."
+        },
+        {
+          "wrong_idea": "A single memorized reflector distance universally decides whether any reflected sound is heard as a separate echo.",
+          "diagnostic_prompt": "If sound speed, listener/source geometry or perceptual conditions change, must one memorized wall distance still be the universal echo boundary?",
+          "repair": "Use the actual reflection delay and conditions. The simple calculation concerns round-trip timing; a distinct-echo threshold is not a universal geometry constant."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Doubling d doubles t_echo at fixed v.",
+        "The factor one half prevents round-trip distance from being mistaken for one-way range.",
+        "Hz times m gives m/s.",
+        "At fixed medium speed, increasing f requires decreasing lambda."
+      ],
+      "exit_task": {
+        "prompt": "Sound travels at 340 m/s and a clear echo returns 0.40 s after a clap from a stationary wall. Estimate the one-way distance to the wall.",
+        "source_ref": "SRC-AUTHOR-SOUND-G9",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The wall is about 68 m away.",
+          "reasoning": [
+            "The 0.40 s is a round-trip delay.",
+            "Total sound path = 340 x 0.40 = 136 m.",
+            "One-way distance = 136/2 = 68 m."
+          ],
+          "check": "Doubling the wall distance at the same sound speed would double the echo delay.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "ECHO_DISTANCE",
+            "bindings": {
+              "speed": "DAT-SOUND-SPEED",
+              "echo_time": "DAT-SOUND-ECHO-T"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,205 @@
+{
+  "id": "physics:mic-opt-spherical-ray-construction:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-SPHERICAL-RAY-CONSTRUCTION",
+      "title": "Principal rays are consistent shortcuts to one spherical-mirror image",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A small set of principal-ray rules are not independent tricks: any valid pair for the same object point and spherical mirror must locate the same image point within the model.",
+      "entry_assumptions": [
+        "Can classify real versus virtual intersections and assign optical signs from the declared pole/axis convention."
+      ],
+      "teaching_path": [
+        {
+          "id": "OPT-R4-1",
+          "role": "DECLARE",
+          "action": "Label the mirror type, pole, principal axis, focus and centre of curvature, then identify whether each referenced focus/centre is physical or reached by backward extension for that mirror.",
+          "why_valid": "Principal-ray rules depend on one declared spherical-mirror geometry; the same labels cannot be moved independently from the mirror.",
+          "inputs": [
+            "CAP-OPT-SIGN-CONVENTION"
+          ],
+          "output": "one labelled spherical-mirror geometry with P, principal axis, F and C"
+        },
+        {
+          "id": "OPT-R4-2",
+          "role": "TRANSFORM",
+          "action": "From one object point, construct two valid principal rays: parallel-axis/focus, focus/parallel, or centre-of-curvature/retrace, using backward extensions where the convex-mirror rule requires them.",
+          "why_valid": "Each construction is a constrained consequence of the same spherical-mirror geometry, so a valid pair determines one image point.",
+          "inputs": [],
+          "output": "two consistent reflected paths or reflected paths plus backward extensions"
+        },
+        {
+          "id": "OPT-R4-3",
+          "role": "VERIFY",
+          "action": "Use a third valid principal ray as a consistency check and classify the image from actual versus backward-extension intersection, orientation and relative size.",
+          "why_valid": "An independent third construction should agree with the image location if the first two ray rules were applied consistently.",
+          "inputs": [],
+          "output": "one cross-checked image point with real/virtual and erect/inverted classification"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If you use two different valid principal-ray pairs for the same object point and spherical mirror, may they legitimately locate two different images?",
+          "defensible_answer": "No. Within the model, every valid pair must locate the same image point or the same backward-extension point."
+        },
+        "attempt": {
+          "produces": "A labelled spherical-mirror diagram with two independently chosen principal rays and an image classification justified from their intersection.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both rays obey valid before/after directions for the declared mirror geometry.",
+              "evidence_of": "Using geometry rather than decorative memorized lines."
+            },
+            {
+              "criterion": "The image classification follows physical versus backward-extension intersection and orientation.",
+              "evidence_of": "Connecting the construction to image nature."
+            }
+          ],
+          "accepted": [
+            "Two valid rays meet at one point and the answer classifies that point from the actual reflected paths or their backward extensions."
+          ],
+          "rejected": [
+            "The two rays predict different image points but the response keeps both without resolving the inconsistency."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What mirror points must be fixed before you choose a principal ray?",
+              "why_this_ask": "It prevents ray rules from floating independently of the mirror geometry.",
+              "from_step_ref": "OPT-R4-1"
+            },
+            {
+              "ask": "If one ray is parallel to the principal axis, where must its reflected path go for this mirror?",
+              "why_this_ask": "It forces one concrete principal-ray decision.",
+              "from_step_ref": "OPT-R4-2"
+            },
+            {
+              "ask": "Which second ray can independently locate the same image point?",
+              "why_this_ask": "One ray gives a direction, not an image location.",
+              "from_step_ref": "OPT-R4-2"
+            },
+            {
+              "ask": "Do the physical rays meet, or only their backward extensions?",
+              "why_this_ask": "That distinction determines image nature.",
+              "from_step_ref": "OPT-R4-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path presents the labelled geometry first; the learner route starts by needing a second independent locator and reconstructs why two rays, not a memorized finished diagram, define the image."
+        },
+        "boundary_test": {
+          "prompt": "For a convex mirror, reflected rays diverge in front of the mirror. If their backward extensions meet behind it, is the image real or virtual?",
+          "answer": "Virtual, because only backward extensions meet behind the mirror; the physical reflected rays do not converge there.",
+          "confirms": "Image classification still comes from path geometry when the focus and image are virtual."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Any two memorized principal-ray sketches can be combined even if they predict different image points.",
+          "diagnostic_prompt": "Two correctly labelled rays from the same object point and mirror predict different image locations. Can both constructions be valid?",
+          "repair": "No. Recheck the mirror type, focus/centre side and before/after ray directions until all valid rays agree on one physical or backward-extension intersection."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "For a concave mirror with the object beyond the centre of curvature, describe two principal rays from the top of the object and use their meeting to state the image region and whether the image is real or virtual and erect or inverted.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "A parallel ray reflects through the focus and a ray through the centre of curvature retraces its path; they meet in front of the mirror between F and C, giving a real inverted image.",
+          "reasoning": [
+            "Both rays belong to the same concave-mirror geometry.",
+            "The physical reflected rays meet in front of the mirror, so the image is real.",
+            "Their intersection lies below the principal axis for an upright object, so the image is inverted."
+          ],
+          "check": "A third ray directed through the focus should reflect parallel to the axis and pass through the same image point.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit verifies qualitative ray geometry, image region and image nature; it asserts no computed distance or magnification."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

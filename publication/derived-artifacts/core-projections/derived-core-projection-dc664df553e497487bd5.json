@@ -1,0 +1,221 @@
+{
+  "id": "physics:mic-phy-kin-uniform-circular-motion:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-UNIFORM-CIRCULAR-MOTION",
+      "title": "Uniform circular motion keeps speed while velocity turns",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "An object moving around a circle at constant speed is still accelerating because velocity direction changes continuously; velocity is tangent, acceleration points inward, and the constant speed for one revolution is circumference divided by period: v = 2 pi r / T.",
+      "entry_assumptions": [
+        "Can distinguish speed from directed velocity and can recognize acceleration as a change of velocity."
+      ],
+      "teaching_path": [
+        {
+          "id": "KIN5-1",
+          "role": "DECLARE",
+          "action": "Mark equal-length velocity arrows tangent to a circle at several positions.",
+          "why_valid": "Equal arrow length represents constant speed while tangent direction follows the instantaneous motion.",
+          "inputs": [],
+          "output": "same speed; different tangent velocity directions."
+        },
+        {
+          "id": "KIN5-2",
+          "role": "TRANSFORM",
+          "action": "Compare successive velocity arrows and identify the change in velocity direction.",
+          "why_valid": "Velocity changes whenever either its magnitude or direction changes.",
+          "inputs": [],
+          "output": "At two different points A and B: |v_A| = |v_B| = v, but v_A and v_B point in different tangent directions, so Delta v = v_B - v_A is nonzero."
+        },
+        {
+          "id": "KIN5-3",
+          "role": "VERIFY",
+          "action": "Use symmetry at opposite points to check that the required acceleration is directed toward the centre rather than along the tangent.",
+          "why_valid": "A tangential acceleration would change speed, while inward turning changes direction while preserving speed in the ideal uniform case.",
+          "inputs": [],
+          "output": "uniform circular motion -> acceleration inward; velocity tangent."
+        },
+        {
+          "id": "KIN5-4",
+          "role": "TRANSFORM",
+          "action": "For one complete uniform revolution, divide the circumference 2 pi r by the positive revolution period T.",
+          "why_valid": "REL-UNIFORM-CIRCULAR-SPEED is the gate-owned Grade 9 speed expression.",
+          "inputs": [
+            "REL-UNIFORM-CIRCULAR-SPEED"
+          ],
+          "output": "v = 2 pi r / T; for r = 7 m and T = 14 s, v = pi m/s ≈ 3.14 m/s."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a speedometer reading stays constant around a bend, is acceleration necessarily zero?",
+          "defensible_answer": "No. Velocity direction changes around the bend, so acceleration is nonzero even at constant speed."
+        },
+        "attempt": {
+          "produces": "A one-revolution speed calculation plus tangent velocity and inward acceleration directions.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses circumference divided by revolution period for speed.",
+              "evidence_of": "Applying the prescribed Grade 9 uniform-circular-speed expression."
+            },
+            {
+              "criterion": "Keeps velocity tangent and acceleration inward.",
+              "evidence_of": "Separating speed magnitude from changing velocity direction."
+            }
+          ],
+          "accepted": [
+            "r=7 m, T=14 s -> v=pi m/s ≈3.14 m/s; velocity tangent, acceleration inward."
+          ],
+          "rejected": [
+            "v = r/T, or zero acceleration solely because speed is constant."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Has the speed changed?",
+              "why_this_ask": "It holds magnitude fixed."
+            },
+            {
+              "ask": "Has the velocity direction changed?",
+              "why_this_ask": "It exposes the remaining source of velocity change.",
+              "from_step_ref": "KIN5-2"
+            },
+            {
+              "ask": "Would a tangential acceleration keep the speed constant?",
+              "why_this_ask": "It rules out the tangent as the uniform-case acceleration direction."
+            },
+            {
+              "ask": "What direction is symmetric toward the turning centre?",
+              "why_this_ask": "It reconstructs inward acceleration.",
+              "from_step_ref": "KIN5-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path compares tangent velocity arrows; the learner route starts from constant speed and discovers why direction change still requires acceleration."
+        },
+        "boundary_test": {
+          "prompt": "If the path becomes straight while speed remains constant, what happens to the turning acceleration?",
+          "answer": "It vanishes in the straight constant-velocity limit.",
+          "confirms": "The acceleration in uniform circular motion is tied to continuous change of direction."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Constant speed means zero acceleration.",
+          "diagnostic_prompt": "A car moves around a circular track with a steady speedometer reading. Is its velocity unchanged?",
+          "repair": "Compare the tangent directions at different points: the direction changes, so velocity changes and acceleration is nonzero."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Doubling radius at fixed period doubles speed.",
+        "Doubling period at fixed radius halves speed."
+      ],
+      "exit_task": {
+        "prompt": "A runner moves uniformly around a circular track of radius 7 m and completes one revolution in 14 s. Find the speed, then state the qualitative directions of velocity and acceleration at any point.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The speed is pi m/s, about 3.14 m/s. Velocity is tangent to the circle in the direction of motion; acceleration points inward toward the centre.",
+          "reasoning": [
+            "One revolution covers circumference 2 pi r = 14 pi m.",
+            "v = 14 pi m / 14 s = pi m/s ≈ 3.14 m/s.",
+            "Constant speed does not make velocity constant because its direction changes.",
+            "The velocity is tangent and the turning acceleration is inward."
+          ],
+          "check": "Doubling the period at the same radius would halve the speed, while the tangent/inward direction distinction remains.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "UNIFORM_CIRCULAR_SPEED",
+            "bindings": {
+              "radius": "DAT-KIN-CIRC-R",
+              "period": "DAT-KIN-CIRC-T"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

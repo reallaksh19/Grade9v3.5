@@ -1,0 +1,180 @@
+{
+  "id": "physics:mic-phy-nlm-single-string-constraint:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+      "title": "One fixed-pulley string gives one length constraint",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "For one taut inextensible string over one fixed ideal pulley, the two changing straight segment lengths add to a constant; with coordinates measured away from the pulley this gives y_A + y_B = constant and therefore a_A + a_B = 0.",
+      "entry_assumptions": [
+        "Can identify a common-acceleration connection when separation is fixed.",
+        "Can use an ideal single-string tension model when forces are also being solved."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM11-1",
+          "role": "DECLARE",
+          "action": "Restrict the model to one taut inextensible string over one fixed ideal pulley and choose y_A and y_B positive away from the pulley along the two straight segments.",
+          "why_valid": "The coordinate declaration determines the signs in the length relation and blocks accidental import of movable-pulley rules.",
+          "inputs": [],
+          "output": "single fixed pulley; coordinates y_A,y_B measured away from pulley"
+        },
+        {
+          "id": "NLM11-2",
+          "role": "TRANSFORM",
+          "action": "Write the variable part of the string length as y_A + y_B and set its total equal to a constant.",
+          "why_valid": "An inextensible string has fixed total length; the wrapped portion around a fixed pulley is constant in this bounded geometry.",
+          "inputs": [],
+          "output": "y_A + y_B = L_free = constant"
+        },
+        {
+          "id": "NLM11-3",
+          "role": "TRANSFORM",
+          "action": "Differentiate the fixed-length relation at the kinematic level needed by the problem.",
+          "why_valid": "A constant length has zero time derivative at each order.",
+          "inputs": [],
+          "output": "v_A + v_B = 0 and a_A + a_B = 0"
+        },
+        {
+          "id": "NLM11-4",
+          "role": "VERIFY",
+          "action": "Translate the signed result back into motion: if A accelerates farther from the pulley, B accelerates toward it with equal magnitude.",
+          "why_valid": "The two segment changes must cancel to preserve total string length.",
+          "inputs": [],
+          "output": "|a_A| = |a_B| with opposite signs in the declared away-from-pulley coordinates"
+        },
+        {
+          "id": "NLM11-5",
+          "role": "VERIFY",
+          "action": "Keep the kinematic string-length claim separate from the force-transmission claim: derive the acceleration relation from inextensibility and fixed geometry, and use equal tension only when the independent ideal-string/redirection assumptions license it.",
+          "why_valid": "The acceleration relation comes from constant string length, whereas tension equality comes from the force model. One statement is not the proof of the other.",
+          "inputs": [
+            "CAP-NLM-IDEAL-STRING-TENSION"
+          ],
+          "output": "fixed-length geometry -> a_A + a_B = 0 in the declared coordinates; ideal force-transmission model -> T_A = T_B. Treat these as separate justified statements."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Every pulley problem has the same acceleration ratio.",
+          "diagnostic_prompt": "What part of the string length changes in this exact geometry, and is any pulley itself moving?",
+          "repair": "Write the string-length equation from the actual geometry. The equal-magnitude result here is only for one fixed pulley with two changing straight segments."
+        },
+        {
+          "wrong_idea": "Bodies on opposite sides of a fixed pulley have the same signed acceleration.",
+          "diagnostic_prompt": "If both coordinates are positive away from the pulley, can both segment lengths increase while total string length stays fixed?",
+          "repair": "No. Their signed changes are opposite: a_A + a_B = 0 in these coordinates."
+        },
+        {
+          "wrong_idea": "The two end accelerations are equal and opposite because the string tension is equal on both sides.",
+          "diagnostic_prompt": "If equal tension were no longer guaranteed but the same fixed, taut, inextensible string still could not change length, which relation would you re-check from geometry?",
+          "repair": "Derive the acceleration relation from the fixed-length equation. Equal tension is a separate force-model statement and is not the cause of the kinematic constraint."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Increasing one segment length requires the other to decrease by the same amount.",
+        "The two signed acceleration magnitudes are equal and opposite in the declared coordinates."
+      ],
+      "exit_task": {
+        "prompt": "One taut inextensible string passes over one fixed ideal pulley, with y_A and y_B measured away from the pulley along the two hanging segments. Write the length relation and its acceleration consequence.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The variable string length is y_A + y_B = constant, so a_A + a_B = 0. The two acceleration magnitudes are equal and their signs are opposite in the declared coordinates.",
+          "reasoning": [
+            "The fixed pulley contributes no changing geometric length in this bounded model.",
+            "Because the string is inextensible, the sum of the two straight segment lengths is constant.",
+            "Two time derivatives give the acceleration relation."
+          ],
+          "check": "If one pulley becomes movable, this two-segment relation must be rebuilt rather than reused.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit derives a symbolic fixed-length and acceleration relation for one fixed pulley; no numerical displacement or acceleration is computed."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

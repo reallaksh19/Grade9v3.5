@@ -1,0 +1,248 @@
+{
+  "id": "physics:mic-phy-wep-energy-derivations:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-WEP-ENERGY-DERIVATIONS",
+      "title": "Derive kinetic and raised-body potential energy from the work ledger",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "The Grade 9 energy expressions follow from previously owned mechanics: constant-force work plus Newton/kinematics yields the change in kinetic energy, while a controlled lift against near-Earth weight yields the increase m g h in gravitational potential energy.",
+      "entry_assumptions": [
+        "Can use F_net = m a for one chosen body in an inertial frame.",
+        "Can use v^2 = u^2 + 2 a s on a constant-acceleration interval.",
+        "Can calculate constant-force work from the signed force component along displacement."
+      ],
+      "teaching_path": [
+        {
+          "id": "WEP7-1",
+          "role": "DECLARE",
+          "action": "For the kinetic-energy derivation, choose a body accelerated by a constant net force along its displacement from initial speed u to final speed v.",
+          "why_valid": "This controlled case makes F_net = m a, W_net = F_net s and the constant-acceleration no-time relation valid on the same interval.",
+          "inputs": [
+            "REL-NEWTON-SECOND-LAW",
+            "REL-WORK-CONSTANT-FORCE",
+            "REL-CONSTANT-ACCELERATION-NO-TIME"
+          ],
+          "output": "W_net = F_net s = m a s; v^2 - u^2 = 2 a s."
+        },
+        {
+          "id": "WEP7-2",
+          "role": "TRANSFORM",
+          "action": "Eliminate a s using the no-time kinematic relation and identify the net-work change as the kinetic-energy change.",
+          "why_valid": "The two equations describe the same body and interval, and the work-energy theorem identifies net work with Delta K.",
+          "inputs": [
+            "REL-WORK-ENERGY-THEOREM"
+          ],
+          "output": "a s = (v^2-u^2)/2 -> W_net = 0.5 m(v^2-u^2) = Delta K; choosing K=0 at v=0 gives K = 0.5 m v^2."
+        },
+        {
+          "id": "WEP7-3",
+          "role": "DECLARE",
+          "action": "For the potential-energy derivation, raise the body slowly through vertical height h so acceleration is zero and the applied upward force balances the near-Earth weight.",
+          "why_valid": "Zero acceleration makes the applied force magnitude equal the weight magnitude m g, while the displacement is along the applied force.",
+          "inputs": [
+            "REL-WEIGHT-NEAR-EARTH",
+            "REL-WORK-CONSTANT-FORCE"
+          ],
+          "output": "a = 0 -> F_applied = F_weight = m g; upward displacement = h."
+        },
+        {
+          "id": "WEP7-4",
+          "role": "TRANSFORM",
+          "action": "Calculate the external lifting work and identify it with the increase of gravitational potential energy in the controlled lift.",
+          "why_valid": "With negligible kinetic-energy change in the slow lift, the work transferred into the object-gravity account appears as gravitational potential-energy increase.",
+          "inputs": [
+            "REL-GRAVITATIONAL-POTENTIAL-NEAR-EARTH"
+          ],
+          "output": "W_applied = F_applied h = m g h -> Delta U_g = m g h."
+        },
+        {
+          "id": "WEP7-5",
+          "role": "VERIFY",
+          "action": "Check both derivations at their zero boundaries.",
+          "why_valid": "At v=0 the chosen kinetic-energy expression must vanish, and at h=0 the gravitational potential-energy change must vanish.",
+          "inputs": [],
+          "output": "v = 0 -> K = 0; h = 0 -> Delta U_g = 0."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If an object's speed doubles at fixed mass, should the kinetic-energy expression that emerges from the work derivation double or quadruple?",
+          "defensible_answer": "It should quadruple because the derivation produces a speed-squared dependence."
+        },
+        "attempt": {
+          "produces": "A symbolic relation chain for K and a second relation chain for the raised-body potential-energy change.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Derives K by combining work, Newton's second law and constant-acceleration kinematics before invoking the work-energy theorem.",
+              "evidence_of": "Showing W_net = m a s = 0.5 m(v^2-u^2) rather than quoting K."
+            },
+            {
+              "criterion": "Derives the raised-body potential-energy change from a controlled slow lift against weight.",
+              "evidence_of": "Showing F_applied = m g and W_applied = m g h before identifying Delta U_g."
+            }
+          ],
+          "accepted": [
+            "From rest: W_net = mas and v^2=2as -> W_net=0.5mv^2 -> K=0.5mv^2.",
+            "Slow lift: F_applied=mg and W=Fh -> Delta U_g=mgh."
+          ],
+          "rejected": [
+            "Writing K=0.5mv^2 and U=mgh with no derivation or model conditions."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which three already-owned relations can all describe the same constant-force acceleration interval?",
+              "why_this_ask": "This reconstructs the kinetic-energy derivation from prior mechanics.",
+              "from_step_ref": "WEP7-1"
+            },
+            {
+              "ask": "How can you replace a s using v^2-u^2 = 2as?",
+              "why_this_ask": "This creates the speed-squared dependence.",
+              "from_step_ref": "WEP7-2"
+            },
+            {
+              "ask": "What condition on a slow lift makes the applied force match the weight magnitude?",
+              "why_this_ask": "This sets up the potential-energy derivation.",
+              "from_step_ref": "WEP7-3"
+            },
+            {
+              "ask": "What work is done through height h once the applied force is m g?",
+              "why_this_ask": "This completes the stored-energy change.",
+              "from_step_ref": "WEP7-4"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path presents two controlled derivations in order; the learner route starts from the previously owned mechanics and reconstructs why the familiar energy expressions have their particular forms."
+        },
+        "boundary_test": {
+          "prompt": "What do the two derived expressions predict at v = 0 and at zero height change?",
+          "answer": "K = 0 at v = 0, and Delta U_g = 0 when the height change is zero.",
+          "confirms": "Both derivations respect their natural zero boundaries."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "K = 0.5 m v^2 and m g h are definitions that cannot be connected to earlier mechanics.",
+          "diagnostic_prompt": "Can you reach each expression using work plus previously learned force/motion relations without assuming the final formula?",
+          "repair": "For K, combine W_net = F_net s, F_net = m a and v^2-u^2 = 2as. For raised-body U_g, use a slow lift where F_applied = m g and W_applied = F_applied h."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Perpendicular force gives F_parallel = 0 and zero work.",
+        "Opposing force gives negative work.",
+        "Positive net work increases K.",
+        "Negative net work decreases K.",
+        "Equal opposite forces give F_net = 0 and therefore a = 0.",
+        "For fixed mass, reversing F_net reverses a.",
+        "Both sides have units of squared speed.",
+        "If a = 0, v^2 = u^2.",
+        "Doubling mass at the same local g doubles weight-force magnitude.",
+        "The relation gives force units because kg × m/s^2 = N.",
+        "Raising the body gives positive Delta U_g under positive-up convention.",
+        "Returning to the original height gives net Delta U_g = 0."
+      ],
+      "exit_task": {
+        "prompt": "Derive the Grade 9 kinetic-energy expression for a body accelerated from rest by a constant net force, then derive the increase in gravitational potential energy when the same mass is raised slowly through height h near Earth's surface.",
+        "source_ref": "SRC-AUTHOR-WEP",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "From W_net = m a s and v^2 = 2 a s for motion from rest, W_net = 0.5 m v^2, so K = 0.5 m v^2 with K=0 at rest. For a slow lift, F_applied = m g and W_applied = m g h, so Delta U_g = m g h.",
+          "reasoning": [
+            "Constant-force work and Newton's second law give W_net = F_net s = m a s.",
+            "For constant acceleration from rest, v^2 = 2 a s, hence a s = v^2/2 and W_net = 0.5 m v^2.",
+            "By the work-energy theorem and the chosen zero at rest, K = 0.5 m v^2.",
+            "For a slow vertical lift, zero acceleration requires F_applied = F_weight = m g.",
+            "Work by that applied force through height h is m g h, which is stored as the increase in gravitational potential energy."
+          ],
+          "check": "The derived expressions satisfy the zero boundaries v=0 -> K=0 and h=0 -> Delta U_g=0.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit is a symbolic derivation using gate-owned relations; it makes no independent numerical claim."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

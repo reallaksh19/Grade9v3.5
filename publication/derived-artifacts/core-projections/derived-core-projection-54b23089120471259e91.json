@@ -1,0 +1,154 @@
+{
+  "id": "physics:mic-phy-machine-compare:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-MACHINE-COMPARE",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-MACHINE-COMPARE",
+      "title": "Levers, pulleys and inclined planes realize different force-distance tradeoffs",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A lever, pulley or inclined plane should be analysed by its input/output force, direction and distance tradeoff rather than by a memorized claim that every simple machine reduces force.",
+      "entry_assumptions": [
+        "Can explain the ideal force-distance tradeoff and compute mechanical advantage."
+      ],
+      "teaching_path": [
+        {
+          "id": "SM3-1",
+          "role": "DECLARE",
+          "action": "For each machine, identify the effort point/direction and the load motion.",
+          "why_valid": "The same input-output language lets different machine types be compared without separate memorized rules.",
+          "inputs": [
+            "CAP-MACHINE-MA"
+          ],
+          "output": "lever, pulley and ramp each have named effort and load sides."
+        },
+        {
+          "id": "SM3-2",
+          "role": "TRANSFORM",
+          "action": "Compare whether the machine mainly changes force magnitude, force direction, or required input distance in the stated setup.",
+          "why_valid": "Simple-machine benefit is a geometric/input-output tradeoff, not a universal force reduction.",
+          "inputs": [
+            "REL-IDEAL-MACHINE-WORK"
+          ],
+          "output": "fixed pulley may change direction; force-advantage setups require extra input distance; incline spreads a height gain over a longer path."
+        },
+        {
+          "id": "SM3-3",
+          "role": "VERIFY",
+          "action": "Use an ideal fixed pulley as the counterexample to 'all machines reduce effort force'.",
+          "why_valid": "A direction-changing machine can be useful with no force multiplication.",
+          "inputs": [],
+          "output": "machine usefulness can be directional even when MA = 1."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Every pulley, lever or inclined plane must reduce the effort force.",
+          "diagnostic_prompt": "What useful change can an ideal fixed pulley provide even when effort and load force magnitudes are equal?",
+          "repair": "It can reverse the direction of the required effort. Identify the actual setup before claiming force advantage."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "A force advantage greater than one requires a corresponding distance disadvantage in the ideal model."
+      ],
+      "exit_task": {
+        "prompt": "Compare an ideal fixed pulley with a long inclined plane used to raise the same load. State one useful change each machine can provide without claiming that either creates energy.",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The fixed pulley can change the effort direction; the inclined plane can reduce the required force by spreading the same height gain over a longer input path.",
+          "reasoning": [
+            "The fixed pulley can redirect the pull even when force magnitude is not reduced.",
+            "The incline increases the distance over which the load reaches the same height.",
+            "Both are input-output tradeoffs consistent with work conservation in the ideal model."
+          ],
+          "check": "Neither description requires useful output work to exceed ideal input work.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit compares qualitative machine functions without a calculated device-specific force formula."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,270 @@
+{
+  "id": "physics:mic-geometric-check:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-GEOMETRIC-CHECK",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+      "title": "Check direction, magnitude and observer reversal",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "Reconcile the algebraic result with reversal of the observer vector in a geometric construction.",
+      "entry_assumptions": [
+        "Can subtract velocity components; a magnitude calculation requires a reviewed right-triangle bridge."
+      ],
+      "teaching_path": [
+        {
+          "id": "GC-1",
+          "action": "Reverse v_B.",
+          "why_valid": "Subtraction is addition of the opposite vector.",
+          "inputs": [],
+          "output": "-v_B has the same magnitude and opposite direction.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "GC-2",
+          "action": "Add v_A and -v_B tail to head.",
+          "why_valid": "Free vectors may be translated without rotation.",
+          "inputs": [],
+          "output": "Resultant v_A/B.",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "GC-3",
+          "action": "Compare components and reverse the observer order.",
+          "why_valid": "v_B/A = -(v_A/B).",
+          "inputs": [],
+          "output": "Opposite vectors have equal magnitudes.",
+          "role": "VERIFY"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "You have worked out that v_A/B points southeast at 5 m/s. Predict, without calculating, what v_B/A is -- both its direction and its size.",
+          "defensible_answer": "Northwest, at 5 m/s. Swapping the observer reverses the arrow and leaves its length alone."
+        },
+        "attempt": {
+          "produces": "The two arrows drawn on one sketch, with the observer named beside each and their lengths compared.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each arrow is labelled with who is observing, not only with a magnitude.",
+              "evidence_of": "Treating the observer as part of the answer rather than as context for it."
+            },
+            {
+              "criterion": "The two lengths are stated as equal, and the two directions as opposite, rather than one being recalculated.",
+              "evidence_of": "Reading reversal as a property of the vector instead of a second problem."
+            }
+          ],
+          "accepted": [
+            "Two arrows from one point, one southeast labelled 'A as seen by B' and one northwest labelled 'B as seen by A', drawn the same length."
+          ],
+          "rejected": [
+            "One arrow of length 5 with the note that direction depends on the question. The length is right and the answer has no observer in it, which is the whole thing that was asked."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Draw v_A and v_B from the same point. Which of the two do you have to turn around before adding?",
+              "why_this_ask": "Subtraction is reversal plus addition, and the learner has to choose which arrow reverses before any rule can help them.",
+              "from_step_ref": "GC-1"
+            },
+            {
+              "ask": "Slide the reversed arrow so its tail sits on the head of the other. What does the arrow from the first tail to the last head represent?",
+              "why_this_ask": "The construction produces the answer physically, so the resultant is something the learner made rather than a formula's output.",
+              "from_step_ref": "GC-2"
+            },
+            {
+              "ask": "Now reverse the observer: reverse which arrow you turned around, and redraw. What changed about the result?",
+              "why_this_ask": "Doing the construction twice is what shows reversal to be exact, where being told it is exact is not the same.",
+              "from_step_ref": "GC-3"
+            },
+            {
+              "ask": "If someone gives you only the number 5 m/s, what can you not answer?",
+              "why_this_ask": "It names what a magnitude alone leaves out, which is the misconception this microtopic is built around."
+            }
+          ],
+          "differs_from_teaching_path": "The expert reverses, adds and then verifies the observer swap as a final check. Here the learner performs the construction twice, once for each observer, and the verification is the second construction rather than a statement about it."
+        },
+        "boundary_test": {
+          "prompt": "Two cars approach each other head-on, each at 20 m/s along the same line. What is the magnitude of one car's velocity relative to the other, and does reversing the observer change it?",
+          "answer": "40 m/s. Reversing the observer points the arrow the other way along the line and leaves the 40 unchanged.",
+          "confirms": "That reversal leaves magnitude alone even when the magnitude is not either car's speed -- a learner checking only the number has no way to tell the two observers apart here."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "A correct length is enough for a correct vector answer.",
+          "diagnostic_prompt": "Would the same arrow reversed describe the same observer statement?",
+          "repair": "Name the observer, label both components and inspect the direction before taking a magnitude."
+        }
+      ],
+      "representation_refs": [
+        "REP-REL-VECTOR"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-REL-VECTOR",
+          "correspondence": [
+            {
+              "element": "Labelled v_A, v_B and -v_B",
+              "symbol": "v_A",
+              "in_words": "how fast A goes over the ground, and which way"
+            },
+            {
+              "element": "Labelled v_A, v_B and -v_B",
+              "symbol": "v_B",
+              "in_words": "the same for B, drawn to the same scale so the two can be compared by eye"
+            },
+            {
+              "element": "Resultant labelled v_A/B, with tail/head and scale",
+              "symbol": "v_A/B",
+              "in_words": "what B sees A doing: the arrow you land on after reversing B's and following A's"
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SI-REL-VELOCITY-CONSTRUCTION",
+              "cores": [
+                "CORE1",
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-GEOMETRIC-CHECK",
+              "datum_refs": [
+                "DAT-VA-X",
+                "DAT-VA-Y",
+                "DAT-VB-X",
+                "DAT-VB-Y",
+                "DAT-VAB-X",
+                "DAT-VAB-Y"
+              ],
+              "scene": {
+                "kind": "VECTOR_SUBTRACTION",
+                "frame": "One common east/north frame, with east positive along x and north positive along y, at one length scale for every vector drawn.",
+                "caption": "v_A points east at 6 m/s and v_B north at 8 m/s. Reversing v_B and placing it at the head of v_A lands on v_A/B = (6, -8) m/s: what B sees A doing is east and south, at a speed neither object has.",
+                "x_label": "east (m/s)",
+                "y_label": "north (m/s)",
+                "unit": "m/s",
+                "minuend": {
+                  "symbol": "v_A",
+                  "x_atom": "DAT-VA-X",
+                  "y_atom": "DAT-VA-Y"
+                },
+                "subtrahend": {
+                  "symbol": "v_B",
+                  "x_atom": "DAT-VB-X",
+                  "y_atom": "DAT-VB-Y"
+                },
+                "resultant": {
+                  "symbol": "v_A/B",
+                  "x_atom": "DAT-VAB-X",
+                  "y_atom": "DAT-VAB-Y"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "relation_checks": [
+        "Equal velocity vectors give zero relative velocity.",
+        "A stationary observer gives v_A/B = v_A.",
+        "Swapping A and B reverses direction."
+      ],
+      "exit_task": {
+        "prompt": "If v_A/B points southeast, what direction does v_B/A point, and what happens to its magnitude?",
+        "source_ref": "SRC-AUTHOR",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Northwest, with the same magnitude.",
+          "reasoning": [
+            "Swap the subtraction order.",
+            "Every component changes sign."
+          ],
+          "check": "Adding the two relative vectors gives zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer is a direction and a statement that magnitude is unchanged. No subject validator returns a compass direction, so there is no value here for an oracle to compare."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-REL-VECTOR",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

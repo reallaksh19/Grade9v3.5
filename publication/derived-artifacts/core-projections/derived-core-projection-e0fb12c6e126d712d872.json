@@ -1,0 +1,316 @@
+{
+  "id": "physics:mic-phy-kin-constant-acceleration:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+      "title": "Derive the constant-acceleration equations from one velocity-time graph",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "One straight velocity-time segment carries all three Grade 9 kinematic equations: its slope gives v = u + at, its rectangle-plus-triangle area gives s = ut + 0.5at^2, and combining trapezoid area with the slope relation eliminates time to give v^2 = u^2 + 2as.",
+      "entry_assumptions": [
+        "Can read a velocity-time graph, calculate a segment slope, and calculate rectangle, triangle and trapezoid areas.",
+        "Can distinguish a constant-slope velocity-time segment from a curved changing-acceleration segment."
+      ],
+      "teaching_path": [
+        {
+          "id": "KIN4-1",
+          "role": "DECLARE",
+          "action": "Read the straight velocity-time graph from (0,u) to (t,v) and identify one constant slope.",
+          "why_valid": "A straight velocity-time segment means one acceleration value describes the whole interval.",
+          "inputs": [
+            "CAP-KIN-MOTION-GRAPHS",
+            "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+          ],
+          "output": "slope = (v-u)/t = a; graph area = signed displacement s."
+        },
+        {
+          "id": "KIN4-2",
+          "role": "TRANSFORM",
+          "action": "Rearrange the straight-line slope equation.",
+          "why_valid": "The graph slope is the constant acceleration for the interval.",
+          "inputs": [
+            "REL-AVERAGE-ACCELERATION",
+            "REL-CONSTANT-ACCELERATION-VELOCITY"
+          ],
+          "output": "a = (v-u)/t -> a t = v-u -> v = u + a t."
+        },
+        {
+          "id": "KIN4-3",
+          "role": "TRANSFORM",
+          "action": "Split the graph area into the initial-velocity rectangle and the acceleration triangle, then substitute v-u = a t.",
+          "why_valid": "REL-CONSTANT-ACCELERATION-GRAPH-AREA owns the displacement area and the two regions exactly partition it.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+            "REL-CONSTANT-ACCELERATION-DISPLACEMENT"
+          ],
+          "output": "s = u t + 0.5 (v-u)t -> s = u t + 0.5 (a t)t = u t + 0.5 a t^2."
+        },
+        {
+          "id": "KIN4-4",
+          "role": "TRANSFORM",
+          "action": "Write the same graph area as a trapezoid, substitute t = (v-u)/a from the slope, and factor the difference of squares.",
+          "why_valid": "Both equations describe the same straight graph interval, so the common time variable can be eliminated.",
+          "inputs": [
+            "REL-CONSTANT-ACCELERATION-GRAPH-AREA",
+            "REL-CONSTANT-ACCELERATION-NO-TIME"
+          ],
+          "output": "s = 0.5(u+v)t; t=(v-u)/a -> 2as=(u+v)(v-u)=v^2-u^2 -> v^2=u^2+2as."
+        },
+        {
+          "id": "KIN4-5",
+          "role": "VERIFY",
+          "action": "Replace the straight segment with a curved velocity-time trace and ask whether the same graphical derivation is exact over the whole interval.",
+          "why_valid": "A curved trace has changing slope, so one constant a no longer describes the interval and the straight-line rectangle/triangle construction is not the exact graph.",
+          "inputs": [],
+          "output": "curved v-t trace -> changing a -> the constant-a graphical derivation does not apply exactly to the whole interval."
+        },
+        {
+          "id": "KIN4-6",
+          "role": "DECLARE",
+          "action": "For bounded vertical motion in a region where local gravitational acceleration can be treated as constant, choose one positive vertical direction and translate the downward gravitational acceleration into one signed constant a before using any kinematic equation; do not change the sign of a when the velocity reverses.",
+          "why_valid": "The sign of acceleration is set by the declared coordinate axis and the physical downward direction of gravity, not by whether the object is currently moving upward or downward.",
+          "inputs": [
+            "CAP-PHY-GRAV-FREE-FALL-G"
+          ],
+          "output": "+up -> a=-g; +down -> a=+g, where g>0 is the local acceleration magnitude; v may change sign while a keeps the same signed value over the constant-g interval"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "The constant-acceleration equations are independent formulas to memorize rather than consequences of one straight velocity-time graph.",
+          "diagnostic_prompt": "If the velocity-time graph is curved, can the same rectangle-plus-triangle derivation still use one constant a for the whole interval?",
+          "repair": "Return to the graph: slope must be constant. Derive the equations from that slope and the graph area before using them."
+        },
+        {
+          "wrong_idea": "Gravitational acceleration is -g while the object rises and +g after it starts falling.",
+          "diagnostic_prompt": "If +up is fixed for the whole trip, did the physical direction of gravity reverse when the object's velocity changed from upward to downward?",
+          "repair": "No. Keep the chosen axis fixed. With +up, gravity remains a=-g throughout the bounded flight; only velocity changes sign at the turning point."
+        }
+      ],
+      "representation_refs": [
+        "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION",
+          "correspondence": [
+            {
+              "element": "straight velocity-time segment",
+              "symbol": "a_avg",
+              "in_words": "Its slope is (v-u)/t; under constant acceleration this interval average is the constant acceleration a."
+            },
+            {
+              "element": "initial-velocity rectangle",
+              "symbol": "u",
+              "in_words": "The rectangle has height u and base t, giving displacement contribution u t."
+            },
+            {
+              "element": "acceleration triangle",
+              "symbol": "v",
+              "in_words": "The triangle height is the velocity rise v-u and its base is t, giving 0.5 (v-u)t."
+            },
+            {
+              "element": "elapsed-time base",
+              "symbol": "t",
+              "in_words": "The common horizontal base t belongs to both geometric displacement regions."
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SCENE-PHY-KIN-CONSTANT-A-DERIVATION-01",
+              "cores": [
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+              "datum_refs": [
+                "DAT-KIN-GRAPH-T0",
+                "DAT-KIN-CA-T",
+                "DAT-KIN-CA-U",
+                "DAT-KIN-CA-V",
+                "DAT-KIN-CA-VZERO"
+              ],
+              "scene": {
+                "kind": "GRAPH",
+                "frame": "velocity-time graph for one constant-acceleration interval",
+                "caption": "Constant acceleration: velocity rises linearly from 5 m/s at 0 s to 11 m/s at 3 s; the area is split into u t and 1/2 (v-u)t.",
+                "x_label": "time (s)",
+                "y_label": "velocity (m/s)",
+                "x_unit": "s",
+                "y_unit": "m/s",
+                "points": [
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-CA-U"
+                  ],
+                  [
+                    "DAT-KIN-CA-T",
+                    "DAT-KIN-CA-V"
+                  ]
+                ],
+                "y_min_atom": "DAT-KIN-CA-VZERO",
+                "regions": [
+                  {
+                    "label": "u t",
+                    "points": [
+                      [
+                        "DAT-KIN-GRAPH-T0",
+                        "DAT-KIN-CA-VZERO"
+                      ],
+                      [
+                        "DAT-KIN-CA-T",
+                        "DAT-KIN-CA-VZERO"
+                      ],
+                      [
+                        "DAT-KIN-CA-T",
+                        "DAT-KIN-CA-U"
+                      ],
+                      [
+                        "DAT-KIN-GRAPH-T0",
+                        "DAT-KIN-CA-U"
+                      ]
+                    ]
+                  },
+                  {
+                    "label": "1/2 (v-u)t",
+                    "points": [
+                      [
+                        "DAT-KIN-GRAPH-T0",
+                        "DAT-KIN-CA-U"
+                      ],
+                      [
+                        "DAT-KIN-CA-T",
+                        "DAT-KIN-CA-U"
+                      ],
+                      [
+                        "DAT-KIN-CA-T",
+                        "DAT-KIN-CA-V"
+                      ]
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "relation_checks": [
+        "A horizontal velocity-time segment gives Delta v = 0 and average acceleration 0.",
+        "Reversing the declared positive axis reverses both velocities and the signed average acceleration consistently.",
+        "If v = u, the triangle vanishes and s = u t.",
+        "The trapezoid form and rectangle-plus-triangle form are algebraically identical.",
+        "At t = 0, v = u.",
+        "The sign of v must match the declared axis and motion context.",
+        "At a = 0, the relation reduces to s = u t.",
+        "Dimensions reduce to length.",
+        "Both sides have units of squared speed.",
+        "If a = 0, v^2 = u^2."
+      ],
+      "exit_task": {
+        "prompt": "A velocity-time graph is a straight segment from 5 m/s at t = 0 to 11 m/s at t = 3 s. Use the graph slope to identify a, use its rectangle-plus-triangle area to find displacement, and show how the same graph yields v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The slope gives a = 2 m/s^2 and v = u + at. The graph area is 15 m + 9 m = 24 m, giving s = ut + 0.5at^2. The trapezoid form combined with t = (v-u)/a gives v^2 = u^2 + 2as.",
+          "reasoning": [
+            "Slope: a = (11-5)/3 = 2 m/s^2, so a = (v-u)/t rearranges to v = u + at.",
+            "Rectangle area: u t = 5 x 3 = 15 m.",
+            "Triangle area: 0.5(v-u)t = 0.5 x 6 x 3 = 9 m, so s = 24 m; substituting v-u = at gives s = ut + 0.5at^2.",
+            "The same area is s = 0.5(u+v)t. Substitute t=(v-u)/a: 2as=(u+v)(v-u)=v^2-u^2, hence v^2=u^2+2as."
+          ],
+          "check": "The direct displacement validator gives 24 m, and 11^2 = 5^2 + 2 x 2 x 24 = 121.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "CONSTANT_ACCELERATION_GRAPH_AREA",
+            "bindings": {
+              "u": "DAT-KIN-CA-U",
+              "v": "DAT-KIN-CA-V",
+              "t": "DAT-KIN-CA-T"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-PHY-KIN-CONSTANT-A-VT-DERIVATION",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

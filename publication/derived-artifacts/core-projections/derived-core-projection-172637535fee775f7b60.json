@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-phy-fluid-r3:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-FLUID-R3",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-FLUID-R3",
+      "title": "Steady incompressible flow speeds up in a narrower section",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "For steady incompressible flow through one tube, the volume-flow rate is conserved, so smaller cross-sectional area requires larger flow speed.",
+      "entry_assumptions": [
+        "Can compare cross-sectional areas and interpret directional velocity arrows along one tube.",
+        "Can reason about equal volumes passing a section during equal time intervals."
+      ],
+      "teaching_path": [
+        {
+          "id": "FLUID-R3-1",
+          "role": "DECLARE",
+          "action": "Mark a wide section and a narrow section of one tube, then choose the same short time interval at both sections.",
+          "why_valid": "Steady flow is compared over one common time interval, so the amount passing each section can be meaningfully matched.",
+          "inputs": [],
+          "output": "one tube | wide section A | narrow section B | same time interval at A and B"
+        },
+        {
+          "id": "FLUID-R3-2",
+          "role": "TRANSFORM",
+          "action": "Draw equal volumes of incompressible fluid crossing the wide and narrow sections during that common interval.",
+          "why_valid": "In steady flow with no accumulation and no density change, the same fluid volume per time must pass every cross-section of the tube.",
+          "inputs": [],
+          "output": "equal volume per equal time; wide section -> shorter travel distance | narrow section -> longer travel distance"
+        },
+        {
+          "id": "FLUID-R3-3",
+          "role": "VERIFY",
+          "action": "Convert the travel-distance comparison into velocity-arrow lengths while leaving the section areas unchanged.",
+          "why_valid": "Over the same time interval, the longer travel distance corresponds to the larger average speed.",
+          "inputs": [],
+          "output": "wide section: shorter velocity arrow | narrow section: longer velocity arrow"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "The same steady water flow enters a narrower part of a pipe. Before using a formula, should the water there move faster or slower on average?",
+          "defensible_answer": "Faster, because the same volume must pass through the smaller cross-section during the same time."
+        },
+        "attempt": {
+          "produces": "A two-section flow sketch showing equal fluid volumes crossing a wide and a narrow section during one common time interval.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Equal crossing volumes are shown for the same time interval.",
+              "evidence_of": "The learner represents the steady-flow invariant rather than comparing unrelated snapshots."
+            },
+            {
+              "criterion": "The narrow section has the longer travel distance or velocity arrow.",
+              "evidence_of": "The learner links smaller area to greater speed through conserved volume flow."
+            }
+          ],
+          "accepted": [
+            "The sketch uses one common time interval, equal crossing volumes, and a longer motion arrow through the narrow section."
+          ],
+          "rejected": [
+            "The narrow section is assigned a shorter arrow because it has less room, while no conserved through-flow quantity is shown."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "If the flow is steady, can fluid keep piling up between the wide and narrow sections?",
+              "why_this_ask": "It removes accumulation as an escape from the conservation decision.",
+              "from_step_ref": "FLUID-R3-1"
+            },
+            {
+              "ask": "What must therefore be equal when you compare one common time interval?",
+              "why_this_ask": "The learner identifies the conserved crossing volume.",
+              "from_step_ref": "FLUID-R3-2"
+            },
+            {
+              "ask": "How can the narrower section pass that same volume in the same time?",
+              "why_this_ask": "It elicits the required travel-distance change before naming speed."
+            },
+            {
+              "ask": "What should the velocity arrows look like after that comparison?",
+              "why_this_ask": "It translates the constructed motion into the requested representation.",
+              "from_step_ref": "FLUID-R3-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path fixes sections and time, demonstrates equal crossing volumes, then maps distance to speed; the learner route begins by ruling out accumulation and must supply the conserved quantity before seeing the arrow comparison."
+        },
+        "boundary_test": {
+          "prompt": "If the flow stops being steady and fluid temporarily accumulates between the sections, must the two section flow rates match at that instant?",
+          "answer": "No. The equal-through-flow conclusion used here depends on the steady-flow condition.",
+          "confirms": "The learner recognizes the conservation statement as conditional rather than as a rule about every pipe snapshot."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Water must slow down in a narrower pipe because there is less space available.",
+          "diagnostic_prompt": "In steady incompressible flow, if the pipe area halves, does the average speed halve or double?",
+          "repair": "Conserve volume flow rate: the same volume per time must pass every section, so area and average speed vary inversely."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A steady incompressible flow passes through three sections of one tube with different areas. Rank the flow speeds qualitatively and justify the ranking from equal volume crossing each section per equal time.",
+        "source_ref": "SRC-AUTHOR-PHY-FLUID",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The narrowest section has the greatest average speed and the widest has the smallest because each section must pass the same fluid volume during the same time interval.",
+          "reasoning": [
+            "Steady incompressible flow prevents fluid from accumulating between the sections.",
+            "Therefore each section passes the same volume during a chosen common time interval.",
+            "A smaller area must carry that volume through a longer distance in the same time, which means a larger average speed."
+          ],
+          "check": "Make two sections equal in area; the predicted average speeds at those sections should become equal in the same steady incompressible flow.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The response supplies a qualitative speed ranking from conserved volume flow and contains no computed speed."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

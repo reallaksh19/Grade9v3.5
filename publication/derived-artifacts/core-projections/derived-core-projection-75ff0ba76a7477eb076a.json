@@ -1,0 +1,154 @@
+{
+  "id": "physics:mic-opt-lens-magnification:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-LENS-MAGNIFICATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-LENS-MAGNIFICATION",
+      "title": "Lens magnification sign carries image orientation",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "One signed ratio links longitudinal image placement and transverse image orientation: magnitude gives relative size while sign distinguishes erect from inverted.",
+      "entry_assumptions": [
+        "Can assign signed u and v for one thin-lens image."
+      ],
+      "teaching_path": [
+        {
+          "id": "LENS-R5-1",
+          "role": "DECLARE",
+          "action": "Use m = v/u = h_i/h_o for the same signed lens state.",
+          "why_valid": "The governed relation ties signed image/object distances to signed heights for one image.",
+          "inputs": [
+            "REL-LENS-MAGNIFICATION"
+          ],
+          "output": "m = v/u = h_i/h_o"
+        },
+        {
+          "id": "LENS-R5-2",
+          "role": "TRANSFORM",
+          "action": "Interpret |m| as relative size and the sign of m as orientation under the declared height convention.",
+          "why_valid": "Removing the sign loses physically meaningful image orientation.",
+          "inputs": [],
+          "output": "|m| -> size; sign(m) -> erect/inverted"
+        },
+        {
+          "id": "LENS-R5-3",
+          "role": "VERIFY",
+          "action": "Compare the magnification sign and size class with the principal-ray diagram.",
+          "why_valid": "The geometry supplies an independent orientation/size check.",
+          "inputs": [],
+          "output": "signed magnification agrees with ray geometry"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Magnification is only a positive size factor, so its sign can be discarded.",
+          "diagnostic_prompt": "Can an unsigned magnification distinguish an erect image from an inverted image?",
+          "repair": "Keep m signed. Use |m| for relative size and the sign of m for orientation."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "m is dimensionless.",
+        "The sign of m agrees with erect/inverted orientation.",
+        "|m| agrees qualitatively with enlarged, same-size or diminished geometry."
+      ],
+      "exit_task": {
+        "prompt": "A thin-lens ray diagram shows an image that is inverted and larger than the object. Without calculating a numerical magnification, state what must be true about the sign of m and about |m|.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The magnification must be negative for an inverted image, and its magnitude must be greater than one because the image is enlarged.",
+          "reasoning": [
+            "The sign of m carries orientation under the declared height convention.",
+            "The magnitude compares image size with object size.",
+            "The ray diagram independently supplies both qualitative checks."
+          ],
+          "check": "A positive or signless answer loses the inverted-image information.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit asks only for qualitative sign and size-class interpretation; it contains no computed numerical value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

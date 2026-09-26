@@ -1,0 +1,217 @@
+{
+  "id": "physics:mic-phy-nlm-ideal-string-tension:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+      "title": "Ideal-string tension belongs to each body-specific FBD",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "For one taut massless ideal string, with any redirection treated as frictionless and massless, the tension magnitude can be represented by one T throughout that same string; each body still receives its own tension force along the local string direction.",
+      "entry_assumptions": [
+        "Can assign forces to the body they act on.",
+        "Can apply Newton II to a chosen body."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM10-1",
+          "role": "DECLARE",
+          "action": "State the idealization before using one tension symbol: taut inextensible massless string, with any pulley/redirection frictionless and massless for this bounded model.",
+          "why_valid": "Uniform tension is a consequence of the ideal model and must not be silently transferred to a nonideal rope or pulley.",
+          "inputs": [],
+          "output": "ideal single string model declared -> one tension magnitude T is admissible throughout that string"
+        },
+        {
+          "id": "NLM10-2",
+          "role": "DECLARE",
+          "action": "For each attached body, draw the string's pull along the local string direction away from the body.",
+          "why_valid": "Tension is a force exerted by the string on that body and belongs on that body's FBD.",
+          "inputs": [
+            "CAP-NLM-FBD-BODY-OWNERSHIP"
+          ],
+          "output": "body A FBD contains string-on-A force of magnitude T; body B FBD contains string-on-B force of magnitude T"
+        },
+        {
+          "id": "NLM10-3",
+          "role": "TRANSFORM",
+          "action": "Use the same symbol T for those magnitudes only while the declared ideal assumptions hold.",
+          "why_valid": "A massless string segment cannot sustain a nonzero net force in this idealized model, and a frictionless massless redirection does not create a tension-magnitude jump.",
+          "inputs": [],
+          "output": "T_A = T_B = T under the declared ideal-string/redirection conditions"
+        },
+        {
+          "id": "NLM10-4",
+          "role": "VERIFY",
+          "action": "Check whether the problem introduces rope mass, elasticity, pulley friction, or rotational inertia; if it does, stop using equal tension unless a different model justifies it.",
+          "why_valid": "Those changes alter the force transmission assumptions that supported one common T.",
+          "inputs": [],
+          "output": "nonideal feature present -> equal-tension relation not licensed by this capability"
+        },
+        {
+          "id": "NLM10-5",
+          "role": "TRANSFORM",
+          "action": "Determine the tension magnitude from a chosen body's signed Newton-II equation; do not replace T by mg or by an applied force merely because those forces appear in the same setup.",
+          "why_valid": "Uniform tension says the ideal string transmits one magnitude throughout itself; it does not say that magnitude equals some different force. For a hanging body, T=mg only in the special zero-acceleration case.",
+          "inputs": [
+            "CAP-NLM-SECOND-LAW"
+          ],
+          "output": "for +y upward on a hanging mass: T - mg = ma_y; therefore a_y=0 -> T=mg, a_y>0 -> T>mg, and a_y<0 -> T<mg."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two masses hang from the ends of one ideal string over a fixed ideal pulley. May the same symbol T be used for the tension magnitude on both sides?",
+          "defensible_answer": "Yes, but only because the string/pulley model has been declared ideal; each mass still has its own tension force on its own FBD."
+        },
+        "attempt": {
+          "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions."
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What assumptions about the string and pulley have actually been declared?",
+              "why_this_ask": "Equal tension must be tied to a model rather than memorized as universal.",
+              "from_step_ref": "NLM10-1"
+            },
+            {
+              "ask": "Which body does each string force act on?",
+              "why_this_ask": "It keeps equal magnitudes from becoming an invalid cancellation on one FBD.",
+              "from_step_ref": "NLM10-2"
+            },
+            {
+              "ask": "Under those assumptions, can the two tension magnitudes be represented by one T?",
+              "why_this_ask": "It derives the compact relation only after model and ownership are fixed.",
+              "from_step_ref": "NLM10-3"
+            }
+          ],
+          "differs_from_teaching_path": "The learner has to earn the single tension symbol by first stating the model and assigning the two forces to their bodies."
+        },
+        "boundary_test": {
+          "prompt": "The pulley axle has significant friction. Does this capability still guarantee equal tension on the two sides?",
+          "answer": "No. The ideal redirection assumption has been broken, so equal tension is no longer guaranteed by this model.",
+          "confirms": "Uniform tension is model-conditional, not universal."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Tension forces at the two ends of a string cancel because they are equal and opposite.",
+          "diagnostic_prompt": "Do the two end tensions act on the same chosen body?",
+          "repair": "No. Put the tension force acting on each body in that body's own FBD. Equal magnitudes across the ideal string do not make them a cancelling pair on one body."
+        },
+        {
+          "wrong_idea": "Every rope over every pulley has the same tension on both sides.",
+          "diagnostic_prompt": "What model assumptions justify using one symbol T throughout the rope?",
+          "repair": "State the ideal massless string and frictionless/massless redirection assumptions first. Without them, equal tension is not automatic."
+        },
+        {
+          "wrong_idea": "The tension in a string holding a hanging mass is always equal to the mass's weight.",
+          "diagnostic_prompt": "A hanging mass accelerates upward. Can T still equal mg while Newton II gives a nonzero upward net force?",
+          "repair": "Write the signed body equation. With upward positive, T-mg=ma, so upward acceleration requires T>mg; equality belongs only to zero vertical acceleration."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Each tension force is assigned to the body it acts on.",
+        "Breaking an ideal assumption requires the equal-tension claim to be re-evaluated."
+      ],
+      "exit_task": {
+        "prompt": "Two bodies are attached to the same taut ideal string, redirected only by a frictionless massless fixed pulley. State the tension relation and explain where the two tension forces appear.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Under the declared ideal model, both string segments have the same tension magnitude T. Each body has its own string-on-body tension force on its own FBD; the forces are not cancelled across separate body diagrams.",
+          "reasoning": [
+            "The ideal assumptions license one common tension magnitude throughout the same string.",
+            "Each tension force acts on a different body and points along that body's local string segment.",
+            "Equal magnitude does not mean the forces cancel in an individual-body equation."
+          ],
+          "check": "If the pulley is explicitly frictional or the rope has significant mass, this capability must refuse to assume equal tension.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit states the model-conditional symbolic equality of tension magnitudes and assigns the forces to their bodies; no numerical tension is computed."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

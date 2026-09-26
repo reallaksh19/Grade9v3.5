@@ -1,0 +1,208 @@
+{
+  "id": "physics:mic-phy-machine-tradeoff:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-MACHINE-TRADEOFF",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-MACHINE-TRADEOFF",
+      "title": "A machine trades force or direction for distance; it does not create work",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "A simple machine can reduce effort force or change its direction by requiring a different input distance; in the ideal model input work equals useful output work.",
+      "entry_assumptions": [
+        "Can distinguish force from work and identify work as a force acting through displacement."
+      ],
+      "teaching_path": [
+        {
+          "id": "SM1-1",
+          "role": "DECLARE",
+          "action": "Name the effort point, load point, effort force, load force, effort distance and load distance.",
+          "why_valid": "Force advantage cannot be interpreted without identifying both input and output sides.",
+          "inputs": [
+            "CAP-WEP-WORK-DIRECTION"
+          ],
+          "output": "input: F_effort, d_effort; output: F_load, d_load."
+        },
+        {
+          "id": "SM1-2",
+          "role": "TRANSFORM",
+          "action": "For an ideal machine, compare the effort and load work using F_effort d_effort = F_load d_load.",
+          "why_valid": "REL-IDEAL-MACHINE-WORK owns the lossless input-output work equality.",
+          "inputs": [
+            "REL-IDEAL-MACHINE-WORK"
+          ],
+          "output": "F_effort d_effort = F_load d_load; if F_effort < F_load for the same ideal output work, then d_effort > d_load."
+        },
+        {
+          "id": "SM1-3",
+          "role": "VERIFY",
+          "action": "Double the load force advantage while keeping ideal useful output work fixed and ask what must happen to effort distance.",
+          "why_valid": "The boundary exposes why force multiplication does not create energy.",
+          "inputs": [],
+          "output": "greater force advantage -> compensating greater input distance in the ideal tradeoff."
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "Can an ideal machine make the load force larger than the effort force without any other tradeoff?",
+          "defensible_answer": "No. A force advantage requires a distance or direction tradeoff; ideal work is not created."
+        },
+        "attempt": {
+          "produces": "An input/output force-distance comparison.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Tracks both force and distance.",
+              "evidence_of": "Treating machine benefit as a tradeoff rather than free energy."
+            },
+            {
+              "criterion": "Keeps ideal input and useful output work equal.",
+              "evidence_of": "Using the energy account inherited from Work/Energy."
+            }
+          ],
+          "accepted": [
+            "Smaller effort force requires a longer effort distance for the same ideal output work."
+          ],
+          "rejected": [
+            "The machine makes extra work because the load force is larger."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which side is the effort/input?",
+              "why_this_ask": "It fixes the machine boundary.",
+              "from_step_ref": "SM1-1"
+            },
+            {
+              "ask": "Which quantities determine work on each side?",
+              "why_this_ask": "It connects force and distance."
+            },
+            {
+              "ask": "What does the ideal model conserve?",
+              "why_this_ask": "It blocks free-energy reasoning.",
+              "from_step_ref": "SM1-2"
+            },
+            {
+              "ask": "If output force rises, what compensating quantity must change?",
+              "why_this_ask": "It reconstructs the tradeoff.",
+              "from_step_ref": "SM1-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path labels both sides first; the learner route begins from the apparent force gain and reconstructs the missing distance tradeoff."
+        },
+        "boundary_test": {
+          "prompt": "If an ideal fixed pulley changes only the force direction, must it provide a force advantage greater than one?",
+          "answer": "No. Changing direction alone can be useful even without reducing the effort-force magnitude.",
+          "confirms": "Machine usefulness is not identical to force multiplication."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "If a machine gives a larger output force than the effort force, it creates energy.",
+          "diagnostic_prompt": "An ideal machine doubles the output force. Can the effort point move the same distance as the load and still conserve work?",
+          "repair": "Track both force and distance. In an ideal machine, a force advantage requires a compensating distance tradeoff."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "A force advantage greater than one requires a corresponding distance disadvantage in the ideal model."
+      ],
+      "exit_task": {
+        "prompt": "An ideal machine lets a person use a smaller effort force to raise a load. Without numbers, what must happen to the effort distance relative to the load distance if useful output work is unchanged?",
+        "source_ref": "SRC-AUTHOR-SIMPLE-MACHINES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The effort point must move farther than the load point when the effort force is smaller than the load force.",
+          "reasoning": [
+            "Ideal input work equals useful output work.",
+            "Reducing input force while keeping output work fixed requires a larger input distance.",
+            "The machine trades force for distance rather than creating energy."
+          ],
+          "check": "If both force and distance were multiplied at the output with no extra input, output work would exceed input work and violate the ideal model.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit makes a qualitative ideal-work tradeoff claim without a computed value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

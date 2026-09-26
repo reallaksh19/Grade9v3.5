@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-mag-redirect-not-speed:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-MAG-REDIRECT-NOT-SPEED",
+      "title": "A perpendicular magnetic force redirects without speeding up",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "When the magnetic force is perpendicular to the instantaneous velocity, it can continually turn the velocity arrow without lengthening or shortening it; the magnetic interaction redirects motion without supplying kinetic energy.",
+      "entry_assumptions": [
+        "Can distinguish a velocity arrow's direction from its length.",
+        "Can recognize perpendicular directions and interpret a zero dot product geometrically."
+      ],
+      "teaching_path": [
+        {
+          "id": "MAG-R4-1",
+          "role": "DECLARE",
+          "action": "At one instant, draw the velocity arrow tangent to the path and the magnetic-force arrow perpendicular to it.",
+          "why_valid": "The rung's claim applies to a pure magnetic interaction in the stated perpendicular case, so the local force-versus-velocity geometry must be fixed before any conclusion about speed is made.",
+          "inputs": [],
+          "output": "instant 1: v -> ; F ⟂ v"
+        },
+        {
+          "id": "MAG-R4-2",
+          "role": "TRANSFORM",
+          "action": "Advance a short time step and redraw the velocity with a changed direction but the same arrow length, while keeping the force sideways to the new velocity.",
+          "why_valid": "A sideways change alters direction while preserving the magnitude represented by arrow length; repeating that local update builds a curved path without a speed increase.",
+          "inputs": [],
+          "output": "|v₁| = |v₂| ; direction(v₁) ≠ direction(v₂)"
+        },
+        {
+          "id": "MAG-R4-3",
+          "role": "VERIFY",
+          "action": "Use the dot-product check on the force and instantaneous velocity at each snapshot.",
+          "why_valid": "Perpendicular vectors have zero dot product, so the magnetic force has no component along the motion to supply or remove kinetic energy.",
+          "inputs": [],
+          "output": "F ⟂ v -> F·v = 0 -> magnetic contribution to speed change = 0"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A force is acting on a moving charge, but the force arrow is exactly sideways to the velocity arrow. Must the particle be getting faster?",
+          "defensible_answer": "No. A sideways force can change the direction of motion while leaving the speed unchanged."
+        },
+        "attempt": {
+          "produces": "Two successive velocity-force snapshots on a curved path, with the velocity-arrow lengths compared and a force-velocity dot-product check.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "The later velocity arrow changes direction without changing length.",
+              "evidence_of": "Separating redirection from speeding up."
+            },
+            {
+              "criterion": "The force is kept perpendicular to the instantaneous velocity and the dot-product check is identified as zero.",
+              "evidence_of": "Connecting the geometry to the no-energy-transfer conclusion."
+            }
+          ],
+          "accepted": [
+            "The path bends, the two velocity arrows have equal lengths, each force arrow is sideways to the local velocity, and the response uses the zero dot product to explain unchanged kinetic energy."
+          ],
+          "rejected": [
+            "The later velocity arrow is longer solely because a force exists, even though the force is drawn perpendicular to the motion."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Which feature of a velocity arrow represents speed, and which represents direction?",
+              "why_this_ask": "The learner must separate the two properties before one can change without the other.",
+              "from_step_ref": "MAG-R4-1"
+            },
+            {
+              "ask": "If the force is exactly sideways, what could change about the velocity arrow without changing its length?",
+              "why_this_ask": "This makes redirection the learner's construction rather than a stated rule.",
+              "from_step_ref": "MAG-R4-2"
+            },
+            {
+              "ask": "What does the dot product of two perpendicular arrows tell you here?",
+              "why_this_ask": "The geometric check closes the work-or-power claim without asking for a force magnitude.",
+              "from_step_ref": "MAG-R4-3"
+            },
+            {
+              "ask": "If the field strength changed while the force stayed perpendicular, which conclusion survives?",
+              "why_this_ask": "It tests the invariant distinction: curvature may change, but the pure magnetic interaction still does not supply kinetic energy."
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path starts from a declared perpendicular snapshot; the elicitation route first asks the learner to separate velocity length from direction, then makes the curved-path construction emerge from that distinction."
+        },
+        "boundary_test": {
+          "prompt": "If an additional non-magnetic force has a component along the velocity, may the speed still be assumed constant?",
+          "answer": "No. The no-speed-change conclusion belongs to the pure magnetic perpendicular-force case; an additional along-motion force can transfer kinetic energy.",
+          "confirms": "The rung's conclusion is conditional on the stated force geometry and does not claim that every curved charged-particle path has constant speed."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "A magnetic field makes a charged particle speed up simply because a force acts on it.",
+          "diagnostic_prompt": "A particle curves in a uniform pure magnetic field. If its speed rises, what interaction supplied the extra kinetic energy?",
+          "repair": "Compare the force with the instantaneous velocity: a perpendicular magnetic force turns the motion, while its zero dot product with velocity means it does not add kinetic energy."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A particle moves through a region where the only force is magnetic and is perpendicular to its instantaneous velocity. State what may change about the velocity and what must remain unchanged, and justify the answer with the force-velocity geometry.",
+        "source_ref": "SRC-AUTHOR-MAG-FIELD-LORENTZ",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The velocity direction may change, so the path can curve, but the speed and kinetic energy remain unchanged because the magnetic force has no component along the instantaneous motion.",
+          "reasoning": [
+            "Read speed from the length of the velocity arrow and direction from where that arrow points.",
+            "A force perpendicular to the velocity changes the direction of the arrow rather than its length in the ideal pure-magnetic case.",
+            "The perpendicular force-velocity dot product is zero, which is the work-or-power check that no kinetic energy is transferred by the magnetic force."
+          ],
+          "check": "Compare two nearby snapshots: the tangent direction should rotate while the velocity-arrow length stays fixed and the force remains perpendicular to the local tangent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer distinguishes direction, speed, and kinetic-energy changes qualitatively; it computes no magnetic-force magnitude or trajectory radius."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

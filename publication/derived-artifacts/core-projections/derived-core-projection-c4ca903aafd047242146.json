@@ -1,0 +1,204 @@
+{
+  "id": "physics:mic-opt-lens-power:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-LENS-POWER",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-LENS-POWER",
+      "title": "Lens power is signed inverse focal length in metres",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Power compresses focal-length strength into an inverse-metre quantity, so both the metre conversion and focal-length sign are essential.",
+      "entry_assumptions": [
+        "Can identify the signed focal length of a convex or concave thin lens."
+      ],
+      "teaching_path": [
+        {
+          "id": "LENS-R6-1",
+          "role": "DECLARE",
+          "action": "Convert the signed focal length to metres before using the power relation.",
+          "why_valid": "A dioptre is inverse metre, so unit conversion is part of the physical definition.",
+          "inputs": [],
+          "output": "signed f in metres"
+        },
+        {
+          "id": "LENS-R6-2",
+          "role": "TRANSFORM",
+          "action": "Use P = 1/f and retain the sign of f.",
+          "why_valid": "The reciprocal preserves converging positive and diverging negative character while mapping shorter |f| to larger |P|.",
+          "inputs": [
+            "REL-LENS-POWER"
+          ],
+          "output": "P = 1/f in D"
+        },
+        {
+          "id": "LENS-R6-3",
+          "role": "VERIFY",
+          "action": "Compare power magnitude and sign with the lens type and qualitative focal length.",
+          "why_valid": "A stronger converging lens should have a larger positive |P| and shorter positive |f|; a diverging lens should carry negative power.",
+          "inputs": [],
+          "output": "power agrees with focal behavior"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If two convex lenses have focal lengths of different magnitudes, which one has the larger power magnitude?",
+          "defensible_answer": "The one with the shorter focal length has the larger positive power magnitude."
+        },
+        "attempt": {
+          "produces": "A signed power/focal-length comparison with explicit metre-unit reasoning.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Focal length is conceptually in metres for dioptres.",
+              "evidence_of": "Using the correct inverse-length unit."
+            },
+            {
+              "criterion": "Power sign and magnitude are both interpreted.",
+              "evidence_of": "Connecting lens type and optical strength."
+            }
+          ],
+          "accepted": [
+            "Shorter positive focal length means larger positive power; negative focal length would give negative power."
+          ],
+          "rejected": [
+            "A larger positive power means a longer focal length because the numerical power is larger."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What unit is hidden inside one dioptre?",
+              "why_this_ask": "It forces the metre conversion into the definition.",
+              "from_step_ref": "LENS-R6-1"
+            },
+            {
+              "ask": "What happens to a reciprocal when its positive denominator gets smaller?",
+              "why_this_ask": "It reconstructs the strength ordering.",
+              "from_step_ref": "LENS-R6-2"
+            },
+            {
+              "ask": "What optical behavior does the sign of f carry?",
+              "why_this_ask": "It prevents a signless strength-only interpretation.",
+              "from_step_ref": "LENS-R6-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path starts from the metre-based definition; the elicitation route begins from comparing lens strength and reconstructs the inverse relationship and sign."
+        },
+        "boundary_test": {
+          "prompt": "Can a concave lens and convex lens have the same power sign if their focal lengths have opposite signs?",
+          "answer": "No. P = 1/f preserves the focal-length sign, so the powers have opposite signs.",
+          "confirms": "Lens power is a signed optical quantity, not only a positive strength magnitude."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Focal length in centimetres can be inserted directly into P = 1/f to obtain dioptres.",
+          "diagnostic_prompt": "What unit must focal length use before its reciprocal is reported in dioptres?",
+          "repair": "Convert f to metres first, then take the reciprocal and keep the sign."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "P has inverse-length units.",
+        "The sign of P equals the sign of f.",
+        "Larger |P| corresponds to shorter |f|."
+      ],
+      "exit_task": {
+        "prompt": "Lens A has positive power with a larger magnitude than lens B, which also has positive power. Without calculating focal lengths, which lens has the shorter focal length, and what common lens behavior does the positive sign indicate?",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFRACTION-LENSES",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Lens A has the shorter positive focal length because larger |P| means smaller |f|. The positive sign indicates converging/convex-lens power in this Grade-10 convention.",
+          "reasoning": [
+            "Power magnitude is the reciprocal of focal-length magnitude in metres.",
+            "Increasing |P| therefore decreases |f|.",
+            "The positive sign follows the positive focal length of the converging lens."
+          ],
+          "check": "If larger power is said to mean longer focal length, the reciprocal relation has been reversed.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit uses qualitative reciprocal ordering and sign interpretation; it contains no computed numerical value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

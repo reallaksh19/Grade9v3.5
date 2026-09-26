@@ -1,0 +1,170 @@
+{
+  "id": "physics:mic-phy-grav-inverse-square:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-GRAV-INVERSE-SQUARE",
+      "title": "Universal gravitation: model scope, centre distance and inverse-square scaling",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Within the Newtonian point-mass model, or outside a spherically symmetric source where the external reduction is valid, F = G m1 m2/r^2 uses centre-to-centre separation; masses enter linearly, distance through the inverse square, and direction remains toward the attracting source.",
+      "entry_assumptions": [
+        "Can represent gravity as a persistent mutual attractive interaction with body ownership.",
+        "Can compare multiplicative and square factors."
+      ],
+      "teaching_path": [
+        {
+          "id": "GRAV-R2-1",
+          "role": "DECLARE",
+          "action": "Identify the two interacting masses, name the receiver, mark both centres, and state whether the bodies can be treated as point masses or by an external spherical reduction.",
+          "why_valid": "The simple inverse-square relation has a model scope; using it before defining the source/receiver and geometric separation can produce a formally neat but physically undefined result.",
+          "inputs": [
+            "CAP-PHY-GRAV-R1"
+          ],
+          "output": "declared receiver, valid simple-source model, and centre-to-centre separation r"
+        },
+        {
+          "id": "GRAV-R2-2",
+          "role": "TRANSFORM",
+          "action": "With both masses fixed, double r and predict the force factor before substituting any numbers.",
+          "why_valid": "The distance appears squared in the denominator, so r -> 2r gives F -> F/4.",
+          "inputs": [],
+          "output": "inverse-square distance scaling"
+        },
+        {
+          "id": "GRAV-R2-3",
+          "role": "TRANSFORM",
+          "action": "Restore r, double one mass, and compare the force factor with the distance case.",
+          "why_valid": "Each mass appears to the first power in the numerator, so doubling one mass doubles the magnitude.",
+          "inputs": [],
+          "output": "linear mass scaling distinguished from inverse-square distance scaling"
+        },
+        {
+          "id": "GRAV-R2-4",
+          "role": "VERIFY",
+          "action": "Check the result by testing direction, units/model meaning, and the limiting trend as r becomes larger.",
+          "why_valid": "A correct Newtonian result must remain attractive, use the stated centre distance/model scope, and decrease toward zero as separation becomes very large.",
+          "inputs": [],
+          "output": "model-validity, direction and limiting-case check"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Doubling the separation halves the gravitational force.",
+          "diagnostic_prompt": "Two otherwise identical pairs have centre-to-centre separations r and 2r. Is the second force one half, one quarter, or unchanged?",
+          "repair": "Apply the square to the distance factor: 2r contributes 1/2^2 = 1/4."
+        },
+        {
+          "wrong_idea": "For spherical bodies, r in the simple inverse-square relation is the gap between the surfaces.",
+          "diagnostic_prompt": "Two spherical bodies have radii shown and a surface gap labelled. Which distance belongs in the external Newtonian inverse-square model?",
+          "repair": "Use the centre-to-centre separation. The external spherical reduction treats the source mass as if concentrated at its centre."
+        },
+        {
+          "wrong_idea": "The computed gravitational-force direction should be chosen from the object's motion direction.",
+          "diagnostic_prompt": "If the receiver moves away from the source, does the gravitational-force direction reverse to follow its velocity?",
+          "repair": "No. Keep the force attractive along the source-receiver line; motion direction is a separate vector."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Two externally spherical bodies are far enough apart for the external Newtonian model. One mass doubles while their centre-to-centre separation triples. State the force factor, identify the distance used, and state the force direction on the receiver.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The force magnitude becomes 2/9 of the original; r is the centre-to-centre separation, and the force on the receiver points toward the other body's centre.",
+          "reasoning": [
+            "One doubled mass contributes a factor of 2.",
+            "Tripling centre-to-centre r contributes 1/3^2 = 1/9.",
+            "The combined magnitude factor is 2/9.",
+            "The attractive direction is set by source-receiver geometry."
+          ],
+          "check": "Undo only the distance change: the remaining doubled-mass case should be twice the original force.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer checks proportional factors only; it does not assert a measured gravitational constant or force value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

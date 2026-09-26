@@ -1,0 +1,201 @@
+{
+  "id": "physics:mic-phy-vec-direction-from-components:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-VEC-DIRECTION-FROM-COMPONENTS",
+      "title": "Recover direction from signed components",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Direction recovery is two-stage: component signs locate the quadrant or axis, while inverse tangent of the positive component-magnitude ratio supplies only an acute reference angle to place inside that quadrant.",
+      "entry_assumptions": [
+        "Can read signed x/y components.",
+        "Can use an inverse tangent to obtain an acute reference angle through the declared Mathematics bridge."
+      ],
+      "teaching_path": [
+        {
+          "id": "VDR-1",
+          "role": "DECLARE",
+          "action": "Use the signs of v_x and v_y to identify the quadrant or an exact axis before taking any ratio.",
+          "why_valid": "The signs retain directional information that a ratio can lose.",
+          "inputs": [
+            "CAP-VECTOR-SIGNED-COMPONENT"
+          ],
+          "output": "quadrant or axis fixed from signs"
+        },
+        {
+          "id": "VDR-2",
+          "role": "TRANSFORM",
+          "action": "When both components are nonzero, form the positive ratio |v_y|/|v_x| and obtain the acute reference angle alpha = tan^-1(|v_y|/|v_x|).",
+          "why_valid": "The absolute component magnitudes form the legs of the right triangle; inverse tangent returns the acute reference angle, not the full directed angle.",
+          "inputs": [
+            "CAP-INVERSE-TRIG-DIRECTION-BRIDGE"
+          ],
+          "output": "alpha = tan^-1(|v_y|/|v_x|), 0<alpha<90 degrees"
+        },
+        {
+          "id": "VDR-3",
+          "role": "TRANSFORM",
+          "action": "Place alpha in the previously identified quadrant and report the requested directed angle or verbal direction.",
+          "why_valid": "Quadrant placement restores the signs discarded by the positive ratio.",
+          "inputs": [],
+          "output": "quadrant I: theta=alpha; quadrant II: theta=180°-alpha; quadrant III: theta=180°+alpha; quadrant IV: theta=360°-alpha for standard 0°<=theta<360° reporting"
+        },
+        {
+          "id": "VDR-4",
+          "role": "VERIFY",
+          "action": "Check that the reported direction has the same x/y sign pattern as the original components.",
+          "why_valid": "Any correct direction must point into the same quadrant or axis as the signed component pair.",
+          "inputs": [],
+          "output": "direction sign pattern matches (v_x,v_y)"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A vector has negative x-component and positive y-component. Before using a calculator, which quadrant must the answer lie in?",
+          "defensible_answer": "Quadrant II."
+        },
+        "attempt": {
+          "produces": "A quadrant decision, an acute reference-angle expression, and a directed-angle placement.",
+          "closure": "MODEL_RESPONSE",
+          "model_response": "Use signs first for quadrant, then alpha = tan^-1(|v_y|/|v_x|), then place alpha in that quadrant."
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What do the two component signs tell you before any trigonometry?",
+              "why_this_ask": "It preserves the directional information a ratio can erase.",
+              "from_step_ref": "VDR-1"
+            },
+            {
+              "ask": "Which positive leg ratio gives the acute angle to the x-axis?",
+              "why_this_ask": "It separates reference-angle recovery from quadrant placement.",
+              "from_step_ref": "VDR-2"
+            },
+            {
+              "ask": "How must that acute angle be placed in the quadrant you already fixed?",
+              "why_this_ask": "It prevents the calculator output from becoming the direction by default.",
+              "from_step_ref": "VDR-3"
+            }
+          ],
+          "differs_from_teaching_path": "The learner commits to a quadrant before seeing the inverse-trig construction, so the calculator cannot become the source of direction."
+        },
+        "boundary_test": {
+          "prompt": "What if v_x=0 and v_y>0?",
+          "answer": "The vector points exactly along +y; report that axis direction directly and do not divide by v_x.",
+          "confirms": "Axis cases are handled directly rather than forced through an invalid ratio."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "The value tan^-1(v_y/v_x) is always the final direction angle.",
+          "diagnostic_prompt": "If v_x<0 and v_y>0, can a negative raw ratio by itself tell you that the vector lies in quadrant II?",
+          "repair": "Fix the quadrant from the component signs first. Use an acute reference angle from absolute component magnitudes, then place it in that quadrant."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [
+        "Direction quadrant agrees with signs of v_x and v_y.",
+        "Axis cases are handled without a zero denominator."
+      ],
+      "exit_task": {
+        "prompt": "A nonzero vector has v_x<0, v_y>0 and |v_y|<|v_x|. State its quadrant, write the acute reference-angle expression, and show how the directed angle from +x is obtained symbolically.",
+        "source_ref": "SRC-AUTHOR-VEC-DIRECTION-UNIT",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It lies in quadrant II. Let alpha = tan^-1(|v_y|/|v_x|); the standard directed angle from +x is 180 degrees - alpha.",
+          "reasoning": [
+            "Negative x and positive y place the vector in quadrant II.",
+            "The positive magnitude ratio gives only the acute reference angle alpha.",
+            "Quadrant II places that reference angle above the -x direction, giving 180 degrees - alpha from +x."
+          ],
+          "check": "The final angle must have cosine negative and sine positive, matching the original component signs.",
+          "acceptable_alternatives": [
+            "State the direction as alpha above the -x axis instead of using a 0-360 degree angle."
+          ],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer is symbolic and asserts no computed numerical angle."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

@@ -1,0 +1,148 @@
+{
+  "id": "physics:mic-opt-normal-reflection:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-NORMAL-REFLECTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-NORMAL-REFLECTION",
+      "title": "Measure reflection from the normal, not the surface",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Angles in specular reflection are measured from the surface normal, and the reflected ray leaves with the same angle to that normal as the incident ray.",
+      "entry_assumptions": [
+        "Can trace a directed straight path and identify where it meets a surface."
+      ],
+      "teaching_path": [
+        {
+          "id": "OPT-R1-1",
+          "role": "DECLARE",
+          "action": "At the point where the incoming light path meets the mirror, draw the line perpendicular to the surface before marking any angle.",
+          "why_valid": "The reflection angle is defined relative to this perpendicular reference, so drawing it first fixes the reference instead of letting the page edge stand in for it.",
+          "inputs": [],
+          "output": "mirror surface ⟂ normal at the contact point"
+        },
+        {
+          "id": "OPT-R1-2",
+          "role": "TRANSFORM",
+          "action": "Copy the incoming path's tilt from the normal to the opposite side of that normal to construct the outgoing path.",
+          "why_valid": "Using the same reference line on both sides preserves the reflection rule while making the outgoing direction observable on the drawing.",
+          "inputs": [],
+          "output": "incoming tilt from normal -> matching outgoing tilt on the other side"
+        },
+        {
+          "id": "OPT-R1-3",
+          "role": "VERIFY",
+          "action": "Rotate the entire drawing on the page and repeat the construction without changing the physical geometry.",
+          "why_valid": "A page rotation changes how the paper is oriented but not perpendicularity or the pair of equal normal-referenced angles.",
+          "inputs": [],
+          "output": "rotated page -> same normal-based construction"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "The angle of incidence is measured from the mirror surface.",
+          "diagnostic_prompt": "A ray makes 20 degrees with the mirror surface. Is its angle of incidence 20 degrees?",
+          "repair": "Draw the normal first; incidence and reflection angles are defined from that line, not from the surface."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "Given an incoming light path and a plane mirror drawn at an arbitrary page angle, construct the normal and the reflected path, and state which line the two reflection angles are measured from.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Draw the perpendicular normal at the contact point, then place the outgoing path on the other side with the same tilt to that normal; both angles are measured from the normal.",
+          "reasoning": [
+            "Locate the point where the incoming path meets the surface.",
+            "Draw the perpendicular reference there before reading or copying any angle.",
+            "Use the same reference on the opposite side to place the outgoing path."
+          ],
+          "check": "Rotate the page mentally. If the construction depends on the page edge rather than the normal, it will change; a correct construction will not.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a geometric construction and reference-line explanation, not a numerical angle calculation."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

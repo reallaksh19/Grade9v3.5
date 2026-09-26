@@ -1,0 +1,171 @@
+{
+  "id": "physics:mic-phy-nlm-fbd-body-ownership:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+      "title": "A free-body diagram belongs to one chosen body",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "A free-body diagram contains forces acting on one chosen body only; the equal-and-opposite partner of an interaction acts on the other body and belongs on that other body's diagram.",
+      "entry_assumptions": [
+        "Can keep several forces visible even when their net effect is zero."
+      ],
+      "teaching_path": [
+        {
+          "id": "NLM3-1",
+          "role": "DECLARE",
+          "action": "Choose the cart as the body to describe and require every arrow to answer 'who acts on the cart?'",
+          "why_valid": "The ownership question gives one mechanical test for whether a force belongs on the chosen body's diagram.",
+          "inputs": [],
+          "output": "chosen body: cart.  every listed arrow must be an agent -> cart force."
+        },
+        {
+          "id": "NLM3-2",
+          "role": "TRANSFORM",
+          "action": "For the horse-cart contact, place the horse-on-cart force on the cart diagram and place the cart-on-horse partner on a separate horse diagram.",
+          "why_valid": "The two forces belong to one interaction but act on different bodies, so combining them on one body's diagram changes the question being asked.",
+          "inputs": [],
+          "output": "cart diagram: horse -> cart.  horse diagram: cart -> horse."
+        },
+        {
+          "id": "NLM3-3",
+          "role": "VERIFY",
+          "action": "Switch the chosen body from cart to horse and rebuild the inventory from the ownership question.",
+          "why_valid": "A correct diagram changes when the chosen body changes even though the physical interaction is the same.",
+          "inputs": [],
+          "output": "switch body -> switch which contact-force arrow belongs in the diagram; partner arrows never cancel on one diagram."
+        },
+        {
+          "id": "NLM3-4",
+          "role": "VERIFY",
+          "action": "When a physical force is resolved into components for chosen axes, keep the body-force inventory unchanged: use the components as a representation of that one force in the equations, not as additional interaction forces alongside the original vector.",
+          "why_valid": "Resolving a vector changes its coordinate representation, not the number of physical interactions acting on the body. Counting both the original force and its components double-counts the same interaction.",
+          "inputs": [
+            "CAP-VEC-ANGLE-DECOMPOSITION"
+          ],
+          "output": "one physical force -> either original vector representation or its signed components in the chosen equations, never both as separate forces"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Equal and opposite partner forces cancel each other on one body's free-body diagram.",
+          "diagnostic_prompt": "A horse pulls a cart and the cart pulls back equally. Which of those two forces acts on the cart, and which acts on the horse?",
+          "repair": "Choose one body first. Put only forces acting on that body on its diagram; draw the partner force only when the other body is chosen."
+        },
+        {
+          "wrong_idea": "After resolving weight on an incline, mg, mg sin(theta) and mg cos(theta) are three separate forces on the block.",
+          "diagnostic_prompt": "If gravity is one Earth-on-block interaction, did choosing tilted axes create two new physical agents?",
+          "repair": "No. Weight remains one physical force. Its parallel/perpendicular components are the coordinate representation used in the chosen equations; do not add the original mg again to those component sums."
+        }
+      ],
+      "representation_refs": [
+        "REP-NLM-FBD-BODY-OWNERSHIP"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "correspondence": [],
+          "scenes": []
+        }
+      ],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+        "source_ref": "SRC-AUTHOR-NLM",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+          "reasoning": [
+            "Choose the box first.",
+            "Ask which member of the contact pair acts on the box.",
+            "The partner acts on the person, so it cannot cancel the first force on the box diagram."
+          ],
+          "check": "Switch the chosen body to the person; the membership of the two partner arrows must switch with it.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer assigns force ownership qualitatively and contains no computed force value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+      "initial_visual_stage_ref": "VIS-NLM-FBD-V0",
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": "public/physics/nlm/explorers/connected-blocks/index.html"
+}

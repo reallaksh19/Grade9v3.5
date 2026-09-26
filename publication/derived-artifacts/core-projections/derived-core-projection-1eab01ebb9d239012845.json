@@ -1,0 +1,203 @@
+{
+  "id": "physics:mic-phy-grav-r4:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-GRAV-R4",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-GRAV-R4",
+      "title": "Gravitational binding uses a chosen zero of potential energy",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "Gravitational potential energy is negative when zero is chosen at infinite separation, and changes in that energy trade with kinetic energy in orbital and escape problems.",
+      "entry_assumptions": [
+        "Can distinguish kinetic energy from force and can use conservation of mechanical energy qualitatively.",
+        "Can describe a reference choice for an energy zero."
+      ],
+      "teaching_path": [
+        {
+          "id": "GRAV-R4-1",
+          "role": "DECLARE",
+          "action": "Choose infinite separation as the zero reference, then mark a finite separation as a bound configuration below that reference.",
+          "why_valid": "Potential energy values require a reference choice; with zero at infinite separation, attraction makes finite-separation gravitational potential energy negative.",
+          "inputs": [],
+          "output": "infinite separation: potential reference = 0 | finite bound separation: potential energy < 0"
+        },
+        {
+          "id": "GRAV-R4-2",
+          "role": "TRANSFORM",
+          "action": "At one fixed radius, increase the object's speed while keeping the source mass and energy reference unchanged.",
+          "why_valid": "At fixed separation the gravitational potential term is unchanged, so the energy change enters through kinetic energy.",
+          "inputs": [],
+          "output": "same radius + faster motion -> same gravitational potential term + greater kinetic term"
+        },
+        {
+          "id": "GRAV-R4-3",
+          "role": "VERIFY",
+          "action": "Compare circular bound motion with the limiting case that just reaches infinite separation with no speed left.",
+          "why_valid": "The just-escape case must reach the chosen zero-potential reference without residual kinetic energy, so it requires more initial kinetic energy than a bound circular case at the same radius.",
+          "inputs": [],
+          "output": "same launch radius | bound circular case: remains finite | just-escape case: reaches infinity with final speed = 0"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "A satellite at one radius has negative gravitational potential energy. Does that force its kinetic energy to be negative too?",
+          "defensible_answer": "No. Kinetic energy can be positive at the same instant; the terms must be tracked separately."
+        },
+        "attempt": {
+          "produces": "A qualitative energy ledger for a bound case and a just-escape case at the same starting radius.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Both cases use the same potential-energy zero.",
+              "evidence_of": "The sign comparison is made against one declared reference."
+            },
+            {
+              "criterion": "The escape case is assigned the larger initial kinetic contribution.",
+              "evidence_of": "The learner connects escape to reaching the zero-energy boundary rather than to a memorized speed formula."
+            }
+          ],
+          "accepted": [
+            "The ledger marks finite-radius potential energy below zero, positive kinetic energy, and a larger initial kinetic contribution for the just-escape case."
+          ],
+          "rejected": [
+            "The response says 'potential is negative, therefore all energy is negative' and never separates the kinetic contribution."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Where has the potential-energy zero been chosen?",
+              "why_this_ask": "A sign has no meaning until its reference is fixed.",
+              "from_step_ref": "GRAV-R4-1"
+            },
+            {
+              "ask": "At the same radius, which energy contribution changes when only speed changes?",
+              "why_this_ask": "It separates the state set by position from the motion term.",
+              "from_step_ref": "GRAV-R4-2"
+            },
+            {
+              "ask": "What must be true at infinity in the just-escape boundary case?",
+              "why_this_ask": "The learner constructs the target state used to compare required starting energy.",
+              "from_step_ref": "GRAV-R4-3"
+            },
+            {
+              "ask": "Why does that boundary require more initial kinetic energy than remaining bound?",
+              "why_this_ask": "It elicits the qualitative energy trade rather than an equation."
+            }
+          ],
+          "differs_from_teaching_path": "The declarative construction fixes the zero and walks through a speed change before naming the escape boundary; the elicitation begins by challenging the sign misconception and makes the learner build the reference-state comparison themselves."
+        },
+        "boundary_test": {
+          "prompt": "If the potential-energy zero were shifted to a different reference, would the required physical escape speed change?",
+          "answer": "No. Shifting the zero changes assigned potential values but not the energy differences that govern the motion.",
+          "confirms": "The learner distinguishes a chosen potential-energy reference from the physical energy change needed for escape."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "Negative gravitational potential energy means the object has negative total energy in every gravitational motion.",
+          "diagnostic_prompt": "Can a moving satellite have negative potential energy but positive kinetic energy at the same instant?",
+          "repair": "Keep potential, kinetic, and total energy separate; the sign of one term does not determine the sign of each other term."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "At one radius from a central mass, compare a bound circular case with a just-escape case. Explain why the escape case needs the greater initial speed without deriving a speed formula.",
+        "source_ref": "SRC-AUTHOR-PHY-GRAV",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The escape case needs greater initial kinetic energy because it must climb from negative gravitational potential energy to the zero reference at infinite separation while arriving with no kinetic energy left.",
+          "reasoning": [
+            "Both cases begin at the same radius, so they share the same gravitational potential energy initially.",
+            "The chosen zero lies at infinite separation, above the finite-radius potential value.",
+            "Just escape must supply enough kinetic energy to reach that zero-energy boundary, so it requires more initial kinetic energy than the bound circular case."
+          ],
+          "check": "Change the chosen numerical zero of potential energy while preserving all energy differences; the physical comparison between bound and just-escape cases must remain unchanged.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer compares energy signs and relative requirements without asserting a calculated speed or energy value."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

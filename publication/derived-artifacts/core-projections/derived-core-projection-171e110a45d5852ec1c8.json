@@ -1,0 +1,261 @@
+{
+  "id": "physics:mic-phy-kin-2d-constant-acceleration:core1b",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1B",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "title": "Apply constant-acceleration kinematics component by component",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "The one-dimensional constant-acceleration equations can be applied to each perpendicular component independently when a_x and a_y are each constant over the same interval.",
+      "entry_assumptions": [
+        "Can use the existing one-dimensional constant-acceleration model.",
+        "Can keep x/y components separate with one common time."
+      ],
+      "teaching_path": [
+        {
+          "id": "K2D2-1",
+          "role": "DECLARE",
+          "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
+          "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
+          "inputs": [
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "per-axis model-validity decision"
+        },
+        {
+          "id": "K2D2-2",
+          "role": "TRANSFORM",
+          "action": "Apply the one-dimensional constant-acceleration relations independently to x and y using only that axis's signed values and the same t.",
+          "why_valid": "Each Cartesian component obeys the same one-dimensional relation when its acceleration component is constant.",
+          "inputs": [
+            "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+            "CAP-KIN-CONSTANT-ACCELERATION"
+          ],
+          "output": "v_x=u_x+a_x t; v_y=u_y+a_y t; Delta x=u_x t+0.5a_x t^2; Delta y=u_y t+0.5a_y t^2"
+        },
+        {
+          "id": "K2D2-3",
+          "role": "VERIFY",
+          "action": "If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.",
+          "why_valid": "The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.",
+          "inputs": [],
+          "output": "event time transferred across axes, then one checked plane state"
+        }
+      ],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a_x is nonzero and a_y is zero, which velocity component changes with time?",
+          "defensible_answer": "Only v_x changes; v_y remains constant."
+        },
+        "attempt": {
+          "produces": "Two correct component constant-acceleration equations using one t.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each axis uses only its own signed initial values and acceleration while sharing the same time.",
+              "evidence_of": "2D component model use rather than a scalar-magnitude shortcut."
+            }
+          ],
+          "accepted": [
+            "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
+          ],
+          "rejected": [
+            "Use |a| in both equations or use separate unrelated times."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Before using a constant-acceleration formula, what must be true about that axis's acceleration component?",
+              "why_this_ask": "Makes model validity explicit rather than formula-driven.",
+              "from_step_ref": "K2D2-1"
+            },
+            {
+              "ask": "What does the 1D relation become when written only along x, and what changes for y?",
+              "why_this_ask": "Transfers an existing model one axis at a time.",
+              "from_step_ref": "K2D2-2"
+            },
+            {
+              "ask": "If one component equation finds the event time, what time must the other component use?",
+              "why_this_ask": "Recovers the shared-clock coupling at an event.",
+              "from_step_ref": "K2D2-3"
+            }
+          ],
+          "differs_from_teaching_path": "Teaching supplies component forms; reconstruction derives them by applying the existing 1D model separately to each axis."
+        },
+        "boundary_test": {
+          "prompt": "If a_y changes with time while a_x stays constant, may the constant-acceleration equations still be exact on both axes for the whole interval?",
+          "answer": "No. The x relation may remain exact, but the y constant-acceleration relation is not exact over that interval.",
+          "confirms": "Model validity is checked per component."
+        }
+      },
+      "misconceptions": [
+        {
+          "wrong_idea": "The magnitude of acceleration should be inserted unchanged into both x and y equations.",
+          "diagnostic_prompt": "If a=(10 i + 4 j) m/s², should both component equations use a=√116?",
+          "repair": "No. Use a_x=10 only in the x equation and a_y=4 only in the y equation; the magnitude is not either component."
+        },
+        {
+          "wrong_idea": "If one acceleration component is constant, the constant-acceleration equations are automatically valid on both axes.",
+          "diagnostic_prompt": "If a_x is constant but a_y changes with time, may the same constant-acceleration displacement formula be used exactly on y over the whole interval?",
+          "repair": "No. Model validity is checked per axis. A constant a_x does not make a_y constant."
+        },
+        {
+          "wrong_idea": "A time found from the x equation may be replaced by a different convenient time in the y equation.",
+          "diagnostic_prompt": "If x-motion says an event occurs at t=3 s, what time belongs in the y equation for that same event?",
+          "repair": "Use t=3 s. Both components describe the same event and therefore share one clock."
+        }
+      ],
+      "representation_refs": [
+        "REP-KIN-2D-SHARED-CLOCK",
+        "REP-KIN-2D-EVENT-CLOCK"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "correspondence": [
+            {
+              "element": "x-component history",
+              "symbol": "v_x",
+              "in_words": "The horizontal velocity component at the shared physical time."
+            },
+            {
+              "element": "y-component history",
+              "symbol": "v_y",
+              "in_words": "The vertical velocity component at the same shared physical time."
+            },
+            {
+              "element": "shared time marker",
+              "symbol": "t",
+              "in_words": "The one elapsed time used by both component descriptions."
+            }
+          ],
+          "scenes": []
+        },
+        {
+          "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "correspondence": [
+            {
+              "element": "solved event-time marker",
+              "symbol": "t",
+              "in_words": "The single elapsed time at which both component descriptions are evaluated for the selected event."
+            },
+            {
+              "element": "x-component evaluation",
+              "symbol": "Delta x",
+              "in_words": "The horizontal displacement evaluated at the shared event time."
+            },
+            {
+              "element": "y-component evaluation",
+              "symbol": "Delta y",
+              "in_words": "The vertical displacement evaluated at the same shared event time."
+            }
+          ],
+          "scenes": []
+        }
+      ],
+      "relation_checks": [
+        "Units match velocity on both equations.",
+        "If a_x=0 then v_x stays constant; likewise for y.",
+        "Every term has length units.",
+        "Setting one acceleration component to zero reduces that axis to uniform motion."
+      ],
+      "exit_task": {
+        "prompt": "A particle starts with u=(0,5) m/s and constant a=(10,4) m/s². Set up the x and y position equations at common time t without solving a particular numerical t.",
+        "source_ref": "SRC-EXAMSIDE-MIP-DEMAND",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Use Delta x=0*t+0.5(10)t² and Delta y=5t+0.5(4)t² with the same t.",
+          "reasoning": [
+            "Read signed component initial velocities and accelerations.",
+            "Apply the 1D constant-acceleration displacement relation separately.",
+            "Keep one common elapsed time."
+          ],
+          "check": "Units are metres on both displacements and no x quantity appears in the y equation or vice versa.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task asks for exact symbolic setup, not a new numerical claim."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1B-RECONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "GUIDED_RECONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "slot_order": [
+          "identity",
+          "attempt",
+          "reconstruction"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": true,
+          "solution_policy": "POST_ATTEMPT"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ANSWER_BEFORE_ATTEMPT"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": true,
+      "show_full_construction": false,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-KIN-2D-SHARED-CLOCK",
+      "initial_visual_stage_ref": "VIS-KIN-2D-SHARED-V0",
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": "public/physics/motion-2d/explorers/shared-clock/index.html"
+}

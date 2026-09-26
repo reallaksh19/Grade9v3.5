@@ -1,0 +1,148 @@
+{
+  "id": "physics:mic-opt-sign-convention:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-OPT-SIGN-CONVENTION",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-OPT-SIGN-CONVENTION",
+      "title": "Optical signs come from declared directions",
+      "intrinsic_badge": "HARD",
+      "inferential_jump": "The Cartesian sign convention turns a mirror diagram into signed distances and heights; the signs come from declared directions, not from memorized object/image labels.",
+      "entry_assumptions": [
+        "R2: image nature is determined by actual versus backward-extended ray intersection."
+      ],
+      "teaching_path": [
+        {
+          "id": "OPT-R3-1",
+          "role": "DECLARE",
+          "action": "Mark the pole as the distance origin, declare the direction of incident light as the positive horizontal direction, and declare upward from the principal axis as positive height.",
+          "why_valid": "Signs can only be reproducible when the origin and positive directions are fixed before any object or image is classified.",
+          "inputs": [],
+          "output": "pole = origin; incident-light direction = positive distance; upward = positive height"
+        },
+        {
+          "id": "OPT-R3-2",
+          "role": "TRANSFORM",
+          "action": "Take several marked points and assign each a distance sign from the pole and a height sign from the principal axis using only the declared directions.",
+          "why_valid": "The same coordinate rule applies to every point, so the result cannot depend on whether a point is called object, image, center or another label.",
+          "inputs": [],
+          "output": "with incident direction -> positive distance; against it -> negative distance; above axis -> positive height; below -> negative height"
+        },
+        {
+          "id": "OPT-R3-3",
+          "role": "VERIFY",
+          "action": "Redraw the same physical setup reversed left-to-right on the page, carrying the declared incident-light arrow with it, and assign the signs again.",
+          "why_valid": "A correct convention follows the declared physical direction, so changing the page layout does not change the signs of the same physical quantities.",
+          "inputs": [],
+          "output": "page reversed + direction declaration carried with setup -> physical sign assignments preserved"
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "Object distance is always negative and image distance is always positive.",
+          "diagnostic_prompt": "Move the same object-and-mirror sketch so incident light travels the opposite page direction. Should the sign rule follow the page or the declared incident-light direction?",
+          "repair": "Apply the coordinate convention from the pole every time; signs follow measurement direction and height orientation."
+        }
+      ],
+      "representation_refs": [],
+      "representations": [],
+      "relation_checks": [],
+      "exit_task": {
+        "prompt": "A mirror diagram declares its pole, incident-light direction and upward direction. Assign signs to the object distance, image distance, focal-location distance and image height from those declarations, and explain why an object-or-image sign table was unnecessary.",
+        "source_ref": "SRC-AUTHOR-OPTICS-REFLECTION-MIRRORS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Each sign follows the declared coordinate direction from the pole or principal axis; the labels object and image do not determine signs by themselves.",
+          "reasoning": [
+            "Use the pole as the horizontal origin and compare every longitudinal position with the declared incident-light direction.",
+            "Use the principal axis as the vertical reference and compare each height with the declared upward direction.",
+            "Apply those two rules consistently to every named point instead of switching rules when the label changes."
+          ],
+          "check": "Mirror the whole drawing left-to-right while carrying the incident-light arrow with the physical setup; a convention-based answer should remain physically consistent.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit answer assigns qualitative signs from a declared coordinate convention and computes no numerical optical result."
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": null,
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}

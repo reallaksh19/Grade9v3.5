@@ -1,0 +1,306 @@
+{
+  "id": "physics:mic-phy-kin-motion-graphs:core1a",
+  "subject": "Physics",
+  "source_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+  "projection": {
+    "contract_version": "1.1",
+    "core": "CORE1A",
+    "orientation": null,
+    "concept": {
+      "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+      "title": "Motion graphs turn coordinate change into rate",
+      "intrinsic_badge": "MEDIUM",
+      "inferential_jump": "On a position-time graph, segment slope is average velocity over that interval; on a velocity-time graph, segment slope is average acceleration. Graph height and graph slope answer different physical questions.",
+      "entry_assumptions": [
+        "Can distinguish position, velocity and acceleration and can compute an interval average rate from two values."
+      ],
+      "teaching_path": [
+        {
+          "id": "KIN-G1",
+          "role": "DECLARE",
+          "action": "Read the axis names, units and two plotted coordinates before describing the motion.",
+          "why_valid": "A graph only acquires physical meaning through its labelled quantities and coordinate values.",
+          "inputs": [
+            "CAP-KIN-AVERAGE-RATES"
+          ],
+          "output": "position-time graph: horizontal t in s, vertical x in m; velocity-time graph: horizontal t in s, vertical v in m/s."
+        },
+        {
+          "id": "KIN-G2",
+          "role": "TRANSFORM",
+          "action": "On the position-time graph, subtract two position coordinates and divide by their time separation.",
+          "why_valid": "REL-AVERAGE-VELOCITY is the gate-owned interval relation and the graph supplies Delta x and Delta t.",
+          "inputs": [
+            "REL-AVERAGE-VELOCITY",
+            "REP-PHY-KIN-POSITION-TIME-GRAPH"
+          ],
+          "output": "between (2 s, 4 m) and (4 s, 8 m): v_avg = (8 - 4)/(4 - 2) = +2 m/s."
+        },
+        {
+          "id": "KIN-G3",
+          "role": "TRANSFORM",
+          "action": "On the velocity-time graph, subtract two velocity coordinates and divide by their time separation.",
+          "why_valid": "REL-AVERAGE-ACCELERATION is the gate-owned interval relation and the graph supplies Delta v and Delta t.",
+          "inputs": [
+            "REL-AVERAGE-ACCELERATION",
+            "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
+          ],
+          "output": "between (2 s, 3 m/s) and (4 s, 5 m/s): a_avg = (5 - 3)/(4 - 2) = +1 m/s^2."
+        },
+        {
+          "id": "KIN-G4",
+          "role": "VERIFY",
+          "action": "Use horizontal segments as boundary checks.",
+          "why_valid": "A horizontal position-time segment has zero position change, while a horizontal velocity-time segment has zero velocity change.",
+          "inputs": [],
+          "output": "horizontal x-t -> v_avg = 0; horizontal v-t -> a_avg = 0."
+        }
+      ],
+      "elicitation": null,
+      "misconceptions": [
+        {
+          "wrong_idea": "A higher point on a motion graph always means the object is moving faster.",
+          "diagnostic_prompt": "Two position-time graph points are high on the page but connected by a horizontal segment. Is the object moving quickly during that interval?",
+          "repair": "Read slope, not page height, for rate: a horizontal position-time segment has zero average velocity."
+        }
+      ],
+      "representation_refs": [
+        "REP-PHY-KIN-POSITION-TIME-GRAPH",
+        "REP-PHY-KIN-VELOCITY-TIME-GRAPH"
+      ],
+      "representations": [
+        {
+          "representation_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH",
+          "correspondence": [
+            {
+              "element": "time coordinates of plotted points",
+              "symbol": "Delta t",
+              "in_words": "On the position-time plot, the horizontal separation between the selected timestamps is Delta t."
+            },
+            {
+              "element": "position coordinates of plotted points",
+              "symbol": "Delta x",
+              "in_words": "The vertical coordinate change between the same two points is signed displacement."
+            },
+            {
+              "element": "piecewise-linear segment slope",
+              "symbol": "v_avg",
+              "in_words": "Rise in position divided by run in time is the interval's average velocity."
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SCENE-PHY-KIN-XT-01",
+              "cores": [
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "datum_refs": [
+                "DAT-KIN-GRAPH-T0",
+                "DAT-KIN-GRAPH-T1",
+                "DAT-KIN-GRAPH-T2",
+                "DAT-KIN-GRAPH-X0",
+                "DAT-KIN-GRAPH-X1",
+                "DAT-KIN-GRAPH-X2"
+              ],
+              "scene": {
+                "kind": "GRAPH",
+                "frame": "position-time graph in one declared one-dimensional frame",
+                "caption": "Position versus time: equal rises over equal time intervals give constant positive velocity.",
+                "x_label": "time (s)",
+                "y_label": "position (m)",
+                "x_unit": "s",
+                "y_unit": "m",
+                "points": [
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-GRAPH-X0"
+                  ],
+                  [
+                    "DAT-KIN-GRAPH-T1",
+                    "DAT-KIN-GRAPH-X1"
+                  ],
+                  [
+                    "DAT-KIN-GRAPH-T2",
+                    "DAT-KIN-GRAPH-X2"
+                  ]
+                ],
+                "y_min_atom": "DAT-KIN-GRAPH-X0"
+              }
+            }
+          ]
+        },
+        {
+          "representation_ref": "REP-PHY-KIN-VELOCITY-TIME-GRAPH",
+          "correspondence": [
+            {
+              "element": "time coordinates of plotted points",
+              "symbol": "Delta t",
+              "in_words": "On the velocity-time plot, the horizontal separation between the selected timestamps is Delta t."
+            },
+            {
+              "element": "velocity coordinates of plotted points",
+              "symbol": "Delta v",
+              "in_words": "The vertical change between the same two points is signed velocity change."
+            },
+            {
+              "element": "piecewise-linear segment slope",
+              "symbol": "a_avg",
+              "in_words": "Rise in velocity divided by run in time is the interval's average acceleration."
+            }
+          ],
+          "scenes": [
+            {
+              "id": "SCENE-PHY-KIN-VT-01",
+              "cores": [
+                "CORE1A",
+                "CORE1B"
+              ],
+              "microtopic_ref": "MIC-PHY-KIN-MOTION-GRAPHS",
+              "datum_refs": [
+                "DAT-KIN-GRAPH-T0",
+                "DAT-KIN-GRAPH-T1",
+                "DAT-KIN-GRAPH-T2",
+                "DAT-KIN-GRAPH-V0",
+                "DAT-KIN-GRAPH-V1",
+                "DAT-KIN-GRAPH-V2",
+                "DAT-KIN-GRAPH-VMIN"
+              ],
+              "scene": {
+                "kind": "GRAPH",
+                "frame": "velocity-time graph in one declared one-dimensional frame",
+                "caption": "Velocity versus time: equal velocity rises over equal time intervals give constant positive acceleration.",
+                "x_label": "time (s)",
+                "y_label": "velocity (m/s)",
+                "x_unit": "s",
+                "y_unit": "m/s",
+                "points": [
+                  [
+                    "DAT-KIN-GRAPH-T0",
+                    "DAT-KIN-GRAPH-V0"
+                  ],
+                  [
+                    "DAT-KIN-GRAPH-T1",
+                    "DAT-KIN-GRAPH-V1"
+                  ],
+                  [
+                    "DAT-KIN-GRAPH-T2",
+                    "DAT-KIN-GRAPH-V2"
+                  ]
+                ],
+                "y_min_atom": "DAT-KIN-GRAPH-VMIN"
+              }
+            }
+          ]
+        }
+      ],
+      "relation_checks": [
+        "Returning to the start gives zero average velocity for the whole trip.",
+        "Reversing the declared positive axis reverses both Delta x and v_avg but not the physical motion.",
+        "A horizontal velocity-time segment gives Delta v = 0 and average acceleration 0.",
+        "Reversing the declared positive axis reverses both velocities and the signed average acceleration consistently."
+      ],
+      "exit_task": {
+        "prompt": "On a velocity-time graph, velocity changes from +3 m/s at 2 s to +5 m/s at 4 s. Find the average acceleration over that interval and state what a horizontal velocity-time segment would mean.",
+        "source_ref": "SRC-AUTHOR-KIN-1D",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Average acceleration is +1 m/s^2. A horizontal velocity-time segment means zero acceleration over that interval.",
+          "reasoning": [
+            "Delta v = +5 - (+3) = +2 m/s.",
+            "Delta t = 4 - 2 = 2 s.",
+            "a_avg = Delta v / Delta t = +1 m/s^2.",
+            "A horizontal velocity-time segment has Delta v = 0, so its average acceleration is zero."
+          ],
+          "check": "The result matches the positive slope of the displayed velocity-time segment.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "AVERAGE_ACCELERATION",
+            "bindings": {
+              "v_initial": "DAT-KIN-GRAPH-V1",
+              "v_final": "DAT-KIN-GRAPH-V2",
+              "dt": "DAT-KIN-GRAPH-T1"
+            }
+          }
+        }
+      },
+      "worked_anchors": []
+    },
+    "application": null,
+    "delivery": {
+      "web": {
+        "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.0.0",
+        "blueprint_id": "BP-CORE1A-CONSTRUCTION",
+        "blueprint_version": "1.0.0",
+        "shell_ref": "G9-TABLET-SHELL-V1",
+        "layout_family": "READING_CONSTRUCTION",
+        "required_slots": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "slot_order": [
+          "identity",
+          "construction",
+          "repair_closure"
+        ],
+        "interaction_policy": {
+          "attempt_before_reveal": "FROM_PROJECTION",
+          "progressive_support": false,
+          "solution_policy": "FROM_PROJECTION"
+        },
+        "representation_policy": {
+          "preferred_mount_modes": [
+            "PORTABLE_SCENE",
+            "COMPONENT",
+            "STATIC_FIGURE"
+          ],
+          "legacy_iframe": "MIGRATION_ONLY"
+        },
+        "responsive_policy": {
+          "compact": "SINGLE_PANE",
+          "medium": "STACKED_SUPPORT",
+          "expanded": "STAGE_SUPPORT",
+          "primary_fraction": 0.68,
+          "support_fraction": 0.32
+        },
+        "touch_policy": {
+          "minimum_target_css_px": 48,
+          "minimum_control_gap_css_px": 8
+        },
+        "packaging_modes": [
+          "PUBLIC",
+          "PAGES",
+          "OFFLINE_DIRECTORY",
+          "SINGLE_FILE",
+          "EMBED"
+        ],
+        "forbidden": [
+          "PAGE_LOCAL_ACADEMIC_TRUTH",
+          "HOVER_ONLY_ESSENTIAL_INFORMATION",
+          "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        ]
+      }
+    },
+    "presentation": {
+      "attempt_before_reveal": false,
+      "show_full_construction": true,
+      "show_solution_initially": false,
+      "initial_visual_ref": "REP-PHY-KIN-POSITION-TIME-GRAPH",
+      "initial_visual_stage_ref": null,
+      "protected_move_refs": [],
+      "pre_attempt_scaffold_limit": 0,
+      "pre_attempt_hint_limit": 0,
+      "post_attempt_hint_limit": 0
+    }
+  },
+  "scene_ref": null,
+  "adapter_ref": null,
+  "injection_refs": [],
+  "explorer_locator": null
+}
