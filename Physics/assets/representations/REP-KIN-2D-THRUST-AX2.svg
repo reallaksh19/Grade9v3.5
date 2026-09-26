@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 350" role="img" aria-labelledby="rep-kin-thrust-title rep-kin-thrust-desc">
+  <title id="rep-kin-thrust-title">Motor still on after release: a_x = 2 m/s² rules out the ideal projectile model</title>
+  <desc id="rep-kin-thrust-desc">Stage 1: an object is launched and follows a curved path while a small motor on it keeps pushing after release. Stage 2: after release two interactions act on it: gravity from the Earth, downward, and a horizontal thrust from the motor; air resistance is neglected. Stage 3: the accelerations are a_x = 2 m/s² from the thrust and a_y = −g. Stage 4: because a_x is not zero, the ideal projectile specialization is rejected; the general two-dimensional constant-acceleration model with a_x = 2 m/s² and a_y = −g is used while both stay constant. The drawn path is qualitative.</desc>
+  <defs>
+    <marker id="rep-kin-thrust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-thrust-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-THRUST-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launched; the motor keeps pushing after release</text>
+    <line x1="40" y1="300" x2="460" y2="300" stroke="currentColor" stroke-width="2"/>
+    <path d="M80 300 Q200 0 440 300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="80" cy="300" r="5" fill="currentColor"/>
+    <circle cx="230" cy="150" r="9" fill="currentColor"/>
+    <path d="M221 146 L211 142 V158 L221 154 Z" fill="currentColor"/>
+    <text x="206" y="134" text-anchor="end">motor on</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-THRUST-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="230" y1="160" x2="230" y2="210" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-thrust-arrow)"/>
+    <text x="238" y="206">gravity</text>
+    <line x1="240" y1="150" x2="290" y2="150" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-thrust-arrow)"/>
+    <text x="296" y="155">thrust (horizontal)</text>
+    <text x="500" y="60" font-weight="600">After release, acting on it:</text>
+    <text x="500" y="82">• gravity (Earth), down</text>
+    <text x="500" y="104">• thrust (motor), horizontal</text>
+    <text x="500" y="126">• air resistance: neglected</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-THRUST-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="500" y="170" fill="#1f6fb2">a_x = 2 m/s² (thrust)</text>
+    <text x="500" y="192" fill="#1f6fb2">a_y = −g</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-THRUST-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="500" y="236" font-weight="600">a_x = 0 fails: ideal projectile</text>
+    <text x="500" y="258" font-weight="600">specialization rejected</text>
+    <text x="500" y="280">use 2D constant acceleration,</text>
+    <text x="500" y="302">a_x = 2 m/s², a_y = −g</text>
+    <text x="500" y="324">while both stay constant</text>
+  </g>
+</svg>

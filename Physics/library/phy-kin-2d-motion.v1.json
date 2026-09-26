@@ -4425,6 +4425,528 @@
           "visual_stage_ref": "VIS-KIN-2D-SAME-V2"
         }
       ]
+    },
+    {
+      "id": "REP-KIN-2D-VERBAL-COMPASS-STATE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR_DIAGRAM",
+      "purpose": "Show the particle described in compass words (east 6 m/s, north 2 m/s, 3 m/s² south) so the learner declares a frame before any sign is written.",
+      "required_elements": [
+        "particle with velocity and acceleration given in compass words",
+        "declared frame +x east, +y north",
+        "signed components",
+        "one common t"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY"
+      ],
+      "read_order": [
+        "particle with velocity and acceleration given in compass words",
+        "declared frame +x east, +y north",
+        "signed components",
+        "one common t"
+      ],
+      "instance_constraints": [
+        "Before the attempt only the compass words are shown; no axis or sign is given.",
+        "The frame and signed components appear only after the attempt."
+      ],
+      "accessibility": [
+        "Every direction is written in words beside its arrow.",
+        "The acceleration arrow is dashed as well as labelled, so it is not told apart by colour."
+      ],
+      "misleading_alternatives": [
+        "Writing signs before declaring which directions are positive.",
+        "Giving the southward acceleration a positive y-sign with +y north."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-VERBAL-COMPASS-STATE.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "signed components",
+          "symbol": "a_y",
+          "in_words": "The southward acceleration written as a negative y-component when +y is north."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-VERBAL-V0",
+          "label": "Facts in words",
+          "purpose": "Show the compass facts only.",
+          "visible_elements": [
+            "particle with velocity and acceleration given in compass words"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VERBAL-V1",
+          "label": "Declared frame",
+          "purpose": "Declare one frame and origin.",
+          "visible_elements": [
+            "particle with velocity and acceleration given in compass words",
+            "declared frame +x east, +y north"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VERBAL-V2",
+          "label": "Signed components",
+          "purpose": "Translate each word into a signed component.",
+          "visible_elements": [
+            "particle with velocity and acceleration given in compass words",
+            "declared frame +x east, +y north",
+            "signed components"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VERBAL-V3",
+          "label": "One clock",
+          "purpose": "Keep one t for both axes.",
+          "visible_elements": [
+            "particle with velocity and acceleration given in compass words",
+            "declared frame +x east, +y north",
+            "signed components",
+            "one common t"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-VERBAL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-VERBAL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-VERBAL-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-VARYING-AY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH_GENERIC",
+      "purpose": "Show a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s so the constant-acceleration check is made separately on each axis.",
+      "required_elements": [
+        "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
+        "acceleration–time graph per axis",
+        "per-axis validity verdict",
+        "model choice"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY"
+      ],
+      "read_order": [
+        "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
+        "acceleration–time graph per axis",
+        "per-axis validity verdict",
+        "model choice"
+      ],
+      "instance_constraints": [
+        "Before the attempt only the given acceleration expressions are shown.",
+        "The graphs and verdicts come after the attempt."
+      ],
+      "accessibility": [
+        "The graphs are described in words: flat for a_x, rising for a_y.",
+        "Each verdict is written as text."
+      ],
+      "misleading_alternatives": [
+        "Letting the constant a_x license constant-a equations on y."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-VARYING-AY.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "acceleration–time graph per axis",
+          "symbol": "a_y",
+          "in_words": "The y-acceleration 3t, which grows with time and so is not constant."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-VARY-V0",
+          "label": "Given accelerations",
+          "purpose": "Show the stated a_x, a_y and interval.",
+          "visible_elements": [
+            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VARY-V1",
+          "label": "Per-axis graphs",
+          "purpose": "Graph each acceleration over the interval.",
+          "visible_elements": [
+            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
+            "acceleration–time graph per axis"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VARY-V2",
+          "label": "Per-axis verdict",
+          "purpose": "Decide validity for each axis.",
+          "visible_elements": [
+            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
+            "acceleration–time graph per axis",
+            "per-axis validity verdict"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-VARY-V3",
+          "label": "Model choice",
+          "purpose": "State the model to use.",
+          "visible_elements": [
+            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
+            "acceleration–time graph per axis",
+            "per-axis validity verdict",
+            "model choice"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-VARY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-VARY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-VARY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-LAUNCH-15M-10-10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the launch 15 m above level ground with u = (10, 10) m/s, whose ground impact is Δy = −15 m rather than the familiar same-height condition.",
+      "required_elements": [
+        "launch 15 m above ground with u = (10, 10) m/s",
+        "impact condition Δy = −15 m",
+        "impact time 3 s",
+        "range 30 m"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "launch 15 m above ground with u = (10, 10) m/s",
+        "impact condition Δy = −15 m",
+        "impact time 3 s",
+        "range 30 m"
+      ],
+      "instance_constraints": [
+        "The launch has u_y = 10 m/s upward, so the path first rises.",
+        "Before the attempt only the scene is shown; the impact condition is the deciding move and comes after."
+      ],
+      "accessibility": [
+        "The 15 m drop and the launch components are written as text.",
+        "The rejected same-height point is named in words."
+      ],
+      "misleading_alternatives": [
+        "Drawing a horizontal launch for this item.",
+        "Using Δy = 0 or t = 2u_y/g for the ground impact."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-LAUNCH-15M-10-10.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "impact condition Δy = −15 m",
+          "symbol": "Delta y",
+          "in_words": "The ground is 15 m below the launch point."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-H15-V0",
+          "label": "The launch",
+          "purpose": "Show the height, the launch components and the path.",
+          "visible_elements": [
+            "launch 15 m above ground with u = (10, 10) m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-H15-V1",
+          "label": "Impact condition",
+          "purpose": "Name the impact event from the geometry.",
+          "visible_elements": [
+            "launch 15 m above ground with u = (10, 10) m/s",
+            "impact condition Δy = −15 m"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-H15-V2",
+          "label": "Impact time",
+          "purpose": "Solve for the physical root.",
+          "visible_elements": [
+            "launch 15 m above ground with u = (10, 10) m/s",
+            "impact condition Δy = −15 m",
+            "impact time 3 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-H15-V3",
+          "label": "Range",
+          "purpose": "Reuse the time on x and check.",
+          "visible_elements": [
+            "launch 15 m above ground with u = (10, 10) m/s",
+            "impact condition Δy = −15 m",
+            "impact time 3 s",
+            "range 30 m"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-H15-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-H15-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-H15-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-THRUST-AX2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the one launched object whose motor keeps a horizontal thrust on after release, so the interaction audit gives a_x = 2 m/s² and the ideal a_x = 0 model is tested against it.",
+      "required_elements": [
+        "launched object with its motor on",
+        "post-release interaction inventory",
+        "a_x = 2 m/s², a_y = −g",
+        "model decision"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "launched object with its motor on",
+        "post-release interaction inventory",
+        "a_x = 2 m/s², a_y = −g",
+        "model decision"
+      ],
+      "instance_constraints": [
+        "Only one object is drawn: the item's motor-on launch.",
+        "The model decision appears only in the last stage."
+      ],
+      "accessibility": [
+        "Each interaction is named in text.",
+        "The acceleration values and the decision are written as text."
+      ],
+      "misleading_alternatives": [
+        "Calling the motion an ideal projectile because the path is curved."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-THRUST-AX2.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "a_x = 2 m/s², a_y = −g",
+          "symbol": "a_x",
+          "in_words": "The horizontal acceleration the motor's thrust keeps giving the object after release."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-THRUST-V0",
+          "label": "The launch",
+          "purpose": "Show the object with its motor on after release.",
+          "visible_elements": [
+            "launched object with its motor on"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-THRUST-V1",
+          "label": "Interaction audit",
+          "purpose": "List what acts after release.",
+          "visible_elements": [
+            "launched object with its motor on",
+            "post-release interaction inventory"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-THRUST-V2",
+          "label": "Accelerations",
+          "purpose": "State the acceleration components.",
+          "visible_elements": [
+            "launched object with its motor on",
+            "post-release interaction inventory",
+            "a_x = 2 m/s², a_y = −g"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-THRUST-V3",
+          "label": "Model decision",
+          "purpose": "Reject a_x = 0 and name the model to use.",
+          "visible_elements": [
+            "launched object with its motor on",
+            "post-release interaction inventory",
+            "a_x = 2 m/s², a_y = −g",
+            "model decision"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-THRUST-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-THRUST-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-THRUST-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR_DIAGRAM",
+      "purpose": "Mark two points at one height on the same gravity-only trajectory, one rising and one falling, so the component comparison is made without solving either time.",
+      "required_elements": [
+        "one trajectory with two equal-height points",
+        "equal v_x at both points",
+        "v_y equal and opposite",
+        "velocities, speed and acceleration compared"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "one trajectory with two equal-height points",
+        "equal v_x at both points",
+        "v_y equal and opposite",
+        "velocities, speed and acceleration compared"
+      ],
+      "instance_constraints": [
+        "Both points lie on one trajectory at one height.",
+        "Before the attempt only the two marked points are shown."
+      ],
+      "accessibility": [
+        "Rising and falling points are labelled in words.",
+        "Each comparison is written as text; component arrows are also dashed or solid, not colour only."
+      ],
+      "misleading_alternatives": [
+        "Drawing identical velocity arrows at the two points."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-EQUAL-HEIGHT-PAIR.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "v_y equal and opposite",
+          "symbol": "v_y",
+          "in_words": "The vertical velocity has the same size at equal height, upward on the way up and downward on the way down."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-PAIR-V0",
+          "label": "Two points",
+          "purpose": "Mark the two equal-height points on one arc.",
+          "visible_elements": [
+            "one trajectory with two equal-height points"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PAIR-V1",
+          "label": "Horizontal components",
+          "purpose": "Compare v_x.",
+          "visible_elements": [
+            "one trajectory with two equal-height points",
+            "equal v_x at both points"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PAIR-V2",
+          "label": "Vertical components",
+          "purpose": "Compare v_y.",
+          "visible_elements": [
+            "one trajectory with two equal-height points",
+            "equal v_x at both points",
+            "v_y equal and opposite"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PAIR-V3",
+          "label": "Recombined comparison",
+          "purpose": "Compare velocity, speed and acceleration.",
+          "visible_elements": [
+            "one trajectory with two equal-height points",
+            "equal v_x at both points",
+            "v_y equal and opposite",
+            "velocities, speed and acceleration compared"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-PAIR-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-PAIR-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-PAIR-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -5847,10 +6369,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-SHARED-CLOCK",
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "safe_ref": "REP-KIN-2D-VERBAL-COMPASS-STATE",
+        "bound_ref": "REP-KIN-2D-VERBAL-COMPASS-STATE",
         "stage_refs": [
-          "VIS-KIN-2D-SHARED-V0"
+          "VIS-KIN-2D-VERBAL-V0"
         ]
       },
       "failure_signal": "You wrote a_y = +3 m/s²: 'south' was read as a magnitude, not as the negative y direction when +y is north. Or you used a different t for the east and north columns.",
@@ -6068,11 +6590,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-SHARED-CLOCK",
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "safe_ref": "REP-KIN-2D-VARYING-AY",
+        "bound_ref": "REP-KIN-2D-VARYING-AY",
         "stage_refs": [
-          "VIS-KIN-2D-SHARED-V0",
-          "VIS-KIN-2D-SHARED-V1"
+          "VIS-KIN-2D-VARY-V0"
         ]
       },
       "failure_signal": "You answered 'yes, they collide at (12, 9) m' because the paths cross there: A is at that point at t = 3 s, but B only at t = 4.5 s. Or you paired the x-match time (3 s) with the y-match time (2 s) as though they were one event.",
@@ -6292,10 +6813,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-EVENT-CLOCK",
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "safe_ref": "REP-KIN-2D-LAUNCH-15M-10-10",
+        "bound_ref": "REP-KIN-2D-LAUNCH-15M-10-10",
         "stage_refs": [
-          "VIS-KIN-2D-EVENT-V0"
+          "VIS-KIN-2D-H15-V0"
         ]
       },
       "failure_signal": "Your answer is t = 0.5 s at 5 m: that root is the ball rising through roof level before the roof begins at 8 m. Or you used the ground (Δy = −15 m) and got 3 s and 30 m: the roof is in the way.",
@@ -6531,11 +7052,11 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-PROJECTILE-MODEL",
-        "bound_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+        "safe_ref": "REP-KIN-2D-THRUST-AX2",
+        "bound_ref": "REP-KIN-2D-THRUST-AX2",
         "stage_refs": [
-          "VIS-KIN-2D-PROJ-V0",
-          "VIS-KIN-2D-PROJ-V1"
+          "VIS-KIN-2D-THRUST-V0",
+          "VIS-KIN-2D-THRUST-V1"
         ]
       },
       "failure_signal": "You put the landing directly below the release point (x = 0), or behind the plane: that treats the package as starting from rest horizontally. At release it already moves at 50 m/s with the plane, and nothing slows it.",
@@ -6749,10 +7270,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-EVENT-CLOCK",
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "safe_ref": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
+        "bound_ref": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
         "stage_refs": [
-          "VIS-KIN-2D-EVENT-V0"
+          "VIS-KIN-2D-PAIR-V0"
         ]
       },
       "failure_signal": "You got t = 6 s: you made the displacement point 45° below the horizontal (20t − 5t² = −10t), not the velocity. Or you got t = 2 s from v_y = 0: that is the apex, where the motion is horizontal.",
