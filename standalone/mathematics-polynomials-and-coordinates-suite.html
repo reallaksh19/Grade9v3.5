@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polynomials & Coordinate Geometry · Interactive Research Suite</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f141c;
+      --surface: #171f2c;
+      --card: #1f293b;
+      --border: #2e3d56;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --purple: #c084fc;
+      --font-scale: 1;
+      --shell-height: 56px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --card: #f1f5f9;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --purple: #9333ea;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: calc(15px * var(--font-scale));
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sticky Tablet Shell Navigation */
+    header.g9-shell {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--shell-height);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .g9-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .g9-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .g9-btn:hover {
+      background: var(--border);
+    }
+
+    .g9-btn.primary {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .g9-breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .g9-breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      min-height: 44px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      background: var(--card);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Stage Layout (Tablet 0.65 / 0.35 Split) */
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 920px) {
+      .stage-grid {
+        grid-template-columns: 1.8fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .canvas-wrap {
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-height: 580px;
+      touch-action: none;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+
+    /* Telemetry & Controls */
+    .control-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .control-label span.val {
+      color: var(--accent);
+      font-family: ui-monospace, monospace;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 44px; /* touch target */
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .telemetry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .telemetry-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .telemetry-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: ui-monospace, monospace;
+    }
+
+    .badge-quadrant {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    /* Buttons Cluster */
+    .btn-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-btn {
+      min-height: 40px;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .preset-btn:hover {
+      background: var(--border);
+      color: var(--accent);
+    }
+
+    /* Math Formula Card */
+    .formula-card {
+      background: var(--card);
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .formula-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .formula-math {
+      font-family: ui-monospace, monospace;
+      font-size: 15px;
+      color: var(--accent);
+      background: rgba(0,0,0,0.25);
+      padding: 6px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* Synthetic Division Table */
+    .synth-table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    table.synth-table {
+      border-collapse: collapse;
+      font-family: ui-monospace, monospace;
+      font-size: 15px;
+      margin: 0 auto;
+    }
+    table.synth-table td, table.synth-table th {
+      padding: 8px 16px;
+      text-align: right;
+    }
+    table.synth-table tr.mid-row td {
+      border-bottom: 2px solid var(--border);
+      color: var(--muted);
+    }
+    table.synth-table tr.result-row td {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    table.synth-table td.divisor-col {
+      border-right: 2px solid var(--border);
+      padding-right: 18px;
+      font-weight: bold;
+      color: var(--warning);
+    }
+    table.synth-table td.remainder-col {
+      color: var(--success);
+      font-weight: 800;
+      border-left: 2px dashed var(--border);
+    }
+
+    /* Core Role Accordion & Hint Ladder */
+    details.core-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    details.core-box summary {
+      min-height: 48px;
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      background: var(--surface);
+    }
+
+    details.core-box summary:hover {
+      background: var(--border);
+    }
+
+    .core-content {
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .attempt-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    textarea.attempt-input {
+      width: 100%;
+      min-height: 70px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    /* Hint ladder levels */
+    .hint-step {
+      border-left: 3px solid var(--warning);
+      padding: 8px 12px;
+      background: rgba(251, 191, 36, 0.08);
+      border-radius: 0 6px 6px 0;
+      margin-top: 6px;
+    }
+
+    /* Custody Citation Badge */
+    .custody-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Tablet Shell -->
+  <header class="g9-shell" role="banner">
+    <div class="g9-nav-group">
+      <button class="g9-btn" onclick="history.length > 1 ? history.back() : location.href='../../index.html'" aria-label="Go Back">
+        ← Back
+      </button>
+      <a class="g9-btn" href="../../index.html" aria-label="Portal Home">
+        🏠 Portal
+      </a>
+      <div class="g9-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <span>/</span>
+        <a href="../../mathematics/linear-equations/index.html">Coordinate & Polynomials</a>
+        <span>/</span>
+        <strong style="color:var(--text)">Interactive Suite</strong>
+      </div>
+    </div>
+
+    <div class="g9-nav-group">
+      <button class="g9-btn" id="btn-theme" aria-label="Toggle theme">🌓 Theme</button>
+      <button class="g9-btn" id="btn-font-dec" aria-label="Decrease text size">A−</button>
+      <button class="g9-btn" id="btn-font-inc" aria-label="Increase text size">A+</button>
+      <button class="g9-btn" id="btn-fullscreen" aria-label="Toggle Fullscreen">⛶ Fullscreen</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Navigation Tabs -->
+    <nav class="tab-bar" role="tablist" aria-label="Units">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-coords">
+        Unit 1: 2D Cartesian Coordinate Explorer (DIAGRAM)
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-poly">
+        Unit 2: Polynomial Remainder & Identities (RELATION)
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-blueprints">
+        Unit 3: Core Reconstruction & Practice (CORE1B & CORE2)
+      </button>
+    </nav>
+
+    <!-- TAB 1: COORDINATE GEOMETRY EXPLORER -->
+    <section id="tab-coords" class="tab-pane active" role="tabpanel">
+      <div class="panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h2 style="font-size:20px; font-weight:700;">Cartesian Coordinate Plane & Orthogonal Projections</h2>
+            <p style="color:var(--muted); font-size:14px;">
+              Direct interactive realization of Cartesian resolution: Abscissa $x$ and Ordinate $y$ perpendiculars.
+            </p>
+          </div>
+          <span class="custody-badge">Custody: ACQ-1DD05CE5AA04B532EC68 · EV-MAT-09-LEQ-04-004</span>
+        </div>
+      </div>
+
+      <div class="stage-grid">
+        <!-- Interactive Canvas Stage -->
+        <div class="panel">
+          <div class="canvas-wrap" id="coord-canvas-wrap">
+            <canvas id="coordCanvas" width="600" height="600"></canvas>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:8px;">
+            <span>👆 <strong>Touch / Drag</strong> the target point <strong style="color:var(--accent);">P(x, y)</strong> anywhere on the plane.</span>
+            <button class="g9-btn" id="btn-reset-coord" style="min-height:36px; padding:4px 10px; font-size:12px;">Reset Origin (0,0)</button>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="control-row">
+            <span style="font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase;">Canonical Test Points:</span>
+            <div class="btn-cluster">
+              <button class="preset-btn" onclick="setCoordPoint(4, 3)">P(4, 3) [Q I]</button>
+              <button class="preset-btn" onclick="setCoordPoint(-5, 2)">P(-5, 2) [Q II]</button>
+              <button class="preset-btn" onclick="setCoordPoint(-4, -4)">P(-4, -4) [Q III]</button>
+              <button class="preset-btn" onclick="setCoordPoint(5, -3)">P(5, -3) [Q IV]</button>
+              <button class="preset-btn" onclick="setCoordPoint(6, 0)">P(6, 0) [On X-axis]</button>
+              <button class="preset-btn" onclick="setCoordPoint(0, -5)">P(0, -5) [On Y-axis]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Telemetry & Governing Equations -->
+        <div class="panel">
+          <h3 style="font-size:16px; font-weight:700; border-bottom:1px solid var(--border); padding-bottom:8px;">
+            Point Telemetry & Metrics
+          </h3>
+
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-title">Coordinates P(x, y)</span>
+              <span class="telemetry-val" id="hud-coords">(4.0, 3.0)</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Location / Quadrant</span>
+              <span class="telemetry-val" id="hud-quadrant" style="font-size:15px;">Quadrant I</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Abscissa (x)</span>
+              <span class="telemetry-val" id="hud-abscissa">+4.0</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Ordinate (y)</span>
+              <span class="telemetry-val" id="hud-ordinate">+3.0</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Distance OP = √(x²+y²)</span>
+              <span class="telemetry-val" id="hud-dist">5.00</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-title">Angle θ from +X axis</span>
+              <span class="telemetry-val" id="hud-angle">36.9°</span>
+            </div>
+          </div>
+
+          <!-- Formula Explanations -->
+          <div class="formula-card">
+            <span class="formula-title">Perpendicular Foot on Axes:</span>
+            <div class="formula-math">Foot on X-axis: N(x, 0) | Foot on Y-axis: M(0, y)</div>
+            <p style="font-size:13px; color:var(--muted); margin-top:4px;">
+              • <strong>Abscissa</strong> = signed distance of point from the Y-axis ($x$).<br>
+              • <strong>Ordinate</strong> = signed distance of point from the X-axis ($y$).
+            </p>
+          </div>
+
+          <!-- Linear Equation in Two Variables Explorer -->
+          <div style="border-top:1px solid var(--border); padding-top:12px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h4 style="font-size:14px; font-weight:700;">Linear Equation Mode: y = mx + c</h4>
+              <label style="display:flex; align-items:center; gap:6px; font-size:13px; cursor:pointer;">
+                <input type="checkbox" id="toggle-line" style="width:20px; height:20px; accent-color:var(--accent);"> Show Line
+              </label>
+            </div>
+
+            <div id="line-controls" style="display:none; flex-direction:column; gap:10px;">
+              <div class="control-row">
+                <div class="control-label">
+                  <span>Slope (m)</span>
+                  <span class="val" id="val-slope">0.75</span>
+                </div>
+                <input type="range" id="slider-slope" min="-3" max="3" step="0.25" value="0.75">
+              </div>
+
+              <div class="control-row">
+                <div class="control-label">
+                  <span>Y-intercept (c)</span>
+                  <span class="val" id="val-intercept">0</span>
+                </div>
+                <input type="range" id="slider-intercept" min="-5" max="5" step="0.5" value="0">
+              </div>
+
+              <div class="formula-card" style="border-color:var(--success);">
+                <span class="formula-title" id="formula-line-title">Line Equation: y = 0.75x</span>
+                <span style="font-size:12px; color:var(--muted);">
+                  Satisfies EV-MAT-09-LEQ-04-003: Every linear equation represents a straight line with infinitely many solution points.
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: POLYNOMIAL REMAINDER & IDENTITIES -->
+    <section id="tab-poly" class="tab-pane" role="tabpanel">
+      <div class="panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h2 style="font-size:20px; font-weight:700;">Polynomial Remainder Theorem & Algebraic Identities</h2>
+            <p style="color:var(--muted); font-size:14px;">
+              Interactive evaluation of Remainder $R = P(b/a)$ for divisor $(b - ax)$, Factor Theorem zero-testing, and Cubic Identities.
+            </p>
+          </div>
+          <span class="custody-badge">Custody: ACQ-1DD05CE5AA04B532EC68 (Ch 2 Polynomials)</span>
+        </div>
+      </div>
+
+      <div class="stage-grid">
+        <!-- Remainder Theorem Evaluator Panel -->
+        <div class="panel">
+          <h3 style="font-size:16px; font-weight:700; border-bottom:1px solid var(--border); padding-bottom:8px;">
+            1. Remainder & Factor Theorem Calculator
+          </h3>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="control-row">
+              <span class="control-label">Choose Preset Polynomial P(x):</span>
+              <div class="btn-cluster">
+                <button class="preset-btn" onclick="setPolyPreset(1, -3, 4, -5, 1, -2)">P(x) = x³ - 3x² + 4x - 5, div (x - 2)</button>
+                <button class="preset-btn" onclick="setPolyPreset(1, 0, -4, 0, 1, -2)">P(x) = x³ - 4x, div (x - 2) [Factor]</button>
+                <button class="preset-btn" onclick="setPolyPreset(2, 5, -11, -14, 1, 2)">P(x) = 2x³ + 5x² - 11x - 14, div (x + 2)</button>
+                <button class="preset-btn" onclick="setPolyPreset(3, -5, 7, -2, 2, -1)">P(x) = 3x³ - 5x² + 7x - 2, div (2x - 1)</button>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap:8px;">
+              <div>
+                <label style="font-size:12px; color:var(--muted);">x³ coeff</label>
+                <input type="number" id="coeff-a" value="1" class="g9-btn" style="width:100%; text-align:center;">
+              </div>
+              <div>
+                <label style="font-size:12px; color:var(--muted);">x² coeff</label>
+                <input type="number" id="coeff-b" value="-3" class="g9-btn" style="width:100%; text-align:center;">
+              </div>
+              <div>
+                <label style="font-size:12px; color:var(--muted);">x coeff</label>
+                <input type="number" id="coeff-c" value="4" class="g9-btn" style="width:100%; text-align:center;">
+              </div>
+              <div>
+                <label style="font-size:12px; color:var(--muted);">constant</label>
+                <input type="number" id="coeff-d" value="-5" class="g9-btn" style="width:100%; text-align:center;">
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; border:1px solid var(--border); padding:10px; border-radius:6px; background:var(--card);">
+              <span style="font-weight:600; font-size:13px;">Linear Divisor (k·x − r):</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <label style="font-size:12px;">k:</label>
+                <input type="number" id="div-k" value="1" style="width:55px; height:36px; text-align:center; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:4px;">
+              </div>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <label style="font-size:12px;">r (root value = r/k):</label>
+                <input type="number" id="div-r" value="2" style="width:55px; height:36px; text-align:center; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:4px;">
+              </div>
+              <button class="g9-btn primary" onclick="calcPolyRemainder()" style="margin-left:auto; min-height:38px;">Calculate</button>
+            </div>
+
+            <!-- Synthetic Division Output -->
+            <div id="poly-result-card" class="formula-card" style="border-color:var(--accent);">
+              <span class="formula-title" id="poly-verdict-title">Remainder Theorem Result</span>
+              <div id="poly-steps-display" style="font-size:14px; margin-top:6px; line-height:1.7;"></div>
+            </div>
+
+            <div class="synth-table-wrap">
+              <span style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:8px; display:block;">
+                Synthetic Division Array:
+              </span>
+              <table class="synth-table" id="synth-table">
+                <!-- Dynamically populated -->
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Algebraic Identity Visualizer -->
+        <div class="panel">
+          <h3 style="font-size:16px; font-weight:700; border-bottom:1px solid var(--border); padding-bottom:8px;">
+            2. Special Cubic Identity Explorer
+          </h3>
+
+          <div class="formula-card" style="border-color:var(--purple);">
+            <span class="formula-title">The Three-Variable Cube Identity:</span>
+            <div class="formula-math" style="font-size:13px; color:var(--purple); overflow-x:auto;">
+              a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca)
+            </div>
+            <p style="font-size:13px; color:var(--muted); margin-top:4px;">
+              <strong>Theorem:</strong> If $a + b + c = 0$, then $a^3 + b^3 + c^3 = 3abc$.
+            </p>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="control-row">
+              <div class="control-label">
+                <span>Value of a</span>
+                <span class="val" id="val-id-a">12</span>
+              </div>
+              <input type="range" id="slider-id-a" min="-20" max="20" step="1" value="12">
+            </div>
+
+            <div class="control-row">
+              <div class="control-label">
+                <span>Value of b</span>
+                <span class="val" id="val-id-b">-7</span>
+              </div>
+              <input type="range" id="slider-id-b" min="-20" max="20" step="1" value="-7">
+            </div>
+
+            <div class="control-row">
+              <div class="control-label">
+                <span>Value of c</span>
+                <span class="val" id="val-id-c">-5</span>
+              </div>
+              <input type="range" id="slider-id-c" min="-20" max="20" step="1" value="-5">
+            </div>
+
+            <button class="g9-btn" onclick="forceZeroSum()" style="min-height:40px; font-size:13px; background:rgba(192, 132, 252, 0.15); border-color:var(--purple); color:var(--purple); font-weight:600;">
+              ✨ Force Conditional Zero: Set c = -(a + b)
+            </button>
+
+            <div class="telemetry-grid" style="margin-top:6px;">
+              <div class="telemetry-card">
+                <span class="telemetry-title">Sum (a + b + c)</span>
+                <span class="telemetry-val" id="hud-id-sum">0</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-title">LHS: a³ + b³ + c³ − 3abc</span>
+                <span class="telemetry-val" id="hud-id-lhs">0</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-title">Sum of Cubes: a³+b³+c³</span>
+                <span class="telemetry-val" id="hud-id-cubes">1260</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-title">Product Term: 3abc</span>
+                <span class="telemetry-val" id="hud-id-3abc">1260</span>
+              </div>
+            </div>
+
+            <div id="identity-verdict-box" style="padding:10px 12px; border-radius:6px; font-size:13px; font-weight:600; background:rgba(52, 211, 153, 0.15); border:1px solid var(--success); color:var(--success);">
+              ✓ Since a + b + c = 0, a³ + b³ + c³ = 3abc = 1260 exactly! No cubic multiplication needed.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CORE LEARNING BLUEPRINTS (CORE1, CORE1B, CORE2) -->
+    <section id="tab-blueprints" class="tab-pane" role="tabpanel">
+      <div class="panel">
+        <h2 style="font-size:20px; font-weight:700;">Learner Quality Contract Blueprint Suite</h2>
+        <p style="color:var(--muted); font-size:14px;">
+          Adheres strictly to docs/plans/phase1/QUALITY-CONTRACT.md (CORE1 Orientation, CORE1B Mandatory Commitment Reconstruction, CORE2 Multi-Rung Practice).
+        </p>
+      </div>
+
+      <!-- CORE1: Governing Orientation -->
+      <details class="core-box" open>
+        <summary>
+          <span>📐 CORE1: Governing Principles & Domain Validity</span>
+          <span style="font-size:12px; color:var(--accent);">Orientation Map</span>
+        </summary>
+        <div class="core-content">
+          <div class="formula-card">
+            <span class="formula-title">1. Cartesian Coordinate Axiom:</span>
+            <p>Every point $P$ in a two-dimensional Euclidean plane is in one-to-one correspondence with an ordered real pair $(x, y)$.</p>
+            <ul style="margin-left:20px; margin-top:6px; font-size:13px;">
+              <li><strong>Sign Conventions:</strong> QI $(+,+)$, QII $(-,+)$, QIII $(-,-)$, QIV $(+,-)$.</li>
+              <li><strong>Boundary Axioms:</strong> Points on $X$-axis have ordinate $y = 0$; points on $Y$-axis have abscissa $x = 0$. Origin is $(0, 0)$.</li>
+            </ul>
+          </div>
+
+          <div class="formula-card" style="border-color:var(--purple);">
+            <span class="formula-title">2. Remainder Theorem & Factor Theorem:</span>
+            <p>Let $p(x)$ be any polynomial of degree $\ge 1$ and $a$ be any real number. If $p(x)$ is divided by the linear polynomial $(x - a)$, then the remainder is $p(a)$.</p>
+            <ul style="margin-left:20px; margin-top:6px; font-size:13px;">
+              <li>If divisor is $(b - ax)$, root is $x = b/a \implies \text{Remainder} = p(b/a)$.</li>
+              <li><strong>Factor Theorem:</strong> $(x - a)$ is a factor of $p(x)$ if and only if $p(a) = 0$.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- CORE1B: Active Reconstruction (Commitment Gated) -->
+      <details class="core-box" open>
+        <summary>
+          <span>✍️ CORE1B: Active Recall Reconstruction (Mandatory Attempt)</span>
+          <span style="font-size:12px; color:var(--warning);">Commitment Gated</span>
+        </summary>
+        <div class="core-content">
+          <p>
+            <strong>Recall Prompt:</strong> Without looking at the formulas above, state the Remainder Theorem for a polynomial $P(x)$ divided by $(ax - b)$, and explain why the perpendicular distance from the Y-axis to point $P(x_0, y_0)$ equals $|x_0|$.
+          </p>
+
+          <div class="attempt-box">
+            <label style="font-size:12px; font-weight:600; color:var(--muted);">YOUR COMMITTED ATTEMPT (Required before revealing canonical derivation):</label>
+            <textarea class="attempt-input" id="attempt-core1b" placeholder="Write your derivation and explanation here..."></textarea>
+            <button class="g9-btn" id="btn-reveal-core1b" onclick="revealCore1B()" style="width:fit-content; min-height:40px; font-size:13px;">
+              Commit Attempt & Unlock Canonical Derivation
+            </button>
+          </div>
+
+          <div id="canonical-core1b" style="display:none; margin-top:12px; border-top:1px dashed var(--border); padding-top:12px;">
+            <div class="formula-card" style="border-color:var(--success);">
+              <span class="formula-title">Canonical Derivation:</span>
+              <p style="font-size:13px; line-height:1.7;">
+                <strong>1. Division Algorithm:</strong> $p(x) = (ax - b) \cdot q(x) + r(x)$.<br>
+                Since divisor degree is $1$, remainder $r(x)$ must have degree $0$ (a constant $R$).<br>
+                Setting $x = b/a$: $p(b/a) = (a(b/a) - b) \cdot q(b/a) + R = 0 \cdot q(b/a) + R = R$. Hence $\text{Remainder} = p(b/a)$.<br>
+                <strong>2. Geometric Distance:</strong> By definition, the $Y$-axis is the vertical line $x = 0$. The perpendicular line from $P(x_0, y_0)$ to the $Y$-axis is horizontal ($y = y_0$), meeting the $Y$-axis at $M(0, y_0)$. The distance between $(x_0, y_0)$ and $(0, y_0)$ is $\sqrt{(x_0 - 0)^2 + (y_0 - y_0)^2} = \sqrt{x_0^2} = |x_0|$.
+              </p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- CORE2: Multi-Rung Practice Ladders -->
+      <details class="core-box" open>
+        <summary>
+          <span>🎯 CORE2: Parameterized Practice Problems with 3-Rung Hint Ladders</span>
+          <span style="font-size:12px; color:var(--success);">3 Rungs</span>
+        </summary>
+        <div class="core-content">
+          <!-- Problem 1 -->
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-weight:700; font-size:14px; color:var(--text);">
+              Problem 1: Evaluate $(-12)^3 + 7^3 + 5^3$ without directly calculating cubes.
+            </div>
+            <p style="font-size:13px; color:var(--muted);">
+              Use the algebraic identity relating $a^3 + b^3 + c^3$ and $3abc$.
+            </p>
+
+            <details style="margin-top:6px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--warning); cursor:pointer;">
+                💡 Rung 1: Conceptual Spark
+              </summary>
+              <div class="hint-step">
+                Check the sum of the three bases: $a = -12, b = 7, c = 5$. What is $a + b + c$?
+              </div>
+            </details>
+
+            <details style="margin-top:4px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--warning); cursor:pointer;">
+                💡 Rung 2: Structural Step
+              </summary>
+              <div class="hint-step">
+                Since $a + b + c = -12 + 7 + 5 = 0$, recall the conditional identity: if $a+b+c=0$, then $a^3 + b^3 + c^3 = 3abc$.
+              </div>
+            </details>
+
+            <details style="margin-top:4px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--success); cursor:pointer;">
+                💡 Rung 3: Final Arithmetic Evaluation
+              </summary>
+              <div class="hint-step" style="border-color:var(--success); background:rgba(52, 211, 153, 0.08);">
+                Calculate: $3 \times (-12) \times 7 \times 5 = -36 \times 35 = -1260$.
+              </div>
+            </details>
+          </div>
+
+          <!-- Problem 2 -->
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-weight:700; font-size:14px; color:var(--text);">
+              Problem 2: Find the value of $k$ if $(x - 1)$ is a factor of $p(x) = 4x^3 + 3x^2 - 4x + k$.
+            </div>
+            <p style="font-size:13px; color:var(--muted);">
+              Apply the Factor Theorem.
+            </p>
+
+            <details style="margin-top:6px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--warning); cursor:pointer;">
+                💡 Rung 1: Factor Theorem Condition
+              </summary>
+              <div class="hint-step">
+                If $(x - 1)$ is a factor of $p(x)$, then $p(1)$ must equal $0$.
+              </div>
+            </details>
+
+            <details style="margin-top:4px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--warning); cursor:pointer;">
+                💡 Rung 2: Substitution Setup
+              </summary>
+              <div class="hint-step">
+                Substitute $x = 1$ into $p(x)$: $p(1) = 4(1)^3 + 3(1)^2 - 4(1) + k = 4 + 3 - 4 + k = 3 + k$.
+              </div>
+            </details>
+
+            <details style="margin-top:4px;">
+              <summary style="font-size:13px; font-weight:600; color:var(--success); cursor:pointer;">
+                💡 Rung 3: Solution
+              </summary>
+              <div class="hint-step" style="border-color:var(--success); background:rgba(52, 211, 153, 0.08);">
+                Set $3 + k = 0 \implies k = -3$.
+              </div>
+            </details>
+          </div>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    /* ==========================================================================
+       1. TABLET SHELL INTERACTION: THEME, FONT, FULLSCREEN, TABS
+       ========================================================================== */
+    const root = document.documentElement;
+    let currentTheme = 'dark';
+    let fontScale = 1.0;
+
+    document.getElementById('btn-theme').addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', currentTheme);
+      drawCoordGrid();
+    });
+
+    document.getElementById('btn-font-dec').addEventListener('click', () => {
+      fontScale = Math.max(0.85, fontScale - 0.05);
+      root.style.setProperty('--font-scale', fontScale);
+    });
+
+    document.getElementById('btn-font-inc').addEventListener('click', () => {
+      fontScale = Math.min(1.3, fontScale + 0.05);
+      root.style.setProperty('--font-scale', fontScale);
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // Tab Switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const targetId = btn.getAttribute('data-tab');
+        const targetPane = document.getElementById(targetId);
+        if (targetPane) {
+          targetPane.classList.add('active');
+          if (targetId === 'tab-coords') {
+            resizeCanvas();
+            drawCoordGrid();
+          }
+        }
+      });
+    });
+
+    /* ==========================================================================
+       2. UNIT 1: CARTESIAN COORDINATE CANVAS SIMULATOR
+       ========================================================================== */
+    const canvas = document.getElementById('coordCanvas');
+    const ctx = canvas.getContext('2d');
+    let pointX = 4.0;
+    let pointY = 3.0;
+    let isDragging = false;
+    let gridScale = 30; // pixels per unit
+    let originPixX = 300;
+    let originPixY = 300;
+
+    // Linear equation state
+    let showLine = false;
+    let slopeM = 0.75;
+    let interceptC = 0.0;
+
+    function resizeCanvas() {
+      const wrap = document.getElementById('coord-canvas-wrap');
+      if (!wrap) return;
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      originPixX = rect.width / 2;
+      originPixY = rect.height / 2;
+      gridScale = Math.min(rect.width, rect.height) / 16;
+    }
+
+    function toPixelX(mathX) {
+      return originPixX + mathX * gridScale;
+    }
+    function toPixelY(mathY) {
+      return originPixY - mathY * gridScale;
+    }
+    function toMathX(pixX) {
+      return (pixX - originPixX) / gridScale;
+    }
+    function toMathY(pixY) {
+      return (originPixY - pixY) / gridScale;
+    }
+
+    function drawCoordGrid() {
+      const w = canvas.width / (window.devicePixelRatio || 1);
+      const h = canvas.height / (window.devicePixelRatio || 1);
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Background
+      ctx.fillStyle = isLight ? '#ffffff' : '#070a10';
+      ctx.fillRect(0, 0, w, h);
+
+      // Grid Lines
+      ctx.lineWidth = 1;
+      const step = gridScale;
+      const minX = -Math.ceil(originPixX / step);
+      const maxX = Math.ceil((w - originPixX) / step);
+      const minY = -Math.ceil((h - originPixY) / step);
+      const maxY = Math.ceil(originPixY / step);
+
+      ctx.strokeStyle = isLight ? '#e2e8f0' : '#162030';
+      ctx.beginPath();
+      for (let i = minX; i <= maxX; i++) {
+        const px = originPixX + i * step;
+        ctx.moveTo(px, 0);
+        ctx.lineTo(px, h);
+      }
+      for (let j = minY; j <= maxY; j++) {
+        const py = originPixY - j * step;
+        ctx.moveTo(0, py);
+        ctx.lineTo(w, py);
+      }
+      ctx.stroke();
+
+      // Quadrant Watermarks
+      ctx.font = 'bold 16px system-ui';
+      ctx.fillStyle = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.05)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Quadrant I (+, +)', originPixX + w * 0.25, originPixY - h * 0.25);
+      ctx.fillText('Quadrant II (−, +)', originPixX - w * 0.25, originPixY - h * 0.25);
+      ctx.fillText('Quadrant III (−, −)', originPixX - w * 0.25, originPixY + h * 0.25);
+      ctx.fillText('Quadrant IV (+, −)', originPixX + w * 0.25, originPixY + h * 0.25);
+
+      // Major Axes (X and Y)
+      ctx.strokeStyle = isLight ? '#334155' : '#94a3b8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      // X-axis
+      ctx.moveTo(0, originPixY);
+      ctx.lineTo(w, originPixY);
+      // Y-axis
+      ctx.moveTo(originPixX, 0);
+      ctx.lineTo(originPixX, h);
+      ctx.stroke();
+
+      // Arrowheads
+      drawArrowHead(ctx, w - 8, originPixY, w, originPixY, isLight ? '#334155' : '#94a3b8');
+      drawArrowHead(ctx, 8, originPixY, 0, originPixY, isLight ? '#334155' : '#94a3b8');
+      drawArrowHead(ctx, originPixX, 8, originPixX, 0, isLight ? '#334155' : '#94a3b8');
+      drawArrowHead(ctx, originPixX, h - 8, originPixX, h, isLight ? '#334155' : '#94a3b8');
+
+      // Axis Labels
+      ctx.font = 'bold 13px system-ui';
+      ctx.fillStyle = isLight ? '#0f172a' : '#cbd5e1';
+      ctx.fillText('X', w - 16, originPixY - 12);
+      ctx.fillText("X'", 16, originPixY - 12);
+      ctx.fillText('Y', originPixX + 16, 16);
+      ctx.fillText("Y'", originPixX + 16, h - 16);
+      ctx.fillText('O (0,0)', originPixX - 22, originPixY + 18);
+
+      // Tick Labels
+      ctx.font = '10px ui-monospace, monospace';
+      ctx.fillStyle = isLight ? '#64748b' : '#64748b';
+      for (let i = minX; i <= maxX; i++) {
+        if (i !== 0 && i % 2 === 0) {
+          const px = originPixX + i * step;
+          ctx.fillText(i, px, originPixY + 12);
+        }
+      }
+      for (let j = minY; j <= maxY; j++) {
+        if (j !== 0 && j % 2 === 0) {
+          const py = originPixY - j * step;
+          ctx.fillText(j, originPixX - 12, py + 4);
+        }
+      }
+
+      // Linear Equation Plot (if active)
+      if (showLine) {
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([]);
+        const x1 = minX - 2;
+        const y1 = slopeM * x1 + interceptC;
+        const x2 = maxX + 2;
+        const y2 = slopeM * x2 + interceptC;
+
+        ctx.beginPath();
+        ctx.moveTo(toPixelX(x1), toPixelY(y1));
+        ctx.lineTo(toPixelX(x2), toPixelY(y2));
+        ctx.stroke();
+
+        // Mark intercept
+        const cPixY = toPixelY(interceptC);
+        ctx.fillStyle = '#10b981';
+        ctx.beginPath();
+        ctx.arc(originPixX, cPixY, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillText(`(0, ${interceptC})`, originPixX + 14, cPixY);
+      }
+
+      // Projected Perpendiculars from Point P to Axes
+      const px = toPixelX(pointX);
+      const py = toPixelY(pointY);
+      const footNX = px;
+      const footNY = originPixY;
+      const footMX = originPixX;
+      const footMY = py;
+
+      // Dashed Projections
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+
+      // Projection to X-axis (Vertical line: PN)
+      ctx.strokeStyle = '#c084fc'; // Purple for Ordinate projection
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(footNX, footNY);
+      ctx.stroke();
+
+      // Projection to Y-axis (Horizontal line: PM)
+      ctx.strokeStyle = '#38bdf8'; // Cyan for Abscissa projection
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(footMX, footMY);
+      ctx.stroke();
+
+      ctx.setLineDash([]);
+
+      // Right-angle markers
+      drawRightAngleMarker(ctx, footNX, footNY, (pointX >= 0 ? -1 : 1), (pointY >= 0 ? -1 : 1) * 8, isLight);
+      drawRightAngleMarker(ctx, footMX, footMY, (pointX >= 0 ? -1 : 1) * 8, (pointY >= 0 ? -1 : 1), isLight);
+
+      // Foot of perpendicular points
+      ctx.fillStyle = '#c084fc';
+      ctx.beginPath();
+      ctx.arc(footNX, footNY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.font = 'bold 11px system-ui';
+      ctx.fillText(`N(${pointX.toFixed(1)}, 0)`, footNX, footNY + (pointY >= 0 ? 16 : -10));
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.arc(footMX, footMY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillText(`M(0, ${pointY.toFixed(1)})`, footMX + (pointX >= 0 ? -24 : 24), footMY - 8);
+
+      // Line OP (Radius vector to origin)
+      ctx.strokeStyle = 'rgba(251, 191, 36, 0.7)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      ctx.moveTo(originPixX, originPixY);
+      ctx.lineTo(px, py);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Main Point P
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 12;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(px, py, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Label P(x, y)
+      ctx.font = 'bold 14px system-ui';
+      ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
+      ctx.textAlign = pointX >= 0 ? 'left' : 'right';
+      ctx.fillText(`P(${pointX.toFixed(1)}, ${pointY.toFixed(1)})`, px + (pointX >= 0 ? 14 : -14), py - 12);
+
+      updateCoordTelemetry();
+    }
+
+    function drawRightAngleMarker(context, x, y, dx, dy, isLight) {
+      const size = 10;
+      const sX = dx > 0 ? size : -size;
+      const sY = dy > 0 ? size : -size;
+      context.strokeStyle = isLight ? '#475569' : '#94a3b8';
+      context.lineWidth = 1.5;
+      context.beginPath();
+      context.moveTo(x + sX, y);
+      context.lineTo(x + sX, y + sY);
+      context.lineTo(x, y + sY);
+      context.stroke();
+    }
+
+    function drawArrowHead(context, fromX, fromY, toX, toY, color) {
+      const angle = Math.atan2(toY - fromY, toX - fromX);
+      const len = 9;
+      context.fillStyle = color;
+      context.beginPath();
+      context.moveTo(toX, toY);
+      context.lineTo(toX - len * Math.cos(angle - Math.PI / 6), toY - len * Math.sin(angle - Math.PI / 6));
+      context.lineTo(toX - len * Math.cos(angle + Math.PI / 6), toY - len * Math.sin(angle + Math.PI / 6));
+      context.closePath();
+      context.fill();
+    }
+
+    function updateCoordTelemetry() {
+      const x = pointX;
+      const y = pointY;
+      const dist = Math.sqrt(x * x + y * y);
+      let angleDeg = Math.atan2(y, x) * (180 / Math.PI);
+      if (angleDeg < 0) angleDeg += 360;
+
+      let quad = 'Origin';
+      if (x > 0 && y > 0) quad = 'Quadrant I (+, +)';
+      else if (x < 0 && y > 0) quad = 'Quadrant II (−, +)';
+      else if (x < 0 && y < 0) quad = 'Quadrant III (−, −)';
+      else if (x > 0 && y < 0) quad = 'Quadrant IV (+, −)';
+      else if (x !== 0 && y === 0) quad = x > 0 ? '+X Axis (y=0)' : '−X Axis (y=0)';
+      else if (x === 0 && y !== 0) quad = y > 0 ? '+Y Axis (x=0)' : '−Y Axis (x=0)';
+
+      document.getElementById('hud-coords').textContent = `(${x.toFixed(1)}, ${y.toFixed(1)})`;
+      document.getElementById('hud-quadrant').innerHTML = `<span class="badge-quadrant">${quad}</span>`;
+      document.getElementById('hud-abscissa').textContent = (x >= 0 ? '+' : '') + x.toFixed(1);
+      document.getElementById('hud-ordinate').textContent = (y >= 0 ? '+' : '') + y.toFixed(1);
+      document.getElementById('hud-dist').textContent = dist.toFixed(2);
+      document.getElementById('hud-angle').textContent = angleDeg.toFixed(1) + '°';
+    }
+
+    function setCoordPoint(newX, newY) {
+      pointX = newX;
+      pointY = newY;
+      drawCoordGrid();
+    }
+
+    // Canvas Pointer Event Handling
+    function handlePointerCoord(e) {
+      const rect = canvas.getBoundingClientRect();
+      const pixX = e.clientX - rect.left;
+      const pixY = e.clientY - rect.top;
+      pointX = Math.round(toMathX(pixX) * 2) / 2; // snap to 0.5 increments
+      pointY = Math.round(toMathY(pixY) * 2) / 2;
+      drawCoordGrid();
+    }
+
+    canvas.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      canvas.setPointerCapture(e.pointerId);
+      handlePointerCoord(e);
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (isDragging) {
+        handlePointerCoord(e);
+      }
+    });
+
+    canvas.addEventListener('pointerup', (e) => {
+      isDragging = false;
+      try { canvas.releasePointerCapture(e.pointerId); } catch(err){}
+    });
+
+    document.getElementById('btn-reset-coord').addEventListener('click', () => {
+      setCoordPoint(0, 0);
+    });
+
+    // Linear Equation Mode Toggle
+    const toggleLine = document.getElementById('toggle-line');
+    const lineControls = document.getElementById('line-controls');
+    const sliderSlope = document.getElementById('slider-slope');
+    const sliderIntercept = document.getElementById('slider-intercept');
+
+    toggleLine.addEventListener('change', () => {
+      showLine = toggleLine.checked;
+      lineControls.style.display = showLine ? 'flex' : 'none';
+      drawCoordGrid();
+    });
+
+    sliderSlope.addEventListener('input', () => {
+      slopeM = parseFloat(sliderSlope.value);
+      document.getElementById('val-slope').textContent = slopeM.toFixed(2);
+      updateLineEquationFormula();
+      drawCoordGrid();
+    });
+
+    sliderIntercept.addEventListener('input', () => {
+      interceptC = parseFloat(sliderIntercept.value);
+      document.getElementById('val-intercept').textContent = interceptC.toFixed(1);
+      updateLineEquationFormula();
+      drawCoordGrid();
+    });
+
+    function updateLineEquationFormula() {
+      const sign = interceptC >= 0 ? '+' : '−';
+      const absC = Math.abs(interceptC);
+      const strC = absC === 0 ? '' : ` ${sign} ${absC}`;
+      document.getElementById('formula-line-title').textContent = `Line Equation: y = ${slopeM}x${strC}`;
+    }
+
+    /* ==========================================================================
+       3. UNIT 2: POLYNOMIAL REMAINDER & SYNTHETIC DIVISION CALCULATOR
+       ========================================================================== */
+    function setPolyPreset(a, b, c, d, k, r) {
+      document.getElementById('coeff-a').value = a;
+      document.getElementById('coeff-b').value = b;
+      document.getElementById('coeff-c').value = c;
+      document.getElementById('coeff-d').value = d;
+      document.getElementById('div-k').value = k;
+      document.getElementById('div-r').value = r;
+      calcPolyRemainder();
+    }
+
+    function calcPolyRemainder() {
+      const a = parseFloat(document.getElementById('coeff-a').value) || 0;
+      const b = parseFloat(document.getElementById('coeff-b').value) || 0;
+      const c = parseFloat(document.getElementById('coeff-c').value) || 0;
+      const d = parseFloat(document.getElementById('coeff-d').value) || 0;
+      const k = parseFloat(document.getElementById('div-k').value) || 1;
+      const r = parseFloat(document.getElementById('div-r').value) || 0;
+
+      const root = r / k;
+      const coeffs = [a, b, c, d];
+
+      // Synthetic Division:
+      // Row 1: coeffs
+      // Row 2: carry multiples
+      // Row 3: results
+      let q = [];
+      let carries = [0];
+      let running = coeffs[0];
+      q.push(running);
+
+      for (let i = 1; i < coeffs.length; i++) {
+        let carry = running * root;
+        carries.push(carry);
+        running = coeffs[i] + carry;
+        q.push(running);
+      }
+
+      const remainder = q[q.length - 1];
+      const isFactor = Math.abs(remainder) < 1e-7;
+
+      // Populate verdict card
+      const verdictTitle = document.getElementById('poly-verdict-title');
+      const stepsDiv = document.getElementById('poly-steps-display');
+
+      if (isFactor) {
+        verdictTitle.innerHTML = `<span style="color:var(--success);">✓ Factor Confirmed: Remainder R = 0</span>`;
+      } else {
+        verdictTitle.innerHTML = `<span style="color:var(--warning);">Remainder R = ${remainder.toFixed(3)} (Not a factor)</span>`;
+      }
+
+      const divStr = k === 1 ? `(x − ${r})` : `(${k}x − ${r})`;
+      stepsDiv.innerHTML = `
+        <strong>Direct Substitution:</strong> Evaluated at zero of divisor $x = ${root.toFixed(2)}$:<br>
+        $P(${root.toFixed(2)}) = ${a}(${root.toFixed(2)})^3 + (${b})(${root.toFixed(2)})^2 + (${c})(${root.toFixed(2)}) + (${d}) = <strong>${remainder.toFixed(3)}</strong>$<br>
+        <strong>Quotient $Q(x)$:</strong> $${q[0]}x^2 + (${q[1].toFixed(2)})x + (${q[2].toFixed(2)})$<br>
+        <strong>Conclusion:</strong> By Factor Theorem, ${divStr} ${isFactor ? '<strong>IS</strong> a factor' : 'is <strong>NOT</strong> a factor'} of $P(x)$.
+      `;
+
+      // Populate synthetic division table
+      const tbl = document.getElementById('synth-table');
+      tbl.innerHTML = `
+        <tr>
+          <td class="divisor-col" rowspan="2">${root.toFixed(2)}</td>
+          <td>${coeffs[0]}</td>
+          <td>${coeffs[1]}</td>
+          <td>${coeffs[2]}</td>
+          <td>${coeffs[3]}</td>
+        </tr>
+        <tr class="mid-row">
+          <td>—</td>
+          <td>${carries[1].toFixed(2)}</td>
+          <td>${carries[2].toFixed(2)}</td>
+          <td>${carries[3].toFixed(2)}</td>
+        </tr>
+        <tr class="result-row">
+          <td class="divisor-col">Result</td>
+          <td>${q[0]}</td>
+          <td>${q[1].toFixed(2)}</td>
+          <td>${q[2].toFixed(2)}</td>
+          <td class="remainder-col">${remainder.toFixed(2)}</td>
+        </tr>
+      `;
+    }
+
+    /* ==========================================================================
+       4. UNIT 2: ALGEBRAIC IDENTITY CUBES EXPLORER
+       ========================================================================== */
+    const sliderA = document.getElementById('slider-id-a');
+    const sliderB = document.getElementById('slider-id-b');
+    const sliderC = document.getElementById('slider-id-c');
+
+    function updateIdentityHUD() {
+      const a = parseInt(sliderA.value);
+      const b = parseInt(sliderB.value);
+      const c = parseInt(sliderC.value);
+
+      document.getElementById('val-id-a').textContent = a;
+      document.getElementById('val-id-b').textContent = b;
+      document.getElementById('val-id-c').textContent = c;
+
+      const sum = a + b + c;
+      const sumCubes = Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3);
+      const prod3abc = 3 * a * b * c;
+      const lhs = sumCubes - prod3abc;
+
+      document.getElementById('hud-id-sum').textContent = sum;
+      document.getElementById('hud-id-lhs').textContent = lhs;
+      document.getElementById('hud-id-cubes').textContent = sumCubes;
+      document.getElementById('hud-id-3abc').textContent = prod3abc;
+
+      const verdict = document.getElementById('identity-verdict-box');
+      if (sum === 0) {
+        verdict.style.background = 'rgba(52, 211, 153, 0.15)';
+        verdict.style.borderColor = 'var(--success)';
+        verdict.style.color = 'var(--success)';
+        verdict.innerHTML = `✓ <strong>Condition Satisfied:</strong> Since a + b + c = 0, a³ + b³ + c³ = 3abc = <strong>${prod3abc}</strong> exactly!`;
+      } else {
+        verdict.style.background = 'rgba(251, 191, 36, 0.1)';
+        verdict.style.borderColor = 'var(--warning)';
+        verdict.style.color = 'var(--warning)';
+        verdict.innerHTML = `Notice: a + b + c = ${sum} ≠ 0. Therefore, a³ + b³ + c³ − 3abc = (${sum}) × (${lhs / (sum || 1)}) = <strong>${lhs}</strong>.`;
+      }
+    }
+
+    sliderA.addEventListener('input', updateIdentityHUD);
+    sliderB.addEventListener('input', updateIdentityHUD);
+    sliderC.addEventListener('input', updateIdentityHUD);
+
+    function forceZeroSum() {
+      const a = parseInt(sliderA.value);
+      const b = parseInt(sliderB.value);
+      const c = -(a + b);
+      sliderC.value = Math.max(-20, Math.min(20, c));
+      updateIdentityHUD();
+    }
+
+    /* ==========================================================================
+       5. CORE1B ACTIVE COMMITMENT REVEAL
+       ========================================================================== */
+    function revealCore1B() {
+      const attemptText = document.getElementById('attempt-core1b').value.trim();
+      if (!attemptText) {
+        alert('Please enter your written reconstruction attempt before unlocking the canonical solution.');
+        return;
+      }
+      document.getElementById('canonical-core1b').style.display = 'block';
+      document.getElementById('btn-reveal-core1b').disabled = true;
+      document.getElementById('btn-reveal-core1b').textContent = '✓ Attempt Committed & Solution Unlocked';
+    }
+
+    // Initialize on window load
+    window.addEventListener('load', () => {
+      resizeCanvas();
+      drawCoordGrid();
+      calcPolyRemainder();
+      updateIdentityHUD();
+    });
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      drawCoordGrid();
+    });
+  </script>
+</body>
+</html>
