@@ -1,0 +1,160 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-05",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:6b3056bb14a50e912eb180628e150b5e221ab70972cdff2e322a89d7c76681ef",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-05-010",
+      "independent_solution": [
+        "Each leg is 500 m; after every leg the heading turns 60 deg left, so leg k points at 60(k-1) deg and six legs close a regular hexagon of side 500 m.",
+        "Third turn (3 legs): R = 500[(1,0) + (0.5,0.866) + (-0.5,0.866)] = (500, 866) m -> |R| = 1000 m at 60 deg to the initial direction; path 1.5 km.",
+        "Sixth turn: closed hexagon, R = 0, path 3 km. Eighth turn = second vertex again: R = (750, 433) m -> 866 m (= 500 sqrt3) at 30 deg; path 4 km. In each case |R| < path length."
+      ],
+      "independent_answer": "3rd turn: 1 km at 60 deg to the initial direction (path 1.5 km); 6th: null displacement (path 3 km); 8th: 866 m at 30 deg (path 4 km).",
+      "official_answer": "Displacement of magnitude 1 km and direction 60 deg with the initial direction; path 1.5 km (third turn); null displacement, path 3 km (sixth turn); 866 m, 30 deg, 4 km (eighth turn)",
+      "agrees": true,
+      "numeric_check": "sqrt((0.5*(1+cos(radians(60))+cos(radians(120))))**2 + (0.5*(sin(radians(60))+sin(radians(120))))**2)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-05-012",
+      "independent_solution": [
+        "A.B = (1)(1) + (1)(-1) = 0 and |A| = |B| = sqrt2.",
+        "cos(theta) = A.B/(|A||B|) = 0 -> theta = 90 deg: option (b)."
+      ],
+      "independent_answer": "(b) 90 deg",
+      "official_answer": "(b), 90 deg",
+      "agrees": true,
+      "numeric_check": "degrees(acos(0/(sqrt(2)*sqrt(2))))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-05-014",
+      "independent_solution": [
+        "Full options read on pinned page 4. |A+B|^2 = A^2 + B^2 + 2AB cos(theta); |A-B|^2 = A^2 + B^2 - 2AB cos(theta).",
+        "Equal iff AB cos(theta) = 0: A perpendicular to B, or A = 0 or B = 0. Equal magnitudes alone do not suffice ((a) fails at theta = 0; (c) parallel gives 2A vs 0).",
+        "So (b) and (d)."
+      ],
+      "independent_answer": "(b) and (d)",
+      "official_answer": "(b), (d)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-05",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-05",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-05-COMPONENT-SUM",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-05-LAW-OF-COSINES",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "symbols",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": false
+    },
+    {
+      "record_ref": "REP-PHY-MIP-05-COMPONENT-TABLE",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-NCERT-3-10",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-EXEMPLAR-4-1",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": false
+    },
+    {
+      "record_ref": "Q-PHY-MIP-05-EXEMPLAR-4-15",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "Q-PHY-MIP-05-EXEMPLAR-4-1",
+      "duty_for": "AUTHOR",
+      "detail": "answer.check is wrong physics: '|A + B| = |A - B| ... happens only for perpendicular vectors of equal size'. |A+B| = |A-B| holds for perpendicular vectors of any magnitudes (|A+B|^2 - |A-B|^2 = 4AB cos(theta)), as this package's own Q-PHY-MIP-05-EXEMPLAR-4-15 answer shows. Drop 'of equal size' (e.g. 'which happens exactly when A and B are perpendicular')."
+    },
+    {
+      "target": "REL-PHY-MIP-05-LAW-OF-COSINES",
+      "duty_for": "AUTHOR",
+      "detail": "expression includes the law of sines 'R/sin(theta) = A/sin(beta) = B/sin(alpha)' (the physics and the alpha/beta meanings are correct), but the cited cards EV-PHY-11-MIP-05-002 (law of cosines only) and EV-PHY-11-MIP-05-003 (names 'Eq. (3.24d) as the Law of sines' without stating it) do not contain that formula. Re-cite to a card quoting Eq. (3.24d) once it exists, or remove the law-of-sines part from expression."
+    },
+    {
+      "target": "PHY-11-MOTION-IN-A-PLANE-05",
+      "duty_for": "RESEARCHER",
+      "detail": "No card quotes the law of sines, Eq. (3.24d) R/sin(theta) = A/sin(beta) = B/sin(alpha) (NCERT p.34, pinned page 8; extracted text 'R A sin sin sin B (3.24d)' with the derivation 'PM = A sin a = B sin b' above it). Add a RELATION card so REL-PHY-MIP-05-LAW-OF-COSINES.expression can cite it."
+    },
+    {
+      "target": "EV-PHY-11-MIP-05-014",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote ends at 'is always true when' and neither the quote nor the card's question metadata holds options (a)-(d) (pinned page 4: '(a) |A| = |B| != 0 (b) A perpendicular B (c) |A| = |B| != 0 and A and B are parallel or anti parallel (d) when either A or B is zero.'). The record Q-PHY-MIP-05-EXEMPLAR-4-15 options and the key '(b), (d)' depend on them. Quote the options."
+    }
+  ]
+}
