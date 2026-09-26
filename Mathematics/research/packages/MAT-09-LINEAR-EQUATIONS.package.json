@@ -621,6 +621,43 @@
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-001",
+        "EV-MAT-09-LEQ-04-002",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-002"
+          ],
+          "success_criterion": [
+            "EV-MAT-09-LEQ-04-003",
+            "EV-MAT-09-LEQ-04-006"
+          ]
+        }
+      },
+      "action": "Treat a solution of a linear equation in two variables as an ordered pair that makes it true, generate as many as needed, and read the equation's straight-line graph as the set of all its solutions.",
+      "success_criterion": "Tests a pair by substituting x and y in their own places, produces further pairs by choosing one value and solving for the other, states that there are infinitely many, and uses the line (including its axis crossings) to find or confirm solutions.",
+      "prerequisite_refs": [
+        "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+        "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -1522,6 +1559,334 @@
         "prompt": "Reduce and solve 5x − 2(2x − 7) = 2(3x − 1) + 7/2.",
         "result": "Opening the brackets gives x + 14 = 6x + 3/2, so x = 5/2."
       }
+    },
+    {
+      "id": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-001",
+        "EV-MAT-09-LEQ-04-002",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-005",
+        "EV-MAT-09-LEQ-04-006",
+        "EV-MAT-09-LEQ-04-007",
+        "EV-MAT-09-LEQ-04-008",
+        "EV-MAT-09-LEQ-04-014",
+        "EV-MAT-09-LEQ-04-016"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-002",
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-002",
+            "EV-MAT-09-LEQ-04-003",
+            "EV-MAT-09-LEQ-04-005"
+          ],
+          "teaching_path": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-005",
+            "EV-MAT-09-LEQ-04-006",
+            "EV-MAT-09-LEQ-04-002",
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "misconceptions": [
+            "EV-MAT-09-LEQ-04-007",
+            "EV-MAT-09-LEQ-04-005",
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL",
+          "elicitation": "AUTHORED_PEDAGOGICAL",
+          "construction_units": "AUTHORED_PEDAGOGICAL",
+          "compact_anchor": [
+            "EV-MAT-09-LEQ-04-006"
+          ],
+          "badge_reason": "AUTHORED_PEDAGOGICAL",
+          "research_contribution": [
+            "EV-MAT-09-LEQ-04-008",
+            "EV-MAT-09-LEQ-04-014",
+            "EV-MAT-09-LEQ-04-016"
+          ],
+          "interactive_idea": [
+            "EV-MAT-09-LEQ-04-007",
+            "EV-MAT-09-LEQ-04-003"
+          ]
+        },
+        "grade9v3:interactive_idea": {
+          "learner_manipulates": "A point dragged anywhere on the coordinate plane for a fixed equation such as 3x + 4y = 12, plus an x-slider that asks the learner to type the matching y.",
+          "becomes_visible": "The live value of ax + by + c at the dragged point, which reads exactly 0 only on the line; each accepted pair drops a labelled dot and a table row, and after a few pairs every dot lies on one straight line, including dots between earlier ones.",
+          "misconception_targeted": "A linear equation in two variables has a unique solution, and only the tabulated points are solutions.",
+          "representation_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "precedent_card": null
+        }
+      },
+      "title": "Linear equations in two variables: the form ax + by + c = 0, infinitely many solution pairs, and the straight-line graph",
+      "bucket_id": "BUCKET-MAT-09-LEQ",
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners arrive expecting one number as the answer; here a solution is a pair, there are infinitely many, and the same statement can have one solution on a number line but infinitely many on the plane.",
+      "entry_assumptions": [
+        "Can decide whether a value is a solution by substituting and comparing both sides.",
+        "Can solve a linear equation in one variable.",
+        "Can plot a point (x, y) on the Cartesian plane."
+      ],
+      "inferential_jump": "In ax + by + c = 0 with a and b non-zero, a solution is a pair of values, one for each variable; any value chosen for one variable fixes a value for the other, so there are infinitely many solutions, and plotted they form a straight line on which every point is a solution.",
+      "teaching_path": [
+        {
+          "id": "LEQ4-1",
+          "role": "DECLARE",
+          "action": "Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.",
+          "why_valid": "That form with a ≠ 0 and b ≠ 0 is what makes it a linear equation in two variables.",
+          "inputs": [],
+          "output": "3x + 4y = 12 becomes 3x + 4y − 12 = 0, with a = 3, b = 4, c = −12."
+        },
+        {
+          "id": "LEQ4-2",
+          "role": "TRANSFORM",
+          "action": "Test a pair by substituting its x-value for x and its y-value for y.",
+          "why_valid": "A pair is a solution exactly when it makes the two sides equal.",
+          "inputs": [],
+          "output": "(0, 3): 3(0) + 4(3) = 12, a solution. (1, 1): 3 + 4 = 7, not a solution."
+        },
+        {
+          "id": "LEQ4-3",
+          "role": "TRANSFORM",
+          "action": "Generate solutions by choosing a value of one variable and solving for the other.",
+          "why_valid": "Fixing one variable leaves a one-variable equation with one solution, and any value may be chosen, so there are infinitely many solutions.",
+          "inputs": [],
+          "output": "y = 0 gives 3x = 12, x = 4; x = 2 gives 4y = 6, y = 3/2. Pairs: (4, 0), (2, 3/2), (0, 3)."
+        },
+        {
+          "id": "LEQ4-4",
+          "role": "DECLARE",
+          "action": "Plot the pairs and draw the line through them; read every point on it as a solution.",
+          "why_valid": "The graph of a linear equation in two variables is a straight line, and every point on it represents a solution.",
+          "inputs": [],
+          "output": "(0, 3), (2, 3/2) and (4, 0) lie on one straight line."
+        },
+        {
+          "id": "LEQ4-5",
+          "role": "VERIFY",
+          "action": "Find where the line cuts an axis by setting the other variable to 0, and check a new point on the line.",
+          "why_valid": "The line cuts the x-axis where y = 0.",
+          "inputs": [],
+          "output": "x-axis at (4, 0); the point (1, 9/4) on the line gives 3 + 9 = 12."
+        }
+      ],
+      "relation_refs": [
+        "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+        "REL-MAT-LEQ-04-STRAIGHT-LINE"
+      ],
+      "representation_refs": [
+        "REP-MAT-LEQ-04-SOLUTION-LINE"
+      ],
+      "question_family_refs": [
+        "FAM-MAT-LEQ-04-TWO-VARIABLES"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A linear equation in two variables, such as 2x + 3y = 15, has a unique solution.",
+          "diagnostic_prompt": "Is (6, 1) a solution of 2x + 3y = 15? Is (3, 3)? Is (0, 5)?",
+          "repair": "All three are: 12 + 3, 6 + 9 and 0 + 15 each give 15. Every value chosen for x gives a matching y, so there are infinitely many solutions."
+        },
+        {
+          "wrong_idea": "Any ax + by + c = 0 is a linear equation in two variables, whatever a and b are.",
+          "diagnostic_prompt": "In 0x + 2y − 6 = 0, what is a? Does this fit the definition of a linear equation in two variables?",
+          "repair": "Here a = 0, and the definition needs both a and b non-zero, so it is not one in this sense."
+        },
+        {
+          "wrong_idea": "Only the points worked out in the table are solutions; points between them on the line are not.",
+          "diagnostic_prompt": "(4, 0) and (0, 3) solve 3x + 4y = 12. The point (2, 1.5) lies on the line between them. Is it a solution?",
+          "repair": "Yes: 3(2) + 4(1.5) = 12. Every point on the graph represents a solution, not only the plotted ones."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Find three solutions of x + 2y = 6, including the points where its graph cuts each axis, and explain why you could keep finding more.",
+        "source_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "For example (0, 3), (6, 0) and (2, 2); there are infinitely many because every chosen x gives y = (6 − x)/2.",
+          "reasoning": [
+            "x = 0 gives 2y = 6, y = 3: the y-axis crossing (0, 3).",
+            "y = 0 gives x = 6: the x-axis crossing (6, 0).",
+            "x = 2 gives 2y = 4, y = 2: the pair (2, 2).",
+            "Any other x gives its own y, so the solutions never run out; they form one straight line."
+          ],
+          "check": "Each pair gives 6: 0 + 6, 6 + 0 and 2 + 4.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "The Class IX Exemplar defines the form with a ≠ 0 and b ≠ 0, states that there are infinitely many solutions forming a straight-line graph, and supplies five keyed items; Ganita Manjari adds the line y = ax + b with its slope; the CBSE 2026-27 curriculum prescribes graphical representation of solutions.",
+      "prerequisite_refs": [
+        "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+        "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "How many pairs (x, y) make 2x + y = 8 true: one, a few, or infinitely many?",
+          "defensible_answer": "Infinitely many: whatever x you choose, y = 8 − 2x gives a matching y."
+        },
+        "attempt": {
+          "produces": "Task: for 2x + y = 8, complete a table for x = 0, 1, 2 and 4 with the matching y, plot the four points, and decide whether (3, 2) and (1.5, 5) are solutions. Givens: the equation and the four x-values.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Each y is found by putting the chosen x into the equation.",
+              "evidence_of": "Generating pairs by fixing one variable."
+            },
+            {
+              "criterion": "(3, 2) and (1.5, 5) are judged by substitution, not by whether they appear in the table.",
+              "evidence_of": "Every point satisfying the equation is a solution."
+            }
+          ],
+          "accepted": [
+            "Table: (0, 8), (1, 6), (2, 4), (4, 0), all on one line. (3, 2): 6 + 2 = 8, a solution. (1.5, 5): 3 + 5 = 8, a solution."
+          ],
+          "rejected": [
+            "(3, 2) is not a solution because it is not in my table.",
+            "The equation has only one solution, (4, 0)."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Write 2x + y = 8 as ax + by + c = 0. What are a and b, and are both non-zero?",
+              "why_this_ask": "Confirms the object is a linear equation in two variables before any solving.",
+              "from_step_ref": "LEQ4-1"
+            },
+            {
+              "ask": "Is (1, 6) a solution? Which number goes in for x and which for y?",
+              "why_this_ask": "Makes the order of the pair part of the test.",
+              "from_step_ref": "LEQ4-2"
+            },
+            {
+              "ask": "If x = 3, what must y be? Could you have picked a different x?",
+              "why_this_ask": "The learner discovers that the choice is free, which is where 'infinitely many' comes from.",
+              "from_step_ref": "LEQ4-3"
+            },
+            {
+              "ask": "Plot your pairs. What shape do they make, and is a point between two of them also a solution?",
+              "why_this_ask": "Connects the pairs to the line and the line to all solutions.",
+              "from_step_ref": "LEQ4-4"
+            },
+            {
+              "ask": "Where does your line cross the y-axis, and which variable is zero there?",
+              "why_this_ask": "Ties axis crossings to setting one variable to zero.",
+              "from_step_ref": "LEQ4-5"
+            }
+          ],
+          "differs_from_teaching_path": "The learner chooses x-values freely and has to notice for themselves that the choices never run out and that the points line up, rather than being told there are infinitely many solutions on a line."
+        },
+        "boundary_test": {
+          "prompt": "Change b in 2x + 3y = 6 to 0. Is 2x + 0y = 6 still a linear equation in two variables in the Exemplar's sense, and which pairs satisfy it?",
+          "answer": "No: the definition needs b ≠ 0. It reduces to x = 3, so every pair (3, y) satisfies it, whatever y is.",
+          "confirms": "The learner knows why the definition requires both coefficients non-zero and what the equation says when one is zero."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MAT-LEQ-04-1",
+          "decision": "Read a solution as an ordered pair and test it by putting each value in its own variable's place.",
+          "step_refs": [
+            "LEQ4-1",
+            "LEQ4-2"
+          ],
+          "representation_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "reveal_stage_refs": [
+            "VIS-MAT-LEQ-04-G0",
+            "VIS-MAT-LEQ-04-G1"
+          ],
+          "worked_anchor_ref": "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+          "misconception_indexes": [
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "Swap the pair's values and test again: if the swapped pair also works, the equation must treat x and y symmetrically; otherwise the order matters.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "statement": "Write the equation in the form ax + by + c = 0 and confirm the tested pair gives exactly 0.",
+              "check_type": "ALTERNATE_METHOD"
+            }
+          ]
+        },
+        {
+          "id": "CU-MAT-LEQ-04-2",
+          "decision": "Generate solutions by fixing one variable and solving for the other, and conclude that the solutions never run out.",
+          "step_refs": [
+            "LEQ4-3"
+          ],
+          "representation_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "reveal_stage_refs": [
+            "VIS-MAT-LEQ-04-G1",
+            "VIS-MAT-LEQ-04-G2"
+          ],
+          "worked_anchor_ref": "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Substitute each generated pair back into the equation: each must satisfy it.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "statement": "Solve for x from a chosen y instead: the pair must agree with the one found from x.",
+              "check_type": "INVERSE_OPERATION"
+            }
+          ]
+        },
+        {
+          "id": "CU-MAT-LEQ-04-3",
+          "decision": "Read the straight-line graph as all the solutions, and find axis crossings by setting the other variable to 0.",
+          "step_refs": [
+            "LEQ4-4",
+            "LEQ4-5"
+          ],
+          "representation_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+          "reveal_stage_refs": [
+            "VIS-MAT-LEQ-04-G2",
+            "VIS-MAT-LEQ-04-G3"
+          ],
+          "worked_anchor_ref": "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+          "misconception_indexes": [
+            2
+          ],
+          "independent_checks": [
+            {
+              "statement": "Pick a point read off the line between two plotted points and substitute it: it must satisfy the equation.",
+              "check_type": "GRAPHICAL_CHECK"
+            },
+            {
+              "statement": "The x-axis crossing must have y = 0 and the y-axis crossing x = 0; substitute each.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Where does the graph of 3x + 4y = 12 cut the x-axis?",
+        "result": "Put y = 0: 3x = 12, so x = 4 and the point is (4, 0)."
+      }
     }
   ],
   "relations": [
@@ -1925,6 +2290,196 @@
         "Try two different values in the original equation: for an identity both work, for a contradiction neither does."
       ],
       "gate_relation_ref": "REL-MAT-LEQ-03-REDUCED-OUTCOMES"
+    },
+    {
+      "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-001",
+        "EV-MAT-09-LEQ-04-005",
+        "EV-MAT-09-LEQ-04-002",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-017",
+        "EV-MAT-09-LEQ-04-006",
+        "EV-MAT-09-LEQ-04-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-005"
+          ],
+          "meaning": [
+            "EV-MAT-09-LEQ-04-002",
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-005",
+            "EV-MAT-09-LEQ-04-017"
+          ],
+          "derivation": [
+            "EV-MAT-09-LEQ-04-006"
+          ],
+          "limits": [
+            "EV-MAT-09-LEQ-04-007"
+          ],
+          "checks": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+      "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
+      "symbols": [
+        {
+          "symbol": "x, y",
+          "meaning": "The two variables",
+          "unit_or_domain": "real numbers"
+        },
+        {
+          "symbol": "a, b",
+          "meaning": "The coefficients of x and y",
+          "unit_or_domain": "non-zero real numbers"
+        },
+        {
+          "symbol": "c",
+          "meaning": "The constant term",
+          "unit_or_domain": "real number"
+        },
+        {
+          "symbol": "(x₀, y₀)",
+          "meaning": "One solution, written as an ordered pair",
+          "unit_or_domain": "point of the Cartesian plane"
+        }
+      ],
+      "conditions": [
+        "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+        "a, b and c are real numbers.",
+        "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+      ],
+      "derivation": [
+        {
+          "id": "R04-D1",
+          "role": "DECLARE",
+          "action": "Write 3x + 4y = 12 in the form ax + by + c = 0.",
+          "why_valid": "Subtracting 12 from both sides gives the standard form.",
+          "inputs": [],
+          "output": "3x + 4y − 12 = 0: a = 3, b = 4, c = −12"
+        },
+        {
+          "id": "R04-D2",
+          "role": "TRANSFORM",
+          "action": "Fix y = 0 and solve for x.",
+          "why_valid": "Fixing one variable leaves a one-variable equation.",
+          "inputs": [],
+          "output": "3x = 12, x = 4, so (4, 0) is a solution"
+        },
+        {
+          "id": "R04-D3",
+          "role": "TRANSFORM",
+          "action": "Fix x = 0 and solve for y.",
+          "why_valid": "Any value may be fixed; each gives a new pair.",
+          "inputs": [],
+          "output": "4y = 12, y = 3, so (0, 3) is a solution"
+        },
+        {
+          "id": "R04-D4",
+          "role": "VERIFY",
+          "action": "Observe that every choice of one value yields a matching value of the other.",
+          "why_valid": "b ≠ 0 lets y be found for any x, so solutions never run out.",
+          "inputs": [],
+          "output": "infinitely many pairs, all on one straight line"
+        }
+      ],
+      "limits": [
+        "A single pair is only one of infinitely many solutions; calling it 'the solution' is false.",
+        "The relation says nothing about solving two such equations together; that is outside this microtopic."
+      ],
+      "checks": [
+        "Substitute both coordinates of a pair, each in its own place.",
+        "Two found pairs and a third between them on the line must all satisfy the equation."
+      ],
+      "gate_relation_ref": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM"
+    },
+    {
+      "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-9-LINEAR-POLYNOMIALS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-MAT-09-LEQ-04-004"
+          ],
+          "meaning": [
+            "EV-MAT-09-LEQ-04-004"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-004"
+          ],
+          "derivation": "AUTHORED_PEDAGOGICAL",
+          "limits": "AUTHORED_PEDAGOGICAL",
+          "checks": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "expression": "y = ax + b (a straight line with slope a)",
+      "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "The slope of the line (not the coefficient a of ax + by + c = 0)",
+          "unit_or_domain": "real number"
+        },
+        {
+          "symbol": "b",
+          "meaning": "The constant term of the line (not the coefficient b of ax + by + c = 0)",
+          "unit_or_domain": "real number"
+        }
+      ],
+      "conditions": [
+        "x and y are linearly related.",
+        "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
+      ],
+      "derivation": [
+        {
+          "id": "R04-L1",
+          "role": "TRANSFORM",
+          "action": "Solve 3x + 4y = 12 for y.",
+          "why_valid": "Subtracting 3x from both sides and dividing both by the non-zero 4 keeps the solutions.",
+          "inputs": [],
+          "output": "y = −(3/4)x + 3"
+        },
+        {
+          "id": "R04-L2",
+          "role": "VERIFY",
+          "action": "Read the slope and the constant from y = −(3/4)x + 3.",
+          "why_valid": "This is the form y = ax + b.",
+          "inputs": [],
+          "output": "slope −3/4; the line passes through (0, 3)"
+        }
+      ],
+      "limits": [
+        "Rearranging for y needs the coefficient of y to be non-zero."
+      ],
+      "checks": [
+        "The point (0, b) must satisfy the original equation."
+      ],
+      "gate_relation_ref": "REL-MAT-LEQ-04-STRAIGHT-LINE"
     }
   ],
   "representations": [
@@ -2311,6 +2866,145 @@
           "visual_stage_ref": "VIS-MAT-LEQ-03-A2"
         }
       ]
+    },
+    {
+      "id": "REP-MAT-LEQ-04-SOLUTION-LINE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "instance_constraints": [
+            "EV-MAT-09-LEQ-04-003",
+            "EV-MAT-09-LEQ-04-006"
+          ]
+        }
+      },
+      "kind": "COORDINATE_GRAPH",
+      "purpose": "Show solutions of ax + by + c = 0 as a growing table of pairs, then as plotted points, then as the straight line through them, so that 'infinitely many solutions' and 'every point on the line is a solution' become visible claims.",
+      "required_elements": [
+        "labelled x and y axes",
+        "equation label",
+        "table of chosen x and matching y",
+        "plotted solution points",
+        "straight line through the points",
+        "axis-crossing points"
+      ],
+      "relation_refs": [
+        "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+        "REL-MAT-LEQ-04-STRAIGHT-LINE"
+      ],
+      "read_order": [
+        "equation label",
+        "labelled x and y axes",
+        "table of chosen x and matching y",
+        "plotted solution points",
+        "straight line through the points",
+        "axis-crossing points"
+      ],
+      "instance_constraints": [
+        "Every plotted point comes from a table row whose pair satisfies the equation.",
+        "The line passes through every plotted point, and an extra point between them is shown also satisfying the equation.",
+        "Axis crossings are labelled with both coordinates, e.g. (4, 0)."
+      ],
+      "accessibility": [
+        "Each plotted point is labelled with its coordinates in text.",
+        "The table lists the same pairs as the plot, so the graph is not the only carrier."
+      ],
+      "misleading_alternatives": [
+        "Plotting only one point and calling it the solution.",
+        "Drawing points that do not lie on one straight line for a linear equation."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "plotted solution points",
+          "symbol": "(x₀, y₀)",
+          "in_words": "One pair of values that makes the equation true."
+        },
+        {
+          "element": "straight line through the points",
+          "symbol": "ax + by + c = 0",
+          "in_words": "All the pairs that make the equation true."
+        },
+        {
+          "element": "axis-crossing points",
+          "symbol": "(x, 0), (0, y)",
+          "in_words": "Solutions where one variable is zero."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-MAT-LEQ-04-G0",
+          "label": "Axes and equation",
+          "purpose": "Show the equation and empty axes; ask for one pair before anything is drawn.",
+          "visible_elements": [
+            "labelled x and y axes",
+            "equation label"
+          ]
+        },
+        {
+          "id": "VIS-MAT-LEQ-04-G1",
+          "label": "Table of pairs",
+          "purpose": "Show chosen x-values with the matching y-values computed from the equation.",
+          "visible_elements": [
+            "labelled x and y axes",
+            "equation label",
+            "table of chosen x and matching y"
+          ]
+        },
+        {
+          "id": "VIS-MAT-LEQ-04-G2",
+          "label": "Plotted points",
+          "purpose": "Plot the table's pairs and let the learner notice they line up.",
+          "visible_elements": [
+            "labelled x and y axes",
+            "equation label",
+            "table of chosen x and matching y",
+            "plotted solution points"
+          ]
+        },
+        {
+          "id": "VIS-MAT-LEQ-04-G3",
+          "label": "Line of solutions",
+          "purpose": "Draw the straight line through the points, label the axis crossings, and mark a new point on the line that also satisfies the equation.",
+          "visible_elements": [
+            "labelled x and y axes",
+            "equation label",
+            "table of chosen x and matching y",
+            "plotted solution points",
+            "straight line through the points",
+            "axis-crossing points"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-MAT-LEQ-04-G0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-MAT-LEQ-04-G1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-MAT-LEQ-04-G2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -2502,6 +3196,68 @@
         "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
         "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
         "Q-MAT-LEQ-03-EXEMPLAR8-Q61"
+      ]
+    },
+    {
+      "id": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "common_wrong_routes": [
+            "EV-MAT-09-LEQ-04-007"
+          ]
+        }
+      },
+      "title": "Solutions and graphs of linear equations in two variables",
+      "capability_refs": [
+        "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS"
+      ],
+      "solution_structure": [
+        "Check the form ax + by + c = 0 with a and b non-zero.",
+        "Test a pair by substituting each value in its own place.",
+        "Generate pairs by fixing one variable; conclude there are infinitely many.",
+        "Read the straight line as all solutions and axis crossings as the pairs with a zero coordinate."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the equation is being read with one variable (number line) or two (plane).",
+        "representation_translation": "Move between an equation, a table of pairs, and points on a line.",
+        "reasoning_steps": "One or two substitutions, or a short solve after fixing a variable.",
+        "novelty": "A pair, not a single number, is the solution, and the unknown may be a constant fixed by a given pair."
+      },
+      "safe_variations": [
+        "Change the coefficients, keeping both non-zero.",
+        "Ask for the x-axis or the y-axis crossing.",
+        "Give a pair and hide the constant term."
+      ],
+      "transfer_boundaries": [
+        "Two simultaneous equations belong to a later chapter.",
+        "If a or b is zero the statement is not a linear equation in two variables in this sense."
+      ],
+      "common_wrong_routes": [
+        "Say the equation has a unique solution.",
+        "Swap the pair's values when substituting.",
+        "Match a pair's numbers to the coefficients instead of substituting them."
+      ],
+      "item_refs": [
+        "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+        "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+        "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7"
       ]
     }
   ],
@@ -5209,6 +5965,1063 @@
         "closure": "Established: with the right-hand side zero, the whole task is the reduction; the negative factor reaches every term of its bracket."
       },
       "repair_ref": "LEQ3-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-1A-TEST-PAIRS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-001"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "grounding": [
+            "EV-MAT-09-LEQ-04-001"
+          ]
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+      "original_identifier": "AUTHOR-MAT-LEAUTHOR-04-1A-TEST-PAIRS",
+      "stem": "Which of (2, 1), (1, 2) and (4, 0) are solutions of x + 2y = 4? Substitute each value in its own variable's place.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "In a pair (x, y), the first value is x and the second is y."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(2, 1) and (4, 0) are solutions; (1, 2) is not.",
+        "reasoning": [
+          "(2, 1): 2 + 2(1) = 4, a solution.",
+          "(1, 2): 1 + 2(2) = 5, not a solution.",
+          "(4, 0): 4 + 2(0) = 4, a solution."
+        ],
+        "check": "Swapping (2, 1) to (1, 2) changes the value from 4 to 5, so order matters here.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0",
+          "VIS-MAT-LEQ-04-G1"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": null
+      },
+      "repair_ref": "LEQ4-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-1A-GENERATE-PAIRS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "grounding": [
+            "EV-MAT-09-LEQ-04-002"
+          ]
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+      "original_identifier": "AUTHOR-MAT-LEAUTHOR-04-1A-GENERATE-PAIRS",
+      "stem": "Find four solutions of 2x + y = 5 by choosing x = 0, 1, 2 and 3. How many solutions does the equation have?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Any real value may be chosen for x."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(0, 5), (1, 3), (2, 1) and (3, −1); the equation has infinitely many solutions.",
+        "reasoning": [
+          "x = 0: y = 5.",
+          "x = 1: y = 3.",
+          "x = 2: y = 1.",
+          "x = 3: y = −1.",
+          "Every other choice of x gives another pair, so there are infinitely many."
+        ],
+        "check": "Each pair gives 5: 0 + 5, 2 + 3, 4 + 1 and 6 − 1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G1",
+          "VIS-MAT-LEQ-04-G2"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": null
+      },
+      "repair_ref": "LEQ4-3"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-1A-READ-THE-LINE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL",
+          "grounding": [
+            "EV-MAT-09-LEQ-04-003",
+            "EV-MAT-09-LEQ-04-006"
+          ]
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-AUTHOR-MAT-09-LEQ-STAGING",
+      "original_identifier": "AUTHOR-MAT-LEAUTHOR-04-1A-READ-THE-LINE",
+      "stem": "Find where the graph of x − y = 2 cuts each axis, then decide whether the point (5, 3), which lies on that line, is a solution.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "An axis crossing has the other coordinate equal to 0."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "It cuts the x-axis at (2, 0) and the y-axis at (0, −2); (5, 3) is a solution.",
+        "reasoning": [
+          "y = 0 gives x = 2: the x-axis crossing (2, 0).",
+          "x = 0 gives −y = 2, y = −2: the y-axis crossing (0, −2).",
+          "(5, 3) is on the line, and 5 − 3 = 2 confirms it is a solution."
+        ],
+        "check": "The midpoint (1, −1) of the two crossings also gives 1 − (−1) = 2.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G2",
+          "VIS-MAT-LEQ-04-G3"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": null
+      },
+      "repair_ref": "LEQ4-4"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-008",
+        "EV-MAT-09-LEQ-04-001",
+        "EV-MAT-09-LEQ-04-002",
+        "EV-MAT-09-LEQ-04-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-04-008"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-001",
+            "EV-MAT-09-LEQ-04-002"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-04-009"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q1",
+      "stem": "The linear equation 2x – 5y = 7 has",
+      "subparts": [],
+      "options": [
+        "(A) A unique solution",
+        "(B) Two solutions",
+        "(C) Infinitely many solutions",
+        "(D) No solution"
+      ],
+      "conditions": [
+        "x and y are real numbers.",
+        "Exactly one option is correct."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) Infinitely many solutions",
+        "reasoning": [
+          "2x − 5y = 7 has the form ax + by + c = 0 with a = 2, b = −5, both non-zero.",
+          "Any x gives a matching y: x = 1 gives y = −1, x = 6 gives y = 1.",
+          "So there are infinitely many solutions, option (C), matching the official key."
+        ],
+        "check": "(1, −1): 2 + 5 = 7. (6, 1): 12 − 5 = 7.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "Q1-REP",
+            "kind": "REPRESENT",
+            "action": "Identify the equation as two-variable with a = 2 and b = −5.",
+            "why_valid": "Both coefficients are non-zero, so the definition applies.",
+            "inputs": [],
+            "output": "a linear equation in two variables"
+          },
+          {
+            "id": "Q1-DEC",
+            "kind": "DECIDE",
+            "action": "Test whether solutions stop after one by generating two different pairs.",
+            "why_valid": "If two different pairs work, 'unique' and 'no solution' are ruled out, and the free choice of x rules out 'two'.",
+            "inputs": [],
+            "output": "(1, −1) and (6, 1)"
+          },
+          {
+            "id": "Q1-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute both pairs.",
+            "why_valid": "Both must give 7.",
+            "inputs": [],
+            "output": "7 and 7"
+          }
+        ],
+        "crux_move_ref": "Q1-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "How many unknowns does 2x − 5y = 7 have, and what does one solution look like?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q1-REP"
+        },
+        {
+          "text": "Make a table: choose x = 1, then x = 6, and find y each time.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q1-DEC"
+        },
+        {
+          "text": "Could you have chosen any other x? What does that say about the number of solutions?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q1-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "failure_signal": "You chose (A): one pair such as (1, −1) works, but so does (6, 1), and every other x gives its own y.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": "Established: a linear equation in two variables has a solution for every choice of one variable, so its solutions are infinitely many."
+      },
+      "repair_ref": "LEQ4-3"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-010",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-011"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-04-010"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-04-011"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q3",
+      "stem": "If (2, 0) is a solution of the linear equation 2x + 3y = k, then the value of k is",
+      "subparts": [],
+      "options": [
+        "(A) 4",
+        "(B) 6",
+        "(C) 5",
+        "(D) 2"
+      ],
+      "conditions": [
+        "(2, 0) means x = 2 and y = 0.",
+        "A solution makes the equation true."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(A) 4",
+        "reasoning": [
+          "A solution makes the equation true, so put x = 2 and y = 0 into 2x + 3y = k.",
+          "2(2) + 3(0) = k, so k = 4, option (A), matching the official key."
+        ],
+        "check": "With k = 4, the pair (2, 0) gives 4 + 0 = 4.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "Q3-REP",
+            "kind": "REPRESENT",
+            "action": "Read (2, 0) as x = 2, y = 0.",
+            "why_valid": "The first coordinate is x and the second is y.",
+            "inputs": [],
+            "output": "x = 2, y = 0"
+          },
+          {
+            "id": "Q3-DEC",
+            "kind": "DECIDE",
+            "action": "Substitute both coordinates to turn the equation into one for k.",
+            "why_valid": "A stated solution must make the two sides equal, which fixes the constant.",
+            "inputs": [],
+            "output": "2(2) + 3(0) = k"
+          },
+          {
+            "id": "Q3-SOL",
+            "kind": "TRANSFORM",
+            "action": "Evaluate.",
+            "why_valid": "Arithmetic.",
+            "inputs": [],
+            "output": "k = 4"
+          },
+          {
+            "id": "Q3-CHK",
+            "kind": "VERIFY",
+            "action": "Check another pair on the line 2x + 3y = 4, such as (−1, 2).",
+            "why_valid": "If k is right, other pairs on the same line also satisfy it.",
+            "inputs": [],
+            "output": "−2 + 6 = 4"
+          }
+        ],
+        "crux_move_ref": "Q3-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Which number in (2, 0) is x and which is y?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q3-REP"
+        },
+        {
+          "text": "Once you have a number for k, compute 2x + 3y for your pair to confirm.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q3-SOL"
+        },
+        {
+          "text": "Try another point with your k, such as (−1, 2), as a check.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q3-CHK"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "failure_signal": "You chose (B) 6: that puts 2 in for y (3 × 2) instead of for x. With x = 2 and y = 0, 2(2) + 3(0) = 4.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": "Established: a given solution pair fixes a missing constant once each coordinate goes into its own variable."
+      },
+      "repair_ref": "LEQ4-2",
+      "transfer": {
+        "dimension": "novelty",
+        "statement": "Novelty: the given solution is a pair, so two values must each be substituted into its own variable before the constant can be found; in the one-variable reverse item a single number fixed the constant. The decision is new because putting a coordinate in the wrong place now gives a plausible option.",
+        "builds_on": [
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+          "Q-MAT-LEQ-04-1A-TEST-PAIRS"
+        ],
+        "protected_move_ref": "Q3-DEC",
+        "invariant": "A solution is whatever makes the equation true when substituted; that test still fixes the missing constant."
+      },
+      "independent_check": {
+        "statement": "(−1, 2) lies on 2x + 3y = 4: −2 + 6 = 4; with option (B), k = 6, the given pair (2, 0) would give 4, not 6.",
+        "check_type": "SPECIAL_CASE"
+      }
+    },
+    {
+      "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-012",
+        "EV-MAT-09-LEQ-04-001",
+        "EV-MAT-09-LEQ-04-013"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-04-012"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-001"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-04-013"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q11",
+      "stem": "x = 5, y = 2 is a solution of the linear equation",
+      "subparts": [],
+      "options": [
+        "(A) x + 2y = 7",
+        "(B) 5x + 2y = 7",
+        "(C) x + y = 7",
+        "(D) 5x + y = 7"
+      ],
+      "conditions": [
+        "Substitute x = 5 and y = 2 into each option.",
+        "Exactly one option is correct."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) x + y = 7",
+        "reasoning": [
+          "(A): 5 + 4 = 9. (B): 25 + 4 = 29. (C): 5 + 2 = 7. (D): 25 + 2 = 27.",
+          "Only (C) gives 7, matching the official key."
+        ],
+        "check": "5 + 2 = 7.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "Q11-REP",
+            "kind": "REPRESENT",
+            "action": "Keep x = 5 and y = 2 as values to substitute, not as coefficients.",
+            "why_valid": "A solution is tested by substitution.",
+            "inputs": [],
+            "output": "x = 5, y = 2"
+          },
+          {
+            "id": "Q11-DEC",
+            "kind": "DECIDE",
+            "action": "Evaluate every option's LHS rather than matching numbers by sight.",
+            "why_valid": "Options (B) and (D) reuse 5 and 2 as coefficients to tempt a visual match.",
+            "inputs": [],
+            "output": "9, 29, 7, 27"
+          },
+          {
+            "id": "Q11-CHK",
+            "kind": "VERIFY",
+            "action": "Select the option whose LHS equals 7.",
+            "why_valid": "The sides must be equal.",
+            "inputs": [],
+            "output": "(C)"
+          }
+        ],
+        "crux_move_ref": "Q11-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Are 5 and 2 the coefficients or the values of x and y?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q11-REP"
+        },
+        {
+          "text": "Make a four-row table: each option's left side with x = 5 and y = 2.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q11-DEC"
+        },
+        {
+          "text": "Compute option (A): 5 + 2 × 2. Carry on down the list.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q11-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "failure_signal": "You chose (B) 5x + 2y = 7, matching 5 and 2 to the coefficients instead of substituting them: 5(5) + 2(2) = 29.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": "Established: a pair is checked against an equation by substituting, never by matching its numbers to the coefficients."
+      },
+      "repair_ref": "LEQ4-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-014",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-015"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-04-014"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-003"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-04-015"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.2 / Q1",
+      "stem": "Write whether the following statement is True or False? Justify your answer: The point (0, 3) lies on the graph of the linear equation 3x + 4y = 12.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "A point lies on the graph exactly when its coordinates satisfy the equation."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "True, since (0, 3) satisfies 3x + 4y = 12.",
+        "reasoning": [
+          "Every point on the graph represents a solution, and every solution is a point on it.",
+          "Substitute x = 0, y = 3: 3(0) + 4(3) = 12.",
+          "So (0, 3) lies on the graph: True, as the official answer states."
+        ],
+        "check": "(0, 3) is the y-axis crossing: putting x = 0 gives 4y = 12, y = 3.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "Q21-REP",
+            "kind": "REPRESENT",
+            "action": "Translate 'lies on the graph' into 'satisfies the equation'.",
+            "why_valid": "The graph is exactly the set of solutions.",
+            "inputs": [],
+            "output": "Is 3(0) + 4(3) = 12?"
+          },
+          {
+            "id": "Q21-DEC",
+            "kind": "DECIDE",
+            "action": "Substitute 0 for x and 3 for y, in that order.",
+            "why_valid": "The first coordinate is x.",
+            "inputs": [],
+            "output": "0 + 12 = 12"
+          },
+          {
+            "id": "Q21-CHK",
+            "kind": "VERIFY",
+            "action": "Confirm by finding the y-axis crossing directly.",
+            "why_valid": "The y-axis crossing has x = 0.",
+            "inputs": [],
+            "output": "y = 3"
+          }
+        ],
+        "crux_move_ref": "Q21-REP"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What has to be true of a point's coordinates for it to be on the graph of an equation?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q21-REP"
+        },
+        {
+          "text": "Plot the line through (4, 0) and look at where it meets the y-axis.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q21-REP"
+        },
+        {
+          "text": "Put x = 0 and y = 3 into 3x + 4y. Is it 12?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q21-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "safe_ref": null,
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "failure_signal": "You said False after substituting x = 3, y = 0 (reading the pair backwards): 9 is not 12. In (0, 3), x = 0 and y = 3, which gives 12.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": "Established: 'lies on the graph' and 'is a solution' are the same claim, tested by substitution."
+      },
+      "repair_ref": "LEQ4-4"
+    },
+    {
+      "id": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-04-016",
+        "EV-MAT-09-LEQ-04-003",
+        "EV-MAT-09-LEQ-04-002",
+        "EV-MAT-09-LEQ-04-017"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-04-016"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-04-003",
+            "EV-MAT-09-LEQ-04-002"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-04-017"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.3 / Q7",
+      "stem": "How many solution(s) of the equation 2x + 1 = x – 3 are there on the : (i) Number line (ii) Cartesian plane",
+      "subparts": [
+        "(i) Number line",
+        "(ii) Cartesian plane"
+      ],
+      "options": [],
+      "conditions": [
+        "On the number line only x varies; on the Cartesian plane each solution is a point (x, y)."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(i) One solution. (ii) Infinitely many solutions.",
+        "reasoning": [
+          "On the number line: subtract x and 1 from both sides to get x = −4, one solution.",
+          "On the Cartesian plane a solution is a pair (x, y); y does not appear, so any y works with x = −4.",
+          "(−4, 0), (−4, 1), (−4, 2), … all satisfy it: infinitely many, matching the official answer."
+        ],
+        "check": "2(−4) + 1 = −7 and −4 − 3 = −7, whatever y is.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [
+          "(i) One solution, x = −4.",
+          "(ii) Infinitely many solutions, the points (−4, y)."
+        ],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "Q37-REP",
+            "kind": "REPRESENT",
+            "action": "Solve the one-variable equation: x = −4.",
+            "why_valid": "Balanced operations give the single number satisfying it.",
+            "inputs": [],
+            "output": "x = −4"
+          },
+          {
+            "id": "Q37-DEC",
+            "kind": "DECIDE",
+            "action": "On the plane, treat each solution as a pair and notice y is unconstrained.",
+            "why_valid": "The equation only restricts x, so every y pairs with x = −4.",
+            "inputs": [],
+            "output": "(−4, y) for every y"
+          },
+          {
+            "id": "Q37-CHK",
+            "kind": "VERIFY",
+            "action": "Test two such pairs.",
+            "why_valid": "Each must satisfy the equation.",
+            "inputs": [],
+            "output": "(−4, 0) and (−4, 5) both give −7 = −7"
+          }
+        ],
+        "crux_move_ref": "Q37-DEC",
+        "rubric": [
+          {
+            "criterion": "Part (i) gives one solution, x = −4.",
+            "evidence_of": "One-variable solving."
+          },
+          {
+            "criterion": "Part (ii) argues from pairs (−4, y) with y free.",
+            "evidence_of": "Changing the setting changes what a solution is."
+          }
+        ]
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Solve 2x + 1 = x − 3 for x first.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q37-REP"
+        },
+        {
+          "text": "On a number line, a solution is a point with one coordinate. On the plane, what does a solution point look like?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q37-REP"
+        },
+        {
+          "text": "Check (−4, 0) and (−4, 5) in the equation once you have decided.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q37-CHK"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "bound_ref": "REP-MAT-LEQ-04-SOLUTION-LINE",
+        "stage_refs": [
+          "VIS-MAT-LEQ-04-G0"
+        ]
+      },
+      "failure_signal": "You answered one for both parts: on the Cartesian plane each solution is a point (x, y), and (−4, 0), (−4, 1), (−4, 2) all satisfy 2x + 1 = x − 3 because y does not appear.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES",
+        "closure": "Established: the number of solutions depends on the setting; the same equation has one solution on the number line and infinitely many points on the plane."
+      },
+      "repair_ref": "LEQ4-3",
+      "transfer": {
+        "dimension": "model_choice",
+        "statement": "Novelty: the equation is familiar one-variable work, but the learner must choose how to read it in each setting; on the plane a solution is a pair, so the absent y is free. The decision is new because every earlier item fixed the setting in advance.",
+        "builds_on": [
+          "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+          "Q-MAT-LEQ-02-1A-DIVIDE-AND-CHECK"
+        ],
+        "protected_move_ref": "Q37-DEC",
+        "invariant": "Balanced operations still give x = −4, and a solution is still whatever makes the equation true when substituted."
+      }
     }
   ],
   "teaching_routes": [],
@@ -5220,7 +7033,8 @@
       "affected_refs": [
         "MIC-MAT-LEQ-01-SOLUTION-BY-SUBSTITUTION",
         "MIC-MAT-LEQ-02-VARIABLE-ON-BOTH-SIDES",
-        "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM"
+        "MIC-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+        "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS"
       ],
       "classification": "CAPABILITY_LIMIT",
       "description": "Exit-task answers that state a computed value were checked by the author only; this staging package binds no subject validator or data records to them.",
