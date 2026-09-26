@@ -4,25 +4,34 @@
   "node_ref": "PHY-11-MOTION-IN-A-PLANE-03",
   "verified_by": "agent-verifier-1",
   "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:ad24b4094abb34e8d876402d2c586282747ad402bc492a35c8cedaf1b77bf88d",
+  "inputs_digest": "sha256:216a3f53a4cdc85daeef7254c1db4f47d29eaa1e9865a0e5672f192f17ff08ee",
   "questions": [
     {
       "card_ref": "EV-PHY-11-MIP-03-011",
       "independent_solution": [
-        "Full stem read on the pinned pages 20-21: (a) |a+b| <= |a|+|b|, (b) |a+b| >= ||a|-|b||, (c) |a-b| <= |a|+|b|, (d) |a-b| >= ||a|-|b||; when does equality apply?",
-        "Draw a and b head to tail: a, b, a+b form a triangle, so the side |a+b| is at most the sum and at least the difference of the other two sides -> (a), (b). Replace b by -b (same magnitude): a, -b, a-b form a triangle -> (c), (d).",
-        "The triangle degenerates to a line only for collinear vectors: (a) and (d) become equalities when a, b are parallel (same direction); (b) and (c) when a, b are antiparallel (or either is zero)."
+        "Draw a from O to P and b from P to Q; a + b is OQ, the third side of triangle OPQ. A side is never longer than the sum of the other two, so |a+b| <= |a|+|b| (a); and never shorter than their difference, so |a+b| >= ||a|-|b|| (b).",
+        "Replace b by -b (same length |b|): the triangle a, -b, a-b gives |a-b| <= |a|+|b| (c) and |a-b| >= ||a|-|b|| (d).",
+        "Equality needs a degenerate (flat) triangle, i.e. a and b collinear: (a),(d) when parallel, (b),(c) when antiparallel."
       ],
-      "independent_answer": "All four follow from the triangle inequality; equality holds only for collinear vectors ((a),(d) parallel; (b),(c) antiparallel).",
+      "independent_answer": "All four follow from the triangle side rules; the equality signs apply only when a and b are collinear.",
+      "official_answer": "Hint: the sum (difference) of any two sides of a triangle is never less (greater) than the third side. Equality holds for collinear vectors.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-017",
+      "independent_solution": [
+        "Continuation of 3.6: with -b in place of b, the triangle formed by a, -b and a - b has sides |a|, |b|, |a-b|.",
+        "Hence |a-b| <= |a|+|b| and |a-b| >= ||a|-|b||, with equality only for collinear a and b (antiparallel for (c), parallel for (d))."
+      ],
+      "independent_answer": "(c) and (d) hold by the triangle rule applied to a + (-b); equality only for collinear vectors.",
       "official_answer": "Hint: the sum (difference) of any two sides of a triangle is never less (greater) than the third side. Equality holds for collinear vectors.",
       "agrees": true
     },
     {
       "card_ref": "EV-PHY-11-MIP-03-012",
       "independent_solution": [
-        "Full stem read on pinned page 21 including option (d). a+b+c+d = 0 closes a head-to-tail polygon; (a) is false: four non-zero vectors can close a quadrilateral.",
-        "(b) a+c = -(b+d), so |a+c| = |b+d|: true. (c) a = -(b+c+d), so |a| = |b+c+d| <= |b|+|c|+|d|: true.",
-        "(d) b+c = -(a+d); a+d lies in the plane of a and d (on their line if collinear), so b+c does too: true."
+        "(a) False: four non-zero vectors forming a closed quadrilateral sum to zero. (b) a + c = -(b + d), and a vector and its negative have equal magnitudes: true.",
+        "(c) a = -(b+c+d), so |a| = |b+c+d| <= |b|+|c|+|d|: true. (d) b + c = -(a + d), a linear combination of a and d, so it lies in their plane (or on their line if collinear): true."
       ],
       "independent_answer": "(b), (c) and (d) are correct; (a) is not.",
       "official_answer": "All statements except (a) are correct",
@@ -31,12 +40,11 @@
     {
       "card_ref": "EV-PHY-11-MIP-03-014",
       "independent_solution": [
-        "Rewrite each relation with one vector alone: (a) c = a+b, (b) a = b+c, (c) b = a+c, (d) a+b+c = 0 (closed triangle).",
-        "Read arrow directions on the pinned figure (page 6): (i) a up, c from head of a to the right, b from origin to that point -> b = a+c; (ii) a right, b up from head of a, c back to origin -> a+b+c = 0; (iii) c left from origin, b from tail of c up to the top, a from origin up -> a = c+b; (iv) a left, b down from head of a, c from origin to bottom-left -> c = a+b.",
-        "Match: (a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)."
+        "Read the figure (pinned page 6): (i) a up from O, c rightwards from a's head, b from O to c's head, so a + c = b; (ii) a right, b up from a's head, c from b's head back to O, so a + b + c = 0; (iii) c left from O, b from c's head up to a's head, a up from O, so c + b = a; (iv) a left from O, b down from a's head, c from O to b's head, so a + b = c.",
+        "Rewrite Column I: (a) a + b = c -> (iv); (b) a - c = b i.e. a = b + c -> (iii); (c) b - a = c i.e. b = a + c -> (i); (d) a + b + c = 0 -> (ii)."
       ],
       "independent_answer": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)",
-      "official_answer": "(a) matches with (iv), (b) matches with (iii), (c) matches with (i), (d) matches with (ii)",
+      "official_answer": "(a) matches with (iv) (b) matches with (iii) (c) matches with (i) (d) matches with (ii)",
       "agrees": true
     }
   ],
@@ -57,8 +65,7 @@
       "record_ref": "CAP-PHY-MIP-03",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -92,8 +99,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -114,8 +120,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -125,27 +131,11 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     }
   ],
-  "findings": [
-    {
-      "target": "EV-PHY-11-MIP-03-011",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote stops at 'Establish the following vector inequalities geometrically or otherwise :' and omits the four inequalities (a)-(d) and 'When does the equality sign above apply?' (NCERT p.46-47, pinned pages 20-21). The claim ('establish the triangle inequalities for |a+b| and |a-b| and say when equality applies') and the record stem Q-PHY-MIP-03-NCERT-3-6 therefore carry text no quote supports. Add the missing text as quoted evidence (a second QUESTION card for the page-21 part if one card cannot span pages)."
-    },
-    {
-      "target": "EV-PHY-11-MIP-03-012",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote ends after option (c) and omits option (d) 'b + c must lie in the plane of a and d if a and d are not collinear, and in the line of a and d, if they are collinear ?', which is on the same pinned page 21. The record stem Q-PHY-MIP-03-NCERT-3-7 includes (d) and the key 'All statements except (a)' depends on it. Extend the quote to the end of the question."
-    },
-    {
-      "target": "EV-PHY-11-MIP-03-014",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card claim lists the Column I relations (a+b=c, a-c=b, b-a=c, a+b+c=0) but the quote ends at 'Match the relation in column I to correct orientations in column II.' and contains none of them; the record stem Q-PHY-MIP-03-EXEMPLAR-4-26 also carries them. Quote the Column I relations from pinned page 6 (or drop them from the claim)."
-    }
-  ]
+  "findings": []
 }
