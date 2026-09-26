@@ -4,25 +4,25 @@
   "node_ref": "PHY-11-MOTION-IN-A-PLANE-05",
   "verified_by": "agent-verifier-1",
   "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:6b3056bb14a50e912eb180628e150b5e221ab70972cdff2e322a89d7c76681ef",
+  "inputs_digest": "sha256:62603d7a4e41dc2e2f66cdc4353a260bed98c543b7c8a15fa29aca78fa8972c7",
   "questions": [
     {
       "card_ref": "EV-PHY-11-MIP-05-010",
       "independent_solution": [
-        "Each leg is 500 m; after every leg the heading turns 60 deg left, so leg k points at 60(k-1) deg and six legs close a regular hexagon of side 500 m.",
-        "Third turn (3 legs): R = 500[(1,0) + (0.5,0.866) + (-0.5,0.866)] = (500, 866) m -> |R| = 1000 m at 60 deg to the initial direction; path 1.5 km.",
-        "Sixth turn: closed hexagon, R = 0, path 3 km. Eighth turn = second vertex again: R = (750, 433) m -> 866 m (= 500 sqrt3) at 30 deg; path 4 km. In each case |R| < path length."
+        "Leg k (500 m) points at 60(k-1) deg. After 3 legs: x = 500(cos0 + cos60 + cos120) = 500 m, y = 500(sin0 + sin60 + sin120) = 866 m, so |d| = 1000 m at atan(866/500) = 60 deg to the start direction; path 1.5 km.",
+        "After 6 legs the headings 0..300 deg close a regular hexagon: displacement is the null vector; path 3 km.",
+        "After 8 legs = hexagon + 2 legs: x = 500(1 + 0.5) = 750 m, y = 433 m, so |d| = 866 m at 30 deg; path 4 km. Path length exceeds |displacement| in every case."
       ],
-      "independent_answer": "3rd turn: 1 km at 60 deg to the initial direction (path 1.5 km); 6th: null displacement (path 3 km); 8th: 866 m at 30 deg (path 4 km).",
+      "independent_answer": "1 km at 60 deg (path 1.5 km); null vector (path 3 km); 866 m at 30 deg (path 4 km)",
       "official_answer": "Displacement of magnitude 1 km and direction 60 deg with the initial direction; path 1.5 km (third turn); null displacement, path 3 km (sixth turn); 866 m, 30 deg, 4 km (eighth turn)",
       "agrees": true,
-      "numeric_check": "sqrt((0.5*(1+cos(radians(60))+cos(radians(120))))**2 + (0.5*(sin(radians(60))+sin(radians(120))))**2)"
+      "numeric_check": "sqrt((500*(1+cos(radians(60))+cos(radians(120))))**2 + (500*(sin(radians(60))+sin(radians(120))))**2)/1000"
     },
     {
       "card_ref": "EV-PHY-11-MIP-05-012",
       "independent_solution": [
-        "A.B = (1)(1) + (1)(-1) = 0 and |A| = |B| = sqrt2.",
-        "cos(theta) = A.B/(|A||B|) = 0 -> theta = 90 deg: option (b)."
+        "A.B = (1)(1) + (1)(-1) = 0 while |A| = |B| = sqrt2.",
+        "cos(theta) = 0/(sqrt2 sqrt2) = 0, so theta = 90 deg: option (b)."
       ],
       "independent_answer": "(b) 90 deg",
       "official_answer": "(b), 90 deg",
@@ -32,9 +32,8 @@
     {
       "card_ref": "EV-PHY-11-MIP-05-014",
       "independent_solution": [
-        "Full options read on pinned page 4. |A+B|^2 = A^2 + B^2 + 2AB cos(theta); |A-B|^2 = A^2 + B^2 - 2AB cos(theta).",
-        "Equal iff AB cos(theta) = 0: A perpendicular to B, or A = 0 or B = 0. Equal magnitudes alone do not suffice ((a) fails at theta = 0; (c) parallel gives 2A vs 0).",
-        "So (b) and (d)."
+        "|A+B|^2 = A^2 + B^2 + 2AB cos(theta) and |A-B|^2 = A^2 + B^2 - 2AB cos(theta); they are equal iff 4AB cos(theta) = 0.",
+        "That holds when theta = 90 deg (A perpendicular to B) or when A or B is zero; equal non-zero magnitudes alone (a), or equal parallel/antiparallel vectors (c), give |A+B| != |A-B|. So (b) and (d)."
       ],
       "independent_answer": "(b) and (d)",
       "official_answer": "(b), (d)",
@@ -58,8 +57,7 @@
       "record_ref": "CAP-PHY-MIP-05",
       "checked_fields": [
         "action",
-        "success_criterion",
-        "curriculum_mappings"
+        "success_criterion"
       ],
       "agrees": true
     },
@@ -68,6 +66,7 @@
       "checked_fields": [
         "expression",
         "meaning",
+        "symbols",
         "conditions",
         "derivation",
         "limits",
@@ -94,8 +93,7 @@
         "purpose",
         "required_elements",
         "instance_constraints",
-        "misleading_alternatives",
-        "correspondence"
+        "misleading_alternatives"
       ],
       "agrees": true
     },
@@ -105,8 +103,8 @@
         "stem",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     },
@@ -117,10 +115,10 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "record_ref": "Q-PHY-MIP-05-EXEMPLAR-4-15",
@@ -129,22 +127,11 @@
         "options",
         "conditions",
         "answer",
-        "scaffolds",
-        "hints"
+        "hints",
+        "scaffolds"
       ],
       "agrees": true
     }
   ],
-  "findings": [
-    {
-      "target": "Q-PHY-MIP-05-EXEMPLAR-4-1",
-      "duty_for": "AUTHOR",
-      "detail": "answer.check is wrong physics: '|A + B| = |A - B| ... happens only for perpendicular vectors of equal size'. |A+B| = |A-B| holds for perpendicular vectors of any magnitudes (|A+B|^2 - |A-B|^2 = 4AB cos(theta)), as this package's own Q-PHY-MIP-05-EXEMPLAR-4-15 answer shows. Drop 'of equal size' (e.g. 'which happens exactly when A and B are perpendicular')."
-    },
-    {
-      "target": "EV-PHY-11-MIP-05-014",
-      "duty_for": "RESEARCHER",
-      "detail": "QUESTION card quote ends at 'is always true when' and neither the quote nor the card's question metadata holds options (a)-(d) (pinned page 4: '(a) |A| = |B| != 0 (b) A perpendicular B (c) |A| = |B| != 0 and A and B are parallel or anti parallel (d) when either A or B is zero.'). The record Q-PHY-MIP-05-EXEMPLAR-4-15 options and the key '(b), (d)' depend on them. Quote the options."
-    }
-  ]
+  "findings": []
 }
