@@ -81,5 +81,20 @@
       "answer"
     ]
   },
-  "must_cite_cards_note": "These fields carry facts: AUTHORED_PEDAGOGICAL is refused for them (authored-practice questions excepted)."
+  "must_cite_cards_note": "These fields carry facts: AUTHORED_PEDAGOGICAL is refused for them (authored-practice questions excepted).",
+  "cost_ceiling": {
+    "per_unit_usd": 15,
+    "by_role_usd": {
+      "RESEARCHER": 5,
+      "AUTHOR": 4,
+      "VERIFIER": 3,
+      "ILLUSTRATOR_AND_RENDER": 3
+    },
+    "signals": {
+      "REVIEW": "spend >= 100% of per_unit_usd",
+      "ESCALATE": "spend >= 200% of per_unit_usd"
+    },
+    "status": "PROPOSED_DEFAULT: the owner has not yet confirmed the value (plan section 5, decision 5)",
+    "note": "A review signal, never a stop: work continues; there is no hold state."
+  }
 }

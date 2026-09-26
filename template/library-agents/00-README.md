@@ -8,6 +8,7 @@ rules they point to live in `docs/library-agents/`; these files only start an ag
 | `01-researcher.md` | Researcher (web) | cloud session | any time; it feeds everyone else |
 | `02-author.md` | Author (no web) | cloud session | the board shows a node at the AUTHOR stage |
 | `03-verifier.md` | Verifier | cloud session | the board shows a node at the VERIFIER stage |
+| `05-illustrator.md` | Illustrator (staged SVG figures) | cloud session | the depth board shows BUILD_SCENE or STAGE_REPRESENTATION duties |
 | `04-scanner.md` | Scanner (scanned books) | owner's local machine | the owner has registered a scan in `local_sources` |
 
 **Phase 0 freeze** (docs/plans/phase0/FREEZE.md): these agents build cited records only. No agent

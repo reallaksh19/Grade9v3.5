@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 353,
-  "relation_count": 370,
+  "component_count": 354,
+  "relation_count": 372,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
     "TEST": 162,
-    "TOOLING": 93,
+    "TOOLING": 94,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:8908360cb5ef8e1839e0ab79cca6838837c4853376f0e35b974783bf0da02702",
+  "digest": "sha256:5884a21b146fc9fbc7be5ae673642f865f069123cffe552b812031729326008d",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -770,6 +770,13 @@
       "sha256": "59a267a725a496635dd45daa0575380d98512d804e11addc6c770dfdb4f9e385"
     },
     {
+      "path": "Shared/tools/cost_ledger.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 3927,
+      "sha256": "a87cbd97efa982d7197e1df78c7190d5c5c754c60d36d7d5b8fd994ceb9ece86"
+    },
+    {
       "path": "Shared/tools/derived_artifact_registry.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -878,8 +885,8 @@
       "path": "Shared/tools/library_board.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 18811,
-      "sha256": "e369425044e5305c40cbbd7dadb7ec0bc2409aa31f4dbb5eded416eefc106e48"
+      "bytes": 20261,
+      "sha256": "d7b037b827fa6c2420a6ee69e256656a9d74c5b527fcc1ec5ab29d4d6fda0285"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -2138,8 +2145,8 @@
       "path": "tests/test_package_depth.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 5236,
-      "sha256": "69b2ea572734593d3bc5799b756ff6070640bd4bfd518646af553e96bf00efba"
+      "bytes": 5729,
+      "sha256": "3516ba9a2dd0e00cfa948f4f55c788c444896c1140599a8009f98e1ec87745ff"
     },
     {
       "path": "tests/test_pages_site.py",
@@ -2959,6 +2966,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/cost_ledger.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/derived_artifact_registry.py",
       "to": "Shared.library.resolve",
       "kind": "IMPORTS"
@@ -3056,6 +3068,11 @@
     {
       "from": "Shared/tools/library_board.py",
       "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {

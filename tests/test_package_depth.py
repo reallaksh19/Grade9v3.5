@@ -96,5 +96,14 @@ class Duties(unittest.TestCase):
         self.assertNotIn(("TEACH_PREREQUISITE_BRIDGE", m["id"]), {(d["duty"], d["record"]) for d in self.duties(pkg)})
 
 
+class WorkflowAgreement(unittest.TestCase):
+    def test_workflow_depth_duties_match_the_depth_tool(self):
+        workflow = json.loads((REPO / "Shared/workflows/research-first.v1.json").read_text(encoding="utf-8"))
+        table = workflow["depth_duties"]
+        self.assertEqual(set(table), set(package_depth.DUTIES))
+        for kind, (role, rules) in package_depth.DUTIES.items():
+            self.assertEqual((table[kind]["role"], table[kind]["contract_rules"]), (role, rules), kind)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -54,6 +54,17 @@ Loop until your scope is done:
 8. Commit that one node (`verify(<NODE>): verification`), then `git pull --rebase` and
    `git push origin {{BRANCH}}`.
 
+Product verification (after the node checks). For a product whose gate passes, audit a sample
+of at least 3 rendered units per Core against Audits 1 and 3:
+- open the pages from `publication/products/...`;
+- attempt before revealing;
+- check that the figures match the records;
+- check that the hints climb;
+- check that the transfer states its invariant.
+
+Record each problem in your verification findings, with `duty_for` AUTHOR or ILLUSTRATOR.
+You may not verify a product whose records you authored or illustrated.
+
 Hard rules:
 - Never agree with an answer you did not derive yourself. Never copy the key into your solution.
 - Never verify a node you researched or authored, and never fix what you find: report it.

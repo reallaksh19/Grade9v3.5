@@ -205,6 +205,8 @@ records can carry what Phase 1 requires:
 
 ### Phase 5 — Agent system and prompts aligned to the contract
 
+> **Status (2026-09-26):** built. See [phase3/AGENTS-PHASE5.md](phase3/AGENTS-PHASE5.md).
+
 - **Roles:** Researcher, Author, Illustrator (representation scenes), Verifier. The Scanner is
   a local researcher. The Builder is a tool, not an agent.
 - **New duties** in `research-first.v1.json`:
