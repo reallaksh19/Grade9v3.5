@@ -316,7 +316,24 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fetch", action="store_true", help="download missing source snapshots")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--digest", metavar="NODE", help="print the inputs_digest a verification record must carry")
+    parser.add_argument("--depth", action="store_true",
+                        help="depth duties: every gap between the subject's library packages and the learner quality contract")
     args = parser.parse_args(argv)
+    if args.depth:
+        from Shared.tools import package_depth  # noqa: PLC0415
+        duties = package_depth.all_duties(args.subject)
+        if args.json:
+            print(json.dumps(duties, indent=2, ensure_ascii=False))
+        else:
+            print(package_depth.summary(duties))
+            if args.next:
+                mine = [d for d in duties if d["role"] == args.next]
+                for d in mine[:20]:
+                    print(f"- {d['duty']} {d['record']} ({d['package']}): {d['detail']}; contract {', '.join(d['contract_rules'])}")
+                if len(mine) > 20:
+                    print(f"… {len(mine) - 20} more for {args.next}")
+            print(f"{len(duties)} depth duties for {args.subject}")
+        return 0
     if args.digest:
         spine_nodes = {n["id"]: n for n in evidence_check.spine(args.subject)["nodes"]}
         node = spine_nodes[args.digest]

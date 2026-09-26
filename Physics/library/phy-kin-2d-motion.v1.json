@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-KIN-2D-MOTION-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -324,7 +324,7 @@
                   "ordered-pair state"
                 ],
                 "relation": "same-time x and y samples reconstruct exactly one simultaneous particle state",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -651,7 +651,7 @@
                   "y-component evaluation"
                 ],
                 "relation": "the event marker and every component evaluation use the same solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -978,7 +978,7 @@
                   "component-acceleration readout"
                 ],
                 "relation": "the rendered projectile state equals the component reconstruction at one shared time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1307,7 +1307,7 @@
                   "speed readout"
                 ],
                 "relation": "at the apex v_y = 0 while a_y remains -g in the governed gravity model",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1635,7 +1635,7 @@
                   "speed comparison"
                 ],
                 "relation": "under the same no-drag gravity model, equal-height ascent and descent states have equal speed magnitude",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -1966,7 +1966,7 @@
                   "horizontal range"
                 ],
                 "relation": "the impact marker lies on the landing surface and horizontal range equals x evaluated at the solved event time",
-                "tolerance": 1e-9,
+                "tolerance": 1e-09,
                 "evidence_method": "PROPERTY_TEST",
                 "evidence_ref": "Physics/tools/motion2d_gcdr_properties.py"
               }
@@ -2261,7 +2261,33 @@
           "answer": "Yes. That is exactly what independent component evolution permits.",
           "confirms": "One component can change while the other does not."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-2D-INDEPENDENT-COMPONENTS-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "K2D1-1",
+            "K2D1-2",
+            "K2D1-3",
+            "K2D1-4"
+          ],
+          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-SHARED-V0",
+            "VIS-KIN-2D-SHARED-V1",
+            "VIS-KIN-2D-SHARED-V2",
+            "VIS-KIN-2D-SHARED-V3"
+          ],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
@@ -2413,7 +2439,33 @@
           "answer": "No. The x relation may remain exact, but the y constant-acceleration relation is not exact over that interval.",
           "confirms": "Model validity is checked per component."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-KIN-2D-CONSTANT-ACCELERATION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "K2D2-1",
+            "K2D2-2",
+            "K2D2-3"
+          ],
+          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "reveal_stage_refs": [
+            "VIS-KIN-2D-SHARED-V0",
+            "VIS-KIN-2D-SHARED-V1",
+            "VIS-KIN-2D-SHARED-V2",
+            "VIS-KIN-2D-SHARED-V3"
+          ],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-KIN-PROJECTILE-MODEL",
@@ -3567,7 +3619,44 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
@@ -3696,7 +3785,44 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-CA-MODEL"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
@@ -3824,7 +3950,44 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-APEX-EVENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
@@ -3964,7 +4127,48 @@
           "visual_ref": "REP-KIN-2D-EVENT-CLOCK",
           "visual_stage_ref": "VIS-KIN-2D-EVENT-V1"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "stage_refs": [
+          "VIS-KIN-2D-SHARED-V2",
+          "VIS-KIN-2D-EVENT-V2",
+          "VIS-KIN-2D-EVENT-V3"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
@@ -4090,7 +4294,44 @@
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-SAME-EVENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
@@ -4237,7 +4478,38 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BREP-FACTS"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
@@ -4379,7 +4651,32 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BMODEL-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
@@ -4538,7 +4835,38 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
@@ -4690,7 +5018,36 @@
           "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
           "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+        "stage_refs": [
+          "VIS-KIN-2D-PROJ-V1",
+          "VIS-KIN-2D-PROJ-V3",
+          "VIS-KIN-2D-SHARED-V2"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
@@ -4853,7 +5210,38 @@
           "reveals": "CONCEPT",
           "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

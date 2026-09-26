@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-GRAV-UNIVERSAL-LAW-AUTHORED",
   "version": "0.2.0",
   "status": "CANDIDATE",
@@ -325,7 +325,29 @@
           "answer": "No. The gravity interaction remains; the table supplies an additional support force.",
           "confirms": "The learner separates gravitational interaction from the body's motion state."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-R1-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R1-1",
+            "GRAV-R1-2",
+            "GRAV-R1-3",
+            "GRAV-R1-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-GRAV-INVERSE-SQUARE",
@@ -487,7 +509,29 @@
           "answer": "No. The simple external-spherical reduction has a scope; an inside-source or otherwise extended distribution needs a different source model.",
           "confirms": "The learner treats the inverse-square relation as a model with conditions, not an everywhere-unqualified formula."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-INVERSE-SQUARE-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R2-1",
+            "GRAV-R2-2",
+            "GRAV-R2-3",
+            "GRAV-R2-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-GRAV-FREE-FALL-G",
@@ -648,7 +692,29 @@
           "answer": "No. It means g at one location is independent of the chosen test mass; g can still vary with source mass and distance.",
           "confirms": "The learner separates test-mass independence from spatial constancy."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-FREE-FALL-G-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R3-1",
+            "GRAV-R3-2",
+            "GRAV-R3-3",
+            "GRAV-R3-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-GRAV-MASS-WEIGHT",
@@ -786,7 +852,27 @@
           "answer": "No. Same m and same g give the same weight.",
           "confirms": "The learner ties weight changes to mass and local gravitational acceleration rather than to location labels."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-MASS-WEIGHT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R3W-1",
+            "GRAV-R3W-2",
+            "GRAV-R3W-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "version": "0.1.0",
@@ -920,7 +1006,26 @@
           "answer": "No. Shifting the zero changes assigned potential values but not the energy differences that govern the motion.",
           "confirms": "The learner distinguishes a chosen potential-energy reference from the physical energy change needed for escape."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-R4-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R4-1",
+            "GRAV-R4-2",
+            "GRAV-R4-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "version": "0.1.0",
@@ -1054,7 +1159,26 @@
           "answer": "No. A force not directed through O can provide a turning effect about O, so the conservation condition must be checked again.",
           "confirms": "The learner ties conservation to central-force geometry about the named origin rather than to orbital motion in general."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-GRAV-R5-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GRAV-R5-1",
+            "GRAV-R5-2",
+            "GRAV-R5-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [],
@@ -1165,7 +1289,32 @@
           "text": "Treat gravity as an interaction pair: each body experiences a force directed toward the other along the same line.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-GRAV-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 344,
-  "relation_count": 363,
+  "component_count": 347,
+  "relation_count": 366,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 159,
-    "TOOLING": 88,
+    "TEST": 160,
+    "TOOLING": 90,
     "WEB": 11,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:16ea977d58343ac92ef364e80e2d88adb5c98983ed656ffbea1345271adbe199",
+  "digest": "sha256:5876d717827def9e5deef04bdb2c7c32647406581b847036db928c7567cf9d69",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -234,8 +234,8 @@
       "path": "Shared/library/package.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 81170,
-      "sha256": "6d6cd2ac5741dc7bfd26268c8cbbe625cb7fb6d6fe1ea1f9ceb5e807c550b8e5"
+      "bytes": 89087,
+      "sha256": "b07073be2e7cc1cca43e9f30aa8b79ef28da72e271ffce4c39aa14979af1dfe7"
     },
     {
       "path": "Shared/library/practice_inventory.py",
@@ -885,8 +885,8 @@
       "path": "Shared/tools/library_board.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 17879,
-      "sha256": "21778f801d8f19db94f8b85267a7286a330c5fd08fc937a6af80ad1120137158"
+      "bytes": 18811,
+      "sha256": "e369425044e5305c40cbbd7dadb7ec0bc2409aa31f4dbb5eded416eefc106e48"
     },
     {
       "path": "Shared/tools/matrix_conformance.py",
@@ -901,6 +901,20 @@
       "role_description": "Guardrails and generators",
       "bytes": 5989,
       "sha256": "50161d23d57fa015341e3e9282367fd2f20c7927757eee7f2cd5e0405ab0396b"
+    },
+    {
+      "path": "Shared/tools/package_depth.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7430,
+      "sha256": "a0d04cd13027ddb2d0d5e7d1a72ad0deeb3ffb0c3ac7b13b571c36ba440a1eff"
+    },
+    {
+      "path": "Shared/tools/package_migrate.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 6967,
+      "sha256": "aa88fd1a0ab0091bf0ac04e45a61885d924f6cc6756a4f6a67c4d0e83f1e1b13"
     },
     {
       "path": "Shared/tools/plan_request.py",
@@ -2100,6 +2114,13 @@
       "sha256": "f4cbdd128d94d9078c631e835e6757cf0cacdecf48479dc45e2b5e43b5675db8"
     },
     {
+      "path": "tests/test_package_depth.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5236,
+      "sha256": "69b2ea572734593d3bc5799b756ff6070640bd4bfd518646af553e96bf00efba"
+    },
+    {
       "path": "tests/test_pages_site.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -3006,6 +3027,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/library_board.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/matrix_conformance.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -3028,6 +3054,11 @@
     {
       "from": "Shared/tools/measurement_pack.py",
       "to": "Shared.tools.atlas_need",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/package_depth.py",
+      "to": "Shared.tools.package_migrate",
       "kind": "IMPORTS"
     },
     {
@@ -3922,6 +3953,11 @@
     },
     {
       "from": "tests/test_owner_decisions.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_package_depth.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

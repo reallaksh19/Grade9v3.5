@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -626,7 +626,26 @@
           "answer": "No. Slowing down is a change of velocity, so the zero-net-force condition no longer fits the stated interval.",
           "confirms": "The rule is about unchanged velocity, not simply about whether the object is moving."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-NET-ZERO-MOTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM1-1",
+            "NLM1-2",
+            "NLM1-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-FORCES-SUM-ZERO",
@@ -761,7 +780,26 @@
           "answer": "No. One nonzero force remains without an equal opposite contribution to cancel it.",
           "confirms": "Zero net force came from cancellation between present forces, not from a property of the object."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FORCES-SUM-ZERO-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM2-1",
+            "NLM2-2",
+            "NLM2-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
@@ -915,7 +953,34 @@
           "answer": "Yes. Both hands act on the same chosen box, so both forces belong there and may cancel in the net force.",
           "confirms": "The rule is body ownership, not a ban on opposite arrows appearing together."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FBD-BODY-OWNERSHIP-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM3-1",
+            "NLM3-2",
+            "NLM3-3",
+            "NLM3-4"
+          ],
+          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "reveal_stage_refs": [
+            "VIS-NLM-FBD-V0",
+            "VIS-NLM-FBD-V1",
+            "VIS-NLM-FBD-V2",
+            "VIS-NLM-FBD-V3",
+            "VIS-NLM-FBD-V4"
+          ],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-FRAME-CHOICE",
@@ -1056,7 +1121,32 @@
           "answer": "No. With no observer acceleration in this comparison, the extra pseudo-force convention is not required merely because the observers move relative to each other.",
           "confirms": "The trigger is observer acceleration, not observer motion in general."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FRAME-CHOICE-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM4-1",
+            "NLM4-2",
+            "NLM4-3"
+          ],
+          "representation_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+          "reveal_stage_refs": [
+            "VIS-NLM-FRAME-V0",
+            "VIS-NLM-FRAME-V1",
+            "VIS-NLM-FRAME-V2",
+            "VIS-NLM-FRAME-V3",
+            "VIS-NLM-FRAME-V4"
+          ],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-SECOND-LAW",
@@ -1224,7 +1314,28 @@
           "answer": "Zero acceleration.",
           "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-SECOND-LAW-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM6-1",
+            "NLM6-2",
+            "NLM6-3",
+            "NLM6-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-FRICTION",
@@ -1380,7 +1491,28 @@
           "answer": "No. Friction can be zero when no tangential contact force is needed.",
           "confirms": "Friction responds to the contact constraint rather than existing automatically whenever surfaces touch."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FRICTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM5-1",
+            "NLM5-2",
+            "NLM5-3",
+            "NLM5-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-THIRD-LAW",
@@ -1519,7 +1651,26 @@
           "answer": "A separate force may happen to balance it, but its own third-law partner acts on the other body and is not the balancing term on the same diagram.",
           "confirms": "Equal-and-opposite third-law pairing is different from same-body force balance."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-THIRD-LAW-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM7-1",
+            "NLM7-2",
+            "NLM7-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-FRICTION-QUANT",
@@ -1677,7 +1828,35 @@
           "answer": "Zero. Static friction need not sit at its maximum.",
           "confirms": "The static relation is an inequality/response rule, not an unconditional equality."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-NLM-FRICTION-QUANT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NLM8-1",
+            "NLM8-2",
+            "NLM8-3",
+            "NLM8-4"
+          ],
+          "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+          "reveal_stage_refs": [
+            "VIS-NLM-FRICTION-V0",
+            "VIS-NLM-FRICTION-V1",
+            "VIS-NLM-FRICTION-V2",
+            "VIS-NLM-FRICTION-V3",
+            "VIS-NLM-FRICTION-V4"
+          ],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
@@ -3509,6 +3688,31 @@
           "mass": "DAT-NLM-MASS",
           "acceleration": "DAT-NLM-ACCEL"
         }
+      },
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
       }
     },
     {
@@ -3565,7 +3769,32 @@
           "text": "Separate velocity from change of velocity: a net force is required for acceleration, not for the existence of motion.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-02",
@@ -3621,7 +3850,32 @@
           "text": "List every interaction force on the body, then combine their directions; cancellation belongs to the net result, not to the individual forces.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-03",
@@ -3681,7 +3935,32 @@
           "visual_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
           "visual_stage_ref": "VIS-NLM-FBD-V2"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-04",
@@ -3739,7 +4018,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM5-2"
+      "repair_ref": "NLM5-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-COV-06",
@@ -3795,7 +4099,32 @@
           "text": "No. Put each partner on the body it acts on; only then sum forces for one body.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-PRACTICAL-12",
@@ -3858,7 +4187,32 @@
           "text": "Transfer masses between the trolley and hanger, then compare corrected net force with measured acceleration.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
@@ -3926,7 +4280,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM8-3"
+      "repair_ref": "NLM8-3",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-CONNECTED-02",
@@ -3992,7 +4371,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM9-5"
+      "repair_ref": "NLM9-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-IDEAL-STRING-03",
@@ -4061,7 +4465,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM10-5"
+      "repair_ref": "NLM10-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
@@ -4124,7 +4553,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM11-3"
+      "repair_ref": "NLM11-3",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
@@ -4187,7 +4641,32 @@
           "text": "Identify which observer is accelerating before deciding whether an extra convention is needed.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
@@ -4287,7 +4766,32 @@
           "MIC-PHY-NLM-FRICTION-QUANT"
         ]
       },
-      "repair_ref": "NLM8-2"
+      "repair_ref": "NLM8-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "ORIENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
@@ -4383,7 +4887,32 @@
           "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL"
         ]
       },
-      "repair_ref": "NLM9-5"
+      "repair_ref": "NLM9-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
@@ -4478,7 +5007,32 @@
           "MIC-PHY-NLM-IDEAL-STRING-TENSION"
         ]
       },
-      "repair_ref": "NLM10-4"
+      "repair_ref": "NLM10-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "ORIENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
@@ -4573,7 +5127,32 @@
           "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT"
         ]
       },
-      "repair_ref": "NLM11-2"
+      "repair_ref": "NLM11-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
@@ -4668,7 +5247,32 @@
           "MIC-PHY-NLM-FRAME-CHOICE"
         ]
       },
-      "repair_ref": "NLM4-3"
+      "repair_ref": "NLM4-3",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "ORIENT",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
@@ -4727,7 +5331,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM5-4"
+      "repair_ref": "NLM5-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
@@ -4794,7 +5423,32 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V3"
         }
       ],
-      "repair_ref": "NLM8-2"
+      "repair_ref": "NLM8-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
@@ -4857,7 +5511,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM8-4"
+      "repair_ref": "NLM8-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
@@ -4944,7 +5623,32 @@
           "MIC-PHY-NLM-FRICTION"
         ]
       },
-      "repair_ref": "NLM5-2"
+      "repair_ref": "NLM5-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
@@ -5028,7 +5732,26 @@
           "MIC-PHY-NLM-FRICTION"
         ]
       },
-      "repair_ref": "NLM5-4"
+      "repair_ref": "NLM5-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
@@ -5121,7 +5844,32 @@
           "MIC-PHY-NLM-FRICTION-QUANT"
         ]
       },
-      "repair_ref": "NLM8-1"
+      "repair_ref": "NLM8-1",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
@@ -5214,7 +5962,32 @@
           "MIC-PHY-NLM-FRICTION-QUANT"
         ]
       },
-      "repair_ref": "NLM8-2"
+      "repair_ref": "NLM8-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
@@ -5277,7 +6050,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM9-1"
+      "repair_ref": "NLM9-1",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2A-ATWOOD-12",
@@ -5344,7 +6142,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM10-5"
+      "repair_ref": "NLM10-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
@@ -5432,7 +6255,26 @@
           "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11"
         ]
       },
-      "repair_ref": "NLM9-1"
+      "repair_ref": "NLM9-1",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
@@ -5519,7 +6361,26 @@
           "Q-PHY-NLM-2A-ATWOOD-12"
         ]
       },
-      "repair_ref": "NLM11-5"
+      "repair_ref": "NLM11-5",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
@@ -5588,7 +6449,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM6-4"
+      "repair_ref": "NLM6-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
@@ -5757,7 +6643,53 @@
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V3"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 5,
+          "purpose": "CONNECT",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V1",
+          "VIS-NLM-FRICTION-V3"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
@@ -5825,7 +6757,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM8-4"
+      "repair_ref": "NLM8-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
@@ -5894,7 +6851,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM6-4"
+      "repair_ref": "NLM6-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
@@ -5959,7 +6941,32 @@
           "reveals": "METHOD"
         }
       ],
-      "repair_ref": "NLM3-4"
+      "repair_ref": "NLM3-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
@@ -6054,7 +7061,32 @@
           "CTX-PHY-NLM-INCLINED-PLANE"
         ]
       },
-      "repair_ref": "NLM6-4"
+      "repair_ref": "NLM6-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
@@ -6146,7 +7178,26 @@
           "MIC-PHY-NLM-FRICTION"
         ]
       },
-      "repair_ref": "NLM5-2"
+      "repair_ref": "NLM5-2",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
@@ -6331,7 +7382,48 @@
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 4,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "stage_refs": [
+          "VIS-NLM-FRICTION-V1",
+          "VIS-NLM-FRICTION-V2",
+          "VIS-NLM-FRICTION-V3"
+        ]
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
@@ -6426,7 +7518,32 @@
           "MIC-PHY-NLM-FBD-BODY-OWNERSHIP"
         ]
       },
-      "repair_ref": "NLM3-4"
+      "repair_ref": "NLM3-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
@@ -6523,7 +7640,32 @@
           "Q-PHY-NLM-INCLINE-2A-SLIDING-03"
         ]
       },
-      "repair_ref": "NLM8-4"
+      "repair_ref": "NLM8-4",
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

@@ -113,6 +113,10 @@ Contract structure:
 
 ### Phase 2 — Canonical data model that can hold depth
 
+> **Status (2026-09-26):** schema 0.2.0, migration and depth duties are built. See
+> [phase2/DATA-MODEL.md](phase2/DATA-MODEL.md). 21 packages migrated; 682 depth duties are on the board.
+> Chemistry has no library package yet.
+
 Extend `Shared/library/package.schema.json` (with a version bump and a migration tool) so that
 records can carry what Phase 1 requires:
 

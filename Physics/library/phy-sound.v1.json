@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-SOUND-G9",
   "version": "0.2.0",
   "status": "CANDIDATE",
@@ -371,7 +371,27 @@
           "answer": "No.",
           "confirms": "Mechanical sound needs a material medium even though the source itself can vibrate."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-SOUND-SOURCE-MEDIUM-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SOUND1-1",
+            "SOUND1-1B",
+            "SOUND1-2",
+            "SOUND1-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-SOUND-LONGITUDINAL",
@@ -523,7 +543,28 @@
           "answer": "No; that would imply sustained bulk transport inconsistent with the local-oscillation model.",
           "confirms": "Sound propagation is not ordinary mass transport across the whole path."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-SOUND-LONGITUDINAL-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SOUND2-1",
+            "SOUND2-2",
+            "SOUND2-3",
+            "SOUND2-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-SOUND-WAVE-QUANTITIES",
@@ -699,7 +740,28 @@
           "answer": "Yes, within the simple wave description.",
           "confirms": "Amplitude is a separate disturbance-size quantity rather than another name for frequency or wavelength."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-SOUND-WAVE-QUANTITIES-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SOUND3-1",
+            "SOUND3-2",
+            "SOUND3-3",
+            "SOUND3-4"
+          ],
+          "representation_ref": "REP-PHY-SOUND-SPATIAL-WAVE-GRAPH",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-SOUND-PERCEPTION",
@@ -852,7 +914,28 @@
           "answer": "No. It is a usual approximate range; individual limits vary.",
           "confirms": "The curriculum model is not being misrepresented as a universal biological cutoff."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-SOUND-PERCEPTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SOUND4-1",
+            "SOUND4-2",
+            "SOUND4-3",
+            "SOUND4-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-PHY-SOUND-REFLECTION",
@@ -1018,7 +1101,28 @@
           "answer": "Zero.",
           "confirms": "The factor-of-two relation is tied to a nonnegative round-trip path."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-PHY-SOUND-REFLECTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SOUND5-1",
+            "SOUND5-2",
+            "SOUND5-3",
+            "SOUND5-4"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [
@@ -1582,7 +1686,32 @@
           "text": "Read lambda from spatial repeat distance and T from temporal repeat time; then use f=1/T and v=f lambda.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SOUND-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-SOUND-2A-COV-02",
@@ -1638,7 +1767,32 @@
           "text": "Track one small region of air: particles oscillate locally while the disturbance passes from neighbor to neighbor.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SOUND-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-SOUND-2A-COV-03",
@@ -1694,7 +1848,32 @@
           "text": "Track the marked particle: it oscillates around its local equilibrium while successive compressions/rarefactions travel onward.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SOUND-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-SOUND-2A-COV-04",
@@ -1754,7 +1933,32 @@
           "text": "Pitch follows frequency for an audible tone; loudness is a separate sound-strength perception.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SOUND-PRACTICE",
+        "closure": null
+      }
     },
     {
       "id": "Q-PHY-SOUND-PRACTICAL-10",
@@ -1814,7 +2018,32 @@
           "text": "Repeat trials under the same tension, or time a longer path, to reduce the fraction of the result dominated by reaction time.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-PHY-SOUND-PRACTICE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

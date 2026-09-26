@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-MATH-LINEAR-EQUATIONS",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -270,7 +270,26 @@
           "answer": "It is a statement, and no value of x makes it true: the left side is 2 whatever x is. The solution set is empty, which is an answer rather than a failure to solve.",
           "confirms": "That the line is a claim about x even when x has no effect on it. A learner still reading it as an instruction has nothing here to work out, and stops."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-CONSTRAINT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "MC-1",
+            "MC-2",
+            "MC-3"
+          ],
+          "representation_ref": "REP-MATH-NUMBER-LINE",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-MATH-EQUIVALENT-OPS",
@@ -409,7 +428,26 @@
           "answer": "x = 3 and x = -3. Squaring gained a solution rather than losing one, because it cannot be undone without knowing the sign.",
           "confirms": "That reversibility is the test, not the shape of the operation. A learner working from 'do the same to both sides' has no way to see why this one fails."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-EQUIVALENT-OPS-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "ME-1",
+            "ME-2",
+            "ME-3"
+          ],
+          "representation_ref": "REP-MATH-NUMBER-LINE",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": "Q-MATH-LINEAR-01",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-MATH-EXACT-SOLUTION",
@@ -544,7 +582,26 @@
           "answer": "x = 1/2, which is 0.5 exactly; substituting 0.5 returns 2 with no residue. The objection does not apply, because this division terminates.",
           "confirms": "That what matters is whether the decimal terminates, not that decimals are untrustworthy. A learner who took the rule to be never use decimals answers this one wrongly."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-EXACT-SOLUTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "MX-1",
+            "MX-2",
+            "MX-3"
+          ],
+          "representation_ref": "REP-MATH-NUMBER-LINE",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [
@@ -884,7 +941,38 @@
           "text": "x = 7/3. Writing it as 2.33 would be a different claim: substituting 2.33 gives 8.99, not 9.",
           "reveals": "ANSWER"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 3,
+          "purpose": "ANSWER",
+          "from": "hints[2]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-MATH-LINEAR",
+        "closure": null
+      }
     }
   ],
   "data": [

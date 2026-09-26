@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "LIB-PHY-VECTOR-REPRESENTATION-SEED",
   "version": "0.1.0",
   "status": "CANDIDATE",
@@ -341,7 +341,26 @@
           "answer": "Nothing about the free vector itself; with the same magnitude and direction they represent the same free vector even if drawn in different places.",
           "confirms": "Magnitude plus direction identifies the free vector; drawing location is not another vector property."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-VECTOR-VS-SCALAR-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "VS-1",
+            "VS-2",
+            "VS-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-SIGNED-COMPONENT",
@@ -485,7 +504,27 @@
           "answer": "Both component signs reverse.",
           "confirms": "Component signs belong to the declared coordinate convention, not to an intrinsic positive/negative label on the vector."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-SIGNED-COMPONENT-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "SC-1",
+            "SC-2",
+            "SC-3"
+          ],
+          "representation_ref": "REP-VECTOR-COMPONENT",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-GRAPHICAL-SUBTRACTION",
@@ -638,7 +677,28 @@
           "answer": "The zero vector.",
           "confirms": "Subtracting a vector from itself cancels both signed components and leaves no direction to preserve."
         }
-      }
+      },
+      "construction_units": [
+        {
+          "id": "CU-GRAPHICAL-SUBTRACTION-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "GS-1",
+            "GS-2",
+            "GS-3",
+            "GS-4"
+          ],
+          "representation_ref": "REP-VECTOR-SUBTRACTION-CONSTRUCTION",
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     },
     {
       "id": "MIC-FRAME-QUALIFICATION-BOUNDARY",
@@ -721,7 +781,26 @@
       "prerequisite_refs": [
         "MIC-GEOMETRIC-CHECK"
       ],
-      "lineage": []
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-FRAME-QUALIFICATION-BOUNDARY-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "FB-1",
+            "FB-2",
+            "FB-3"
+          ],
+          "representation_ref": null,
+          "reveal_stage_refs": [],
+          "worked_anchor_ref": null,
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [],
+          "migrated_from": "teaching_path"
+        }
+      ]
     }
   ],
   "relations": [
@@ -1059,7 +1138,32 @@
           "text": "Ask what happens to component signs when a vector is reversed.",
           "reveals": "METHOD"
         }
-      ]
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
+          "provenance": "AUTHORED_HINT"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": null,
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-VECTOR-MAGNITUDE",
+        "closure": null
+      }
     }
   ],
   "teaching_routes": [

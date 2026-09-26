@@ -48,6 +48,22 @@ is marked `AUTHORED_PEDAGOGICAL`.
   prerequisite; never invent `primary_concept_id`.
 - Stay at the node's grade. A JEE_EXTENSION node may go beyond NCERT only as far as its cards.
 
+## Depth duties (schema 0.2.0)
+
+After your node's records pass, also clear the depth duties for them:
+
+```sh
+python3 Shared/tools/library_board.py --subject Physics --depth --next AUTHOR
+```
+
+Each duty names a field and the quality-contract rule it serves
+(docs/plans/phase2/DATA-MODEL.md). Keep these rules:
+- **Cite as usual.** Facts cite cards; teaching craft is `AUTHORED_PEDAGOGICAL`.
+- **Keep one source of truth.** A new hint rung has `text`; a migrated rung keeps `from`.
+- **Review migrated units.** When you review a migrated construction unit, remove
+  `migrated_from`. Split any microtopic with more than 4 decisions into units, each with its
+  own worked anchor.
+
 ## Forbidden
 
 - The web; facts not in a passing card; numbers or exam identities from memory.
