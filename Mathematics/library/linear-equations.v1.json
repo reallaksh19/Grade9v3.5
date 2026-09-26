@@ -765,7 +765,9 @@
         "A mark placed at the nearer integer because the exact value is inconvenient.",
         "A line with no declared domain."
       ],
-      "rendered_asset_refs": [],
+      "rendered_asset_refs": [
+        "Mathematics/assets/representations/REP-MATH-NUMBER-LINE.svg"
+      ],
       "scene_instances": [
         {
           "id": "FIG-MATH-EXACT-VS-TRUNCATED",
@@ -810,6 +812,36 @@
           "element": "Bracketing integer ticks",
           "symbol": "x~",
           "in_words": "the whole numbers either side, which the truncated decimal sits between without landing on the marked point"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "VIS-MATH-NL-1",
+          "label": "Declared domain",
+          "purpose": "Draw the rationals as one labelled axis with integer ticks before anything is marked.",
+          "visible_elements": [
+            "Declared domain"
+          ]
+        },
+        {
+          "id": "VIS-MATH-NL-2",
+          "label": "Bracketing integers",
+          "purpose": "Mark the integers either side of the solution, so the learner can see it lies strictly between them.",
+          "visible_elements": [
+            "Declared domain",
+            "Bracketing integer ticks"
+          ]
+        },
+        {
+          "id": "VIS-MATH-NL-3",
+          "label": "Exact point",
+          "purpose": "Place the exact solution 7/3 as a closed mark between 2 and 3, and separate it from the open twelve-digit truncation that is not a solution.",
+          "visible_elements": [
+            "Declared domain",
+            "Bracketing integer ticks",
+            "Marked solution with its exact label",
+            "Whether each marked endpoint is included"
+          ]
         }
       ]
     }
