@@ -48,4 +48,4 @@ approved the phase order and this freeze on 2026-09-26.
 |---|---|
 | Renderer inventory committed and checked | done |
 | Calibration corpus in place and checked | done: 5 negative specimens (40 files); R2 pinned in the repository; R1 not on any branch, so its grammar is encoded and the closest in-repository file is pinned |
-| Audits #296–#298 closed with final matrices | open |
+| Audits #296–#298 closed with final matrices | done: [audits/AUDIT-1-FINAL.md](audits/AUDIT-1-FINAL.md) (12 findings), [AUDIT-2-FINAL.md](audits/AUDIT-2-FINAL.md) (root-cause chains, control-gap matrix), [AUDIT-3-FINAL.md](audits/AUDIT-3-FINAL.md) (11 findings, compliance matrix); the S1 specimen's expected findings now list A1-001…012 and A3-001…011 |
