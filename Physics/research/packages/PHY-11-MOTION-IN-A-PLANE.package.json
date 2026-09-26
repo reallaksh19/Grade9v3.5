@@ -626,6 +626,59 @@
       ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-001",
+        "EV-PHY-11-MIP-06-002",
+        "EV-PHY-11-MIP-06-003",
+        "EV-PHY-11-MIP-06-004",
+        "EV-PHY-11-MIP-06-005",
+        "EV-PHY-11-MIP-06-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-06-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-005",
+            "EV-PHY-11-MIP-06-008"
+          ]
+        }
+      },
+      "action": "Find average and instantaneous velocity and average acceleration of a particle moving in a plane from its position vector, and read the velocity's direction as tangent to the path.",
+      "success_criterion": "Divides the displacement (not the path length) by the interval for average velocity, differentiates r(t) componentwise for v(t) and a(t), gives the magnitude and angle of v at a stated instant, and does not assume v and a are collinear.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-05"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: motion in a plane; position, velocity and acceleration vectors",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -1386,6 +1439,161 @@
         "CAP-PHY-MIP-04"
       ],
       "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-001",
+        "EV-PHY-11-MIP-06-001",
+        "EV-PHY-11-MIP-06-004",
+        "EV-PHY-11-MIP-06-002",
+        "EV-PHY-11-MIP-06-003",
+        "EV-PHY-11-MIP-06-005",
+        "EV-PHY-11-MIP-06-006",
+        "EV-PHY-11-MIP-06-007",
+        "EV-PHY-11-MIP-06-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-001",
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-004"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-06-005"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-06-001",
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-06-004",
+            "EV-PHY-11-MIP-06-006",
+            "EV-PHY-11-MIP-06-007"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-06-008",
+            "EV-PHY-11-MIP-06-005"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Motion in a plane: position, displacement, velocity and acceleration vectors",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-06",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners import two one-dimensional habits: treating average speed as the size of average velocity, and expecting velocity and acceleration to lie on one line.",
+      "entry_assumptions": [
+        "Can find a displacement from two position vectors.",
+        "Can differentiate simple polynomials in t."
+      ],
+      "inferential_jump": "Velocity and acceleration in a plane are rates of change of vectors, so average velocity uses the displacement, instantaneous velocity is the limit of that ratio and points along the tangent, and acceleration can point at any angle to the velocity.",
+      "teaching_path": [
+        {
+          "id": "MIP06-1",
+          "role": "DECLARE",
+          "action": "Write the position as r(t) = x(t) i + y(t) j in a fixed frame.",
+          "why_valid": "Resolution holds at every instant.",
+          "inputs": [],
+          "output": "r(t) = x(t) i + y(t) j"
+        },
+        {
+          "id": "MIP06-2",
+          "role": "TRANSFORM",
+          "action": "Form the average velocity over an interval from the displacement.",
+          "why_valid": "Average velocity is displacement divided by the interval.",
+          "inputs": [],
+          "output": "v_avg = (r' - r)/(t' - t)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP06-3",
+          "role": "TRANSFORM",
+          "action": "Let the interval shrink to zero to get the velocity at an instant.",
+          "why_valid": "Instantaneous velocity is the limit of the average velocity; it is tangent to the path.",
+          "inputs": [],
+          "output": "v = dr/dt = (dx/dt) i + (dy/dt) j",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP06-4",
+          "role": "TRANSFORM",
+          "action": "Repeat on the velocity to get the acceleration.",
+          "why_valid": "Average acceleration is the change in velocity divided by the interval.",
+          "inputs": [],
+          "output": "a = dv/dt = (dv_x/dt) i + (dv_y/dt) j",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP06-5",
+          "role": "VERIFY",
+          "action": "Check against NCERT Example 3.4: r = 3.0t i + 2.0t^2 j + 5.0 k.",
+          "why_valid": "Differentiating twice gives the textbook's acceleration.",
+          "inputs": [],
+          "output": "a = 4.0 j m/s^2, along y",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-06-AVERAGE-VELOCITY",
+        "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY",
+        "REL-PHY-MIP-06-AVERAGE-ACCELERATION"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-06-CHORD-TO-TANGENT"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-06"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Average speed and the magnitude of average velocity are the same.",
+          "diagnostic_prompt": "A cyclist rides out and back to the start in 10 min. Are the average speed and the average velocity's magnitude equal?",
+          "repair": "No. Average speed divides the path length; average velocity divides the displacement, here zero. Average speed is greater than or equal to the average velocity's magnitude, equal only when path length equals displacement magnitude."
+        },
+        {
+          "wrong_idea": "Velocity and acceleration always point along the same line, as in one-dimensional motion.",
+          "diagnostic_prompt": "At the top of a projectile's path, the velocity is horizontal. Must the acceleration be horizontal too?",
+          "repair": "No. In two or three dimensions velocity and acceleration may make any angle between 0 and 180 degrees; only in one dimension are they collinear."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle goes once round a circle of radius R at constant speed, taking time T. State its average velocity and its average speed over that revolution, and explain the difference.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Average velocity is zero; average speed is 2 pi R / T.",
+          "reasoning": [
+            "After one revolution the particle is back where it started, so the displacement and the average velocity are zero.",
+            "The path length is the circumference 2 pi R, so the average speed is 2 pi R / T.",
+            "They differ because the path length exceeds the displacement whenever the direction changes."
+          ],
+          "check": "Average speed must be at least the magnitude of the average velocity, and 2 pi R / T > 0 agrees.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer is zero by the displacement argument and a symbolic expression; no number is computed."
+        }
+      },
+      "research_contribution": "Records the average/instantaneous velocity and acceleration definitions, the tangent direction, and the two carried-over one-dimensional errors, each with a verified quote.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-05"
+      ],
+      "lineage": []
     }
   ],
   "relations": [
@@ -2087,6 +2295,232 @@
         "theta = 90 degrees gives R^2 = A^2 + B^2."
       ],
       "gate_relation_ref": "REL-PHY-MIP-05-LAW-OF-COSINES"
+    },
+    {
+      "id": "REL-PHY-MIP-06-AVERAGE-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-001",
+        "EV-PHY-11-MIP-01-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-06-001"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-06-001"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-01-003"
+          ]
+        }
+      },
+      "expression": "v_avg = delta r / delta t",
+      "meaning": "Average velocity over an interval is the displacement divided by the length of that interval.",
+      "symbols": [
+        {
+          "symbol": "delta r",
+          "meaning": "displacement over the interval",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "delta t",
+          "meaning": "length of the interval",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "v_avg",
+          "meaning": "average velocity",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "delta r is the displacement between the two positions, which depends only on the end points and not on the path."
+      ],
+      "derivation": [
+        {
+          "id": "REL06A-1",
+          "role": "DECLARE",
+          "action": "Take positions r at time t and r' at t'.",
+          "why_valid": "Displacement is the change in position.",
+          "inputs": [],
+          "output": "delta r = r' - r, delta t = t' - t"
+        },
+        {
+          "id": "REL06A-2",
+          "role": "TRANSFORM",
+          "action": "Divide the displacement by the interval.",
+          "why_valid": "Average velocity is defined as displacement per unit time.",
+          "inputs": [],
+          "output": "v_avg = delta r / delta t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "Average velocity says nothing about the motion inside the interval."
+      ],
+      "checks": [
+        "A closed route gives v_avg = 0 whatever the path length."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-06-AVERAGE-VELOCITY"
+    },
+    {
+      "id": "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-002",
+        "EV-PHY-11-MIP-06-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-06-002"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-003"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-06-002"
+          ]
+        }
+      },
+      "expression": "v = lim(delta t -> 0) delta r / delta t = dr/dt; v_x = dx/dt, v_y = dy/dt",
+      "meaning": "Instantaneous velocity is the limit of the average velocity as the interval shrinks to zero; its direction at any point is along the tangent to the path, in the direction of motion.",
+      "symbols": [
+        {
+          "symbol": "r(t)",
+          "meaning": "position vector as a function of time",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "v",
+          "meaning": "instantaneous velocity",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "v_x, v_y",
+          "meaning": "velocity components",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "The limit is taken at the instant of interest, as the time interval approaches zero."
+      ],
+      "derivation": [
+        {
+          "id": "REL06V-1",
+          "role": "TRANSFORM",
+          "action": "Shrink the interval around the instant.",
+          "why_valid": "The average velocity approaches a limiting value.",
+          "inputs": [],
+          "output": "v = lim delta r/delta t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL06V-2",
+          "role": "TRANSFORM",
+          "action": "Apply the limit to each component of r.",
+          "why_valid": "r = x i + y j with fixed unit vectors.",
+          "inputs": [],
+          "output": "v = (dx/dt) i + (dy/dt) j"
+        }
+      ],
+      "limits": [
+        "Requires the position to be known as a function of time near the instant."
+      ],
+      "checks": [
+        "The velocity arrow drawn at a point of the path is tangent to the path there."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY"
+    },
+    {
+      "id": "REL-PHY-MIP-06-AVERAGE-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-004",
+        "EV-PHY-11-MIP-06-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-06-004"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-06-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-06-005"
+          ]
+        }
+      },
+      "expression": "a_avg = delta v / delta t; a = dv/dt",
+      "meaning": "Average acceleration in the plane is the change in velocity divided by the interval; the change can be in magnitude, direction or both.",
+      "symbols": [
+        {
+          "symbol": "delta v",
+          "meaning": "change in velocity vector",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "a_avg",
+          "meaning": "average acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a",
+          "meaning": "instantaneous acceleration",
+          "unit_or_domain": "m/s^2"
+        }
+      ],
+      "conditions": [
+        "In two or three dimensions the velocity and acceleration may make any angle from 0 to 180 degrees."
+      ],
+      "derivation": [
+        {
+          "id": "REL06AA-1",
+          "role": "TRANSFORM",
+          "action": "Subtract the velocity vectors at the two instants.",
+          "why_valid": "Vector subtraction is addition of the reverse.",
+          "inputs": [],
+          "output": "delta v = v' - v"
+        },
+        {
+          "id": "REL06AA-2",
+          "role": "TRANSFORM",
+          "action": "Divide by the interval.",
+          "why_valid": "Average acceleration is defined as velocity change per unit time.",
+          "inputs": [],
+          "output": "a_avg = delta v / delta t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "A constant speed does not imply zero acceleration, because delta v includes a change of direction."
+      ],
+      "checks": [
+        "Units: m/s divided by s gives m/s^2."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-06-AVERAGE-ACCELERATION"
     }
   ],
   "representations": [
@@ -2450,6 +2884,80 @@
           "in_words": "The resultant's components, each the sum of its column."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-06-CHORD-TO-TANGENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-002",
+        "EV-PHY-11-MIP-06-003",
+        "EV-PHY-11-MIP-03-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-06-002",
+            "EV-PHY-11-MIP-06-003"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-03-004"
+          ]
+        }
+      },
+      "kind": "CHORD_TO_TANGENT",
+      "purpose": "Show a curved path with the displacement chord over a shrinking interval turning into the tangent velocity arrow, and the velocity arrows at two instants with their difference.",
+      "required_elements": [
+        "curved path of the particle",
+        "position vectors r and r' from the origin",
+        "displacement chord delta r",
+        "tangent velocity arrow at the instant",
+        "velocity change delta v between two instants"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-06-AVERAGE-VELOCITY",
+        "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY",
+        "REL-PHY-MIP-06-AVERAGE-ACCELERATION"
+      ],
+      "read_order": [
+        "curved path of the particle",
+        "position vectors r and r' from the origin",
+        "displacement chord delta r",
+        "tangent velocity arrow at the instant",
+        "velocity change delta v between two instants"
+      ],
+      "instance_constraints": [
+        "The chord joins two points of the path; the tangent arrow touches the path at one point.",
+        "delta v is drawn by placing the two velocity arrows tail to tail."
+      ],
+      "accessibility": [
+        "The shrinking of the interval is described in text, not only animated.",
+        "Arrows are labelled with symbols."
+      ],
+      "misleading_alternatives": [
+        "Drawing the velocity along the chord for a finite interval and calling it instantaneous.",
+        "Drawing delta v from the head of one velocity to the tail of the other."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "displacement chord delta r",
+          "symbol": "delta r",
+          "in_words": "The straight change of position over the interval."
+        },
+        {
+          "element": "tangent velocity arrow at the instant",
+          "symbol": "v",
+          "in_words": "The limit of delta r / delta t, tangent to the path."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -2692,6 +3200,54 @@
         "Q-PHY-MIP-05-NCERT-3-10",
         "Q-PHY-MIP-05-EXEMPLAR-4-1",
         "Q-PHY-MIP-05-EXEMPLAR-4-15"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-06",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Velocity and acceleration vectors from positions and paths",
+      "capability_refs": [
+        "CAP-PHY-MIP-06"
+      ],
+      "solution_structure": [
+        "Write the position vector or identify the end points.",
+        "Differentiate or divide the displacement by the interval as the definition requires.",
+        "Give magnitude and direction at the stated instant, or compare averages."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide between average and instantaneous definitions, and between speed and velocity.",
+        "representation_translation": "Translate a verbal route or a position formula into vectors.",
+        "reasoning_steps": "Form the change, divide or differentiate, then evaluate at the instant.",
+        "novelty": "Routes, formulas and instants vary; the definitions do not."
+      },
+      "safe_variations": [
+        "Change the polynomial coefficients in r(t).",
+        "Change the route while keeping start and finish."
+      ],
+      "transfer_boundaries": [
+        "The constant-acceleration equations are not assumed here; they belong to the next microtopic."
+      ],
+      "common_wrong_routes": [
+        "Divide path length by time and call it average velocity.",
+        "Assume a constant speed means zero acceleration."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-06-NCERT-3-17",
+        "Q-PHY-MIP-06-NCERT-3-9",
+        "Q-PHY-MIP-06-EXEMPLAR-4-7"
       ]
     }
   ],
@@ -4269,6 +4825,307 @@
         }
       ],
       "repair_ref": "MIP05-4"
+    },
+    {
+      "id": "Q-PHY-MIP-06-NCERT-3-17",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-009",
+        "EV-PHY-11-MIP-06-010",
+        "EV-PHY-11-MIP-06-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-06-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-06-009"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-06-010",
+            "EV-PHY-11-MIP-06-002"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.17",
+      "stem": "The position of a particle is given by r = 3.0t i - 2.0t^2 j + 4.0 k m where t is in seconds and the coefficients have the proper units for r to be in metres. (a) Find the v and a of the particle? (b) What is the magnitude and direction of velocity of the particle at t = 2.0 s ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "r is given in metres with t in seconds."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) v(t) = 3.0 i - 4.0t j m/s and a = -4.0 j m/s^2; (b) 8.54 m/s at about 70 degrees below the x-axis.",
+        "reasoning": [
+          "Differentiate each component: dx/dt = 3.0, dy/dt = -4.0t, dz/dt = 0.",
+          "Differentiate again: a = -4.0 j m/s^2, constant.",
+          "At t = 2.0 s, v = 3.0 i - 8.0 j m/s, so |v| = sqrt(9 + 64) = sqrt73 = 8.54 m/s.",
+          "tan(theta) = -8.0/3.0 gives theta = -69.4 degrees, about 70 degrees with the x-axis, below it."
+        ],
+        "check": "The acceleration is constant and along -y, so only v_y changes with time.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R06-17-TR",
+            "kind": "TRANSFORM",
+            "action": "Differentiate r(t) componentwise.",
+            "why_valid": "v = dr/dt with fixed unit vectors.",
+            "inputs": [],
+            "output": "v = 3.0 i - 4.0t j; a = -4.0 j"
+          },
+          {
+            "id": "R06-17-CON",
+            "kind": "CONNECT",
+            "action": "Evaluate v at t = 2.0 s and convert to magnitude and angle.",
+            "why_valid": "The instantaneous velocity at a stated time is a specific vector.",
+            "inputs": [],
+            "output": "v = 3.0 i - 8.0 j; 8.54 m/s at -69.4 degrees"
+          },
+          {
+            "id": "R06-17-CHK",
+            "kind": "VERIFY",
+            "action": "Check the quadrant from the signs.",
+            "why_valid": "v_x > 0, v_y < 0 means fourth quadrant.",
+            "inputs": [],
+            "output": "below the +x axis"
+          }
+        ],
+        "crux_move_ref": "R06-17-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-06",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-06",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write v at t = 2.0 s as a pair of numbers before finding its size and angle.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R06-17-CON"
+        }
+      ],
+      "repair_ref": "MIP06-3"
+    },
+    {
+      "id": "Q-PHY-MIP-06-NCERT-3-9",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-011",
+        "EV-PHY-11-MIP-06-012",
+        "EV-PHY-11-MIP-06-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-06-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-06-011"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-06-012",
+            "EV-PHY-11-MIP-06-008"
+          ]
+        },
+        "grade9v3:figure_note": "NCERT Fig. 3.20 shows the arc PQ travelled along the circumference; read it on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.9",
+      "stem": "A cyclist starts from the centre O of a circular park of radius 1 km, reaches the edge P of the park, then cycles along the circumference, and returns to the centre along QO as shown in Fig. 3.20. If the round trip takes 10 min, what is the (a) net displacement, (b) average velocity, and (c) average speed of the cyclist ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Radius 1 km; the trip starts and ends at the centre O and takes 10 min."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) Zero; (b) zero; (c) 21.4 km/h.",
+        "reasoning": [
+          "The cyclist ends where he started, so the net displacement is zero.",
+          "Average velocity is displacement divided by time, so it is zero too.",
+          "Average speed is path length divided by time: OP + arc PQ + QO in 10 min = 1/6 h.",
+          "The key's 21.4 km/h corresponds to a path of 21.4 x (1/6) = 3.57 km = 2 km + (1/4)(2 pi x 1 km), i.e. a quarter-circle arc; confirm the arc on Fig. 3.20."
+        ],
+        "check": "Average speed exceeds the magnitude of average velocity, as it must on a closed route.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R06-9-DEC",
+            "kind": "DECIDE",
+            "action": "Separate what uses displacement from what uses path length.",
+            "why_valid": "Average velocity uses displacement; average speed uses path length.",
+            "inputs": [],
+            "output": "(a), (b) from end points; (c) from route"
+          },
+          {
+            "id": "R06-9-TR",
+            "kind": "TRANSFORM",
+            "action": "Add the route lengths and divide by 1/6 h.",
+            "why_valid": "Two radii plus the arc make the route.",
+            "inputs": [],
+            "output": "(2 + pi/2) km / (1/6 h) = 21.4 km/h"
+          }
+        ],
+        "crux_move_ref": "R06-9-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-06",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-06",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Where does the cyclist finish compared with where he started?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R06-9-DEC"
+        }
+      ],
+      "repair_ref": "MIP06-2"
+    },
+    {
+      "id": "Q-PHY-MIP-06-EXEMPLAR-4-7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-06-013",
+        "EV-PHY-11-MIP-06-005",
+        "EV-PHY-11-MIP-06-014",
+        "EV-PHY-11-MIP-06-008",
+        "EV-PHY-11-MIP-06-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-06",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-06-013"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-06-013",
+            "EV-PHY-11-MIP-06-005"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-06-014",
+            "EV-PHY-11-MIP-06-008",
+            "EV-PHY-11-MIP-06-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.7",
+      "stem": "In a two dimensional motion, instantaneous speed v0 is a positive constant. Then which of the following are necessarily true?",
+      "subparts": [],
+      "options": [
+        "(a) The average velocity is not zero at any time.",
+        "(b) Average acceleration must always vanish.",
+        "(c) Displacements in equal time intervals are equal.",
+        "(d) Equal path lengths are traversed in equal intervals."
+      ],
+      "conditions": [
+        "The speed is constant but the direction of motion may change."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(d) only.",
+        "reasoning": [
+          "Constant speed means the path length grows at the constant rate v0, so equal intervals give equal path lengths: (d).",
+          "(a) fails: after a closed loop the displacement, and so the average velocity, is zero.",
+          "(b) fails: a change of direction changes the velocity vector, giving non-zero average acceleration.",
+          "(c) fails: displacements in equal intervals can have equal size but different directions."
+        ],
+        "check": "Only the statement about path length, a scalar, survives a change of direction.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R06-7-REP",
+            "kind": "REPRESENT",
+            "action": "Picture a curved path traversed at constant speed, such as a circle.",
+            "why_valid": "A counterexample needs only one allowed motion.",
+            "inputs": [],
+            "output": "uniform motion round a circle"
+          },
+          {
+            "id": "R06-7-DEC",
+            "kind": "DECIDE",
+            "action": "Test each statement on that motion.",
+            "why_valid": "Vector statements fail when direction changes; the scalar one holds.",
+            "inputs": [],
+            "output": "(d) only"
+          }
+        ],
+        "crux_move_ref": "R06-7-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-06",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-06",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Try the statements on someone walking round a circular track at steady speed.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R06-7-REP"
+        }
+      ],
+      "repair_ref": "MIP06-4"
     }
   ],
   "teaching_routes": [],
