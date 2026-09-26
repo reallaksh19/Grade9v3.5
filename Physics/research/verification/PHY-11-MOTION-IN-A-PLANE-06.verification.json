@@ -1,0 +1,156 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-06",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:e7575c1b65c16dbbdf17f9819577f0dff2f154c91ce442abd9481ada4d33a0ff",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-06-009",
+      "independent_solution": [
+        "r(t) = 3.0t i - 2.0t^2 j + 4.0 k m (printed on pinned page 22; matches the card's equation field). v = dr/dt = 3.0 i - 4.0t j m/s; a = dv/dt = -4.0 j m/s^2 (constant).",
+        "At t = 2.0 s: v = 3.0 i - 8.0 j m/s, |v| = sqrt(9 + 64) = sqrt73 = 8.54 m/s.",
+        "Direction: tan(theta) = -8.0/3.0 -> theta = -69.4 deg, i.e. about 70 deg below the +x axis (fourth quadrant)."
+      ],
+      "independent_answer": "v = 3.0 i - 4.0t j m/s, a = -4.0 j m/s^2; at t = 2.0 s |v| = 8.54 m/s at about 70 deg below the x-axis.",
+      "official_answer": "8.54 m/s, 70 deg with x-axis at t = 2.0 s; (a) v(t) = 3.0 i - 4.0t j, a = -4.0 j",
+      "agrees": true,
+      "numeric_check": "sqrt(3.0**2 + (4.0*2.0)**2)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-06-011",
+      "independent_solution": [
+        "The cyclist starts and ends at O, so (a) net displacement = 0 and (b) average velocity = 0/(10 min) = 0.",
+        "Fig. 3.20 (pinned page 21): P due east of O, Q due north, so arc PQ is a quarter circle: path = OP + arc PQ + QO = 1 + (2 pi x 1)/4 + 1 = 2 + pi/2 = 3.571 km.",
+        "(c) average speed = 3.571 km / (10/60 h) = 21.4 km/h."
+      ],
+      "independent_answer": "(a) 0; (b) 0; (c) 21.4 km/h",
+      "official_answer": "(c) 21.4 km/h average speed; (a) 0; (b) 0",
+      "agrees": true,
+      "numeric_check": "(2 + pi/2)/(10/60)"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-06-013",
+      "independent_solution": [
+        "Constant speed v0 with changing direction allowed; test on uniform circular motion.",
+        "(a) after one full revolution the displacement and average velocity are zero -> false. (b) velocity changes direction -> non-zero average acceleration -> false. (c) displacements in equal intervals have equal size but different directions -> false.",
+        "(d) path length = v0 x (interval), so equal intervals give equal path lengths -> true. Answer (d)."
+      ],
+      "independent_answer": "(d) only",
+      "official_answer": "(d)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-06",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-06",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-AVERAGE-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-INSTANTANEOUS-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-06-AVERAGE-ACCELERATION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-06-CHORD-TO-TANGENT",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-NCERT-3-17",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-NCERT-3-9",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-06-EXEMPLAR-4-7",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-00-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card (cited by MIC-PHY-MIP-06.title) claims the chapter covers 'scalars and vectors, vector algebra, resolution into rectangular components, scalar and vector products, and motion in a plane...', but its quote is only 'Motion in a plane, cases of uniform velocity and uniform acceleration - projectile motion, uniform circular motion.' The vector items are on the same pinned page 3 but are not in this quote, and no card anywhere quotes 'Scalar and Vector product of vectors.' Trim the claim to the quoted line, or extend the quote to the whole Chapter-3 syllabus entry."
+    }
+  ]
+}
