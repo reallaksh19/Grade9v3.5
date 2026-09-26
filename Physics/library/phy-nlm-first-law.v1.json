@@ -6874,6 +6874,263 @@
           "visual_stage_ref": "VIS-NLM-FBDTRIPLE-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-CRATE10-TWO-PULLS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the crate in its two trials so each friction need is compared with a limit computed from that trial's own normal force.",
+      "required_elements": [
+        "10 kg crate with 50 N pulls, horizontal and at 37°",
+        "normal force, limit and need per trial",
+        "contact state and friction per trial"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "10 kg crate with 50 N pulls, horizontal and at 37°",
+        "normal force, limit and need per trial",
+        "contact state and friction per trial"
+      ],
+      "instance_constraints": [
+        "The crate stays in contact with the floor.",
+        "No friction equality is assumed before the contact state is decided."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Using N = mg for the angled pull."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CRATE10-TWO-PULLS.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CRATE50-V0",
+          "label": "Two trials",
+          "purpose": "Show both pulls on the crate.",
+          "visible_elements": [
+            "10 kg crate with 50 N pulls, horizontal and at 37°"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRATE50-V1",
+          "label": "N and need",
+          "purpose": "Find each trial's normal force, limit and need.",
+          "visible_elements": [
+            "10 kg crate with 50 N pulls, horizontal and at 37°",
+            "normal force, limit and need per trial"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRATE50-V2",
+          "label": "Decision",
+          "purpose": "Compare each need with its own limit.",
+          "visible_elements": [
+            "10 kg crate with 50 N pulls, horizontal and at 37°",
+            "normal force, limit and need per trial",
+            "contact state and friction per trial"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CRATE50-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CRATE50-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CRATE50-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-THREE-CART-TRAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the three-cart train with the drag on the middle cart, so each joint force comes from cutting at that joint.",
+      "required_elements": [
+        "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
+        "a = 4 m/s²",
+        "joint forces 18 N and 4 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
+        "a = 4 m/s²",
+        "joint forces 18 N and 4 N"
+      ],
+      "instance_constraints": [
+        "The carts stay in contact.",
+        "The only friction is the 6 N drag on B."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Sharing the push by mass fractions."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-THREE-CART-TRAIN.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TRAIN-V0",
+          "label": "The train",
+          "purpose": "Show the three carts, the push and the drag on B.",
+          "visible_elements": [
+            "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAIN-V1",
+          "label": "Whole train",
+          "purpose": "Find the common acceleration.",
+          "visible_elements": [
+            "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
+            "a = 4 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAIN-V2",
+          "label": "Joint forces",
+          "purpose": "Cut at each joint and isolate one side with its external forces.",
+          "visible_elements": [
+            "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
+            "a = 4 m/s²",
+            "joint forces 18 N and 4 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TRAIN-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TRAIN-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TRAIN-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-HEAVY-ROPE-BLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block on the heavy rope so the one-tension model is tested before any T is written.",
+      "required_elements": [
+        "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
+        "model check and tension rule",
+        "tension at bottom, middle and top"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "read_order": [
+        "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
+        "model check and tension rule",
+        "tension at bottom, middle and top"
+      ],
+      "instance_constraints": [
+        "The rope is uniform with mass 1 kg.",
+        "Rope and block move together with a = 2 m/s² upward."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Writing one T for a rope whose mass is not negligible."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-HEAVY-ROPE-BLOCK.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-HEAVYROPE-V0",
+          "label": "The rope and block",
+          "purpose": "Show the hand, the 1 kg rope and the 2 kg block accelerating up.",
+          "visible_elements": [
+            "2 kg block on a 1 kg uniform rope, a = 2 m/s² up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HEAVYROPE-V1",
+          "label": "Model check",
+          "purpose": "Test whether one T is licensed.",
+          "visible_elements": [
+            "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
+            "model check and tension rule"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HEAVYROPE-V2",
+          "label": "Tensions",
+          "purpose": "Evaluate the tension at three points.",
+          "visible_elements": [
+            "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
+            "model check and tension rule",
+            "tension at bottom, middle and top"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-HEAVYROPE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-HEAVYROPE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-HEAVYROPE-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -9324,11 +9581,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-CRATE10-TWO-PULLS",
+        "bound_ref": "REP-NLM-CRATE10-TWO-PULLS",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-CRATE50-V0"
         ]
       },
       "failure_signal": "You kept the crate at rest in the angled trial because 40 N < 0.55 × 100 = 55 N: the upward part of the pull lightens the contact to N = 70 N, so the limit is 38.5 N. Or you used μ_k in the horizontal trial, where the crate never slips.",
@@ -9538,10 +9794,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-THREE-CART-TRAIN",
+        "bound_ref": "REP-NLM-THREE-CART-TRAIN",
         "stage_refs": [
-          "VIS-NLM-FBD-V0"
+          "VIS-NLM-TRAIN-V0"
         ]
       },
       "failure_signal": "You got 15 N and 5 N from the mass-fraction rule, (m_B + m_C)F/M and m_C F/M: that rule ignores the 6 N drag on B. Or you gave one contact force for the whole train.",
@@ -9747,11 +10003,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-HEAVY-ROPE-BLOCK",
+        "bound_ref": "REP-NLM-HEAVY-ROPE-BLOCK",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-HEAVYROPE-V0"
         ]
       },
       "failure_signal": "You used one T = 24 N (from the block alone) or T = 36 N everywhere: the rope's own mass needs force too, so the tension grows from 24 N at the bottom to 36 N at the top.",
