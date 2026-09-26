@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 329,
-  "relation_count": 357,
+  "component_count": 330,
+  "relation_count": 359,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
     "TEST": 152,
-    "TOOLING": 82,
+    "TOOLING": 83,
     "WEB": 9,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:b0ae72762879c111acb20c9f759ec5ab44d3a5fe381a50169955d85533b75768",
+  "digest": "sha256:4e3c50423b8fafe3a6ec76919320978878a1b4fa4e99d30734fa1a281232ade4",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -143,8 +143,8 @@
       "path": "Shared/library/evidence-cards.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 4948,
-      "sha256": "d70c1e2c7eb5b654230f345e23c303280e3cf8bf98b75fcc3dc2c65b2a90a8ef"
+      "bytes": 6329,
+      "sha256": "65a895151747872bd057402ac1a23b7616960e1a34adca0ca00091829b50b656"
     },
     {
       "path": "Shared/library/exam-source-verification.schema.json",
@@ -787,8 +787,8 @@
       "path": "Shared/tools/evidence_check.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 14633,
-      "sha256": "fb89b0b6f3905294a11f06b5779e5f8cfd44b6af2e5923fe41d01db7f1dc8662"
+      "bytes": 20274,
+      "sha256": "09e2c9e1dab9d753051955785de0d488fc61f9185df58721bc1209d57091e27f"
     },
     {
       "path": "Shared/tools/execute_authoring_run.py",
@@ -985,6 +985,13 @@
       "role_description": "Guardrails and generators",
       "bytes": 3192,
       "sha256": "2e4e673c4833cb5ae80a7c94422cbb18302a15fac35f059fc10a303e0bac2d57"
+    },
+    {
+      "path": "Shared/tools/scan_ingest.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 8901,
+      "sha256": "e476accac9c92157d3491c1f25e76ea1dbcf3e86a29d9d3ebac1c3a4215eee4d"
     },
     {
       "path": "Shared/tools/session_readiness.py",
@@ -2096,8 +2103,8 @@
       "path": "tests/test_research_library.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 14749,
-      "sha256": "311449c21287bcff995f3334e7e1af6e36b42b80d1c09236c63cd31ad3a04faa"
+      "bytes": 20264,
+      "sha256": "2937df523a9982cd1165de20efd898a3a0b0e7260a69a899359ad4f517e52bc1"
     },
     {
       "path": "tests/test_review_authority.py",
@@ -3046,6 +3053,11 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "Shared/tools/scan_ingest.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "Shared/tools/session_readiness.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -3917,6 +3929,11 @@
     },
     {
       "from": "tests/test_research_first_workflow.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_research_library.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },

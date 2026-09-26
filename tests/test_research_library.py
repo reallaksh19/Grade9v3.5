@@ -265,3 +265,101 @@ class Board(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ScanProtocol(unittest.TestCase):
+    """Local scans: owner-registered, OCR text stays local, quotes provable from a hashed index."""
+
+    PAGES = [
+        "Chapter 4 Projectile motion. A body projected into the air and moving under gravity alone "
+        "is called a projectile, and its horizontal velocity stays constant throughout the flight.",
+        "Worked example 4.2. A stone is thrown horizontally at 15 m/s from a cliff 20 m high. "
+        "Taking g = 10 m/s2 it reaches the ground after 2 s at a distance of 30 m from the foot.",
+        "Figure 4.3",
+        "Exercise 4.7 A ball is thrown at 25 m/s at an angle of 37 degrees with the horizontal. "
+        "Find its time of flight. Answers to exercises: 4.7 3 s, 4.8 45 m.",
+    ]
+
+    def setUp(self):
+        from Shared.tools import scan_ingest  # noqa: PLC0415
+        self.scan_ingest = scan_ingest
+        self.box = Sandbox()
+        self.scan = self.box.root / "book.pdf"
+        self.scan.write_bytes(b"%PDF-1.4 scanned book bytes for the test")
+        self.register(scan_ingest.sha256_file(self.scan))
+
+    def tearDown(self):
+        self.box.close()
+
+    def register(self, sha: str) -> None:
+        path = self.box.research / "source-allowlist.json"
+        allow = json.loads(path.read_text())
+        allow["local_sources"] = [{"source_id": "SRC-TEST-BOOK", "title": "Test Physics Book", "tier": "B",
+                                   "may_support": ["DEFINITION", "WORKED_EXAMPLE", "QUESTION", "ANSWER_KEY"],
+                                   "rights": "COPYRIGHTED_OWNED_COPY", "scan_sha256s": [sha],
+                                   "registered_by": "owner", "registered_at": "2026-09-26"}]
+        path.write_text(json.dumps(allow))
+
+    def ingest(self) -> dict:
+        return self.scan_ingest.ingest(subject=SUBJECT, source_id="SRC-TEST-BOOK", scan=self.scan, node=CHAPTER,
+                                       agent="local-agent", pages=self.PAGES, ocr={"engine": "test-ocr 1.0"},
+                                       printed_page_offset=40, repo=self.box.root)
+
+    def scan_card(self, cid, kind, quote, page, **extra):
+        return card(cid, kind, quote, locator={"page": page}, harvested_by="local-agent", **extra)
+
+    def test_unregistered_scan_is_refused(self):
+        self.register("0" * 64)
+        with self.assertRaises(SystemExit):
+            self.ingest()
+
+    def test_quote_proven_locally_and_from_the_committed_index_alone(self):
+        acq = self.ingest()["acquisition_id"]
+        good = self.scan_card("EV-S-DEF", "DEFINITION",
+                              "moving under gravity alone is called a projectile", 1, acquisition_ref=acq)
+        self.box.write_cards(NODE, [good])
+        self.assertTrue(self.box.check()["passed"], self.box.check()["findings"])
+        for path in self.box.cache.glob("*.pages.json"):
+            path.unlink()  # a cloud agent or CI has only the committed manifest
+        report = self.box.check()
+        self.assertTrue(report["passed"], report["findings"])
+        self.assertEqual(report["cards_passing"], 1)
+        bad = self.scan_card("EV-S-DEF", "DEFINITION",
+                             "moving under gravity alone is called a missile", 1, acquisition_ref=acq)
+        self.box.write_cards(NODE, [bad])
+        self.assertIn("EVIDENCE_QUOTE_NOT_FOUND", [f["code"] for f in self.box.check()["findings"]])
+
+    def test_manifest_holds_no_page_text_and_flags_low_text_pages(self):
+        result = self.ingest()
+        manifest = (self.box.root / result["manifest"]).read_text()
+        self.assertNotIn("projectile", manifest)
+        self.assertEqual(result["low_text_pages"], [3])
+
+    def test_scanned_numbers_need_an_independent_second_reading(self):
+        acq = self.ingest()["acquisition_id"]
+        quote = "A stone is thrown horizontally at 15 m/s from a cliff 20 m high"
+        base = dict(acquisition_ref=acq)
+        cases = {
+            "EVIDENCE_SCAN_SECOND_READING_MISSING": {},
+            "EVIDENCE_SCAN_SECOND_READER_NOT_INDEPENDENT": {"scan_check": {
+                "second_reading": quote, "second_reader": "local-agent", "method": "HUMAN"}},
+            "EVIDENCE_SCAN_NUMBERS_DISAGREE": {"scan_check": {
+                "second_reading": "A stone is thrown horizontally at 16 m/s from a cliff 20 m high",
+                "second_reader": "owner", "method": "HUMAN"}},
+        }
+        for code, extra in cases.items():
+            with self.subTest(code=code):
+                self.box.write_cards(NODE, [self.scan_card("EV-S-WEX", "WORKED_EXAMPLE", quote, 2, **base, **extra)])
+                self.assertIn(code, [f["code"] for f in self.box.check()["findings"]])
+        ok = self.scan_card("EV-S-WEX", "WORKED_EXAMPLE", quote, 2, **base, scan_check={
+            "second_reading": "A stone is thrown horizontally at 15 m/s from a cliff 20 m high",
+            "second_reader": "owner", "method": "HUMAN"})
+        self.box.write_cards(NODE, [ok])
+        self.assertTrue(self.box.check()["passed"], self.box.check()["findings"])
+
+    def test_owner_tier_narrowing_is_enforced(self):
+        acq = self.ingest()["acquisition_id"]
+        self.box.write_cards(NODE, [self.scan_card("EV-S-SC", "SYLLABUS_SCOPE",
+                                                   "Chapter 4 Projectile motion. A body projected into the air", 1,
+                                                   acquisition_ref=acq)])
+        self.assertIn("EVIDENCE_TIER_CANNOT_SUPPORT_KIND", [f["code"] for f in self.box.check()["findings"]])
