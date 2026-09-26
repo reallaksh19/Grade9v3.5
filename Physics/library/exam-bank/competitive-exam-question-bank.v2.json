@@ -954,7 +954,7 @@
       "origin": "ADAPTED",
       "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
       "original_identifier": "JEE (Advanced)|2014|Paper 2|Physics|Q19",
-      "stem": "Two touching blocks m1=1 kg and m2=2 kg rest on an incline of angle theta. The plane is smooth under m1; for m2, static and kinetic friction coefficients are both 0.3. Determine which friction expression applies to m2 at theta = 5°, 10°, 15° and 20°. Candidate expressions are: (1) m2 g sin theta; (2) (m1+m2)g sin theta; (3) 0.3 m2 g cos theta; (4) 0.3(m1+m2)g cos theta.",
+      "stem": "Two touching blocks m1=1 kg and m2=2 kg rest on an incline of angle theta, with m1 placed just above m2 (up the slope), so m1 presses on m2. The plane is smooth under m1; for m2, static and kinetic friction coefficients are both 0.3. Determine which friction expression applies to m2 at theta = 5°, 10°, 15° and 20°. Candidate expressions are: (1) m2 g sin theta; (2) (m1+m2)g sin theta; (3) 0.3 m2 g cos theta; (4) 0.3(m1+m2)g cos theta.",
       "subparts": [],
       "options": [
         "(A) P-1, Q-1, R-1, S-3",
@@ -965,7 +965,8 @@
       "conditions": [
         "m1=1 kg; m2=2 kg.",
         "Only m2 has friction with the plane, mu=0.3.",
-        "Use tan5.5°≈0.1, tan11.5°≈0.2, tan16.5°≈0.3."
+        "Use tan5.5°≈0.1, tan11.5°≈0.2, tan16.5°≈0.3.",
+        "m1 is directly up-slope of m2 and pushes on it; m2 is the lower block."
       ],
       "figure_refs": [],
       "answer": {
@@ -1803,36 +1804,36 @@
         "kind": "MODEL_RESPONSE",
         "summary": "0.5 s.",
         "reasoning": [
-          "At the apex the projectile has zero vertical velocity immediately before splitting.",
-          "The fragment that falls vertically reaches the ground in 0.5 s; this fixes the apex height through H=(1/2)g(0.5)^2.",
-          "Both fragments start from the same height at the same instant; vertical momentum before split is zero, and the vertical-fall fragment has zero horizontal velocity but no stated vertical impulse. The source configuration yields the same vertical fall time for the other fragment, t=0.5 s."
+          "Resolve the launch: 5√2 m/s at 45° from the vertical gives u_x = u_y = 5 m/s. The apex is at t = u_y/g = 0.5 s, at height H = u_y²/2g = 25/20 = 1.25 m, where the velocity is (5, 0) m/s.",
+          "The fragment that falls vertically covers 1.25 m in 0.5 s. From rest, a 1.25 m fall takes √(2H/g) = √(2.5/10) = 0.5 s, so that fragment starts from rest: zero vertical and zero horizontal velocity just after the split.",
+          "Momentum at the split: before, M(5, 0) m/s. After, (M/2)(0, 0) + (M/2)v₂, so v₂ = (10, 0) m/s. The other fragment also starts with zero vertical velocity from 1.25 m, so it lands after t = √(2H/g) = 0.5 s (at x = 2.5 + 10 × 0.5 = 7.5 m from the launch point)."
         ],
         "reasoning_route": [
           {
             "id": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-1",
             "kind": "REPRESENT",
-            "action": "At the apex the projectile has zero vertical velocity immediately before splitting.",
-            "why_valid": "This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.",
+            "action": "Resolve the launch: 5√2 m/s at 45° from the vertical gives u_x = u_y = 5 m/s. The apex is at t = u_y/g = 0.5 s, at height H = u_y²/2g = 25/20 = 1.25 m, where the velocity is (5, 0) m/s.",
+            "why_valid": "Follows from the gravity-only projectile model and momentum conservation at the split, as shown in this step.",
             "inputs": [
               "stated source quantities"
             ],
-            "output": "intermediate result 1"
+            "output": "Apex at 0.5 s, H = 1.25 m, velocity (5, 0) m/s."
           },
           {
             "id": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-2",
             "kind": "CONNECT",
-            "action": "The fragment that falls vertically reaches the ground in 0.5 s; this fixes the apex height through H=(1/2)g(0.5)^2.",
-            "why_valid": "This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.",
+            "action": "The fragment that falls vertically covers 1.25 m in 0.5 s. From rest, a 1.25 m fall takes √(2H/g) = √(2.5/10) = 0.5 s, so that fragment starts from rest: zero vertical and zero horizontal velocity just after the split.",
+            "why_valid": "Follows from the gravity-only projectile model and momentum conservation at the split, as shown in this step.",
             "inputs": [
               "stated source quantities"
             ],
-            "output": "intermediate result 2"
+            "output": "The vertical fragment starts from rest at the split."
           },
           {
             "id": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-3",
             "kind": "TRANSFORM",
-            "action": "Both fragments start from the same height at the same instant; vertical momentum before split is zero, and the vertical-fall fragment has zero horizontal velocity but no stated vertical impulse. The source configuration yields the same vertical fall time for the other fragment, t=0.5 s.",
-            "why_valid": "This follows from the stated physical or chemical model and the quantities preserved in the source-matched task.",
+            "action": "Momentum at the split: before, M(5, 0) m/s. After, (M/2)(0, 0) + (M/2)v₂, so v₂ = (10, 0) m/s. The other fragment also starts with zero vertical velocity from 1.25 m, so it lands after t = √(2H/g) = 0.5 s (at x = 2.5 + 10 × 0.5 = 7.5 m from the launch point).",
+            "why_valid": "Follows from the gravity-only projectile model and momentum conservation at the split, as shown in this step.",
             "inputs": [
               "stated source quantities"
             ],
@@ -1840,7 +1841,7 @@
           }
         ],
         "crux_move_ref": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-2",
-        "check": "The official numerical result is consistent with both fragments sharing the same vertical event time from the apex.",
+        "check": "Vertical momentum is zero before the split and both fragments have zero vertical velocity after it, so vertical momentum is conserved (0 = 0); both then fall 1.25 m from rest in the same 0.5 s, and horizontal momentum M × 5 = (M/2) × 10 checks the second fragment's speed.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "INDEPENDENTLY_CHECKED",
@@ -1886,7 +1887,7 @@
           "supports_move_ref": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-1"
         },
         {
-          "text": "Use the 0.5 s fall of one fragment to characterize the common vertical drop from the apex.",
+          "text": "Find the apex height from u_y, then ask what initial vertical velocity lets a fragment fall that height in exactly 0.5 s.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "PYQ-PHY-JEEADV-2021-P1-Q05-MOVE-2"
@@ -2615,7 +2616,7 @@
       "origin": "ADAPTED",
       "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
       "original_identifier": "IIT-JEE|2012|Paper I|Physics|Q5",
-      "stem": "A block on a frictionless horizontal surface is attached to a spring of natural length 4.9 m. It is stretched by 0.2 m and released, executing SHM with angular frequency pi/3 rad/s. At the same instant a pebble is launched at 45 degrees from a point 10 m away. If it meets the block after 1 s, determine the launch speed.",
+      "stem": "A block on a frictionless horizontal surface is attached to a spring of natural length 4.9 m whose other end is fixed to a wall. It is stretched by 0.2 m and released, executing SHM with angular frequency pi/3 rad/s. At the same instant a pebble is launched at 45 degrees, toward the block, from a point on the surface 10 m from the wall (on the block's side). If it meets the block after 1 s, determine the launch speed.",
       "subparts": [],
       "options": [
         "(A) sqrt(50) m/s",
@@ -2626,22 +2627,23 @@
       "conditions": [
         "Take g=10 m/s^2.",
         "The spring-block motion and projectile launch begin simultaneously.",
-        "The block starts from maximum extension."
+        "The block starts from maximum extension.",
+        "Distances along the surface are measured from the wall to which the spring is fixed; the block starts 5.1 m from it and the pebble's launch point is 10 m from it."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "Option (A): sqrt(50) m/s.",
         "reasoning": [
-          "After 1 s the spring extension is 0.2 cos(pi/3)=0.1 m, so the block is 5.0 m from the fixed end.",
-          "The pebble starts 10 m away and must cover 5 m horizontally in 1 s, so v cos45=5.",
+          "After 1 s the spring extension is 0.2 cos(pi/3) = 0.1 m, so the block is 4.9 + 0.1 = 5.0 m from the wall.",
+          "The pebble starts 10 m from the wall and must reach the block, 5.0 m from the wall, in 1 s: it covers 5 m horizontally, so v cos45 = 5.",
           "Hence v=5sqrt(2)=sqrt(50) m/s; its vertical displacement after 1 s is also zero, so the meeting height is consistent."
         ],
         "reasoning_route": [
           {
             "id": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-1",
             "kind": "REPRESENT",
-            "action": "After 1 s the spring extension is 0.2 cos(pi/3)=0.1 m, so the block is 5.0 m from the fixed end.",
+            "action": "After 1 s the spring extension is 0.2 cos(pi/3) = 0.1 m, so the block is 4.9 + 0.1 = 5.0 m from the wall.",
             "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
             "inputs": [
               "stated source quantities"
@@ -2651,7 +2653,7 @@
           {
             "id": "PYQ-PHY-IITJEE-2012-P1-Q05-MOVE-2",
             "kind": "CONNECT",
-            "action": "The pebble starts 10 m away and must cover 5 m horizontally in 1 s, so v cos45=5.",
+            "action": "The pebble starts 10 m from the wall and must reach the block, 5.0 m from the wall, in 1 s: it covers 5 m horizontally, so v cos45 = 5.",
             "why_valid": "This follows from the stated model, conservation law, or stoichiometric relation preserved in the source-matched task.",
             "inputs": [
               "stated source quantities"
@@ -2786,7 +2788,7 @@
       "origin": "ADAPTED",
       "origin_ref": "SRC-JEEADV-OFFICIAL-ARCHIVE",
       "original_identifier": "JEE (Advanced)|2014|Paper 1|Physics|Q8",
-      "stem": "A uniform ladder of mass m leans against a wall at angle theta and is on the verge of slipping. Let the wall and floor friction coefficients be mu1 and mu2, with normal reactions N1 at the wall and N2 at the floor. Identify the source-correct limiting-equilibrium statements.",
+      "stem": "A uniform ladder of mass m leans against a vertical wall, making angle theta with the horizontal floor, and is on the verge of slipping. Let the wall and floor friction coefficients be mu1 and mu2, with normal reactions N1 at the wall and N2 at the floor. Identify the source-correct limiting-equilibrium statements.",
       "subparts": [],
       "options": [
         "(A) mu1=0, mu2!=0 and N2 tan(theta)=mg/2",
@@ -2796,7 +2798,8 @@
       ],
       "conditions": [
         "The ladder is in static limiting equilibrium.",
-        "Friction acts at the impending-slip limits where present."
+        "Friction acts at the impending-slip limits where present.",
+        "theta is measured between the ladder and the horizontal floor."
       ],
       "figure_refs": [],
       "answer": {
@@ -3285,7 +3288,8 @@
       "conditions": [
         "Slide is frictionless.",
         "Ground is horizontal.",
-        "Coefficient of restitution is 1/sqrt(3)."
+        "Coefficient of restitution is 1/sqrt(3).",
+        "x-hat points horizontally in the direction the ball leaves the terrace, and z-hat points vertically upward."
       ],
       "figure_refs": [],
       "answer": {
@@ -3329,7 +3333,7 @@
           }
         ],
         "crux_move_ref": "PYQ-PHY-JEEADV-2023-P1-Q01-MOVE-2",
-        "check": "The restitution factor maps sqrt(6gh) to sqrt(2gh), so the rebound vertical component is upward; this also shows option (B)'s sign/direction statement is not correct.",
+        "check": "The restitution factor maps the downward sqrt(6gh) to an upward sqrt(2gh), so the rebound velocity is sqrt(2gh)(x-hat + z-hat) with z-hat upward; option (B)'s (x-hat - z-hat) points downward and is not correct.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "INDEPENDENTLY_CHECKED",

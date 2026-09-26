@@ -4647,15 +4647,15 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-              "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+              "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
               "origin": "AUTHORED",
-              "answer": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval."
+              "answer": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-              "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+              "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
               "origin": "AUTHORED",
-              "answer": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant."
+              "answer": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
@@ -4665,15 +4665,15 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-              "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+              "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
               "origin": "AUTHORED",
-              "answer": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events."
+              "answer": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s."
             },
             {
               "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-              "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+              "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
               "origin": "AUTHORED",
-              "answer": "Ground impact occurs at t=3 s and the horizontal range is 30 m."
+              "answer": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof."
             },
             {
               "id": "Q-PHY-KIN-PRACTICAL-13",
@@ -4876,7 +4876,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 123,
+          "record_count": 135,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4897,12 +4897,72 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-APEX-12-20",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-CONST-ACCEL-3S",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-DRONE-SHARED-CLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-EVENT-CLOCK",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-LEVEL-APEX-RETURN",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-PLANE-RELEASE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-PROJECTILE-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-PUCK-AXIS-CHECK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ROOF-LANDING-ROOTS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-SAME-HEIGHT-12-16",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-TWO-PUCK-MEETING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-VELOCITY-45-BELOW",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-VERBAL-COMPASS-STATE",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -6451,9 +6511,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-2A-01",
-              "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
+              "stem": "An 80 kg skydiver falls at a steady 50 m/s. Take g = 10 m/s². Find the air resistance on the skydiver and the net force. Just after the parachute opens, the skydiver is still moving downward but slowing: is the net force then zero, upward or downward?",
               "origin": "AUTHORED",
-              "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged."
+              "answer": "In the steady fall the air resistance is 800 N upward and the net force is zero. Just after the parachute opens the net force points upward, even though the skydiver is still moving down."
             },
             {
               "id": "Q-PHY-NLM-2A-ATWOOD-12",
@@ -6475,33 +6535,33 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-2A-COV-02",
-              "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
+              "stem": "A 2 kg book lies at rest on a table while a hand presses straight down on it with 5 N. Take g = 10 m/s². List every force on the book with its agent and size, find the table's push, and state the net force and what it predicts about the book's velocity.",
               "origin": "AUTHORED",
-              "answer": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity."
+              "answer": "Earth pulls the book down with 20 N, the hand pushes down with 5 N and the table pushes up with 25 N. The net force is zero, so the book's velocity (zero) does not change, though three nonzero forces act."
             },
             {
               "id": "Q-PHY-NLM-2A-COV-03",
-              "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
+              "stem": "A 0.1 kg magnet is stuck at rest on a vertical steel fridge door; the door's magnetic pull on it is 3 N. Take g = 10 m/s². List every force on the magnet with its agent, direction and size. For each one, name its third-law partner and the body that partner acts on.",
               "origin": "AUTHORED",
-              "answer": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram."
+              "answer": "On the magnet: weight 1 N down (Earth), magnetic pull 3 N toward the door (fridge), normal push 3 N away from the door (door surface), static friction 1 N up (door surface). Partners: the magnet pulls the Earth up 1 N, pulls the fridge toward itself 3 N, presses into the door 3 N and drags the door's surface down 1 N. None of the partners is on the magnet's diagram."
             },
             {
               "id": "Q-PHY-NLM-2A-COV-04",
-              "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
+              "stem": "A 20 kg crate rides on the flat bed of a truck. The truck brakes, slowing at 3 m/s², and the crate does not slip on the bed. Which way does friction from the bed act on the crate, and how large is it?",
               "origin": "AUTHORED",
-              "answer": "The friction force on the box points to the right."
+              "answer": "Friction on the crate points backward, against its motion, with size 20 × 3 = 60 N."
             },
             {
               "id": "Q-PHY-NLM-2A-COV-05",
-              "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
+              "stem": "A 2.5 kg trolley on a level track is pulled forward with 9 N while a 4 N drag acts backward. Take forward as positive. Find its acceleration. Then the pull is removed while the trolley is still moving forward: find its acceleration now.",
               "origin": "AUTHORED",
-              "answer": "The acceleration is +3 m/s^2."
+              "answer": "With the pull: a = +2 m/s². After the pull is removed: a = −1.6 m/s², backward while the trolley still moves forward."
             },
             {
               "id": "Q-PHY-NLM-2A-COV-06",
-              "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
+              "stem": "A book rests on a table. Name the third-law partner of (a) the book's weight and (b) the table's upward push on the book. For each partner, say which body it acts on and which way it points.",
               "origin": "AUTHORED",
-              "answer": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies."
+              "answer": "(a) The partner of the Earth's pull on the book is the book's pull on the Earth, acting on the Earth and pointing up. (b) The partner of the table's push on the book is the book's push on the table, acting on the table and pointing down. The weight and the table's push both act on the book, so they are not partners."
             },
             {
               "id": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
@@ -6547,69 +6607,69 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
-              "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
+              "stem": "Three carts touch in a line on a level track: A (3 kg) at the back, then B (2 kg), then C (1 kg) at the front. A 30 N push acts on A toward the front. Cart B has a sticking wheel that drags on the track with a 6 N friction force; A and C roll freely. Find the acceleration of the train and the contact force at each of its two joints, A-B and B-C.",
               "origin": "AUTHORED",
-              "answer": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation."
+              "answer": "a = (30 − 6)/6 = 4 m/s². The A-B joint carries 18 N and the B-C joint carries 4 N. The two joint forces are not the mass fractions of the push (15 N and 5 N), because the drag acts on the middle cart."
             },
             {
               "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
-              "stem": "Two masses remain attached to one taut inextensible string that does not slip on a fixed pulley. The pulley is now stated to have appreciable rotational inertia, and no rotational-dynamics relation is supplied. A student claims that both T_A=T_B and a_A+a_B=0 must either survive together or fail together. Decide which statement can still be obtained from the bounded material, and which statement is no longer licensed.",
+              "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string that does not slip on a fixed pulley with appreciable rotational inertia; no rotational law is supplied. y_A and y_B are measured downward from the pulley, and g = 10 m/s². A is measured to accelerate downward at 4 m/s². Decide which of a_A + a_B = 0 and T_A = T_B can still be used, find a_B, and find the tension in each segment.",
               "origin": "AUTHORED",
-              "answer": "The kinematic relation a_A+a_B=0 still follows from the fixed total string length. Equal tension T_A=T_B is no longer guaranteed by the taught ideal redirection model once appreciable pulley rotational inertia is introduced. A quantitative tension difference is outside this packet."
+              "answer": "a_A+a_B=0 still holds, from the fixed string length, so a_B = −4 m/s² (4 m/s² upward). T_A=T_B is no longer guaranteed with a heavy pulley, so each segment gets its own tension from its own mass: T_A = 3(10 − 4) = 18 N and T_B = 1(10 + 4) = 14 N. An ideal pulley would have given a = 5 m/s² and T = 15 N on both sides."
             },
             {
               "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
-              "stem": "Two blocks A and B are initially touching on a smooth horizontal floor, with A to the left of B. A horizontal force F is suddenly applied to A toward the left, away from B. A proposed solution treats A+B as one connected system and writes a=F/(m_A+m_B). Decide whether that model is valid immediately after the force is applied. If it is not, state the two accelerations.",
+              "stem": "Blocks A (2 kg) and B (3 kg) touch on a smooth floor, A behind B. A 10 N force pushes A forward, into B, and at the same time a force F pulls B forward. For F = 10 N and for F = 30 N, decide whether the blocks stay in contact, and find the accelerations.",
               "origin": "AUTHORED",
-              "answer": "The common-acceleration model is invalid because the force makes A separate from B and an ordinary normal contact cannot pull them together. Immediately after contact is lost, a_A=-F/m_A and a_B=0."
+              "answer": "F = 10 N: assuming contact, a = 20/5 = 4 m/s² and A needs N = 10 − 2 × 4 = 2 N from B, which is possible, so both move at 4 m/s². F = 30 N: assuming contact, a = 8 m/s² and N = 10 − 16 = −6 N, a pull that a contact cannot give, so they separate: a_A = 10/2 = 5 m/s² and a_B = 30/3 = 10 m/s²."
             },
             {
               "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
-              "stem": "A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.",
+              "stem": "A 0.2 kg bob hangs from a string tied to the roof of a car that accelerates horizontally to the right at 7.5 m/s²; the bob hangs steady relative to the car. Take g = 10 m/s². A student wants the bob to be at rest in the chosen coordinates. Decide which observer makes that possible and what extra term that observer needs. Then find the string's angle from the vertical and its tension, and check both with the roadside frame.",
               "origin": "AUTHORED",
-              "answer": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction."
+              "answer": "Use the car frame, where the bob is at rest, and add a pseudo-force m a_car = 0.2 × 7.5 = 1.5 N to the left. With the 2 N weight, the string must balance both: tan θ = 1.5/2 = 0.75, so θ ≈ 37° from the vertical, with the bob hanging back (to the left), and T = √(1.5² + 2²) = 2.5 N. The roadside frame uses no pseudo-force: T sin θ = m a = 1.5 N and T cos θ = mg = 2 N, the same result."
             },
             {
               "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-              "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest.",
+              "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest. Then show that for steep enough push angles no P at all can start the block, and find that angle for mu_s = 0.5.",
               "origin": "AUTHORED",
-              "answer": "At impending slip, N=mg+P sin(theta) and P cos(theta)=mu_s N, so P_max = mu_s m g / (cos(theta)-mu_s sin(theta))."
+              "answer": "At rest N = mg + P sin(theta) and the friction needed is P cos(theta), so rest requires P[cos(theta) − mu_s sin(theta)] <= mu_s m g. If cos(theta) > mu_s sin(theta), P_max = mu_s m g/(cos(theta) − mu_s sin(theta)). If tan(theta) >= 1/mu_s, the left side is never positive, so no push can start the block. For mu_s = 0.5 that happens for tan(theta) >= 2, theta >= 63.4°."
             },
             {
               "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-              "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
+              "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.55 and μ_k = 0.40; take g = 10 m/s². A 50 N pull is applied, first horizontally and then, in a second trial, at 37° above the horizontal (sin 37° = 0.6, cos 37° = 0.8). The statement does not say whether the crate slips. For each trial decide whether the crate stays at rest, and find the friction force and the acceleration.",
               "origin": "AUTHORED",
-              "answer": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration."
+              "answer": "Horizontal pull: N = 100 N and the limit is 55 N, which covers the 50 N needed, so the crate stays at rest with 50 N of static friction. Angled pull: N = 100 − 30 = 70 N and the limit is 38.5 N, less than the 40 N needed, so the crate slides; kinetic friction is 0.40 × 70 = 28 N and a = (40 − 28)/10 = 1.2 m/s². The tilted pull has the smaller horizontal part, yet it moves the crate."
             },
             {
               "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
-              "stem": "A block of mass m rests on a block of mass M on a smooth floor. A horizontal force F is applied to the upper block m. The coefficient of static friction between the blocks is mu_s. Derive the largest F for which the blocks move together without slipping.",
+              "stem": "A 2 kg block rests on a 4 kg block on a smooth floor. A horizontal force F acts on the upper block. Between the blocks μ_s = 0.3 and μ_k = 0.2; take g = 10 m/s². Find the largest F for which the blocks move together, and then the acceleration of each block when F = 12 N.",
               "origin": "AUTHORED",
-              "answer": "If the blocks move together, a=F/(m+M). The lower block needs friction f_required=Ma. With N=mg at the interface, no slip requires MF/(m+M) <= mu_s m g, so F_max = mu_s m g (m+M)/M."
+              "answer": "Moving together, a = F/6 and the lower block needs friction 4a = 2F/3, which may not exceed 0.3 × 20 = 6 N, so F_max = 9 N. At F = 12 N the blocks slip: kinetic friction 0.2 × 20 = 4 N acts backward on the upper block and forward on the lower one, so a_upper = (12 − 4)/2 = 4 m/s² and a_lower = 4/4 = 1 m/s²."
             },
             {
               "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
-              "stem": "A runner accelerates forward without the shoe slipping on the ground. Determine the direction of the static friction force exerted by the ground on the shoe, and justify it from the relative slip tendency at the contact.",
+              "stem": "A 60 kg person stands on a 20 kg plank that rests on frictionless ice. The person starts to walk forward, accelerating at 0.5 m/s² relative to the ice, and the shoes do not slip on the plank. Find the direction and size of the friction on the person's shoes, then the horizontal force on the plank and the plank's acceleration.",
               "origin": "AUTHORED",
-              "answer": "The ground's static friction on the shoe points forward."
+              "answer": "Friction on the shoes points forward and is 60 × 0.5 = 30 N. Its partner, 30 N backward, acts on the plank, which has no other horizontal force, so the plank accelerates backward at 30/20 = 1.5 m/s²."
             },
             {
               "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
-              "stem": "A rough horizontal platform and a crate on it are already moving together at constant velocity. At the instant considered there is no other horizontal force on the crate. Must a nonzero friction force act on the crate merely because the surfaces are rough?",
+              "stem": "A 50 kg crate stands on the rough floor of a lift (μ_s = 0.4) while the lift accelerates upward at 2 m/s². Take g = 10 m/s². Find the normal force on the crate and the friction force on it.",
               "origin": "AUTHORED",
-              "answer": "No. The friction force can be zero."
+              "answer": "N = 50 × (10 + 2) = 600 N. The friction force is zero: the crate's acceleration is vertical, so nothing needs a force along the floor, even though the floor is rough and μ_s N = 240 N."
             },
             {
               "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
-              "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.",
+              "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates. If A accelerates upward at 2 m/s², what is B's signed acceleration?",
               "origin": "AUTHORED",
-              "answer": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude."
+              "answer": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude. With a_A = +2 m/s², a_B = −2 m/s², so B accelerates downward at 2 m/s²."
             },
             {
               "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
-              "stem": "Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.",
+              "stem": "A 2 kg block hangs from the lower end of a uniform rope of mass 1 kg. A hand pulls the top of the rope so that the rope and block accelerate upward at 2 m/s². Take g = 10 m/s² and up as positive. A student writes one tension T for the whole rope. Decide whether that is licensed here, and find the tension at the top, at the middle and at the bottom of the rope.",
               "origin": "AUTHORED",
-              "answer": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice."
+              "answer": "One T is not licensed: that model needs a massless string, and this rope's mass needs force to accelerate too. The tension at a point is (mass below the point) × (g + a) = 12 N per kg: 24 N at the bottom, 30 N at the middle and 36 N at the top."
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
@@ -6643,21 +6703,21 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
-              "stem": "The same smooth fixed-incline problem is solved by two students. Student A uses axes parallel/perpendicular to the plane. Student B keeps horizontal/vertical laboratory axes. Decide whether both coordinate choices are physically valid, and explain why Student A's choice usually makes the contact constraint and acceleration easier to express.",
+              "stem": "A 2 kg block slides down a smooth fixed 30° incline that slopes down to the right. Take g = 10 m/s². Student A uses axes along and perpendicular to the plane; Student B uses horizontal and vertical axes. Carry out Student B's solution: write the horizontal and vertical Newton-II equations, state in these axes the condition that keeps the block on the plane, and find N and the acceleration components. Show that the result agrees with Student A's a = g sin 30°.",
               "origin": "AUTHORED",
-              "answer": "Both coordinate systems are valid if used consistently. Plane-aligned axes are usually simpler because maintained contact becomes a_perp=0 and the unknown acceleration has only a parallel component; horizontal/vertical axes require projecting both the normal force and the constrained acceleration."
+              "answer": "Student B: N sin 30° = m a_x and N cos 30° − mg = m a_y, and staying on the plane requires the acceleration to point down the slope: a_y = −a_x tan 30°. This gives N = mg cos 30° ≈ 17.3 N, a_x ≈ 4.33 m/s² and a_y = −2.5 m/s². The magnitude is √(4.33² + 2.5²) = 5 m/s² = g sin 30°, down the slope, as Student A finds. Both axis choices are valid; A's are simpler because there the contact condition is just a_perp = 0."
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
-              "stem": "A proposed plane-aligned solution writes the tangential force sum as mg + mg sin(theta) and the perpendicular force sum as N - mg - mg cos(theta). The solver says the component terms were added because the weight was resolved. Identify the modelling error and write the correct role of the weight in the two component equations.",
+              "stem": "A 2 kg block slides down the smooth face of a 5 kg wedge inclined at 30°. The wedge stays at rest on a rough floor. Its slope rises to the right, so the block slides down to the left. Take g = 10 m/s². Build the free-body diagram of the wedge only, and find the floor's normal force and the floor's friction force on the wedge.",
               "origin": "AUTHORED",
-              "answer": "The solution double-counts the same weight vector. In plane-aligned equations, gravity contributes mg sin(theta) down the plane and mg cos(theta) into the plane; the unresolved mg is not added again. Thus the tangential gravity term is mg sin(theta), and the perpendicular equation uses N-mg cos(theta)=0 for maintained contact."
+              "answer": "On the wedge: its weight 50 N down; the block's normal push, 17.3 N perpendicular to the slope into the wedge (8.66 N to the right and 15 N down); the floor's normal force; and the floor's friction. The floor's normal force is 65 N, less than the 70 N total weight, and the floor's friction is about 8.7 N to the left. The block's 20 N weight is not on the wedge's diagram."
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
-              "stem": "A block is at rest on a rough incline. A controllable force P acts up the plane. In one trial P is slightly smaller than mg sin(theta); in another it is slightly larger than mg sin(theta), and in both trials the available static friction is sufficient to prevent motion. Determine the static-friction direction in each trial without assuming that friction always points uphill.",
+              "stem": "A 4 kg block rests on a rough fixed 30° incline with μ_s = 0.5; take g = 10 m/s². A force P acts on it up the slope, parallel to the plane. In three trials P = 15 N, 20 N and 26 N, and the block stays at rest each time. In each trial find the direction and size of the static friction, without assuming it points uphill, and check that it is within the static limit.",
               "origin": "AUTHORED",
-              "answer": "When P<mg sin(theta), the no-friction tendency is down the plane, so static friction acts up the plane. When P>mg sin(theta), the no-friction tendency is up the plane, so static friction acts down the plane. At P=mg sin(theta), the required static friction is zero."
+              "answer": "When P<mg sin(theta) static friction acts up the slope, when P>mg sin(theta) it acts down the slope, and at P = mg sin(theta) the required static friction is zero. Here mg sin 30° = 20 N: at P = 15 N friction is 5 N up the slope, at 20 N it is zero, and at 26 N it is 6 N down the slope. The limit is 0.5 × 34.6 ≈ 17.3 N, so all three are possible at rest."
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
@@ -6667,9 +6727,9 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
-              "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t.",
+              "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t. Evaluate mu_k for theta = 37° (tan 37° = 0.75) when t = 2t_0.",
               "origin": "AUTHORED",
-              "answer": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2]."
+              "answer": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2]. For theta = 37° and t = 2t_0, mu_k = 0.75 × (1 − 1/4) = 0.5625 ≈ 0.56."
             },
             {
               "id": "Q-PHY-NLM-PRACTICAL-12",
@@ -6830,7 +6890,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 160,
+          "record_count": 210,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6856,12 +6916,262 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ASTRONAUT-SATELLITE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ATWOOD-3KG-1KG",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ATWOOD-SYMBOLIC",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BLOCK-ON-BLOCK-F-ON-LOWER",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BLOCK5-PULL12",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BLOCK5-SLIDE18",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BLOCKS-3KG-2KG",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BLOCKS-AB-PUSH-F",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BOOK-HAND-PRESS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BOOK-TABLE-PARTNERS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BOX4-FRICTION-TEST",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BUCKETS-45N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-BUS-SHELF-FRAMES",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-CAR-BOB-FRAMES",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-CARTS-STRING-F",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-CONTACT-LOSS-10-30",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-CRATE-ZERO-FRICTION",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-CRATE10-TWO-PULLS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-FBD-BODY-OWNERSHIP",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FIXED-PULLEY-YAYB",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FORCE-ON-UPPER-BLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-FRICTION-THRESHOLD",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-FRIDGE-MAGNET",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-HEAVY-PULLEY-3KG-1KG",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-HEAVY-ROPE-BLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-DOUBLE-COUNT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-HORIZONTAL-PUSH",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-HORIZONTAL-THRESHOLD",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-LAB-AXES",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-P-THREE-TRIALS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-INCLINE-TIMING-SMOOTH-ROUGH",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-LAMP-CANCEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-LIFT-CRATE-FRICTION-ZERO",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-LIFT-LAMP-TENSION",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-PUCK-ZERO-NET",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-PULLEY-X-UPWARD",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-PUSH-BELOW-HORIZONTAL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-RAMP-PULL-70N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ROUGH-INCLINE-REST",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ROUGH-INCLINE-SLIDING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-SKYDIVER-80KG",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-SMOOTH-INCLINE-RELEASE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-STRING-LENGTH-12-08",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-TABLE-CART-HANGING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-THREE-CART-TRAIN",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-TRAY-BOOK-FRICTION",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-TROLLEY-9N-4N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-TROLLEY-PULLEY-EXPERIMENT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-TRUCK-BRAKE-CRATE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-UNGLUED-PUSH-PULL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-WALKER-ON-PLANK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-WEDGE-FBD",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -17262,11 +17572,20 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "x(t) = 3t and y(t) = 4t on one clock, so at t = 5 s the boat is at (15, 20) m. A pair such as x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.",
                       "Separate x and y equations; same t for both."
                     ],
                     "rejected": [
                       "Use x acceleration in the y equation or assign unrelated times."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A boat crosses a river. Use the bank frame: origin at the starting jetty, +x downstream, +y straight across, t = 0 when the boat leaves. Relative to the bank the boat moves 3 m/s downstream and 4 m/s across, both steady. Set up an x column and a y column tied to one clock, then give the boat's position at t = 5 s and say which pair of values you would refuse to call its position.",
+                      "givens": [
+                        "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
+                        "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
+                        "Requested instant: t = 5 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17514,11 +17833,20 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "Both a_x = −1 m/s² and a_y = 2 m/s² are constant, so the 1D equations apply on each axis. v_x = 5 − t, v_y = 2t, x = 5t − ½t², y = t². At t = 4 s: v = (1 i + 8 j) m/s and r = (12 i + 16 j) m.",
                       "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
                     ],
                     "rejected": [
                       "Use |a| in both equations or use separate unrelated times."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A skater on smooth ice starts at the origin moving at 5 m/s along +x. A steady wind then gives her an acceleration of 1 m/s² along −x and 2 m/s² along +y for 4 s. Decide on each axis whether the constant-acceleration equations apply, write the x and y equations with one shared t, and find her velocity and position at t = 4 s.",
+                      "givens": [
+                        "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
+                        "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
+                        "Requested instant: t = 4 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17611,11 +17939,11 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-                  "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
-                  "answer": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+                  "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
+                  "answer": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
-                  "repair_ref": "K2D2-1"
+                  "repair_ref": "K2D2-3"
                 }
               ],
               "activities": [
@@ -17790,11 +18118,21 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
+                      "After release only gravity acts, so a = (0, −10) m/s². x = 6t, y = 2 + 8t − 5t², v_x = 6, v_y = 8 − 10t. At t = 0.5 s the ball is at (3, 4.75) m with velocity (6 i + 3 j) m/s.",
                       "State assumptions, set component accelerations, then solve x/y with one t."
                     ],
                     "rejected": [
                       "Start from a memorized range/height formula without establishing the free-flight component model."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
+                      "givens": [
+                        "Release point: 2 m above the floor.",
+                        "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
+                        "g = 10 m/s²; air resistance negligible.",
+                        "Requested instant: t = 0.5 s."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -17956,24 +18294,24 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-                  "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
-                  "answer": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+                  "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
+                  "answer": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-6"
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-                  "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
-                  "answer": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+                  "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
+                  "answer": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-1"
                 },
                 {
                   "id": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-                  "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
-                  "answer": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+                  "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
+                  "answer": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-KIN-2D-PRACTICE",
                   "repair_ref": "K2D3-7"
@@ -18868,11 +19206,19 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "'The moving cart keeps moving steadily; the resting cart stays at rest. Neither has to change velocity.'"
+                      "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
                     ],
                     "rejected": [
                       "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+                      "givens": [
+                        "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+                        "Driving force 2000 N forward.",
+                        "Resistive forces (air and rolling) act backward."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -18949,8 +19295,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-01",
-                  "stem": "One cart is at rest and another moves steadily in a straight line. For each, decide whether zero net force is compatible with the motion and explain the common rule.",
-                  "answer": "Zero net force is compatible with both. Each cart can keep its current velocity unchanged.",
+                  "stem": "An 80 kg skydiver falls at a steady 50 m/s. Take g = 10 m/s². Find the air resistance on the skydiver and the net force. Just after the parachute opens, the skydiver is still moving downward but slowing: is the net force then zero, upward or downward?",
+                  "answer": "In the steady fall the air resistance is 800 N upward and the net force is zero. Just after the parachute opens the net force points upward, even though the skydiver is still moving down.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": null
@@ -19036,11 +19382,19 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "'Left push present; right push present; equal and opposite, so the net force is zero.'"
+                      "Earth pulls it down with 30 N, the string pulls up with 10 N and the floor pushes up with 20 N. The net force is zero, although all three forces are nonzero; the floor's push is 20 N, not 30 N."
                     ],
                     "rejected": [
                       "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 3 kg box rests on the floor while a string pulls straight up on it with 10 N; the box does not move. Take g = 10 m/s². List every force on the box with its agent, direction and size, and find the net force.",
+                      "givens": [
+                        "Mass 3 kg; g = 10 m/s².",
+                        "String pull 10 N vertically upward.",
+                        "The box stays at rest on the floor."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -19122,8 +19476,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-COV-02",
-                  "stem": "An object has two equal opposite forces acting on it. Explain what is zero and what is not, then state what motion change the net result predicts.",
-                  "answer": "The net force is zero, but both individual forces are nonzero. The zero net result predicts no change of velocity.",
+                  "stem": "A 2 kg book lies at rest on a table while a hand presses straight down on it with 5 N. Take g = 10 m/s². List every force on the book with its agent and size, find the table's push, and state the net force and what it predicts about the book's velocity.",
+                  "answer": "Earth pulls the book down with 20 N, the hand pushes down with 5 N and the table pushes up with 25 N. The net force is zero, so the book's velocity (zero) does not change, though three nonzero forces act.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": null
@@ -19227,11 +19581,18 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "'Cart: horse pushes cart forward. Horse: cart pushes horse backward.' The two arrows are on different diagrams."
+                      "On the boat: its weight 1300 N down (Earth), the man's push 700 N down (man) and the water's push 2000 N up (water). The man's weight acts on the man, not on the boat."
                     ],
                     "rejected": [
                       "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 70 kg man stands in a 130 kg boat floating at rest on a lake. Take g = 10 m/s². Build the free-body inventory of the boat: every force, its agent, its direction and its size.",
+                      "givens": [
+                        "Man 70 kg; boat 130 kg; g = 10 m/s².",
+                        "Everything is at rest."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -19319,8 +19680,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-COV-03",
-                  "stem": "A person pushes a box. Describe the two contact-force partner arrows and state which one belongs on the box's free-body diagram.",
-                  "answer": "The person's force on the box belongs on the box diagram. The box's equal-and-opposite force on the person belongs on the person's diagram.",
+                  "stem": "A 0.1 kg magnet is stuck at rest on a vertical steel fridge door; the door's magnetic pull on it is 3 N. Take g = 10 m/s². List every force on the magnet with its agent, direction and size. For each one, name its third-law partner and the body that partner acts on.",
+                  "answer": "On the magnet: weight 1 N down (Earth), magnetic pull 3 N toward the door (fridge), normal push 3 N away from the door (door surface), static friction 1 N up (door surface). Partners: the magnet pulls the Earth up 1 N, pulls the fridge toward itself 3 N, presses into the door 3 N and drags the door's surface down 1 N. None of the partners is on the magnet's diagram.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": null
@@ -19335,8 +19696,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
-                  "stem": "A proposed plane-aligned solution writes the tangential force sum as mg + mg sin(theta) and the perpendicular force sum as N - mg - mg cos(theta). The solver says the component terms were added because the weight was resolved. Identify the modelling error and write the correct role of the weight in the two component equations.",
-                  "answer": "The solution double-counts the same weight vector. In plane-aligned equations, gravity contributes mg sin(theta) down the plane and mg cos(theta) into the plane; the unresolved mg is not added again. Thus the tangential gravity term is mg sin(theta), and the perpendicular equation uses N-mg cos(theta)=0 for maintained contact.",
+                  "stem": "A 2 kg block slides down the smooth face of a 5 kg wedge inclined at 30°. The wedge stays at rest on a rough floor. Its slope rises to the right, so the block slides down to the left. Take g = 10 m/s². Build the free-body diagram of the wedge only, and find the floor's normal force and the floor's friction force on the wedge.",
+                  "answer": "On the wedge: its weight 50 N down; the block's normal push, 17.3 N perpendicular to the slope into the wedge (8.66 N to the right and 15 N down); the floor's normal force; and the floor's friction. The floor's normal force is 65 N, less than the 70 N total weight, and the floor's friction is about 8.7 N to the left. The block's 20 N weight is not on the wedge's diagram.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
                   "repair_ref": "NLM3-4"
@@ -19462,11 +19823,19 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "Belt outruns box -> box slips left relative to belt -> friction on box points right."
+                      "Without friction the block would slide down the wall, so friction points up. It must balance the 20 N weight, so f = 20 N (the limit is 0.6 × 50 = 30 N). At 80 N the limit rises to 48 N, but the friction stays 20 N up because the need has not changed."
                     ],
                     "rejected": [
                       "Friction must point left because the box moves right."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 2 kg block is pressed against a vertical wall by a 50 N horizontal push and does not slide. μ_s = 0.6 and g = 10 m/s². Give the direction and size of the friction on the block, then say what happens to the friction when the push is increased to 80 N.",
+                      "givens": [
+                        "Block 2 kg; g = 10 m/s².",
+                        "Horizontal push 50 N, then 80 N.",
+                        "μ_s = 0.6 between block and wall."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -19558,8 +19927,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-COV-04",
-                  "stem": "A box is placed on a conveyor belt moving to the right faster than the box. Before the box matches the belt speed, what direction is the friction force on the box?",
-                  "answer": "The friction force on the box points to the right.",
+                  "stem": "A 20 kg crate rides on the flat bed of a truck. The truck brakes, slowing at 3 m/s², and the crate does not slip on the bed. Which way does friction from the bed act on the crate, and how large is it?",
+                  "answer": "Friction on the crate points backward, against its motion, with size 20 × 3 = 60 N.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM5-2"
@@ -19574,24 +19943,24 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
-                  "stem": "A runner accelerates forward without the shoe slipping on the ground. Determine the direction of the static friction force exerted by the ground on the shoe, and justify it from the relative slip tendency at the contact.",
-                  "answer": "The ground's static friction on the shoe points forward.",
+                  "stem": "A 60 kg person stands on a 20 kg plank that rests on frictionless ice. The person starts to walk forward, accelerating at 0.5 m/s² relative to the ice, and the shoes do not slip on the plank. Find the direction and size of the friction on the person's shoes, then the horizontal force on the plank and the plank's acceleration.",
+                  "answer": "Friction on the shoes points forward and is 60 × 0.5 = 30 N. Its partner, 30 N backward, acts on the plank, which has no other horizontal force, so the plank accelerates backward at 30/20 = 1.5 m/s².",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM5-2"
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
-                  "stem": "A rough horizontal platform and a crate on it are already moving together at constant velocity. At the instant considered there is no other horizontal force on the crate. Must a nonzero friction force act on the crate merely because the surfaces are rough?",
-                  "answer": "No. The friction force can be zero.",
+                  "stem": "A 50 kg crate stands on the rough floor of a lift (μ_s = 0.4) while the lift accelerates upward at 2 m/s². Take g = 10 m/s². Find the normal force on the crate and the friction force on it.",
+                  "answer": "N = 50 × (10 + 2) = 600 N. The friction force is zero: the crate's acceleration is vertical, so nothing needs a force along the floor, even though the floor is rough and μ_s N = 240 N.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM5-4"
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
-                  "stem": "A block is at rest on a rough incline. A controllable force P acts up the plane. In one trial P is slightly smaller than mg sin(theta); in another it is slightly larger than mg sin(theta), and in both trials the available static friction is sufficient to prevent motion. Determine the static-friction direction in each trial without assuming that friction always points uphill.",
-                  "answer": "When P<mg sin(theta), the no-friction tendency is down the plane, so static friction acts up the plane. When P>mg sin(theta), the no-friction tendency is up the plane, so static friction acts down the plane. At P=mg sin(theta), the required static friction is zero.",
+                  "stem": "A 4 kg block rests on a rough fixed 30° incline with μ_s = 0.5; take g = 10 m/s². A force P acts on it up the slope, parallel to the plane. In three trials P = 15 N, 20 N and 26 N, and the block stays at rest each time. In each trial find the direction and size of the static friction, without assuming it points uphill, and check that it is within the static limit.",
+                  "answer": "When P<mg sin(theta) static friction acts up the slope, when P>mg sin(theta) it acts down the slope, and at P = mg sin(theta) the required static friction is zero. Here mg sin 30° = 20 N: at P = 15 N friction is 5 N up the slope, at 20 N it is zero, and at 26 N it is 6 N down the slope. The limit is 0.5 × 34.6 ≈ 17.3 N, so all three are possible at rest.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
                   "repair_ref": "NLM5-2"
@@ -19711,11 +20080,18 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "+12 N on 4 kg -> +3 m/s^2."
+                      "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
                     ],
                     "rejected": [
                       "Using the direction of velocity to choose acceleration sign."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
+                      "givens": [
+                        "Mass 1200 kg; initial velocity +20 m/s.",
+                        "Road friction 5400 N backward; air drag 600 N backward."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -19811,8 +20187,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-COV-05",
-                  "stem": "A 4 kg body has a net external force of +12 N along a declared axis. Find its acceleration.",
-                  "answer": "The acceleration is +3 m/s^2.",
+                  "stem": "A 2.5 kg trolley on a level track is pulled forward with 9 N while a 4 N drag acts backward. Take forward as positive. Find its acceleration. Then the pull is removed while the trolley is still moving forward: find its acceleration now.",
+                  "answer": "With the pull: a = +2 m/s². After the pull is removed: a = −1.6 m/s², backward while the trolley still moves forward.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": null
@@ -19843,8 +20219,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
-                  "stem": "The same smooth fixed-incline problem is solved by two students. Student A uses axes parallel/perpendicular to the plane. Student B keeps horizontal/vertical laboratory axes. Decide whether both coordinate choices are physically valid, and explain why Student A's choice usually makes the contact constraint and acceleration easier to express.",
-                  "answer": "Both coordinate systems are valid if used consistently. Plane-aligned axes are usually simpler because maintained contact becomes a_perp=0 and the unknown acceleration has only a parallel component; horizontal/vertical axes require projecting both the normal force and the constrained acceleration.",
+                  "stem": "A 2 kg block slides down a smooth fixed 30° incline that slopes down to the right. Take g = 10 m/s². Student A uses axes along and perpendicular to the plane; Student B uses horizontal and vertical axes. Carry out Student B's solution: write the horizontal and vertical Newton-II equations, state in these axes the condition that keeps the block on the plane, and find N and the acceleration components. Show that the result agrees with Student A's a = g sin 30°.",
+                  "answer": "Student B: N sin 30° = m a_x and N cos 30° − mg = m a_y, and staying on the plane requires the acceleration to point down the slope: a_y = −a_x tan 30°. This gives N = mg cos 30° ≈ 17.3 N, a_x ≈ 4.33 m/s² and a_y = −2.5 m/s². The magnitude is √(4.33² + 2.5²) = 5 m/s² = g sin 30°, down the slope, as Student A finds. Both axis choices are valid; A's are simpler because there the contact condition is just a_perp = 0.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
                   "repair_ref": "NLM6-4"
@@ -19972,7 +20348,18 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established."
+                    "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
+                    "task": {
+                      "prompt": "A 5 kg box rests on a floor with μ_s = 0.5 and μ_k = 0.4; take g = 10 m/s². A 30 N horizontal push is applied. Decide whether the box moves, and find the friction and the acceleration. Then repeat with a second child pressing straight down on the lid with 20 N while the same 30 N push acts.",
+                      "givens": [
+                        "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
+                        "Horizontal push 30 N.",
+                        "Second trial: an extra 20 N downward press."
+                      ]
+                    },
+                    "accepted": [
+                      "Trial 1: N = 50 N, limit 25 N < 30 N, so the box slides; friction is 0.4 × 50 = 20 N and a = (30 − 20)/5 = 2 m/s². Trial 2: N = 70 N, limit 35 N ≥ 30 N, so the box stays at rest with 30 N of static friction."
+                    ]
                   },
                   "reconstruct": {
                     "route": [
@@ -20078,8 +20465,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-                  "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
-                  "answer": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration.",
+                  "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.55 and μ_k = 0.40; take g = 10 m/s². A 50 N pull is applied, first horizontally and then, in a second trial, at 37° above the horizontal (sin 37° = 0.6, cos 37° = 0.8). The statement does not say whether the crate slips. For each trial decide whether the crate stays at rest, and find the friction force and the acceleration.",
+                  "answer": "Horizontal pull: N = 100 N and the limit is 55 N, which covers the 50 N needed, so the crate stays at rest with 50 N of static friction. Angled pull: N = 100 − 30 = 70 N and the limit is 38.5 N, less than the 40 N needed, so the crate slides; kinetic friction is 0.40 × 70 = 28 N and a = (40 − 28)/10 = 1.2 m/s². The tilted pull has the smaller horizontal part, yet it moves the crate.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM8-2"
@@ -20102,16 +20489,16 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-                  "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest.",
-                  "answer": "At impending slip, N=mg+P sin(theta) and P cos(theta)=mu_s N, so P_max = mu_s m g / (cos(theta)-mu_s sin(theta)).",
+                  "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest. Then show that for steep enough push angles no P at all can start the block, and find that angle for mu_s = 0.5.",
+                  "answer": "At rest N = mg + P sin(theta) and the friction needed is P cos(theta), so rest requires P[cos(theta) − mu_s sin(theta)] <= mu_s m g. If cos(theta) > mu_s sin(theta), P_max = mu_s m g/(cos(theta) − mu_s sin(theta)). If tan(theta) >= 1/mu_s, the left side is never positive, so no push can start the block. For mu_s = 0.5 that happens for tan(theta) >= 2, theta >= 63.4°.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM8-1"
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
-                  "stem": "A block of mass m rests on a block of mass M on a smooth floor. A horizontal force F is applied to the upper block m. The coefficient of static friction between the blocks is mu_s. Derive the largest F for which the blocks move together without slipping.",
-                  "answer": "If the blocks move together, a=F/(m+M). The lower block needs friction f_required=Ma. With N=mg at the interface, no slip requires MF/(m+M) <= mu_s m g, so F_max = mu_s m g (m+M)/M.",
+                  "stem": "A 2 kg block rests on a 4 kg block on a smooth floor. A horizontal force F acts on the upper block. Between the blocks μ_s = 0.3 and μ_k = 0.2; take g = 10 m/s². Find the largest F for which the blocks move together, and then the acceleration of each block when F = 12 N.",
+                  "answer": "Moving together, a = F/6 and the lower block needs friction 4a = 2F/3, which may not exceed 0.3 × 20 = 6 N, so F_max = 9 N. At F = 12 N the blocks slip: kinetic friction 0.2 × 20 = 4 N acts backward on the upper block and forward on the lower one, so a_upper = (12 − 4)/2 = 4 m/s² and a_lower = 4/4 = 1 m/s².",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM8-2"
@@ -20142,8 +20529,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
-                  "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t.",
-                  "answer": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2].",
+                  "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t. Evaluate mu_k for theta = 37° (tan 37° = 0.75) when t = 2t_0.",
+                  "answer": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2]. For theta = 37° and t = 2t_0, mu_k = 0.75 × (1 − 1/4) = 0.5625 ≈ 0.56.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
                   "repair_ref": "NLM8-4"
@@ -20254,7 +20641,18 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations."
+                    "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations.",
+                    "task": {
+                      "prompt": "A 1000 kg car tows a 500 kg trailer with a light rigid tow bar on a level road. The road pushes the car's drive wheels forward with 3000 N; ignore all resistance. State the constraint, write one Newton-II equation for the car and one for the trailer, and find the acceleration and the tow-bar force.",
+                      "givens": [
+                        "Car 1000 kg; trailer 500 kg.",
+                        "Driving force on the car 3000 N forward.",
+                        "Rigid bar: the separation stays fixed."
+                      ]
+                    },
+                    "accepted": [
+                      "The fixed bar gives one acceleration. Car: 3000 − T = 1000a. Trailer: T = 500a. Adding gives a = 2 m/s², so T = 1000 N; check with the car: 3000 − 1000 = 2000 = 1000 × 2."
+                    ]
                   },
                   "reconstruct": {
                     "route": [
@@ -20376,8 +20774,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
-                  "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
-                  "answer": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation.",
+                  "stem": "Three carts touch in a line on a level track: A (3 kg) at the back, then B (2 kg), then C (1 kg) at the front. A 30 N push acts on A toward the front. Cart B has a sticking wheel that drags on the track with a 6 N friction force; A and C roll freely. Find the acceleration of the train and the contact force at each of its two joints, A-B and B-C.",
+                  "answer": "a = (30 − 6)/6 = 4 m/s². The A-B joint carries 18 N and the B-C joint carries 4 N. The two joint forces are not the mass fractions of the push (15 N and 5 N), because the drag acts on the middle cart.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM9-5"
@@ -20392,8 +20790,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
-                  "stem": "Two blocks A and B are initially touching on a smooth horizontal floor, with A to the left of B. A horizontal force F is suddenly applied to A toward the left, away from B. A proposed solution treats A+B as one connected system and writes a=F/(m_A+m_B). Decide whether that model is valid immediately after the force is applied. If it is not, state the two accelerations.",
-                  "answer": "The common-acceleration model is invalid because the force makes A separate from B and an ordinary normal contact cannot pull them together. Immediately after contact is lost, a_A=-F/m_A and a_B=0.",
+                  "stem": "Blocks A (2 kg) and B (3 kg) touch on a smooth floor, A behind B. A 10 N force pushes A forward, into B, and at the same time a force F pulls B forward. For F = 10 N and for F = 30 N, decide whether the blocks stay in contact, and find the accelerations.",
+                  "answer": "F = 10 N: assuming contact, a = 20/5 = 4 m/s² and A needs N = 10 − 2 × 4 = 2 N from B, which is possible, so both move at 4 m/s². F = 30 N: assuming contact, a = 8 m/s² and N = 10 − 16 = −6 N, a pull that a contact cannot give, so they separate: a_A = 10/2 = 5 m/s² and a_B = 30/3 = 10 m/s².",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM9-1"
@@ -20504,7 +20902,18 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions."
+                    "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions.",
+                    "task": {
+                      "prompt": "On a smooth track a hand pulls a light string attached to a 2 kg cart with 15 N. A second light string ties that cart to a 3 kg cart behind it. State the model, find the acceleration and the tension in each string, and say which body each tension force acts on.",
+                      "givens": [
+                        "Front cart 2 kg; rear cart 3 kg; smooth track.",
+                        "Hand's pull 15 N on the front string.",
+                        "Both strings light and taut."
+                      ]
+                    },
+                    "accepted": [
+                      "Each light string has one tension along its length. a = 15/5 = 3 m/s². The front string's tension is 15 N and acts on the front cart. The rear string's tension is 3 × 3 = 9 N and acts backward on the front cart and forward on the rear cart. The two strings have different tensions."
+                    ]
                   },
                   "reconstruct": {
                     "route": [
@@ -20620,8 +21029,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
-                  "stem": "Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.",
-                  "answer": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice.",
+                  "stem": "A 2 kg block hangs from the lower end of a uniform rope of mass 1 kg. A hand pulls the top of the rope so that the rope and block accelerate upward at 2 m/s². Take g = 10 m/s² and up as positive. A student writes one tension T for the whole rope. Decide whether that is licensed here, and find the tension at the top, at the middle and at the bottom of the rope.",
+                  "answer": "One T is not licensed: that model needs a massless string, and this rope's mass needs force to accelerate too. The tension at a point is (mass below the point) × (g + a) = 12 N per kg: 24 N at the bottom, 30 N at the middle and 36 N at the top.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM10-4"
@@ -20740,7 +21149,18 @@ window.GRADE9V3 = {
                   "attempt": {
                     "produces": "A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.",
                     "closure": "MODEL_RESPONSE",
-                    "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0."
+                    "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0.",
+                    "task": {
+                      "prompt": "A taut inextensible string over a fixed pulley holds masses A and B, with y_A and y_B measured downward from the pulley. Now y_A = 0.6 m and y_B = 1.0 m. Find y_B after A has risen by 0.1 m. At an instant when A moves up at 0.2 m/s with an acceleration of 1.5 m/s² downward, find B's velocity and acceleration.",
+                      "givens": [
+                        "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
+                        "A rises by 0.1 m.",
+                        "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+                      ]
+                    },
+                    "accepted": [
+                      "y_A + y_B = 1.6 m, so y_B = 1.6 − 0.5 = 1.1 m. v_B = −v_A = +0.2 m/s (moving down), and a_B = −a_A = −1.5 m/s² (1.5 m/s² upward)."
+                    ]
                   },
                   "reconstruct": {
                     "route": [
@@ -20854,16 +21274,16 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
-                  "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.",
-                  "answer": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude.",
+                  "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates. If A accelerates upward at 2 m/s², what is B's signed acceleration?",
+                  "answer": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude. With a_A = +2 m/s², a_B = −2 m/s², so B accelerates downward at 2 m/s².",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM11-2"
                 },
                 {
                   "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
-                  "stem": "Two masses remain attached to one taut inextensible string that does not slip on a fixed pulley. The pulley is now stated to have appreciable rotational inertia, and no rotational-dynamics relation is supplied. A student claims that both T_A=T_B and a_A+a_B=0 must either survive together or fail together. Decide which statement can still be obtained from the bounded material, and which statement is no longer licensed.",
-                  "answer": "The kinematic relation a_A+a_B=0 still follows from the fixed total string length. Equal tension T_A=T_B is no longer guaranteed by the taught ideal redirection model once appreciable pulley rotational inertia is introduced. A quantitative tension difference is outside this packet.",
+                  "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string that does not slip on a fixed pulley with appreciable rotational inertia; no rotational law is supplied. y_A and y_B are measured downward from the pulley, and g = 10 m/s². A is measured to accelerate downward at 4 m/s². Decide which of a_A + a_B = 0 and T_A = T_B can still be used, find a_B, and find the tension in each segment.",
+                  "answer": "a_A+a_B=0 still holds, from the fixed string length, so a_B = −4 m/s² (4 m/s² upward). T_A=T_B is no longer guaranteed with a heavy pulley, so each segment gets its own tension from its own mass: T_A = 3(10 − 4) = 18 N and T_B = 1(10 + 4) = 14 N. An ideal pulley would have given a = 5 m/s² and T = 15 N on both sides.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM11-5"
@@ -20965,11 +21385,19 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "swimmer on water backward; water on swimmer forward; different bodies."
+                      "The partner is the gas pushing on the rocket, 5000 N forward. It acts on the rocket, while the engine's push acts on the gas. The rocket's acceleration is 5000/400 = 12.5 m/s² forward."
                     ],
                     "rejected": [
                       "Both arrows cancel on the swimmer."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 400 kg rocket far from any planet fires its engine, which pushes exhaust gas backward with a force of 5000 N. Name the partner force and the body it acts on, and find the rocket's acceleration.",
+                      "givens": [
+                        "Rocket mass 400 kg (take it as constant for this instant).",
+                        "Engine's push on the gas: 5000 N backward.",
+                        "No other forces act."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -21052,8 +21480,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2A-COV-06",
-                  "stem": "A swimmer pushes water backward. Identify the third-law partner force and state which body each force acts on.",
-                  "answer": "The swimmer pushes the water backward, and the water pushes the swimmer forward with an equal-magnitude opposite force. The two forces act on different bodies.",
+                  "stem": "A book rests on a table. Name the third-law partner of (a) the book's weight and (b) the table's upward push on the book. For each partner, say which body it acts on and which way it points.",
+                  "answer": "(a) The partner of the Earth's pull on the book is the book's pull on the Earth, acting on the Earth and pointing up. (b) The partner of the table's push on the book is the book's push on the table, acting on the table and pointing down. The weight and the table's push both act on the book, so they are not partners.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": null
@@ -21156,11 +21584,18 @@ window.GRADE9V3 = {
                       }
                     ],
                     "accepted": [
-                      "'Roadside: physical forces only. Accelerating bus: same physical forces plus a backward pseudo-force for the bus description.'"
+                      "Platform: no horizontal force acts, so the ball keeps its speed while the train slows under it. Train: the ball accelerates forward at 2 m/s², explained by a pseudo-force of 0.5 × 2 = 1 N pointing forward. No physical force has been added."
                     ],
                     "rejected": [
                       "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
-                    ]
+                    ],
+                    "task": {
+                      "prompt": "A 0.5 kg ball rests on the smooth floor of a train moving along a straight track. The train brakes, slowing at 2 m/s². Describe the ball's horizontal forces and motion as seen from the platform, then as seen from inside the train, and give the size and direction of any pseudo-force.",
+                      "givens": [
+                        "Ball 0.5 kg on a frictionless train floor.",
+                        "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+                      ]
+                    }
                   },
                   "reconstruct": {
                     "route": [
@@ -21250,8 +21685,8 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
-                  "stem": "A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.",
-                  "answer": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction.",
+                  "stem": "A 0.2 kg bob hangs from a string tied to the roof of a car that accelerates horizontally to the right at 7.5 m/s²; the bob hangs steady relative to the car. Take g = 10 m/s². A student wants the bob to be at rest in the chosen coordinates. Decide which observer makes that possible and what extra term that observer needs. Then find the string's angle from the vertical and its tension, and check both with the roadside frame.",
+                  "answer": "Use the car frame, where the bob is at rest, and add a pseudo-force m a_car = 0.2 × 7.5 = 1.5 N to the left. With the 2 N weight, the string must balance both: tan θ = 1.5/2 = 0.75, so θ ≈ 37° from the vertical, with the bob hanging back (to the left), and T = √(1.5² + 2²) = 2.5 N. The roadside frame uses no pseudo-force: T sin θ = m a = 1.5 N and T cos θ = mg = 2 N, the same result.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-PRACTICE",
                   "repair_ref": "NLM4-3"
@@ -33675,7 +34110,8 @@ window.GRADE9V3 = {
           "core_projection_refs": [
             "physics:mic-phy-nlm-friction-quant:core1a",
             "physics:mic-phy-nlm-friction-quant:core1b",
-            "physics:q-phy-nlm-incline-2a-static-02:core2a"
+            "physics:q-phy-nlm-incline-2a-static-02:core2a",
+            "physics:q-phy-nlm-incline-2b-friction-direction-02:core2b"
           ],
           "core_availability": {
             "status": "AVAILABLE",

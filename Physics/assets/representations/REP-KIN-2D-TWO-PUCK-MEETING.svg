@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 380" role="img" aria-labelledby="rep-kin-pucks-title rep-kin-pucks-desc">
+  <title id="rep-kin-pucks-title">Two pucks, one clock: crossing paths are not a collision unless both arrive at the same t</title>
+  <desc id="rep-kin-pucks-desc">Stage 1: one x-y frame on a level air table and one clock with t = 0 at the start. Puck A starts at the origin with u_A = (4 i + 0 j) m/s and constant a_A = (0 i + 2 j) m/s². Puck B starts at (12, 0) m with v_B = (0 i + 2 j) m/s and no acceleration. Stage 2: the paths: A curves upward, B runs straight up the line x = 12 m, and they cross at (12, 9) m; one table with one t column: x_A = 4t, y_A = t², x_B = 12, y_B = 2t. Stage 3: a collision needs the same point at the same t: x_A = x_B gives 4t = 12, t = 3 s; at 3 s y_A = 9 m but y_B = 6 m, so there is no collision, B is 3 m behind. Stage 4: for a collision 3v_B = 9, so v_B = 3 m/s along +y, and both reach (12, 9) m at t = 3 s.</desc>
+  <defs>
+    <marker id="rep-kin-pucks-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-pucks-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCKS-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Two pucks on a level air table, one clock (t = 0 at the start)</text>
+    <line x1="40" y1="330" x2="470" y2="330" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-pucks-arrow)"/>
+    <line x1="80" y1="350" x2="80" y2="50" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-pucks-arrow)"/>
+    <text x="476" y="335">+x</text>
+    <text x="88" y="56">+y</text>
+    <circle cx="80" cy="330" r="7" fill="currentColor"/>
+    <text x="72" y="356">A at (0, 0)</text>
+    <line x1="80" y1="330" x2="144" y2="330" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pucks-arrow)"/>
+    <text x="180" y="356">u_A = (4 i + 0 j) m/s</text>
+    <line x1="82" y1="322" x2="82" y2="290" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pucks-arrow)" stroke-dasharray="7 4"/>
+    <text x="90" y="272">a_A = (0 i + 2 j) m/s²</text>
+    <circle cx="380" cy="330" r="7" fill="currentColor"/>
+    <text x="372" y="356">B at (12, 0) m</text>
+    <line x1="380" y1="330" x2="380" y2="298" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pucks-arrow)"/>
+    <text x="390" y="292">v_B = (0 i + 2 j) m/s</text>
+    <text x="390" y="314">no acceleration</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCKS-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M80 330 Q237.5 330 395 81.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <line x1="380" y1="330" x2="380" y2="67.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="380" cy="105" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="368" y="93" text-anchor="end">paths cross at (12, 9) m</text>
+    <text x="600" y="60" font-weight="600">one table, one t column</text>
+    <text x="600" y="82">x_A = 4t,  y_A = t²</text>
+    <text x="600" y="104">x_B = 12,  y_B = 2t</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCKS-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="600" y="146" font-weight="600" fill="#1f6fb2">collision: same point at the same t</text>
+    <text x="600" y="168" fill="#1f6fb2">x_A = x_B: 4t = 12, t = 3 s</text>
+    <text x="600" y="190" fill="#1f6fb2">at 3 s: y_A = 9 m, y_B = 6 m</text>
+    <text x="600" y="212" font-weight="600" fill="#1f6fb2">no collision (B is 3 m behind)</text>
+    <circle cx="380" cy="105" r="5" fill="#1f6fb2"/>
+    <circle cx="380" cy="180" r="7" fill="#1f6fb2"/>
+    <text x="392" y="185" fill="#1f6fb2">B at 3 s: (12, 6) m</text>
+    <text x="392" y="110" fill="#1f6fb2">A at 3 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCKS-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="600" y="254" font-weight="600">for a collision: 3v_B = 9</text>
+    <text x="600" y="276">v_B = 3 m/s along +y</text>
+    <text x="600" y="298">then both reach (12, 9) m at t = 3 s</text>
+  </g>
+</svg>

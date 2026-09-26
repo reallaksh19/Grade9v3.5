@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img" aria-labelledby="rep-kin-apex-title rep-kin-apex-desc">
+  <title id="rep-kin-apex-title">Projectile with u = (12, 20) m/s: at the apex only v_y is zero</title>
+  <desc id="rep-kin-apex-desc">Stage 1: a projectile leaves the launch level with already-resolved components u_x = 12 m/s and u_y = 20 m/s and rises to its highest point, the apex. Stage 2: with +y up and g = 10 m/s², the apex condition is that only v_y = 0: v_x keeps u_x because a_x = 0, and gravity still acts, a_y = −g. Stage 3: v_y = 20 − 10t = 0 gives t = 20/10 = 2 s. Stage 4: at the apex the velocity is v = (12 i + 0 j) m/s and the acceleration is a = (0 i − 10 j) m/s², both drawn as arrows, and the height gained is Δy = 20(2) − 0.5(10)(2²) = 20 m; neither the velocity nor the acceleration is zero there.</desc>
+  <defs>
+    <marker id="rep-kin-apex-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-apex-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-APEX-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launch with u_x = 12 m/s, u_y = 20 m/s: the apex</text>
+    <line x1="40" y1="300" x2="540" y2="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="540" y="322" text-anchor="end">launch level</text>
+    <path d="M140 300 Q302 30 464 165" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="140" cy="300" r="7" fill="currentColor"/>
+    <line x1="140" y1="300" x2="188" y2="300" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-apex-arrow)"/>
+    <text x="144" y="322">u_x = 12 m/s</text>
+    <line x1="140" y1="300" x2="140" y2="220" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-apex-arrow)"/>
+    <text x="134" y="230" text-anchor="end">u_y = 20 m/s</text>
+    <text x="356" y="104" text-anchor="middle">apex</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-APEX-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="600" y="60">+y up, g = 10 m/s²</text>
+    <text x="600" y="100" font-weight="600">apex condition:</text>
+    <text x="600" y="122">only v_y = 0</text>
+    <text x="600" y="144">v_x keeps u_x (a_x = 0)</text>
+    <text x="600" y="166">gravity still acts: a_y = −g</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-APEX-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="600" y="206" fill="#1f6fb2">v_y = 20 − 10t = 0</text>
+    <text x="600" y="228" font-weight="600" fill="#1f6fb2">t = 20/10 = 2 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-APEX-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="356" cy="120" r="7" fill="#1f6fb2"/>
+    <line x1="356" y1="120" x2="416" y2="120" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-apex-arrow-acc)"/>
+    <text x="422" y="125" fill="#1f6fb2">v = (12 i + 0 j) m/s</text>
+    <line x1="356" y1="128" x2="356" y2="178" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-apex-arrow-acc)"/>
+    <text x="356" y="198" text-anchor="middle" fill="#1f6fb2">a = (0 i − 10 j) m/s²</text>
+    <line x1="356" y1="206" x2="356" y2="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="364" y="258" font-weight="600" fill="#1f6fb2">20 m</text>
+    <text x="600" y="268" fill="#1f6fb2">Δy = 20(2) − 0.5(10)(2²) = 20 m</text>
+    <text x="600" y="306">at the apex neither v nor a is zero</text>
+  </g>
+</svg>

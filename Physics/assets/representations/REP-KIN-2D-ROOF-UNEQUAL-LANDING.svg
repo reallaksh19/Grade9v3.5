@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="rep-kin-roof-title rep-kin-roof-desc">
+  <title id="rep-kin-roof-title">Roof launch 25 m up with u = (5, 20) m/s: landing where Δy = −25 m, keeping u_y</title>
+  <desc id="rep-kin-roof-desc">Stage 1: a ball leaves the edge of a roof 25 m above level ground with components u_x = 5 m/s and u_y = 20 m/s upward; it rises, then falls past the roof level to the ground. Stage 2: with +y up, the origin at the launch point and g = 10 m/s², the landing event is Δy = −25 m because the ground is below the launch, and the actual u_y = 20 m/s is kept; a dashed line at launch height marks the point where Δy = 0, which is not the ground. Stage 3: −25 = 20t − 5t² factorises as (t − 5)(t + 1) = 0, so t = 5 s and the root −1 s is rejected. Stage 4: at the same t = 5 s the ball lands Δx = 5 × 5 = 25 m from the building with v = (5 i − 30 j) m/s, speed √925 ≈ 30.4 m/s; without time, v² = 425 + 500 = 925 agrees.</desc>
+  <defs>
+    <marker id="rep-kin-roof-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-roof-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Thrown from a roof 25 m above level ground</text>
+    <rect x="100" y="250" width="70" height="200" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="40" y1="450" x2="480" y2="450" stroke="currentColor" stroke-width="2"/>
+    <path d="M88 250 H80 V450 H88" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="74" y="355" text-anchor="end">25 m</text>
+    <path d="M170 250 Q270 -150 370 450" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="170" cy="250" r="7" fill="currentColor"/>
+    <line x1="170" y1="250" x2="190" y2="250" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-roof-arrow)"/>
+    <text x="174" y="272">u_x = 5 m/s</text>
+    <line x1="170" y1="250" x2="170" y2="190" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-roof-arrow)"/>
+    <text x="164" y="200" text-anchor="end">u_y = 20 m/s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="170" y1="250" x2="470" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4"/>
+    <circle cx="330" cy="250" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="342" y="272">Δy = 0 here:</text>
+    <text x="342" y="292">not the ground</text>
+    <text x="530" y="60">+y up, origin at launch, g = 10 m/s²</text>
+    <text x="530" y="100" font-weight="600">landing event:</text>
+    <text x="530" y="122">Δy = −25 m (ground below launch)</text>
+    <text x="530" y="144">keep the actual u_y = 20 m/s</text>
+    <text x="530" y="166">dotted line: launch height</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="530" y="206" fill="#1f6fb2">−25 = 20t − 5t²</text>
+    <text x="530" y="228" fill="#1f6fb2">(t − 5)(t + 1) = 0</text>
+    <text x="530" y="250" font-weight="600" fill="#1f6fb2">t = 5 s  (t = −1 s rejected)</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOF-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="370" cy="450" r="7" fill="#1f6fb2"/>
+    <path d="M170 472 V480 H370 V472" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="270" y="500" text-anchor="middle" font-weight="600" fill="#1f6fb2">Δx = 5 × 5 = 25 m</text>
+    <line x1="400" y1="360" x2="415" y2="450" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-roof-arrow-acc)"/>
+    <text x="424" y="400" fill="#1f6fb2">v = (5 i − 30 j) m/s</text>
+    <text x="530" y="290" font-weight="600">at the same t = 5 s:</text>
+    <text x="530" y="312">v_x = 5 m/s, v_y = 20 − 10 × 5 = −30 m/s</text>
+    <text x="530" y="334">speed = √925 ≈ 30.4 m/s</text>
+    <text x="530" y="370">check without t: v² = 425 + 500 = 925</text>
+  </g>
+</svg>

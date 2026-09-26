@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 510" role="img" aria-labelledby="rep-kin-drone-title rep-kin-drone-desc">
+  <title id="rep-kin-drone-title">Drone x(t) = 6t, y(t) = 8t − t²: both coordinates read at one shared instant</title>
+  <desc id="rep-kin-drone-desc">Stage 1: a drone lifts off from its launch pad and flies along a curved path. Stage 2: one declared frame with origin O at the pad, +x east, +y up, and one shared clock with t = 0 at launch; the axes are marked at x = 12 and 24 m and y = 12 and 16 m. Stage 3: the two component descriptions kept apart: the x-description x(t) = 6t gives x(2) = 12 m and x(4) = 24 m; the y-description y(t) = 8t − t² gives y(2) = 12 m and y(4) = 16 m. Stage 4: reading both at t = 2 s gives the position (12, 12) m, marked on the path; at t = 4 s the drone is at (24, 16) m, also on the path; the mixed pair x(2 s), y(4 s) = (12, 16) m is marked off the path and rejected, because at x = 12 m the drone is at y = 12 m, so it never occupies (12, 16) m.</desc>
+  <defs>
+    <marker id="rep-kin-drone-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-drone-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A drone flies from its launch pad</text>
+    <line x1="30" y1="300" x2="470" y2="300" stroke="currentColor" stroke-width="2"/>
+    <rect x="62" y="300" width="36" height="8" fill="currentColor"/>
+    <text x="104" y="322">launch pad</text>
+    <path d="M80 300 Q260 -84 440 300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <g transform="translate(80 290)"><rect x="-12" y="-4" width="24" height="8" rx="2" fill="currentColor"/><line x1="-20" y1="-8" x2="-6" y2="-8" stroke="currentColor" stroke-width="2"/><line x1="6" y1="-8" x2="20" y2="-8" stroke="currentColor" stroke-width="2"/></g>
+    <text x="100" y="278">drone</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="80" y1="300" x2="470" y2="300" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-drone-arrow)"/>
+    <line x1="80" y1="300" x2="80" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-drone-arrow)"/>
+    <text x="476" y="305">+x (east), m</text>
+    <text x="88" y="60">+y (up), m</text>
+    <text x="58" y="320" text-anchor="middle">O</text>
+    <line x1="170" y1="295" x2="170" y2="305" stroke="currentColor"/>
+    <text x="170" y="344" text-anchor="middle" font-size="14">12</text>
+    <line x1="260" y1="295" x2="260" y2="305" stroke="currentColor"/>
+    <text x="260" y="344" text-anchor="middle" font-size="14">24</text>
+    <line x1="75" y1="156" x2="85" y2="156" stroke="currentColor"/>
+    <text x="70" y="161" text-anchor="end" font-size="14">12</text>
+    <line x1="75" y1="108" x2="85" y2="108" stroke="currentColor"/>
+    <text x="70" y="113" text-anchor="end" font-size="14">16</text>
+    <circle cx="514" cy="70" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M514 70 V60 M514 70 H522" stroke="currentColor" stroke-width="2"/>
+    <text x="492" y="104" font-weight="600">one shared clock t</text>
+    <text x="492" y="126">t = 0 at launch</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="372" font-weight="600">x-description (x only)</text>
+    <text x="20" y="394">x(t) = 6t</text>
+    <text x="20" y="416">x(2) = 6 × 2 = 12 m</text>
+    <text x="20" y="438">x(4) = 6 × 4 = 24 m</text>
+    <text x="300" y="372" font-weight="600">y-description (y only)</text>
+    <text x="300" y="394">y(t) = 8t − t²</text>
+    <text x="300" y="416">y(2) = 8 × 2 − 2² = 12 m</text>
+    <text x="300" y="438">y(4) = 8 × 4 − 4² = 16 m</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-DRONE-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="170" y1="300" x2="170" y2="88" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4"/>
+    <circle cx="170" cy="156" r="7" fill="#1f6fb2"/>
+    <text x="182" y="182" font-weight="600" fill="#1f6fb2">t = 2 s: (12, 12) m ✓</text>
+    <circle cx="260" cy="108" r="6" fill="currentColor"/>
+    <text x="260" y="94" text-anchor="middle">t = 4 s: (24, 16) m</text>
+    <circle cx="170" cy="108" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="184" y="70">x(2 s), y(4 s) = (12, 16) m ✗</text>
+    <text x="20" y="470">(12, 16) m mixes two instants: at x = 12 m the drone is at y = 12 m,</text>
+    <text x="20" y="492">so it never occupies (12, 16) m.</text>
+  </g>
+</svg>
