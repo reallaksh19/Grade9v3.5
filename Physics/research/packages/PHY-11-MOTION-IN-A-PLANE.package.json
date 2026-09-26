@@ -106,6 +106,39 @@
       "fallback": []
     },
     {
+      "id": "SRC-JEEADV-2014-P2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-ED3980423DD950FF3C8C"
+      },
+      "title": "JEE (Advanced) 2014 Paper 2, questions with answers (jeeadv.ac.in archive)",
+      "origin": "WEB",
+      "locator": "https://jeeadv.ac.in/past_qps/2014_2.pdf",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-ED3980423DD950FF3C8C",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/ed3980423dd950ff3c8c24f7847242613f1de9e87f3d1fab180de5faf4c37963.pdf",
+      "snapshot_digest": "sha256:ed3980423dd950ff3c8c24f7847242613f1de9e87f3d1fab180de5faf4c37963",
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-ED3980423DD950FF3C8C.",
+      "fallback": []
+    },
+    {
       "id": "SRC-JEEADV-2026-P1-SOLUTIONS-FINAL",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -1098,6 +1131,60 @@
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-JEEADV-IB-2026",
           "locator": "Not named in the JEE (Advanced) 2026 syllabus; covered only by the general 'projectiles' entry",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-X3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X3-006",
+        "EV-PHY-11-MIP-X3-002",
+        "EV-PHY-11-MIP-X3-003",
+        "EV-PHY-11-MIP-X3-005",
+        "EV-PHY-11-MIP-X3-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X3-006"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-X3-002",
+            "EV-PHY-11-MIP-X3-003",
+            "EV-PHY-11-MIP-X3-005",
+            "EV-PHY-11-MIP-X3-007"
+          ]
+        }
+      },
+      "action": "Treat a bouncing projectile as two projectile flights joined by a collision, using the collision type to set the launch velocity of the second flight.",
+      "success_criterion": "Keeps the speed unchanged for an elastic rebound and finds the new direction before solving the next flight, states that kinetic energy is lost in an inelastic rebound while the momentum of the colliding system is conserved, and does not claim kinetic energy is constant during contact.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-08",
+        "CAP-PHY-MIP-X2"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "JEE (Advanced)",
+          "grade": 11,
+          "academic_year": "2026",
+          "track": "JEE_EXTENSION",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-JEEADV-IB-2026",
+          "locator": "Not named in the JEE (Advanced) 2026 syllabus, which lists 'Elastic and inelastic collisions' and 'projectiles' separately",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -2829,6 +2916,168 @@
       "prerequisite_refs": [
         "CAP-PHY-MIP-08",
         "CAP-PHY-MIP-04"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-X3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-IB-2026",
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-001",
+        "EV-PHY-11-MIP-X3-003",
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X3-002",
+        "EV-PHY-11-MIP-X3-006",
+        "EV-PHY-11-MIP-X3-007",
+        "EV-PHY-11-MIP-X3-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-X3-001",
+            "EV-PHY-11-MIP-X3-003"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X3-002",
+            "EV-PHY-11-MIP-X3-003",
+            "EV-PHY-11-MIP-X3-006"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-X3-002",
+            "EV-PHY-11-MIP-X3-003",
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X3-006"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-X3-007",
+            "EV-PHY-11-MIP-X3-005"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL",
+          "interactive_idea": [
+            "EV-PHY-11-MIP-X3-007",
+            "EV-PHY-11-MIP-X3-005"
+          ]
+        },
+        "grade9v3:interactive_idea": {
+          "learner_manipulates": "Whether the bounce is elastic or loses energy, the tilt of the surface, and the drop height.",
+          "becomes_visible": "The first flight ending on the surface, the velocity split into along-surface and perpendicular parts at impact, the new launch arrow after the bounce, the second flight, and a live kinetic-energy-against-time trace that dips during contact even for an elastic bounce.",
+          "misconception_targeted": "Kinetic energy stays constant throughout an elastic collision; losing kinetic energy means momentum is not conserved either.",
+          "representation_ref": "REP-PHY-MIP-X3-TWO-FLIGHTS",
+          "precedent_card": null
+        }
+      },
+      "title": "Projectile rebounding from a surface with energy loss",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-X3",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The problem joins two chapters: learners must stop a projectile at the surface, apply a collision rule to set a new launch velocity, and restart the projectile model, keeping energy and momentum statements distinct.",
+      "entry_assumptions": [
+        "Can solve projectile motion on level ground and on an incline.",
+        "Knows that kinetic energy is (1/2) m v^2."
+      ],
+      "inferential_jump": "A rebound splits the motion into two projectile flights joined by a collision: the collision sets the second flight's launch velocity (the same speed if elastic, less kinetic energy if inelastic), and after it the motion is an ordinary projectile again.",
+      "teaching_path": [
+        {
+          "id": "MIP-X3-1",
+          "role": "DECLARE",
+          "action": "Solve the first flight up to the surface.",
+          "why_valid": "Before impact only gravity acts.",
+          "inputs": [],
+          "output": "impact velocity v_in, speed v0"
+        },
+        {
+          "id": "MIP-X3-2",
+          "role": "TRANSFORM",
+          "action": "Resolve v_in along and perpendicular to the surface.",
+          "why_valid": "The collision acts across the surface.",
+          "inputs": [],
+          "output": "v_in = (v_along, -v_perp)"
+        },
+        {
+          "id": "MIP-X3-3",
+          "role": "TRANSFORM",
+          "action": "Apply the collision type: elastic keeps the speed v0; inelastic loses kinetic energy.",
+          "why_valid": "Elastic: final kinetic energy equals initial; inelastic: some is lost.",
+          "inputs": [],
+          "output": "elastic: v_out = (v_along, +v_perp), |v_out| = v0",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        },
+        {
+          "id": "MIP-X3-4",
+          "role": "TRANSFORM",
+          "action": "Find the angle of the rebound velocity with the horizontal.",
+          "why_valid": "The second flight needs its launch direction.",
+          "inputs": [],
+          "output": "vertical fall on slope theta => rebound at 2 theta to the vertical",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        },
+        {
+          "id": "MIP-X3-5",
+          "role": "VERIFY",
+          "action": "Solve the second flight as a projectile and check energy.",
+          "why_valid": "After the rebound the problem is an ordinary projection.",
+          "inputs": [],
+          "output": "K_after <= K_before",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X3-ELASTIC-REBOUND",
+        "REL-PHY-MIP-X3-INELASTIC-REBOUND"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-X3-TWO-FLIGHTS"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-X3"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "In an elastic collision the kinetic energy stays constant the whole time.",
+          "diagnostic_prompt": "A ball bounces elastically off a floor. Is its kinetic energy the same at the moment of greatest compression?",
+          "repair": "No. Only the initial and final kinetic energies are equal; during the contact time the kinetic energy is not constant."
+        },
+        {
+          "wrong_idea": "If kinetic energy is lost in a collision, momentum cannot be conserved either.",
+          "diagnostic_prompt": "In an inelastic collision, is linear momentum conserved?",
+          "repair": "Yes. Linear momentum of the colliding system is conserved in an inelastic collision; only the kinetic energy is not."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A ball dropped on a hard floor bounces back to a lower height. Is the collision elastic? Is the ball's own momentum conserved in the bounce, and what is?",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It is inelastic, because kinetic energy was lost. The ball's own momentum reverses, so it is not conserved; the momentum of the ball-plus-floor (Earth) system is.",
+          "reasoning": [
+            "Rising to a lower height means leaving the floor with less speed, so kinetic energy was lost: inelastic.",
+            "The floor pushes on the ball, changing the ball's momentum.",
+            "Linear momentum is conserved for the whole colliding system, as in any collision."
+          ],
+          "check": "Compare with an elastic bounce, which would return the ball to its starting height.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer classifies the collision and names the conserved quantity; no value is computed."
+        }
+      },
+      "research_contribution": "Carries the rebound extension as far as the evidence goes: elastic rebounds quantitatively, inelastic ones qualitatively, and records that the JEE (Advanced) 2026 syllabus does not name it.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-08",
+        "CAP-PHY-MIP-X2"
       ],
       "lineage": []
     }
@@ -4744,6 +4993,157 @@
         "alpha = 0 gives T = 2 v0 sin(beta)/g and L = v0^2 sin(2 beta)/g, the level-ground results."
       ],
       "gate_relation_ref": "REL-PHY-MIP-X2-INCLINE-RANGE"
+    },
+    {
+      "id": "REL-PHY-MIP-X3-ELASTIC-REBOUND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-EXEMPLAR-KEEP304"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-002",
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X3-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X3-002",
+            "EV-PHY-11-MIP-X3-004"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X3-002",
+            "EV-PHY-11-MIP-X3-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-007"
+          ]
+        }
+      },
+      "expression": "Elastic rebound: K_final = K_initial, so |v_after| = |v_before| = v0; the motion after the rebound is an ordinary projectile launched with speed v0",
+      "meaning": "In an elastic collision the final kinetic energy equals the initial kinetic energy, so a particle rebounding elastically from a fixed surface still has its incoming speed, and the rest of its motion is a projectile problem.",
+      "symbols": [
+        {
+          "symbol": "K_initial, K_final",
+          "meaning": "kinetic energy before and after the collision",
+          "unit_or_domain": "J"
+        },
+        {
+          "symbol": "v0",
+          "meaning": "speed at impact and just after an elastic rebound",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "Only the initial and final kinetic energies are equal; during the contact time the kinetic energy is not constant."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X3E-1",
+          "role": "DECLARE",
+          "action": "Classify the collision as elastic.",
+          "why_valid": "The deformation is recovered without energy loss.",
+          "inputs": [],
+          "output": "K_final = K_initial",
+          "source_ref": "SRC-NCERT-KEPH105"
+        },
+        {
+          "id": "REL-X3E-2",
+          "role": "TRANSFORM",
+          "action": "Convert equal kinetic energies to equal speeds for the same particle.",
+          "why_valid": "K = (1/2) m v^2 with m unchanged.",
+          "inputs": [],
+          "output": "|v_after| = v0",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        }
+      ],
+      "limits": [
+        "Gives the speed after the rebound, not its direction; the direction needs the surface's orientation."
+      ],
+      "checks": [
+        "An elastic rebound from level ground returns the particle to its original height."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X3-ELASTIC-REBOUND"
+    },
+    {
+      "id": "REL-PHY-MIP-X3-INELASTIC-REBOUND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-003",
+        "EV-PHY-11-MIP-X3-005",
+        "EV-PHY-11-MIP-X3-013"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X3-003",
+            "EV-PHY-11-MIP-X3-005"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X3-003",
+            "EV-PHY-11-MIP-X3-005"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-013",
+            "EV-PHY-11-MIP-X3-005"
+          ]
+        }
+      },
+      "expression": "Inelastic rebound: K_final < K_initial, while the linear momentum of the whole colliding system is conserved",
+      "meaning": "When the deformation is only partly relieved some kinetic energy is lost, which is the more common case; linear momentum of the colliding system is still conserved during and after the collision.",
+      "symbols": [
+        {
+          "symbol": "K_initial, K_final",
+          "meaning": "kinetic energy of the system before and after",
+          "unit_or_domain": "J"
+        },
+        {
+          "symbol": "p_system",
+          "meaning": "total linear momentum of particle plus surface",
+          "unit_or_domain": "kg m/s"
+        }
+      ],
+      "conditions": [
+        "Momentum conservation applies to the whole system (for example molecule plus wall), not to the rebounding particle alone."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X3I-1",
+          "role": "DECLARE",
+          "action": "Classify the collision as inelastic.",
+          "why_valid": "The deformation is only partly relieved.",
+          "inputs": [],
+          "output": "K_final < K_initial",
+          "source_ref": "SRC-NCERT-KEPH105"
+        },
+        {
+          "id": "REL-X3I-2",
+          "role": "TRANSFORM",
+          "action": "Apply momentum conservation to the particle and the surface together.",
+          "why_valid": "Linear momentum is conserved in an inelastic collision.",
+          "inputs": [],
+          "output": "p_system,before = p_system,after",
+          "source_ref": "SRC-NCERT-KEPH1AN"
+        }
+      ],
+      "limits": [
+        "No evidence card here gives how much speed an inelastic rebound keeps, so this relation stays qualitative."
+      ],
+      "checks": [
+        "The rebound speed is smaller than the impact speed when the surface does not move."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X3-INELASTIC-REBOUND"
     }
   ],
   "representations": [
@@ -5544,6 +5944,83 @@
           "in_words": "Distance up the slope from launch to landing."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-X3-TWO-FLIGHTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH105"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X3-006",
+        "EV-PHY-11-MIP-X3-007",
+        "EV-PHY-11-MIP-X3-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X3-006"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-X3-007",
+            "EV-PHY-11-MIP-X3-002"
+          ]
+        }
+      },
+      "kind": "TWO_FLIGHTS_AND_A_BOUNCE",
+      "purpose": "Show the first flight, the impact with the incoming velocity resolved along and across the surface, the rebound velocity, and the second flight, with a kinetic-energy strip beneath the time axis.",
+      "required_elements": [
+        "surface (level or inclined)",
+        "first flight ending at the impact point",
+        "incoming velocity split along and across the surface",
+        "rebound velocity with its angle to the vertical",
+        "second flight",
+        "kinetic energy against time strip"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X3-ELASTIC-REBOUND",
+        "REL-PHY-MIP-X3-INELASTIC-REBOUND"
+      ],
+      "read_order": [
+        "surface (level or inclined)",
+        "first flight ending at the impact point",
+        "incoming velocity split along and across the surface",
+        "rebound velocity with its angle to the vertical",
+        "second flight",
+        "kinetic energy against time strip"
+      ],
+      "instance_constraints": [
+        "For an elastic rebound the rebound arrow has the same length as the incoming arrow.",
+        "The kinetic-energy strip dips during contact even for an elastic rebound and ends lower for an inelastic one."
+      ],
+      "accessibility": [
+        "The collision type is stated in text.",
+        "Arrow lengths are stated as equal or unequal in words."
+      ],
+      "misleading_alternatives": [
+        "A flat kinetic-energy trace through the contact.",
+        "Mirroring the velocity about the vertical instead of about the surface normal."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "rebound velocity with its angle to the vertical",
+          "symbol": "v_out",
+          "in_words": "The second flight's launch velocity, set by the collision."
+        },
+        {
+          "element": "kinetic energy against time strip",
+          "symbol": "K(t)",
+          "in_words": "How kinetic energy changes through fall, contact and rise."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -6078,6 +6555,54 @@
         "Q-PHY-MIP-X2-EXEMPLAR-4-31",
         "Q-PHY-MIP-X2-EXEMPLAR-4-32",
         "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-X3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Bounces: collision rules joining projectile flights",
+      "capability_refs": [
+        "CAP-PHY-MIP-X3"
+      ],
+      "solution_structure": [
+        "Solve the flight to the surface.",
+        "Apply the collision type to set the new velocity or to classify the collision.",
+        "Solve the next flight or judge energy and momentum statements."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the collision is elastic and which system conserves momentum.",
+        "representation_translation": "Translate a bounce story into incoming and outgoing velocity components.",
+        "reasoning_steps": "Resolve at impact, apply the collision rule, restart the projectile.",
+        "novelty": "Surfaces, angles and collision types vary."
+      },
+      "safe_variations": [
+        "Tilt the surface.",
+        "Ask for the kinetic-energy history instead of a distance."
+      ],
+      "transfer_boundaries": [
+        "No card gives a rebound speed ratio for inelastic bounces, so they are handled qualitatively only."
+      ],
+      "common_wrong_routes": [
+        "Assume kinetic energy is constant during contact.",
+        "Say momentum is not conserved because kinetic energy is lost."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-X3-JEEADV-2014-P2-Q1",
+        "Q-PHY-MIP-X3-EXEMPLAR-4-32-REBOUND",
+        "Q-PHY-MIP-X3-NCERT-5-14"
       ]
     }
   ],
@@ -9704,6 +10229,332 @@
         }
       ],
       "repair_ref": "MIP-X2-5"
+    },
+    {
+      "id": "Q-PHY-MIP-X3-JEEADV-2014-P2-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-2014-P2",
+        "SRC-NCERT-KEPH105"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-008",
+        "EV-PHY-11-MIP-X3-002",
+        "EV-PHY-11-MIP-X3-009",
+        "EV-PHY-11-MIP-X3-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X3-008"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-008",
+            "EV-PHY-11-MIP-X3-002"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X3-009",
+            "EV-PHY-11-MIP-X3-007",
+            "EV-PHY-11-MIP-X3-002"
+          ]
+        },
+        "grade9v3:figure_note": "The options of JEE (Advanced) 2014 Paper 2 Q1 are four kinetic-energy sketches (A)-(D) drawn in the source; read them on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-JEEADV-2014-P2",
+      "original_identifier": "JEEADV-2014-P2-Q1",
+      "stem": "A tennis ball is dropped on a horizontal smooth surface. It bounces back to its original position after hitting the surface. The force on the ball during the collision is proportional to the length of compression of the ball. Which one of the following sketches describes the variation of its kinetic energy K with time t most appropriately?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The ball returns to its original height, so the bounce is elastic; the contact force grows with compression."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B).",
+        "reasoning": [
+          "Falling: v = g t, so K rises as t^2.",
+          "Contact: the force grows with compression, so the ball slows smoothly to rest at maximum compression (K = 0) and speeds up again.",
+          "Returning to the original height means the collision is elastic, so K after contact equals K before it.",
+          "Rising: K falls back as (v0 - g t)^2; the key identifies (B) as the sketch with this shape."
+        ],
+        "check": "K must touch zero during contact even though the collision is elastic.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X3-1-REP",
+            "kind": "REPRESENT",
+            "action": "Split the motion into fall, contact and rise.",
+            "why_valid": "Different forces act in each stage.",
+            "inputs": [],
+            "output": "three stages on one time axis"
+          },
+          {
+            "id": "R-X3-1-DEC",
+            "kind": "DECIDE",
+            "action": "Recognise that K is not constant during contact even in an elastic collision.",
+            "why_valid": "Only initial and final kinetic energies are equal.",
+            "inputs": [],
+            "output": "K dips to 0 at maximum compression"
+          },
+          {
+            "id": "R-X3-1-CON",
+            "kind": "CONNECT",
+            "action": "Match the three-stage shape to a sketch.",
+            "why_valid": "The key identifies it.",
+            "inputs": [],
+            "output": "(B)"
+          }
+        ],
+        "crux_move_ref": "R-X3-1-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X3",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X3",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What is the ball's speed at the instant of greatest compression?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X3-1-DEC"
+        }
+      ],
+      "repair_ref": "MIP-X3-5"
+    },
+    {
+      "id": "Q-PHY-MIP-X3-EXEMPLAR-4-32-REBOUND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-010",
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X3-011",
+        "EV-PHY-11-MIP-X3-006"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X3-010"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-004"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X3-011",
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X3-006"
+          ]
+        },
+        "grade9v3:figure_note": "Exemplar Fig. 4.7 shows the incline and the first impact; read it on the cited page.",
+        "grade9v3:known_issue": "ISSUE-MIP-EX432-KEY"
+      },
+      "origin": "ADAPTED",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.32",
+      "stem": "Exemplar 4.32, taken rebound first: a particle falling vertically hits a plane inclined at theta to the horizontal with speed v0 and rebounds elastically (Fig 4.7).",
+      "subparts": [
+        "(a) State the speed of the particle just after the rebound and the angle its velocity makes with the vertical.",
+        "(b) Find the distance along the plane where it hits the plane a second time."
+      ],
+      "options": [],
+      "conditions": [
+        "Elastic rebound; air resistance neglected."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) Speed v0, directed at 2 theta to the vertical (reflected about the plane's normal). (b) Author's derivation: 4 v0^2 sin(theta)/g along the plane; the key's printed factor is not legible (ISSUE-MIP-EX432-KEY).",
+        "reasoning": [
+          "The normal to the plane makes angle theta with the vertical, so the vertical incoming velocity makes angle theta with the normal.",
+          "An elastic rebound keeps the speed v0 and reverses the component along the normal, so the outgoing velocity makes theta with the normal on the other side, 2 theta from the vertical.",
+          "In axes along and across the plane: across, v0 cos(theta) out with acceleration -g cos(theta), giving flight time 2 v0/g.",
+          "Along, v0 sin(theta) downhill with acceleration g sin(theta): d = v0 sin(theta)(2 v0/g) + (1/2) g sin(theta)(2 v0/g)^2 = 4 v0^2 sin(theta)/g."
+        ],
+        "check": "The rebound direction check: theta = 0 gives 0 degrees to the vertical, a straight bounce up.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X3-32-DEC",
+            "kind": "DECIDE",
+            "action": "Apply the elastic rule: same speed, perpendicular part reversed.",
+            "why_valid": "After an elastic rebound the particle still has speed v0.",
+            "inputs": [],
+            "output": "|v_out| = v0, 2 theta from vertical"
+          },
+          {
+            "id": "R-X3-32-REP",
+            "kind": "REPRESENT",
+            "action": "Restart as a projectile from the incline in tilted axes.",
+            "why_valid": "The rest is an ordinary projection from the incline.",
+            "inputs": [],
+            "output": "u = (v0 sin theta, v0 cos theta), a = (g sin theta, -g cos theta)"
+          },
+          {
+            "id": "R-X3-32-TR",
+            "kind": "TRANSFORM",
+            "action": "Solve the second flight.",
+            "why_valid": "Across-plane return gives the time.",
+            "inputs": [],
+            "output": "second impact after 2 v0/g, at 4 v0^2 sin(theta)/g down the slope"
+          }
+        ],
+        "crux_move_ref": "R-X3-32-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X3",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X3",
+      "adaptation": {
+        "parent_ref": "Q-PHY-MIP-X2-EXEMPLAR-4-32",
+        "changed_fields": [
+          "stem",
+          "subparts"
+        ],
+        "reason": "The same Exemplar item carries this node's rebound step, so it is split to assess the rebound velocity on its own before the second flight."
+      },
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "After rebound, particle still has speed v0 to start.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Work out angle particle speed has with horizontal after it rebounds.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Which part of the velocity does the surface reverse, and which part does it leave alone?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X3-32-DEC"
+        }
+      ],
+      "repair_ref": "MIP-X3-4"
+    },
+    {
+      "id": "Q-PHY-MIP-X3-NCERT-5-14",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X3-012",
+        "EV-PHY-11-MIP-X3-013",
+        "EV-PHY-11-MIP-X3-014",
+        "EV-PHY-11-MIP-X3-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X3",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X3-012"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-012"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X3-013",
+            "EV-PHY-11-MIP-X3-014",
+            "EV-PHY-11-MIP-X3-002"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH105",
+      "original_identifier": "NCERT-XI-5.14",
+      "stem": "A molecule in a gas container hits a horizontal wall with speed 200 m s^-1 and angle 30 degrees with the normal, and rebounds with the same speed. Is momentum conserved in the collision ? Is the collision elastic or inelastic ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The molecule's speed is the same before and after the collision."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Yes, the momentum of the molecule + wall system is conserved; the collision is elastic, since kinetic energy is conserved.",
+        "reasoning": [
+          "The molecule's normal velocity component, 200 cos30, reverses, so its own momentum changes.",
+          "The wall receives an equal and opposite change, so the momentum of the molecule + wall system is conserved.",
+          "The molecule leaves with the same speed, so its kinetic energy is unchanged: the collision is elastic."
+        ],
+        "check": "An inelastic collision would have returned the molecule with less speed.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X3-514-DEC",
+            "kind": "DECIDE",
+            "action": "Choose the system whose momentum is conserved.",
+            "why_valid": "The wall exerts a force on the molecule, so only the combined system is isolated.",
+            "inputs": [],
+            "output": "system = molecule + wall"
+          },
+          {
+            "id": "R-X3-514-CON",
+            "kind": "CONNECT",
+            "action": "Link unchanged speed to unchanged kinetic energy.",
+            "why_valid": "Equal initial and final kinetic energy defines an elastic collision.",
+            "inputs": [],
+            "output": "elastic"
+          }
+        ],
+        "crux_move_ref": "R-X3-514-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X3",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X3",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Does the molecule's own momentum change? If so, what else must change to compensate?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X3-514-DEC"
+        }
+      ],
+      "repair_ref": "MIP-X3-3"
     }
   ],
   "teaching_routes": [],
