@@ -1,0 +1,128 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-02",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:db7e93257dc31ab7fa5b5e5ac525e0fcf44f30d65926f62acf8aa11a3e3061ec",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-02-007",
+      "independent_solution": [
+        "Additions need operands of the same kind and dimension; multiplications only combine dimensions. Take the textbook convention that a component A_x is a number (A_x itself is not a vector; A_x i is).",
+        "(a) 'any' two scalars may differ in dimension (mass + time) -> not meaningful in general; (b) scalar + vector has no direction to combine -> not meaningful; (e) 'any' two vectors may differ in dimension (velocity + force) -> not meaningful in general; (f) the component A_x is a scalar, so adding it to the vector A -> not meaningful.",
+        "(c) any vector times any scalar is a vector with product dimension (velocity x time = displacement) -> meaningful; (d) any two scalars multiply (dimensions multiply) -> meaningful."
+      ],
+      "independent_answer": "Only (c) and (d) are meaningful.",
+      "official_answer": "Only (c) and (d) are permissible.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-02-009",
+      "independent_solution": [
+        "Check each item for a needed direction: temperature, pressure (normal force per area, a scalar), time, power, total path length, energy, gravitational potential, coefficient of friction and charge are fully given by a signed number and unit.",
+        "Impulse = F x (time interval) = change of momentum: a vector times a scalar is a vector, so it is the only vector."
+      ],
+      "independent_answer": "Impulse.",
+      "official_answer": "Impulse",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-02-011",
+      "independent_solution": [
+        "A scalar is defined only by having magnitude and no direction; test each extra property with a counterexample.",
+        "(a) False: kinetic energy (scalar) is not conserved in an inelastic collision. (b) False: temperature in deg C or work/potential energy can be negative. (c) False: mass, time, energy are scalars with dimensions. (d) False: temperature or gravitational potential varies from point to point.",
+        "(e) True: a scalar has no direction, so rotating the axes cannot change its value (only vector components change)."
+      ],
+      "independent_answer": "Only (e) is true; (a)-(d) are false.",
+      "official_answer": "Only (e) is true",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-02",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-02",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-02-SCALAR-MULTIPLE",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-02-SCALED-ARROWS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-4",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-3",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-02-NCERT-3-21",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-02-009",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card claim goes beyond its quote: it adds 'the answer, impulse, is a vector formed by multiplying a vector by a scalar duration', but the quote is only the exercise text of NCERT 3.3. A QUESTION card's claim must restate the question only; the answer belongs to the ANSWER_KEY card EV-PHY-11-MIP-02-010 and the rationale to a RELATION card (e.g. EV-PHY-11-MIP-02-003). Trim the claim to what the quote supports."
+    }
+  ]
+}
