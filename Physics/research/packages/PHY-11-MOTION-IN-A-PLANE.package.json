@@ -817,6 +817,55 @@
       ],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-09-003",
+        "EV-PHY-11-MIP-09-004",
+        "EV-PHY-11-MIP-09-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-09-003",
+            "EV-PHY-11-MIP-09-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-09-004",
+            "EV-PHY-11-MIP-09-008"
+          ]
+        }
+      },
+      "action": "Find the angular speed, linear speed and centripetal acceleration of uniform circular motion and state the acceleration's direction.",
+      "success_criterion": "Uses omega = 2 pi / T (or 2 pi nu), v = omega R and a_c = v^2/R = omega^2 R, points a_c at the centre, and states that it has constant magnitude but is not a constant vector.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-06"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: uniform circular motion",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
     }
   ],
   "microtopics": [
@@ -2065,6 +2114,157 @@
       "research_contribution": "Ties the projectile model's assumption, component equations, parabola, flight time, range and their level-ground and no-drag limits to verified sources, with an interactive design idea.",
       "prerequisite_refs": [
         "CAP-PHY-MIP-07"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-001",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-09-008",
+        "EV-PHY-11-MIP-09-003",
+        "EV-PHY-11-MIP-09-004",
+        "EV-PHY-11-MIP-09-007",
+        "EV-PHY-11-MIP-09-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-001",
+            "EV-PHY-11-MIP-09-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-09-008",
+            "EV-PHY-11-MIP-09-001"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-09-001",
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-09-003",
+            "EV-PHY-11-MIP-09-004",
+            "EV-PHY-11-MIP-09-007"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-09-008",
+            "EV-PHY-11-MIP-09-005"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Uniform circular motion",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-09",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners equate constant speed with zero acceleration and then over-correct by calling the centripetal acceleration a constant vector.",
+      "entry_assumptions": [
+        "Can find the change of a velocity vector by vector subtraction.",
+        "Can measure angles in radians."
+      ],
+      "inferential_jump": "Moving at constant speed round a circle still turns the velocity, so there is an acceleration of constant size v^2/R pointing at the centre, whose direction keeps changing: constant magnitude, not a constant vector.",
+      "teaching_path": [
+        {
+          "id": "MIP09-1",
+          "role": "DECLARE",
+          "action": "Identify uniform circular motion: a circular path at constant speed.",
+          "why_valid": "This fixes which relations apply.",
+          "inputs": [],
+          "output": "|v| = constant, R = constant",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP09-2",
+          "role": "TRANSFORM",
+          "action": "Find the angular speed from the time per revolution.",
+          "why_valid": "Angular speed is angle swept per unit time.",
+          "inputs": [],
+          "output": "omega = 2 pi / T",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP09-3",
+          "role": "TRANSFORM",
+          "action": "Convert to linear speed.",
+          "why_valid": "v = omega R.",
+          "inputs": [],
+          "output": "v = omega R",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP09-4",
+          "role": "TRANSFORM",
+          "action": "Find the acceleration's size and direction.",
+          "why_valid": "The acceleration has magnitude v^2/R and is always directed towards the centre.",
+          "inputs": [],
+          "output": "a_c = v^2/R = omega^2 R, towards the centre",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP09-5",
+          "role": "VERIFY",
+          "action": "Check against NCERT Example 3.9: 7 revolutions in 100 s on a 12 cm groove.",
+          "why_valid": "The textbook values follow.",
+          "inputs": [],
+          "output": "omega = 2 pi x 7/100 = 0.44 rad/s; v = 0.44 x 12 = 5.3 cm/s",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-09-CENTRIPETAL",
+        "REL-PHY-MIP-09-ANGULAR-SPEED"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-09-TURNING-VELOCITY"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-09"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Centripetal acceleration is a constant vector because its magnitude is constant.",
+          "diagnostic_prompt": "An insect moves steadily round a circular groove. Is its acceleration vector the same at every point?",
+          "repair": "No. Its magnitude v^2/R is constant but its direction keeps changing to point at the centre, so it is not a constant vector."
+        },
+        {
+          "wrong_idea": "In any circular motion the net acceleration points to the centre.",
+          "diagnostic_prompt": "A car speeds up while going round a circular track. Does its acceleration point exactly at the centre?",
+          "repair": "No. The resultant acceleration points to the centre only if the speed is constant; speeding up adds a component along the motion."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A point on a wheel of radius 0.5 m moves at a steady 2 m/s. Give the magnitude and direction of its acceleration and say whether the acceleration is a constant vector.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "8 m/s^2 towards the centre; not a constant vector.",
+          "reasoning": [
+            "a_c = v^2/R = 2^2/0.5 = 8 m/s^2.",
+            "It points towards the centre at every instant.",
+            "The direction changes as the point moves, so the vector is not constant although its size is."
+          ],
+          "check": "Units: (m/s)^2/m = m/s^2.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "Records the centripetal acceleration, angular-speed relations and the constant-magnitude but non-constant-vector point with verified NCERT quotes, including its constant-speed condition.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-06"
       ],
       "lineage": []
     }
@@ -3446,6 +3646,185 @@
         "sin(2(45 + alpha)) = sin(2(45 - alpha)), so complementary angles share a range."
       ],
       "gate_relation_ref": "REL-PHY-MIP-08-FLIGHT-TIME-RANGE"
+    },
+    {
+      "id": "REL-PHY-MIP-09-CENTRIPETAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-09-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-09-002"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-09-002"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-005"
+          ]
+        }
+      },
+      "expression": "a_c = v^2 / R, directed towards the centre",
+      "meaning": "An object moving with speed v in a circle of radius R has an acceleration of magnitude v^2/R that is always directed towards the centre.",
+      "symbols": [
+        {
+          "symbol": "v",
+          "meaning": "constant speed",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "R",
+          "meaning": "radius of the circle",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "a_c",
+          "meaning": "centripetal acceleration",
+          "unit_or_domain": "m/s^2"
+        }
+      ],
+      "conditions": [
+        "The speed is constant; the resultant acceleration in circular motion points to the centre only then."
+      ],
+      "derivation": [
+        {
+          "id": "REL09A-1",
+          "role": "DECLARE",
+          "action": "Take two nearby positions on the circle with velocities of equal size v.",
+          "why_valid": "Uniform circular motion has constant speed.",
+          "inputs": [],
+          "output": "|v1| = |v2| = v"
+        },
+        {
+          "id": "REL09A-2",
+          "role": "TRANSFORM",
+          "action": "Compare the velocity triangle with the position triangle.",
+          "why_valid": "Both are isosceles with the same small angle delta theta.",
+          "inputs": [],
+          "output": "|delta v| / v = |delta r| / R"
+        },
+        {
+          "id": "REL09A-3",
+          "role": "TRANSFORM",
+          "action": "Divide by delta t and take the limit.",
+          "why_valid": "delta r/delta t tends to v.",
+          "inputs": [],
+          "output": "a_c = v^2/R, pointing to the centre",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "With changing speed there is also a tangential acceleration and the net acceleration is not central."
+      ],
+      "checks": [
+        "Units: (m/s)^2 / m = m/s^2.",
+        "Doubling v quadruples a_c."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-09-CENTRIPETAL"
+    },
+    {
+      "id": "REL-PHY-MIP-09-ANGULAR-SPEED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-003",
+        "EV-PHY-11-MIP-09-004",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-09-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-09-003",
+            "EV-PHY-11-MIP-09-004"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-09-003",
+            "EV-PHY-11-MIP-09-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-001",
+            "EV-PHY-11-MIP-09-005"
+          ]
+        }
+      },
+      "expression": "omega = delta theta / delta t; v = omega R; a_c = omega^2 R = 4 pi^2 nu^2 R",
+      "meaning": "Angular speed is the rate of change of angular displacement; it links to the linear speed by v = omega R and gives the centripetal acceleration as omega^2 R.",
+      "symbols": [
+        {
+          "symbol": "omega",
+          "meaning": "angular speed",
+          "unit_or_domain": "rad/s"
+        },
+        {
+          "symbol": "theta",
+          "meaning": "angular displacement",
+          "unit_or_domain": "rad"
+        },
+        {
+          "symbol": "nu",
+          "meaning": "frequency (revolutions per second)",
+          "unit_or_domain": "1/s"
+        },
+        {
+          "symbol": "R",
+          "meaning": "radius",
+          "unit_or_domain": "m"
+        }
+      ],
+      "conditions": [
+        "The motion is uniform circular motion: a circular path at constant speed."
+      ],
+      "derivation": [
+        {
+          "id": "REL09W-1",
+          "role": "DECLARE",
+          "action": "Measure the angle swept by the radius.",
+          "why_valid": "Angular displacement defines angular speed.",
+          "inputs": [],
+          "output": "omega = delta theta / delta t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL09W-2",
+          "role": "TRANSFORM",
+          "action": "Relate arc length to angle.",
+          "why_valid": "Arc = R x angle in radians.",
+          "inputs": [],
+          "output": "v = omega R",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL09W-3",
+          "role": "TRANSFORM",
+          "action": "Substitute into a_c = v^2/R.",
+          "why_valid": "Direct substitution.",
+          "inputs": [],
+          "output": "a_c = omega^2 R; omega = 2 pi nu => a_c = 4 pi^2 nu^2 R",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "omega must be in radians per unit time for v = omega R."
+      ],
+      "checks": [
+        "One revolution in time T gives omega = 2 pi / T."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-09-ANGULAR-SPEED"
     }
   ],
   "representations": [
@@ -4027,6 +4406,79 @@
           "in_words": "The time at which the vertical velocity is zero."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-09-TURNING-VELOCITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-09-008",
+        "EV-PHY-11-MIP-06-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-09-008"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-06-003"
+          ]
+        }
+      },
+      "kind": "TURNING_VELOCITY_CIRCLE",
+      "purpose": "Show a circle with equal-length tangent velocity arrows at several points and the inward acceleration arrow at each, so a constant speed with a turning velocity and an always-central acceleration are seen together.",
+      "required_elements": [
+        "circle of radius R with centre",
+        "tangent velocity arrows of equal length",
+        "inward acceleration arrows",
+        "velocity triangle showing delta v",
+        "angle swept delta theta"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-09-CENTRIPETAL",
+        "REL-PHY-MIP-09-ANGULAR-SPEED"
+      ],
+      "read_order": [
+        "circle of radius R with centre",
+        "tangent velocity arrows of equal length",
+        "angle swept delta theta",
+        "velocity triangle showing delta v",
+        "inward acceleration arrows"
+      ],
+      "instance_constraints": [
+        "All velocity arrows have the same length and are tangent to the circle.",
+        "Every acceleration arrow points exactly at the centre and has the same length."
+      ],
+      "accessibility": [
+        "The inward direction is stated in words at each point.",
+        "Equal lengths are stated, not only drawn."
+      ],
+      "misleading_alternatives": [
+        "One fixed acceleration arrow for the whole circle.",
+        "Acceleration arrows along the velocity."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "inward acceleration arrows",
+          "symbol": "a_c = v^2/R",
+          "in_words": "The acceleration, of fixed size, pointing at the centre."
+        },
+        {
+          "element": "angle swept delta theta",
+          "symbol": "omega = delta theta/delta t",
+          "in_words": "How fast the radius turns."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -4413,6 +4865,55 @@
         "Q-PHY-MIP-08-NCERT-3-12",
         "Q-PHY-MIP-08-NCERT-3-13",
         "Q-PHY-MIP-08-EXEMPLAR-4-5"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-09",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Uniform circular motion: speeds, centripetal acceleration and direction statements",
+      "capability_refs": [
+        "CAP-PHY-MIP-09"
+      ],
+      "solution_structure": [
+        "Confirm the speed is constant.",
+        "Convert revolutions and time to omega, then v.",
+        "Compute a_c and state its direction, or judge statements about direction and averages."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the motion is uniform so that the acceleration is purely central.",
+        "representation_translation": "Translate revolutions per time and speeds in km/h into SI angular and linear speeds.",
+        "reasoning_steps": "Convert units, compute omega or v, then a_c, then compare or state direction.",
+        "novelty": "Objects and units vary: stones on strings, aircraft loops, statements to judge."
+      },
+      "safe_variations": [
+        "Give the period instead of revolutions in a time.",
+        "Ask for a_c as a multiple of g."
+      ],
+      "transfer_boundaries": [
+        "With changing speed use the non-uniform circular motion extension."
+      ],
+      "common_wrong_routes": [
+        "Say the acceleration is zero because the speed is constant.",
+        "Forget to convert km/h to m/s."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-09-NCERT-3-14",
+        "Q-PHY-MIP-09-NCERT-3-15",
+        "Q-PHY-MIP-09-NCERT-3-16",
+        "Q-PHY-MIP-09-EXEMPLAR-4-14"
       ]
     }
   ],
@@ -6895,6 +7396,391 @@
         }
       ],
       "repair_ref": "MIP08-5"
+    },
+    {
+      "id": "Q-PHY-MIP-09-NCERT-3-14",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-009",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-09-010",
+        "EV-PHY-11-MIP-09-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-09-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-009",
+            "EV-PHY-11-MIP-09-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-09-010",
+            "EV-PHY-11-MIP-09-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.14",
+      "stem": "A stone tied to the end of a string 80 cm long is whirled in a horizontal circle with a constant speed. If the stone makes 14 revolutions in 25 s, what is the magnitude and direction of acceleration of the stone ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Constant speed in a horizontal circle of radius 0.80 m."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "9.9 m/s^2, along the radius towards the centre at every point.",
+        "reasoning": [
+          "omega = 2 pi x 14 / 25 = 3.52 rad/s.",
+          "a_c = omega^2 R = (3.52)^2 x 0.80 = 9.9 m/s^2.",
+          "Uniform circular motion, so the acceleration points to the centre."
+        ],
+        "check": "Equivalently v = omega R = 2.81 m/s and v^2/R = 9.9 m/s^2.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R09-14-TR",
+            "kind": "TRANSFORM",
+            "action": "Convert revolutions per time to omega.",
+            "why_valid": "One revolution is 2 pi rad.",
+            "inputs": [],
+            "output": "omega = 2 pi x 14/25 = 3.52 rad/s"
+          },
+          {
+            "id": "R09-14-CON",
+            "kind": "CONNECT",
+            "action": "Use a_c = omega^2 R with R in metres.",
+            "why_valid": "Centripetal acceleration from angular speed.",
+            "inputs": [],
+            "output": "a_c = 9.9 m/s^2 towards the centre"
+          }
+        ],
+        "crux_move_ref": "R09-14-TR"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-09",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-09",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "How many radians does the stone sweep in one second?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R09-14-TR"
+        }
+      ],
+      "repair_ref": "MIP09-2"
+    },
+    {
+      "id": "Q-PHY-MIP-09-NCERT-3-15",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-011",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-08-012",
+        "EV-PHY-11-MIP-09-012",
+        "EV-PHY-11-MIP-09-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-09-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-001",
+            "EV-PHY-11-MIP-08-012"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-09-012",
+            "EV-PHY-11-MIP-09-002"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.15",
+      "stem": "An aircraft executes a horizontal loop of radius 1.00 km with a steady speed of 900 km/h. Compare its centripetal acceleration with the acceleration due to gravity.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Steady speed, so the motion is uniform circular; take g = 9.8 m/s^2."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "About 6.4 g.",
+        "reasoning": [
+          "900 km/h = 900 x 1000 / 3600 = 250 m/s.",
+          "a_c = v^2/R = 250^2 / 1000 = 62.5 m/s^2.",
+          "62.5 / 9.8 = 6.4, so a_c is about 6.4 g."
+        ],
+        "check": "Units check: (m/s)^2/m = m/s^2 before dividing by g.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R09-15-TR",
+            "kind": "TRANSFORM",
+            "action": "Convert speed and radius to SI units.",
+            "why_valid": "a_c = v^2/R needs consistent units.",
+            "inputs": [],
+            "output": "v = 250 m/s, R = 1000 m"
+          },
+          {
+            "id": "R09-15-CON",
+            "kind": "CONNECT",
+            "action": "Compute v^2/R and divide by g.",
+            "why_valid": "The question asks for a ratio.",
+            "inputs": [],
+            "output": "62.5/9.8 = 6.4"
+          }
+        ],
+        "crux_move_ref": "R09-15-TR"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-09",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-09",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Convert 900 km/h to metres per second before anything else.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "R09-15-TR"
+        }
+      ],
+      "repair_ref": "MIP09-4"
+    },
+    {
+      "id": "Q-PHY-MIP-09-NCERT-3-16",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-013",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-09-014",
+        "EV-PHY-11-MIP-09-005",
+        "EV-PHY-11-MIP-06-003",
+        "EV-PHY-11-MIP-06-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-09-013"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-09-014",
+            "EV-PHY-11-MIP-09-005",
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-06-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.16",
+      "stem": "Read each statement below carefully and state, with reasons, if it is true or false : (a) The net acceleration of a particle in circular motion is always along the radius of the circle towards the centre (b) The velocity vector of a particle at a point is always along the tangent to the path of the particle at that point (c) The acceleration vector of a particle in uniform circular motion averaged over one cycle is a null vector",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "(a) concerns circular motion in general; (c) concerns uniform circular motion."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) False (true only for uniform circular motion); (b) True; (c) True.",
+        "reasoning": [
+          "(a) The acceleration is purely towards the centre only if the speed is constant.",
+          "(b) The velocity at any point is tangent to the path, in the direction of motion.",
+          "(c) After one full cycle the velocity returns to its starting value, so delta v = 0 and the average acceleration delta v / delta t is null."
+        ],
+        "check": "Statement (c) concerns the average; the instantaneous acceleration is never zero in uniform circular motion.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R09-16-DEC",
+            "kind": "DECIDE",
+            "action": "Separate general circular motion from uniform circular motion in (a).",
+            "why_valid": "Only constant speed makes the acceleration central.",
+            "inputs": [],
+            "output": "(a) false in general"
+          },
+          {
+            "id": "R09-16-CON",
+            "kind": "CONNECT",
+            "action": "Apply a_avg = delta v/delta t over one cycle for (c).",
+            "why_valid": "Velocity after one cycle equals the initial velocity.",
+            "inputs": [],
+            "output": "delta v = 0 => (c) true"
+          }
+        ],
+        "crux_move_ref": "R09-16-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-09",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-09",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "After exactly one revolution, how does the velocity compare with the starting velocity?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R09-16-CON"
+        }
+      ],
+      "repair_ref": "MIP09-4"
+    },
+    {
+      "id": "Q-PHY-MIP-09-EXEMPLAR-4-14",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-09-015",
+        "EV-PHY-11-MIP-09-001",
+        "EV-PHY-11-MIP-09-016",
+        "EV-PHY-11-MIP-06-003",
+        "EV-PHY-11-MIP-09-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-09",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-09-015"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-09-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-09-016",
+            "EV-PHY-11-MIP-09-001",
+            "EV-PHY-11-MIP-06-003",
+            "EV-PHY-11-MIP-09-008"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.14",
+      "stem": "For a particle performing uniform circular motion, choose the correct statement(s) from the following:",
+      "subparts": [],
+      "options": [
+        "(a) Magnitude of particle velocity (speed) remains constant.",
+        "(b) Particle velocity remains directed perpendicular to radius vector.",
+        "(c) Direction of acceleration keeps changing as particle moves.",
+        "(d) Angular momentum is constant in magnitude but direction keeps changing."
+      ],
+      "conditions": [
+        "Uniform circular motion: circular path at constant speed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a), (b) and (c).",
+        "reasoning": [
+          "(a) Constant speed is the definition of uniform circular motion.",
+          "(b) The velocity is tangent to the circle, which is perpendicular to the radius at that point.",
+          "(c) The acceleration always points to the centre, so its direction changes as the particle moves.",
+          "(d) is excluded by the official key; angular momentum belongs to the rotational-motion chapter and is not reasoned about here."
+        ],
+        "check": "Statements (a)-(c) each follow from one verified property of uniform circular motion.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R09-414-CON",
+            "kind": "CONNECT",
+            "action": "Match each statement to a defining property.",
+            "why_valid": "Constant speed, tangent velocity and central acceleration are the three properties.",
+            "inputs": [],
+            "output": "(a), (b), (c) correct"
+          }
+        ],
+        "crux_move_ref": "R09-414-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-09",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-09",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "List the three properties of uniform circular motion you know, then compare each statement with them.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R09-414-CON"
+        }
+      ],
+      "repair_ref": "MIP09-4"
     }
   ],
   "teaching_routes": [],
