@@ -8,19 +8,20 @@
 :root{--bg:#f1f5f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--blue:#2563eb;--green:#15803d;--orange:#c2410c;--red:#b91c1c;--violet:#7c3aed}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 header{background:#0f172a;color:white;padding:14px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center;position:sticky;top:0;z-index:20}
-header h1{font-size:18px;margin:0}header p{font-size:12px;color:#cbd5e1;margin:2px 0 0}header a{color:#7dd3fc}
+header h1{font-size:18px;margin:0}header p{font-size: 14px;color:#cbd5e1;margin:2px 0 0}header a{color:#7dd3fc}
 main{max-width:1200px;margin:auto;padding:18px;display:grid;gap:14px}.card{background:var(--card);border:1px solid #e2e8f0;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
-.banner{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:10px 12px;font-size:12px}
+.banner{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:10px 12px;font-size: 14px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button,.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer}.tabs button.active{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd;font-weight:700}.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}
-.controls{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}label{display:grid;gap:5px;font-size:12px;font-weight:650;color:#334155}input[type=range],select{width:100%}.value{font-family:ui-monospace,monospace;border:1px solid var(--line);background:#f8fafc;border-radius:5px;padding:2px 6px}
-.outputs{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}.metric .name{font-size:11px;color:var(--muted)}.metric .val{font-size:18px;font-weight:750;margin-top:4px}.metric small{display:block;color:var(--muted);margin-top:3px}
+.controls{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}label{display:grid;gap:5px;font-size: 14px;font-weight:650;color:#334155}input[type=range],select{width:100%}.value{font-family:ui-monospace,monospace;border:1px solid var(--line);background:#f8fafc;border-radius:5px;padding:2px 6px}
+.outputs{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}.metric{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}.metric .name{font-size: 13.5px;color:var(--muted)}.metric .val{font-size:18px;font-weight:750;margin-top:4px}.metric small{display:block;color:var(--muted);margin-top:3px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.frame{border:1px solid #dbeafe;border-radius:10px;padding:12px;background:#f8fbff}.frame.acc{border-color:#ddd6fe;background:#faf5ff}.frame h3{font-size:14px;margin:0 0 8px}.eq{font-family:ui-monospace,monospace;background:#fff;border-left:4px solid var(--blue);padding:8px 10px;border-radius:5px;margin:7px 0}.acc .eq{border-left-color:var(--violet)}
-.force{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding:6px 0;font-size:12px}.force:last-child{border-bottom:0}
-.good,.warn,.bad{border-radius:8px;padding:10px 12px;font-size:12px}.good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
-.scene{display:none}.scene.active{display:block}canvas{width:100%;height:260px;border:1px solid var(--line);border-radius:10px;background:white;display:block}.matrix{width:100%;border-collapse:collapse;font-size:12px}.matrix th,.matrix td{border:1px solid #e2e8f0;padding:8px;text-align:left}.matrix th{background:#f8fafc}.pill{display:inline-block;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:700}.pill.green{background:#dcfce7;color:#166534}.pill.orange{background:#ffedd5;color:#9a3412}.pill.violet{background:#ede9fe;color:#5b21b6}
+.force{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding:6px 0;font-size: 14px}.force:last-child{border-bottom:0}
+.good,.warn,.bad{border-radius:8px;padding:10px 12px;font-size: 14px}.good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}.bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.scene{display:none}.scene.active{display:block}canvas{width:100%;height:260px;border:1px solid var(--line);border-radius:10px;background:white;display:block}.matrix{width:100%;border-collapse:collapse;font-size: 14px}.matrix th,.matrix td{border:1px solid #e2e8f0;padding:8px;text-align:left}.matrix th{background:#f8fafc}.pill{display:inline-block;border-radius:999px;padding:2px 7px;font-size: 13.5px;font-weight:700}.pill.green{background:#dcfce7;color:#166534}.pill.orange{background:#ffedd5;color:#9a3412}.pill.violet{background:#ede9fe;color:#5b21b6}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.spacer{height:6px}footer{display:flex;justify-content:space-between;gap:10px;align-items:center}
 @media(max-width:850px){.controls,.outputs,.grid2{grid-template-columns:1fr}header{position:static}canvas{height:230px}}
 </style>
+  <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
 </head>
 <body>
 <header>
@@ -82,15 +83,48 @@ main{max-width:1200px;margin:auto;padding:18px;display:grid;gap:14px}.card{backg
   <section id="predict" class="card scene active">
     <h2 style="font-size:16px;margin-top:0">Predict before calculating</h2>
     <p>The elevator can be moving upward while accelerating downward, or moving downward while accelerating upward. Which quantity controls the scale reading?</p>
-    <table class="matrix">
-      <thead><tr><th>Velocity</th><th>Acceleration</th><th>Scale relation</th></tr></thead>
-      <tbody>
-        <tr><td>up</td><td>up</td><td>N &gt; mg</td></tr>
-        <tr><td>up</td><td>down</td><td>N &lt; mg</td></tr>
-        <tr><td>down</td><td>down</td><td>N &lt; mg</td></tr>
-        <tr><td>down</td><td>up</td><td>N &gt; mg</td></tr>
-      </tbody>
-    </table>
+        <!-- 4-TILE MOTION DIRECTION & SCALE RELATION CLUSTER (Table-to-Icon Replacement) -->
+    <div class="metric-tile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 14px 0;">
+      <div class="metric-tile" style="padding: 14px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px;">
+        <div class="metric-tile-header" style="font-size: 14px; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 16px;">⬆️</span>
+          <span>Moving Upward</span>
+        </div>
+        <div style="font-size: 14px; color: #cbd5e1; margin: 4px 0;">Accel: <strong>Upward (&uarr;)</strong></div>
+        <div class="metric-tile-value" style="font-size: 20px; color: #38bdf8; font-weight: 800;"><i>N</i> &gt; <i>mg</i></div>
+        <div style="font-size: 13.5px; color: #38bdf8; font-weight: 600;">Heavier scale reading</div>
+      </div>
+
+      <div class="metric-tile" style="padding: 14px; background: rgba(248, 113, 113, 0.08); border: 1px solid rgba(248, 113, 113, 0.4); border-radius: 8px;">
+        <div class="metric-tile-header" style="font-size: 14px; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 16px;">⬆️</span>
+          <span>Moving Upward</span>
+        </div>
+        <div style="font-size: 14px; color: #cbd5e1; margin: 4px 0;">Accel: <strong>Downward (&darr;)</strong></div>
+        <div class="metric-tile-value" style="font-size: 20px; color: #f87171; font-weight: 800;"><i>N</i> &lt; <i>mg</i></div>
+        <div style="font-size: 13.5px; color: #f87171; font-weight: 600;">Lighter scale reading</div>
+      </div>
+
+      <div class="metric-tile" style="padding: 14px; background: rgba(248, 113, 113, 0.08); border: 1px solid rgba(248, 113, 113, 0.4); border-radius: 8px;">
+        <div class="metric-tile-header" style="font-size: 14px; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 16px;">⬇️</span>
+          <span>Moving Downward</span>
+        </div>
+        <div style="font-size: 14px; color: #cbd5e1; margin: 4px 0;">Accel: <strong>Downward (&darr;)</strong></div>
+        <div class="metric-tile-value" style="font-size: 20px; color: #f87171; font-weight: 800;"><i>N</i> &lt; <i>mg</i></div>
+        <div style="font-size: 13.5px; color: #f87171; font-weight: 600;">Lighter scale reading</div>
+      </div>
+
+      <div class="metric-tile" style="padding: 14px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px;">
+        <div class="metric-tile-header" style="font-size: 14px; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 16px;">⬇️</span>
+          <span>Moving Downward</span>
+        </div>
+        <div style="font-size: 14px; color: #cbd5e1; margin: 4px 0;">Accel: <strong>Upward (&uarr;)</strong></div>
+        <div class="metric-tile-value" style="font-size: 20px; color: #38bdf8; font-weight: 800;"><i>N</i> &gt; <i>mg</i></div>
+        <div style="font-size: 13.5px; color: #38bdf8; font-weight: 600;">Heavier scale reading</div>
+      </div>
+    </div>
     <div class="good" style="margin-top:10px"><strong>Invariant:</strong> scale reading depends on acceleration, not on whether the elevator is moving up or down.</div>
   </section>
 
@@ -180,7 +214,7 @@ main{max-width:1200px;margin:auto;padding:18px;display:grid;gap:14px}.card{backg
     <footer>
       <div>
         <strong>Protected distinctions</strong>
-        <div style="font-size:12px;color:var(--muted)">velocity ≠ acceleration · scale reading N ≠ mg · pseudo-force ≠ physical interaction</div>
+        <div style="font-size: 14px;color:var(--muted)">velocity ≠ acceleration · scale reading N ≠ mg · pseudo-force ≠ physical interaction</div>
       </div>
       <button id="reset" class="btn primary" type="button">Reset explorer</button>
     </footer>

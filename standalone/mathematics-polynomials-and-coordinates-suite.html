@@ -257,7 +257,7 @@
     }
 
     .telemetry-title {
-      font-size: 11px;
+      font-size: 13.5px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -275,7 +275,7 @@
       display: inline-block;
       padding: 3px 8px;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       background: rgba(56, 189, 248, 0.2);
       color: var(--accent);
@@ -439,7 +439,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
+      font-size: 14px;
       background: var(--card);
       border: 1px solid var(--border);
       padding: 4px 10px;
@@ -491,7 +491,15 @@
       padding-right: 2px;
       font-style: normal;
     }
-  </style>
+  
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
+</style>
 </head>
 <body>
 
@@ -557,12 +565,12 @@
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:8px;">
             <span>👆 <strong>Touch / Drag</strong> the target point <strong style="color:var(--accent);">P(x, y)</strong> anywhere on the plane.</span>
-            <button class="g9-btn" id="btn-reset-coord" style="min-height:36px; padding:4px 10px; font-size:12px;">Reset Origin (0,0)</button>
+            <button class="g9-btn" id="btn-reset-coord" style="min-height:36px; padding:4px 10px; font-size: 14px;">Reset Origin (0,0)</button>
           </div>
 
           <!-- Quick Presets -->
           <div class="control-row">
-            <span style="font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase;">Canonical Test Points:</span>
+            <span style="font-size: 14px; font-weight:600; color:var(--muted); text-transform:uppercase;">Canonical Test Points:</span>
             <div class="btn-cluster">
               <button class="preset-btn" onclick="setCoordPoint(4, 3)">P(4, 3) [Q I]</button>
               <button class="preset-btn" onclick="setCoordPoint(-5, 2)">P(-5, 2) [Q II]</button>
@@ -645,7 +653,7 @@
 
               <div class="formula-card" style="border-color:var(--success);">
                 <span class="formula-title" id="formula-line-title">Line Equation: y = 0.75x</span>
-                <span style="font-size:12px; color:var(--muted);">
+                <span style="font-size: 14px; color:var(--muted);">
                   Satisfies EV-MAT-09-LEQ-04-003: Every linear equation represents a straight line with infinitely many solution points.
                 </span>
               </div>
@@ -690,19 +698,19 @@
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap:8px;">
               <div>
-                <label style="font-size:12px; color:var(--muted);">x³ coeff</label>
+                <label style="font-size: 14px; color:var(--muted);">x³ coeff</label>
                 <input type="number" id="coeff-a" value="1" class="g9-btn" style="width:100%; text-align:center;">
               </div>
               <div>
-                <label style="font-size:12px; color:var(--muted);">x² coeff</label>
+                <label style="font-size: 14px; color:var(--muted);">x² coeff</label>
                 <input type="number" id="coeff-b" value="-3" class="g9-btn" style="width:100%; text-align:center;">
               </div>
               <div>
-                <label style="font-size:12px; color:var(--muted);">x coeff</label>
+                <label style="font-size: 14px; color:var(--muted);">x coeff</label>
                 <input type="number" id="coeff-c" value="4" class="g9-btn" style="width:100%; text-align:center;">
               </div>
               <div>
-                <label style="font-size:12px; color:var(--muted);">constant</label>
+                <label style="font-size: 14px; color:var(--muted);">constant</label>
                 <input type="number" id="coeff-d" value="-5" class="g9-btn" style="width:100%; text-align:center;">
               </div>
             </div>
@@ -710,11 +718,11 @@
             <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; border:1px solid var(--border); padding:10px; border-radius:6px; background:var(--card);">
               <span style="font-weight:600; font-size:13px;">Linear Divisor (k·x − r):</span>
               <div style="display:flex; align-items:center; gap:6px;">
-                <label style="font-size:12px;">k:</label>
+                <label style="font-size: 14px;">k:</label>
                 <input type="number" id="div-k" value="1" style="width:55px; height:36px; text-align:center; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:4px;">
               </div>
               <div style="display:flex; align-items:center; gap:6px;">
-                <label style="font-size:12px;">r (root value = r/k):</label>
+                <label style="font-size: 14px;">r (root value = r/k):</label>
                 <input type="number" id="div-r" value="2" style="width:55px; height:36px; text-align:center; background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:4px;">
               </div>
               <button class="g9-btn primary" onclick="calcPolyRemainder()" style="margin-left:auto; min-height:38px;">Calculate</button>
@@ -726,13 +734,18 @@
               <div id="poly-steps-display" style="font-size:14px; margin-top:6px; line-height:1.7;"></div>
             </div>
 
-            <div class="synth-table-wrap">
-              <span style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:8px; display:block;">
-                Synthetic Division Array:
-              </span>
-              <table class="synth-table" id="synth-table">
-                <!-- Dynamically populated -->
-              </table>
+            <div class="synth-pipeline-wrap" style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                <span style="font-size:14px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px;">
+                  <span>🔢</span> Visual Arithmetic Division Pipeline
+                </span>
+                <span class="badge" style="background:rgba(56,189,248,0.15); border:1px solid var(--accent); color:var(--accent); font-size: 14px; padding:4px 10px; border-radius:6px; font-weight:700;">
+                  🎯 Root x = <span id="pipeline-root-badge">2.00</span>
+                </span>
+              </div>
+              <div class="arithmetic-pipeline" id="synth-pipeline" style="display:flex; align-items:center; gap:10px; overflow-x:auto; padding:8px 4px;">
+                <!-- Dynamically populated step cards with icons -->
+              </div>
             </div>
           </div>
         </div>
@@ -822,7 +835,7 @@
       <details class="core-box" open>
         <summary>
           <span>📐 CORE1: Governing Principles & Domain Validity</span>
-          <span style="font-size:12px; color:var(--accent);">Orientation Map</span>
+          <span style="font-size: 14px; color:var(--accent);">Orientation Map</span>
         </summary>
         <div class="core-content">
           <div class="formula-card">
@@ -849,7 +862,7 @@
       <details class="core-box" open>
         <summary>
           <span>✍️ CORE1B: Active Recall Reconstruction (Mandatory Attempt)</span>
-          <span style="font-size:12px; color:var(--warning);">Commitment Gated</span>
+          <span style="font-size: 14px; color:var(--warning);">Commitment Gated</span>
         </summary>
         <div class="core-content">
           <p>
@@ -857,7 +870,7 @@
           </p>
 
           <div class="attempt-box">
-            <label style="font-size:12px; font-weight:600; color:var(--muted);">YOUR COMMITTED ATTEMPT (Required before revealing canonical derivation):</label>
+            <label style="font-size: 14px; font-weight:600; color:var(--muted);">YOUR COMMITTED ATTEMPT (Required before revealing canonical derivation):</label>
             <textarea class="attempt-input" id="attempt-core1b" placeholder="Write your derivation and explanation here..."></textarea>
             <button class="g9-btn" id="btn-reveal-core1b" onclick="revealCore1B()" style="width:fit-content; min-height:40px; font-size:13px;">
               Commit Attempt & Unlock Canonical Derivation
@@ -882,7 +895,7 @@
       <details class="core-box" open>
         <summary>
           <span>🎯 CORE2: Parameterized Practice Problems with 3-Rung Hint Ladders</span>
-          <span style="font-size:12px; color:var(--success);">3 Rungs</span>
+          <span style="font-size: 14px; color:var(--success);">3 Rungs</span>
         </summary>
         <div class="core-content">
           <!-- Problem 1 -->
@@ -1429,30 +1442,44 @@
         <strong>Conclusion:</strong> By Factor Theorem, ${divStr} ${isFactor ? '<strong>IS</strong> a factor' : 'is <strong>NOT</strong> a factor'} of $P(x)$.
       `;
 
-      // Populate synthetic division table
-      const tbl = document.getElementById('synth-table');
-      tbl.innerHTML = `
-        <tr>
-          <td class="divisor-col" rowspan="2">${root.toFixed(2)}</td>
-          <td>${coeffs[0]}</td>
-          <td>${coeffs[1]}</td>
-          <td>${coeffs[2]}</td>
-          <td>${coeffs[3]}</td>
-        </tr>
-        <tr class="mid-row">
-          <td>—</td>
-          <td>${carries[1].toFixed(2)}</td>
-          <td>${carries[2].toFixed(2)}</td>
-          <td>${carries[3].toFixed(2)}</td>
-        </tr>
-        <tr class="result-row">
-          <td class="divisor-col">Result</td>
-          <td>${q[0]}</td>
-          <td>${q[1].toFixed(2)}</td>
-          <td>${q[2].toFixed(2)}</td>
-          <td class="remainder-col">${remainder.toFixed(2)}</td>
-        </tr>
-      `;
+      // Populate visual arithmetic pipeline with icon cards
+      const rootBadge = document.getElementById('pipeline-root-badge');
+      if (rootBadge) rootBadge.textContent = root.toFixed(2);
+      const pipeline = document.getElementById('synth-pipeline');
+      if (pipeline) {
+        const varNames = ['x³', 'x²', 'x', 'const'];
+        let stepsHtml = `
+          <div class="pipeline-step" style="border:1.5px solid var(--warning); background:rgba(251,191,36,0.08); border-radius:8px; padding:12px 16px; min-width:110px; text-align:center;">
+            <span style="font-size:20px; display:block; margin-bottom:4px;">🎯</span>
+            <span style="font-size: 13.5px; text-transform:uppercase; color:var(--muted); font-weight:700; display:block;">Root x</span>
+            <span style="font-size:18px; font-weight:800; color:var(--warning);">${root.toFixed(2)}</span>
+          </div>
+          <div style="font-size:20px; color:var(--muted); padding:0 4px;">➔</div>
+        `;
+
+        for (let i = 0; i < coeffs.length; i++) {
+          const isRemainder = (i === coeffs.length - 1);
+          const opLabel = (i === 0) ? '⬇️ Drop' : `➕ Add (${carries[i] >= 0 ? '+' : ''}${carries[i].toFixed(1)})`;
+          const borderColor = isRemainder ? (isFactor ? 'var(--success)' : 'var(--accent)') : 'var(--border)';
+          const bgColor = isRemainder ? (isFactor ? 'rgba(52,211,153,0.12)' : 'rgba(56,189,248,0.1)') : 'var(--surface)';
+
+          stepsHtml += `
+            <div class="pipeline-step" style="border:1.5px solid ${borderColor}; background:${bgColor}; border-radius:8px; padding:12px 16px; min-width:120px; text-align:center;">
+              <span style="font-size: 13.5px; font-weight:700; color:var(--muted); text-transform:uppercase; display:block;">${varNames[i]} Coeff</span>
+              <div style="font-size:15px; color:var(--text); font-weight:700; margin:2px 0;">${coeffs[i]}</div>
+              <div style="font-size: 13.5px; color:var(--muted); margin:4px 0; font-family:ui-monospace,monospace;">${opLabel}</div>
+              <div style="font-size:18px; font-weight:800; color:${isRemainder ? (isFactor ? 'var(--success)' : 'var(--accent)') : 'var(--accent)'}; font-family:ui-monospace,monospace;">
+                ${isRemainder ? `R = ${remainder.toFixed(2)}` : q[i].toFixed(1)}
+              </div>
+              ${isRemainder ? `<span style="display:inline-block; font-size: 13.5px; font-weight:800; color:${isFactor ? 'var(--success)' : 'var(--warning)'}; margin-top:4px;">${isFactor ? '✅ Factor' : '⚠️ Non-Zero'}</span>` : ''}
+            </div>
+          `;
+          if (i < coeffs.length - 1) {
+            stepsHtml += `<div style="font-size:20px; color:var(--muted); padding:0 4px;">➔</div>`;
+          }
+        }
+        pipeline.innerHTML = stepsHtml;
+      }
     }
 
     /* ==========================================================================

@@ -959,7 +959,15 @@ window.JEE_QUESTIONS_DATA = [
       color: #f8fafc;
       background: rgba(255, 255, 255, 0.03);
     }
-  </style>
+  
+  /* 12.7" Tablet Touch & Ergonomics Rules */
+  button, .btn, .g9-btn, .tab-btn { min-height: 48px !important; min-width: 48px !important; font-size: 15px; }
+  input[type="range"] { height: 48px !important; }
+  input[type="range"]::-webkit-slider-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  input[type="range"]::-moz-range-thumb { width: 30px !important; height: 30px !important; border-radius: 50% !important; }
+  details summary { min-height: 52px !important; font-size: 15px !important; }
+
+</style>
 </head>
 <body class="bg-background text-slate-100 min-h-screen flex flex-col font-sans selection:bg-sky-500/30">
 

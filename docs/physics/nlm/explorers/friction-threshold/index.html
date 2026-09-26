@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NLM Explorer 1 · Static-to-Kinetic Friction Threshold & Microscopic Asperities</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" crossorigin="anonymous">
   <style>
     :root {
       --bg: #0d1117;
@@ -63,7 +63,7 @@
       gap: 4px;
       padding: 3px 10px;
       border-radius: 12px;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       font-family: var(--font-mono);
       font-variant-numeric: tabular-nums;
@@ -84,7 +84,7 @@
     .breadcrumb {
       display: flex;
       gap: 8px;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 16px;
       align-items: center;
@@ -131,7 +131,7 @@
       flex-wrap: wrap;
     }
     .preset-label {
-      font-size: 11px;
+      font-size: 13.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.6px;
@@ -142,7 +142,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       padding: 5px 12px;
       border-radius: 6px;
@@ -172,7 +172,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       padding: 6px 12px;
       border-radius: 6px;
@@ -256,7 +256,7 @@
       border: 1px solid var(--border);
       padding: 4px 10px;
       border-radius: 6px;
-      font-size: 11px;
+      font-size: 13.5px;
       backdrop-filter: blur(4px);
     }
     .canvas-hud-options label {
@@ -289,7 +289,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-dim);
     }
@@ -323,7 +323,7 @@
       gap: 2px;
     }
     .stat-cell-label {
-      font-size: 10px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -346,7 +346,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      font-size: 12px;
+      font-size: 14px;
       font-family: var(--font-mono);
     }
     @media (max-width: 600px) {
@@ -358,7 +358,7 @@
       gap: 4px;
     }
     .eq-title {
-      font-size: 11px;
+      font-size: 13.5px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--accent);
@@ -387,7 +387,7 @@
       padding: 6px 10px;
       border-radius: 4px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 13.5px;
       pointer-events: none;
       display: none;
       z-index: 10;
@@ -400,14 +400,14 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 12px 14px;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.55;
       color: var(--text-dim);
       margin-top: 12px;
     }
     .info-card h4 {
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
@@ -485,7 +485,7 @@
       padding: 7px 16px;
       border-radius: 6px;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 14px;
       cursor: pointer;
       transition: opacity 0.15s;
     }
@@ -517,6 +517,7 @@
       background: rgba(248, 81, 73, 0.1);
     }
   </style>
+  <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
 </head>
 <body>
 
@@ -581,33 +582,33 @@
       <button class="btn-transport" onclick="stepForward()">⏭ Step</button>
       <button class="btn-transport" onclick="resetSim()">↺ Reset</button>
       <div class="speed-slider-wrap" style="display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px;">
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
           ⏱️ Speed:
         </span>
         <input type="range" id="slider-speed" min="0.05" max="1.5" step="0.05" value="1.0" 
                style="width: 85px; accent-color: var(--accent); cursor: pointer; height: 6px;" 
                oninput="setSimSpeed(this.value)" 
                title="Drag left to slow down animation (slow-motion)">
-        <span id="label-speed" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
-        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
-        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 10px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
+        <span id="label-speed" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 36px;">1.00x</span>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 13px; border-radius: 4px;" onclick="setSimSpeed(0.25)" title="Slow Motion (0.25x)">0.25x</button>
+        <button type="button" class="btn-transport" style="padding: 2px 7px; font-size: 13px; border-radius: 4px;" onclick="setSimSpeed(1.0)" title="Normal Speed (1.0x)">1.0x</button>
       </div>
       <div class="display-controls-wrap" style="display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card); border: 1px solid var(--border); padding: 5px 10px; border-radius: 6px;">
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px;">
           🔤 Font:
         </span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(-0.05)" title="Decrease Font Size">A-</button>
-        <span class="g9-inline-font-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(0.05)" title="Increase Font Size">A+</button>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(-0.05)" title="Decrease Font Size">A-</button>
+        <span class="g9-inline-font-val" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepFont(0.05)" title="Increase Font Size">A+</button>
 
-        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-left: 4px;">
+        <span style="font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-left: 4px;">
           🔍 Zoom:
         </span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(-0.05)" title="Zoom Out">−</button>
-        <span class="g9-inline-scale-val" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
-        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 10px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(0.05)" title="Zoom In">+</button>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(-0.05)" title="Zoom Out">−</button>
+        <span class="g9-inline-scale-val" style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--accent); min-width: 34px; text-align: center;">100%</span>
+        <button type="button" class="btn-transport" style="padding: 2px 6px; font-size: 13px; border-radius: 4px;" onclick="window.Grade9Display.stepScale(0.05)" title="Zoom In">+</button>
 
-        <button type="button" class="btn-transport" style="padding: 2px 8px; font-size: 11px; border-radius: 4px; margin-left: 2px;" onclick="window.Grade9Display.togglePopover()" title="Open Display & Scale Settings">⚙️</button>
+        <button type="button" class="btn-transport" style="padding: 2px 8px; font-size: 13.5px; border-radius: 4px; margin-left: 2px;" onclick="window.Grade9Display.togglePopover()" title="Open Display & Scale Settings">⚙️</button>
       </div>
     </div>
   </div>
@@ -747,7 +748,7 @@
         <div id="graphTooltip" class="graph-tooltip"></div>
       </div>
 
-      <div style="font-size: 11px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
+      <div style="font-size: 13.5px; color: var(--text-dim); display: flex; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
         <span>💡 <em>Click or drag anywhere on the graph to scrub P<sub>x</sub> directly!</em></span>
         <span style="font-family: var(--font-mono);">X: 0&ndash;100 N | Y: 0&ndash;60 N</span>
       </div>

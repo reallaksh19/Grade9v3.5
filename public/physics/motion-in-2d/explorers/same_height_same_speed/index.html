@@ -45,6 +45,7 @@
       50% { filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.9)); }
     }
   </style>
+  <link rel="stylesheet" href="../../../../css/tablet-12-7.css">
 </head>
 <body class="min-h-screen p-4 md:p-6 lg:p-8 flex flex-col items-center">
 
@@ -302,62 +303,112 @@
         </div>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs font-mono">
-          <thead>
-            <tr class="border-b border-slate-800 text-slate-400 uppercase text-[11px]">
-              <th class="py-2.5 px-3">Physical Quantity</th>
-              <th class="py-2.5 px-3 text-cyan-400">Point A (Ascending)</th>
-              <th class="py-2.5 px-3 text-pink-400">Point B (Descending)</th>
-              <th class="py-2.5 px-3 text-amber-400">Comparison Status</th>
-              <th class="py-2.5 px-3 text-slate-300">Physical Invariant Rationale</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800/60 text-slate-300">
-            <tr>
-              <td class="py-2.5 px-3 font-semibold text-white">Event Time (t)</td>
-              <td id="tblTa" class="py-2.5 px-3 text-cyan-300 font-bold">0.86 s</td>
-              <td id="tblTb" class="py-2.5 px-3 text-pink-300 font-bold">3.18 s</td>
-              <td class="py-2.5 px-3 text-slate-400">t_A &ne; t_B</td>
-              <td class="py-2.5 px-3 text-slate-400">Symmetric about apex: t_apex = &frac12;(t_A + t_B)</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-semibold text-white">Horizontal Velocity (v&#8339;)</td>
-              <td id="tblVax" class="py-2.5 px-3 text-cyan-300 font-bold">+15.04 m/s</td>
-              <td id="tblVbx" class="py-2.5 px-3 text-pink-300 font-bold">+15.04 m/s</td>
-              <td class="py-2.5 px-3 text-emerald-400 font-bold">EQUAL (=)</td>
-              <td class="py-2.5 px-3 text-slate-400">&Sigma;F&#8339; = 0 &rArr; No horizontal acceleration occurs</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-semibold text-white">Vertical Velocity (v&#7522;)</td>
-              <td id="tblVay" class="py-2.5 px-3 text-cyan-300 font-bold">+11.41 m/s</td>
-              <td id="tblVby" class="py-2.5 px-3 text-pink-300 font-bold">&minus;11.41 m/s</td>
-              <td class="py-2.5 px-3 text-pink-400 font-bold">OPPOSITE (&minus;)</td>
-              <td class="py-2.5 px-3 text-slate-400">v_By = &minus;v_Ay; magnitude equal, direction inverted</td>
-            </tr>
-            <tr class="bg-amber-950/20">
-              <td class="py-2.5 px-3 font-bold text-amber-300">Total Speed (|v|)</td>
-              <td id="tblSa" class="py-2.5 px-3 text-amber-300 font-black">18.88 m/s</td>
-              <td id="tblSb" class="py-2.5 px-3 text-amber-300 font-black">18.88 m/s</td>
-              <td class="py-2.5 px-3 text-emerald-400 font-black">IDENTICAL (=)</td>
-              <td class="py-2.5 px-3 text-amber-200">&radic;(v&#8339;&sup2; + v&#7522;&sup2;) is identical because (&minus;v&#7522;)&sup2; = (+v&#7522;)&sup2;</td>
-            </tr>
-            <tr>
-              <td class="py-2.5 px-3 font-semibold text-white">Kinetic Energy (KE / m)</td>
-              <td id="tblKeA" class="py-2.5 px-3 text-emerald-300 font-bold">178.2 J/kg</td>
-              <td id="tblKeB" class="py-2.5 px-3 text-emerald-300 font-bold">178.2 J/kg</td>
-              <td class="py-2.5 px-3 text-emerald-400 font-bold">CONSERVED (=)</td>
-              <td class="py-2.5 px-3 text-slate-400">KE = &frac12;mv&sup2;; scalar depends strictly on speed squared</td>
-            </tr>
-            <tr class="bg-red-950/20">
-              <td class="py-2.5 px-3 font-bold text-red-300">Velocity Vector (v)</td>
-              <td id="tblVecA" class="py-2.5 px-3 text-cyan-300 font-bold">(15.0, +11.4)</td>
-              <td id="tblVecB" class="py-2.5 px-3 text-pink-300 font-bold">(15.0, &minus;11.4)</td>
-              <td class="py-2.5 px-3 text-red-400 font-black">NOT EQUAL (&ne;)</td>
-              <td class="py-2.5 px-3 text-red-200">Different vectors! One points upward-right, other downward-right</td>
-            </tr>
-          </tbody>
-        </table>
+            <!-- SYMMETRIC KINEMATIC METRIC TILE DECK (Table-to-Icon Replacement) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 my-4">
+        <!-- Tile 1: Event Time -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+            <span class="flex items-center gap-1.5"><span class="text-base">⏱️</span> EVENT TIME (t)</span>
+            <span class="text-[11px] font-mono text-slate-400">t_A &ne; t_B</span>
+          </div>
+          <div class="my-2.5 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A (↗️ Ascent)</span>
+              <span id="tblTa" class="text-cyan-300 font-bold text-base">0.86 s</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B (↘️ Descent)</span>
+              <span id="tblTb" class="text-pink-300 font-bold text-base">3.18 s</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+            Symmetric: t_apex = &frac12;(t_A + t_B)
+          </div>
+        </div>
+
+        <!-- Tile 2: Horizontal Velocity -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+            <span class="flex items-center gap-1.5"><span class="text-base">➡️</span> HORIZONTAL VELOCITY (v&#8339;)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-800">EQUAL (=)</span>
+          </div>
+          <div class="my-2.5 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A</span>
+              <span id="tblVax" class="text-cyan-300 font-bold text-base">+15.04 m/s</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B</span>
+              <span id="tblVbx" class="text-pink-300 font-bold text-base">+15.04 m/s</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+            &Sigma;F&#8339; = 0 &rArr; No horizontal acceleration occurs
+          </div>
+        </div>
+
+        <!-- Tile 3: Vertical Velocity -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+            <span class="flex items-center gap-1.5"><span class="text-base">↕️</span> VERTICAL VELOCITY (v&#7522;)</span>
+            <span class="px-2 py-0.5 rounded bg-pink-950 text-pink-400 text-[10px] font-bold border border-pink-800">OPPOSITE (&minus;)</span>
+          </div>
+          <div class="my-2.5 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A</span>
+              <span id="tblVay" class="text-cyan-300 font-bold text-base">+11.41 m/s</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B</span>
+              <span id="tblVby" class="text-pink-300 font-bold text-base">&minus;11.41 m/s</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+            v_By = &minus;v_Ay (Magnitude equal, direction inverted)
+          </div>
+        </div>
+
+        <!-- Tile 4: Total Speed -->
+        <div class="bg-amber-950/20 border border-amber-800/50 rounded-xl p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs font-bold text-amber-300">
+            <span class="flex items-center gap-1.5"><span class="text-base">⚡</span> TOTAL SCALAR SPEED (|v|)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-black border border-emerald-800">IDENTICAL (=)</span>
+          </div>
+          <div class="my-2.5 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-[10px] text-amber-400 block uppercase font-bold">Point A</span>
+              <span id="tblSa" class="text-amber-300 font-black text-lg">18.88 m/s</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-amber-400 block uppercase font-bold">Point B</span>
+              <span id="tblSb" class="text-amber-300 font-black text-lg">18.88 m/s</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-amber-200 border-t border-amber-800/50 pt-2">
+            &radic;(v&#8339;&sup2; + v&#7522;&sup2;) is identical because (&minus;v&#7522;)&sup2; = (+v&#7522;)&sup2;
+          </div>
+        </div>
+
+        <!-- Tile 5: Kinetic Energy -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between sm:col-span-2 lg:col-span-2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+            <span class="flex items-center gap-1.5"><span class="text-base">🔋</span> KINETIC ENERGY (KE / m)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-800">CONSERVED (=)</span>
+          </div>
+          <div class="my-2.5 flex items-center justify-between font-mono">
+            <div>
+              <span class="text-[10px] text-emerald-400 block uppercase font-bold">Point A</span>
+              <span id="tblKeA" class="text-emerald-300 font-bold text-base">178.2 J/kg</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-emerald-400 block uppercase font-bold">Point B</span>
+              <span id="tblKeB" class="text-emerald-300 font-bold text-base">178.2 J/kg</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+            KE = &frac12;mv&sup2; depends strictly on speed squared (Zero vector dependency)
+          </div>
+        </div>
       </div>
     </section>
 

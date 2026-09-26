@@ -6,6 +6,7 @@
   <title>Core Prompt Composer · Grade9V3</title>
   <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="../css/core-prompt-composer.css">
+  <link rel="stylesheet" href="../css/tablet-12-7.css">
 </head>
 <body>
   <main class="composer-shell">
@@ -87,11 +88,8 @@
 
         <section>
           <h3>Trace</h3>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Question</th><th>Canonical ref</th><th>Capability</th><th>Matrix / rung</th><th>Status</th></tr></thead>
-              <tbody id="traceBody"><tr><td colspan="5">No trace yet.</td></tr></tbody>
-            </table>
+          <div id="traceBody" class="trace-deck">
+            <div class="empty-trace">No trace yet.</div>
           </div>
         </section>
 
