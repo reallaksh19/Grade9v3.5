@@ -7131,6 +7131,263 @@
           "visual_stage_ref": "VIS-NLM-HEAVYROPE-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-PULLEY-X-UPWARD",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the pulley with both coordinates measured upward, so the length relation is built from the segment lengths rather than copied.",
+      "required_elements": [
+        "A and B over a fixed pulley with upward x_A, x_B",
+        "segment lengths h_P − x_A and h_P − x_B",
+        "a_B = −2 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "A and B over a fixed pulley with upward x_A, x_B",
+        "segment lengths h_P − x_A and h_P − x_B",
+        "a_B = −2 m/s²"
+      ],
+      "instance_constraints": [
+        "Both coordinates are positive upward, toward the pulley.",
+        "Only the two vertical segments change length."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Copying y_A + y_B = constant from away-from-pulley coordinates without checking."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-PULLEY-X-UPWARD.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-XUP-V0",
+          "label": "Verbal set-up drawn",
+          "purpose": "Show A on the left, B on the right and both upward coordinates.",
+          "visible_elements": [
+            "A and B over a fixed pulley with upward x_A, x_B"
+          ]
+        },
+        {
+          "id": "VIS-NLM-XUP-V1",
+          "label": "Segment lengths",
+          "purpose": "Write each changing segment length in these coordinates.",
+          "visible_elements": [
+            "A and B over a fixed pulley with upward x_A, x_B",
+            "segment lengths h_P − x_A and h_P − x_B"
+          ]
+        },
+        {
+          "id": "VIS-NLM-XUP-V2",
+          "label": "Signed result",
+          "purpose": "Differentiate and apply a_A = +2 m/s².",
+          "visible_elements": [
+            "A and B over a fixed pulley with upward x_A, x_B",
+            "segment lengths h_P − x_A and h_P − x_B",
+            "a_B = −2 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-XUP-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-XUP-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-XUP-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-BOB-FRAMES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the bob in the accelerating car so the frame in which it is at rest, and the pseudo-force that frame needs, are chosen explicitly.",
+      "required_elements": [
+        "0.2 kg bob in a car accelerating at 7.5 m/s²",
+        "weight, tension and pseudo-force in the car frame",
+        "θ ≈ 37° and T = 2.5 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE",
+        "REL-NLM-HANGING-BOB-TILT"
+      ],
+      "read_order": [
+        "0.2 kg bob in a car accelerating at 7.5 m/s²",
+        "weight, tension and pseudo-force in the car frame",
+        "θ ≈ 37° and T = 2.5 N"
+      ],
+      "instance_constraints": [
+        "The car's acceleration is constant at 7.5 m/s² to the right.",
+        "The pseudo-force appears only in the car frame."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Adding the pseudo-force in the roadside frame."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-BOB-FRAMES.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARBOB-V0",
+          "label": "The car and bob",
+          "purpose": "Show the bob hanging steady in the accelerating car.",
+          "visible_elements": [
+            "0.2 kg bob in a car accelerating at 7.5 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBOB-V1",
+          "label": "Frame choice",
+          "purpose": "Choose the car frame and add its pseudo-force.",
+          "visible_elements": [
+            "0.2 kg bob in a car accelerating at 7.5 m/s²",
+            "weight, tension and pseudo-force in the car frame"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBOB-V2",
+          "label": "Angle and tension",
+          "purpose": "Balance the forces and check with the roadside frame.",
+          "visible_elements": [
+            "0.2 kg bob in a car accelerating at 7.5 m/s²",
+            "weight, tension and pseudo-force in the car frame",
+            "θ ≈ 37° and T = 2.5 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARBOB-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARBOB-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARBOB-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-WALKER-ON-PLANK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the walker and plank on ice so the friction on the shoes and its partner on the plank are drawn on different bodies.",
+      "required_elements": [
+        "60 kg person on a 20 kg plank on frictionless ice",
+        "30 N forward on the shoes",
+        "30 N backward on the plank and its acceleration"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "60 kg person on a 20 kg plank on frictionless ice",
+        "30 N forward on the shoes",
+        "30 N backward on the plank and its acceleration"
+      ],
+      "instance_constraints": [
+        "The ice exerts no horizontal force on the plank.",
+        "Accelerations are relative to the ice."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Moving the plank forward with the walker."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-WALKER-ON-PLANK.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PLANK-V0",
+          "label": "The walker",
+          "purpose": "Show the person starting to walk on the plank on ice.",
+          "visible_elements": [
+            "60 kg person on a 20 kg plank on frictionless ice"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PLANK-V1",
+          "label": "Friction on the shoes",
+          "purpose": "Find the force that accelerates the person.",
+          "visible_elements": [
+            "60 kg person on a 20 kg plank on frictionless ice",
+            "30 N forward on the shoes"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PLANK-V2",
+          "label": "The plank",
+          "purpose": "Put the partner friction on the plank.",
+          "visible_elements": [
+            "60 kg person on a 20 kg plank on frictionless ice",
+            "30 N forward on the shoes",
+            "30 N backward on the plank and its acceleration"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PLANK-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PLANK-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PLANK-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -10209,10 +10466,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "safe_ref": "REP-NLM-PULLEY-X-UPWARD",
+        "bound_ref": "REP-NLM-PULLEY-X-UPWARD",
         "stage_refs": [
-          "VIS-NLM-FBD-V0"
+          "VIS-NLM-XUP-V0"
         ]
       },
       "failure_signal": "You wrote x_A − x_B = constant (or a_A = a_B), or copied y_A + y_B = constant without writing what each segment length is in upward coordinates.",
@@ -10406,10 +10663,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
-        "bound_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+        "safe_ref": "REP-NLM-CAR-BOB-FRAMES",
+        "bound_ref": "REP-NLM-CAR-BOB-FRAMES",
         "stage_refs": [
-          "VIS-NLM-FRAME-V0"
+          "VIS-NLM-CARBOB-V0"
         ]
       },
       "failure_signal": "You added the 1.5 N pseudo-force in the roadside frame too, and then found the bob accelerating twice as hard, or you tilted the bob forward: in the car frame the pseudo-force points backward, so the bob hangs back at 37°.",
@@ -10895,10 +11152,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-NLM-FRICTION-THRESHOLD",
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "safe_ref": "REP-NLM-WALKER-ON-PLANK",
+        "bound_ref": "REP-NLM-WALKER-ON-PLANK",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0"
+          "VIS-NLM-PLANK-V0"
         ]
       },
       "failure_signal": "You said the plank stays still, or moves forward with the walker: the plank is pushed only by the partner of the shoe's friction, 30 N backward, so it slides backward at 1.5 m/s².",
