@@ -1,0 +1,158 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-07",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:b56ee07024aeb79f17239c86cd5780a18a7818caca42327e0c40509df6136a5b",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-07-009",
+      "independent_solution": [
+        "Constant acceleration: x = v_0x t + (1/2) a_x t^2 = 0 + 4.0 t^2; set x = 16 m -> t^2 = 4 -> t = 2 s.",
+        "Same t on y: y = 10.0(2) + (1/2)(2.0)(2)^2 = 20 + 4 = 24 m.",
+        "v_x = 8.0 x 2 = 16 m/s, v_y = 10.0 + 2.0 x 2 = 14 m/s -> speed = sqrt(256 + 196) = sqrt452 = 21.26 m/s."
+      ],
+      "independent_answer": "t = 2 s, y = 24 m; speed 21.26 m/s",
+      "official_answer": "2 s, 24 m, 21.26 m/s",
+      "agrees": true,
+      "numeric_check": "sqrt(16/(0.5*8.0))"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-011",
+      "independent_solution": [
+        "Options read on pinned page 22. For arbitrary motion only definitions hold: (b) average velocity = displacement/interval and (e) average acceleration = change in velocity/interval are definitions -> true.",
+        "(a) v_avg = (v1 + v2)/2 needs velocity linear in time (constant a); (c) v = v0 + a t and (d) r = r0 + v0 t + a t^2/2 need constant a -> not true for arbitrary motion."
+      ],
+      "independent_answer": "(b) and (e)",
+      "official_answer": "(b) and (e)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-07-013",
+      "independent_solution": [
+        "Options read on pinned pages 3-4: (a) v_av = (1/2)[v(t1) + v(t2)], (b) v_av = [r(t2) - r(t1)]/(t2 - t1), (c) r = (1/2)[v(t2) - v(t1)](t2 - t1), (d) a_av = [v(t2) - v(t1)]/(t2 - t1).",
+        "(b) and (d) are definitions -> correct in general. (a) holds only for constant acceleration; (c) is not a kinematic relation at all (for constant velocity it gives r = 0 for any displacement) -> incorrect.",
+        "Incorrect ones: (a) and (c)."
+      ],
+      "independent_answer": "(a) and (c) are incorrect",
+      "official_answer": "(a), (c)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-07",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-07",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-07-CONST-ACC-VELOCITY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-07-CONST-ACC-POSITION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-07-TWO-AXIS-CLOCK",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-NCERT-3-18",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-NCERT-3-20",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-07-EXEMPLAR-4-13",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-07-001",
+      "duty_for": "RESEARCHER",
+      "detail": "RELATION card claim ends '..., which gives v = v0 + a t', but the quote only says the average acceleration equals the constant acceleration; Eq. (3.33a) is not quoted. Quote it from pinned page 11 (use the equation field if the PDF text is garbled, as in EV-PHY-11-MIP-06-009) or drop the equation from the claim; REL-PHY-MIP-07-CONST-ACC-VELOCITY.expression relies on it."
+    },
+    {
+      "target": "EV-PHY-11-MIP-07-002",
+      "duty_for": "RESEARCHER",
+      "detail": "RELATION card claim ends '..., giving r = r0 + v0 t + (1/2) a t^2', but the quote stops at 'The displacement is the average velocity multiplied by the time interval :' before Eq. (3.34a). Quote the equation from pinned page 11 (equation field if garbled) or drop it from the claim; REL-PHY-MIP-07-CONST-ACC-POSITION.expression relies on it."
+    },
+    {
+      "target": "EV-PHY-11-MIP-07-011",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote is only the lead line 'For any arbitrary motion in space, which of the following relations are true :'; options (a)-(e) exist only in question.options, which the evidence check does not verify. The key '(b) and (e)' is meaningless without them. Quote the options (pinned page 22, equation field for garbled symbols)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-07-013",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card has neither quoted nor listed options: the quote ends at 'Choose the incorrect one (s) :' and question.options is absent, yet record Q-PHY-MIP-07-EXEMPLAR-4-13 has four options and the key '(a), (c)' refers to them. Add options (a)-(d) from pinned pages 3-4 (equation field for the garbled formulas)."
+    }
+  ]
+}
