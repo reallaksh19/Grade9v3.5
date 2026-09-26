@@ -6534,6 +6534,261 @@
           "visual_stage_ref": "VIS-NLM-SMOOTH-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-ROUGH-INCLINE-REST",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block on the rough incline so the friction rest needs is found first and then compared with μ_s N.",
+      "required_elements": [
+        "block on a rough plane at θ with μ_s",
+        "weight, normal force and the friction need",
+        "static friction and the rest condition"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "block on a rough plane at θ with μ_s",
+        "weight, normal force and the friction need",
+        "static friction and the rest condition"
+      ],
+      "instance_constraints": [
+        "The plane is fixed.",
+        "Limiting friction is not assumed at the start."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Writing f = μ_s mg cos θ before testing for rest."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ROUGH-INCLINE-REST.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ROUGHREST-V0",
+          "label": "The block",
+          "purpose": "Show the block on the rough plane.",
+          "visible_elements": [
+            "block on a rough plane at θ with μ_s"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROUGHREST-V1",
+          "label": "Forces and need",
+          "purpose": "Find N and the friction that rest would need.",
+          "visible_elements": [
+            "block on a rough plane at θ with μ_s",
+            "weight, normal force and the friction need"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROUGHREST-V2",
+          "label": "Condition",
+          "purpose": "Point friction up the plane and compare with the limit.",
+          "visible_elements": [
+            "block on a rough plane at θ with μ_s",
+            "weight, normal force and the friction need",
+            "static friction and the rest condition"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ROUGHREST-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ROUGHREST-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ROUGHREST-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ROUGH-INCLINE-SLIDING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the block sliding down the rough incline so kinetic friction points up the plane, opposite the sliding.",
+      "required_elements": [
+        "block sliding down a rough plane, μ_k",
+        "weight, normal force and kinetic friction",
+        "a = g(sin θ − μ_k cos θ)"
+      ],
+      "relation_refs": [
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "block sliding down a rough plane, μ_k",
+        "weight, normal force and kinetic friction",
+        "a = g(sin θ − μ_k cos θ)"
+      ],
+      "instance_constraints": [
+        "The block already slides down.",
+        "The plane is fixed."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Pointing kinetic friction down the plane."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ROUGH-INCLINE-SLIDING.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ROUGHSLIDE-V0",
+          "label": "The sliding block",
+          "purpose": "Show the block already sliding down.",
+          "visible_elements": [
+            "block sliding down a rough plane, μ_k"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROUGHSLIDE-V1",
+          "label": "Forces",
+          "purpose": "Draw the weight, N and kinetic friction opposite the sliding.",
+          "visible_elements": [
+            "block sliding down a rough plane, μ_k",
+            "weight, normal force and kinetic friction"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROUGHSLIDE-V2",
+          "label": "Acceleration",
+          "purpose": "Write the down-plane equation.",
+          "visible_elements": [
+            "block sliding down a rough plane, μ_k",
+            "weight, normal force and kinetic friction",
+            "a = g(sin θ − μ_k cos θ)"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ROUGHSLIDE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ROUGHSLIDE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ROUGHSLIDE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-HORIZONTAL-PUSH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the horizontal push on the block on a smooth incline so P is resolved into plane components that change both N and the motion.",
+      "required_elements": [
+        "block on a smooth plane with horizontal P",
+        "weight and N with P's plane components",
+        "N and a_∥"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "block on a smooth plane with horizontal P",
+        "weight and N with P's plane components",
+        "N and a_∥"
+      ],
+      "instance_constraints": [
+        "The plane is smooth and fixed.",
+        "P is horizontal and rightward."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Leaving P sin θ out of the normal force."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-HORIZONTAL-PUSH.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-HPUSH-V0",
+          "label": "The push",
+          "purpose": "Show the block, the incline rising right and the horizontal P.",
+          "visible_elements": [
+            "block on a smooth plane with horizontal P"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HPUSH-V1",
+          "label": "Components",
+          "purpose": "Resolve P and mg along and across the plane.",
+          "visible_elements": [
+            "block on a smooth plane with horizontal P",
+            "weight and N with P's plane components"
+          ]
+        },
+        {
+          "id": "VIS-NLM-HPUSH-V2",
+          "label": "Results",
+          "purpose": "Write both equations.",
+          "visible_elements": [
+            "block on a smooth plane with horizontal P",
+            "weight and N with P's plane components",
+            "N and a_∥"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-HPUSH-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-HPUSH-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-HPUSH-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -11833,12 +12088,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-ROUGH-INCLINE-REST",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-ROUGH-INCLINE-REST",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-ROUGHREST-V0"
         ]
       },
       "failure_signal": "You set the friction to μ_s mg cos θ at the start: that is only its limit. Rest needs mg sin θ, and that need is what gets compared with the limit.",
@@ -11935,12 +12189,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-ROUGH-INCLINE-SLIDING",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-ROUGH-INCLINE-SLIDING",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-ROUGHSLIDE-V0"
         ]
       },
       "failure_signal": "Your acceleration is g(sin θ + μ_k cos θ): friction was added along the sliding, which would make the rough slope faster than a smooth one.",
@@ -12038,12 +12291,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-INCLINE-HORIZONTAL-PUSH",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-INCLINE-HORIZONTAL-PUSH",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-HPUSH-V0"
         ]
       },
       "failure_signal": "You wrote N = mg cos θ: the horizontal push also presses the block into the plane and adds P sin θ to the normal force.",
