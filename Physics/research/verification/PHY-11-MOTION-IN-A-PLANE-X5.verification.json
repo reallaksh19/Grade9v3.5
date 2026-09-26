@@ -1,0 +1,146 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-X5",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:c40307c932a456d1fb9514081ffffd73701b32be4320357b330c14d2d29a5dd3",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-X5-009",
+      "independent_solution": [
+        "In circular motion the velocity turns (centripetal part v^2/R, radial) and may also change size (tangential part d|v|/dt).",
+        "If the speed changes, the net acceleration is the perpendicular sum of the two and is tilted from the radius, so the statement is false; it holds only for uniform circular motion."
+      ],
+      "independent_answer": "False (true only for uniform circular motion)",
+      "official_answer": "(a) False (true only for uniform circular motion)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X5-011",
+      "independent_solution": [
+        "Constant speed means a_T = 0, so the acceleration is perpendicular to the velocity with magnitude v0^2/rho (rho = radius of curvature).",
+        "(a) false: the direction may change. (b) not necessarily: rho can be arbitrarily small (sharp turns), so |a| need not be bounded. (d) false: any curve at constant speed qualifies.",
+        "(c) true: for motion in a plane the velocity and all its changes lie in that plane, so the acceleration does too. Answer (c)."
+      ],
+      "independent_answer": "(c) only",
+      "official_answer": "(c)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-X5-013",
+      "independent_solution": [
+        "Released from the horizontal, the bob falls through h = L = 1.5 m, releasing m g L = m x 9.8 x 1.5 of potential energy.",
+        "95% becomes kinetic energy: (1/2) m v^2 = 0.95 m g L -> v = sqrt(2 x 0.95 x 9.8 x 1.5) = sqrt(27.93) = 5.28 m/s, about 5.3 m/s."
+      ],
+      "independent_answer": "5.3 m/s",
+      "official_answer": "5.3 m/s",
+      "agrees": true,
+      "numeric_check": "sqrt(2*0.95*9.8*1.5)"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-X5",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-X5",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X5-TANGENTIAL",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-X5-TOTAL-ACCELERATION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-X5-TWO-ACCELERATIONS",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X5-NCERT-3-16A",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X5-EXEMPLAR-4-8",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-X5-NCERT-5-18",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-X5-001",
+      "duty_for": "RESEARCHER",
+      "detail": "SYLLABUS_SCOPE card claim ends with a JEE Main sentence the quote does not support: 'The JEE Main syllabus could not be pinned (served only from the non-allowlisted cdnbbsr.s3waas.gov.in).' The quote is only the JEE (Advanced) kinematics line. Remove that sentence from the claim (same defect as EV-PHY-11-MIP-X1-001)."
+    },
+    {
+      "target": "PHY-11-MOTION-IN-A-PLANE-X5",
+      "duty_for": "RESEARCHER",
+      "detail": "No QUESTION card exercises the node's capability (total acceleration as the perpendicular sum of tangential d|v|/dt and centripetal v^2/r). X5-009 is a true/false item, X5-011 fixes the speed so a_T = 0, and X5-013 (NCERT 5.18) is a pure energy question whose answer (5.3 m/s) needs no acceleration at all; record Q-PHY-MIP-X5-NCERT-5-18 only mentions a_T in a closing remark. Harvest at least one pinned QUESTION + ANSWER_KEY pair that asks for a_T, a_c or the total acceleration of a body on a circle with changing speed (e.g. a speeding-up car on a curve or a pendulum bob at an intermediate angle)."
+    }
+  ]
+}
