@@ -4993,6 +4993,261 @@
           "visual_stage_ref": "VIS-NLM-ATWOOD31-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-TROLLEY-9N-4N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the trolley with its 9 N pull and 4 N drag so the signed net force, not the motion, sets the acceleration.",
+      "required_elements": [
+        "2.5 kg trolley with 9 N pull and 4 N drag",
+        "net force and a with the pull",
+        "net force and a after the pull"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2.5 kg trolley with 9 N pull and 4 N drag",
+        "net force and a with the pull",
+        "net force and a after the pull"
+      ],
+      "instance_constraints": [
+        "The drag stays 4 N backward while the trolley moves forward.",
+        "Forward is positive."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Keeping a forward acceleration because the trolley still moves forward."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TROLLEY-9N-4N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TROLLEY-V0",
+          "label": "The trolley",
+          "purpose": "Show the trolley with its pull and drag.",
+          "visible_elements": [
+            "2.5 kg trolley with 9 N pull and 4 N drag"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TROLLEY-V1",
+          "label": "With the pull",
+          "purpose": "Sum the signed forces and divide by the mass.",
+          "visible_elements": [
+            "2.5 kg trolley with 9 N pull and 4 N drag",
+            "net force and a with the pull"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TROLLEY-V2",
+          "label": "Pull removed",
+          "purpose": "Recompute with only the drag while the trolley still moves forward.",
+          "visible_elements": [
+            "2.5 kg trolley with 9 N pull and 4 N drag",
+            "net force and a with the pull",
+            "net force and a after the pull"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TROLLEY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TROLLEY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TROLLEY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-SKYDIVER-80KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the skydiver in steady fall and just after the parachute opens, so the net force follows the change of velocity.",
+      "required_elements": [
+        "80 kg skydiver at a steady 50 m/s",
+        "weight and air resistance, 800 N each",
+        "net force after the parachute opens"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "80 kg skydiver at a steady 50 m/s",
+        "weight and air resistance, 800 N each",
+        "net force after the parachute opens"
+      ],
+      "instance_constraints": [
+        "The fall is vertical.",
+        "Steady speed means zero net force."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking the net force downward because the skydiver moves down."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-SKYDIVER-80KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-SKYDIVER-V0",
+          "label": "The fall",
+          "purpose": "Show the skydiver falling at steady speed.",
+          "visible_elements": [
+            "80 kg skydiver at a steady 50 m/s"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SKYDIVER-V1",
+          "label": "Steady fall",
+          "purpose": "Balance the forces for constant velocity.",
+          "visible_elements": [
+            "80 kg skydiver at a steady 50 m/s",
+            "weight and air resistance, 800 N each"
+          ]
+        },
+        {
+          "id": "VIS-NLM-SKYDIVER-V2",
+          "label": "Parachute open",
+          "purpose": "Read the net force from the change of velocity.",
+          "visible_elements": [
+            "80 kg skydiver at a steady 50 m/s",
+            "weight and air resistance, 800 N each",
+            "net force after the parachute opens"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-SKYDIVER-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-SKYDIVER-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-SKYDIVER-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOOK-HAND-PRESS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the pressed book so each force is listed with its agent and the table's push comes from the balance, not from the weight alone.",
+      "required_elements": [
+        "2 kg book on a table with a 5 N hand press",
+        "Earth 20 N, hand 5 N, table N",
+        "N = 25 N and zero net force"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2 kg book on a table with a 5 N hand press",
+        "Earth 20 N, hand 5 N, table N",
+        "N = 25 N and zero net force"
+      ],
+      "instance_constraints": [
+        "The book stays at rest.",
+        "Up is positive."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking the table's push as equal to the book's weight."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOOK-HAND-PRESS.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOOKHAND-V0",
+          "label": "The book",
+          "purpose": "Show the book, the table and the pressing hand.",
+          "visible_elements": [
+            "2 kg book on a table with a 5 N hand press"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOOKHAND-V1",
+          "label": "Forces with agents",
+          "purpose": "List every force on the book with its agent.",
+          "visible_elements": [
+            "2 kg book on a table with a 5 N hand press",
+            "Earth 20 N, hand 5 N, table N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOOKHAND-V2",
+          "label": "Table push and prediction",
+          "purpose": "Solve for N and state what zero net force predicts.",
+          "visible_elements": [
+            "2 kg book on a table with a 5 N hand press",
+            "Earth 20 N, hand 5 N, table N",
+            "N = 25 N and zero net force"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOOKHAND-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOOKHAND-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOOKHAND-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -6119,12 +6374,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-TROLLEY-9N-4N",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-TROLLEY-9N-4N",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-TROLLEY-V0"
         ]
       },
       "failure_signal": "You got 3.6 m/s² (9 N alone) or 5.2 m/s² (9 + 4): the drag opposes the pull, so F_net = 9 − 4 = 5 N. Or you said the second acceleration is zero or forward because the trolley still moves forward: it points along the net force, which is now backward.",
@@ -6222,12 +6476,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-SKYDIVER-80KG",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-SKYDIVER-80KG",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-SKYDIVER-V0"
         ]
       },
       "failure_signal": "You said the steady fall needs a net downward force because the skydiver is moving down, or that the net force stays downward after the parachute opens: the net force follows the change of velocity, not the velocity.",
@@ -6325,12 +6578,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-BOOK-HAND-PRESS",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-BOOK-HAND-PRESS",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-BOOKHAND-V0"
         ]
       },
       "failure_signal": "You gave the table's push as 20 N, the book's weight: the hand's 5 N press must also be balanced, so N = 25 N. Or you wrote that no forces act because the book is at rest.",
