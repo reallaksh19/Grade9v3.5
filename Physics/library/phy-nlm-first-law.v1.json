@@ -5503,6 +5503,262 @@
           "visual_stage_ref": "VIS-NLM-BOOKPARTNERS-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-TROLLEY-PULLEY-EXPERIMENT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the trolley–pulley apparatus and the controlled transfer of masses that changes the net force at fixed system mass.",
+      "required_elements": [
+        "trolley, pulley, hanging load and timer",
+        "transfer of masses at fixed total mass",
+        "a against corrected F_net"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "trolley, pulley, hanging load and timer",
+        "transfer of masses at fixed total mass",
+        "a against corrected F_net"
+      ],
+      "instance_constraints": [
+        "Total moving mass is held fixed by transferring masses, not adding them.",
+        "Friction is small or measured and accounted for."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Changing the hanger mass alone, so the moving mass also changes."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TROLLEY-PULLEY-EXPERIMENT.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PRACTICAL-V0",
+          "label": "The apparatus",
+          "purpose": "Show the trolley, pulley, hanger and timer.",
+          "visible_elements": [
+            "trolley, pulley, hanging load and timer"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PRACTICAL-V1",
+          "label": "Controlled variation",
+          "purpose": "Move masses between trolley and hanger.",
+          "visible_elements": [
+            "trolley, pulley, hanging load and timer",
+            "transfer of masses at fixed total mass"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PRACTICAL-V2",
+          "label": "Measurement and test",
+          "purpose": "State what is measured and what result supports the law.",
+          "visible_elements": [
+            "trolley, pulley, hanging load and timer",
+            "transfer of masses at fixed total mass",
+            "a against corrected F_net"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PRACTICAL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PRACTICAL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PRACTICAL-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCK-ON-BLOCK-F-ON-LOWER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the stacked blocks with F on the lower one so the friction the upper block needs is compared with its limit.",
+      "required_elements": [
+        "block m on block M with F on M",
+        "friction on m and its requirement",
+        "F_max"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "block m on block M with F on M",
+        "friction on m and its requirement",
+        "F_max"
+      ],
+      "instance_constraints": [
+        "F acts on the lower block only.",
+        "The floor is smooth; friction acts only between the blocks."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Using μ_s m g as the friction before slip is impending."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCK-ON-BLOCK-F-ON-LOWER.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-MONM-V0",
+          "label": "The stack",
+          "purpose": "Show m on M, the pull on M and the smooth floor.",
+          "visible_elements": [
+            "block m on block M with F on M"
+          ]
+        },
+        {
+          "id": "VIS-NLM-MONM-V1",
+          "label": "What m needs",
+          "purpose": "Find the friction the upper block needs to keep up.",
+          "visible_elements": [
+            "block m on block M with F on M",
+            "friction on m and its requirement"
+          ]
+        },
+        {
+          "id": "VIS-NLM-MONM-V2",
+          "label": "Threshold",
+          "purpose": "Compare the need with the limit.",
+          "visible_elements": [
+            "block m on block M with F on M",
+            "friction on m and its requirement",
+            "F_max"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-MONM-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-MONM-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-MONM-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCKS-AB-PUSH-F",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the two blocks pushed by F with B isolated, so the contact force comes from B's own equation.",
+      "required_elements": [
+        "blocks m_A and m_B with F on A",
+        "one a and B's boundary",
+        "a and N_AB"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "blocks m_A and m_B with F on A",
+        "one a and B's boundary",
+        "a and N_AB"
+      ],
+      "instance_constraints": [
+        "The floor is frictionless and the contact is maintained."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Taking the contact force as equal to F."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCKS-AB-PUSH-F.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ABF-V0",
+          "label": "The blocks",
+          "purpose": "Show A and B touching and F on A.",
+          "visible_elements": [
+            "blocks m_A and m_B with F on A"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ABF-V1",
+          "label": "Common a and B alone",
+          "purpose": "Use the fixed contact for one a, then isolate B.",
+          "visible_elements": [
+            "blocks m_A and m_B with F on A",
+            "one a and B's boundary"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ABF-V2",
+          "label": "Results",
+          "purpose": "Solve for a and N_AB.",
+          "visible_elements": [
+            "blocks m_A and m_B with F on A",
+            "one a and B's boundary",
+            "a and N_AB"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ABF-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ABF-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ABF-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -7240,12 +7496,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-TROLLEY-PULLEY-EXPERIMENT",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-TROLLEY-PULLEY-EXPERIMENT",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-PRACTICAL-V0"
         ]
       },
       "failure_signal": "Your plan adds new masses to the hanger from outside: then the driving force and the moving mass both change, so a change in acceleration cannot be put down to force alone.",
@@ -7342,12 +7597,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "initial_ref": "REP-NLM-BLOCK-ON-BLOCK-F-ON-LOWER",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FRICTION-THRESHOLD",
+        "bound_ref": "REP-NLM-BLOCK-ON-BLOCK-F-ON-LOWER",
         "stage_refs": [
-          "VIS-NLM-FRICTION-V0",
-          "VIS-NLM-FRICTION-V1"
+          "VIS-NLM-MONM-V0"
         ]
       },
       "failure_signal": "Your answer is F_max = μ_s m g: that is the friction limit itself, but F must accelerate both blocks, so the limit is scaled up by (M + m)/m.",
@@ -7442,12 +7696,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-BLOCKS-AB-PUSH-F",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-BLOCKS-AB-PUSH-F",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-ABF-V0"
         ]
       },
       "failure_signal": "Your contact force equals F: the push on A is not passed to B undiminished, because part of F accelerates A itself; B needs only m_B a.",
