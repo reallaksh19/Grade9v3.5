@@ -96,7 +96,7 @@
         "limits",
         "checks"
       ],
-      "agrees": false
+      "agrees": true
     },
     {
       "record_ref": "REP-PHY-MIP-04-COMPONENT-RECTANGLE",
@@ -146,21 +146,6 @@
     }
   ],
   "findings": [
-    {
-      "target": "EV-PHY-11-MIP-04-003",
-      "duty_for": "RESEARCHER",
-      "detail": "RELATION card claim states 'Ax = A cos theta, Ay = A sin theta' but the quote stops at '...the angle θ it makes with the x-axis :' before the equations. Eq. (3.13) 'Ax = A cos θ Ay = A sin θ' is extractable text directly after it on pinned page 6; extend the quote so the formula the claim (and REL-PHY-MIP-04-RECT-COMPONENTS.expression) relies on is actually quoted."
-    },
-    {
-      "target": "PHY-11-MOTION-IN-A-PLANE-04",
-      "duty_for": "RESEARCHER",
-      "detail": "No card carries Eqs. (3.14)-(3.15), A = sqrt(Ax^2 + Ay^2) and tan θ = Ay/Ax (NCERT p.32, pinned page 6; the PDF text is garbled, quote it as extracted like EV-PHY-11-MIP-06-010). REL-PHY-MIP-04-MAGNITUDE-ANGLE.expression and MIC-PHY-MIP-04 teaching step MIP04-5 state these formulas with no supporting quote. Add a RELATION card for them."
-    },
-    {
-      "target": "REL-PHY-MIP-04-MAGNITUDE-ANGLE",
-      "duty_for": "AUTHOR",
-      "detail": "expression 'A = sqrt(A_x^2 + A_y^2); tan(theta) = A_y / A_x' cites only EV-PHY-11-MIP-04-004, whose quote says only that a vector can be specified by magnitude-and-angle or by components; it contains neither formula. The physics is correct, but the field must cite a card quoting Eqs. (3.14)-(3.15) (see the RESEARCHER finding on this node); re-cite once that card exists."
-    },
     {
       "target": "EV-PHY-11-MIP-04-011",
       "duty_for": "RESEARCHER",
