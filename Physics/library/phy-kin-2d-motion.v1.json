@@ -2580,7 +2580,9 @@
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK",
         "REP-KIN-2D-EVENT-CLOCK",
-        "REP-KIN-2D-PROJECTILE-MODEL"
+        "REP-KIN-2D-PROJECTILE-MODEL",
+        "REP-KIN-2D-LEVEL-APEX-RETURN",
+        "REP-KIN-2D-ROOF-UNEQUAL-LANDING"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -2742,12 +2744,12 @@
             "K2D3-4",
             "K2D3-5"
           ],
-          "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "representation_ref": "REP-KIN-2D-LEVEL-APEX-RETURN",
           "reveal_stage_refs": [
-            "VIS-KIN-2D-EVENT-V0",
-            "VIS-KIN-2D-EVENT-V1",
-            "VIS-KIN-2D-EVENT-V2",
-            "VIS-KIN-2D-EVENT-V3"
+            "VIS-KIN-2D-LEVEL-V0",
+            "VIS-KIN-2D-LEVEL-V1",
+            "VIS-KIN-2D-LEVEL-V2",
+            "VIS-KIN-2D-LEVEL-V3"
           ],
           "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
           "misconception_indexes": [
@@ -2772,12 +2774,12 @@
             "K2D3-6",
             "K2D3-7"
           ],
-          "representation_ref": "REP-KIN-2D-EVENT-CLOCK",
+          "representation_ref": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
           "reveal_stage_refs": [
-            "VIS-KIN-2D-EVENT-V0",
-            "VIS-KIN-2D-EVENT-V1",
-            "VIS-KIN-2D-EVENT-V2",
-            "VIS-KIN-2D-EVENT-V3"
+            "VIS-KIN-2D-ROOF-V0",
+            "VIS-KIN-2D-ROOF-V1",
+            "VIS-KIN-2D-ROOF-V2",
+            "VIS-KIN-2D-ROOF-V3"
           ],
           "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
           "misconception_indexes": [
@@ -3808,6 +3810,239 @@
           "visual_stage_ref": "VIS-KIN-2D-PUCK-V2"
         }
       ]
+    },
+    {
+      "id": "REP-KIN-2D-LEVEL-APEX-RETURN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the level-ground launch with u = (6, 15) m/s and name each requested event as a component condition before its time is solved: v_y = 0 at the apex, Δy = 0 at the return to launch height.",
+      "required_elements": [
+        "level-ground launch with u = (6, 15) m/s",
+        "apex condition v_y = 0",
+        "landing condition Δy = 0",
+        "one event timeline",
+        "solved times 1.5 s and 3 s",
+        "apex height 11.25 m",
+        "range 18 m"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "level-ground launch with u = (6, 15) m/s",
+        "apex condition v_y = 0",
+        "landing condition Δy = 0",
+        "one event timeline",
+        "solved times 1.5 s and 3 s",
+        "apex height 11.25 m",
+        "range 18 m"
+      ],
+      "instance_constraints": [
+        "Launch and landing are on the same level ground.",
+        "At the apex only v_y is zero; v_x = 6 m/s and a_y = −10 m/s² are drawn there.",
+        "Both event times sit on one timeline from the launch."
+      ],
+      "accessibility": [
+        "Each event condition and each solved time is written as text.",
+        "The apex height and range are stated in words beside their brackets."
+      ],
+      "misleading_alternatives": [
+        "Setting the whole velocity to zero at the apex.",
+        "Using the landing condition for the apex or the apex time as the flight time."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-LEVEL-APEX-RETURN.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "apex condition v_y = 0",
+          "symbol": "v_y",
+          "in_words": "Only the vertical velocity component is zero at the highest point."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-LEVEL-V0",
+          "label": "Launch and events",
+          "purpose": "Show the launch and the two events asked for.",
+          "visible_elements": [
+            "level-ground launch with u = (6, 15) m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-LEVEL-V1",
+          "label": "Event conditions",
+          "purpose": "Name each event as a component condition on one timeline.",
+          "visible_elements": [
+            "level-ground launch with u = (6, 15) m/s",
+            "apex condition v_y = 0",
+            "landing condition Δy = 0",
+            "one event timeline"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-LEVEL-V2",
+          "label": "Event times",
+          "purpose": "Solve each condition for its time.",
+          "visible_elements": [
+            "level-ground launch with u = (6, 15) m/s",
+            "apex condition v_y = 0",
+            "landing condition Δy = 0",
+            "one event timeline",
+            "solved times 1.5 s and 3 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-LEVEL-V3",
+          "label": "Values at the events",
+          "purpose": "Read the apex height and the range at the solved times.",
+          "visible_elements": [
+            "level-ground launch with u = (6, 15) m/s",
+            "apex condition v_y = 0",
+            "landing condition Δy = 0",
+            "one event timeline",
+            "solved times 1.5 s and 3 s",
+            "apex height 11.25 m",
+            "range 18 m"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-LEVEL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-LEVEL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-LEVEL-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the roof launch 25 m above the ground with u = (5, 20) m/s: the landing event is written from the actual drop, Δy = −25 m, with the actual u_y kept, and every requested quantity is read at that one time.",
+      "required_elements": [
+        "roof launch 25 m above ground with u = (5, 20) m/s",
+        "landing condition Δy = −25 m",
+        "launch-height level Δy = 0",
+        "solved landing time 5 s",
+        "landing distance 25 m",
+        "impact velocity (5, −30) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "roof launch 25 m above ground with u = (5, 20) m/s",
+        "landing condition Δy = −25 m",
+        "launch-height level Δy = 0",
+        "solved landing time 5 s",
+        "landing distance 25 m",
+        "impact velocity (5, −30) m/s"
+      ],
+      "instance_constraints": [
+        "The origin is the launch point, so the ground is at Δy = −25 m.",
+        "u_y = 20 m/s upward is kept; the launch is not horizontal.",
+        "The return to launch height is marked but is not the landing event."
+      ],
+      "accessibility": [
+        "The event condition, the solved time and the impact values are written as text.",
+        "The rejected root and the rejected same-height point are stated in words."
+      ],
+      "misleading_alternatives": [
+        "Setting Δy = 0 or u_y = 0 for this landing.",
+        "Taking t = −1 s or the same-height time as the landing time."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-ROOF-UNEQUAL-LANDING.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "landing condition Δy = −25 m",
+          "symbol": "Delta y",
+          "in_words": "The ground is 25 m below the launch point, so the vertical displacement at landing is −25 m."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-ROOF-V0",
+          "label": "The throw",
+          "purpose": "Show the roof, the drop and the launch components.",
+          "visible_elements": [
+            "roof launch 25 m above ground with u = (5, 20) m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ROOF-V1",
+          "label": "Landing condition",
+          "purpose": "Write the landing event from the actual drop and keep u_y.",
+          "visible_elements": [
+            "roof launch 25 m above ground with u = (5, 20) m/s",
+            "landing condition Δy = −25 m",
+            "launch-height level Δy = 0"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ROOF-V2",
+          "label": "Landing time",
+          "purpose": "Solve the vertical event for its physical root.",
+          "visible_elements": [
+            "roof launch 25 m above ground with u = (5, 20) m/s",
+            "landing condition Δy = −25 m",
+            "launch-height level Δy = 0",
+            "solved landing time 5 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ROOF-V3",
+          "label": "Values at landing",
+          "purpose": "Read distance and velocity at the same t = 5 s.",
+          "visible_elements": [
+            "roof launch 25 m above ground with u = (5, 20) m/s",
+            "landing condition Δy = −25 m",
+            "launch-height level Δy = 0",
+            "solved landing time 5 s",
+            "landing distance 25 m",
+            "impact velocity (5, −30) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-ROOF-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-ROOF-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-ROOF-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -4114,7 +4349,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-LEVEL-APEX-RETURN",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -4176,7 +4411,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
         "stage_refs": []
       },
       "failure_signal": null,
