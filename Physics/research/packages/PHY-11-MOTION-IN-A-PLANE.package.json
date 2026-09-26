@@ -304,6 +304,39 @@
       ],
       "selection_reason": "Allowlisted source pinned by the researcher as ACQ-AE04CF1E1465CE913631.",
       "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-UP1-4-3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-1BF71756D2D95ED631F6"
+      },
+      "title": "OpenStax University Physics Volume 1, section 4.3 Projectile Motion",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-1BF71756D2D95ED631F6",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/1bf71756d2d95ed631f65ddfcfaacef6136f55f3f88bf13d5ee7e43ad4ee026c.html",
+      "snapshot_digest": "sha256:1bf71756d2d95ed631f65ddfcfaacef6136f55f3f88bf13d5ee7e43ad4ee026c",
+      "role": [
+        "EXPLANATION"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-1BF71756D2D95ED631F6.",
+      "fallback": []
     }
   ],
   "buckets": [
@@ -724,6 +757,61 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
           "locator": "Class XI Unit II Chapter 3: motion in a plane, cases of uniform velocity and uniform acceleration",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-001",
+        "EV-PHY-11-MIP-08-002",
+        "EV-PHY-11-MIP-08-004",
+        "EV-PHY-11-MIP-08-006",
+        "EV-PHY-11-MIP-08-007",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-08-001",
+            "EV-PHY-11-MIP-08-002",
+            "EV-PHY-11-MIP-08-004",
+            "EV-PHY-11-MIP-08-006",
+            "EV-PHY-11-MIP-08-007"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-08-002",
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-009"
+          ]
+        }
+      },
+      "action": "Model a projectile, with air resistance neglected, as uniform horizontal motion plus vertical motion with constant acceleration g, and derive its path, time of flight, maximum height and range from that model.",
+      "success_criterion": "States the model's assumption, writes a_x = 0 and a_y = -g, finds event times from the vertical motion and reuses them horizontally, and uses the level-ground formulas only when launch and landing heights are equal.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-07"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: motion in a plane with uniform acceleration - projectile motion",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -1792,6 +1880,191 @@
       "research_contribution": "Anchors the vector constant-acceleration equations, their axis independence and their exclusion of circular motion to verified NCERT text, with Example 3.5 as the shared-time model.",
       "prerequisite_refs": [
         "CAP-PHY-MIP-06"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-001",
+        "EV-PHY-11-MIP-08-001",
+        "EV-PHY-11-MIP-08-002",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-004",
+        "EV-PHY-11-MIP-08-005",
+        "EV-PHY-11-MIP-08-006",
+        "EV-PHY-11-MIP-08-007",
+        "EV-PHY-11-MIP-08-012",
+        "EV-PHY-11-MIP-08-014",
+        "EV-PHY-11-MIP-08-009",
+        "EV-PHY-11-MIP-08-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-001",
+            "EV-PHY-11-MIP-08-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-08-002",
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-004",
+            "EV-PHY-11-MIP-08-005"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-004",
+            "EV-PHY-11-MIP-08-005",
+            "EV-PHY-11-MIP-08-006",
+            "EV-PHY-11-MIP-08-007",
+            "EV-PHY-11-MIP-08-012"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-08-014",
+            "EV-PHY-11-MIP-08-009",
+            "EV-PHY-11-MIP-08-010"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL",
+          "interactive_idea": [
+            "EV-PHY-11-MIP-08-014",
+            "EV-PHY-11-MIP-08-009"
+          ]
+        },
+        "grade9v3:interactive_idea": {
+          "learner_manipulates": "The launch angle and the launch speed, plus a switch that raises or lowers the landing ground relative to the launch point.",
+          "becomes_visible": "Equal-time dots along the path with a constant horizontal velocity arrow and a shrinking then reversing vertical arrow; a ghost path for the complementary angle landing at the same point but peaking at a different height; and the level-ground flight-time value drifting away from the true flight time once the landing height differs.",
+          "misconception_targeted": "Equal range means the same path; the level-ground time-of-flight and range formulas work whatever the landing height.",
+          "representation_ref": "REP-PHY-MIP-08-TIMED-PARABOLA",
+          "precedent": "No INTERACTIVE_PRECEDENT card exists for this node; the idea is the author's design only."
+        }
+      },
+      "title": "Projectile motion",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-08",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must hold one model (no air resistance, a_x = 0, a_y = -g) while choosing events on the vertical axis, reusing their time horizontally, and rejecting the level-ground shortcuts whenever the landing height differs.",
+      "entry_assumptions": [
+        "Can solve constant-acceleration motion in a plane with a shared time.",
+        "Can resolve a launch velocity into horizontal and vertical components."
+      ],
+      "inferential_jump": "Once air resistance is neglected, a projectile is uniform horizontal motion plus vertical motion with constant acceleration g sharing one clock, so every event time comes from the vertical motion and the path is a parabola.",
+      "teaching_path": [
+        {
+          "id": "MIP08-1",
+          "role": "DECLARE",
+          "action": "State the model: air resistance negligible, +y upward.",
+          "why_valid": "Then only gravity acts after launch.",
+          "inputs": [],
+          "output": "a_x = 0, a_y = -g",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP08-2",
+          "role": "TRANSFORM",
+          "action": "Resolve the launch velocity and write the velocity components.",
+          "why_valid": "The x-component remains constant; only the y-component changes, like free fall.",
+          "inputs": [],
+          "output": "v_x = v0 cos(theta0), v_y = v0 sin(theta0) - g t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP08-3",
+          "role": "TRANSFORM",
+          "action": "Eliminate t between x(t) and y(t).",
+          "why_valid": "Both coordinates share one time.",
+          "inputs": [],
+          "output": "y = (tan theta0) x - g x^2/(2 (v0 cos theta0)^2), a parabola",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP08-4",
+          "role": "TRANSFORM",
+          "action": "Find the event times from the vertical motion.",
+          "why_valid": "The top has v_y = 0; level-ground landing has y = 0 again.",
+          "inputs": [],
+          "output": "t_m = v0 sin(theta0)/g, T_f = 2 t_m",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP08-5",
+          "role": "TRANSFORM",
+          "action": "Multiply the constant v_x by the flight time.",
+          "why_valid": "Horizontal motion is uniform.",
+          "inputs": [],
+          "output": "R = v0^2 sin(2 theta0)/g, largest at 45 degrees",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP08-6",
+          "role": "VERIFY",
+          "action": "Check against NCERT Example 3.8: 28 m/s at 30 degrees.",
+          "why_valid": "The flight time formula reproduces the textbook value.",
+          "inputs": [],
+          "output": "T_f = 2 x 28 x sin30/9.8 = 2.9 s",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-08-PROJECTILE-COMPONENTS",
+        "REL-PHY-MIP-08-TRAJECTORY",
+        "REL-PHY-MIP-08-FLIGHT-TIME-RANGE"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-08-TIMED-PARABOLA"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-08"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Two launches with the same range follow the same path.",
+          "diagnostic_prompt": "A ball launched at 15 degrees and one at 75 degrees, same speed, land at the same point. Do they rise equally high?",
+          "repair": "No. The ranges are equal but the maximum heights differ; the 75 degree path is far higher and takes longer."
+        },
+        {
+          "wrong_idea": "The level-ground time-of-flight and range formulas apply whatever the landing height.",
+          "diagnostic_prompt": "A stone is thrown from a cliff and lands below the launch point. May T_f = 2 v0 sin(theta0)/g be used?",
+          "repair": "No. That formula assumes landing at the launch elevation; for a different landing height solve y(t) = landing height."
+        },
+        {
+          "wrong_idea": "45 degrees always gives the greatest range.",
+          "diagnostic_prompt": "Does 45 degrees still give the maximum range once air resistance is included?",
+          "repair": "No. The 45 degree result holds only when air resistance is neglected; with it, the best angle is somewhat smaller."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two balls are launched from level ground with the same speed, one at 30 degrees and one at 60 degrees. Compare their ranges, their maximum heights and their times of flight, with reasons.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Equal ranges; the 60 degree ball rises higher and stays in the air longer.",
+          "reasoning": [
+            "R = v0^2 sin(2 theta0)/g, and sin 60 = sin 120, so the ranges are equal.",
+            "The vertical launch component v0 sin(theta0) is larger at 60 degrees, so the top is higher.",
+            "T_f = 2 v0 sin(theta0)/g is larger at 60 degrees for the same reason."
+          ],
+          "check": "Complementary angles sharing a range agrees with 45 degrees plus and minus 15 degrees giving equal ranges.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The comparison is qualitative and states no computed value."
+        }
+      },
+      "research_contribution": "Ties the projectile model's assumption, component equations, parabola, flight time, range and their level-ground and no-drag limits to verified sources, with an interactive design idea.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-07"
       ],
       "lineage": []
     }
@@ -2910,6 +3183,269 @@
         "Time found from one axis must be reused on the other."
       ],
       "gate_relation_ref": "REL-PHY-MIP-07-CONST-ACC-POSITION"
+    },
+    {
+      "id": "REL-PHY-MIP-08-PROJECTILE-COMPONENTS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-002",
+        "EV-PHY-11-MIP-08-005",
+        "EV-PHY-11-MIP-08-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-08-002",
+            "EV-PHY-11-MIP-08-005"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-08-002",
+            "EV-PHY-11-MIP-08-005"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-003"
+          ]
+        }
+      },
+      "expression": "a_x = 0, a_y = -g; v_x = v0 cos(theta0), v_y = v0 sin(theta0) - g t",
+      "meaning": "A projectile's motion is two simultaneous independent components: horizontal with no acceleration, so v_x stays constant, and vertical with the constant acceleration of gravity, like free fall.",
+      "symbols": [
+        {
+          "symbol": "v0",
+          "meaning": "launch speed",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "theta0",
+          "meaning": "launch angle above the horizontal",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "g",
+          "meaning": "acceleration due to gravity",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "time since launch",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "Air resistance is assumed to have a negligible effect on the projectile's motion."
+      ],
+      "derivation": [
+        {
+          "id": "REL08C-1",
+          "role": "DECLARE",
+          "action": "Take +x horizontal and +y upward; after release only gravity acts.",
+          "why_valid": "Air resistance is neglected in this model.",
+          "inputs": [],
+          "output": "a_x = 0, a_y = -g",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL08C-2",
+          "role": "TRANSFORM",
+          "action": "Apply v = v0 + a t to each component.",
+          "why_valid": "Constant acceleration on each axis.",
+          "inputs": [],
+          "output": "v_x = v0 cos(theta0), v_y = v0 sin(theta0) - g t",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "Does not hold when drag or propulsion acts during flight."
+      ],
+      "checks": [
+        "v_x is the same at every point of the flight.",
+        "v_y = 0 at the top of the path."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-08-PROJECTILE-COMPONENTS"
+    },
+    {
+      "id": "REL-PHY-MIP-08-TRAJECTORY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-004",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-08-004"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-08-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-002"
+          ]
+        }
+      },
+      "expression": "y = (tan theta0) x - g x^2 / (2 (v0 cos theta0)^2)",
+      "meaning": "Eliminating time between the two component positions gives the equation of a parabola, so the path of a projectile in this model is a parabola.",
+      "symbols": [
+        {
+          "symbol": "x, y",
+          "meaning": "horizontal and vertical position from the launch point",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "v0, theta0",
+          "meaning": "launch speed and angle",
+          "unit_or_domain": "m/s, angle"
+        },
+        {
+          "symbol": "g",
+          "meaning": "acceleration due to gravity",
+          "unit_or_domain": "m/s^2"
+        }
+      ],
+      "conditions": [
+        "Air resistance is neglected, so a_x = 0 and a_y = -g throughout the flight."
+      ],
+      "derivation": [
+        {
+          "id": "REL08T-1",
+          "role": "TRANSFORM",
+          "action": "Write both positions.",
+          "why_valid": "Constant-acceleration equations on each axis.",
+          "inputs": [],
+          "output": "x = v0 cos(theta0) t, y = v0 sin(theta0) t - (1/2) g t^2"
+        },
+        {
+          "id": "REL08T-2",
+          "role": "TRANSFORM",
+          "action": "Eliminate t using t = x / (v0 cos theta0).",
+          "why_valid": "Both coordinates share one time.",
+          "inputs": [],
+          "output": "y = (tan theta0) x - g x^2 / (2 (v0 cos theta0)^2)",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "With air resistance the path is not this parabola."
+      ],
+      "checks": [
+        "y = 0 at x = 0 and at x = R.",
+        "The coefficient of x^2 is negative, so the path opens downward."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-08-TRAJECTORY"
+    },
+    {
+      "id": "REL-PHY-MIP-08-FLIGHT-TIME-RANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-006",
+        "EV-PHY-11-MIP-08-007",
+        "EV-PHY-11-MIP-08-008",
+        "EV-PHY-11-MIP-08-009",
+        "EV-PHY-11-MIP-08-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-08-006",
+            "EV-PHY-11-MIP-08-007"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-08-006",
+            "EV-PHY-11-MIP-08-007",
+            "EV-PHY-11-MIP-08-008"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-009",
+            "EV-PHY-11-MIP-08-010"
+          ]
+        }
+      },
+      "expression": "t_m = v0 sin(theta0)/g, T_f = 2 t_m = 2 v0 sin(theta0)/g; R = v0^2 sin(2 theta0)/g, R_m = v0^2/g at theta0 = 45 degrees",
+      "meaning": "On level ground the time of flight is twice the time to the top, by the symmetry of the parabola, and the range for a given launch speed is largest at 45 degrees; angles 45 degrees plus and minus alpha give equal ranges.",
+      "symbols": [
+        {
+          "symbol": "t_m",
+          "meaning": "time to maximum height",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "T_f",
+          "meaning": "time of flight",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "R",
+          "meaning": "horizontal range",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "R_m",
+          "meaning": "maximum range for the given v0",
+          "unit_or_domain": "m"
+        }
+      ],
+      "conditions": [
+        "The projectile lands at the same elevation as it was launched; otherwise the time-of-flight formula does not apply.",
+        "Air resistance is neglected; with air resistance the angle of maximum range is somewhat smaller than 45 degrees."
+      ],
+      "derivation": [
+        {
+          "id": "REL08F-1",
+          "role": "TRANSFORM",
+          "action": "Set v_y = 0 for the top.",
+          "why_valid": "The vertical velocity vanishes at maximum height.",
+          "inputs": [],
+          "output": "t_m = v0 sin(theta0)/g"
+        },
+        {
+          "id": "REL08F-2",
+          "role": "TRANSFORM",
+          "action": "Set y = 0 again for the landing time.",
+          "why_valid": "Same launch and landing level.",
+          "inputs": [],
+          "output": "T_f = 2 v0 sin(theta0)/g = 2 t_m",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL08F-3",
+          "role": "TRANSFORM",
+          "action": "Multiply the constant v_x by T_f.",
+          "why_valid": "Horizontal motion is uniform.",
+          "inputs": [],
+          "output": "R = v0 cos(theta0) x 2 v0 sin(theta0)/g = v0^2 sin(2 theta0)/g",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "Not for landings above or below the launch level.",
+        "Not when drag matters."
+      ],
+      "checks": [
+        "sin(2 theta0) is largest, 1, at 45 degrees.",
+        "sin(2(45 + alpha)) = sin(2(45 - alpha)), so complementary angles share a range."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-08-FLIGHT-TIME-RANGE"
     }
   ],
   "representations": [
@@ -3411,6 +3947,86 @@
           "in_words": "The one elapsed time used by both component equations."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-08-TIMED-PARABOLA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-004",
+        "EV-PHY-11-MIP-08-005",
+        "EV-PHY-11-MIP-08-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-08-004",
+            "EV-PHY-11-MIP-08-005"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-08-005",
+            "EV-PHY-11-MIP-08-009"
+          ]
+        }
+      },
+      "kind": "TIMED_PARABOLA",
+      "purpose": "Plot the parabolic path with dots at equal time intervals and the velocity split into a constant horizontal arrow and a changing vertical arrow at each dot, with the apex and landing events marked.",
+      "required_elements": [
+        "launch point and declared axes",
+        "parabolic path",
+        "dots at equal time intervals",
+        "constant horizontal velocity arrow at each dot",
+        "vertical velocity arrow at each dot",
+        "apex where v_y = 0",
+        "landing point with range R"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-08-PROJECTILE-COMPONENTS",
+        "REL-PHY-MIP-08-TRAJECTORY",
+        "REL-PHY-MIP-08-FLIGHT-TIME-RANGE"
+      ],
+      "read_order": [
+        "launch point and declared axes",
+        "parabolic path",
+        "dots at equal time intervals",
+        "constant horizontal velocity arrow at each dot",
+        "vertical velocity arrow at each dot",
+        "apex where v_y = 0",
+        "landing point with range R"
+      ],
+      "instance_constraints": [
+        "Dots are equally spaced horizontally because v_x is constant.",
+        "The vertical arrow is zero at the apex and reversed after it.",
+        "The range label is shown only when the landing level equals the launch level."
+      ],
+      "accessibility": [
+        "Equal time spacing is stated in text.",
+        "The apex condition v_y = 0 is written, not only drawn."
+      ],
+      "misleading_alternatives": [
+        "Drawing zero total velocity at the apex.",
+        "Showing unequal horizontal spacing of the time dots."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "constant horizontal velocity arrow at each dot",
+          "symbol": "v_x = v0 cos(theta0)",
+          "in_words": "The horizontal speed, unchanged throughout the flight."
+        },
+        {
+          "element": "apex where v_y = 0",
+          "symbol": "t_m",
+          "in_words": "The time at which the vertical velocity is zero."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -3749,6 +4365,54 @@
         "Q-PHY-MIP-07-NCERT-3-18",
         "Q-PHY-MIP-07-NCERT-3-20",
         "Q-PHY-MIP-07-EXEMPLAR-4-13"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Projectile heights, flight times and ranges",
+      "capability_refs": [
+        "CAP-PHY-MIP-08"
+      ],
+      "solution_structure": [
+        "State the no-air-resistance model and axes.",
+        "Find the event time from the vertical motion.",
+        "Reuse it horizontally; use level-ground shortcuts only when their condition holds."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the level-ground formulas apply or y(t) must be solved.",
+        "representation_translation": "Turn a story (ceiling, maximum throw, given range) into a condition on v0 and theta0.",
+        "reasoning_steps": "Translate the condition, solve for the angle or speed, then compute the asked quantity.",
+        "novelty": "Constraints vary: a ceiling height, a maximum range, a ratio of ranges."
+      },
+      "safe_variations": [
+        "Change the constraint from a ceiling to a wall or a landing height.",
+        "Ask for a ratio of ranges at two angles."
+      ],
+      "transfer_boundaries": [
+        "Not for drag, launch onto an incline, or rebounds; those are the extension microtopics."
+      ],
+      "common_wrong_routes": [
+        "Use 45 degrees when a height limit forbids it.",
+        "Assume maximum height and maximum range come from the same angle."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-08-NCERT-3-12",
+        "Q-PHY-MIP-08-NCERT-3-13",
+        "Q-PHY-MIP-08-EXEMPLAR-4-5"
       ]
     }
   ],
@@ -5927,6 +6591,310 @@
         }
       ],
       "repair_ref": "MIP07-1"
+    },
+    {
+      "id": "Q-PHY-MIP-08-NCERT-3-12",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-015",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-012",
+        "EV-PHY-11-MIP-08-016",
+        "EV-PHY-11-MIP-08-007",
+        "EV-PHY-11-MIP-08-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-08-015"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-012"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-08-016",
+            "EV-PHY-11-MIP-08-007",
+            "EV-PHY-11-MIP-08-005"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.12",
+      "stem": "The ceiling of a long hall is 25 m high. What is the maximum horizontal distance that a ball thrown with a speed of 40 m s-1 can go without hitting the ceiling of the hall ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance is neglected; g = 9.8 m/s^2.",
+        "The ball is thrown from and lands on the floor level."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "150.5 m.",
+        "reasoning": [
+          "Maximum height: at the top v_y = 0 at t_m = v0 sin(theta)/g, so H = v0 sin(theta) t_m - (1/2) g t_m^2 = v0^2 sin^2(theta)/(2g).",
+          "At 45 degrees H would be 1600 x 0.5 / 19.6 = 40.8 m > 25 m, so the ceiling limits the angle.",
+          "Range grows with theta up to 45 degrees, so the best throw just grazes the ceiling: sin^2(theta) = 2 x 9.8 x 25 / 1600 = 0.306, theta = 33.6 degrees.",
+          "R = v0^2 sin(2 theta)/g = 1600 x sin(67.2 degrees)/9.8 = 150.5 m."
+        ],
+        "check": "150.5 m is less than the unconstrained maximum 1600/9.8 = 163 m, as a restriction should give.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R08-12-DEC",
+            "kind": "DECIDE",
+            "action": "Decide that the height limit, not 45 degrees, sets the angle.",
+            "why_valid": "The 45 degree throw would rise above 25 m.",
+            "inputs": [],
+            "output": "H(45) = 40.8 m > 25 m"
+          },
+          {
+            "id": "R08-12-TR",
+            "kind": "TRANSFORM",
+            "action": "Set the maximum height equal to 25 m and solve for theta.",
+            "why_valid": "The largest allowed angle gives the largest range below 45 degrees.",
+            "inputs": [],
+            "output": "sin^2(theta) = 0.306 => theta = 33.6 degrees"
+          },
+          {
+            "id": "R08-12-CON",
+            "kind": "CONNECT",
+            "action": "Use that angle in the range formula.",
+            "why_valid": "Launch and landing are on the floor.",
+            "inputs": [],
+            "output": "R = 1600 sin(67.2)/9.8 = 150.5 m"
+          }
+        ],
+        "crux_move_ref": "R08-12-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-08",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-08",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "First check how high a 45 degree throw at 40 m/s would go.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R08-12-DEC"
+        }
+      ],
+      "repair_ref": "MIP08-4"
+    },
+    {
+      "id": "Q-PHY-MIP-08-NCERT-3-13",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-017",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-018",
+        "EV-PHY-11-MIP-08-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-08-017"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-003"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-08-018",
+            "EV-PHY-11-MIP-08-007"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.13",
+      "stem": "A cricketer can throw a ball to a maximum horizontal distance of 100 m. How much high above the ground can the cricketer throw the same ball ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The same launch speed is used for both throws; air resistance is neglected."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "50 m.",
+        "reasoning": [
+          "Maximum range is R_m = v0^2/g = 100 m, so v0^2 = 100 g.",
+          "Thrown straight up, v_y = 0 at t = v0/g, reached at height v0^2/(2g).",
+          "Height = 100 g / (2g) = 50 m."
+        ],
+        "check": "The greatest height is half the greatest range for the same launch speed.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R08-13-CON",
+            "kind": "CONNECT",
+            "action": "Read 'maximum horizontal distance' as R_m = v0^2/g.",
+            "why_valid": "The largest range for a given speed occurs at 45 degrees.",
+            "inputs": [],
+            "output": "v0^2 = 100 g"
+          },
+          {
+            "id": "R08-13-TR",
+            "kind": "TRANSFORM",
+            "action": "Use the vertical throw's top condition v_y = 0.",
+            "why_valid": "Height is greatest when all the speed is vertical.",
+            "inputs": [],
+            "output": "h = v0^2/(2g) = 50 m"
+          }
+        ],
+        "crux_move_ref": "R08-13-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-08",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-08",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What does 'maximum horizontal distance' tell you about v0^2/g?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R08-13-CON"
+        }
+      ],
+      "repair_ref": "MIP08-5"
+    },
+    {
+      "id": "Q-PHY-MIP-08-EXEMPLAR-4-5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-08-019",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-08-009",
+        "EV-PHY-11-MIP-08-020",
+        "EV-PHY-11-MIP-08-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-08",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-08-019"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-08-003",
+            "EV-PHY-11-MIP-08-009"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-08-020",
+            "EV-PHY-11-MIP-08-007"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.5",
+      "stem": "The horizontal range of a projectile fired at an angle of 15 degrees is 50 m. If it is fired with the same speed at an angle of 45 degrees, its range will be",
+      "subparts": [],
+      "options": [
+        "(a) 60 m",
+        "(b) 71 m",
+        "(c) 100 m",
+        "(d) 141 m"
+      ],
+      "conditions": [
+        "Same launch speed; level ground; air resistance neglected."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(c) 100 m.",
+        "reasoning": [
+          "R = v0^2 sin(2 theta0)/g, so for the same v0, R is proportional to sin(2 theta0).",
+          "sin 30 = 0.5 and sin 90 = 1, so R(45) = 50 m / 0.5 = 100 m."
+        ],
+        "check": "45 degrees gives the maximum range, so the answer must exceed 50 m, and only the ratio of sines matters.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R08-5-CON",
+            "kind": "CONNECT",
+            "action": "Take the ratio of the two ranges.",
+            "why_valid": "v0 and g cancel.",
+            "inputs": [],
+            "output": "R45/R15 = sin90/sin30 = 2"
+          },
+          {
+            "id": "R08-5-TR",
+            "kind": "TRANSFORM",
+            "action": "Scale the given range.",
+            "why_valid": "Proportionality.",
+            "inputs": [],
+            "output": "R45 = 2 x 50 = 100 m"
+          }
+        ],
+        "crux_move_ref": "R08-5-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-08",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-08",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write both ranges with the formula and divide one by the other.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R08-5-CON"
+        }
+      ],
+      "repair_ref": "MIP08-5"
     }
   ],
   "teaching_routes": [],
