@@ -4043,6 +4043,345 @@
           "visual_stage_ref": "VIS-KIN-2D-ROOF-V2"
         }
       ]
+    },
+    {
+      "id": "REP-KIN-2D-CONST-ACCEL-3S",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "COMPONENT_DIAGRAM",
+      "purpose": "Show the particle with u = (3 i + 4 j) m/s and constant a = (2 i − 1 j) m/s² split into two signed one-dimensional problems that share the one 3 s interval.",
+      "required_elements": [
+        "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
+        "declared x-y frame",
+        "signed components per axis",
+        "shared interval t = 3 s",
+        "per-axis results",
+        "displacement and velocity after 3 s"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
+        "declared x-y frame",
+        "signed components per axis",
+        "shared interval t = 3 s",
+        "per-axis results",
+        "displacement and velocity after 3 s"
+      ],
+      "instance_constraints": [
+        "Each axis uses only its own signed u and a.",
+        "The same t = 3 s is used on x and y.",
+        "The path and the end state appear only in the last stage."
+      ],
+      "accessibility": [
+        "Every component and result is written as text.",
+        "The shared interval is stated in words, not only by position."
+      ],
+      "misleading_alternatives": [
+        "Mixing an x-component into the y equation.",
+        "Dropping the sign of a_y = −1 m/s²."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-CONST-ACCEL-3S.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "shared interval t = 3 s",
+          "symbol": "t",
+          "in_words": "The one elapsed time used in both axis equations."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-CA3-V0",
+          "label": "The given vectors",
+          "purpose": "Show the particle, its initial velocity and constant acceleration.",
+          "visible_elements": [
+            "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CA3-V1",
+          "label": "Components and interval",
+          "purpose": "Split each vector into signed components and state the shared 3 s.",
+          "visible_elements": [
+            "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
+            "declared x-y frame",
+            "signed components per axis",
+            "shared interval t = 3 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CA3-V2",
+          "label": "Per-axis results",
+          "purpose": "Evaluate each axis's velocity and displacement at t = 3 s.",
+          "visible_elements": [
+            "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
+            "declared x-y frame",
+            "signed components per axis",
+            "shared interval t = 3 s",
+            "per-axis results"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CA3-V3",
+          "label": "Recombined state",
+          "purpose": "Recombine the same-time components into Δr and v.",
+          "visible_elements": [
+            "particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s²",
+            "declared x-y frame",
+            "signed components per axis",
+            "shared interval t = 3 s",
+            "per-axis results",
+            "displacement and velocity after 3 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-CA3-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-CA3-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-CA3-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-APEX-12-20",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the launch with u = (12, 20) m/s up to its apex, where only v_y is zero while v_x = 12 m/s continues and gravity still acts.",
+      "required_elements": [
+        "launch with u_x = 12 m/s and u_y = 20 m/s",
+        "apex condition v_y = 0",
+        "apex time 2 s",
+        "apex velocity (12, 0) m/s",
+        "apex acceleration (0, −10) m/s²",
+        "height gained 20 m"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "launch with u_x = 12 m/s and u_y = 20 m/s",
+        "apex condition v_y = 0",
+        "apex time 2 s",
+        "apex velocity (12, 0) m/s",
+        "apex acceleration (0, −10) m/s²",
+        "height gained 20 m"
+      ],
+      "instance_constraints": [
+        "The apex condition sets only v_y to zero.",
+        "The apex velocity and acceleration appear only in the last stage."
+      ],
+      "accessibility": [
+        "The condition, time, velocity, acceleration and height are all written as text."
+      ],
+      "misleading_alternatives": [
+        "Drawing the apex with zero velocity or zero acceleration."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-APEX-12-20.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "apex condition v_y = 0",
+          "symbol": "v_y",
+          "in_words": "At the highest point the vertical velocity component alone is zero."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-APEX-V0",
+          "label": "The launch",
+          "purpose": "Show the launch components and the apex asked for.",
+          "visible_elements": [
+            "launch with u_x = 12 m/s and u_y = 20 m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-APEX-V1",
+          "label": "Apex condition",
+          "purpose": "Name the component condition that defines the apex.",
+          "visible_elements": [
+            "launch with u_x = 12 m/s and u_y = 20 m/s",
+            "apex condition v_y = 0"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-APEX-V2",
+          "label": "Apex time",
+          "purpose": "Solve the condition for the time.",
+          "visible_elements": [
+            "launch with u_x = 12 m/s and u_y = 20 m/s",
+            "apex condition v_y = 0",
+            "apex time 2 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-APEX-V3",
+          "label": "State at the apex",
+          "purpose": "Show the apex velocity, acceleration and height.",
+          "visible_elements": [
+            "launch with u_x = 12 m/s and u_y = 20 m/s",
+            "apex condition v_y = 0",
+            "apex time 2 s",
+            "apex velocity (12, 0) m/s",
+            "apex acceleration (0, −10) m/s²",
+            "height gained 20 m"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-APEX-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-APEX-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-APEX-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-SAME-HEIGHT-12-16",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the same-height flight with u = (12, 16) m/s and g = 8 m/s²: the landing is the non-zero root of Δy = 0, and that one time gives the range and the landing velocity.",
+      "required_elements": [
+        "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
+        "landing condition Δy = 0",
+        "event timeline",
+        "landing time 4 s",
+        "range 48 m",
+        "landing velocity (12, −16) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
+        "landing condition Δy = 0",
+        "event timeline",
+        "landing time 4 s",
+        "range 48 m",
+        "landing velocity (12, −16) m/s"
+      ],
+      "instance_constraints": [
+        "Launch and landing are drawn at the same height.",
+        "g = 8 m/s², as the stem states.",
+        "The landing time, range and velocity appear only after the condition stage."
+      ],
+      "accessibility": [
+        "The condition, the root and the landing values are written as text."
+      ],
+      "misleading_alternatives": [
+        "Taking the root t = 0 as the landing.",
+        "Using g = 10 m/s² out of habit."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-SAME-HEIGHT-12-16.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "landing condition Δy = 0",
+          "symbol": "Delta y",
+          "in_words": "Back at the launch height the vertical displacement is zero."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-SAME-V0",
+          "label": "The flight",
+          "purpose": "Show the launch components and the same-height landing.",
+          "visible_elements": [
+            "same-height launch with u = (12, 16) m/s, g = 8 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SAME-V1",
+          "label": "Landing condition",
+          "purpose": "Name the landing condition on one timeline.",
+          "visible_elements": [
+            "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
+            "landing condition Δy = 0",
+            "event timeline"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SAME-V2",
+          "label": "Landing time",
+          "purpose": "Take the non-zero root.",
+          "visible_elements": [
+            "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
+            "landing condition Δy = 0",
+            "event timeline",
+            "landing time 4 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SAME-V3",
+          "label": "Range and landing velocity",
+          "purpose": "Read both components at t = 4 s.",
+          "visible_elements": [
+            "same-height launch with u = (12, 16) m/s, g = 8 m/s²",
+            "landing condition Δy = 0",
+            "event timeline",
+            "landing time 4 s",
+            "range 48 m",
+            "landing velocity (12, −16) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-SAME-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-SAME-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-SAME-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -4739,12 +5078,12 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "initial_ref": "REP-KIN-2D-CONST-ACCEL-3S",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-CONST-ACCEL-3S",
         "stage_refs": [
-          "VIS-KIN-2D-SHARED-V0",
-          "VIS-KIN-2D-SHARED-V1"
+          "VIS-KIN-2D-CA3-V0",
+          "VIS-KIN-2D-CA3-V1"
         ]
       },
       "failure_signal": "You got v = (9 i + 7 j) m/s or Δy = 16.5 m: the −1 m/s² was used as +1, so the y-acceleration lost its sign.",
@@ -4907,11 +5246,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "initial_ref": "REP-KIN-2D-APEX-12-20",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-APEX-12-20",
         "stage_refs": [
-          "VIS-KIN-2D-EVENT-V0"
+          "VIS-KIN-2D-APEX-V0"
         ]
       },
       "failure_signal": "Your apex line says the velocity or the acceleration is zero: only v_y vanishes there, so a zero speed at the top means the 12 m/s horizontal component was dropped, and a zero acceleration means gravity was switched off.",
@@ -5088,7 +5427,7 @@
       "representation_roles": {
         "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
         "stage_refs": [
           "VIS-KIN-2D-EVENT-V0"
         ]
@@ -5251,11 +5590,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "initial_ref": "REP-KIN-2D-SAME-HEIGHT-12-16",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-SAME-HEIGHT-12-16",
         "stage_refs": [
-          "VIS-KIN-2D-EVENT-V0"
+          "VIS-KIN-2D-SAME-V0"
         ]
       },
       "failure_signal": "Your flight time is 2 s and your range 24 m: 2 s is u_y/g, the time to the apex, which is half the flight; Δy = 0 has its non-zero root at 4 s.",
