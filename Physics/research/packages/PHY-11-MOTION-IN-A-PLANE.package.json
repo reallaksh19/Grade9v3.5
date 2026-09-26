@@ -106,6 +106,39 @@
       "fallback": []
     },
     {
+      "id": "SRC-JEEADV-2026-P1-SOLUTIONS-FINAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-DE728EA018819D23244A"
+      },
+      "title": "JEE (Advanced) 2026 Paper 1, final solutions (jeeadv.ac.in)",
+      "origin": "WEB",
+      "locator": "https://jeeadv.ac.in/documents/p1_solutions_final.pdf",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-DE728EA018819D23244A",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/de728ea018819d23244abe358f955cb14ad1e698c4a20c7524d3c81e0ce1e2ca.pdf",
+      "snapshot_digest": "sha256:de728ea018819d23244abe358f955cb14ad1e698c4a20c7524d3c81e0ce1e2ca",
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-DE728EA018819D23244A.",
+      "fallback": []
+    },
+    {
       "id": "SRC-JEEADV-IB-2026",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -1012,6 +1045,59 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-JEEADV-IB-2026",
           "locator": "JEE (Advanced) 2026 syllabus, Physics, Mechanics: Relative velocity",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-X2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-002",
+        "EV-PHY-11-MIP-X2-003",
+        "EV-PHY-11-MIP-X2-004",
+        "EV-PHY-11-MIP-X2-005",
+        "EV-PHY-11-MIP-X2-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-003",
+            "EV-PHY-11-MIP-X2-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-005",
+            "EV-PHY-11-MIP-X2-007"
+          ]
+        }
+      },
+      "action": "Solve a projectile launched from and landing on an inclined plane, or aimed at a point off the launch level, by resolving gravity along and perpendicular to the plane or by intersecting the trajectory with a line.",
+      "success_criterion": "Uses axes along and perpendicular to the incline with g_x = -g sin(alpha) and g_y = -g cos(alpha), takes the launch angle to the horizontal as alpha + beta, and does not use the level-ground time-of-flight formula.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-08",
+        "CAP-PHY-MIP-04"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "JEE (Advanced)",
+          "grade": 11,
+          "academic_year": "2026",
+          "track": "JEE_EXTENSION",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-JEEADV-IB-2026",
+          "locator": "Not named in the JEE (Advanced) 2026 syllabus; covered only by the general 'projectiles' entry",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -2579,6 +2665,170 @@
       "prerequisite_refs": [
         "CAP-PHY-MIP-05",
         "CAP-PHY-MIP-07"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-X2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-IB-2026",
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-001",
+        "EV-PHY-11-MIP-X2-008",
+        "EV-PHY-11-MIP-X2-002",
+        "EV-PHY-11-MIP-X2-004",
+        "EV-PHY-11-MIP-X2-003",
+        "EV-PHY-11-MIP-X2-006",
+        "EV-PHY-11-MIP-X2-007",
+        "EV-PHY-11-MIP-X2-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-X2-001",
+            "EV-PHY-11-MIP-X2-008"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-004"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-003",
+            "EV-PHY-11-MIP-X2-004",
+            "EV-PHY-11-MIP-X2-006"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-X2-007",
+            "EV-PHY-11-MIP-X2-005"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL",
+          "interactive_idea": [
+            "EV-PHY-11-MIP-X2-007",
+            "EV-PHY-11-MIP-X2-005"
+          ]
+        },
+        "grade9v3:interactive_idea": {
+          "learner_manipulates": "The incline angle alpha, the launch angle beta measured from the slope, and the launch speed.",
+          "becomes_visible": "The tilted axes with g split into its along-slope and into-slope parts, the flight ending when the perpendicular coordinate returns to zero, the landing point sliding as beta changes with the best beta marked, and a readout of alpha + beta as the angle to the horizontal.",
+          "misconception_targeted": "Treating beta as the launch angle to the horizontal, and applying the level-ground time-of-flight formula to a landing on the slope.",
+          "representation_ref": "REP-PHY-MIP-X2-TILTED-FRAME",
+          "precedent_card": null
+        }
+      },
+      "title": "Projectile on an inclined plane",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-X2",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must abandon horizontal/vertical axes, split g into two components, and track two different angles, while every level-ground shortcut they know gives a wrong answer.",
+      "entry_assumptions": [
+        "Can solve the level-ground projectile with a_x = 0 and a_y = -g.",
+        "Can resolve a vector along any two perpendicular directions."
+      ],
+      "inferential_jump": "Because the constant-acceleration equations hold along any two independent axes, a projectile on an incline becomes two independent uniformly accelerated motions along and across the slope, with g split into -g sin(alpha) and -g cos(alpha) and the flight ending when the across-slope coordinate returns to zero.",
+      "teaching_path": [
+        {
+          "id": "MIP-X2-1",
+          "role": "DECLARE",
+          "action": "Choose x along the plane and y perpendicular to it.",
+          "why_valid": "The vector equations can be resolved along any two independent axes.",
+          "inputs": [],
+          "output": "tilted axes",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP-X2-2",
+          "role": "TRANSFORM",
+          "action": "Resolve g and the launch velocity in those axes.",
+          "why_valid": "g has parts along and perpendicular to the plane; the launch makes beta with the plane.",
+          "inputs": [],
+          "output": "a_x = -g sin(alpha), a_y = -g cos(alpha); u = (v0 cos beta, v0 sin beta)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        },
+        {
+          "id": "MIP-X2-3",
+          "role": "TRANSFORM",
+          "action": "Find the time of flight from the perpendicular motion.",
+          "why_valid": "The particle lands when y = 0 again.",
+          "inputs": [],
+          "output": "T = 2 v0 sin(beta)/(g cos alpha)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+        },
+        {
+          "id": "MIP-X2-4",
+          "role": "TRANSFORM",
+          "action": "Use T in the along-plane motion.",
+          "why_valid": "Both motions share the time.",
+          "inputs": [],
+          "output": "L = 2 v0^2 sin(beta) cos(alpha + beta)/(g cos^2 alpha)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+        },
+        {
+          "id": "MIP-X2-5",
+          "role": "VERIFY",
+          "action": "Cross-check by intersecting the parabola with the line of the plane.",
+          "why_valid": "The landing point is where the trajectory meets the straight line.",
+          "inputs": [],
+          "output": "y = x tan(alpha + beta) - g x^2/(2 v0^2 cos^2(alpha + beta)) = x tan(alpha)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X2-TILTED-AXES",
+        "REL-PHY-MIP-X2-INCLINE-RANGE"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-X2-TILTED-FRAME"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-X2"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The angle given relative to the slope is the launch angle.",
+          "diagnostic_prompt": "A ball leaves a 30 degree slope at 20 degrees to the slope's surface. What angle does its velocity make with the horizontal?",
+          "repair": "Relative to the horizontal the particle is projected at alpha + beta, here 50 degrees; beta is measured from the slope."
+        },
+        {
+          "wrong_idea": "The level-ground time-of-flight formula still gives the flight time on a slope.",
+          "diagnostic_prompt": "May T = 2 v0 sin(theta)/g be used for a ball landing further up an incline?",
+          "repair": "No. That formula assumes landing at the launch elevation; on an incline use the perpendicular motion with a_y = -g cos(alpha)."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain why T = 2 v0 sin(theta)/g fails for a ball thrown up an incline, and describe the axis choice that gives the correct time of flight.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The ball lands at a different height from its launch, so the level-ground formula does not apply; taking y perpendicular to the slope makes landing mean y = 0 again, with a_y = -g cos(alpha).",
+          "reasoning": [
+            "Level-ground flight time assumes return to the launch elevation.",
+            "With y perpendicular to the plane, the landing condition is y = 0 and the acceleration is -g cos(alpha).",
+            "The perpendicular launch component is v0 sin(beta), giving T = 2 v0 sin(beta)/(g cos alpha)."
+          ],
+          "check": "Setting alpha = 0 recovers the level-ground result.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer explains a method and states only symbolic results."
+        }
+      },
+      "research_contribution": "Carries the incline projectile as a labelled extension with its official Exemplar results and hints, and records that the JEE (Advanced) 2026 syllabus does not name it.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-08",
+        "CAP-PHY-MIP-04"
       ],
       "lineage": []
     }
@@ -4310,6 +4560,190 @@
         "Subscripts chain: PS' followed by S'S gives PS."
       ],
       "gate_relation_ref": "REL-PHY-MIP-X1-FRAME-ADDITION"
+    },
+    {
+      "id": "REL-PHY-MIP-X2-TILTED-AXES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-3"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-002",
+        "EV-PHY-11-MIP-X2-004",
+        "EV-PHY-11-MIP-X2-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X2-002"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X2-004",
+            "EV-PHY-11-MIP-X2-005"
+          ]
+        }
+      },
+      "expression": "x along the plane, y perpendicular to it: g_x = -g sin(alpha), g_y = -g cos(alpha)",
+      "meaning": "With axes along and perpendicular to the incline, gravity has a component along the plane and one perpendicular to it, and the motion is two independent constant-acceleration motions with time as the common parameter.",
+      "symbols": [
+        {
+          "symbol": "alpha",
+          "meaning": "inclination of the plane to the horizontal",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "g_x, g_y",
+          "meaning": "components of g along and perpendicular to the plane",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "t",
+          "meaning": "common time parameter",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "The constant-acceleration vector equations do not depend on the choice of axes, so any two independent axes may be used.",
+        "The landing point is at a different elevation from the launch, so the level-ground time-of-flight formula does not apply."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X2A-1",
+          "role": "DECLARE",
+          "action": "Place x along the incline and y perpendicular to it.",
+          "why_valid": "Any two independent axes may be used.",
+          "inputs": [],
+          "output": "axes tilted by alpha",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL-X2A-2",
+          "role": "TRANSFORM",
+          "action": "Resolve g in the tilted axes.",
+          "why_valid": "g makes angle alpha with the plane's normal.",
+          "inputs": [],
+          "output": "g_x = -g sin(alpha), g_y = -g cos(alpha)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP304"
+        }
+      ],
+      "limits": [
+        "Air resistance is neglected, as in the ordinary projectile model."
+      ],
+      "checks": [
+        "alpha = 0 gives back g_x = 0 and g_y = -g."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X2-TILTED-AXES"
+    },
+    {
+      "id": "REL-PHY-MIP-X2-INCLINE-RANGE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-006",
+        "EV-PHY-11-MIP-X2-009",
+        "EV-PHY-11-MIP-X2-008",
+        "EV-PHY-11-MIP-X2-007",
+        "EV-PHY-11-MIP-08-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X2-006",
+            "EV-PHY-11-MIP-X2-009"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X2-006"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X2-008",
+            "EV-PHY-11-MIP-X2-007",
+            "EV-PHY-11-MIP-08-003"
+          ]
+        }
+      },
+      "expression": "T = 2 v0 sin(beta) / (g cos alpha); L = 2 v0^2 sin(beta) cos(alpha + beta) / (g cos^2 alpha); L is largest at beta = pi/4 - alpha/2",
+      "meaning": "For projection at beta to a plane inclined at alpha, the time of flight, the range along the plane and the angle for maximum range follow from the tilted-axes motion.",
+      "symbols": [
+        {
+          "symbol": "beta",
+          "meaning": "launch angle measured from the inclined surface",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "alpha",
+          "meaning": "inclination of the plane",
+          "unit_or_domain": "angle"
+        },
+        {
+          "symbol": "T",
+          "meaning": "time of flight to the plane",
+          "unit_or_domain": "s"
+        },
+        {
+          "symbol": "L",
+          "meaning": "range measured along the plane",
+          "unit_or_domain": "m"
+        },
+        {
+          "symbol": "v0",
+          "meaning": "launch speed",
+          "unit_or_domain": "m/s"
+        }
+      ],
+      "conditions": [
+        "The particle is projected from a point on the plane and lands on the same plane, as in NCERT Exemplar 4.31; relative to the horizontal it is projected at alpha + beta.",
+        "Air resistance is neglected."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X2L-1",
+          "role": "TRANSFORM",
+          "action": "Perpendicular motion returns to y = 0.",
+          "why_valid": "u_y = v0 sin(beta), a_y = -g cos(alpha).",
+          "inputs": [],
+          "output": "T = 2 v0 sin(beta)/(g cos alpha)"
+        },
+        {
+          "id": "REL-X2L-2",
+          "role": "TRANSFORM",
+          "action": "Along the plane, substitute T into x = v0 cos(beta) T - (1/2) g sin(alpha) T^2.",
+          "why_valid": "u_x = v0 cos(beta), a_x = -g sin(alpha).",
+          "inputs": [],
+          "output": "L = 2 v0^2 sin(beta) cos(alpha + beta)/(g cos^2 alpha)",
+          "source_ref": "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+        },
+        {
+          "id": "REL-X2L-3",
+          "role": "TRANSFORM",
+          "action": "Rewrite 2 sin(beta) cos(alpha + beta) = sin(alpha + 2 beta) - sin(alpha) and maximise.",
+          "why_valid": "sin(alpha + 2 beta) is largest when alpha + 2 beta = pi/2.",
+          "inputs": [],
+          "output": "beta = pi/4 - alpha/2"
+        }
+      ],
+      "limits": [
+        "For projection down the incline the sign of alpha changes."
+      ],
+      "checks": [
+        "alpha = 0 gives T = 2 v0 sin(beta)/g and L = v0^2 sin(2 beta)/g, the level-ground results."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X2-INCLINE-RANGE"
     }
   ],
   "representations": [
@@ -5036,6 +5470,80 @@
           "in_words": "The actual velocity a bank observer sees."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-X2-TILTED-FRAME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-002",
+        "EV-PHY-11-MIP-X2-003",
+        "EV-PHY-11-MIP-X2-007"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-003"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X2-007"
+          ]
+        }
+      },
+      "kind": "TILTED_FRAME_PROJECTILE",
+      "purpose": "Draw the incline with axes along and perpendicular to it, g resolved into its two tilted components, the launch velocity at beta to the slope, and the landing point where the path meets the slope.",
+      "required_elements": [
+        "inclined plane at angle alpha",
+        "tilted axes x along and y perpendicular to the plane",
+        "g and its components -g sin(alpha), -g cos(alpha)",
+        "launch velocity at beta to the plane",
+        "landing point at range L along the plane"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X2-TILTED-AXES",
+        "REL-PHY-MIP-X2-INCLINE-RANGE"
+      ],
+      "read_order": [
+        "inclined plane at angle alpha",
+        "tilted axes x along and y perpendicular to the plane",
+        "g and its components -g sin(alpha), -g cos(alpha)",
+        "launch velocity at beta to the plane",
+        "landing point at range L along the plane"
+      ],
+      "instance_constraints": [
+        "The angle between g and the y-axis equals alpha.",
+        "The angle alpha + beta to the horizontal is labelled.",
+        "L is measured along the plane, not horizontally."
+      ],
+      "accessibility": [
+        "Both angles are named in text with what they are measured from.",
+        "Component directions are written in words."
+      ],
+      "misleading_alternatives": [
+        "Drawing beta from the horizontal.",
+        "Marking a horizontal range on the incline."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "g and its components -g sin(alpha), -g cos(alpha)",
+          "symbol": "g_x, g_y",
+          "in_words": "The parts of gravity along and into the slope."
+        },
+        {
+          "element": "landing point at range L along the plane",
+          "symbol": "L",
+          "in_words": "Distance up the slope from launch to landing."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -5521,6 +6029,55 @@
         "Q-PHY-MIP-X1-JEEADV-2014-P1-Q18",
         "Q-PHY-MIP-X1-EXEMPLAR-4-34",
         "Q-PHY-MIP-X1-EXEMPLAR-4-33"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-X2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Projectiles landing on slopes or off the launch level",
+      "capability_refs": [
+        "CAP-PHY-MIP-X2"
+      ],
+      "solution_structure": [
+        "Choose tilted axes or the trajectory-line intersection.",
+        "Resolve g and the launch velocity.",
+        "Find the landing time or point, then the asked quantity."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose tilted axes or intersect the parabola with a line.",
+        "representation_translation": "Translate the slope geometry into angles alpha, beta and alpha + beta.",
+        "reasoning_steps": "Resolve, solve the perpendicular motion for T, substitute into the along-plane motion.",
+        "novelty": "Inclines, rebounds and elevated targets change the landing condition."
+      },
+      "safe_variations": [
+        "Project down the incline.",
+        "Replace the incline with a target point at given height and distance."
+      ],
+      "transfer_boundaries": [
+        "Air resistance neglected.",
+        "Not named in the JEE (Advanced) 2026 syllabus beyond 'projectiles'."
+      ],
+      "common_wrong_routes": [
+        "Use beta as the angle to the horizontal.",
+        "Use the level-ground time of flight."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-X2-EXEMPLAR-4-31",
+        "Q-PHY-MIP-X2-EXEMPLAR-4-32",
+        "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6"
       ]
     }
   ],
@@ -8799,6 +9356,354 @@
         }
       ],
       "repair_ref": "MIP-X1-2"
+    },
+    {
+      "id": "Q-PHY-MIP-X2-EXEMPLAR-4-31",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-008",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-X2-009",
+        "EV-PHY-11-MIP-X2-006",
+        "EV-PHY-11-MIP-X2-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X2-008"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X2-008",
+            "EV-PHY-11-MIP-08-003"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X2-009",
+            "EV-PHY-11-MIP-X2-006",
+            "EV-PHY-11-MIP-X2-002"
+          ]
+        },
+        "grade9v3:figure_note": "Exemplar Fig. 4.6 shows the angles alpha and beta at the launch point; read it on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.31",
+      "stem": "A particle is projected in air at an angle beta to a surface which itself is inclined at an angle alpha to the horizontal (Fig. 4.6). (a) Find an expression of range on the plane surface (distance on the plane from the point of projection at which particle will hit the surface). (b) Time of flight. (c) beta at which range will be maximum.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Air resistance neglected; the particle is launched from and lands on the inclined surface."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(a) L = 2 v0^2 sin(beta) cos(alpha + beta)/(g cos^2 alpha); (b) T = 2 v0 sin(beta)/(g cos alpha); (c) beta = pi/4 - alpha/2.",
+        "reasoning": [
+          "Tilted axes: u_x = v0 cos(beta), u_y = v0 sin(beta), a_x = -g sin(alpha), a_y = -g cos(alpha).",
+          "y = 0 again at T = 2 v0 sin(beta)/(g cos alpha).",
+          "x(T) = v0 cos(beta) T - (1/2) g sin(alpha) T^2 = 2 v0^2 sin(beta)[cos(beta) cos(alpha) - sin(beta) sin(alpha)]/(g cos^2 alpha) = 2 v0^2 sin(beta) cos(alpha + beta)/(g cos^2 alpha).",
+          "2 sin(beta) cos(alpha + beta) = sin(alpha + 2 beta) - sin(alpha) is largest when alpha + 2 beta = pi/2."
+        ],
+        "check": "alpha = 0 reduces all three results to the level-ground formulas, including the 45 degree maximum.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X2-31-REP",
+            "kind": "REPRESENT",
+            "action": "Set up axes along and perpendicular to the plane.",
+            "why_valid": "The source's method treats two independent motions with a common time.",
+            "inputs": [],
+            "output": "a_x = -g sin(alpha), a_y = -g cos(alpha)"
+          },
+          {
+            "id": "R-X2-31-TR",
+            "kind": "TRANSFORM",
+            "action": "Solve y = 0 for T and substitute into x(t).",
+            "why_valid": "Landing on the plane means zero perpendicular displacement.",
+            "inputs": [],
+            "output": "T = 2 v0 sin(beta)/(g cos alpha); L as stated"
+          },
+          {
+            "id": "R-X2-31-DEC",
+            "kind": "DECIDE",
+            "action": "Maximise L over beta with the product-to-sum identity.",
+            "why_valid": "Only sin(alpha + 2 beta) depends on beta.",
+            "inputs": [],
+            "output": "beta = pi/4 - alpha/2"
+          }
+        ],
+        "crux_move_ref": "R-X2-31-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X2",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X2",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Point P at which particle hits the plane can be seen as intersection of its trajectory (parabola) and straight line.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "We can take x-direction along the plane and y-direction perpendicular to the plane. In that case resolve g in two different components, g_x along the plane and g_y perpendicular to the plane. Now the problem can be solved as two independent motions in x and y directions respectively with time as a common parameter.",
+          "reveals": "METHOD"
+        },
+        {
+          "text": "Remember particle is projected at an angle (alpha + beta) w.r.t. horizontal.",
+          "reveals": "CONCEPT"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Before any algebra, write the four quantities u_x, u_y, a_x, a_y in the tilted axes.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-X2-31-REP"
+        }
+      ],
+      "repair_ref": "MIP-X2-2"
+    },
+    {
+      "id": "Q-PHY-MIP-X2-EXEMPLAR-4-32",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-010",
+        "EV-PHY-11-MIP-X3-004",
+        "EV-PHY-11-MIP-X2-002",
+        "EV-PHY-11-MIP-X2-011"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X2-010"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X3-004",
+            "EV-PHY-11-MIP-X2-002"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X2-011",
+            "EV-PHY-11-MIP-X2-002",
+            "EV-PHY-11-MIP-X3-004"
+          ]
+        },
+        "grade9v3:figure_note": "Exemplar Fig. 4.7 shows the incline and the first impact point; read it on the cited page.",
+        "grade9v3:known_issue": "ISSUE-MIP-EX432-KEY"
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.32",
+      "stem": "A particle falling vertically from a height hits a plane surface inclined to horizontal at an angle theta with speed v0 and rebounds elastically (Fig 4.7). Find the distance along the plane where it will hit second time.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The rebound is elastic: the particle leaves the surface with its incoming speed v0.",
+        "Air resistance neglected; axes along and perpendicular to the plane may be used."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Author's derivation: 4 v0^2 sin(theta)/g along the plane. The official key's printed expression is a fraction in v0^2, sin(theta) and g whose leading factor is not legible in the text layer; see ISSUE-MIP-EX432-KEY.",
+        "reasoning": [
+          "Along/perpendicular to the plane the incoming velocity has v0 sin(theta) along the slope (downhill) and v0 cos(theta) into it.",
+          "An elastic rebound reverses the perpendicular part and keeps the along-slope part and the speed v0.",
+          "Perpendicular motion: u_y = v0 cos(theta), a_y = -g cos(theta), so it returns to the plane after T = 2 v0/g.",
+          "Along the slope: u_x = v0 sin(theta), a_x = g sin(theta) downhill, so d = v0 sin(theta)(2 v0/g) + (1/2) g sin(theta)(2 v0/g)^2 = 4 v0^2 sin(theta)/g."
+        ],
+        "check": "theta = 0 gives d = 0: on level ground the particle bounces straight back up to the same point.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X2-32-REP",
+            "kind": "REPRESENT",
+            "action": "Resolve the incoming velocity along and perpendicular to the plane.",
+            "why_valid": "The plane's normal is tilted by theta from the vertical.",
+            "inputs": [],
+            "output": "(v0 sin theta, -v0 cos theta)"
+          },
+          {
+            "id": "R-X2-32-DEC",
+            "kind": "DECIDE",
+            "action": "Apply the elastic rebound to the perpendicular part only.",
+            "why_valid": "The particle keeps its speed v0 after an elastic rebound.",
+            "inputs": [],
+            "output": "(v0 sin theta, +v0 cos theta)"
+          },
+          {
+            "id": "R-X2-32-TR",
+            "kind": "TRANSFORM",
+            "action": "Solve the tilted-axes flight.",
+            "why_valid": "Constant accelerations g sin(theta) and -g cos(theta).",
+            "inputs": [],
+            "output": "T = 2 v0/g; d = 4 v0^2 sin(theta)/g"
+          }
+        ],
+        "crux_move_ref": "R-X2-32-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X2",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X2",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Rest is similar to if particle is projected up the incline.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Split the velocity just before impact into parts along and perpendicular to the slope.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-X2-32-REP"
+        }
+      ],
+      "repair_ref": "MIP-X2-3"
+    },
+    {
+      "id": "Q-PHY-MIP-X2-JEEADV-2026-P1-Q6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-2026-P1-SOLUTIONS-FINAL",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-EXEMPLAR-KEEP304"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X2-012",
+        "EV-PHY-11-MIP-08-003",
+        "EV-PHY-11-MIP-X2-013",
+        "EV-PHY-11-MIP-08-004",
+        "EV-PHY-11-MIP-X2-003"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X2",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X2-012"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X2-012",
+            "EV-PHY-11-MIP-08-003"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X2-013",
+            "EV-PHY-11-MIP-08-004",
+            "EV-PHY-11-MIP-X2-003"
+          ]
+        },
+        "grade9v3:figure_note": "The JEE (Advanced) 2026 Paper 1 Q6 figure shows O, P and the path; read it on the cited page."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-JEEADV-2026-P1-SOLUTIONS-FINAL",
+      "original_identifier": "JEEADV-2026-P1-Q6",
+      "stem": "A particle is thrown with a speed v from a point O at an angle theta with the horizontal plane such that it passes through the point P at a height of 1 m and horizontal distance of 5 m from O, as shown in the figure. If acceleration due to gravity is g m s^-2, then the correct statement(s) is/are:",
+      "subparts": [],
+      "options": [
+        "(A) If theta = 45 degrees, then v = 5 sqrt(g)/2 m s^-1.",
+        "(B) If theta = 45 degrees, the particle reaches its maximum height before it reaches P.",
+        "(C) If theta = 30 degrees, the particle reaches its maximum height after reaching P.",
+        "(D) If theta = tan^-1(1/5), then v = 125 sqrt(g) m s^-1 (as extracted from the PDF text)."
+      ],
+      "conditions": [
+        "Air resistance neglected; P is 1 m above and 5 m horizontally from O, so it is off the launch level."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(A) and (B).",
+        "reasoning": [
+          "Trajectory through P: 1 = 5 tan(theta) - g (25)/(2 v^2 cos^2 theta).",
+          "theta = 45 degrees: 1 = 5 - 25 g/v^2, so v^2 = 25 g/4 and v = 5 sqrt(g)/2: (A) true.",
+          "The apex is at x = v^2 sin(2 theta)/(2g) = 25/8 = 3.1 m < 5 m, so the top comes before P: (B) true.",
+          "theta = 30 degrees: 25 g/(1.5 v^2) = 5/sqrt3 - 1 gives v^2 = 8.83 g; apex at x = 8.83 x 0.866/2 = 3.8 m < 5 m, so (C) is false.",
+          "theta = tan^-1(1/5) aims straight along OP; the path curves below that line, so it can never pass through P: (D) false."
+        ],
+        "check": "This is the trajectory-line intersection method: P lies on both the parabola and the line OP.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X2-Q6-CON",
+            "kind": "CONNECT",
+            "action": "Require the trajectory equation to pass through (5, 1).",
+            "why_valid": "The target is off the launch level, so the level-ground range is irrelevant.",
+            "inputs": [],
+            "output": "1 = 5 tan(theta) - 25 g/(2 v^2 cos^2 theta)"
+          },
+          {
+            "id": "R-X2-Q6-TR",
+            "kind": "TRANSFORM",
+            "action": "Solve for v at each angle and locate the apex.",
+            "why_valid": "Apex at x = v^2 sin(2 theta)/(2g).",
+            "inputs": [],
+            "output": "45: v^2 = 25g/4, apex 3.1 m; 30: apex 3.8 m"
+          },
+          {
+            "id": "R-X2-Q6-DEC",
+            "kind": "DECIDE",
+            "action": "Reject (D) geometrically.",
+            "why_valid": "A launch along OP with gravity acting curves below OP.",
+            "inputs": [],
+            "output": "(A), (B) only"
+          }
+        ],
+        "crux_move_ref": "R-X2-Q6-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X2",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X2",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write the parabola y(x) and demand that the point (5, 1) lies on it.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R-X2-Q6-CON"
+        }
+      ],
+      "repair_ref": "MIP-X2-5"
     }
   ],
   "teaching_routes": [],
@@ -8811,6 +9716,16 @@
       "classification": "CAPABILITY_LIMIT",
       "description": "Exit-task answers that state a computed value were checked by the author only; this staging package binds no subject validator or data records to them.",
       "next_action": "The verifier re-derives each numeric exit answer; bind a validator when the records are promoted."
+    },
+    {
+      "id": "ISSUE-MIP-EX432-KEY",
+      "affected_refs": [
+        "Q-PHY-MIP-X2-EXEMPLAR-4-32",
+        "Q-PHY-MIP-X3-EXEMPLAR-4-32-REBOUND"
+      ],
+      "classification": "SCIENTIFIC_REVIEW_REQUIRED",
+      "description": "The official Exemplar answer to 4.32 is printed as a fraction in v0, g and sin(theta) whose leading factor does not survive in the PDF text layer (cards EV-PHY-11-MIP-X2-011 and X3-011). The records state the author's derivation, 4 v0^2 sin(theta)/g, without claiming it matches the key.",
+      "next_action": "Verifier reads the printed answer on page 11 of keep316 and confirms or disputes the derived expression."
     }
   ],
   "extensions": {},
