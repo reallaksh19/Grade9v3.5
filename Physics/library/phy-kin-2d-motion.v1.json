@@ -2175,7 +2175,8 @@
         "REL-KIN-2D-DISPLACEMENT"
       ],
       "representation_refs": [
-        "REP-KIN-2D-SHARED-CLOCK"
+        "REP-KIN-2D-SHARED-CLOCK",
+        "REP-KIN-2D-DRONE-SHARED-CLOCK"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -2274,12 +2275,12 @@
             "K2D1-3",
             "K2D1-4"
           ],
-          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "representation_ref": "REP-KIN-2D-DRONE-SHARED-CLOCK",
           "reveal_stage_refs": [
-            "VIS-KIN-2D-SHARED-V0",
-            "VIS-KIN-2D-SHARED-V1",
-            "VIS-KIN-2D-SHARED-V2",
-            "VIS-KIN-2D-SHARED-V3"
+            "VIS-KIN-2D-DRONE-V0",
+            "VIS-KIN-2D-DRONE-V1",
+            "VIS-KIN-2D-DRONE-V2",
+            "VIS-KIN-2D-DRONE-V3"
           ],
           "worked_anchor_ref": "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01",
           "misconception_indexes": [
@@ -2359,7 +2360,8 @@
       ],
       "representation_refs": [
         "REP-KIN-2D-SHARED-CLOCK",
-        "REP-KIN-2D-EVENT-CLOCK"
+        "REP-KIN-2D-EVENT-CLOCK",
+        "REP-KIN-2D-PUCK-AXIS-CHECK"
       ],
       "question_family_refs": [
         "FAM-PHY-KIN-2D-PRACTICE"
@@ -2463,12 +2465,12 @@
             "K2D2-2",
             "K2D2-3"
           ],
-          "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
+          "representation_ref": "REP-KIN-2D-PUCK-AXIS-CHECK",
           "reveal_stage_refs": [
-            "VIS-KIN-2D-SHARED-V0",
-            "VIS-KIN-2D-SHARED-V1",
-            "VIS-KIN-2D-SHARED-V2",
-            "VIS-KIN-2D-SHARED-V3"
+            "VIS-KIN-2D-PUCK-V0",
+            "VIS-KIN-2D-PUCK-V1",
+            "VIS-KIN-2D-PUCK-V2",
+            "VIS-KIN-2D-PUCK-V3"
           ],
           "worked_anchor_ref": "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01",
           "misconception_indexes": [
@@ -3560,6 +3562,252 @@
           "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
         }
       ]
+    },
+    {
+      "id": "REP-KIN-2D-DRONE-SHARED-CLOCK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "COMPONENT_DIAGRAM",
+      "purpose": "Show the drone of x(t) = 6t, y(t) = 8t − t² in one frame with one clock, so each axis is evaluated on its own and only same-time values are paired into a position.",
+      "required_elements": [
+        "drone flight from the launch pad",
+        "declared x-y frame",
+        "shared clock",
+        "x-description x(t) = 6t",
+        "y-description y(t) = 8t − t²",
+        "same-time position (12, 12) m",
+        "mixed-time pair (12, 16) m"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "drone flight from the launch pad",
+        "declared x-y frame",
+        "shared clock",
+        "x-description x(t) = 6t",
+        "y-description y(t) = 8t − t²",
+        "same-time position (12, 12) m",
+        "mixed-time pair (12, 16) m"
+      ],
+      "instance_constraints": [
+        "Origin at the launch pad, +x east, +y up, t = 0 at launch, as the stem declares.",
+        "x-values come only from x(t) = 6t and y-values only from y(t) = 8t − t².",
+        "The mixed pair x(2 s), y(4 s) is shown off the path and marked as never occupied."
+      ],
+      "accessibility": [
+        "Every coordinate and time is written as text beside its point.",
+        "Accepted and rejected pairs are marked with ✓ and ✗ and a sentence, not by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Pairing x(2 s) with y(4 s) as one position.",
+        "Letting a y-term enter the x-description."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-DRONE-SHARED-CLOCK.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "shared clock",
+          "symbol": "t",
+          "in_words": "The one elapsed time since launch at which both coordinates are read."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-DRONE-V0",
+          "label": "Problem only",
+          "purpose": "Show the drone's flight from the pad without the component description.",
+          "visible_elements": [
+            "drone flight from the launch pad"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-DRONE-V1",
+          "label": "Frame and clock",
+          "purpose": "Declare the origin, axes and one clock for the whole flight.",
+          "visible_elements": [
+            "drone flight from the launch pad",
+            "declared x-y frame",
+            "shared clock"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-DRONE-V2",
+          "label": "Component descriptions",
+          "purpose": "Evaluate x and y separately at 2 s and 4 s, each from its own function.",
+          "visible_elements": [
+            "drone flight from the launch pad",
+            "declared x-y frame",
+            "shared clock",
+            "x-description x(t) = 6t",
+            "y-description y(t) = 8t − t²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-DRONE-V3",
+          "label": "Same-time pairing",
+          "purpose": "Pair only same-time values into positions and reject the mixed pair.",
+          "visible_elements": [
+            "drone flight from the launch pad",
+            "declared x-y frame",
+            "shared clock",
+            "x-description x(t) = 6t",
+            "y-description y(t) = 8t − t²",
+            "same-time position (12, 12) m",
+            "mixed-time pair (12, 16) m"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-DRONE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-DRONE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-DRONE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-PUCK-AXIS-CHECK",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "COMPONENT_DIAGRAM",
+      "purpose": "Show the air-table puck with u = (4, 6) m/s and a = (0, −2) m/s²: check that each axis's acceleration is constant, run the one-dimensional equations once per axis, and carry the one event time t = 6 s across both axes.",
+      "required_elements": [
+        "puck on the air table",
+        "initial velocity u = (4 i + 6 j) m/s",
+        "acceleration a = (0 i − 2 j) m/s²",
+        "declared x-y frame",
+        "per-axis constancy check",
+        "per-axis equations with one t",
+        "event time t = 6 s",
+        "state at t = 6 s"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "puck on the air table",
+        "initial velocity u = (4 i + 6 j) m/s",
+        "acceleration a = (0 i − 2 j) m/s²",
+        "declared x-y frame",
+        "per-axis constancy check",
+        "per-axis equations with one t",
+        "event time t = 6 s",
+        "state at t = 6 s"
+      ],
+      "instance_constraints": [
+        "Each axis's acceleration is checked for constancy before its equations are used.",
+        "t = 6 s is solved from y and reused unchanged on x.",
+        "The vertical drawing scale is stretched; values are read from the labels, not the geometry."
+      ],
+      "accessibility": [
+        "The per-axis check is written as text with ✓ marks.",
+        "The event time and the final state are stated in words beside the point."
+      ],
+      "misleading_alternatives": [
+        "Using constant-a equations on an axis without checking its acceleration.",
+        "Solving a different time on x for the same event."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-PUCK-AXIS-CHECK.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "event time t = 6 s",
+          "symbol": "t",
+          "in_words": "The single time, solved on y, at which the x-position and velocity are read."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-PUCK-V0",
+          "label": "The puck's launch",
+          "purpose": "Show the puck with its stated initial velocity and constant acceleration.",
+          "visible_elements": [
+            "puck on the air table",
+            "initial velocity u = (4 i + 6 j) m/s",
+            "acceleration a = (0 i − 2 j) m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PUCK-V1",
+          "label": "Per-axis check",
+          "purpose": "Declare the frame and check that a_x and a_y are each constant.",
+          "visible_elements": [
+            "puck on the air table",
+            "initial velocity u = (4 i + 6 j) m/s",
+            "acceleration a = (0 i − 2 j) m/s²",
+            "declared x-y frame",
+            "per-axis constancy check"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PUCK-V2",
+          "label": "One time on both axes",
+          "purpose": "Write each axis's equations and solve the event on y.",
+          "visible_elements": [
+            "puck on the air table",
+            "initial velocity u = (4 i + 6 j) m/s",
+            "acceleration a = (0 i − 2 j) m/s²",
+            "declared x-y frame",
+            "per-axis constancy check",
+            "per-axis equations with one t",
+            "event time t = 6 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-PUCK-V3",
+          "label": "State at the event",
+          "purpose": "Read x and the velocity at the same t = 6 s.",
+          "visible_elements": [
+            "puck on the air table",
+            "initial velocity u = (4 i + 6 j) m/s",
+            "acceleration a = (0 i − 2 j) m/s²",
+            "declared x-y frame",
+            "per-axis constancy check",
+            "per-axis equations with one t",
+            "event time t = 6 s",
+            "state at t = 6 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-PUCK-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-PUCK-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-PUCK-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -3680,7 +3928,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-DRONE-SHARED-CLOCK",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -3742,7 +3990,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-PUCK-AXIS-CHECK",
         "stage_refs": []
       },
       "failure_signal": null,
