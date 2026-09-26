@@ -6207,7 +6207,7 @@
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -6217,47 +6217,118 @@
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
         "examside:demand_provenance": "ExamSIDE demand family—static-friction feasibility is not handed over; representative source https://questions.examside.com/past-years/jee/question/the-coefficient-of-static-friction-between-two-blocks-is-05-jee-main-physics-units-and-measurements-7bhwf4qmervepg4w",
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-STATE-01",
-      "stem": "A crate rests on a rough horizontal floor. It is pulled by a force P at an upward angle theta. The coefficients mu_s and mu_k are known, but the statement does not say whether the crate slips. For a specified P, determine the crate's acceleration or justify that it remains at rest.",
+      "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.55 and μ_k = 0.40; take g = 10 m/s². A 50 N pull is applied, first horizontally and then, in a second trial, at 37° above the horizontal (sin 37° = 0.6, cos 37° = 0.8). The statement does not say whether the crate slips. For each trial decide whether the crate stays at rest, and find the friction force and the acceleration.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "Resolve the applied force into horizontal and vertical components.",
-        "The crate remains in contact with the floor.",
+        "The crate stays in contact with the floor in both trials.",
+        "Resolve the angled pull into horizontal and vertical components.",
         "Do not assume a friction equality before deciding the contact state."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "First find N = mg - P sin(theta). Under a provisional no-slip state, the friction required is f_required = P cos(theta). If |f_required| <= mu_s N, the crate can remain at rest and static friction equals the required value. If that inequality fails, sliding occurs; then use kinetic friction mu_k N opposite the sliding and apply Newton II to find acceleration.",
+        "summary": "Horizontal pull: N = 100 N and the limit is 55 N, which covers the 50 N needed, so the crate stays at rest with 50 N of static friction. Angled pull: N = 100 − 30 = 70 N and the limit is 38.5 N, less than the 40 N needed, so the crate slides; kinetic friction is 0.40 × 70 = 28 N and a = (40 − 28)/10 = 1.2 m/s². The tilted pull has the smaller horizontal part, yet it moves the crate.",
         "reasoning": [
-          "The upward component of P changes the normal reaction, so N is not automatically mg.",
-          "The coefficient data do not identify the contact state; test the static state first.",
-          "Compare the no-slip friction requirement with the static limit.",
-          "Only after the static state is impossible is the kinetic-friction model selected for the acceleration calculation."
+          "Horizontal trial: N = mg = 100 N. Rest would need 50 N of friction, and μ_s N = 55 N, so the crate stays at rest and f = 50 N.",
+          "Angled trial: the pull's components are 40 N horizontal and 30 N up, so N = 100 − 30 = 70 N.",
+          "Rest would need 40 N of friction, but μ_s N = 0.55 × 70 = 38.5 N, so rest is impossible and the crate slides.",
+          "Sliding: f_k = μ_k N = 28 N opposite the motion, so a = (40 − 28)/10 = 1.2 m/s²."
         ],
-        "check": "At P=0, the method must allow friction to be zero rather than mu_s mg.",
+        "check": "Angled trial with a = 1.2 m/s²: vertical 70 + 30 − 100 = 0 (no vertical acceleration) and horizontal 40 − 28 = 12 N = 10 × 1.2. In the horizontal trial the 5 N margin (55 − 50) shows why that crate does not move.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Computes the actual normal reaction before any friction limit.",
-            "evidence_of": "Recognizes that friction limits depend on the contact force, not a memorized N=mg shortcut."
+            "criterion": "Computes N separately for each trial, 100 N and 70 N, before any friction limit.",
+            "evidence_of": "The static limit depends on the actual contact force."
           },
           {
-            "criterion": "Tests the no-slip friction requirement against mu_s N before choosing a kinetic model.",
-            "evidence_of": "Can select the contact model rather than treating a supplied coefficient as an instruction to use equality."
+            "criterion": "Compares the friction rest would need with μ_s N in each trial and reaches opposite verdicts.",
+            "evidence_of": "Selects the contact model from a test, not from the coefficients given."
           },
           {
-            "criterion": "Uses kinetic friction only after static feasibility fails.",
-            "evidence_of": "Keeps static and sliding contact states distinct."
+            "criterion": "Uses μ_k N = 28 N only in the sliding trial and gets a = 1.2 m/s².",
+            "evidence_of": "Keeps static and kinetic states distinct."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-STATE-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Find N in each trial from the vertical balance: 100 N for the horizontal pull, 100 − 30 = 70 N for the angled pull.",
+            "why_valid": "The crate has no vertical acceleration, so the vertical forces balance, and the angled pull carries part of the weight.",
+            "inputs": [
+              "m = 10 kg",
+              "P = 50 N",
+              "sin 37° = 0.6"
+            ],
+            "output": "N = 100 N and N = 70 N."
+          },
+          {
+            "id": "R-NLM-2B-STATE-DEMAND",
+            "kind": "CONNECT",
+            "action": "Assume rest provisionally and read the friction it would need: the horizontal part of the pull, 50 N and then 40 N.",
+            "why_valid": "At rest the horizontal forces balance, so friction must equal the horizontal pull.",
+            "inputs": [
+              "P cos 0° = 50 N",
+              "P cos 37° = 40 N"
+            ],
+            "output": "Needs: 50 N and 40 N."
+          },
+          {
+            "id": "R-NLM-2B-STATE-DECIDE",
+            "kind": "DECIDE",
+            "action": "Compare each need with its own limit μ_s N: 50 N ≤ 55 N keeps the crate at rest; 40 N > 38.5 N rules rest out, so the angled trial uses the kinetic model.",
+            "why_valid": "Static friction can supply any need up to μ_s N and no more, and the limit moves with N.",
+            "inputs": [
+              "needs 50 N and 40 N",
+              "limits 55 N and 38.5 N"
+            ],
+            "output": "Trial 1 at rest; trial 2 sliding."
+          },
+          {
+            "id": "R-NLM-2B-STATE-KINETIC",
+            "kind": "TRANSFORM",
+            "action": "In the sliding trial take f_k = μ_k N = 28 N opposite the motion and get a = (40 − 28)/10 = 1.2 m/s².",
+            "why_valid": "Once the crate slides, kinetic friction has the fixed value μ_k N.",
+            "inputs": [
+              "μ_k = 0.40",
+              "N = 70 N"
+            ],
+            "output": "a = 1.2 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-STATE-CHECK",
+            "kind": "VERIFY",
+            "action": "Substitute a = 1.2 m/s² back into both force equations of the sliding trial.",
+            "why_valid": "Both components must balance with the chosen model.",
+            "inputs": [
+              "vertical: 70 + 30 − 100",
+              "horizontal: 40 − 28"
+            ],
+            "output": "0 and 12 N = 10 × 1.2."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-STATE-DECIDE",
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -6301,7 +6372,21 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01"
         ],
-        "invariant": "The normal force from the actual force balance, the provisional no-slip requirement and its comparison with μ_s N all carry over; what changes is that the contact state is not given and must be decided."
+        "invariant": "The normal force from the actual force balance, the provisional no-slip requirement and its comparison with μ_s N all carry over; what changes is that the contact state is not given and must be decided.",
+        "protected_move_ref": "R-NLM-2B-STATE-DECIDE",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): horizontal pulls on a 4 kg box keep N = mg in both trials, so only the need changes; here the need falls and the limit falls further.",
+            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): 'find N from the perpendicular equation' is stated as a rule for a pressing force; no state is reversed by a lighter contact.",
+            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): a zero friction need against a positive limit, with no second trial to compare.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a no-slip formula for stacked blocks with N = mg; the state is not decided.",
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): the block is told to stay at rest, so the state is handed over.",
+            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): the block is told it is sliding, so μ_k is handed over.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): a rest condition, tan θ ≤ μ_s, with no applied pull at all.",
+            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): sliding stated, so no contact state is chosen."
+          ],
+          "why_new": "Every earlier friction-quant item either states the contact state or keeps N = mg while the need changes. Here the same 50 N pull is applied at two angles. The tilted pull has the smaller horizontal part, yet it slides, because it also lowers N and the limit falls below the need. The learner must recompute the limit for each trial before choosing a model. No earlier item shows a state decision reversed by a change in N."
+        }
       },
       "repair_ref": "NLM8-2",
       "hint_ladder": [
@@ -6313,7 +6398,13 @@
         },
         {
           "order": 2,
-          "purpose": "ORIENT",
+          "purpose": "REPRESENT",
+          "text": "Draw the crate twice, once per trial, with its weight, N, the pull (resolved in the second trial) and a friction arrow labelled f, not μN.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
@@ -6327,15 +6418,15 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You kept the crate at rest in the angled trial because 40 N < 0.55 × 100 = 55 N: the upward part of the pull lightens the contact to N = 70 N, so the limit is 38.5 N. Or you used μ_k in the horizontal trial, where the crate never slips.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: the static limit moves with N, so a pull that lightens the contact can start sliding even though it asks for less friction."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -6345,47 +6436,119 @@
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
         "examside:demand_provenance": "ExamSIDE demand family—multi-body string/contact equations require system-boundary decisions; representative source https://questions.examside.com/past-years/jee/question/pa-system-to-10-balls-each-of-mass-2-kg-are-connected-via-jee-main-physics-motion-z07w6d1fnjpzkqch",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-CONNECTED-SYSTEM-02",
-      "stem": "Three identical carts A, B and C move in a line on a smooth track. A pushes B, B pushes C, and contact is maintained while an external force F is applied only to A. Without being told which system to choose, find the acceleration of the three-cart train and the contact force that B exerts on C.",
+      "stem": "Three carts touch in a line on a level track: A (3 kg) at the back, then B (2 kg), then C (1 kg) at the front. A 30 N push acts on A toward the front. Cart B has a sticking wheel that drags on the track with a 6 N friction force; A and C roll freely. Find the acceleration of the train and the contact force at each of its two joints, A-B and B-C.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The carts remain in contact.",
-        "The track is frictionless.",
-        "Take the direction of F as positive."
+        "The carts stay in contact.",
+        "The only friction is the 6 N drag on B, opposite the motion.",
+        "Take the direction of the push as positive."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Use A+B+C as one system for the acceleration: a = F/(3m). Then isolate C to find the requested contact force: N_BC = m a = F/3. The B-on-C force is internal only to the three-cart system; it is external to cart C and must remain in C's equation.",
+        "summary": "a = (30 − 6)/6 = 4 m/s². The A-B joint carries 18 N and the B-C joint carries 4 N. The two joint forces are not the mass fractions of the push (15 N and 5 N), because the drag acts on the middle cart.",
         "reasoning": [
-          "Maintained contact gives the carts one common acceleration along the track.",
-          "For the acceleration, the whole three-cart system removes internal contact forces from the summed equation.",
-          "For the requested B-on-C contact force, isolate C because that interaction is external to C.",
-          "Newton II on C gives N_BC = mF/(3m) = F/3."
+          "Whole train: the contact forces are internal, so 30 − 6 = 6a and a = 4 m/s².",
+          "A-B joint: isolate A, which has the push and the joint force: 30 − N_AB = 3 × 4, so N_AB = 18 N.",
+          "B-C joint: isolate C, whose only horizontal force is the joint force: N_BC = 1 × 4 = 4 N.",
+          "Cart B: 18 − 4 − 6 = 8 N = 2 × 4, as required."
         ],
-        "check": "Cancelling B-on-C while solving cart C alone would leave C with no horizontal force but nonzero acceleration, which is inconsistent.",
+        "check": "Cut at A-B the other way: B + C together feel N_AB and the drag, so N_AB − 6 = 3 × 4 and N_AB = 18 N again. Removing the drag would give a = 5 m/s² and the mass fractions 15 N and 5 N.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Chooses the whole train for the acceleration calculation.",
-            "evidence_of": "Can select a system boundary that removes irrelevant internal forces."
+            "criterion": "Finds a from the whole train with the drag included and the joint forces left out.",
+            "evidence_of": "Uses the system where the internal pairs cancel."
           },
           {
-            "criterion": "Switches to cart C for the requested contact force.",
-            "evidence_of": "Understands that a force can be internal to one chosen system and external to another."
+            "criterion": "Cuts at each joint separately and isolates one side with every external force on that side.",
+            "evidence_of": "Treats each joint force as external to the part it acts on."
           },
           {
-            "criterion": "Keeps the same common acceleration across both equations.",
-            "evidence_of": "Uses the active contact constraint consistently when changing system boundary."
+            "criterion": "Rejects the mass-fraction shortcut because an external force acts on an interior cart.",
+            "evidence_of": "Knows when a familiar result stops holding."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-TRAIN-SYSTEM",
+            "kind": "REPRESENT",
+            "action": "Treat the whole train as one system: 30 − 6 = 6a, so a = 4 m/s².",
+            "why_valid": "Contact forces between the carts are internal pairs and cancel in the system sum; the push and the drag are external.",
+            "inputs": [
+              "push 30 N on A",
+              "drag 6 N on B",
+              "total mass 6 kg"
+            ],
+            "output": "a = 4 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-TRAIN-CUT",
+            "kind": "DECIDE",
+            "action": "Find each joint force separately by cutting at that joint and isolating the part on one side with all of its external forces; do not use the mass-fraction rule, since the drag acts on the middle cart.",
+            "why_valid": "A joint force is external to each part it separates, and the part beyond the cut must be given exactly the acceleration a by its own forces.",
+            "inputs": [
+              "two joints",
+              "drag on B",
+              "a = 4 m/s²"
+            ],
+            "output": "One equation per joint, each with its own part."
+          },
+          {
+            "id": "R-NLM-2B-TRAIN-AB",
+            "kind": "TRANSFORM",
+            "action": "Isolate A: 30 − N_AB = 3 × 4, so N_AB = 18 N.",
+            "why_valid": "A has only the push and the joint force horizontally.",
+            "inputs": [
+              "m_A = 3 kg",
+              "a = 4 m/s²"
+            ],
+            "output": "N_AB = 18 N."
+          },
+          {
+            "id": "R-NLM-2B-TRAIN-BC",
+            "kind": "TRANSFORM",
+            "action": "Isolate C: N_BC = 1 × 4 = 4 N.",
+            "why_valid": "C's only horizontal force is the push from B.",
+            "inputs": [
+              "m_C = 1 kg"
+            ],
+            "output": "N_BC = 4 N."
+          },
+          {
+            "id": "R-NLM-2B-TRAIN-CHECK",
+            "kind": "VERIFY",
+            "action": "Check cart B alone: 18 − 4 − 6 = 8 N = 2 × 4.",
+            "why_valid": "The middle cart, not used to find either joint force, must also obey Newton II.",
+            "inputs": [
+              "N_AB",
+              "N_BC",
+              "drag"
+            ],
+            "output": "B's equation balances."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-TRAIN-CUT",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
       "secondary_capability_refs": [
@@ -6411,21 +6574,33 @@
       ],
       "hints": [
         {
-          "text": "The most convenient system for finding acceleration need not be the same system needed for the requested contact force.",
+          "text": "How many different contact forces does a three-cart train have, and which forces act on it from outside?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Ask whether the B-on-C force is internal or external for each system boundary you might choose.",
+          "text": "Get a from the whole train, then cut at one joint and write Newton II for the part on one side, including every external force on that part.",
           "reveals": "METHOD"
         }
       ],
       "transfer": {
         "dimension": "reasoning_steps",
-        "statement": "The learner must choose and change system boundaries across a multi-body solution, rather than being handed separate-body versus whole-system equations.",
+        "statement": "The learner must see that a train has one force per joint, and must choose a cut and a side for each joint when an external force acts on an interior cart.",
         "builds_on": [
           "Q-PHY-NLM-2A-CONNECTED-02"
         ],
-        "invariant": "Maintained contact still gives one shared acceleration, and a contact force still belongs only in the equation of the body it acts on; what changes is that you choose which system to isolate."
+        "invariant": "Maintained contact still gives one shared acceleration, and each contact force still belongs only in the equation of the part it acts on. What changes is that the joint forces are no longer mass fractions of the push.",
+        "protected_move_ref": "R-NLM-2B-TRAIN-CUT",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-CONNECTED-BODIES-01 (Core1A worked anchor): two blocks with one contact force and external forces only at the ends; the train here has two joints and a drag in the middle.",
+            "Q-PHY-NLM-1A-SYSTEM-CHOICE-01 (Core1A worked anchor): two buckets, the whole system for a and the lower bucket for the rope; no interior external force has to be placed on a side of a cut.",
+            "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL misconceptions (Core1A diagnose/repair): contact loss, B's force being external to A, and unequal net forces; none has a force applied to an interior body.",
+            "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL boundary test (Core1B): contact is lost, so a_A = a_B fails; this train keeps contact throughout.",
+            "Q-PHY-NLM-2A-CONNECTED-02 (Core2A): two blocks, where N_AB = m_B F/(m_A + m_B) is correct; the same fraction rule gives wrong joint forces here.",
+            "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11 (Core2A): whether contact allows one acceleration, with no joint force to compute."
+          ],
+          "why_new": "Earlier items have one joint and forces only at the ends, where the joint force is a mass fraction of the push. Here an external drag acts on the middle cart, so the two joint forces are not mass fractions. For each joint the learner must decide which side to isolate and which external forces go with it. No earlier item shows a joint force with an external force acting inside the train."
+        }
       },
       "repair_ref": "NLM9-5",
       "hint_ladder": [
@@ -6437,6 +6612,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the train with a dashed cut at the A-B joint and another at the B-C joint, and list the external forces on each side of each cut.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -6450,15 +6631,15 @@
           "VIS-NLM-FBD-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You got 15 N and 5 N from the mass-fraction rule, (m_B + m_C)F/M and m_C F/M: that rule ignores the 6 N drag on B. Or you gave one contact force for the whole train.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: each joint in a train carries its own force, fixed by what the part beyond the cut needs, external forces on that part included."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-STRING-MODEL-03",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -6468,47 +6649,116 @@
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
         "examside:demand_provenance": "ExamSIDE demand family—string/pulley problems make tension-model assumptions consequential; representative corpus https://questions.examside.com/past-years/jee/jee-main/physics/laws-of-motion",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-STRING-MODEL-03",
-      "stem": "Two masses are connected by one rope over a fixed pulley. The pulley axle is explicitly stated to have appreciable friction. A proposed solution writes the same tension T on both sides of the pulley before doing any calculation. Decide whether that step is justified by the Grade9V3 ideal-string model and explain what can still be said without introducing a new pulley model.",
+      "stem": "A 2 kg block hangs from the lower end of a uniform rope of mass 1 kg. A hand pulls the top of the rope so that the rope and block accelerate upward at 2 m/s². Take g = 10 m/s² and up as positive. A student writes one tension T for the whole rope. Decide whether that is licensed here, and find the tension at the top, at the middle and at the bottom of the rope.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The rope remains taut.",
-        "The pulley axle is not frictionless.",
-        "No quantitative nonideal-pulley relation is supplied."
+        "The rope is uniform and its 1 kg mass is not negligible.",
+        "Rope and block move together with a = 2 m/s² upward.",
+        "Tension at a point means the pull between the parts of the rope above and below that point."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The one-common-T step is not justified by the bounded ideal-string/redirection model because a required ideal assumption has been broken. Each mass still has a rope tension force on its own free-body diagram, but this capability must not assert equal magnitudes across the nonideal pulley. A quantitative solution would require an additional model that is outside this slice.",
+        "summary": "One T is not licensed: that model needs a massless string, and this rope's mass needs force to accelerate too. The tension at a point is (mass below the point) × (g + a) = 12 N per kg: 24 N at the bottom, 30 N at the middle and 36 N at the top.",
         "reasoning": [
-          "Tension forces still belong on the bodies they act on.",
-          "Uniform tension across a redirection was licensed only after declaring a frictionless, massless ideal pulley/string model.",
-          "Appreciable axle friction breaks that declared model condition.",
-          "Therefore equal tension cannot be imported; the correct bounded response is to stop rather than manufacture a nonideal relation."
+          "The ideal model's single T rests on a massless string; a 1 kg rope carrying a 2 kg block is far from massless.",
+          "Cut the rope at a point and isolate everything below it: T − m_below g = m_below a, so T = m_below (g + a).",
+          "Bottom: m_below = 2 kg, T = 24 N. Middle: 2.5 kg, T = 30 N. Top: 3 kg, T = 36 N."
         ],
-        "check": "If the statement is changed back to a frictionless massless fixed pulley with a massless taut string, the equal-tension relation becomes licensed again.",
+        "check": "Isolate the rope alone: 36 N up at the top, 24 N down from the block and 10 N of weight give a net 2 N = 1 kg × 2 m/s².",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Rejects one common tension because the ideal redirection condition is broken.",
-            "evidence_of": "Treats equal tension as model-conditional rather than universal."
+            "criterion": "Rejects a single T because the rope's mass is not negligible.",
+            "evidence_of": "Ties the one-T model to its massless-string assumption."
           },
           {
-            "criterion": "Keeps a tension force on each mass's own FBD.",
-            "evidence_of": "Separates force ownership from equality of magnitudes."
+            "criterion": "Finds the tension at a point by isolating everything below it.",
+            "evidence_of": "Replaces the broken model with a valid cut."
           },
           {
-            "criterion": "Refuses to invent a quantitative nonideal-pulley relation.",
-            "evidence_of": "Respects the taught model boundary instead of solving an untaught problem under a transfer label."
+            "criterion": "Gets 24 N, 30 N and 36 N, increasing toward the top.",
+            "evidence_of": "Carries the replacement model through to numbers."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-ROPE-MODEL",
+            "kind": "DECIDE",
+            "action": "Reject one T for the rope: the ideal model needs a massless string, and each piece of this rope needs a net upward force of its own, so the tension must grow toward the top.",
+            "why_valid": "One common tension follows only when the string has no mass to accelerate.",
+            "inputs": [
+              "rope mass 1 kg",
+              "block mass 2 kg",
+              "a = 2 m/s² up"
+            ],
+            "output": "A tension that varies with height."
+          },
+          {
+            "id": "R-NLM-2B-ROPE-CUT",
+            "kind": "REPRESENT",
+            "action": "To find the tension at a point, isolate everything below that point: the block and the rope beneath the cut.",
+            "why_valid": "The tension at the cut is the only upward force on that lower part.",
+            "inputs": [
+              "cut height"
+            ],
+            "output": "A system whose only upward force is T at the cut."
+          },
+          {
+            "id": "R-NLM-2B-ROPE-EQ",
+            "kind": "TRANSFORM",
+            "action": "Write T − m_below g = m_below a, so T = m_below (g + a) = 12 m_below.",
+            "why_valid": "Newton II for the lower part, with up positive.",
+            "inputs": [
+              "g = 10 m/s²",
+              "a = 2 m/s²"
+            ],
+            "output": "T = 12 N per kg below."
+          },
+          {
+            "id": "R-NLM-2B-ROPE-VALUES",
+            "kind": "CONNECT",
+            "action": "Evaluate at the three points: 2 kg, 2.5 kg and 3 kg below, giving 24 N, 30 N and 36 N.",
+            "why_valid": "A uniform rope puts half its mass below its midpoint.",
+            "inputs": [
+              "m_below = 2, 2.5, 3 kg"
+            ],
+            "output": "24 N, 30 N, 36 N."
+          },
+          {
+            "id": "R-NLM-2B-ROPE-CHECK",
+            "kind": "VERIFY",
+            "action": "Isolate the rope alone: 36 − 24 − 10 = 2 N = 1 × 2.",
+            "why_valid": "The rope's own equation uses the two end tensions and must give its own acceleration.",
+            "inputs": [
+              "T_top",
+              "T_bottom",
+              "rope weight"
+            ],
+            "output": "The rope's own equation balances: 2 N net for 1 kg at 2 m/s²."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-ROPE-MODEL",
+        "difficult_move": 0
       },
       "primary_capability_ref": "CAP-NLM-IDEAL-STRING-TENSION",
       "secondary_capability_refs": [
@@ -6533,21 +6783,33 @@
       ],
       "hints": [
         {
-          "text": "List the assumptions that allowed one tension symbol in the earlier ideal-string problem. Has every one of them survived here?",
+          "text": "What property of a string lets you use one symbol T all along it, and does this rope have it?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "A transfer task can ask you to reject a model; you do not have to replace it with an untaught one.",
+          "text": "If you imagine cutting the rope at some height, what must the tension there hold up and accelerate?",
           "reveals": "CONCEPT"
         }
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must decide whether the equal-tension ideal-string model is valid after the problem explicitly breaks an ideal-pulley assumption.",
+        "statement": "The learner must decide that the single-tension model fails for a rope with mass, and must replace it with the tension found at a cut.",
         "builds_on": [
           "Q-PHY-NLM-2A-IDEAL-STRING-03"
         ],
-        "invariant": "Each body still has its own tension force along its own string segment; what changes is whether the ideal assumptions that allowed one T still hold."
+        "invariant": "Each tension force still pulls along the rope on the body it acts on, and Newton II still applies to any chosen part. What changes is that the rope's own mass makes the tension depend on where you cut.",
+        "protected_move_ref": "R-NLM-2B-ROPE-MODEL",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-STRING-FBD-01 (Core1A worked anchor): a light string from a cart to a hanging mass, where one T is licensed; here the rope's mass forbids it.",
+            "Q-PHY-NLM-1A-TENSION-VALUE-01 (Core1A worked anchor): a light cord in a lift, one tension per case, never varying along the cord.",
+            "MIC-PHY-NLM-IDEAL-STRING-TENSION misconceptions (Core1A diagnose/repair): names the assumptions behind one T, but computes no tension once they fail.",
+            "MIC-PHY-NLM-IDEAL-STRING-TENSION boundary test (Core1B): a rough pulley axle breaks equal tension, and the answer stops at 'not guaranteed' with no replacement.",
+            "Q-PHY-NLM-2A-IDEAL-STRING-03 (Core2A): names a massive connector as one model change, but computes only the light-string tension.",
+            "Q-PHY-NLM-2A-ATWOOD-12 (Core2A): one common T over an ideal pulley, compared with the two weights."
+          ],
+          "why_new": "Earlier items either use one T under the ideal model or say only that equal tension is 'no longer guaranteed' (the Core1B rough axle, and the named model change in the Core2A string item). None asks what replaces one T. Here the learner must reject one T because the rope has mass, then find the tension at a point by isolating everything below it, which gives three different values. No earlier item shows a tension that varies along a rope."
+        }
       },
       "repair_ref": "NLM10-4",
       "hint_ladder": [
@@ -6559,7 +6821,13 @@
         },
         {
           "order": 2,
-          "purpose": "ORIENT",
+          "purpose": "REPRESENT",
+          "text": "Draw the block and rope with dashed cuts at the bottom, middle and top, and for each cut circle everything below it.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
@@ -6573,15 +6841,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You used one T = 24 N (from the block alone) or T = 36 N everywhere: the rope's own mass needs force too, so the tension grows from 24 N at the bottom to 36 N at the top.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: one tension throughout is a consequence of a massless string; with a massive rope the tension at a point is set by everything below it."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -6591,12 +6859,23 @@
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
         "examside:demand_provenance": "ExamSIDE demand family—fixed-pulley geometry must be translated into a constraint before dynamics; representative source https://questions.examside.com/past-years/jee/question/pa-hanging-mass-m-is-connected-to-a-four-times-bigger-mass-jee-main-physics-motion-gkzohv0amiu6gnez",
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-PULLEY-REPRESENTATION-04",
-      "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates.",
+      "stem": "A diagram is replaced by this verbal description: one taut inextensible string passes over one fixed pulley, with mass A on the left end and mass B on the right end. Coordinates x_A and x_B are both defined positive upward. Before writing any Newton-II equations, construct the string-length relation and derive the signed acceleration relation in these coordinates. If A accelerates upward at 2 m/s², what is B's signed acceleration?",
       "subparts": [],
       "options": [],
       "conditions": [
@@ -6607,12 +6886,12 @@
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude.",
+        "summary": "Because the changing segment lengths decrease when x_A or x_B increases, the variable string length can be written (C_A - x_A) + (C_B - x_B) = constant. Hence x_A + x_B = constant, so v_A + v_B = 0 and a_A + a_B = 0. Thus if A accelerates upward, B accelerates downward with equal magnitude. With a_A = +2 m/s², a_B = −2 m/s², so B accelerates downward at 2 m/s².",
         "reasoning": [
-          "Translate the verbal geometry into the two changing string-segment lengths.",
-          "The chosen coordinates are upward, so each segment length is a constant offset minus its coordinate.",
-          "Inextensibility makes the sum of the segment lengths constant.",
-          "Differentiating the equivalent x_A + x_B = constant relation gives the signed velocity and acceleration constraints."
+          "With the pulley at a fixed height h_P and x measured upward from a fixed level, the segment lengths are h_P − x_A and h_P − x_B.",
+          "The string length is fixed: (h_P − x_A) + (h_P − x_B) = L, so x_A + x_B = 2h_P − L, a constant.",
+          "Differentiating twice gives v_A + v_B = 0 and a_A + a_B = 0.",
+          "With a_A = +2 m/s², a_B = −2 m/s²: B accelerates downward."
         ],
         "check": "If both masses accelerated upward in these coordinates, both vertical segments would shorten and the fixed total string length would be violated.",
         "acceptable_alternatives": [],
@@ -6631,7 +6910,63 @@
             "criterion": "Derives a_A + a_B = 0 from the length relation.",
             "evidence_of": "Connects geometry to kinematics rather than importing the answer."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-UPCOORD-GEOMETRY",
+            "kind": "REPRESENT",
+            "action": "Place the pulley at fixed height h_P and write each segment's length in the upward coordinates: h_P − x_A and h_P − x_B.",
+            "why_valid": "In these coordinates a segment's length is the height gap to the pulley, not the coordinate itself.",
+            "inputs": [
+              "x_A and x_B positive upward",
+              "pulley fixed"
+            ],
+            "output": "Segment lengths h_P − x_A and h_P − x_B."
+          },
+          {
+            "id": "R-NLM-2B-UPCOORD-LENGTH",
+            "kind": "DECIDE",
+            "action": "Build the fixed-length equation from those segment lengths, (h_P − x_A) + (h_P − x_B) = L, rather than copying y_A + y_B = constant from away-from-pulley coordinates.",
+            "why_valid": "The constraint is a statement about segment lengths; its signs follow from how each length is written in the chosen coordinates.",
+            "inputs": [
+              "segment lengths",
+              "fixed L"
+            ],
+            "output": "x_A + x_B = constant."
+          },
+          {
+            "id": "R-NLM-2B-UPCOORD-DIFF",
+            "kind": "TRANSFORM",
+            "action": "Differentiate twice: v_A + v_B = 0 and a_A + a_B = 0.",
+            "why_valid": "The constant has zero rate of change.",
+            "inputs": [
+              "x_A + x_B = constant"
+            ],
+            "output": "a_A + a_B = 0."
+          },
+          {
+            "id": "R-NLM-2B-UPCOORD-READ",
+            "kind": "CONNECT",
+            "action": "Put in a_A = +2 m/s² to get a_B = −2 m/s², downward.",
+            "why_valid": "The sign reads directly in the declared upward coordinates.",
+            "inputs": [
+              "a_A = +2 m/s²"
+            ],
+            "output": "a_B = −2 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-UPCOORD-CHECK",
+            "kind": "VERIFY",
+            "action": "Check physically: A rising shortens its segment, so B's segment lengthens and B descends.",
+            "why_valid": "A fixed total length forces equal and opposite length changes.",
+            "inputs": [
+              "A rises"
+            ],
+            "output": "B falls, as the sign says."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-UPCOORD-LENGTH",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
       "secondary_capability_refs": [
@@ -6670,7 +7005,18 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FIXED-PULLEY-04"
         ],
-        "invariant": "One fixed pulley and one inextensible string still fix the total changing length; what changes is the coordinate direction, and that the geometry arrives in words."
+        "invariant": "One fixed pulley and one inextensible string still fix the total changing length; what changes is the coordinate direction, and that the geometry arrives in words.",
+        "protected_move_ref": "R-NLM-2B-UPCOORD-LENGTH",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-STRING-LENGTH-01 (Core1A worked anchor): y is measured downward from the pulley, so each coordinate is itself a segment length; here the lengths must be built as h_P − x.",
+            "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): a_A + a_B = 0 is handed to the learner in away-from-pulley coordinates and used for dynamics.",
+            "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): which segment changes, and opposite signed changes, both in away-from-pulley coordinates.",
+            "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley needs a new length equation; the pulley here stays fixed.",
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A, parent): y_A + y_B = constant with lengths measured from the pulley, in the coordinates the stem supplies."
+          ],
+          "why_new": "In every earlier item the coordinates run along the segments away from the pulley, so each coordinate is a segment length and the sum is constant at once. Here the coordinates point up, toward the pulley, and arrive in words. The learner must build each length as h_P − x before summing. The result happens to keep the form a_A + a_B = 0, and it has to be derived rather than assumed. No earlier item shows the lengths built from coordinates that are not lengths."
+        }
       },
       "repair_ref": "NLM11-2",
       "hint_ladder": [
@@ -6682,6 +7028,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Sketch the fixed pulley at height h_P, both masses below it, and mark each segment's length as the gap between the mass and the pulley.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -6695,15 +7047,15 @@
           "VIS-NLM-FBD-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote x_A − x_B = constant (or a_A = a_B), or copied y_A + y_B = constant without writing what each segment length is in upward coordinates.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: the constraint is always built from the lengths of the changing segments; the coordinate choice decides the signs that appear in it."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -6712,47 +7064,106 @@
       "extensions": {
         "issue19:scope_class": "QUESTION_DEMAND_TRANSFER",
         "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
-        "examside:demand_provenance": "ExamSIDE demand family—accelerating-vehicle problems require observer-frame selection; representative source https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo"
+        "examside:demand_provenance": "ExamSIDE demand family—accelerating-vehicle problems require observer-frame selection; representative source https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRAME-SELECTION-05",
-      "stem": "A small bob hangs from the roof of a car that accelerates horizontally to the right. A student wants the bob to be at rest in the chosen coordinates while finding the string direction. Decide which observer description makes that possible, state the extra modelling term required there, and give an independent inertial-frame alternative without solving for a numerical angle.",
+      "stem": "A 0.2 kg bob hangs from a string tied to the roof of a car that accelerates horizontally to the right at 7.5 m/s²; the bob hangs steady relative to the car. Take g = 10 m/s². A student wants the bob to be at rest in the chosen coordinates. Decide which observer makes that possible and what extra term that observer needs. Then find the string's angle from the vertical and its tension, and check both with the roadside frame.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The road is horizontal.",
-        "The car acceleration is constant and nonzero.",
+        "The car's acceleration is constant at 7.5 m/s² to the right.",
         "Air resistance is neglected."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "To keep the bob at rest in the chosen coordinates, use the accelerating car frame and include a pseudo-force m a_car to the left in addition to the physical forces. Alternatively, use the roadside inertial frame with only physical forces and give the bob the same rightward acceleration as the car. Both descriptions must predict the same string direction.",
+        "summary": "Use the car frame, where the bob is at rest, and add a pseudo-force m a_car = 0.2 × 7.5 = 1.5 N to the left. With the 2 N weight, the string must balance both: tan θ = 1.5/2 = 0.75, so θ ≈ 37° from the vertical, with the bob hanging back (to the left), and T = √(1.5² + 2²) = 2.5 N. The roadside frame uses no pseudo-force: T sin θ = m a = 1.5 N and T cos θ = mg = 2 N, the same result.",
         "reasoning": [
-          "The requirement that the bob be at rest in the coordinates points to the car frame.",
-          "Because that observer frame accelerates, Newton's second law there needs the backward pseudo-force convention.",
-          "In the roadside inertial frame no pseudo-force is added; the bob has the car's horizontal acceleration.",
-          "The two descriptions are alternative models of the same physical situation and must agree on the observable string direction."
+          "Only the car observer sees the bob at rest; that observer accelerates, so a pseudo-force −m a_car = 1.5 N to the left joins the physical forces.",
+          "Car frame, at rest: T sin θ = 1.5 N (horizontal) and T cos θ = 2 N (vertical).",
+          "tan θ = 0.75, θ ≈ 37°, and T = 2.5 N; the bob hangs back, opposite the acceleration.",
+          "Roadside frame: no pseudo-force, the bob accelerates at 7.5 m/s² to the right, so T sin θ = 1.5 N and T cos θ = 2 N, the same equations."
         ],
-        "check": "If the car acceleration becomes zero, the pseudo-force term vanishes and both descriptions reduce to the ordinary hanging-bob equilibrium.",
+        "check": "Both frames give tan θ = a/g = 0.75 and T = m√(g² + a²) = 0.2 × 12.5 = 2.5 N. With a = 0 the string hangs vertically with T = 2 N.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Chooses the car frame only because the task requests the bob to be stationary in the chosen coordinates.",
-            "evidence_of": "Selects observer frame from the modelling goal rather than by habit."
+            "criterion": "Chooses the car frame because the task wants the bob at rest, and adds −m a_car only there.",
+            "evidence_of": "Ties the pseudo-force to the observer's acceleration."
           },
           {
-            "criterion": "Adds the pseudo-force specifically because the car frame accelerates.",
-            "evidence_of": "Distinguishes an observer convention from a new physical interaction."
+            "criterion": "Balances weight, tension and the 1.5 N pseudo-force to get θ ≈ 37° and T = 2.5 N.",
+            "evidence_of": "Uses the pseudo-force as a real term in the chosen frame."
           },
           {
-            "criterion": "States a valid roadside alternative with physical forces only and horizontal bob acceleration.",
-            "evidence_of": "Can cross-check two frame descriptions of one event."
+            "criterion": "Reproduces the angle in the roadside frame with physical forces only.",
+            "evidence_of": "Checks that both frames predict one string direction."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-BOB-GOAL",
+            "kind": "REPRESENT",
+            "action": "Note which observer sees the bob at rest: the car observer, who accelerates at 7.5 m/s² to the right.",
+            "why_valid": "The task's goal (bob at rest in the coordinates) picks the frame.",
+            "inputs": [
+              "bob steady relative to car",
+              "a_car = 7.5 m/s²"
+            ],
+            "output": "The car frame, which is accelerating."
+          },
+          {
+            "id": "R-NLM-2B-BOB-FRAME",
+            "kind": "DECIDE",
+            "action": "Use the car frame and add a pseudo-force −m a_car = 1.5 N to the left to the unchanged physical forces (2 N weight, tension); in the roadside frame add nothing and give the bob a = 7.5 m/s².",
+            "why_valid": "Newton's laws hold in an accelerating frame only with the pseudo-force; no new physical agent appears.",
+            "inputs": [
+              "m = 0.2 kg",
+              "a_car = 7.5 m/s²"
+            ],
+            "output": "Car-frame forces: weight, tension, 1.5 N pseudo-force."
+          },
+          {
+            "id": "R-NLM-2B-BOB-SOLVE",
+            "kind": "TRANSFORM",
+            "action": "Balance in the car frame: T sin θ = 1.5, T cos θ = 2, so tan θ = 0.75, θ ≈ 37°, T = 2.5 N, with the bob hanging back.",
+            "why_valid": "At rest in the car frame the three forces sum to zero.",
+            "inputs": [
+              "1.5 N left",
+              "2 N down"
+            ],
+            "output": "θ ≈ 37° from vertical; T = 2.5 N."
+          },
+          {
+            "id": "R-NLM-2B-BOB-CHECK",
+            "kind": "VERIFY",
+            "action": "Redo in the roadside frame: T sin θ = 0.2 × 7.5 and T cos θ = 0.2 × 10.",
+            "why_valid": "The physical forces and the string direction cannot depend on the observer.",
+            "inputs": [
+              "roadside frame",
+              "a = 7.5 m/s²"
+            ],
+            "output": "Same θ and T."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-BOB-FRAME",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-FRAME-CHOICE",
       "secondary_capability_refs": [
@@ -6792,7 +7203,17 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRAME-CHOICE-07"
         ],
-        "invariant": "The physical forces on the bob, gravity and the string's tension, are the same for every observer, and both descriptions must predict one string direction; what changes is that you choose which observer to use."
+        "invariant": "The physical forces on the bob, gravity and the string's tension, are the same for every observer, and both descriptions must predict one string direction; what changes is that you choose which observer to use.",
+        "protected_move_ref": "R-NLM-2B-BOB-FRAME",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01 (Core1A worked anchor): the frame accelerates vertically, along gravity, so the pseudo-force only changes a reading; here it is sideways and sets a direction.",
+            "MIC-PHY-NLM-FRAME-CHOICE misconceptions (Core1A diagnose/repair): the bus observer needs a pseudo-force, but the frame is named in the prompt rather than chosen.",
+            "MIC-PHY-NLM-FRAME-CHOICE boundary test (Core1B): a constant-velocity bus needs no pseudo-force; nothing is solved.",
+            "Q-PHY-NLM-2A-FRAME-CHOICE-07 (Core2A, parent): a loose object on a smooth shelf described in both frames, with no forces to balance and no angle."
+          ],
+          "why_new": "In every earlier item the frame is named for the learner, and the pseudo-force either lies along gravity (the lift) or acts on an object with nothing to balance it (the shelf). Here the learner must pick the frame from the goal of keeping the bob at rest. The sideways pseudo-force must then be balanced against gravity through the string, which fixes an angle. No earlier item shows a pseudo-force setting a direction."
+        }
       },
       "repair_ref": "NLM4-3",
       "hint_ladder": [
@@ -6804,7 +7225,13 @@
         },
         {
           "order": 2,
-          "purpose": "ORIENT",
+          "purpose": "REPRESENT",
+          "text": "Draw the bob twice, once for the car observer (at rest, with a pseudo-force arrow) and once for the roadside observer (accelerating, no pseudo-force).",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
@@ -6817,10 +7244,10 @@
           "VIS-NLM-FRAME-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You added the 1.5 N pseudo-force in the roadside frame too, and then found the bob accelerating twice as hard, or you tilted the bob forward: in the car frame the pseudo-force points backward, so the bob hangs back at 37°.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: the frame is chosen for the job; a pseudo-force appears only in the accelerating frame, and both frames must give the same string angle."
       }
     },
     {
@@ -7116,51 +7543,121 @@
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-WALKING-02",
-      "stem": "A runner accelerates forward without the shoe slipping on the ground. Determine the direction of the static friction force exerted by the ground on the shoe, and justify it from the relative slip tendency at the contact.",
+      "stem": "A 60 kg person stands on a 20 kg plank that rests on frictionless ice. The person starts to walk forward, accelerating at 0.5 m/s² relative to the ice, and the shoes do not slip on the plank. Find the direction and size of the friction on the person's shoes, then the horizontal force on the plank and the plank's acceleration.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The shoe does not slip on the ground during the instant considered."
+        "The ice exerts no horizontal force on the plank.",
+        "The shoes do not slip on the plank.",
+        "Accelerations are measured relative to the ice."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The ground's static friction on the shoe points forward.",
+        "summary": "Friction on the shoes points forward and is 60 × 0.5 = 30 N. Its partner, 30 N backward, acts on the plank, which has no other horizontal force, so the plank accelerates backward at 30/20 = 1.5 m/s².",
         "reasoning": [
-          "Without sufficient friction, the runner's foot would tend to slip backward relative to the ground while pushing against it.",
-          "Static friction opposes that relative slip tendency.",
-          "Therefore the ground exerts forward friction on the shoe, helping accelerate the runner forward."
+          "If the plank's surface were slippery, pushing the foot backward would make the shoe slide backward across the plank.",
+          "Friction on the shoe opposes that: forward, and it is the only horizontal force on the person, so f = 60 × 0.5 = 30 N.",
+          "The plank receives the partner of that friction: 30 N backward.",
+          "The ice is frictionless, so the plank's acceleration is 30/20 = 1.5 m/s² backward."
         ],
-        "check": "The friction direction may be the same as the runner's ground-frame velocity; the defining comparison is the contact-level relative slip tendency.",
+        "check": "Person and plank together feel no horizontal external force, so 60 × 0.5 forward and 20 × 1.5 backward must cancel: 30 − 30 = 0.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Identifies the backward relative slip tendency of the shoe at the contact if friction were absent.",
-            "evidence_of": "Uses the contact interaction rather than the runner's overall velocity as the direction rule."
+            "criterion": "Finds the friction on the shoe from the slip tendency at the shoe-plank contact: forward, 30 N.",
+            "evidence_of": "Uses the contact slip rule, not the walker's velocity."
           },
           {
-            "criterion": "Places the ground's friction force on the shoe forward.",
-            "evidence_of": "Applies the friction-direction rule consistently."
+            "criterion": "Places the partner friction, 30 N backward, on the plank.",
+            "evidence_of": "Follows the contact force onto the second surface."
           },
           {
-            "criterion": "Does not invoke 'friction always opposes motion' as the justification.",
-            "evidence_of": "Distinguishes contact slip tendency from object velocity."
+            "criterion": "Gets the plank's acceleration, 1.5 m/s² backward.",
+            "evidence_of": "Uses the partner force to predict the surface's motion."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-PLANK-SLIP",
+            "kind": "REPRESENT",
+            "action": "Imagine the plank's surface slippery: the walking foot pushes backward and the shoe would slide backward across the plank.",
+            "why_valid": "Friction is set by the slip tendency at the contact.",
+            "inputs": [
+              "foot pushes back",
+              "no slip actually occurs"
+            ],
+            "output": "Shoe tends to slip backward."
+          },
+          {
+            "id": "R-NLM-2B-PLANK-SHOE",
+            "kind": "CONNECT",
+            "action": "Friction on the shoe opposes that tendency: forward, 60 × 0.5 = 30 N.",
+            "why_valid": "It is the only horizontal force on the person.",
+            "inputs": [
+              "m = 60 kg",
+              "a = 0.5 m/s²"
+            ],
+            "output": "30 N forward on the person."
+          },
+          {
+            "id": "R-NLM-2B-PLANK-PARTNER",
+            "kind": "DECIDE",
+            "action": "Put the partner friction, 30 N backward, on the plank: the plank moves under the contact force it receives, not in the walker's direction.",
+            "why_valid": "The two surfaces at one contact feel equal and opposite friction forces.",
+            "inputs": [
+              "friction on shoe 30 N forward"
+            ],
+            "output": "30 N backward on the plank."
+          },
+          {
+            "id": "R-NLM-2B-PLANK-ACCEL",
+            "kind": "TRANSFORM",
+            "action": "With frictionless ice, a_plank = 30/20 = 1.5 m/s² backward.",
+            "why_valid": "The partner friction is the plank's only horizontal force.",
+            "inputs": [
+              "m_plank = 20 kg"
+            ],
+            "output": "1.5 m/s² backward."
+          },
+          {
+            "id": "R-NLM-2B-PLANK-CHECK",
+            "kind": "VERIFY",
+            "action": "The person-plank system has no horizontal external force: 60 × 0.5 − 20 × 1.5 = 0.",
+            "why_valid": "Internal forces cannot give the pair a net acceleration.",
+            "inputs": [
+              "both accelerations"
+            ],
+            "output": "Zero net external force on the pair, as required."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-PLANK-PARTNER",
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-NLM-FRICTION",
       "secondary_capability_refs": [],
@@ -7183,21 +7680,32 @@
       ],
       "hints": [
         {
-          "text": "Ignore the runner's overall velocity for a moment. Which way would the shoe tend to slip relative to the ground if the tangential contact force vanished?",
+          "text": "At the shoe-plank contact, which way would the shoe slide across the plank if the plank were perfectly slippery?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Point static friction opposite that relative slip tendency.",
+          "text": "Friction on the shoe opposes that; the plank gets the partner of that friction, and nothing else pushes it sideways.",
           "reveals": "METHOD"
         }
       ],
       "transfer": {
         "dimension": "representation_translation",
-        "statement": "The learner must translate the same relative-slip rule from a belt-box contact to a shoe-ground interaction without using the object's ground-frame motion as the sign rule.",
+        "statement": "The learner must translate the slip-tendency rule from a carried body to the surface it stands on, following the friction partner to predict the plank's motion.",
         "builds_on": [
           "Q-PHY-NLM-2A-COV-04"
         ],
-        "invariant": "Friction still opposes the slip tendency at the contact, whatever the object's overall velocity; only the contact changes, from a belt and a box to a shoe and the ground."
+        "invariant": "Friction still opposes the slip tendency at the contact, whatever each body's overall velocity. What changes is that the second surface is free to move, so its partner force now matters.",
+        "protected_move_ref": "R-NLM-2B-PLANK-PARTNER",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): friction on a book on a speeding tray; only the book's force is asked, never the tray's.",
+            "MIC-PHY-NLM-FRICTION misconceptions (Core1A diagnose/repair): a belt speeding a box and a platform at constant velocity, both about the carried body only.",
+            "MIC-PHY-NLM-FRICTION boundary test (Core1B): zero friction with no slip tendency, and no force on the other surface considered.",
+            "Q-PHY-NLM-2A-COV-04 (Core2A, parent): friction on a crate on a braking truck, whose motion is imposed rather than caused by the friction.",
+            "Q-PHY-NLM-2A-FRICTION-ZERO-08 (Core2A): a crate with no tangential need, so friction is zero and nothing moves."
+          ],
+          "why_new": "Earlier friction-direction items ask only about the body being carried (book, box, crate), and the other surface's motion is imposed. Here the shoe's friction is found from the slip tendency, and then its partner drives the plank backward across frictionless ice. The learner must carry the direction across the contact to the second surface. No earlier item shows friction moving the surface itself."
+        }
       },
       "repair_ref": "NLM5-2",
       "hint_ladder": [
@@ -7209,6 +7717,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the person and the plank as separate outlines, with the friction on the shoe on one and its partner on the other.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -7222,60 +7736,118 @@
           "VIS-NLM-FRICTION-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You said the plank stays still, or moves forward with the walker: the plank is pushed only by the partner of the shoe's friction, 30 N backward, so it slides backward at 1.5 m/s².",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: friction at a contact acts on both surfaces in opposite directions, and each surface moves under its own share."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_FRICTION"
+        "agent_a:packet": "NLM_FRICTION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-ZERO-03",
-      "stem": "A rough horizontal platform and a crate on it are already moving together at constant velocity. At the instant considered there is no other horizontal force on the crate. Must a nonzero friction force act on the crate merely because the surfaces are rough?",
+      "stem": "A 50 kg crate stands on the rough floor of a lift (μ_s = 0.4) while the lift accelerates upward at 2 m/s². Take g = 10 m/s². Find the normal force on the crate and the friction force on it.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The crate has no horizontal acceleration.",
-        "The crate and platform have no relative sliding or tendency to separate in speed at the instant considered."
+        "The lift floor is horizontal.",
+        "Nothing pushes or pulls the crate sideways.",
+        "The crate moves with the lift."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "No. The friction force can be zero.",
+        "summary": "N = 50 × (10 + 2) = 600 N. The friction force is zero: the crate's acceleration is vertical, so nothing needs a force along the floor, even though the floor is rough and μ_s N = 240 N.",
         "reasoning": [
-          "If friction vanished at this instant, the crate would continue with its current velocity because no other horizontal force changes it.",
-          "The platform is also moving at that same constant velocity, so no relative slip tendency is created.",
-          "Therefore no tangential contact force is required and static friction may be zero."
+          "Vertical: N − 500 = 50 × 2, so N = 600 N.",
+          "Friction acts along the floor. The crate has no horizontal acceleration and no other horizontal force, so there is no slip tendency.",
+          "Static friction supplies only what is needed, which here is nothing; 240 N is only its ceiling."
         ],
-        "check": "Roughness sets the range of friction the contact can provide; it does not force the contact to use a nonzero value.",
+        "check": "Horizontal Newton II: f = m a_x = 50 × 0 = 0. If the lift instead accelerated sideways, a friction force would be needed, and it would be capped at 0.4 × N.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Tests the contact state by imagining friction removed.",
-            "evidence_of": "Recognizes that friction is responsive rather than automatic."
+            "criterion": "Finds N = 600 N from the vertical equation with the lift's acceleration.",
+            "evidence_of": "Separates the normal direction from the tangential one."
           },
           {
-            "criterion": "Concludes that no relative slip tendency appears in the stated constant-velocity state.",
-            "evidence_of": "Uses the correct contact-level criterion."
+            "criterion": "Sets friction to zero because no horizontal acceleration or force needs it.",
+            "evidence_of": "Selects friction from the tangential need, not from roughness or a larger N."
           },
           {
-            "criterion": "Allows f=0 despite a rough contact.",
-            "evidence_of": "Rejects the 'rough means nonzero friction' shortcut."
+            "criterion": "Treats μ_s N = 240 N as a ceiling that is not reached.",
+            "evidence_of": "Does not turn a coefficient into a force."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-LIFT-FORCES",
+            "kind": "REPRESENT",
+            "action": "List the forces: 500 N weight down, N up, and friction along the floor if any is needed.",
+            "why_valid": "Friction is a tangential contact force; the normal force is perpendicular to the floor.",
+            "inputs": [
+              "m = 50 kg",
+              "a = 2 m/s² up"
+            ],
+            "output": "Force list with friction unknown."
+          },
+          {
+            "id": "R-NLM-2B-LIFT-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Vertical: N − 500 = 50 × 2, so N = 600 N.",
+            "why_valid": "Newton II along the lift's acceleration.",
+            "inputs": [
+              "a = 2 m/s²"
+            ],
+            "output": "N = 600 N."
+          },
+          {
+            "id": "R-NLM-2B-LIFT-FRICTION",
+            "kind": "DECIDE",
+            "action": "Set friction to zero: the acceleration has no component along the floor and nothing else acts sideways, so there is no slip tendency, even though N rose to 600 N and the floor is rough.",
+            "why_valid": "Static friction takes whatever value the tangential motion needs, up to its limit; here that need is zero.",
+            "inputs": [
+              "a_x = 0",
+              "no sideways force"
+            ],
+            "output": "f = 0."
+          },
+          {
+            "id": "R-NLM-2B-LIFT-CHECK",
+            "kind": "VERIFY",
+            "action": "Horizontal Newton II: f = 50 × 0 = 0.",
+            "why_valid": "An independent component equation confirms the decision.",
+            "inputs": [
+              "a_x = 0"
+            ],
+            "output": "f = 0."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-LIFT-FRICTION",
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-NLM-FRICTION",
       "secondary_capability_refs": [],
@@ -7298,17 +7870,32 @@
       ],
       "hints": [
         {
-          "text": "If the friction force vanished for an instant, would the crate begin sliding relative to the platform under the stated conditions?",
+          "text": "Which way does the crate accelerate, and along which direction does friction act at a floor contact?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "Does anything try to make the crate slide across the floor?",
           "reveals": "CONCEPT"
         }
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must decide not to invoke a friction force despite rough moving contact; the contact model is selected from slip tendency, not from the presence of motion or a coefficient.",
+        "statement": "The learner must decide not to include a friction force on an accelerating, harder-pressed rough contact, because the acceleration has no tangential component.",
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-ZERO-08"
         ],
-        "invariant": "Friction still appears only where the contact has a slip tendency to oppose; what changes is that both surfaces are moving together."
+        "invariant": "Friction still appears only where the contact has a slip tendency to oppose. What changes is that the contact now accelerates and N is larger, and neither creates a tangential need.",
+        "protected_move_ref": "R-NLM-2B-LIFT-FRICTION",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): zero friction in a steady level carry, where N = mg and nothing accelerates.",
+            "MIC-PHY-NLM-FRICTION misconceptions (Core1A diagnose/repair): a crate and platform at constant velocity, with nothing accelerating and N unchanged, unlike the lift.",
+            "MIC-PHY-NLM-FRICTION boundary test (Core1B): no slip tendency means friction can be zero, stated with no acceleration at all.",
+            "Q-PHY-NLM-2A-COV-04 (Core2A): the truck accelerates along the contact, so friction is needed; the lift accelerates across it.",
+            "Q-PHY-NLM-2A-FRICTION-ZERO-08 (Core2A, parent): a crate at rest with no horizontal force, where the stem itself says there is no slip tendency."
+          ],
+          "why_new": "Every earlier zero-friction case has nothing accelerating and N = mg, and the stem already says there is no slip tendency. Here the contact is accelerating and pressed harder (N = 600 N, μ_s N = 240 N), which invites a nonzero friction. The learner must decide from the direction of the acceleration that no tangential force is needed. No earlier item shows zero friction on an accelerating contact."
+        }
       },
       "repair_ref": "NLM5-4",
       "hint_ladder": [
@@ -7316,6 +7903,18 @@
           "order": 1,
           "purpose": "ORIENT",
           "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the crate with its weight and the floor's push, and a dashed horizontal line where friction would act; mark the lift's acceleration arrow.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
@@ -7328,15 +7927,15 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote f = μ_s N = 240 N (or 200 N from μ_s mg): that is only the limit. Nothing asks the crate to slide sideways, so the friction is zero.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: friction is set by the tangential need at the contact, not by roughness, by motion or by the size of N."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -7344,47 +7943,115 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_FRICTION",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-      "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest.",
+      "stem": "A block of mass m is pushed on a rough horizontal floor by a force P directed at an angle theta below the horizontal. The coefficient of static friction is mu_s. Derive the largest P for which the block can remain at rest. Then show that for steep enough push angles no P at all can start the block, and find that angle for mu_s = 0.5.",
       "subparts": [],
       "options": [],
       "conditions": [
         "0 < theta < 90 degrees.",
         "The block remains in contact with the floor.",
-        "Assume cos(theta)-mu_s sin(theta) > 0."
+        "Do not assume the sign of cos(theta) − mu_s sin(theta) in advance."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "At impending slip, N=mg+P sin(theta) and P cos(theta)=mu_s N, so P_max = mu_s m g / (cos(theta)-mu_s sin(theta)).",
+        "summary": "At rest N = mg + P sin(theta) and the friction needed is P cos(theta), so rest requires P[cos(theta) − mu_s sin(theta)] <= mu_s m g. If cos(theta) > mu_s sin(theta), P_max = mu_s m g/(cos(theta) − mu_s sin(theta)). If tan(theta) >= 1/mu_s, the left side is never positive, so no push can start the block. For mu_s = 0.5 that happens for tan(theta) >= 2, theta >= 63.4°.",
         "reasoning": [
-          "The downward component of P increases the normal reaction, so the vertical balance gives N=mg+P sin(theta).",
-          "For a static state, friction must oppose the horizontal push; the maximum available value is reached only at impending slip.",
-          "At the threshold, P cos(theta)=mu_s[mg+P sin(theta)].",
-          "Rearranging gives P[cos(theta)-mu_s sin(theta)]=mu_s mg and hence the stated P_max."
+          "Vertical balance: N = mg + P sin(theta).",
+          "Rest needs friction f = P cos(theta).",
+          "Rest is possible while P cos(theta) <= mu_s(mg + P sin(theta)), i.e. P[cos(theta) − mu_s sin(theta)] <= mu_s mg.",
+          "If the bracket is positive, divide: P_max = mu_s mg/(cos(theta) − mu_s sin(theta)).",
+          "If the bracket is zero or negative (tan(theta) >= 1/mu_s), the inequality holds for every P, so the block never starts; for mu_s = 0.5 that is theta >= 63.4°."
         ],
-        "check": "Setting theta=0 reduces the result to P_max=mu_s mg, the ordinary horizontal-push threshold.",
+        "check": "theta = 0 gives P_max = mu_s mg, the level-push limit. As theta approaches arctan(1/mu_s), P_max grows without bound, which joins the two cases.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Computes N from the vertical force balance including the downward component of P.",
-            "evidence_of": "Does not assume N=mg."
+            "criterion": "Computes N from the vertical balance including P sin(theta).",
+            "evidence_of": "The limit depends on the push."
           },
           {
-            "criterion": "Uses static-friction equality only at impending slip.",
-            "evidence_of": "Distinguishes a threshold condition from an unconditional friction law."
+            "criterion": "Checks the sign of cos(theta) − mu_s sin(theta) before dividing.",
+            "evidence_of": "Does not divide by a quantity that can vanish or turn negative."
           },
           {
-            "criterion": "Derives the threshold expression with the force-angle term retained in both horizontal and vertical components.",
-            "evidence_of": "Carries the coupled normal-force/friction effect through the algebra."
+            "criterion": "Identifies tan(theta) >= 1/mu_s (63.4° for mu_s = 0.5) as the range where no P can start the block.",
+            "evidence_of": "Reads the inequality, not only the formula."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-ANGLED-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Vertical balance: N = mg + P sin(theta).",
+            "why_valid": "The downward part of the push presses the block into the floor.",
+            "inputs": [
+              "P below horizontal"
+            ],
+            "output": "N = mg + P sin(theta)."
+          },
+          {
+            "id": "R-NLM-2B-ANGLED-DEMAND",
+            "kind": "CONNECT",
+            "action": "At rest, friction must equal the horizontal part: P cos(theta).",
+            "why_valid": "Horizontal balance at rest.",
+            "inputs": [
+              "P cos(theta)"
+            ],
+            "output": "Need P cos(theta)."
+          },
+          {
+            "id": "R-NLM-2B-ANGLED-LIMIT",
+            "kind": "TRANSFORM",
+            "action": "Write the rest condition P cos(theta) <= mu_s(mg + P sin(theta)) and collect P: P[cos(theta) − mu_s sin(theta)] <= mu_s mg.",
+            "why_valid": "Static friction can supply the need up to mu_s N.",
+            "inputs": [
+              "need",
+              "limit"
+            ],
+            "output": "One inequality in P."
+          },
+          {
+            "id": "R-NLM-2B-ANGLED-SIGN",
+            "kind": "DECIDE",
+            "action": "Check the sign of cos(theta) − mu_s sin(theta) before dividing: if positive, P_max exists; if zero or negative, the inequality holds for all P and the block cannot be started, which needs tan(theta) >= 1/mu_s (63.4° for mu_s = 0.5).",
+            "why_valid": "Dividing an inequality by a quantity that can be zero or negative changes or destroys it.",
+            "inputs": [
+              "bracket sign",
+              "mu_s = 0.5"
+            ],
+            "output": "Threshold for tan(theta) < 1/mu_s; none beyond."
+          },
+          {
+            "id": "R-NLM-2B-ANGLED-CHECK",
+            "kind": "VERIFY",
+            "action": "Set theta = 0 to recover P_max = mu_s mg.",
+            "why_valid": "A level push must give the familiar limit.",
+            "inputs": [
+              "theta = 0"
+            ],
+            "output": "mu_s mg."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-ANGLED-SIGN",
+        "difficult_move": 3
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -7423,7 +8090,21 @@
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-STATIC-09"
         ],
-        "invariant": "Static friction is still at most μ_s N and equals it only at impending slip; what changes is that the push also presses the block into the floor, so N grows with P."
+        "invariant": "Static friction is still at most μ_s N and equals it only at impending slip. What changes is that the push also presses the block into the floor, so N grows with P, and the threshold can vanish.",
+        "protected_move_ref": "R-NLM-2B-ANGLED-SIGN",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): a fixed limit μ_s mg against two horizontal pulls; the limit never grows with the push.",
+            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): a pressing force raises N, but the consequence that the threshold can vanish is not drawn.",
+            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): zero need against a positive limit, a single state with no threshold in P.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a threshold μ_s(M + m)g that always exists.",
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A, parent): actual and limiting friction for one horizontal pull with N = mg.",
+            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): an 18 N pull on a block already sliding, with no threshold asked.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): a threshold in the slope angle, tan θ ≤ μ_s, with no applied force.",
+            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): a sliding block's acceleration on a slope, with nothing to threshold."
+          ],
+          "why_new": "Every earlier threshold is a finite value that always exists. Here the push raises N as it raises the need. The learner must check the sign of cos θ − μ_s sin θ before dividing, and so discovers that at steep angles (tan θ ≥ 1/μ_s, about 63° for μ_s = 0.5) no push can start the block. No earlier item shows a threshold that ceases to exist."
+        }
       },
       "repair_ref": "NLM8-1",
       "hint_ladder": [
@@ -7435,6 +8116,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the block with P pointing down at theta, resolve it, and write N and the friction need beside the diagram before any inequality.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -7449,15 +8136,15 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You divided by cos θ − μ_s sin θ without checking its sign, and reported a negative or infinite P_max at steep angles. When tan θ ≥ 1/μ_s the push presses the block down faster than it pushes it along, and no P can start it.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: when one force changes both the need and N, the threshold can disappear; the sign of the combined coefficient decides."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -7465,46 +8152,117 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_FRICTION",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-TOP-BLOCK-05",
-      "stem": "A block of mass m rests on a block of mass M on a smooth floor. A horizontal force F is applied to the upper block m. The coefficient of static friction between the blocks is mu_s. Derive the largest F for which the blocks move together without slipping.",
+      "stem": "A 2 kg block rests on a 4 kg block on a smooth floor. A horizontal force F acts on the upper block. Between the blocks μ_s = 0.3 and μ_k = 0.2; take g = 10 m/s². Find the largest F for which the blocks move together, and then the acceleration of each block when F = 12 N.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The lower block has no other horizontal contact force from the floor.",
-        "The contact between the two blocks remains horizontal."
+        "The floor under the lower block is smooth.",
+        "Friction acts only between the blocks.",
+        "F acts on the upper block only."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "If the blocks move together, a=F/(m+M). The lower block needs friction f_required=Ma. With N=mg at the interface, no slip requires MF/(m+M) <= mu_s m g, so F_max = mu_s m g (m+M)/M.",
+        "summary": "Moving together, a = F/6 and the lower block needs friction 4a = 2F/3, which may not exceed 0.3 × 20 = 6 N, so F_max = 9 N. At F = 12 N the blocks slip: kinetic friction 0.2 × 20 = 4 N acts backward on the upper block and forward on the lower one, so a_upper = (12 − 4)/2 = 4 m/s² and a_lower = 4/4 = 1 m/s².",
         "reasoning": [
-          "Under the no-slip assumption, treat both blocks as one system to obtain the common acceleration a=F/(m+M).",
-          "Now isolate the lower block M. Its only horizontal force is the friction from the upper block, so f_required=Ma=MF/(m+M).",
-          "The interface normal is N=mg because the upper block has no vertical acceleration or other vertical force.",
-          "Static contact is feasible only while f_required <= mu_s N; equality gives the threshold F_max."
+          "No slip: a = F/(2 + 4). The lower block's only horizontal force is friction, so it needs f = 4a = 2F/3.",
+          "Limit: 2F/3 ≤ μ_s × 2 × 10 = 6 N, so F ≤ 9 N.",
+          "At 12 N the common acceleration would need 8 N of friction, more than 6 N, so the blocks slip and have separate accelerations.",
+          "Kinetic friction 4 N: upper block 12 − 4 = 2a_u, a_u = 4 m/s²; lower block 4 = 4a_l, a_l = 1 m/s²."
         ],
-        "check": "The friction needed to accelerate the lower block is the quantity tested against the static limit; using f=mu_s N for every smaller F would erase the dependence on F.",
+        "check": "a_u > a_l, so the upper block does slide forward over the lower one, which matches the friction directions used. Total: 12 N = 2 × 4 + 4 × 1.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Uses one common acceleration only under the provisional no-slip constraint.",
-            "evidence_of": "Treats shared acceleration as a contact-state consequence rather than an automatic fact."
+            "criterion": "Finds F_max = 9 N from the friction the lower block needs.",
+            "evidence_of": "Identifies which block depends on friction."
           },
           {
-            "criterion": "Isolates the lower block to identify the required friction as Ma.",
-            "evidence_of": "Assigns friction to the correct body and does not cancel the internal force on an individual-body FBD."
+            "criterion": "Drops the common acceleration above 9 N and writes one equation per block with μ_k N.",
+            "evidence_of": "Changes model when the no-slip test fails."
           },
           {
-            "criterion": "Compares the required friction with mu_s mg and solves the resulting threshold.",
-            "evidence_of": "Tests static feasibility rather than assuming limiting friction from the start."
+            "criterion": "Gets 4 m/s² and 1 m/s² and checks that the relative slip matches the friction directions.",
+            "evidence_of": "Keeps the kinetic pair consistent."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-TOP-NOSLIP",
+            "kind": "REPRESENT",
+            "action": "Assume the blocks move together: a = F/6, and the lower block's only horizontal force is friction, f = 4a.",
+            "why_valid": "F acts on the upper block, so the lower block is carried by friction alone.",
+            "inputs": [
+              "m = 2 kg",
+              "M = 4 kg"
+            ],
+            "output": "Need f = 2F/3."
+          },
+          {
+            "id": "R-NLM-2B-TOP-LIMIT",
+            "kind": "TRANSFORM",
+            "action": "Compare with the limit μ_s × 20 = 6 N: F_max = 9 N.",
+            "why_valid": "Static friction can supply at most μ_s N.",
+            "inputs": [
+              "μ_s = 0.3",
+              "N = 20 N"
+            ],
+            "output": "F_max = 9 N."
+          },
+          {
+            "id": "R-NLM-2B-TOP-SPLIT",
+            "kind": "DECIDE",
+            "action": "At 12 N > 9 N, drop the common acceleration: give each block its own equation, with kinetic friction 4 N backward on the upper block and 4 N forward on the lower block.",
+            "why_valid": "Past the limit the no-slip model is impossible, and the kinetic pair opposes the relative slip on each surface.",
+            "inputs": [
+              "F = 12 N",
+              "F_max = 9 N",
+              "μ_k = 0.2"
+            ],
+            "output": "Two equations, two accelerations."
+          },
+          {
+            "id": "R-NLM-2B-TOP-ACCEL",
+            "kind": "TRANSFORM",
+            "action": "Upper: 12 − 4 = 2a_u, so 4 m/s². Lower: 4 = 4a_l, so 1 m/s².",
+            "why_valid": "Newton II for each block separately.",
+            "inputs": [
+              "kinetic friction 4 N"
+            ],
+            "output": "4 m/s² and 1 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-TOP-CHECK",
+            "kind": "VERIFY",
+            "action": "Check a_u > a_l, so the assumed slip direction is right, and 12 = 2 × 4 + 4 × 1.",
+            "why_valid": "The friction directions must match the relative motion they oppose.",
+            "inputs": [
+              "a_u",
+              "a_l"
+            ],
+            "output": "Upper block outruns the lower one, matching the friction directions."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-TOP-SPLIT",
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -7530,21 +8288,35 @@
       ],
       "hints": [
         {
-          "text": "Assume no slip provisionally. Which acceleration would the two-block system then have?",
+          "text": "If the blocks move together, which block needs friction to keep up, and how large can that friction be?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "After finding the common acceleration, isolate the lower block: what horizontal force must give that block its acceleration?",
+          "text": "Once F passes the limit, write a separate Newton-II equation for each block, with μ_k N at the interface opposing the relative slip on each.",
           "reveals": "METHOD"
         }
       ],
       "transfer": {
         "dimension": "reasoning_steps",
-        "statement": "The learner must rebuild the no-slip force account after the applied force moves to the other body, rather than copying the friction equation from the earlier stacked-block threshold item.",
+        "statement": "The learner must find the no-slip limit when the force acts on the upper block, then switch to separate accelerations with a kinetic friction pair once that limit is passed.",
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-KINETIC-10"
         ],
-        "invariant": "The whole system still sets the shared acceleration, and the friction one block needs is still tested against μ_s N; what changes is which block needs the friction."
+        "invariant": "The whole system still sets the shared acceleration while there is no slip, and the friction one block needs is still tested against μ_s N. What changes is that past the limit each block gets its own equation.",
+        "protected_move_ref": "R-NLM-2B-TOP-SPLIT",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): one box on a fixed floor; once it slides the floor does not move, so there is no second acceleration.",
+            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): state before model, on single-body contacts, with no two-body slip.",
+            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): zero required friction; the stacked pair is never tested.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): the no-slip limit with F on the lower block, stopping at the limit.",
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): one block held at rest below its limit.",
+            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A, parent): kinetic friction on one block sliding over a fixed floor.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): one block on a slope whose surface never moves.",
+            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): one block sliding on a fixed slope."
+          ],
+          "why_new": "Earlier items stop at the no-slip limit (the Core2A stacked blocks) or have kinetic friction against a fixed surface. Here F passes the limit. The learner must abandon the common acceleration and give each block its own equation, with the kinetic pair acting backward on one block and forward on the other. No earlier item shows two bodies sliding over each other."
+        }
       },
       "repair_ref": "NLM8-2",
       "hint_ladder": [
@@ -7556,6 +8328,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the two blocks apart, with the friction on the upper block and its partner on the lower block.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -7569,10 +8347,10 @@
           "VIS-NLM-FRICTION-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You kept one acceleration, 12/6 = 2 m/s², at F = 12 N: that needs 8 N of friction on the lower block, above the 6 N limit, so the blocks slip and move at 4 m/s² and 1 m/s².",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: past the no-slip limit the blocks have separate accelerations, linked only by the kinetic friction pair at their contact."
       }
     },
     {
@@ -7775,54 +8553,122 @@
     },
     {
       "id": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-CONTACT-LOSS-06",
-      "stem": "Two blocks A and B are initially touching on a smooth horizontal floor, with A to the left of B. A horizontal force F is suddenly applied to A toward the left, away from B. A proposed solution treats A+B as one connected system and writes a=F/(m_A+m_B). Decide whether that model is valid immediately after the force is applied. If it is not, state the two accelerations.",
+      "stem": "Blocks A (2 kg) and B (3 kg) touch on a smooth floor, A behind B. A 10 N force pushes A forward, into B, and at the same time a force F pulls B forward. For F = 10 N and for F = 30 N, decide whether the blocks stay in contact, and find the accelerations.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "There is no glue, string, or other connector.",
-        "The contact is an ordinary normal interaction that cannot pull.",
-        "Take rightward as positive."
+        "The floor is smooth.",
+        "The blocks are not glued: the contact can push but not pull.",
+        "Forward is positive."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The common-acceleration model is invalid because the force makes A separate from B and an ordinary normal contact cannot pull them together. Immediately after contact is lost, a_A=-F/m_A and a_B=0.",
+        "summary": "F = 10 N: assuming contact, a = 20/5 = 4 m/s² and A needs N = 10 − 2 × 4 = 2 N from B, which is possible, so both move at 4 m/s². F = 30 N: assuming contact, a = 8 m/s² and N = 10 − 16 = −6 N, a pull that a contact cannot give, so they separate: a_A = 10/2 = 5 m/s² and a_B = 30/3 = 10 m/s².",
         "reasoning": [
-          "The earlier common-acceleration rule applies only while an active condition fixes the blocks' separation.",
-          "Here F drives A away from B, so maintaining contact would require a tensile contact force on B, which an ordinary normal interaction cannot supply.",
-          "Once the contact force becomes zero, B has no horizontal force and therefore zero horizontal acceleration.",
-          "A has the applied leftward force F, so with rightward positive its acceleration is -F/m_A."
+          "Assume contact: a = (10 + F)/5. Isolate A: 10 − N = 2a, so N = 10 − 2a.",
+          "F = 10 N: a = 4 m/s², N = 2 N ≥ 0, so contact holds.",
+          "F = 30 N: a = 8 m/s², N = −6 N < 0, so the assumption fails.",
+          "Separate: a_A = 10/2 = 5 m/s², a_B = 30/3 = 10 m/s²."
         ],
-        "check": "The rejected value F/(m_A+m_B) would require B to accelerate left even though no horizontal interaction remains on B.",
+        "check": "With F = 30 N, B (10 m/s²) runs ahead of A (5 m/s²), so they do move apart, as the negative N predicted. The switch-over is N = 0, at a = 5 m/s², F = 15 N.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Rejects common acceleration because the stated contact cannot enforce fixed separation under the applied force.",
-            "evidence_of": "Treats the constraint as conditional rather than automatic."
+            "criterion": "Assumes contact provisionally and solves for the contact force from A's equation.",
+            "evidence_of": "Tests the model instead of assuming it."
           },
           {
-            "criterion": "Sets the post-separation contact force to zero.",
-            "evidence_of": "Recognizes that an ordinary normal interaction cannot pull."
+            "criterion": "Rejects contact when N comes out negative, because a contact can only push.",
+            "evidence_of": "Uses the sign of N as the validity test."
           },
           {
-            "criterion": "Obtains a_A=-F/m_A and a_B=0 in the declared sign convention.",
-            "evidence_of": "Rebuilds the individual-body dynamics after the constraint is lost."
+            "criterion": "Gives separate accelerations, 5 m/s² and 10 m/s², and checks that B runs ahead.",
+            "evidence_of": "Confirms the new model is consistent."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-CONTACT-ASSUME",
+            "kind": "REPRESENT",
+            "action": "Assume the blocks move together: a = (10 + F)/5.",
+            "why_valid": "Under contact the two blocks share one acceleration.",
+            "inputs": [
+              "m_A = 2 kg",
+              "m_B = 3 kg"
+            ],
+            "output": "Provisional a."
+          },
+          {
+            "id": "R-NLM-2B-CONTACT-NORMAL",
+            "kind": "TRANSFORM",
+            "action": "Isolate A: 10 − N = 2a, so N = 10 − 2a: 2 N for F = 10 N, −6 N for F = 30 N.",
+            "why_valid": "N is the push from B on A, pointing backward on A.",
+            "inputs": [
+              "A's forces"
+            ],
+            "output": "N for each case."
+          },
+          {
+            "id": "R-NLM-2B-CONTACT-SIGN",
+            "kind": "DECIDE",
+            "action": "Keep the contact model only where N ≥ 0: accept it for F = 10 N, reject it for F = 30 N, where it would need B to pull A.",
+            "why_valid": "An unglued contact can push but cannot pull.",
+            "inputs": [
+              "N = 2 N",
+              "N = −6 N"
+            ],
+            "output": "Contact at 10 N; separation at 30 N."
+          },
+          {
+            "id": "R-NLM-2B-CONTACT-SEPARATE",
+            "kind": "TRANSFORM",
+            "action": "Separated: a_A = 10/2 = 5 m/s², a_B = 30/3 = 10 m/s².",
+            "why_valid": "Each block now has only its own applied force.",
+            "inputs": [
+              "F = 30 N"
+            ],
+            "output": "5 m/s² and 10 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-CONTACT-CHECK",
+            "kind": "VERIFY",
+            "action": "Check that B runs ahead of A (10 > 5), so they really do separate.",
+            "why_valid": "The new model must not predict overlap.",
+            "inputs": [
+              "a_A",
+              "a_B"
+            ],
+            "output": "B pulls ahead of A, so separation is self-consistent."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-CONTACT-SIGN",
+        "difficult_move": 2
       },
       "primary_capability_ref": "CAP-NLM-CONNECTED-COMMON-ACCEL",
       "secondary_capability_refs": [
@@ -7848,17 +8694,33 @@
       ],
       "hints": [
         {
-          "text": "Before using one acceleration, ask what interaction would have to keep the separation fixed after A is pulled away from B.",
+          "text": "What can a contact between two unglued blocks do, and what can it never do?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "If you assume the blocks move together, what would the contact force on A have to be, and is that possible?",
           "reveals": "CONCEPT"
         }
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must decide that the common-acceleration connected-system model has ceased to apply, rather than being told that contact is maintained.",
+        "statement": "The learner must decide whether the common-acceleration model holds by computing the contact force it would need, instead of being told whether contact is kept.",
         "builds_on": [
           "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11"
         ],
-        "invariant": "A common acceleration still needs an active constraint, and a contact force still can only push; what changes is that the constraint has actually been lost."
+        "invariant": "A common acceleration still needs an active constraint, and a contact force still can only push. What changes is that whether the constraint holds must be computed, not read off.",
+        "protected_move_ref": "R-NLM-2B-CONTACT-SIGN",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-CONNECTED-BODIES-01 (Core1A worked anchor): contact is stated to hold and N = 11 N comes out positive; nothing tests the assumption.",
+            "Q-PHY-NLM-1A-SYSTEM-CHOICE-01 (Core1A worked anchor): buckets joined by a rope, which can pull, so no sign test arises.",
+            "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL misconceptions (Core1A diagnose/repair): once contact is lost equal acceleration no longer follows; the loss is given, not detected.",
+            "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL boundary test (Core1B): contact is said to be lost, and the answer is only that a_A = a_B fails.",
+            "Q-PHY-NLM-2A-CONNECTED-02 (Core2A): one push into the pair, so the contact force is positive by construction.",
+            "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11 (Core2A, parent): a force pulling A straight away from B, where separation is visible without a calculation."
+          ],
+          "why_new": "Earlier items either state that contact holds or make the separation obvious (A pulled away from B). Here both forces point forward, so it is not visible whether the blocks separate. The learner must assume contact, compute the contact force and reject the assumption when it comes out negative (−6 N at F = 30 N). No earlier item tests a contact by the sign of its force."
+        }
       },
       "repair_ref": "NLM9-1",
       "hint_ladder": [
@@ -7866,6 +8728,18 @@
           "order": 1,
           "purpose": "ORIENT",
           "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw A and B apart, each with its applied force and the contact force from the other, labelled N with its direction fixed as a push.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
@@ -7877,27 +8751,38 @@
           "VIS-NLM-FBD-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote a = 40/5 = 8 m/s² for both blocks at F = 30 N: that needs the contact to pull A forward with 6 N, which it cannot do, so B pulls away.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: a common acceleration through a contact must be tested by the sign of the contact force it needs."
       }
     },
     {
       "id": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_CONNECTED_STRING"
+        "agent_a:packet": "NLM_CONNECTED_STRING",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-CONSTRAINT-VS-TENSION-07",
-      "stem": "Two masses remain attached to one taut inextensible string that does not slip on a fixed pulley. The pulley is now stated to have appreciable rotational inertia, and no rotational-dynamics relation is supplied. A student claims that both T_A=T_B and a_A+a_B=0 must either survive together or fail together. Decide which statement can still be obtained from the bounded material, and which statement is no longer licensed.",
+      "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string that does not slip on a fixed pulley with appreciable rotational inertia; no rotational law is supplied. y_A and y_B are measured downward from the pulley, and g = 10 m/s². A is measured to accelerate downward at 4 m/s². Decide which of a_A + a_B = 0 and T_A = T_B can still be used, find a_B, and find the tension in each segment.",
       "subparts": [],
       "options": [],
       "conditions": [
@@ -7908,31 +8793,85 @@
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The kinematic relation a_A+a_B=0 still follows from the fixed total string length. Equal tension T_A=T_B is no longer guaranteed by the taught ideal redirection model once appreciable pulley rotational inertia is introduced. A quantitative tension difference is outside this packet.",
+        "summary": "a_A+a_B=0 still holds, from the fixed string length, so a_B = −4 m/s² (4 m/s² upward). T_A=T_B is no longer guaranteed with a heavy pulley, so each segment gets its own tension from its own mass: T_A = 3(10 − 4) = 18 N and T_B = 1(10 + 4) = 14 N. An ideal pulley would have given a = 5 m/s² and T = 15 N on both sides.",
         "reasoning": [
-          "The signed acceleration relation is derived from the inextensible string's fixed length and the two changing straight segments.",
-          "That geometric argument does not use equality of tension magnitudes.",
-          "The one-common-T rule was licensed by the ideal massless/frictionless redirection model.",
-          "Introducing appreciable pulley rotational inertia breaks that force-transmission idealization, so the packet must refuse equal tension without supplying a replacement dynamics model."
+          "The string's length is fixed, so y_A + y_B = constant and a_B = −a_A = −4 m/s².",
+          "Equal tension relied on an ideal (massless, frictionless) pulley; a pulley with rotational inertia removes that licence.",
+          "A: 30 − T_A = 3 × 4, so T_A = 18 N. B: T_B − 10 = 1 × 4, so T_B = 14 N.",
+          "The 4 N difference is what turns the heavy pulley; the ideal-pulley result (5 m/s², 15 N) does not apply."
         ],
-        "check": "If the pulley is restored to the massless ideal model, both claims are licensed again, but for different reasons: geometry for the acceleration relation and force transmission for equal tension.",
+        "check": "Each body's equation uses only its own tension, so the two values are independent. If the pulley were ideal, T_A = T_B would force a = 5 m/s², not the measured 4 m/s².",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Retains a_A+a_B=0 from the fixed-length geometry.",
-            "evidence_of": "Can identify the kinematic origin of the string constraint independently of force transmission."
+            "criterion": "Keeps a_A + a_B = 0 from the fixed length and gives a_B = −4 m/s².",
+            "evidence_of": "Knows what the kinematic constraint rests on."
           },
           {
-            "criterion": "Refuses to assert T_A=T_B after the ideal redirection assumption is broken.",
-            "evidence_of": "Treats equal tension as model-conditional."
+            "criterion": "Refuses one T and gives each segment its own tension.",
+            "evidence_of": "Knows what equal tension rests on."
           },
           {
-            "criterion": "Does not manufacture a numerical or symbolic nonideal-pulley tension relation.",
-            "evidence_of": "Respects the stated boundary of the available model."
+            "criterion": "Computes T_A = 18 N and T_B = 14 N from each body's equation.",
+            "evidence_of": "Replaces the broken assumption with separate unknowns."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-HEAVY-PULLEY-KINEMATICS",
+            "kind": "CONNECT",
+            "action": "Keep y_A + y_B = constant, so a_B = −a_A = −4 m/s².",
+            "why_valid": "The length relation needs only a taut, inextensible string over a fixed pulley.",
+            "inputs": [
+              "a_A = +4 m/s²"
+            ],
+            "output": "a_B = −4 m/s²."
+          },
+          {
+            "id": "R-NLM-2B-HEAVY-PULLEY-MODEL",
+            "kind": "DECIDE",
+            "action": "Do not write one T: with a heavy pulley the two tensions may differ, so give each segment its own tension and find each from its own body.",
+            "why_valid": "Equal tension on both sides follows only from an ideal pulley; the length relation does not depend on it.",
+            "inputs": [
+              "pulley with rotational inertia"
+            ],
+            "output": "Unknowns T_A and T_B."
+          },
+          {
+            "id": "R-NLM-2B-HEAVY-PULLEY-TA",
+            "kind": "TRANSFORM",
+            "action": "A (down positive): 30 − T_A = 3 × 4, so T_A = 18 N.",
+            "why_valid": "Newton II for A alone.",
+            "inputs": [
+              "m_A = 3 kg"
+            ],
+            "output": "T_A = 18 N."
+          },
+          {
+            "id": "R-NLM-2B-HEAVY-PULLEY-TB",
+            "kind": "TRANSFORM",
+            "action": "B (up positive): T_B − 10 = 1 × 4, so T_B = 14 N.",
+            "why_valid": "Newton II for B alone.",
+            "inputs": [
+              "m_B = 1 kg"
+            ],
+            "output": "T_B = 14 N."
+          },
+          {
+            "id": "R-NLM-2B-HEAVY-PULLEY-CHECK",
+            "kind": "VERIFY",
+            "action": "Compare with the ideal pulley: a = 5 m/s², T = 15 N. The measured 4 m/s² and the unequal tensions are consistent with a pulley that takes 4 N of net pull to turn.",
+            "why_valid": "The ideal result is the limit of a light pulley.",
+            "inputs": [
+              "ideal Atwood"
+            ],
+            "output": "Measured motion fits unequal tensions, not the ideal 15 N."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-HEAVY-PULLEY-MODEL",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-SINGLE-STRING-CONSTRAINT",
       "secondary_capability_refs": [
@@ -7957,17 +8896,32 @@
       ],
       "hints": [
         {
-          "text": "Which statement is derived from total string length, and which statement depends on the pulley/string force idealization?",
+          "text": "Which of the two relations comes from the string's length, and which from the pulley being ideal?",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "If the two tensions may differ, what does each hanging mass's own motion tell you about the tension on it?",
           "reveals": "CONCEPT"
         }
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must preserve the kinematic length constraint while rejecting the equal-tension model after only the force-transmission assumption changes.",
+        "statement": "The learner must keep the kinematic length constraint, refuse equal tension after the pulley stops being ideal, and compute the two tensions separately from measured motion.",
         "builds_on": [
           "Q-PHY-NLM-2A-ATWOOD-12"
         ],
-        "invariant": "The fixed string length still gives a_A + a_B = 0 in away-from-pulley coordinates; what changes is that the pulley is no longer ideal, so equal tension is no longer licensed."
+        "invariant": "The fixed string length still gives a_A + a_B = 0 in away-from-pulley coordinates; what changes is that the pulley is no longer ideal, so equal tension is no longer licensed.",
+        "protected_move_ref": "R-NLM-2B-HEAVY-PULLEY-MODEL",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-STRING-LENGTH-01 (Core1A worked anchor): positions and velocities from the length relation, with no forces involved.",
+            "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): the same 3 kg and 1 kg over an ideal pulley with one T = 15 N; the two relations are only named.",
+            "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): says the length relation survives when equal tension fails, but computes nothing with two tensions.",
+            "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley forces a new length equation; tension is not at issue.",
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A): the length relation and its derivatives, symbolically, with no tension."
+          ],
+          "why_new": "The Core1A diagnose/repair already says that the length relation survives a non-ideal pulley, so that claim alone would restate it. What is new is the quantitative consequence. From a measured a_A the learner must keep a_A + a_B = 0, refuse one T, and compute a separate tension on each side from each body's own equation: 18 N and 14 N, against 15 N for the ideal pulley. No earlier item computes two different tensions in one string."
+        }
       },
       "repair_ref": "NLM11-5",
       "hint_ladder": [
@@ -7975,6 +8929,18 @@
           "order": 1,
           "purpose": "ORIENT",
           "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw A and B separately, each with its own tension arrow labelled T_A or T_B, and write the length relation beside the pulley.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
@@ -7986,10 +8952,10 @@
           "VIS-NLM-FBD-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You used one T = 15 N from the ideal Atwood result, or dropped a_A + a_B = 0 along with equal tension: the length relation still holds, but the two tensions, 18 N and 14 N, differ.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": null
+        "closure": "Established: the length constraint and equal tension rest on different assumptions; with a heavy pulley the first survives and the second is replaced by one tension per segment."
       }
     },
     {
@@ -8620,54 +9586,111 @@
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-AXES-01",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-INCLINE-2B-AXES-01",
-      "stem": "The same smooth fixed-incline problem is solved by two students. Student A uses axes parallel/perpendicular to the plane. Student B keeps horizontal/vertical laboratory axes. Decide whether both coordinate choices are physically valid, and explain why Student A's choice usually makes the contact constraint and acceleration easier to express.",
+      "stem": "A 2 kg block slides down a smooth fixed 30° incline that slopes down to the right. Take g = 10 m/s². Student A uses axes along and perpendicular to the plane; Student B uses horizontal and vertical axes. Carry out Student B's solution: write the horizontal and vertical Newton-II equations, state in these axes the condition that keeps the block on the plane, and find N and the acceleration components. Show that the result agrees with Student A's a = g sin 30°.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "Both students use one consistent inertial frame.",
-        "The plane is fixed and smooth.",
-        "No numerical angle is required."
+        "The plane is smooth and fixed.",
+        "+x is horizontal to the right, +y vertically up.",
+        "The block stays on the plane."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Both coordinate systems are valid if used consistently. Plane-aligned axes are usually simpler because maintained contact becomes a_perp=0 and the unknown acceleration has only a parallel component; horizontal/vertical axes require projecting both the normal force and the constrained acceleration.",
+        "summary": "Student B: N sin 30° = m a_x and N cos 30° − mg = m a_y, and staying on the plane requires the acceleration to point down the slope: a_y = −a_x tan 30°. This gives N = mg cos 30° ≈ 17.3 N, a_x ≈ 4.33 m/s² and a_y = −2.5 m/s². The magnitude is √(4.33² + 2.5²) = 5 m/s² = g sin 30°, down the slope, as Student A finds. Both axis choices are valid; A's are simpler because there the contact condition is just a_perp = 0.",
         "reasoning": [
-          "Changing axes does not change the physical forces or motion.",
-          "In plane-aligned axes, the normal reaction lies on the perpendicular axis and the tangential motion lies on the parallel axis.",
-          "The contact condition is therefore stated directly as a_perp=0.",
-          "In horizontal/vertical axes the same normal and acceleration must be represented by components, which is valid but algebraically less direct."
+          "The plane's normal points up and to the right, so N has components N sin 30° (right) and N cos 30° (up); the weight is 20 N down.",
+          "Neither lab component of the acceleration is zero; staying on the plane means the acceleration points along the slope, so a_y = −a_x tan 30°.",
+          "Substitute a_x = N sin 30°/m into N cos 30° − mg = −m a_x tan 30°: N(cos 30° + sin² 30°/cos 30°) = mg, so N = mg cos 30° ≈ 17.3 N.",
+          "a_x = 17.3 × 0.5/2 ≈ 4.33 m/s² and a_y = −4.33 × tan 30° = −2.5 m/s²."
         ],
-        "check": "A correct solution in either coordinate system must predict the same physical acceleration vector and normal reaction.",
+        "check": "√(4.33² + 2.5²) = 5 m/s² = 10 × sin 30°, and N matches Student A's mg cos 30°: the physics does not depend on the axes.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Accepts both coordinate systems as valid representations.",
-            "evidence_of": "Treats axis choice as modelling convenience rather than a physical law."
+            "criterion": "Resolves N and mg into horizontal and vertical components.",
+            "evidence_of": "Translates the forces into the new axes."
           },
           {
-            "criterion": "Identifies a_perp=0 as the simple contact statement in plane-aligned axes.",
-            "evidence_of": "Connects representation choice to the active constraint."
+            "criterion": "Writes the contact condition as a_y = −a_x tan 30° instead of setting a lab component to zero.",
+            "evidence_of": "Translates the constraint into the new axes."
           },
           {
-            "criterion": "States that horizontal/vertical axes require extra projection rather than different physics.",
-            "evidence_of": "Preserves coordinate invariance of Newton II."
+            "criterion": "Finds N ≈ 17.3 N and |a| = 5 m/s², matching the plane-axis solution.",
+            "evidence_of": "Shows that the two representations describe the same physics."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-LABAXES-FORCES",
+            "kind": "REPRESENT",
+            "action": "Resolve the forces in lab axes: N (N sin 30°, N cos 30°) and weight (0, −20 N).",
+            "why_valid": "Any fixed axes are valid if every vector is resolved in them.",
+            "inputs": [
+              "θ = 30°",
+              "m = 2 kg"
+            ],
+            "output": "Two component equations with unknowns N, a_x and a_y."
+          },
+          {
+            "id": "R-NLM-2B-LABAXES-CONSTRAINT",
+            "kind": "DECIDE",
+            "action": "Express 'stays on the plane' in lab axes as a_y/a_x = −tan 30°, because a_perp = 0 is no longer a single component here.",
+            "why_valid": "The block's acceleration is along the slope; in tilted-away axes that direction fixes the ratio of the two components.",
+            "inputs": [
+              "slope direction"
+            ],
+            "output": "a_y = −a_x tan 30°."
+          },
+          {
+            "id": "R-NLM-2B-LABAXES-SOLVE",
+            "kind": "TRANSFORM",
+            "action": "Solve: N = mg cos 30° ≈ 17.3 N, a_x ≈ 4.33 m/s², a_y = −2.5 m/s².",
+            "why_valid": "Three equations in three unknowns.",
+            "inputs": [
+              "two Newton-II equations",
+              "constraint"
+            ],
+            "output": "N and both components."
+          },
+          {
+            "id": "R-NLM-2B-LABAXES-COMPARE",
+            "kind": "VERIFY",
+            "action": "Combine: |a| = √(4.33² + 2.5²) = 5 m/s² = g sin 30°, and N matches the plane-axis value.",
+            "why_valid": "Both representations describe the same block.",
+            "inputs": [
+              "Student A: a = g sin 30°, N = mg cos 30°"
+            ],
+            "output": "Agreement."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-LABAXES-CONSTRAINT",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-SECOND-LAW",
       "secondary_capability_refs": [
@@ -8695,11 +9718,11 @@
       ],
       "hints": [
         {
-          "text": "Does rotating the coordinate axes change which objects exert forces on the block?",
+          "text": "In horizontal and vertical axes, is either component of the block's acceleration zero?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Compare how the maintained-contact condition is written in each axis choice.",
+          "text": "Write both equations with N resolved, then add the condition that the acceleration points along the slope.",
           "reveals": "METHOD"
         }
       ],
@@ -8709,7 +9732,20 @@
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-SMOOTH-01"
         ],
-        "invariant": "The forces, weight and normal reaction, and the block's physical acceleration down the slope stay the same; only the axes used to describe them change."
+        "invariant": "The forces, weight and normal reaction, and the block's physical acceleration down the slope stay the same; only the axes used to describe them change.",
+        "protected_move_ref": "R-NLM-2B-LABAXES-CONSTRAINT",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-SECOND-LAW-01 (Core1A worked anchor): the rope-pulled crate is solved only in plane-aligned axes, where the contact gives a_perp = 0 directly.",
+            "MIC-PHY-NLM-SECOND-LAW misconceptions (Core1A diagnose/repair): maintained contact sets only a_perp = 0, stated for plane axes; the lab-axis form is never written.",
+            "MIC-PHY-NLM-SECOND-LAW boundary test (Core1B): zero net force gives zero acceleration; no axes are chosen.",
+            "Q-PHY-NLM-2A-COV-05 (Core2A): a trolley along one level axis, with no constraint to express.",
+            "Q-PHY-NLM-2A-PRACTICAL-12 (Core2A): an experiment plan for F_net = m a on a level bench.",
+            "Q-PHY-NLM-INCLINE-2A-SMOOTH-01 (Core2A, parent): the same smooth block in plane-aligned axes only.",
+            "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04 (Core2A): a horizontal push resolved into plane-aligned axes, again with a_perp = 0."
+          ],
+          "why_new": "Every earlier incline item uses plane-aligned axes, where the contact condition is simply a_perp = 0. Here the learner must work in horizontal and vertical axes, where both acceleration components are nonzero. 'Stays on the plane' has to be written as a_y = −a_x tan 30° before N can be found. No earlier item expresses the constraint in laboratory axes."
+        }
       },
       "repair_ref": "NLM6-4",
       "hint_ladder": [
@@ -8721,6 +9757,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the block on the slope with horizontal and vertical axes, the normal force at 30° from the vertical, and the acceleration arrow along the slope.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -8734,63 +9776,119 @@
           "VIS-NLM-FBD-V0"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You set a_y = 0 (or a_x = 0) in Student B's axes: neither lab component vanishes, because the acceleration points along the slope. Or you set N = mg, which would need zero vertical acceleration.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: the physics does not depend on the axes; the contact condition changes form, from a_perp = 0 to a fixed ratio of the lab components."
       }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
-      "stem": "A block is at rest on a rough incline. A controllable force P acts up the plane. In one trial P is slightly smaller than mg sin(theta); in another it is slightly larger than mg sin(theta), and in both trials the available static friction is sufficient to prevent motion. Determine the static-friction direction in each trial without assuming that friction always points uphill.",
+      "stem": "A 4 kg block rests on a rough fixed 30° incline with μ_s = 0.5; take g = 10 m/s². A force P acts on it up the slope, parallel to the plane. In three trials P = 15 N, 20 N and 26 N, and the block stays at rest each time. In each trial find the direction and size of the static friction, without assuming it points uphill, and check that it is within the static limit.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The plane is fixed.",
-        "The block remains at rest in both stated trials.",
+        "The block remains at rest in all three trials.",
         "P acts exactly parallel to the plane."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "When P<mg sin(theta), the no-friction tendency is down the plane, so static friction acts up the plane. When P>mg sin(theta), the no-friction tendency is up the plane, so static friction acts down the plane. At P=mg sin(theta), the required static friction is zero.",
+        "summary": "When P<mg sin(theta) static friction acts up the slope, when P>mg sin(theta) it acts down the slope, and at P = mg sin(theta) the required static friction is zero. Here mg sin 30° = 20 N: at P = 15 N friction is 5 N up the slope, at 20 N it is zero, and at 26 N it is 6 N down the slope. The limit is 0.5 × 34.6 ≈ 17.3 N, so all three are possible at rest.",
         "reasoning": [
-          "Friction direction follows the relative slip tendency that would exist without friction.",
-          "Compare the applied uphill force P with the downhill gravity component mg sin(theta).",
-          "If gravity's component is larger, friction must act uphill to maintain rest.",
-          "If P is larger, friction must act downhill.",
-          "If the two non-friction tangential forces balance exactly, no tangential friction is required."
+          "Along the slope, without friction the net push is P − 20 N (up the slope positive).",
+          "P = 15 N: the block would slide down, so friction points up with 5 N.",
+          "P = 20 N: no tendency, so friction is zero.",
+          "P = 26 N: the block would slide up, so friction points down with 6 N.",
+          "N = mg cos 30° ≈ 34.6 N, so μ_s N ≈ 17.3 N, above all three needs."
         ],
-        "check": "The physical direction changes continuously through a zero-friction case rather than remaining permanently uphill.",
+        "check": "The signed friction up the slope is 20 − P: +5, 0, −6 N. It changes sign exactly at P = mg sin 30°.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Uses the no-friction slip tendency rather than the object's current zero velocity.",
-            "evidence_of": "Applies the contact-level friction-direction rule."
+            "criterion": "Finds each trial's slip tendency from P against mg sin 30°.",
+            "evidence_of": "Uses the no-friction tendency, not a rule that friction points uphill."
           },
           {
-            "criterion": "Assigns uphill friction for P<mg sin(theta) and downhill friction for P>mg sin(theta).",
-            "evidence_of": "Responds correctly to the reversed tangential tendency."
+            "criterion": "Gives 5 N up, zero and 6 N down.",
+            "evidence_of": "Lets friction reverse or vanish."
           },
           {
-            "criterion": "Allows zero friction at P=mg sin(theta).",
-            "evidence_of": "Does not force a nonzero friction value merely because the surface is rough."
+            "criterion": "Checks each against μ_s mg cos 30° ≈ 17.3 N.",
+            "evidence_of": "Keeps the limit as a ceiling, not a value."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-SLOPEF-TENDENCY",
+            "kind": "REPRESENT",
+            "action": "Along the slope, compare P with the weight's down-slope part, 20 N, with friction removed.",
+            "why_valid": "The friction direction depends on the net tendency of the other forces along the contact.",
+            "inputs": [
+              "mg sin 30° = 20 N",
+              "P = 15, 20, 26 N"
+            ],
+            "output": "Net tendency P − 20 N."
+          },
+          {
+            "id": "R-NLM-2B-SLOPEF-DIRECTION",
+            "kind": "DECIDE",
+            "action": "Point friction against the tendency in each trial: up when P < 20 N, none at 20 N, down when P > 20 N.",
+            "why_valid": "Static friction opposes the slip that would occur without it.",
+            "inputs": [
+              "P − 20 = −5, 0, +6 N"
+            ],
+            "output": "Up, zero, down."
+          },
+          {
+            "id": "R-NLM-2B-SLOPEF-SIZE",
+            "kind": "TRANSFORM",
+            "action": "Size = |P − 20|: 5 N, 0 and 6 N.",
+            "why_valid": "At rest the forces along the slope balance.",
+            "inputs": [
+              "balance along slope"
+            ],
+            "output": "5 N, 0, 6 N."
+          },
+          {
+            "id": "R-NLM-2B-SLOPEF-LIMIT",
+            "kind": "VERIFY",
+            "action": "N = 34.6 N, so μ_s N ≈ 17.3 N, above every need.",
+            "why_valid": "Rest is only possible within the limit.",
+            "inputs": [
+              "μ_s = 0.5"
+            ],
+            "output": "All three trials possible."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-FRICTION",
       "secondary_capability_refs": [
@@ -8820,6 +9918,10 @@
         {
           "text": "Temporarily remove friction from the model. Which way would the block tend to move in each trial?",
           "reveals": "CONCEPT"
+        },
+        {
+          "text": "How does the push in each trial compare with the part of the weight that pulls down the slope?",
+          "reveals": "CONCEPT"
         }
       ],
       "transfer": {
@@ -8828,7 +9930,19 @@
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-STATIC-02"
         ],
-        "invariant": "Friction still opposes the slip tendency the block would have without it; what changes is that a push along the slope can cancel that tendency or reverse it."
+        "invariant": "Friction still opposes the slip tendency the block would have without it; what changes is that a push along the slope can cancel that tendency or reverse it.",
+        "protected_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): friction on a book on a level tray, forward or zero; there is no slope, and it never reverses.",
+            "MIC-PHY-NLM-FRICTION misconceptions (Core1A diagnose/repair): friction can point with the motion, or be zero, for carried bodies on level contacts.",
+            "MIC-PHY-NLM-FRICTION boundary test (Core1B): zero friction with no slip tendency; here the tendency comes from a push that can reverse it.",
+            "Q-PHY-NLM-2A-COV-04 (Core2A): the braking truck's crate, one direction with no reversal.",
+            "Q-PHY-NLM-2A-FRICTION-ZERO-08 (Core2A): zero friction with no horizontal force at all; here zero needs P = mg sin 30° exactly.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A, parent): friction on a slope with no applied force, always uphill at mg sin θ."
+          ],
+          "why_new": "In the earlier items the slip tendency comes from a single cause (a tray or truck changing speed, or gravity alone on a slope), so friction has one fixed direction. Here a push along the slope competes with gravity. The learner must find the net tendency in each trial, and the friction comes out 5 N up, zero, then 6 N down. No earlier item shows friction on one contact reversing as a force is changed."
+        }
       },
       "repair_ref": "NLM5-2",
       "hint_ladder": [
@@ -8836,6 +9950,18 @@
           "order": 1,
           "purpose": "ORIENT",
           "from": "hints[0]",
+          "provenance": "AUTHORED_HINT"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the block on the slope three times, each with P up the slope, the 20 N down-slope part of the weight, and an empty friction arrow to be given a direction.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
         }
       ],
@@ -8848,10 +9974,10 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You drew friction up the slope in all three trials, and got 5 N, 0 and −6 N 'up': at 26 N the push beats the weight's pull down the slope, so the block would slide up and friction points down.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: static friction on a slope points against the net tendency of the other forces, and it can vanish or reverse as a push changes."
       }
     },
     {
@@ -8864,7 +9990,15 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
@@ -8973,7 +10107,8 @@
             "output": "P = 0 gives tan(theta) <= mu_s; P cos(theta) = mg sin(theta) gives f_required = 0"
           }
         ],
-        "crux_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION"
+        "crux_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION",
+        "difficult_move": 3
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -9017,7 +10152,20 @@
           "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04"
         ],
         "protected_move_ref": "R-NLM-INCLINE-HORIZONTAL-FRICTION-DECISION",
-        "invariant": "The normal force from the perpendicular balance, the friction that rest requires, and the test against μ_s N all carry over; what changes is that a horizontal push alters both N and the required friction at once."
+        "invariant": "The normal force from the perpendicular balance, the friction that rest requires, and the test against μ_s N all carry over; what changes is that a horizontal push alters both N and the required friction at once.",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): a level floor with N = mg, where the friction need has one sign.",
+            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): N from the perpendicular equation, with the friction need never signed.",
+            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): a zero need, not a signed need that can change direction.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a stacked-block threshold on a level floor.",
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): a horizontal pull with N = mg, one direction of need.",
+            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): the kinetic model on a level floor, no rest test.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): rest on a slope with N = mg cos θ and friction always uphill.",
+            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): sliding on a slope, with no rest condition."
+          ],
+          "why_new": "Earlier friction tests have a need of one sign and an N fixed by gravity alone. Here one horizontal push both raises N (mg cos θ + P sin θ) and changes the signed need (mg sin θ − P cos θ), which can point up or down the slope, so the test must use its absolute value. No earlier item shows a two-sided rest condition."
+        }
       },
       "repair_ref": "NLM8-1",
       "scaffolds": [
@@ -9073,61 +10221,129 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You used N = mg cos θ, or tested mg sin θ − P cos θ ≤ μ_s N without the absolute value: the push adds P sin θ to N, and for a large P the block would tend to slide up, so the need can be negative.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: when one force changes both N and the tangential need, rest holds over a two-sided band of P values."
       }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
       "extensions": {
-        "agent_a:packet": "NLM_INCLINE_INTEGRATION"
+        "agent_a:packet": "NLM_INCLINE_INTEGRATION",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-INCLINE-2B-COMPONENT-TRAP-04",
-      "stem": "A proposed plane-aligned solution writes the tangential force sum as mg + mg sin(theta) and the perpendicular force sum as N - mg - mg cos(theta). The solver says the component terms were added because the weight was resolved. Identify the modelling error and write the correct role of the weight in the two component equations.",
+      "stem": "A 2 kg block slides down the smooth face of a 5 kg wedge inclined at 30°. The wedge stays at rest on a rough floor. Its slope rises to the right, so the block slides down to the left. Take g = 10 m/s². Build the free-body diagram of the wedge only, and find the floor's normal force and the floor's friction force on the wedge.",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The block is on a smooth fixed incline.",
-        "Only gravity and the normal reaction act."
+        "The wedge's sloping face is smooth.",
+        "The wedge does not move.",
+        "+x to the right, +y up."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The solution double-counts the same weight vector. In plane-aligned equations, gravity contributes mg sin(theta) down the plane and mg cos(theta) into the plane; the unresolved mg is not added again. Thus the tangential gravity term is mg sin(theta), and the perpendicular equation uses N-mg cos(theta)=0 for maintained contact.",
+        "summary": "On the wedge: its weight 50 N down; the block's normal push, 17.3 N perpendicular to the slope into the wedge (8.66 N to the right and 15 N down); the floor's normal force; and the floor's friction. The floor's normal force is 65 N, less than the 70 N total weight, and the floor's friction is about 8.7 N to the left. The block's 20 N weight is not on the wedge's diagram.",
         "reasoning": [
-          "Weight mg is one physical force, not three.",
-          "Resolving it replaces its representation in the chosen component equations.",
-          "The original vector magnitude mg is not itself a signed scalar component along either tilted axis.",
-          "Use the two appropriate components in the two equations and keep the normal as the separate contact force."
+          "Find the contact force from the block's own equation: across the smooth slope it has no acceleration, so N = mg cos 30° ≈ 17.3 N.",
+          "Its partner acts on the wedge, perpendicular to the slope and into it: 17.3 sin 30° ≈ 8.66 N to the right and 17.3 cos 30° = 15 N down.",
+          "The block's weight acts on the block; it reaches the wedge only through that contact push.",
+          "Wedge at rest: N_floor = 50 + 15 = 65 N, and the floor's friction balances 8.66 N, so it points left."
         ],
-        "check": "The corrected equations account for exactly two physical interactions: Earth-on-block gravity and plane-on-block normal contact.",
+        "check": "Whole system: the block accelerates at 5 m/s² down the slope (4.33 m/s² left, 2.5 m/s² down). External vertical: 65 − 70 = −5 N = 2 × (−2.5). External horizontal: −8.66 N = 2 × (−4.33). Both agree.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Identifies double-counting of gravity as the error.",
-            "evidence_of": "Distinguishes physical-force inventory from vector components."
+            "criterion": "Lists only forces acting on the wedge: its weight, the block's contact push, the floor's normal force and the floor's friction.",
+            "evidence_of": "Chooses one body and admits only its own forces."
           },
           {
-            "criterion": "Uses mg sin(theta) only in the tangential gravity contribution.",
-            "evidence_of": "Assigns the correct component to the along-plane equation."
+            "criterion": "Finds the block's push from the block's own perpendicular equation, 17.3 N, rather than using the block's weight.",
+            "evidence_of": "Keeps the other body's weight on the other body."
           },
           {
-            "criterion": "Uses mg cos(theta) only in the perpendicular gravity contribution and N separately.",
-            "evidence_of": "Builds the maintained-contact equation without re-adding mg."
+            "criterion": "Gets N_floor = 65 N and a floor friction of about 8.7 N to the left.",
+            "evidence_of": "Carries the ownership decision to numbers."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-WEDGE-BLOCK",
+            "kind": "TRANSFORM",
+            "action": "From the block's equation across the smooth slope: N = mg cos 30° ≈ 17.3 N.",
+            "why_valid": "The block stays on the slope, so it has no acceleration across it.",
+            "inputs": [
+              "m = 2 kg",
+              "θ = 30°"
+            ],
+            "output": "Contact push 17.3 N."
+          },
+          {
+            "id": "R-NLM-2B-WEDGE-OWNERSHIP",
+            "kind": "DECIDE",
+            "action": "Put the partner of that normal force (block on wedge) on the wedge's diagram, and leave the block's weight off it.",
+            "why_valid": "A diagram holds only forces acting on its own body; the block's weight acts on the block, and the block touches the wedge only through the smooth contact.",
+            "inputs": [
+              "contact push",
+              "block's weight"
+            ],
+            "output": "Wedge forces: 50 N weight, 17.3 N push, floor normal, floor friction."
+          },
+          {
+            "id": "R-NLM-2B-WEDGE-RESOLVE",
+            "kind": "TRANSFORM",
+            "action": "Resolve the push on the wedge: 8.66 N to the right, 15 N down.",
+            "why_valid": "It is perpendicular to the slope, 30° from the vertical, pointing into the wedge.",
+            "inputs": [
+              "17.3 N at 30°"
+            ],
+            "output": "(8.66, −15) N."
+          },
+          {
+            "id": "R-NLM-2B-WEDGE-FLOOR",
+            "kind": "CONNECT",
+            "action": "The wedge is at rest: N_floor = 50 + 15 = 65 N and the floor's friction is 8.66 N to the left.",
+            "why_valid": "Newton II for the wedge with zero acceleration.",
+            "inputs": [
+              "wedge forces"
+            ],
+            "output": "65 N and 8.7 N left."
+          },
+          {
+            "id": "R-NLM-2B-WEDGE-CHECK",
+            "kind": "VERIFY",
+            "action": "Check with the block-plus-wedge system: 70 − 65 = 5 N = 2 × 2.5, and 8.66 N = 2 × 4.33.",
+            "why_valid": "The external forces on the pair must give the block's acceleration.",
+            "inputs": [
+              "a = 5 m/s² down the slope"
+            ],
+            "output": "The pair's external forces give the block's 5 m/s²."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-WEDGE-OWNERSHIP",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-FBD-BODY-OWNERSHIP",
       "secondary_capability_refs": [
@@ -9156,21 +10372,32 @@
       ],
       "hints": [
         {
-          "text": "How many physical interactions act on the smooth-contact block, and did the axis rotation create another agent?",
+          "text": "Which bodies touch or attract the wedge? List them before drawing any arrow.",
           "reveals": "CONCEPT"
         },
         {
-          "text": "A resolved vector contributes one scalar component to each axis equation; the original vector is not added again as a third scalar term.",
+          "text": "Find the block's normal force from the block's own equation first, then put its partner on the wedge.",
           "reveals": "METHOD"
         }
       ],
       "transfer": {
         "dimension": "representation_translation",
-        "statement": "The learner must recognize the same force/component double-counting error after it moves from a drawn FBD into algebraic component equations.",
+        "statement": "The learner must build a second body's free-body diagram in a two-body incline set-up, placing only the contact partner of the block's force and not the block's weight.",
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05"
         ],
-        "invariant": "Weight is still one force described by two components, and the normal force is still the only other interaction; what changes is that the double count appears in equations rather than on a drawing."
+        "invariant": "A diagram still holds only the forces acting on its own body, and gravity is still one force on each body. What changes is that the wedge's diagram must be built from the block's contact force, which the block's own equation supplies.",
+        "protected_move_ref": "R-NLM-2B-WEDGE-OWNERSHIP",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FBD-OWNERSHIP-01 (Core1A worked anchor): the child's push on the box equals the child's weight (500 N), so the substitution cannot be seen; here the push is 17.3 N at an angle.",
+            "MIC-PHY-NLM-FBD-BODY-OWNERSHIP misconceptions (Core1A diagnose/repair): horse-cart partners, and not adding mg to its own components; neither needs a second body's contact force.",
+            "MIC-PHY-NLM-FBD-BODY-OWNERSHIP boundary test (Core1B): two hands on one box, both on its diagram; a single body.",
+            "Q-PHY-NLM-2A-COV-03 (Core2A): the magnet's forces and their partners, all known from balance at rest.",
+            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05 (Core2A, parent): the block's own diagram with gravity counted twice; the wedge's diagram is never drawn."
+          ],
+          "why_new": "In the Core1A anchor the upper body rests on a level surface, so its push equals its weight, and replacing one by the other still gives the right number. Here the block slides on a tilted smooth face, so its push on the wedge is mg cos 30° at an angle. The learner must find it from the block's own equation and place only its partner on the wedge, which gives a floor force below the total weight and a sideways floor friction. No earlier item has a contact partner that differs from the other body's weight."
+        }
       },
       "repair_ref": "NLM3-4",
       "hint_ladder": [
@@ -9182,6 +10409,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Draw the wedge alone, with a dashed outline where the block touches it, and one arrow for each body that touches or attracts the wedge.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -9196,15 +10429,15 @@
           "VIS-NLM-FBD-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You put the block's 20 N weight on the wedge and got 70 N from the floor with no floor friction: the block acts on the wedge only through its 17.3 N contact push at 30° from the vertical, so the floor gives 65 N and must also supply 8.7 N of friction.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: a body's diagram holds the contact forces other bodies exert on it; another body's weight enters only through those contacts."
       }
     },
     {
       "id": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-AUTHOR-NLM"
@@ -9212,12 +10445,23 @@
       "evidence_refs": [],
       "extensions": {
         "agent_a:packet": "NLM_INCLINE_INTEGRATION",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer.protected_move_ref": "AUTHORED_PEDAGOGICAL",
+          "transfer.novelty": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure.closure": "AUTHORED_PEDAGOGICAL",
+          "stem": "AUTHORED_PEDAGOGICAL",
+          "conditions": "AUTHORED_PEDAGOGICAL",
+          "answer": "AUTHORED_PEDAGOGICAL"
+        }
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-INCLINE-2B-TIMING-05",
-      "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t.",
+      "stem": "A block starts from rest and travels the same distance s down the same incline of angle theta in two trials. On a smooth surface the time is t_0. On a rough surface the block slides throughout and the time is t > t_0. Assuming kinetic friction coefficient mu_k is constant, derive mu_k in terms of theta, t_0 and t. Evaluate mu_k for theta = 37° (tan 37° = 0.75) when t = 2t_0.",
       "subparts": [],
       "options": [],
       "conditions": [
@@ -9228,7 +10472,7 @@
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2].",
+        "summary": "Smooth acceleration is a_0=g sin(theta), rough acceleration is a=g[sin(theta)-mu_k cos(theta)]. Since s=(1/2)at^2 from rest, a/a_0=t_0^2/t^2. Therefore mu_k=tan(theta)[1-t_0^2/t^2]. For theta = 37° and t = 2t_0, mu_k = 0.75 × (1 − 1/4) = 0.5625 ≈ 0.56.",
         "reasoning": [
           "The smooth trial gives a_0=g sin(theta).",
           "The rough sliding trial gives a=g[sin(theta)-mu_k cos(theta)].",
@@ -9253,7 +10497,64 @@
             "criterion": "Solves to mu_k=tan(theta)[1-t_0^2/t^2] and checks its limiting sign.",
             "evidence_of": "Completes the cross-topic reasoning and verifies plausibility."
           }
-        ]
+        ],
+        "reasoning_route": [
+          {
+            "id": "R-NLM-2B-TIMING-ACCELS",
+            "kind": "TRANSFORM",
+            "action": "Write both accelerations: a_0 = g sin(theta) on the smooth slope, a = g[sin(theta) − mu_k cos(theta)] on the rough one.",
+            "why_valid": "Newton II along the slope, with N = mg cos(theta) and kinetic friction up the slope.",
+            "inputs": [
+              "theta",
+              "mu_k"
+            ],
+            "output": "a_0 and a."
+          },
+          {
+            "id": "R-NLM-2B-TIMING-RATIO",
+            "kind": "DECIDE",
+            "action": "Use the shared distance from rest, s = (1/2)a t² in both trials, to turn the times into an acceleration ratio: a/a_0 = t_0²/t², in which s, m and g cancel.",
+            "why_valid": "The same s and a start from rest make a proportional to 1/t².",
+            "inputs": [
+              "same s",
+              "both from rest"
+            ],
+            "output": "a/a_0 = t_0²/t²."
+          },
+          {
+            "id": "R-NLM-2B-TIMING-SOLVE",
+            "kind": "TRANSFORM",
+            "action": "Solve 1 − mu_k cot(theta) = t_0²/t² for mu_k = tan(theta)[1 − t_0²/t²].",
+            "why_valid": "Algebra on the ratio.",
+            "inputs": [
+              "a/a_0"
+            ],
+            "output": "mu_k formula."
+          },
+          {
+            "id": "R-NLM-2B-TIMING-NUM",
+            "kind": "CONNECT",
+            "action": "Insert tan 37° = 0.75 and t = 2t_0: mu_k = 0.75 × 0.75 = 0.5625.",
+            "why_valid": "t_0²/t² = 1/4.",
+            "inputs": [
+              "tan 37° = 0.75",
+              "t = 2t_0"
+            ],
+            "output": "mu_k ≈ 0.56."
+          },
+          {
+            "id": "R-NLM-2B-TIMING-CHECK",
+            "kind": "VERIFY",
+            "action": "Check the limits: t = t_0 gives mu_k = 0; and mu_k = 0.56 < tan 37° = 0.75, so the block does keep sliding.",
+            "why_valid": "The result must reduce to the smooth case and be consistent with sliding throughout.",
+            "inputs": [
+              "limits"
+            ],
+            "output": "Both limits behave: zero for equal times, and μ_k below tan θ."
+          }
+        ],
+        "crux_move_ref": "R-NLM-2B-TIMING-RATIO",
+        "difficult_move": 1
       },
       "primary_capability_ref": "CAP-NLM-FRICTION-QUANT",
       "secondary_capability_refs": [
@@ -9296,7 +10597,21 @@
         "builds_on": [
           "Q-PHY-NLM-INCLINE-2A-SLIDING-03"
         ],
-        "invariant": "The rough-slope acceleration g(sin θ − μ_k cos θ) and the smooth-slope g sin θ still hold; what changes is that μ_k must be inferred from travel times instead of being used to find an acceleration."
+        "invariant": "The rough-slope acceleration g(sin θ − μ_k cos θ) and the smooth-slope g sin θ still hold; what changes is that μ_k must be inferred from travel times instead of being used to find an acceleration.",
+        "protected_move_ref": "R-NLM-2B-TIMING-RATIO",
+        "novelty": {
+          "checked_against": [
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): μ_k is given and the acceleration is found, never the reverse.",
+            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): choosing a model before μ_k N is used; μ_k is never measured.",
+            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): the size of static friction with zero need; no timing appears.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): μ_s given, to find a force limit.",
+            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): μ_s given, to find the 30 N limiting value.",
+            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): μ_k = 0.20 given, to find 1.6 m/s².",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): μ_s given, and the rest condition on a slope derived.",
+            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A, parent): a = g(sin θ − μ_k cos θ) with μ_k given."
+          ],
+          "why_new": "Every earlier item uses a given coefficient to predict a force or an acceleration. Here the coefficient is the unknown, and it must be inferred from two travel times over the same distance. The learner must turn the timing into an acceleration ratio, t_0²/t², in which s and g cancel. No earlier item measures friction from motion."
+        }
       },
       "repair_ref": "NLM8-4",
       "hint_ladder": [
@@ -9308,6 +10623,12 @@
         },
         {
           "order": 2,
+          "purpose": "REPRESENT",
+          "text": "Sketch the same slope twice, smooth and rough, marking the same distance s from rest and the two times t_0 and t.",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
           "purpose": "FIRST_RELATION",
           "from": "hints[1]",
           "provenance": "AUTHORED_HINT"
@@ -9322,10 +10643,10 @@
           "VIS-NLM-FRICTION-V1"
         ]
       },
-      "failure_signal": null,
+      "failure_signal": "You wrote a/a_0 = t/t_0 or t_0/t: with s fixed, s = ½at² makes a proportional to 1/t², so the ratio is t_0²/t².",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": null
+        "closure": "Established: a friction coefficient can be inferred from motion alone by comparing trials that share a distance and a start."
       }
     }
   ],
