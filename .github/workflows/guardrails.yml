@@ -269,6 +269,15 @@ jobs:
       - name: Generated artifacts have not drifted
         run: python3 Shared/tools/build_manifest.py --check
 
+      # Research-first jobs start from raw owner input and are judged on the rendered
+      # learner product. Physics, Mathematics and Chemistry fixtures must pass; holds,
+      # placeholders, dropped inputs, unbacked identities and the PR #288 Motion-in-2D
+      # product must fail. The browser entry must agree with the Python intake.
+      - name: Research-first intake and delivery gate hold across subjects
+        run: |
+          python3 Shared/tools/raw_intake.py --check-browser-data
+          python3 -m unittest tests.test_research_first_workflow -v
+
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
 

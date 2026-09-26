@@ -73,6 +73,11 @@ python3 Shared/library/compile_inputs.py Mathematics/library/*.json \
 python3 Mathematics/run.py publish --plan /tmp/lineq/plan.json \
   --baseline /tmp/lineq/baseline.json --source-root /tmp/lineq --out /tmp/lineq/publication
 
+# research-first job from raw questions/syllabus (see docs/RESEARCH-FIRST-WORKFLOW.md)
+python3 Shared/tools/raw_intake.py --input request.json
+python3 Shared/tools/learner_product_render.py --bundle job.json --out /tmp/job
+python3 Shared/tools/delivery_gate.py --manifest /tmp/job/delivery.json
+
 python3 -m unittest discover -s tests -p "test_*.py"   # full suite
 python3 Shared/tools/topic_independence_guard.py       # engine carries no subject
 python3 Shared/tools/build_manifest.py                 # regenerates the manifest and tools/data.js
