@@ -537,6 +537,39 @@
       "fallback": []
     },
     {
+      "id": "SRC-OPENSTAX-UP1-4-4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-E8D7A50E5D23528D9ED4"
+      },
+      "title": "OpenStax University Physics Volume 1, section 4.4 Uniform Circular Motion",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/university-physics-volume-1/pages/4-4-uniform-circular-motion",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-E8D7A50E5D23528D9ED4",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/e8d7a50e5d23528d9ed4225d1b832f61279be0d7d988ff24ceb71a885e7159d7.html",
+      "snapshot_digest": "sha256:e8d7a50e5d23528d9ed4225d1b832f61279be0d7d988ff24ceb71a885e7159d7",
+      "role": [
+        "EXPLANATION"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-E8D7A50E5D23528D9ED4.",
+      "fallback": []
+    },
+    {
       "id": "SRC-OPENSTAX-UP1-4-5",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -1335,6 +1368,56 @@
           "scope_class": "OWNER_EXTENSION",
           "source_ref": "SRC-JEEADV-IB-2026",
           "locator": "Not in the JEE (Advanced) 2026 syllabus; only Stokes' law and terminal velocity are listed, under fluids",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-X5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-002",
+        "EV-PHY-11-MIP-X5-003",
+        "EV-PHY-11-MIP-X5-004",
+        "EV-PHY-11-MIP-X5-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-X5-002",
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004",
+            "EV-PHY-11-MIP-X5-005"
+          ]
+        }
+      },
+      "action": "Find the total acceleration of a particle moving on a circle with changing speed as the perpendicular sum of its centripetal and tangential accelerations.",
+      "success_criterion": "Computes a_c = v^2/r and a_T = d|v|/dt, combines them as perpendicular vectors, gives the angle to the tangent, and states that the net acceleration is central only when the speed is constant.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-09"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "JEE (Advanced)",
+          "grade": 11,
+          "academic_year": "2026",
+          "track": "JEE_EXTENSION",
+          "scope_class": "OWNER_EXTENSION",
+          "source_ref": "SRC-JEEADV-IB-2026",
+          "locator": "Not named in the JEE (Advanced) 2026 syllabus, which lists only 'Uniform circular motion'",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -3363,7 +3446,7 @@
         {
           "wrong_idea": "45 degrees gives the greatest range whatever the air resistance.",
           "diagnostic_prompt": "With air resistance included, is the best launch angle still 45 degrees?",
-          "repair": "No. Drag takes away more horizontal distance from long, high flights, so the angle giving the greatest range drops somewhat below 45 degrees; 45 degrees is a vacuum-only result."
+          "repair": "No. The range is greatest at 45 degrees only when air resistance is neglected; once air resistance is considered, the optimum launch angle is somewhat smaller."
         }
       ],
       "exit_task": {
@@ -3389,6 +3472,158 @@
       "research_contribution": "Carries drag as a labelled extension outside the JEE (Advanced) 2026 syllabus: the linear drag law, its validity range and terminal velocity are sourced, and the trajectory is described qualitatively only.",
       "prerequisite_refs": [
         "CAP-PHY-MIP-08"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-X5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-JEEADV-IB-2026",
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-001",
+        "EV-PHY-11-MIP-X5-002",
+        "EV-PHY-11-MIP-X5-003",
+        "EV-PHY-11-MIP-X5-004",
+        "EV-PHY-11-MIP-X5-005",
+        "EV-PHY-11-MIP-X5-007",
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-X5-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-X5-001",
+            "EV-PHY-11-MIP-X5-002",
+            "EV-PHY-11-MIP-X5-003"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004",
+            "EV-PHY-11-MIP-X5-005"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-X5-002",
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004",
+            "EV-PHY-11-MIP-X5-007",
+            "EV-PHY-11-MIP-09-002"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-X5-008",
+            "EV-PHY-11-MIP-X5-005"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Non-uniform circular motion: tangential and centripetal acceleration",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-X5",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The calculation is a right-triangle sum, but learners who have met only uniform circular motion assume every circular acceleration points at the centre.",
+      "entry_assumptions": [
+        "Can compute centripetal acceleration v^2/R for uniform circular motion.",
+        "Can add perpendicular vectors."
+      ],
+      "inferential_jump": "On a circle the velocity can change in direction and in size at once: the direction change gives the radial centripetal acceleration, the size change gives a tangential one, and the total acceleration is their perpendicular sum, central only when the speed is constant.",
+      "teaching_path": [
+        {
+          "id": "MIP-X5-1",
+          "role": "DECLARE",
+          "action": "Set radial and tangential directions at the particle.",
+          "why_valid": "The two accelerations lie along these perpendicular directions.",
+          "inputs": [],
+          "output": "radial (inward), tangential (along v)",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        },
+        {
+          "id": "MIP-X5-2",
+          "role": "TRANSFORM",
+          "action": "Compute the centripetal part from the instantaneous speed.",
+          "why_valid": "Direction change of the velocity at speed v on radius r.",
+          "inputs": [],
+          "output": "a_c = v^2/r",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP-X5-3",
+          "role": "TRANSFORM",
+          "action": "Compute the tangential part from the rate of change of speed.",
+          "why_valid": "Tangential acceleration is the rate of change of the speed.",
+          "inputs": [],
+          "output": "a_T = d|v|/dt",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        },
+        {
+          "id": "MIP-X5-4",
+          "role": "TRANSFORM",
+          "action": "Add them as perpendicular vectors.",
+          "why_valid": "The total acceleration is their vector sum.",
+          "inputs": [],
+          "output": "|a| = sqrt(a_c^2 + a_T^2)",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        },
+        {
+          "id": "MIP-X5-5",
+          "role": "VERIFY",
+          "action": "Check against OpenStax Example 4.12.",
+          "why_valid": "a_c = 3.1 and a_T = 1.5 m/s^2 give the book's total.",
+          "inputs": [],
+          "output": "|a| = sqrt(3.1^2 + 1.5^2) = 3.44 m/s^2 at 64 degrees from the tangent",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X5-TANGENTIAL",
+        "REL-PHY-MIP-X5-TOTAL-ACCELERATION"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-X5-TWO-ACCELERATIONS"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-X5"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Circular motion always happens at constant speed.",
+          "diagnostic_prompt": "Can a car go round a circular track while speeding up?",
+          "repair": "Yes. A particle can travel in a circle and speed up or slow down; it then has an acceleration component along its motion."
+        },
+        {
+          "wrong_idea": "The acceleration of any particle moving in a circle points to the centre.",
+          "diagnostic_prompt": "A pendulum bob swings down along its circular arc, gaining speed. Is its acceleration purely towards the pivot?",
+          "repair": "No. The resultant acceleration points to the centre only if the speed is constant; here a tangential part adds to the centripetal part."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A particle on a circle has centripetal acceleration 4 m/s^2 and tangential acceleration 3 m/s^2 at one instant. Find the magnitude of its total acceleration and say whether it points at the centre.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "5 m/s^2, not towards the centre (tilted towards the direction of motion).",
+          "reasoning": [
+            "The two parts are perpendicular: |a| = sqrt(4^2 + 3^2) = 5 m/s^2.",
+            "A non-zero tangential part means the speed is changing, so the acceleration is not central."
+          ],
+          "check": "The total must exceed each part and equal 4 only if a_T = 0.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-MIP-EXIT-ORACLE"
+        }
+      },
+      "research_contribution": "Carries non-uniform circular motion as a labelled extension not named in the JEE (Advanced) 2026 syllabus, with the perpendicular-sum rule and the constant-speed condition for central acceleration.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-09"
       ],
       "lineage": []
     }
@@ -5623,6 +5858,171 @@
         "Units: m^2 x (kg/m^3) x (m/s^2) / (Pa s) = m/s."
       ],
       "gate_relation_ref": "REL-PHY-MIP-X4-TERMINAL-VELOCITY"
+    },
+    {
+      "id": "REL-PHY-MIP-X5-TANGENTIAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-002",
+        "EV-PHY-11-MIP-X5-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X5-002"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X5-002"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X5-002",
+            "EV-PHY-11-MIP-X5-005"
+          ]
+        }
+      },
+      "expression": "a_T = d|v|/dt",
+      "meaning": "When a particle's speed on its path changes, it has a tangential acceleration equal to the time rate of change of the magnitude of its velocity.",
+      "symbols": [
+        {
+          "symbol": "a_T",
+          "meaning": "tangential acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "|v|",
+          "meaning": "speed",
+          "unit_or_domain": "m/s"
+        },
+        {
+          "symbol": "t",
+          "meaning": "time",
+          "unit_or_domain": "s"
+        }
+      ],
+      "conditions": [
+        "The speed is changing; for constant speed a_T = 0 and the motion is uniform circular."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X5T-1",
+          "role": "DECLARE",
+          "action": "Split the velocity change into a change of direction and a change of size.",
+          "why_valid": "The centripetal part turns the velocity; the tangential part changes its size.",
+          "inputs": [],
+          "output": "delta v = delta v_turn + delta v_size"
+        },
+        {
+          "id": "REL-X5T-2",
+          "role": "TRANSFORM",
+          "action": "Divide the size change by the time and take the limit.",
+          "why_valid": "Rate of change of speed.",
+          "inputs": [],
+          "output": "a_T = d|v|/dt",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        }
+      ],
+      "limits": [
+        "a_T says nothing about how sharply the path turns; that is a_c."
+      ],
+      "checks": [
+        "a_T is positive when speeding up and negative when slowing down."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X5-TANGENTIAL"
+    },
+    {
+      "id": "REL-PHY-MIP-X5-TOTAL-ACCELERATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-003",
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-X5-004",
+        "EV-PHY-11-MIP-X5-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-09-002"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X5-004",
+            "EV-PHY-11-MIP-X5-005"
+          ]
+        }
+      },
+      "expression": "a = a_c + a_T; |a| = sqrt(a_c^2 + a_T^2), with a_c = v^2/r radial and a_T tangential",
+      "meaning": "A particle in circular motion with a tangential acceleration has a total acceleration that is the vector sum of the centripetal and tangential accelerations, which are perpendicular to each other.",
+      "symbols": [
+        {
+          "symbol": "a_c",
+          "meaning": "centripetal (radial) acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a_T",
+          "meaning": "tangential acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "a",
+          "meaning": "total acceleration",
+          "unit_or_domain": "m/s^2"
+        },
+        {
+          "symbol": "r",
+          "meaning": "radius of the circle",
+          "unit_or_domain": "m"
+        }
+      ],
+      "conditions": [
+        "a_c is along the radius and a_T along the tangent, so they are perpendicular.",
+        "The resultant acceleration points to the centre only if the speed is constant."
+      ],
+      "derivation": [
+        {
+          "id": "REL-X5S-1",
+          "role": "DECLARE",
+          "action": "Take radial and tangential directions at the particle's position.",
+          "why_valid": "They are perpendicular.",
+          "inputs": [],
+          "output": "radial unit and tangential unit at 90 degrees"
+        },
+        {
+          "id": "REL-X5S-2",
+          "role": "TRANSFORM",
+          "action": "Add the two perpendicular accelerations.",
+          "why_valid": "Vector addition of perpendicular parts.",
+          "inputs": [],
+          "output": "|a| = sqrt(a_c^2 + a_T^2), tan(phi) = a_c/a_T from the tangent",
+          "source_ref": "SRC-OPENSTAX-UP1-4-4"
+        }
+      ],
+      "limits": [
+        "Uses a_c = v^2/r with the instantaneous speed."
+      ],
+      "checks": [
+        "a_T = 0 recovers uniform circular motion.",
+        "OpenStax Example 4.12: sqrt(3.1^2 + 1.5^2) = 3.44 m/s^2."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-X5-TOTAL-ACCELERATION"
     }
   ],
   "representations": [
@@ -6568,6 +6968,78 @@
           "in_words": "A force growing with speed and opposing the motion."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-X5-TWO-ACCELERATIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-UP1-4-4"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-003",
+        "EV-PHY-11-MIP-X5-004",
+        "EV-PHY-11-MIP-X5-002"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-004"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-X5-004",
+            "EV-PHY-11-MIP-X5-002"
+          ]
+        }
+      },
+      "kind": "RADIAL_AND_TANGENTIAL_ACCELERATION",
+      "purpose": "At one point of a circle, draw the inward centripetal arrow and the tangential arrow at right angles, with their resultant, so the tilt of the total acceleration away from the centre is visible.",
+      "required_elements": [
+        "circle with centre",
+        "particle position with velocity along the tangent",
+        "centripetal arrow towards the centre",
+        "tangential arrow along or against the velocity",
+        "resultant acceleration arrow with angle to the tangent"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-X5-TANGENTIAL",
+        "REL-PHY-MIP-X5-TOTAL-ACCELERATION"
+      ],
+      "read_order": [
+        "circle with centre",
+        "particle position with velocity along the tangent",
+        "centripetal arrow towards the centre",
+        "tangential arrow along or against the velocity",
+        "resultant acceleration arrow with angle to the tangent"
+      ],
+      "instance_constraints": [
+        "The two component arrows are drawn at right angles.",
+        "The tangential arrow points along the velocity when speeding up and against it when slowing down."
+      ],
+      "accessibility": [
+        "Speeding up or slowing down is stated in text.",
+        "The angle of the resultant to the tangent is given as a number."
+      ],
+      "misleading_alternatives": [
+        "A single arrow pointing at the centre while the speed changes."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "tangential arrow along or against the velocity",
+          "symbol": "a_T",
+          "in_words": "How fast the speed is changing."
+        },
+        {
+          "element": "resultant acceleration arrow with angle to the tangent",
+          "symbol": "a",
+          "in_words": "The actual acceleration, the perpendicular sum."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -7199,6 +7671,54 @@
         "Q-PHY-MIP-X4-EXEMPLAR-4-23",
         "Q-PHY-MIP-X4-JEEADV-2017-P1-Q1",
         "Q-PHY-MIP-X4-NCERT-5-13"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-X5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Circular motion with changing speed",
+      "capability_refs": [
+        "CAP-PHY-MIP-X5"
+      ],
+      "solution_structure": [
+        "Decide whether the speed changes.",
+        "Find a_c from v^2/r and a_T from the rate of change of speed.",
+        "Combine perpendicularly, or judge statements about the direction of the acceleration."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide whether the motion is uniform or not.",
+        "representation_translation": "Translate a speed history into v and dv/dt at one instant.",
+        "reasoning_steps": "Compute both parts, combine, and read off the direction.",
+        "novelty": "Settings vary: tracks, pendulums, general constant-speed curves."
+      },
+      "safe_variations": [
+        "Slow down instead of speed up.",
+        "Replace the circle by a general curve at constant speed."
+      ],
+      "transfer_boundaries": [
+        "Not named in the JEE (Advanced) 2026 syllabus."
+      ],
+      "common_wrong_routes": [
+        "Point the acceleration at the centre while the speed changes.",
+        "Add a_c and a_T as plain numbers."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-X5-NCERT-3-16A",
+        "Q-PHY-MIP-X5-EXEMPLAR-4-8",
+        "Q-PHY-MIP-X5-NCERT-5-18"
       ]
     }
   ],
@@ -11442,6 +11962,305 @@
         }
       ],
       "repair_ref": "MIP-X4-5"
+    },
+    {
+      "id": "Q-PHY-MIP-X5-NCERT-3-16A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-009",
+        "EV-PHY-11-MIP-X5-008",
+        "EV-PHY-11-MIP-X5-010",
+        "EV-PHY-11-MIP-X5-003",
+        "EV-PHY-11-MIP-X5-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X5-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X5-008"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X5-010",
+            "EV-PHY-11-MIP-X5-003",
+            "EV-PHY-11-MIP-X5-005"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.16",
+      "stem": "Read each statement below carefully and state, with reasons, if it is true or false : (a) The net acceleration of a particle in circular motion is always along the radius of the circle towards the centre",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "'Circular motion' here includes motion with changing speed."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "False: the net acceleration is along the radius towards the centre only in uniform circular motion.",
+        "reasoning": [
+          "If the speed changes there is a tangential acceleration d|v|/dt.",
+          "The total acceleration is then the perpendicular sum of the centripetal and tangential parts, so it is tilted away from the radius."
+        ],
+        "check": "Statement (a) survives only in the special case a_T = 0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X5-316-DEC",
+            "kind": "DECIDE",
+            "action": "Ask whether the statement allows the speed to change.",
+            "why_valid": "'Circular motion' is not restricted to constant speed.",
+            "inputs": [],
+            "output": "a_T may be non-zero"
+          },
+          {
+            "id": "R-X5-316-CON",
+            "kind": "CONNECT",
+            "action": "Add the tangential part to the centripetal part.",
+            "why_valid": "The total acceleration is their vector sum.",
+            "inputs": [],
+            "output": "net acceleration not purely radial => false"
+          }
+        ],
+        "crux_move_ref": "R-X5-316-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X5",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X5",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Does the statement say the speed is constant?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X5-316-DEC"
+        }
+      ],
+      "repair_ref": "MIP-X5-4"
+    },
+    {
+      "id": "Q-PHY-MIP-X5-EXEMPLAR-4-8",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-KEEP304",
+        "SRC-NCERT-EXEMPLAR-KEEP316-ANSWERS",
+        "SRC-OPENSTAX-UP1-4-4",
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-011",
+        "EV-PHY-11-MIP-X5-012",
+        "EV-PHY-11-MIP-X5-002",
+        "EV-PHY-11-MIP-09-002",
+        "EV-PHY-11-MIP-06-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X5-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X5-011"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X5-012",
+            "EV-PHY-11-MIP-X5-002",
+            "EV-PHY-11-MIP-09-002",
+            "EV-PHY-11-MIP-06-004"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-KEEP304",
+      "original_identifier": "EXEMPLAR-XI-4.8",
+      "stem": "In a two dimensional motion, instantaneous speed v0 is a positive constant. Then which of the following are necessarily true? (a) The acceleration of the particle is zero. (b) The acceleration of the particle is bounded. (c) The acceleration of the particle is necessarily in the plane of motion. (d) The particle must be undergoing a uniform circular motion",
+      "subparts": [],
+      "options": [
+        "(a) The acceleration of the particle is zero.",
+        "(b) The acceleration of the particle is bounded.",
+        "(c) The acceleration of the particle is necessarily in the plane of motion.",
+        "(d) The particle must be undergoing a uniform circular motion"
+      ],
+      "conditions": [
+        "Only the speed is fixed; the path's shape is not given."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(c) only.",
+        "reasoning": [
+          "(a) fails: the direction of the velocity can change, which is an acceleration.",
+          "(b) fails: with constant speed there is no tangential part, but the centripetal part v0^2/r grows without limit where the path bends ever more sharply.",
+          "(c) holds: the velocity always lies in the plane, so its changes, and hence the acceleration, lie in the plane too.",
+          "(d) fails: any curved path traversed at constant speed qualifies, not only a circle."
+        ],
+        "check": "Constant speed removes only the tangential acceleration; it says nothing about how sharply the path turns.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X5-48-CON",
+            "kind": "CONNECT",
+            "action": "Note that constant speed means a_T = 0 but a_c may be anything.",
+            "why_valid": "Acceleration splits into tangential and centripetal parts.",
+            "inputs": [],
+            "output": "a = a_c only, a_c = v0^2/r"
+          },
+          {
+            "id": "R-X5-48-DEC",
+            "kind": "DECIDE",
+            "action": "Test each option against that split.",
+            "why_valid": "Unbounded curvature makes a_c unbounded; non-circular curves are allowed.",
+            "inputs": [],
+            "output": "(c) only"
+          }
+        ],
+        "crux_move_ref": "R-X5-48-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X5",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X5",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "With the speed fixed, which of the two acceleration parts can still be non-zero?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X5-48-CON"
+        }
+      ],
+      "repair_ref": "MIP-X5-2"
+    },
+    {
+      "id": "Q-PHY-MIP-X5-NCERT-5-18",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH105",
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN",
+        "SRC-OPENSTAX-UP1-4-4"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-X5-013",
+        "EV-PHY-11-MIP-08-012",
+        "EV-PHY-11-MIP-X5-014",
+        "EV-PHY-11-MIP-X5-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-X5",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-X5-013"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-X5-013",
+            "EV-PHY-11-MIP-08-012"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-X5-014",
+            "EV-PHY-11-MIP-X5-008"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH105",
+      "original_identifier": "NCERT-XI-5.18",
+      "stem": "The bob of a pendulum is released from a horizontal position. If the length of the pendulum is 1.5 m, what is the speed with which the bob arrives at the lowermost point, given that it dissipated 5% of its initial energy against air resistance ?",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The bob falls through a height equal to the length, 1.5 m; 95% of the released energy becomes kinetic energy; g = 9.8 m/s^2."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "5.3 m/s.",
+        "reasoning": [
+          "Released from horizontal, the bob descends by L = 1.5 m, releasing m g L.",
+          "95% of it becomes kinetic energy: (1/2) m v^2 = 0.95 m g L.",
+          "v = sqrt(2 x 9.8 x 1.5 x 0.95) = sqrt27.9 = 5.3 m/s.",
+          "Along the way the bob moves on a circle with increasing speed, so its acceleration has tangential as well as centripetal parts."
+        ],
+        "check": "Without losses the speed would be sqrt(2 x 9.8 x 1.5) = 5.4 m/s, slightly more, as expected.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R-X5-518-REP",
+            "kind": "REPRESENT",
+            "action": "Track energy from the horizontal release to the lowest point.",
+            "why_valid": "The drop in height is the pendulum length.",
+            "inputs": [],
+            "output": "energy released m g (1.5 m)"
+          },
+          {
+            "id": "R-X5-518-TR",
+            "kind": "TRANSFORM",
+            "action": "Keep 95% as kinetic energy and solve for v.",
+            "why_valid": "5% is dissipated against air resistance.",
+            "inputs": [],
+            "output": "v = sqrt(2 g L x 0.95) = 5.3 m/s"
+          }
+        ],
+        "crux_move_ref": "R-X5-518-REP"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-X5",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-X5",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "How far does the bob drop between the horizontal position and the lowest point?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R-X5-518-REP"
+        }
+      ],
+      "repair_ref": "MIP-X5-1"
     }
   ],
   "teaching_routes": [],
