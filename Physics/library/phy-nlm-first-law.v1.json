@@ -2547,13 +2547,11 @@
             "NLM10-4",
             "NLM10-5"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-LIFT-LAMP-TENSION",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-LIFTLAMP-V0",
+            "VIS-NLM-LIFTLAMP-V1",
+            "VIS-NLM-LIFTLAMP-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-TENSION-VALUE-01",
           "misconception_indexes": [
@@ -2755,11 +2753,11 @@
             "NLM11-2",
             "NLM11-3"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-STRING-LENGTH-12-08",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2"
+            "VIS-NLM-YLEN-V0",
+            "VIS-NLM-YLEN-V1",
+            "VIS-NLM-YLEN-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-STRING-LENGTH-01",
           "misconception_indexes": [
@@ -2784,13 +2782,11 @@
             "NLM11-4",
             "NLM11-5"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-ATWOOD-3KG-1KG",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-ATWOOD31-V0",
+            "VIS-NLM-ATWOOD31-V1",
+            "VIS-NLM-ATWOOD31-V2"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
           "misconception_indexes": [
@@ -4731,6 +4727,272 @@
           "visual_stage_ref": "VIS-NLM-TABLE-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-LIFT-LAMP-TENSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the lamp in the lift in its three motion cases so the tension is taken from the lamp's signed equation, not set equal to its weight.",
+      "required_elements": [
+        "2 kg lamp on a cord in a lift, three cases",
+        "tension and weight on the lamp",
+        "T − mg = m a_y",
+        "tension in each case"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION",
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "2 kg lamp on a cord in a lift, three cases",
+        "tension and weight on the lamp",
+        "T − mg = m a_y",
+        "tension in each case"
+      ],
+      "instance_constraints": [
+        "The cord is light and taut; the lamp moves with the lift.",
+        "Up is positive."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting T = mg whatever the acceleration."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-LIFT-LAMP-TENSION.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LIFTLAMP-V0",
+          "label": "Three lift motions",
+          "purpose": "Show the lamp in the lift moving up steadily, accelerating up and accelerating down.",
+          "visible_elements": [
+            "2 kg lamp on a cord in a lift, three cases"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTLAMP-V1",
+          "label": "Forces on the lamp",
+          "purpose": "Draw T and the 20 N weight and write the signed equation.",
+          "visible_elements": [
+            "2 kg lamp on a cord in a lift, three cases",
+            "tension and weight on the lamp",
+            "T − mg = m a_y"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTLAMP-V2",
+          "label": "Tension in each case",
+          "purpose": "Evaluate T for each acceleration.",
+          "visible_elements": [
+            "2 kg lamp on a cord in a lift, three cases",
+            "tension and weight on the lamp",
+            "T − mg = m a_y",
+            "tension in each case"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LIFTLAMP-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LIFTLAMP-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LIFTLAMP-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-STRING-LENGTH-12-08",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show A and B on one string over a fixed pulley with both coordinates measured away from the pulley, so their sum stays fixed.",
+      "required_elements": [
+        "A and B on one string, y_A = 1.2 m, y_B = 0.8 m",
+        "y_A + y_B = constant",
+        "B's new position and velocity"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "A and B on one string, y_A = 1.2 m, y_B = 0.8 m",
+        "y_A + y_B = constant",
+        "B's new position and velocity"
+      ],
+      "instance_constraints": [
+        "Both coordinates are measured downward from the pulley.",
+        "The string is taut and inextensible; the pulley is fixed."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Writing y_A = y_B or v_A = v_B for this string."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-STRING-LENGTH-12-08.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-YLEN-V0",
+          "label": "Coordinates",
+          "purpose": "Show A and B with y_A = 1.2 m and y_B = 0.8 m measured down from the pulley.",
+          "visible_elements": [
+            "A and B on one string, y_A = 1.2 m, y_B = 0.8 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-YLEN-V1",
+          "label": "Length relation",
+          "purpose": "Write the fixed-length relation and differentiate it.",
+          "visible_elements": [
+            "A and B on one string, y_A = 1.2 m, y_B = 0.8 m",
+            "y_A + y_B = constant"
+          ]
+        },
+        {
+          "id": "VIS-NLM-YLEN-V2",
+          "label": "New position and velocity",
+          "purpose": "Apply the relation to the 0.3 m move and the 0.5 m/s instant.",
+          "visible_elements": [
+            "A and B on one string, y_A = 1.2 m, y_B = 0.8 m",
+            "y_A + y_B = constant",
+            "B's new position and velocity"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-YLEN-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-YLEN-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-YLEN-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ATWOOD-3KG-1KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 3 kg and 1 kg Atwood machine with the length constraint and the equal-tension model kept as separate statements.",
+      "required_elements": [
+        "A 3 kg and B 1 kg over a fixed pulley",
+        "a_A + a_B = 0 and one T",
+        "per-body equations",
+        "a_A, a_B and T"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH",
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "read_order": [
+        "A 3 kg and B 1 kg over a fixed pulley",
+        "a_A + a_B = 0 and one T",
+        "per-body equations",
+        "a_A, a_B and T"
+      ],
+      "instance_constraints": [
+        "Coordinates are measured downward from the pulley.",
+        "The string is light and inextensible, the pulley fixed, light and frictionless."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Setting T equal to either weight.",
+        "Justifying equal tension by the string length."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ATWOOD-3KG-1KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ATWOOD31-V0",
+          "label": "The machine",
+          "purpose": "Show A and B on one string over the fixed pulley.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a fixed pulley"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ATWOOD31-V1",
+          "label": "Two relations, two equations",
+          "purpose": "Name the reason for each relation and write each body's equation.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a fixed pulley",
+            "a_A + a_B = 0 and one T",
+            "per-body equations"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ATWOOD31-V2",
+          "label": "Solve",
+          "purpose": "Solve for the accelerations and T.",
+          "visible_elements": [
+            "A 3 kg and B 1 kg over a fixed pulley",
+            "a_A + a_B = 0 and one T",
+            "per-body equations",
+            "a_A, a_B and T"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ATWOOD31-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ATWOOD31-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ATWOOD31-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -5630,7 +5892,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-LIFT-LAMP-TENSION",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -5691,7 +5953,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-STRING-LENGTH-12-08",
         "stage_refs": []
       },
       "failure_signal": null,
@@ -5752,7 +6014,7 @@
       "representation_roles": {
         "initial_ref": null,
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-ATWOOD-3KG-1KG",
         "stage_refs": []
       },
       "failure_signal": null,
