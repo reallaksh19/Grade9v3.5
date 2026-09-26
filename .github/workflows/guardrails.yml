@@ -17,7 +17,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install schema validator
-        run: pip install --quiet jsonschema
+        run: pip install --quiet jsonschema pypdf cffi
 
       # Proves the guard detects a planted violation. Without this a guard that
       # scanned nothing would pass vacuously.
@@ -285,6 +285,15 @@ jobs:
         run: |
           python3 Shared/tools/escape_state_guard.py
           python3 -m unittest tests.test_escape_state_policy -v
+
+      # Research library: every evidence card's quote must be re-found on its cited page of the
+      # pinned, allowlisted source (bytes re-downloaded and matched by SHA-256), and stages are
+      # derived from files. Needs network for the source snapshots.
+      - name: Research library evidence is real and the board computes
+        run: |
+          python3 Shared/tools/evidence_check.py check --subject Physics --fetch
+          python3 Shared/tools/library_board.py --subject Physics > /dev/null
+          python3 -m unittest tests.test_research_library -v
 
       - name: Tests (engine port, gate falsifiers, library, compilation, tooling)
         run: python3 -m unittest discover -s tests -p "test_*.py" -v

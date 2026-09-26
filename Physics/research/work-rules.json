@@ -1,0 +1,85 @@
+{
+  "schema": "research-work-rules/v1",
+  "subject": "Physics",
+  "purpose": "What each role must produce before a spine node moves to the next role. The board derives every node's stage from files and checks against these rules; no agent declares its own progress.",
+  "roles": {
+    "RESEARCHER": "Finds and pins allowlisted sources; writes evidence cards; expands chapters into microtopics. The only role that uses the web.",
+    "AUTHOR": "Writes library records in the chapter staging package from passing evidence cards only; every required field cites cards or is marked AUTHORED_PEDAGOGICAL. No web access.",
+    "VERIFIER": "Independently re-solves every question, checks each cited field against its cards and the grade scope, and returns findings as duties. Must not be the researcher or author of the node."
+  },
+  "harvest_minimum": {
+    "CHAPTER": {
+      "SYLLABUS_SCOPE": 1
+    },
+    "MICROTOPIC": {
+      "SYLLABUS_SCOPE": 1,
+      "DEFINITION|RELATION": 2,
+      "CONDITION": 1,
+      "WORKED_EXAMPLE": 1,
+      "MISCONCEPTION": 1,
+      "QUESTION": 3
+    }
+  },
+  "syllabus_scope_may_come_from_parent": true,
+  "staging_package": "{subject}/research/packages/{chapter}.package.json",
+  "cited_fields": {
+    "microtopics": [
+      "title",
+      "entry_assumptions",
+      "inferential_jump",
+      "teaching_path",
+      "misconceptions",
+      "exit_task"
+    ],
+    "relations": [
+      "expression",
+      "meaning",
+      "conditions"
+    ],
+    "questions": [
+      "stem",
+      "conditions",
+      "answer"
+    ]
+  },
+  "authored_marker": "AUTHORED_PEDAGOGICAL",
+  "question_record_must_cite": [
+    "QUESTION",
+    "ANSWER_KEY"
+  ],
+  "interactive_idea": {
+    "required_when_badge": [
+      "HARD"
+    ],
+    "fields": [
+      "learner_manipulates",
+      "becomes_visible",
+      "misconception_targeted",
+      "representation_ref"
+    ],
+    "location": "microtopic.extensions['grade9v3:interactive_idea']"
+  },
+  "numeric_check_relative_tolerance": 0.01,
+  "priority_chapters": [
+    "PHY-11-MOTION-IN-A-PLANE"
+  ],
+  "priority_note": "Pilot first: work orders come from these chapters (chapter node, then its microtopics in spine order) before any other chapter.",
+  "must_cite_cards": {
+    "microtopics": [
+      "title",
+      "inferential_jump",
+      "misconceptions"
+    ],
+    "relations": [
+      "expression",
+      "meaning",
+      "conditions"
+    ],
+    "questions": [
+      "stem",
+      "conditions",
+      "answer"
+    ]
+  },
+  "must_cite_cards_note": "These fields carry facts: AUTHORED_PEDAGOGICAL is refused for them (authored-practice questions excepted)."
+}

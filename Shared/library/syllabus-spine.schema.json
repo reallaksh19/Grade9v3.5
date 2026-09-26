@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/syllabus-spine.schema.json",
+  "title": "Research syllabus spine",
+  "description": "The fixed list of syllabus nodes research agents work through. Agents never choose their own topic: work orders come from this spine. A node is cited when a SYLLABUS_SCOPE evidence card supports it; owner_frozen is set by the owner only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "subject",
+    "nodes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "syllabus-spine/v1"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "level",
+          "title",
+          "grade",
+          "parent",
+          "track",
+          "jee_tier",
+          "canonical_refs",
+          "owner_frozen"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]+$"
+          },
+          "level": {
+            "enum": [
+              "CHAPTER",
+              "MICROTOPIC"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "grade": {
+            "enum": [
+              9,
+              10,
+              11,
+              12
+            ]
+          },
+          "parent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "track": {
+            "enum": [
+              "CBSE",
+              "JEE_EXTENSION"
+            ]
+          },
+          "jee_tier": {
+            "enum": [
+              "NONE",
+              "MAIN",
+              "ADVANCED",
+              "UNKNOWN"
+            ]
+          },
+          "source_hint": {
+            "type": "string",
+            "description": "Where the researcher should look first. A hint, not a citation."
+          },
+          "canonical_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Existing library records this node maps to."
+          },
+          "owner_frozen": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
