@@ -1,0 +1,151 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-03",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:ad24b4094abb34e8d876402d2c586282747ad402bc492a35c8cedaf1b77bf88d",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-03-011",
+      "independent_solution": [
+        "Full stem read on the pinned pages 20-21: (a) |a+b| <= |a|+|b|, (b) |a+b| >= ||a|-|b||, (c) |a-b| <= |a|+|b|, (d) |a-b| >= ||a|-|b||; when does equality apply?",
+        "Draw a and b head to tail: a, b, a+b form a triangle, so the side |a+b| is at most the sum and at least the difference of the other two sides -> (a), (b). Replace b by -b (same magnitude): a, -b, a-b form a triangle -> (c), (d).",
+        "The triangle degenerates to a line only for collinear vectors: (a) and (d) become equalities when a, b are parallel (same direction); (b) and (c) when a, b are antiparallel (or either is zero)."
+      ],
+      "independent_answer": "All four follow from the triangle inequality; equality holds only for collinear vectors ((a),(d) parallel; (b),(c) antiparallel).",
+      "official_answer": "Hint: the sum (difference) of any two sides of a triangle is never less (greater) than the third side. Equality holds for collinear vectors.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-012",
+      "independent_solution": [
+        "Full stem read on pinned page 21 including option (d). a+b+c+d = 0 closes a head-to-tail polygon; (a) is false: four non-zero vectors can close a quadrilateral.",
+        "(b) a+c = -(b+d), so |a+c| = |b+d|: true. (c) a = -(b+c+d), so |a| = |b+c+d| <= |b|+|c|+|d|: true.",
+        "(d) b+c = -(a+d); a+d lies in the plane of a and d (on their line if collinear), so b+c does too: true."
+      ],
+      "independent_answer": "(b), (c) and (d) are correct; (a) is not.",
+      "official_answer": "All statements except (a) are correct",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-03-014",
+      "independent_solution": [
+        "Rewrite each relation with one vector alone: (a) c = a+b, (b) a = b+c, (c) b = a+c, (d) a+b+c = 0 (closed triangle).",
+        "Read arrow directions on the pinned figure (page 6): (i) a up, c from head of a to the right, b from origin to that point -> b = a+c; (ii) a right, b up from head of a, c back to origin -> a+b+c = 0; (iii) c left from origin, b from tail of c up to the top, a from origin up -> a = c+b; (iv) a left, b down from head of a, c from origin to bottom-left -> c = a+b.",
+        "Match: (a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)."
+      ],
+      "independent_answer": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)",
+      "official_answer": "(a) matches with (iv), (b) matches with (iii), (c) matches with (i), (d) matches with (ii)",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-03",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-03",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-03-TRIANGLE-LAW",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-03-SUBTRACTION",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-03-HEAD-TO-TAIL",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-NCERT-3-6",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "hints",
+        "scaffolds"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-NCERT-3-7",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-03-EXEMPLAR-4-26",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "EV-PHY-11-MIP-03-011",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote stops at 'Establish the following vector inequalities geometrically or otherwise :' and omits the four inequalities (a)-(d) and 'When does the equality sign above apply?' (NCERT p.46-47, pinned pages 20-21). The claim ('establish the triangle inequalities for |a+b| and |a-b| and say when equality applies') and the record stem Q-PHY-MIP-03-NCERT-3-6 therefore carry text no quote supports. Add the missing text as quoted evidence (a second QUESTION card for the page-21 part if one card cannot span pages)."
+    },
+    {
+      "target": "EV-PHY-11-MIP-03-012",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card quote ends after option (c) and omits option (d) 'b + c must lie in the plane of a and d if a and d are not collinear, and in the line of a and d, if they are collinear ?', which is on the same pinned page 21. The record stem Q-PHY-MIP-03-NCERT-3-7 includes (d) and the key 'All statements except (a)' depends on it. Extend the quote to the end of the question."
+    },
+    {
+      "target": "EV-PHY-11-MIP-03-014",
+      "duty_for": "RESEARCHER",
+      "detail": "QUESTION card claim lists the Column I relations (a+b=c, a-c=b, b-a=c, a+b+c=0) but the quote ends at 'Match the relation in column I to correct orientations in column II.' and contains none of them; the record stem Q-PHY-MIP-03-EXEMPLAR-4-26 also carries them. Quote the Column I relations from pinned page 6 (or drop them from the claim)."
+    }
+  ]
+}
