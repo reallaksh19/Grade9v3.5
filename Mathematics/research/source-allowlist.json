@@ -146,5 +146,33 @@
     }
   },
   "local_sources_note": "Scanned books and papers the owner holds. Only the owner adds an entry and the SHA-256 of each scan file (print it with scan_ingest.py hash). The scan bytes and OCR text never leave the owner's machine; the repository gets the acquisition record, a scan manifest with a hashed shingle index, and short quotes. Fields: source_id, title, authors, publisher, edition, year, isbn, kind (TEXTBOOK | EXEMPLAR | QUESTION_BANK | EXAM_PAPER | ANSWER_KEY | NOTES), tier (A for official NCERT/CBSE/NTA/JEE material, B for published reference books), may_support (optional narrowing of the tier's kinds), rights (OFFICIAL_PUBLIC | COPYRIGHTED_OWNED_COPY), scan_sha256s, registered_by, registered_at.",
-  "local_sources": []
+  "local_sources": [
+    {
+      "source_id": "SRC-BOOK-MATH-CH2-CH3",
+      "title": "Class 9 Mathematics Modules: Polynomials and Coordinate Geometry",
+      "authors": ["Mathematics Faculty"],
+      "publisher": "Reference Press",
+      "edition": "1",
+      "year": 2021,
+      "isbn": "N/A",
+      "kind": "QUESTION_BANK",
+      "tier": "B",
+      "may_support": [
+        "DEFINITION",
+        "RELATION",
+        "CONDITION",
+        "WORKED_EXAMPLE",
+        "MISCONCEPTION",
+        "QUESTION",
+        "ANSWER_KEY",
+        "DIAGRAM"
+      ],
+      "rights": "COPYRIGHTED_OWNED_COPY",
+      "scan_sha256s": [
+        "1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c"
+      ],
+      "registered_by": "owner",
+      "registered_at": "2026-09-26"
+    }
+  ]
 }
