@@ -4532,7 +4532,7 @@
       ]
     },
     {
-      "id": "REP-KIN-2D-VARYING-AY",
+      "id": "REP-KIN-2D-TWO-PUCK-MEETING",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -4540,103 +4540,108 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "GRAPH_GENERIC",
-      "purpose": "Show a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s so the constant-acceleration check is made separately on each axis.",
+      "kind": "MOTION_DIAGRAM",
+      "purpose": "Show the two air-table pucks in one frame with one clock, so a meeting is tested as the same point at the same time rather than as crossing paths.",
       "required_elements": [
-        "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
-        "acceleration–time graph per axis",
-        "per-axis validity verdict",
-        "model choice"
+        "two pucks with their start points, velocities and accelerations",
+        "paths and their crossing point (12, 9) m",
+        "four component equations on one clock",
+        "same-time test at t = 3 s",
+        "design speed v_B = 3 m/s"
       ],
       "relation_refs": [
-        "REL-KIN-2D-VELOCITY"
+        "REL-KIN-2D-DISPLACEMENT"
       ],
       "read_order": [
-        "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
-        "acceleration–time graph per axis",
-        "per-axis validity verdict",
-        "model choice"
+        "two pucks with their start points, velocities and accelerations",
+        "paths and their crossing point (12, 9) m",
+        "four component equations on one clock",
+        "same-time test at t = 3 s",
+        "design speed v_B = 3 m/s"
       ],
       "instance_constraints": [
-        "Before the attempt only the given acceleration expressions are shown.",
-        "The graphs and verdicts come after the attempt."
+        "Before the attempt only the start points and stated vectors are shown; no path and no crossing point.",
+        "The collision test uses one t for all four coordinates."
       ],
       "accessibility": [
-        "The graphs are described in words: flat for a_x, rising for a_y.",
-        "Each verdict is written as text."
+        "Every position, time and velocity is written as text.",
+        "The crossing point is hollow and labelled; the same-time positions are filled and labelled."
       ],
       "misleading_alternatives": [
-        "Letting the constant a_x license constant-a equations on y."
+        "Treating the crossing point of the paths as a collision."
       ],
       "rendered_asset_refs": [
-        "Physics/assets/representations/REP-KIN-2D-VARYING-AY.svg"
+        "Physics/assets/representations/REP-KIN-2D-TWO-PUCK-MEETING.svg"
       ],
       "scene_instances": [],
       "correspondence": [
         {
-          "element": "acceleration–time graph per axis",
-          "symbol": "a_y",
-          "in_words": "The y-acceleration 3t, which grows with time and so is not constant."
+          "element": "same-time test at t = 3 s",
+          "symbol": "t",
+          "in_words": "The one instant at which the x-coordinates agree, where the y-coordinates must also agree for a collision."
         }
       ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
-          "id": "VIS-KIN-2D-VARY-V0",
-          "label": "Given accelerations",
-          "purpose": "Show the stated a_x, a_y and interval.",
+          "id": "VIS-KIN-2D-PUCKS-V0",
+          "label": "The two pucks",
+          "purpose": "Show both starts and the stated vectors on one frame and clock.",
           "visible_elements": [
-            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s"
+            "two pucks with their start points, velocities and accelerations"
           ]
         },
         {
-          "id": "VIS-KIN-2D-VARY-V1",
-          "label": "Per-axis graphs",
-          "purpose": "Graph each acceleration over the interval.",
+          "id": "VIS-KIN-2D-PUCKS-V1",
+          "label": "Paths and table",
+          "purpose": "Draw the paths, their crossing, and the four component equations.",
           "visible_elements": [
-            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
-            "acceleration–time graph per axis"
+            "two pucks with their start points, velocities and accelerations",
+            "paths and their crossing point (12, 9) m",
+            "four component equations on one clock"
           ]
         },
         {
-          "id": "VIS-KIN-2D-VARY-V2",
-          "label": "Per-axis verdict",
-          "purpose": "Decide validity for each axis.",
+          "id": "VIS-KIN-2D-PUCKS-V2",
+          "label": "Same-time test",
+          "purpose": "Test both coordinates at the one time the x-values agree.",
           "visible_elements": [
-            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
-            "acceleration–time graph per axis",
-            "per-axis validity verdict"
+            "two pucks with their start points, velocities and accelerations",
+            "paths and their crossing point (12, 9) m",
+            "four component equations on one clock",
+            "same-time test at t = 3 s"
           ]
         },
         {
-          "id": "VIS-KIN-2D-VARY-V3",
-          "label": "Model choice",
-          "purpose": "State the model to use.",
+          "id": "VIS-KIN-2D-PUCKS-V3",
+          "label": "Design for a collision",
+          "purpose": "Find the B speed that makes both coordinates agree at 3 s.",
           "visible_elements": [
-            "given a_x = 2 m/s² and a_y = 3t m/s² over 0–4 s",
-            "acceleration–time graph per axis",
-            "per-axis validity verdict",
-            "model choice"
+            "two pucks with their start points, velocities and accelerations",
+            "paths and their crossing point (12, 9) m",
+            "four component equations on one clock",
+            "same-time test at t = 3 s",
+            "design speed v_B = 3 m/s"
           ]
         }
       ],
       "support_stage_map": [
         {
           "support_level": "low",
-          "visual_stage_ref": "VIS-KIN-2D-VARY-V0"
+          "visual_stage_ref": "VIS-KIN-2D-PUCKS-V0"
         },
         {
           "support_level": "medium",
-          "visual_stage_ref": "VIS-KIN-2D-VARY-V1"
+          "visual_stage_ref": "VIS-KIN-2D-PUCKS-V1"
         },
         {
           "support_level": "high",
-          "visual_stage_ref": "VIS-KIN-2D-VARY-V2"
+          "visual_stage_ref": "VIS-KIN-2D-PUCKS-V2"
         }
       ]
     },
     {
-      "id": "REP-KIN-2D-LAUNCH-15M-10-10",
+      "id": "REP-KIN-2D-ROOF-LANDING-ROOTS",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -4645,103 +4650,103 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "TRAJECTORY_PLOT",
-      "purpose": "Show the launch 15 m above level ground with u = (10, 10) m/s, whose ground impact is Δy = −15 m rather than the familiar same-height condition.",
+      "purpose": "Show the launch 15 m up with u = (10, 10) m/s and the roof 3.75 m above launch from 8 m out, so the two roof-level roots are told apart by where the ball is at each.",
       "required_elements": [
-        "launch 15 m above ground with u = (10, 10) m/s",
-        "impact condition Δy = −15 m",
-        "impact time 3 s",
-        "range 30 m"
+        "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
+        "path and the two roof-level roots",
+        "root chosen by x against the roof's extent",
+        "landing time, place and velocity"
       ],
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
       "read_order": [
-        "launch 15 m above ground with u = (10, 10) m/s",
-        "impact condition Δy = −15 m",
-        "impact time 3 s",
-        "range 30 m"
+        "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
+        "path and the two roof-level roots",
+        "root chosen by x against the roof's extent",
+        "landing time, place and velocity"
       ],
       "instance_constraints": [
-        "The launch has u_y = 10 m/s upward, so the path first rises.",
-        "Before the attempt only the scene is shown; the impact condition is the deciding move and comes after."
+        "Before the attempt only the geometry and launch components are shown; no path.",
+        "The roof starts 8 m out and is 3.75 m above launch."
       ],
       "accessibility": [
-        "The 15 m drop and the launch components are written as text.",
-        "The rejected same-height point is named in words."
+        "Heights, distances, roots and the landing values are written as text.",
+        "Both roots are marked and each is labelled with its x."
       ],
       "misleading_alternatives": [
-        "Drawing a horizontal launch for this item.",
-        "Using Δy = 0 or t = 2u_y/g for the ground impact."
+        "Taking the first root t = 0.5 s as the landing.",
+        "Writing the landing as Δy = −15 m or Δy = 0."
       ],
       "rendered_asset_refs": [
-        "Physics/assets/representations/REP-KIN-2D-LAUNCH-15M-10-10.svg"
+        "Physics/assets/representations/REP-KIN-2D-ROOF-LANDING-ROOTS.svg"
       ],
       "scene_instances": [],
       "correspondence": [
         {
-          "element": "impact condition Δy = −15 m",
-          "symbol": "Delta y",
-          "in_words": "The ground is 15 m below the launch point."
+          "element": "path and the two roof-level roots",
+          "symbol": "t",
+          "in_words": "The two times the ball is at roof height; only one of them is above the roof."
         }
       ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
-          "id": "VIS-KIN-2D-H15-V0",
-          "label": "The launch",
-          "purpose": "Show the height, the launch components and the path.",
+          "id": "VIS-KIN-2D-ROOFROOTS-V0",
+          "label": "The geometry",
+          "purpose": "Show the launch, the ground and the roof's height and extent.",
           "visible_elements": [
-            "launch 15 m above ground with u = (10, 10) m/s"
+            "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch"
           ]
         },
         {
-          "id": "VIS-KIN-2D-H15-V1",
-          "label": "Impact condition",
-          "purpose": "Name the impact event from the geometry.",
+          "id": "VIS-KIN-2D-ROOFROOTS-V1",
+          "label": "Two roots",
+          "purpose": "Solve the roof-level equation for both times.",
           "visible_elements": [
-            "launch 15 m above ground with u = (10, 10) m/s",
-            "impact condition Δy = −15 m"
+            "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
+            "path and the two roof-level roots"
           ]
         },
         {
-          "id": "VIS-KIN-2D-H15-V2",
-          "label": "Impact time",
-          "purpose": "Solve for the physical root.",
+          "id": "VIS-KIN-2D-ROOFROOTS-V2",
+          "label": "Choose by x",
+          "purpose": "Check x at each root against the roof.",
           "visible_elements": [
-            "launch 15 m above ground with u = (10, 10) m/s",
-            "impact condition Δy = −15 m",
-            "impact time 3 s"
+            "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
+            "path and the two roof-level roots",
+            "root chosen by x against the roof's extent"
           ]
         },
         {
-          "id": "VIS-KIN-2D-H15-V3",
-          "label": "Range",
-          "purpose": "Reuse the time on x and check.",
+          "id": "VIS-KIN-2D-ROOFROOTS-V3",
+          "label": "Landing",
+          "purpose": "Read place and velocity at the chosen time.",
           "visible_elements": [
-            "launch 15 m above ground with u = (10, 10) m/s",
-            "impact condition Δy = −15 m",
-            "impact time 3 s",
-            "range 30 m"
+            "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
+            "path and the two roof-level roots",
+            "root chosen by x against the roof's extent",
+            "landing time, place and velocity"
           ]
         }
       ],
       "support_stage_map": [
         {
           "support_level": "low",
-          "visual_stage_ref": "VIS-KIN-2D-H15-V0"
+          "visual_stage_ref": "VIS-KIN-2D-ROOFROOTS-V0"
         },
         {
           "support_level": "medium",
-          "visual_stage_ref": "VIS-KIN-2D-H15-V1"
+          "visual_stage_ref": "VIS-KIN-2D-ROOFROOTS-V1"
         },
         {
           "support_level": "high",
-          "visual_stage_ref": "VIS-KIN-2D-H15-V2"
+          "visual_stage_ref": "VIS-KIN-2D-ROOFROOTS-V2"
         }
       ]
     },
     {
-      "id": "REP-KIN-2D-THRUST-AX2",
+      "id": "REP-KIN-2D-PLANE-RELEASE",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -4749,103 +4754,104 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the one launched object whose motor keeps a horizontal thrust on after release, so the interaction audit gives a_x = 2 m/s² and the ideal a_x = 0 model is tested against it.",
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the package released 80 m up from a plane flying at 50 m/s, so the projectile model is started at release with the package's own velocity in the ground frame.",
       "required_elements": [
-        "launched object with its motor on",
-        "post-release interaction inventory",
-        "a_x = 2 m/s², a_y = −g",
-        "model decision"
+        "plane at 50 m/s releasing a package 80 m up, with the ground frame",
+        "interactions on the package after release",
+        "initial velocity u = (50, 0) m/s and the path",
+        "fall time, landing point and plane position"
       ],
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
       "read_order": [
-        "launched object with its motor on",
-        "post-release interaction inventory",
-        "a_x = 2 m/s², a_y = −g",
-        "model decision"
+        "plane at 50 m/s releasing a package 80 m up, with the ground frame",
+        "interactions on the package after release",
+        "initial velocity u = (50, 0) m/s and the path",
+        "fall time, landing point and plane position"
       ],
       "instance_constraints": [
-        "Only one object is drawn: the item's motor-on launch.",
-        "The model decision appears only in the last stage."
+        "Before the attempt only the plane, the release point, the height and the frame are shown; no path.",
+        "The package's initial velocity equals the plane's, 50 m/s along +x."
       ],
       "accessibility": [
-        "Each interaction is named in text.",
-        "The acceleration values and the decision are written as text."
+        "Speeds, height, time and distances are written as text.",
+        "The rejected straight-down drop is marked with ✗ and words, not by colour."
       ],
       "misleading_alternatives": [
-        "Calling the motion an ideal projectile because the path is curved."
+        "Starting the package from rest.",
+        "Keeping the plane's thrust on the package."
       ],
       "rendered_asset_refs": [
-        "Physics/assets/representations/REP-KIN-2D-THRUST-AX2.svg"
+        "Physics/assets/representations/REP-KIN-2D-PLANE-RELEASE.svg"
       ],
       "scene_instances": [],
       "correspondence": [
         {
-          "element": "a_x = 2 m/s², a_y = −g",
-          "symbol": "a_x",
-          "in_words": "The horizontal acceleration the motor's thrust keeps giving the object after release."
+          "element": "initial velocity u = (50, 0) m/s and the path",
+          "symbol": "u_x",
+          "in_words": "The package leaves with the plane's horizontal velocity, 50 m/s."
         }
       ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
-          "id": "VIS-KIN-2D-THRUST-V0",
-          "label": "The launch",
-          "purpose": "Show the object with its motor on after release.",
+          "id": "VIS-KIN-2D-PLANE-V0",
+          "label": "Release",
+          "purpose": "Show the plane, the release point, the height and the frame.",
           "visible_elements": [
-            "launched object with its motor on"
+            "plane at 50 m/s releasing a package 80 m up, with the ground frame"
           ]
         },
         {
-          "id": "VIS-KIN-2D-THRUST-V1",
-          "label": "Interaction audit",
-          "purpose": "List what acts after release.",
+          "id": "VIS-KIN-2D-PLANE-V1",
+          "label": "Interactions",
+          "purpose": "List what acts on the package after release.",
           "visible_elements": [
-            "launched object with its motor on",
-            "post-release interaction inventory"
+            "plane at 50 m/s releasing a package 80 m up, with the ground frame",
+            "interactions on the package after release"
           ]
         },
         {
-          "id": "VIS-KIN-2D-THRUST-V2",
-          "label": "Accelerations",
-          "purpose": "State the acceleration components.",
+          "id": "VIS-KIN-2D-PLANE-V2",
+          "label": "Initial velocity",
+          "purpose": "Start the model at release with u = (50, 0) m/s.",
           "visible_elements": [
-            "launched object with its motor on",
-            "post-release interaction inventory",
-            "a_x = 2 m/s², a_y = −g"
+            "plane at 50 m/s releasing a package 80 m up, with the ground frame",
+            "interactions on the package after release",
+            "initial velocity u = (50, 0) m/s and the path"
           ]
         },
         {
-          "id": "VIS-KIN-2D-THRUST-V3",
-          "label": "Model decision",
-          "purpose": "Reject a_x = 0 and name the model to use.",
+          "id": "VIS-KIN-2D-PLANE-V3",
+          "label": "Landing",
+          "purpose": "Read the fall time, landing point and plane position.",
           "visible_elements": [
-            "launched object with its motor on",
-            "post-release interaction inventory",
-            "a_x = 2 m/s², a_y = −g",
-            "model decision"
+            "plane at 50 m/s releasing a package 80 m up, with the ground frame",
+            "interactions on the package after release",
+            "initial velocity u = (50, 0) m/s and the path",
+            "fall time, landing point and plane position"
           ]
         }
       ],
       "support_stage_map": [
         {
           "support_level": "low",
-          "visual_stage_ref": "VIS-KIN-2D-THRUST-V0"
+          "visual_stage_ref": "VIS-KIN-2D-PLANE-V0"
         },
         {
           "support_level": "medium",
-          "visual_stage_ref": "VIS-KIN-2D-THRUST-V1"
+          "visual_stage_ref": "VIS-KIN-2D-PLANE-V1"
         },
         {
           "support_level": "high",
-          "visual_stage_ref": "VIS-KIN-2D-THRUST-V2"
+          "visual_stage_ref": "VIS-KIN-2D-PLANE-V2"
         }
       ]
     },
     {
-      "id": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
+      "id": "REP-KIN-2D-VELOCITY-45-BELOW",
       "version": "0.1.0",
       "status": "CANDIDATE",
       "source_refs": [
@@ -4853,98 +4859,98 @@
       ],
       "evidence_refs": [],
       "extensions": {},
-      "kind": "VECTOR_DIAGRAM",
-      "purpose": "Mark two points at one height on the same gravity-only trajectory, one rising and one falling, so the component comparison is made without solving either time.",
+      "kind": "TRAJECTORY_PLOT",
+      "purpose": "Show the cliff throw with u = (10, 20) m/s and the target direction 45° below the horizontal, so the event is written as a condition on the velocity components, not on the displacement.",
       "required_elements": [
-        "one trajectory with two equal-height points",
-        "equal v_x at both points",
-        "v_y equal and opposite",
-        "velocities, speed and acceleration compared"
+        "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
+        "component histories",
+        "velocity condition v_y / v_x = −1 and its time",
+        "position, velocity and speed at t = 3 s"
       ],
       "relation_refs": [
         "REL-PROJECTILE-COMPONENT-MODEL"
       ],
       "read_order": [
-        "one trajectory with two equal-height points",
-        "equal v_x at both points",
-        "v_y equal and opposite",
-        "velocities, speed and acceleration compared"
+        "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
+        "component histories",
+        "velocity condition v_y / v_x = −1 and its time",
+        "position, velocity and speed at t = 3 s"
       ],
       "instance_constraints": [
-        "Both points lie on one trajectory at one height.",
-        "Before the attempt only the two marked points are shown."
+        "Before the attempt only the throw and the target direction are shown.",
+        "The event point is drawn above the launch point, at (30, 15) m."
       ],
       "accessibility": [
-        "Rising and falling points are labelled in words.",
-        "Each comparison is written as text; component arrows are also dashed or solid, not colour only."
+        "The target direction is labelled '45° below the horizontal' in text.",
+        "The time, position, velocity and speed are written as text."
       ],
       "misleading_alternatives": [
-        "Drawing identical velocity arrows at the two points."
+        "Looking for the point where the displacement is 45° below the horizontal."
       ],
       "rendered_asset_refs": [
-        "Physics/assets/representations/REP-KIN-2D-EQUAL-HEIGHT-PAIR.svg"
+        "Physics/assets/representations/REP-KIN-2D-VELOCITY-45-BELOW.svg"
       ],
       "scene_instances": [],
       "correspondence": [
         {
-          "element": "v_y equal and opposite",
+          "element": "velocity condition v_y / v_x = −1 and its time",
           "symbol": "v_y",
-          "in_words": "The vertical velocity has the same size at equal height, upward on the way up and downward on the way down."
+          "in_words": "At 45° below the horizontal the downward vertical velocity equals the horizontal velocity in size."
         }
       ],
       "interactive_resource_refs": [],
       "reveal_stages": [
         {
-          "id": "VIS-KIN-2D-PAIR-V0",
-          "label": "Two points",
-          "purpose": "Mark the two equal-height points on one arc.",
+          "id": "VIS-KIN-2D-45-V0",
+          "label": "The throw",
+          "purpose": "Show the throw and the target velocity direction.",
           "visible_elements": [
-            "one trajectory with two equal-height points"
+            "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal"
           ]
         },
         {
-          "id": "VIS-KIN-2D-PAIR-V1",
-          "label": "Horizontal components",
-          "purpose": "Compare v_x.",
+          "id": "VIS-KIN-2D-45-V1",
+          "label": "Component histories",
+          "purpose": "Write each component as a function of t.",
           "visible_elements": [
-            "one trajectory with two equal-height points",
-            "equal v_x at both points"
+            "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
+            "component histories"
           ]
         },
         {
-          "id": "VIS-KIN-2D-PAIR-V2",
-          "label": "Vertical components",
-          "purpose": "Compare v_y.",
+          "id": "VIS-KIN-2D-45-V2",
+          "label": "Velocity condition",
+          "purpose": "Turn the direction into a velocity-component condition and solve.",
           "visible_elements": [
-            "one trajectory with two equal-height points",
-            "equal v_x at both points",
-            "v_y equal and opposite"
+            "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
+            "component histories",
+            "velocity condition v_y / v_x = −1 and its time"
           ]
         },
         {
-          "id": "VIS-KIN-2D-PAIR-V3",
-          "label": "Recombined comparison",
-          "purpose": "Compare velocity, speed and acceleration.",
+          "id": "VIS-KIN-2D-45-V3",
+          "label": "State at the event",
+          "purpose": "Read position, velocity and speed at t = 3 s.",
           "visible_elements": [
-            "one trajectory with two equal-height points",
-            "equal v_x at both points",
-            "v_y equal and opposite",
-            "velocities, speed and acceleration compared"
+            "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
+            "component histories",
+            "velocity condition v_y / v_x = −1 and its time",
+            "position, velocity and speed at t = 3 s"
           ]
         }
       ],
       "support_stage_map": [
         {
           "support_level": "low",
-          "visual_stage_ref": "VIS-KIN-2D-PAIR-V0"
+          "visual_stage_ref": "VIS-KIN-2D-45-V0"
         },
         {
           "support_level": "medium",
-          "visual_stage_ref": "VIS-KIN-2D-PAIR-V1"
+          "visual_stage_ref": "VIS-KIN-2D-45-V1"
         },
         {
           "support_level": "high",
-          "visual_stage_ref": "VIS-KIN-2D-PAIR-V2"
+          "visual_stage_ref": "VIS-KIN-2D-45-V2"
         }
       ]
     }
@@ -6590,10 +6596,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-VARYING-AY",
-        "bound_ref": "REP-KIN-2D-VARYING-AY",
+        "safe_ref": "REP-KIN-2D-TWO-PUCK-MEETING",
+        "bound_ref": "REP-KIN-2D-TWO-PUCK-MEETING",
         "stage_refs": [
-          "VIS-KIN-2D-VARY-V0"
+          "VIS-KIN-2D-PUCKS-V0"
         ]
       },
       "failure_signal": "You answered 'yes, they collide at (12, 9) m' because the paths cross there: A is at that point at t = 3 s, but B only at t = 4.5 s. Or you paired the x-match time (3 s) with the y-match time (2 s) as though they were one event.",
@@ -6813,10 +6819,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-LAUNCH-15M-10-10",
-        "bound_ref": "REP-KIN-2D-LAUNCH-15M-10-10",
+        "safe_ref": "REP-KIN-2D-ROOF-LANDING-ROOTS",
+        "bound_ref": "REP-KIN-2D-ROOF-LANDING-ROOTS",
         "stage_refs": [
-          "VIS-KIN-2D-H15-V0"
+          "VIS-KIN-2D-ROOFROOTS-V0"
         ]
       },
       "failure_signal": "Your answer is t = 0.5 s at 5 m: that root is the ball rising through roof level before the roof begins at 8 m. Or you used the ground (Δy = −15 m) and got 3 s and 30 m: the roof is in the way.",
@@ -7052,11 +7058,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-THRUST-AX2",
-        "bound_ref": "REP-KIN-2D-THRUST-AX2",
+        "safe_ref": "REP-KIN-2D-PLANE-RELEASE",
+        "bound_ref": "REP-KIN-2D-PLANE-RELEASE",
         "stage_refs": [
-          "VIS-KIN-2D-THRUST-V0",
-          "VIS-KIN-2D-THRUST-V1"
+          "VIS-KIN-2D-PLANE-V0"
         ]
       },
       "failure_signal": "You put the landing directly below the release point (x = 0), or behind the plane: that treats the package as starting from rest horizontally. At release it already moves at 50 m/s with the plane, and nothing slows it.",
@@ -7270,10 +7275,10 @@
       ],
       "representation_roles": {
         "initial_ref": null,
-        "safe_ref": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
-        "bound_ref": "REP-KIN-2D-EQUAL-HEIGHT-PAIR",
+        "safe_ref": "REP-KIN-2D-VELOCITY-45-BELOW",
+        "bound_ref": "REP-KIN-2D-VELOCITY-45-BELOW",
         "stage_refs": [
-          "VIS-KIN-2D-PAIR-V0"
+          "VIS-KIN-2D-45-V0"
         ]
       },
       "failure_signal": "You got t = 6 s: you made the displacement point 45° below the horizontal (20t − 5t² = −10t), not the velocity. Or you got t = 2 s from v_y = 0: that is the apex, where the motion is horizontal.",
