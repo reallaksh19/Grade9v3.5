@@ -6789,6 +6789,91 @@
           "visual_stage_ref": "VIS-NLM-HPUSH-V2"
         }
       ]
+    },
+    {
+      "id": "REP-NLM-INCLINE-DOUBLE-COUNT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the student's incline diagram with mg and both its components, so the double count is diagnosed and repaired.",
+      "required_elements": [
+        "student's diagram with mg, mg sin θ and mg cos θ",
+        "double-counting diagnosis",
+        "one representation of the weight"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "student's diagram with mg, mg sin θ and mg cos θ",
+        "double-counting diagnosis",
+        "one representation of the weight"
+      ],
+      "instance_constraints": [
+        "The only interactions are gravity and the normal contact.",
+        "The question is about representation, not calculation."
+      ],
+      "accessibility": [
+        "Every force is labelled in text with its agent and receiver, and its size where the record gives one.",
+        "Results are written as text, not carried by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Adding mg and its components as separate forces."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-INCLINE-DOUBLE-COUNT.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-FBDTRIPLE-V0",
+          "label": "The student's diagram",
+          "purpose": "Show the diagram as the student drew it.",
+          "visible_elements": [
+            "student's diagram with mg, mg sin θ and mg cos θ"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBDTRIPLE-V1",
+          "label": "Diagnosis",
+          "purpose": "Name what is wrong.",
+          "visible_elements": [
+            "student's diagram with mg, mg sin θ and mg cos θ",
+            "double-counting diagnosis"
+          ]
+        },
+        {
+          "id": "VIS-NLM-FBDTRIPLE-V2",
+          "label": "Repair",
+          "purpose": "State how the weight enters plane-aligned equations.",
+          "visible_elements": [
+            "student's diagram with mg, mg sin θ and mg cos θ",
+            "double-counting diagnosis",
+            "one representation of the weight"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-FBDTRIPLE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-FBDTRIPLE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-FBDTRIPLE-V2"
+        }
+      ]
     }
   ],
   "question_families": [
@@ -12389,12 +12474,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "initial_ref": "REP-NLM-INCLINE-DOUBLE-COUNT",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+        "bound_ref": "REP-NLM-INCLINE-DOUBLE-COUNT",
         "stage_refs": [
-          "VIS-NLM-FBD-V0",
-          "VIS-NLM-FBD-V1"
+          "VIS-NLM-FBDTRIPLE-V0"
         ]
       },
       "failure_signal": "You kept mg alongside mg sin θ and mg cos θ: that counts gravity three times; the components replace the weight, they do not join it.",
