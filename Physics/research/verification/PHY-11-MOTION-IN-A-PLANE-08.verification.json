@@ -1,0 +1,156 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Physics",
+  "node_ref": "PHY-11-MOTION-IN-A-PLANE-08",
+  "verified_by": "agent-verifier-1",
+  "verified_at": "2026-09-26",
+  "inputs_digest": "sha256:6cf8bd18750393adaa7e694d6b0f7c66258f9549a418fc23213c7b321aa10574",
+  "questions": [
+    {
+      "card_ref": "EV-PHY-11-MIP-08-015",
+      "independent_solution": [
+        "Launch and landing on the floor, no drag, g = 9.8 m/s^2. H = (v0 sin(theta))^2/(2g); at 45 deg H = 1600 x 0.5/19.6 = 40.8 m > 25 m, so the ceiling limits the angle.",
+        "Range increases with theta up to 45 deg, so the best throw just grazes 25 m: (v0 sin(theta))^2 = 2 x 9.8 x 25 = 490 -> sin(theta) = 22.14/40 = 0.553 -> theta = 33.6 deg.",
+        "R = v0^2 sin(2 theta)/g = 1600 x sin(67.2 deg)/9.8 = 1600 x 0.922/9.8 = 150.5 m."
+      ],
+      "independent_answer": "150.5 m",
+      "official_answer": "150.5 m",
+      "agrees": true,
+      "numeric_check": "40**2*sin(2*asin(sqrt(2*9.8*25)/40))/9.8"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-08-017",
+      "independent_solution": [
+        "Maximum horizontal distance is at 45 deg: R_m = v0^2/g = 100 m, so v0^2 = 100 g.",
+        "Greatest height for the same speed is a vertical throw: h = v0^2/(2g) = 100 g/(2g) = 50 m."
+      ],
+      "independent_answer": "50 m",
+      "official_answer": "50 m",
+      "agrees": true,
+      "numeric_check": "100/2"
+    },
+    {
+      "card_ref": "EV-PHY-11-MIP-08-019",
+      "independent_solution": [
+        "R = v0^2 sin(2 theta)/g; same v0 so R is proportional to sin(2 theta).",
+        "R(45)/R(15) = sin 90 / sin 30 = 1/0.5 = 2 -> R(45) = 100 m: option (c)."
+      ],
+      "independent_answer": "(c) 100 m",
+      "official_answer": "(c), 100 m",
+      "agrees": true,
+      "numeric_check": "50*sin(radians(90))/sin(radians(30))"
+    }
+  ],
+  "records": [
+    {
+      "record_ref": "MIC-PHY-MIP-08",
+      "checked_fields": [
+        "title",
+        "entry_assumptions",
+        "inferential_jump",
+        "teaching_path",
+        "misconceptions",
+        "exit_task",
+        "extensions.grade9v3:interactive_idea"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "CAP-PHY-MIP-08",
+      "checked_fields": [
+        "action",
+        "success_criterion",
+        "curriculum_mappings"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-08-PROJECTILE-COMPONENTS",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-08-TRAJECTORY",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REL-PHY-MIP-08-FLIGHT-TIME-RANGE",
+      "checked_fields": [
+        "expression",
+        "meaning",
+        "conditions",
+        "derivation",
+        "limits",
+        "checks"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "REP-PHY-MIP-08-TIMED-PARABOLA",
+      "checked_fields": [
+        "purpose",
+        "required_elements",
+        "instance_constraints",
+        "misleading_alternatives",
+        "correspondence"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-08-NCERT-3-12",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-08-NCERT-3-13",
+      "checked_fields": [
+        "stem",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    },
+    {
+      "record_ref": "Q-PHY-MIP-08-EXEMPLAR-4-5",
+      "checked_fields": [
+        "stem",
+        "options",
+        "conditions",
+        "answer",
+        "scaffolds",
+        "hints"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "target": "PHY-11-MOTION-IN-A-PLANE-08",
+      "duty_for": "RESEARCHER",
+      "detail": "The projectile formulas in REL-PHY-MIP-08-PROJECTILE-COMPONENTS, -TRAJECTORY and -FLIGHT-TIME-RANGE expressions are not quoted by any card: the cited quotes only refer to them ('This is the equation of a parabola', 'Equation (3.42a) shows that ... R is maximum'), and EV-PHY-11-MIP-08-007's claim adds 'R = v0^2 sin(2 theta0)/g', which its quote lacks. Pinned pages 13-14 carry them: Eq. (3.38) 'vx = vox = vo cos θo vy = vo sin θo – g t' and Eqs. (3.40a)/(3.40b) 'tm = vo sinθo /g', 'Tf = 2 (vo sin θo )/g' as clean text; Eq. (3.39) (trajectory) and (3.42a) (range) are garbled, so record them in the equation field. Add these RELATION cards and trim 08-007's claim to its quote."
+    }
+  ]
+}
