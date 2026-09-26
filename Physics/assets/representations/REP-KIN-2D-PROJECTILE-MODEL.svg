@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 490" role="img" aria-labelledby="rep-kin-pm-title rep-kin-pm-desc">
+  <title id="rep-kin-pm-title">Projectile model gate: the ideal model is decided by post-release interactions, not by the curved path</title>
+  <desc id="rep-kin-pm-desc">Two launched objects side by side, drawn qualitatively. Stage 1: case A, an object launched and then in free flight, and case B, an object launched whose small motor stays on after release; both follow curved paths. Stage 2: the post-release interaction inventory: in A only gravity (Earth on the object, downward) acts; in B gravity acts and a horizontal thrust (motor on the object) acts in the +x direction; drag is neglected in both. Stage 3: with +y upward, the acceleration consequences: A is gravity-only, so a_x = 0 and a_y = −g; B is not gravity-only, so a_x ≠ 0 because of the thrust, while a_y = −g. Stage 4: the model-status gate: in A the ideal projectile model is valid; in B it is rejected because the active thrust violates a_x = 0, and the general two-dimensional constant-acceleration model is used instead, even though the path is curved in both cases.</desc>
+  <defs>
+    <marker id="rep-kin-pm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-PROJ-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="322" y1="8" x2="322" y2="484" stroke="currentColor" stroke-width="1" stroke-dasharray="2 4"/>
+    <text x="12" y="24" font-weight="600">A: launched, then free flight</text>
+    <line x1="12" y1="190" x2="305" y2="190" stroke="currentColor" stroke-width="2"/>
+    <path d="M30 170 Q130 -10 250 190" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="113" cy="87" r="8" fill="currentColor"/>
+    <text x="337" y="24" font-weight="600">B: launched, motor stays on</text>
+    <line x1="337" y1="190" x2="640" y2="190" stroke="currentColor" stroke-width="2"/>
+    <path d="M355 170 Q435 -10 615 170" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="435" cy="84" r="8" fill="currentColor"/>
+    <path d="M427 80 L417 76 V92 L427 88 Z" fill="currentColor"/>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PROJ-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="113" y1="97" x2="113" y2="148" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pm-arrow)"/>
+    <text x="121" y="140">gravity</text>
+    <line x1="435" y1="94" x2="435" y2="145" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pm-arrow)"/>
+    <text x="443" y="140">gravity</text>
+    <line x1="445" y1="84" x2="500" y2="84" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-pm-arrow)"/>
+    <text x="505" y="89">thrust (+x)</text>
+    <text x="12" y="222" font-weight="600">After release, acting on the object:</text>
+    <text x="12" y="244">• gravity (Earth on object), down</text>
+    <text x="12" y="266">• drag: neglected</text>
+    <text x="337" y="222" font-weight="600">After release, acting on the object:</text>
+    <text x="337" y="244">• gravity (Earth on object), down</text>
+    <text x="337" y="266">• thrust (motor on object), horizontal</text>
+    <text x="337" y="288">• drag: neglected</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PROJ-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="12" y="318" font-weight="600">Gravity only? yes</text>
+    <text x="12" y="340">a_x = 0</text>
+    <text x="12" y="362">a_y = −g  (+y up)</text>
+    <text x="337" y="318" font-weight="600">Gravity only? no (thrust retained)</text>
+    <text x="337" y="340">a_x ≠ 0  (from the thrust)</text>
+    <text x="337" y="362">a_y = −g  (+y up)</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PROJ-V3" font-family="system-ui,sans-serif" font-size="15">
+    <rect x="8" y="378" width="302" height="104" rx="6" fill="none" stroke="#1f6fb2" stroke-width="2"/>
+    <text x="18" y="402" fill="#1f6fb2" font-weight="700">Ideal projectile model: VALID</text>
+    <text x="18" y="426" fill="currentColor">a_x = 0 and a_y = −g both hold</text>
+    <text x="18" y="448" fill="currentColor">after release.</text>
+    <rect x="333" y="378" width="310" height="104" rx="6" fill="none" stroke="#1f6fb2" stroke-width="2" stroke-dasharray="7 4"/>
+    <text x="343" y="402" fill="#1f6fb2" font-weight="700">Ideal projectile model: REJECTED</text>
+    <text x="343" y="426" fill="currentColor">Active thrust violates a_x = 0.</text>
+    <text x="343" y="448" fill="currentColor">Use the general 2D</text>
+    <text x="343" y="470" fill="currentColor">constant-acceleration model.</text>
+  </g>
+</svg>
