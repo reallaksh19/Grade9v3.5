@@ -30,3 +30,5 @@ Copy everything below the `---` line and replace:
 
 Never give an agent a different role's prompt, and never let the verifier share an id with the
 researcher or author of the nodes it verifies.
+
+For the website (tablet shell and navigation), see `template/site-agents/01-tablet-shell-agent.md` and the spec `docs/specs/TABLET-SHELL-AND-NAVIGATION.md`.

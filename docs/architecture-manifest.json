@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 330,
-  "relation_count": 359,
+  "component_count": 334,
+  "relation_count": 360,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 152,
-    "TOOLING": 83,
-    "WEB": 9,
+    "TEST": 154,
+    "TOOLING": 84,
+    "WEB": 10,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:8db7f23adbbfc2b5c0a5643438a02d584b973d496ff4072ebfc044d67b1df931",
+  "digest": "sha256:2761acdfcf7e50bbab1ad2d7c0fda050fbffcc661304e641adaa7d19e3f271ed",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1001,6 +1001,13 @@
       "sha256": "5df15af8f50494d61b6d564813def18c42b39f5fbc980de538bd52667339fa25"
     },
     {
+      "path": "Shared/tools/site_nav_audit.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 7307,
+      "sha256": "6e3044f0987b354e8127a4e67f444ae05eecf6d39a244744846b3c66af0011c3"
+    },
+    {
       "path": "Shared/tools/source_pipeline.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
@@ -1377,6 +1384,13 @@
       "role_description": "Executable checks",
       "bytes": 33150,
       "sha256": "fb790d45acf1a5378c9733f9d8e65b829574253a378b2eebe9fbd6379a7b57f7"
+    },
+    {
+      "path": "tests/fixtures/site-audit/baseline.json",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 13934,
+      "sha256": "dd62c2a40575879077eb4cd7d17e4117429b436a45b6b53e63f1972696f91195"
     },
     {
       "path": "tests/fixtures/source_ingest/acquisition.json",
@@ -2135,6 +2149,13 @@
       "sha256": "e4a2666ae570674a4f35001a879c94818b7148cac77e2f304abfe0188fca70b3"
     },
     {
+      "path": "tests/test_site_nav_audit.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 1845,
+      "sha256": "d30aa86254f7071683c0eb2c0441f904ec3431b56976e6d179d2b05db58ccf7d"
+    },
+    {
       "path": "tests/test_source_pipeline.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2329,6 +2350,13 @@
       "role_description": "Browsable surfaces over generated data",
       "bytes": 6932,
       "sha256": "234816f6b042fb80bd0a602cb4484713dd9e3856212580d8f60e1a3959404066"
+    },
+    {
+      "path": "tools/site-audit/tablet-audit.mjs",
+      "role": "WEB",
+      "role_description": "Browsable surfaces over generated data",
+      "bytes": 9805,
+      "sha256": "d010d72c5319cfd0fa933512a1c96df1c48430f4f85db9ef7718ac1a9a3d42da"
     }
   ],
   "relations": [
@@ -3974,6 +4002,11 @@
     },
     {
       "from": "tests/test_shared_topic_atlas_core.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_site_nav_audit.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
