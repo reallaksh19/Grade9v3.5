@@ -107,6 +107,40 @@
       "fallback": []
     },
     {
+      "id": "SRC-NCERT-KEPH105",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-A6D4B72B0FC10230BD54"
+      },
+      "title": "NCERT Physics Class XI Part I, Chapter 5 Work, Energy and Power (keph105)",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/textbook/pdf/keph105.pdf",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-A6D4B72B0FC10230BD54",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/a6d4b72b0fc10230bd54393f86e58630ccd258d54269b60de226c68d0eaa937e.pdf",
+      "snapshot_digest": "sha256:a6d4b72b0fc10230bd54393f86e58630ccd258d54269b60de226c68d0eaa937e",
+      "role": [
+        "EXPLANATION",
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-A6D4B72B0FC10230BD54.",
+      "fallback": []
+    },
+    {
       "id": "SRC-NCERT-KEPH1AN",
       "version": "0.1.0",
       "status": "CANDIDATE",
@@ -137,6 +171,39 @@
         "EXAM"
       ],
       "selection_reason": "Allowlisted source pinned by the researcher as ACQ-79BE0D7ADECCC1DEB630.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-UP1-2-1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {},
+        "grade9v3:acquisition_ref": "ACQ-51F5FD0ECC709AAAC4BC"
+      },
+      "title": "OpenStax University Physics Volume 1, section 2.1 Scalars and Vectors",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/university-physics-volume-1/pages/2-1-scalars-and-vectors",
+      "edition": "2026-09-26",
+      "section": "Pinned snapshot ACQ-51F5FD0ECC709AAAC4BC",
+      "last_checked": "2026-09-26",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Cited by verbatim evidence-card quote only; the source bytes are cached locally and not redistributed.",
+      "snapshot_ref": ".source-cache/51f5fd0ecc709aaac4bcd9aaf3446e4e07ce9d85443c86d39d58f7fc1b9ff361.html",
+      "snapshot_digest": "sha256:51f5fd0ecc709aaac4bcd9aaf3446e4e07ce9d85443c86d39d58f7fc1b9ff361",
+      "role": [
+        "EXPLANATION"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "EXAM"
+      ],
+      "selection_reason": "Allowlisted source pinned by the researcher as ACQ-51F5FD0ECC709AAAC4BC.",
       "fallback": []
     }
   ],
@@ -254,6 +321,57 @@
           "scope_class": "PRESCRIBED",
           "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
           "locator": "Class XI Unit II Chapter 3: scalar and vector quantities; position and displacement vectors; equality of vectors",
+          "mapping_status": "CANDIDATE"
+        }
+      ],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-PHY-MIP-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-001",
+        "EV-PHY-11-MIP-02-002",
+        "EV-PHY-11-MIP-02-003",
+        "EV-PHY-11-MIP-02-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "action": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-003",
+            "EV-PHY-11-MIP-02-004"
+          ],
+          "success_criterion": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-003",
+            "EV-PHY-11-MIP-02-004"
+          ]
+        }
+      },
+      "action": "Predict the magnitude, direction and physical kind of a vector multiplied by a real number, including a negative number, zero, or a multiplier that carries its own dimension.",
+      "success_criterion": "Gives |lambda| times the original magnitude, keeps the direction for a positive multiplier and reverses it for a negative one, returns the null vector for zero, and names the new quantity from the product of dimensions.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-01"
+      ],
+      "curriculum_mappings": [
+        {
+          "board": "CBSE",
+          "grade": 11,
+          "academic_year": "2026-27",
+          "track": "CBSE",
+          "scope_class": "PRESCRIBED",
+          "source_ref": "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+          "locator": "Class XI Unit II Chapter 3: multiplication of vectors by a real number",
           "mapping_status": "CANDIDATE"
         }
       ],
@@ -410,9 +528,255 @@
       "research_contribution": "Anchors the scalar/vector split and the path independence of displacement to verified NCERT text so that the vector-algebra microtopics can build on them.",
       "prerequisite_refs": [],
       "lineage": []
+    },
+    {
+      "id": "MIC-PHY-MIP-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-CBSE-PHYSICS-CURRICULUM-2026-27",
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-2-1"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-00-002",
+        "EV-PHY-11-MIP-02-001",
+        "EV-PHY-11-MIP-02-002",
+        "EV-PHY-11-MIP-02-006",
+        "EV-PHY-11-MIP-02-003",
+        "EV-PHY-11-MIP-02-004",
+        "EV-PHY-11-MIP-02-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "title": [
+            "EV-PHY-11-MIP-00-002",
+            "EV-PHY-11-MIP-02-001"
+          ],
+          "entry_assumptions": "AUTHORED_PEDAGOGICAL",
+          "inferential_jump": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-006"
+          ],
+          "teaching_path": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-003",
+            "EV-PHY-11-MIP-02-004",
+            "EV-PHY-11-MIP-02-005"
+          ],
+          "misconceptions": [
+            "EV-PHY-11-MIP-02-006",
+            "EV-PHY-11-MIP-02-003"
+          ],
+          "exit_task": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Multiplication of vectors by real numbers",
+      "bucket_id": "BUCKET-PHY-11-MIP",
+      "primary_capability_ref": "CAP-PHY-MIP-02",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "One rule with three cases; the difficulty is only in not writing a negative magnitude and in tracking the new dimension when the multiplier carries a unit.",
+      "entry_assumptions": [
+        "Can draw a vector as an arrow whose length stands for its magnitude.",
+        "Can multiply units, for example (m/s) x s = m."
+      ],
+      "inferential_jump": "Multiplying a vector by a real number rescales its magnitude by the number's size and keeps or reverses its direction by the number's sign, so a negative multiplier never makes a negative magnitude.",
+      "teaching_path": [
+        {
+          "id": "MIP02-1",
+          "role": "DECLARE",
+          "action": "Split the multiplier into a sign and a size.",
+          "why_valid": "Size and sign change different properties of the arrow, so they are handled separately.",
+          "inputs": [],
+          "output": "lambda = +|lambda| or -|lambda|"
+        },
+        {
+          "id": "MIP02-2",
+          "role": "TRANSFORM",
+          "action": "Stretch or shrink the arrow by the size of the multiplier.",
+          "why_valid": "The magnitude of lambda A is |lambda| times the magnitude of A.",
+          "inputs": [],
+          "output": "|lambda A| = |lambda| x |A|",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP02-3",
+          "role": "TRANSFORM",
+          "action": "Keep the arrow's direction for a positive multiplier, reverse it for a negative one, and collapse it to the null vector for zero.",
+          "why_valid": "A negative multiplier gives the opposite direction; multiplying by zero gives the null vector.",
+          "inputs": [],
+          "output": "lambda > 0: same way; lambda < 0: opposite way; lambda = 0: 0 vector",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP02-4",
+          "role": "TRANSFORM",
+          "action": "Multiply the dimensions to name the resulting quantity.",
+          "why_valid": "The dimension of lambda A is the product of the dimensions; a constant velocity times a duration is a displacement.",
+          "inputs": [],
+          "output": "[lambda A] = [lambda] x [A]; (m/s) x s = m",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "MIP02-5",
+          "role": "VERIFY",
+          "action": "Check against the textbook case A multiplied by 2.",
+          "why_valid": "2A is in the same direction as A with twice its magnitude.",
+          "inputs": [],
+          "output": "|2A| = 2|A|, same direction",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-02-SCALAR-MULTIPLE"
+      ],
+      "representation_refs": [
+        "REP-PHY-MIP-02-SCALED-ARROWS"
+      ],
+      "question_family_refs": [
+        "FAM-PHY-MIP-02"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Multiplying by a negative number gives a vector with a negative magnitude.",
+          "diagnostic_prompt": "What is the magnitude of -3A if |A| = 2 m?",
+          "repair": "Magnitudes are never negative: |-3A| = 3 x 2 m = 6 m. The minus sign only turns the vector to point opposite to A."
+        },
+        {
+          "wrong_idea": "A scalar multiplier must be a pure number, so a vector times a scalar is always the same kind of quantity.",
+          "diagnostic_prompt": "A velocity of 4 m/s north is multiplied by 5 s. What kind of quantity results?",
+          "repair": "The multiplier carries a dimension, so the product is a displacement, 20 m north: dimensions multiply."
+        }
+      ],
+      "exit_task": {
+        "prompt": "A velocity of 3 m/s pointing east is multiplied by -2 s. State the magnitude, the direction and the kind of physical quantity of the result.",
+        "source_ref": "SRC-AUTHOR-PHY-11-MIP-STAGING",
+        "answer": {
+          "kind": "EXACT",
+          "summary": "A displacement of 6 m pointing west.",
+          "reasoning": [
+            "Size: 2 s x 3 m/s = 6 m.",
+            "Sign: the multiplier is negative, so the direction reverses from east to west.",
+            "Dimension: (m/s) x s = m, a displacement."
+          ],
+          "check": "The magnitude stays positive; only the direction carries the minus sign.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "held_by": "ISSUE-PHY-MIP-EXIT-NO-VALIDATOR"
+        }
+      },
+      "research_contribution": "Records the sign, size and dimension rules for scalar multiples with the null-vector edge case, each tied to a verified quote.",
+      "prerequisite_refs": [
+        "CAP-PHY-MIP-01"
+      ],
+      "lineage": []
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-PHY-MIP-02-SCALAR-MULTIPLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-OPENSTAX-UP1-2-1"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-001",
+        "EV-PHY-11-MIP-02-002",
+        "EV-PHY-11-MIP-02-006",
+        "EV-PHY-11-MIP-02-003",
+        "EV-PHY-11-MIP-02-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "expression": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-006"
+          ],
+          "meaning": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-003"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-02-004",
+            "EV-PHY-11-MIP-02-003"
+          ]
+        }
+      },
+      "expression": "|lambda A| = |lambda| |A|; lambda A points along A if lambda > 0 and opposite to A if lambda < 0",
+      "meaning": "A real multiplier rescales a vector's magnitude by its size and keeps or reverses the direction by its sign; a multiplier with a dimension also changes the kind of physical quantity.",
+      "symbols": [
+        {
+          "symbol": "lambda",
+          "meaning": "real multiplier, possibly carrying a physical dimension",
+          "unit_or_domain": "real number (with unit if dimensional)"
+        },
+        {
+          "symbol": "A",
+          "meaning": "vector being multiplied",
+          "unit_or_domain": "any vector quantity"
+        },
+        {
+          "symbol": "lambda A",
+          "meaning": "product vector",
+          "unit_or_domain": "vector with dimension [lambda][A]"
+        }
+      ],
+      "conditions": [
+        "lambda is a real number; lambda = 0 gives the null vector, whose direction cannot be specified.",
+        "The dimension of lambda A is the product of the dimensions of lambda and A."
+      ],
+      "derivation": [
+        {
+          "id": "REL02-1",
+          "role": "DECLARE",
+          "action": "Write the multiplier as its sign times its size |lambda|.",
+          "why_valid": "The size and the sign act on different properties of the vector.",
+          "inputs": [],
+          "output": "lambda = (sign) x |lambda|"
+        },
+        {
+          "id": "REL02-2",
+          "role": "TRANSFORM",
+          "action": "Scale the length of A by |lambda|.",
+          "why_valid": "Multiplying by a positive number changes the magnitude by that factor.",
+          "inputs": [],
+          "output": "|lambda A| = |lambda| |A|",
+          "source_ref": "SRC-NCERT-KEPH103"
+        },
+        {
+          "id": "REL02-3",
+          "role": "TRANSFORM",
+          "action": "Apply the sign to the direction.",
+          "why_valid": "A negative multiplier gives the opposite direction with magnitude |lambda| |A|.",
+          "inputs": [],
+          "output": "lambda < 0 => lambda A antiparallel to A",
+          "source_ref": "SRC-NCERT-KEPH103"
+        }
+      ],
+      "limits": [
+        "The rule does not assign a direction to the null vector produced by lambda = 0.",
+        "It describes multiplication by a scalar only; it says nothing about products of two vectors."
+      ],
+      "checks": [
+        "The result's magnitude is never negative, whatever the sign of lambda.",
+        "The unit of the result is the unit of lambda times the unit of A."
+      ],
+      "gate_relation_ref": "REL-PHY-MIP-02-SCALAR-MULTIPLE"
+    }
+  ],
   "representations": [
     {
       "id": "REP-PHY-MIP-01-DISPLACEMENT-PATHS",
@@ -483,6 +847,81 @@
           "in_words": "The distance actually travelled along that route."
         }
       ]
+    },
+    {
+      "id": "REP-PHY-MIP-02-SCALED-ARROWS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-001",
+        "EV-PHY-11-MIP-02-002",
+        "EV-PHY-11-MIP-02-004"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "purpose": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-004"
+          ],
+          "instance_constraints": [
+            "EV-PHY-11-MIP-02-001",
+            "EV-PHY-11-MIP-02-002",
+            "EV-PHY-11-MIP-02-004"
+          ]
+        }
+      },
+      "kind": "SCALED_ARROW_ROW",
+      "purpose": "Place A beside several of its real multiples so that length changes by the multiplier's size and direction flips with its sign, while zero shrinks the arrow to a point.",
+      "required_elements": [
+        "reference arrow A",
+        "positive multiple such as 2A",
+        "negative multiple such as -1.5A",
+        "null vector from multiplying by 0",
+        "multiplier label on each arrow"
+      ],
+      "relation_refs": [
+        "REL-PHY-MIP-02-SCALAR-MULTIPLE"
+      ],
+      "read_order": [
+        "reference arrow A",
+        "positive multiple such as 2A",
+        "negative multiple such as -1.5A",
+        "null vector from multiplying by 0",
+        "multiplier label on each arrow"
+      ],
+      "instance_constraints": [
+        "Each multiple is drawn parallel to A, with length exactly |lambda| times the length of A.",
+        "Negative multiples point opposite to A.",
+        "The null vector is drawn as a point with no arrowhead."
+      ],
+      "accessibility": [
+        "Each arrow's multiplier and direction are stated in text.",
+        "Direction reversal is not shown by colour alone."
+      ],
+      "misleading_alternatives": [
+        "Drawing a negative multiple shorter than A instead of reversed.",
+        "Giving the null vector an arrowhead."
+      ],
+      "rendered_asset_refs": [],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "multiplier label on each arrow",
+          "symbol": "lambda",
+          "in_words": "How many times longer the new arrow is, with its sign."
+        },
+        {
+          "element": "negative multiple such as -1.5A",
+          "symbol": "-1.5A",
+          "in_words": "An arrow 1.5 times as long as A, pointing the opposite way."
+        }
+      ]
     }
   ],
   "question_families": [
@@ -533,6 +972,54 @@
         "Q-PHY-MIP-01-NCERT-3-1",
         "Q-PHY-MIP-01-NCERT-3-8",
         "Q-PHY-MIP-01-NCERT-3-11"
+      ]
+    },
+    {
+      "id": "FAM-PHY-MIP-02",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-PHY-11-MIP-STAGING"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "solution_structure": "AUTHORED_PEDAGOGICAL",
+          "transfer_boundaries": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Meaningful operations with scalars and vectors",
+      "capability_refs": [
+        "CAP-PHY-MIP-02"
+      ],
+      "solution_structure": [
+        "Identify whether each operand is a scalar or a vector and what its dimension is.",
+        "Apply the rule for the operation: scalar multiplication always works, addition needs matching kind and dimension.",
+        "Justify each verdict with a counterexample or the defining rule."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Decide which algebraic operations are defined for the operand kinds involved.",
+        "representation_translation": "Translate a named physical quantity into its kind and dimension.",
+        "reasoning_steps": "Check kind, check dimension, then state the verdict with a reason.",
+        "novelty": "Items vary the list of quantities and the operation while the tests stay fixed."
+      },
+      "safe_variations": [
+        "Swap in other physical quantities with the same kind and dimension tests.",
+        "Ask for the product of a named vector and a named duration."
+      ],
+      "transfer_boundaries": [
+        "Do not extend the rule to products of two vectors, which this microtopic does not cover."
+      ],
+      "common_wrong_routes": [
+        "Add a scalar to a vector because they share a unit.",
+        "Assume every scalar is dimensionless or conserved."
+      ],
+      "item_refs": [
+        "Q-PHY-MIP-02-NCERT-3-4",
+        "Q-PHY-MIP-02-NCERT-3-3",
+        "Q-PHY-MIP-02-NCERT-3-21"
       ]
     }
   ],
@@ -850,12 +1337,338 @@
         }
       ],
       "repair_ref": "MIP01-4"
+    },
+    {
+      "id": "Q-PHY-MIP-02-NCERT-3-4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-007",
+        "EV-PHY-11-MIP-02-003",
+        "EV-PHY-11-MIP-02-008",
+        "EV-PHY-11-MIP-04-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-02-007"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-02-007",
+            "EV-PHY-11-MIP-02-003"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-02-008",
+            "EV-PHY-11-MIP-02-003",
+            "EV-PHY-11-MIP-04-008"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.4",
+      "stem": "State with reasons, whether the following algebraic operations with scalar and vector physical quantities are meaningful : (a) adding any two scalars, (b) adding a scalar to a vector of the same dimensions , (c) multiplying any vector by any scalar, (d) multiplying any two scalars, (e) adding any two vectors, (f) adding a component of a vector to the same vector .",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "'Any' means the operands may have different dimensions.",
+        "A vector multiplied by a scalar gives a vector whose dimension is the product of the two dimensions."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Only (c) and (d) are meaningful.",
+        "reasoning": [
+          "(a) Two scalars can be added only if they have the same dimensions, so adding any two is not meaningful.",
+          "(b) A scalar has no direction, so it cannot be added to a vector even with matching dimensions.",
+          "(c) Any vector times any scalar is a vector with the product dimension, for example velocity times duration.",
+          "(d) Any two scalars can be multiplied; the dimensions simply multiply.",
+          "(e) Two vectors add only if they have the same dimensions, so adding any two is not meaningful.",
+          "(f) A component A_x is itself not a vector, so adding it to the vector mixes a scalar with a vector."
+        ],
+        "check": "The two meaningful operations are both multiplications, which never require matching dimensions.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R02-4-REP",
+            "kind": "REPRESENT",
+            "action": "Label each operand as scalar or vector and note whether dimensions must match.",
+            "why_valid": "Addition and multiplication impose different requirements.",
+            "inputs": [],
+            "output": "operand kinds for (a)-(f)"
+          },
+          {
+            "id": "R02-4-DEC",
+            "kind": "DECIDE",
+            "action": "Accept multiplications and reject additions whose operands can differ in kind or dimension.",
+            "why_valid": "Multiplication combines dimensions; addition needs like quantities.",
+            "inputs": [],
+            "output": "(c), (d) meaningful; (a), (b), (e), (f) not"
+          },
+          {
+            "id": "R02-4-CHK",
+            "kind": "VERIFY",
+            "action": "Find one counterexample for each rejected item.",
+            "why_valid": "A single failing case shows that 'any' is not meaningful.",
+            "inputs": [],
+            "output": "mass + time is undefined, so (a) fails"
+          }
+        ],
+        "crux_move_ref": "R02-4-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-02",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-02",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Sort the six operations into additions and multiplications before judging any of them.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R02-4-REP"
+        }
+      ],
+      "repair_ref": "MIP02-4"
+    },
+    {
+      "id": "Q-PHY-MIP-02-NCERT-3-3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-009",
+        "EV-PHY-11-MIP-02-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-02-009"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-02-009"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-02-010",
+            "EV-PHY-11-MIP-02-009"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.3",
+      "stem": "Pick out the only vector quantity in the following list : Temperature, pressure, impulse, time, power, total path length, energy, gravitational potential, coefficient of friction, charge.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Exactly one quantity in the list is a vector."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Impulse.",
+        "reasoning": [
+          "Every other item is specified completely by a magnitude (with sign where relevant) and a unit.",
+          "Impulse is formed by multiplying a vector by a scalar duration, so it inherits a direction."
+        ],
+        "check": "Total path length is a scalar even though displacement is a vector.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R02-3-DEC",
+            "kind": "DECIDE",
+            "action": "Test each item for the need of a direction.",
+            "why_valid": "Only direction separates a vector from a scalar.",
+            "inputs": [],
+            "output": "only impulse needs a direction"
+          },
+          {
+            "id": "R02-3-CON",
+            "kind": "CONNECT",
+            "action": "Link impulse to the scalar-multiple rule.",
+            "why_valid": "A vector times a scalar duration is a vector.",
+            "inputs": [],
+            "output": "impulse = (vector) x (duration)"
+          },
+          {
+            "id": "R02-3-CHK",
+            "kind": "VERIFY",
+            "action": "Recheck the trap item total path length.",
+            "why_valid": "Path length measures distance along the route and carries no direction.",
+            "inputs": [],
+            "output": "path length is a scalar"
+          }
+        ],
+        "crux_move_ref": "R02-3-CON"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-02",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-02",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Which item in the list is built by multiplying a vector by a time?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "R02-3-CON"
+        }
+      ],
+      "repair_ref": "MIP02-4"
+    },
+    {
+      "id": "Q-PHY-MIP-02-NCERT-3-21",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-KEPH103",
+        "SRC-NCERT-KEPH1AN",
+        "SRC-NCERT-KEPH105"
+      ],
+      "evidence_refs": [
+        "EV-PHY-11-MIP-02-011",
+        "EV-PHY-11-MIP-01-001",
+        "EV-PHY-11-MIP-02-012",
+        "EV-PHY-11-MIP-X3-005",
+        "EV-PHY-11-MIP-X4-007",
+        "EV-PHY-11-MIP-01-010",
+        "EV-PHY-11-MIP-08-005"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "PHY-11-MOTION-IN-A-PLANE-02",
+        "grade9v3:authored_by": "agent-author-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-PHY-11-MIP-02-011"
+          ],
+          "conditions": [
+            "EV-PHY-11-MIP-01-001"
+          ],
+          "answer": [
+            "EV-PHY-11-MIP-02-012",
+            "EV-PHY-11-MIP-X3-005",
+            "EV-PHY-11-MIP-X4-007",
+            "EV-PHY-11-MIP-01-010",
+            "EV-PHY-11-MIP-08-005"
+          ]
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-KEPH103",
+      "original_identifier": "NCERT-XI-3.21",
+      "stem": "Read each statement below carefully and state, with reasons and examples, if it is true or false : A scalar quantity is one that (a) is conserved in a process (b) can never take negative values (c) must be dimensionless (d) does not vary from one point to another in space (e) has the same value for observers with different orientations of axes.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "A scalar is defined only as a quantity with magnitude and no direction."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Only (e) is true.",
+        "reasoning": [
+          "(a) False: being a scalar says nothing about conservation; kinetic energy is not conserved in an inelastic collision.",
+          "(b) False: work is a scalar, and the work done by the resistive force in NCERT Example 5.2 is -8.75 J.",
+          "(c) False: mass is a scalar and has a dimension.",
+          "(d) False: speed is a scalar, and a projectile's speed differs from point to point along its path because v_y changes.",
+          "(e) True: a quantity with no direction has nothing to change when the axes are rotated."
+        ],
+        "check": "Each false statement has a counterexample drawn from quantities classified as scalars.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "reasoning_route": [
+          {
+            "id": "R02-21-REP",
+            "kind": "REPRESENT",
+            "action": "Restate each claim as an extra property added to 'magnitude only'.",
+            "why_valid": "The definition says nothing beyond the absence of direction.",
+            "inputs": [],
+            "output": "five candidate extra properties"
+          },
+          {
+            "id": "R02-21-DEC",
+            "kind": "DECIDE",
+            "action": "Reject each extra property with one scalar that lacks it.",
+            "why_valid": "One counterexample falsifies a 'must' claim.",
+            "inputs": [],
+            "output": "(a)-(d) false"
+          },
+          {
+            "id": "R02-21-CHK",
+            "kind": "VERIFY",
+            "action": "Confirm (e) follows from having no direction.",
+            "why_valid": "Rotating axes changes components of vectors only.",
+            "inputs": [],
+            "output": "(e) true"
+          }
+        ],
+        "crux_move_ref": "R02-21-DEC"
+      },
+      "primary_capability_ref": "CAP-PHY-MIP-02",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-PHY-MIP-02",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "For each statement, name one scalar you already know and test the statement on it.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "R02-21-DEC"
+        }
+      ],
+      "repair_ref": "MIP02-4"
     }
   ],
   "teaching_routes": [],
   "practice_profiles": [],
   "evidence": [],
-  "known_issues": [],
+  "known_issues": [
+    {
+      "id": "ISSUE-PHY-MIP-EXIT-NO-VALIDATOR",
+      "affected_refs": [],
+      "classification": "CAPABILITY_LIMIT",
+      "description": "Exit-task answers that state a computed value were checked by the author only; this staging package binds no subject validator or data records to them.",
+      "next_action": "The verifier re-derives each numeric exit answer; bind a validator when the records are promoted."
+    }
+  ],
   "extensions": {},
   "data": []
 }
