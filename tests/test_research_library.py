@@ -300,6 +300,16 @@ class CorroborationFallback(unittest.TestCase):
         codes = self.codes(self.key_card([self.allen, self.examside2]))
         self.assertEqual(codes, {"EVIDENCE_CORROBORATION_NOT_INDEPENDENT", "EVIDENCE_CORROBORATION_INSUFFICIENT"})
 
+    def test_unverified_sources_from_one_publisher_count_once(self):
+        # Two copies from one publisher whose snapshots are missing must not make up the count between them.
+        allen2 = self.box.pin(KEY + b"    ", "https://www.allen.ac.in/jee-main/2021/key-2.html")
+        for acq in (self.allen, allen2):
+            snap = json.loads((self.box.research / "acquisitions" / f"{acq}.json").read_text())["snapshot_ref"]
+            (self.box.cache / Path(snap).name).unlink()
+        codes = self.codes(self.key_card([self.allen, allen2]))
+        self.assertIn("EVIDENCE_CORROBORATION_NOT_INDEPENDENT", codes)
+        self.assertIn("EVIDENCE_CORROBORATION_INSUFFICIENT", codes)
+
     def test_official_attempt_must_name_a_tier_a_page(self):
         codes = self.codes(self.key_card([self.allen, self.aakash], attempt="https://example.org/key"))
         self.assertEqual(codes, {"EVIDENCE_OFFICIAL_ATTEMPT_MISSING"})

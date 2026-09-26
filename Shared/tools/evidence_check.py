@@ -329,7 +329,7 @@ def corroboration_findings(cid: str, card: dict, tier: str | None, acq: dict, al
         found.append(_finding("EVIDENCE_OFFICIAL_ATTEMPT_MISSING", cid,
                               "record the Tier A page you tried in corroboration.official_attempt.url"))
     publishers = {tier_of(acq.get("requested_locator", ""), allow)[1]["publisher"]}
-    agreeing = 0
+    agreeing = unverified = 0
     for i, src in enumerate(corr.get("sources", [])):
         where = f"{cid}/corroboration/sources/{i}"
         path = acquisition_path(subject, src.get("acquisition_ref", ""), repo)
@@ -350,11 +350,13 @@ def corroboration_findings(cid: str, card: dict, tier: str | None, acq: dict, al
         if pages and not quote_found(src.get("quote", ""), pages, src.get("page", 0)):
             found.append(_finding("EVIDENCE_QUOTE_NOT_FOUND", where, f"quote is not on page {src.get('page')} (±1) of {other['acquisition_id']}"))
             continue
+        publishers.add(entry["publisher"])       # counted once, verified or not
         if pages:
-            publishers.add(entry["publisher"])
             agreeing += 1
+        else:  # snapshot missing: texts_for already reported it; the count cannot be judged yet
+            unverified += 1
     need = rule["requires"]["min_independent_publishers"]
-    if agreeing < need:
+    if agreeing + unverified < need:
         found.append(_finding("EVIDENCE_CORROBORATION_INSUFFICIENT", cid,
                               f"{agreeing} independent Tier C source(s) agree; need {need} besides the card's own"))
     return found
