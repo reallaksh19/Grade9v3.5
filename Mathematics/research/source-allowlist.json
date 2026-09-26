@@ -1,0 +1,150 @@
+{
+  "schema": "research-source-allowlist/v1",
+  "subject": "Mathematics",
+  "purpose": "Which hosts a research agent may cite, and for what. Tier A is primary authority (curriculum, official papers and answer keys). Tier B may support explanations only. Tier C may be used to LOCATE an item; it becomes secondary authority for a QUESTION or ANSWER_KEY card only through the corroboration fallback below. Any host not listed cannot be cited.",
+  "tiers": {
+    "A": {
+      "may_support": [
+        "SYLLABUS_SCOPE",
+        "DEFINITION",
+        "RELATION",
+        "CONDITION",
+        "WORKED_EXAMPLE",
+        "MISCONCEPTION",
+        "DIAGRAM",
+        "QUESTION",
+        "ANSWER_KEY"
+      ],
+      "hosts": [
+        {
+          "host": "ncert.nic.in",
+          "publisher": "NCERT",
+          "covers": "Textbooks and exemplar problems, Classes 9-12"
+        },
+        {
+          "host": "cbseacademic.nic.in",
+          "publisher": "CBSE",
+          "covers": "Curriculum, sample question papers, marking schemes"
+        },
+        {
+          "host": "cbse.gov.in",
+          "publisher": "CBSE",
+          "covers": "Board circulars and question papers"
+        },
+        {
+          "host": "nta.ac.in",
+          "publisher": "National Testing Agency",
+          "covers": "JEE Main information bulletin and syllabus"
+        },
+        {
+          "host": "jeemain.nta.nic.in",
+          "publisher": "National Testing Agency",
+          "covers": "JEE Main papers, provisional and final answer keys"
+        },
+        {
+          "host": "jeeadv.ac.in",
+          "publisher": "IITs (JEE Advanced)",
+          "covers": "JEE Advanced papers, answer keys, syllabus"
+        },
+        {
+          "host": "cdnbbsr.s3waas.gov.in",
+          "publisher": "National Testing Agency (NIC S3WaaS CDN)",
+          "covers": "JEE Main question papers and answer keys as published by NTA on its CDN; the card's QUESTION fields must name the NTA paper exactly"
+        }
+      ]
+    },
+    "B": {
+      "may_support": [
+        "DEFINITION",
+        "RELATION",
+        "CONDITION",
+        "WORKED_EXAMPLE",
+        "MISCONCEPTION",
+        "DIAGRAM",
+        "INTERACTIVE_PRECEDENT"
+      ],
+      "hosts": [
+        {
+          "host": "openstax.org",
+          "publisher": "OpenStax (Rice University)",
+          "covers": "Prealgebra, Elementary and Intermediate Algebra"
+        },
+        {
+          "host": "ocw.mit.edu",
+          "publisher": "MIT OpenCourseWare",
+          "covers": "Course notes and problem sets"
+        },
+        {
+          "host": "nptel.ac.in",
+          "publisher": "NPTEL (IITs/IISc)",
+          "covers": "Course notes"
+        },
+        {
+          "host": "phet.colorado.edu",
+          "publisher": "University of Colorado Boulder",
+          "covers": "Interactive simulations (precedent for interactive pages)"
+        }
+      ]
+    },
+    "C": {
+      "may_support": [
+        "LOCATOR_HINT"
+      ],
+      "hosts": [
+        {
+          "host": "examside.com",
+          "publisher": "ExamSIDE",
+          "covers": "Aggregated JEE Main / Advanced past questions with answers (questions.examside.com)"
+        },
+        {
+          "host": "allen.ac.in",
+          "publisher": "ALLEN Career Institute",
+          "covers": "JEE Main / Advanced paper solutions and answer keys"
+        },
+        {
+          "host": "aakash.ac.in",
+          "publisher": "Aakash Educational Services",
+          "covers": "JEE Main / Advanced paper solutions and answer keys"
+        },
+        {
+          "host": "resonance.ac.in",
+          "publisher": "Resonance Eduventures",
+          "covers": "JEE Main / Advanced paper solutions and answer keys"
+        },
+        {
+          "host": "mathongo.com",
+          "publisher": "MathonGo",
+          "covers": "JEE Main chapter-wise past questions with answer keys"
+        },
+        {
+          "host": "vedantu.com",
+          "publisher": "Vedantu",
+          "covers": "JEE and CBSE past papers with solutions"
+        },
+        {
+          "host": "shaalaa.com",
+          "publisher": "Shaalaa",
+          "covers": "CBSE board past papers with solutions"
+        }
+      ],
+      "corroboration_fallback": {
+        "applies_to": [
+          "QUESTION",
+          "ANSWER_KEY"
+        ],
+        "when": "no Tier A copy of the paper or key can be pinned (the official page is gone, unreachable, or never published the item)",
+        "requires": {
+          "official_attempt": "card.corroboration.official_attempt: the Tier A URL tried, its outcome (NOT_PUBLISHED | UNREACHABLE | ITEM_NOT_ON_PAGE) and the date",
+          "min_independent_publishers": 2,
+          "independence": "the card's own source and every corroborating source must be Tier C hosts with different publishers",
+          "agreement": "each corroborating quote is re-found in its pinned snapshot; for ANSWER_KEY every quote states the same answer, for QUESTION every quote carries the same stem",
+          "verifier": "the independent verifier solves the question and agrees with the key (the board already requires this for every node)"
+        },
+        "label": "card.authority = SECONDARY_CORROBORATED; the learner product shows it as a secondary source, never as the official paper",
+        "never": "Tier C never supports DEFINITION, RELATION, CONDITION or any other kind; one Tier C host alone never supports anything but LOCATOR_HINT"
+      }
+    }
+  },
+  "local_sources_note": "Scanned books and papers the owner holds. Only the owner adds an entry and the SHA-256 of each scan file (print it with scan_ingest.py hash). The scan bytes and OCR text never leave the owner's machine; the repository gets the acquisition record, a scan manifest with a hashed shingle index, and short quotes. Fields: source_id, title, authors, publisher, edition, year, isbn, kind (TEXTBOOK | EXEMPLAR | QUESTION_BANK | EXAM_PAPER | ANSWER_KEY | NOTES), tier (A for official NCERT/CBSE/NTA/JEE material, B for published reference books), may_support (optional narrowing of the tier's kinds), rights (OFFICIAL_PUBLIC | COPYRIGHTED_OWNED_COPY), scan_sha256s, registered_by, registered_at.",
+  "local_sources": []
+}
