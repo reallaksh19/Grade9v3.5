@@ -18,50 +18,8 @@
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:d3e12c23b06e15ccba93098a536936de9079ae08bedf175c5a3f7fc4f5cef8d3",
+  "digest": "sha256:7c2a0c9bae4f3d48667e3f12badac2445a91869a52e94e717a6387b11077fda3",
   "components": [
-    {
-      "path": "public/core-learning/data.js",
-      "role": "WEB",
-      "role_description": "Static Core learner host and generated projection data",
-      "bytes": 2216037,
-      "sha256": "95c06f94d8751e78c7933d1c688e6b4eda1d3e117f83cd6002fafb7e65f51c7e"
-    },
-    {
-      "path": "public/core-learning/index.html",
-      "role": "WEB",
-      "role_description": "Static Core learner host and generated projection data",
-      "bytes": 11923,
-      "sha256": "5f9b3e62b8d0567df58535ab7291a5c6295517de70e4434d20b963e935360e64"
-    },
-    {
-      "path": "public/js/core-learning/core-learning-host.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 4785,
-      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
-    },
-    {
-      "path": "public/js/core-learning/core-learning-page.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 62825,
-      "sha256": "e1828dd6a7eb522493235129454d476e93b247491af92699fe12e19991e7431b"
-    },
-    {
-      "path": "public/js/core-learning/runtime.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 21365,
-      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
-    },
-    {
-      "path": "public/js/core-learning/semantic-workbench.mjs",
-      "role": "WEB_RUNTIME",
-      "role_description": "Generated public Core learner runtime",
-      "bytes": 19627,
-      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
-    },
     {
       "path": "Shared/gates/gate.schema.json",
       "role": "GATES",
@@ -1260,6 +1218,13 @@
       "sha256": "d241d7dcd8b168ddc2c5ee34f2e7777ca1277a2422eb10d2a8294d4a06bdb0e0"
     },
     {
+      "path": "Shared/workbench/README.md",
+      "role": "WEB_RUNTIME",
+      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 4566,
+      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
+    },
+    {
       "path": "Shared/workbench/core-learning-host.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
@@ -1274,13 +1239,6 @@
       "sha256": "e1828dd6a7eb522493235129454d476e93b247491af92699fe12e19991e7431b"
     },
     {
-      "path": "Shared/workbench/README.md",
-      "role": "WEB_RUNTIME",
-      "role_description": "Subject-neutral semantic interaction and Web Component runtime",
-      "bytes": 4566,
-      "sha256": "f5bf5d372af9bef0491351ec03eafa0bb4ef6773bd4b63059f13ea4f6f214948"
-    },
-    {
       "path": "Shared/workbench/runtime.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
@@ -1291,6 +1249,48 @@
       "path": "Shared/workbench/semantic-workbench.mjs",
       "role": "WEB_RUNTIME",
       "role_description": "Subject-neutral semantic interaction and Web Component runtime",
+      "bytes": 19627,
+      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
+    },
+    {
+      "path": "public/core-learning/data.js",
+      "role": "WEB",
+      "role_description": "Static Core learner host and generated projection data",
+      "bytes": 2216037,
+      "sha256": "95c06f94d8751e78c7933d1c688e6b4eda1d3e117f83cd6002fafb7e65f51c7e"
+    },
+    {
+      "path": "public/core-learning/index.html",
+      "role": "WEB",
+      "role_description": "Static Core learner host and generated projection data",
+      "bytes": 11923,
+      "sha256": "5f9b3e62b8d0567df58535ab7291a5c6295517de70e4434d20b963e935360e64"
+    },
+    {
+      "path": "public/js/core-learning/core-learning-host.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 4785,
+      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
+    },
+    {
+      "path": "public/js/core-learning/core-learning-page.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 62825,
+      "sha256": "e1828dd6a7eb522493235129454d476e93b247491af92699fe12e19991e7431b"
+    },
+    {
+      "path": "public/js/core-learning/runtime.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
+      "bytes": 21365,
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "public/js/core-learning/semantic-workbench.mjs",
+      "role": "WEB_RUNTIME",
+      "role_description": "Generated public Core learner runtime",
       "bytes": 19627,
       "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
     },
