@@ -5,20 +5,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 360,
-  "relation_count": 374,
+  "component_count": 362,
+  "relation_count": 377,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 53,
-    "TEST": 168,
+    "TEST": 170,
     "TOOLING": 94,
     "WEB": 12,
     "WEB_CONTRACT": 3,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:59d200b7c24e95372df56744d67982c39b151b4d9362a8a5678c927f0081bc74",
+  "digest": "sha256:9ada71a5c7c1f7fb2b861c2399d2c84d7122c38c8061b99fa4817deee28841c9",
   "components": [
     {
       "path": "public/core-learning/data.js",
@@ -108,8 +108,8 @@
       "path": "Shared/library/competitive-exam-bank.schema.json",
       "role": "LIBRARY",
       "role_description": "Topic library: intake, resolution, promotion, compilation",
-      "bytes": 9625,
-      "sha256": "a555ee8330e99d67100a1f3fe0fc92882de7710daabbc7101414656e1f774717"
+      "bytes": 13259,
+      "sha256": "08cf818357f8f46d65fa74da4ba417f6f8bd8e6d993f66760819271a6336a871"
     },
     {
       "path": "Shared/library/compile_inputs.py",
@@ -668,8 +668,8 @@
       "path": "Shared/tools/build_pages_site.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10062,
-      "sha256": "a47a485dff5efd146cf1249267d7c7c8626f18531d3e8a5e87560eb5f5f0d964"
+      "bytes": 12104,
+      "sha256": "b00cc403d9db76a1539b28951c84c0d20d02dee3c2578003df4a08cbb1c259b1"
     },
     {
       "path": "Shared/tools/build_portable_workbench.py",
@@ -682,8 +682,8 @@
       "path": "Shared/tools/build_products.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 10402,
-      "sha256": "766d766a886d25a67b57628c0d4dbc49a6cd1a4b831406fd69b2404facab8d98"
+      "bytes": 11466,
+      "sha256": "c53554514fb739ea00c3ca90e4971ee331a92d7155f6e96d10f19770324b6efa"
     },
     {
       "path": "Shared/tools/build_prompt_composer_data.py",
@@ -696,8 +696,8 @@
       "path": "Shared/tools/build_question_bank_web.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 7911,
-      "sha256": "d6bf4d49c6d86656ce84c0e19ea253f28d17063e4507a8720635eb1bdac5b0ce"
+      "bytes": 7975,
+      "sha256": "e4c2a2dba6016f7e43d67a1ee410c27b2ceecde17269469b453c4bc436a7d166"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -1046,8 +1046,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 43707,
-      "sha256": "0e34ec980405a6fb5d1c63598157f2d5255798bc45ad9a5ed9a0ae9b1017e46b"
+      "bytes": 52182,
+      "sha256": "38943d4d660b1f3b62c8e902ea38b21f923142639bb2f69f78cab987ce6d6844"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -1256,8 +1256,8 @@
       "path": "Shared/web/interactive-page-blueprints.v1.json",
       "role": "WEB_CONTRACT",
       "role_description": "Subject-neutral interactive page blueprint contracts",
-      "bytes": 12645,
-      "sha256": "d241d7dcd8b168ddc2c5ee34f2e7777ca1277a2422eb10d2a8294d4a06bdb0e0"
+      "bytes": 13656,
+      "sha256": "bbb76fff1cf84b9772ea8a1eb357c84e81b4d6e42df06fb4a276ddd599fa1723"
     },
     {
       "path": "Shared/workbench/core-learning-host.mjs",
@@ -2173,8 +2173,8 @@
       "path": "tests/test_pages_site.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 1655,
-      "sha256": "6024bdaa4ede791053359e513f0fe099832dc84829c2c1c0154c10cd05bede3f"
+      "bytes": 4109,
+      "sha256": "ad952efce08143f53c1525cfd3ef55252852798d5259e0ab60ca7e591a860e8e"
     },
     {
       "path": "tests/test_physics_scanned_evidence.py",
@@ -2194,8 +2194,8 @@
       "path": "tests/test_pr306_ui_regressions.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 13856,
-      "sha256": "3c8b9a669512cb93a7c174cb64e870e08936752c1476de66eed1c12d6282a2e8"
+      "bytes": 15911,
+      "sha256": "fcc77cea10a8f9288a3cd1c5f0bf46bd11dbceafb1d7ba0472a8b2c9dca1feaa"
     },
     {
       "path": "tests/test_practical_learner_evidence.py",
@@ -2203,6 +2203,13 @@
       "role_description": "Executable checks",
       "bytes": 12990,
       "sha256": "8e30c88716883adb596157c8b85c32eee5bab7a642e6ec77cd05a6799318a653"
+    },
+    {
+      "path": "tests/test_product_standalone_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 2376,
+      "sha256": "917e35e4280ed1429f085bffeeaa43950db7b1552f8bcea25e15519ab9556307"
     },
     {
       "path": "tests/test_products_ratchet.py",
@@ -2264,8 +2271,8 @@
       "path": "tests/test_render_core.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 9380,
-      "sha256": "dd06298ca4e4418ccdbfff84c4403dc2f200bd786858bd9ba2902e38be8b3314"
+      "bytes": 16444,
+      "sha256": "fcefd71dbaed455a11664a002add083be8a3e166bd608f82fd04e750079c0451"
     },
     {
       "path": "tests/test_renderer_inventory.py",
@@ -2413,6 +2420,13 @@
       "role_description": "Executable checks",
       "bytes": 14350,
       "sha256": "1c3864a2a77f6c20933b7e38762566f28a8917fb02c81fbbe15eaf4b27632832"
+    },
+    {
+      "path": "tests/test_ui_blueprint_contract.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3034,
+      "sha256": "148db173196e814246495d2e38a2598310a97a50251de6117202889714a1160b"
     },
     {
       "path": "tests/test_vector_foundations_modernization.py",
@@ -4093,12 +4107,22 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_pr306_ui_regressions.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_practical_learner_evidence.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
     {
       "from": "tests/test_practical_learner_evidence.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_product_standalone_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -4369,6 +4393,11 @@
     },
     {
       "from": "tests/test_topic_atlas_contract.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_ui_blueprint_contract.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
