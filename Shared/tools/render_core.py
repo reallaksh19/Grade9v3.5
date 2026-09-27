@@ -111,13 +111,56 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
         controls = ('<div class="g9-stage-controls"><button type="button" data-g9-stage-step="prev">Previous stage</button>'
                     '<span data-g9-stage-label></span>'
                     '<button type="button" data-g9-stage-step="next">Next stage</button></div>')
-    hidden = "".join(f'[data-g9-fig="{esc(record)}-{esc(rep_id)}"] [data-g9-stage-id="{esc(s)}"]{{display:none}}'
-                     for s in stage_ids if s not in shown)
+    withheld = [s for s in stage_ids if s not in shown]
+    if withheld:
+        # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
+        # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
+        # figure, so they go too; the accessible name is the shown stages' labels from the record.
+        svg = _without_stages(svg, set(withheld))
+        svg = re.sub(r"<(title|desc)\b[^>]*>.*?</\1>", "", svg, flags=re.S)
+        head = re.search(r"<svg\b[^>]*>", svg)
+        if head:                                       # the name comes from the shown stages below
+            clean = re.sub(r'\s(role|aria-label|aria-labelledby|aria-describedby)="[^"]*"', "", head.group(0))
+            svg = svg[:head.start()] + clean + svg[head.end():]
+        labels = {st.get("id"): st.get("label") for st in rep.get("reveal_stages") or []}
+        name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
+        svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
             f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages="{esc(" ".join(shown))}">'
-            f'{"<style>" + hidden + "</style>" if hidden else ""}{svg}{controls}'
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}">'
+            f'{svg}{controls}'
             f'<figcaption data-g9-block="representation_bridge">{esc(rep.get("purpose", ""))}</figcaption></figure>')
+
+
+def _without_stages(svg: str, withheld: set[str]) -> str:
+    """Remove each <g data-g9-stage-id="…"> element whose stage is withheld, with everything inside it."""
+    out, i = [], 0
+    opener = re.compile(r'<g\b[^>]*\bdata-g9-stage-id="([^"]+)"[^>]*>')
+    while True:
+        m = opener.search(svg, i)
+        if not m:
+            out.append(svg[i:])
+            return "".join(out)
+        if m.group(1) not in withheld:
+            out.append(svg[i:m.end()])
+            i = m.end()
+            continue
+        out.append(svg[i:m.start()])
+        if m.group(0).endswith("/>"):                  # an empty withheld group
+            i = m.end()
+            continue
+        depth, j = 1, m.end()
+        tags = re.compile(r"<g\b[^>]*?(/?)>|</g\s*>")
+        while depth:
+            t = tags.search(svg, j)
+            if t is None:                      # malformed asset: drop the rest rather than leak it
+                return "".join(out)
+            if t.group(0).startswith("</"):
+                depth -= 1
+            elif not t.group(1):
+                depth += 1
+            j = t.end()
+        i = j
 
 
 # ------------------------------------------------------------------ small html helpers
@@ -328,7 +371,10 @@ def _custody(q: dict) -> str:
 
 def core2(ctx: Ctx, q: dict) -> str:
     ans = q["answer"]
-    stem = q["stem"] + ((" " + " ".join(f"({chr(97 + i)}) {o}" for i, o in enumerate(q["options"]))) if q.get("options") else "")
+    # A source option keeps its own label ("(A)", "(1)") because the key refers to it; unlabelled ones get a letter.
+    labelled = re.compile(r"\s*\(?[A-Za-z0-9]{1,2}[).]\s")
+    stem = q["stem"] + ((" " + " ".join(str(o) if labelled.match(str(o)) else f"({chr(97 + i)}) {o}"
+                                          for i, o in enumerate(q["options"]))) if q.get("options") else "")
     return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>"), True)
             + slot("attempt", block("stem", para(stem)) + block("conditions", items(q.get("conditions")), title="Conditions")
                    + attempt_box("Your answer"), True)

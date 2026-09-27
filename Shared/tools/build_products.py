@@ -57,6 +57,16 @@ def manifests() -> list[Path]:
     return sorted(PRODUCTS.glob("*/*.manifest.json"))
 
 
+def learner_title(pkg: dict, name: str) -> str:
+    """The learner-facing name: the package's first bucket title (scope_summary is internal prose)."""
+    return next((b["title"] for b in pkg.get("buckets", []) if b.get("title")), name.replace("-", " ").capitalize())
+
+
+def _old_default_title(pkg: dict, name: str) -> str:
+    """What earlier versions derived: scope_summary cut at 80 characters. Such a title is replaced."""
+    return pkg.get("scope_summary", name).split(".")[0][:80]
+
+
 def derive_all() -> list[Path]:
     out = []
     for path in package_migrate.package_paths():
@@ -66,12 +76,12 @@ def derive_all() -> list[Path]:
         name = path.name.replace(".v1.json", "")
         target = PRODUCTS / subject.lower() / f"{name}.manifest.json"
         m = product_manifest.derive(str(path.relative_to(REPO)), [str(bank.relative_to(REPO))] if bank.is_file() else [],
-                                    f"PRODUCT-{name.upper()}", pkg.get("scope_summary", name).split(".")[0][:80],
+                                    f"PRODUCT-{name.upper()}", learner_title(pkg, name),
                                     "../../../index.html", "../../../question-bank/index.html")
         if target.is_file():                           # keep owner/agent edits: ledger, diagnostic, title
             old = json.loads(target.read_text(encoding="utf-8"))
             for key in ("title", "ledger", "diagnostic", "diagnostic_min", "intake_digest", "prerequisite_links"):
-                if key in old:
+                if key in old and not (key == "title" and old[key] == _old_default_title(pkg, name)):
                     m[key] = old[key]
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(m, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

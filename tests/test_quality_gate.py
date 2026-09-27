@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -147,6 +148,28 @@ class Gate(unittest.TestCase):
         pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
         report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         self.assertIn("ALL-PRE-ATTEMPT-FIGURE-PARTIAL", {f["rule"] for f in report["findings"]})
+
+    def test_withheld_stages_are_absent_from_the_markup_not_hidden(self):
+        out = self.build(complete_fixture(self.tmp))
+        html = (out / "core2a.html").read_text(encoding="utf-8")
+        fig = re.search(r'<figure[^>]*data-g9-stage="PRE_ATTEMPT".*?</figure>', html, re.S).group(0)
+        self.assertIn('data-g9-stage-id="VIS-MATH-NL-1"', fig)
+        self.assertNotIn('data-g9-stage-id="VIS-MATH-NL-3"', fig)      # the exact point is the result
+        self.assertNotIn("<title", fig)
+        self.assertIn('aria-label="Number line"', fig)                   # named from the shown stage only
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertNotIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
+
+    def test_a_pre_attempt_figure_that_only_hides_later_stages_fails(self):
+        out = self.build(complete_fixture(self.tmp))
+        page = out / "core2a.html"
+        html = page.read_text(encoding="utf-8")
+        hidden = '<g data-g9-stage-id="VIS-MATH-NL-3" style="display:none"><text>7/3</text></g></svg>'
+        start = html.index('data-g9-stage="PRE_ATTEMPT"')
+        end = html.index("</svg>", start)
+        page.write_text(html[:end] + hidden + html[end + len("</svg>"):], encoding="utf-8")
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
 
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)

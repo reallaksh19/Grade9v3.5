@@ -68,6 +68,10 @@ class Renderer(unittest.TestCase):
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
 
+    def test_source_option_labels_are_printed_once(self):
+        html = self.pages[render_core.ROLE_FILE["CORE2"]]
+        self.assertIsNone(re.search(r"\([a-d]\) \([A-D1-4]\)", html))
+
     def test_authored_svg_asset_is_mounted_with_its_stages(self):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
