@@ -3,8 +3,8 @@
   "subject": "Mathematics",
   "node_ref": "MAT-09-LINEAR-EQUATIONS-03",
   "verified_by": "agent-verifier-4",
-  "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:cf3de703875ec11e7b4720659c8bfc9334272b44797188f59b0471b0c63628fb",
+  "verified_at": "2026-09-27",
+  "inputs_digest": "sha256:5f78f5bf7166a844562bd255b03e353a863a9369c0861445a024bc12a5ce4567",
   "questions": [
     {
       "card_ref": "EV-MAT-09-LEQ-03-008",
@@ -78,20 +78,9 @@
     {"record_ref": "Q-MAT-LEQ-03-1A-VARIABLE-VANISHES", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
-    {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": false},
+    {"record_ref": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q58", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-03-EXEMPLAR8-Q61", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true}
   ],
-  "findings": [
-    {
-      "target": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10.scaffolds",
-      "duty_for": "AUTHOR",
-      "detail": "Core2B item, transfer.protected_move_ref = Q10-DEC (multiply both sides by 100). scaffolds[1] (hint_ladder order 2, labelled REPRESENT but an EXECUTE step) says 'Once f is found from the whole-number equation ... what is 30 / 50 as a decimal?'. That tells the learner a whole-number equation exists, which is the protected clearing decision, and it gives the final quotient 30/50 = 0.6 before the attempt. Replace this rung with one that neither implies clearing the decimals nor shows 30 and 50."
-    },
-    {
-      "target": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10.transfer.statement",
-      "duty_for": "AUTHOR",
-      "detail": "The novelty statement says 'in the earlier items no denominator was written, so the clearing step had nothing to cue it'. That is false for builds_on item Q-MAT-LEQ-03-1A-CLEAR-DENOMINATORS, whose stem x/2 + x/3 = 10 writes its denominators. The real novelty runs the other way: earlier the denominators were visible, and here they are hidden in decimals 0.25 and 0.05. Restate it so the claim is true."
-    }
-  ]
+  "findings": []
 }
