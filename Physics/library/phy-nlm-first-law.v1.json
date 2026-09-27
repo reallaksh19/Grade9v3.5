@@ -616,6 +616,10 @@
               "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
               "Driving force 2000 N forward.",
               "Resistive forces (air and rolling) act backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+            "stage_refs": [
+              "VIS-NLM-CRUISE-V0"
             ]
           }
         },
@@ -807,6 +811,10 @@
               "Mass 3 kg; g = 10 m/s².",
               "String pull 10 N vertically upward.",
               "The box stays at rest on the floor."
+            ],
+            "representation_ref": "REP-NLM-BOX3-STRING-10N",
+            "stage_refs": [
+              "VIS-NLM-BOX3-V0"
             ]
           }
         },
@@ -1016,6 +1024,10 @@
             "givens": [
               "Man 70 kg; boat 130 kg; g = 10 m/s².",
               "Everything is at rest."
+            ],
+            "representation_ref": "REP-NLM-MAN-IN-BOAT",
+            "stage_refs": [
+              "VIS-NLM-BOAT-V0"
             ]
           }
         },
@@ -1213,6 +1225,10 @@
             "givens": [
               "Ball 0.5 kg on a frictionless train floor.",
               "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+            ],
+            "representation_ref": "REP-NLM-TRAIN-BALL-BRAKING",
+            "stage_refs": [
+              "VIS-NLM-TRAINBALL-V0"
             ]
           }
         },
@@ -1434,6 +1450,10 @@
             "givens": [
               "Mass 1200 kg; initial velocity +20 m/s.",
               "Road friction 5400 N backward; air drag 600 N backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-BRAKING-1200KG",
+            "stage_refs": [
+              "VIS-NLM-CARBRAKE-V0"
             ]
           }
         },
@@ -1646,6 +1666,10 @@
               "Block 2 kg; g = 10 m/s².",
               "Horizontal push 50 N, then 80 N.",
               "μ_s = 0.6 between block and wall."
+            ],
+            "representation_ref": "REP-NLM-BLOCK-WALL-50N",
+            "stage_refs": [
+              "VIS-NLM-BLOCKWALL-V0"
             ]
           }
         },
@@ -1842,6 +1866,10 @@
               "Rocket mass 400 kg (take it as constant for this instant).",
               "Engine's push on the gas: 5000 N backward.",
               "No other forces act."
+            ],
+            "representation_ref": "REP-NLM-ROCKET-EXHAUST-5000N",
+            "stage_refs": [
+              "VIS-NLM-ROCKET-V0"
             ]
           }
         },
@@ -2047,6 +2075,10 @@
               "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
               "Horizontal push 30 N.",
               "Second trial: an extra 20 N downward press."
+            ],
+            "representation_ref": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+            "stage_refs": [
+              "VIS-NLM-BOX5-V0"
             ]
           },
           "accepted": [
@@ -2264,6 +2296,10 @@
               "Car 1000 kg; trailer 500 kg.",
               "Driving force on the car 3000 N forward.",
               "Rigid bar: the separation stays fixed."
+            ],
+            "representation_ref": "REP-NLM-CAR-TRAILER-TOWBAR",
+            "stage_refs": [
+              "VIS-NLM-TOWBAR-V0"
             ]
           },
           "accepted": [
@@ -2507,6 +2543,10 @@
               "Front cart 2 kg; rear cart 3 kg; smooth track.",
               "Hand's pull 15 N on the front string.",
               "Both strings light and taut."
+            ],
+            "representation_ref": "REP-NLM-CARTS-2KG-3KG-15N",
+            "stage_refs": [
+              "VIS-NLM-CARTS15-V0"
             ]
           },
           "accepted": [
@@ -2747,6 +2787,10 @@
               "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
               "A rises by 0.1 m.",
               "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+            ],
+            "representation_ref": "REP-NLM-PULLEY-YA06-YB10",
+            "stage_refs": [
+              "VIS-NLM-PULLEY16-V0"
             ]
           },
           "accepted": [
@@ -8594,12 +8638,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 1500 kg car cruising at a steady 25 m/s with its 2000 N driving force and the resistance acting backward.",
       "required_elements": [
@@ -8697,12 +8736,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 3 kg box at rest on the floor with a string pulling up on it with 10 N.",
       "required_elements": [
@@ -8799,12 +8833,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 70 kg man in the 130 kg boat at rest, with the boat chosen as the one body whose forces are listed.",
       "required_elements": [
@@ -8999,12 +9028,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 0.5 kg ball on the smooth floor of the train braking at 2 m/s², seen by a platform observer and by a train observer.",
       "required_elements": [
@@ -9199,12 +9223,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 1200 kg car moving at +20 m/s with road friction 5400 N and air drag 600 N acting backward.",
       "required_elements": [
@@ -9302,12 +9321,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-FRICTION",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 2 kg block held against the vertical wall by a 50 N, then 80 N, horizontal push.",
       "required_elements": [
@@ -9413,12 +9427,7 @@
         "SRC-AUTHOR-NLM"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 400 kg rocket far from any planet and the engine's 5000 N push on the exhaust gas.",
       "required_elements": [
@@ -9509,12 +9518,7 @@
         "SRC-EXAMSIDE-NLM-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 5 kg box pushed with 30 N in two trials, the second with an extra 20 N downward press.",
       "required_elements": [
@@ -9614,12 +9618,7 @@
         "SRC-EXAMSIDE-NLM-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 1000 kg car towing the 500 kg trailer with a rigid bar under a 3000 N driving force.",
       "required_elements": [
@@ -9723,12 +9722,7 @@
         "SRC-EXAMSIDE-NLM-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show the 2 kg and 3 kg carts on the smooth track, joined by one light string and pulled by the hand's 15 N on another.",
       "required_elements": [
@@ -9828,12 +9822,7 @@
         "SRC-EXAMSIDE-NLM-DEMAND"
       ],
       "evidence_refs": [],
-      "extensions": {
-        "grade9v3:depicts": {
-          "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-          "field": "elicitation.attempt.task"
-        }
-      },
+      "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
       "purpose": "Show A and B on one string over a fixed pulley with y_A = 0.6 m and y_B = 1.0 m measured downward from the pulley.",
       "required_elements": [
@@ -9915,6 +9904,221 @@
         {
           "support_level": "high",
           "visual_stage_ref": "VIS-NLM-PULLEY16-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CART-TABLE-PULLEY-XY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the cart on the table tied over the fixed pulley to the hanging mass, with x = 0.9 m and y = 0.5 m measured away from the pulley.",
+      "required_elements": [
+        "cart on a table and a hanging mass over a fixed pulley",
+        "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+        "x + y = 1.4 m",
+        "x = 0.1 m when y = 1.3 m",
+        "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "cart on a table and a hanging mass over a fixed pulley",
+        "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+        "x + y = 1.4 m",
+        "x = 0.1 m when y = 1.3 m",
+        "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+      ],
+      "instance_constraints": [
+        "Both coordinates are measured away from the pulley.",
+        "Only the two straight segments change length."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Writing x − y = constant because one segment is horizontal and the other vertical."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CART-TABLE-PULLEY-XY.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARTXY-V0",
+          "label": "The cart, pulley and mass",
+          "purpose": "Show the string's two straight segments and both coordinates.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V1",
+          "label": "Length relation",
+          "purpose": "Write the fixed-length relation with the values now.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V2",
+          "label": "Mass at the floor",
+          "purpose": "Find x when y = 1.3 m.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m",
+            "x = 0.1 m when y = 1.3 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V3",
+          "label": "Signed rates",
+          "purpose": "Carry the cart's signed velocity and acceleration to the mass.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m",
+            "x = 0.1 m when y = 1.3 m",
+            "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-VAN-APPLE-DROP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 0.2 kg apple released 1.25 m above the floor of the van accelerating forward at 2 m/s², with the mark directly below the release point.",
+      "required_elements": [
+        "van accelerating 2 m/s² forward",
+        "apple 0.2 kg released 1.25 m above the floor",
+        "mark below the release point",
+        "roadside description",
+        "pseudo-force 0.4 N backward",
+        "landing 0.25 m behind the mark"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "van accelerating 2 m/s² forward",
+        "apple 0.2 kg released 1.25 m above the floor",
+        "mark below the release point",
+        "roadside description",
+        "pseudo-force 0.4 N backward",
+        "landing 0.25 m behind the mark"
+      ],
+      "instance_constraints": [
+        "The van's acceleration stays 2 m/s² forward during the fall.",
+        "The pseudo-force appears only in the van's description."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding a backward physical force on the apple in the roadside description."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-VAN-APPLE-DROP.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-VANAPPLE-V0",
+          "label": "The van and the apple",
+          "purpose": "Show the van's acceleration, the release height and the mark.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V1",
+          "label": "Roadside view",
+          "purpose": "Describe the fall with physical forces only.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V2",
+          "label": "Van view",
+          "purpose": "Describe the fall in the van frame with its pseudo-force.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description",
+            "pseudo-force 0.4 N backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V3",
+          "label": "Landing point",
+          "purpose": "Compare the two descriptions' landing points.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description",
+            "pseudo-force 0.4 N backward",
+            "landing 0.25 m behind the mark"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V2"
         }
       ]
     }
@@ -12052,11 +12256,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FIXED-PULLEY-YAYB",
+        "initial_ref": "REP-NLM-CART-TABLE-PULLEY-XY",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FIXED-PULLEY-YAYB",
+        "bound_ref": "REP-NLM-CART-TABLE-PULLEY-XY",
         "stage_refs": [
-          "VIS-NLM-YSYM-V0"
+          "VIS-NLM-CARTXY-V0"
         ]
       },
       "failure_signal": "You gave the hanging mass a velocity of −0.3 m/s, or a horizontal velocity: the string turns at the pulley, so the mass moves down, and in away-from-pulley coordinates y grows as x shrinks.",
@@ -12149,11 +12353,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-BUS-SHELF-FRAMES",
+        "initial_ref": "REP-NLM-VAN-APPLE-DROP",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-BUS-SHELF-FRAMES",
+        "bound_ref": "REP-NLM-VAN-APPLE-DROP",
         "stage_refs": [
-          "VIS-NLM-BUS-V0"
+          "VIS-NLM-VANAPPLE-V0"
         ]
       },
       "failure_signal": "You had the apple land directly below the release point: that is true only if the van keeps a steady velocity. While the van accelerates, the floor gains 0.25 m on the apple during the 0.5 s fall. Or you gave the apple a backward physical force in the roadside account: nothing touches it after release.",
