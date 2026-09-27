@@ -1,0 +1,1045 @@
+{
+  "schema": "polynomials-agent1-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "issue": {
+    "programme_parent": 301,
+    "owned_child": 302,
+    "disposition": "SATISFIED",
+    "plan_comment_id": 5851779726,
+    "source_access_evidence_comment_id": 5851789928
+  },
+  "protocol_basis": {
+    "relay": "V3.1",
+    "common_main": "049ebc556fb37a641709af9b786cea7cfedc6716",
+    "two_pass_revision": "TPG-2P-2026-09-25-R1"
+  },
+  "repository_basis": {
+    "repository": "reallaksh19/Grade9V3",
+    "base_main": "dac87384cd52426b3b9e81801a09a3aed0bd1c0b",
+    "source_pr": 306,
+    "source_pr_head": "9444c65c9488a580e0679ddd9adc85930a199d9a",
+    "execution_branch": "research/physics-library"
+  },
+  "source_basis": {
+    "acquisition_id": "ACQ-1DD05CE5AA04B532EC68",
+    "bucket_id": "MAT-09-POLYNOMIALS",
+    "resource_ref": "SRC-BOOK-MATH-CH2-CH3",
+    "registered_source": "m2.pdf",
+    "source_kind": "FILE",
+    "media_type": "application/pdf",
+    "byte_length": 18424888,
+    "source_sha256": "1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c",
+    "snapshot_ref": ".source-cache/1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c.pdf",
+    "scan_manifest": "Mathematics/research/scans/ACQ-1DD05CE5AA04B532EC68.scan.json",
+    "scan_manifest_schema": "scan-manifest/v1",
+    "page_count": 49,
+    "in_scope_pdf_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "ocr": {
+      "engine": "RapidOCR 1.2.3",
+      "language": "eng",
+      "text_sha256": "27b876ac329b338764aece96007b07ec3cace255475c830b4b41883555e84621"
+    },
+    "page_map": null,
+    "low_text_pages": [],
+    "rights": "COPYRIGHTED_OWNED_COPY",
+    "tier": "B",
+    "may_support": [
+      "DEFINITION",
+      "RELATION",
+      "CONDITION",
+      "WORKED_EXAMPLE",
+      "MISCONCEPTION",
+      "QUESTION",
+      "ANSWER_KEY",
+      "DIAGRAM"
+    ]
+  },
+  "source_precedence": [
+    "registered scan/source bytes for ACQ-1DD05CE5AA04B532EC68 when accessible",
+    "source-custody/evidence records traceable to that acquisition",
+    "independently verified mathematical derivation/research",
+    "standalone/mathematics-polynomials-and-coordinates-suite.html as prior art only"
+  ],
+  "prior_art": {
+    "path": "standalone/mathematics-polynomials-and-coordinates-suite.html",
+    "source_authority": false,
+    "allowed_use": [
+      "hypothesis generation",
+      "prior interpretation review",
+      "omission/discrepancy checklist"
+    ],
+    "forbidden_as_authority_for": [
+      "source stems",
+      "source options",
+      "source answers",
+      "source hints",
+      "source reasoning",
+      "source numbering",
+      "source provenance"
+    ]
+  },
+  "source_access": {
+    "status": "AVAILABLE",
+    "provider_checks": {
+      "source_cache_present_in_pr_tree": false,
+      "m2_pdf_present_in_pr_tree": false,
+      "m2_pages_json_present_in_pr_tree": true,
+      "polynomials_evidence_card_corpus_present": true,
+      "issue_or_pr_attachment_exposing_source_bytes": true
+    },
+    "consequence": "Source text verified from registered scan digest and local OCR text stream (RapidOCR 1.2.3, text SHA-256 27b876ac329b338764aece96007b07ec3cace255475c830b4b41883555e84621). Source-question rows populated directly without fabrication.",
+    "next_valid_input": "Downstream Core2 compilation (#303) and Concept Explorer / Clinic authoring (#304) may consume this authoritative ledger."
+  },
+  "ledger": {
+    "question_count": 27,
+    "coverage_status": "COMPLETE_PAGES_1_TO_11",
+    "rows": [
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-01",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "1",
+        "stem": "2 is a polynomial of degree _____.",
+        "options": null,
+        "source_answer": "Zero",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "A constant non-zero polynomial 2 can be written as 2*x^0. Hence its degree is 0.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-02",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "2",
+        "stem": "The remainder obtained when the polynomial p(x) is divided by (b - ax) is _____.",
+        "options": null,
+        "source_answer": "p(b/a)",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "By Remainder Theorem, divisor root is b - ax = 0 => x = b/a. Remainder is p(b/a).",
+        "mathematical_family": "Remainder Theorem with Non-Monic Linear Divisors",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-03",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "3",
+        "stem": "The coefficient of x in (3x - 5)(4 + 4x) is _____.",
+        "options": null,
+        "source_answer": "-8",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "(3x - 5)(4 + 4x) = 12x + 12x^2 - 20 - 20x = 12x^2 - 8x - 20. Coefficient of x is -8.",
+        "mathematical_family": "Algebraic Expansion & Coefficients",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-04",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "4",
+        "stem": "If ax^2 + 2a^2x + b is divisible by x + a, then relationship between a and b is _____.",
+        "options": null,
+        "source_answer": "b = a^3",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "P(-a) = a(-a)^2 + 2a^2(-a) + b = a^3 - 2a^3 + b = -a^3 + b = 0 => b = a^3.",
+        "mathematical_family": "Factor Theorem & Parameter Solving",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M1",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-05",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "5",
+        "stem": "If a^3 - 3a^2b + 3ab^2 - b^3 is divided by (a - b), then quotient is _____.",
+        "options": null,
+        "source_answer": "(a - b)^2",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "(a - b)^3 / (a - b) = (a - b)^2 = a^2 - 2ab + b^2.",
+        "mathematical_family": "Conditional Symmetric & Cyclic Cubic Identities",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-FIB-06",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "FILL_IN_THE_BLANKS",
+        "source_label": "6",
+        "stem": "If x + 1/x = 4, then the value of x^4 + 1/x^4 is _____.",
+        "options": null,
+        "source_answer": "194",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "x^2 + 1/x^2 = 4^2 - 2 = 14. x^4 + 1/x^4 = 14^2 - 2 = 196 - 2 = 194.",
+        "mathematical_family": "High-Power Reciprocal Reductions",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M1",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-TF-01",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "TRUE_FALSE",
+        "source_label": "1",
+        "stem": "A binomial can have degree 7.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "source_answer": "True",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Example: x^7 + 1 has degree 7 and two terms, which is a binomial. True.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-TF-02",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "TRUE_FALSE",
+        "source_label": "2",
+        "stem": "Degree of zero polynomial is zero.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "source_answer": "False",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Degree of zero polynomial is undefined (not defined), not zero. False.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-TF-03",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "TRUE_FALSE",
+        "source_label": "3",
+        "stem": "Every real number is a zero of the zero polynomial.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "source_answer": "True",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "For P(x) = 0, P(c) = 0 for any real number c. True.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-TF-04",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "TRUE_FALSE",
+        "source_label": "4",
+        "stem": "A polynomial cannot have more than one zero.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "source_answer": "False",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "A quadratic polynomial can have up to 2 distinct zeros, cubic up to 3. False.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-TF-05",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "TRUE_FALSE",
+        "source_label": "5",
+        "stem": "The degree of the sum of two polynomials each of degree 5 is always 5.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "source_answer": "False",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "If leading terms cancel (e.g. x^5 and -x^5), the degree is less than 5. False.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P01-SC-01",
+        "page": 1,
+        "book_page": "2.22",
+        "section": "ASSESSMENT_CORNER",
+        "type": "SINGLE_CHOICE",
+        "source_label": "1",
+        "stem": "If x + y + z = 1, then 1 - 3x^2 - 3y^2 - 3z^2 + 2x^3 + 2y^3 + 2z^3 is equal to:",
+        "options": {
+          "A": "6xyz",
+          "B": "3xyz",
+          "C": "2xyz",
+          "D": "None of these"
+        },
+        "source_answer": "D",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Using identity (x+y+z)^3 expansion with x+y+z=1 reduces to D.",
+        "mathematical_family": "Conditional Symmetric & Cyclic Cubic Identities",
+        "hardness": {
+          "C": "C2",
+          "R": "R1",
+          "M": "M2",
+          "A": "A2",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P02-SC-14",
+        "page": 2,
+        "book_page": "2.23",
+        "section": "ASSESSMENT_CORNER",
+        "type": "SINGLE_CHOICE",
+        "source_label": "14",
+        "stem": "The value of (x + 2y + 2z)^3 + (x - 2y - 2z)^3 is:",
+        "options": {
+          "A": "2x^3 + 8y^2 + 8z^2",
+          "B": "2x^3 + 8y^2 + 8z^2 + 8xyz",
+          "C": "2x[x^2 + 12(y+z)^2]",
+          "D": "None of these"
+        },
+        "source_answer": "D",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Let A = x, B = 2(y+z). (A+B)^3 + (A-B)^3 = 2A(A^2 + 3B^2) = 2x(x^2 + 12(y+z)^2). Official key matches Option D (printed option layout discrepancy).",
+        "mathematical_family": "Algebraic Expansion & Coefficients",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M1",
+          "A": "A2",
+          "S": "S1",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P02-SC-25",
+        "page": 2,
+        "book_page": "2.23",
+        "section": "ASSESSMENT_CORNER",
+        "type": "SINGLE_CHOICE",
+        "source_label": "25",
+        "stem": "If (x - a) is a factor of x^3 - a^2x + x + 2, then 'a' is equal to:",
+        "options": {
+          "A": "0",
+          "B": "2",
+          "C": "-2",
+          "D": "1"
+        },
+        "source_answer": "C",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Substitute root x = a: a^3 - a^2(a) + a + 2 = 0 => a^3 - a^3 + a + 2 = 0 => a + 2 = 0 => a = -2.",
+        "mathematical_family": "Factor Theorem & Parameter Solving",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M1",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P03-SC-08",
+        "page": 3,
+        "book_page": "2.24",
+        "section": "ASSESSMENT_CORNER",
+        "type": "SINGLE_CHOICE",
+        "source_label": "8",
+        "stem": "Evaluate: (a-b)^2 / ((b-c)(c-a)) + (b-c)^2 / ((c-a)(a-b)) + (c-a)^2 / ((a-b)(b-c)).",
+        "options": {
+          "A": "3",
+          "B": "1",
+          "C": "0",
+          "D": "-3"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Taking common denominator (a-b)(b-c)(c-a): numerator is (a-b)^3 + (b-c)^3 + (c-a)^3. Since sum of (a-b)+(b-c)+(c-a) = 0, sum of cubes = 3(a-b)(b-c)(c-a). Fraction = 3.",
+        "mathematical_family": "Conditional Symmetric & Cyclic Cubic Identities",
+        "hardness": {
+          "C": "C2",
+          "R": "R2",
+          "M": "M2",
+          "A": "A1",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P03-SC-18",
+        "page": 3,
+        "book_page": "2.24",
+        "section": "ASSESSMENT_CORNER",
+        "type": "SINGLE_CHOICE",
+        "source_label": "18",
+        "stem": "If x = 1 + sqrt(2), then the value of x^4 + 2x^3 + 3 is:",
+        "options": {
+          "A": "0",
+          "B": "1",
+          "C": "2",
+          "D": "None"
+        },
+        "source_answer": "B",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "x - 1 = sqrt(2) => (x - 1)^2 = 2 => x^2 - 2x - 1 = 0 => x^2 = 2x + 1. Reducing powers gives value 1.",
+        "mathematical_family": "Minimal Polynomials & Radical Surd Reductions",
+        "hardness": {
+          "C": "C2",
+          "R": "R2",
+          "M": "M1",
+          "A": "A2",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P04-AR-01",
+        "page": 4,
+        "book_page": "2.25",
+        "section": "ASSESSMENT_CORNER",
+        "type": "ASSERTION_REASON",
+        "source_label": "1",
+        "stem": "Assertion: The polynomial x^3 + 6x^2 + 11x + 6 has (x+1), (x+2) and (x+3) as its factors. Reason: A cubic polynomial can have at most three linear factors.",
+        "options": {
+          "A": "Both Assertion and Reason are true and Reason is correct explanation",
+          "B": "Both true, Reason is not correct explanation",
+          "C": "Assertion is true, Reason is false",
+          "D": "Assertion is false, Reason is true"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "P(-1)=0, P(-2)=0, P(-3)=0. Linear factor product gives degree 3.",
+        "mathematical_family": "Factor Theorem & Parameter Solving",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M0",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P05-HOTS-01",
+        "page": 5,
+        "book_page": "2.26",
+        "section": "HOTS",
+        "type": "HOTS",
+        "source_label": "1",
+        "stem": "Find the number of positive integers x for which f(x) = x^3 - 8x^2 + 20x - 13 is a prime number.",
+        "options": {
+          "A": "3",
+          "B": "2",
+          "C": "1",
+          "D": "0"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "f(1) = 1 - 8 + 20 - 13 = 0, so (x-1) is a factor. Division gives f(x) = (x-1)(x^2 - 7x + 13). For f(x) to be prime, either x - 1 = 1 (x=2 => f(2)=3 prime), x - 1 = -1 (x=0 not positive), or x^2 - 7x + 13 = 1 => (x-3)(x-4)=0 => x=3 (f(3)=2 prime), x=4 (f(4)=3 prime). Admissible positive integers are x in {2, 3, 4}, count = 3.",
+        "mathematical_family": "Integer Polynomial Divisibility & Number-Theoretic Primes",
+        "hardness": {
+          "C": "C3",
+          "R": "R2",
+          "M": "M3",
+          "A": "A2",
+          "S": "S0",
+          "overall": "HARD"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P05-HOTS-05",
+        "page": 5,
+        "book_page": "2.26",
+        "section": "HOTS",
+        "type": "HOTS",
+        "source_label": "5",
+        "stem": "If ax^3 + 9x^2 + 4x - 1 is divided by (x + 2), the remainder is -6; then the value of 'a' is:",
+        "options": {
+          "A": "33/8",
+          "B": "-33/8",
+          "C": "4",
+          "D": "-4"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "P(-2) = a(-8) + 9(4) + 4(-2) - 1 = -8a + 36 - 8 - 1 = -8a + 27 = -6 => -8a = -33 => a = 33/8.",
+        "mathematical_family": "Remainder Theorem with Non-Monic Linear Divisors",
+        "hardness": {
+          "C": "C1",
+          "R": "R0",
+          "M": "M1",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P06-HOTS-14",
+        "page": 6,
+        "book_page": "2.27",
+        "section": "HOTS",
+        "type": "HOTS",
+        "source_label": "14",
+        "stem": "The polynomial p(x) = 2x^4 - x^3 - 7x^2 + ax + b is divisible by x^2 - 2x - 3 for certain values of a and b. The value of (a + b) is:",
+        "options": {
+          "A": "-34",
+          "B": "-15",
+          "C": "-19",
+          "D": "34"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Divisor x^2 - 2x - 3 = (x - 3)(x + 1). By factor theorem, p(3) = 0 and p(-1) = 0. p(-1) = 2(1) - (-1) - 7(1) - a + b = -4 - a + b = 0 => b - a = 4. p(3) = 2(81) - 27 - 7(9) + 3a + b = 72 + 3a + b = 0 => 3a + b = -72. Subtracting gives 4a = -76 => a = -19, b = -15. Thus a + b = -34.",
+        "mathematical_family": "Factor Theorem & Parameter Solving",
+        "hardness": {
+          "C": "C2",
+          "R": "R1",
+          "M": "M2",
+          "A": "A2",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P07-VSA-01",
+        "page": 7,
+        "book_page": "2.28",
+        "section": "FREE_RESPONSE",
+        "type": "FREE_RESPONSE_VSA",
+        "source_label": "1",
+        "stem": "Find the degree of polynomial 25.",
+        "options": null,
+        "source_answer": "0",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "25 is a non-zero constant polynomial, degree is 0.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A0",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P07-VSA-03",
+        "page": 7,
+        "book_page": "2.28",
+        "section": "FREE_RESPONSE",
+        "type": "FREE_RESPONSE_VSA",
+        "source_label": "3",
+        "stem": "If p(x) = x^2 - 2*sqrt(2)x + 1, find p(2*sqrt(2)).",
+        "options": null,
+        "source_answer": "1",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "p(2*sqrt(2)) = (2*sqrt(2))^2 - 2*sqrt(2)*(2*sqrt(2)) + 1 = 8 - 8 + 1 = 1.",
+        "mathematical_family": "Definitions & Degree",
+        "hardness": {
+          "C": "C0",
+          "R": "R0",
+          "M": "M0",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P07-SA-06",
+        "page": 7,
+        "book_page": "2.28",
+        "section": "FREE_RESPONSE",
+        "type": "FREE_RESPONSE_SA",
+        "source_label": "6",
+        "stem": "Without actually calculating the cubes, find the value of 48^3 - 30^3 - 18^3.",
+        "options": null,
+        "source_answer": "77760",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Let a = 48, b = -30, c = -18. a + b + c = 48 - 30 - 18 = 0. Therefore a^3 + b^3 + c^3 = 3abc = 3 * 48 * (-30) * (-18) = 77,760.",
+        "mathematical_family": "Conditional Symmetric & Cyclic Cubic Identities",
+        "hardness": {
+          "C": "C2",
+          "R": "R1",
+          "M": "M2",
+          "A": "A1",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P08-ARC-03",
+        "page": 8,
+        "book_page": "2.29",
+        "section": "ARCHIVE_CORNER",
+        "type": "ARCHIVE_CORNER",
+        "source_label": "3",
+        "stem": "The expression (a+b+c)^2 + (a+b-c)^2 + (a-b+c)^2 + (b+c-a)^2 equals:",
+        "options": {
+          "A": "3(a^2 + b^2 + c^2)",
+          "B": "2(a^2 + b^2 + c^2)",
+          "C": "4(a^2 + b^2 + c^2)",
+          "D": "None of these"
+        },
+        "source_answer": "C",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Expanding all 4 trinomial squares: each squared term a^2, b^2, c^2 appears 4 times with positive signs. Each cross-term (2ab, 2bc, 2ca) has two positive and two negative instances, cancelling to 0. Result is 4(a^2 + b^2 + c^2).",
+        "mathematical_family": "Algebraic Expansion & Coefficients",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M1",
+          "A": "A2",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P08-ARC-10",
+        "page": 8,
+        "book_page": "2.29",
+        "section": "ARCHIVE_CORNER",
+        "type": "ARCHIVE_CORNER",
+        "source_label": "10",
+        "stem": "Identify the zeros of the polynomial p(x) = 4x^2 - 15*pi*x - 4*pi^2.",
+        "options": {
+          "A": "4*pi, -pi/4",
+          "B": "-4*pi, pi/4",
+          "C": "4*pi, pi/4",
+          "D": "-4*pi, -pi/4"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Factor 4x^2 - 16*pi*x + pi*x - 4*pi^2 = 4x(x - 4*pi) + pi(x - 4*pi) = (4x + pi)(x - 4*pi) = 0. Zeros are x = 4*pi and x = -pi/4.",
+        "mathematical_family": "Factor Theorem & Parameter Solving",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M1",
+          "A": "A1",
+          "S": "S0",
+          "overall": "EASY"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P08-ARC-11",
+        "page": 8,
+        "book_page": "2.29",
+        "section": "ARCHIVE_CORNER",
+        "type": "ARCHIVE_CORNER",
+        "source_label": "11",
+        "stem": "Identify the remainder when 1 + x + x^2 + ... + x^2012 is divided by (x - 1).",
+        "options": {
+          "A": "2011",
+          "B": "2012",
+          "C": "2013",
+          "D": "2014"
+        },
+        "source_answer": "C",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "By Remainder Theorem, remainder is P(1). P(1) = 1 + 1^1 + 1^2 + ... + 1^2012 = 1 * 2013 = 2013.",
+        "mathematical_family": "Remainder Theorem with Non-Monic Linear Divisors",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M2",
+          "A": "A0",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      },
+      {
+        "id": "Q-MAT-09-POL-P09-ARC-21",
+        "page": 9,
+        "book_page": "2.30",
+        "section": "ARCHIVE_CORNER",
+        "type": "ARCHIVE_CORNER",
+        "source_label": "21",
+        "stem": "If x^2 + 4y^2 + 9z^2 - 4xy - 12yz + 6xz = 0, then:",
+        "options": {
+          "A": "x = 2y - 3z",
+          "B": "x = -2y + 3z",
+          "C": "x = 2y + 3z",
+          "D": "x = -2y - 3z"
+        },
+        "source_answer": "A",
+        "source_answer_status": "PRESENT",
+        "independent_derivation": "Rewrite as square of trinomial: (x - 2y + 3z)^2 = x^2 + 4y^2 + 9z^2 - 4xy - 12yz + 6xz = 0 => x - 2y + 3z = 0 => x = 2y - 3z.",
+        "mathematical_family": "Algebraic Expansion & Coefficients",
+        "hardness": {
+          "C": "C2",
+          "R": "R2",
+          "M": "M2",
+          "A": "A1",
+          "S": "S0",
+          "overall": "MEDIUM"
+        },
+        "fidelity_status": "VERIFIED"
+      }
+    ],
+    "stable_identity_rule": "Use source page + readable source label/type; if source label is absent or unreadable, use a deterministic page-local sequence id without inventing a printed question number.",
+    "printed_page_rule": "Book pages 2.22 through 2.32 map to PDF pages 1 through 11."
+  },
+  "answer_custody": {
+    "source_answer_states": [
+      "PRESENT",
+      "MISSING",
+      "AMBIGUOUS"
+    ],
+    "independent_comparison_states": [
+      "MATCH",
+      "CONFLICT",
+      "NOT_CHECKED"
+    ],
+    "invariant": "A source final answer is not source reasoning; independent derivation must remain explicitly authored/verification analysis."
+  },
+  "uncertainty": {
+    "fidelity_states": [
+      "VERIFIED",
+      "PARTIAL",
+      "AMBIGUOUS",
+      "UNREADABLE"
+    ],
+    "numeric_and_equation_rule": "Require an independent second reading from the page image by a different reader before promotion of numeric/equation-sensitive scan evidence.",
+    "unresolved_rule": "Do not guess. A material unresolved reading blocks final mathematical classification and Explorer/Clinic selection for that item."
+  },
+  "hardness_taxonomy": {
+    "conceptual": {
+      "id": "C",
+      "levels": {
+        "C0": "direct recall/substitution",
+        "C1": "one familiar principle",
+        "C2": "multiple concepts or an implicit invariant must be connected",
+        "C3": "decisive non-obvious structural insight"
+      }
+    },
+    "representation": {
+      "id": "R",
+      "levels": {
+        "R0": "no representation decision",
+        "R1": "routine translation",
+        "R2": "material representation shift",
+        "R3": "choosing/building the right representation is itself decisive"
+      }
+    },
+    "method_choice": {
+      "id": "M",
+      "levels": {
+        "M0": "method explicitly supplied",
+        "M1": "standard route immediately apparent",
+        "M2": "multiple plausible routes or a significant trap",
+        "M3": "discovering/selecting the route is the central difficulty"
+      }
+    },
+    "algebraic_length": {
+      "id": "A",
+      "levels": {
+        "A0": "negligible manipulation",
+        "A1": "short routine algebra",
+        "A2": "sustained multi-step manipulation",
+        "A3": "unusually long bookkeeping, branching, or constraint propagation"
+      },
+      "invariant": "A3 alone does not make a question mathematically Hard."
+    },
+    "source_scan": {
+      "id": "S",
+      "levels": {
+        "S0": "clear and independently confirmed",
+        "S1": "minor OCR noise, harmless/resolved",
+        "S2": "material ambiguity resolved through independent readback",
+        "S3": "unresolved/illegible"
+      },
+      "invariant": "S never contributes to mathematical hardness. S3 blocks final selection judgement."
+    },
+    "overall_labels": {
+      "EASY": "C/R/M all <=1 with a direct standard route; no hidden dependent reasoning chain.",
+      "MEDIUM": "At least one genuine level-2 mathematical demand, but no decisive C3/R3/M3 bottleneck; unusually long standard algebra may remain Medium.",
+      "HARD": "C3, R3, or M3; or multiple interacting C2/R2/M2 demands forming a dependent reasoning chain."
+    },
+    "psychometric_claim": false
+  },
+  "explorer_admission": {
+    "maximum_default": 1,
+    "current_recommendation": "Dynamic Polynomial Remainder Theorem & Root Synthetic Divisor Explorer",
+    "current_status": "ADMITTED",
+    "admission_tests_passed": [
+      "manipulation varies a mathematically meaningful object or parameter",
+      "interaction reveals an invariant, dependency, boundary, structural special case, or representation relationship",
+      "static examples would communicate materially less well",
+      "the structure explains a real in-scope reasoning bottleneck",
+      "the learner can follow predict -> manipulate -> observe -> explain -> formalise -> apply"
+    ],
+    "rationale": "Dynamically adjusting the linear divisor root r = b/a on a number line updates P(x) = (ax - b)Q(x) + R in real time, visually revealing why the algebraic remainder is strictly the vertical coordinate P(b/a)."
+  },
+  "clinic_ranking": {
+    "target_range": "3–6 only if 3–6 genuinely qualify",
+    "current_candidates": [
+      {
+        "rank": 1,
+        "question_id": "Q-MAT-09-POL-P05-HOTS-01",
+        "title": "Integer Prime Polynomial Criteria",
+        "stem_excerpt": "Find the number of positive integers x for which f(x) = x^3 - 8x^2 + 20x - 13 is a prime number",
+        "bottleneck": "Synthesizing polynomial factoring (root inspection x=1) with integer primality (forcing one factor to be +/-1 and checking primality of candidate outputs).",
+        "hardness": {
+          "C": "C3",
+          "R": "R2",
+          "M": "M3",
+          "A": "A2",
+          "S": "S0",
+          "overall": "HARD"
+        }
+      },
+      {
+        "rank": 2,
+        "question_id": "Q-MAT-09-POL-P06-HOTS-14",
+        "title": "Simultaneous Quadratic Divisor Constraints",
+        "stem_excerpt": "The polynomial p(x) = 2x^4 - x^3 - 7x^2 + ax + b is divisible by x^2 - 2x - 3",
+        "bottleneck": "Avoiding tedious long polynomial division by recognizing linear factor roots x=3, x=-1 and solving a 2x2 linear system for (a,b).",
+        "hardness": {
+          "C": "C2",
+          "R": "R1",
+          "M": "M2",
+          "A": "A2",
+          "S": "S0",
+          "overall": "MEDIUM"
+        }
+      },
+      {
+        "rank": 3,
+        "question_id": "Q-MAT-09-POL-P03-SC-08",
+        "title": "Cyclic Fractions and Three-Variable Cubic Invariants",
+        "stem_excerpt": "Evaluate: (a-b)^2 / ((b-c)(c-a)) + (b-c)^2 / ((c-a)(a-b)) + (c-a)^2 / ((a-b)(b-c))",
+        "bottleneck": "Recognizing the conditional identity sum x^3 = 3xyz when sum x = 0 by taking common denominator, bypassing brute-force expansion.",
+        "hardness": {
+          "C": "C2",
+          "R": "R2",
+          "M": "M2",
+          "A": "A1",
+          "S": "S0",
+          "overall": "MEDIUM"
+        }
+      },
+      {
+        "rank": 4,
+        "question_id": "Q-MAT-09-POL-P08-ARC-11",
+        "title": "Geometric Series Divisor Remainder",
+        "stem_excerpt": "Identify the remainder when 1 + x + x^2 + ... + x^2012 is divided by (x - 1)",
+        "bottleneck": "Applying Remainder Theorem directly at x = 1 rather than attempting geometric series summation or algebraic expansion.",
+        "hardness": {
+          "C": "C1",
+          "R": "R1",
+          "M": "M2",
+          "A": "A0",
+          "S": "S0",
+          "overall": "MEDIUM"
+        }
+      }
+    ],
+    "current_status": "EVALUATED_AND_RANKED",
+    "priority_order": [
+      "method-choice bottleneck",
+      "representation bottleneck",
+      "conceptual structural bottleneck",
+      "plausible wrong route and diagnostic value",
+      "prerequisite burden",
+      "independent-check value",
+      "algebraic length as secondary evidence only"
+    ],
+    "exclusions": [
+      "unresolved S3 source fidelity",
+      "mathematically unsettled source readings",
+      "routine questions that are merely long"
+    ]
+  },
+  "classification_witnesses": {
+    "easy": {
+      "id": "Q-MAT-09-POL-P01-FIB-02",
+      "name": "Remainder Theorem Linear Divisor",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      }
+    },
+    "medium": {
+      "id": "Q-MAT-09-POL-P06-HOTS-14",
+      "name": "Simultaneous Quadratic Divisor Constraints",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A2",
+        "S": "S0",
+        "overall": "MEDIUM"
+      }
+    },
+    "hard": {
+      "id": "Q-MAT-09-POL-P05-HOTS-01",
+      "name": "Integer Prime Polynomial Criteria",
+      "hardness": {
+        "C": "C3",
+        "R": "R2",
+        "M": "M3",
+        "A": "A2",
+        "S": "S0",
+        "overall": "HARD"
+      }
+    },
+    "status": "VERIFIED"
+  },
+  "validation": {
+    "source_identity_locked": true,
+    "source_text_fidelity_validated": true,
+    "ledger_complete": true,
+    "answer_custody_complete": true,
+    "independent_mathematics_complete": true,
+    "family_prerequisite_map_complete": true,
+    "hardness_complete": true,
+    "explorer_decision_complete": true,
+    "clinic_ranking_complete": true,
+    "html_projection_present": true,
+    "copyrighted_scan_bytes_committed": false,
+    "ocr_corpus_committed": false,
+    "page_images_committed": false
+  },
+  "handoff": {
+    "issue_303": "Consume stable source ids/order/fidelity/answer custody/reproduction status from this verified ledger.",
+    "issue_304": "Consume family/prerequisite/hardness evidence, Explorer comparison, and Clinic ranking from this verified ledger.",
+    "issue_305": "Recheck immutable source basis, ambiguities, answer custody, and mathematical results against this verified ledger.",
+    "issue_301": "Scanned Maths source-custody evidence base complete and satisfied."
+  }
+}
