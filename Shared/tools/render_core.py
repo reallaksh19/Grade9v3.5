@@ -93,13 +93,18 @@ def asset_svg(ref: str) -> str | None:
 
 def _scope_svg_ids(svg: str, scope: str) -> str:
     """Namespace one inline SVG instance so repeated authored assets keep valid DOM identity."""
-    ids = re.findall(r'\bid="([^"]+)"', svg)
+    id_attr = re.compile(r'(?<![-:\\w])id="([^"]+)"')
+    ids = id_attr.findall(svg)
     if not ids:
         return svg
     mapping = {old: f"{scope}--{old}" for old in ids}
     out = svg
     for old, new in mapping.items():
-        out = out.replace(f'id="{old}"', f'id="{new}"')
+        out = re.sub(
+            rf'(?<![-:\\w])id="{re.escape(old)}"',
+            f'id="{new}"',
+            out,
+        )
         out = out.replace(f'url(#{old})', f'url(#{new})')
         out = out.replace(f'href="#{old}"', f'href="#{new}"')
         out = out.replace(f"xlink:href=\"#{old}\"", f"xlink:href=\"#{new}\"")
