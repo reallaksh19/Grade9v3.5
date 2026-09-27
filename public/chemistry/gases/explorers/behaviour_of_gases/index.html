@@ -788,7 +788,7 @@
       ctx.setLineDash([]);
 
       ctx.fillStyle = '#f59e0b';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(`v_mp = ${Math.round(v_mp)} m/s`, peakX + 6, 60);
     }
 
@@ -832,7 +832,7 @@
       ctx.fill();
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Distance between centers = 2r', w * 0.25, h - 30);
       ctx.fillText('Sphere of Exclusion = 8 &times; (4/3 &pi; r&sup3;)', w * 0.25, 40);
     }
@@ -887,7 +887,7 @@
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = '#64748b';
-      ctx.font = '10px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Z = 1.0 (Ideal)', w - 85, oy - 6);
 
       // Real Gas Z curve
@@ -905,7 +905,7 @@
       ctx.stroke();
 
       ctx.fillStyle = (T < TB) ? '#38bdf8' : '#10b981';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(`T = ${T} K (${T < TB ? 'T < T_B: Dip Dominant' : 'T >= T_B: Repulsion Dominant'})`, ox + 20, 50);
     }
 
@@ -934,7 +934,7 @@
       ctx.arc(w * 0.5, 95, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Critical Point (T_c, P_c)', w * 0.5 + 10, 95);
     }
 
@@ -958,7 +958,7 @@
       ctx.stroke();
 
       ctx.fillStyle = '#f59e0b';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Pinhole Orifice (r &prop; 1/&radic;M)', w * 0.5 - 75, h * 0.5 + 4);
     }
 

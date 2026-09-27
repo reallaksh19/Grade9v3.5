@@ -269,7 +269,7 @@
                 <rect width="600" height="380" fill="url(#sbGrid)" />
 
                 <line x1="30" y1="330" x2="570" y2="330" stroke="#334155" stroke-width="2"/>
-                <text x="510" y="348" fill="#64748b" font-family="monospace" font-size="10">Ground (y=0)</text>
+                <text x="510" y="348" fill="#64748b" font-family="monospace" font-size="13">Ground (y=0)</text>
 
                 <path id="sbPathTraj" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" opacity="0.6"/>
 
@@ -277,30 +277,30 @@
                 <g id="sbWallGroup">
                   <line id="sbWallLine" x1="280" y1="330" x2="280" y2="120" stroke="#ef4444" stroke-width="4"/>
                   <rect id="sbWallTop" x="274" y="112" width="12" height="8" rx="2" fill="#ef4444"/>
-                  <text id="sbWallText" x="288" y="140" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">WALL x=28m</text>
+                  <text id="sbWallText" x="288" y="140" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">WALL x=28m</text>
                 </g>
 
                 <!-- Landing Platform -->
                 <g id="sbPlatformGroup" style="display: none;">
                   <line id="sbPlatformLine" x1="420" y1="260" x2="570" y2="260" stroke="#10b981" stroke-width="3" stroke-dasharray="4,2"/>
                   <rect id="sbPlatformRect" x="420" y="260" width="150" height="70" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="1.5"/>
-                  <text id="sbPlatformText" x="430" y="280" fill="#10b981" font-family="monospace" font-size="10" font-weight="bold">PLATFORM h=7.5m</text>
+                  <text id="sbPlatformText" x="430" y="280" fill="#10b981" font-family="monospace" font-size="13" font-weight="bold">PLATFORM h=7.5m</text>
                 </g>
 
                 <!-- Elevation Scanner -->
                 <g id="sbScannerGroup" style="display: none;">
                   <line id="sbScannerLine" x1="30" y1="210" x2="570" y2="210" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4"/>
-                  <text id="sbScannerText" x="35" y="204" fill="#f59e0b" font-family="monospace" font-size="10">Scan y = 12.0m</text>
+                  <text id="sbScannerText" x="35" y="204" fill="#f59e0b" font-family="monospace" font-size="13">Scan y = 12.0m</text>
                 </g>
 
                 <!-- Apex Marker -->
                 <circle id="sbApexDot" cx="0" cy="0" r="4.5" fill="#f59e0b"/>
-                <text id="sbApexText" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">APEX</text>
+                <text id="sbApexText" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">APEX</text>
 
                 <!-- Ghost State Marker -->
                 <g id="sbGhostGroup" class="hidden">
                   <circle id="sbGhostDot" cx="0" cy="0" r="7" fill="#ef4444" fill-opacity="0.4" stroke="#ef4444" stroke-width="2" class="ghost-glow"/>
-                  <text id="sbGhostText" x="12" y="4" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">GHOST (x(tx), y(ty))</text>
+                  <text id="sbGhostText" x="12" y="4" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">GHOST (x(tx), y(ty))</text>
                 </g>
 
                 <!-- Ball and Vectors -->
@@ -487,22 +487,22 @@
               <svg id="t1Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
                 <line x1="30" y1="260" x2="30" y2="20" stroke="#334155" stroke-width="2"/>
-                <text x="470" y="278" fill="#64748b" font-family="monospace" font-size="10">x (m)</text>
-                <text x="10" y="25" fill="#64748b" font-family="monospace" font-size="10">y (m)</text>
+                <text x="470" y="278" fill="#64748b" font-family="monospace" font-size="13">x (m)</text>
+                <text x="10" y="25" fill="#64748b" font-family="monospace" font-size="13">y (m)</text>
 
                 <path id="t1Traj" d="" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
 
                 <circle id="t1ShadowX" cx="30" cy="260" r="5" fill="#06b6d4"/>
                 <line id="t1LineX" x1="30" y1="260" x2="30" y2="260" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
-                <text id="t1LblX" x="30" y="280" fill="#06b6d4" font-family="monospace" font-size="10">x(tx)</text>
+                <text id="t1LblX" x="30" y="280" fill="#06b6d4" font-family="monospace" font-size="13">x(tx)</text>
 
                 <circle id="t1ShadowY" cx="30" cy="260" r="5" fill="#a855f7"/>
                 <line id="t1LineY" x1="30" y1="260" x2="30" y2="260" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
-                <text id="t1LblY" x="40" y="260" fill="#a855f7" font-family="monospace" font-size="10">y(ty)</text>
+                <text id="t1LblY" x="40" y="260" fill="#a855f7" font-family="monospace" font-size="13">y(ty)</text>
 
                 <g id="t1PointGroup" transform="translate(30, 260)">
                   <circle id="t1PointCircle" cx="0" cy="0" r="8" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
-                  <text id="t1PointLabel" x="12" y="4" fill="#3b82f6" font-family="monospace" font-size="11" font-weight="bold">(x, y)</text>
+                  <text id="t1PointLabel" x="12" y="4" fill="#3b82f6" font-family="monospace" font-size="13" font-weight="bold">(x, y)</text>
                 </g>
                 <g id="t1TeacherChalk" style="display: none;"></g>
               </svg>
@@ -668,11 +668,11 @@
                 <g id="t2WallGroup">
                   <line id="t2WallLine" x1="220" y1="260" x2="220" y2="100" stroke="#ef4444" stroke-width="4"/>
                   <rect id="t2WallCap" x="214" y="92" width="12" height="8" rx="2" fill="#ef4444"/>
-                  <text id="t2WallTxt" x="228" y="115" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">WALL</text>
+                  <text id="t2WallTxt" x="228" y="115" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">WALL</text>
                 </g>
 
                 <circle id="t2IntersectDot" cx="220" cy="180" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
-                <text id="t2IntersectTxt" x="235" y="180" fill="#f59e0b" font-family="monospace" font-size="11" font-weight="bold">y(t*)</text>
+                <text id="t2IntersectTxt" x="235" y="180" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">y(t*)</text>
                 <g id="t2TeacherChalk" style="display: none;"></g>
               </svg>
             </div>
@@ -902,7 +902,7 @@
               <svg id="t3Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <!-- Ground / Datum -->
                 <line x1="20" y1="270" x2="520" y2="270" stroke="#334155" stroke-width="2"/>
-                <text x="450" y="286" fill="#64748b" font-family="monospace" font-size="10">Datum y = 0</text>
+                <text x="450" y="286" fill="#64748b" font-family="monospace" font-size="13">Datum y = 0</text>
                 
                 <!-- Parabolic Wire Track A: y = -k x^2 -->
                 <path id="t3TrackPath" d="M 40 70 Q 200 230 500 260" fill="none" stroke="#64748b" stroke-width="6" stroke-linecap="round"/>
@@ -920,34 +920,34 @@
                   <!-- Normal Vector N (Perpendicular to Tangent) -->
                   <g id="t3GroupNormal">
                     <line id="t3VecNormal" x1="0" y1="0" x2="35" y2="-50" stroke="#06b6d4" stroke-width="3" marker-end="url(#sbArrVx)"/>
-                    <text id="t3LblNormal" x="40" y="-50" fill="#06b6d4" font-family="monospace" font-size="11" font-weight="bold">N</text>
+                    <text id="t3LblNormal" x="40" y="-50" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">N</text>
                     <!-- Decomposed Nx & Ny (G2/G3) -->
                     <line id="t3VecNx" x1="0" y1="0" x2="35" y2="0" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.8"/>
-                    <text id="t3LblNx" x="38" y="-5" fill="#06b6d4" font-family="monospace" font-size="9">Nx &ne; 0</text>
+                    <text id="t3LblNx" x="38" y="-5" fill="#06b6d4" font-family="monospace" font-size="13">Nx &ne; 0</text>
                     <line id="t3VecNy" x1="35" y1="0" x2="35" y2="-50" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.8"/>
                   </g>
 
                   <!-- Weight Vector mg -->
                   <line id="t3VecWeight" x1="0" y1="0" x2="0" y2="50" stroke="#ef4444" stroke-width="3" marker-end="url(#sbArrA)"/>
-                  <text id="t3LblWeight" x="6" y="55" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">mg</text>
+                  <text id="t3LblWeight" x="6" y="55" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">mg</text>
 
                   <!-- Drone Thrust Vector -->
                   <g id="t3GroupThrust" style="display: none;">
                     <line id="t3VecThrust" x1="0" y1="0" x2="45" y2="-30" stroke="#f59e0b" stroke-width="3" marker-end="url(#sbArrV)"/>
-                    <text id="t3LblThrust" x="50" y="-30" fill="#f59e0b" font-family="monospace" font-size="11" font-weight="bold">Thrust T</text>
+                    <text id="t3LblThrust" x="50" y="-30" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">Thrust T</text>
                   </g>
 
                   <!-- Main Body Circle -->
                   <circle id="t3BodyDot" cx="0" cy="0" r="10" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5"/>
-                  <text id="t3BodyLabel" x="-18" y="-14" fill="#ffffff" font-family="monospace" font-size="10" font-weight="bold">Bead</text>
+                  <text id="t3BodyLabel" x="-18" y="-14" fill="#ffffff" font-family="monospace" font-size="13" font-weight="bold">Bead</text>
                 </g>
 
                 <!-- Mathematical Invariant Overlay (G3) -->
                 <g id="t3MathOverlay" style="display: none;">
                   <rect x="25" y="25" width="230" height="75" rx="8" fill="#090d16" fill-opacity="0.88" stroke="#3b82f6" stroke-width="1.5"/>
-                  <text x="35" y="45" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">&bull; Tangent Slope: dy/dx = &minus;2kx</text>
-                  <text x="35" y="65" fill="#06b6d4" font-family="monospace" font-size="11">&bull; Nx = &minus;N sin&phi; &rArr; ax = &minus;N sin&phi; / m</text>
-                  <text x="35" y="85" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">&bull; ax &ne; 0 &rArr; PROJECTILE VOID</text>
+                  <text x="35" y="45" fill="#38bdf8" font-family="monospace" font-size="13" font-weight="bold">&bull; Tangent Slope: dy/dx = &minus;2kx</text>
+                  <text x="35" y="65" fill="#06b6d4" font-family="monospace" font-size="13">&bull; Nx = &minus;N sin&phi; &rArr; ax = &minus;N sin&phi; / m</text>
+                  <text x="35" y="85" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">&bull; ax &ne; 0 &rArr; PROJECTILE VOID</text>
                 </g>
               </svg>
             </div>
@@ -1150,7 +1150,7 @@
             <div class="w-full relative" style="min-height: 380px; aspect-ratio: 16/9; overflow: visible;">
               <svg id="t4Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <line x1="30" y1="260" x2="510" y2="260" stroke="#334155" stroke-width="2"/>
-                <text x="450" y="278" fill="#64748b" font-family="monospace" font-size="10">Ground (y=0)</text>
+                <text x="450" y="278" fill="#64748b" font-family="monospace" font-size="13">Ground (y=0)</text>
 
                 <!-- Parabolic Path -->
                 <path id="t4Traj" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" opacity="0.6"/>
@@ -1159,22 +1159,22 @@
                 <g id="t4ApexMarker">
                   <line id="t4ApexLine" x1="270" y1="260" x2="270" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
                   <circle id="t4ApexDot" cx="270" cy="80" r="4.5" fill="#f59e0b" class="apex-glow"/>
-                  <text id="t4ApexTxt" x="278" y="75" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">APEX</text>
+                  <text id="t4ApexTxt" x="278" y="75" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">APEX</text>
                 </g>
 
                 <!-- Ball and Vectors -->
                 <g id="t4BallGroup" transform="translate(30, 260)">
                   <!-- Constant downward acceleration -->
                   <line id="t4VecA" x1="0" y1="0" x2="0" y2="35" stroke="#ef4444" stroke-width="3" marker-end="url(#sbArrA)"/>
-                  <text id="t4LblA" x="8" y="38" fill="#ef4444" font-family="system-ui,sans-serif" font-size="11" font-weight="bold">ay = -g</text>
+                  <text id="t4LblA" x="8" y="38" fill="#ef4444" font-family="system-ui,sans-serif" font-size="13" font-weight="bold">ay = -g</text>
 
                   <!-- Horizontal Velocity -->
                   <line id="t4VecVx" x1="0" y1="0" x2="40" y2="0" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#sbArrVx)"/>
-                  <text id="t4LblVx" x="42" y="-4" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v_x</text>
+                  <text id="t4LblVx" x="42" y="-4" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">v_x</text>
 
                   <!-- Vertical Velocity -->
                   <line id="t4VecVy" x1="0" y1="0" x2="0" y2="-40" stroke="#a855f7" stroke-width="2.5" marker-end="url(#sbArrVy)"/>
-                  <text id="t4LblVy" x="-25" y="-30" fill="#a855f7" font-family="system-ui,sans-serif" font-size="11" font-weight="bold">vy</text>
+                  <text id="t4LblVy" x="-25" y="-30" fill="#a855f7" font-family="system-ui,sans-serif" font-size="13" font-weight="bold">vy</text>
 
                   <!-- Resultant Velocity -->
                   <line id="t4VecV" x1="0" y1="0" x2="40" y2="-40" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#sbArrV)"/>
@@ -1485,7 +1485,7 @@
               <svg id="t5Canvas" class="w-full h-full" viewBox="0 0 540 320" preserveAspectRatio="xMidYMid meet">
                 <!-- Ground Plane -->
                 <line x1="20" y1="265" x2="520" y2="265" stroke="#334155" stroke-width="2"/>
-                <text x="450" y="282" fill="#64748b" font-family="monospace" font-size="10">Ground (y=0)</text>
+                <text x="450" y="282" fill="#64748b" font-family="monospace" font-size="13">Ground (y=0)</text>
 
                 <!-- Trajectory 1: Angle θ (Cyan) -->
                 <path id="t5Traj1" d="" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
@@ -1498,25 +1498,25 @@
                   <!-- Apex 1 -->
                   <line id="t5ApexLine1" x1="0" y1="265" x2="0" y2="0" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
                   <circle id="t5ApexDot1" cx="0" cy="0" r="4" fill="#06b6d4"/>
-                  <text id="t5ApexTxt1" x="0" y="0" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">H₁</text>
+                  <text id="t5ApexTxt1" x="0" y="0" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">H₁</text>
 
                   <!-- Apex 2 -->
                   <line id="t5ApexLine2" x1="0" y1="265" x2="0" y2="0" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
                   <circle id="t5ApexDot2" cx="0" cy="0" r="4" fill="#f59e0b"/>
-                  <text id="t5ApexTxt2" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">H₂</text>
+                  <text id="t5ApexTxt2" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">H₂</text>
                 </g>
 
                 <!-- Shared Landing Target Marker -->
                 <g id="t5TargetMarker" transform="translate(420, 265)">
                   <line x1="0" y1="-15" x2="0" y2="15" stroke="#10b981" stroke-width="2.5"/>
                   <circle cx="0" cy="0" r="6" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
-                  <text id="t5LblRange" x="-20" y="24" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">R₁ = R₂ = 55.2m</text>
+                  <text id="t5LblRange" x="-20" y="24" fill="#10b981" font-family="monospace" font-size="13" font-weight="bold">R₁ = R₂ = 55.2m</text>
                 </g>
 
                 <!-- Equal-Height Horizontal Scanner Line -->
                 <g id="t5HeightScannerGroup">
                   <line id="t5ScanLine" x1="20" y1="200" x2="520" y2="200" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="4,3"/>
-                  <text id="t5ScanTxt" x="25" y="195" fill="#ec4899" font-family="monospace" font-size="10" font-weight="bold">y = 5.0m &bull; |v₁| = |v₂|</text>
+                  <text id="t5ScanTxt" x="25" y="195" fill="#ec4899" font-family="monospace" font-size="13" font-weight="bold">y = 5.0m &bull; |v₁| = |v₂|</text>
                 </g>
 
                 <!-- Live Animated Projectile Dots & Vectors -->
@@ -1524,14 +1524,14 @@
                 <g id="t5Ball1Group" transform="translate(20, 265)">
                   <circle cx="0" cy="0" r="8" fill="#06b6d4" stroke="#ffffff" stroke-width="2"/>
                   <line id="t5VecV1" x1="0" y1="0" x2="30" y2="-20" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#sbArrVx)"/>
-                  <text x="-12" y="-12" fill="#06b6d4" font-family="monospace" font-size="9" font-weight="bold">&theta;</text>
+                  <text x="-12" y="-12" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">&theta;</text>
                 </g>
 
                 <!-- Ball 2 (Amber) -->
                 <g id="t5Ball2Group" transform="translate(20, 265)">
                   <circle cx="0" cy="0" r="8" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
                   <line id="t5VecV2" x1="0" y1="0" x2="15" y2="-35" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#sbArrV)"/>
-                  <text x="-12" y="-12" fill="#f59e0b" font-family="monospace" font-size="9" font-weight="bold">90&deg;&minus;&theta;</text>
+                  <text x="-12" y="-12" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">90&deg;&minus;&theta;</text>
                 </g>
 
                 <!-- Counterfactual Air Drag Broken Arcs -->
@@ -1736,10 +1736,10 @@
 
                 <rect id="t6PlatRect" x="320" y="190" width="190" height="70" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="2"/>
                 <line id="t6PlatLine" x1="320" y1="190" x2="510" y2="190" stroke="#10b981" stroke-width="3"/>
-                <text id="t6PlatTxt" x="330" y="210" fill="#10b981" font-family="monospace" font-size="10" font-weight="bold">PLATFORM h=7.0m</text>
+                <text id="t6PlatTxt" x="330" y="210" fill="#10b981" font-family="monospace" font-size="13" font-weight="bold">PLATFORM h=7.0m</text>
 
                 <circle id="t6ImpactDot" cx="370" cy="190" r="7" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
-                <text id="t6ImpactTxt" x="385" y="185" fill="#10b981" font-family="monospace" font-size="10" font-weight="bold">Landing Event</text>
+                <text id="t6ImpactTxt" x="385" y="185" fill="#10b981" font-family="monospace" font-size="13" font-weight="bold">Landing Event</text>
                 <g id="t6TeacherChalk" style="display: none;"></g>
               </svg>
             </div>
@@ -1942,7 +1942,7 @@
 
                 <!-- Ground Line -->
                 <line x1="20" y1="270" x2="480" y2="270" stroke="#334155" stroke-width="2"/>
-                <text x="410" y="288" fill="#64748b" font-family="monospace" font-size="10">Road (y=0)</text>
+                <text x="410" y="288" fill="#64748b" font-family="monospace" font-size="13">Road (y=0)</text>
 
                 <!-- Rain Drops Group -->
                 <g id="relRainDrops"></g>
@@ -1965,23 +1965,23 @@
                 <!-- Vector HUD Triangle Overlay -->
                 <g id="relVectorTriangle" transform="translate(50, 50)">
                   <rect width="180" height="95" rx="6" fill="#020617" fill-opacity="0.85" stroke="#334155" stroke-width="1" />
-                  <text x="10" y="20" fill="#94a3b8" font-family="monospace" font-size="10" font-weight="bold">VECTOR TRIANGLE:</text>
+                  <text x="10" y="20" fill="#94a3b8" font-family="monospace" font-size="13" font-weight="bold">VECTOR TRIANGLE:</text>
                   <!-- Vector Arrows -->
                   <line id="relVecRain" x1="90" y1="30" x2="90" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#relArrRain)" />
-                  <text id="relTxtRain" x="98" y="60" fill="#38bdf8" font-family="monospace" font-size="9">v_r</text>
+                  <text id="relTxtRain" x="98" y="60" fill="#38bdf8" font-family="monospace" font-size="13">v_r</text>
                   <line id="relVecRunner" x1="90" y1="30" x2="40" y2="30" stroke="#f59e0b" stroke-width="2" marker-end="url(#relArrRunner)" />
-                  <text id="relTxtRunner" x="50" y="25" fill="#f59e0b" font-family="monospace" font-size="9">-v_m</text>
+                  <text id="relTxtRunner" x="50" y="25" fill="#f59e0b" font-family="monospace" font-size="13">-v_m</text>
                   <line id="relVecRel" x1="40" y1="30" x2="90" y2="85" stroke="#ec4899" stroke-width="2.5" marker-end="url(#relArrRel)" />
-                  <text id="relTxtRel" x="42" y="70" fill="#ec4899" font-family="monospace" font-size="9">v_r/m</text>
+                  <text id="relTxtRel" x="42" y="70" fill="#ec4899" font-family="monospace" font-size="13">v_r/m</text>
                 </g>
 
                 <!-- Dual Speed Triangles Overlay (Illus 14) -->
                 <g id="relIllus14Overlay" class="hidden" transform="translate(260, 40)">
                   <rect width="210" height="110" rx="8" fill="#020617" fill-opacity="0.9" stroke="#a855f7" stroke-width="1.5" />
-                  <text x="10" y="18" fill="#c084fc" font-family="monospace" font-size="10" font-weight="bold">ILLUS 14 DUAL-SPEED INVARIANT:</text>
-                  <text x="10" y="34" fill="#94a3b8" font-family="monospace" font-size="9">&bull; At v_m1 = 3: v_rx = 3 km/h (purely vertical)</text>
-                  <text x="10" y="48" fill="#94a3b8" font-family="monospace" font-size="9">&bull; At v_m2 = 6: angle = 45&deg; &rArr; v_ry = 3 km/h</text>
-                  <text x="10" y="66" fill="#fbbf24" font-family="monospace" font-size="10" font-weight="bold">&bull; |v_r| = &radic;(3&sup2; + 3&sup2;) = 3&radic;2 km/h &approx; 4.24</text>
+                  <text x="10" y="18" fill="#c084fc" font-family="monospace" font-size="13" font-weight="bold">ILLUS 14 DUAL-SPEED INVARIANT:</text>
+                  <text x="10" y="34" fill="#94a3b8" font-family="monospace" font-size="13">&bull; At v_m1 = 3: v_rx = 3 km/h (purely vertical)</text>
+                  <text x="10" y="48" fill="#94a3b8" font-family="monospace" font-size="13">&bull; At v_m2 = 6: angle = 45&deg; &rArr; v_ry = 3 km/h</text>
+                  <text x="10" y="66" fill="#fbbf24" font-family="monospace" font-size="13" font-weight="bold">&bull; |v_r| = &radic;(3&sup2; + 3&sup2;) = 3&radic;2 km/h &approx; 4.24</text>
                   <path d="M 50 100 L 100 75 L 150 100" fill="none" stroke="#a855f7" stroke-dasharray="3,2" stroke-width="1.5"/>
                 </g>
               </svg>
@@ -2104,8 +2104,8 @@
                 <rect x="0" y="40" width="500" height="240" fill="url(#rbRiverGrad)" />
                 <line x1="0" y1="40" x2="500" y2="40" stroke="#475569" stroke-width="3" />
                 <line x1="0" y1="280" x2="500" y2="280" stroke="#475569" stroke-width="3" />
-                <text x="20" y="32" fill="#94a3b8" font-family="monospace" font-size="10">Opposite Bank (y = 100 m)</text>
-                <text x="20" y="298" fill="#94a3b8" font-family="monospace" font-size="10">Starting Bank (y = 0 m)</text>
+                <text x="20" y="32" fill="#94a3b8" font-family="monospace" font-size="13">Opposite Bank (y = 100 m)</text>
+                <text x="20" y="298" fill="#94a3b8" font-family="monospace" font-size="13">Starting Bank (y = 0 m)</text>
 
                 <!-- Flow Vectors Streamlines -->
                 <g id="rbStreamlines" opacity="0.4"></g>
@@ -3939,48 +3939,48 @@
       if (topicId === 1) {
         g.innerHTML = `
           <rect x="250" y="35" width="260" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#3b82f6" stroke-width="1.5" />
-          <text x="260" y="55" fill="#60a5fa" font-family="monospace" font-size="11" font-weight="bold">TEACHER'S WHITEBOARD CHALK:</text>
-          <text x="260" y="72" fill="#93c5fd" font-family="monospace" font-size="10">&bull; x(t) = 3t &rArr; v_x = 3 m/s (const)</text>
-          <text x="260" y="88" fill="#c084fc" font-family="monospace" font-size="10">&bull; y(t) = 4t - 5t&sup2; &rArr; v_y = 4 - 10t</text>
+          <text x="260" y="55" fill="#60a5fa" font-family="monospace" font-size="13" font-weight="bold">TEACHER'S WHITEBOARD CHALK:</text>
+          <text x="260" y="72" fill="#93c5fd" font-family="monospace" font-size="13">&bull; x(t) = 3t &rArr; v_x = 3 m/s (const)</text>
+          <text x="260" y="88" fill="#c084fc" font-family="monospace" font-size="13">&bull; y(t) = 4t - 5t&sup2; &rArr; v_y = 4 - 10t</text>
           <path d="M 120 180 L 120 260" stroke="#38bdf8" stroke-dasharray="3,3" stroke-width="1.5"/>
-          <text x="125" y="220" fill="#38bdf8" font-family="monospace" font-size="9">Same Clock t*</text>
+          <text x="125" y="220" fill="#38bdf8" font-family="monospace" font-size="13">Same Clock t*</text>
         `;
       } else if (topicId === 2) {
         g.innerHTML = `
           <rect x="260" y="35" width="250" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#f59e0b" stroke-width="1.5" />
-          <text x="270" y="55" fill="#fbbf24" font-family="monospace" font-size="11" font-weight="bold">EVENT CLOCK CHALK:</text>
-          <text x="270" y="72" fill="#fde68a" font-family="monospace" font-size="10">&bull; Fall time t* = &radic;(2h/g) (Vertical)</text>
-          <text x="270" y="88" fill="#38bdf8" font-family="monospace" font-size="10">&bull; Range d = v &middot; t* (Horizontal)</text>
+          <text x="270" y="55" fill="#fbbf24" font-family="monospace" font-size="13" font-weight="bold">EVENT CLOCK CHALK:</text>
+          <text x="270" y="72" fill="#fde68a" font-family="monospace" font-size="13">&bull; Fall time t* = &radic;(2h/g) (Vertical)</text>
+          <text x="270" y="88" fill="#38bdf8" font-family="monospace" font-size="13">&bull; Range d = v &middot; t* (Horizontal)</text>
           <line x1="30" y1="90" x2="220" y2="90" stroke="#f59e0b" stroke-dasharray="4,2" stroke-width="1.5"/>
-          <text x="40" y="84" fill="#f59e0b" font-family="monospace" font-size="9">Horizontal Travel d</text>
+          <text x="40" y="84" fill="#f59e0b" font-family="monospace" font-size="13">Horizontal Travel d</text>
         `;
       } else if (topicId === 3) {
         g.innerHTML = `
           <rect x="260" y="35" width="250" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#10b981" stroke-width="1.5" />
-          <text x="270" y="55" fill="#34d399" font-family="monospace" font-size="11" font-weight="bold">AUDIT VERDICT CHALK:</text>
-          <text x="270" y="72" fill="#a7f3d0" font-family="monospace" font-size="10">&bull; F_g = -mg j&#770; (Solitary Force)</text>
-          <text x="270" y="88" fill="#a7f3d0" font-family="monospace" font-size="10">&bull; Torque &tau; = &minus;mg (u cos&theta;) t k&#770;</text>
+          <text x="270" y="55" fill="#34d399" font-family="monospace" font-size="13" font-weight="bold">AUDIT VERDICT CHALK:</text>
+          <text x="270" y="72" fill="#a7f3d0" font-family="monospace" font-size="13">&bull; F_g = -mg j&#770; (Solitary Force)</text>
+          <text x="270" y="88" fill="#a7f3d0" font-family="monospace" font-size="13">&bull; Torque &tau; = &minus;mg (u cos&theta;) t k&#770;</text>
         `;
       } else if (topicId === 4) {
         g.innerHTML = `
           <rect x="260" y="35" width="250" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#f59e0b" stroke-width="1.5" />
-          <text x="270" y="55" fill="#fbbf24" font-family="monospace" font-size="11" font-weight="bold">APEX VECTOR CHALK:</text>
-          <text x="270" y="72" fill="#38bdf8" font-family="monospace" font-size="10">&bull; v_apex = v_x = u/2 &ne; 0 (Horizontal)</text>
-          <text x="270" y="88" fill="#f87171" font-family="monospace" font-size="10">&bull; a_y = -g &ne; 0 (Gravity continuous!)</text>
+          <text x="270" y="55" fill="#fbbf24" font-family="monospace" font-size="13" font-weight="bold">APEX VECTOR CHALK:</text>
+          <text x="270" y="72" fill="#38bdf8" font-family="monospace" font-size="13">&bull; v_apex = v_x = u/2 &ne; 0 (Horizontal)</text>
+          <text x="270" y="88" fill="#f87171" font-family="monospace" font-size="13">&bull; a_y = -g &ne; 0 (Gravity continuous!)</text>
         `;
       } else if (topicId === 5) {
         g.innerHTML = `
           <rect x="250" y="35" width="260" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#10b981" stroke-width="1.5" />
-          <text x="260" y="55" fill="#34d399" font-family="monospace" font-size="11" font-weight="bold">RANGE SYMMETRY CHALK:</text>
-          <text x="260" y="72" fill="#a7f3d0" font-family="system-ui,sans-serif" font-size="11">&bull; Complementary: &theta;₁ + &theta;₂ = 90&deg;</text>
-          <text x="260" y="88" fill="#fde68a" font-family="system-ui,sans-serif" font-size="11">&bull; R = 4&radic;(h₁ &middot; h₂) [Identical Range!]</text>
+          <text x="260" y="55" fill="#34d399" font-family="monospace" font-size="13" font-weight="bold">RANGE SYMMETRY CHALK:</text>
+          <text x="260" y="72" fill="#a7f3d0" font-family="system-ui,sans-serif" font-size="13">&bull; Complementary: &theta;₁ + &theta;₂ = 90&deg;</text>
+          <text x="260" y="88" fill="#fde68a" font-family="system-ui,sans-serif" font-size="13">&bull; R = 4&radic;(h₁ &middot; h₂) [Identical Range!]</text>
         `;
       } else if (topicId === 6) {
         g.innerHTML = `
           <rect x="250" y="35" width="260" height="65" rx="8" fill="#030712" fill-opacity="0.85" stroke="#38bdf8" stroke-width="1.5" />
-          <text x="260" y="55" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">ROOF LANDING CHALK:</text>
-          <text x="260" y="72" fill="#93c5fd" font-family="system-ui,sans-serif" font-size="11">&bull; t(apex) = 2s &rArr; v(0y) = 20 m/s</text>
-          <text x="260" y="88" fill="#fde68a" font-family="monospace" font-size="10">&bull; h = y(3s) = 60 - 45 = 15 m</text>
+          <text x="260" y="55" fill="#38bdf8" font-family="monospace" font-size="13" font-weight="bold">ROOF LANDING CHALK:</text>
+          <text x="260" y="72" fill="#93c5fd" font-family="system-ui,sans-serif" font-size="13">&bull; t(apex) = 2s &rArr; v(0y) = 20 m/s</text>
+          <text x="260" y="88" fill="#fde68a" font-family="monospace" font-size="13">&bull; h = y(3s) = 60 - 45 = 15 m</text>
         `;
       }
     }

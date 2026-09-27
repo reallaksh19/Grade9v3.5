@@ -253,7 +253,7 @@ main{max-width:1180px;margin:auto;padding:18px;display:grid;gap:14px}.card{backg
   function baseCircle(ctx){
     ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
     ctx.strokeStyle='#cbd5e1';ctx.lineWidth=2;ctx.beginPath();ctx.arc(275,150,90,0,Math.PI*2);ctx.stroke();
-    ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(275,150,5,0,Math.PI*2);ctx.fill();ctx.font='12px system-ui';ctx.fillText('centre',245,145);
+    ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(275,150,5,0,Math.PI*2);ctx.fill();ctx.font='13px system-ui';ctx.fillText('centre',245,145);
   }
   function drawOrbit(){
     const c=$('orbitCanvas'),ctx=c.getContext('2d');baseCircle(ctx);

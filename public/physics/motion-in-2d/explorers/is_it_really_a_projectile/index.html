@@ -156,17 +156,17 @@
 
             <!-- Axes -->
             <line x1="50" y1="20" x2="50" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="40" y="30" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">y (m)</text>
+            <text x="40" y="30" fill="#94a3b8" font-size="13" font-family="monospace" text-anchor="end">y (m)</text>
             <line x1="50" y1="320" x2="500" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="495" y="335" fill="#94a3b8" font-size="10" font-family="monospace">x (m)</text>
-            <text x="42" y="335" fill="#64748b" font-size="10" font-family="monospace">0</text>
+            <text x="495" y="335" fill="#94a3b8" font-size="13" font-family="monospace">x (m)</text>
+            <text x="42" y="335" fill="#64748b" font-size="13" font-family="monospace">0</text>
 
             <!-- TRACK A FIXTURE: PHYSICAL CURVED RAMP -->
             <g id="fixtureTrackA">
               <!-- Physical track body -->
               <path id="pathRampSurface" d="" fill="none" stroke="#475569" stroke-width="8" stroke-linecap="round"/>
               <path id="pathRampTop" d="" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
-              <text x="240" y="270" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">SOLID CURVED TRACK</text>
+              <text x="240" y="270" fill="#94a3b8" font-size="13" font-family="monospace" text-anchor="middle">SOLID CURVED TRACK</text>
             </g>
 
             <!-- CANDIDATE PATH (CURVE) -->
@@ -176,36 +176,36 @@
             <g id="bodyGroup" transform="translate(50, 80)">
               <!-- Body Circle -->
               <circle id="bodyCircle" cx="0" cy="0" r="10" fill="#3b82f6" stroke="#ffffff" stroke-width="2" class="fbd-pulse"/>
-              <text id="bodyLabel" x="0" y="-15" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">MASS m</text>
+              <text id="bodyLabel" x="0" y="-15" fill="#ffffff" font-size="13" font-weight="bold" font-family="monospace" text-anchor="middle">MASS m</text>
 
               <!-- FBD FORCE VECTORS OVERLAY -->
               <!-- 1. Gravity Vector (Downwards: always present) -->
               <g id="vecGravity">
                 <line x1="0" y1="0" x2="0" y2="45" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowGravity)"/>
-                <text x="8" y="42" fill="#f59e0b" font-size="10" font-family="monospace" font-weight="bold">mg</text>
+                <text x="8" y="42" fill="#f59e0b" font-size="13" font-family="monospace" font-weight="bold">mg</text>
               </g>
 
               <!-- 2. Normal Force Vector (Perpendicular to surface: Candidate A only) -->
               <g id="vecNormal" class="hidden">
                 <line id="lineNormal" x1="0" y1="0" x2="-25" y2="-38" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowNormal)"/>
-                <text id="textNormal" x="-32" y="-35" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">N</text>
+                <text id="textNormal" x="-32" y="-35" fill="#f87171" font-size="13" font-family="monospace" font-weight="bold">N</text>
                 <!-- Nx Component indicator -->
                 <line id="lineNx" x1="0" y1="0" x2="-25" y2="0" stroke="#f87171" stroke-width="1.5" stroke-dasharray="2,2"/>
-                <text id="textNx" x="-15" y="12" fill="#f87171" font-size="8" font-family="monospace">Nx &ne; 0</text>
+                <text id="textNx" x="-15" y="12" fill="#f87171" font-size="13" font-family="monospace">Nx &ne; 0</text>
               </g>
 
               <!-- 3. Thrust Vector (Candidate B only) -->
               <g id="vecThrust" class="hidden">
                 <line id="lineThrust" x1="0" y1="0" x2="35" y2="-15" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowThrust)"/>
-                <text id="textThrust" x="42" y="-12" fill="#67e8f9" font-size="10" font-family="monospace" font-weight="bold">F_thrust</text>
+                <text id="textThrust" x="42" y="-12" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold">F_thrust</text>
               </g>
             </g>
 
             <!-- Kinematic Acceleration Readout Badge inside canvas -->
             <g id="canvasAccelGroup" transform="translate(360, 45)">
               <rect x="-10" y="-12" width="150" height="52" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-              <text id="txtAx" x="0" y="8" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a_x = &minus;3.4 m/s&sup2; (&ne; 0)</text>
-              <text id="txtAy" x="0" y="26" fill="#f87171" font-size="10" font-family="monospace" font-weight="bold">a_y = &minus;6.1 m/s&sup2; (&ne; &minus;g)</text>
+              <text id="txtAx" x="0" y="8" fill="#f87171" font-size="13" font-family="monospace" font-weight="bold">a_x = &minus;3.4 m/s&sup2; (&ne; 0)</text>
+              <text id="txtAy" x="0" y="26" fill="#f87171" font-size="13" font-family="monospace" font-weight="bold">a_y = &minus;6.1 m/s&sup2; (&ne; &minus;g)</text>
             </g>
           </svg>
         </div>

@@ -131,20 +131,20 @@
 
               <!-- Ground line -->
               <line x1="30" y1="330" x2="510" y2="330" stroke="#334155" stroke-width="2"/>
-              <text x="440" y="348" fill="#64748b" font-family="monospace" font-size="10">Ground (y = 0)</text>
+              <text x="440" y="348" fill="#64748b" font-family="monospace" font-size="13">Ground (y = 0)</text>
 
               <!-- Parabolic path -->
               <path id="pathTrajectory" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" opacity="0.6"/>
 
               <!-- Apex Point -->
               <circle id="dotApex" cx="0" cy="0" r="4.5" fill="#f59e0b" opacity="0.8"/>
-              <text id="txtApex" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="bold">APEX</text>
+              <text id="txtApex" x="0" y="0" fill="#f59e0b" font-family="monospace" font-size="13" font-weight="bold">APEX</text>
 
               <!-- HORIZONTAL ELEVATION SCANNER LINE -->
               <g id="scanLineGroup">
                 <line id="scanLine" x1="30" y1="200" x2="510" y2="200" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
                 <rect id="scanTagBg" x="30" y="184" width="130" height="18" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-                <text id="scanTagTxt" x="36" y="197" fill="#fcd34d" font-family="monospace" font-size="10" font-weight="bold">Scan Elevation: 12.5 m</text>
+                <text id="scanTagTxt" x="36" y="197" fill="#fcd34d" font-family="monospace" font-size="13" font-weight="bold">Scan Elevation: 12.5 m</text>
               </g>
 
               <!-- POINT A (ASCENT) GROUP -->
@@ -155,8 +155,8 @@
                 <line id="vecAx" x1="0" y1="0" x2="40" y2="0" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
                 <line id="vecAy" x1="40" y1="0" x2="40" y2="-30" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
                 <circle cx="0" cy="0" r="7" fill="#06b6d4" stroke="#ffffff" stroke-width="2" class="point-a-glow"/>
-                <text x="-16" y="-12" fill="#06b6d4" font-family="monospace" font-size="12" font-weight="bold">Point A</text>
-                <text id="lblVA" x="42" y="-34" fill="#06b6d4" font-family="monospace" font-size="10" font-weight="bold">v_A</text>
+                <text x="-16" y="-12" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">Point A</text>
+                <text id="lblVA" x="42" y="-34" fill="#06b6d4" font-family="monospace" font-size="13" font-weight="bold">v_A</text>
               </g>
 
               <!-- POINT B (DESCENT) GROUP -->
@@ -167,8 +167,8 @@
                 <line id="vecBx" x1="0" y1="0" x2="40" y2="0" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
                 <line id="vecBy" x1="40" y1="0" x2="40" y2="30" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
                 <circle cx="0" cy="0" r="7" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="point-b-glow"/>
-                <text x="8" y="-12" fill="#ec4899" font-family="monospace" font-size="12" font-weight="bold">Point B</text>
-                <text id="lblVB" x="42" y="38" fill="#ec4899" font-family="monospace" font-size="10" font-weight="bold">v_B</text>
+                <text x="8" y="-12" fill="#ec4899" font-family="monospace" font-size="13" font-weight="bold">Point B</text>
+                <text id="lblVB" x="42" y="38" fill="#ec4899" font-family="monospace" font-size="13" font-weight="bold">v_B</text>
               </g>
             </svg>
           </div>
@@ -227,16 +227,16 @@
               <!-- Grid Axes -->
               <line x1="-130" y1="0" x2="130" y2="0" stroke="#334155" stroke-width="1.2"/>
               <line x1="0" y1="-110" x2="0" y2="110" stroke="#334155" stroke-width="1.2"/>
-              <text x="120" y="-5" fill="#64748b" font-family="monospace" font-size="9">+x</text>
-              <text x="5" y="-100" fill="#64748b" font-family="monospace" font-size="9">+y</text>
+              <text x="120" y="-5" fill="#64748b" font-family="monospace" font-size="13">+x</text>
+              <text x="5" y="-100" fill="#64748b" font-family="monospace" font-size="13">+y</text>
 
               <!-- Constant Speed Circle -->
               <circle id="circSpeed" cx="0" cy="0" r="80" fill="none" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
-              <text id="txtSpeedRadius" x="5" y="-83" fill="#f59e0b" font-family="monospace" font-size="9">|v| = 20.2 m/s</text>
+              <text id="txtSpeedRadius" x="5" y="-83" fill="#f59e0b" font-family="monospace" font-size="13">|v| = 20.2 m/s</text>
 
               <!-- Vector Difference Δv (Stretches from tip vA to tip vB) -->
               <line id="vecDiff" x1="60" y1="-50" x2="60" y2="50" stroke="#ef4444" stroke-width="3" marker-end="url(#arrRed)"/>
-              <text id="lblDiff" x="65" y="5" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">&Delta;v</text>
+              <text id="lblDiff" x="65" y="5" fill="#ef4444" font-family="monospace" font-size="13" font-weight="bold">&Delta;v</text>
 
               <!-- Vector A (Cyan) -->
               <line id="compVecA" x1="0" y1="0" x2="60" y2="-50" stroke="#06b6d4" stroke-width="2.8" marker-end="url(#arrCyan)"/>
