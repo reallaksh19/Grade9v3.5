@@ -24,6 +24,8 @@ class ProductStandaloneContractTest(unittest.TestCase):
         self.assertNotRegex(html, r'<link\b[^>]*\bhref="https?://')
         self.assertNotIn('href="core1.html"', html)
         self.assertNotIn('href="core2a.html"', html)
+        self.assertIn('href="../../../public/index.html"', html)
+        self.assertIn('href="../../../public/question-bank/index.html"', html)
         for role in render_core.ROLES:
             self.assertIn(f'id="g9-role-{role}"', html)
             self.assertIn(f'href="#g9-role-{role}"', html)
