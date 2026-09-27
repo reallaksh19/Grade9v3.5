@@ -266,7 +266,8 @@ def core1(ctx: Ctx, m: dict) -> str:
         ctx.gap("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor", "CORE1")
     rel_html = "".join(f'<div class="g9-relation"><p class="g9-expr">{esc(r["expression"])}</p>{para(r.get("meaning"))}'
                        f'{items(r.get("conditions"))}</div>' for r in rels)
-    rep = (m.get("representation_refs") or [None])[0]
+    # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
+    rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
     body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>"), True)
             + slot("orientation",
                    block("hard_transition", para(m["inferential_jump"]), title="Hard transition")

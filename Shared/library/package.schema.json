@@ -1436,6 +1436,13 @@
             "result": {
               "type": "string",
               "minLength": 1
+            },
+            "representation_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The representation of this compact anchor's own situation, shown on the Core1 map. When absent, Core1 falls back to the microtopic's first representation_refs entry, which is often shared across microtopics."
             }
           }
         }

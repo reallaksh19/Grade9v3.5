@@ -186,6 +186,20 @@ class Gate(unittest.TestCase):
         self.assertIn('data-g9-representation="REP-MATH-TASK-CANDIDATES"', html)
         self.assertNotIn('data-g9-representation="REP-MATH-NUMBER-LINE"', html)
 
+    def test_core1_mounts_the_compact_anchor_figure(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        rep = copy.deepcopy(next(r for r in pkg["representations"] if r["id"] == "REP-MATH-NUMBER-LINE"))
+        rep["id"] = "REP-MATH-ANCHOR-X2"
+        pkg["representations"].append(rep)
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["compact_anchor"]["representation_ref"] = "REP-MATH-ANCHOR-X2"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        html = (self.build(manifest) / "core1.html").read_text(encoding="utf-8")
+        self.assertIn('data-g9-representation="REP-MATH-ANCHOR-X2"', html)
+
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))

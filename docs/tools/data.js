@@ -4876,7 +4876,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 141,
+          "record_count": 144,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -4894,6 +4894,16 @@ window.GRADE9V3 = {
                 "kind": "PRODUCT_UNSUPPORTED",
                 "core": "CORE2",
                 "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ANCHOR-POSITION-2-3",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-ANCHOR-VELOCITY-5-NEG2",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
                 "kind": "FIGURE_AUTHORING",
@@ -4933,6 +4943,11 @@ window.GRADE9V3 = {
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-KIN-2D-EVENT-CLOCK",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-KIN-2D-GRAVITY-GATE-10-5",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
