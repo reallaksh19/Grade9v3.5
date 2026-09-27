@@ -142,5 +142,36 @@ class Promotion(unittest.TestCase):
         self.assertEqual(merged["schema_version"], "0.2.0")
 
 
+class PromotionBatch(unittest.TestCase):
+    """A prerequisite taught by a sibling node counts only when the sibling is promoted in the same batch."""
+
+    def run_plan(self, verified):
+        def node(n, cap, pre):
+            ext = {"grade9v3:research_node": n}
+            return [{"id": f"MIC-{n}", "primary_capability_ref": cap, "prerequisite_refs": pre, "extensions": ext},
+                    {"id": cap, "extensions": ext}]
+        mics_a, caps_a = node("A", "CAP-A", [])
+        mics_b, caps_b = node("B", "CAP-B", ["CAP-A"])
+        staging = {"C": {"schema_version": "0.2.0", "microtopics": [mics_a, mics_b], "capabilities": [caps_a, caps_b]}}
+        board = {"subject": "Mathematics", "nodes": [
+            {"node": n, "chapter": "C", "level": "MICROTOPIC", "stage": "VERIFIED" if n in verified else "VERIFIER",
+             "duties": [], "verification": f"{n}.json"} for n in ("A", "B")]}
+        original = package_depth.package_duties
+        package_depth.package_duties = lambda pkg, rel, taught, limit: [
+            {"duty": "TEACH_PREREQUISITE_BRIDGE"} for m in pkg.get("microtopics", [])
+            for r in m.get("prerequisite_refs", []) if r not in taught]
+        try:
+            return promote_verified.plan(board, staging, set(), 4)
+        finally:
+            package_depth.package_duties = original
+
+    def test_a_verified_sibling_unblocks_its_dependent(self):
+        self.assertEqual(sorted(i["node"] for i in self.run_plan({"A", "B"})["promotable"]), ["A", "B"])
+
+    def test_an_unpromoted_sibling_does_not(self):
+        res = self.run_plan({"B"})
+        self.assertEqual(res["promotable"], [])
+        self.assertIn("depth duties", {r["reason"] for r in res["refused"]})
+
 if __name__ == "__main__":
     unittest.main()
