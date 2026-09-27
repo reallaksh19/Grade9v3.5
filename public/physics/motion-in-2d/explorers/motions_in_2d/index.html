@@ -3818,15 +3818,75 @@
 
     
     // --- JEE QUESTIONS HUB & TEACHER'S CHALKBOARD FUNCTIONS ---
+    let jeeHubLastFocus = null;
+    let jeeHubPreviousBodyOverflow = '';
+    const jeeHubFocusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])'
+    ].join(',');
+
+    function jeeHubFocusable(modal) {
+      return [...modal.querySelectorAll(jeeHubFocusableSelector)].filter((el) => {
+        const style = window.getComputedStyle(el);
+        return style.visibility !== 'hidden' && style.display !== 'none' && el.offsetParent !== null;
+      });
+    }
+
     function openJeeHubModal() {
       const modal = document.getElementById('jeeHubModal');
-      if (modal) modal.classList.remove('hidden');
+      if (!modal || !modal.classList.contains('hidden')) return;
+      jeeHubLastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      jeeHubPreviousBodyOverflow = document.body.style.overflow;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        const first = document.getElementById('jeeSearchInput') || jeeHubFocusable(modal)[0] || modal;
+        first.focus();
+      });
     }
 
     function closeJeeHubModal() {
       const modal = document.getElementById('jeeHubModal');
-      if (modal) modal.classList.add('hidden');
+      if (!modal || modal.classList.contains('hidden')) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = jeeHubPreviousBodyOverflow;
+      if (jeeHubLastFocus && document.contains(jeeHubLastFocus)) jeeHubLastFocus.focus();
+      jeeHubLastFocus = null;
     }
+
+    document.addEventListener('keydown', (event) => {
+      const modal = document.getElementById('jeeHubModal');
+      if (!modal || modal.classList.contains('hidden')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeJeeHubModal();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusable = jeeHubFocusable(modal);
+      if (!focusable.length) {
+        event.preventDefault();
+        modal.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !modal.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
 
     let activeChalkboards = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
 
@@ -5215,7 +5275,7 @@
     <!-- ================================================================= -->
   <!-- FULL 104-QUESTION JEE PAST YEARS MASTER HUB MODAL (10" TABLET)     -->
   <!-- ================================================================= -->
-  <div id="jeeHubModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 md:p-6">
+  <div id="jeeHubModal" role="dialog" aria-modal="true" aria-labelledby="jeeHubTitle" tabindex="-1" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 md:p-6">
     <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl max-w-5xl w-full max-h-[86vh] flex flex-col shadow-2xl overflow-hidden">
       
       <!-- Modal Header -->
@@ -5225,14 +5285,14 @@
             &#128218;
           </div>
           <div>
-            <h2 class="text-lg md:text-xl font-black text-white flex items-center gap-2">
+            <h2 id="jeeHubTitle" class="text-lg md:text-xl font-black text-white flex items-center gap-2">
               <span>JEE MAIN &amp; PDF MASTER QUESTIONS HUB</span>
               <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">104 Questions &middot; per-item audit status</span>
             </h2>
             <p class="text-xs text-slate-400">11 Scanned PDF Illustrations + 93 ExamSide PYQs; each card shows answer, derivation, trap, teacher check, audit status and simulator fidelity</p>
           </div>
         </div>
-        <button onclick="closeJeeHubModal()" class="touch-target px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition">
+        <button aria-label="Close question hub" onclick="closeJeeHubModal()" class="touch-target px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition">
           Close &times;
         </button>
       </div>
