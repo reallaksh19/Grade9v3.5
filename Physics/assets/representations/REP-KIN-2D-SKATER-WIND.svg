@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" role="img" aria-labelledby="rep-kin-skater-title rep-kin-skater-desc">
+  <title id="rep-kin-skater-title">A skater starting at 5 m/s along +x with a steady wind acceleration (−1 i + 2 j) m/s²</title>
+  <desc id="rep-kin-skater-desc">Stage 1: a skater on smooth ice starts at the origin with velocity 5 m/s along +x; a steady wind gives her a constant acceleration (−1 i + 2 j) m/s² for 4 s. Stage 2: a_x = −1 m/s² and a_y = 2 m/s² are both constant, so on one clock v_x = 5 − t, x = 5t − ½t², v_y = 2t and y = t². Stage 3: the curved path over the 4 s ends at r = (12 i + 16 j) m, where the velocity is v = (1 i + 8 j) m/s.</desc>
+  <defs>
+    <marker id="rep-kin-skater-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-skater-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-SKATER-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A skater on smooth ice pushed by a steady wind</text>
+    <line x1="80" y1="340" x2="440" y2="340" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-skater-arrow)"/>
+    <line x1="80" y1="340" x2="80" y2="40" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-skater-arrow)"/>
+    <text x="446" y="345">+x</text>
+    <text x="88" y="44">+y</text>
+    <circle cx="80" cy="340" r="6" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+    <line x1="80" y1="340" x2="160" y2="340" stroke="currentColor" stroke-width="3" marker-end="url(#rep-kin-skater-arrow)"/>
+    <text x="100" y="362">u = 5 m/s along +x</text>
+    <line x1="400" y1="280" x2="384" y2="248" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-skater-arrow)"/>
+    <text x="250" y="310">wind: a = (−1 i + 2 j) m/s²</text>
+    <text x="480" y="60">starts at the origin</text>
+    <text x="480" y="82">the acceleration is constant</text>
+    <text x="480" y="104">for the whole 4 s</text>
+    <text x="480" y="126">Find v and the position at t = 4 s.</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SKATER-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="480" y="160" font-weight="600">Each axis on one clock</text>
+    <text x="480" y="182">a_x = −1 m/s², a_y = 2 m/s²: both constant</text>
+    <text x="480" y="204">x: v_x = 5 − t, x = 5t − ½t²</text>
+    <text x="480" y="226">y: v_y = 2t, y = t²</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SKATER-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M80 340 L118 336 L152 324 L182 304 L208 276 L230 240 L248 196 L262 144 L272 84" fill="none" stroke="#1f6fb2" stroke-width="2" stroke-dasharray="6 4"/>
+    <circle cx="272" cy="84" r="6" fill="#1f6fb2" stroke="#1f6fb2" stroke-width="2"/>
+    <line x1="272" y1="84" x2="278" y2="36" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-skater-arrow-acc)"/>
+    <text x="290" y="60" fill="#1f6fb2">v = (1 i + 8 j) m/s</text>
+    <text x="290" y="90" fill="#1f6fb2">r = (12 i + 16 j) m</text>
+    <text x="480" y="270" font-weight="600" fill="#1f6fb2">At t = 4 s:</text>
+    <text x="480" y="292" fill="#1f6fb2">v = (1 i + 8 j) m/s</text>
+    <text x="480" y="314" fill="#1f6fb2">r = (12 i + 16 j) m</text>
+  </g>
+</svg>

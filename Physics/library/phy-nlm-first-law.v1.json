@@ -583,27 +583,32 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "A low-friction cart is already moving when the push ends. Must a new forward force keep acting just to preserve that motion?",
-          "defensible_answer": "No. If the net force is zero, the cart can keep the velocity it already has."
+          "prompt": "A car cruises at a steady speed along a straight, level road with its engine running. Must the forward driving force be larger than the backward resistance just to keep it moving?",
+          "defensible_answer": "No. At steady velocity the net force is zero, so the forward and backward forces are equal in size."
         },
         "attempt": {
-          "produces": "A two-case prediction for a released moving cart and an initially resting cart under the same zero-net-force condition.",
+          "produces": "The total resistive force on the car with its direction, the net force on the car, and the car's velocity 10 s later, each justified from the steady 25 m/s.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "The moving cart is allowed to continue steadily.",
-              "evidence_of": "Separating motion from acceleration."
+              "criterion": "Reads 'a steady 25 m/s in a straight line' as zero acceleration, so the net force is zero.",
+              "evidence_of": "Separating motion from change of motion."
             },
             {
-              "criterion": "The resting cart is allowed to remain at rest under the same rule.",
-              "evidence_of": "Recognizing unchanged velocity as the common condition."
+              "criterion": "Finds the resistive total, 2000 N backward, from that balance rather than from the size of the speed.",
+              "evidence_of": "Using the net-force condition to find an unknown force."
+            },
+            {
+              "criterion": "Keeps the velocity at 25 m/s in the same direction after 10 s.",
+              "evidence_of": "Recognizing unchanged velocity, not rest, as what zero net force preserves."
             }
           ],
           "accepted": [
             "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
           ],
           "rejected": [
-            "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
+            "'The driving force must be bigger than the resistance, or the car would slow down.' At steady speed the net force is zero, so the two forces are equal.",
+            "'With zero net force the car is at rest 10 s later.' Zero net force keeps the velocity unchanged; it does not stop the car."
           ],
           "task": {
             "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
@@ -611,36 +616,41 @@
               "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
               "Driving force 2000 N forward.",
               "Resistive forces (air and rolling) act backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+            "stage_refs": [
+              "VIS-NLM-CRUISE-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "After the hand leaves the cart, is the hand still exerting the forward push?",
-              "why_this_ask": "It removes the continuing-contact explanation before discussing what the cart does.",
+              "ask": "What does 'a steady 25 m/s in a straight line' tell you about the car's acceleration?",
+              "why_this_ask": "It separates 'is moving' from 'is changing its motion' before any force is discussed.",
+              "from_step_ref": "NLM1-1"
+            },
+            {
+              "ask": "So what must the net force on the car be?",
+              "why_this_ask": "The net-force value is derived from the unchanged velocity, not assumed from the speed."
+            },
+            {
+              "ask": "The road pushes forward with 2000 N. What total backward force makes the net force zero?",
+              "why_this_ask": "It finds the unknown resistance from the balance.",
               "from_step_ref": "NLM1-2"
             },
             {
-              "ask": "What would count as a change of velocity in the next few moments?",
-              "why_this_ask": "The learner must name acceleration-like changes rather than equate movement itself with force."
-            },
-            {
-              "ask": "If none of those changes occurs, what part of the cart's motion is staying the same?",
-              "why_this_ask": "It identifies unchanged velocity as the invariant.",
+              "ask": "If nothing changes for 10 s, can the velocity change? What is it then?",
+              "why_this_ask": "It identifies unchanged velocity, not rest, as what zero net force keeps.",
               "from_step_ref": "NLM1-3"
-            },
-            {
-              "ask": "Does that same rule also allow a cart whose starting velocity is zero?",
-              "why_this_ask": "The rest case checks that the learner has not replaced one special state with another."
             }
           ],
-          "differs_from_teaching_path": "The teaching path presents the moving and resting cases as a finished comparison. The learner route first removes the push, defines what change would look like, then discovers that both cases share unchanged velocity."
+          "differs_from_teaching_path": "The teaching path compares a released moving cart with a resting cart. The learner route starts from the car's steady speed, derives the zero net force from it, and uses that to find the unknown resistance and the later velocity."
         },
         "boundary_test": {
-          "prompt": "A cart moving east begins to slow down. Can zero net force still describe that interval?",
-          "answer": "No. Slowing down is a change of velocity, so the zero-net-force condition no longer fits the stated interval.",
-          "confirms": "The rule is about unchanged velocity, not simply about whether the object is moving."
+          "prompt": "The driver eases off and the driving force drops to 500 N while the resistance is still 2000 N. Is the net force still zero, and what happens to the speed?",
+          "answer": "No. The net force is 2000 − 500 = 1500 N backward, so the car slows at 1500/1500 = 1 m/s². Zero net force described only the steady interval.",
+          "confirms": "Zero net force goes with unchanged velocity, not with motion as such."
         }
       },
       "construction_units": [
@@ -768,19 +778,23 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Two people push the same box equally hard in opposite directions. If the box has zero net force, does that mean neither person is exerting a force?",
-          "defensible_answer": "No. Both forces are present; their opposite directional effects cancel in the net result."
+          "prompt": "A string pulls up on a box that still rests on the floor. Does the floor still push up on the box with a force equal to the box's weight?",
+          "defensible_answer": "No. The upward forces together must equal the weight; the string takes part of it, so the floor pushes with less."
         },
         "attempt": {
-          "produces": "A force inventory that keeps both opposite contributions visible plus a separate statement of the net result.",
+          "produces": "A three-force inventory for the box (Earth's pull, the string's pull and the floor's push), each with its agent, direction and size, and a separate statement that the net force is zero.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Both nonzero contributions remain listed.",
-              "evidence_of": "Not confusing cancellation with absence."
+              "criterion": "Lists all three forces with their agents, including the floor's push.",
+              "evidence_of": "Keeping every interaction in the inventory."
             },
             {
-              "criterion": "Only the combined result is labelled zero.",
+              "criterion": "Finds the floor's push, 20 N up, from zero net force instead of setting it equal to the weight.",
+              "evidence_of": "Deriving an unknown force from the balance."
+            },
+            {
+              "criterion": "Labels only the sum as zero; each force stays nonzero.",
               "evidence_of": "Locating the zero at the level of the sum."
             }
           ],
@@ -788,6 +802,7 @@
             "Earth pulls it down with 30 N, the string pulls up with 10 N and the floor pushes up with 20 N. The net force is zero, although all three forces are nonzero; the floor's push is 20 N, not 30 N."
           ],
           "rejected": [
+            "'The floor pushes up with 30 N, the box's weight.' The upward forces would then total 40 N against 30 N down, and the box would not stay at rest.",
             "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
           ],
           "task": {
@@ -796,37 +811,41 @@
               "Mass 3 kg; g = 10 m/s².",
               "String pull 10 N vertically upward.",
               "The box stays at rest on the floor."
+            ],
+            "representation_ref": "REP-NLM-BOX3-STRING-10N",
+            "stage_refs": [
+              "VIS-NLM-BOX3-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Before adding anything, how many pushes are physically acting on the box?",
+              "ask": "Which bodies touch or pull on the box? Name each agent.",
               "why_this_ask": "It fixes the inventory before a zero total can erase it.",
               "from_step_ref": "NLM2-1"
             },
             {
-              "ask": "Which directions do those pushes point?",
-              "why_this_ask": "Cancellation requires direction, so the learner has to preserve it."
+              "ask": "Which way does each force point, and which sizes do you already know?",
+              "why_this_ask": "Cancellation needs direction, and the weight (30 N) and string pull (10 N) are known."
             },
             {
-              "ask": "If the two sizes match, what happens to the combined directional effect?",
-              "why_this_ask": "The zero is derived from the pair rather than assumed from the motion.",
+              "ask": "The box stays at rest. What must the upward forces add up to?",
+              "why_this_ask": "The zero is derived from the balance, not assumed.",
               "from_step_ref": "NLM2-2"
             },
             {
-              "ask": "If both people push harder by the same amount, which statements change and which stay true?",
-              "why_this_ask": "The variation separates individual magnitudes from the net result.",
+              "ask": "So how hard must the floor push? Is that the box's weight?",
+              "why_this_ask": "It separates the floor's push (20 N) from the weight (30 N).",
               "from_step_ref": "NLM2-3"
             }
           ],
-          "differs_from_teaching_path": "The teaching path lists and combines the forces. The learner route commits to the inventory first, then derives cancellation and tests it by changing both contributions together."
+          "differs_from_teaching_path": "The teaching path combines two equal opposite pushes. The learner route builds a three-force inventory with one unknown and uses the zero sum to find it."
         },
         "boundary_test": {
-          "prompt": "One of the two equal opposite pushes is removed. Is the net force still zero?",
-          "answer": "No. One nonzero force remains without an equal opposite contribution to cancel it.",
-          "confirms": "Zero net force came from cancellation between present forces, not from a property of the object."
+          "prompt": "The string pull is raised to 30 N, and then to 35 N. What is the floor's push in each case, and is the net force still zero?",
+          "answer": "At 30 N the floor's push is zero: the string alone balances the 30 N weight. At 35 N the floor cannot pull the box down, so the net force is 5 N upward and the box accelerates upward at 5/3 ≈ 1.7 m/s².",
+          "confirms": "Zero net force came from a balance the floor's push could adjust to; once that force cannot adjust, the forces no longer cancel."
         }
       },
       "construction_units": [
@@ -972,64 +991,72 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "A horse pulls a cart while the cart pulls back on the horse. If you draw only the cart, should both of those horizontal forces appear on the cart's free-body diagram?",
-          "defensible_answer": "No. Only the horse-on-cart force acts on the cart; the cart-on-horse partner belongs on the horse's diagram."
+          "prompt": "A man stands in a boat. Should the man's weight appear on the boat's free-body diagram?",
+          "defensible_answer": "No. The man's weight is Earth pulling the man. On the boat, the force is the push of the man's feet."
         },
         "attempt": {
-          "produces": "Two separate body inventories, one for the cart and one for the horse, with the contact partner arrows assigned to the body each arrow acts on.",
+          "produces": "One free-body inventory for the boat only: Earth's pull, the man's push and the water's push, each with its agent, direction and size, with no force that acts on the man.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Each diagram contains only the member of the contact pair acting on its chosen body.",
-              "evidence_of": "Using force ownership rather than visual cancellation."
+              "criterion": "Every force on the list acts on the boat and has a named agent.",
+              "evidence_of": "Using force ownership to decide what goes on the diagram."
             },
             {
-              "criterion": "The partner arrows are placed on different body diagrams.",
-              "evidence_of": "Recognizing that equal-and-opposite partners do not cancel within one body's inventory."
+              "criterion": "Uses the man's push on the boat (700 N down), not the man's weight, which acts on the man.",
+              "evidence_of": "Separating a contact force on the boat from Earth's pull on another body."
+            },
+            {
+              "criterion": "Finds the water's push, 2000 N up, from zero net force on the boat.",
+              "evidence_of": "Using the completed inventory to find an unknown force."
             }
           ],
           "accepted": [
             "On the boat: its weight 1300 N down (Earth), the man's push 700 N down (man) and the water's push 2000 N up (water). The man's weight acts on the man, not on the boat."
           ],
           "rejected": [
-            "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
+            "'The man's weight, 700 N, acts on the boat.' Earth pulls the man, not the boat; the boat feels the push of his feet, which is 700 N only because he stands still.",
+            "'The boat's upward push on the man, 700 N, also goes on the boat's diagram.' That force acts on the man, so it belongs on his diagram."
           ],
           "task": {
             "prompt": "A 70 kg man stands in a 130 kg boat floating at rest on a lake. Take g = 10 m/s². Build the free-body inventory of the boat: every force, its agent, its direction and its size.",
             "givens": [
               "Man 70 kg; boat 130 kg; g = 10 m/s².",
               "Everything is at rest."
+            ],
+            "representation_ref": "REP-NLM-MAN-IN-BOAT",
+            "stage_refs": [
+              "VIS-NLM-BOAT-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which single body are you describing first?",
+              "ask": "Which body is the diagram for?",
               "why_this_ask": "The diagram has no ownership until a body is chosen.",
               "from_step_ref": "NLM3-1"
             },
             {
-              "ask": "For the horse-on-cart force, which object receives the push?",
-              "why_this_ask": "The receiver test decides membership without requiring a named law."
+              "ask": "Which bodies act on the boat: Earth, the man, the water? Which way does each one push or pull?",
+              "why_this_ask": "It builds the inventory from agents acting on the boat."
             },
             {
-              "ask": "For the cart-on-horse partner, which object receives that push?",
-              "why_this_ask": "The same test places the partner on the other diagram.",
+              "ask": "Is the man's weight on the boat's diagram, or the man's push on the boat? How big is that push while he stands still?",
+              "why_this_ask": "It replaces a force on the man with the contact force on the boat.",
               "from_step_ref": "NLM3-2"
             },
             {
-              "ask": "When you switch the chosen body, which contact arrow moves into the new inventory?",
-              "why_this_ask": "Rebuilding the diagram tests whether body ownership, rather than arrow pairing, controls placement.",
-              "from_step_ref": "NLM3-3"
+              "ask": "What must the water's push be for the boat to stay at rest?",
+              "why_this_ask": "It closes the inventory with zero net force: 1300 + 700 = 2000 N up."
             }
           ],
-          "differs_from_teaching_path": "The teaching path demonstrates two correct diagrams. The learner route begins from one chosen body and repeatedly applies the receiver test until the separation of partner arrows is forced."
+          "differs_from_teaching_path": "The teaching path draws the cart and the horse. The learner route chooses the boat, asks which agents act on it, and replaces the man's weight with his push before balancing the forces."
         },
         "boundary_test": {
-          "prompt": "Two hands push the same box equally in opposite directions. Can those two forces both appear on the box's free-body diagram?",
-          "answer": "Yes. Both hands act on the same chosen box, so both forces belong there and may cancel in the net force.",
-          "confirms": "The rule is body ownership, not a ban on opposite arrows appearing together."
+          "prompt": "Now draw the man's diagram. Does the boat's upward push on him belong there? Does the water's push?",
+          "answer": "The boat's push on the man, 700 N up, belongs there with his weight, 700 N down. The water does not touch the man, so its push does not belong there.",
+          "confirms": "Each force goes on the diagram of the body it acts on; switching the body switches the inventory (NLM3-3)."
         }
       },
       "construction_units": [
@@ -1042,13 +1069,12 @@
             "NLM3-3",
             "NLM3-4"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-CHILD-ON-BOX",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-CHILDBOX-V0",
+            "VIS-NLM-CHILDBOX-V1",
+            "VIS-NLM-CHILDBOX-V2",
+            "VIS-NLM-CHILDBOX-V3"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
           "misconception_indexes": [
@@ -1165,63 +1191,72 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "A bus starts forward and a loose object seems to shift backward to a passenger. Before adding any new force, did a new physical agent suddenly begin pulling the object backward?",
-          "defensible_answer": "No. The physical interactions need not change; the passenger's observer description changes because the bus is accelerating."
+          "prompt": "A train brakes and a ball on its smooth floor rolls toward the front. Did something start pushing the ball forward?",
+          "defensible_answer": "No. No new body touches the ball; the train slows down under it. Only the observer inside the train needs an extra term."
         },
         "attempt": {
-          "produces": "Two labelled observer descriptions of the same object: roadside and accelerating bus, with a statement of where the pseudo-force convention appears.",
+          "produces": "Two labelled descriptions of the ball, one from the platform and one from the braking train, each with the ball's horizontal forces and acceleration, and the size and direction of the pseudo-force in the train description.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "The roadside description keeps only physical interactions.",
-              "evidence_of": "Not inventing a new physical agent when the observer changes."
+              "criterion": "Platform: no horizontal physical force acts on the ball, so it keeps its velocity while the train slows.",
+              "evidence_of": "Not inventing a physical agent."
             },
             {
-              "criterion": "The bus description adds the pseudo-force specifically because that observer accelerates.",
-              "evidence_of": "Attaching the convention to observer acceleration rather than to the object."
+              "criterion": "Train: the ball accelerates forward at 2 m/s² relative to the train.",
+              "evidence_of": "Reading the motion the accelerating observer sees."
+            },
+            {
+              "criterion": "Accounts for that with a pseudo-force of 0.5 × 2 = 1 N pointing forward, opposite the train's acceleration, supplied by no body.",
+              "evidence_of": "Attaching the pseudo-force to the observer's acceleration."
             }
           ],
           "accepted": [
             "Platform: no horizontal force acts, so the ball keeps its speed while the train slows under it. Train: the ball accelerates forward at 2 m/s², explained by a pseudo-force of 0.5 × 2 = 1 N pointing forward. No physical force has been added."
           ],
           "rejected": [
-            "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
+            "'The braking pushes the ball forward with 1 N.' No body exerts that force; it appears only in the train observer's description.",
+            "'The pseudo-force points backward, the way the train accelerates.' It points opposite the frame's acceleration, so forward."
           ],
           "task": {
             "prompt": "A 0.5 kg ball rests on the smooth floor of a train moving along a straight track. The train brakes, slowing at 2 m/s². Describe the ball's horizontal forces and motion as seen from the platform, then as seen from inside the train, and give the size and direction of any pseudo-force.",
             "givens": [
               "Ball 0.5 kg on a frictionless train floor.",
               "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+            ],
+            "representation_ref": "REP-NLM-TRAIN-BALL-BRAKING",
+            "stage_refs": [
+              "VIS-NLM-TRAINBALL-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Did the set of physical objects touching or attracting the loose object change when the bus started?",
-              "why_this_ask": "It tests whether a new physical agent exists before any observer convention is introduced.",
+              "ask": "Which bodies touch the ball, and can any of them push it horizontally on a smooth floor?",
+              "why_this_ask": "It rules out a new physical agent before any observer convention.",
               "from_step_ref": "NLM4-2"
             },
             {
-              "ask": "Which observer is accelerating during the bus start?",
-              "why_this_ask": "The extra convention is tied to observer acceleration, so this must be explicit."
+              "ask": "Seen from the platform, what does the ball's velocity do while the train brakes?",
+              "why_this_ask": "The inertial description needs no extra term.",
+              "from_step_ref": "NLM4-1"
             },
             {
-              "ask": "What does the passenger see the loose object do relative to the bus?",
-              "why_this_ask": "The observed relative motion is the phenomenon the bus description has to account for.",
-              "from_step_ref": "NLM4-2"
+              "ask": "Which observer accelerates, and in which direction?",
+              "why_this_ask": "The pseudo-force is tied to the observer's acceleration: 2 m/s² backward."
             },
             {
-              "ask": "Where should the pseudo-force be added so the two descriptions remain consistent about the same physical situation?",
-              "why_this_ask": "The learner must attach the added term to the accelerating observer rather than to a new physical interaction.",
+              "ask": "Seen from inside the train, which way does the ball accelerate and how fast? What pseudo-force, size and direction, accounts for that?",
+              "why_this_ask": "It sizes the pseudo-force as m × a_frame, opposite the frame's acceleration: 1 N forward.",
               "from_step_ref": "NLM4-3"
             }
           ],
-          "differs_from_teaching_path": "The teaching path compares two observer accounts directly. The learner route first rules out a new physical agent, identifies which observer accelerates, then introduces the pseudo-force as a modelling convention."
+          "differs_from_teaching_path": "The teaching path compares observers of a bus that starts. The learner route takes a braking train, rules out a physical push first, and then sizes the pseudo-force from the train's deceleration."
         },
         "boundary_test": {
-          "prompt": "The bus now travels at constant velocity. Does changing from the roadside observer to the bus observer by itself require the added pseudo-force?",
-          "answer": "No. With no observer acceleration in this comparison, the extra pseudo-force convention is not required merely because the observers move relative to each other.",
+          "prompt": "The train now runs at a steady speed. Does a passenger need a pseudo-force to describe the ball?",
+          "answer": "No. The train frame is not accelerating, so the ball stays at rest relative to the floor and no pseudo-force is needed.",
           "confirms": "The trigger is observer acceleration, not observer motion in general."
         }
       },
@@ -1234,13 +1269,12 @@
             "NLM4-2",
             "NLM4-3"
           ],
-          "representation_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+          "representation_ref": "REP-NLM-LIFT-SCALE-60KG",
           "reveal_stage_refs": [
-            "VIS-NLM-FRAME-V0",
-            "VIS-NLM-FRAME-V1",
-            "VIS-NLM-FRAME-V2",
-            "VIS-NLM-FRAME-V3",
-            "VIS-NLM-FRAME-V4"
+            "VIS-NLM-LIFTSCALE-V0",
+            "VIS-NLM-LIFTSCALE-V1",
+            "VIS-NLM-LIFTSCALE-V2",
+            "VIS-NLM-LIFTSCALE-V3"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
           "misconception_indexes": [
@@ -1387,59 +1421,67 @@
           "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
         },
         "attempt": {
-          "produces": "A one-body signed force sum and a signed acceleration.",
+          "produces": "The signed net force on the car, its signed acceleration, and the time the car takes to stop.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Sums forces before using F = ma.",
-              "evidence_of": "Using net external force rather than a selected force."
+              "criterion": "Adds the friction and the drag with their signs before using F = ma.",
+              "evidence_of": "Using the net external force rather than a selected force."
             },
             {
-              "criterion": "Keeps the acceleration sign consistent with the chosen axis.",
-              "evidence_of": "Maintaining direction through the scalar component equation."
+              "criterion": "Keeps the acceleration negative (backward) while the velocity is positive.",
+              "evidence_of": "Keeping direction through the component equation."
+            },
+            {
+              "criterion": "Uses the signed acceleration to find the stopping time, 20/5 = 4 s.",
+              "evidence_of": "Linking the second law to the change in velocity."
             }
           ],
           "accepted": [
             "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
           ],
           "rejected": [
-            "Using the direction of velocity to choose acceleration sign."
+            "'The car moves forward, so its acceleration is +5 m/s².' The sign of the acceleration comes from the net force, not from the velocity."
           ],
           "task": {
             "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
             "givens": [
               "Mass 1200 kg; initial velocity +20 m/s.",
               "Road friction 5400 N backward; air drag 600 N backward."
+            ],
+            "representation_ref": "REP-NLM-CAR-BRAKING-1200KG",
+            "stage_refs": [
+              "VIS-NLM-CARBRAKE-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which body are we solving for?",
+              "ask": "Which body is the equation about, and which horizontal forces act on it?",
               "why_this_ask": "It fixes force ownership.",
               "from_step_ref": "NLM6-1"
             },
             {
-              "ask": "What is the signed sum of forces on that body?",
-              "why_this_ask": "It constructs the quantity the law uses."
+              "ask": "With forward positive, what is the signed sum of the road friction and the drag?",
+              "why_this_ask": "It constructs the quantity the law uses: −6000 N.",
+              "from_step_ref": "NLM6-2"
             },
             {
-              "ask": "What positive mass belongs to that same body?",
-              "why_this_ask": "It prevents cross-body substitution."
+              "ask": "What acceleration does that net force give for the 1200 kg car, with its sign?",
+              "why_this_ask": "It keeps the car's own mass and the sign together."
             },
             {
-              "ask": "Does the zero-net-force boundary give zero acceleration?",
-              "why_this_ask": "It independently checks the result.",
-              "from_step_ref": "NLM6-3"
+              "ask": "The velocity is +20 m/s and the acceleration is negative. How long until the velocity reaches zero?",
+              "why_this_ask": "It uses the signed acceleration to answer the stopping question."
             }
           ],
-          "differs_from_teaching_path": "The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier."
+          "differs_from_teaching_path": "The teaching path builds the force sum and returns to an equal-opposite case. The learner route builds a signed sum for a braking car and carries the signed acceleration to the stopping time."
         },
         "boundary_test": {
-          "prompt": "If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?",
-          "answer": "Zero acceleration.",
-          "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
+          "prompt": "Suppose the forces forward on the car add up to exactly 6000 N while the same 6000 N acts backward. What acceleration does F_net = ma give?",
+          "answer": "Zero. The net force is zero, so the car keeps whatever velocity it has.",
+          "confirms": "The second-law relation agrees with the first-law constant-velocity case."
         }
       },
       "construction_units": [
@@ -1589,27 +1631,32 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Must friction on a moving object always point opposite the object's motion?",
-          "defensible_answer": "No. Its direction opposes relative sliding or the tendency to slide at the contact."
+          "prompt": "A block is pressed against a wall and does not slide. Which way does the friction on it point, and does pressing harder make that friction larger?",
+          "defensible_answer": "Up, opposing the slide the block would have without friction. Pressing harder raises only the limit, not the friction the block actually needs."
         },
         "attempt": {
-          "produces": "A contact-level slip-tendency statement and a friction arrow.",
+          "produces": "The friction's direction from the block's tendency to slide, its size from the vertical balance, a check against μ_s N, and what changes and what does not when the push rises to 80 N.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Names the relative slip tendency at the contact.",
-              "evidence_of": "Reasoning from the contact rather than object velocity alone."
+              "criterion": "Names the slip tendency: without friction the block would slide down the wall, so friction points up.",
+              "evidence_of": "Reasoning from the contact rather than the block's velocity."
             },
             {
-              "criterion": "Points friction opposite that relative slip tendency.",
-              "evidence_of": "Using the physical definition consistently."
+              "criterion": "Takes the friction's size, 20 N, from the vertical balance and checks it against μ_s N = 30 N.",
+              "evidence_of": "Separating the friction needed from the most the contact can give."
+            },
+            {
+              "criterion": "At 80 N, says the limit rises to 48 N but the friction stays 20 N.",
+              "evidence_of": "Seeing that static friction answers the need, not the press."
             }
           ],
           "accepted": [
             "Without friction the block would slide down the wall, so friction points up. It must balance the 20 N weight, so f = 20 N (the limit is 0.6 × 50 = 30 N). At 80 N the limit rises to 48 N, but the friction stays 20 N up because the need has not changed."
           ],
           "rejected": [
-            "Friction must point left because the box moves right."
+            "'f = μ_s N = 0.6 × 50 = 30 N.' That is the most the contact can give; the block needs only 20 N.",
+            "'At 80 N the friction becomes 48 N.' The friction grows only if the block needs more."
           ],
           "task": {
             "prompt": "A 2 kg block is pressed against a vertical wall by a 50 N horizontal push and does not slide. μ_s = 0.6 and g = 10 m/s². Give the direction and size of the friction on the block, then say what happens to the friction when the push is increased to 80 N.",
@@ -1617,37 +1664,41 @@
               "Block 2 kg; g = 10 m/s².",
               "Horizontal push 50 N, then 80 N.",
               "μ_s = 0.6 between block and wall."
+            ],
+            "representation_ref": "REP-NLM-BLOCK-WALL-50N",
+            "stage_refs": [
+              "VIS-NLM-BLOCKWALL-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "Which two surfaces are in contact?",
-              "why_this_ask": "It locates the interaction.",
+              "ask": "Which two surfaces are in contact, and which force presses them together?",
+              "why_this_ask": "It locates the interaction and its normal force.",
               "from_step_ref": "NLM5-1"
             },
             {
-              "ask": "Which way would those surfaces slide relative to each other without friction?",
-              "why_this_ask": "It identifies the relevant tendency.",
+              "ask": "Without friction, which way would the block slide along the wall?",
+              "why_this_ask": "It identifies the slip tendency.",
               "from_step_ref": "NLM5-2"
             },
             {
-              "ask": "Which way must friction oppose that relative motion?",
-              "why_this_ask": "It reconstructs the force direction."
+              "ask": "Which way must friction point, and how large must it be to keep the block still?",
+              "why_this_ask": "It builds the friction from the need: 20 N up."
             },
             {
-              "ask": "Does that direction have to oppose the box's ground-frame velocity?",
-              "why_this_ask": "It tests the common shortcut.",
-              "from_step_ref": "NLM5-3"
+              "ask": "Is that within μ_s N? When the push rises to 80 N, which of the two numbers changes?",
+              "why_this_ask": "It separates the need (20 N) from the limit (30 N, then 48 N).",
+              "from_step_ref": "NLM5-4"
             }
           ],
-          "differs_from_teaching_path": "The teaching path begins from the contact; the learner route begins from the misleading object-velocity shortcut and repairs it through relative slip."
+          "differs_from_teaching_path": "The teaching path begins with a block on a floor and a conveyor belt. The learner route turns the contact vertical, so the friction must hold up the weight and the press sets only the limit."
         },
         "boundary_test": {
-          "prompt": "If there is no relative sliding and no tendency to slide at a contact, must friction be nonzero?",
-          "answer": "No. Friction can be zero when no tangential contact force is needed.",
-          "confirms": "Friction responds to the contact constraint rather than existing automatically whenever surfaces touch."
+          "prompt": "The push is lowered to 30 N. Does the block still stay put?",
+          "answer": "No. The limit becomes 0.6 × 30 = 18 N, less than the 20 N needed, so the block slides down the wall.",
+          "confirms": "Friction supplies what the contact needs only up to μ_s N; beyond that the no-slip state fails."
         }
       },
       "construction_units": [
@@ -1781,27 +1832,31 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "If action and reaction are equal and opposite, why do they not automatically make the net force on one object zero?",
-          "defensible_answer": "They act on different objects, so they are not both terms in the same object's force sum."
+          "prompt": "A rocket's engine pushes exhaust gas backward. If the gas pushes the rocket forward equally hard, why do the two forces not cancel and leave the rocket at rest?",
+          "defensible_answer": "They act on different bodies, so they are not both terms in the rocket's force sum."
         },
         "attempt": {
-          "produces": "Two agent-target force statements and one arrow on each body.",
+          "produces": "The partner force named with its agent and target (gas on rocket), the body each of the two forces acts on, and the rocket's acceleration from the one force acting on it.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "Names both partner forces with agent and target.",
-              "evidence_of": "Keeping force ownership explicit."
+              "criterion": "Names the partner: the gas pushes the rocket forward with 5000 N.",
+              "evidence_of": "Keeping agent and target explicit."
             },
             {
-              "criterion": "Places the partners on different body diagrams.",
-              "evidence_of": "Avoiding false cancellation in one net-force sum."
+              "criterion": "Places the engine's push on the gas and the gas's push on the rocket.",
+              "evidence_of": "Avoiding false cancellation in one force sum."
+            },
+            {
+              "criterion": "Uses only the force on the rocket: a = 5000/400 = 12.5 m/s² forward.",
+              "evidence_of": "Using the body's own force sum."
             }
           ],
           "accepted": [
             "The partner is the gas pushing on the rocket, 5000 N forward. It acts on the rocket, while the engine's push acts on the gas. The rocket's acceleration is 5000/400 = 12.5 m/s² forward."
           ],
           "rejected": [
-            "Both arrows cancel on the swimmer."
+            "'The 5000 N on the gas and the 5000 N on the rocket cancel, so the rocket does not accelerate.' The two forces act on different bodies."
           ],
           "task": {
             "prompt": "A 400 kg rocket far from any planet fires its engine, which pushes exhaust gas backward with a force of 5000 N. Name the partner force and the body it acts on, and find the rocket's acceleration.",
@@ -1809,31 +1864,36 @@
               "Rocket mass 400 kg (take it as constant for this instant).",
               "Engine's push on the gas: 5000 N backward.",
               "No other forces act."
+            ],
+            "representation_ref": "REP-NLM-ROCKET-EXHAUST-5000N",
+            "stage_refs": [
+              "VIS-NLM-ROCKET-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "What is the interaction?",
-              "why_this_ask": "It identifies the partner pair."
+              "ask": "Which two bodies interact when the engine fires?",
+              "why_this_ask": "It identifies the partner pair: rocket and gas."
             },
             {
-              "ask": "Which body receives the first force?",
+              "ask": "The engine pushes the gas backward. Which body receives that push?",
               "why_this_ask": "It assigns ownership.",
               "from_step_ref": "NLM7-1"
             },
             {
-              "ask": "Which body receives the partner?",
-              "why_this_ask": "It prevents both arrows landing on one diagram."
+              "ask": "What is its partner: which body pushes, which receives, in which direction and how hard?",
+              "why_this_ask": "It builds the gas-on-rocket force, 5000 N forward.",
+              "from_step_ref": "NLM7-2"
             },
             {
-              "ask": "Can both partners appear in one body's force sum?",
-              "why_this_ask": "It tests the cancellation misconception.",
+              "ask": "Which of the two forces belongs in the rocket's force sum, and what acceleration does it give?",
+              "why_this_ask": "It tests the cancellation misconception and finishes the task.",
               "from_step_ref": "NLM7-3"
             }
           ],
-          "differs_from_teaching_path": "The teaching path names agent-target pairs before drawing; the learner route starts from the cancellation paradox and resolves it by body ownership."
+          "differs_from_teaching_path": "The teaching path names agent-target pairs before drawing. The learner route starts from the engine's push on the gas and has to find its partner before any acceleration can be found."
         },
         "boundary_test": {
           "prompt": "Can a third-law partner force ever be the force that balances another force on the same body?",
@@ -2004,7 +2064,7 @@
           "defensible_answer": "No. Static friction adjusts to the value required to prevent relative slip, up to the limit mu_s N."
         },
         "attempt": {
-          "produces": "A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.",
+          "produces": "For each trial: the normal force, the static limit, a decision whether the box moves, the friction and the acceleration.",
           "closure": "MODEL_RESPONSE",
           "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
           "task": {
@@ -2013,6 +2073,10 @@
               "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
               "Horizontal push 30 N.",
               "Second trial: an extra 20 N downward press."
+            ],
+            "representation_ref": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+            "stage_refs": [
+              "VIS-NLM-BOX5-V0"
             ]
           },
           "accepted": [
@@ -2022,23 +2086,23 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What normal reaction does the actual perpendicular force equation require?",
-              "why_this_ask": "The friction limit depends on the real N, not a memorized mg shortcut.",
+              "ask": "In each trial, what normal force does the vertical balance give?",
+              "why_this_ask": "The limit depends on the real N (50 N, then 70 N), not on mg alone.",
               "from_step_ref": "NLM8-1"
             },
             {
-              "ask": "If the contact did not slip, what friction value would the tangential equation require?",
-              "why_this_ask": "Static friction is determined by the demand of the no-slip state before the limit is tested.",
+              "ask": "If the box did not slip, what friction would the 30 N push require?",
+              "why_this_ask": "Static friction is set by the need of the no-slip state before the limit is tested.",
               "from_step_ref": "NLM8-2"
             },
             {
-              "ask": "Is that required magnitude within mu_s N?",
-              "why_this_ask": "The inequality decides whether the assumed static state is physically available.",
+              "ask": "Is 30 N within μ_s N in each trial?",
+              "why_this_ask": "The inequality decides whether the no-slip state is possible (25 N, then 35 N).",
               "from_step_ref": "NLM8-3"
             },
             {
-              "ask": "Which contact state, if any, justifies an equality with a coefficient times N?",
-              "why_this_ask": "It separates impending slip from established sliding.",
+              "ask": "In the trial where the box slides, which friction model applies, and what acceleration results?",
+              "why_this_ask": "It separates established sliding (μ_k N) from static friction.",
               "from_step_ref": "NLM8-4"
             }
           ],
@@ -2221,7 +2285,7 @@
           "defensible_answer": "No. While the fixed-separation constraint holds, their acceleration components along that coordinate are equal."
         },
         "attempt": {
-          "produces": "A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.",
+          "produces": "The tow-bar constraint, one signed Newton-II equation for the car and one for the trailer, the common acceleration and the tow-bar force.",
           "closure": "MODEL_RESPONSE",
           "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations.",
           "task": {
@@ -2230,6 +2294,10 @@
               "Car 1000 kg; trailer 500 kg.",
               "Driving force on the car 3000 N forward.",
               "Rigid bar: the separation stays fixed."
+            ],
+            "representation_ref": "REP-NLM-CAR-TRAILER-TOWBAR",
+            "stage_refs": [
+              "VIS-NLM-TOWBAR-V0"
             ]
           },
           "accepted": [
@@ -2239,32 +2307,32 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What physical condition keeps the two bodies' relative separation fixed?",
+              "ask": "What does the rigid tow bar keep fixed between the car and the trailer?",
               "why_this_ask": "It makes the common acceleration a consequence rather than an assumption.",
               "from_step_ref": "NLM9-1"
             },
             {
-              "ask": "With one coordinate direction chosen, what must be true of their constrained acceleration components?",
-              "why_this_ask": "It converts the physical constraint into the shared kinematic variable.",
+              "ask": "With forward positive, what must be true of their two accelerations?",
+              "why_this_ask": "It turns the constraint into one shared unknown.",
               "from_step_ref": "NLM9-2"
             },
             {
-              "ask": "Which interaction force belongs in each body's own equation?",
-              "why_this_ask": "It prevents system-level cancellation from contaminating body-specific FBDs.",
+              "ask": "Which forces go in the car's equation, and which in the trailer's? Where does the bar force appear?",
+              "why_this_ask": "It keeps the bar force on each body's own equation.",
               "from_step_ref": "NLM9-3"
             },
             {
-              "ask": "Only after adding the two body equations, which force pair cancels?",
-              "why_this_ask": "It locates internal-force cancellation at the correct system boundary.",
+              "ask": "After adding the two equations, which pair cancels, and what are a and the bar force?",
+              "why_this_ask": "It locates the internal-force cancellation and finishes the task.",
               "from_step_ref": "NLM9-4"
             }
           ],
           "differs_from_teaching_path": "The learner first proves the acceleration relation from the connection and only then decides whether to keep separate body equations or add them into a system equation."
         },
         "boundary_test": {
-          "prompt": "The contact between the bodies is lost. May a_A = a_B still be imposed from the old connection?",
-          "answer": "No. Once the constraint no longer keeps their separation fixed, their accelerations must be determined from their new individual dynamics.",
-          "confirms": "Common acceleration is conditional on an active kinematic constraint."
+          "prompt": "The tow bar snaps. May the car and the trailer still be given one acceleration?",
+          "answer": "No. With the bar gone, each body has its own force sum: the car accelerates at 3000/1000 = 3 m/s², and the trailer, with no forces along the road, keeps its velocity.",
+          "confirms": "A common acceleration holds only while the constraint is active."
         }
       },
       "compact_anchor": {
@@ -2460,19 +2528,23 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Two masses hang from the ends of one ideal string over a fixed ideal pulley. May the same symbol T be used for the tension magnitude on both sides?",
-          "defensible_answer": "Yes, but only because the string/pulley model has been declared ideal; each mass still has its own tension force on its own FBD."
+          "prompt": "A hand pulls a cart with a string, and a second string ties it to a cart behind. Must both strings carry the same tension?",
+          "defensible_answer": "No. A light string has one tension along its own length, but the two strings are separate, and each carries what its load needs."
         },
         "attempt": {
-          "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
+          "produces": "The model (light, taut strings on a smooth track), the common acceleration, the tension in each string, and the bodies each string's pull acts on.",
           "closure": "MODEL_RESPONSE",
-          "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions.",
+          "model_response": "Declare each string light and taut, so each has one tension along its own length. Find a from the whole train, find each string's tension from what that string alone pulls, and put each tension arrow on the body at each end of its string.",
           "task": {
             "prompt": "On a smooth track a hand pulls a light string attached to a 2 kg cart with 15 N. A second light string ties that cart to a 3 kg cart behind it. State the model, find the acceleration and the tension in each string, and say which body each tension force acts on.",
             "givens": [
               "Front cart 2 kg; rear cart 3 kg; smooth track.",
               "Hand's pull 15 N on the front string.",
               "Both strings light and taut."
+            ],
+            "representation_ref": "REP-NLM-CARTS-2KG-3KG-15N",
+            "stage_refs": [
+              "VIS-NLM-CARTS15-V0"
             ]
           },
           "accepted": [
@@ -2482,27 +2554,32 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "What assumptions about the string and pulley have actually been declared?",
-              "why_this_ask": "Equal tension must be tied to a model rather than memorized as universal.",
+              "ask": "What does 'light and taut' let you say about the tension along one string?",
+              "why_this_ask": "A single tension along a string must come from the model.",
               "from_step_ref": "NLM10-1"
             },
             {
-              "ask": "Which body does each string force act on?",
-              "why_this_ask": "It keeps equal magnitudes from becoming an invalid cancellation on one FBD.",
+              "ask": "Are the two strings one string? May one T be used for both?",
+              "why_this_ask": "It stops the one-symbol shortcut from spreading to a second string.",
+              "from_step_ref": "NLM10-3"
+            },
+            {
+              "ask": "Which body does the rear string pull on at each end, and what does the rear cart's equation give for its tension?",
+              "why_this_ask": "It assigns ownership and sizes the rear tension: 3 × 3 = 9 N.",
               "from_step_ref": "NLM10-2"
             },
             {
-              "ask": "Under those assumptions, can the two tension magnitudes be represented by one T?",
-              "why_this_ask": "It derives the compact relation only after model and ownership are fixed.",
-              "from_step_ref": "NLM10-3"
+              "ask": "Which forces act on the front cart, and does 15 − 9 equal its mass times a?",
+              "why_this_ask": "It checks the result on the other body.",
+              "from_step_ref": "NLM10-5"
             }
           ],
-          "differs_from_teaching_path": "The learner has to earn the single tension symbol by first stating the model and assigning the two forces to their bodies."
+          "differs_from_teaching_path": "The teaching path earns one T for one string over a pulley. The learner route has two strings and must decide that each has its own tension."
         },
         "boundary_test": {
-          "prompt": "The pulley axle has significant friction. Does this capability still guarantee equal tension on the two sides?",
-          "answer": "No. The ideal redirection assumption has been broken, so equal tension is no longer guaranteed by this model.",
-          "confirms": "Uniform tension is model-conditional, not universal."
+          "prompt": "The rear string is replaced by a 1 kg rope. Is the tension still the same all along it?",
+          "answer": "No. The rope has mass, so the light-string model no longer holds and equal tension is no longer guaranteed: with a = 15/6 = 2.5 m/s², the rope pulls the rear cart with 3 × 2.5 = 7.5 N but is pulled at its front end with 4 × 2.5 = 10 N.",
+          "confirms": "One tension along a string is a result of the light-string model, not a universal rule."
         }
       },
       "compact_anchor": {
@@ -2699,7 +2776,7 @@
           "defensible_answer": "It must shorten by 1 cm, because the total string length is fixed."
         },
         "attempt": {
-          "produces": "A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.",
+          "produces": "The fixed-length equation with its value, y_B after A rises 0.1 m, and B's signed velocity and acceleration at the instant.",
           "closure": "MODEL_RESPONSE",
           "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0.",
           "task": {
@@ -2708,6 +2785,10 @@
               "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
               "A rises by 0.1 m.",
               "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+            ],
+            "representation_ref": "REP-NLM-PULLEY-YA06-YB10",
+            "stage_refs": [
+              "VIS-NLM-PULLEY16-V0"
             ]
           },
           "accepted": [
@@ -2717,19 +2798,24 @@
         "reconstruct": {
           "route": [
             {
-              "ask": "Which portions of this one string can actually change length while the pulley stays fixed?",
-              "why_this_ask": "It builds the constraint from geometry instead of a memorized ratio.",
+              "ask": "Which two straight parts of the string change length, and what is their sum now?",
+              "why_this_ask": "It builds the constraint from geometry: y_A + y_B = 1.6 m.",
               "from_step_ref": "NLM11-1"
             },
             {
-              "ask": "What equation states that their sum is fixed?",
-              "why_this_ask": "It converts the inextensible-string model into the governing kinematic relation.",
+              "ask": "A rises by 0.1 m. Which way does y_A change, and what must y_B be?",
+              "why_this_ask": "It uses the fixed sum: y_A = 0.5 m, so y_B = 1.1 m.",
               "from_step_ref": "NLM11-2"
             },
             {
-              "ask": "What does that equation imply for signed accelerations in the same coordinates?",
-              "why_this_ask": "It derives the relation used in the Newton-II equations.",
+              "ask": "What does the fixed sum give for v_B and a_B, in the same down-positive coordinates?",
+              "why_this_ask": "It derives v_B = −v_A and a_B = −a_A.",
               "from_step_ref": "NLM11-3"
+            },
+            {
+              "ask": "Translate the signs back: which way is B moving, and which way is its acceleration?",
+              "why_this_ask": "It turns signed results into motion.",
+              "from_step_ref": "NLM11-4"
             }
           ],
           "differs_from_teaching_path": "The learner reconstructs the acceleration relation directly from the visible changing string segments rather than being handed an acceleration ratio."
@@ -6174,7 +6260,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate with no horizontal force so friction is set by the slip tendency, here none.",
+      "purpose": "Show the crate at rest on the rough floor with no horizontal force acting on it.",
       "required_elements": [
         "crate at rest, no horizontal force",
         "weight and normal force only",
@@ -7089,7 +7175,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate in its two trials so each friction need is compared with a limit computed from that trial's own normal force.",
+      "purpose": "Show the 10 kg crate in its two trials: a 50 N pull horizontal, then at 37°.",
       "required_elements": [
         "10 kg crate with 50 N pulls, horizontal and at 37°",
         "normal force, limit and need per trial",
@@ -7181,7 +7267,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the three-cart train with the drag on the middle cart, so each joint force comes from cutting at that joint.",
+      "purpose": "Show the three-cart train with the drag acting on the middle cart.",
       "required_elements": [
         "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
         "a = 4 m/s²",
@@ -7273,7 +7359,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the heavy rope so the one-tension model is tested before any T is written.",
+      "purpose": "Show the 2 kg block hanging from the lower end of the 1 kg uniform rope, with a hand pulling the top of the rope.",
       "required_elements": [
         "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
         "model check and tension rule",
@@ -7364,7 +7450,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the pulley with both coordinates measured upward, so the length relation is built from the segment lengths rather than copied.",
+      "purpose": "Show the fixed pulley with both coordinates x_A and x_B measured upward.",
       "required_elements": [
         "A and B over a fixed pulley with upward x_A, x_B",
         "segment lengths h_P − x_A and h_P − x_B",
@@ -7455,7 +7541,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the bob in the accelerating car so the frame in which it is at rest, and the pseudo-force that frame needs, are chosen explicitly.",
+      "purpose": "Show the bob hanging from the roof of the car that accelerates at 7.5 m/s².",
       "required_elements": [
         "0.2 kg bob in a car accelerating at 7.5 m/s²",
         "weight, tension and pseudo-force in the car frame",
@@ -7547,7 +7633,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the walker and plank on ice so the friction on the shoes and its partner on the plank are drawn on different bodies.",
+      "purpose": "Show the person starting to walk on the plank that rests on frictionless ice.",
       "required_elements": [
         "60 kg person on a 20 kg plank on frictionless ice",
         "30 N forward on the shoes",
@@ -7639,7 +7725,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate in the upward-accelerating lift so N is found from the vertical equation and friction from the absence of any sideways need.",
+      "purpose": "Show the crate on the rough floor of the lift that accelerates upward.",
       "required_elements": [
         "50 kg crate on a rough lift floor, a = 2 m/s² up",
         "N = 600 N",
@@ -7731,7 +7817,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the downward-angled push so the friction need and the limit both grow with P and the sign of their difference decides.",
+      "purpose": "Show the block on the rough floor with the push directed below the horizontal.",
       "required_elements": [
         "block m pushed by P at θ below the horizontal",
         "N, need and rest inequality",
@@ -7822,7 +7908,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the stack with F on the upper block so the friction needed by the lower block sets the limit.",
+      "purpose": "Show the 2 kg block on the 4 kg block with the force F applied to the upper block.",
       "required_elements": [
         "2 kg block on a 4 kg block, F on the upper block",
         "friction on the lower block and F_max",
@@ -7914,7 +8000,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the pushed and pulled blocks so the contact model is tested by the sign of N in each case.",
+      "purpose": "Show blocks A and B in contact on the smooth floor, A pushed forward with 10 N while B is pulled forward with F.",
       "required_elements": [
         "A 2 kg and B 3 kg with 10 N on A and F on B",
         "common a and contact force",
@@ -8005,7 +8091,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the two masses over a heavy pulley so the length constraint and the equal-tension model are judged separately.",
+      "purpose": "Show the 3 kg and 1 kg masses on one string over a fixed pulley with appreciable rotational inertia.",
       "required_elements": [
         "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
         "length relation kept, equal tension dropped",
@@ -8097,7 +8183,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the incline with lab axes so the stay-on-plane condition is written as a ratio of acceleration components.",
+      "purpose": "Show the 2 kg block on the smooth 30° incline with horizontal and vertical lab axes.",
       "required_elements": [
         "2 kg block on a smooth 30° incline with lab axes",
         "weight and normal force with lab equations",
@@ -8188,7 +8274,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the rough incline with P up the slope so friction's direction is read from a signed value in each trial.",
+      "purpose": "Show the 4 kg block on the rough 30° incline with the push P up the slope in each of the three trials.",
       "required_elements": [
         "4 kg block on a rough 30° incline with P up the slope",
         "signed friction equation and limit",
@@ -8279,7 +8365,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the horizontal push on the block on a rough incline so friction's need is signed before it is compared with μ_s N.",
+      "purpose": "Show the block on the rough incline with the horizontal push acting on it.",
       "required_elements": [
         "block on a rough incline with horizontal P",
         "N and signed f_required",
@@ -8370,7 +8456,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the wedge under the sliding block so its diagram carries the block's normal push, not the block's weight.",
+      "purpose": "Show the wedge on the floor with the block sliding down its face.",
       "required_elements": [
         "2 kg block on a 5 kg wedge, 30°",
         "block's normal push on the wedge and the wedge's force list",
@@ -8461,7 +8547,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the two trials over the same distance on the same incline so the times become an acceleration ratio.",
+      "purpose": "Show the two timed trials over the same distance down the same incline, one smooth and one rough.",
       "required_elements": [
         "smooth and rough trials over the same s",
         "a_0, a and s = ½ a t²",
@@ -8539,6 +8625,1588 @@
         {
           "support_level": "high",
           "visual_stage_ref": "VIS-NLM-TIMING-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-CRUISE-2000N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1500 kg car cruising at a steady 25 m/s with its 2000 N driving force and the resistance acting backward.",
+      "required_elements": [
+        "car 1500 kg at a steady 25 m/s",
+        "driving force 2000 N forward",
+        "resistance backward",
+        "zero acceleration, zero net force",
+        "resistance 2000 N",
+        "velocity 10 s later"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "car 1500 kg at a steady 25 m/s",
+        "driving force 2000 N forward",
+        "resistance backward",
+        "zero acceleration, zero net force",
+        "resistance 2000 N",
+        "velocity 10 s later"
+      ],
+      "instance_constraints": [
+        "The car keeps a steady velocity.",
+        "Only the horizontal forces are drawn."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Treating the driving force as bigger than the resistance because the car is moving."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-CRUISE-2000N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "zero acceleration, zero net force",
+          "symbol": "F_net",
+          "in_words": "The car's net force, zero because its velocity is not changing."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CRUISE-V0",
+          "label": "The car",
+          "purpose": "Show the car, its steady velocity and the forces along the road.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRUISE-V1",
+          "label": "Steady velocity",
+          "purpose": "Read the unchanging velocity as zero acceleration.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward",
+            "zero acceleration, zero net force"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRUISE-V2",
+          "label": "Balance and prediction",
+          "purpose": "Size the resistance and predict the velocity 10 s later.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward",
+            "zero acceleration, zero net force",
+            "resistance 2000 N",
+            "velocity 10 s later"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOX3-STRING-10N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 3 kg box at rest on the floor with a string pulling up on it with 10 N.",
+      "required_elements": [
+        "3 kg box at rest on the floor",
+        "string pull 10 N up",
+        "weight 30 N down",
+        "floor's push up",
+        "floor's push 20 N",
+        "net force zero"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "3 kg box at rest on the floor",
+        "string pull 10 N up",
+        "weight 30 N down",
+        "floor's push up",
+        "floor's push 20 N",
+        "net force zero"
+      ],
+      "instance_constraints": [
+        "The box stays at rest.",
+        "All forces are vertical."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Setting the floor's push equal to the weight, 30 N."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOX3-STRING-10N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "net force zero",
+          "symbol": "F_net",
+          "in_words": "The box's net force: 10 + 20 − 30 = 0."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOX3-V0",
+          "label": "The box",
+          "purpose": "Show the box, the floor and the string's 10 N pull.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX3-V1",
+          "label": "Every force",
+          "purpose": "List each force on the box with its agent.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up",
+            "weight 30 N down",
+            "floor's push up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX3-V2",
+          "label": "Net force",
+          "purpose": "Size the floor's push and combine the forces.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up",
+            "weight 30 N down",
+            "floor's push up",
+            "floor's push 20 N",
+            "net force zero"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOX3-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOX3-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOX3-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-MAN-IN-BOAT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 70 kg man in the 130 kg boat at rest, with the boat chosen as the one body whose forces are listed.",
+      "required_elements": [
+        "man 70 kg in a boat 130 kg, at rest",
+        "boat isolated",
+        "agents: Earth, man, water",
+        "weight 1300 N, man's push 700 N, water's push 2000 N",
+        "man's weight not on the boat"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "man 70 kg in a boat 130 kg, at rest",
+        "boat isolated",
+        "agents: Earth, man, water",
+        "weight 1300 N, man's push 700 N, water's push 2000 N",
+        "man's weight not on the boat"
+      ],
+      "instance_constraints": [
+        "Only forces acting on the boat appear on its diagram.",
+        "The man and the boat float at rest."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing the man's weight on the boat's diagram."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-MAN-IN-BOAT.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "weight 1300 N, man's push 700 N, water's push 2000 N",
+          "symbol": "F_net",
+          "in_words": "The boat's net force, zero because it floats at rest, which sizes the water's push."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOAT-V0",
+          "label": "The man and the boat",
+          "purpose": "Show the man standing in the boat at rest on the lake.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOAT-V1",
+          "label": "Choose the boat",
+          "purpose": "Isolate the boat and name the agents that act on it.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest",
+            "boat isolated",
+            "agents: Earth, man, water"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOAT-V2",
+          "label": "Forces on the boat",
+          "purpose": "Draw each force on the boat with its agent and size.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest",
+            "boat isolated",
+            "agents: Earth, man, water",
+            "weight 1300 N, man's push 700 N, water's push 2000 N",
+            "man's weight not on the boat"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOAT-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOAT-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOAT-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CHILD-ON-BOX",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 50 kg child on the 20 kg box with the box chosen as the one body whose forces are listed.",
+      "required_elements": [
+        "child 50 kg on a box 20 kg, at rest",
+        "box isolated",
+        "agents: Earth, child, floor",
+        "weight 200 N, child's push 500 N, floor's push 700 N",
+        "child's weight not on the box"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "child 50 kg on a box 20 kg, at rest",
+        "box isolated",
+        "agents: Earth, child, floor",
+        "weight 200 N, child's push 500 N, floor's push 700 N",
+        "child's weight not on the box"
+      ],
+      "instance_constraints": [
+        "Only forces acting on the box appear on its diagram.",
+        "The child and the box are at rest."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing the child's weight on the box's diagram."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CHILD-ON-BOX.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "weight 200 N, child's push 500 N, floor's push 700 N",
+          "symbol": "F_net",
+          "in_words": "The box's net force, zero because it is at rest, which sizes the floor's push."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CHILDBOX-V0",
+          "label": "The child and the box",
+          "purpose": "Show the child standing on the box at rest.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V1",
+          "label": "Choose the box",
+          "purpose": "Isolate the box and name the agents acting on it.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V2",
+          "label": "Forces on the box",
+          "purpose": "Draw each force on the box with its agent and size.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor",
+            "weight 200 N, child's push 500 N, floor's push 700 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V3",
+          "label": "Not on the box",
+          "purpose": "Keep the child's weight off the box's diagram.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor",
+            "weight 200 N, child's push 500 N, floor's push 700 N",
+            "child's weight not on the box"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-TRAIN-BALL-BRAKING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 0.5 kg ball on the smooth floor of the train braking at 2 m/s², seen by a platform observer and by a train observer.",
+      "required_elements": [
+        "ball 0.5 kg on a smooth train floor",
+        "train acceleration 2 m/s² backward",
+        "platform description",
+        "train description with a 1 N pseudo-force"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "ball 0.5 kg on a smooth train floor",
+        "train acceleration 2 m/s² backward",
+        "platform description",
+        "train description with a 1 N pseudo-force"
+      ],
+      "instance_constraints": [
+        "The floor is frictionless.",
+        "The pseudo-force appears only in the train's description."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding a physical forward force on the ball when the train brakes."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TRAIN-BALL-BRAKING.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "train description with a 1 N pseudo-force",
+          "symbol": "F_pseudo",
+          "in_words": "The 1 N forward pseudo-force of the train frame, −m a_frame with a_frame = 2 m/s² backward."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TRAINBALL-V0",
+          "label": "The braking train",
+          "purpose": "Show the ball, the train's velocity and its braking acceleration.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAINBALL-V1",
+          "label": "Platform view",
+          "purpose": "Describe the ball with physical forces only.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward",
+            "platform description"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAINBALL-V2",
+          "label": "Train view",
+          "purpose": "Describe the ball in the train frame with its pseudo-force.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward",
+            "platform description",
+            "train description with a 1 N pseudo-force"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-LIFT-SCALE-60KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 60 kg person on the scale in the lift accelerating up at 2 m/s², described from the ground and from the lift.",
+      "required_elements": [
+        "person 60 kg on a scale",
+        "lift acceleration 2 m/s² up",
+        "ground-frame equation",
+        "pseudo-force 120 N down, lift frame only",
+        "scale reading 720 N in both frames"
+      ],
+      "relation_refs": [
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "person 60 kg on a scale",
+        "lift acceleration 2 m/s² up",
+        "ground-frame equation",
+        "pseudo-force 120 N down, lift frame only",
+        "scale reading 720 N in both frames"
+      ],
+      "instance_constraints": [
+        "The physical forces are the same in both descriptions.",
+        "The pseudo-force appears only in the lift frame."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding the pseudo-force in the ground frame as well."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-LIFT-SCALE-60KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "lift acceleration 2 m/s² up",
+          "symbol": "a_y",
+          "in_words": "The person's upward acceleration, 2 m/s², the same as the lift's."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LIFTSCALE-V0",
+          "label": "The lift",
+          "purpose": "Show the person on the scale and the lift's upward acceleration.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V1",
+          "label": "Ground frame",
+          "purpose": "Write Newton's second law with the physical forces only.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V2",
+          "label": "Lift frame",
+          "purpose": "Add the pseudo-force for the accelerating observer.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation",
+            "pseudo-force 120 N down, lift frame only"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V3",
+          "label": "Same reading",
+          "purpose": "Compare the two descriptions' scale readings.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation",
+            "pseudo-force 120 N down, lift frame only",
+            "scale reading 720 N in both frames"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-BRAKING-1200KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1200 kg car moving at +20 m/s with road friction 5400 N and air drag 600 N acting backward.",
+      "required_elements": [
+        "car 1200 kg at +20 m/s",
+        "friction 5400 N and drag 600 N backward",
+        "forward positive",
+        "net force −6000 N",
+        "acceleration −5 m/s²",
+        "stopping time 4 s"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "car 1200 kg at +20 m/s",
+        "friction 5400 N and drag 600 N backward",
+        "forward positive",
+        "net force −6000 N",
+        "acceleration −5 m/s²",
+        "stopping time 4 s"
+      ],
+      "instance_constraints": [
+        "Forward is the positive direction.",
+        "The forces stay constant until the car stops."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Giving the acceleration the sign of the velocity."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-BRAKING-1200KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "acceleration −5 m/s²",
+          "symbol": "a",
+          "in_words": "The car's signed acceleration, −5 m/s² along the forward axis."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARBRAKE-V0",
+          "label": "The braking car",
+          "purpose": "Show the car, its velocity, the axis and the two backward forces.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBRAKE-V1",
+          "label": "Net force",
+          "purpose": "Add the signed forces.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive",
+            "net force −6000 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBRAKE-V2",
+          "label": "Acceleration",
+          "purpose": "Divide by the mass and find the stopping time.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive",
+            "net force −6000 N",
+            "acceleration −5 m/s²",
+            "stopping time 4 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCK-WALL-50N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 2 kg block held against the vertical wall by a 50 N, then 80 N, horizontal push.",
+      "required_elements": [
+        "block 2 kg against a wall",
+        "push 50 N, then 80 N",
+        "μ_s = 0.6",
+        "weight 20 N",
+        "wall's push 50 N",
+        "slip tendency and limit",
+        "friction 20 N up",
+        "limit 48 N at 80 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "block 2 kg against a wall",
+        "push 50 N, then 80 N",
+        "μ_s = 0.6",
+        "weight 20 N",
+        "wall's push 50 N",
+        "slip tendency and limit",
+        "friction 20 N up",
+        "limit 48 N at 80 N"
+      ],
+      "instance_constraints": [
+        "The block stays at rest against the wall.",
+        "Friction acts along the wall."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Setting friction equal to μ_s N."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCK-WALL-50N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "friction 20 N up",
+          "symbol": "f_s",
+          "in_words": "The static friction of the wall on the block, 20 N up."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BLOCKWALL-V0",
+          "label": "The block",
+          "purpose": "Show the block, the wall and the horizontal push.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCKWALL-V1",
+          "label": "Forces and slip tendency",
+          "purpose": "Draw the weight and the wall's push and test the slip tendency.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6",
+            "weight 20 N",
+            "wall's push 50 N",
+            "slip tendency and limit"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCKWALL-V2",
+          "label": "Friction",
+          "purpose": "Size the friction from the need and compare with the limit.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6",
+            "weight 20 N",
+            "wall's push 50 N",
+            "slip tendency and limit",
+            "friction 20 N up",
+            "limit 48 N at 80 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ROCKET-EXHAUST-5000N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 400 kg rocket far from any planet and the engine's 5000 N push on the exhaust gas.",
+      "required_elements": [
+        "rocket 400 kg",
+        "engine on gas 5000 N backward",
+        "gas on rocket 5000 N forward",
+        "acceleration 12.5 m/s² forward"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "rocket 400 kg",
+        "engine on gas 5000 N backward",
+        "gas on rocket 5000 N forward",
+        "acceleration 12.5 m/s² forward"
+      ],
+      "instance_constraints": [
+        "The two partner forces act on different bodies.",
+        "The mass is taken as constant for this instant."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing both partner forces on the rocket so that they cancel."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ROCKET-EXHAUST-5000N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "acceleration 12.5 m/s² forward",
+          "symbol": "a",
+          "in_words": "The rocket's acceleration, 12.5 m/s² forward, from the gas's push on it."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ROCKET-V0",
+          "label": "The rocket and gas",
+          "purpose": "Show the rocket, the gas and the engine's push on the gas.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROCKET-V1",
+          "label": "The partner force",
+          "purpose": "Name the partner and the body it acts on.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward",
+            "gas on rocket 5000 N forward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROCKET-V2",
+          "label": "Acceleration",
+          "purpose": "Find the rocket's acceleration from the force on it.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward",
+            "gas on rocket 5000 N forward",
+            "acceleration 12.5 m/s² forward"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 5 kg box pushed with 30 N in two trials, the second with an extra 20 N downward press.",
+      "required_elements": [
+        "box 5 kg pushed with 30 N",
+        "second trial with a 20 N press",
+        "μ_s = 0.5, μ_k = 0.4",
+        "N and limit in each trial",
+        "trial 1 slides, a = 2 m/s²",
+        "trial 2 rests, static friction 30 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "box 5 kg pushed with 30 N",
+        "second trial with a 20 N press",
+        "μ_s = 0.5, μ_k = 0.4",
+        "N and limit in each trial",
+        "trial 1 slides, a = 2 m/s²",
+        "trial 2 rests, static friction 30 N"
+      ],
+      "instance_constraints": [
+        "Each trial's limit uses that trial's own normal force.",
+        "The kinetic model is used only once sliding is established."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Using the same normal force, 50 N, in both trials."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOX5-PUSH-30N-PRESS-20N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "N and limit in each trial",
+          "symbol": "N",
+          "in_words": "Each trial's normal force: 50 N without the press, 70 N with it."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOX5-V0",
+          "label": "Two trials",
+          "purpose": "Show both trials with their pushes and the friction coefficients.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX5-V1",
+          "label": "Normal force and limit",
+          "purpose": "Find each trial's normal force and static limit.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4",
+            "N and limit in each trial"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX5-V2",
+          "label": "Decision",
+          "purpose": "Compare the need with the limit and choose the friction model.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4",
+            "N and limit in each trial",
+            "trial 1 slides, a = 2 m/s²",
+            "trial 2 rests, static friction 30 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOX5-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOX5-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOX5-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-TRAILER-TOWBAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1000 kg car towing the 500 kg trailer with a rigid bar under a 3000 N driving force.",
+      "required_elements": [
+        "car 1000 kg and trailer 500 kg",
+        "rigid tow bar",
+        "driving force 3000 N",
+        "one acceleration a",
+        "bar force T on each body",
+        "one equation per body",
+        "a = 2 m/s², T = 1000 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "car 1000 kg and trailer 500 kg",
+        "rigid tow bar",
+        "driving force 3000 N",
+        "one acceleration a",
+        "bar force T on each body",
+        "one equation per body",
+        "a = 2 m/s², T = 1000 N"
+      ],
+      "instance_constraints": [
+        "The bar keeps the separation fixed.",
+        "No resistance acts."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Putting the driving force in the trailer's equation."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-TRAILER-TOWBAR.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "one acceleration a",
+          "symbol": "a_A",
+          "in_words": "The one acceleration the car and the trailer share through the rigid bar."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TOWBAR-V0",
+          "label": "Car and trailer",
+          "purpose": "Show the two bodies, the rigid bar and the driving force.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOWBAR-V1",
+          "label": "Constraint and equations",
+          "purpose": "State the shared acceleration and write one equation per body.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N",
+            "one acceleration a",
+            "bar force T on each body",
+            "one equation per body"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOWBAR-V2",
+          "label": "Solve and check",
+          "purpose": "Solve for a and T and check with the car.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N",
+            "one acceleration a",
+            "bar force T on each body",
+            "one equation per body",
+            "a = 2 m/s², T = 1000 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CARTS-2KG-3KG-15N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 2 kg and 3 kg carts on the smooth track, joined by one light string and pulled by the hand's 15 N on another.",
+      "required_elements": [
+        "front cart 2 kg, rear cart 3 kg",
+        "two light strings",
+        "hand's pull 15 N",
+        "T_1 on the front cart",
+        "T_2 on both carts",
+        "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "read_order": [
+        "front cart 2 kg, rear cart 3 kg",
+        "two light strings",
+        "hand's pull 15 N",
+        "T_1 on the front cart",
+        "T_2 on both carts",
+        "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+      ],
+      "instance_constraints": [
+        "Both strings are light and taut.",
+        "The track is smooth."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Giving both strings the same tension."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CARTS-2KG-3KG-15N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "T_2 on both carts",
+          "symbol": "T",
+          "in_words": "The one tension of the light rear string, pulling the front cart backward and the rear cart forward."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARTS15-V0",
+          "label": "The carts",
+          "purpose": "Show the two carts, the two strings and the hand's pull.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTS15-V1",
+          "label": "Tensions",
+          "purpose": "Put each string's tension on the bodies it acts on.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N",
+            "T_1 on the front cart",
+            "T_2 on both carts"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTS15-V2",
+          "label": "Values",
+          "purpose": "Find the acceleration and each tension.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N",
+            "T_1 on the front cart",
+            "T_2 on both carts",
+            "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-PULLEY-YA06-YB10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show A and B on one string over a fixed pulley with y_A = 0.6 m and y_B = 1.0 m measured downward from the pulley.",
+      "required_elements": [
+        "A and B over a fixed pulley",
+        "y_A = 0.6 m, y_B = 1.0 m downward",
+        "y_A + y_B = 1.6 m",
+        "y_B = 1.1 m",
+        "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "A and B over a fixed pulley",
+        "y_A = 0.6 m, y_B = 1.0 m downward",
+        "y_A + y_B = 1.6 m",
+        "y_B = 1.1 m",
+        "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+      ],
+      "instance_constraints": [
+        "Both coordinates are measured away from the pulley.",
+        "The string is taut and inextensible."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Writing y_A − y_B = constant for coordinates measured the same way."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-PULLEY-YA06-YB10.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "y_A = 0.6 m, y_B = 1.0 m downward",
+          "symbol": "y_A",
+          "in_words": "A's depth below the pulley, measured away from it: 0.6 m."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PULLEY16-V0",
+          "label": "The string and coordinates",
+          "purpose": "Show the pulley, the two masses and both coordinates.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PULLEY16-V1",
+          "label": "Length constraint",
+          "purpose": "Write the fixed-length relation and its rates.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward",
+            "y_A + y_B = 1.6 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PULLEY16-V2",
+          "label": "New position and rates",
+          "purpose": "Find y_B after the move, then v_B and a_B.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward",
+            "y_A + y_B = 1.6 m",
+            "y_B = 1.1 m",
+            "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CART-TABLE-PULLEY-XY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the cart on the table tied over the fixed pulley to the hanging mass, with x = 0.9 m and y = 0.5 m measured away from the pulley.",
+      "required_elements": [
+        "cart on a table and a hanging mass over a fixed pulley",
+        "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+        "x + y = 1.4 m",
+        "x = 0.1 m when y = 1.3 m",
+        "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "cart on a table and a hanging mass over a fixed pulley",
+        "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+        "x + y = 1.4 m",
+        "x = 0.1 m when y = 1.3 m",
+        "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+      ],
+      "instance_constraints": [
+        "x is measured along the table and y downward, both away from the pulley.",
+        "Only the horizontal and the hanging segments change length."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Writing x − y = constant because one segment is horizontal and the other vertical."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CART-TABLE-PULLEY-XY.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "x + y = 1.4 m",
+          "symbol": "L_free",
+          "in_words": "The fixed total of the two straight segments, x + y = 1.4 m."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARTXY-V0",
+          "label": "The cart, pulley and mass",
+          "purpose": "Show the string's two straight segments and both coordinates.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V1",
+          "label": "Length relation",
+          "purpose": "Write the fixed-length relation with the values now.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V2",
+          "label": "Mass at the floor",
+          "purpose": "Find x when y = 1.3 m.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m",
+            "x = 0.1 m when y = 1.3 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTXY-V3",
+          "label": "Signed rates",
+          "purpose": "Carry the cart's signed velocity and acceleration to the mass.",
+          "visible_elements": [
+            "cart on a table and a hanging mass over a fixed pulley",
+            "x = 0.9 m, y = 0.5 m, measured away from the pulley",
+            "x + y = 1.4 m",
+            "x = 0.1 m when y = 1.3 m",
+            "dy/dt = +0.3 m/s, d²y/dt² = +1.2 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARTXY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-VAN-APPLE-DROP",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 0.2 kg apple released 1.25 m above the floor of the van accelerating forward at 2 m/s², with the mark directly below the release point.",
+      "required_elements": [
+        "van accelerating 2 m/s² forward",
+        "apple 0.2 kg released 1.25 m above the floor",
+        "mark below the release point",
+        "roadside description",
+        "pseudo-force 0.4 N backward",
+        "landing 0.25 m behind the mark"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "van accelerating 2 m/s² forward",
+        "apple 0.2 kg released 1.25 m above the floor",
+        "mark below the release point",
+        "roadside description",
+        "pseudo-force 0.4 N backward",
+        "landing 0.25 m behind the mark"
+      ],
+      "instance_constraints": [
+        "The van's acceleration stays 2 m/s² forward during the fall.",
+        "The pseudo-force appears only in the van's description."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding a backward physical force on the apple in the roadside description."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-VAN-APPLE-DROP.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "pseudo-force 0.4 N backward",
+          "symbol": "F_pseudo",
+          "in_words": "The 0.4 N backward pseudo-force of the van frame, −m a_frame with a_frame = 2 m/s² forward."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-VANAPPLE-V0",
+          "label": "The van and the apple",
+          "purpose": "Show the van's acceleration, the release height and the mark.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V1",
+          "label": "Roadside view",
+          "purpose": "Describe the fall with physical forces only.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V2",
+          "label": "Van view",
+          "purpose": "Describe the fall in the van frame with its pseudo-force.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description",
+            "pseudo-force 0.4 N backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-VANAPPLE-V3",
+          "label": "Landing point",
+          "purpose": "Compare the two descriptions' landing points.",
+          "visible_elements": [
+            "van accelerating 2 m/s² forward",
+            "apple 0.2 kg released 1.25 m above the floor",
+            "mark below the release point",
+            "roadside description",
+            "pseudo-force 0.4 N backward",
+            "landing 0.25 m behind the mark"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-VANAPPLE-V2"
         }
       ]
     }
@@ -10610,25 +12278,25 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2A-FIXED-PULLEY-04",
-      "stem": "One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B's signed acceleration in these coordinates.",
+      "stem": "A cart on a table is tied to a light inextensible string that runs over a fixed pulley at the table's edge and down to a hanging mass. Let x be the cart's distance from the pulley along the table and y the hanging mass's depth below the pulley, both measured away from the pulley. Now x = 0.9 m and y = 0.5 m. (a) Write the string-length relation. (b) The hanging mass reaches the floor when y = 1.3 m. How far is the cart from the pulley then? (c) At an instant when the cart moves toward the pulley at 0.3 m/s and is speeding up at 1.2 m/s², give the hanging mass's signed velocity and acceleration in these coordinates, and say which way it moves.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The pulley is fixed.",
-        "Only the two declared straight string segments change length.",
-        "The string remains taut and inextensible."
+        "Only the horizontal and the vertical straight segments change length.",
+        "The string stays taut and inextensible."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley.",
+        "summary": "x + y = 1.4 m. When y = 1.3 m, x = 0.1 m. Moving toward the pulley and speeding up means dx/dt = −0.3 m/s and d²x/dt² = −1.2 m/s², so dy/dt = +0.3 m/s and d²y/dt² = +1.2 m/s²: the hanging mass moves down at 0.3 m/s and speeds up at 1.2 m/s².",
         "reasoning": [
-          "For one fixed pulley, the wrapped/fixed part of the string contributes no changing length in this bounded geometry.",
-          "Inextensibility makes the sum of the two changing straight segment lengths constant.",
-          "Taking one and two time derivatives gives the velocity and acceleration constraints.",
-          "With both coordinates positive away from the pulley, the signed accelerations are equal in magnitude and opposite in sign."
+          "Only the two straight segments change length, one along the table and one hanging down; the part over the fixed pulley stays the same. So x + y = constant = 0.9 + 0.5 = 1.4 m.",
+          "When y = 1.3 m, x = 1.4 − 1.3 = 0.1 m: the cart is 0.1 m from the pulley.",
+          "Differentiating x + y = constant gives dx/dt + dy/dt = 0 and d²x/dt² + d²y/dt² = 0.",
+          "Toward the pulley means x is decreasing, so dx/dt = −0.3 m/s; speeding up in that direction means d²x/dt² = −1.2 m/s². Then dy/dt = +0.3 m/s and d²y/dt² = +1.2 m/s²: y grows, so the mass moves down, faster and faster."
         ],
-        "check": "If both y_A and y_B increased together, total string length would increase, contradicting inextensibility.",
+        "check": "The mass falls 1.3 − 0.5 = 0.8 m while the cart moves 0.9 − 0.1 = 0.8 m toward the pulley: equal lengths, as an inextensible string requires, even though one segment is horizontal and the other vertical.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -10646,11 +12314,11 @@
       ],
       "hints": [
         {
-          "text": "Which parts of the string can change length while the pulley itself stays fixed?",
+          "text": "Which two straight parts of the string change length when the cart moves?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Write the sum of those changing segments as a constant before thinking about velocities or accelerations.",
+          "text": "Write their sum with the values now. When the cart moves toward the pulley, which way does x change, and what must y do?",
           "reveals": "METHOD"
         }
       ],
@@ -10665,7 +12333,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Sketch the pulley and the two straight segments, and label y_A and y_B as lengths measured from the pulley along each segment.",
+          "text": "Sketch the table, pulley and hanging mass. Mark x along the table and y down from the pulley, each with an arrow pointing away from the pulley.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -10676,17 +12344,17 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-FIXED-PULLEY-YAYB",
+        "initial_ref": "REP-NLM-CART-TABLE-PULLEY-XY",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-FIXED-PULLEY-YAYB",
+        "bound_ref": "REP-NLM-CART-TABLE-PULLEY-XY",
         "stage_refs": [
-          "VIS-NLM-YSYM-V0"
+          "VIS-NLM-CARTXY-V0"
         ]
       },
-      "failure_signal": "You wrote a_A = a_B: measured away from the pulley, one segment lengthens while the other shortens, so the signed accelerations must be opposite.",
+      "failure_signal": "You gave the hanging mass a velocity of −0.3 m/s, or a horizontal velocity: the string turns at the pulley, so the mass moves down, and in away-from-pulley coordinates y grows as x shrinks.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: one fixed pulley and one inextensible string give y_A + y_B = constant, so a_A + a_B = 0 in away-from-pulley coordinates. The transfer task gives the geometry in words with upward coordinates, so the length relation must be rebuilt."
+        "closure": "Established: x + y = constant holds whatever direction each straight segment points, because it is a statement about lengths measured from the fixed pulley, so the signed rates are opposite. The transfer task gives the geometry in words with upward coordinates, so the length relation must be rebuilt."
       }
     },
     {
@@ -10700,30 +12368,31 @@
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2A-FRAME-CHOICE-07",
-      "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",
+      "stem": "A delivery van accelerates forward along a straight, level road at 2 m/s². A passenger holds a 0.2 kg apple still, 1.25 m above the van's floor, and lets go. Ignore air resistance and take g = 10 m/s². (a) Seen from the roadside, which horizontal forces act on the apple after release, and what does its horizontal velocity do? (b) Seen from inside the van, what pseudo-force (size and direction) must the passenger add, and what horizontal acceleration does it give the apple? (c) Where does the apple land relative to the point on the floor directly below the release point? Show that both descriptions give the same answer.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The roadside frame is treated as inertial.",
-        "The bus has nonzero rightward acceleration.",
-        "The object-shelf friction is negligible."
+        "The van's acceleration stays 2 m/s² forward during the fall.",
+        "Air resistance is negligible."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame.",
+        "summary": "The fall takes 0.5 s (1.25 = ½ × 10 × t²). Roadside: no horizontal force acts, so the apple keeps the van's speed at release while the floor speeds up and gains ½ × 2 × 0.5² = 0.25 m on it. Van: a pseudo-force of 0.2 × 2 = 0.4 N backward gives the apple a backward acceleration of 2 m/s², so it drifts 0.25 m backward. Both descriptions put the landing point 0.25 m behind the point below the release point.",
         "reasoning": [
-          "Changing observer does not create a new physical agent acting on the loose object.",
-          "The roadside observer can describe the object with the physical forces only.",
-          "The passenger's frame accelerates with the bus, so relative to that observer the object appears to shift backward.",
-          "A backward pseudo-force is added only in the accelerating-frame description if that convention is used."
+          "Vertically nothing differs between the two observers, so the fall time is t = √(2 × 1.25/10) = 0.5 s in both.",
+          "Roadside: after release nothing touches the apple, so the only force is its weight, vertical. Its horizontal velocity stays at u, the van's speed at release.",
+          "In 0.5 s the apple moves u × 0.5 forward, while the floor moves u × 0.5 + ½ × 2 × 0.5² = u × 0.5 + 0.25 m. The floor gains 0.25 m, so the apple lands 0.25 m behind the mark.",
+          "Van: the observer accelerates at 2 m/s² forward, so the apple is given a pseudo-force −m a_frame = 0.4 N backward. Relative to the van it starts from rest and accelerates backward at 0.4/0.2 = 2 m/s², moving ½ × 2 × 0.5² = 0.25 m backward."
         ],
-        "check": "If the bus later moves at constant velocity, changing from roadside to bus observer does not by itself require a pseudo-force.",
+        "check": "If the van moved at a steady velocity, the floor would move u × 0.5 like the apple and the apple would land directly below the release point, and the van observer would need no pseudo-force. The 0.25 m shift comes only from the van's acceleration.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -10743,11 +12412,11 @@
       ],
       "hints": [
         {
-          "text": "Ask first whether any new physical object began touching or attracting the loose object when the bus started accelerating.",
+          "text": "After release, does anything touch the apple? Which forces act on it, and in which directions?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Identify which observer is accelerating before deciding whether an extra convention is needed.",
+          "text": "The fall time is the same for both observers. For each observer, write the horizontal acceleration of the apple, and of the floor, during that time.",
           "reveals": "METHOD"
         }
       ],
@@ -10761,7 +12430,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the bus and the object twice, once labelled 'roadside' and once 'passenger', each with that observer's own acceleration arrow.",
+          "text": "Draw the apple twice, once as the roadside observer sees it and once as the passenger sees it, each with only the forces that observer uses and an arrow for that observer's own acceleration.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -10772,17 +12441,17 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-NLM-BUS-SHELF-FRAMES",
+        "initial_ref": "REP-NLM-VAN-APPLE-DROP",
         "safe_ref": null,
-        "bound_ref": "REP-NLM-BUS-SHELF-FRAMES",
+        "bound_ref": "REP-NLM-VAN-APPLE-DROP",
         "stage_refs": [
-          "VIS-NLM-BUS-V0"
+          "VIS-NLM-VANAPPLE-V0"
         ]
       },
-      "failure_signal": "You gave the object a backward physical force in the roadside account: nothing new touches it; the backward term exists only in the passenger's accelerating description.",
+      "failure_signal": "You had the apple land directly below the release point: that is true only if the van keeps a steady velocity. While the van accelerates, the floor gains 0.25 m on the apple during the 0.5 s fall. Or you gave the apple a backward physical force in the roadside account: nothing touches it after release.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: an inertial observer uses physical forces only, and an accelerating observer adds −m a_frame. The transfer task asks you to choose the frame yourself from what the description must achieve."
+        "closure": "Established: an inertial observer uses physical forces only, and an accelerating observer adds −m a_frame; both predict the same measurable landing point. The transfer task asks you to choose the frame yourself from what the description must achieve."
       }
     },
     {
@@ -10813,98 +12482,87 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-STATE-01",
-      "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.55 and μ_k = 0.40; take g = 10 m/s². A 50 N pull is applied, first horizontally and then, in a second trial, at 37° above the horizontal (sin 37° = 0.6, cos 37° = 0.8). The statement does not say whether the crate slips. For each trial decide whether the crate stays at rest, and find the friction force and the acceleration.",
+      "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.75; take g = 10 m/s². A rope on the crate can be pulled horizontally, at 37° above the horizontal, or at 53° above the horizontal (sin 37° = cos 53° = 0.6, cos 37° = sin 53° = 0.8). For each direction, find the smallest pull that starts the crate sliding. A worker can pull with at most 61 N: in which of the three directions can the worker start the crate?",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The crate stays in contact with the floor in both trials.",
-        "Resolve the angled pull into horizontal and vertical components.",
-        "Do not assume a friction equality before deciding the contact state."
+        "The crate stays in contact with the floor in every direction.",
+        "Resolve each pull into horizontal and vertical components.",
+        "The pull is the unknown: do not take N = mg before the vertical balance is written."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Horizontal pull: N = 100 N and the limit is 55 N, which covers the 50 N needed, so the crate stays at rest with 50 N of static friction. Angled pull: N = 100 − 30 = 70 N and the limit is 38.5 N, less than the 40 N needed, so the crate slides; kinetic friction is 0.40 × 70 = 28 N and a = (40 − 28)/10 = 1.2 m/s². The tilted pull has the smaller horizontal part, yet it moves the crate.",
+        "summary": "When the crate is just about to slide, the friction it needs equals the limit μ_s N, and N = 100 − P sin θ. So P cos θ = 0.75(100 − P sin θ), which gives P = 75/(cos θ + 0.75 sin θ). Horizontal: 75 N. At 37°: 75/1.25 = 60 N. At 53°: 75/1.2 = 62.5 N. The 37° pull needs the least, and a worker limited to 61 N can start the crate only in that direction.",
         "reasoning": [
-          "Horizontal trial: N = mg = 100 N. Rest would need 50 N of friction, and μ_s N = 55 N, so the crate stays at rest and f = 50 N.",
-          "Angled trial: the pull's components are 40 N horizontal and 30 N up, so N = 100 − 30 = 70 N.",
-          "Rest would need 40 N of friction, but μ_s N = 0.55 × 70 = 38.5 N, so rest is impossible and the crate slides.",
-          "Sliding: f_k = μ_k N = 28 N opposite the motion, so a = (40 − 28)/10 = 1.2 m/s²."
+          "With a pull P at angle θ above the horizontal, the vertical balance gives N = mg − P sin θ = 100 − P sin θ.",
+          "Until the crate moves, friction must equal the horizontal part P cos θ; the smallest starting pull makes that need equal to the limit: P cos θ = 0.75(100 − P sin θ).",
+          "Solving, P = 75/(cos θ + 0.75 sin θ): 75/1 = 75 N at 0°, 75/(0.8 + 0.45) = 60 N at 37°, 75/(0.6 + 0.6) = 62.5 N at 53°.",
+          "Only the 37° threshold, 60 N, is within the worker's 61 N; horizontally 75 N is needed, and at 53° 62.5 N."
         ],
-        "check": "Angled trial with a = 1.2 m/s²: vertical 70 + 30 − 100 = 0 (no vertical acceleration) and horizontal 40 − 28 = 12 N = 10 × 1.2. In the horizontal trial the 5 N margin (55 − 50) shows why that crate does not move.",
+        "check": "At 37° with P = 60 N: horizontal part 48 N, vertical part 36 N, so N = 64 N and μ_s N = 48 N, exactly the need. At 53° with P = 61 N: need 61 × 0.6 = 36.6 N, but N = 100 − 48.8 = 51.2 N gives a limit of 38.4 N, so the crate stays at rest.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Computes N separately for each trial, 100 N and 70 N, before any friction limit.",
-            "evidence_of": "The static limit depends on the actual contact force."
+            "criterion": "Writes N = 100 − P sin θ with the pull still unknown, before using the limit.",
+            "evidence_of": "The static limit depends on the actual contact force, which here depends on the pull."
           },
           {
-            "criterion": "Compares the friction rest would need with μ_s N in each trial and reaches opposite verdicts.",
-            "evidence_of": "Selects the contact model from a test, not from the coefficients given."
+            "criterion": "Sets the need P cos θ equal to μ_s N only at the start of sliding and finds 75 N, 60 N and 62.5 N.",
+            "evidence_of": "Turning the no-slip test into a threshold for an unknown force."
           },
           {
-            "criterion": "Uses μ_k N = 28 N only in the sliding trial and gets a = 1.2 m/s².",
-            "evidence_of": "Keeps static and kinetic states distinct."
+            "criterion": "Decides that only the 37° direction works for a 61 N worker.",
+            "evidence_of": "Comparing thresholds across directions instead of assuming more tilt is always better or always worse."
           }
         ],
         "reasoning_route": [
           {
             "id": "R-NLM-2B-STATE-NORMAL",
             "kind": "TRANSFORM",
-            "action": "Find N in each trial from the vertical balance: 100 N for the horizontal pull, 100 − 30 = 70 N for the angled pull.",
-            "why_valid": "The crate has no vertical acceleration, so the vertical forces balance, and the angled pull carries part of the weight.",
+            "action": "Write N from the vertical balance with the pull unknown: N = 100 − P sin θ.",
+            "why_valid": "The crate has no vertical acceleration, and the upward part of the pull carries part of the weight.",
             "inputs": [
               "m = 10 kg",
-              "P = 50 N",
-              "sin 37° = 0.6"
+              "g = 10 m/s²",
+              "pull P at θ above the horizontal"
             ],
-            "output": "N = 100 N and N = 70 N."
+            "output": "N = 100 − P sin θ."
           },
           {
             "id": "R-NLM-2B-STATE-DEMAND",
             "kind": "CONNECT",
-            "action": "Assume rest provisionally and read the friction it would need: the horizontal part of the pull, 50 N and then 40 N.",
-            "why_valid": "At rest the horizontal forces balance, so friction must equal the horizontal pull.",
+            "action": "At the smallest starting pull the need equals the limit: P cos θ = 0.75(100 − P sin θ).",
+            "why_valid": "Below that pull static friction can supply the need; at it, the need reaches μ_s N.",
             "inputs": [
-              "P cos 0° = 50 N",
-              "P cos 37° = 40 N"
+              "need P cos θ",
+              "limit μ_s N"
             ],
-            "output": "Needs: 50 N and 40 N."
+            "output": "P = 75/(cos θ + 0.75 sin θ)."
           },
           {
             "id": "R-NLM-2B-STATE-DECIDE",
             "kind": "DECIDE",
-            "action": "Compare each need with its own limit μ_s N: 50 N ≤ 55 N keeps the crate at rest; 40 N > 38.5 N rules rest out, so the angled trial uses the kinetic model.",
-            "why_valid": "Static friction can supply any need up to μ_s N and no more, and the limit moves with N.",
+            "action": "Evaluate the threshold in each direction (75 N, 60 N, 62.5 N) and compare with the worker's 61 N.",
+            "why_valid": "Tilting lowers N but also the horizontal part, so the threshold must be computed, not guessed, for each direction.",
             "inputs": [
-              "needs 50 N and 40 N",
-              "limits 55 N and 38.5 N"
+              "θ = 0°, 37°, 53°",
+              "worker's limit 61 N"
             ],
-            "output": "Trial 1 at rest; trial 2 sliding."
-          },
-          {
-            "id": "R-NLM-2B-STATE-KINETIC",
-            "kind": "TRANSFORM",
-            "action": "In the sliding trial take f_k = μ_k N = 28 N opposite the motion and get a = (40 − 28)/10 = 1.2 m/s².",
-            "why_valid": "Once the crate slides, kinetic friction has the fixed value μ_k N.",
-            "inputs": [
-              "μ_k = 0.40",
-              "N = 70 N"
-            ],
-            "output": "a = 1.2 m/s²."
+            "output": "Only the 37° pull can start the crate."
           },
           {
             "id": "R-NLM-2B-STATE-CHECK",
             "kind": "VERIFY",
-            "action": "Substitute a = 1.2 m/s² back into both force equations of the sliding trial.",
-            "why_valid": "Both components must balance with the chosen model.",
+            "action": "Substitute P = 60 N at 37° into both force equations.",
+            "why_valid": "At the threshold, the vertical balance holds and the need equals μ_s N.",
             "inputs": [
-              "vertical: 70 + 30 − 100",
-              "horizontal: 40 − 28"
+              "vertical: 64 + 36 − 100",
+              "horizontal need 48 N, limit 0.75 × 64"
             ],
-            "output": "0 and 12 N = 10 × 1.2."
+            "output": "0 and 48 N = 48 N."
           }
         ],
         "crux_move_ref": "R-NLM-2B-STATE-DECIDE",
@@ -10923,7 +12581,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Change the earlier threshold exercise into an unlabeled contact-state selection task: the learner must decide whether static contact is feasible before choosing a friction model."
+        "reason": "Change the earlier threshold exercise so that the pull is the unknown, lowers N as it grows, and must be compared across directions."
       },
       "exposure": [
         {
@@ -10934,13 +12592,13 @@
       ],
       "hints": [
         {
-          "text": "The presence of mu_s and mu_k does not tell you which one to use. What contact state would you test first?",
+          "text": "At the smallest pull that starts the crate, what contact state is the crate in, and what does that say about the friction?",
           "reveals": "CONCEPT",
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
-          "text": "Before deciding the friction model, ask whether the vertical component of the pull changes the normal reaction.",
+          "text": "Write N from the vertical balance with P still unknown; then compare the friction the crate needs with μ_s N.",
           "reveals": "CONCEPT",
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
@@ -10948,24 +12606,25 @@
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must infer the contact state and choose the static-feasibility or kinetic-friction model instead of being told that the bodies are at impending slip or already sliding.",
+        "statement": "The learner must turn the no-slip test into a threshold for an unknown pull that also changes N, and compare that threshold across directions, instead of deciding the state for a given pull.",
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01"
         ],
-        "invariant": "The normal force from the actual force balance, the provisional no-slip requirement and its comparison with μ_s N all carry over; what changes is that the contact state is not given and must be decided.",
+        "invariant": "N from the actual vertical balance and the comparison of the friction needed with μ_s N carry over; what changes is that the pull is unknown and its direction is the choice.",
         "protected_move_ref": "R-NLM-2B-STATE-DECIDE",
         "novelty": {
           "checked_against": [
-            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): horizontal pulls on a 4 kg box keep N = mg in both trials, so only the need changes; here the need falls and the limit falls further.",
-            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): 'find N from the perpendicular equation' is stated as a rule for a pressing force; no state is reversed by a lighter contact.",
-            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): a zero friction need against a positive limit, with no second trial to compare.",
-            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a no-slip formula for stacked blocks with N = mg; the state is not decided.",
-            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): the block is told to stay at rest, so the state is handed over.",
-            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): the block is told it is sliding, so μ_k is handed over.",
-            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): a rest condition, tan θ ≤ μ_s, with no applied pull at all.",
-            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): sliding stated, so no contact state is chosen."
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): given horizontal pulls on a 4 kg box, N = mg; the state is decided for each given pull.",
+            "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): the book on the tray never slips; only the friction's direction and size are found.",
+            "MIC-PHY-NLM-FRICTION-QUANT Core1B attempt: a given 30 N push on a 5 kg box, then with a 20 N downward press; the state is decided for each given push, and N is changed by a separate force.",
+            "MIC-PHY-NLM-FRICTION-QUANT Core1B boundary test: a zero friction need against a positive limit.",
+            "MIC-PHY-NLM-FRICTION Core1B attempt: a block pressed on a wall; the press sets only the limit.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a no-slip threshold for stacked blocks with N = mg, so the force does not change N.",
+            "Q-PHY-NLM-2A-FRICTION-ZERO-08, -STATIC-09, -KINETIC-10 and Q-PHY-NLM-2A-COV-04 (Core2A): the state is given or no threshold is sought.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 and -SLIDING-03 (Core2A): an incline rest condition or stated sliding, with no applied pull.",
+            "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04 (Core2B): a push below the horizontal, whose tilt only raises N and the threshold; there is no best direction."
           ],
-          "why_new": "Every earlier friction-quant item either states the contact state or keeps N = mg while the need changes. Here the same 50 N pull is applied at two angles. The tilted pull has the smaller horizontal part, yet it slides, because it also lowers N and the limit falls below the need. The learner must recompute the limit for each trial before choosing a model. No earlier item shows a state decision reversed by a change in N."
+          "why_new": "Every earlier friction item either gives the pull and asks for the state, gives the state, or asks for one threshold whose tilt only makes things worse. Here the pull is unknown and lowers N as it grows, and its direction is the choice. Tilting upward first helps and then hurts: the smallest starting pull is 75 N, 60 N and 62.5 N at 0°, 37° and 53°. The learner must compute and compare a threshold for each direction and finds that the best one is neither horizontal nor the steepest."
         }
       },
       "repair_ref": "NLM8-2",
@@ -10979,7 +12638,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the crate twice, once per trial, with its weight, N, the pull (resolved in the second trial) and a friction arrow labelled f, not μN.",
+          "text": "Draw the crate for one direction with its weight, N, the pull split into horizontal and vertical parts, and a friction arrow labelled f. Keep the pull as P, not a number.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -10997,10 +12656,10 @@
           "VIS-NLM-CRATE50-V0"
         ]
       },
-      "failure_signal": "You kept the crate at rest in the angled trial because 40 N < 0.55 × 100 = 55 N: the upward part of the pull lightens the contact to N = 70 N, so the limit is 38.5 N. Or you used μ_k in the horizontal trial, where the crate never slips.",
+      "failure_signal": "You found 75 N for every direction because you kept N = mg = 100 N: the upward part of the pull lightens the contact. Or you chose 53° because it lightens the contact most: its horizontal part shrinks faster, so it needs 62.5 N, more than the 60 N at 37°.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: the static limit moves with N, so a pull that lightens the contact can start sliding even though it asks for less friction."
+        "closure": "Established: tilting a pull upward trades horizontal drive against a lighter contact, so the smallest pull that starts a body comes at an in-between angle, not horizontally or at the steepest angle."
       }
     },
     {
@@ -11591,7 +13250,7 @@
             "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): a_A + a_B = 0 is handed to the learner in away-from-pulley coordinates and used for dynamics.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): which segment changes, and opposite signed changes, both in away-from-pulley coordinates.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley needs a new length equation; the pulley here stays fixed.",
-            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A, parent): y_A + y_B = constant with lengths measured from the pulley, in the coordinates the stem supplies."
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A, parent): a cart on a table and a hanging mass, x + y = 1.4 m with x and y measured away from the pulley along each segment, so each coordinate is already a segment length."
           ],
           "why_new": "In every earlier item the coordinates run along the segments away from the pulley, so each coordinate is a segment length and the sum is constant at once. Here the coordinates point up, toward the pulley, and arrive in words. The learner must build each length as h_P − x before summing. The result happens to keep the form a_A + a_B = 0, and it has to be derived rather than assumed. No earlier item shows the lengths built from coordinates that are not lengths."
         }
@@ -11788,9 +13447,9 @@
             "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01 (Core1A worked anchor): the frame accelerates vertically, along gravity, so the pseudo-force only changes a reading; here it is sideways and sets a direction.",
             "MIC-PHY-NLM-FRAME-CHOICE misconceptions (Core1A diagnose/repair): the bus observer needs a pseudo-force, but the frame is named in the prompt rather than chosen.",
             "MIC-PHY-NLM-FRAME-CHOICE boundary test (Core1B): a constant-velocity bus needs no pseudo-force; nothing is solved.",
-            "Q-PHY-NLM-2A-FRAME-CHOICE-07 (Core2A, parent): a loose object on a smooth shelf described in both frames, with no forces to balance and no angle."
+            "Q-PHY-NLM-2A-FRAME-CHOICE-07 (Core2A, parent): an apple dropped in an accelerating van, described in both named frames; the pseudo-force has nothing to balance and sets no angle."
           ],
-          "why_new": "In every earlier item the frame is named for the learner, and the pseudo-force either lies along gravity (the lift) or acts on an object with nothing to balance it (the shelf). Here the learner must pick the frame from the goal of keeping the bob at rest. The sideways pseudo-force must then be balanced against gravity through the string, which fixes an angle. No earlier item shows a pseudo-force setting a direction."
+          "why_new": "In every earlier item the frame is named for the learner, and the pseudo-force either lies along gravity (the lift) or acts on an object with nothing to balance it (the dropped apple). Here the learner must pick the frame from the goal of keeping the bob at rest. The sideways pseudo-force must then be balanced against gravity through the string, which fixes an angle. No earlier item shows a pseudo-force setting a direction."
         }
       },
       "repair_ref": "NLM4-3",
@@ -13489,7 +15148,7 @@
             "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): the same 3 kg and 1 kg over an ideal pulley with one T = 15 N; the two relations are only named.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): says the length relation survives when equal tension fails, but computes nothing with two tensions.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley forces a new length equation; tension is not at issue.",
-            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A): the length relation and its derivatives, symbolically, with no tension."
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A): the length relation and its derivatives for a cart and a hanging mass, with no tension."
           ],
           "why_new": "The Core1A diagnose/repair already says that the length relation survives a non-ideal pulley, so that claim alone would restate it. What is new is the quantitative consequence. From a measured a_A the learner must keep a_A + a_B = 0, refuse one T, and compute a separate tension on each side from each body's own equation: 18 N and 14 N, against 15 N for the ideal pulley. No earlier item computes two different tensions in one string."
         }
@@ -13787,7 +15446,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
-          "text": "With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.",
+          "text": "Write the friction rest needs and the most the contact can give, μ_s N, each in terms of m, g and θ. Which of the two must not exceed the other?",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
@@ -13795,7 +15454,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         },
         {
-          "text": "Divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
+          "text": "Once your comparison is written, divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
@@ -14076,7 +15735,7 @@
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The diagram double-counts gravity. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
+        "summary": "In the student's diagram the weight is drawn three times: once as mg and again as its two components. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
         "reasoning": [
           "A free-body inventory is a list of physical interactions acting on the chosen body.",
           "Gravity is one Earth-on-block interaction, represented by the vector mg.",
@@ -14144,10 +15803,10 @@
           "VIS-NLM-FBDTRIPLE-V0"
         ]
       },
-      "failure_signal": "You kept mg alongside mg sin θ and mg cos θ: that counts gravity three times; the components replace the weight, they do not join it.",
+      "failure_signal": "You kept mg alongside mg sin θ and mg cos θ, so the weight is drawn three times: once as mg and again as its two components. The components replace the weight; they do not join it.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": "Established: resolving a force changes its description, not the number of forces acting. The transfer task finds the same double count written into component equations."
+        "closure": "Established: resolving a force changes its description, not the number of forces acting. The transfer task finds the same repeated weight written into component equations."
       }
     },
     {
@@ -14958,7 +16617,7 @@
             "MIC-PHY-NLM-FBD-BODY-OWNERSHIP misconceptions (Core1A diagnose/repair): horse-cart partners, and not adding mg to its own components; neither needs a second body's contact force.",
             "MIC-PHY-NLM-FBD-BODY-OWNERSHIP boundary test (Core1B): two hands on one box, both on its diagram; a single body.",
             "Q-PHY-NLM-2A-COV-03 (Core2A): the magnet's forces and their partners, all known from balance at rest.",
-            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05 (Core2A, parent): the block's own diagram with gravity counted twice; the wedge's diagram is never drawn."
+            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05 (Core2A, parent): the block's own diagram with the weight drawn three times (as mg and as its two components); the wedge's diagram is never drawn."
           ],
           "why_new": "In the Core1A anchor the upper body rests on a level surface, so its push equals its weight, and replacing one by the other still gives the right number. Here the block slides on a tilted smooth face, so its push on the wedge is mg cos 30° at an angle. The learner must find it from the block's own equation and place only its partner on the wedge, which gives a floor force below the total weight and a sideways floor friction. No earlier item has a contact partner that differs from the other body's weight."
         }

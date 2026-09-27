@@ -4477,8 +4477,9 @@
         "summary": "Options (A) and (B).",
         "reasoning": [
           "Use y=x tan(theta)-g x^2/[2v^2 cos^2(theta)] at P=(5,1). For theta=45°, this gives v^2=25g/4, so v=5sqrt(g)/2; (A) is true.",
-          "For the same 45° case, the trajectory slope at x=5 is negative, so the apex was passed before P; (B) is true.",
-          "For theta=30° the apex is not after P, and theta=tan^-1(1/5) would make the straight-line term equal exactly to y=1 before gravity lowers the path, so no finite v can satisfy (D)."
+          "For the same 45° case, the slope of the path at x = 5 m is tan θ − g x/(v² cos² θ) = 1 − 5g/((25g/4)(1/2)) = 1 − 1.6 = −0.6 < 0, so the projectile is already descending at P and the apex was passed before P; (B) is true.",
+          "For θ = 30°: 1 = 5 tan 30° − 25g/(2v² cos² 30°) gives 25g/(1.5v²) = 2.887 − 1 = 1.887, so v² ≈ 8.83g. The slope at x = 5 m is tan 30° − 5g/(v² cos² 30°) ≈ 0.577 − 5/(8.83 × 0.75) ≈ 0.577 − 0.755 = −0.18 < 0, so the apex is before P and (C) is false.",
+          "For θ = tan⁻¹(1/5), the straight-line term x tan θ = 5 × 1/5 = 1 m already equals y at P, so the gravity term g x²/(2v² cos² θ) would have to be zero; no finite v does this, and (D) is false."
         ],
         "reasoning_route": [
           {
@@ -4494,7 +4495,7 @@
           {
             "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-2",
             "kind": "CONNECT",
-            "action": "For the same 45° case, the trajectory slope at x=5 is negative, so the apex was passed before P; (B) is true.",
+            "action": "For the same 45° case, the slope of the path at x = 5 m is tan θ − g x/(v² cos² θ) = 1 − 5g/((25g/4)(1/2)) = 1 − 1.6 = −0.6 < 0, so the projectile is already descending at P and the apex was passed before P; (B) is true.",
             "why_valid": "This follows from the source-matched physical or chemical model.",
             "inputs": [
               "stated source quantities"
@@ -4504,10 +4505,21 @@
           {
             "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-3",
             "kind": "TRANSFORM",
-            "action": "For theta=30° the apex is not after P, and theta=tan^-1(1/5) would make the straight-line term equal exactly to y=1 before gravity lowers the path, so no finite v can satisfy (D).",
+            "action": "For θ = 30°: 1 = 5 tan 30° − 25g/(2v² cos² 30°) gives 25g/(1.5v²) = 2.887 − 1 = 1.887, so v² ≈ 8.83g. The slope at x = 5 m is tan 30° − 5g/(v² cos² 30°) ≈ 0.577 − 5/(8.83 × 0.75) ≈ 0.577 − 0.755 = −0.18 < 0, so the apex is before P and (C) is false.",
             "why_valid": "This follows from the source-matched physical or chemical model.",
             "inputs": [
               "stated source quantities"
+            ],
+            "output": "(C) is false."
+          },
+          {
+            "id": "PYQ-PHY-JEEADV-2026-P1-Q06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "For θ = tan⁻¹(1/5), the straight-line term x tan θ = 5 × 1/5 = 1 m already equals y at P, so the gravity term g x²/(2v² cos² θ) would have to be zero; no finite v does this, and (D) is false.",
+            "why_valid": "This follows from the source-matched physical or chemical model.",
+            "inputs": [
+              "θ = tan⁻¹(1/5)",
+              "P = (5 m, 1 m)"
             ],
             "output": "Options (A) and (B)."
           }

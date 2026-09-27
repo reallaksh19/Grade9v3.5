@@ -2249,6 +2249,10 @@
               "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
               "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
               "Requested instant: t = 5 s."
+            ],
+            "representation_ref": "REP-KIN-2D-BOAT-RIVER",
+            "stage_refs": [
+              "VIS-KIN-2D-BOAT-V0"
             ]
           }
         },
@@ -2453,6 +2457,10 @@
               "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
               "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
               "Requested instant: t = 4 s."
+            ],
+            "representation_ref": "REP-KIN-2D-SKATER-WIND",
+            "stage_refs": [
+              "VIS-KIN-2D-SKATER-V0"
             ]
           }
         },
@@ -2675,16 +2683,24 @@
       "lineage": [],
       "elicitation": {
         "predict": {
-          "prompt": "Immediately after a horizontal launch, which acceleration component is zero in the ideal model?",
-          "defensible_answer": "a_x is zero; a_y is -g if +y is upward."
+          "prompt": "Just after the basketball leaves the player's hands, moving forward and upward, which acceleration component is zero in the ideal model?",
+          "defensible_answer": "a_x is zero; a_y is −g (−10 m/s²) with +y upward, even while the ball is still rising."
         },
         "attempt": {
-          "produces": "A model declaration and component-equation setup for a horizontal or oblique projectile.",
+          "produces": "The model and frame for the basketball, x(t), y(t), v_x(t) and v_y(t) with the 2 m starting height, and the ball's position and velocity at t = 0.5 s.",
           "closure": "RUBRIC",
           "rubric": [
             {
-              "criterion": "The learner selects gravity-only free flight, uses a_x=0/a_y=-g and one common time before calculating any named projectile quantity.",
-              "evidence_of": "Projectile model selection rather than formula recall."
+              "criterion": "Declares gravity-only free flight with a_x = 0 and a_y = −10 m/s², and puts the origin on the floor below the release point so y = 2 m at t = 0.",
+              "evidence_of": "Projectile model and frame selection rather than formula recall."
+            },
+            {
+              "criterion": "Writes x = 6t and y = 2 + 8t − 5t² with one shared t, and v_x = 6, v_y = 8 − 10t.",
+              "evidence_of": "Keeping the starting height and the common clock in the component equations."
+            },
+            {
+              "criterion": "At t = 0.5 s gives (3, 4.75) m and (6, 3) m/s, and notes that v_y > 0, so the ball is still rising.",
+              "evidence_of": "Reading the state at a given instant from simultaneous components."
             }
           ],
           "accepted": [
@@ -2692,7 +2708,8 @@
             "State assumptions, set component accelerations, then solve x/y with one t."
           ],
           "rejected": [
-            "Start from a memorized range/height formula without establishing the free-flight component model."
+            "'y = 8t − 5t² = 2.75 m at 0.5 s.' This drops the 2 m starting height: with the origin on the floor, y(0) = 2 m.",
+            "Start from a memorized range or maximum-height formula; this task asks for the state at a given instant, not a named event."
           ],
           "task": {
             "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
@@ -2701,38 +2718,37 @@
               "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
               "g = 10 m/s²; air resistance negligible.",
               "Requested instant: t = 0.5 s."
+            ],
+            "representation_ref": "REP-KIN-2D-BASKETBALL-2M",
+            "stage_refs": [
+              "VIS-KIN-2D-BBALL-V0"
             ]
           }
         },
         "reconstruct": {
           "route": [
             {
-              "ask": "What forces remain after release in the idealized problem?",
-              "why_this_ask": "Elicits the gravity-only model.",
+              "ask": "What forces act on the ball after it leaves the hands, and what acceleration components follow?",
+              "why_this_ask": "Elicits the gravity-only model: a_x = 0, a_y = −10 m/s².",
               "from_step_ref": "K2D3-1"
             },
             {
-              "ask": "What are the horizontal and vertical component equations, and what clock do they share?",
-              "why_this_ask": "Rebuilds the projectile specialization from 2D constant acceleration.",
+              "ask": "Where is the origin, so what is y at t = 0?",
+              "why_this_ask": "The frame puts the release point at y = 2 m, not at zero.",
+              "from_step_ref": "K2D3-1"
+            },
+            {
+              "ask": "What is y(t) with the 2 m start, and what is x(t)? Which clock do they share?",
+              "why_this_ask": "Rebuilds both component equations with one common t.",
               "from_step_ref": "K2D3-2"
             },
             {
-              "ask": "What exact component condition identifies the event the question asks about?",
-              "why_this_ask": "Separates model selection from event selection.",
-              "from_step_ref": "K2D3-3"
-            },
-            {
-              "ask": "If the event is the apex, what becomes zero and what definitely does not?",
-              "why_this_ask": "Protects against the common full-velocity/full-acceleration zero shortcut.",
-              "from_step_ref": "K2D3-4"
-            },
-            {
-              "ask": "Does launch height equal landing height? If not, which shortcut becomes invalid?",
-              "why_this_ask": "Makes the same-height boundary explicit.",
-              "from_step_ref": "K2D3-5"
+              "ask": "At t = 0.5 s, is v_y still positive? What does that say about the ball's motion then?",
+              "why_this_ask": "Reads the vertical state from the component, not from a guess about the apex.",
+              "from_step_ref": "K2D3-7"
             }
           ],
-          "differs_from_teaching_path": "Teaching states the projectile specialization; reconstruction derives it from the post-release interaction model and coordinate choice."
+          "differs_from_teaching_path": "The teaching path goes from the model to named events (apex, landing). The learner route stops at a given instant: it fixes the frame and the starting height, writes both component equations with one clock, and reads the state at 0.5 s."
         },
         "boundary_test": {
           "prompt": "A launched object continues under significant horizontal thrust after release. May the standard a_x=0 projectile specialization be used?",
@@ -2752,12 +2768,12 @@
             "K2D3-1",
             "K2D3-2"
           ],
-          "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+          "representation_ref": "REP-KIN-2D-BALCONY-8-6",
           "reveal_stage_refs": [
-            "VIS-KIN-2D-PROJ-V0",
-            "VIS-KIN-2D-PROJ-V1",
-            "VIS-KIN-2D-PROJ-V2",
-            "VIS-KIN-2D-PROJ-V3"
+            "VIS-KIN-2D-BALCONY-V0",
+            "VIS-KIN-2D-BALCONY-V1",
+            "VIS-KIN-2D-BALCONY-V2",
+            "VIS-KIN-2D-BALCONY-V3"
           ],
           "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-MODEL-01",
           "misconception_indexes": [
@@ -4432,7 +4448,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "VECTOR",
-      "purpose": "Show the particle described in compass words (east 6 m/s, north 2 m/s, 3 m/s² south) so the learner declares a frame before any sign is written.",
+      "purpose": "Show the particle described in compass words: east 6 m/s, north 2 m/s, acceleration 3 m/s² south.",
       "required_elements": [
         "particle with velocity and acceleration given in compass words",
         "declared frame +x east, +y north",
@@ -4537,7 +4553,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "VECTOR",
-      "purpose": "Show the two air-table pucks in one frame with one clock, so a meeting is tested as the same point at the same time rather than as crossing paths.",
+      "purpose": "Show the two air-table pucks and their motions in one frame, timed on one clock.",
       "required_elements": [
         "two pucks with their start points, velocities and accelerations",
         "paths and their crossing point (12, 9) m",
@@ -4646,7 +4662,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GRAPH",
-      "purpose": "Show the launch 15 m up with u = (10, 10) m/s and the roof 3.75 m above launch from 8 m out, so the two roof-level roots are told apart by where the ball is at each.",
+      "purpose": "Show the launch 15 m up with u = (10, 10) m/s and the roof 3.75 m above launch, starting 8 m out.",
       "required_elements": [
         "launch 15 m up with u = (10, 10) m/s and the roof from 8 m out, 3.75 m above launch",
         "path and the two roof-level roots",
@@ -4751,7 +4767,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GRAPH",
-      "purpose": "Show the package released 80 m up from a plane flying at 50 m/s, so the projectile model is started at release with the package's own velocity in the ground frame.",
+      "purpose": "Show the package at the moment of release, 80 m above the ground, from the plane flying level at 50 m/s.",
       "required_elements": [
         "plane at 50 m/s releasing a package 80 m up, with the ground frame",
         "interactions on the package after release",
@@ -4856,7 +4872,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "GRAPH",
-      "purpose": "Show the cliff throw with u = (10, 20) m/s and the target direction 45° below the horizontal, so the event is written as a condition on the velocity components, not on the displacement.",
+      "purpose": "Show the cliff throw with u = (10, 20) m/s and the direction 45° below the horizontal that the question names.",
       "required_elements": [
         "cliff throw with u = (10, 20) m/s and the target direction 45° below horizontal",
         "component histories",
@@ -4947,6 +4963,941 @@
         {
           "support_level": "high",
           "visual_stage_ref": "VIS-KIN-2D-45-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-BOAT-RIVER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR",
+      "purpose": "Show the boat leaving the jetty in the bank frame with steady components 3 m/s downstream and 4 m/s across.",
+      "required_elements": [
+        "bank frame: origin at the jetty, +x downstream, +y across",
+        "v_x = 3 m/s, v_y = 4 m/s",
+        "x(t) = 3t and y(t) = 4t on one clock",
+        "position (15, 20) m at t = 5 s",
+        "mixed pair (15, 16) m rejected"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "bank frame: origin at the jetty, +x downstream, +y across",
+        "v_x = 3 m/s, v_y = 4 m/s",
+        "x(t) = 3t and y(t) = 4t on one clock",
+        "position (15, 20) m at t = 5 s",
+        "mixed pair (15, 16) m rejected"
+      ],
+      "instance_constraints": [
+        "x and y are read at the same t before they are paired.",
+        "Velocities are relative to the bank."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Pairing an x value and a y value taken at different times."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-BOAT-RIVER.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "x(t) = 3t and y(t) = 4t on one clock",
+          "symbol": "t",
+          "in_words": "The one clock t on which both x(t) = 3t and y(t) = 4t are read."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-BOAT-V0",
+          "label": "The crossing",
+          "purpose": "Show the bank frame and the boat's two velocity components.",
+          "visible_elements": [
+            "bank frame: origin at the jetty, +x downstream, +y across",
+            "v_x = 3 m/s, v_y = 4 m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BOAT-V1",
+          "label": "One clock",
+          "purpose": "Write each column as a function of one shared t.",
+          "visible_elements": [
+            "bank frame: origin at the jetty, +x downstream, +y across",
+            "v_x = 3 m/s, v_y = 4 m/s",
+            "x(t) = 3t and y(t) = 4t on one clock"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BOAT-V2",
+          "label": "Position at 5 s",
+          "purpose": "Pair the same-time values and reject a mixed pair.",
+          "visible_elements": [
+            "bank frame: origin at the jetty, +x downstream, +y across",
+            "v_x = 3 m/s, v_y = 4 m/s",
+            "x(t) = 3t and y(t) = 4t on one clock",
+            "position (15, 20) m at t = 5 s",
+            "mixed pair (15, 16) m rejected"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-BOAT-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-BOAT-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-BOAT-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-SKATER-WIND",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the skater starting at the origin at 5 m/s along +x, with the wind's constant acceleration (−1 i + 2 j) m/s² for 4 s.",
+      "required_elements": [
+        "skater at the origin with u = 5 m/s along +x",
+        "a = (−1 i + 2 j) m/s², constant for 4 s",
+        "axis equations with one shared t",
+        "path over 4 s",
+        "v = (1 i + 8 j) m/s, r = (12 i + 16 j) m"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY",
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "skater at the origin with u = 5 m/s along +x",
+        "a = (−1 i + 2 j) m/s², constant for 4 s",
+        "axis equations with one shared t",
+        "path over 4 s",
+        "v = (1 i + 8 j) m/s, r = (12 i + 16 j) m"
+      ],
+      "instance_constraints": [
+        "The x equations use only u_x = 5 m/s and a_x = −1 m/s²; the y equations only u_y = 0 and a_y = 2 m/s².",
+        "The path and the state at t = 4 s appear only in the last stage."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Dropping the sign of a_x = −1 m/s²."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-SKATER-WIND.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "a = (−1 i + 2 j) m/s², constant for 4 s",
+          "symbol": "a_x",
+          "in_words": "The skater's x-acceleration, −1 m/s², constant for the 4 s."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-SKATER-V0",
+          "label": "The start",
+          "purpose": "Show the frame, the initial velocity and the constant acceleration.",
+          "visible_elements": [
+            "skater at the origin with u = 5 m/s along +x",
+            "a = (−1 i + 2 j) m/s², constant for 4 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SKATER-V1",
+          "label": "Each axis",
+          "purpose": "Check each acceleration component and write the axis equations with one t.",
+          "visible_elements": [
+            "skater at the origin with u = 5 m/s along +x",
+            "a = (−1 i + 2 j) m/s², constant for 4 s",
+            "axis equations with one shared t"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-SKATER-V2",
+          "label": "At t = 4 s",
+          "purpose": "Draw the path and read the state at 4 s.",
+          "visible_elements": [
+            "skater at the origin with u = 5 m/s along +x",
+            "a = (−1 i + 2 j) m/s², constant for 4 s",
+            "axis equations with one shared t",
+            "path over 4 s",
+            "v = (1 i + 8 j) m/s, r = (12 i + 16 j) m"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-SKATER-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-SKATER-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-SKATER-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-BASKETBALL-2M",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the basketball released 2 m above the floor with u_x = 6 m/s and u_y = 8 m/s, in a frame with its origin on the floor below the release point.",
+      "required_elements": [
+        "release 2 m above the floor",
+        "u_x = 6 m/s, u_y = 8 m/s",
+        "origin on the floor below the release point",
+        "a = (0, −10) m/s²",
+        "component equations with the 2 m start",
+        "path to 0.5 s",
+        "position (3, 4.75) m, velocity (6 i + 3 j) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "release 2 m above the floor",
+        "u_x = 6 m/s, u_y = 8 m/s",
+        "origin on the floor below the release point",
+        "a = (0, −10) m/s²",
+        "component equations with the 2 m start",
+        "path to 0.5 s",
+        "position (3, 4.75) m, velocity (6 i + 3 j) m/s"
+      ],
+      "instance_constraints": [
+        "y(0) = 2 m in this frame.",
+        "x(t) and y(t) use one clock from the release."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Dropping the 2 m starting height from y(t)."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-BASKETBALL-2M.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "u_x = 6 m/s, u_y = 8 m/s",
+          "symbol": "u_y",
+          "in_words": "The ball's upward launch component, 8 m/s."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-BBALL-V0",
+          "label": "The release",
+          "purpose": "Show the frame, the 2 m release height and the launch components.",
+          "visible_elements": [
+            "release 2 m above the floor",
+            "u_x = 6 m/s, u_y = 8 m/s",
+            "origin on the floor below the release point"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BBALL-V1",
+          "label": "Model and equations",
+          "purpose": "Declare the gravity-only model and write the component equations.",
+          "visible_elements": [
+            "release 2 m above the floor",
+            "u_x = 6 m/s, u_y = 8 m/s",
+            "origin on the floor below the release point",
+            "a = (0, −10) m/s²",
+            "component equations with the 2 m start"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BBALL-V2",
+          "label": "At t = 0.5 s",
+          "purpose": "Draw the path to 0.5 s and read the state.",
+          "visible_elements": [
+            "release 2 m above the floor",
+            "u_x = 6 m/s, u_y = 8 m/s",
+            "origin on the floor below the release point",
+            "a = (0, −10) m/s²",
+            "component equations with the 2 m start",
+            "path to 0.5 s",
+            "position (3, 4.75) m, velocity (6 i + 3 j) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-BBALL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-BBALL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-BBALL-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-ANCHOR-POSITION-2-3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR",
+      "purpose": "Show the particle leaving the origin with u = (2, 0) m/s and constant a = (0, 6) m/s², each axis worked on its own at one shared time.",
+      "required_elements": [
+        "particle at the origin, u = (2, 0) m/s",
+        "a = (0, 6) m/s²",
+        "Δx = 2 m, Δy = 3 m",
+        "position (2, 3) m at t = 1 s"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "particle at the origin, u = (2, 0) m/s",
+        "a = (0, 6) m/s²",
+        "Δx = 2 m, Δy = 3 m",
+        "position (2, 3) m at t = 1 s"
+      ],
+      "instance_constraints": [
+        "Δx and Δy are both read at t = 1 s."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Letting the x-velocity change because the y-velocity does."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-ANCHOR-POSITION-2-3.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Δx = 2 m, Δy = 3 m",
+          "symbol": "Delta y",
+          "in_words": "The y displacement at t = 1 s, 0.5 × 6 × 1² = 3 m."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-ANC23-V0",
+          "label": "The start",
+          "purpose": "Show the particle, its initial velocity and its constant acceleration.",
+          "visible_elements": [
+            "particle at the origin, u = (2, 0) m/s",
+            "a = (0, 6) m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ANC23-V1",
+          "label": "Each axis",
+          "purpose": "Work each axis on its own at t = 1 s.",
+          "visible_elements": [
+            "particle at the origin, u = (2, 0) m/s",
+            "a = (0, 6) m/s²",
+            "Δx = 2 m, Δy = 3 m"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ANC23-V2",
+          "label": "One position",
+          "purpose": "Pair the same-time values into the position.",
+          "visible_elements": [
+            "particle at the origin, u = (2, 0) m/s",
+            "a = (0, 6) m/s²",
+            "Δx = 2 m, Δy = 3 m",
+            "position (2, 3) m at t = 1 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-ANC23-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-ANC23-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-ANC23-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-ANCHOR-VELOCITY-5-NEG2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "VECTOR",
+      "purpose": "Show the initial velocity u = (1, 2) m/s and the constant acceleration a = (2, −2) m/s², updated axis by axis on one clock.",
+      "required_elements": [
+        "u = (1, 2) m/s",
+        "a = (2, −2) m/s², constant",
+        "v_x = 5 m/s, v_y = −2 m/s",
+        "v = (5, −2) m/s at t = 2 s"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-VELOCITY"
+      ],
+      "read_order": [
+        "u = (1, 2) m/s",
+        "a = (2, −2) m/s², constant",
+        "v_x = 5 m/s, v_y = −2 m/s",
+        "v = (5, −2) m/s at t = 2 s"
+      ],
+      "instance_constraints": [
+        "Each axis uses only its own signed components.",
+        "The same t = 2 s is used on both axes."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Dropping the sign of a_y = −2 m/s²."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-ANCHOR-VELOCITY-5-NEG2.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "v_x = 5 m/s, v_y = −2 m/s",
+          "symbol": "v_x",
+          "in_words": "The x-velocity at t = 2 s, 1 + 2 × 2 = 5 m/s."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-ANCV5-V0",
+          "label": "The given vectors",
+          "purpose": "Show u and the constant a in one frame.",
+          "visible_elements": [
+            "u = (1, 2) m/s",
+            "a = (2, −2) m/s², constant"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ANCV5-V1",
+          "label": "Each axis",
+          "purpose": "Update each velocity component to t = 2 s.",
+          "visible_elements": [
+            "u = (1, 2) m/s",
+            "a = (2, −2) m/s², constant",
+            "v_x = 5 m/s, v_y = −2 m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-ANCV5-V2",
+          "label": "Recombined",
+          "purpose": "Recombine the same-time components.",
+          "visible_elements": [
+            "u = (1, 2) m/s",
+            "a = (2, −2) m/s², constant",
+            "v_x = 5 m/s, v_y = −2 m/s",
+            "v = (5, −2) m/s at t = 2 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-ANCV5-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-ANCV5-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-ANCV5-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-GRAVITY-GATE-10-5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the gravity-only condition that licenses the ideal projectile model, then an ideal launch with u_x = 10 m/s and u_y = 5 m/s.",
+      "required_elements": [
+        "gravity only after release",
+        "a_x = 0, a_y = −g",
+        "u = (10, 5) m/s, g = 10 m/s²",
+        "path for 1 s",
+        "back at launch height, v = (10, −5) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "gravity only after release",
+        "a_x = 0, a_y = −g",
+        "u = (10, 5) m/s, g = 10 m/s²",
+        "path for 1 s",
+        "back at launch height, v = (10, −5) m/s"
+      ],
+      "instance_constraints": [
+        "The model is chosen from the post-release interactions, not from the curved path."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Keeping a horizontal acceleration after release."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-GRAVITY-GATE-10-5.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "a_x = 0, a_y = −g",
+          "symbol": "g",
+          "in_words": "The gravity that is the only interaction after release, so a_y = −g."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-GATE105-V0",
+          "label": "The model gate",
+          "purpose": "State the post-release interactions and the component accelerations they license.",
+          "visible_elements": [
+            "gravity only after release",
+            "a_x = 0, a_y = −g"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-GATE105-V1",
+          "label": "The launch",
+          "purpose": "Show the launch components.",
+          "visible_elements": [
+            "gravity only after release",
+            "a_x = 0, a_y = −g",
+            "u = (10, 5) m/s, g = 10 m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-GATE105-V2",
+          "label": "After 1 s",
+          "purpose": "Draw the 1 s flight back to launch height and read v.",
+          "visible_elements": [
+            "gravity only after release",
+            "a_x = 0, a_y = −g",
+            "u = (10, 5) m/s, g = 10 m/s²",
+            "path for 1 s",
+            "back at launch height, v = (10, −5) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-GATE105-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-GATE105-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-GATE105-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-BALCONY-8-6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-EXAMSIDE-MIP-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the ball thrown from the balcony with u_x = 8 m/s and u_y = 6 m/s, with the model decided from what acts after release.",
+      "required_elements": [
+        "ball thrown from a balcony",
+        "u_x = 8 m/s, u_y = 6 m/s",
+        "gravity only: a = (0, −10) m/s²",
+        "component relations",
+        "path for 1 s",
+        "Δr = (8 i + 1 j) m, v = (8 i − 4 j) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "ball thrown from a balcony",
+        "u_x = 8 m/s, u_y = 6 m/s",
+        "gravity only: a = (0, −10) m/s²",
+        "component relations",
+        "path for 1 s",
+        "Δr = (8 i + 1 j) m, v = (8 i − 4 j) m/s"
+      ],
+      "instance_constraints": [
+        "The model is decided before any component equation is used.",
+        "Δx = 8t and Δy = 6t − 5t² use one clock."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Choosing the projectile model because the path looks curved."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-BALCONY-8-6.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "u_x = 8 m/s, u_y = 6 m/s",
+          "symbol": "u_x",
+          "in_words": "The ball's horizontal launch component, 8 m/s, unchanged in flight."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-BALCONY-V0",
+          "label": "The throw",
+          "purpose": "Show the release point and the launch components.",
+          "visible_elements": [
+            "ball thrown from a balcony",
+            "u_x = 8 m/s, u_y = 6 m/s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BALCONY-V1",
+          "label": "Model gate",
+          "purpose": "Decide the model from the post-release interactions.",
+          "visible_elements": [
+            "ball thrown from a balcony",
+            "u_x = 8 m/s, u_y = 6 m/s",
+            "gravity only: a = (0, −10) m/s²"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BALCONY-V2",
+          "label": "Component relations",
+          "purpose": "Write the component relations on one clock.",
+          "visible_elements": [
+            "ball thrown from a balcony",
+            "u_x = 8 m/s, u_y = 6 m/s",
+            "gravity only: a = (0, −10) m/s²",
+            "component relations"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-BALCONY-V3",
+          "label": "At t = 1 s",
+          "purpose": "Draw the path from the balcony for 1 s and read Δr and v.",
+          "visible_elements": [
+            "ball thrown from a balcony",
+            "u_x = 8 m/s, u_y = 6 m/s",
+            "gravity only: a = (0, −10) m/s²",
+            "component relations",
+            "path for 1 s",
+            "Δr = (8 i + 1 j) m, v = (8 i − 4 j) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-BALCONY-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-BALCONY-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-BALCONY-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-TRACKER-4T",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the tracked particle with x(t) = 4t m and y(t) = 10 − 2t² m in one fixed frame.",
+      "required_elements": [
+        "one fixed frame",
+        "x(t) = 4t m, y(t) = 10 − 2t² m",
+        "x and y columns on one clock",
+        "path to t = 2 s",
+        "position (8, 2) m",
+        "x(2 s) with y(3 s) is not a position"
+      ],
+      "relation_refs": [
+        "REL-KIN-2D-DISPLACEMENT"
+      ],
+      "read_order": [
+        "one fixed frame",
+        "x(t) = 4t m, y(t) = 10 − 2t² m",
+        "x and y columns on one clock",
+        "path to t = 2 s",
+        "position (8, 2) m",
+        "x(2 s) with y(3 s) is not a position"
+      ],
+      "instance_constraints": [
+        "Both components are evaluated at the same t."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Pairing x(2 s) with y(3 s) as one position."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-TRACKER-4T.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "x and y columns on one clock",
+          "symbol": "t",
+          "in_words": "The one clock t that feeds both x(t) and y(t)."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-TRACKER-V0",
+          "label": "The tracker data",
+          "purpose": "Show the frame and the two component functions.",
+          "visible_elements": [
+            "one fixed frame",
+            "x(t) = 4t m, y(t) = 10 − 2t² m"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-TRACKER-V1",
+          "label": "One clock",
+          "purpose": "Tie both columns to one t.",
+          "visible_elements": [
+            "one fixed frame",
+            "x(t) = 4t m, y(t) = 10 − 2t² m",
+            "x and y columns on one clock"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-TRACKER-V2",
+          "label": "At t = 2 s",
+          "purpose": "Evaluate both functions at t = 2 s and plot the point.",
+          "visible_elements": [
+            "one fixed frame",
+            "x(t) = 4t m, y(t) = 10 − 2t² m",
+            "x and y columns on one clock",
+            "path to t = 2 s",
+            "position (8, 2) m"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-TRACKER-V3",
+          "label": "Mixed instants",
+          "purpose": "Reject a pair taken at two different times.",
+          "visible_elements": [
+            "one fixed frame",
+            "x(t) = 4t m, y(t) = 10 − 2t² m",
+            "x and y columns on one clock",
+            "path to t = 2 s",
+            "position (8, 2) m",
+            "x(2 s) with y(3 s) is not a position"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-TRACKER-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-TRACKER-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-TRACKER-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-KIN-2D-CLIFF-15-20",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GRAPH",
+      "purpose": "Show the stone launched horizontally at 15 m/s from the cliff 20 m above level ground.",
+      "required_elements": [
+        "cliff 20 m high",
+        "u_x = 15 m/s, u_y = 0",
+        "x and y columns with the 20 m drop in y",
+        "t = 2 s",
+        "path to impact",
+        "Δx = 30 m, v = (15 i − 20 j) m/s"
+      ],
+      "relation_refs": [
+        "REL-PROJECTILE-COMPONENT-MODEL"
+      ],
+      "read_order": [
+        "cliff 20 m high",
+        "u_x = 15 m/s, u_y = 0",
+        "x and y columns with the 20 m drop in y",
+        "t = 2 s",
+        "path to impact",
+        "Δx = 30 m, v = (15 i − 20 j) m/s"
+      ],
+      "instance_constraints": [
+        "The fall time comes from the vertical column.",
+        "The same t is reused on every component."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Putting the 20 m drop into the horizontal equation."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-KIN-2D-CLIFF-15-20.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "t = 2 s",
+          "symbol": "t",
+          "in_words": "The landing time, 2 s, found from y and reused on x."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-KIN-2D-CLIFF-V0",
+          "label": "The launch",
+          "purpose": "Show the cliff, the drop and the horizontal launch.",
+          "visible_elements": [
+            "cliff 20 m high",
+            "u_x = 15 m/s, u_y = 0"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CLIFF-V1",
+          "label": "Two columns",
+          "purpose": "Place each given in its own axis column on one clock.",
+          "visible_elements": [
+            "cliff 20 m high",
+            "u_x = 15 m/s, u_y = 0",
+            "x and y columns with the 20 m drop in y"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CLIFF-V2",
+          "label": "Landing time",
+          "purpose": "Solve the vertical landing condition for t.",
+          "visible_elements": [
+            "cliff 20 m high",
+            "u_x = 15 m/s, u_y = 0",
+            "x and y columns with the 20 m drop in y",
+            "t = 2 s"
+          ]
+        },
+        {
+          "id": "VIS-KIN-2D-CLIFF-V3",
+          "label": "At impact",
+          "purpose": "Reuse t on x and on both velocity components.",
+          "visible_elements": [
+            "cliff 20 m high",
+            "u_x = 15 m/s, u_y = 0",
+            "x and y columns with the 20 m drop in y",
+            "t = 2 s",
+            "path to impact",
+            "Δx = 30 m, v = (15 i − 20 j) m/s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-KIN-2D-CLIFF-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-KIN-2D-CLIFF-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-KIN-2D-CLIFF-V2"
         }
       ]
     }
@@ -5480,12 +6431,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "initial_ref": "REP-KIN-2D-TRACKER-4T",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-SHARED-CLOCK",
+        "bound_ref": "REP-KIN-2D-TRACKER-4T",
         "stage_refs": [
-          "VIS-KIN-2D-SHARED-V0",
-          "VIS-KIN-2D-SHARED-V1"
+          "VIS-KIN-2D-TRACKER-V0"
         ]
       },
       "failure_signal": "Your position is (8, −8) m or (12, 2) m: one coordinate was read at t = 3 s (y(3) = −8 m, x(3) = 12 m) while the other used t = 2 s.",
@@ -6009,11 +6959,11 @@
         }
       ],
       "representation_roles": {
-        "initial_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "initial_ref": "REP-KIN-2D-CLIFF-15-20",
         "safe_ref": null,
-        "bound_ref": "REP-KIN-2D-EVENT-CLOCK",
+        "bound_ref": "REP-KIN-2D-CLIFF-15-20",
         "stage_refs": [
-          "VIS-KIN-2D-EVENT-V0"
+          "VIS-KIN-2D-CLIFF-V0"
         ]
       },
       "failure_signal": "Your fall time is about 1.41 s (range about 21 m): that is √(h/g) with the ½ dropped. Or you wrote +20 = −5t² and found no real root: the drop is Δy = −20 m. Or you used the same-height formula 2u_y/g and got 0 s: it does not apply to a fall from a cliff. −20 = −5t² gives t = 2 s.",
@@ -6141,7 +7091,7 @@
           "supports_move_ref": "R-KIN-2D-SAME-REPRESENT"
         },
         {
-          "text": "The vertical equation has a launch root and a later root; identify which event is requested before reusing the time.",
+          "text": "Factor 16t − 4t² = 4t(4 − t). Which factor gives the launch, and which gives the landing?",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-KIN-2D-SAME-EVENT"
