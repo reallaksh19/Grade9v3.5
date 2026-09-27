@@ -157,6 +157,76 @@ class Pr306UiRegressions(unittest.TestCase):
                 self.assertNotIn("@keyframes", source)
                 self.assertIsNone(orphan.search(source))
 
+    def test_vector_public_orbit_uses_pointer_capture_and_responsive_canvas(self):
+        source = (
+            REPO / "public" / "mathematics" / "vectors" / "explorers" / "vector_algebra" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("canvas.addEventListener('pointerdown'", source)
+        self.assertIn("canvas.addEventListener('pointermove'", source)
+        self.assertIn("canvas.addEventListener('pointercancel'", source)
+        self.assertIn("canvas.setPointerCapture", source)
+        self.assertIn("touch-action: none", source)
+        self.assertIn("canvas.dataset.logicalWidth", source)
+        self.assertIn("Math.min(window.devicePixelRatio || 1, 2)", source)
+        self.assertNotIn("canvas.addEventListener('mousedown'", source)
+        self.assertNotIn("canvas.addEventListener('touchstart'", source)
+
+    def test_event_clock_wall_drag_uses_pointer_capture(self):
+        source = (
+            REPO / "public" / "physics" / "motion-in-2d" / "explorers" / "the_event_clock" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn('id="svgContainer" style="touch-action:none"', source)
+        self.assertIn("svgContainer.addEventListener('pointerdown'", source)
+        self.assertIn("svgContainer.addEventListener('pointermove'", source)
+        self.assertIn("svgContainer.addEventListener('pointercancel'", source)
+        self.assertIn("svgContainer.setPointerCapture", source)
+        self.assertNotIn("svgContainer.addEventListener('mousedown'", source)
+        self.assertNotIn("svgContainer.addEventListener('touchstart'", source)
+
+    def test_diagram_typography_has_no_explicit_sub_13px_labels(self):
+        paths = [
+            "public/chemistry/bonding/explorers/chemical_bonding/index.html",
+            "public/chemistry/gases/explorers/behaviour_of_gases/index.html",
+            "public/chemistry/redox/explorers/redox_reactions/index.html",
+            "public/chemistry/some-basic-concepts/explorers/mole_concept/index.html",
+            "public/mathematics/vectors/explorers/vector_algebra/index.html",
+            "public/physics/motion-1d/explorers/circular-dynamics/index.html",
+            "public/physics/motion-1d/explorers/motion_in_1d/index.html",
+            "public/physics/motion-2d/explorers/motion-in-a-plane/index.html",
+            "public/physics/motion-in-2d/explorers/independent_components_shared_clock/index.html",
+            "public/physics/motion-in-2d/explorers/is_it_really_a_projectile/index.html",
+            "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "public/physics/motion-in-2d/explorers/same_height_same_speed/index.html",
+            "public/physics/motion-in-2d/explorers/the_apex_fallacy/index.html",
+            "public/physics/motion-in-2d/explorers/the_event_clock/index.html",
+            "public/physics/nlm/explorers/accelerated-frames/index.html",
+            "public/physics/nlm/explorers/atwood-pulleys/index.html",
+            "public/physics/nlm/explorers/connected-blocks/index.html",
+            "public/physics/nlm/explorers/friction-threshold/index.html",
+            "standalone/chemistry-behaviour-of-gases-master-suite.html",
+            "standalone/chemistry-chemical-bonding-master-suite.html",
+            "standalone/chemistry-mole-concept-master-suite.html",
+            "standalone/chemistry-redox-reactions-master-suite.html",
+            "standalone/core2a-projectile-study.html",
+            "standalone/mathematics-polynomials-and-coordinates-suite.html",
+            "standalone/motion-in-1d-master-suite.html",
+            "standalone/motion-in-2d-master-suite.html",
+            "standalone/physics-motion-in-a-plane-interactive-suite.html",
+            "standalone/vector-algebra-3d-master-suite.html",
+        ]
+        re_mod = __import__("re")
+        svg_micro = re_mod.compile(r'font-size=["\'](?:[0-9]|1[0-2](?:\.\d+)?)["\']')
+        css_micro = re_mod.compile(r"font-size\s*:\s*(?:[0-9]|1[0-2](?:\.\d+)?)px", re_mod.I)
+        canvas_micro = re_mod.compile(
+            r"\.font\s*=\s*[\"\'][^\"\']*?(?:[0-9]|1[0-2](?:\.\d+)?)px[^\"\']*[\"\']"
+        )
+        for rel in paths:
+            with self.subTest(path=rel):
+                source = (REPO / rel).read_text(encoding="utf-8")
+                self.assertIsNone(svg_micro.search(source))
+                self.assertIsNone(css_micro.search(source))
+                self.assertIsNone(canvas_micro.search(source))
+
 
 if __name__ == "__main__":
     unittest.main()
