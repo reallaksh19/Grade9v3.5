@@ -1820,7 +1820,7 @@
           ],
           "independent_checks": [
             {
-              "statement": "Swap the pair's values and test again: if the swapped pair also works, the equation must treat x and y symmetrically; otherwise the order matters.",
+              "statement": "When the pair's two values differ, swap them and test the swapped pair as well: if it gives a different result, the order of the values matters, so each value must go in its own variable's place. For x + 2y = 6, (4, 1) gives 6 but (1, 4) gives 9. A pair with equal values, such as (2, 2), is its own swap and cannot show this.",
               "check_type": "SPECIAL_CASE"
             },
             {
@@ -6475,15 +6475,15 @@
           "supports_move_ref": "Q3-REP"
         },
         {
-          "text": "Once you have a number for k, compute 2x + 3y for your pair to confirm.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
-          "supports_move_ref": "Q3-SOL"
+          "text": "The equation has three letters: x, y and k. Which of them does the question give you values for, and which one does it ask you to find?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q3-REP"
         },
         {
-          "text": "Try another point with your k, such as (−1, 2), as a check.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "text": "Name the relation that the word ‘solution’ promises: what must be true of the two sides of 2x + 3y = k at a pair that is a solution?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "supports_move_ref": "Q3-CHK"
         }
       ],
@@ -6972,9 +6972,9 @@
           "supports_move_ref": "Q37-REP"
         },
         {
-          "text": "Check (−4, 0) and (−4, 5) in the equation once you have decided.",
-          "support_kind": "EXECUTE",
-          "reveals": "METHOD",
+          "text": "Name the relation that decides both counts: a candidate is a solution exactly when it makes 2x + 1 and x − 3 equal. Before you commit, apply it to whatever a candidate is in each setting.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
           "supports_move_ref": "Q37-CHK"
         }
       ],
