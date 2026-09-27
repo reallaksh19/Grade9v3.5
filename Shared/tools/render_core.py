@@ -617,8 +617,27 @@ def render_digest(ctx: Ctx) -> str:
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
         h.update(json.dumps(p, sort_keys=True).encode())
+    # Blueprint policy is render authority: a policy change must invalidate stale output.
+    h.update(json.dumps(ctx.blueprints, sort_keys=True).encode())
     h.update(load_json(CONTRACT)["version"].encode())
     return h.hexdigest()[:16]
+
+
+def _asset_root(ctx: Ctx) -> str:
+    """Return the site-root prefix declared by the product manifest."""
+    home = str(ctx.manifest.get("home_href") or "index.html")
+    return home[:-len("index.html")] if home.endswith("index.html") else ""
+
+
+def _shared_head_assets(ctx: Ctx) -> str:
+    """Renderer-owned tablet/math assets; no generated-product post-processing."""
+    root = _asset_root(ctx)
+    return (
+        f'<link rel="stylesheet" href="{esc(root)}vendor/katex/0.16.8/katex.min.css">'
+        f'<script defer src="{esc(root)}vendor/katex/0.16.8/katex.min.js"></script>'
+        f'<script defer src="{esc(root)}vendor/katex/0.16.8/contrib/auto-render.min.js"></script>'
+        f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
+    )
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -636,6 +655,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<html lang="en" data-g9-shell data-g9-role="{role}" data-g9-mode="{mode}">'
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
+            f'{_shared_head_assets(ctx)}'
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
@@ -657,7 +677,7 @@ def index_page(ctx: Ctx, digest: str) -> str:
     return ("<!doctype html>\n"
             f'<html lang="en" data-g9-shell data-g9-role="INDEX"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}"><title>{esc(m["title"])}</title><style>{CSS}</style></head>'
+            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">{_shared_head_assets(ctx)}<title>{esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body>{header}{crumbs}<main><h1>{esc(m["title"])}</h1>{diag_html}<ol>{links}</ol></main><script>{JS}</script></body></html>\n')
 
 
