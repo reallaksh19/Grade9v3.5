@@ -3,8 +3,8 @@
   "subject": "Mathematics",
   "node_ref": "MAT-09-LINEAR-EQUATIONS-04",
   "verified_by": "agent-verifier-4",
-  "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:37227d69024ecabebe7005801ecde907c318d9b09dc949fd20715cc0a6b27ca3",
+  "verified_at": "2026-09-27",
+  "inputs_digest": "sha256:462ba52e919ee35eb3d46f7773978532afc0165c4525c0a9e488de1d0315f22f",
   "questions": [
     {
       "card_ref": "EV-MAT-09-LEQ-04-008",
@@ -60,7 +60,7 @@
   ],
   "records": [
     {"record_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS", "checked_fields": ["action", "success_criterion"], "agrees": true},
-    {"record_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task", "elicitation", "construction_units", "compact_anchor", "badge_reason", "research_contribution", "extensions.grade9v3:interactive_idea"], "agrees": false},
+    {"record_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task", "elicitation", "construction_units", "compact_anchor", "badge_reason", "research_contribution", "extensions.grade9v3:interactive_idea"], "agrees": true},
     {"record_ref": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
     {"record_ref": "REL-MAT-LEQ-04-STRAIGHT-LINE", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
     {"record_ref": "REP-MAT-LEQ-04-SOLUTION-LINE", "checked_fields": ["purpose", "instance_constraints", "reveal_stages", "misleading_alternatives"], "agrees": true},
@@ -69,26 +69,10 @@
     {"record_ref": "Q-MAT-LEQ-04-1A-GENERATE-PAIRS", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-04-1A-READ-THE-LINE", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
-    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": false},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
-    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "answer.rubric", "scaffolds", "hint_ladder", "failure_signal", "transfer"], "agrees": false}
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "answer.rubric", "scaffolds", "hint_ladder", "failure_signal", "transfer"], "agrees": true}
   ],
-  "findings": [
-    {
-      "target": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3.scaffolds",
-      "duty_for": "AUTHOR",
-      "detail": "Core2B item with transfer.protected_move_ref = Q3-DEC (substitute both coordinates of (2, 0) to get an equation for k). scaffolds[1] (hint_ladder order 2) says 'compute 2x + 3y for your pair'. That is exactly the protected substitution, so the pre-attempt help hands over the decision. Reword or replace this rung so it does not tell the learner to evaluate 2x + 3y at the given pair. The answer k = 4, the failure_signal ((B) 6 from putting 2 in for y), the check (-1, 2) and the novelty claim (a pair instead of Q20's single number) are otherwise correct."
-    },
-    {
-      "target": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7.scaffolds",
-      "duty_for": "AUTHOR",
-      "detail": "Core2B item with transfer.protected_move_ref = Q37-DEC (on the plane, notice y is unconstrained, so (-4, y) works for every y). scaffolds[2] (hint_ladder order 3) tells the learner to 'Check (-4, 0) and (-4, 5)'. Two pairs with the same x and different y show that y is free, which is the output of the protected decision. Replace that rung with a check that does not show pairs of the form (-4, y). The answer ((i) one, (ii) infinitely many), rubric and failure_signal are otherwise correct."
-    },
-    {
-      "target": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS.construction_units[0].independent_checks[0]",
-      "duty_for": "AUTHOR",
-      "detail": "The check says 'Swap the pair's values and test again: if the swapped pair also works, the equation must treat x and y symmetrically'. This is false when the two coordinates are equal: (2, 2) satisfies x + 2y = 6 and so does its swap (2, 2), yet the equation is not symmetric. The inference holds only for p != q, because ap + bq = aq + bp gives (a - b)(p - q) = 0. Restrict the statement to pairs with different coordinates, or replace this check."
-    }
-  ]
+  "findings": []
 }
