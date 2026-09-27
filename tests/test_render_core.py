@@ -177,6 +177,31 @@ class Renderer(unittest.TestCase):
                             for g in ctx.gaps))
 
 
+    def test_single_file_inlines_tablet_shell_and_uses_role_anchors(self):
+        pages, gaps, digest = render_core.build(manifest_file(self.tmp), mode="SINGLE_FILE")
+        self.assertTrue(gaps)
+        self.assertEqual(set(pages), {"product.html"})
+        html = pages["product.html"]
+        self.assertIn('data-g9-mode="SINGLE_FILE"', html)
+        self.assertIn('data-g9-tablet-shell', html)
+        self.assertNotIn('href="../../css/tablet-12-7.css"', html)
+        for role in render_core.ROLES:
+            self.assertIn(f'id="g9-role-{role}"', html)
+            self.assertIn(f'href="#g9-role-{role}"', html)
+        self.assertNotIn('href="core2a.html"', html)
+
+    def test_render_receipt_manifest_path_is_repository_relative(self):
+        out = self.tmp / "receipt"
+        path = manifest_file(self.tmp)
+        # Temp manifests cannot be repo-relative, but repository manifests must be.
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        if repo_manifest.is_file():
+            rc = render_core.main(["build", "--manifest", str(repo_manifest), "--out", str(out), "--draft"])
+            self.assertEqual(rc, 0)
+            receipt = json.loads((out / "render-receipt.json").read_text(encoding="utf-8"))
+            self.assertEqual(receipt["manifest"], "products/physics/phy-kin-2d-motion.manifest.json")
+
+
 class Manifest(unittest.TestCase):
     def test_manifest_holds_selection_only(self):
         m = product_manifest.derive(PKG, [BANK], "P", "T", "../index.html")
