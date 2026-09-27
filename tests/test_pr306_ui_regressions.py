@@ -100,6 +100,9 @@ class Pr306UiRegressions(unittest.TestCase):
         for question in bank["questions"]:
             for span in question.get("extensions", {}).get("grade9v3:math_spans", []):
                 self.assertIn(span["literal"], source_text(question, span["target"]))
+                self.assertEqual(span["literal"].count("("), span["literal"].count(")"))
+                if span["literal"].startswith(("sin", "cos", "tan")):
+                    self.assertTrue(span["tex"].startswith("\\"))
 
     def test_katex_vendor_dependency_closure_and_no_jsdelivr_runtime(self):
         css = (REPO / "public" / "vendor" / "katex" / "0.16.8" / "katex.min.css").read_text(encoding="utf-8")
