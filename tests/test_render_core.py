@@ -76,7 +76,8 @@ class Renderer(unittest.TestCase):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
         svg = self.tmp / "rep.svg"
-        svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>t</title>'
+        svg.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" role="img" aria-labelledby="t d">'
+                       '<title id="t">t</title><desc id="d">Accessible teaching figure.</desc>'
                        '<g data-g9-stage-id="S1"></g><g data-g9-stage-id="S2"></g></svg>', encoding="utf-8")
         rep = next(r for r in pkg["representations"] if r["id"] == "REP-KIN-2D-SHARED-CLOCK")
         rep["rendered_asset_refs"] = [str(svg.relative_to(REPO)) if svg.is_relative_to(REPO) else str(svg)]
@@ -112,6 +113,33 @@ class Renderer(unittest.TestCase):
         changed.blueprints = copy.deepcopy(ctx.blueprints)
         changed.blueprints["shell"]["typography_policy"]["minimum_learner_text_css_px"] = 15
         self.assertNotEqual(digest_before, render_core.render_digest(changed))
+
+
+    def test_authored_svg_without_accessible_name_and_description_is_a_typed_gap(self):
+        m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
+        pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
+        svg = self.tmp / "rep-inaccessible.svg"
+        svg.write_text(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">'
+            '<g data-g9-stage-id="S1"></g><g data-g9-stage-id="S2"></g></svg>',
+            encoding="utf-8",
+        )
+        rep = next(r for r in pkg["representations"] if r["id"] == "REP-KIN-2D-SHARED-CLOCK")
+        rep["rendered_asset_refs"] = ["rep-inaccessible.svg"]
+        original = render_core.asset_svg
+        render_core.asset_svg = lambda ref: svg.read_text(encoding="utf-8")
+        try:
+            path = self.tmp / "m-accessible.json"
+            m["package_refs"] = [str(self.tmp / "pkg-accessible.json")]
+            (self.tmp / "pkg-accessible.json").write_text(json.dumps(pkg), encoding="utf-8")
+            path.write_text(json.dumps(m), encoding="utf-8")
+            ctx = render_core.context(path)
+            ctx.packages = [pkg]
+            html = render_core.page(ctx, "CORE1A", "PAGES", "d")
+        finally:
+            render_core.asset_svg = original
+        self.assertNotIn('data-g9-representation="REP-KIN-2D-SHARED-CLOCK"', html)
+        self.assertTrue(any(g["duty"] == "BUILD_SCENE" and "accessible name" in g["detail"] for g in ctx.gaps))
 
 
 class Manifest(unittest.TestCase):
