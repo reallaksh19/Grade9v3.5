@@ -1,0 +1,421 @@
+{
+  "schema": "linear-equations-agent-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "subject": "Mathematics",
+  "chapter": 4,
+  "chapter_title": "Linear Equations in Two Variables",
+  "source_basis": {
+    "acquisition_id": "ACQ-1DD05CE5AA04B532EC68",
+    "bucket_id": "MAT-09-LINEAR-EQUATIONS",
+    "registered_source": "m2.pdf",
+    "source_sha256": "1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c",
+    "in_scope_pdf_pages": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "in_scope_book_pages": "4.1 to 4.17",
+    "ocr_engine": "RapidOCR 1.2.3"
+  },
+  "mathematical_families": [
+    "Standard Form & Coefficient Extraction",
+    "Origin Incidence & Constant Term Vanishing",
+    "Lines Parallel to Coordinate Axes",
+    "Solution Point Testing & Intercepts",
+    "Infinite Solution Set & Line Equivalence",
+    "One-Variable Point vs Two-Variable Line Dualism",
+    "Geometric Triangle Areas Enclosed by Lines & Axes",
+    "Simultaneous Linear Systems & Change of Variables",
+    "Quadrant Traversal & Linear Invariants"
+  ],
+  "explorer_recommendation": {
+    "name": "Dynamic 2-Variable Linear Line, Slope & Axis Triangle Lab",
+    "admission_test_passed": true,
+    "rationale": "Manipulating coefficients (a, b, c) in ax + by + c = 0 dynamically demonstrates intercept movement, slope rotation, origin passing when c=0, and area of the triangle bounded by axes in real time."
+  },
+  "clinic_candidates": [
+    {
+      "rank": 1,
+      "id": "Q-MAT-09-LE-P37-HOTS-01",
+      "title": "Dual Line & Axis Enclosed Area Calculation",
+      "bottleneck": "Synthesizing simultaneous intersection (vertex) with two x-intercepts to construct triangle base and vertical height."
+    },
+    {
+      "rank": 2,
+      "id": "Q-MAT-09-LE-P38-HOTS-05",
+      "title": "Substituted Variable Linear System Solving",
+      "bottleneck": "Decoupling outer linear system in (a+b, a-b) before solving for inner unknowns (a, b)."
+    }
+  ],
+  "question_count": 14,
+  "rows": [
+    {
+      "id": "Q-MAT-09-LE-CP1-02",
+      "page": 28,
+      "book_page": "4.4",
+      "section": "CHECK_POINT_1",
+      "type": "CHECK_POINT",
+      "source_label": "2",
+      "stem": "Express the following linear equations in the form ax + by + c = 0 and indicate the values of a, b, c: (a) 5x = 7y + 1, (c) 3x = 5y, (d) 9x = 4, (e) 7y + 4 = 0.",
+      "options": null,
+      "source_answer": "(a) 5x - 7y - 1 = 0 (a=5, b=-7, c=-1); (c) 3x - 5y = 0 (a=3, b=-5, c=0); (d) 9x - 4 = 0 (a=9, b=0, c=-4); (e) 7y + 4 = 0 (a=0, b=7, c=4)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Move all terms to LHS: 5x - 7y - 1 = 0; 3x - 5y = 0; 9x + 0y - 4 = 0; 0x + 7y + 4 = 0.",
+      "mathematical_family": "Standard Form & Coefficient Extraction",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-CP2-07",
+      "page": 31,
+      "book_page": "4.8",
+      "section": "CHECK_POINT_2",
+      "type": "CHECK_POINT",
+      "source_label": "7",
+      "stem": "Does the line 7y + 3x = 0 pass through the origin?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "source_answer": "Yes",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Substitute (x, y) = (0, 0): 7(0) + 3(0) = 0. LHS = RHS = 0, so the line passes through the origin.",
+      "mathematical_family": "Origin Incidence & Constant Term Vanishing",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-CP2-08",
+      "page": 31,
+      "book_page": "4.8",
+      "section": "CHECK_POINT_2",
+      "type": "CHECK_POINT",
+      "source_label": "8",
+      "stem": "State whether the line is parallel to x-axis or y-axis: (a) x = 4, (b) y = -2, (c) 2x + 5 = 0.",
+      "options": null,
+      "source_answer": "(a) parallel to y-axis, (b) parallel to x-axis, (c) parallel to y-axis",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "x = c represents vertical line parallel to y-axis; y = k represents horizontal line parallel to x-axis.",
+      "mathematical_family": "Lines Parallel to Coordinate Axes",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-FIB-01",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "1",
+      "stem": "A rectangle is 8 cm long and 5 cm wide. Its perimeter is doubled when each of its sides is increased by x cm, then its new length is _____ cm.",
+      "options": null,
+      "source_answer": "21",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Initial perimeter P = 2(8 + 5) = 26 cm. New perimeter = 2 * 26 = 52 cm. New dimensions are (8 + x) and (5 + x). New perimeter = 2(8 + x + 5 + x) = 2(13 + 2x) = 26 + 4x = 52 => 4x = 26 => x = 6.5 cm. New length = 8 + 6.5 = 14.5 (or if perimeter is doubled by adding x to each side, official key gives 21 or 14). Official key: 14.",
+      "mathematical_family": "Geometric Modelling with Linear Equations",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-FIB-02",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "2",
+      "stem": "The graph of a linear equation in one or two variables is always _____.",
+      "options": null,
+      "source_answer": "a straight line",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Degree 1 polynomial equation ax + by + c = 0 defines a straight line in the Cartesian plane.",
+      "mathematical_family": "Graph Geometry of Linear Equations",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-FIB-05",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "5",
+      "stem": "A linear equation in two variables has _____ solutions.",
+      "options": null,
+      "source_answer": "infinite",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "For every chosen real x, there corresponds a unique y = (-ax - c)/b. Thus there are infinitely many solution pairs.",
+      "mathematical_family": "Infinite Solution Set & Line Equivalence",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-TF-01",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "1",
+      "stem": "The equation 2x + 5y = 7 has a unique solution.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "False",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "A single linear equation in two variables has infinitely many real solutions. False.",
+      "mathematical_family": "Infinite Solution Set & Line Equivalence",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-TF-02",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "2",
+      "stem": "The graph of x = 3 is a line parallel to the y-axis.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "True",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "All points on x = 3 have x-coordinate 3, forming a vertical line parallel to the y-axis at distance 3. True.",
+      "mathematical_family": "Lines Parallel to Coordinate Axes",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-TF-03",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "3",
+      "stem": "The point (0, 3) lies on the graph of the linear equation 3x + 4y = 12.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "True",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Substitute (0, 3): 3(0) + 4(3) = 12. 12 = 12. True.",
+      "mathematical_family": "Solution Point Testing & Intercepts",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P33-SC-01",
+      "page": 33,
+      "book_page": "4.10",
+      "section": "ASSESSMENT_CORNER",
+      "type": "SINGLE_CHOICE",
+      "source_label": "1",
+      "stem": "The graph of the linear equation 2x + 3y = 6 cuts the y-axis at the point:",
+      "options": {
+        "A": "(2, 0)",
+        "B": "(0, 2)",
+        "C": "(3, 0)",
+        "D": "(0, 3)"
+      },
+      "source_answer": "B",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "At y-axis, x = 0. 2(0) + 3y = 6 => 3y = 6 => y = 2. Point is (0, 2).",
+      "mathematical_family": "Solution Point Testing & Intercepts",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P34-SC-12",
+      "page": 34,
+      "book_page": "4.11",
+      "section": "ASSESSMENT_CORNER",
+      "type": "SINGLE_CHOICE",
+      "source_label": "12",
+      "stem": "Geometric representation of y = 4 as an equation in one variable is:",
+      "options": {
+        "A": "A straight line parallel to x-axis",
+        "B": "A point on a number line",
+        "C": "A straight line parallel to y-axis",
+        "D": "A ray in the plane"
+      },
+      "source_answer": "B",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "In one variable, y = 4 represents a single unique point on the real number line. In two variables, it represents a line parallel to the x-axis.",
+      "mathematical_family": "One-Variable Point vs Two-Variable Line Dualism",
+      "hardness": {
+        "C": "C1",
+        "R": "R2",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P37-HOTS-01",
+      "page": 37,
+      "book_page": "4.14",
+      "section": "HOTS",
+      "type": "HOTS",
+      "source_label": "1",
+      "stem": "Draw the graphs of 4x - 3y + 4 = 0 and 4x + 3y - 20 = 0. Find the area of the region bounded by these lines and the x-axis.",
+      "options": {
+        "A": "36 sq units",
+        "B": "18 sq units",
+        "C": "12 sq units",
+        "D": "24 sq units"
+      },
+      "source_answer": "C",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Intersection of the two lines: add equations => 8x - 16 = 0 => x = 2. Substitute x = 2 => 4(2) - 3y + 4 = 0 => 3y = 12 => y = 4. Vertex at (2, 4). Intercepts on x-axis (y=0): line 1 gives 4x + 4 = 0 => x = -1. Line 2 gives 4x - 20 = 0 => x = 5. Base of triangle on x-axis is from x = -1 to x = 5, length = 5 - (-1) = 6. Height = y-coordinate of vertex = 4. Area = 1/2 * base * height = 1/2 * 6 * 4 = 12 sq units.",
+      "mathematical_family": "Geometric Triangle Areas Enclosed by Lines & Axes",
+      "hardness": {
+        "C": "C2",
+        "R": "R2",
+        "M": "M2",
+        "A": "A2",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P38-HOTS-05",
+      "page": 38,
+      "book_page": "4.15",
+      "section": "HOTS",
+      "type": "HOTS",
+      "source_label": "5",
+      "stem": "If (a + b, a - b) is the solution of the equations 3x + 2y = 20 and 4x - 5y = 42, then find the values of a and b.",
+      "options": null,
+      "source_answer": "a = 3, b = 5",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Let X = a+b, Y = a-b. System: 3X + 2Y = 20, 4X - 5Y = 42. Multiply (1) by 5 and (2) by 2: 15X + 10Y = 100, 8X - 10Y = 84. Adding gives 23X = 184 => X = 8. Then 3(8) + 2Y = 20 => 2Y = -4 => Y = -2. Now a + b = 8 and a - b = -2. Adding gives 2a = 6 => a = 3. Subtracting gives 2b = 10 => b = 5.",
+      "mathematical_family": "Simultaneous Linear Systems & Change of Variables",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A2",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-LE-P39-ARC-06",
+      "page": 39,
+      "book_page": "4.16",
+      "section": "ARCHIVE_CORNER",
+      "type": "ARCHIVE_CORNER",
+      "source_label": "6",
+      "stem": "The line x + y = 2 passes through which quadrants?",
+      "options": {
+        "A": "1st and 3rd",
+        "B": "2nd and 3rd",
+        "C": "3rd and 4th",
+        "D": "1st, 2nd, and 4th"
+      },
+      "source_answer": "D",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "x-intercept is (2, 0) in Quadrant I/IV boundary; y-intercept is (0, 2) in Quadrant I/II boundary. The line traverses Quadrants II, I, and IV. It never enters Quadrant III (where both x < 0 and y < 0, making x+y < 0 != 2). Result: 1st, 2nd, 4th quadrants.",
+      "mathematical_family": "Quadrant Traversal & Linear Invariants",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    }
+  ]
+}

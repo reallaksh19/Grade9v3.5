@@ -1,0 +1,238 @@
+{
+  "schema": "euclid-geometry-agent-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "subject": "Mathematics",
+  "chapter": 5,
+  "chapter_title": "Introduction to Euclid's Geometry",
+  "source_basis": {
+    "acquisition_id": "ACQ-1DD05CE5AA04B532EC68",
+    "bucket_id": "MAT-09-EUCLID-GEOMETRY",
+    "registered_source": "m2.pdf",
+    "source_sha256": "1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c",
+    "in_scope_pdf_pages": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "in_scope_book_pages": "5.1 to 5.8",
+    "ocr_engine": "RapidOCR 1.2.3"
+  },
+  "mathematical_families": [
+    "Axiomatic Geometry & Definitions",
+    "Axioms of Equality & Superposition",
+    "Parallel Postulate & Equivalences",
+    "Deductive Proofs from Axioms",
+    "Incidence & Intersection Invariants"
+  ],
+  "explorer_recommendation": {
+    "name": "Dynamic Euclid 5th Postulate & Interior Angle Sum Explorer",
+    "admission_test_passed": true,
+    "rationale": "Allows interactive tilting of a transversal line across two parallel/converging lines, dynamically calculating interior angle sums (alpha + beta) and showing the exact meeting point when sum < 180 deg."
+  },
+  "clinic_candidates": [
+    {
+      "rank": 1,
+      "id": "Q-MAT-09-EG-POST-05",
+      "title": "Euclid Fifth Postulate vs Playfair Axiom Equivalence",
+      "bottleneck": "Connecting the interior angle sum < 180 deg criterion with the modern uniqueness of parallel lines through an external point."
+    },
+    {
+      "rank": 2,
+      "id": "Q-MAT-09-EG-ILL-05",
+      "title": "Collinearity from Multiple Parallel Lines Through One Point",
+      "bottleneck": "Using Playfair uniqueness of parallel lines as a rigorous proof technique to force multiple lines into identity."
+    }
+  ],
+  "question_count": 8,
+  "rows": [
+    {
+      "id": "Q-MAT-09-EG-DEF-01",
+      "page": 43,
+      "book_page": "5.2",
+      "section": "EUCLIDS_DEFINITIONS",
+      "type": "DEFINITION",
+      "source_label": "1",
+      "stem": "State Euclid's definition of: (i) a point, (ii) a line, (iii) a surface.",
+      "options": null,
+      "source_answer": "(i) A point is that which has no part; (ii) A line is breadthless length; (iii) A surface is that which has length and breadth only.",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Direct quote from Euclid's Elements, Book I Definitions 1, 2, and 5.",
+      "mathematical_family": "Axiomatic Geometry & Definitions",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-AXIOM-01",
+      "page": 45,
+      "book_page": "5.4",
+      "section": "EUCLIDS_AXIOMS",
+      "type": "AXIOM",
+      "source_label": "Axiom 1",
+      "stem": "If b = a and c = a, then what is the relationship between b and c according to Euclid's Axioms?",
+      "options": null,
+      "source_answer": "b = c",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Euclid's Axiom 1: Things which are equal to the same thing are equal to one another.",
+      "mathematical_family": "Axioms of Equality & Superposition",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-AXIOM-04",
+      "page": 45,
+      "book_page": "5.4",
+      "section": "EUCLIDS_AXIOMS",
+      "type": "AXIOM",
+      "source_label": "Axiom 4",
+      "stem": "Things which coincide with one another are _____ to one another.",
+      "options": null,
+      "source_answer": "equal",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Euclid's Axiom 4: Principle of superposition—geometric figures that coincide exactly in position and dimensions are equal.",
+      "mathematical_family": "Axioms of Equality & Superposition",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-POST-05",
+      "page": 46,
+      "book_page": "5.5",
+      "section": "EUCLIDS_POSTULATES",
+      "type": "POSTULATE",
+      "source_label": "Postulate 5",
+      "stem": "State Euclid's Fifth Postulate and its modern equivalent (Playfair's Axiom).",
+      "options": null,
+      "source_answer": "If a straight line falling on two straight lines makes the interior angles on the same side of it taken together less than two right angles, then the two straight lines, if produced indefinitely, meet on that side on which the sum of angles is less than two right angles. Playfair's Axiom: For every line l and for every point P not lying on l, there exists a unique line m passing through P and parallel to l.",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Euclid Book I Postulate 5 establishes non-intersecting parallel lines and uniqueness of parallels.",
+      "mathematical_family": "Parallel Postulate & Equivalences",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-ILL-01",
+      "page": 47,
+      "book_page": "5.6",
+      "section": "ILLUSTRATIONS",
+      "type": "PROOF_ILLUSTRATION",
+      "source_label": "5.1",
+      "stem": "If a point C lies between two points A and B such that AC = BC, then prove that AC = 1/2 AB.",
+      "options": null,
+      "source_answer": "AC = 1/2 AB (Proved)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Since C lies between A and B, AC + BC = AB. Given AC = BC. Adding AC to both sides (Axiom 2): AC + AC = BC + AC => 2AC = AB. Applying Axiom 7 (halves of equals are equal): AC = 1/2 AB.",
+      "mathematical_family": "Deductive Proofs from Axioms",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-ILL-02",
+      "page": 47,
+      "book_page": "5.6",
+      "section": "ILLUSTRATIONS",
+      "type": "PROOF_ILLUSTRATION",
+      "source_label": "5.2",
+      "stem": "Prove that every line segment has one and only one mid-point.",
+      "options": null,
+      "source_answer": "Unique mid-point (Proved by contradiction)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Suppose segment AB has two distinct mid-points C and D. Then AC = 1/2 AB and AD = 1/2 AB. By Axiom 1 (things equal to the same thing are equal): AC = AD. Subtracting AC from AD gives CD = 0, which contradicts that C and D are distinct. Hence C and D coincide.",
+      "mathematical_family": "Deductive Proofs from Axioms",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A1",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-ILL-05",
+      "page": 48,
+      "book_page": "5.7",
+      "section": "ILLUSTRATIONS",
+      "type": "PROOF_ILLUSTRATION",
+      "source_label": "5.5",
+      "stem": "If lines AB, AC, AD and AE are all parallel to a line l, prove that points A, B, C, D and E are collinear.",
+      "options": null,
+      "source_answer": "Points A, B, C, D, E are collinear (Proved)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "By Playfair's Axiom (equivalent to Postulate 5), through a point A not on l, there can pass only one unique line parallel to l. Since AB, AC, AD, AE all pass through point A and are parallel to l, they must represent the same identical line. Hence all points A, B, C, D, E lie on the same line and are collinear.",
+      "mathematical_family": "Parallel Postulate & Equivalences",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A0",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-EG-P49-TH-01",
+      "page": 49,
+      "book_page": "5.8",
+      "section": "THEOREMS",
+      "type": "THEOREM",
+      "source_label": "Theorem 5.1",
+      "stem": "Two distinct lines cannot have more than one point in common. Prove.",
+      "options": null,
+      "source_answer": "At most one point of intersection (Proved)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Let l and m be two distinct lines. Suppose they intersect at two distinct points P and Q. Then both lines l and m pass through points P and Q. But by Axiom 5.1 / Postulate 1, there is a unique line passing through two distinct points. This contradicts that l and m are distinct lines. Therefore, two distinct lines cannot have more than one point in common.",
+      "mathematical_family": "Incidence & Intersection Invariants",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    }
+  ]
+}
