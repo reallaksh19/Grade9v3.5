@@ -67,10 +67,10 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-3 mb-1">
-            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
+            <span class="px-2.5 py-0.5 text-[13px] font-bold tracking-wider uppercase rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
               Topic 3 &middot; Kinematics
             </span>
-            <span class="text-xs font-mono text-[var(--muted-foreground)]">Model Selection &middot; Interaction Audit</span>
+            <span class="text-[13px] font-mono text-[var(--muted-foreground)]">Model Selection &middot; Interaction Audit</span>
           </div>
           <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
             IS IT REALLY A PROJECTILE?
@@ -81,7 +81,7 @@
         </div>
 
         <!-- CANDIDATE SWITCHER TABS -->
-        <div class="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-[var(--border)] self-start md:self-auto text-xs">
+        <div class="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-[var(--border)] self-start md:self-auto text-[13px]">
           <button id="btnCandA" onclick="selectCandidate('A')" class="tab-active px-3 py-2 rounded-lg font-semibold transition flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
             A &middot; Curved Ramp
@@ -98,7 +98,7 @@
       </div>
 
       <!-- INVARIANT BANNER -->
-      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px] md:text-sm">
         <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
           <span class="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold">FALLACY</span>
           <span class="text-slate-300">"It looks like an arc, so it must be a projectile." &rarr; <strong class="text-red-300">FALSE.</strong></span>
@@ -124,11 +124,11 @@
               <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
               CURVED PATH &amp; DYNAMIC FORCE AUDIT
             </h3>
-            <span class="text-xs text-slate-400">Watch the forces acting on the body as it moves along the curve</span>
+            <span class="text-[13px] text-slate-400">Watch the forces acting on the body as it moves along the curve</span>
           </div>
 
           <!-- AUDIT STATUS BADGE -->
-          <div id="auditBadge" class="px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50">
+          <div id="auditBadge" class="px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50">
             &cross; NOT A PROJECTILE (CONTACT NORMAL)
           </div>
         </div>
@@ -212,14 +212,14 @@
 
         <!-- SCRUBBER & ANIMATION CONTROLS -->
         <div class="mt-3 bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
-          <div class="flex justify-between items-center text-xs">
+          <div class="flex justify-between items-center text-[13px]">
             <span class="font-semibold text-slate-300 flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-blue-400"></span> Path Position Scrubber:
             </span>
             <span id="labelScrubPos" class="font-mono font-bold text-cyan-300 text-sm">s = 50% along curve</span>
           </div>
           <input type="range" id="rangeScrubPath" min="0" max="1" step="0.01" value="0.5" class="w-full cursor-pointer accent-blue-400" oninput="onScrubPath(this.value)">
-          <div class="flex justify-between text-[10px] font-mono text-slate-500">
+          <div class="flex justify-between text-[13px] font-mono text-slate-500">
             <span>Start</span>
             <span>Middle (Observe FBD Angles)</span>
             <span>End</span>
@@ -236,35 +236,35 @@
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
               THE INTERACTION AUDIT PROTOCOL
             </h3>
-            <span id="auditGateBadge" class="text-xs font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold">
+            <span id="auditGateBadge" class="text-[13px] font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold">
               AUDIT FAILED
             </span>
           </div>
 
           <!-- CANDIDATE SUMMARY CARD -->
-          <div id="candSummaryBox" class="p-3 rounded-xl border border-amber-500/40 bg-amber-950/20 text-xs space-y-1 mb-3">
+          <div id="candSummaryBox" class="p-3 rounded-xl border border-amber-500/40 bg-amber-950/20 text-[13px] space-y-1 mb-3">
             <div class="flex justify-between items-center font-bold text-amber-300">
               <span id="candTitle">CANDIDATE A: BALL ON CURVED RAMP</span>
-              <span class="font-mono text-[10px] bg-amber-900/60 px-2 py-0.5 rounded">Constrained</span>
+              <span class="font-mono text-[13px] bg-amber-900/60 px-2 py-0.5 rounded">Constrained</span>
             </div>
-            <p id="candDesc" class="text-slate-300 text-[11px] leading-relaxed">
+            <p id="candDesc" class="text-slate-300 text-[13px] leading-relaxed">
               A ball rolls without slipping along a smooth curved metal track under gravity.
             </p>
           </div>
 
           <!-- THE 3-POINT AUDIT CHECKLIST -->
-          <div class="space-y-2 text-xs">
+          <div class="space-y-2 text-[13px]">
 
             <!-- CHECK 1: CONTACT FORCES -->
             <div id="cardCheck1" class="p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-slate-200 flex items-center gap-1.5">
-                  <span id="iconCheck1" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]">&cross;</span>
+                  <span id="iconCheck1" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]">&cross;</span>
                   1. ZERO CONTACT FORCES?
                 </span>
-                <span id="statusCheck1" class="font-mono text-[10px] text-red-400 font-bold">FAILED (N &ne; 0)</span>
+                <span id="statusCheck1" class="font-mono text-[13px] text-red-400 font-bold">FAILED (N &ne; 0)</span>
               </div>
-              <p id="descCheck1" class="text-slate-400 text-[11px] leading-relaxed">
+              <p id="descCheck1" class="text-slate-400 text-[13px] leading-relaxed">
                 The track exerts a continuous normal force <span class="font-mono text-red-300 font-bold">N</span> perpendicular to the curve.
               </p>
             </div>
@@ -273,12 +273,12 @@
             <div id="cardCheck2" class="p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-slate-200 flex items-center gap-1.5">
-                  <span id="iconCheck2" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]">&cross;</span>
+                  <span id="iconCheck2" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]">&cross;</span>
                   2. HORIZONTAL ACCEL ZERO (a_x = 0)?
                 </span>
-                <span id="statusCheck2" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a_x &ne; 0)</span>
+                <span id="statusCheck2" class="font-mono text-[13px] text-red-400 font-bold">FAILED (a_x &ne; 0)</span>
               </div>
-              <p id="descCheck2" class="text-slate-400 text-[11px] leading-relaxed">
+              <p id="descCheck2" class="text-slate-400 text-[13px] leading-relaxed">
                 Because the track is tilted, the normal force has a horizontal component: <span class="font-mono text-red-300">N_x = N sin&theta; &ne; 0</span>.
               </p>
             </div>
@@ -287,12 +287,12 @@
             <div id="cardCheck3" class="p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-slate-200 flex items-center gap-1.5">
-                  <span id="iconCheck3" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]">&cross;</span>
+                  <span id="iconCheck3" class="w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]">&cross;</span>
                   3. PURE GRAVITATIONAL FALL (a_y = &minus;g)?
                 </span>
-                <span id="statusCheck3" class="font-mono text-[10px] text-red-400 font-bold">FAILED (a_y &ne; &minus;g)</span>
+                <span id="statusCheck3" class="font-mono text-[13px] text-red-400 font-bold">FAILED (a_y &ne; &minus;g)</span>
               </div>
-              <p id="descCheck3" class="text-slate-400 text-[11px] leading-relaxed">
+              <p id="descCheck3" class="text-slate-400 text-[13px] leading-relaxed">
                 The vertical component of normal force partially offsets gravity: <span class="font-mono text-red-300">N_y &minus; mg &ne; &minus;mg</span>.
               </p>
             </div>
@@ -300,22 +300,22 @@
           </div>
 
           <!-- MODEL VERDICT / EQUATION UNLOCK BOX -->
-          <div id="modelUnlockBox" class="mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-xs space-y-2">
+          <div id="modelUnlockBox" class="mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-[13px] space-y-2">
             <div class="flex justify-between items-center">
               <strong id="modelVerdictTitle" class="text-red-300 font-bold">VERDICT: PROJECTILE MODEL REJECTED</strong>
               <span id="modelLockIcon" class="text-base">&cross; LOCKED</span>
             </div>
-            <p id="modelVerdictText" class="text-slate-300 text-[11px] leading-relaxed">
+            <p id="modelVerdictText" class="text-slate-300 text-[13px] leading-relaxed">
               Applying <span class="font-mono text-cyan-300">x(t) = v_{0x}t</span> and <span class="font-mono text-purple-300">y(t) = v_{0y}t &minus; &frac12;gt&sup2;</span> here is <strong>completely invalid</strong>. The ball is not in free fall!
             </p>
-            <div id="correctModelFormula" class="p-2 bg-slate-950 rounded font-mono text-center text-slate-400 text-xs">
+            <div id="correctModelFormula" class="p-2 bg-slate-950 rounded font-mono text-center text-slate-400 text-[13px]">
               Governing Model: Constrained Curve Lagrangian / Work-Energy
             </div>
           </div>
         </div>
 
         <!-- PEDAGOGICAL TAKEAWAY -->
-        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
+        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 text-[13px] text-slate-300 leading-relaxed">
           <strong class="text-white block mb-1">Pedagogical Invariant:</strong>
           Kinematic equations are mathematically derived from Newton's Second Law (<span class="font-mono">&Sigma;F = ma</span>). If the force interaction does not equal <span class="font-mono">&minus;mg&#309;</span>, the parabolic equations <span class="font-mono">a_x=0, a_y=&minus;g</span> do not apply &mdash; no matter how parabolic the curve looks!
         </div>
@@ -330,26 +330,26 @@
     <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-lg space-y-4">
       <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
         <div class="flex items-center gap-2">
-          <div class="p-1.5 rounded-lg bg-blue-500/20 text-blue-400 font-bold text-xs font-mono">AUDIT MATRIX</div>
+          <div class="p-1.5 rounded-lg bg-blue-500/20 text-blue-400 font-bold text-[13px] font-mono">AUDIT MATRIX</div>
           <h3 class="font-bold text-base md:text-lg text-white">INTERACTION AUDIT SUMMARY MATRIX</h3>
         </div>
-        <span class="text-xs text-slate-400 font-mono">Geometry vs. Dynamics</span>
+        <span class="text-[13px] text-slate-400 font-mono">Geometry vs. Dynamics</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[13px] font-mono">
         <!-- Candidate A -->
         <div class="bg-slate-950 p-4 rounded-xl border border-amber-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-amber-300 font-bold">A &middot; CURVED RAMP</span>
-            <span class="text-[10px] text-red-400 bg-red-950 px-2 py-0.5 rounded font-bold">REJECT</span>
+            <span class="text-[13px] text-red-400 bg-red-950 px-2 py-0.5 rounded font-bold">REJECT</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Visual Shape:</strong> Downward curved arc<br>
             <strong>Interactions:</strong> Gravity + Surface Normal N<br>
             <strong>Horizontal Accel:</strong> <span class="text-red-400">a_x = N_x/m &ne; 0</span><br>
             <strong>Vertical Accel:</strong> <span class="text-red-400">a_y = (N_y&minus;mg)/m &ne; &minus;g</span>
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Constrained motion. Do NOT use projectile equations!
           </div>
         </div>
@@ -358,15 +358,15 @@
         <div class="bg-slate-950 p-4 rounded-xl border border-cyan-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-cyan-300 font-bold">B &middot; POWERED DRONE</span>
-            <span class="text-[10px] text-red-400 bg-red-950 px-2 py-0.5 rounded font-bold">REJECT</span>
+            <span class="text-[13px] text-red-400 bg-red-950 px-2 py-0.5 rounded font-bold">REJECT</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Visual Shape:</strong> Smooth arced climb/glide<br>
             <strong>Interactions:</strong> Gravity + Motor Thrust F&#7520;<br>
             <strong>Horizontal Accel:</strong> <span class="text-red-400">a_x = F&#7520;_x/m &ne; 0</span><br>
             <strong>Vertical Accel:</strong> <span class="text-red-400">a_y &ne; &minus;g</span>
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Continuous propulsion. F&#7520; drives ongoing acceleration.
           </div>
         </div>
@@ -375,15 +375,15 @@
         <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-emerald-300 font-bold">C &middot; FREE BALL (AIR)</span>
-            <span class="text-[10px] text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded font-bold">&check; APPROVED</span>
+            <span class="text-[13px] text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded font-bold">&check; APPROVED</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Visual Shape:</strong> Parabolic trajectory<br>
             <strong>Interactions:</strong> <strong>Gravity alone (mg)</strong><br>
             <strong>Horizontal Accel:</strong> <span class="text-emerald-400">a_x = 0</span> (no force)<br>
             <strong>Vertical Accel:</strong> <span class="text-emerald-400">a_y = &minus;g</span> (pure fall)
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             True ideal projectile. Unlocks a_x=0, a_y=&minus;g!
           </div>
         </div>
@@ -400,10 +400,10 @@
           <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">?</div>
           <div>
             <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR MODEL &middot; DIAGNOSTIC CHECKPOINTS</h2>
-            <p class="text-xs text-slate-400">Targeting the misconception that curve shape determines the governing physics equations</p>
+            <p class="text-[13px] text-slate-400">Targeting the misconception that curve shape determines the governing physics equations</p>
           </div>
         </div>
-        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+        <div class="text-[13px] font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
           Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
         </div>
       </div>
@@ -414,13 +414,13 @@
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">1</span>
               A skateboarder rolls down a curved quarter-pipe ramp that has the exact mathematical shape of a parabola y = &minus;k x&sup2;. Can we use x(t) = v_{0x} t to find their horizontal position?
             </span>
-            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ1" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Yes, because any parabolic curve satisfies projectile kinematics.
             </button>
@@ -432,20 +432,20 @@
             </button>
           </div>
 
-          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ1" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 2 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">2</span>
               A model rocket launches with its engine burning continuously, producing a forward and upward thrust force. When can we start applying ideal projectile motion formulas?
             </span>
-            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ2" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Right from the moment of launch, since it is moving through the air.
             </button>
@@ -457,20 +457,20 @@
             </button>
           </div>
 
-          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ2" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 3 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">3</span>
               What is the fundamental physical prerequisite required to select the model a_x = 0, a_y = &minus;g?
             </span>
-            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ3" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Zero net horizontal force and downward gravitational force as the sole vertical force.
             </button>
@@ -482,14 +482,14 @@
             </button>
           </div>
 
-          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ3" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+    <footer class="text-center text-[13px] text-slate-500 pt-2 pb-6">
       Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #130: Is It Really a Projectile?
     </footer>
 
@@ -595,10 +595,10 @@
       const correctFormula = document.getElementById('correctModelFormula');
 
       if (cand === 'A') {
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50';
         badge.innerHTML = '&cross; NOT A PROJECTILE (CONTACT NORMAL FORCE)';
 
-        gateBadge.className = 'text-xs font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold';
+        gateBadge.className = 'text-[13px] font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold';
         gateBadge.textContent = 'AUDIT FAILED';
 
         candTitle.textContent = 'CANDIDATE A: BALL ON CURVED RAMP';
@@ -606,30 +606,30 @@
 
         // Check 1: Fails
         card1.className = 'p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1';
-        icon1.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]';
+        icon1.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]';
         icon1.innerHTML = '&cross;';
-        stat1.className = 'font-mono text-[10px] text-red-400 font-bold';
+        stat1.className = 'font-mono text-[13px] text-red-400 font-bold';
         stat1.textContent = 'FAILED (N \u2260 0)';
         desc1.innerHTML = 'The track exerts a continuous surface normal force <span class="font-mono text-red-300 font-bold">N</span> perpendicular to the curve.';
 
         // Check 2: Fails
         card2.className = 'p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1';
-        icon2.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]';
+        icon2.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]';
         icon2.innerHTML = '&cross;';
-        stat2.className = 'font-mono text-[10px] text-red-400 font-bold';
+        stat2.className = 'font-mono text-[13px] text-red-400 font-bold';
         stat2.textContent = 'FAILED (ax \u2260 0)';
         desc2.innerHTML = 'Because the track surface tilts, normal force has a horizontal component: <span class="font-mono text-red-300">N\u2093 = N sin\u03b8 \u2260 0</span>.';
 
         // Check 3: Fails
         card3.className = 'p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1';
-        icon3.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]';
+        icon3.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]';
         icon3.innerHTML = '&cross;';
-        stat3.className = 'font-mono text-[10px] text-red-400 font-bold';
+        stat3.className = 'font-mono text-[13px] text-red-400 font-bold';
         stat3.textContent = 'FAILED (ay \u2260 -g)';
         desc3.innerHTML = 'The upward normal component partially balances weight: <span class="font-mono text-red-300">N_y \u2212 mg \u2260 \u2212mg</span>.';
 
         // Verdict
-        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-xs space-y-2';
+        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-[13px] space-y-2';
         verdictTitle.textContent = 'VERDICT: PROJECTILE MODEL REJECTED';
         verdictTitle.className = 'text-red-300 font-bold';
         lockIcon.innerHTML = '&cross; LOCKED';
@@ -637,10 +637,10 @@
         correctFormula.textContent = 'Governing Model: Constrained Curve Lagrangian / Work-Energy';
 
       } else if (cand === 'B') {
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-red-950/80 text-red-300 border-red-600/50';
         badge.innerHTML = '&cross; NOT A PROJECTILE (ACTIVE THRUST & LIFT)';
 
-        gateBadge.className = 'text-xs font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold';
+        gateBadge.className = 'text-[13px] font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800 font-bold';
         gateBadge.textContent = 'AUDIT FAILED';
 
         candTitle.textContent = 'CANDIDATE B: POWERED DRONE / GLIDER';
@@ -648,30 +648,30 @@
 
         // Check 1: Passes
         card1.className = 'p-3 rounded-xl border border-emerald-500/40 bg-slate-950 space-y-1';
-        icon1.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]';
+        icon1.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[13px]';
         icon1.innerHTML = '&check;';
-        stat1.className = 'font-mono text-[10px] text-emerald-400 font-bold';
+        stat1.className = 'font-mono text-[13px] text-emerald-400 font-bold';
         stat1.textContent = 'PASSED (In Air)';
         desc1.innerHTML = 'Zero physical surface contact forces (flying freely in the atmosphere).';
 
         // Check 2: Fails
         card2.className = 'p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1';
-        icon2.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]';
+        icon2.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]';
         icon2.innerHTML = '&cross;';
-        stat2.className = 'font-mono text-[10px] text-red-400 font-bold';
+        stat2.className = 'font-mono text-[13px] text-red-400 font-bold';
         stat2.textContent = 'FAILED (F_thrust \u2260 0)';
         desc2.innerHTML = 'Motors continuously produce forward thrust: <span class="font-mono text-red-300">F_thrust,x \u2260 0 \u21d2 ax \u2260 0</span>.';
 
         // Check 3: Fails
         card3.className = 'p-3 rounded-xl border border-red-500/40 bg-slate-950 space-y-1';
-        icon3.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[10px]';
+        icon3.className = 'w-4 h-4 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-[13px]';
         icon3.innerHTML = '&cross;';
-        stat3.className = 'font-mono text-[10px] text-red-400 font-bold';
+        stat3.className = 'font-mono text-[13px] text-red-400 font-bold';
         stat3.textContent = 'FAILED (F_net \u2260 -mg)';
         desc3.innerHTML = 'Aerodynamic lift partially counters weight: <span class="font-mono text-red-300">F_net,y \u2260 \u2212mg</span>.';
 
         // Verdict
-        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-xs space-y-2';
+        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-red-500/30 bg-red-950/20 text-[13px] space-y-2';
         verdictTitle.textContent = 'VERDICT: PROJECTILE MODEL REJECTED';
         verdictTitle.className = 'text-red-300 font-bold';
         lockIcon.innerHTML = '&cross; LOCKED';
@@ -679,10 +679,10 @@
         correctFormula.textContent = 'Governing Model: Powered Flight Dynamics (m a = F_thrust + F_lift + m g)';
 
       } else if (cand === 'C') {
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-emerald-950/80 text-emerald-300 border-emerald-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-emerald-950/80 text-emerald-300 border-emerald-600/50';
         badge.innerHTML = '&check; TRUE BALLISTIC PROJECTILE (GRAVITY ALONE)';
 
-        gateBadge.className = 'text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800 font-bold';
+        gateBadge.className = 'text-[13px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800 font-bold';
         gateBadge.textContent = 'AUDIT PASSED';
 
         candTitle.textContent = 'CANDIDATE C: BALL THROWN IN AIR';
@@ -690,30 +690,30 @@
 
         // Check 1: Passes
         card1.className = 'p-3 rounded-xl border border-emerald-500/40 bg-slate-950 space-y-1';
-        icon1.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]';
+        icon1.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[13px]';
         icon1.innerHTML = '&check;';
-        stat1.className = 'font-mono text-[10px] text-emerald-400 font-bold';
+        stat1.className = 'font-mono text-[13px] text-emerald-400 font-bold';
         stat1.textContent = 'PASSED (No Contact)';
         desc1.innerHTML = 'After release, the ball touches nothing (no ropes, rails, or surfaces).';
 
         // Check 2: Passes
         card2.className = 'p-3 rounded-xl border border-emerald-500/40 bg-slate-950 space-y-1';
-        icon2.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]';
+        icon2.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[13px]';
         icon2.innerHTML = '&check;';
-        stat2.className = 'font-mono text-[10px] text-emerald-400 font-bold';
+        stat2.className = 'font-mono text-[13px] text-emerald-400 font-bold';
         stat2.textContent = 'PASSED (ax = 0)';
         desc2.innerHTML = 'Zero forces act in the horizontal direction: <span class="font-mono text-emerald-300">F_net,x = 0 \u21d2 ax = 0</span>.';
 
         // Check 3: Passes
         card3.className = 'p-3 rounded-xl border border-emerald-500/40 bg-slate-950 space-y-1';
-        icon3.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]';
+        icon3.className = 'w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[13px]';
         icon3.innerHTML = '&check;';
-        stat3.className = 'font-mono text-[10px] text-emerald-400 font-bold';
+        stat3.className = 'font-mono text-[13px] text-emerald-400 font-bold';
         stat3.textContent = 'PASSED (ay = -g)';
         desc3.innerHTML = 'Downward gravity is the <strong>sole interaction</strong>: <span class="font-mono text-emerald-300">F_net,y = \u2212mg \u21d2 ay = \u2212g</span>.';
 
         // Verdict: UNLOCKED!
-        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-emerald-500/50 bg-emerald-950/30 text-xs space-y-2';
+        unlockBox.className = 'mt-4 p-3.5 rounded-xl border border-emerald-500/50 bg-emerald-950/30 text-[13px] space-y-2';
         verdictTitle.textContent = 'VERDICT: PROJECTILE MODEL UNLOCKED!';
         verdictTitle.className = 'text-emerald-300 font-bold';
         lockIcon.innerHTML = '&check; UNLOCKED';
@@ -775,9 +775,9 @@
         const ayVal = (g * Math.sin(tangentAngle) * Math.sin(tangentAngle)).toFixed(1);
 
         txtAx.textContent = `a\u2093 = ${axVal} m/s\u00b2 (\u2260 0)`;
-        txtAx.className = 'text-red-400 font-bold font-mono text-[10px]';
+        txtAx.className = 'text-red-400 font-bold font-mono text-[13px]';
         txtAy.textContent = `a\u1d67 = \u2212${ayVal} m/s\u00b2 (\u2260 \u2212g)`;
-        txtAy.className = 'text-red-400 font-bold font-mono text-[10px]';
+        txtAy.className = 'text-red-400 font-bold font-mono text-[13px]';
 
       } else if (cand === 'B') {
         // Curve: M 50 280 Q 220 70 470 200
@@ -802,9 +802,9 @@
         document.getElementById('textThrust').setAttribute('y', ty * 1.15);
 
         txtAx.textContent = 'a\u2093 = +4.2 m/s\u00b2 (\u2260 0 thrust)';
-        txtAx.className = 'text-red-400 font-bold font-mono text-[10px]';
+        txtAx.className = 'text-red-400 font-bold font-mono text-[13px]';
         txtAy.textContent = 'a\u1d67 = +1.5 m/s\u00b2 (\u2260 \u2212g lift)';
-        txtAy.className = 'text-red-400 font-bold font-mono text-[10px]';
+        txtAy.className = 'text-red-400 font-bold font-mono text-[13px]';
 
       } else if (cand === 'C') {
         // Parabola: M 50 320 Q 255 40 460 320
@@ -816,9 +816,9 @@
         curY = (1-s)*(1-s)*p0.y + 2*(1-s)*s*p1.y + s*s*p2.y;
 
         txtAx.textContent = 'a\u2093 = 0.00 m/s\u00b2 (NO FORCE)';
-        txtAx.className = 'text-emerald-400 font-bold font-mono text-[10px]';
+        txtAx.className = 'text-emerald-400 font-bold font-mono text-[13px]';
         txtAy.textContent = 'a\u1d67 = \u22129.81 m/s\u00b2 (PURE GRAVITY)';
-        txtAy.className = 'text-emerald-400 font-bold font-mono text-[10px]';
+        txtAy.className = 'text-emerald-400 font-bold font-mono text-[13px]';
       }
 
       body.setAttribute('transform', `translate(${curX}, ${curY})`);
@@ -870,20 +870,20 @@
 
       const badge = document.getElementById(`badgeQ${qNum}`);
       if (isCorrect) {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
         badge.textContent = 'CORRECT';
       } else {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
         badge.textContent = 'TRY AGAIN';
       }
 
       const explDiv = document.getElementById(`explQ${qNum}`);
       explDiv.classList.remove('hidden');
       if (isCorrect) {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       } else {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       }
 

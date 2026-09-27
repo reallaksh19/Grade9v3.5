@@ -49,10 +49,10 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-3 mb-1">
-            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-pink-500/20 text-pink-400 border border-pink-500/30">
+            <span class="px-2.5 py-0.5 text-[13px] font-bold tracking-wider uppercase rounded-md bg-pink-500/20 text-pink-400 border border-pink-500/30">
               Topic 5 &middot; Kinematics
             </span>
-            <span class="text-xs font-mono text-[var(--muted-foreground)]">Kinematic Symmetry &middot; Vector State Comparison</span>
+            <span class="text-[13px] font-mono text-[var(--muted-foreground)]">Kinematic Symmetry &middot; Vector State Comparison</span>
           </div>
           <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
             SAME HEIGHT, SAME SPEED &ne; SAME VELOCITY
@@ -64,20 +64,20 @@
 
         <!-- QUICK SCANNER PRESETS -->
         <div class="flex flex-wrap items-center gap-2">
-          <button onclick="setHeightPreset(0)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-semibold transition">
+          <button onclick="setHeightPreset(0)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[13px] font-semibold transition">
             Ground (h = 0)
           </button>
-          <button onclick="setHeightPreset(0.5)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-semibold transition">
+          <button onclick="setHeightPreset(0.5)" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[13px] font-semibold transition">
             Mid-Height (0.5 h_max)
           </button>
-          <button onclick="setHeightPreset(0.98)" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition">
+          <button onclick="setHeightPreset(0.98)" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-[13px] font-bold transition">
             Near Apex (h &rarr; h_max)
           </button>
         </div>
       </div>
 
       <!-- INVARIANT COMPARISON STRIP -->
-      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px] md:text-sm">
         <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
           <span class="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold">FALLACY</span>
           <span class="text-slate-300">"Since height is identical, velocity is identical." &rarr; <strong class="text-red-300">FALSE.</strong></span>
@@ -102,7 +102,7 @@
               <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
               <h2 class="font-bold text-sm tracking-wide text-white">ELEVATION SCANNER &middot; CONJUGATE POINTS A &amp; B</h2>
             </div>
-            <div class="flex items-center gap-3 text-xs font-mono">
+            <div class="flex items-center gap-3 text-[13px] font-mono">
               <span class="flex items-center gap-1.5 text-cyan-400"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Point A (Ascent)</span>
               <span class="flex items-center gap-1.5 text-pink-400"><span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span> Point B (Descent)</span>
             </div>
@@ -175,7 +175,7 @@
 
           <!-- ELEVATION SCANNER SLIDER -->
           <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center text-xs font-mono">
+            <div class="flex justify-between items-center text-[13px] font-mono">
               <span class="text-amber-400 font-bold flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-amber-400"></span>
                 Elevation Scanner (h):
@@ -187,7 +187,7 @@
           </div>
 
           <!-- LAUNCH CONTROLS SLIDERS -->
-          <div class="grid grid-cols-2 gap-4 bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs font-mono">
+          <div class="grid grid-cols-2 gap-4 bg-slate-950 p-3 rounded-xl border border-slate-800 text-[13px] font-mono">
             <div class="space-y-1">
               <div class="flex justify-between text-slate-400">
                 <span>Speed v_{0}:</span>
@@ -218,7 +218,7 @@
               <span class="w-3 h-3 rounded-full bg-amber-400"></span>
               <span>TAIL-TO-TAIL VECTOR COMPARATOR</span>
             </h2>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">ORIGIN (0,0)</span>
+            <span class="text-[13px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">ORIGIN (0,0)</span>
           </div>
 
           <!-- COMPARATOR SVG DISC -->
@@ -249,7 +249,7 @@
             </svg>
 
             <!-- Polar Disc Readout Caption -->
-            <div class="w-full text-center text-xs font-mono text-slate-300 pt-1 space-y-1">
+            <div class="w-full text-center text-[13px] font-mono text-slate-300 pt-1 space-y-1">
               <div class="flex justify-around border-t border-slate-800/80 pt-2">
                 <span class="text-cyan-400 font-bold">&theta;_y = <span id="valAngleA">+35&deg;</span></span>
                 <span class="text-amber-300 font-bold">Radius |v| = <span id="valDiscSpeed">20.2 m/s</span></span>
@@ -259,16 +259,16 @@
           </div>
 
           <!-- VECTOR DIFFERENCE (IMPULSE) MATH BOX -->
-          <div class="bg-slate-950 p-3.5 rounded-xl border border-red-500/30 text-xs font-mono space-y-1.5 leading-relaxed">
+          <div class="bg-slate-950 p-3.5 rounded-xl border border-red-500/30 text-[13px] font-mono space-y-1.5 leading-relaxed">
             <div class="text-red-400 font-bold flex items-center justify-between">
               <span>VECTOR DIFFERENCE &Delta;v = v_B &minus; v_A:</span>
-              <span id="badgeDiffPureY" class="text-[10px] px-1.5 py-0.5 rounded bg-red-950 text-red-300 border border-red-700">PURELY VERTICAL</span>
+              <span id="badgeDiffPureY" class="text-[13px] px-1.5 py-0.5 rounded bg-red-950 text-red-300 border border-red-700">PURELY VERTICAL</span>
             </div>
             <div class="bg-slate-900/90 p-2 rounded text-slate-200 space-y-1">
               <div>&Delta;v_x = v_Bx &minus; v_Ax = <span class="text-cyan-300">v_{0x}</span> &minus; <span class="text-cyan-300">v_{0x}</span> = <strong class="text-white">0.00 m/s</strong></div>
               <div>&Delta;v_y = v_By &minus; v_Ay = <span class="text-pink-300">(&minus;|v_y|)</span> &minus; <span class="text-cyan-300">(+|v_y|)</span> = <strong class="text-red-400">&minus;2|v_y| = <span id="lblDeltaVy">&minus;22.8 m/s</span></strong></div>
             </div>
-            <div class="text-[11px] text-slate-400">
+            <div class="text-[13px] text-slate-400">
               Gravity Impulse: <span class="font-mono text-amber-300">g &middot; &Delta;t = (9.81 m/s&sup2;) &middot; (<span id="lblDeltaT">2.32 s</span>) = <span id="lblGDeltaT">22.8 m/s</span> &check;</span>
             </div>
           </div>
@@ -287,9 +287,9 @@
           <h2 class="font-bold text-base text-white tracking-wide">
             STATE COMPARISON AT ELEVATION h = <span id="matrixH" class="text-amber-400">12.50 m</span>
           </h2>
-          <p class="text-xs text-slate-400">Side-by-side reconciliation of scalar invariants vs vector components</p>
+          <p class="text-[13px] text-slate-400">Side-by-side reconciliation of scalar invariants vs vector components</p>
         </div>
-        <div class="flex items-center gap-2 text-xs font-mono">
+        <div class="flex items-center gap-2 text-[13px] font-mono">
           <span class="px-2.5 py-1 rounded-lg bg-emerald-950/80 text-emerald-300 border border-emerald-700/50">&check; SCALAR SYMMETRY</span>
           <span class="px-2.5 py-1 rounded-lg bg-pink-950/80 text-pink-300 border border-pink-700/50">&ne; VECTOR INVERSION</span>
         </div>
@@ -299,105 +299,105 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 my-4">
         <!-- Tile 1: Event Time -->
         <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
-          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+          <div class="flex items-center justify-between text-[13px] font-bold text-slate-400">
             <span class="flex items-center gap-1.5"><span class="text-base">⏱️</span> EVENT TIME (t)</span>
-            <span class="text-[11px] font-mono text-slate-400">t_A &ne; t_B</span>
+            <span class="text-[13px] font-mono text-slate-400">t_A &ne; t_B</span>
           </div>
           <div class="my-2.5 flex items-center justify-between font-mono">
             <div>
-              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A (↗️ Ascent)</span>
+              <span class="text-[13px] text-cyan-400 block uppercase font-bold">Point A (↗️ Ascent)</span>
               <span id="tblTa" class="text-cyan-300 font-bold text-base">0.86 s</span>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B (↘️ Descent)</span>
+              <span class="text-[13px] text-pink-400 block uppercase font-bold">Point B (↘️ Descent)</span>
               <span id="tblTb" class="text-pink-300 font-bold text-base">3.18 s</span>
             </div>
           </div>
-          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+          <div class="text-[13px] text-slate-400 border-t border-slate-800/80 pt-2">
             Symmetric: t_{\text{apex}} = &frac12;(t_A + t_B)
           </div>
         </div>
 
         <!-- Tile 2: Horizontal Velocity -->
         <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
-          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+          <div class="flex items-center justify-between text-[13px] font-bold text-slate-400">
             <span class="flex items-center gap-1.5"><span class="text-base">➡️</span> HORIZONTAL VELOCITY (v_x)</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-800">EQUAL (=)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[13px] font-bold border border-emerald-800">EQUAL (=)</span>
           </div>
           <div class="my-2.5 flex items-center justify-between font-mono">
             <div>
-              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A</span>
+              <span class="text-[13px] text-cyan-400 block uppercase font-bold">Point A</span>
               <span id="tblVax" class="text-cyan-300 font-bold text-base">+15.04 m/s</span>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B</span>
+              <span class="text-[13px] text-pink-400 block uppercase font-bold">Point B</span>
               <span id="tblVbx" class="text-pink-300 font-bold text-base">+15.04 m/s</span>
             </div>
           </div>
-          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+          <div class="text-[13px] text-slate-400 border-t border-slate-800/80 pt-2">
             &Sigma;F_x = 0 &rArr; No horizontal acceleration occurs
           </div>
         </div>
 
         <!-- Tile 3: Vertical Velocity -->
         <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
-          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+          <div class="flex items-center justify-between text-[13px] font-bold text-slate-400">
             <span class="flex items-center gap-1.5"><span class="text-base">↕️</span> VERTICAL VELOCITY (v_y)</span>
-            <span class="px-2 py-0.5 rounded bg-pink-950 text-pink-400 text-[10px] font-bold border border-pink-800">OPPOSITE (&minus;)</span>
+            <span class="px-2 py-0.5 rounded bg-pink-950 text-pink-400 text-[13px] font-bold border border-pink-800">OPPOSITE (&minus;)</span>
           </div>
           <div class="my-2.5 flex items-center justify-between font-mono">
             <div>
-              <span class="text-[10px] text-cyan-400 block uppercase font-bold">Point A</span>
+              <span class="text-[13px] text-cyan-400 block uppercase font-bold">Point A</span>
               <span id="tblVay" class="text-cyan-300 font-bold text-base">+11.41 m/s</span>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-pink-400 block uppercase font-bold">Point B</span>
+              <span class="text-[13px] text-pink-400 block uppercase font-bold">Point B</span>
               <span id="tblVby" class="text-pink-300 font-bold text-base">&minus;11.41 m/s</span>
             </div>
           </div>
-          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+          <div class="text-[13px] text-slate-400 border-t border-slate-800/80 pt-2">
             v_By = &minus;v_Ay (Magnitude equal, direction inverted)
           </div>
         </div>
 
         <!-- Tile 4: Total Speed -->
         <div class="bg-amber-950/20 border border-amber-800/50 rounded-xl p-4 flex flex-col justify-between">
-          <div class="flex items-center justify-between text-xs font-bold text-amber-300">
+          <div class="flex items-center justify-between text-[13px] font-bold text-amber-300">
             <span class="flex items-center gap-1.5"><span class="text-base">⚡</span> TOTAL SCALAR SPEED (|v|)</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-black border border-emerald-800">IDENTICAL (=)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[13px] font-black border border-emerald-800">IDENTICAL (=)</span>
           </div>
           <div class="my-2.5 flex items-center justify-between font-mono">
             <div>
-              <span class="text-[10px] text-amber-400 block uppercase font-bold">Point A</span>
+              <span class="text-[13px] text-amber-400 block uppercase font-bold">Point A</span>
               <span id="tblSa" class="text-amber-300 font-black text-lg">18.88 m/s</span>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-amber-400 block uppercase font-bold">Point B</span>
+              <span class="text-[13px] text-amber-400 block uppercase font-bold">Point B</span>
               <span id="tblSb" class="text-amber-300 font-black text-lg">18.88 m/s</span>
             </div>
           </div>
-          <div class="text-[11px] text-amber-200 border-t border-amber-800/50 pt-2">
+          <div class="text-[13px] text-amber-200 border-t border-amber-800/50 pt-2">
             &radic;(v_x&sup2; + v_y&sup2;) is identical because (&minus;v_y)&sup2; = (+v_y)&sup2;
           </div>
         </div>
 
         <!-- Tile 5: Kinetic Energy -->
         <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between sm:col-span-2 lg:col-span-2">
-          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+          <div class="flex items-center justify-between text-[13px] font-bold text-slate-400">
             <span class="flex items-center gap-1.5"><span class="text-base">🔋</span> KINETIC ENERGY (KE / m)</span>
-            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-800">CONSERVED (=)</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[13px] font-bold border border-emerald-800">CONSERVED (=)</span>
           </div>
           <div class="my-2.5 flex items-center justify-between font-mono">
             <div>
-              <span class="text-[10px] text-emerald-400 block uppercase font-bold">Point A</span>
+              <span class="text-[13px] text-emerald-400 block uppercase font-bold">Point A</span>
               <span id="tblKeA" class="text-emerald-300 font-bold text-base">178.2 J/kg</span>
             </div>
             <div class="text-right">
-              <span class="text-[10px] text-emerald-400 block uppercase font-bold">Point B</span>
+              <span class="text-[13px] text-emerald-400 block uppercase font-bold">Point B</span>
               <span id="tblKeB" class="text-emerald-300 font-bold text-base">178.2 J/kg</span>
             </div>
           </div>
-          <div class="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+          <div class="text-[13px] text-slate-400 border-t border-slate-800/80 pt-2">
             KE = &frac12;mv&sup2; depends strictly on speed squared (Zero vector dependency)
           </div>
         </div>
@@ -412,10 +412,10 @@
           <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center font-black">?</div>
           <div>
             <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR UNDERSTANDING &middot; DIAGNOSTIC CHECKPOINTS</h2>
-            <p class="text-xs text-slate-400">Targeting misconceptions in speed vs velocity symmetry and equal-height vector differences</p>
+            <p class="text-[13px] text-slate-400">Targeting misconceptions in speed vs velocity symmetry and equal-height vector differences</p>
           </div>
         </div>
-        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+        <div class="text-[13px] font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
           Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
         </div>
       </div>
@@ -426,13 +426,13 @@
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">1</span>
               A projectile is launched from ground level at an angle of 53&deg; with speed 25 m/s. When it returns to ground level (y = 0), how does its final velocity compare to its initial velocity?
             </span>
-            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ1" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Its velocity is identical because it has returned to the exact same elevation.
             </button>
@@ -444,20 +444,20 @@
             </button>
           </div>
 
-          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ1" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 2 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">2</span>
               Consider the two velocity vectors v_A (ascending) and v_B (descending) at equal elevation h. What is the direction of the vector difference &Delta;v = v_B &minus; v_A?
             </span>
-            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ2" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Straight downward along the negative y-axis, with magnitude 2|v_y|.
             </button>
@@ -469,20 +469,20 @@
             </button>
           </div>
 
-          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ2" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 3 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">3</span>
               Why does kinetic energy KE match at equal heights while linear momentum vector p does not?
             </span>
-            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ3" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Kinetic energy is a scalar depending on speed squared (&frac12;mv&sup2;), whereas momentum is a vector (mv) requiring identical directions to be equal.
             </button>
@@ -494,14 +494,14 @@
             </button>
           </div>
 
-          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ3" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+    <footer class="text-center text-[13px] text-slate-500 pt-2 pb-6">
       Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #132: Same Height, Same Speed &ne; Same Velocity
     </footer>
 
@@ -801,20 +801,20 @@
 
       const badge = document.getElementById(`badgeQ${qNum}`);
       if (isCorrect) {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
         badge.textContent = 'CORRECT';
       } else {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
         badge.textContent = 'TRY AGAIN';
       }
 
       const explDiv = document.getElementById(`explQ${qNum}`);
       explDiv.classList.remove('hidden');
       if (isCorrect) {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       } else {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       }
 
