@@ -49,16 +49,29 @@ class Pr306UiRegressions(unittest.TestCase):
                 self.assertIn("jeeHubLastFocus.focus()", source)
                 self.assertIn("jeeHubFocusable(modal)", source)
 
-    def test_question_bank_renders_current_physics_ascii_math_with_katex(self):
+    def test_question_bank_renders_only_schema_declared_math_with_katex(self):
+        import json
+
         runtime = (REPO / "public" / "js" / "question-bank.js").read_text(encoding="utf-8")
-        data = (REPO / "public" / "data" / "question-bank-data.js").read_text(encoding="utf-8")
-        self.assertIn("sqrt(", data)
-        self.assertRegex(data, r"[A-Za-z]\\^[0-9]")
-        self.assertIn("function asciiMathTokenToTex", runtime)
-        self.assertIn("function renderPhysicsAsciiMath", runtime)
-        self.assertIn("data-qb-subject", runtime)
-        self.assertIn("katex.render(asciiMathTokenToTex", runtime)
-        self.assertIn("renderPhysicsAsciiMath(els.results)", runtime)
+        bank = json.loads(
+            (REPO / "Physics" / "library" / "exam-bank" / "competitive-exam-question-bank.v2.json").read_text(encoding="utf-8")
+        )
+        self.assertNotIn("ASCII_MATH_TOKEN", runtime)
+        self.assertNotIn("renderPhysicsAsciiMath", runtime)
+        self.assertIn("renderDeclaredMath", runtime)
+        self.assertIn("data-qb-math-target", runtime)
+        self.assertIn("katex.render(spec.tex", runtime)
+
+        spans = [
+            span
+            for q in bank["questions"]
+            for span in q.get("extensions", {}).get("grade9v3:math_spans", [])
+        ]
+        self.assertTrue(spans)
+        literals = {span["literal"].lower() for span in spans}
+        self.assertNotIn("sink", literals)
+        self.assertNotIn("cosine", literals)
+        self.assertTrue(any("sqrt(" in span["literal"] for span in spans))
 
     def test_katex_vendor_dependency_closure_and_no_jsdelivr_runtime(self):
         css = (REPO / "public" / "vendor" / "katex" / "0.16.8" / "katex.min.css").read_text(encoding="utf-8")
