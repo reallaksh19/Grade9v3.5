@@ -48,6 +48,7 @@ def _project_question(subject: str, question: dict, order: int, repo: Path) -> d
         "last_checked": custody["last_checked"],
         "origin": question["origin"],
         "provenance_class": extensions["grade9v3:provenance_class"],
+        "math_spans": extensions.get("grade9v3:math_spans", []),
         "stem": question["stem"],
         "subparts": question["subparts"],
         "options": question["options"],

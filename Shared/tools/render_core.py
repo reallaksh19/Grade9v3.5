@@ -28,6 +28,7 @@ import html
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -36,12 +37,13 @@ sys.path.insert(0, str(REPO))
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
+TABLET_CSS = REPO / "public/css/tablet-12-7.css"
 ROLES = ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"]
 ROLE_FILE = {r: r.lower() + ".html" for r in ROLES}
 ROLE_TITLE = {"CORE1": "Orientation map", "CORE1A": "Construction", "CORE1B": "Reconstruction",
               "CORE2": "Source questions", "CORE2A": "Supported practice", "CORE2B": "Transfer"}
 MODES = ("PAGES", "EMBED", "SINGLE_FILE")
-RENDERER_VERSION = "render_core/1"
+RENDERER_VERSION = "render_core/2"
 
 
 class RenderGapError(Exception):
@@ -54,7 +56,9 @@ class Ctx:
     packages: list[dict]
     bank: list[dict]
     blueprints: dict
+    authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
+    figure_instances: dict[str, int] = field(default_factory=dict)
 
     def gap(self, duty: str, record: str, detail: str, role: str) -> None:
         self.gaps.append({"duty": duty, "record": record, "detail": detail, "core": role,
@@ -87,6 +91,32 @@ def asset_svg(ref: str) -> str | None:
     return text[text.find("<svg"):] if "<svg" in text else None
 
 
+def _scope_svg_ids(svg: str, scope: str) -> str:
+    """Namespace one inline SVG instance so repeated authored assets keep valid DOM identity."""
+    id_attr = re.compile(r'(?<![-:\\w])id="([^"]+)"')
+    ids = id_attr.findall(svg)
+    if not ids:
+        return svg
+    mapping = {old: f"{scope}--{old}" for old in ids}
+    out = svg
+    for old, new in mapping.items():
+        out = re.sub(
+            rf'(?<![-:\\w])id="{re.escape(old)}"',
+            f'id="{new}"',
+            out,
+        )
+        out = out.replace(f'url(#{old})', f'url(#{new})')
+        out = out.replace(f'href="#{old}"', f'href="#{new}"')
+        out = out.replace(f"xlink:href=\"#{old}\"", f"xlink:href=\"#{new}\"")
+    for attr in ("aria-labelledby", "aria-describedby"):
+        pattern = re.compile(rf'{attr}="([^"]+)"')
+        out = pattern.sub(
+            lambda m: f'{attr}="' + " ".join(mapping.get(token, token) for token in m.group(1).split()) + '"',
+            out,
+        )
+    return out
+
+
 def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, first_stage_only: bool = False,
            allowed: list[str] | None = None) -> str:
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
@@ -100,6 +130,16 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if svg is None:
         ctx.gap("BUILD_SCENE", rep_id, "no authored SVG asset (rendered_asset_refs) to mount", role)
         return ""
+    opener = re.search(r"<svg\b[^>]*>", svg, re.I)
+    named = bool(opener and re.search(r"\baria-(?:label|labelledby)=['\"][^'\"]+['\"]", opener.group(0), re.I))
+    described = bool(re.search(r"<title\b[^>]*>.*?</title>", svg, re.I | re.S) and re.search(r"<desc\b[^>]*>.*?</desc>", svg, re.I | re.S))
+    if not (named and described):
+        ctx.gap("BUILD_SCENE", rep_id, "authored SVG lacks an accessible name and title/description pair", role)
+        return ""
+    instance_base = re.sub(r"[^A-Za-z0-9_-]+", "-", f"{role}-{record}-{rep_id}").strip("-")
+    instance_no = ctx.figure_instances.get(instance_base, 0) + 1
+    ctx.figure_instances[instance_base] = instance_no
+    svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
     stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
     if stage == "PRE_ATTEMPT" and not allowed:
@@ -208,6 +248,46 @@ def attempt_box(label: str) -> str:
             f'<button type="button" data-g9-commit>I have attempted this</button></div>')
 
 
+_MATHML_NS = "http://www.w3.org/1998/Math/MathML"
+_MATHML_TAGS = {"math", "mrow", "mi", "mn", "mo", "msub", "msup", "mfrac", "mtext", "msqrt"}
+_MATHML_ATTRS = {"display", "mathvariant"}
+ET.register_namespace("", _MATHML_NS)
+
+
+def _safe_mathml(value: str | None) -> str | None:
+    """Return canonical restricted presentation MathML, or None if it is unsafe/malformed."""
+    if not value:
+        return None
+    try:
+        root = ET.fromstring(value)
+    except ET.ParseError:
+        return None
+    for node in root.iter():
+        if not node.tag.startswith("{" + _MATHML_NS + "}"):
+            return None
+        local = node.tag.split("}", 1)[1]
+        if local not in _MATHML_TAGS:
+            return None
+        for attr in node.attrib:
+            if attr.split("}", 1)[-1] not in _MATHML_ATTRS:
+                return None
+    if root.tag != "{" + _MATHML_NS + "}math":
+        return None
+    return ET.tostring(root, encoding="unicode", short_empty_elements=True)
+
+
+def _relation_expression(ctx: Ctx, relation: dict, record: str) -> str:
+    if relation.get("mathml"):
+        mathml = _safe_mathml(relation["mathml"])
+        if mathml is None:
+            ctx.gap("AUTHOR_GOVERNING_RELATION", relation["id"],
+                    "relation.mathml is malformed or outside the restricted presentation-MathML subset",
+                    "CORE1")
+        else:
+            return f'<div class="g9-math" data-g9-math="mathml">{mathml}</div>'
+    return f'<p class="g9-expr">{esc(relation["expression"])}</p>'
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -271,7 +351,7 @@ def core1(ctx: Ctx, m: dict) -> str:
     anchor = m.get("compact_anchor")
     if not anchor:
         ctx.gap("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor", "CORE1")
-    rel_html = "".join(f'<div class="g9-relation"><p class="g9-expr">{esc(r["expression"])}</p>{para(r.get("meaning"))}'
+    rel_html = "".join(f'<div class="g9-relation">{_relation_expression(ctx, r, m["id"])}{para(r.get("meaning"))}'
                        f'{items(r.get("conditions"))}</div>' for r in rels)
     # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
     rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
@@ -587,14 +667,27 @@ q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-di
 """
 
 
+def _mode_href(href: str, mode: str) -> str:
+    """Rebase public-root-relative links for the governed standalone publication path."""
+    if mode == "SINGLE_FILE" and href.startswith("../../../"):
+        return "../../../public/" + href[len("../../../"):]
+    return href
+
+
 def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
-    nav_links = "".join(f'<a href="{ROLE_FILE[r]}"{" aria-current=page" if r == role else ""}>{esc(r)}</a>' for r in ROLES)
-    header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(m["home_href"])}">Home</a>'
+    nav_links = "".join(
+        f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
+        f'{" aria-current=page" if mode != "SINGLE_FILE" and r == role else ""}>{esc(r)}</a>'
+        for r in ROLES
+    )
+    home_href = _mode_href(m["home_href"], mode)
+    question_bank_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
+    header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(home_href)}">Home</a>'
               f'<button type="button" onclick="history.back()">Back</button>'
-              f'<a href="{esc(m.get("question_bank_href", m["home_href"]))}">Question bank</a>'
+              f'<a href="{esc(question_bank_href)}">Question bank</a>'
               f'<button type="button" data-g9-action="search">Search</button>'
               f'<button type="button" data-g9-action="display">Display</button>'
               f'<div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div>'
@@ -602,8 +695,9 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
               f'<button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button>'
               f'<button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom −</button>'
               f'<button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header>')
-    crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(m["home_href"])}">Home</a>'
-              f'<a href="index.html">{esc(m["title"])}</a>{nav_links}</nav>')
+    product_href = "#g9-role-CORE1" if mode == "SINGLE_FILE" else "index.html"
+    crumbs = (f'<nav data-g9-breadcrumb aria-label="Breadcrumb"><a href="{esc(home_href)}">Home</a>'
+              f'<a href="{product_href}">{esc(m["title"])}</a>{nav_links}</nav>')
     return header, crumbs
 
 
@@ -611,14 +705,41 @@ DIGEST_SLOT = "g9-digest-pending"
 
 
 def render_digest(ctx: Ctx) -> str:
-    """Digest of the render inputs (manifest, packages, contract version). Kept for callers that
-    need an input fingerprint; the product's own digest (build()) hashes the rendered pages."""
+    """Fingerprint the exact authority-file bytes that can change rendered learner output."""
     h = hashlib.sha256()
+    if ctx.authority_hashes:
+        for label, digest in ctx.authority_hashes:
+            h.update(label.encode("utf-8"))
+            h.update(b"\0")
+            h.update(digest.encode("ascii"))
+            h.update(b"\n")
+        return h.hexdigest()[:16]
+
+    # Compatibility fallback for explicitly constructed contexts. Production context()
+    # always records file-byte authority hashes.
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
         h.update(json.dumps(p, sort_keys=True).encode())
+    h.update(json.dumps(ctx.bank, sort_keys=True).encode())
+    h.update(json.dumps(ctx.blueprints, sort_keys=True).encode())
     h.update(load_json(CONTRACT)["version"].encode())
     return h.hexdigest()[:16]
+
+
+def _asset_root(ctx: Ctx) -> str:
+    """Return the site-root prefix declared by the product manifest."""
+    home = str(ctx.manifest.get("home_href") or "index.html")
+    return home[:-len("index.html")] if home.endswith("index.html") else ""
+
+
+def _shared_head_assets(ctx: Ctx, mode: str) -> str:
+    """Renderer-owned tablet shell asset; SINGLE_FILE embeds it and PAGES links it."""
+    if mode == "EMBED":
+        return ""
+    if mode == "SINGLE_FILE":
+        return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
+    root = _asset_root(ctx)
+    return f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -636,6 +757,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<html lang="en" data-g9-shell data-g9-role="{role}" data-g9-mode="{mode}">'
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
+            f'{_shared_head_assets(ctx, mode)}'
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
@@ -657,17 +779,89 @@ def index_page(ctx: Ctx, digest: str) -> str:
     return ("<!doctype html>\n"
             f'<html lang="en" data-g9-shell data-g9-role="INDEX"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}"><title>{esc(m["title"])}</title><style>{CSS}</style></head>'
+            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">{_shared_head_assets(ctx, "PAGES")}<title>{esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body>{header}{crumbs}<main><h1>{esc(m["title"])}</h1>{diag_html}<ol>{links}</ol></main><script>{JS}</script></body></html>\n')
 
 
 # ------------------------------------------------------------------ entry points
 
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def context(manifest_path: Path) -> Ctx:
     manifest = load_json(manifest_path)
-    packages = [load_json(REPO / p) for p in manifest["package_refs"]]
-    bank = [q for b in manifest.get("bank_refs", []) for q in load_json(REPO / b).get("questions", [])]
-    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS))
+    package_paths = [REPO / p for p in manifest["package_refs"]]
+    bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
+    packages = [load_json(p) for p in package_paths]
+    bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    asset_refs = sorted({
+        ref
+        for package in packages
+        for representation in package.get("representations", [])
+        for ref in representation.get("rendered_asset_refs", [])
+        if isinstance(ref, str)
+    })
+    own_capabilities = {
+        capability["id"]
+        for package in packages
+        for capability in package.get("capabilities", [])
+    }
+    teacher_refs: set[str] = set()
+    teacher_index = teachers()
+    for package in packages:
+        for microtopic in package.get("microtopics", []):
+            for prerequisite in microtopic.get("prerequisite_refs", []):
+                bare = prerequisite.split(":", 1)[-1]
+                if bare in own_capabilities:
+                    continue
+                taught = teacher_index.get(prerequisite) or teacher_index.get(bare)
+                if taught:
+                    teacher_refs.add(taught[1])
+    authority_hashes = [
+        ("renderer-source", _file_sha256(Path(__file__))),
+        ("manifest", _file_sha256(manifest_path)),
+        *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
+        *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
+        ("blueprints", _file_sha256(BLUEPRINTS)),
+        ("quality-contract", _file_sha256(CONTRACT)),
+        ("tablet-css", _file_sha256(TABLET_CSS)),
+        *[
+            (f"teacher-package:{ref}", _file_sha256(REPO / ref))
+            for ref in sorted(teacher_refs)
+            if (REPO / ref).is_file()
+        ],
+        *[
+            (f"asset:{ref}", _file_sha256(REPO / ref))
+            for ref in asset_refs
+            if (REPO / ref).is_file()
+        ],
+    ]
+    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
+
+
+def _single_file_fragment(page_html: str, role: str) -> str:
+    """Scope role-level unit anchors and convert cross-Core links for one-document packaging."""
+    match = re.search(r"<main>(.*)</main>", page_html, re.S)
+    if not match:
+        raise ValueError(f"{role}: rendered page has no main")
+    fragment = match.group(1)
+    article_ids = re.findall(r'<article\b[^>]*\bid="([^"]+)"', fragment)
+    for old in article_ids:
+        fragment = fragment.replace(f'id="{old}"', f'id="g9-{role}--{old}"', 1)
+    file_to_role = {ROLE_FILE[r]: r for r in ROLES}
+    def cross_link(m: re.Match[str]) -> str:
+        target_role = file_to_role.get(m.group(1))
+        return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
+    fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
+    for old in article_ids:
+        fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
+    fragment = re.sub(
+        r'href="\.\./\.\./\.\./([^"]+)"',
+        lambda m: f'href="../../../public/{m.group(1)}"',
+        fragment,
+    )
+    return fragment
 
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
@@ -684,8 +878,11 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
     digest = h.hexdigest()[:16]
     pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
     if mode == "SINGLE_FILE":
-        bodies = "".join(f'<section data-g9-role-section="{r}">{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
-                         for r in ROLES)
+        bodies = "".join(
+            f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
+            f'{_single_file_fragment(pages[ROLE_FILE[r]], r)}</section>'
+            for r in ROLES
+        )
         pages = {"product.html": pages[ROLE_FILE["CORE1"]].replace(
             re.search(r"<main>(.*)</main>", pages[ROLE_FILE["CORE1"]], re.S).group(1), bodies)}
     # the same gap can be met on several pages
@@ -724,8 +921,13 @@ def main(argv: list[str] | None = None) -> int:
         if gaps:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)
         (out / name).write_text(text, encoding="utf-8")
+    manifest_path = Path(args.manifest).resolve()
+    try:
+        manifest_ref = manifest_path.relative_to(REPO.resolve()).as_posix()
+    except ValueError:
+        manifest_ref = manifest_path.as_posix()
     (out / "render-receipt.json").write_text(json.dumps({
-        "renderer": RENDERER_VERSION, "digest": digest, "manifest": args.manifest, "mode": args.mode,
+        "renderer": RENDERER_VERSION, "digest": digest, "manifest": manifest_ref, "mode": args.mode,
         "draft": bool(gaps), "gaps": gaps, "pages": sorted(pages),
         "ledger": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("ledger", []),
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
