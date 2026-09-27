@@ -3,8 +3,8 @@
   "subject": "Mathematics",
   "node_ref": "MAT-09-LINEAR-EQUATIONS-01",
   "verified_by": "agent-verifier-4",
-  "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:d1fddd18f8b208ac0db689f80cdd31d737acaf0a066813d8230c068b91ba9489",
+  "verified_at": "2026-09-27",
+  "inputs_digest": "sha256:e3cdc1df430c39a1b45cf38de197cc99f873ae0959bc358610786fabf7a89f0a",
   "questions": [
     {
       "card_ref": "EV-MAT-09-LEQ-01-007",
@@ -53,13 +53,7 @@
     {"record_ref": "Q-MAT-LEQ-01-1A-ONE-VALUE-NOT-ALL", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q6", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q17", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
-    {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q20", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure", "transfer", "independent_check"], "agrees": false}
+    {"record_ref": "Q-MAT-LEQ-01-EXEMPLAR8-Q20", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure", "transfer", "independent_check"], "agrees": true}
   ],
-  "findings": [
-    {
-      "target": "Q-MAT-LEQ-01-EXEMPLAR8-Q20.scaffolds",
-      "duty_for": "AUTHOR",
-      "detail": "Core2B item with transfer.protected_move_ref = Q20-DEC (substitute x = -2 before solving). scaffolds[1] ('what number taken away from -18 leaves -21?') states -18, the output of that protected move, and scaffolds[2] ('computing 9(-2) minus it') tells the learner to substitute x = -2. Pre-attempt help therefore hands over the protected decision. hint_ladder order 2 also labels scaffolds[1] purpose REPRESENT although it is an EXECUTE step. Rewrite these rungs so they do not perform or reveal the substitution of x = -2. The answer, failure_signal (39 and -3) and transfer.novelty claim are otherwise correct."
-    }
-  ]
+  "findings": []
 }
