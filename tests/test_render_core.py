@@ -99,15 +99,13 @@ class Renderer(unittest.TestCase):
         self.assertNotIn("REP-KIN-2D-SHARED-CLOCK", [g["record"] for g in ctx.gaps if g["duty"] == "BUILD_SCENE"])
 
 
-    def test_renderer_owns_tablet_math_assets_and_blueprint_digest(self):
+    def test_renderer_owns_tablet_asset_and_blueprint_digest(self):
         ctx = render_core.context(manifest_file(self.tmp))
         digest_before = render_core.render_digest(ctx)
         html = render_core.page(ctx, "CORE1", "PAGES", digest_before)
-        self.assertIn('../../vendor/katex/0.16.8/katex.min.css', html)
-        self.assertIn('../../vendor/katex/0.16.8/katex.min.js', html)
-        self.assertIn('../../vendor/katex/0.16.8/contrib/auto-render.min.js', html)
         self.assertIn('../../css/tablet-12-7.css', html)
         self.assertNotIn('cdn.jsdelivr.net', html)
+        self.assertNotIn('vendor/katex/', html)
 
         labels = [label for label, _digest in ctx.authority_hashes]
         self.assertIn("blueprints", labels)
@@ -152,6 +150,31 @@ class Renderer(unittest.TestCase):
             render_core.asset_svg = original
         self.assertNotIn('data-g9-representation="REP-KIN-2D-SHARED-CLOCK"', html)
         self.assertTrue(any(g["duty"] == "BUILD_SCENE" and "accessible name" in g["detail"] for g in ctx.gaps))
+
+
+    def test_relation_mathml_is_rendered_only_from_the_restricted_schema_field(self):
+        ctx = render_core.context(manifest_file(self.tmp))
+        relation = ctx.packages[0]["relations"][0]
+        relation["mathml"] = (
+            '<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">'
+            '<mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>'
+        )
+        out = render_core._relation_expression(ctx, relation, "M")
+        self.assertIn('data-g9-math="mathml"', out)
+        self.assertIn("<math", out)
+        self.assertNotIn("&lt;math", out)
+
+    def test_unsafe_relation_mathml_fails_to_plain_expression_and_records_gap(self):
+        ctx = render_core.context(manifest_file(self.tmp))
+        relation = ctx.packages[0]["relations"][0]
+        relation["mathml"] = (
+            '<math xmlns="http://www.w3.org/1998/Math/MathML">'
+            '<script>alert(1)</script></math>'
+        )
+        out = render_core._relation_expression(ctx, relation, "M")
+        self.assertIn("g9-expr", out)
+        self.assertTrue(any(g["duty"] == "AUTHOR_GOVERNING_RELATION" and g["record"] == relation["id"]
+                            for g in ctx.gaps))
 
 
 class Manifest(unittest.TestCase):
