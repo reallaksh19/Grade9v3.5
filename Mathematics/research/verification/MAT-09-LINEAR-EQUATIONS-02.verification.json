@@ -3,8 +3,8 @@
   "subject": "Mathematics",
   "node_ref": "MAT-09-LINEAR-EQUATIONS-02",
   "verified_by": "agent-verifier-4",
-  "verified_at": "2026-09-26",
-  "inputs_digest": "sha256:8b70fb5b810e8e675b39c04841300500d894de48b6c395017a81d8a8a317cb35",
+  "verified_at": "2026-09-27",
+  "inputs_digest": "sha256:d7b6667059feb35fcef0355171fd376d7535a62260433d059ee65e855bb94139",
   "questions": [
     {
       "card_ref": "EV-MAT-09-LEQ-02-007",
@@ -75,14 +75,8 @@
     {"record_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true},
-    {"record_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure", "transfer", "independent_check"], "agrees": false},
+    {"record_ref": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure", "transfer", "independent_check"], "agrees": true},
     {"record_ref": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "family_exposure"], "agrees": true}
   ],
-  "findings": [
-    {
-      "target": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5.scaffolds",
-      "duty_for": "AUTHOR",
-      "detail": "Core2B item with transfer.protected_move_ref = Q5-DEC (remove -x by adding x to both sides). scaffolds[2] (hint_ladder order 3) begins 'Once you have 3x - 1 = 14', which is exactly the output of Q5-DEC, so the help hands over the protected decision. Rewrite that rung so it does not state or imply the result of adding x to both sides. Answer x = 5, failure_signal (x = 15: LHS 29, RHS -1), independent_check and the transfer.novelty claim (earlier items Q1/Q3 had positive RHS variable terms 2x, 3x) are otherwise correct."
-    }
-  ]
+  "findings": []
 }
