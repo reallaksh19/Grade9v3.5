@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 340" role="img" aria-labelledby="rep-kin-tracker-title rep-kin-tracker-desc">
+  <title id="rep-kin-tracker-title">A tracked particle with x(t) = 4t m and y(t) = 10 − 2t² m in one fixed frame</title>
+  <desc id="rep-kin-tracker-desc">Stage 1: a tracker reports x(t) = 4t m and y(t) = 10 − 2t² m for one particle in one fixed frame; its position at t = 2 s is asked for. Stage 2: the x and y columns are fed by one clock t. Stage 3: x(2) = 4 × 2 = 8 m and y(2) = 10 − 2 × 2² = 2 m, so the path reaches (8, 2) m at t = 2 s. Stage 4: x(2 s) and y(3 s) belong to two different instants, so together they are not one position.</desc>
+  <defs>
+    <marker id="rep-kin-tracker-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-tracker-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-TRACKER-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">One particle reported by a tracker in one fixed frame</text>
+    <line x1="80" y1="300" x2="330" y2="300" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-tracker-arrow)"/>
+    <line x1="80" y1="300" x2="80" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-tracker-arrow)"/>
+    <text x="336" y="305">+x (m)</text>
+    <text x="88" y="64">+y (m)</text>
+    <line x1="74" y1="100" x2="86" y2="100" stroke="currentColor" stroke-width="1.5"/>
+    <text x="66" y="105" text-anchor="end">10</text>
+    <text x="400" y="60">x(t) = 4t m</text>
+    <text x="400" y="82">y(t) = 10 − 2t² m</text>
+    <text x="400" y="104">Find the position at t = 2 s.</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-TRACKER-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="400" y="140" font-weight="600">One clock, two columns</text>
+    <text x="400" y="162">x column: x(t) = 4t</text>
+    <text x="400" y="184">y column: y(t) = 10 − 2t²</text>
+    <text x="400" y="206">one t feeds both columns</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-TRACKER-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M80 100 L100 102.5 L120 110 L140 122.5 L160 140 L180 162.5 L200 190 L220 222.5 L240 260" fill="none" stroke="#1f6fb2" stroke-width="2" stroke-dasharray="6 4"/>
+    <circle cx="240" cy="260" r="6" fill="#1f6fb2" stroke="#1f6fb2" stroke-width="2"/>
+    <text x="250" y="250" fill="#1f6fb2">(8, 2) m at t = 2 s</text>
+    <text x="400" y="240" fill="#1f6fb2">x(2) = 4 × 2 = 8 m</text>
+    <text x="400" y="262" fill="#1f6fb2">y(2) = 10 − 2 × 2² = 2 m</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-TRACKER-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="400" y="300" font-weight="600" fill="#1f6fb2">x(2 s) with y(3 s): two instants,</text>
+    <text x="400" y="322" font-weight="600" fill="#1f6fb2">not one position</text>
+  </g>
+</svg>

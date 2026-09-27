@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" role="img" aria-labelledby="rep-kin-boat-title rep-kin-boat-desc">
+  <title id="rep-kin-boat-title">A boat leaving a jetty with steady components 3 m/s downstream and 4 m/s across</title>
+  <desc id="rep-kin-boat-desc">Stage 1: in the bank frame, origin at the jetty, +x downstream and +y across, a boat leaves at t = 0 with steady velocity components v_x = 3 m/s and v_y = 4 m/s; its position at t = 5 s is asked for. Stage 2: an x column x(t) = 3t and a y column y(t) = 4t share one clock t. Stage 3: at t = 5 s the boat is at (15, 20) m; the pair x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.</desc>
+  <defs>
+    <marker id="rep-kin-boat-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-boat-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-BOAT-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A boat crossing a river from a jetty</text>
+    <line x1="40" y1="60" x2="480" y2="60" stroke="currentColor" stroke-width="2"/>
+    <text x="300" y="52">far bank</text>
+    <line x1="40" y1="320" x2="480" y2="320" stroke="currentColor" stroke-width="2"/>
+    <line x1="80" y1="320" x2="460" y2="320" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-boat-arrow)"/>
+    <line x1="80" y1="320" x2="80" y2="40" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-boat-arrow)"/>
+    <text x="466" y="325">+x downstream</text>
+    <text x="88" y="44">+y across</text>
+    <rect x="64" y="322" width="32" height="12" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="40" y="356">jetty: origin, t = 0 at departure</text>
+    <line x1="80" y1="300" x2="140" y2="300" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-boat-arrow)"/>
+    <text x="146" y="305">v_x = 3 m/s</text>
+    <line x1="80" y1="300" x2="80" y2="220" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-boat-arrow)"/>
+    <text x="88" y="215">v_y = 4 m/s</text>
+    <text x="520" y="60">both components steady,</text>
+    <text x="520" y="82">relative to the bank</text>
+    <text x="520" y="104">Find the position at t = 5 s.</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-BOAT-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="520" y="150" font-weight="600">One clock, two columns</text>
+    <text x="520" y="172">x column: x(t) = 3t</text>
+    <text x="520" y="194">y column: y(t) = 4t</text>
+    <text x="520" y="216">the same t in both</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-BOAT-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="80" y1="320" x2="230" y2="120" stroke="#1f6fb2" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="230" cy="120" r="6" fill="#1f6fb2" stroke="#1f6fb2" stroke-width="2"/>
+    <text x="240" y="116" fill="#1f6fb2">(15, 20) m at t = 5 s</text>
+    <circle cx="230" cy="160" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="240" y="176">(15, 16) m: not a position</text>
+    <text x="520" y="260" font-weight="600" fill="#1f6fb2">x(5 s) with y(4 s) = (15, 16) m</text>
+    <text x="520" y="282" font-weight="600" fill="#1f6fb2">mixes two instants</text>
+  </g>
+</svg>
