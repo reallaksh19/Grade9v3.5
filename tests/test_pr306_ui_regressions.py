@@ -73,6 +73,34 @@ class Pr306UiRegressions(unittest.TestCase):
         self.assertNotIn("cosine", literals)
         self.assertTrue(any("sqrt(" in span["literal"] for span in spans))
 
+        def source_text(question, target):
+            if target == "stem":
+                return question["stem"]
+            if target == "conditions":
+                return " ".join(question.get("conditions", []))
+            if target == "common_wrong_route":
+                return question["extensions"]["grade9v3:analysis"]["common_wrong_route"]
+            if target == "answer_summary":
+                return question["answer"]["summary"]
+            if target == "answer_check":
+                return question["answer"]["check"]
+            kind, index = target.split(":", 1)
+            index = int(index)
+            if kind == "option":
+                return question["options"][index]
+            if kind == "source_hint":
+                hint = question["hints"][index]
+                return hint if isinstance(hint, str) else hint["text"]
+            if kind == "scaffold":
+                return question["scaffolds"][index]["text"]
+            if kind == "answer_reasoning":
+                return question["answer"]["reasoning"][index]
+            self.fail(f"unknown math target {target}")
+
+        for question in bank["questions"]:
+            for span in question.get("extensions", {}).get("grade9v3:math_spans", []):
+                self.assertIn(span["literal"], source_text(question, span["target"]))
+
     def test_katex_vendor_dependency_closure_and_no_jsdelivr_runtime(self):
         css = (REPO / "public" / "vendor" / "katex" / "0.16.8" / "katex.min.css").read_text(encoding="utf-8")
         fonts = set(
@@ -94,14 +122,19 @@ class Pr306UiRegressions(unittest.TestCase):
                     msg=f"external KaTeX runtime remains in {path.relative_to(REPO)}",
                 )
 
-    def test_tailwind_external_runtime_is_still_explicit_until_vendored(self):
-        offenders = []
-        for root_name in ("public", "standalone"):
-            for path in (REPO / root_name).rglob("*.html"):
-                source = path.read_text(encoding="utf-8")
-                if "cdn.tailwindcss.com" in source or "gstatic.com/antigravity" in source:
-                    offenders.append(path.relative_to(REPO).as_posix())
-        self.assertTrue(offenders, "remove this sentinel once Tailwind is actually local")
+    def test_tailwind_external_runtime_is_owned_by_pages_publication_contract(self):
+        from Shared.tools import build_pages_site
+
+        runtime = REPO / "public" / "vendor" / "tailwind" / "3.4.17" / "tailwind-play.js"
+        self.assertTrue(runtime.is_file())
+        self.assertEqual(
+            build_pages_site.VENDOR_REWRITES["https://cdn.tailwindcss.com"],
+            "vendor/tailwind/3.4.17/tailwind-play.js",
+        )
+        self.assertEqual(
+            build_pages_site.VENDOR_REWRITES["https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"],
+            "vendor/tailwind/3.4.17/tailwind-play.js",
+        )
 
     def test_interactive_pages_do_not_disable_browser_zoom(self):
         paths = [
