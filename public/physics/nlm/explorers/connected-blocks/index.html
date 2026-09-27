@@ -2162,7 +2162,7 @@
     drawMiniPusher(ctx, baseX, bY + 8, armX, 32, 'left');
     drawArrow(ctx, b1X - 25, bY + bH/2, b1X - 2, bY + bH/2, '#ef4444', 6);
     ctx.fillStyle = '#ef4444';
-    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.font = 'bold 13px var(--font-sans)';
     ctx.textAlign = 'center';
     ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b1X - 35, bY - 4);
 
@@ -2182,14 +2182,14 @@
     ctx.restore();
 
     ctx.fillStyle = '#b45309';
-    ctx.font = 'bold 11px var(--font-mono)';
+    ctx.font = 'bold 13px var(--font-mono)';
     ctx.textAlign = 'center';
     ctx.fillText('Interface N₁₂ = ' + phys.n12_pushLeft.toFixed(1) + ' N', b2X, bY - 14);
 
     // Acceleration arrow above
     drawArrow(ctx, b1X, bY - 30, b2X + b2W, bY - 30, '#15803d', 6);
     ctx.fillStyle = '#15803d';
-    ctx.font = 'bold 11px var(--font-mono)';
+    ctx.font = 'bold 13px var(--font-mono)';
     ctx.textAlign = 'center';
     ctx.fillText('Common System Acceleration a = ' + phys.a.toFixed(2) + ' m/s²', (b1X + b2X + b2W) / 2, bY - 36);
   }
@@ -2218,7 +2218,7 @@
     drawMiniPusher(ctx, baseX, bY + 6, b1X - 10, 30, 'left');
     drawArrow(ctx, b1X - 25, bY + bH/2, b1X - 2, bY + bH/2, '#ef4444', 6);
     ctx.fillStyle = '#ef4444';
-    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.font = 'bold 13px var(--font-sans)';
     ctx.textAlign = 'center';
     ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b1X - 25, bY - 4);
 
@@ -2249,7 +2249,7 @@
     drawMiniPusher(ctx, baseX, bY + 6, b2X + b2W + 10, 30, 'right');
     drawArrow(ctx, b2X + b2W + 25, bY + bH/2, b2X + b2W + 2, bY + bH/2, '#ef4444', 6);
     ctx.fillStyle = '#ef4444';
-    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.font = 'bold 13px var(--font-sans)';
     ctx.textAlign = 'center';
     ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b2X + b2W + 25, bY - 4);
 
@@ -2315,7 +2315,7 @@
     // Label
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
-    ctx.font = '600 9px var(--font-sans)';
+    ctx.font = '600 13px var(--font-sans)';
     ctx.fillText('m' + (label === '1' ? '₁' : '₂') + ' = ' + mass.toFixed(1) + 'kg', x + w/2, y + 13);
     ctx.font = 'bold 18px var(--font-sans)';
     ctx.fillText(label, x + w/2, y + h - 8);
@@ -2347,7 +2347,7 @@
     ctx.stroke();
 
     ctx.fillStyle = '#64748b';
-    ctx.font = '9px var(--font-mono)';
+    ctx.font = '13px var(--font-mono)';
     ctx.textAlign = 'right';
     const step = maxVal <= 60 ? 20 : 25;
     for (let f = 0; f <= maxVal; f += step) {
@@ -2372,22 +2372,22 @@
     ctx.fillStyle = '#3b82f6';
     ctx.fillRect(x1, (h - padB) - h1, barW, h1);
     ctx.fillStyle = '#1e3a8a';
-    ctx.font = 'bold 10px var(--font-mono)';
+    ctx.font = 'bold 13px var(--font-mono)';
     ctx.textAlign = 'center';
     ctx.fillText(phys.n12_pushLeft.toFixed(1) + ' N', x1 + barW/2, (h - padB) - h1 - 4);
     ctx.fillStyle = '#475569';
-    ctx.font = '10px var(--font-sans)';
+    ctx.font = '13px var(--font-sans)';
     ctx.fillText('N₁₂ (on m₂)', x1 + barW/2, h - 8);
 
     // Orange Bar (Push Right -> N21)
     ctx.fillStyle = '#f97316';
     ctx.fillRect(x2, (h - padB) - h2, barW, h2);
     ctx.fillStyle = '#7c2d12';
-    ctx.font = 'bold 10px var(--font-mono)';
+    ctx.font = 'bold 13px var(--font-mono)';
     ctx.textAlign = 'center';
     ctx.fillText(phys.n12_pushRight.toFixed(1) + ' N', x2 + barW/2, (h - padB) - h2 - 4);
     ctx.fillStyle = '#475569';
-    ctx.font = '10px var(--font-sans)';
+    ctx.font = '13px var(--font-sans)';
     ctx.fillText('N₂₁ (on m₁)', x2 + barW/2, h - 8);
   }
 
@@ -2406,7 +2406,7 @@
     ctx.fillRect(mid, 0, w - mid, h);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.font = 'bold 13px var(--font-sans)';
     ctx.textAlign = 'left';
     ctx.fillText('Block 1 (m₁)', 10, 18);
     ctx.textAlign = 'right';
@@ -2422,7 +2422,7 @@
     drawArrow(ctx, mid + 4, h/2 + 4, mid + 38, h/2 + 4, '#1e3a8a', 6);
 
     ctx.fillStyle = '#1e3a8a';
-    ctx.font = 'bold 11px var(--font-sans)';
+    ctx.font = 'bold 13px var(--font-sans)';
     ctx.textAlign = 'center';
     ctx.fillText('N₂₁ (on 1 by 2)', mid - 45, h/2 + 24);
     ctx.fillText('N₁₂ (on 2 by 1)', mid + 45, h/2 + 24);
@@ -2521,7 +2521,7 @@
       ctx.strokeRect(cx - bw/2, cy - bh/2, bw, bh);
 
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 11px var(--font-sans)';
+      ctx.font = 'bold 13px var(--font-sans)';
       ctx.textAlign = 'center';
       ctx.fillText('m₁ + m₂', cx, cy + 4);
 
@@ -2547,7 +2547,7 @@
       ctx.strokeRect(cx - bw/2, cy - bh/2, bw, bh);
 
       ctx.fillStyle = '#1e3a8a';
-      ctx.font = 'bold 12px var(--font-sans)';
+      ctx.font = 'bold 13px var(--font-sans)';
       ctx.textAlign = 'center';
       ctx.fillText('m₁', cx, cy + 4);
 
@@ -2569,7 +2569,7 @@
       ctx.strokeRect(cx - bw/2, cy - bh/2, bw, bh);
 
       ctx.fillStyle = '#9a3412';
-      ctx.font = 'bold 12px var(--font-sans)';
+      ctx.font = 'bold 13px var(--font-sans)';
       ctx.textAlign = 'center';
       ctx.fillText('m₂', cx, cy + 4);
 
@@ -2626,7 +2626,7 @@
       const cx = w / 2; const cy = h / 2;
       c3.fillStyle = '#bbf7d0'; c3.strokeStyle = '#15803d'; c3.lineWidth = 2;
       c3.fillRect(cx - 45, cy - 25, 90, 50); c3.strokeRect(cx - 45, cy - 25, 90, 50);
-      c3.fillStyle = '#14532d'; c3.font = 'bold 12px var(--font-sans)'; c3.textAlign = 'center';
+      c3.fillStyle = '#14532d'; c3.font = 'bold 13px var(--font-sans)'; c3.textAlign = 'center';
       c3.fillText('m₁ + m₂ = ' + (state.m1 + state.m2).toFixed(1) + 'kg', cx, cy + 5);
 
       drawArrow(c3, cx - 85, cy, cx - 47, cy, '#ef4444', 6);
@@ -2652,7 +2652,7 @@
     ctx.moveTo(padL, padT); ctx.lineTo(padL, h - padB); ctx.lineTo(w - padR, h - padB);
     ctx.stroke();
 
-    ctx.fillStyle = '#475569'; ctx.font = '10px var(--font-sans)'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#475569'; ctx.font = '13px var(--font-sans)'; ctx.textAlign = 'right';
     ctx.fillText('0', padL - 5, h - padB + 3);
 
     const maxM2 = 40;
@@ -2681,7 +2681,7 @@
     ctx.save();
     ctx.strokeStyle = '#f43f5e'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(padL, asymY); ctx.lineTo(w - padR, asymY); ctx.stroke();
-    ctx.fillStyle = '#f43f5e'; ctx.font = 'bold 10px var(--font-mono)'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#f43f5e'; ctx.font = 'bold 13px var(--font-mono)'; ctx.textAlign = 'right';
     ctx.fillText('Asymptote N₁₂ = F (' + state.F.toFixed(0) + ' N)', w - padR, asymY - 4);
     ctx.restore();
 
@@ -2704,7 +2704,7 @@
     ctx.beginPath(); ctx.arc(curX, curY, 6, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.stroke();
 
-    ctx.fillStyle = '#1e293b'; ctx.font = 'bold 11px var(--font-mono)'; ctx.textAlign = 'left';
+    ctx.fillStyle = '#1e293b'; ctx.font = 'bold 13px var(--font-mono)'; ctx.textAlign = 'left';
     ctx.fillText('m₂=' + state.m2.toFixed(1) + 'kg, N₁₂=' + phys.n12_pushLeft.toFixed(1) + 'N', curX + 8, curY - 6);
   }
 
@@ -2751,7 +2751,7 @@
       // Atom 1
       ctx.fillStyle = '#3b82f6';
       ctx.beginPath(); ctx.arc(a1X, row, 12, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 9px var(--font-sans)'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px var(--font-sans)'; ctx.textAlign = 'center';
       ctx.fillText('Fe', a1X, row + 3);
 
       // Atom 2
@@ -2765,12 +2765,12 @@
       drawArrow(ctx, a2X + 16, row, a2X + 32, row, '#9a3412', 4);
     }
 
-    ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 12px var(--font-sans)'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#1e3a8a'; ctx.font = 'bold 13px var(--font-sans)'; ctx.textAlign = 'center';
     ctx.fillText('Block 1 Surface (Pushed Left by N₂₁)', mid - 110, 25);
     ctx.fillStyle = '#9a3412';
     ctx.fillText('Block 2 Surface (Pushed Right by N₁₂)', mid + 110, 25);
 
-    ctx.fillStyle = '#15803d'; ctx.font = 'bold 12px var(--font-mono)';
+    ctx.fillStyle = '#15803d'; ctx.font = 'bold 13px var(--font-mono)';
     ctx.fillText('Spring Compression Δx ∝ Normal Contact Force |N₁₂| = ' + phys.n12_pushLeft.toFixed(1) + ' N', mid, h - 10);
   }
 
@@ -2799,7 +2799,7 @@
     const baseX = Math.max(5, b1X - 50);
     drawMiniPusher(ctx, baseX, bY + 6, b1X - 10, 30, 'left');
     drawArrow(ctx, b1X - 25, bY + bH/2, b1X - 2, bY + bH/2, '#ef4444', 6);
-    ctx.fillStyle = '#ef4444'; ctx.font = 'bold 11px var(--font-sans)'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px var(--font-sans)'; ctx.textAlign = 'center';
     ctx.fillText('F = ' + state.F.toFixed(0) + ' N', b1X - 25, bY - 4);
 
     drawStyledBlock(ctx, b1X, bY, b1W, bH, '#3b82f6', '#1d4ed8', '1', state.m1);
@@ -2807,7 +2807,7 @@
     drawStyledBlock(ctx, b3X, bY, b3W, bH, '#10b981', '#047857', '3', state.m3);
 
     // Interface markers
-    ctx.fillStyle = '#1d4ed8'; ctx.font = 'bold 10px var(--font-mono)'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#1d4ed8'; ctx.font = 'bold 13px var(--font-mono)'; ctx.textAlign = 'center';
     ctx.fillText('N₁₂=' + phys.n12_train.toFixed(1) + 'N', b2X, bY - 6);
 
     ctx.fillStyle = '#c2410c';

@@ -2312,7 +2312,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.arc(p.px, p.py, 12, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, p.px - 6, p.py + 3);
       });
 
@@ -2332,7 +2332,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.arc(p.px, p.py, 14, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#f59e0b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(': lp', p.px - 8, p.py + 3);
       });
 
@@ -2342,7 +2342,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.arc(cProj.px, cProj.py, 16, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText(currentVsepr.slice(0, 2), cProj.px - 8, cProj.py + 4);
     }
 
@@ -2445,7 +2445,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.stroke();
 
         ctx.fillStyle = '#94a3b8';
-        ctx.font = '11px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(lv.label, midX - 140, lv.y + 4);
 
         // Draw electron arrows
@@ -2457,7 +2457,7 @@ window.JEE_QUESTIONS_DATA = [
       });
 
       ctx.fillStyle = '#a855f7';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(isMotMixing ? '2s-2p Mixing Active (π < σ)' : 'No 2s-2p Mixing (σ < π)', midX - 100, h - 20);
     }
 
@@ -2541,7 +2541,7 @@ window.JEE_QUESTIONS_DATA = [
 
     function drawOzoneStructure(ctx, cx, cy, isLeftDouble, isRightDouble, title) {
       ctx.fillStyle = '#94a3b8';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText(title, cx, cy - 65);
 
@@ -2583,12 +2583,12 @@ window.JEE_QUESTIONS_DATA = [
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, a.x, a.y + 4);
 
         // FC Badge
         ctx.fillStyle = a.color;
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
       });
       ctx.textAlign = 'left';
@@ -2596,7 +2596,7 @@ window.JEE_QUESTIONS_DATA = [
 
     function drawOzoneHybrid(ctx, cx, cy, title) {
       ctx.fillStyle = '#a855f7';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText(title, cx, cy - 65);
 
@@ -2628,15 +2628,15 @@ window.JEE_QUESTIONS_DATA = [
         ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(a.label, a.x, a.y + 4);
 
         ctx.fillStyle = a.color;
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(`[${a.fc}]`, a.x, a.y + 24);
       });
       ctx.fillStyle = '#38bdf8';
-      ctx.font = '10px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Equal Bond Lengths: 128 pm', cx, cy + 55);
       ctx.textAlign = 'left';
     }
@@ -2668,15 +2668,15 @@ window.JEE_QUESTIONS_DATA = [
         ctx.fillStyle = '#0f172a';
         ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', o.x, o.y + 4);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
       });
 
       // Central Carbon
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px monospace'; ctx.fillText('C', c.x, c.y + 4);
-      ctx.fillStyle = '#a855f7'; ctx.font = '11px monospace'; ctx.fillText('All 3 C-O Bonds Identical (BO = 1.33)', cx, cy + 95);
+      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', c.x, c.y + 4);
+      ctx.fillStyle = '#a855f7'; ctx.font = '13px monospace'; ctx.fillText('All 3 C-O Bonds Identical (BO = 1.33)', cx, cy + 95);
       ctx.textAlign = 'left';
     }
 
@@ -2706,16 +2706,16 @@ window.JEE_QUESTIONS_DATA = [
         ctx.fillStyle = '#0f172a';
         ctx.beginPath(); ctx.arc(o.x, o.y, 14, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', o.x, o.y + 4);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', o.x, o.y + 4);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('[-⅔]', o.x + (o.x > cx ? 16 : (o.x < cx ? -16 : 0)), o.y + (o.y < cy ? -14 : 16));
       });
 
       // Central Nitrogen
       ctx.fillStyle = '#8b5cf6';
       ctx.beginPath(); ctx.arc(c.x, c.y, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 12px monospace'; ctx.fillText('N', c.x, c.y + 4);
-      ctx.fillStyle = '#c084fc'; ctx.font = 'bold 10px monospace'; ctx.fillText('[+1]', c.x + 18, c.y - 8);
-      ctx.fillStyle = '#38bdf8'; ctx.font = '11px monospace'; ctx.fillText('Net Charge = +1 + 3(-⅔) = -1', cx, cy + 95);
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', c.x, c.y + 4);
+      ctx.fillStyle = '#c084fc'; ctx.font = 'bold 13px monospace'; ctx.fillText('[+1]', c.x + 18, c.y - 8);
+      ctx.fillStyle = '#38bdf8'; ctx.font = '13px monospace'; ctx.fillText('Net Charge = +1 + 3(-⅔) = -1', cx, cy + 95);
       ctx.textAlign = 'left';
     }
 
@@ -2819,7 +2819,7 @@ window.JEE_QUESTIONS_DATA = [
 
       if (label) {
         ctx.fillStyle = color;
-        ctx.font = 'bold 9px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(label, toP.px + ux * 8, toP.py + uy * 8);
       }
     }
@@ -2857,7 +2857,7 @@ window.JEE_QUESTIONS_DATA = [
 
       if (label) {
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 11px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(label, endX + (ux >= 0 ? 8 : -110), endY + (uy >= 0 ? 14 : -10));
       }
     }
@@ -2893,7 +2893,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.textAlign = 'center';
         ctx.fillText('NH₃: Pyramidal (μ = 1.47 D)', cx1, 35);
         ctx.fillStyle = '#64748b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText('3 N-H Dipoles (↑) + Lone Pair (↑) REINFORCE', cx1, 52);
 
         // Project Nitrogen Apex
@@ -2920,17 +2920,17 @@ window.JEE_QUESTIONS_DATA = [
         // Lone pair lobe
         ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
         ctx.beginPath(); ctx.arc(lpProj1.px, lpProj1.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText(': lp', lpProj1.px, lpProj1.py + 3);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj1.px, lpProj1.py + 3);
         drawDipoleVector(ctx, nProj1, lpProj1, '#f59e0b');
 
         // Draw Hydrogens
         hAtoms.forEach(hP => {
           ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hP.px, hP.py, 8, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 9px monospace'; ctx.fillText('H', hP.px, hP.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hP.px, hP.py + 3);
         });
         // Draw Central Nitrogen
         ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj1.px, nProj1.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('N', nProj1.px, nProj1.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj1.px, nProj1.py + 4);
 
         // Net Dipole Resultant Vector (Large, pointing UP)
         drawResultantVector(ctx, cx1, cy + 20, 60, -Math.PI / 2, '#10b981', 'μ_net = 1.47 D ↑');
@@ -2941,7 +2941,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.font = 'bold 13px monospace';
         ctx.fillText('NF₃: Pyramidal (μ = 0.24 D)', cx2, 35);
         ctx.fillStyle = '#64748b';
-        ctx.font = '10px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText('3 N-F Dipoles (↓) OPPOSE Lone Pair (↑)', cx2, 52);
 
         // Project Nitrogen Apex
@@ -2967,17 +2967,17 @@ window.JEE_QUESTIONS_DATA = [
         ctx.setLineDash([]);
         ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
         ctx.beginPath(); ctx.arc(lpProj2.px, lpProj2.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace'; ctx.fillText(': lp', lpProj2.px, lpProj2.py + 3);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText(': lp', lpProj2.px, lpProj2.py + 3);
         drawDipoleVector(ctx, nProj2, lpProj2, '#f59e0b');
 
         // Draw Fluorines
         fAtoms.forEach(fP => {
           ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(fP.px, fP.py, 11, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('F', fP.px, fP.py + 3);
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('F', fP.px, fP.py + 3);
         });
         // Draw Central Nitrogen
         ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(nProj2.px, nProj2.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('N', nProj2.px, nProj2.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('N', nProj2.px, nProj2.py + 4);
 
         // Net Dipole Resultant Vector (Tiny, pointing DOWN)
         drawResultantVector(ctx, cx2, cy - 10, 18, Math.PI / 2, '#f43f5e', 'μ_net = 0.24 D ↓');
@@ -2987,7 +2987,7 @@ window.JEE_QUESTIONS_DATA = [
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('H₂O: Bent 104.5° (μ = 1.85 D)', cx1, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('2 O-H Dipoles (↑) + 2 Lone Pairs (↑) Reinforce', cx1, 52);
 
         const oP = project3D(0, 0.4, 0, cx1, cy, scale, orbitDipole);
@@ -2999,18 +2999,18 @@ window.JEE_QUESTIONS_DATA = [
           ctx.beginPath(); ctx.moveTo(hp.px, hp.py); ctx.lineTo(oP.px, oP.py); ctx.stroke();
           drawDipoleVector(ctx, hp, oP, '#38bdf8');
           ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hp.px, hp.py, 8, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 9px monospace'; ctx.fillText('H', hp.px, hp.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hp.px, hp.py + 3);
         });
 
         ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(oP.px, oP.py, 15, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace'; ctx.fillText('O', oP.px, oP.py + 4);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', oP.px, oP.py + 4);
         drawResultantVector(ctx, cx1, cy + 20, 65, -Math.PI / 2, '#38bdf8', 'μ_net = 1.85 D ↑');
 
         // ================= RIGHT: CO2 (LINEAR) =================
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('CO₂: Linear 180° (μ = 0 D)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('Two Identical C=O Dipoles Exactly Cancel (180°)', cx2, 52);
 
         const cP = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
@@ -3024,19 +3024,19 @@ window.JEE_QUESTIONS_DATA = [
 
         [oL, oR].forEach(op => {
           ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(op.px, op.py, 12, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('O', op.px, op.py + 3);
+          ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O', op.px, op.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP.px, cP.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP.px, cP.py + 3);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP.px, cP.py + 3);
 
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 12px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('μ_net = 0.00 D (Non-Polar)', cx2, cy + 60);
       } else {
         // ================= CCl4 vs CHCl3 =================
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('CCl₄: Tetrahedral (μ = 0 D)', cx1, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('Symmetric Vectorial Sum = 0', cx1, 52);
 
         const cP1 = project3D(0, 0, 0, cx1, cy, scale, orbitDipole);
@@ -3051,18 +3051,18 @@ window.JEE_QUESTIONS_DATA = [
           ctx.beginPath(); ctx.moveTo(cP1.px, cP1.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
           drawDipoleVector(ctx, cP1, cl, '#94a3b8');
           ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP1.px, cP1.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP1.px, cP1.py + 3);
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 12px monospace';
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP1.px, cP1.py + 3);
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('μ_net = 0.00 D', cx1, cy + 60);
 
         // RIGHT: CHCl3
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('CHCl₃: Polar (μ = 1.04 D)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('3 C-Cl Pull Down + 1 C-H Push Down', cx2, 52);
 
         const cP2 = project3D(0, 0, 0, cx2, cy, scale, orbitDipole);
@@ -3077,17 +3077,17 @@ window.JEE_QUESTIONS_DATA = [
         ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(hTop.px, hTop.py); ctx.stroke();
         drawDipoleVector(ctx, hTop, cP2, '#38bdf8');
         ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.arc(hTop.px, hTop.py, 8, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('H', hTop.px, hTop.py + 3);
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('H', hTop.px, hTop.py + 3);
 
         clBottom.forEach(cl => {
           ctx.strokeStyle = '#475569'; ctx.lineWidth = 2.5;
           ctx.beginPath(); ctx.moveTo(cP2.px, cP2.py); ctx.lineTo(cl.px, cl.py); ctx.stroke();
           drawDipoleVector(ctx, cP2, cl, '#f43f5e');
           ctx.fillStyle = '#10b981'; ctx.beginPath(); ctx.arc(cl.px, cl.py, 9, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 8px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
+          ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace'; ctx.fillText('Cl', cl.px, cl.py + 3);
         });
         ctx.fillStyle = '#64748b'; ctx.beginPath(); ctx.arc(cP2.px, cP2.py, 13, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('C', cP2.px, cP2.py + 3);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('C', cP2.px, cP2.py + 3);
 
         drawResultantVector(ctx, cx2, cy - 10, 45, Math.PI / 2, '#38bdf8', 'μ_net = 1.04 D ↓');
       }
@@ -3167,7 +3167,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.arc(cl.px, cl.py, 12, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center';
         ctx.fillText('Cl', cl.px, cl.py + 3);
       });
@@ -3194,7 +3194,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.arc(cl.px, cl.py, 13, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center';
         ctx.fillText('Cl', cl.px, cl.py + 3);
       });
@@ -3205,21 +3205,21 @@ window.JEE_QUESTIONS_DATA = [
       ctx.arc(pProj.px, pProj.py, 17, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center';
       ctx.fillText('P', pProj.px, pProj.py + 4);
       ctx.textAlign = 'left';
 
       // Legends & Thermal notice
       ctx.fillStyle = '#14b8a6';
-      ctx.font = 'bold 11px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText('■ Equatorial: 202 pm (120° angles, 2×90° repulsions)', 20, 30);
       ctx.fillStyle = '#f59e0b';
       ctx.fillText('■ Axial: 240 pm (Three 90° repulsions from equatorial atoms)', 20, 50);
 
       if (currentPCl5Mode === 'cleavage') {
         ctx.fillStyle = '#ef4444';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText('🔥 PCl₅(g) —Δ→ PCl₃(g) + Cl₂(g) [2 Elongated Axial Bonds Cleave First!]', 20, h - 20);
       }
     }
@@ -3293,14 +3293,14 @@ window.JEE_QUESTIONS_DATA = [
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('o-Nitrophenol (Chelated)', cx1, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intramolecular 6-Membered Ring (BP: 216°C)', cx1, 52);
 
         drawBenzeneRing(ctx, cx1 - 25, cy + 10, 32);
 
         // OH group at C1
         const ohX = cx1 + 15, ohY = cy - 25;
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 12px monospace'; ctx.fillText('O—H', ohX, ohY);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('O—H', ohX, ohY);
 
         // NO2 group at C2
         const noX = cx1 + 20, noY = cy + 30;
@@ -3312,21 +3312,21 @@ window.JEE_QUESTIONS_DATA = [
         ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
         ctx.beginPath(); ctx.moveTo(ohX + 18, ohY - 4); ctx.lineTo(noX + 22, noY - 14); ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 9px monospace'; ctx.fillText('Chelation H-Bond', cx1 + 45, cy - 2);
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace'; ctx.fillText('Chelation H-Bond', cx1 + 45, cy - 2);
 
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Steam Volatile: Separable by steam distillation!', cx1, h - 20);
 
         // RIGHT: p-Nitrophenol
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('p-Nitrophenol (Associated)', cx2, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intermolecular Polymeric Network (BP: 279°C)', cx2, 52);
 
         // Molecule 1
         drawBenzeneRing(ctx, cx2 - 50, cy, 26);
-        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px monospace'; ctx.fillText('H—O', cx2 - 90, cy);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace'; ctx.fillText('H—O', cx2 - 90, cy);
         ctx.fillStyle = '#38bdf8'; ctx.fillText('NO₂', cx2 - 15, cy);
 
         // Molecule 2
@@ -3338,34 +3338,34 @@ window.JEE_QUESTIONS_DATA = [
         ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 3; ctx.setLineDash([4, 4]);
         ctx.beginPath(); ctx.moveTo(cx2 - 5, cy - 2); ctx.lineTo(cx2 + 15, cy - 2); ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 9px monospace'; ctx.fillText('Intermolecular H-Bond', cx2 + 5, cy - 18);
+        ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 13px monospace'; ctx.fillText('Intermolecular H-Bond', cx2 + 5, cy - 18);
 
-        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
         ctx.fillText('High BP (+63°C higher) & High Water Solubility', cx2, h - 20);
       } else {
         // Ethanol vs Ether
         const cx1 = midX * 0.5;
         ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'center';
         ctx.fillText('Ethanol (C₂H₅—O—H)', cx1, 35);
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '13px monospace';
         ctx.fillText('Intermolecular H-Bonds (BP: +78.4°C, Liquid)', cx1, 52);
 
         ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
         ctx.fillText('C₂H₅—O—H ···· O(C₂H₅)—H ···· O(C₂H₅)—H', cx1, cy);
-        ctx.fillStyle = '#10b981'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#10b981'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Extensive H-bonding network requires large heat to boil', cx1, h - 25);
 
         const cx2 = midX + midX * 0.5;
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Dimethyl Ether (CH₃—O—CH₃)', cx2, 35);
-        ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+        ctx.fillStyle = '#64748b'; ctx.font = '13px monospace';
         ctx.fillText('No H on Electronegative Atom (BP: -24°C, Gas)', cx2, 52);
 
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 13px monospace';
         ctx.fillText('H₃C—O—CH₃      H₃C—O—CH₃', cx2, cy);
-        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 13px monospace';
         ctx.fillText('(Only weak dipole-dipole forces; No H-Bonding!)', cx2, cy + 25);
-        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = '#ef4444'; ctx.font = 'bold 13px monospace';
         ctx.fillText('Boiling point difference = 102.4°C!', cx2, h - 25);
       }
       ctx.textAlign = 'left';
@@ -3494,14 +3494,14 @@ window.JEE_QUESTIONS_DATA = [
 
         ctx.fillStyle = '#38bdf8';
         ctx.beginPath(); ctx.arc(lig.px, lig.py, 12, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = '#0f172a'; ctx.font = 'bold 13px monospace';
         ctx.textAlign = 'center'; ctx.fillText(lig.label, lig.px, lig.py + 3);
       });
 
       // Central Atom
       ctx.fillStyle = '#8b5cf6';
       ctx.beginPath(); ctx.arc(cP.px, cP.py, 16, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 11px monospace';
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px monospace';
       ctx.textAlign = 'center'; ctx.fillText('M', cP.px, cP.py + 4);
       ctx.textAlign = 'left';
     }

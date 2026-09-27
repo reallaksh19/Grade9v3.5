@@ -1570,13 +1570,13 @@ function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly)
 
     // Mass Label
     ctx.fillStyle = '#f8fafc';
-    ctx.font = 'bold 12px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.textAlign = 'center';
     ctx.fillText(massVal.toFixed(1) + ' kg', cx, cy + 4);
 
     // Subtitle label
     ctx.fillStyle = themeColor;
-    ctx.font = 'bold 10px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.fillText(label, cx, topY - 8);
   } else {
     // Point-particle circle
@@ -1589,7 +1589,7 @@ function drawMassBlock(ctx, cx, cy, w, h, massVal, themeColor, label, isFbdOnly)
     ctx.stroke();
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 11px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.textAlign = 'center';
     ctx.fillText(`${label} (${massVal.toFixed(1)}kg)`, cx, topY - 10);
   }
@@ -1647,7 +1647,7 @@ function drawSpringDynamometer(ctx, x, y, tensionVal, side) {
   ctx.strokeRect(badgeX, badgeY, badgeW, badgeH);
 
   ctx.fillStyle = '#f0883e';
-  ctx.font = 'bold 10px monospace';
+  ctx.font = 'bold 13px monospace';
   ctx.textAlign = 'center';
   ctx.fillText(tensionVal.toFixed(1) + ' N', badgeX + badgeW / 2, badgeY + 12);
 }
@@ -1686,7 +1686,7 @@ function drawHeightRuler(ctx, rx, minY, maxY, curY, side) {
   ctx.fill();
 
   // Ruler height text: placed AWAY from apparatus so it never collides with mass blocks
-  ctx.font = 'bold 10px monospace';
+  ctx.font = 'bold 13px monospace';
   ctx.fillStyle = '#94a3b8';
   if (side === 'left') {
     ctx.textAlign = 'right';
@@ -1721,7 +1721,7 @@ function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label, side) {
   ctx.fill();
 
   if (label) {
-    ctx.font = 'bold 11px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.fillStyle = color;
     if (side === 'left') {
       ctx.textAlign = 'right';
@@ -1767,7 +1767,7 @@ function renderGraph(p) {
     graphCtx.lineTo(sx, h - padBottom);
     graphCtx.stroke();
     graphCtx.fillStyle = '#64748b';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText(r + ':1', sx, h - padBottom + 16);
   }
@@ -1780,7 +1780,7 @@ function renderGraph(p) {
     graphCtx.stroke();
     // Left axis tick label (Tension)
     graphCtx.fillStyle = '#f0883e';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'right';
     graphCtx.fillText(t, padLeft - 6, sy + 4);
   }
@@ -1789,7 +1789,7 @@ function renderGraph(p) {
   for (let a = 2; a <= maxAccelY; a += 2) {
     const sy = toScreenYAccel(a);
     graphCtx.fillStyle = '#56d364';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'left';
     graphCtx.fillText(a + 'm/s²', w - padRight + 6, sy + 4);
   }
@@ -1806,7 +1806,7 @@ function renderGraph(p) {
 
   // Axis Titles
   graphCtx.fillStyle = '#f0883e';
-  graphCtx.font = 'bold 11px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.textAlign = 'left';
   graphCtx.fillText('— T (N)', padLeft, padTop - 14);
 
@@ -1845,7 +1845,7 @@ function renderGraph(p) {
     graphCtx.setLineDash([]);
 
     graphCtx.fillStyle = '#f0883e';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'right';
     graphCtx.fillText('Limit 2m₁g = ' + tLimit.toFixed(0) + 'N', w - padRight - 8, limitY - 5);
   }
@@ -1885,7 +1885,7 @@ function renderGraph(p) {
   ctx.stroke();
 
   // Text tag
-  graphCtx.font = 'bold 11px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.fillStyle = '#f0883e';
   graphCtx.textAlign = (curX > w - padRight - 70) ? 'right' : 'left';
   const tagOffset = (curX > w - padRight - 70) ? -10 : 10;

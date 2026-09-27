@@ -1311,7 +1311,7 @@ function renderSimStage(p) {
     simCtx.stroke();
 
     simCtx.fillStyle = '#ffffff';
-    simCtx.font = 'bold 11px monospace';
+    simCtx.font = 'bold 13px monospace';
     simCtx.textAlign = 'center';
     simCtx.fillText('m = ' + m.toFixed(1) + 'kg', cx, cy - 14);
   }
@@ -1370,7 +1370,7 @@ function renderSimStage(p) {
       simCtx.stroke();
 
       simCtx.fillStyle = '#e2e8f0';
-      simCtx.font = '10px monospace';
+      simCtx.font = '13px monospace';
       simCtx.fillText(theta + '°', attachX + 34, attachY - 6);
     }
   }
@@ -1419,7 +1419,7 @@ function renderSimStage(p) {
 
     // Small labels
     simCtx.fillStyle = '#fdba74';
-    simCtx.font = '10px monospace';
+    simCtx.font = '13px monospace';
     simCtx.fillText('Px = ' + p.Px.toFixed(1) + 'N', arrowOriginX + (pVecX - arrowOriginX) / 2, arrowOriginY + 12);
     simCtx.fillText('Py = ' + p.Py.toFixed(1) + 'N', pVecX + 6, arrowOriginY - (arrowOriginY - pVecY) / 2);
   }
@@ -1538,12 +1538,12 @@ function drawMicroscopicLens(ctx, lensX, lensY, radius, p) {
   ctx.stroke();
 
   ctx.fillStyle = '#f8fafc';
-  ctx.font = 'bold 10px monospace';
+  ctx.font = 'bold 13px monospace';
   ctx.textAlign = 'center';
   ctx.fillText('100x ATOMIC ZOOM', lensX, lensY - radius + 14);
 
   const modeText = p.isLiftOff ? 'SEPARATED' : (p.state === "STATIC" ? 'ELASTIC SHEAR' : (p.state === "THRESHOLD" ? 'BONDS YIELDING' : 'SLIDING HOP'));
-  ctx.font = '9px monospace';
+  ctx.font = '13px monospace';
   ctx.fillStyle = ctx.strokeStyle;
   ctx.fillText(modeText, lensX, lensY + radius - 10);
 }
@@ -1574,7 +1574,7 @@ function drawVectorArrow(ctx, fromX, fromY, toX, toY, color, label) {
   ctx.fill();
 
   if (label) {
-    ctx.font = 'bold 11px monospace';
+    ctx.font = 'bold 13px monospace';
     ctx.fillStyle = color;
     ctx.textAlign = (toX >= fromX) ? 'left' : 'right';
     const textOffset = 8;
@@ -1614,7 +1614,7 @@ function renderGraph(p) {
     graphCtx.lineTo(sx, h - padBottom);
     graphCtx.stroke();
     graphCtx.fillStyle = '#64748b';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText(x, sx, h - padBottom + 14);
   }
@@ -1626,7 +1626,7 @@ function renderGraph(p) {
     graphCtx.lineTo(w - padRight, sy);
     graphCtx.stroke();
     graphCtx.fillStyle = '#64748b';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'right';
     graphCtx.fillText(y, padLeft - 6, sy + 4);
   }
@@ -1642,7 +1642,7 @@ function renderGraph(p) {
 
   // Axis Titles
   graphCtx.fillStyle = '#94a3b8';
-  graphCtx.font = 'bold 11px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.textAlign = 'right';
   graphCtx.fillText('f (N)', padLeft - 8, padTop - 6);
   graphCtx.textAlign = 'center';
@@ -1685,7 +1685,7 @@ function renderGraph(p) {
   // Static regime annotation
   if (fs_max > 12) {
     graphCtx.fillStyle = '#60a5fa';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText('STATIC: f_s = P_x', toScreenX(fs_max / 2), toScreenY(fs_max / 2) - 8);
   }
@@ -1710,7 +1710,7 @@ function renderGraph(p) {
 
   if (maxAxisX - fs_max > 15) {
     graphCtx.fillStyle = '#fb923c';
-    graphCtx.font = '10px monospace';
+    graphCtx.font = '13px monospace';
     graphCtx.textAlign = 'center';
     graphCtx.fillText('KINETIC: f_k = μ_k N', toScreenX(fs_max + (maxAxisX - fs_max) / 2), toScreenY(fk) - 8);
   }
@@ -1721,7 +1721,7 @@ function renderGraph(p) {
   graphCtx.arc(toScreenX(fs_max), toScreenY(fs_max), 5, 0, Math.PI * 2);
   graphCtx.fill();
 
-  graphCtx.font = 'bold 10px monospace';
+  graphCtx.font = 'bold 13px monospace';
   graphCtx.fillStyle = '#d8b4fe';
   graphCtx.textAlign = 'left';
   graphCtx.fillText(` Threshold: ${fs_max.toFixed(1)}N`, toScreenX(fs_max) + 6, toScreenY(fs_max) - 4);

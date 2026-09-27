@@ -1147,7 +1147,7 @@
       ctx.fillText('O (0,0)', originPixX - 22, originPixY + 18);
 
       // Tick Labels
-      ctx.font = '10px ui-monospace, monospace';
+      ctx.font = '13px ui-monospace, monospace';
       ctx.fillStyle = isLight ? '#64748b' : '#64748b';
       for (let i = minX; i <= maxX; i++) {
         if (i !== 0 && i % 2 === 0) {
@@ -1223,7 +1223,7 @@
       ctx.beginPath();
       ctx.arc(footNX, footNY, 5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.font = 'bold 11px system-ui';
+      ctx.font = 'bold 13px system-ui';
       ctx.fillText(`N(${pointX.toFixed(1)}, 0)`, footNX, footNY + (pointY >= 0 ? 16 : -10));
 
       ctx.fillStyle = '#38bdf8';

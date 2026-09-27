@@ -2202,7 +2202,7 @@ window.JEE_QUESTIONS_DATA = [
       }
 
       ctx.fillStyle = '#94a3b8';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(`Displaying ${particleCount} representative particles (Scale: 1 particle = ${(moles/particleCount * 6.022).toFixed(2)} \u00d7 10\u00b2\u00b3 molecules)`, 30, h - 15);
     }
 
@@ -2272,7 +2272,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#38bdf8';
       ctx.fillRect(w * 0.15, h - 40 - hN2, barW, hN2);
       ctx.fillStyle = '#ffffff';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(`N₂: ${molN2.toFixed(1)}m`, w * 0.15, h - 45 - hN2);
 
       // H2 Bar
@@ -2358,7 +2358,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle = '#10b981';
       ctx.fillRect(w * 0.85, midY - 30, 40, 60);
       ctx.fillStyle = '#ffffff';
-      ctx.font = '10px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Tank E', w * 0.85 - 2, midY + 45);
     }
 
@@ -2437,7 +2437,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.lineTo(w - 30, h * 0.45);
       ctx.stroke();
       ctx.fillStyle = '#10b981';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText('Molality m (Flat / Constant)', graphX + 10, h * 0.45 - 8);
 
       // Dropping Molarity red line
@@ -2503,7 +2503,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillRect(tubeX + 3, 33 + gasH * 1.8, tubeW - 6, (h - 60) - gasH * 1.8);
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = '11px monospace';
+      ctx.font = '13px monospace';
       ctx.fillText(`Gas Volume: ${eudioPhase === 0 ? '90 mL' : (eudioPhase === 1 ? '65 mL' : '25 mL')}`, tubeX + tubeW + 20, 80);
     }
 
@@ -2534,7 +2534,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.fillRect(bx, h - 50 - bh, barW, bh);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '11px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(el.sym, bx, h - 30);
         ctx.fillText(`${el.moles}m`, bx + 5, h - 55 - bh);
         ctx.fillStyle = '#a855f7';
@@ -2558,7 +2558,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.font = '13px monospace';
       ctx.fillText('🧪 Stoichiometry Sandbox [Draft Mode Active]', 30, 40);
       ctx.fillStyle = '#94a3b8';
-      ctx.font = '11px sans-serif';
+      ctx.font = '13px sans-serif';
       ctx.fillText('Select any arbitrary reactant coefficients and test limiting yield in real-time.', 30, 70);
     }
 

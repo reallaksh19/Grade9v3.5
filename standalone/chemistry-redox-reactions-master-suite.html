@@ -4070,7 +4070,7 @@ window.JEE_QUESTIONS_DATA = [
       if (stageText) stageText.textContent = 'Stage ' + (oxEquationStage + 1) + ' of ' + stages.length + ': ' + (stages[oxEquationStage] || '');
 
       ctx.fillStyle = '#f59e0b';
-      ctx.font = 'bold 12px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText(helper.ref + ' · OXIDATION-STATE LEDGER', 24, 28);
 
       const shown = stages.slice(0, oxEquationStage + 1);
@@ -4098,7 +4098,7 @@ window.JEE_QUESTIONS_DATA = [
       });
 
       ctx.fillStyle = '#94a3b8';
-      ctx.font = '10px sans-serif';
+      ctx.font = '13px sans-serif';
       ctx.fillText('Only the current and previous ledger steps are visible; use Next step to reconstruct rather than reveal.', 24, h - 14);
     }
 
@@ -4431,7 +4431,7 @@ window.JEE_QUESTIONS_DATA = [
       drawNode(ctx, rightX, cy, 34, '#f59e0b', 'Cu', '2+');
 
       ctx.fillStyle = '#cbd5e1';
-      ctx.font = 'bold 12px sans-serif';
+      ctx.font = 'bold 13px sans-serif';
       ctx.fillText('electron donor', leftX - 43, cy + 62);
       ctx.fillText('electron acceptor', rightX - 52, cy + 62);
 
@@ -4453,12 +4453,12 @@ window.JEE_QUESTIONS_DATA = [
         ctx.beginPath(); ctx.arc(mid - 13, cy - 9, 7, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(mid + 13, cy + 9, 7, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#f8fafc';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText('e⁻', mid - 20, cy - 19);
         ctx.fillText('e⁻', mid + 5, cy + 27);
 
         ctx.fillStyle = '#38bdf8';
-        ctx.font = 'bold 12px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText('Zn → Zn²⁺ + 2e⁻  ·  OXIDATION', 24, h - 58);
         ctx.fillStyle = '#fbbf24';
         ctx.fillText('Cu²⁺ + 2e⁻ → Cu  ·  REDUCTION', 24, h - 34);
@@ -4596,7 +4596,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.font = 'bold 13px monospace';
       ctx.fillText(main, x, y + 2);
       if (sub) {
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 13px monospace';
         ctx.fillText(sub, x, y + 16);
       }
       ctx.textAlign = 'start';
@@ -4634,7 +4634,7 @@ window.JEE_QUESTIONS_DATA = [
         drawPeroxoWing(ctx, cx, cy, -1, modelOk);
         drawPeroxoWing(ctx, cx, cy, 1, modelOk);
         ctx.fillStyle = modelOk ? '#86efac' : '#fca5a5';
-        ctx.font = 'bold 11px sans-serif';
+        ctx.font = 'bold 13px sans-serif';
         ctx.fillText(modelOk ? 'O–O bonds trigger the peroxide exception.' : 'Wrong model: all five O were forced to -2.', 24, h - 24);
       } else if (currentCompound === 'S4O6') {
         const xs = [w*0.2, w*0.4, w*0.6, w*0.8];
@@ -4642,13 +4642,13 @@ window.JEE_QUESTIONS_DATA = [
         ctx.strokeStyle = '#64748b'; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.moveTo(xs[0], cy); ctx.lineTo(xs[3], cy); ctx.stroke();
         xs.forEach((x, i) => drawNode(ctx, x, cy, 24, (i===0||i===3)?'#10b981':'#64748b', 'S', vals[i]));
-        ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif';
+        ctx.fillStyle = '#cbd5e1'; ctx.font = '13px sans-serif';
         ctx.fillText(currentStructMode === 'reality' ? 'Homonuclear S–S bonds contribute 0; terminal S values close the -2 charge ledger.' : 'The +2.5 value is a formula average, not the requested atom-by-atom structural assignment.', 24, h - 24);
       } else if (currentCompound === 'Fe3O4') {
         const vals = currentStructMode === 'reality' ? ['+2','+3','+3'] : ['avg +8/3','avg +8/3','avg +8/3'];
         const xs = [w*0.3, w*0.5, w*0.7];
         xs.forEach((x,i)=>drawNode(ctx,x,cy,28,i===0?'#0ea5e9':'#f59e0b','Fe',vals[i]));
-        ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif';
+        ctx.fillStyle = '#cbd5e1'; ctx.font = '13px sans-serif';
         ctx.fillText(currentStructMode === 'reality' ? 'Formal mixed-valence description: one Fe(II) and two Fe(III).' : 'Formula algebra reports the average +8/3.', 24, h - 24);
       }
     }
@@ -4716,7 +4716,7 @@ window.JEE_QUESTIONS_DATA = [
         ctx.beginPath(); ctx.arc(ox, st.y, 8, 0, Math.PI * 2); ctx.fill();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '11px monospace';
+        ctx.font = '13px monospace';
         ctx.fillText(st.label, ox + 20, st.y + 4);
       });
 
@@ -4734,7 +4734,7 @@ window.JEE_QUESTIONS_DATA = [
       ctx.stroke();
 
       ctx.fillStyle = '#f59e0b';
-      ctx.font = 'bold 12px monospace';
+      ctx.font = 'bold 13px monospace';
       ctx.fillText('gains ' + eCount + ' e⁻  (n = ' + eCount + ')', ox - 155, (50 + targetY) * 0.5);
     }
 
@@ -4750,13 +4750,13 @@ window.JEE_QUESTIONS_DATA = [
       drawArrow(ctx,lx+45,cy,rx-45,cy,'#a78bfa');
       const mid=(lx+rx)/2;
       ctx.fillStyle='#a78bfa'; ctx.beginPath(); ctx.arc(mid-12,cy-8,6,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(mid+12,cy+8,6,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#e2e8f0'; ctx.font='bold 11px monospace';
+      ctx.fillStyle='#e2e8f0'; ctx.font='bold 13px monospace';
       ctx.fillText('2e⁻ move',mid-32,cy-30);
       ctx.fillStyle='#38bdf8'; ctx.fillText('Zn → Zn²⁺ + 2e⁻',24,h-76);
       ctx.fillText('oxidized · reducing agent (donor)',24,h-54);
       ctx.fillStyle='#fbbf24'; ctx.fillText('Cu²⁺ + 2e⁻ → Cu',Math.max(24,w*0.52),h-76);
       ctx.fillText('reduced · oxidizing agent (acceptor)',Math.max(24,w*0.52),h-54);
-      ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.fillText('Conservation invariant: electrons lost = electrons gained.',24,h-24);
+      ctx.fillStyle='#94a3b8'; ctx.font='13px sans-serif'; ctx.fillText('Conservation invariant: electrons lost = electrons gained.',24,h-24);
     }
 
     function drawIonElectron() {
@@ -4771,14 +4771,14 @@ window.JEE_QUESTIONS_DATA = [
         ['3 · Balance H','8H⁺ + MnO₄⁻  →  Mn²⁺ + 4H₂O'],
         ['4 · Balance charge','5e⁻ + 8H⁺ + MnO₄⁻  →  Mn²⁺ + 4H₂O']
       ];
-      ctx.font='bold 11px monospace';
+      ctx.font='bold 13px monospace';
       rows.forEach((r,i)=>{
         const y=48+i*52;
         ctx.fillStyle=i===3?'#10b981':'#38bdf8'; ctx.fillText(r[0],24,y);
         ctx.fillStyle='#e2e8f0'; ctx.fillText(r[1],Math.min(155,w*0.34),y);
         ctx.strokeStyle='#1e293b'; ctx.beginPath(); ctx.moveTo(20,y+18); ctx.lineTo(w-20,y+18); ctx.stroke();
       });
-      ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.fillText('Final check: Mn, O, H and total charge are identical on both sides.',24,h-18);
+      ctx.fillStyle='#94a3b8'; ctx.font='13px sans-serif'; ctx.fillText('Final check: Mn, O, H and total charge are identical on both sides.',24,h-18);
     }
 
     function drawTitration() {
@@ -4799,11 +4799,11 @@ window.JEE_QUESTIONS_DATA = [
       ctx.fillStyle='#7c3aed55'; ctx.beginPath(); ctx.moveTo(bx-45,238); ctx.lineTo(bx-30,210); ctx.lineTo(bx+30,210); ctx.lineTo(bx+45,238); ctx.closePath(); ctx.fill();
 
       const x=Math.max(w*0.5,340);
-      ctx.fillStyle='#f8fafc'; ctx.font='bold 12px monospace'; ctx.fillText('Electron equivalence',x,54);
+      ctx.fillStyle='#f8fafc'; ctx.font='bold 13px monospace'; ctx.fillText('Electron equivalence',x,54);
       ctx.fillStyle='#f97316'; ctx.fillText('1 Cr₂O₇²⁻ accepts 6e⁻',x,92);
       ctx.fillStyle='#a78bfa'; ctx.fillText('1 FeC₂O₄ gives 3e⁻',x,126);
       ctx.fillStyle='#10b981'; ctx.font='bold 14px monospace'; ctx.fillText('1 : 2  gives  6e⁻ : 6e⁻',x,172);
-      ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.fillText('At equivalence: total electron equivalents accepted = donated.',x,210);
+      ctx.fillStyle='#94a3b8'; ctx.font='13px sans-serif'; ctx.fillText('At equivalence: total electron equivalents accepted = donated.',x,210);
     }
 
     function drawGalvanic() {
@@ -4820,14 +4820,14 @@ window.JEE_QUESTIONS_DATA = [
       ctx.strokeStyle='#cbd5e1';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(lx,95);ctx.lineTo(lx,205);ctx.moveTo(rx,95);ctx.lineTo(rx,205);ctx.stroke();
       ctx.strokeStyle='#a78bfa';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(lx,95);ctx.lineTo(lx,top);ctx.lineTo(rx,top);ctx.lineTo(rx,95);ctx.stroke();
       drawArrow(ctx,lx+40,top,rx-40,top,'#a78bfa');
-      ctx.fillStyle='#a78bfa';ctx.font='bold 11px monospace';ctx.fillText('2e⁻',w*0.5-12,top-12);
+      ctx.fillStyle='#a78bfa';ctx.font='bold 13px monospace';ctx.fillText('2e⁻',w*0.5-12,top-12);
       ctx.strokeStyle='#10b981';ctx.lineWidth=5;ctx.beginPath();ctx.arc(w*0.5,144,58,Math.PI,0);ctx.stroke();
-      ctx.fillStyle='#e2e8f0';ctx.font='bold 11px monospace';
+      ctx.fillStyle='#e2e8f0';ctx.font='bold 13px monospace';
       ctx.fillText('Zn anode',lx-32,244);ctx.fillText('Cu cathode',rx-38,244);
       ctx.fillStyle='#38bdf8';ctx.fillText('Zn → Zn²⁺ + 2e⁻',lx-70,268);
       ctx.fillStyle='#fbbf24';ctx.fillText('Cu²⁺ + 2e⁻ → Cu',rx-76,268);
       ctx.fillStyle='#10b981';ctx.fillText('salt bridge',w*0.5-33,132);
-      ctx.fillStyle='#94a3b8';ctx.font='10px sans-serif';ctx.fillText('External electrons flow anode → cathode; salt bridge carries ions, not electrons.',24,h-16);
+      ctx.fillStyle='#94a3b8';ctx.font='13px sans-serif';ctx.fillText('External electrons flow anode → cathode; salt bridge carries ions, not electrons.',24,h-16);
     }
 
     function drawSandbox() {
@@ -4841,13 +4841,13 @@ window.JEE_QUESTIONS_DATA = [
       for(let os=-3;os<=7;os+=1){
         const y=bottom-(os+3)*(bottom-top)/10;
         ctx.strokeStyle='#334155';ctx.beginPath();ctx.moveTo(x-10,y);ctx.lineTo(x+10,y);ctx.stroke();
-        ctx.fillStyle='#cbd5e1';ctx.font='10px monospace';ctx.fillText((os>=0?'+':'')+os,x-36,y+4);
+        ctx.fillStyle='#cbd5e1';ctx.font='13px monospace';ctx.fillText((os>=0?'+':'')+os,x-36,y+4);
       }
       drawArrow(ctx,x+62,bottom-25,x+62,top+25,'#f59e0b');
       drawArrow(ctx,x+128,top+25,x+128,bottom-25,'#38bdf8');
-      ctx.fillStyle='#f59e0b';ctx.font='bold 11px monospace';ctx.fillText('OXIDATION',x+48,top+8);ctx.fillText('loss e⁻',x+48,top+24);
+      ctx.fillStyle='#f59e0b';ctx.font='bold 13px monospace';ctx.fillText('OXIDATION',x+48,top+8);ctx.fillText('loss e⁻',x+48,top+24);
       ctx.fillStyle='#38bdf8';ctx.fillText('REDUCTION',x+112,bottom-4);ctx.fillText('gain e⁻',x+112,bottom+12);
-      ctx.fillStyle='#e2e8f0';ctx.font='bold 12px sans-serif';ctx.fillText('Paper practice: choose a before/after oxidation number, then predict direction before calculating electron count.',24,28);
+      ctx.fillStyle='#e2e8f0';ctx.font='bold 13px sans-serif';ctx.fillText('Paper practice: choose a before/after oxidation number, then predict direction before calculating electron count.',24,28);
     }
 
     // =========================================================================
