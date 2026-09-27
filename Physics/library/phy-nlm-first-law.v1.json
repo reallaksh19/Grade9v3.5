@@ -10654,25 +10654,25 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2A-FIXED-PULLEY-04",
-      "stem": "One taut inextensible string passes over one fixed pulley. Let y_A and y_B be the two straight segment lengths measured positive away from the pulley. Write the string-length relation and derive the corresponding velocity and acceleration relations. If A accelerates away from the pulley with magnitude a, state B's signed acceleration in these coordinates.",
+      "stem": "A cart on a table is tied to a light inextensible string that runs over a fixed pulley at the table's edge and down to a hanging mass. Let x be the cart's distance from the pulley along the table and y the hanging mass's depth below the pulley, both measured away from the pulley. Now x = 0.9 m and y = 0.5 m. (a) Write the string-length relation. (b) The hanging mass reaches the floor when y = 1.3 m. How far is the cart from the pulley then? (c) At an instant when the cart moves toward the pulley at 0.3 m/s and is speeding up at 1.2 m/s², give the hanging mass's signed velocity and acceleration in these coordinates, and say which way it moves.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The pulley is fixed.",
-        "Only the two declared straight string segments change length.",
-        "The string remains taut and inextensible."
+        "Only the horizontal and the vertical straight segments change length.",
+        "The string stays taut and inextensible."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The variable string length obeys y_A + y_B = constant. Therefore v_A + v_B = 0 and a_A + a_B = 0. If a_A = +a away from the pulley, then a_B = -a, toward the pulley.",
+        "summary": "x + y = 1.4 m. When y = 1.3 m, x = 0.1 m. Moving toward the pulley and speeding up means dx/dt = −0.3 m/s and d²x/dt² = −1.2 m/s², so dy/dt = +0.3 m/s and d²y/dt² = +1.2 m/s²: the hanging mass moves down at 0.3 m/s and speeds up at 1.2 m/s².",
         "reasoning": [
-          "For one fixed pulley, the wrapped/fixed part of the string contributes no changing length in this bounded geometry.",
-          "Inextensibility makes the sum of the two changing straight segment lengths constant.",
-          "Taking one and two time derivatives gives the velocity and acceleration constraints.",
-          "With both coordinates positive away from the pulley, the signed accelerations are equal in magnitude and opposite in sign."
+          "Only the two straight segments change length, one along the table and one hanging down; the part over the fixed pulley stays the same. So x + y = constant = 0.9 + 0.5 = 1.4 m.",
+          "When y = 1.3 m, x = 1.4 − 1.3 = 0.1 m: the cart is 0.1 m from the pulley.",
+          "Differentiating x + y = constant gives dx/dt + dy/dt = 0 and d²x/dt² + d²y/dt² = 0.",
+          "Toward the pulley means x is decreasing, so dx/dt = −0.3 m/s; speeding up in that direction means d²x/dt² = −1.2 m/s². Then dy/dt = +0.3 m/s and d²y/dt² = +1.2 m/s²: y grows, so the mass moves down, faster and faster."
         ],
-        "check": "If both y_A and y_B increased together, total string length would increase, contradicting inextensibility.",
+        "check": "The mass falls 1.3 − 0.5 = 0.8 m while the cart moves 0.9 − 0.1 = 0.8 m toward the pulley: equal lengths, as an inextensible string requires, even though one segment is horizontal and the other vertical.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -10690,11 +10690,11 @@
       ],
       "hints": [
         {
-          "text": "Which parts of the string can change length while the pulley itself stays fixed?",
+          "text": "Which two straight parts of the string change length when the cart moves?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Write the sum of those changing segments as a constant before thinking about velocities or accelerations.",
+          "text": "Write their sum with the values now. When the cart moves toward the pulley, which way does x change, and what must y do?",
           "reveals": "METHOD"
         }
       ],
@@ -10709,7 +10709,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Sketch the pulley and the two straight segments, and label y_A and y_B as lengths measured from the pulley along each segment.",
+          "text": "Sketch the table, pulley and hanging mass. Mark x along the table and y down from the pulley, each with an arrow pointing away from the pulley.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -10727,10 +10727,10 @@
           "VIS-NLM-YSYM-V0"
         ]
       },
-      "failure_signal": "You wrote a_A = a_B: measured away from the pulley, one segment lengthens while the other shortens, so the signed accelerations must be opposite.",
+      "failure_signal": "You gave the hanging mass a velocity of −0.3 m/s, or a horizontal velocity: the string turns at the pulley, so the mass moves down, and in away-from-pulley coordinates y grows as x shrinks.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: one fixed pulley and one inextensible string give y_A + y_B = constant, so a_A + a_B = 0 in away-from-pulley coordinates. The transfer task gives the geometry in words with upward coordinates, so the length relation must be rebuilt."
+        "closure": "Established: x + y = constant holds whatever direction each straight segment points, because it is a statement about lengths measured from the fixed pulley, so the signed rates are opposite. The transfer task gives the geometry in words with upward coordinates, so the length relation must be rebuilt."
       }
     },
     {
@@ -10744,30 +10744,31 @@
       "extensions": {
         "issue19:scope_class": "OWNER_EXTENSION",
         "examside:demand_source": "https://questions.examside.com/past-years/jee/question/a-car-is-moving-on-a-plane-inclined-at-30circ-to-the-h-jee-main-physics-units-and-measurements-tombabqti9zwluuo",
-        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED"
+        "examside:use": "DEMAND_FAMILY_ONLY_NOT_COPIED",
+        "grade9v3:authored_by": "agent-author-pilot-1"
       },
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2A-FRAME-CHOICE-07",
-      "stem": "A bus accelerates to the right on a straight road. A loose object on a smooth horizontal shelf is described first by a roadside observer and then by a passenger in the bus. Explain how the two descriptions differ and where, if anywhere, a pseudo-force is used.",
+      "stem": "A delivery van accelerates forward along a straight, level road at 2 m/s². A passenger holds a 0.2 kg apple still, 1.25 m above the van's floor, and lets go. Ignore air resistance and take g = 10 m/s². (a) Seen from the roadside, which horizontal forces act on the apple after release, and what does its horizontal velocity do? (b) Seen from inside the van, what pseudo-force (size and direction) must the passenger add, and what horizontal acceleration does it give the apple? (c) Where does the apple land relative to the point on the floor directly below the release point? Show that both descriptions give the same answer.",
       "subparts": [],
       "options": [],
       "conditions": [
         "The roadside frame is treated as inertial.",
-        "The bus has nonzero rightward acceleration.",
-        "The object-shelf friction is negligible."
+        "The van's acceleration stays 2 m/s² forward during the fall.",
+        "Air resistance is negligible."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The roadside description uses only physical interactions; the loose object does not acquire a new backward physical force merely because the bus accelerates. In the accelerating bus frame, a backward pseudo-force may be introduced as a modelling convention so Newton's laws can be written in that non-inertial frame.",
+        "summary": "The fall takes 0.5 s (1.25 = ½ × 10 × t²). Roadside: no horizontal force acts, so the apple keeps the van's speed at release while the floor speeds up and gains ½ × 2 × 0.5² = 0.25 m on it. Van: a pseudo-force of 0.2 × 2 = 0.4 N backward gives the apple a backward acceleration of 2 m/s², so it drifts 0.25 m backward. Both descriptions put the landing point 0.25 m behind the point below the release point.",
         "reasoning": [
-          "Changing observer does not create a new physical agent acting on the loose object.",
-          "The roadside observer can describe the object with the physical forces only.",
-          "The passenger's frame accelerates with the bus, so relative to that observer the object appears to shift backward.",
-          "A backward pseudo-force is added only in the accelerating-frame description if that convention is used."
+          "Vertically nothing differs between the two observers, so the fall time is t = √(2 × 1.25/10) = 0.5 s in both.",
+          "Roadside: after release nothing touches the apple, so the only force is its weight, vertical. Its horizontal velocity stays at u, the van's speed at release.",
+          "In 0.5 s the apple moves u × 0.5 forward, while the floor moves u × 0.5 + ½ × 2 × 0.5² = u × 0.5 + 0.25 m. The floor gains 0.25 m, so the apple lands 0.25 m behind the mark.",
+          "Van: the observer accelerates at 2 m/s² forward, so the apple is given a pseudo-force −m a_frame = 0.4 N backward. Relative to the van it starts from rest and accelerates backward at 0.4/0.2 = 2 m/s², moving ½ × 2 × 0.5² = 0.25 m backward."
         ],
-        "check": "If the bus later moves at constant velocity, changing from roadside to bus observer does not by itself require a pseudo-force.",
+        "check": "If the van moved at a steady velocity, the floor would move u × 0.5 like the apple and the apple would land directly below the release point, and the van observer would need no pseudo-force. The 0.25 m shift comes only from the van's acceleration.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -10787,11 +10788,11 @@
       ],
       "hints": [
         {
-          "text": "Ask first whether any new physical object began touching or attracting the loose object when the bus started accelerating.",
+          "text": "After release, does anything touch the apple? Which forces act on it, and in which directions?",
           "reveals": "CONCEPT"
         },
         {
-          "text": "Identify which observer is accelerating before deciding whether an extra convention is needed.",
+          "text": "The fall time is the same for both observers. For each observer, write the horizontal acceleration of the apple, and of the floor, during that time.",
           "reveals": "METHOD"
         }
       ],
@@ -10805,7 +10806,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the bus and the object twice, once labelled 'roadside' and once 'passenger', each with that observer's own acceleration arrow.",
+          "text": "Draw the apple twice, once as the roadside observer sees it and once as the passenger sees it, each with only the forces that observer uses and an arrow for that observer's own acceleration.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -10823,10 +10824,10 @@
           "VIS-NLM-BUS-V0"
         ]
       },
-      "failure_signal": "You gave the object a backward physical force in the roadside account: nothing new touches it; the backward term exists only in the passenger's accelerating description.",
+      "failure_signal": "You had the apple land directly below the release point: that is true only if the van keeps a steady velocity. While the van accelerates, the floor gains 0.25 m on the apple during the 0.5 s fall. Or you gave the apple a backward physical force in the roadside account: nothing touches it after release.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: an inertial observer uses physical forces only, and an accelerating observer adds −m a_frame. The transfer task asks you to choose the frame yourself from what the description must achieve."
+        "closure": "Established: an inertial observer uses physical forces only, and an accelerating observer adds −m a_frame; both predict the same measurable landing point. The transfer task asks you to choose the frame yourself from what the description must achieve."
       }
     },
     {
@@ -11625,7 +11626,7 @@
             "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): a_A + a_B = 0 is handed to the learner in away-from-pulley coordinates and used for dynamics.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): which segment changes, and opposite signed changes, both in away-from-pulley coordinates.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley needs a new length equation; the pulley here stays fixed.",
-            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A, parent): y_A + y_B = constant with lengths measured from the pulley, in the coordinates the stem supplies."
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A, parent): a cart on a table and a hanging mass, x + y = 1.4 m with x and y measured away from the pulley along each segment, so each coordinate is already a segment length."
           ],
           "why_new": "In every earlier item the coordinates run along the segments away from the pulley, so each coordinate is a segment length and the sum is constant at once. Here the coordinates point up, toward the pulley, and arrive in words. The learner must build each length as h_P − x before summing. The result happens to keep the form a_A + a_B = 0, and it has to be derived rather than assumed. No earlier item shows the lengths built from coordinates that are not lengths."
         }
@@ -11822,9 +11823,9 @@
             "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01 (Core1A worked anchor): the frame accelerates vertically, along gravity, so the pseudo-force only changes a reading; here it is sideways and sets a direction.",
             "MIC-PHY-NLM-FRAME-CHOICE misconceptions (Core1A diagnose/repair): the bus observer needs a pseudo-force, but the frame is named in the prompt rather than chosen.",
             "MIC-PHY-NLM-FRAME-CHOICE boundary test (Core1B): a constant-velocity bus needs no pseudo-force; nothing is solved.",
-            "Q-PHY-NLM-2A-FRAME-CHOICE-07 (Core2A, parent): a loose object on a smooth shelf described in both frames, with no forces to balance and no angle."
+            "Q-PHY-NLM-2A-FRAME-CHOICE-07 (Core2A, parent): an apple dropped in an accelerating van, described in both named frames; the pseudo-force has nothing to balance and sets no angle."
           ],
-          "why_new": "In every earlier item the frame is named for the learner, and the pseudo-force either lies along gravity (the lift) or acts on an object with nothing to balance it (the shelf). Here the learner must pick the frame from the goal of keeping the bob at rest. The sideways pseudo-force must then be balanced against gravity through the string, which fixes an angle. No earlier item shows a pseudo-force setting a direction."
+          "why_new": "In every earlier item the frame is named for the learner, and the pseudo-force either lies along gravity (the lift) or acts on an object with nothing to balance it (the dropped apple). Here the learner must pick the frame from the goal of keeping the bob at rest. The sideways pseudo-force must then be balanced against gravity through the string, which fixes an angle. No earlier item shows a pseudo-force setting a direction."
         }
       },
       "repair_ref": "NLM4-3",
@@ -13523,7 +13524,7 @@
             "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01 (Core1A worked anchor): the same 3 kg and 1 kg over an ideal pulley with one T = 15 N; the two relations are only named.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT misconceptions (Core1A diagnose/repair): says the length relation survives when equal tension fails, but computes nothing with two tensions.",
             "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT boundary test (Core1B): a movable pulley forces a new length equation; tension is not at issue.",
-            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A): the length relation and its derivatives, symbolically, with no tension."
+            "Q-PHY-NLM-2A-FIXED-PULLEY-04 (Core2A): the length relation and its derivatives for a cart and a hanging mass, with no tension."
           ],
           "why_new": "The Core1A diagnose/repair already says that the length relation survives a non-ideal pulley, so that claim alone would restate it. What is new is the quantitative consequence. From a measured a_A the learner must keep a_A + a_B = 0, refuse one T, and compute a separate tension on each side from each body's own equation: 18 N and 14 N, against 15 N for the ideal pulley. No earlier item computes two different tensions in one string."
         }
@@ -13821,7 +13822,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
-          "text": "With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.",
+          "text": "Write the friction rest needs and the most the contact can give, μ_s N, each in terms of m, g and θ. Which of the two must not exceed the other?",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
@@ -13829,7 +13830,7 @@
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
         },
         {
-          "text": "Divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
+          "text": "Once your comparison is written, divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
@@ -14110,7 +14111,7 @@
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "The diagram double-counts gravity. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
+        "summary": "In the student's diagram the weight is drawn three times: once as mg and again as its two components. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
         "reasoning": [
           "A free-body inventory is a list of physical interactions acting on the chosen body.",
           "Gravity is one Earth-on-block interaction, represented by the vector mg.",
@@ -14178,10 +14179,10 @@
           "VIS-NLM-FBDTRIPLE-V0"
         ]
       },
-      "failure_signal": "You kept mg alongside mg sin θ and mg cos θ: that counts gravity three times; the components replace the weight, they do not join it.",
+      "failure_signal": "You kept mg alongside mg sin θ and mg cos θ, so the weight is drawn three times: once as mg and again as its two components. The components replace the weight; they do not join it.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
-        "closure": "Established: resolving a force changes its description, not the number of forces acting. The transfer task finds the same double count written into component equations."
+        "closure": "Established: resolving a force changes its description, not the number of forces acting. The transfer task finds the same repeated weight written into component equations."
       }
     },
     {
@@ -14992,7 +14993,7 @@
             "MIC-PHY-NLM-FBD-BODY-OWNERSHIP misconceptions (Core1A diagnose/repair): horse-cart partners, and not adding mg to its own components; neither needs a second body's contact force.",
             "MIC-PHY-NLM-FBD-BODY-OWNERSHIP boundary test (Core1B): two hands on one box, both on its diagram; a single body.",
             "Q-PHY-NLM-2A-COV-03 (Core2A): the magnet's forces and their partners, all known from balance at rest.",
-            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05 (Core2A, parent): the block's own diagram with gravity counted twice; the wedge's diagram is never drawn."
+            "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05 (Core2A, parent): the block's own diagram with the weight drawn three times (as mg and as its two components); the wedge's diagram is never drawn."
           ],
           "why_new": "In the Core1A anchor the upper body rests on a level surface, so its push equals its weight, and replacing one by the other still gives the right number. Here the block slides on a tilted smooth face, so its push on the wedge is mg cos 30° at an angle. The learner must find it from the block's own equation and place only its partner on the wedge, which gives a floor force below the total weight and a sideways floor friction. No earlier item has a contact partner that differs from the other body's weight."
         }
