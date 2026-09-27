@@ -16237,6 +16237,10 @@ window.GRADE9V3_CORE = {
                   "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
                   "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
                   "Requested instant: t = 4 s."
+                ],
+                "representation_ref": "REP-KIN-2D-SKATER-WIND",
+                "stage_refs": [
+                  "VIS-KIN-2D-SKATER-V0"
                 ]
               }
             },
@@ -16859,6 +16863,10 @@ window.GRADE9V3_CORE = {
                   "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
                   "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
                   "Requested instant: t = 5 s."
+                ],
+                "representation_ref": "REP-KIN-2D-BOAT-RIVER",
+                "stage_refs": [
+                  "VIS-KIN-2D-BOAT-V0"
                 ]
               }
             },
@@ -20241,6 +20249,10 @@ window.GRADE9V3_CORE = {
                   "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
                   "g = 10 m/s²; air resistance negligible.",
                   "Requested instant: t = 0.5 s."
+                ],
+                "representation_ref": "REP-KIN-2D-BASKETBALL-2M",
+                "stage_refs": [
+                  "VIS-KIN-2D-BBALL-V0"
                 ]
               }
             },
@@ -22838,6 +22850,10 @@ window.GRADE9V3_CORE = {
                   "Car 1000 kg; trailer 500 kg.",
                   "Driving force on the car 3000 N forward.",
                   "Rigid bar: the separation stays fixed."
+                ],
+                "representation_ref": "REP-NLM-CAR-TRAILER-TOWBAR",
+                "stage_refs": [
+                  "VIS-NLM-TOWBAR-V0"
                 ]
               },
               "accepted": [
@@ -23252,6 +23268,10 @@ window.GRADE9V3_CORE = {
                 "givens": [
                   "Man 70 kg; boat 130 kg; g = 10 m/s².",
                   "Everything is at rest."
+                ],
+                "representation_ref": "REP-NLM-MAN-IN-BOAT",
+                "stage_refs": [
+                  "VIS-NLM-BOAT-V0"
                 ]
               }
             },
@@ -23633,6 +23653,10 @@ window.GRADE9V3_CORE = {
                   "Mass 3 kg; g = 10 m/s².",
                   "String pull 10 N vertically upward.",
                   "The box stays at rest on the floor."
+                ],
+                "representation_ref": "REP-NLM-BOX3-STRING-10N",
+                "stage_refs": [
+                  "VIS-NLM-BOX3-V0"
                 ]
               }
             },
@@ -24033,6 +24057,10 @@ window.GRADE9V3_CORE = {
                 "givens": [
                   "Ball 0.5 kg on a frictionless train floor.",
                   "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+                ],
+                "representation_ref": "REP-NLM-TRAIN-BALL-BRAKING",
+                "stage_refs": [
+                  "VIS-NLM-TRAINBALL-V0"
                 ]
               }
             },
@@ -24689,6 +24717,10 @@ window.GRADE9V3_CORE = {
                   "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
                   "Horizontal push 30 N.",
                   "Second trial: an extra 20 N downward press."
+                ],
+                "representation_ref": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+                "stage_refs": [
+                  "VIS-NLM-BOX5-V0"
                 ]
               },
               "accepted": [
@@ -25123,6 +25155,10 @@ window.GRADE9V3_CORE = {
                   "Block 2 kg; g = 10 m/s².",
                   "Horizontal push 50 N, then 80 N.",
                   "μ_s = 0.6 between block and wall."
+                ],
+                "representation_ref": "REP-NLM-BLOCK-WALL-50N",
+                "stage_refs": [
+                  "VIS-NLM-BLOCKWALL-V0"
                 ]
               }
             },
@@ -25740,6 +25776,10 @@ window.GRADE9V3_CORE = {
                   "Front cart 2 kg; rear cart 3 kg; smooth track.",
                   "Hand's pull 15 N on the front string.",
                   "Both strings light and taut."
+                ],
+                "representation_ref": "REP-NLM-CARTS-2KG-3KG-15N",
+                "stage_refs": [
+                  "VIS-NLM-CARTS15-V0"
                 ]
               },
               "accepted": [
@@ -26575,6 +26615,10 @@ window.GRADE9V3_CORE = {
                   "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
                   "Driving force 2000 N forward.",
                   "Resistive forces (air and rolling) act backward."
+                ],
+                "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+                "stage_refs": [
+                  "VIS-NLM-CRUISE-V0"
                 ]
               }
             },
@@ -26983,6 +27027,10 @@ window.GRADE9V3_CORE = {
                 "givens": [
                   "Mass 1200 kg; initial velocity +20 m/s.",
                   "Road friction 5400 N backward; air drag 600 N backward."
+                ],
+                "representation_ref": "REP-NLM-CAR-BRAKING-1200KG",
+                "stage_refs": [
+                  "VIS-NLM-CARBRAKE-V0"
                 ]
               }
             },
@@ -27601,6 +27649,10 @@ window.GRADE9V3_CORE = {
                   "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
                   "A rises by 0.1 m.",
                   "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+                ],
+                "representation_ref": "REP-NLM-PULLEY-YA06-YB10",
+                "stage_refs": [
+                  "VIS-NLM-PULLEY16-V0"
                 ]
               },
               "accepted": [
@@ -27987,6 +28039,10 @@ window.GRADE9V3_CORE = {
                   "Rocket mass 400 kg (take it as constant for this instant).",
                   "Engine's push on the gas: 5000 N backward.",
                   "No other forces act."
+                ],
+                "representation_ref": "REP-NLM-ROCKET-EXHAUST-5000N",
+                "stage_refs": [
+                  "VIS-NLM-ROCKET-V0"
                 ]
               }
             },
