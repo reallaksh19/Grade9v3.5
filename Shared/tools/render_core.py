@@ -802,6 +802,22 @@ def context(manifest_path: Path) -> Ctx:
         for ref in representation.get("rendered_asset_refs", [])
         if isinstance(ref, str)
     })
+    own_capabilities = {
+        capability["id"]
+        for package in packages
+        for capability in package.get("capabilities", [])
+    }
+    teacher_refs: set[str] = set()
+    teacher_index = teachers()
+    for package in packages:
+        for microtopic in package.get("microtopics", []):
+            for prerequisite in microtopic.get("prerequisite_refs", []):
+                bare = prerequisite.split(":", 1)[-1]
+                if bare in own_capabilities:
+                    continue
+                taught = teacher_index.get(prerequisite) or teacher_index.get(bare)
+                if taught:
+                    teacher_refs.add(taught[1])
     authority_hashes = [
         ("renderer-source", _file_sha256(Path(__file__))),
         ("manifest", _file_sha256(manifest_path)),
@@ -810,6 +826,11 @@ def context(manifest_path: Path) -> Ctx:
         ("blueprints", _file_sha256(BLUEPRINTS)),
         ("quality-contract", _file_sha256(CONTRACT)),
         ("tablet-css", _file_sha256(TABLET_CSS)),
+        *[
+            (f"teacher-package:{ref}", _file_sha256(REPO / ref))
+            for ref in sorted(teacher_refs)
+            if (REPO / ref).is_file()
+        ],
         *[
             (f"asset:{ref}", _file_sha256(REPO / ref))
             for ref in asset_refs
