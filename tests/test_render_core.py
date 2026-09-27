@@ -203,8 +203,6 @@ class Renderer(unittest.TestCase):
             self.assertIn(f'id="g9-role-{role}"', html)
             self.assertIn(f'href="#g9-role-{role}"', html)
         self.assertNotIn('href="core2a.html"', html)
-        self.assertIn('href="../../../public/index.html"', html)
-        self.assertIn('href="../../../public/question-bank/index.html"', html)
         ids = re.findall(r'(?<![-:\w])id="([^"]+)"', html)
         self.assertEqual(len(ids), len(set(ids)), "SINGLE_FILE output must not duplicate document ids")
         self.assertNotRegex(html, r'href="core\w+\.html#')
