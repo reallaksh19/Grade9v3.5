@@ -21,6 +21,15 @@
       "phase3_action": "none; every learner page is produced here"
     },
     {
+      "path": "Shared/tools/accept_product.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "No pages; verifies a render stamp and copies the existing exact render after Owner acceptance",
+      "location": "main",
+      "reason": "The literal <html in the digest verifier is inspected text, not HTML generation",
+      "phase3_action": "Keep as the Owner publication command; render_core remains the sole learner renderer"
+    },
+    {
       "path": "Shared/tools/build_interactive_page.py",
       "kind": "PYTHON_HTML",
       "classification": "ENGINE_KEEP",

@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
-"""Build every product through the one pipeline; publish only what passes the gate.
+"""Build every product through the one pipeline and report observations.
 
 For every product manifest in products/<subject>/*.manifest.json:
 1. render with render_core (a draft when gaps remain);
 2. print the PDFs from the pages;
 3. run the rendered quality gate.
 
-A product is copied to public/products/<subject>/<name>/ only when its gate verdict is PASS AND an
-independent product review of this exact render (products/verification/<name>.review.json, with
-`render_digest` equal to the render receipt's digest) records no open S0 or S1 finding. A product
-that is not cleared has any earlier public copy removed.
-The status report (products/STATUS.md and products/status.v1.json) lists every product with
-its verdict, its gap count and its duties, so the board and the owner see why a product is
-not live.
+This command never writes to or deletes from public/products. The Owner accepts
+an exact render through accept_product.py; gate and review findings are advisory.
 
 Usage:
     build_products.py derive      # (re)derive a manifest for every library package
@@ -35,22 +30,34 @@ from Shared.tools import package_migrate, product_manifest, quality_gate, render
 
 PRODUCTS = REPO / "products"
 WORK = REPO / "publication" / "products"          # git-ignored build area
-PUBLIC = REPO / "public" / "products"
+PUBLIC = REPO / "public" / "products"  # read-only here
 REVIEWS = PRODUCTS / "verification"
-REVIEW_BLOCKING = {"S0", "S1"}
+ACCEPTANCE = PRODUCTS / "acceptance"
 
 
-def review_clearance(name: str, digest: str, reviews: Path = REVIEWS) -> str | None:
-    """None when an independent review of this render leaves nothing blocking; else why not."""
-    path = reviews / f"{name}.review.json"
-    if not path.is_file():
-        return "NO_REVIEW"
-    review = json.loads(path.read_text(encoding="utf-8"))
-    if review.get("render_digest") != digest:
-        return "REVIEW_STALE"                          # the review saw a different render
-    if any(f.get("severity") in REVIEW_BLOCKING and not f.get("resolved") for f in review.get("findings", [])):
-        return "REVIEW_BLOCKING"
-    return None
+def decision_state(name: str, subject: str, digest: str) -> tuple[str, str | None]:
+    """Describe the review and accepted render; never authorize publication."""
+    path = REVIEWS / f"{name}.review.json"
+    review = "NO_REVIEW"
+    if path.is_file():
+        observed = json.loads(path.read_text(encoding="utf-8"))
+        review = "CURRENT" if observed.get("render_digest") == digest else "REVIEW_STALE"
+    accepted = ACCEPTANCE / f"{name}.json"
+    if not accepted.is_file():
+        return review, None
+    record = json.loads(accepted.read_text(encoding="utf-8"))
+    if record.get("render_digest") != digest:
+        return review, "ACCEPTED_EARLIER_RENDER"
+    dest = PUBLIC / subject.lower() / name
+    receipt = dest / "render-receipt.json"
+    if not receipt.is_file():
+        return review, "ACCEPTED_NOT_MIRRORED"
+    from Shared.tools.accept_product import verify_render  # noqa: PLC0415
+    try:
+        public_digest = verify_render(dest)["digest"]
+    except (ValueError, OSError, KeyError, json.JSONDecodeError):
+        return review, "PUBLIC_RENDER_INVALID"
+    return review, str(dest.relative_to(REPO)) if public_digest == digest else "PUBLIC_DIGEST_MISMATCH"
 
 
 def manifests() -> list[Path]:
@@ -101,14 +108,7 @@ def build_one(manifest: Path, static: bool) -> dict:
         subprocess.run(["node", str(REPO / "tools/print/print-product.mjs"), str(out)], capture_output=True)
     report = quality_gate.gate(out, m["subject"], m["product_id"], static=static)
     (out / "gate-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    published = None
-    review = review_clearance(name, receipt["digest"]) if report["verdict"] == "PASS" else None
-    dest = PUBLIC / manifest.parent.name / name
-    if dest.exists():
-        shutil.rmtree(dest)                            # nothing stays live that is not cleared now
-    if report["verdict"] == "PASS" and review is None:
-        shutil.copytree(out, dest, ignore=shutil.ignore_patterns("*.pdf"))   # PDF = print of the page, on demand
-        published = str(dest.relative_to(REPO))
+    review, published = decision_state(name, m["subject"], receipt["digest"])
     return {"product": name, "subject": m["subject"], "product_id": m["product_id"], "verdict": report["verdict"],
             "fail_reasons": report["fail_reasons"], "gaps": len(receipt["gaps"]),
             "gap_kinds": dict(collections.Counter(g["duty"] for g in receipt["gaps"])),
@@ -117,32 +117,18 @@ def build_one(manifest: Path, static: bool) -> dict:
 
 
 def status_markdown(rows: list[dict]) -> str:
-    live = sum(1 for r in rows if r["published"])
+    live = sum(1 for r in rows if r["published"] and str(r["published"]).startswith("public/"))
     lines = ["# Product status", "",
-             "Generated by `python3 Shared/tools/build_products.py build`. A product goes live only when the",
-             "rendered quality gate passes; until then its gaps are duties on the board",
-             "(`library_board.py --subject <S> --depth`).", "",
-             f"{live} of {len(rows)} products live.", "",
-             "A product that passes the gate still waits for an independent product review of its exact render",
-             "(`products/verification/<name>.review.json` with `render_digest`) with no open S0/S1 finding.", "",
-             "| Product | Subject | Verdict | Review | Gaps | Blocking findings | Largest gap kinds |", "|---|---|---|---|---|---|---|"]
+             "Generated by `python3 Shared/tools/build_products.py build`. The gate verdict",
+             "and gaps are advisory observations. Only Owner acceptance of an exact digest",
+             "through `accept_product.py` publishes a product.", "",
+             f"{live} of {len(rows)} products have a matching accepted public receipt.", "",
+             "| Product | Subject | Verdict | Review | Acceptance/publication | Gaps | S0–S2 observations | Largest gap kinds |", "|---|---|---|---|---|---|---|---|"]
     for r in rows:
         top = ", ".join(f"{k} {v}" for k, v in sorted(r["gap_kinds"].items(), key=lambda kv: -kv[1])[:3])
-        review = "live" if r["published"] else (r.get("review") or "—")
-        lines.append(f"| {r['product']} | {r['subject']} | {r['verdict']} | {review} | {r['gaps']} | {r['blocking_findings']} | {top} |")
+        review = r.get("review") or "—"
+        lines.append(f"| {r['product']} | {r['subject']} | {r['verdict']} | {review} | {r['published'] or 'NOT_ACCEPTED'} | {r['gaps']} | {r['blocking_findings']} | {top} |")
     return "\n".join(lines) + "\n"
-
-
-RATCHET = PRODUCTS / "ratchet.v1.json"
-
-
-def current_gaps() -> dict[str, int]:
-    """Render every product in memory and count its gaps (no browser, no files)."""
-    out = {}
-    for m in manifests():
-        _, gaps, _ = render_core.build(m)
-        out[m.name.replace(".manifest.json", "")] = len(gaps)
-    return out
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -152,31 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     b = sub.add_parser("build")
     b.add_argument("--static", action="store_true")
     b.add_argument("--only")
-    r = sub.add_parser("ratchet", help="gap counts may only go down; --write lowers the baseline")
-    r.add_argument("--write", action="store_true")
-    r.add_argument("--raise-bar", metavar="REASON",
-                   help="the contract or duties got stricter: rebaseline to today's counts and record why")
     a = p.parse_args(argv)
-    if a.cmd == "ratchet":
-        now = current_gaps()
-        base = json.loads(RATCHET.read_text(encoding="utf-8"))["gaps"] if RATCHET.is_file() else {}
-        worse = {k: (base[k], v) for k, v in now.items() if k in base and v > base[k]}
-        for k, (was, is_) in worse.items():
-            print(f"RATCHET: {k} gaps rose from {was} to {is_}", file=sys.stderr)
-        if a.raise_bar:
-            doc = json.loads(RATCHET.read_text(encoding="utf-8")) if RATCHET.is_file() else {"schema": "product-ratchet/v1"}
-            history = doc.get("bar_raises", [])
-            history.append({"reason": a.raise_bar, "from_total": sum(base.values()), "to_total": sum(now.values())})
-            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": now, "bar_raises": history},
-                                          indent=2) + "\n", encoding="utf-8")
-            print(f"bar raised: baseline {sum(base.values())} -> {sum(now.values())} ({a.raise_bar})")
-            return 0
-        if a.write and not worse:
-            RATCHET.write_text(json.dumps({"schema": "product-ratchet/v1", "gaps": {k: min(v, base.get(k, v)) for k, v in now.items()},
-                                           "bar_raises": json.loads(RATCHET.read_text(encoding="utf-8")).get("bar_raises", []) if RATCHET.is_file() else []},
-                                          indent=2) + "\n", encoding="utf-8")
-        print(f"{sum(now.values())} gaps across {len(now)} products (baseline {sum(base.values()) if base else 'none'})")
-        return 1 if worse else 0
     if a.cmd == "derive":
         print(f"{len(derive_all())} product manifests")
         return 0
@@ -184,10 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     if not a.only:
         (PRODUCTS / "status.v1.json").write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
         (PRODUCTS / "STATUS.md").write_text(status_markdown(rows), encoding="utf-8")
-    waiting = [f"{r['product']} ({r['review']})" for r in rows if r["verdict"] == "PASS" and not r["published"]]
-    if waiting:
-        print("gate PASS, waiting for product review: " + ", ".join(waiting) + f"; the review must carry render_digest")
-    print(f"{sum(1 for r in rows if r['published'])} of {len(rows)} products passed the gate and review and are live")
+    print(f"built {len(rows)} product(s); publication is an Owner acceptance decision")
     return 0
 
 

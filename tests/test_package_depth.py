@@ -106,12 +106,12 @@ class Duties(unittest.TestCase):
         self.assertNotIn(("TEACH_PREREQUISITE_BRIDGE", m["id"]), {(d["duty"], d["record"]) for d in self.duties(pkg)})
 
 class WorkflowAgreement(unittest.TestCase):
-    def test_workflow_depth_duties_match_the_depth_tool(self):
+    def test_workflow_points_to_the_method_without_reinstating_depth_gate(self):
         workflow = json.loads((REPO / "Shared/workflows/research-first.v1.json").read_text(encoding="utf-8"))
-        table = workflow["depth_duties"]
-        self.assertEqual(set(table), set(package_depth.DUTIES))
-        for kind, (role, rules) in package_depth.DUTIES.items():
-            self.assertEqual((table[kind]["role"], table[kind]["contract_rules"]), (role, rules), kind)
+        self.assertEqual(workflow["method"], "docs/method/PROTOCOL.md")
+        self.assertNotIn("depth_duties", workflow)
+        self.assertNotIn("definition_of_complete", workflow)
+        self.assertTrue(package_depth.DUTIES, "advisory missing-field observations remain available")
 
 
 if __name__ == "__main__":
