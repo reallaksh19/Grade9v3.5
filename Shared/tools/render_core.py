@@ -37,6 +37,7 @@ sys.path.insert(0, str(REPO))
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
 CONTRACT = REPO / "Shared/quality/learner-quality.v1.json"
+TABLET_CSS = REPO / "public/css/tablet-12-7.css"
 ROLES = ["CORE1", "CORE1A", "CORE1B", "CORE2", "CORE2A", "CORE2B"]
 ROLE_FILE = {r: r.lower() + ".html" for r in ROLES}
 ROLE_TITLE = {"CORE1": "Orientation map", "CORE1A": "Construction", "CORE1B": "Reconstruction",
@@ -639,7 +640,11 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
         return "", ""
-    nav_links = "".join(f'<a href="{ROLE_FILE[r]}"{" aria-current=page" if r == role else ""}>{esc(r)}</a>' for r in ROLES)
+    nav_links = "".join(
+        f'<a href="{"#g9-role-" + r if mode == "SINGLE_FILE" else ROLE_FILE[r]}"'
+        f'{" aria-current=page" if r == role else ""}>{esc(r)}</a>'
+        for r in ROLES
+    )
     header = (f'<header data-g9-shell-header><a data-g9-home href="{esc(m["home_href"])}">Home</a>'
               f'<button type="button" onclick="history.back()">Back</button>'
               f'<a href="{esc(m.get("question_bank_href", m["home_href"]))}">Question bank</a>'
@@ -686,8 +691,12 @@ def _asset_root(ctx: Ctx) -> str:
     return home[:-len("index.html")] if home.endswith("index.html") else ""
 
 
-def _shared_head_assets(ctx: Ctx) -> str:
-    """Renderer-owned tablet shell asset. Static relation math is canonical MathML."""
+def _shared_head_assets(ctx: Ctx, mode: str) -> str:
+    """Renderer-owned tablet shell asset; SINGLE_FILE embeds it and PAGES links it."""
+    if mode == "EMBED":
+        return ""
+    if mode == "SINGLE_FILE":
+        return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
     root = _asset_root(ctx)
     return f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
 
@@ -707,7 +716,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<html lang="en" data-g9-shell data-g9-role="{role}" data-g9-mode="{mode}">'
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
-            f'{_shared_head_assets(ctx)}'
+            f'{_shared_head_assets(ctx, mode)}'
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
@@ -729,7 +738,7 @@ def index_page(ctx: Ctx, digest: str) -> str:
     return ("<!doctype html>\n"
             f'<html lang="en" data-g9-shell data-g9-role="INDEX"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">{_shared_head_assets(ctx)}<title>{esc(m["title"])}</title><style>{CSS}</style></head>'
+            f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">{_shared_head_assets(ctx, "PAGES")}<title>{esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body>{header}{crumbs}<main><h1>{esc(m["title"])}</h1>{diag_html}<ol>{links}</ol></main><script>{JS}</script></body></html>\n')
 
 
@@ -769,8 +778,11 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
     digest = h.hexdigest()[:16]
     pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
     if mode == "SINGLE_FILE":
-        bodies = "".join(f'<section data-g9-role-section="{r}">{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
-                         for r in ROLES)
+        bodies = "".join(
+            f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
+            f'{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
+            for r in ROLES
+        )
         pages = {"product.html": pages[ROLE_FILE["CORE1"]].replace(
             re.search(r"<main>(.*)</main>", pages[ROLE_FILE["CORE1"]], re.S).group(1), bodies)}
     # the same gap can be met on several pages
@@ -809,8 +821,13 @@ def main(argv: list[str] | None = None) -> int:
         if gaps:
             text = text.replace("<html ", '<html data-g9-draft="%d" ' % len(gaps), 1)
         (out / name).write_text(text, encoding="utf-8")
+    manifest_path = Path(args.manifest).resolve()
+    try:
+        manifest_ref = manifest_path.relative_to(REPO.resolve()).as_posix()
+    except ValueError:
+        manifest_ref = manifest_path.as_posix()
     (out / "render-receipt.json").write_text(json.dumps({
-        "renderer": RENDERER_VERSION, "digest": digest, "manifest": args.manifest, "mode": args.mode,
+        "renderer": RENDERER_VERSION, "digest": digest, "manifest": manifest_ref, "mode": args.mode,
         "draft": bool(gaps), "gaps": gaps, "pages": sorted(pages),
         "ledger": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("ledger", []),
         "diagnostic_min": json.loads(Path(args.manifest).read_text(encoding="utf-8")).get("diagnostic_min", 0)},
