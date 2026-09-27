@@ -41,7 +41,7 @@ ROLE_FILE = {r: r.lower() + ".html" for r in ROLES}
 ROLE_TITLE = {"CORE1": "Orientation map", "CORE1A": "Construction", "CORE1B": "Reconstruction",
               "CORE2": "Source questions", "CORE2A": "Supported practice", "CORE2B": "Transfer"}
 MODES = ("PAGES", "EMBED", "SINGLE_FILE")
-RENDERER_VERSION = "render_core/1"
+RENDERER_VERSION = "render_core/2"
 
 
 class RenderGapError(Exception):
@@ -99,6 +99,12 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     svg = next((s for s in (asset_svg(a) for a in rep.get("rendered_asset_refs") or []) if s), None)
     if svg is None:
         ctx.gap("BUILD_SCENE", rep_id, "no authored SVG asset (rendered_asset_refs) to mount", role)
+        return ""
+    opener = re.search(r"<svg\\b[^>]*>", svg, re.I)
+    named = bool(opener and re.search(r"\\baria-(?:label|labelledby)=['\"][^'\"]+['\"]", opener.group(0), re.I))
+    described = bool(re.search(r"<title\\b[^>]*>.*?</title>", svg, re.I | re.S) and re.search(r"<desc\\b[^>]*>.*?</desc>", svg, re.I | re.S))
+    if not (named and described):
+        ctx.gap("BUILD_SCENE", rep_id, "authored SVG lacks an accessible name and title/description pair", role)
         return ""
     stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
