@@ -1,0 +1,668 @@
+{
+  "schema": "motion-in-a-plane-agent-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "subject": "Physics",
+  "chapter": 4,
+  "chapter_title": "Motion in a Plane",
+  "source_basis": {
+    "acquisition_id": "ACQ-DB84892F0DE76A6A48A8",
+    "bucket_id": "PHY-11-MOTION-IN-A-PLANE",
+    "registered_source": "p1.pdf",
+    "source_sha256": "db84892f0de76a6a48a867f89e9a8e15cd45fb2ba5ea5f846a029cc9af93f99b",
+    "in_scope_pdf_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "in_scope_book_pages": "88 to 137",
+    "ocr_engine": "RapidOCR 1.2.3"
+  },
+  "mathematical_families": [
+    "Trajectory Geometry & Parabolic Kinematics",
+    "Range, Height & Flight Time Scaling",
+    "Horizontal & Elevated Projections",
+    "Relative 2D Kinematics (River-Boat & Rain-Man)",
+    "Uniform & Non-Uniform Circular Kinematics"
+  ],
+  "explorer_recommendation": {
+    "name": "Dynamic Projectile Trajectory & Incline Angle Lab",
+    "admission_test_passed": true,
+    "rationale": "Enables interactive adjustment of launch velocity u, projection angle theta, elevation h, and incline slope beta. Computes real-time trajectory curves, instantaneous velocity vectors, osculating circle radius of curvature rho, flight time, and impact range with live KaTeX derivations."
+  },
+  "clinic_candidates": [
+    {
+      "rank": 1,
+      "id": "Q-PHY-11-MIP-P16-L1-06",
+      "title": "Dustbin Horizontal Range Inversion",
+      "bottleneck": "Misapplying 1D kinematic formulas instead of equating the 2D range formula under a 45\u00b0 condition."
+    },
+    {
+      "rank": 2,
+      "id": "Q-PHY-11-MIP-P16-L1-08",
+      "title": "Elevated Launch with 45\u00b0 Ground Sightline",
+      "bottleneck": "Conflating the 45\u00b0 sightline angle of the impact position with the velocity launch angle theta."
+    },
+    {
+      "rank": 3,
+      "id": "Q-PHY-11-MIP-P17-L1-21",
+      "title": "Impulse and Momentum Vector Delta in Parabolic Flight",
+      "bottleneck": "Forgetting that horizontal momentum is conserved while vertical momentum flips sign (+u_y to -u_y)."
+    },
+    {
+      "rank": 4,
+      "id": "Q-PHY-11-MIP-P21-L2-07",
+      "title": "River-Boat Crossing Under Strong Currents (v_r > v_s)",
+      "bottleneck": "Falsely believing the boat can reach directly opposite bank when current exceeds swimming speed."
+    }
+  ],
+  "question_count": 20,
+  "rows": [
+    {
+      "id": "Q-PHY-11-MIP-P16-L1-06",
+      "page": 16,
+      "book_page": "103",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "6",
+      "stem": "A person projects a bottle into a dustbin at the same height as he is 2m away at an angle of 45\u00b0. The velocity of projection is (in m/s):",
+      "options": [
+        "(a) g",
+        "(b) \\sqrt{g}",
+        "(c) 2g",
+        "(d) \\sqrt{2g}"
+      ],
+      "source_answer": "(d) \\sqrt{2g}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Range formula on horizontal ground is R = (u^2 * sin(2*theta)) / g. For theta = 45\u00b0, sin(90\u00b0) = 1, so R = u^2 / g. Given R = 2m, we have 2 = u^2 / g => u^2 = 2g => u = sqrt(2g). Option (d).",
+      "mathematical_family": "Trajectory Geometry & Parabolic Kinematics",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P16-L1-07",
+      "page": 16,
+      "book_page": "103",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "7",
+      "stem": "A ball of mass 'm' is thrown vertically upwards. Another ball of mass '2m' is thrown up making an angle 'theta' with the vertical. Both of them stay in air for the same time. Their maximum heights are in the ratio:",
+      "options": [
+        "(a) 2:1",
+        "(b) 1:2",
+        "(c) 1:cos\\theta",
+        "(d) 1:1"
+      ],
+      "source_answer": "(d) 1:1",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Time of flight depends purely on vertical velocity component: T = 2*u_y / g. Since T1 = T2, u_1y = u_2y. Maximum height H = u_y^2 / (2g) also depends strictly on u_y. Hence H1 : H2 = u_1y^2 : u_2y^2 = 1:1, independent of mass or launch angle. Option (d).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M0",
+        "A": "A0",
+        "S": "S1",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P16-L1-08",
+      "page": 16,
+      "book_page": "103",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "8",
+      "stem": "From the top of a building 80m high, a ball is thrown horizontally which hits the ground at a distance. The line joining the top of the building to the point where it hits the ground makes an angle of 45\u00b0 with the ground. Initial velocity of projection of the ball is (g=10 m/s^2):",
+      "options": [
+        "(a) 10 m/s",
+        "(b) 15 m/s",
+        "(c) 20 m/s",
+        "(d) 30 m/s"
+      ],
+      "source_answer": "(c) 20 m/s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Line from top of building to impact point makes 45\u00b0 with ground => tan(45\u00b0) = height / range => 1 = 80 / x => x = 80m. Time to fall height h = 80m is t = sqrt(2h/g) = sqrt(160/10) = 4s. Horizontal velocity u = x / t = 80 / 4 = 20 m/s. Option (c).",
+      "mathematical_family": "Horizontal & Elevated Projections",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P16-L1-09",
+      "page": 16,
+      "book_page": "103",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "9",
+      "stem": "A stone is projected from the top of a tower with velocity 20 m/s making an angle of elevation of 30\u00b0 with the horizontal. If the total time of flight is 5s and g=10 m/s^2, then:",
+      "options": [
+        "(a) the height of the tower is 75m",
+        "(b) the maximum height of the stone from the ground is 80m",
+        "(c) both the above are true",
+        "(d) the height of the tower is 120m"
+      ],
+      "source_answer": "(c) both the above are true",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "u_y = 20 * sin(30\u00b0) = 10 m/s. Vertical displacement upon reaching ground: -h = u_y*t - 0.5*g*t^2 = 10(5) - 5(25) = 50 - 125 = -75m => h = 75m. Maximum height above tower: h_max = u_y^2 / (2g) = 100 / 20 = 5m. Height above ground = 75 + 5 = 80m. Thus both statements (a) and (b) are true. Option (c).",
+      "mathematical_family": "Horizontal & Elevated Projections",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P16-L1-10",
+      "page": 16,
+      "book_page": "103",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "10",
+      "stem": "A body is projected at an angle 30\u00b0 with the horizontal with speed 30 m/s. The angle made by the velocity with the horizontal after 1.5 s is (g=10 m/s^2):",
+      "options": [
+        "(a) 0\u00b0",
+        "(b) 30\u00b0",
+        "(c) 45\u00b0",
+        "(d) 60\u00b0"
+      ],
+      "source_answer": "(a) 0\u00b0",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Initial vertical component: u_y = 30 * sin(30\u00b0) = 15 m/s. After t = 1.5 s, v_y = u_y - g*t = 15 - 10(1.5) = 0 m/s. Since v_y = 0, the velocity is entirely horizontal, so the angle with horizontal is tan(alpha) = v_y / v_x = 0 => alpha = 0\u00b0. Option (a).",
+      "mathematical_family": "Trajectory Geometry & Parabolic Kinematics",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P17-L1-18",
+      "page": 17,
+      "book_page": "104",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "18",
+      "stem": "Two projectiles are launched at complementary angles theta and 90\u00b0 - theta with the same initial speed u. The ratio of their horizontal ranges is:",
+      "options": [
+        "(a) 1:1",
+        "(b) 1:3",
+        "(c) 1:\\sqrt{3}",
+        "(d) 2:\\sqrt{3}"
+      ],
+      "source_answer": "(a) 1:1",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Horizontal range R(theta) = u^2 * sin(2*theta) / g. For complementary angle (90\u00b0 - theta), R(90\u00b0 - theta) = u^2 * sin(180\u00b0 - 2*theta) / g = u^2 * sin(2*theta) / g = R(theta). Ratio is identically 1:1. Option (a).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P17-L1-19",
+      "page": 17,
+      "book_page": "104",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "19",
+      "stem": "In the above problem, ratio of maximum heights for projection angles 30\u00b0 and 60\u00b0 is:",
+      "options": [
+        "(a) 1:1",
+        "(b) 1:3",
+        "(c) 1:\\sqrt{3}",
+        "(d) 2:\\sqrt{3}"
+      ],
+      "source_answer": "(b) 1:3",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Maximum height H = (u^2 * sin^2(theta)) / (2g). Ratio H1 / H2 = sin^2(30\u00b0) / sin^2(60\u00b0) = (1/2)^2 / (sqrt(3)/2)^2 = (1/4) / (3/4) = 1:3. Option (b).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P17-L1-20",
+      "page": 17,
+      "book_page": "104",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "20",
+      "stem": "In the above problem, ratio of times of flight for projection angles 30\u00b0 and 60\u00b0 is:",
+      "options": [
+        "(a) 1:1",
+        "(b) 1:3",
+        "(c) 1:\\sqrt{3}",
+        "(d) 2:\\sqrt{3}"
+      ],
+      "source_answer": "(c) 1:\\sqrt{3}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Time of flight T = (2*u * sin(theta)) / g. Ratio T1 / T2 = sin(30\u00b0) / sin(60\u00b0) = (1/2) / (sqrt(3)/2) = 1 / sqrt(3). Option (c).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P17-L1-21",
+      "page": 17,
+      "book_page": "104",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "21",
+      "stem": "A particle of mass 1 kg is projected at an angle 45\u00b0 to the horizontal with an initial velocity of 20 m/s. Change in momentum during its time of flight is:",
+      "options": [
+        "(a) 10\\sqrt{2} kg m/s",
+        "(b) 20\\sqrt{2} kg m/s",
+        "(c) 30\\sqrt{2} kg m/s",
+        "(d) 40\\sqrt{2} kg m/s"
+      ],
+      "source_answer": "(b) 20\\sqrt{2} kg m/s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Horizontal velocity u_x = 20*cos(45\u00b0) is conserved. Initial vertical velocity u_y = 20*sin(45\u00b0) = 10*sqrt(2). Final vertical velocity upon landing is -u_y = -10*sqrt(2). Change in momentum delta_p = m*(v_f - v_i) = -2*m*u_y * j_hat. Magnitude is 2 * 1 * 10*sqrt(2) = 20*sqrt(2) kg m/s. Option (b).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P17-L1-22",
+      "page": 17,
+      "book_page": "104",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "22",
+      "stem": "A bullet is fired with a velocity of 196 m/s at an angle of 30\u00b0 with horizontal. Time of flight of the bullet is (take g = 9.8 m/s^2):",
+      "options": [
+        "(a) 10 s",
+        "(b) 20 s",
+        "(c) 30 s",
+        "(d) 40 s"
+      ],
+      "source_answer": "(b) 20 s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Time of flight T = (2*u * sin(theta)) / g = 2 * 196 * sin(30\u00b0) / 9.8 = 2 * 196 * 0.5 / 9.8 = 196 / 9.8 = 20 s. Option (b).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P18-L1-29",
+      "page": 18,
+      "book_page": "105",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "29",
+      "stem": "From the top of a tower of height 78.4m two stones are projected horizontally with 10 m/s and 20 m/s in opposite directions. On reaching the ground, their separation is:",
+      "options": [
+        "(a) 60 m",
+        "(b) 100 m",
+        "(c) 120 m",
+        "(d) 200 m"
+      ],
+      "source_answer": "(c) 120 m",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Both stones fall the same vertical height 78.4m under gravity: t = sqrt(2h/g) = sqrt(2 * 78.4 / 9.8) = sqrt(16) = 4s. Horizontal displacements in opposite directions: x1 = 10 * 4 = 40m, x2 = 20 * 4 = 80m. Total distance between them = x1 + x2 = 40 + 80 = 120m. Option (c).",
+      "mathematical_family": "Horizontal & Elevated Projections",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P18-L1-30",
+      "page": 18,
+      "book_page": "105",
+      "section": "LEVEL-I",
+      "type": "SINGLE_CHOICE",
+      "source_label": "30",
+      "stem": "An aeroplane is flying horizontally at a height of 980 m with velocity 100 m/s drops a food packet. The time taken to reach the ground is:",
+      "options": [
+        "(a) 10 s",
+        "(b) 14.14 s",
+        "(c) 20 s",
+        "(d) 28.28 s"
+      ],
+      "source_answer": "(b) 14.14 s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Initial vertical velocity of packet is zero. Vertical motion under gravity: h = 0.5 * g * t^2 => t = sqrt(2h/g) = sqrt(2 * 980 / 9.8) = sqrt(200) = 10 * sqrt(2) \u2248 14.14 s. Option (b).",
+      "mathematical_family": "Horizontal & Elevated Projections",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P21-L2-05",
+      "page": 21,
+      "book_page": "108",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "5",
+      "stem": "A train is moving with a speed of 40 km/h due east. A bird is flying due north with a speed of 40 km/h. What is the velocity of the bird noted by a man in the train?",
+      "options": [
+        "(a) 40\\sqrt{2} km/h N-E",
+        "(b) 40\\sqrt{2} km/h S-E",
+        "(c) 40\\sqrt{2} km/h N-W",
+        "(d) 40\\sqrt{2} km/h S-W"
+      ],
+      "source_answer": "(c) 40\\sqrt{2} km/h N-W",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Train velocity v_t = 40 i_hat km/h. Bird velocity v_b = 40 j_hat km/h. Relative velocity of bird with respect to train v_bt = v_b - v_t = -40 i_hat + 40 j_hat. Magnitude |v_bt| = sqrt(40^2 + 40^2) = 40*sqrt(2) km/h. Direction has negative east (west) and positive north => North-West (N-W). Option (c).",
+      "mathematical_family": "Relative 2D Kinematics (River-Boat & Rain-Man)",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M0",
+        "A": "A0",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P21-L2-06",
+      "page": 21,
+      "book_page": "108",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "6",
+      "stem": "A swimmer can swim in still water at 4 km/h. To cross a river of width 1 km flowing at 2 km/h along the shortest possible path, in which direction should he swim?",
+      "options": [
+        "(a) At an angle 120\u00b0 to the water current",
+        "(b) At an angle 150\u00b0 to the water current",
+        "(c) At an angle 90\u00b0 to the water current",
+        "(d) None of these"
+      ],
+      "source_answer": "(a) At an angle 120\u00b0 to the water current",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Shortest path requires zero drift: swimmer must head upstream at angle theta with the normal such that v_s * sin(theta) = v_r => 4 * sin(theta) = 2 => sin(theta) = 1/2 => theta = 30\u00b0 upstream from normal. Total angle with respect to downstream water current = 90\u00b0 + 30\u00b0 = 120\u00b0. Option (a).",
+      "mathematical_family": "Relative 2D Kinematics (River-Boat & Rain-Man)",
+      "hardness": {
+        "C": "C2",
+        "R": "R2",
+        "M": "M1",
+        "A": "A1",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P21-L2-07",
+      "page": 21,
+      "book_page": "108",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "7",
+      "stem": "A river flows with a speed greater than the maximum speed with which a person can swim in still water (v_r > v_s). He intends to cross the river by the shortest possible path. Which of the following is correct?",
+      "options": [
+        "(a) He should start normal to the river bank",
+        "(b) He can reach the opposite point directly",
+        "(c) He should swim at sin(theta) = v_s/v_r upstream",
+        "(d) The man cannot reach the directly opposite point without drift"
+      ],
+      "source_answer": "(d) The man cannot reach the directly opposite point without drift",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "To reach the directly opposite point, zero net drift is required, meaning v_s * sin(theta) = v_r => sin(theta) = v_r / v_s. But v_r > v_s implies sin(theta) > 1, which is impossible for any physical heading angle. Therefore, drift cannot be eliminated and the swimmer cannot reach the directly opposite point. Option (d).",
+      "mathematical_family": "Relative 2D Kinematics (River-Boat & Rain-Man)",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A2",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P22-L2-21",
+      "page": 22,
+      "book_page": "109",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "21",
+      "stem": "A projectile can have the same range R for two angles of projection. If t1 and t2 are the times of flight in the two cases, then:",
+      "options": [
+        "(a) t1 * t2 \\propto R",
+        "(b) t1 * t2 \\propto R^2",
+        "(c) t1 * t2 \\propto 1/R",
+        "(d) t1 * t2 \\propto 1/R^2"
+      ],
+      "source_answer": "(a) t1 * t2 \\propto R",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Angles are theta and 90\u00b0 - theta. t1 = 2u*sin(theta)/g, t2 = 2u*cos(theta)/g. Product t1 * t2 = (4u^2 * sin(theta)*cos(theta)) / g^2 = (2/g) * (u^2 * sin(2*theta) / g) = (2/g) * R. Thus t1 * t2 is directly proportional to R. Option (a).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P22-L2-24",
+      "page": 22,
+      "book_page": "109",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "24",
+      "stem": "The range R of a projectile is same when its maximum heights are h1 and h2. What is the relation between R, h1 and h2?",
+      "options": [
+        "(a) R = \\sqrt{h1 * h2}",
+        "(b) R = 2\\sqrt{h1 * h2}",
+        "(c) R = 4\\sqrt{h1 * h2}",
+        "(d) R = 16\\sqrt{h1 * h2}"
+      ],
+      "source_answer": "(c) R = 4\\sqrt{h1 * h2}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "h1 = u^2*sin^2(theta)/(2g), h2 = u^2*cos^2(theta)/(2g). Product h1 * h2 = u^4 * sin^2(theta)*cos^2(theta) / (4g^2) = (1/16) * (u^2 * 2*sin(theta)*cos(theta) / g)^2 = R^2 / 16. Taking square root: sqrt(h1 * h2) = R / 4 => R = 4 * sqrt(h1 * h2). Option (c).",
+      "mathematical_family": "Range, Height & Flight Time Scaling",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P24-L2-42",
+      "page": 24,
+      "book_page": "111",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "42",
+      "stem": "A projectile is given an initial velocity of i_hat + 2 j_hat m/s. The Cartesian equation of its path is (take g = 10 m/s^2):",
+      "options": [
+        "(a) y = 2x - 5x^2",
+        "(b) y = x - 5x^2",
+        "(c) y = 2x - 10x^2",
+        "(d) y = x - 10x^2"
+      ],
+      "source_answer": "(a) y = 2x - 5x^2",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "u_x = 1, u_y = 2. Parametric coordinates: x = u_x * t = t => t = x. y = u_y * t - 0.5 * g * t^2 = 2t - 5t^2 = 2x - 5x^2. Parabolic path is y = 2x - 5x^2. Option (a).",
+      "mathematical_family": "Trajectory Geometry & Parabolic Kinematics",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P24-L2-43",
+      "page": 24,
+      "book_page": "111",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "43",
+      "stem": "A particle is projected from the ground with an initial speed of u at an angle theta with horizontal. The average velocity between its launch and apex is:",
+      "options": [
+        "(a) u*cos\\theta",
+        "(b) \\frac{u}{2}\\sqrt{1 + 3\\cos^2\\theta}",
+        "(c) \\frac{u}{2}\\sqrt{3 + \\cos^2\\theta}",
+        "(d) u\\sqrt{1 + 3\\cos^2\\theta}"
+      ],
+      "source_answer": "(b) \\frac{u}{2}\\sqrt{1 + 3\\cos^2\\theta}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Displacement from origin to apex: Delta_x = u^2*sin(theta)*cos(theta)/g, Delta_y = u^2*sin^2(theta)/(2g). Time to apex t = u*sin(theta)/g. Average velocity vector v_avg = Delta_r / t = u*cos(theta) i_hat + (u*sin(theta)/2) j_hat. Magnitude = sqrt(u^2*cos^2(theta) + u^2*sin^2(theta)/4) = (u/2)*sqrt(4*cos^2(theta) + sin^2(theta)) = (u/2)*sqrt(1 + 3*cos^2(theta)). Option (b).",
+      "mathematical_family": "Trajectory Geometry & Parabolic Kinematics",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A1",
+        "S": "S1",
+        "overall": "HARD"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-MIP-P25-L2-47",
+      "page": 25,
+      "book_page": "112",
+      "section": "LEVEL-II",
+      "type": "SINGLE_CHOICE",
+      "source_label": "47",
+      "stem": "The horizontal range and maximum height attained by a projectile are R and H, respectively. If a constant horizontal acceleration a_x = g/4 is imparted by wind, the new range is:",
+      "options": [
+        "(a) R + H",
+        "(b) R + 2H",
+        "(c) R + 4H",
+        "(d) R + H/2"
+      ],
+      "source_answer": "(a) R + H",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Flight time is governed strictly by vertical gravity: T = 2*u_y / g. Additional horizontal displacement due to wind acceleration: Delta_x = 0.5 * a_x * T^2 = 0.5 * (g/4) * (2*u_y / g)^2 = (g/8) * (4 * u_y^2 / g^2) = u_y^2 / (2g) = H. Therefore, new total range R_new = R + Delta_x = R + H. Option (a).",
+      "mathematical_family": "Trajectory Geometry & Parabolic Kinematics",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A2",
+        "S": "S1",
+        "overall": "HARD"
+      },
+      "fidelity_status": "VERIFIED"
+    }
+  ]
+}
