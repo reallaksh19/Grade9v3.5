@@ -134,7 +134,7 @@ class Renderer(unittest.TestCase):
         )
         a = render_core._scope_svg_ids(source, "scope-a")
         b = render_core._scope_svg_ids(source, "scope-b")
-        self.assertNotEqual(set(re.findall(r'\\bid="([^"]+)"', a)), set(re.findall(r'\\bid="([^"]+)"', b)))
+        self.assertNotEqual(set(re.findall(r'(?<![-:\w])id="([^"]+)"', a)), set(re.findall(r'(?<![-:\w])id="([^"]+)"', b)))
         self.assertIn('aria-labelledby="scope-a--t scope-a--d"', a)
         self.assertIn('url(#scope-a--arrow)', a)
         self.assertNotIn('id="t"', a)
@@ -203,9 +203,9 @@ class Renderer(unittest.TestCase):
             self.assertIn(f'id="g9-role-{role}"', html)
             self.assertIn(f'href="#g9-role-{role}"', html)
         self.assertNotIn('href="core2a.html"', html)
-        ids = re.findall(r'\\bid="([^"]+)"', html)
+        ids = re.findall(r'(?<![-:\w])id="([^"]+)"', html)
         self.assertEqual(len(ids), len(set(ids)), "SINGLE_FILE output must not duplicate document ids")
-        self.assertNotRegex(html, r'href="core\\w+\\.html#')
+        self.assertNotRegex(html, r'href="core\w+\.html#')
 
     def test_render_receipt_manifest_path_is_repository_relative(self):
         out = self.tmp / "receipt"
