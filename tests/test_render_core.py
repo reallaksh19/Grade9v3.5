@@ -114,6 +114,11 @@ class Renderer(unittest.TestCase):
         changed.blueprints["shell"]["typography_policy"]["minimum_learner_text_css_px"] = 15
         self.assertNotEqual(digest_before, render_core.render_digest(changed))
 
+        changed_bank = copy.deepcopy(ctx)
+        changed_bank.bank = copy.deepcopy(ctx.bank)
+        changed_bank.bank[0]["stem"] += " [digest witness]"
+        self.assertNotEqual(digest_before, render_core.render_digest(changed_bank))
+
 
     def test_authored_svg_without_accessible_name_and_description_is_a_typed_gap(self):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
