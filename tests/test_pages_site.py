@@ -41,6 +41,48 @@ class PagesSiteTest(unittest.TestCase):
         desired = build_pages_site.desired_files(REPO)
         self.assertEqual(build_pages_site.link_findings(desired), [])
 
+    def test_publication_rewrites_tailwind_and_katex_to_local_runtime(self):
+        relative = "physics/deep/explorer/index.html"
+        source = b"""<!doctype html><html><head>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+</head><body></body></html>"""
+        out = build_pages_site._public_payload(relative, source).decode("utf-8")
+        self.assertIn('../../../vendor/tailwind/3.4.17/tailwind-play.js', out)
+        self.assertIn('../../../vendor/katex/0.16.8/katex.min.css', out)
+        self.assertIn('../../../vendor/katex/0.16.8/katex.min.js', out)
+        self.assertNotIn("https://cdn.tailwindcss.com", out)
+        self.assertNotIn("https://cdn.jsdelivr.net", out)
+
+    def test_publication_rewrites_legacy_gstatic_tailwind_runtime(self):
+        out = build_pages_site._public_payload(
+            "physics/motion-in-2d/explorers/x/index.html",
+            b'<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>',
+        ).decode("utf-8")
+        self.assertIn('../../../../vendor/tailwind/3.4.17/tailwind-play.js', out)
+        self.assertNotIn("gstatic.com", out)
+
+    def test_publication_fails_closed_on_unknown_external_runtime(self):
+        with self.assertRaisesRegex(ValueError, "unapproved external runtime dependency"):
+            build_pages_site._public_payload(
+                "physics/x/index.html",
+                b'<script src="https://cdn.example.invalid/new-runtime.js"></script>',
+            )
+        with self.assertRaisesRegex(ValueError, "unapproved external runtime dependency"):
+            build_pages_site._public_payload(
+                "physics/x/index.html",
+                b'<link rel="stylesheet" href="https://cdn.example.invalid/new.css">',
+            )
+
+    def test_tailwind_vendor_snapshot_is_versioned_and_declared(self):
+        runtime = REPO / "public" / "vendor" / "tailwind" / "3.4.17" / "tailwind-play.js"
+        readme = (REPO / "public" / "vendor" / "README.md").read_text(encoding="utf-8")
+        self.assertTrue(runtime.is_file())
+        self.assertIn("3.4.17", runtime.read_text(encoding="utf-8"))
+        self.assertIn("176e894661aa9cdc9a5cba6c720044cbbf7b8bd80d1c9a142a7c24b1b6c50d15", readme)
+        self.assertTrue((runtime.parent / "LICENSE").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
