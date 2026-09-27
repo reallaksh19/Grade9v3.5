@@ -1,0 +1,78 @@
+{
+  "schema": "research-verification/v1",
+  "subject": "Mathematics",
+  "node_ref": "MAT-09-LINEAR-EQUATIONS-04",
+  "verified_by": "agent-verifier-4",
+  "verified_at": "2026-09-27",
+  "inputs_digest": "sha256:462ba52e919ee35eb3d46f7773978532afc0165c4525c0a9e488de1d0315f22f",
+  "questions": [
+    {
+      "card_ref": "EV-MAT-09-LEQ-04-008",
+      "independent_solution": [
+        "2x - 5y = 7 is ax + by + c = 0 with a = 2, b = -5 (both non-zero): a linear equation in two variables.",
+        "For any real x, y = (2x - 7)/5 gives a solution, e.g. (1, -1) and (6, 1); x is free, so there are infinitely many solutions: option (C)."
+      ],
+      "independent_answer": "(C) Infinitely many solutions",
+      "official_answer": "(C)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-04-010",
+      "independent_solution": [
+        "(2, 0) means x = 2, y = 0; a solution satisfies the equation.",
+        "k = 2(2) + 3(0) = 4, option (A) in the list (4, 6, 5, 2)."
+      ],
+      "independent_answer": "k = 4, option (A)",
+      "official_answer": "(A), i.e. 4",
+      "agrees": true,
+      "numeric_check": "2*2 + 3*0"
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-04-012",
+      "independent_solution": [
+        "Substitute x = 5, y = 2 into each LHS: x + 2y = 9; 5x + 2y = 29; x + y = 7; 5x + y = 27.",
+        "Only x + y = 7 gives 7: option (C)."
+      ],
+      "independent_answer": "(C) x + y = 7",
+      "official_answer": "(C)",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-04-014",
+      "independent_solution": [
+        "A point lies on the graph exactly when its coordinates satisfy the equation.",
+        "x = 0, y = 3: 3(0) + 4(3) = 12, so the statement is True."
+      ],
+      "independent_answer": "True",
+      "official_answer": "True, since (0, 3) satisfies the equation 3x + 4y = 12.",
+      "agrees": true
+    },
+    {
+      "card_ref": "EV-MAT-09-LEQ-04-016",
+      "independent_solution": [
+        "2x + 1 = x - 3 -> x = -4. On the number line (one variable) this is one point: one solution.",
+        "On the Cartesian plane it is the equation x + 0y + 4 = 0; every pair (-4, y) satisfies it, the vertical line x = -4: infinitely many solutions."
+      ],
+      "independent_answer": "(i) one (x = -4); (ii) infinitely many",
+      "official_answer": "(i) one (ii) Infinitely many solutions",
+      "agrees": true
+    }
+  ],
+  "records": [
+    {"record_ref": "CAP-MAT-LEQ-04-TWO-VARIABLE-SOLUTIONS", "checked_fields": ["action", "success_criterion"], "agrees": true},
+    {"record_ref": "MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS", "checked_fields": ["title", "entry_assumptions", "inferential_jump", "teaching_path", "misconceptions", "exit_task", "elicitation", "construction_units", "compact_anchor", "badge_reason", "research_contribution", "extensions.grade9v3:interactive_idea"], "agrees": true},
+    {"record_ref": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REL-MAT-LEQ-04-STRAIGHT-LINE", "checked_fields": ["expression", "meaning", "conditions", "derivation", "limits", "checks"], "agrees": true},
+    {"record_ref": "REP-MAT-LEQ-04-SOLUTION-LINE", "checked_fields": ["purpose", "instance_constraints", "reveal_stages", "misleading_alternatives"], "agrees": true},
+    {"record_ref": "FAM-MAT-LEQ-04-TWO-VARIABLES", "checked_fields": ["solution_structure", "common_wrong_routes", "demand_dimensions", "transfer_boundaries"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-1A-TEST-PAIRS", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-1A-GENERATE-PAIRS", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-1A-READ-THE-LINE", "checked_fields": ["stem", "conditions", "answer", "grounding"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal", "transfer", "independent_check"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11", "checked_fields": ["stem", "options", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "scaffolds", "hint_ladder", "failure_signal"], "agrees": true},
+    {"record_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7", "checked_fields": ["stem", "conditions", "answer", "answer.reasoning_route", "answer.rubric", "scaffolds", "hint_ladder", "failure_signal", "transfer"], "agrees": true}
+  ],
+  "findings": []
+}

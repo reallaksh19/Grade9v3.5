@@ -44,7 +44,8 @@ class Grade9PhysicsVisualLearnerLoopTest(unittest.TestCase):
 
     def test_nlm_has_canonical_representation_and_explorer_bindings(self):
         reps = {row["id"]: row for row in self.nlm["representations"]}
-        self.assertEqual(REPRESENTATIONS, set(reps))
+        # The canonical records must exist; item-specific figures (ALL-FIGURE-SPECIFIC) may be added beside them.
+        self.assertLessEqual(REPRESENTATIONS, set(reps))
 
         micro = {row["id"]: row for row in self.nlm["microtopics"]}
         self.assertEqual(

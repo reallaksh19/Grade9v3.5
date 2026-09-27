@@ -74,6 +74,9 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         duties.append({"duty": kind, "role": role, "subject": pkg["subject"], "package": rel,
                        "record": record, "contract_rules": rules, "detail": detail})
 
+    # A prerequisite taught by another microtopic of this same package is bridged inside the product.
+    taught = taught | {c["id"] for c in pkg.get("capabilities", [])} | {
+        f"{pkg.get('subject')}:{c['id']}" for c in pkg.get("capabilities", [])}
     reps = {r["id"]: r for r in pkg.get("representations", [])}
     for r in reps.values():
         if not (r.get("scene_instances") or r.get("rendered_asset_refs")):

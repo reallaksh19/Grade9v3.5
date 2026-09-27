@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="rep-kin-puck-title rep-kin-puck-desc">
+  <title id="rep-kin-puck-title">Puck with u = (4 i + 6 j) m/s and a = (0 i − 2 j) m/s²: check each axis, then one shared time</title>
+  <desc id="rep-kin-puck-desc">Stage 1: a puck on a tilted air table starts at the origin with velocity u = (4 i + 6 j) m/s and constant acceleration a = (0 i − 2 j) m/s², and follows a curved path back to its starting line. Stage 2: the table's frame, +x and +y, and a per-axis check: a_x = 0 is constant and a_y = −2 m/s² is constant, so the constant-acceleration equations are exact on x and on y. Stage 3: the equations run once per axis with one shared t: Δx = 4t and v_x = 4 on x; Δy = 6t − t² and v_y = 6 − 2t on y; the puck is next at y = 0 when t(6 − t) = 0, at the later root t = 6 s. Stage 4: the same t = 6 s is used on both axes: the puck is at x = 24 m, marked on the starting line, moving with v = (4 i − 6 j) m/s, drawn as an arrow. The drawing's vertical scale is stretched relative to its horizontal scale.</desc>
+  <defs>
+    <marker id="rep-kin-puck-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-puck-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">A puck on a tilted air table</text>
+    <rect x="30" y="50" width="400" height="300" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M80 290 Q212 -34 344 290" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="80" cy="290" r="8" fill="currentColor"/>
+    <line x1="80" y1="290" x2="119.6" y2="192.8" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-puck-arrow)"/>
+    <text x="112" y="262">u = (4 i + 6 j) m/s</text>
+    <line x1="405" y1="64" x2="405" y2="114" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-puck-arrow)"/>
+    <text x="392" y="80" text-anchor="end">a = (0 i − 2 j) m/s²</text>
+    <text x="392" y="100" text-anchor="end">throughout</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="80" y1="290" x2="420" y2="290" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-puck-arrow)"/>
+    <line x1="80" y1="290" x2="80" y2="64" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-puck-arrow)"/>
+    <text x="410" y="312">+x</text>
+    <text x="88" y="74">+y</text>
+    <text x="64" y="310">O</text>
+    <text x="460" y="60" font-weight="600">Check each axis first</text>
+    <text x="460" y="84">x: a_x = 0, constant ✓</text>
+    <text x="460" y="106">y: a_y = −2 m/s², constant ✓</text>
+    <text x="460" y="128">→ constant-a equations</text>
+    <text x="460" y="148">exact on x and on y</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="460" y="186" font-weight="600">One shared t on both axes</text>
+    <text x="460" y="208">x: Δx = 4t,  v_x = 4</text>
+    <text x="460" y="230">y: Δy = 6t − t²,  v_y = 6 − 2t</text>
+    <text x="460" y="252">next y = 0: t(6 − t) = 0</text>
+    <text x="460" y="274" font-weight="600">later root t = 6 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-PUCK-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="344" cy="290" r="7" fill="#1f6fb2"/>
+    <line x1="344" y1="290" x2="366" y2="344" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-puck-arrow-acc)"/>
+    <text x="318" y="280" text-anchor="end" font-weight="600" fill="#1f6fb2">t = 6 s: x = 24 m</text>
+    <text x="460" y="316" font-weight="600" fill="#1f6fb2">same t = 6 s on x and y:</text>
+    <text x="460" y="338">Δx = 4 × 6 = 24 m</text>
+    <text x="460" y="360">v = (4 i − 6 j) m/s</text>
+  </g>
+</svg>

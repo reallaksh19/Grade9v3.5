@@ -37,7 +37,22 @@ def canonical_path(subject: str, chapter: str, repo: Path = REPO) -> Path:
 
 
 def plan(board: dict, staging: dict[str, dict], taught: set[str], limit: int) -> dict:
-    """Which nodes' records may be promoted, and why the others may not. Pure: no files."""
+    """Which nodes' records may be promoted, and why the others may not. Pure: no files.
+
+    A prerequisite taught by a sibling node counts only when that sibling is promoted in the same
+    batch, so the plan is repeated until the set of promotable nodes stops growing."""
+    batch: set[str] = set()
+    while True:
+        result = _plan_once(board, staging, taught | batch, limit)
+        grown = {f"{board['subject']}:{c['id']}" for item in result["promotable"]
+                 for c in item["package"].get("capabilities", [])}
+        grown |= {c.split(":", 1)[1] for c in grown}
+        if grown <= batch:
+            return result
+        batch |= grown
+
+
+def _plan_once(board: dict, staging: dict[str, dict], taught: set[str], limit: int) -> dict:
     promotable, refused = [], []
     for row in board["nodes"]:
         if row["level"] != "MICROTOPIC":

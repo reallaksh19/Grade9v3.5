@@ -6,26 +6,29 @@ rendered quality gate passes; until then its gaps are duties on the board
 
 0 of 21 products live.
 
-| Product | Subject | Verdict | Gaps | Blocking findings | Largest gap kinds |
-|---|---|---|---|---|---|
-| linear-equations | Mathematics | FAIL | 7 | 10 | AUTHOR_RECONSTRUCTION_TASK 3, TEACH_PREREQUISITE_BRIDGE 2, ACQUIRE_SOURCE 1 |
-| phy-elec-current-ohm | Physics | FAIL | 12 | 17 | AUTHOR_GOVERNING_RELATION 2, AUTHOR_COMPACT_ANCHOR 2, AUTHOR_WORKED_ANCHOR 2 |
-| phy-fluid-bernoulli-equation | Physics | FAIL | 17 | 23 | AUTHOR_GOVERNING_RELATION 3, AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3 |
-| phy-grav-universal-law | Physics | FAIL | 36 | 44 | AUTHOR_GOVERNING_RELATION 6, AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6 |
-| phy-kin-1d-motion | Physics | FAIL | 101 | 108 | AUTHOR_QUESTION_REPRESENTATION 12, AUTHOR_FAILURE_SIGNAL 12, AUTHOR_FAMILY_EXPOSURE 12 |
-| phy-kin-2d-motion | Physics | FAIL | 8 | 10 | AUTHOR_TRANSFER_NOVELTY 5, AUTHOR_RECONSTRUCTION_TASK 3 |
-| phy-mag-field-lorentz | Physics | FAIL | 18 | 25 | AUTHOR_GOVERNING_RELATION 3, AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3 |
-| phy-nlm-first-law | Physics | FAIL | 27 | 18 | AUTHOR_TRANSFER_NOVELTY 16, AUTHOR_RECONSTRUCTION_TASK 11 |
-| phy-nlm-momentum-transfer | Physics | FAIL | 39 | 38 | AUTHOR_QUESTION_REPRESENTATION 5, AUTHOR_FAILURE_SIGNAL 5, AUTHOR_FAMILY_EXPOSURE 5 |
-| phy-optics-reflection-mirrors | Physics | FAIL | 32 | 49 | AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6, AUTHOR_INDEPENDENT_CHECK 6 |
-| phy-optics-refraction-lenses | Physics | FAIL | 28 | 41 | AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6, AUTHOR_INDEPENDENT_CHECK 6 |
-| phy-osc-shm-waves | Physics | FAIL | 12 | 17 | AUTHOR_GOVERNING_RELATION 2, AUTHOR_COMPACT_ANCHOR 2, AUTHOR_WORKED_ANCHOR 2 |
-| phy-rot-rigid-body | Physics | FAIL | 22 | 29 | AUTHOR_GOVERNING_RELATION 4, AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4 |
-| phy-simple-machines | Physics | FAIL | 22 | 32 | AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3, AUTHOR_INDEPENDENT_CHECK 3 |
-| phy-sound | Physics | FAIL | 46 | 55 | AUTHOR_COMPACT_ANCHOR 5, AUTHOR_WORKED_ANCHOR 5, AUTHOR_INDEPENDENT_CHECK 5 |
-| phy-thermo-first-second-law | Physics | FAIL | 22 | 29 | AUTHOR_GOVERNING_RELATION 4, AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4 |
-| phy-vec-add-sub | Physics | FAIL | 59 | 62 | AUTHOR_QUESTION_REPRESENTATION 6, AUTHOR_FAILURE_SIGNAL 6, AUTHOR_FAMILY_EXPOSURE 6 |
-| phy-vector-direction-unit | Physics | FAIL | 14 | 23 | AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3, AUTHOR_INDEPENDENT_CHECK 3 |
-| phy-work-energy-power | Physics | FAIL | 60 | 73 | AUTHOR_COMPACT_ANCHOR 7, AUTHOR_RECONSTRUCTION_TASK 7, AUTHOR_QUESTION_REPRESENTATION 7 |
-| relative-motion | Physics | FAIL | 24 | 35 | AUTHOR_COMPACT_ANCHOR 4, AUTHOR_INDEPENDENT_CHECK 4, AUTHOR_RECONSTRUCTION_TASK 4 |
-| vector-representation | Physics | FAIL | 30 | 42 | AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4, AUTHOR_INDEPENDENT_CHECK 4 |
+A product that passes the gate still waits for an independent product review of its exact render
+(`products/verification/<name>.review.json` with `render_digest`) with no open S0/S1 finding.
+
+| Product | Subject | Verdict | Review | Gaps | Blocking findings | Largest gap kinds |
+|---|---|---|---|---|---|---|
+| linear-equations | Mathematics | FAIL | — | 7 | 10 | AUTHOR_RECONSTRUCTION_TASK 3, TEACH_PREREQUISITE_BRIDGE 2, ACQUIRE_SOURCE 1 |
+| phy-elec-current-ohm | Physics | FAIL | — | 12 | 17 | AUTHOR_GOVERNING_RELATION 2, AUTHOR_COMPACT_ANCHOR 2, AUTHOR_WORKED_ANCHOR 2 |
+| phy-fluid-bernoulli-equation | Physics | FAIL | — | 17 | 23 | AUTHOR_GOVERNING_RELATION 3, AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3 |
+| phy-grav-universal-law | Physics | FAIL | — | 36 | 44 | AUTHOR_GOVERNING_RELATION 6, AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6 |
+| phy-kin-1d-motion | Physics | FAIL | — | 101 | 109 | AUTHOR_QUESTION_REPRESENTATION 12, AUTHOR_FAILURE_SIGNAL 12, AUTHOR_FAMILY_EXPOSURE 12 |
+| phy-kin-2d-motion | Physics | PASS | REVIEW_STALE | 0 | 0 |  |
+| phy-mag-field-lorentz | Physics | FAIL | — | 18 | 25 | AUTHOR_GOVERNING_RELATION 3, AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3 |
+| phy-nlm-first-law | Physics | PASS | REVIEW_STALE | 0 | 0 |  |
+| phy-nlm-momentum-transfer | Physics | FAIL | — | 39 | 38 | AUTHOR_QUESTION_REPRESENTATION 5, AUTHOR_FAILURE_SIGNAL 5, AUTHOR_FAMILY_EXPOSURE 5 |
+| phy-optics-reflection-mirrors | Physics | FAIL | — | 32 | 49 | AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6, AUTHOR_INDEPENDENT_CHECK 6 |
+| phy-optics-refraction-lenses | Physics | FAIL | — | 28 | 41 | AUTHOR_COMPACT_ANCHOR 6, AUTHOR_WORKED_ANCHOR 6, AUTHOR_INDEPENDENT_CHECK 6 |
+| phy-osc-shm-waves | Physics | FAIL | — | 12 | 17 | AUTHOR_GOVERNING_RELATION 2, AUTHOR_COMPACT_ANCHOR 2, AUTHOR_WORKED_ANCHOR 2 |
+| phy-rot-rigid-body | Physics | FAIL | — | 22 | 29 | AUTHOR_GOVERNING_RELATION 4, AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4 |
+| phy-simple-machines | Physics | FAIL | — | 22 | 32 | AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3, AUTHOR_INDEPENDENT_CHECK 3 |
+| phy-sound | Physics | FAIL | — | 46 | 55 | AUTHOR_COMPACT_ANCHOR 5, AUTHOR_WORKED_ANCHOR 5, AUTHOR_INDEPENDENT_CHECK 5 |
+| phy-thermo-first-second-law | Physics | FAIL | — | 22 | 29 | AUTHOR_GOVERNING_RELATION 4, AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4 |
+| phy-vec-add-sub | Physics | FAIL | — | 59 | 62 | AUTHOR_QUESTION_REPRESENTATION 6, AUTHOR_FAILURE_SIGNAL 6, AUTHOR_FAMILY_EXPOSURE 6 |
+| phy-vector-direction-unit | Physics | FAIL | — | 14 | 23 | AUTHOR_COMPACT_ANCHOR 3, AUTHOR_WORKED_ANCHOR 3, AUTHOR_INDEPENDENT_CHECK 3 |
+| phy-work-energy-power | Physics | FAIL | — | 60 | 73 | AUTHOR_COMPACT_ANCHOR 7, AUTHOR_RECONSTRUCTION_TASK 7, AUTHOR_QUESTION_REPRESENTATION 7 |
+| relative-motion | Physics | FAIL | — | 24 | 35 | AUTHOR_COMPACT_ANCHOR 4, AUTHOR_INDEPENDENT_CHECK 4, AUTHOR_RECONSTRUCTION_TASK 4 |
+| vector-representation | Physics | FAIL | — | 30 | 42 | AUTHOR_COMPACT_ANCHOR 4, AUTHOR_WORKED_ANCHOR 4, AUTHOR_INDEPENDENT_CHECK 4 |

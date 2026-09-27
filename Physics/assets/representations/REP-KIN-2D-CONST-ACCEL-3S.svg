@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" role="img" aria-labelledby="rep-kin-ca3-title rep-kin-ca3-desc">
+  <title id="rep-kin-ca3-title">Particle with u = (3 i + 4 j) m/s and a = (2 i − 1 j) m/s² over 3 s: two axes, one interval</title>
+  <desc id="rep-kin-ca3-desc">Stage 1: a particle at t = 0 with initial velocity u = (3 i + 4 j) m/s and constant acceleration a = (2 i − 1 j) m/s²; the velocity and displacement after 3 s are asked for. Stage 2: the frame +x, +y and the component split: on x, u_x = 3 m/s and a_x = 2 m/s²; on y, u_y = 4 m/s and a_y = −1 m/s²; one interval t = 3 s serves both axes. Stage 3: each axis is solved on its own: v_x = 3 + 2(3) = 9 m/s, v_y = 4 − 1(3) = 1 m/s, Δx = 3(3) + 0.5(2)(3²) = 18 m, Δy = 4(3) + 0.5(−1)(3²) = 7.5 m. Stage 4: the path over the 3 s ends at displacement Δr = (18 i + 7.5 j) m, where the velocity is v = (9 i + 1 j) m/s.</desc>
+  <defs>
+    <marker id="rep-kin-ca3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-ca3-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-CA3-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Constant acceleration for 3 s</text>
+    <circle cx="70" cy="330" r="7" fill="currentColor"/>
+    <line x1="70" y1="330" x2="146.8" y2="227.6" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-ca3-arrow)"/>
+    <text x="80" y="207.6">u = (3 i + 4 j) m/s</text>
+    <line x1="230" y1="102" x2="278" y2="126" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-ca3-arrow)"/>
+    <text x="230" y="90">a = (2 i − 1 j) m/s², constant</text>
+    <text x="60" y="356">t = 0</text>
+    <text x="20" y="380">Find v and Δr after the 3 s interval.</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-CA3-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <line x1="70" y1="330" x2="380" y2="330" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-ca3-arrow)"/>
+    <line x1="70" y1="330" x2="70" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#rep-kin-ca3-arrow)"/>
+    <text x="385" y="335">+x</text>
+    <text x="78" y="64">+y</text>
+    <line x1="70" y1="330" x2="146.8" y2="330" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line x1="146.8" y1="330" x2="146.8" y2="227.6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="500" y="60" font-weight="600">x only</text>
+    <text x="500" y="82">u_x = 3 m/s, a_x = 2 m/s²</text>
+    <text x="500" y="116" font-weight="600">y only</text>
+    <text x="500" y="138">u_y = 4 m/s, a_y = −1 m/s²</text>
+    <text x="500" y="172" font-weight="600">one interval on both: t = 3 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-CA3-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="500" y="214" fill="#1f6fb2">v_x = 3 + 2(3) = 9 m/s</text>
+    <text x="500" y="236" fill="#1f6fb2">v_y = 4 − 1(3) = 1 m/s</text>
+    <text x="500" y="258" fill="#1f6fb2">Δx = 3(3) + 0.5(2)(3²) = 18 m</text>
+    <text x="500" y="280" fill="#1f6fb2">Δy = 4(3) + 0.5(−1)(3²) = 7.5 m</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-CA3-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M70 330 Q142 234 358 210" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="358" cy="210" r="7" fill="#1f6fb2"/>
+    <line x1="70" y1="330" x2="358" y2="210" stroke="#1f6fb2" stroke-width="2" marker-end="url(#rep-kin-ca3-arrow-acc)" stroke-dasharray="8 4"/>
+    <text x="224" y="296" font-weight="600" fill="#1f6fb2">Δr = (18 i + 7.5 j) m</text>
+    <line x1="358" y1="210" x2="421" y2="203" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-ca3-arrow-acc)"/>
+    <text x="346" y="190" text-anchor="end" font-weight="600" fill="#1f6fb2">v = (9 i + 1 j) m/s at 3 s</text>
+  </g>
+</svg>

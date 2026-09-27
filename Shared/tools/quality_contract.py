@@ -161,6 +161,23 @@ def _pre_attempt_partial(unit, check, ctx):
     return [f"{len(full)} pre-attempt figure(s) show every stage, including the result"] if full else []
 
 
+@op("pre_attempt_markup_withheld")
+def _pre_attempt_withheld(unit, check, ctx):
+    out = []
+    for f in unit["figures"]:
+        if f["stage"] != "PRE_ATTEMPT":
+            continue
+        if f.get("stages_in_dom", 0) > f.get("reveal_stages", 1):
+            out.append(f"a pre-attempt figure carries {f['stages_in_dom']} stage groups in its markup but shows "
+                       f"{f.get('reveal_stages', 1)}; hidden stages still reach the DOM, tooltips and screen readers")
+        if f.get("asset_text") and f.get("stages_total", 1) > f.get("reveal_stages", 1):
+            out.append("a pre-attempt figure keeps its asset's <title>/<desc>, which describe the whole figure")
+        if f.get("caption_source") == "purpose":
+            out.append("a pre-attempt figure is captioned with its representation's design purpose, which may name the "
+                       "result; caption it with the shown stages only")
+    return out
+
+
 @op("figures_titled")
 def _titled(unit, check, ctx):
     n = sum(1 for f in unit["figures"] if not f["titled"])

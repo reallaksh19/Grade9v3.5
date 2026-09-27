@@ -1311,6 +1311,20 @@
                         "type": "string",
                         "minLength": 1
                       }
+                    },
+                    "representation_ref": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "The representation of this task's own situation (its bodies and values), shown with the Core1B attempt. When absent, Core1B falls back to the first construction unit's (Core1A) figure, which depicts a different situation."
+                    },
+                    "stage_refs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Stages of representation_ref safe to show before the attempt; default is the first stage only."
                     }
                   }
                 }
@@ -1422,6 +1436,13 @@
             "result": {
               "type": "string",
               "minLength": 1
+            },
+            "representation_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The representation of this compact anchor's own situation, shown on the Core1 map. When absent, Core1 falls back to the microtopic's first representation_refs entry, which is often shared across microtopics."
             }
           }
         }
