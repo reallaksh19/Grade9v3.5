@@ -49,6 +49,17 @@ class Pr306UiRegressions(unittest.TestCase):
                 self.assertIn("jeeHubLastFocus.focus()", source)
                 self.assertIn("jeeHubFocusable(modal)", source)
 
+    def test_question_bank_renders_current_physics_ascii_math_with_katex(self):
+        runtime = (REPO / "public" / "js" / "question-bank.js").read_text(encoding="utf-8")
+        data = (REPO / "public" / "data" / "question-bank-data.js").read_text(encoding="utf-8")
+        self.assertIn("sqrt(", data)
+        self.assertRegex(data, r"[A-Za-z]\\^[0-9]")
+        self.assertIn("function asciiMathTokenToTex", runtime)
+        self.assertIn("function renderPhysicsAsciiMath", runtime)
+        self.assertIn("data-qb-subject", runtime)
+        self.assertIn("katex.render(asciiMathTokenToTex", runtime)
+        self.assertIn("renderPhysicsAsciiMath(els.results)", runtime)
+
 
 if __name__ == "__main__":
     unittest.main()
