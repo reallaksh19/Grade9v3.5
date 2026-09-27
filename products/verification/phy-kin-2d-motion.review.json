@@ -1,555 +1,472 @@
 {
-  "schema": "product-review/v1",
-  "product": "phy-kin-2d-motion",
-  "verifier": "agent-verifier-3",
-  "reviewed_at": "2026-09-26",
-  "render_digest": "5440f7d972369ba7",
-  "previous_findings": [
-    {
-      "record": "REP-KIN-2D-EVENT-CLOCK",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 now mounts REP-KIN-2D-APEX-12-20 (v_y = 0 at 2 s, v = (12, 0) m/s, 20 m). Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 mounts REP-KIN-2D-SAME-HEIGHT-12-16 (Δy = 0, t = 4 s, 48 m, v = (12, −16) m/s). Both checked stage by stage."
-    },
-    {
-      "record": "CU-PHY-KIN-PROJECTILE-MODEL-2",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "CU-2 mounts the level-ground u = (6, 15) m/s figure (apex 1.5 s / 11.25 m, landing 3 s / 18 m). CU-3 mounts the roof launch with u_y = 20 m/s upward (Δy = −25 m, t = 5 s, 25 m, v = (5, −30) m/s). Both are drawn to scale."
-    },
-    {
-      "record": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "All three Core1B units now set a concrete task: a boat at 3 and 4 m/s (15, 20) m at 5 s; a skater with a = (−1, 2) m/s², v = (1, 8) m/s and r = (12, 16) m at 4 s; a basketball from 2 m with u = (6, 8) m/s, at (3, 4.75) m with v = (6, 3) m/s at 0.5 s. All three are re-derived and correct, and all differ from the Core1A tasks."
-    },
-    {
-      "record": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "02 (two pucks: paths cross at (12, 9) m but no collision; v_B = 3 m/s), 04 (package from a plane at 50 m/s, 80 m: u = (50, 0) m/s, 4 s, 200 m) and 05 (velocity 45° below the horizontal at t = 3 s, (30, 15) m, 10√2 m/s) are new decisions. None of them repeats a Core1A anchor, a Core1B boundary test or a Core2A item."
-    },
-    {
-      "record": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
-      "severity": "S2",
-      "status": "OPEN",
-      "note": "Rung 4 now climbs in items 01–04. In item 05, rung 4 ('the vertical equation has a launch root and a later root; identify which event is requested') only restates rung 3's 'nonzero landing time'. Re-filed at S3."
-    },
-    {
-      "record": "PYQ-PHY-JEEADV-2021-P1-Q05",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "The working now derives 0.5 s: u = (5, 5) m/s, H = 1.25 m, the vertical fragment starts from rest, v₂ = (10, 0) m/s, and the fall takes √(2H/g) = 0.5 s."
-    },
-    {
-      "record": "REP-KIN-2D-SHARED-CLOCK",
-      "severity": "S2",
-      "status": "OPEN",
-      "note": "Core1A CONSTANT-ACCELERATION now has its own puck figure (fixed). Core1 still mounts the one SHARED-CLOCK figure for all three microtopics, including the projectile model."
-    },
-    {
-      "record": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "The figure shows u = (10, 10) m/s from 15 m, the roof 3.75 m above launch from 8 m out, and both roots (0.5 s at 5 m, 1.5 s at 15 m), to scale. Item 05 is now a different task with its own figure."
-    },
-    {
-      "record": "PRODUCT-PHY-KIN-2D-MOTION",
-      "severity": "S2",
-      "status": "OPEN",
-      "note": "The h1, title and breadcrumb still read 'Owner-approved ExamSIDE question-demand slice for plane motion, now semantically'."
-    },
-    {
-      "record": "PYQ-PHY-IITJEE-2012-P1-Q05",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "Distances are now measured from the wall (block at 5.1 m, pebble 10 m). PYQ-PHY-JEEADV-2023-P1-Q01 states that ẑ points up."
-    },
-    {
-      "record": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
-      "severity": "S3",
-      "status": "FIXED",
-      "note": "The failure signal now names real routes (√(h/g) = 1.41 s, a +20 sign slip, 2u_y/g = 0). Initial and bound figures are the same EVENT-CLOCK; the figure's lack of values is filed as a new S2."
-    },
-    {
-      "record": "PYQ-PHY-IITJEE-2012-P1-Q05",
-      "severity": "S3",
-      "status": "OPEN",
-      "note": "Option labels are still doubled."
-    },
-    {
-      "record": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
-      "severity": "S3",
-      "status": "FIXED",
-      "note": "The lineage check is now a prompt, not a verbatim repeat, and each task's 'Where to start' is specific to it."
-    },
-    {
-      "record": "PRODUCT-PHY-KIN-2D-MOTION",
-      "severity": "S3",
-      "status": "OPEN",
-      "note": "'abc' still unlocks a unit, and search still matches text in locked answers and in pre-attempt figure descriptions."
-    }
-  ],
-  "units_reviewed": [
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2011-P2-Q33",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2018-P2-Q08",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2019-P2-Q09",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2021-P1-Q05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2021-P1-Q06",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2024-P2-Q09",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2012-P1-Q05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2022-P1-Q08",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2023-P1-Q01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2025-P2-Q15",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2011-P2-Q26",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2014-P1-Q11",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2026-P1-Q06",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2013-P1-Q07",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    }
-  ],
-  "findings": [
-    {
-      "severity": "S1",
-      "duty_for": "RENDERER",
-      "record": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-      "page": "core2b.html",
-      "detail": "The same renderer defect as Laws of Motion. Each of the 10 pre-attempt figures (5 in Core2A, 5 in Core2B) is emitted with every stage group, the later ones hidden only by CSS. Its aria-labelledby names a <desc> that narrates every stage, including the result. The accessible name of the Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04 pre-attempt image contains 'the projectile model starts at the release with the package's own velocity, u = (50, 0) m/s … −80 = −5t² gives t = 4 s, the package lands x = 50 × 4 = 200 m ahead'. That is the protected move and the answer. For Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03 it contains '(t − 0.5)(t − 1.5) = 0 … it lands at t = 1.5 s, 15 m out, with v = (10 i − 5 j) m/s'. A screen-reader learner hears these before attempting, and the page search matches them. A PRE_ATTEMPT mount must carry only the pre-attempt stage groups and a description of those stages alone."
-    },
-    {
-      "severity": "S1",
-      "duty_for": "ILLUSTRATOR",
-      "record": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
-      "page": "core2b.html",
-      "detail": "Several representation <title>s state the protected move or the key answer. The title is shown on the pre-attempt figure as the SVG hover tooltip and the accessible name. 2B-04: 'Package released from a plane at 50 m/s, 80 m up: it starts with the plane's velocity' (the deciding move verbatim). 2B-02: '… crossing paths are not a collision unless both arrive at the same t' (the deciding move). 2B-03: '… two roots, chosen by x' (the deciding move). 2A-03: '… at the apex only v_y is zero' (answers hint rung 1 and the velocity part). 2A-05: '… landing where Δy = 0' (answers rung 1). Give these a situation-only title for the pre-attempt mount, e.g. 'A package released 80 m up from a plane flying level at 50 m/s'."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "ILLUSTRATOR",
-      "record": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-      "page": "core1b.html",
-      "detail": "Each Core1B unit mounts its Core1A worked-anchor figure, pre-attempt and post-attempt, instead of a figure of its own attempt. The boat task (3 and 4 m/s, (15, 20) m at 5 s) shows the drone x = 6t, y = 8t − t². The skater (u = (5, 0) m/s, a = (−1, 2) m/s², 4 s) shows the puck with u = (4, 6), a = (0, −2). The basketball from 2 m (u = (6, 8) m/s, t = 0.5 s) shows the qualitative launched-versus-motor model gate. So the post-attempt reconstruction figure shows the Core1A answer, not this attempt's."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "ILLUSTRATOR",
-      "record": "REP-KIN-2D-SHARED-CLOCK",
-      "page": "core2a.html",
-      "detail": "Two Core2A figures carry no values from their item. Q-PHY-KIN-2D-2A-SHARED-CLOCK-01 (x = 4t, y = 10 − 2t², position (8, 2) m at 2 s; the pair x(2 s), y(3 s) = (8, −8) m) mounts the generic SHARED-CLOCK figure, which draws qualitative velocity histories rather than the item's positions. Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (15 m/s from 20 m; t = 2 s, 30 m, (15, −20) m/s) mounts EVENT-CLOCK, 'drawn qualitatively, without numerical values' (u_x, h, t_event). Both need an instance with the item's numbers, as the other three Core2A items now have."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "ILLUSTRATOR",
-      "record": "REP-KIN-2D-SHARED-CLOCK",
-      "page": "core1.html",
-      "detail": "Still open from the previous review. Core1 mounts the same SHARED-CLOCK figure (qualitative v_x and v_y histories) for all three microtopics. That includes MIC-PHY-KIN-PROJECTILE-MODEL, whose orientation needs the gravity-only gate (a_x = 0, a_y = −g), and MIC-PHY-KIN-2D-CONSTANT-ACCELERATION, whose compact anchor is u = (1, 2), a = (2, −2) → v = (5, −2) m/s at 2 s."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "RENDERER",
-      "record": "PRODUCT-PHY-KIN-2D-MOTION",
-      "page": "index.html",
-      "detail": "Still open. Every page's h1, <title> and breadcrumb read 'Owner-approved ExamSIDE question-demand slice for plane motion, now semantically': scope_summary cut mid-sentence, in internal provenance language. Use 'Motion in a plane' or the bucket title 'Two-dimensional kinematics and projectile model'."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "AUTHOR",
-      "record": "MIC-PHY-KIN-PROJECTILE-MODEL",
-      "page": "core1b.html",
-      "detail": "The Core1B projectile reconstruct prompts ask 'What exact component condition identifies the event…', 'If the event is the apex, what becomes zero…' and 'Does launch height equal landing height?'. The attempt (basketball from 2 m, position and velocity at t = 0.5 s) has no named event, apex or landing. Replace them with prompts that rebuild this task: 'Where is the origin, so what is y at t = 0?', 'What is y(t) with the 2 m start?', 'At t = 0.5 s, is v_y still positive?'."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "ILLUSTRATOR",
-      "record": "REP-KIN-2D-PROJECTILE-MODEL",
-      "page": "core1a.html",
-      "detail": "CU-PHY-KIN-PROJECTILE-MODEL-1 mounts the qualitative model-gate figure (object A in free flight, object B with its motor on). Its worked anchor, a ball from a balcony with u = (8, 6) m/s, displacement (8, 1) m and v = (8, −4) m/s at 1 s, is never drawn. The gate is correct physics, but the anchor has no figure."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "AUTHOR",
-      "record": "PYQ-PHY-JEEADV-2026-P1-Q06",
-      "page": "core2.html",
-      "detail": "The answer (A, B) is correct, but the working rejects (C) only by assertion ('For theta=30° the apex is not after P'). Add the calculation: at 30°, 1 = 5 tan 30° − 25g/(2v² cos² 30°) gives v² ≈ 8.83g; the slope at x = 5 m is tan 30° − 5g/(v² cos² 30°) ≈ 0.577 − 0.755 = −0.18 < 0, so the apex is before P and (C) is false."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "AUTHOR",
-      "record": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
-      "page": "core2a.html",
-      "detail": "Rung 4 does not climb past rung 3. Rung 3 already says 'use Δy = 0 to obtain the nonzero landing time', and rung 4 only adds 'the vertical equation has a launch root and a later root'. A climbing rung 4 would be: 'Factor 16t − 4t² = 4t(4 − t): which factor is the launch, and which is the landing?'."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "RENDERER",
-      "record": "PYQ-PHY-IITJEE-2012-P1-Q05",
-      "page": "core2.html",
-      "detail": "Still open. Option labels are doubled ('(a) (A) sqrt(50) m/s …') on 2012 Q05, 2023 Q01, 2026 Q06, 2011 Q26 and 2013 Q07. Print the source label once."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "RENDERER",
-      "record": "PRODUCT-PHY-KIN-2D-MOTION",
-      "page": "core2.html",
-      "detail": "Still open. Gating holds in Chromium: 0 of 34 gated disclosures opened on click, Enter or Space without an attempt; an empty attempt does not unlock; hints reveal one rung per click (1 → 4, then 'Next hint' is disabled); stage stepping, search and the display panel work. But any 3 characters unlock a unit, and the search filters on article.textContent, which includes locked answers and pre-attempt figure descriptions."
-    }
-  ]
+ "schema": "product-review/v1",
+ "product": "phy-kin-2d-motion",
+ "verifier": "agent-verifier-5",
+ "reviewed_at": "2026-09-27",
+ "render_digest": "e615dd7888c11b16",
+ "previous_findings": [
+  {
+   "record": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+   "severity": "S1",
+   "status": "FIXED",
+   "note": "PRE_ATTEMPT mounts now emit only their pre-attempt stage groups, with no <title> or <desc>. Checked in the DOM: all 5 Core2A, 5 Core2B and 3 Core1B pre-attempt SVGs carry neutral aria-labels ('Release', 'The geometry', 'The throw' and so on). Only CONSTANT-ACCEL-02 has two pre-attempt groups, and both show given data only. The full <desc> (u = (50, 0) m/s, 4 s, 200 m) is now only on the post-attempt mount inside the locked disclosure."
+  },
+  {
+   "record": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+   "severity": "S1",
+   "status": "FIXED",
+   "note": "No pre-attempt SVG has a tooltip or title any more, and the Core2B pre-attempt captions are situation-only. The same kind of reveal has moved into the visible pre-attempt caption of Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 and of SAME-HEIGHT-05. Filed as new findings (S1 and S2)."
+  },
+  {
+   "record": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "Each Core1B unit mounts a figure of its own attempt: REP-KIN-2D-BOAT-RIVER (15, 20) m, REP-KIN-2D-SKATER-WIND with v = (1, 8) m/s and r = (12, 16) m, and REP-KIN-2D-BASKETBALL-2M with (3, 4.75) m and (6, 3) m/s. Each is situation-only before the attempt. All values re-derived."
+  },
+  {
+   "record": "REP-KIN-2D-SHARED-CLOCK",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "Core2A SHARED-CLOCK-01 now mounts REP-KIN-2D-TRACKER-4T, which reaches (8, 2) m at 2 s. HORIZONTAL-LAUNCH-04 now mounts REP-KIN-2D-CLIFF-15-20: t = 2 s, 30 m, (15, −20) m/s."
+  },
+  {
+   "record": "REP-KIN-2D-SHARED-CLOCK",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "Core1 now mounts each compact anchor's own figure: (2, 3) m at 1 s; v = (5, −2) m/s at 2 s; u = (10, 5) m/s, which is back at launch height with v = (10, −5) m/s at 1 s. All re-derived."
+  },
+  {
+   "record": "PRODUCT-PHY-KIN-2D-MOTION",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "The h1, <title> and breadcrumb now read 'Two-dimensional kinematics and projectile model', which is learner-facing."
+  },
+  {
+   "record": "MIC-PHY-KIN-PROJECTILE-MODEL",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "The basketball reconstruct prompts now rebuild the task: origin on the floor so y(0) = 2 m, y(t) = 2 + 8t − 5t², and whether v_y > 0 at 0.5 s."
+  },
+  {
+   "record": "REP-KIN-2D-PROJECTILE-MODEL",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "CU-PHY-KIN-PROJECTILE-MODEL-1 now mounts REP-KIN-2D-BALCONY-8-6: Δr = (8, 1) m and v = (8, −4) m/s at 1 s, re-derived."
+  },
+  {
+   "record": "PYQ-PHY-JEEADV-2026-P1-Q06",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "The working now rejects (C) by calculation: v² ≈ 8.83g and slope ≈ 0.577 − 0.755 = −0.18 < 0 at x = 5 m. Re-derived."
+  },
+  {
+   "record": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "Rung 4 now climbs: 'Factor 16t − 4t² = 4t(4 − t): which factor gives the launch, and which gives the landing?'"
+  },
+  {
+   "record": "PYQ-PHY-IITJEE-2012-P1-Q05",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "Each option label is now printed once on all lettered source items."
+  },
+  {
+   "record": "PRODUCT-PHY-KIN-2D-MOTION",
+   "severity": "S3",
+   "status": "OPEN",
+   "note": "'abc' still unlocks a unit, and search still singles out items from text inside locked answers. Re-filed below."
+  }
+ ],
+ "units_reviewed": [
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2011-P2-Q33",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2018-P2-Q08",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2019-P2-Q09",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2021-P1-Q05",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2021-P1-Q06",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2024-P2-Q09",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2012-P1-Q05",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2022-P1-Q08",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2023-P1-Q01",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2025-P2-Q15",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2011-P2-Q26",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2014-P1-Q11",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2026-P1-Q06",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2013-P1-Q07",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  }
+ ],
+ "findings": [
+  {
+   "severity": "S1",
+   "duty_for": "ILLUSTRATOR",
+   "record": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+   "page": "core2a.html",
+   "detail": "The pre-attempt caption, printed under the figure before any attempt, states two of the four quantities the stem asks for, and the answer to rung 1. The stem asks for the time to the apex, the velocity at the apex, the acceleration at the apex and the height gained. The caption reads 'Show the launch with u = (12, 20) m/s up to its apex, where only v_y is zero while v_x = 12 m/s continues and gravity still acts.' That gives the apex velocity (12, 0) m/s, the acceleration (gravity, (0, −10) m/s²) and the apex condition v_y = 0, which rung 1 asks for. The previous review filed the same reveal in this representation's <title>. The title is gone, but the reveal is now in visible text, which every learner sees. Use a situation-only caption before the attempt, e.g. 'Show the launch with u_x = 12 m/s and u_y = 20 m/s rising toward the top of its path.' Keep the current wording for the post-attempt mount."
+  },
+  {
+   "severity": "S2",
+   "duty_for": "ILLUSTRATOR",
+   "record": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+   "page": "core2a.html",
+   "detail": "The pre-attempt caption gives the solution route before the attempt, so the four-rung ladder no longer reveals one rung at a time. The caption reads '…the landing is the non-zero root of Δy = 0, and that one time gives the range and the landing velocity.' That is rung 1 (Δy = 0), rung 3 (reuse the landing time in x and v_y) and the key of rung 4 (the non-zero root). The previous review filed the same kind of reveal in this representation's <title> ('… landing where Δy = 0'). Use 'Show the flight with u = (12, 16) m/s and g = 8 m/s² from launch to landing at the same height.' Separately (AUTHOR), rung 2 ('identify Delta y when the projectile returns to its launch height') repeats rung 1 ('What vertical displacement condition is true at a same-height landing?'). Make rung 2 'Write Δy(t) = 16t − 4t² for this launch.'"
+  },
+  {
+   "severity": "S3",
+   "duty_for": "AUTHOR",
+   "record": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+   "page": "core1b.html",
+   "detail": "The third reconstruct prompt does not belong to this attempt: 'If one component equation finds the event time, what time must the other component use?'. The skater task gives t = 4 s; no event time is found from either axis. The rubric line 'Your answer should contain: Two correct component constant-acceleration equations using one t' also leaves out the requested velocity and position. Replace them with 'At t = 4 s, what do v_x = 5 − t and v_y = 2t give, and what do x = 5t − ½t² and y = t² give?' and 'Your answer should contain: a per-axis validity check, the four component equations on one t, and v = (1, 8) m/s, r = (12, 16) m at t = 4 s.' The boat unit's rubric ('A two-column x/y setup with one shared t') likewise omits the (15, 20) m position and the rejected mixed pair that its attempt asks for."
+  },
+  {
+   "severity": "S3",
+   "duty_for": "RENDERER",
+   "record": "PRODUCT-PHY-KIN-2D-MOTION",
+   "page": "core2b.html",
+   "detail": "Still open. Gating holds in Chromium: none of the 34 gated disclosures (core1a 3, core1b 6, core2 15, core2a 5, core2b 5) opened on click, Enter or Space without an attempt. An empty or whitespace attempt does not unlock. Hints reveal one rung per click (1 → 2 → 3 → 4, then 'Next hint' is disabled). Stage stepping, the display panel (dark theme, zoom 1.1) and Home (../../../index.html, which exists in public/) work, all 6 Core2B lineage links land on the earlier item, and there are no JS errors, no horizontal overflow and no overlapping figure labels. But any 3 characters ('abc') unlock a unit. The search still filters on article.textContent, including locked answers and post-attempt <desc>: '4.5' shows only Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02, '14.1' only 2B-SAME-HEIGHT-VELOCITY-05, and '48' only 2A-SAME-HEIGHT-05."
+  }
+ ]
 }

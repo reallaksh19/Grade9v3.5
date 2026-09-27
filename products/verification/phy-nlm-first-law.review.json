@@ -1,1081 +1,1066 @@
 {
-  "schema": "product-review/v1",
-  "product": "phy-nlm-first-law",
-  "verifier": "agent-verifier-3",
-  "reviewed_at": "2026-09-26",
-  "render_digest": "163e0ef3b3eedcf1",
-  "previous_findings": [
-    {
-      "record": "REP-NLM-FBD-BODY-OWNERSHIP",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "Each Core1A construction unit now mounts its own figure with its worked anchor's values (puck 0.2 kg/4 m/s; lamp 15 N; ramp 10 kg/30°/70 N; blocks 3 kg/2 kg; buckets 45 N; table cart 2 kg + 1 kg; lamp in lift; string lengths 1.2/0.8 m; Atwood 3 kg/1 kg). Checked stage by stage in Chromium. Residual mismatch on two units is filed as a new S3."
-    },
-    {
-      "record": "Q-PHY-NLM-2A-ATWOOD-12",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "All 22 Core2A and 16 Core2B items mount a figure of their own situation (symbolic Atwood, carts on a string, inclines, wedge, heavy rope, walker on plank and others). No horse-and-cart scene remains outside the FBD-ownership unit it belongs to."
-    },
-    {
-      "record": "MIC-PHY-NLM-SECOND-LAW",
-      "severity": "S1",
-      "status": "FIXED",
-      "note": "All 11 Core1B units now give a concrete task that differs from the Core1A exit task (car at 25 m/s, 3 kg box on a string, man in a boat, braking train, braking car, block on a wall, rocket, 5 kg box with a press, car and trailer, two strings, string at 0.6/1.0 m). The model answers are correct. The 'Your answer should contain' line and the reconstruct prompts were not updated; that is filed as a new S2."
-    },
-    {
-      "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "All 16 Core2B tasks show 'The deciding move' after the attempt. Task 01 now has values (10 kg, μ_s 0.55, μ_k 0.40, 50 N horizontal and at 37°) and is well posed."
-    },
-    {
-      "record": "Q-PHY-NLM-2A-COV-05",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "COV-05, 2A-01 and COV-02/03/04/06 are new instances (trolley 9 N/4 N, skydiver, pressed book, fridge magnet, braking truck, book-table partners). 2B-FRICTION-ZERO-03 (lift crate) and 2B-STRING-MODEL-03 (heavy rope) are new. Two other Core2A items still restate Core1A exit tasks; filed as a new S3."
-    },
-    {
-      "record": "PYQ-PHY-JEEADV-2014-P2-Q19",
-      "severity": "S2",
-      "status": "FIXED",
-      "note": "Q19 now states that m1 is just above m2 on the slope, and Q08 states θ from the horizontal floor. Both answers re-derived: (D) with tan θ ≤ 0.2; (C) and (D)."
-    },
-    {
-      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
-      "severity": "S2",
-      "status": "OPEN",
-      "note": "The h1, title and breadcrumb still read 'Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced for'."
-    },
-    {
-      "record": "Q-PHY-NLM-2A-COV-06",
-      "severity": "S3",
-      "status": "FIXED",
-      "note": "The COV-06 rungs no longer open with 'No.', and the 2A-01 rungs match the skydiver stem. INCLINE-2A-STATIC-02 rungs 4–5 now climb, but rung 4 states the final inequality; filed as a new S2."
-    },
-    {
-      "record": "PYQ-PHY-IITJEE-2007-P1-Q03",
-      "severity": "S3",
-      "status": "OPEN",
-      "note": "Option labels are still doubled ('(a) (A) …'). The Core2B lineage check is now a prompt, not a verbatim repeat, and the pre-attempt support is item-specific, so those two parts are fixed."
-    },
-    {
-      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
-      "severity": "S3",
-      "status": "OPEN",
-      "note": "'abc' still unlocks a unit, and page search still matches text inside locked answers (and now also inside pre-attempt figure descriptions)."
-    }
-  ],
-  "units_reviewed": [
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-FRAME-CHOICE",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-SECOND-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-FRICTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-THIRD-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-FRICTION-QUANT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1.html",
-      "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-FRAME-CHOICE",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-SECOND-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-FRICTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-THIRD-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-FRICTION-QUANT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1a.html",
-      "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-FRAME-CHOICE",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-SECOND-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-FRICTION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-THIRD-LAW",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-FRICTION-QUANT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core1b.html",
-      "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2007-P1-Q03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2007-P1-Q10",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2008-P2-Q33",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2011-P1-Q41",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2011-P2-Q34",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2014-P2-Q19",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2020-P1-Q13",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEADV-2014-P1-Q08",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-NEET-2020-E1-Q160",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2009-P1-Q49",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2009-P2-Q40",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-IITJEE-2009-P2-Q55",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2.html",
-      "unit": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": true
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-COV-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-COV-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-COV-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-COV-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-COV-06",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-PRACTICAL-12",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-CONNECTED-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-IDEAL-STRING-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-2A-ATWOOD-12",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2a.html",
-      "unit": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-STRING-MODEL-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-INCLINE-2B-AXES-01",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    },
-    {
-      "page": "core2b.html",
-      "unit": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
-      "checks": [
-        "physics",
-        "figure",
-        "teaching",
-        "interaction"
-      ],
-      "agrees": false
-    }
-  ],
-  "findings": [
-    {
-      "severity": "S1",
-      "duty_for": "RENDERER",
-      "record": "Q-PHY-NLM-2A-COV-05",
-      "page": "core2a.html",
-      "detail": "Every pre-attempt figure (22 in Core2A, 16 in Core2B) is emitted with the full representation markup. The later stages are only hidden by CSS display:none. The SVG's aria-labelledby points at <title> and a <desc> that narrates every stage, including the result. In Chromium the accessible name of the Q-PHY-NLM-2A-COV-05 pre-attempt image is 'Trolley with a 9 N pull … Stage 2: … a = +2 m/s². Stage 3: … a = −1.6 m/s²'. For Q-PHY-NLM-2B-FRICTION-STATE-01 it is '… Trial 2: N = 100 − 30 = 70 N, limit 38.5 N, need 40 N …', which is the protected move. A screen-reader learner therefore hears the answer before any attempt. The same text is inside article.textContent, so the page search also finds it. For a PRE_ATTEMPT mount, emit only the pre-attempt stage group and a description of that stage alone (e.g. 'A 2.5 kg trolley on a level track is pulled forward with 9 N while a 4 N drag acts backward'). Keep the full <desc> for the POST_ATTEMPT mount inside the gated disclosure."
-    },
-    {
-      "severity": "S1",
-      "duty_for": "ILLUSTRATOR",
-      "record": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
-      "page": "core2b.html",
-      "detail": "Many representation <title>s state the answer or the protected move. The title is shown on the pre-attempt figure as the SVG hover tooltip and as the image's accessible name. Core2B: FRICTION-ZERO-03 'Crate in a lift accelerating up: N = 600 N, friction zero'; FRAME-SELECTION-05 '… rest in the car frame with a 1.5 N pseudo-force'; FRICTION-WALKING-02 '… friction forward on the shoes, backward on the plank'; CONSTRAINT-VS-TENSION-07 'Heavy pulley: the length relation holds, one tension does not'; CONTACT-LOSS-06 '… keep the contact model only while N ≥ 0'; STRING-MODEL-03 '… tension grows toward the top'; INCLINE-2B-FRICTION-DIRECTION-02 '… friction up, zero, then down'; ANGLED-THRESHOLD-04 '… a steep enough push can never start the block'. Core2A: COV-04 '… static friction backward, 20 × 3 = 60 N'; FRICTION-ZERO-08 '… friction is zero'; FRICTION-STATIC-09 '… actual 12 N, limit 30 N'; FRICTION-KINETIC-10 '… kinetic friction 10 N'; ATWOOD-12 '… T lies between the two weights'; INCLINE-2A-SMOOTH-01 '… N = mg cos θ, a = g sin θ'; INCLINE-2A-STATIC-02 '… rest needs mg sin θ ≤ μ_s mg cos θ'; INCLINE-2A-SLIDING-03 '… a = g(sin θ − μ_k cos θ)'; FIXED-PULLEY-04 '… y_A + y_B = constant'. Give each representation a situation-only title for pre-attempt use (e.g. 'A 50 kg crate on the rough floor of a lift accelerating upward'). The result-bearing title can stay on the post-attempt mount."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "AUTHOR",
-      "record": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
-      "page": "core1b.html",
-      "detail": "The Core1B tasks are new, but the rest of each unit still describes the old Core1A scenario, so the reconstruction does not rebuild the task the learner attempted. 'Your answer should contain' (elicitation.attempt.produces) does not match the task in: NET-ZERO-MOTION (car at 25 m/s vs 'a two-case prediction for a released moving cart and an initially resting cart'); FBD-BODY-OWNERSHIP (man in a boat vs 'two separate body inventories, one for the cart and one for the horse'); FRAME-CHOICE (braking train vs 'roadside and accelerating bus'). The reconstruct prompts ask about the hand leaving the cart (NET-ZERO), two people pushing a box (FORCES-SUM-ZERO), horse and cart (FBD), the bus starting (FRAME-CHOICE) and 'the box's ground-frame velocity' (FRICTION; the task is a block pressed on a wall). Rewrite the rubric line and the reconstruct prompts for the actual task. For example, for FBD: 'Which body is the diagram for? Which forces act on the boat: Earth, man, water? Is the man's weight on the boat's diagram? What must the water's push be for the boat to stay at rest?'"
-    },
-    {
-      "severity": "S2",
-      "duty_for": "ILLUSTRATOR",
-      "record": "MIC-PHY-NLM-FRICTION-QUANT",
-      "page": "core1b.html",
-      "detail": "Each of the 11 Core1B units mounts its Core1A worked-anchor figure, pre-attempt and post-attempt, not a figure of the Core1B attempt. For FRICTION-QUANT the attempt is a 5 kg box with a 30 N push, then a 20 N press (N = 50 N slides; N = 70 N rests). The figure shows '4 kg box pulled with 15 N and 25 N'. For SECOND-LAW the attempt is a 1200 kg car braking under 5400 N + 600 N, and the figure is the 10 kg crate on a 30° ramp. For THIRD-LAW the attempt is a 400 kg rocket and 5000 N of exhaust, and the figure is the astronaut and satellite. The post-attempt reconstruction figure shows the Core1A answer, not this attempt's. Each Core1B attempt needs its own figure: situation-only before the attempt, staged with this task's values afterwards."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
-      "page": "core2b.html",
-      "detail": "transfer.novelty is not true against Core1B. Its checked_against list cites only the Core1B boundary test, not the Core1B FRICTION-QUANT attempt. That attempt already asks the learner to decide an unstated contact state with N changed by a vertical force, and it reaches opposite verdicts in two trials: 5 kg, 30 N push, N = 50 N, limit 25 N → slides, f_k = 20 N, a = 2 m/s²; add a 20 N press, N = 70 N, limit 35 N → rest, f = 30 N. Task 01 repeats that decision with the vertical force reversed: an angled pull lowers N to 70 N, limit 38.5 N < 40 N → slides. Either change the demand (for example, ask for the pull angle at which the verdict flips, or the smallest pull that starts the crate at 37°) or recheck the novelty claim against the Core1B attempt prompts."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
-      "page": "core2a.html",
-      "detail": "Hint rung 4 of 5 gives the answer before the last rung: 'With N = mg cos θ and the needed friction mg sin θ up the slope, write the no-slip condition: mg sin θ ≤ μ_s mg cos θ.' That inequality is the answer's first form, and rung 5 only simplifies it. Rung 4 should stop at the relation to test ('compare the friction rest needs with the most the contact can give, μ_s N') and leave the inequality for the learner to write."
-    },
-    {
-      "severity": "S2",
-      "duty_for": "RENDERER",
-      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
-      "page": "index.html",
-      "detail": "Still open from the previous review. Every page's h1, <title> and breadcrumb read 'Authored Grade-9 Force and Laws of Motion spine covering balanced/unbalanced for', which is scope_summary cut mid-word (the manifest title). Use a learner-facing title such as 'Force and laws of motion'."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
-      "page": "core2a.html",
-      "detail": "Two Core2A items restate Core1A exit tasks whose model answers the learner has already opened. FRAME-CHOICE-07 (bus accelerating, loose object, roadside vs passenger, where the pseudo-force goes) is the FRAME-CHOICE exit task. Q-PHY-NLM-2A-FIXED-PULLEY-04 (y_A + y_B = constant, derive v and a relations) is the SINGLE-STRING-CONSTRAINT exit task, and its last part is the Core1 compact anchor (a_B = −a). Give each a new instance with values, e.g. a 0.5 kg box on a smooth shelf in a bus at 1.5 m/s² for 07."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "ILLUSTRATOR",
-      "record": "REP-NLM-FBD-BODY-OWNERSHIP",
-      "page": "core1a.html",
-      "detail": "Two Core1A units still have a figure that does not show their worked anchor. FBD-BODY-OWNERSHIP draws the qualitative horse and cart, but the anchor is a 50 kg child on a 20 kg box (200 N, 500 N, 700 N), which is never drawn. FRAME-CHOICE draws a qualitative lift 'v down, a up', but the anchor is a 60 kg person in a lift accelerating up at 2 m/s² with a 720 N reading in both frames. The physics in both figures is right; they just carry none of the anchor's values."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "AUTHOR",
-      "record": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
-      "page": "core2a.html",
-      "detail": "Inconsistent count. The figure title and stage 2 say the diagram 'counts gravity twice', the answer says it 'double-counts gravity', and the failure signal says the student's diagram 'counts gravity three times'. With mg, mg sin θ and mg cos θ drawn together, one force appears three times. Use one wording, e.g. 'the weight is drawn three times: once as mg and again as its two components'."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "RENDERER",
-      "record": "PYQ-PHY-IITJEE-2007-P1-Q03",
-      "page": "core2.html",
-      "detail": "Still open. Option labels are doubled ('(a) (A) (F/2m)·a/sqrt(a^2-x^2) (b) (B) …') on every lettered or numbered source option (Q03, Q10, Q33, Q19, Q08, NEET Q160, Q49, Q40). Print the source label once."
-    },
-    {
-      "severity": "S3",
-      "duty_for": "RENDERER",
-      "record": "PRODUCT-PHY-NLM-FIRST-LAW",
-      "page": "core2a.html",
-      "detail": "Still open. Gating holds in Chromium: 0 of 84 gated disclosures across core1a, core1b, core2, core2a and core2b opened on click, Enter or Space without an attempt; an empty attempt did not unlock; hints reveal one rung per click (1 → 2 → 3, then 'Next hint' disabled); stage stepping, search filter and the display panel (theme, zoom) work. But any 3 characters ('abc') unlock a unit. The search filters on article.textContent, which includes locked answers and pre-attempt figure descriptions, so typing an answer value (e.g. '1.6') singles out the item that contains it. The wedge figure of Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04 also overprints 'block on wedge: 17.3 N' on the '5 kg' label."
-    }
-  ]
+ "schema": "product-review/v1",
+ "product": "phy-nlm-first-law",
+ "verifier": "agent-verifier-5",
+ "reviewed_at": "2026-09-27",
+ "render_digest": "1d29a501e51fef3e",
+ "previous_findings": [
+  {
+   "record": "Q-PHY-NLM-2A-COV-05",
+   "severity": "S1",
+   "status": "FIXED",
+   "note": "A PRE_ATTEMPT mount now carries only its V0 stage group, with no <title> or <desc> and a situation-only aria-label ('The trolley'). All 22 Core2A, 16 Core2B and 11 Core1B pre-attempt SVGs checked in the DOM: exactly one stage group, no title, desc, aria-labelledby or title attribute. The full <desc> is only on the POST_ATTEMPT mount inside the locked disclosure."
+  },
+  {
+   "record": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+   "severity": "S1",
+   "status": "FIXED",
+   "note": "No pre-attempt figure has a result-bearing tooltip or accessible name any more. The labels are neutral: 'The lift', 'The wedge', 'The stack', 'Two trials' and so on. The result-bearing titles now sit only on the post-attempt mounts."
+  },
+  {
+   "record": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "In all 11 Core1B units, 'Your answer should contain', the reconstruct prompts and the model response now rebuild the task the learner attempted: the car at 25 m/s, the 3 kg box on a string, the man in the boat, the braking train, the braking car, the block on the wall, the rocket, the 5 kg box, the car and trailer, the two carts, and the pulley at y_A = 0.6 m."
+  },
+  {
+   "record": "MIC-PHY-NLM-FRICTION-QUANT",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "Each Core1B unit now mounts a figure of its own attempt, for example REP-NLM-BOX5-PUSH-30N-PRESS-20N, REP-NLM-CAR-BRAKING-1200KG and REP-NLM-ROCKET-EXHAUST-5000N. The figure is situation-only before the attempt and staged with this task's values after it."
+  },
+  {
+   "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "The task was re-authored: μ_s = 0.75, the smallest starting pull horizontally, at 37° and at 53°, against a 61 N worker. Re-derived: P = 75/(cos θ + 0.75 sin θ) gives 75 N, 60 N and 62.5 N, so only the 37° pull works. transfer.novelty now cites the Core1B FRICTION-QUANT attempt, and the demand (an unknown pull whose direction is the choice) is new. The figure was not updated; that is filed as a new S1."
+  },
+  {
+   "record": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "Rung 4 now reads 'Write the friction rest needs and the most the contact can give … Which of the two must not exceed the other?'. It no longer states the inequality, and rung 5 only simplifies it."
+  },
+  {
+   "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+   "severity": "S2",
+   "status": "FIXED",
+   "note": "The h1, <title> and breadcrumb now read 'Newton's first law and free-body diagrams', which is learner-facing. That this title is narrower than the product's scope is filed separately as S3."
+  },
+  {
+   "record": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "FRAME-CHOICE-07 is now a new instance: an apple dropped from 1.25 m in a van accelerating at 2 m/s² lands 0.25 m behind the mark, re-derived. FIXED-PULLEY-04 is a new instance too: a cart on a table, x + y = 1.4 m, x = 0.1 m, dy/dt = +0.3 m/s and d²y/dt² = +1.2 m/s², re-derived."
+  },
+  {
+   "record": "REP-NLM-FBD-BODY-OWNERSHIP",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "Core1A FBD-BODY-OWNERSHIP now mounts REP-NLM-CHILD-ON-BOX (200 N, 500 N, 700 N). FRAME-CHOICE now mounts REP-NLM-LIFT-SCALE-60KG, where N = 720 N in both frames."
+  },
+  {
+   "record": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+   "severity": "S3",
+   "status": "OPEN",
+   "note": "The answer and failure signal now both say 'drawn three times'. The post-attempt figure title ('a diagram that counts gravity twice'), its stage-2 <desc> ('counts it twice') and the pre-attempt caption ('so the double count is diagnosed') still disagree with them. Re-filed below."
+  },
+  {
+   "record": "PYQ-PHY-IITJEE-2007-P1-Q03",
+   "severity": "S3",
+   "status": "FIXED",
+   "note": "Each option label is now printed once ('(A) … (B) …'), on all 13 source items."
+  },
+  {
+   "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+   "severity": "S3",
+   "status": "OPEN",
+   "note": "'abc' still unlocks a unit. Page search still singles out an item from text inside its locked answer. The wedge label still overprints. Re-filed below."
+  }
+ ],
+ "units_reviewed": [
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-FRAME-CHOICE",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-SECOND-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-FRICTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-THIRD-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-FRICTION-QUANT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1.html",
+   "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-FRAME-CHOICE",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-SECOND-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-FRICTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-THIRD-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-FRICTION-QUANT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1a.html",
+   "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-NET-ZERO-MOTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-FRAME-CHOICE",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-SECOND-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-FRICTION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-THIRD-LAW",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-FRICTION-QUANT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core1b.html",
+   "unit": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2007-P1-Q03",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2007-P1-Q10",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2008-P2-Q33",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2011-P1-Q41",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2011-P2-Q34",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2014-P2-Q19",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2020-P1-Q13",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEADV-2014-P1-Q08",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-NEET-2020-E1-Q160",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2009-P1-Q49",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2009-P2-Q40",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-IITJEE-2009-P2-Q55",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2.html",
+   "unit": "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+   "checks": [
+    "physics",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-COV-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-COV-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-COV-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-COV-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-COV-06",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-PRACTICAL-12",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-CONNECTED-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-IDEAL-STRING-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FIXED-PULLEY-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FRAME-CHOICE-07",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FRICTION-ZERO-08",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FRICTION-STATIC-09",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-FRICTION-KINETIC-10",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-CONNECTED-CONSTRAINT-11",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-2A-ATWOOD-12",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-INCLINE-2A-SMOOTH-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-INCLINE-2A-STATIC-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-INCLINE-2A-HORIZONTAL-PUSH-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2a.html",
+   "unit": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": false
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-STRING-MODEL-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRAME-SELECTION-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRICTION-WALKING-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRICTION-ZERO-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-CONTACT-LOSS-06",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-INCLINE-2B-AXES-01",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  },
+  {
+   "page": "core2b.html",
+   "unit": "Q-PHY-NLM-INCLINE-2B-TIMING-05",
+   "checks": [
+    "physics",
+    "figure",
+    "teaching",
+    "interaction"
+   ],
+   "agrees": true
+  }
+ ],
+ "findings": [
+  {
+   "severity": "S1",
+   "duty_for": "ILLUSTRATOR",
+   "record": "Q-PHY-NLM-2B-FRICTION-STATE-01",
+   "page": "core2b.html",
+   "detail": "The task was re-authored but its figure REP-NLM-CRATE10-TWO-PULLS (safe_ref = bound_ref) still draws the previous task, with values that contradict the stem. Before the attempt the learner sees '10 kg crate: a 50 N pull, horizontal and then at 37°', 'μ_s = 0.55, μ_k = 0.40' and 'slipping not stated'. The stem says μ_s = 0.75, gives no pull (the pull is the unknown) and asks about three directions, including 53°, which the figure never shows. After the attempt, the staged figure narrates the old solution ('Trial 2: N = 100 − 30 = 70 N, limit 38.5 N, need 40 N … slides … a = 1.2 m/s²'). The answer directly above it is 75 N / 60 N / 62.5 N. So the pre-attempt representation misstates the given coefficient, and the post-attempt representation contradicts the answer. Replace it with a figure of this task: a 10 kg crate on a floor with μ_s = 0.75 and a rope at 0°, 37° and 53°, the pull P unknown, and the 61 N worker limit. After the attempt, stage N = 100 − P sin θ, P cos θ = 0.75 N, and the thresholds 75 N, 60 N and 62.5 N."
+  },
+  {
+   "severity": "S1",
+   "duty_for": "ILLUSTRATOR",
+   "record": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+   "page": "core2a.html",
+   "detail": "The pre-attempt caption, printed under the figure before any attempt, gives the diagnosis the stem asks for. The stem says 'Diagnose the diagram…'. The caption reads 'Show the student's incline diagram with mg and both its components, so the double count is diagnosed and repaired.' It tells the learner the diagram double-counts the weight, which is the answer ('the weight is drawn three times…'), and it also skips the hint ladder (rung 2: 'the number of lines is the number of forces'). Use a situation-only caption before the attempt, e.g. 'A student's free-body diagram of a block on a smooth incline, as drawn.' Keep the diagnostic caption for the post-attempt mount."
+  },
+  {
+   "severity": "S2",
+   "duty_for": "ILLUSTRATOR",
+   "record": "MIC-PHY-NLM-FRAME-CHOICE",
+   "page": "core1.html",
+   "detail": "Core1 figures do not depict their own compact anchor. Only 3 of 11 Core1 units mount a figure, and each is a qualitative representation without values. FRAME-CHOICE draws a person on a scale in a lift ('v down, a up'), but its compact anchor is a 2 kg bag on the floor of a van accelerating at 3 m/s², pseudo-force 6 N backward. FRICTION-QUANT draws a crate pulled at an angle θ above the horizontal, but its anchor is a 2 kg block pulled horizontally with 14 N (μ_s 0.5 → limit 10 N, slides, f_k = 6 N, a = 4 m/s²). FBD-BODY-OWNERSHIP draws the horse and cart qualitatively, while its anchor has the numbers (200 kg cart, 600 N pull, 200 N friction, a = 2 m/s²). Mount, or draw, the anchor's own situation with its values: the van and bag with a 6 N backward pseudo-force; the 2 kg block with 14 N against a 10 N limit; the cart with 600 N and 200 N."
+  },
+  {
+   "severity": "S2",
+   "duty_for": "ILLUSTRATOR",
+   "record": "Q-PHY-NLM-INCLINE-2A-SLIDING-03",
+   "page": "core2a.html",
+   "detail": "Several Core2A pre-attempt captions answer a hint rung, or give a count the stem asks for, before the learner has attempted anything, so the ladder no longer reveals one rung at a time. SLIDING-03: rung 1 asks 'which way must the kinetic friction act?', and the caption says 'so kinetic friction points up the plane, opposite the sliding'. FRICTION-KINETIC-10: rung 1 asks 'which friction model belongs to established sliding?', and the caption says 'so kinetic friction, opposite the sliding, sets the acceleration'. COV-03 asks for 'every force on the magnet', and the caption says 'with its four forces'. COV-06's caption says 'with its two forces and each force's third-law partner on the other body'. Before the attempt, give situation-only captions, e.g. 'Show the block sliding down the rough incline at angle θ.' and 'Show the magnet held on the vertical steel door.'"
+  },
+  {
+   "severity": "S3",
+   "duty_for": "AUTHOR",
+   "record": "Q-PHY-NLM-2A-COV-03",
+   "page": "core2a.html",
+   "detail": "The independent check is false. It reads 'Switch the chosen body to the fridge door: the four partner arrows now appear on its diagram'. One of the four partners, the magnet's 1 N gravitational pull on the Earth, acts on the Earth, as the item's own answer says. Only three partners (3 N magnetic pull on the fridge, 3 N push into the door, 1 N friction drag on the door surface) appear on the door's diagram. Correct wording: 'Switch to the fridge door: three partner arrows (3 N toward the magnet, 3 N into the door, 1 N down along it) now appear on its diagram; the fourth, 1 N up, is on the Earth's.'"
+  },
+  {
+   "severity": "S3",
+   "duty_for": "AUTHOR",
+   "record": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
+   "page": "core2a.html",
+   "detail": "The stem says 'A block rests on a smooth fixed incline', with gravity and the normal force as the only interactions. That state is impossible: with no friction, mg sin θ is unbalanced and the block accelerates down the plane at g sin θ. The figure <desc> repeats 'rests'. Say 'A block slides down a smooth fixed incline' (or 'is held on'). The count wording is also still split: answer and failure signal say 'drawn three times', but the post-attempt figure title says 'a diagram that counts gravity twice', stage 2 says 'the diagram counts it twice', and the pre-attempt caption says 'the double count'. Use 'the weight is drawn three times: once as mg and again as its two components' throughout (ILLUSTRATOR for the figure text)."
+  },
+  {
+   "severity": "S3",
+   "duty_for": "AUTHOR",
+   "record": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+   "page": "core1b.html",
+   "detail": "An internal code reaches the learner. The boundary answer ends 'switching the body switches the inventory (NLM3-3).' Remove '(NLM3-3)'."
+  },
+  {
+   "severity": "S3",
+   "duty_for": "AUTHOR",
+   "record": "Q-PHY-NLM-2A-COV-04",
+   "page": "core2a.html",
+   "detail": "Rung 3 does not climb past rung 2. Rung 2 already says 'mark which way the crate would slide relative to the bed if the bed were slippery'. Rung 3 repeats it ('Imagine the bed perfectly slippery: which way would the crate slide relative to the bed? Friction on the crate opposes that'). A climbing rung 3: 'The crate slows with the truck at 3 m/s². Which single horizontal force gives it that acceleration, and what F = ma does it need?'"
+  },
+  {
+   "severity": "S3",
+   "duty_for": "RENDERER",
+   "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+   "page": "index.html",
+   "detail": "The title is now learner-facing: 'Newton's first law and free-body diagrams'. It names only the first of 11 microtopics, though. The product also teaches F = ma, third-law pairs, static and kinetic friction, connected bodies, ideal strings and pulleys, inclines and accelerating frames. A learner looking for 'friction' or 'pulleys' will not find them from the title. Use 'Force and laws of motion' or 'Newton's laws of motion'."
+  },
+  {
+   "severity": "S3",
+   "duty_for": "RENDERER",
+   "record": "PRODUCT-PHY-NLM-FIRST-LAW",
+   "page": "core2b.html",
+   "detail": "Still open. Gating holds in Chromium. Across core1a (11), core1b (22), core2 (13), core2a (22) and core2b (16), none of the 84 gated disclosures opened on click, Enter or Space without an attempt. An empty or whitespace attempt does not unlock. Hints reveal one rung per click (1 → 2 → 3, then 'Next hint' is disabled). Stage stepping, the display panel (dark theme, zoom 1.1) and Home (../../../index.html, which exists in public/) work, and no page has JS errors or horizontal overflow. But any 3 characters ('abc') unlock a unit. The search still filters on article.textContent, which includes locked answers and post-attempt <desc>: typing '62.5' shows only Q-PHY-NLM-2B-FRICTION-STATE-01, and '0.25' only Q-PHY-NLM-2A-FRAME-CHOICE-07. The wedge figure of Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04 still overprints 'block on wedge: 17.3 N' on the '5 kg' label (measured bounding-box overlap; confirmed on screenshot). In the Core1A NET-ZERO-MOTION puck figure, the stage-1 note 'stick has lost contact; friction and air resistance negligible' runs into the stage-3 text 'still 4 m/s at 3 s, 12 m covered'."
+  }
+ ]
 }
