@@ -795,12 +795,25 @@ def context(manifest_path: Path) -> Ctx:
     bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
     packages = [load_json(p) for p in package_paths]
     bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    asset_refs = sorted({
+        ref
+        for package in packages
+        for representation in package.get("representations", [])
+        for ref in representation.get("rendered_asset_refs", [])
+        if isinstance(ref, str)
+    })
     authority_hashes = [
         ("manifest", _file_sha256(manifest_path)),
         *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
         *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
         ("blueprints", _file_sha256(BLUEPRINTS)),
         ("quality-contract", _file_sha256(CONTRACT)),
+        ("tablet-css", _file_sha256(TABLET_CSS)),
+        *[
+            (f"asset:{ref}", _file_sha256(REPO / ref))
+            for ref in asset_refs
+            if (REPO / ref).is_file()
+        ],
     ]
     return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
 
