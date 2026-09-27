@@ -125,6 +125,20 @@ class Renderer(unittest.TestCase):
         self.assertNotEqual(digest_before, render_core.render_digest(changed_bank))
 
 
+    def test_repeated_svg_instances_are_id_scoped_with_local_aria_references(self):
+        source = (
+            '<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="t d">'
+            '<title id="t">Title</title><desc id="d">Desc</desc>'
+            '<defs><marker id="arrow"></marker></defs>'
+            '<path id="p" marker-end="url(#arrow)"></path></svg>'
+        )
+        a = render_core._scope_svg_ids(source, "scope-a")
+        b = render_core._scope_svg_ids(source, "scope-b")
+        self.assertNotEqual(set(re.findall(r'\\bid="([^"]+)"', a)), set(re.findall(r'\\bid="([^"]+)"', b)))
+        self.assertIn('aria-labelledby="scope-a--t scope-a--d"', a)
+        self.assertIn('url(#scope-a--arrow)', a)
+        self.assertNotIn('id="t"', a)
+
     def test_authored_svg_without_accessible_name_and_description_is_a_typed_gap(self):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
@@ -189,6 +203,9 @@ class Renderer(unittest.TestCase):
             self.assertIn(f'id="g9-role-{role}"', html)
             self.assertIn(f'href="#g9-role-{role}"', html)
         self.assertNotIn('href="core2a.html"', html)
+        ids = re.findall(r'\\bid="([^"]+)"', html)
+        self.assertEqual(len(ids), len(set(ids)), "SINGLE_FILE output must not duplicate document ids")
+        self.assertNotRegex(html, r'href="core\\w+\\.html#')
 
     def test_render_receipt_manifest_path_is_repository_relative(self):
         out = self.tmp / "receipt"
