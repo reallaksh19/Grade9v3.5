@@ -941,7 +941,8 @@
         "REL-NEWTON-SECOND-LAW"
       ],
       "representation_refs": [
-        "REP-NLM-FBD-BODY-OWNERSHIP"
+        "REP-NLM-FBD-BODY-OWNERSHIP",
+        "REP-NLM-CHILD-ON-BOX"
       ],
       "question_family_refs": [
         "FAM-PHY-NLM-INCLINE-MODELLING"
@@ -1057,13 +1058,12 @@
             "NLM3-3",
             "NLM3-4"
           ],
-          "representation_ref": "REP-NLM-FBD-BODY-OWNERSHIP",
+          "representation_ref": "REP-NLM-CHILD-ON-BOX",
           "reveal_stage_refs": [
-            "VIS-NLM-FBD-V0",
-            "VIS-NLM-FBD-V1",
-            "VIS-NLM-FBD-V2",
-            "VIS-NLM-FBD-V3",
-            "VIS-NLM-FBD-V4"
+            "VIS-NLM-CHILDBOX-V0",
+            "VIS-NLM-CHILDBOX-V1",
+            "VIS-NLM-CHILDBOX-V2",
+            "VIS-NLM-CHILDBOX-V3"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
           "misconception_indexes": [
@@ -1143,7 +1143,8 @@
         "REL-NLM-HANGING-BOB-TILT"
       ],
       "representation_refs": [
-        "REP-NLM-ACCELERATING-FRAME-COMPARISON"
+        "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+        "REP-NLM-LIFT-SCALE-60KG"
       ],
       "question_family_refs": [],
       "misconceptions": [
@@ -1254,13 +1255,12 @@
             "NLM4-2",
             "NLM4-3"
           ],
-          "representation_ref": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+          "representation_ref": "REP-NLM-LIFT-SCALE-60KG",
           "reveal_stage_refs": [
-            "VIS-NLM-FRAME-V0",
-            "VIS-NLM-FRAME-V1",
-            "VIS-NLM-FRAME-V2",
-            "VIS-NLM-FRAME-V3",
-            "VIS-NLM-FRAME-V4"
+            "VIS-NLM-LIFTSCALE-V0",
+            "VIS-NLM-LIFTSCALE-V1",
+            "VIS-NLM-LIFTSCALE-V2",
+            "VIS-NLM-LIFTSCALE-V3"
           ],
           "worked_anchor_ref": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
           "misconception_indexes": [
@@ -6218,7 +6218,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate with no horizontal force so friction is set by the slip tendency, here none.",
+      "purpose": "Show the crate at rest on the rough floor with no horizontal force acting on it.",
       "required_elements": [
         "crate at rest, no horizontal force",
         "weight and normal force only",
@@ -7133,7 +7133,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate in its two trials so each friction need is compared with a limit computed from that trial's own normal force.",
+      "purpose": "Show the 10 kg crate in its two trials: a 50 N pull horizontal, then at 37°.",
       "required_elements": [
         "10 kg crate with 50 N pulls, horizontal and at 37°",
         "normal force, limit and need per trial",
@@ -7225,7 +7225,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the three-cart train with the drag on the middle cart, so each joint force comes from cutting at that joint.",
+      "purpose": "Show the three-cart train with the drag acting on the middle cart.",
       "required_elements": [
         "carts A 3 kg, B 2 kg, C 1 kg; 30 N push; 6 N drag on B",
         "a = 4 m/s²",
@@ -7317,7 +7317,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the heavy rope so the one-tension model is tested before any T is written.",
+      "purpose": "Show the 2 kg block hanging from the lower end of the 1 kg uniform rope, with a hand pulling the top of the rope.",
       "required_elements": [
         "2 kg block on a 1 kg uniform rope, a = 2 m/s² up",
         "model check and tension rule",
@@ -7408,7 +7408,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the pulley with both coordinates measured upward, so the length relation is built from the segment lengths rather than copied.",
+      "purpose": "Show the fixed pulley with both coordinates x_A and x_B measured upward.",
       "required_elements": [
         "A and B over a fixed pulley with upward x_A, x_B",
         "segment lengths h_P − x_A and h_P − x_B",
@@ -7499,7 +7499,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the bob in the accelerating car so the frame in which it is at rest, and the pseudo-force that frame needs, are chosen explicitly.",
+      "purpose": "Show the bob hanging from the roof of the car that accelerates at 7.5 m/s².",
       "required_elements": [
         "0.2 kg bob in a car accelerating at 7.5 m/s²",
         "weight, tension and pseudo-force in the car frame",
@@ -7591,7 +7591,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the walker and plank on ice so the friction on the shoes and its partner on the plank are drawn on different bodies.",
+      "purpose": "Show the person starting to walk on the plank that rests on frictionless ice.",
       "required_elements": [
         "60 kg person on a 20 kg plank on frictionless ice",
         "30 N forward on the shoes",
@@ -7683,7 +7683,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the crate in the upward-accelerating lift so N is found from the vertical equation and friction from the absence of any sideways need.",
+      "purpose": "Show the crate on the rough floor of the lift that accelerates upward.",
       "required_elements": [
         "50 kg crate on a rough lift floor, a = 2 m/s² up",
         "N = 600 N",
@@ -7775,7 +7775,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the downward-angled push so the friction need and the limit both grow with P and the sign of their difference decides.",
+      "purpose": "Show the block on the rough floor with the push directed below the horizontal.",
       "required_elements": [
         "block m pushed by P at θ below the horizontal",
         "N, need and rest inequality",
@@ -7866,7 +7866,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the stack with F on the upper block so the friction needed by the lower block sets the limit.",
+      "purpose": "Show the 2 kg block on the 4 kg block with the force F applied to the upper block.",
       "required_elements": [
         "2 kg block on a 4 kg block, F on the upper block",
         "friction on the lower block and F_max",
@@ -7958,7 +7958,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the pushed and pulled blocks so the contact model is tested by the sign of N in each case.",
+      "purpose": "Show blocks A and B in contact on the smooth floor, A pushed forward with 10 N while B is pulled forward with F.",
       "required_elements": [
         "A 2 kg and B 3 kg with 10 N on A and F on B",
         "common a and contact force",
@@ -8049,7 +8049,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the two masses over a heavy pulley so the length constraint and the equal-tension model are judged separately.",
+      "purpose": "Show the 3 kg and 1 kg masses on one string over a fixed pulley with appreciable rotational inertia.",
       "required_elements": [
         "A 3 kg and B 1 kg over a heavy pulley, a_A = 4 m/s²",
         "length relation kept, equal tension dropped",
@@ -8141,7 +8141,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the incline with lab axes so the stay-on-plane condition is written as a ratio of acceleration components.",
+      "purpose": "Show the 2 kg block on the smooth 30° incline with horizontal and vertical lab axes.",
       "required_elements": [
         "2 kg block on a smooth 30° incline with lab axes",
         "weight and normal force with lab equations",
@@ -8232,7 +8232,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the block on the rough incline with P up the slope so friction's direction is read from a signed value in each trial.",
+      "purpose": "Show the 4 kg block on the rough 30° incline with the push P up the slope in each of the three trials.",
       "required_elements": [
         "4 kg block on a rough 30° incline with P up the slope",
         "signed friction equation and limit",
@@ -8323,7 +8323,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the horizontal push on the block on a rough incline so friction's need is signed before it is compared with μ_s N.",
+      "purpose": "Show the block on the rough incline with the horizontal push acting on it.",
       "required_elements": [
         "block on a rough incline with horizontal P",
         "N and signed f_required",
@@ -8414,7 +8414,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the wedge under the sliding block so its diagram carries the block's normal push, not the block's weight.",
+      "purpose": "Show the wedge on the floor with the block sliding down its face.",
       "required_elements": [
         "2 kg block on a 5 kg wedge, 30°",
         "block's normal push on the wedge and the wedge's force list",
@@ -8505,7 +8505,7 @@
       "evidence_refs": [],
       "extensions": {},
       "kind": "FREE_BODY_DIAGRAM",
-      "purpose": "Show the two trials over the same distance on the same incline so the times become an acceleration ratio.",
+      "purpose": "Show the two timed trials over the same distance down the same incline, one smooth and one rough.",
       "required_elements": [
         "smooth and rough trials over the same s",
         "a_0, a and s = ½ a t²",
@@ -8583,6 +8583,1338 @@
         {
           "support_level": "high",
           "visual_stage_ref": "VIS-NLM-TIMING-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-CRUISE-2000N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-NET-ZERO-MOTION",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1500 kg car cruising at a steady 25 m/s with its 2000 N driving force and the resistance acting backward.",
+      "required_elements": [
+        "car 1500 kg at a steady 25 m/s",
+        "driving force 2000 N forward",
+        "resistance backward",
+        "zero acceleration, zero net force",
+        "resistance 2000 N",
+        "velocity 10 s later"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "car 1500 kg at a steady 25 m/s",
+        "driving force 2000 N forward",
+        "resistance backward",
+        "zero acceleration, zero net force",
+        "resistance 2000 N",
+        "velocity 10 s later"
+      ],
+      "instance_constraints": [
+        "The car keeps a steady velocity.",
+        "Only the horizontal forces are drawn."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Treating the driving force as bigger than the resistance because the car is moving."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-CRUISE-2000N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CRUISE-V0",
+          "label": "The car",
+          "purpose": "Show the car, its steady velocity and the forces along the road.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRUISE-V1",
+          "label": "Steady velocity",
+          "purpose": "Read the unchanging velocity as zero acceleration.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward",
+            "zero acceleration, zero net force"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CRUISE-V2",
+          "label": "Balance and prediction",
+          "purpose": "Size the resistance and predict the velocity 10 s later.",
+          "visible_elements": [
+            "car 1500 kg at a steady 25 m/s",
+            "driving force 2000 N forward",
+            "resistance backward",
+            "zero acceleration, zero net force",
+            "resistance 2000 N",
+            "velocity 10 s later"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CRUISE-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOX3-STRING-10N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-FORCES-SUM-ZERO",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 3 kg box at rest on the floor with a string pulling up on it with 10 N.",
+      "required_elements": [
+        "3 kg box at rest on the floor",
+        "string pull 10 N up",
+        "weight 30 N down",
+        "floor's push up",
+        "floor's push 20 N",
+        "net force zero"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "3 kg box at rest on the floor",
+        "string pull 10 N up",
+        "weight 30 N down",
+        "floor's push up",
+        "floor's push 20 N",
+        "net force zero"
+      ],
+      "instance_constraints": [
+        "The box stays at rest.",
+        "All forces are vertical."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Setting the floor's push equal to the weight, 30 N."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOX3-STRING-10N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOX3-V0",
+          "label": "The box",
+          "purpose": "Show the box, the floor and the string's 10 N pull.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX3-V1",
+          "label": "Every force",
+          "purpose": "List each force on the box with its agent.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up",
+            "weight 30 N down",
+            "floor's push up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX3-V2",
+          "label": "Net force",
+          "purpose": "Size the floor's push and combine the forces.",
+          "visible_elements": [
+            "3 kg box at rest on the floor",
+            "string pull 10 N up",
+            "weight 30 N down",
+            "floor's push up",
+            "floor's push 20 N",
+            "net force zero"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOX3-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOX3-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOX3-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-MAN-IN-BOAT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-FBD-BODY-OWNERSHIP",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 70 kg man in the 130 kg boat at rest, with the boat chosen as the one body whose forces are listed.",
+      "required_elements": [
+        "man 70 kg in a boat 130 kg, at rest",
+        "boat isolated",
+        "agents: Earth, man, water",
+        "weight 1300 N, man's push 700 N, water's push 2000 N",
+        "man's weight not on the boat"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "man 70 kg in a boat 130 kg, at rest",
+        "boat isolated",
+        "agents: Earth, man, water",
+        "weight 1300 N, man's push 700 N, water's push 2000 N",
+        "man's weight not on the boat"
+      ],
+      "instance_constraints": [
+        "Only forces acting on the boat appear on its diagram.",
+        "Everything is at rest."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing the man's weight on the boat's diagram."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-MAN-IN-BOAT.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOAT-V0",
+          "label": "The man and the boat",
+          "purpose": "Show the man standing in the boat at rest on the lake.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOAT-V1",
+          "label": "Choose the boat",
+          "purpose": "Isolate the boat and name the agents that act on it.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest",
+            "boat isolated",
+            "agents: Earth, man, water"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOAT-V2",
+          "label": "Forces on the boat",
+          "purpose": "Draw each force on the boat with its agent and size.",
+          "visible_elements": [
+            "man 70 kg in a boat 130 kg, at rest",
+            "boat isolated",
+            "agents: Earth, man, water",
+            "weight 1300 N, man's push 700 N, water's push 2000 N",
+            "man's weight not on the boat"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOAT-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOAT-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOAT-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CHILD-ON-BOX",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 50 kg child on the 20 kg box with the box chosen as the one body whose forces are listed.",
+      "required_elements": [
+        "child 50 kg on a box 20 kg, at rest",
+        "box isolated",
+        "agents: Earth, child, floor",
+        "weight 200 N, child's push 500 N, floor's push 700 N",
+        "child's weight not on the box"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "child 50 kg on a box 20 kg, at rest",
+        "box isolated",
+        "agents: Earth, child, floor",
+        "weight 200 N, child's push 500 N, floor's push 700 N",
+        "child's weight not on the box"
+      ],
+      "instance_constraints": [
+        "Only forces acting on the box appear on its diagram.",
+        "Everything is at rest."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing the child's weight on the box's diagram."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CHILD-ON-BOX.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CHILDBOX-V0",
+          "label": "The child and the box",
+          "purpose": "Show the child standing on the box at rest.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V1",
+          "label": "Choose the box",
+          "purpose": "Isolate the box and name the agents acting on it.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V2",
+          "label": "Forces on the box",
+          "purpose": "Draw each force on the box with its agent and size.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor",
+            "weight 200 N, child's push 500 N, floor's push 700 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CHILDBOX-V3",
+          "label": "Not on the box",
+          "purpose": "Keep the child's weight off the box's diagram.",
+          "visible_elements": [
+            "child 50 kg on a box 20 kg, at rest",
+            "box isolated",
+            "agents: Earth, child, floor",
+            "weight 200 N, child's push 500 N, floor's push 700 N",
+            "child's weight not on the box"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CHILDBOX-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-TRAIN-BALL-BRAKING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-FRAME-CHOICE",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 0.5 kg ball on the smooth floor of the train braking at 2 m/s², seen by a platform observer and by a train observer.",
+      "required_elements": [
+        "ball 0.5 kg on a smooth train floor",
+        "train acceleration 2 m/s² backward",
+        "platform description",
+        "train description with a 1 N pseudo-force"
+      ],
+      "relation_refs": [
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "ball 0.5 kg on a smooth train floor",
+        "train acceleration 2 m/s² backward",
+        "platform description",
+        "train description with a 1 N pseudo-force"
+      ],
+      "instance_constraints": [
+        "The floor is frictionless.",
+        "The pseudo-force appears only in the train's description."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding a physical forward force on the ball when the train brakes."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-TRAIN-BALL-BRAKING.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TRAINBALL-V0",
+          "label": "The braking train",
+          "purpose": "Show the ball, the train's velocity and its braking acceleration.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAINBALL-V1",
+          "label": "Platform view",
+          "purpose": "Describe the ball with physical forces only.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward",
+            "platform description"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TRAINBALL-V2",
+          "label": "Train view",
+          "purpose": "Describe the ball in the train frame with its pseudo-force.",
+          "visible_elements": [
+            "ball 0.5 kg on a smooth train floor",
+            "train acceleration 2 m/s² backward",
+            "platform description",
+            "train description with a 1 N pseudo-force"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TRAINBALL-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-LIFT-SCALE-60KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 60 kg person on the scale in the lift accelerating up at 2 m/s², described from the ground and from the lift.",
+      "required_elements": [
+        "person 60 kg on a scale",
+        "lift acceleration 2 m/s² up",
+        "ground-frame equation",
+        "pseudo-force 120 N down, lift frame only",
+        "scale reading 720 N in both frames"
+      ],
+      "relation_refs": [
+        "REL-NLM-ELEVATOR-SUPPORT",
+        "REL-NLM-PSEUDO-FORCE"
+      ],
+      "read_order": [
+        "person 60 kg on a scale",
+        "lift acceleration 2 m/s² up",
+        "ground-frame equation",
+        "pseudo-force 120 N down, lift frame only",
+        "scale reading 720 N in both frames"
+      ],
+      "instance_constraints": [
+        "The physical forces are the same in both descriptions.",
+        "The pseudo-force appears only in the lift frame."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Adding the pseudo-force in the ground frame as well."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-LIFT-SCALE-60KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-LIFTSCALE-V0",
+          "label": "The lift",
+          "purpose": "Show the person on the scale and the lift's upward acceleration.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V1",
+          "label": "Ground frame",
+          "purpose": "Write Newton's second law with the physical forces only.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V2",
+          "label": "Lift frame",
+          "purpose": "Add the pseudo-force for the accelerating observer.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation",
+            "pseudo-force 120 N down, lift frame only"
+          ]
+        },
+        {
+          "id": "VIS-NLM-LIFTSCALE-V3",
+          "label": "Same reading",
+          "purpose": "Compare the two descriptions' scale readings.",
+          "visible_elements": [
+            "person 60 kg on a scale",
+            "lift acceleration 2 m/s² up",
+            "ground-frame equation",
+            "pseudo-force 120 N down, lift frame only",
+            "scale reading 720 N in both frames"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-LIFTSCALE-V2"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-BRAKING-1200KG",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-SECOND-LAW",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1200 kg car moving at +20 m/s with road friction 5400 N and air drag 600 N acting backward.",
+      "required_elements": [
+        "car 1200 kg at +20 m/s",
+        "friction 5400 N and drag 600 N backward",
+        "forward positive",
+        "net force −6000 N",
+        "acceleration −5 m/s²",
+        "stopping time 4 s"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "car 1200 kg at +20 m/s",
+        "friction 5400 N and drag 600 N backward",
+        "forward positive",
+        "net force −6000 N",
+        "acceleration −5 m/s²",
+        "stopping time 4 s"
+      ],
+      "instance_constraints": [
+        "Forward is the positive direction.",
+        "The forces stay constant until the car stops."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Giving the acceleration the sign of the velocity."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-BRAKING-1200KG.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARBRAKE-V0",
+          "label": "The braking car",
+          "purpose": "Show the car, its velocity, the axis and the two backward forces.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBRAKE-V1",
+          "label": "Net force",
+          "purpose": "Add the signed forces.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive",
+            "net force −6000 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARBRAKE-V2",
+          "label": "Acceleration",
+          "purpose": "Divide by the mass and find the stopping time.",
+          "visible_elements": [
+            "car 1200 kg at +20 m/s",
+            "friction 5400 N and drag 600 N backward",
+            "forward positive",
+            "net force −6000 N",
+            "acceleration −5 m/s²",
+            "stopping time 4 s"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARBRAKE-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BLOCK-WALL-50N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 2 kg block held against the vertical wall by a 50 N, then 80 N, horizontal push.",
+      "required_elements": [
+        "block 2 kg against a wall",
+        "push 50 N, then 80 N",
+        "μ_s = 0.6",
+        "weight 20 N",
+        "wall's push 50 N",
+        "slip tendency and limit",
+        "friction 20 N up",
+        "limit 48 N at 80 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND"
+      ],
+      "read_order": [
+        "block 2 kg against a wall",
+        "push 50 N, then 80 N",
+        "μ_s = 0.6",
+        "weight 20 N",
+        "wall's push 50 N",
+        "slip tendency and limit",
+        "friction 20 N up",
+        "limit 48 N at 80 N"
+      ],
+      "instance_constraints": [
+        "The block stays at rest.",
+        "Friction acts along the wall."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Setting friction equal to μ_s N."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BLOCK-WALL-50N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BLOCKWALL-V0",
+          "label": "The block",
+          "purpose": "Show the block, the wall and the horizontal push.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCKWALL-V1",
+          "label": "Forces and slip tendency",
+          "purpose": "Draw the weight and the wall's push and test the slip tendency.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6",
+            "weight 20 N",
+            "wall's push 50 N",
+            "slip tendency and limit"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BLOCKWALL-V2",
+          "label": "Friction",
+          "purpose": "Size the friction from the need and compare with the limit.",
+          "visible_elements": [
+            "block 2 kg against a wall",
+            "push 50 N, then 80 N",
+            "μ_s = 0.6",
+            "weight 20 N",
+            "wall's push 50 N",
+            "slip tendency and limit",
+            "friction 20 N up",
+            "limit 48 N at 80 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BLOCKWALL-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-ROCKET-EXHAUST-5000N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-THIRD-LAW",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 400 kg rocket far from any planet and the engine's 5000 N push on the exhaust gas.",
+      "required_elements": [
+        "rocket 400 kg",
+        "engine on gas 5000 N backward",
+        "gas on rocket 5000 N forward",
+        "acceleration 12.5 m/s² forward"
+      ],
+      "relation_refs": [
+        "REL-NEWTON-SECOND-LAW"
+      ],
+      "read_order": [
+        "rocket 400 kg",
+        "engine on gas 5000 N backward",
+        "gas on rocket 5000 N forward",
+        "acceleration 12.5 m/s² forward"
+      ],
+      "instance_constraints": [
+        "The two partner forces act on different bodies.",
+        "The mass is taken as constant for this instant."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Drawing both partner forces on the rocket so that they cancel."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-ROCKET-EXHAUST-5000N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-ROCKET-V0",
+          "label": "The rocket and gas",
+          "purpose": "Show the rocket, the gas and the engine's push on the gas.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROCKET-V1",
+          "label": "The partner force",
+          "purpose": "Name the partner and the body it acts on.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward",
+            "gas on rocket 5000 N forward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-ROCKET-V2",
+          "label": "Acceleration",
+          "purpose": "Find the rocket's acceleration from the force on it.",
+          "visible_elements": [
+            "rocket 400 kg",
+            "engine on gas 5000 N backward",
+            "gas on rocket 5000 N forward",
+            "acceleration 12.5 m/s² forward"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-ROCKET-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 5 kg box pushed with 30 N in two trials, the second with an extra 20 N downward press.",
+      "required_elements": [
+        "box 5 kg pushed with 30 N",
+        "second trial with a 20 N press",
+        "μ_s = 0.5, μ_k = 0.4",
+        "N and limit in each trial",
+        "trial 1 slides, a = 2 m/s²",
+        "trial 2 rests, static friction 30 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-STATIC-FRICTION-BOUND",
+        "REL-NLM-KINETIC-FRICTION"
+      ],
+      "read_order": [
+        "box 5 kg pushed with 30 N",
+        "second trial with a 20 N press",
+        "μ_s = 0.5, μ_k = 0.4",
+        "N and limit in each trial",
+        "trial 1 slides, a = 2 m/s²",
+        "trial 2 rests, static friction 30 N"
+      ],
+      "instance_constraints": [
+        "Each trial's limit uses that trial's own normal force.",
+        "The kinetic model is used only once sliding is established."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Using the same normal force, 50 N, in both trials."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-BOX5-PUSH-30N-PRESS-20N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-BOX5-V0",
+          "label": "Two trials",
+          "purpose": "Show both trials with their pushes and the friction coefficients.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX5-V1",
+          "label": "Normal force and limit",
+          "purpose": "Find each trial's normal force and static limit.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4",
+            "N and limit in each trial"
+          ]
+        },
+        {
+          "id": "VIS-NLM-BOX5-V2",
+          "label": "Decision",
+          "purpose": "Compare the need with the limit and choose the friction model.",
+          "visible_elements": [
+            "box 5 kg pushed with 30 N",
+            "second trial with a 20 N press",
+            "μ_s = 0.5, μ_k = 0.4",
+            "N and limit in each trial",
+            "trial 1 slides, a = 2 m/s²",
+            "trial 2 rests, static friction 30 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-BOX5-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-BOX5-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-BOX5-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CAR-TRAILER-TOWBAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-CONNECTED-COMMON-ACCEL",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 1000 kg car towing the 500 kg trailer with a rigid bar under a 3000 N driving force.",
+      "required_elements": [
+        "car 1000 kg and trailer 500 kg",
+        "rigid tow bar",
+        "driving force 3000 N",
+        "one acceleration a",
+        "bar force T on each body",
+        "one equation per body",
+        "a = 2 m/s², T = 1000 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-COMMON-ACCEL-CONSTRAINT"
+      ],
+      "read_order": [
+        "car 1000 kg and trailer 500 kg",
+        "rigid tow bar",
+        "driving force 3000 N",
+        "one acceleration a",
+        "bar force T on each body",
+        "one equation per body",
+        "a = 2 m/s², T = 1000 N"
+      ],
+      "instance_constraints": [
+        "The bar keeps the separation fixed.",
+        "No resistance acts."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Putting the driving force in the trailer's equation."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CAR-TRAILER-TOWBAR.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-TOWBAR-V0",
+          "label": "Car and trailer",
+          "purpose": "Show the two bodies, the rigid bar and the driving force.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOWBAR-V1",
+          "label": "Constraint and equations",
+          "purpose": "State the shared acceleration and write one equation per body.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N",
+            "one acceleration a",
+            "bar force T on each body",
+            "one equation per body"
+          ]
+        },
+        {
+          "id": "VIS-NLM-TOWBAR-V2",
+          "label": "Solve and check",
+          "purpose": "Solve for a and T and check with the car.",
+          "visible_elements": [
+            "car 1000 kg and trailer 500 kg",
+            "rigid tow bar",
+            "driving force 3000 N",
+            "one acceleration a",
+            "bar force T on each body",
+            "one equation per body",
+            "a = 2 m/s², T = 1000 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-TOWBAR-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-CARTS-2KG-3KG-15N",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-IDEAL-STRING-TENSION",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show the 2 kg and 3 kg carts on the smooth track, joined by one light string and pulled by the hand's 15 N on another.",
+      "required_elements": [
+        "front cart 2 kg, rear cart 3 kg",
+        "two light strings",
+        "hand's pull 15 N",
+        "T_1 on the front cart",
+        "T_2 on both carts",
+        "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+      ],
+      "relation_refs": [
+        "REL-NLM-IDEAL-STRING-TENSION"
+      ],
+      "read_order": [
+        "front cart 2 kg, rear cart 3 kg",
+        "two light strings",
+        "hand's pull 15 N",
+        "T_1 on the front cart",
+        "T_2 on both carts",
+        "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+      ],
+      "instance_constraints": [
+        "Both strings are light and taut.",
+        "The track is smooth."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Giving both strings the same tension."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-CARTS-2KG-3KG-15N.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-CARTS15-V0",
+          "label": "The carts",
+          "purpose": "Show the two carts, the two strings and the hand's pull.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTS15-V1",
+          "label": "Tensions",
+          "purpose": "Put each string's tension on the bodies it acts on.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N",
+            "T_1 on the front cart",
+            "T_2 on both carts"
+          ]
+        },
+        {
+          "id": "VIS-NLM-CARTS15-V2",
+          "label": "Values",
+          "purpose": "Find the acceleration and each tension.",
+          "visible_elements": [
+            "front cart 2 kg, rear cart 3 kg",
+            "two light strings",
+            "hand's pull 15 N",
+            "T_1 on the front cart",
+            "T_2 on both carts",
+            "a = 3 m/s², T_1 = 15 N, T_2 = 9 N"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-CARTS15-V1"
+        }
+      ]
+    },
+    {
+      "id": "REP-NLM-PULLEY-YA06-YB10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-AUTHOR-NLM",
+        "SRC-EXAMSIDE-NLM-DEMAND"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:depicts": {
+          "microtopic_ref": "MIC-PHY-NLM-SINGLE-STRING-CONSTRAINT",
+          "field": "elicitation.attempt.task"
+        }
+      },
+      "kind": "FREE_BODY_DIAGRAM",
+      "purpose": "Show A and B on one string over a fixed pulley with y_A = 0.6 m and y_B = 1.0 m measured downward from the pulley.",
+      "required_elements": [
+        "A and B over a fixed pulley",
+        "y_A = 0.6 m, y_B = 1.0 m downward",
+        "y_A + y_B = 1.6 m",
+        "y_B = 1.1 m",
+        "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+      ],
+      "relation_refs": [
+        "REL-NLM-FIXED-PULLEY-STRING-LENGTH"
+      ],
+      "read_order": [
+        "A and B over a fixed pulley",
+        "y_A = 0.6 m, y_B = 1.0 m downward",
+        "y_A + y_B = 1.6 m",
+        "y_B = 1.1 m",
+        "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+      ],
+      "instance_constraints": [
+        "Both coordinates are measured away from the pulley.",
+        "The string is taut and inextensible."
+      ],
+      "accessibility": [
+        "Every force, value and result is written as text, not carried by colour or arrow length alone.",
+        "The stages are described in words in the figure's description."
+      ],
+      "misleading_alternatives": [
+        "Writing y_A − y_B = constant for coordinates measured the same way."
+      ],
+      "rendered_asset_refs": [
+        "Physics/assets/representations/REP-NLM-PULLEY-YA06-YB10.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "VIS-NLM-PULLEY16-V0",
+          "label": "The string and coordinates",
+          "purpose": "Show the pulley, the two masses and both coordinates.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PULLEY16-V1",
+          "label": "Length constraint",
+          "purpose": "Write the fixed-length relation and its rates.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward",
+            "y_A + y_B = 1.6 m"
+          ]
+        },
+        {
+          "id": "VIS-NLM-PULLEY16-V2",
+          "label": "New position and rates",
+          "purpose": "Find y_B after the move, then v_B and a_B.",
+          "visible_elements": [
+            "A and B over a fixed pulley",
+            "y_A = 0.6 m, y_B = 1.0 m downward",
+            "y_A + y_B = 1.6 m",
+            "y_B = 1.1 m",
+            "v_B = +0.2 m/s, a_B = −1.5 m/s²"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V0"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V1"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "VIS-NLM-PULLEY16-V1"
         }
       ]
     }
