@@ -623,7 +623,9 @@ def render_digest(ctx: Ctx) -> str:
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
         h.update(json.dumps(p, sort_keys=True).encode())
-    # Blueprint policy is render authority: a policy change must invalidate stale output.
+    # Selected bank records and blueprint policy both affect learner bytes and therefore
+    # belong in the render identity. Omitting either would permit a stale receipt.
+    h.update(json.dumps(ctx.bank, sort_keys=True).encode())
     h.update(json.dumps(ctx.blueprints, sort_keys=True).encode())
     h.update(load_json(CONTRACT)["version"].encode())
     return h.hexdigest()[:16]
