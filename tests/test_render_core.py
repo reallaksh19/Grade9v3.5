@@ -109,14 +109,21 @@ class Renderer(unittest.TestCase):
         self.assertIn('../../css/tablet-12-7.css', html)
         self.assertNotIn('cdn.jsdelivr.net', html)
 
+        labels = [label for label, _digest in ctx.authority_hashes]
+        self.assertIn("blueprints", labels)
+        self.assertTrue(any(label.startswith("bank:") for label in labels))
+
         changed = copy.deepcopy(ctx)
-        changed.blueprints = copy.deepcopy(ctx.blueprints)
-        changed.blueprints["shell"]["typography_policy"]["minimum_learner_text_css_px"] = 15
+        changed.authority_hashes = list(ctx.authority_hashes)
+        label, old_hash = changed.authority_hashes[-2]
+        changed.authority_hashes[-2] = (label, ("0" if old_hash[0] != "0" else "1") + old_hash[1:])
         self.assertNotEqual(digest_before, render_core.render_digest(changed))
 
         changed_bank = copy.deepcopy(ctx)
-        changed_bank.bank = copy.deepcopy(ctx.bank)
-        changed_bank.bank[0]["stem"] += " [digest witness]"
+        changed_bank.authority_hashes = list(ctx.authority_hashes)
+        bank_index = next(i for i, (label, _digest) in enumerate(changed_bank.authority_hashes) if label.startswith("bank:"))
+        label, old_hash = changed_bank.authority_hashes[bank_index]
+        changed_bank.authority_hashes[bank_index] = (label, ("0" if old_hash[0] != "0" else "1") + old_hash[1:])
         self.assertNotEqual(digest_before, render_core.render_digest(changed_bank))
 
 
