@@ -6718,7 +6718,7 @@ window.GRADE9V3 = {
             },
             {
               "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
-              "stem": "A block rests on a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
+              "stem": "A block slides down a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
               "origin": "AUTHORED",
               "answer": "In the student's diagram the weight is drawn three times: once as mg and again as its two components. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums."
             },
@@ -6935,7 +6935,7 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 223,
+          "record_count": 234,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
@@ -6957,6 +6957,61 @@ window.GRADE9V3 = {
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-NLM-ACCELERATING-FRAME-COMPARISON",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-BLOCK-2KG-PULL-14N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-BLOCKS-4KG-2KG-30N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-BOX-2KG-5N-5N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-BOX-2KG-PUSH-6N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-CART-3KG-GLIDE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-HORSE-CART-600N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-PULLEY-STRING-8N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-PULLEY-YA-YB-3",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-SKATERS-60KG-30KG",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-TROLLEY-5KG-20N-5N",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-NLM-ANCHOR-VAN-BAG-2KG",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -7086,7 +7141,7 @@ window.GRADE9V3 = {
               },
               {
                 "kind": "FIGURE_AUTHORING",
-                "representation": "REP-NLM-CRATE10-TWO-PULLS",
+                "representation": "REP-NLM-CRATE10-THREE-DIRECTIONS",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               },
               {
@@ -17673,17 +17728,21 @@ window.GRADE9V3 = {
                     "defensible_answer": "No. The component equations are separate, but the event uses one common elapsed time."
                   },
                   "attempt": {
-                    "produces": "A two-column x/y setup with one shared t.",
+                    "produces": "A two-column x/y setup on one clock, the position (15, 20) m at t = 5 s, and a rejected mixed-instant pair such as x(5 s) with y(4 s), (15, 16) m.",
                     "closure": "RUBRIC",
                     "rubric": [
                       {
                         "criterion": "Axes are kept separate while time/frame remain shared.",
                         "evidence_of": "Correct component independence model."
+                      },
+                      {
+                        "criterion": "The position at t = 5 s is (15, 20) m, and a pair taking x and y at different instants is refused as a position.",
+                        "evidence_of": "Treating a position as both components read on one clock."
                       }
                     ],
                     "accepted": [
                       "x(t) = 3t and y(t) = 4t on one clock, so at t = 5 s the boat is at (15, 20) m. A pair such as x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.",
-                      "Separate x and y equations; same t for both."
+                      "Separate columns x = 3t and y = 4t on the same t: at t = 5 s the boat is at (15, 20) m; pairing x at one instant with y at another, e.g. (15, 16) m, is not a position."
                     ],
                     "rejected": [
                       "Use x acceleration in the y equation or assign unrelated times."
@@ -17938,17 +17997,21 @@ window.GRADE9V3 = {
                     "defensible_answer": "Only v_x changes; v_y remains constant."
                   },
                   "attempt": {
-                    "produces": "Two correct component constant-acceleration equations using one t.",
+                    "produces": "A per-axis validity check, the four component equations on one t, and v = (1, 8) m/s, r = (12, 16) m at t = 4 s.",
                     "closure": "RUBRIC",
                     "rubric": [
                       {
                         "criterion": "Each axis uses only its own signed initial values and acceleration while sharing the same time.",
                         "evidence_of": "2D component model use rather than a scalar-magnitude shortcut."
+                      },
+                      {
+                        "criterion": "The four component equations are evaluated at the one requested instant, t = 4 s, giving v = (1, 8) m/s and r = (12, 16) m.",
+                        "evidence_of": "Using the shared clock to read one plane state from the component equations."
                       }
                     ],
                     "accepted": [
                       "Both a_x = −1 m/s² and a_y = 2 m/s² are constant, so the 1D equations apply on each axis. v_x = 5 − t, v_y = 2t, x = 5t − ½t², y = t². At t = 4 s: v = (1 i + 8 j) m/s and r = (12 i + 16 j) m.",
-                      "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
+                      "a_x = −1 m/s² and a_y = 2 m/s² are both constant, so each axis takes its 1D equations on the same t: v_x = 5 − t, v_y = 0 + 2t, x = 5t − ½t², y = ½(2)t². At t = 4 s: v = (1, 8) m/s, r = (12, 16) m."
                     ],
                     "rejected": [
                       "Use |a| in both equations or use separate unrelated times."
@@ -17979,8 +18042,8 @@ window.GRADE9V3 = {
                         "from_step_ref": "K2D2-2"
                       },
                       {
-                        "ask": "If one component equation finds the event time, what time must the other component use?",
-                        "why_this_ask": "Recovers the shared-clock coupling at an event.",
+                        "ask": "At t = 4 s, what do v_x = 5 − t and v_y = 2t give, and what do x = 5t − ½t² and y = t² give?",
+                        "why_this_ask": "Reads one plane state by putting the same clock value into every component equation before recombining.",
                         "from_step_ref": "K2D2-3"
                       }
                     ],
@@ -19774,7 +19837,7 @@ window.GRADE9V3 = {
                   "boundary_test": {
                     "prompt": "Now draw the man's diagram. Does the boat's upward push on him belong there? Does the water's push?",
                     "answer": "The boat's push on the man, 700 N up, belongs there with his weight, 700 N down. The water does not touch the man, so its push does not belong there.",
-                    "confirms": "Each force goes on the diagram of the body it acts on; switching the body switches the inventory (NLM3-3)."
+                    "confirms": "Each force goes on the diagram of the body it acts on; switching the body switches the inventory."
                   }
                 },
                 "prerequisite_refs": [],
@@ -19841,7 +19904,7 @@ window.GRADE9V3 = {
                 },
                 {
                   "id": "Q-PHY-NLM-INCLINE-2A-FBD-COMPONENTS-05",
-                  "stem": "A block rests on a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
+                  "stem": "A block slides down a smooth fixed incline. A student draws three downward-related force arrows on the same free-body diagram: mg vertically downward, mg sin(theta) down the plane, and mg cos(theta) into the plane. Diagnose the diagram and state how the weight should be represented when writing plane-aligned equations.",
                   "answer": "In the student's diagram the weight is drawn three times: once as mg and again as its two components. Weight mg is one physical force. For plane-aligned equations it may be represented by the components mg sin(theta) down the plane and mg cos(theta) into the plane, but the original mg must not also be added as a separate force in those component sums.",
                   "origin": "AUTHORED",
                   "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
