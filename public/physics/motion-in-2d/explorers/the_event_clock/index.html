@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <!-- KaTeX Typography (Khan Academy Standard) -->
-  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';">
-  <script src="../../../../vendor/katex/0.16.8/katex.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';"></script>
-  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js';" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
+  <link rel="stylesheet" href="../../../../vendor/katex/0.16.8/katex.min.css">
+  <script src="../../../../vendor/katex/0.16.8/katex.min.js"></script>
+  <script src="../../../../vendor/katex/0.16.8/contrib/auto-render.min.js" onload="window.__katexLoaded=true; if(window.renderAllMath) window.renderAllMath();"></script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,12 +34,7 @@
     input[type=range] {
       accent-color: #3b82f6;
     }
-    
-    
-      50% {
-        filter: drop-shadow(0 0 16px rgba(245, 158, 11, 1));
-      }
-    }
+
     .tab-active {
       background-color: #1865f2 !important;
       color: #ffffff !important;
@@ -73,10 +68,10 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-3 mb-1">
-            <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <span class="px-2.5 py-0.5 text-[13px] font-bold tracking-wider uppercase rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30">
               Topic 2 &middot; Kinematics
             </span>
-            <span class="text-xs font-mono text-[var(--muted-foreground)]">Event Dynamics &middot; Temporal Sampling</span>
+            <span class="text-[13px] font-mono text-[var(--muted-foreground)]">Event Dynamics &middot; Temporal Sampling</span>
           </div>
           <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2">
             THE EVENT CLOCK &middot; EVENTS OWN THE TIME
@@ -87,7 +82,7 @@
         </div>
 
         <!-- EVENT SELECTOR TABS -->
-        <div class="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-[var(--border)] self-start md:self-auto text-xs">
+        <div class="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-[var(--border)] self-start md:self-auto text-[13px]">
           <button id="btnTabWall" onclick="setEventMode('wall')" class="tab-active px-3 py-2 rounded-lg font-semibold transition flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             1 &middot; Wall Crossing
@@ -108,7 +103,7 @@
       </div>
 
       <!-- INVARIANT BANNER -->
-      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+      <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px] md:text-sm">
         <div class="flex items-center gap-3 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
           <span class="font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold">INVARIANT</span>
           <span class="text-slate-300">Time is owned by the <strong class="text-amber-300">physical boundary event</strong>, not by an isolated formula.</span>
@@ -134,17 +129,17 @@
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               INTERACTIVE EVENT RIG &middot; DRAGGABLE BOUNDARIES
             </h3>
-            <span class="text-xs text-slate-400">Drag wall position, platform elevation, or hoop coordinates</span>
+            <span class="text-[13px] text-slate-400">Drag wall position, platform elevation, or hoop coordinates</span>
           </div>
 
           <!-- EVENT STATUS BADGE -->
-          <div id="eventStatusBadge" class="px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-cyan-950/80 text-cyan-300 border-cyan-600/50">
+          <div id="eventStatusBadge" class="px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-cyan-950/80 text-cyan-300 border-cyan-600/50">
             HORIZONTAL TRIGGERS TIME
           </div>
         </div>
 
         <!-- SVG CANVAS -->
-        <div class="w-full flex-1 flex items-center justify-center min-h-[380px] relative bg-slate-950/80 rounded-xl border border-slate-800 p-2 overflow-hidden select-none" id="svgContainer">
+        <div class="w-full flex-1 flex items-center justify-center min-h-[380px] relative bg-slate-950/80 rounded-xl border border-slate-800 p-2 overflow-hidden select-none" id="svgContainer" style="touch-action:none">
           <svg id="eventSvg" viewBox="0 0 520 380" class="w-full h-full max-h-[380px] cursor-crosshair">
             <defs>
               <pattern id="gridPattern129" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -171,17 +166,17 @@
 
             <!-- Coordinate Axes -->
             <line x1="50" y1="20" x2="50" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="40" y="30" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">y (m)</text>
+            <text x="40" y="30" fill="#94a3b8" font-size="13" font-family="monospace" text-anchor="end">y (m)</text>
 
             <line x1="50" y1="320" x2="500" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="495" y="335" fill="#94a3b8" font-size="10" font-family="monospace">x (m)</text>
-            <text x="42" y="335" fill="#64748b" font-size="10" font-family="monospace">0</text>
+            <text x="495" y="335" fill="#94a3b8" font-size="13" font-family="monospace">x (m)</text>
+            <text x="42" y="335" fill="#64748b" font-size="13" font-family="monospace">0</text>
 
             <!-- Ground Elevation Plane -->
             <g id="platformGroup">
               <line id="platformLine" x1="50" y1="320" x2="500" y2="320" stroke="#475569" stroke-width="2.5" stroke-dasharray="none"/>
               <rect id="platformFill" x="50" y="320" width="450" height="0" fill="#1e293b" fill-opacity="0.4"/>
-              <text id="platformLabel" x="480" y="315" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">Ground y=0m</text>
+              <text id="platformLabel" x="480" y="315" fill="#64748b" font-size="13" font-family="monospace" text-anchor="end">Ground y=0m</text>
             </g>
 
             <!-- Full Parabolic Trajectory -->
@@ -196,13 +191,13 @@
               <rect id="rectWall" x="-5" y="-120" width="10" height="120" fill="url(#wallGrad)" stroke="#06b6d4" stroke-width="1.5" rx="2"/>
               <!-- Wall Drag Handle Indicator -->
               <circle cx="0" cy="-60" r="10" fill="#06b6d4" fill-opacity="0.3" stroke="#06b6d4" stroke-width="1.5" class="cursor-ew-resize"/>
-              <text x="0" y="-128" fill="#67e8f9" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">WALL x = d</text>
-              <text id="wallDistLabel" x="0" y="16" fill="#67e8f9" font-size="9" font-family="monospace" text-anchor="middle">d = 30.0m</text>
-              <text id="wallHeightLabel" x="12" y="-60" fill="#94a3b8" font-size="8" font-family="monospace">h = 10m</text>
+              <text x="0" y="-128" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">WALL x = d</text>
+              <text id="wallDistLabel" x="0" y="16" fill="#67e8f9" font-size="13" font-family="monospace" text-anchor="middle">d = 30.0m</text>
+              <text id="wallHeightLabel" x="12" y="-60" fill="#94a3b8" font-size="13" font-family="monospace">h = 10m</text>
 
               <!-- Clearance Delta Bracket -->
               <line id="bracketLine" x1="16" y1="-120" x2="16" y2="-150" stroke="#10b981" stroke-width="2"/>
-              <text id="bracketText" x="22" y="-135" fill="#10b981" font-size="9" font-family="monospace">&Delta;y: +3.2m</text>
+              <text id="bracketText" x="22" y="-135" fill="#10b981" font-size="13" font-family="monospace">&Delta;y: +3.2m</text>
             </g>
 
             <!-- TARGET HOOP EVENT FIXTURE (Draggable) -->
@@ -210,22 +205,22 @@
               <circle cx="0" cy="0" r="14" fill="none" stroke="#10b981" stroke-width="3"/>
               <circle cx="0" cy="0" r="2" fill="#34d399"/>
               <line x1="-18" y1="0" x2="18" y2="0" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2"/>
-              <text x="0" y="-18" fill="#a7f3d0" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">TARGET HOOP</text>
-              <text id="ringCoordText" x="0" y="24" fill="#a7f3d0" font-size="8" font-family="monospace" text-anchor="middle">(35m, 12m)</text>
+              <text x="0" y="-18" fill="#a7f3d0" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">TARGET HOOP</text>
+              <text id="ringCoordText" x="0" y="24" fill="#a7f3d0" font-size="13" font-family="monospace" text-anchor="middle">(35m, 12m)</text>
             </g>
 
             <!-- APEX EVENT FIXTURE -->
             <g id="fixtureApex" class="hidden" transform="translate(200, 150)">
               <line x1="-35" y1="0" x2="35" y2="0" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3,3"/>
               <circle cx="0" cy="0" r="5" fill="#c084fc"/>
-              <text x="0" y="-12" fill="#e9d5ff" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">APEX (vy=0)</text>
+              <text x="0" y="-12" fill="#e9d5ff" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">APEX (vy=0)</text>
             </g>
 
             <!-- THE EVENT LOCATION MARKER (The Instant where t* is Evaluated) -->
             <g id="eventPointMarker" class="event-pulse" transform="translate(250, 200)">
               <circle cx="0" cy="0" r="14" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="2"/>
               <circle cx="0" cy="0" r="6" fill="#fbbf24"/>
-              <text x="0" y="-18" fill="#fde68a" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">EVENT INSTANT t*</text>
+              <text x="0" y="-18" fill="#fde68a" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">EVENT INSTANT t*</text>
 
               <!-- Velocity Vectors at Event -->
               <line id="evVxLine" x1="0" y1="0" x2="28" y2="0" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowVx129)"/>
@@ -237,14 +232,14 @@
 
         <!-- CANVAS CONTROLS & EVENT SCRUBBER -->
         <div class="mt-3 bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
-          <div class="flex justify-between items-center text-xs">
+          <div class="flex justify-between items-center text-[13px]">
             <span class="font-semibold text-slate-300 flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-amber-400"></span> Event Time Progress:
             </span>
             <span id="labelScrubTime" class="font-mono font-bold text-amber-300 text-sm">t = 0.00 s / 0.00 s</span>
           </div>
           <input type="range" id="rangeTimeScrub" min="0" max="1" step="0.01" value="1" class="w-full cursor-pointer accent-amber-400" oninput="onScrubTime(this.value)">
-          <div class="flex justify-between text-[10px] font-mono text-slate-500">
+          <div class="flex justify-between text-[13px] font-mono text-slate-500">
             <span>Launch t=0</span>
             <span id="labelMidScrub">Halfway</span>
             <span>At Event t*</span>
@@ -261,27 +256,27 @@
               <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
               THE EVENT TRANSFER PIPELINE
             </h3>
-            <span id="triggerAxisBadge" class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold">
+            <span id="triggerAxisBadge" class="text-[13px] font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold">
               TRIGGER: X-AXIS
             </span>
           </div>
 
           <!-- 4-STEP CARDS -->
-          <div class="space-y-2.5 text-xs">
+          <div class="space-y-2.5 text-[13px]">
 
             <!-- STEP 1: EVENT CONDITION -->
             <div id="stepCard1" class="p-3 rounded-xl border border-cyan-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-cyan-300 flex items-center gap-1.5">
-                  <span class="w-4 h-4 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px]">1</span>
+                  <span class="w-4 h-4 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[13px]">1</span>
                   PHYSICAL CONSTRAINT (TRIGGER)
                 </span>
-                <span id="step1Dim" class="font-mono text-[10px] text-cyan-400 font-semibold">HORIZONTAL</span>
+                <span id="step1Dim" class="font-mono text-[13px] text-cyan-400 font-semibold">HORIZONTAL</span>
               </div>
-              <p id="step1Desc" class="text-slate-300 leading-relaxed text-[11px]">
+              <p id="step1Desc" class="text-slate-300 leading-relaxed text-[13px]">
                 The projectile encounters the wall when its horizontal position reaches <span class="font-mono text-white font-bold">x = d</span>.
               </p>
-              <div id="step1Eq" class="p-2 bg-slate-900 rounded font-mono text-center text-cyan-200 text-xs">
+              <div id="step1Eq" class="p-2 bg-slate-900 rounded font-mono text-center text-cyan-200 text-[13px]">
                 x(t*) = d &nbsp;&rArr;&nbsp; v_{0x} &times; t* = d
               </div>
             </div>
@@ -290,12 +285,12 @@
             <div id="stepCard2" class="p-3 rounded-xl border border-amber-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-amber-300 flex items-center gap-1.5">
-                  <span class="w-4 h-4 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px]">2</span>
+                  <span class="w-4 h-4 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[13px]">2</span>
                   SOLVE FOR "WHEN" (t*)
                 </span>
-                <span class="font-mono text-[10px] text-amber-400 font-bold">EVENT TIME</span>
+                <span class="font-mono text-[13px] text-amber-400 font-bold">EVENT TIME</span>
               </div>
-              <p id="step2Desc" class="text-slate-300 leading-relaxed text-[11px]">
+              <p id="step2Desc" class="text-slate-300 leading-relaxed text-[13px]">
                 The horizontal equation alone dictates the exact timestamp of arrival:
               </p>
               <div id="step2Eq" class="p-2 bg-amber-950/50 rounded font-mono text-center text-amber-300 font-bold text-sm">
@@ -307,12 +302,12 @@
             <div class="p-3 rounded-xl border border-slate-800 bg-slate-950/80 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-emerald-300 flex items-center gap-1.5">
-                  <span class="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">3</span>
+                  <span class="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[13px]">3</span>
                   ONE SHARED CLOCK BROADCAST
                 </span>
-                <span class="font-mono text-[10px] text-emerald-400 font-bold">SYNCHRONIZED</span>
+                <span class="font-mono text-[13px] text-emerald-400 font-bold">SYNCHRONIZED</span>
               </div>
-              <p class="text-slate-300 leading-relaxed text-[11px]">
+              <p class="text-slate-300 leading-relaxed text-[13px]">
                 Both coordinates sample the single event clock: <span class="font-mono text-emerald-300 font-bold">t_x &equiv; t_y &equiv; t*</span>.
               </p>
             </div>
@@ -321,15 +316,15 @@
             <div id="stepCard4" class="p-3 rounded-xl border border-purple-500/40 bg-slate-950 space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-purple-300 flex items-center gap-1.5">
-                  <span class="w-4 h-4 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-[10px]">4</span>
+                  <span class="w-4 h-4 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-[13px]">4</span>
                   SAMPLE OPPOSITE AXIS ("WHERE / WHAT")
                 </span>
-                <span id="step4Dim" class="font-mono text-[10px] text-purple-400 font-semibold">VERTICAL</span>
+                <span id="step4Dim" class="font-mono text-[13px] text-purple-400 font-semibold">VERTICAL</span>
               </div>
-              <p id="step4Desc" class="text-slate-300 leading-relaxed text-[11px]">
+              <p id="step4Desc" class="text-slate-300 leading-relaxed text-[13px]">
                 Evaluate vertical motion at this exact <span class="font-mono text-amber-300">t*</span> to find clearance height:
               </p>
-              <div id="step4Eq" class="p-2 bg-purple-950/50 rounded font-mono text-center text-purple-300 font-bold text-xs">
+              <div id="step4Eq" class="p-2 bg-purple-950/50 rounded font-mono text-center text-purple-300 font-bold text-[13px]">
                 y(t*) = v_{0y}t* &minus; &frac12;gt*&sup2; = 14.3 m
               </div>
             </div>
@@ -337,16 +332,16 @@
           </div>
 
           <!-- LAUNCH CONTROLS SLIDERS -->
-          <div class="mt-4 pt-3 border-t border-[var(--border)] grid grid-cols-2 gap-2 text-xs">
+          <div class="mt-4 pt-3 border-t border-[var(--border)] grid grid-cols-2 gap-2 text-[13px]">
             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">LAUNCH SPEED v_{0}</span>
+              <span class="text-slate-400 block text-[13px]">LAUNCH SPEED v_{0}</span>
               <div class="flex items-center justify-between">
                 <input type="range" id="sliderV0" min="15" max="35" step="1" value="25" class="w-20" oninput="onParamChange()">
                 <span id="labelV0" class="font-mono font-bold text-white">25 m/s</span>
               </div>
             </div>
             <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">LAUNCH ANGLE &theta;</span>
+              <span class="text-slate-400 block text-[13px]">LAUNCH ANGLE &theta;</span>
               <div class="flex items-center justify-between">
                 <input type="range" id="sliderAngle" min="25" max="75" step="1" value="53" class="w-20" oninput="onParamChange()">
                 <span id="labelAngle" class="font-mono font-bold text-white">53&deg;</span>
@@ -356,7 +351,7 @@
         </div>
 
         <!-- PEDAGOGICAL MISCONCEPTION CALLOUT -->
-        <div id="pedagogicalCallout" class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-950/30 text-xs leading-relaxed text-cyan-200">
+        <div id="pedagogicalCallout" class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-950/30 text-[13px] leading-relaxed text-cyan-200">
           <strong class="text-white block mb-1">Crucial Insight: Horizontal Controls Arrival Time</strong>
           <p id="calloutText">
             Notice that when throwing a ball towards a vertical wall at distance <span class="font-mono">d</span>, gravity <span class="font-mono">g</span> and vertical speed have <strong>zero influence</strong> on when the ball hits the wall. Arrival time is strictly <span class="font-mono font-bold">t* = d / v_{0x}</span>!
@@ -373,25 +368,25 @@
     <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-lg space-y-4">
       <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
         <div class="flex items-center gap-2">
-          <div class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 font-bold text-xs font-mono">TRANSFER MATRIX</div>
+          <div class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 font-bold text-[13px] font-mono">TRANSFER MATRIX</div>
           <h3 class="font-bold text-base md:text-lg text-white">THE EVENT TIME TRANSFER IN 2D MOTION</h3>
         </div>
-        <span class="text-xs text-slate-400 font-mono">Comparing Boundary Events</span>
+        <span class="text-[13px] text-slate-400 font-mono">Comparing Boundary Events</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[13px] font-mono">
         <!-- Card 1: Wall -->
         <div class="bg-slate-950 p-4 rounded-xl border border-cyan-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-cyan-300 font-bold">WALL CROSSING</span>
-            <span class="text-[10px] text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded">X &rarr; Y</span>
+            <span class="text-[13px] text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded">X &rarr; Y</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Constraint:</strong> x = d (Horizontal)<br>
             <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = d / v_{0x}</span><br>
             <strong>Samples Where:</strong> <span class="text-purple-300 font-bold">y(t*)</span> (Clearance Height)
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Gravity does NOT alter arrival time.
           </div>
         </div>
@@ -400,14 +395,14 @@
         <div class="bg-slate-950 p-4 rounded-xl border border-purple-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-purple-300 font-bold">APEX (PEAK)</span>
-            <span class="text-[10px] text-purple-400 bg-purple-950 px-2 py-0.5 rounded">Y &rarr; X</span>
+            <span class="text-[13px] text-purple-400 bg-purple-950 px-2 py-0.5 rounded">Y &rarr; X</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Constraint:</strong> v_y = 0 (Vertical)<br>
             <strong>Solves When:</strong> <span class="text-amber-300 font-bold">t* = v_{0y} / g</span><br>
             <strong>Samples Where:</strong> <span class="text-cyan-300 font-bold">x(t*)</span> (Peak Location)
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Peak occurs halfway in symmetric flight.
           </div>
         </div>
@@ -416,14 +411,14 @@
         <div class="bg-slate-950 p-4 rounded-xl border border-amber-500/40 space-y-2">
           <div class="flex justify-between items-center border-b border-slate-800 pb-2">
             <span class="text-amber-300 font-bold">GROUND IMPACT</span>
-            <span class="text-[10px] text-amber-400 bg-amber-950 px-2 py-0.5 rounded">Y &rarr; X</span>
+            <span class="text-[13px] text-amber-400 bg-amber-950 px-2 py-0.5 rounded">Y &rarr; X</span>
           </div>
-          <p class="text-slate-300 font-sans text-[11px]">
+          <p class="text-slate-300 font-sans text-[13px]">
             <strong>Constraint:</strong> y = y_platform (Vertical)<br>
             <strong>Solves When:</strong> <span class="text-amber-300 font-bold">y(t*) = y_plat</span><br>
             <strong>Samples Where:</strong> <span class="text-cyan-300 font-bold">x(t*)</span> (Total Range)
           </p>
-          <div class="text-[10px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
+          <div class="text-[13px] text-slate-500 border-t border-slate-800 pt-1 font-sans">
             Elevated platforms shorten flight time.
           </div>
         </div>
@@ -440,10 +435,10 @@
           <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">?</div>
           <div>
             <h2 class="text-lg md:text-xl font-bold text-white tracking-wide">CHECK YOUR MODEL &middot; DIAGNOSTIC CHECKPOINTS</h2>
-            <p class="text-xs text-slate-400">Targeting misconceptions about event ownership and component time transfer</p>
+            <p class="text-[13px] text-slate-400">Targeting misconceptions about event ownership and component time transfer</p>
           </div>
         </div>
-        <div class="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+        <div class="text-[13px] font-mono text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
           Score: <span id="quizScore" class="text-amber-400 font-bold">0 / 3</span>
         </div>
       </div>
@@ -454,13 +449,13 @@
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard1">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">1</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">1</span>
               A ball is thrown towards a vertical wall located 20 m away. Which factor determines the time required for the ball to reach the wall?
             </span>
-            <span id="badgeQ1" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ1" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(1, 'A')" class="q-btn-1-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Gravitational acceleration g and vertical velocity v_{0y}
             </button>
@@ -472,20 +467,20 @@
             </button>
           </div>
 
-          <div id="explQ1" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ1" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 2 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard2">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">2</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">2</span>
               If the thrower increases the launch angle (increasing v_{0y}) while keeping the horizontal speed v_{0x} constant, what happens to the arrival time at the wall?
             </span>
-            <span id="badgeQ2" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ2" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(2, 'A')" class="q-btn-2-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Arrival time remains unchanged, but height at impact increases
             </button>
@@ -497,20 +492,20 @@
             </button>
           </div>
 
-          <div id="explQ2" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ2" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
         <!-- QUESTION 3 -->
         <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3" id="quizCard3">
           <div class="flex items-start justify-between gap-2">
             <span class="font-semibold text-sm text-white flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-xs flex items-center justify-center font-bold">3</span>
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-300 text-[13px] flex items-center justify-center font-bold">3</span>
               A projectile lands on an elevated rooftop 8 meters above launch level. Why can't we use the standard range formula R = (v_{0}^2 sin 2&theta;) / g?
             </span>
-            <span id="badgeQ3" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
+            <span id="badgeQ3" class="text-[13px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-500">UNANSWERED</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px]">
             <button onclick="answerQuiz(3, 'A')" class="q-btn-3-A p-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-left text-slate-200 border border-slate-800 transition">
               <strong class="text-slate-400 mr-1.5">A</strong> Gravity is stronger at rooftop height
             </button>
@@ -522,14 +517,14 @@
             </button>
           </div>
 
-          <div id="explQ3" class="hidden p-3 rounded-lg text-xs leading-relaxed border"></div>
+          <div id="explQ3" class="hidden p-3 rounded-lg text-[13px] leading-relaxed border"></div>
         </div>
 
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="text-center text-xs text-slate-500 pt-2 pb-6">
+    <footer class="text-center text-[13px] text-slate-500 pt-2 pb-6">
       Physics Invariant Series &middot; Grade 9 Mechanics Foundation &middot; Explorer #129: The Event Clock
     </footer>
 
@@ -657,14 +652,14 @@
         xEvent = sim.wallD;
         yEvent = Math.max(0, sim.v0y * tEvent - 0.5 * g * tEvent * tEvent);
 
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-cyan-950/80 text-cyan-300 border-cyan-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-cyan-950/80 text-cyan-300 border-cyan-600/50';
         badge.textContent = 'HORIZONTAL TRIGGERS TIME';
 
-        trigAxis.className = 'text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold';
+        trigAxis.className = 'text-[13px] font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold';
         trigAxis.textContent = 'TRIGGER: X-AXIS';
 
         step1Dim.textContent = 'HORIZONTAL (X-AXIS)';
-        step1Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
+        step1Dim.className = 'font-mono text-[13px] text-cyan-400 font-semibold';
         step1Desc.innerHTML = `Wall obstacle located at horizontal distance <span class="font-mono text-white font-bold">x = ${sim.wallD.toFixed(1)} m</span>.`;
         step1Eq.innerHTML = `x(t*) = d &nbsp;&rArr;&nbsp; v_{0x} &times; t* = ${sim.wallD.toFixed(1)}m`;
 
@@ -672,7 +667,7 @@
         step2Eq.innerHTML = `t* = d / v_{0x} = ${sim.wallD.toFixed(1)} / ${sim.v0x.toFixed(1)} = ${tEvent.toFixed(2)} s`;
 
         step4Dim.textContent = 'VERTICAL (Y-AXIS)';
-        step4Dim.className = 'font-mono text-[10px] text-purple-400 font-semibold';
+        step4Dim.className = 'font-mono text-[13px] text-purple-400 font-semibold';
         step4Desc.innerHTML = `Evaluate vertical position at <span class="font-mono text-amber-300">t* = ${tEvent.toFixed(2)}s</span> to test wall clearance:`;
 
         const clearMargin = yEvent - sim.wallH;
@@ -709,14 +704,14 @@
         xEvent = sim.v0x * tEvent;
         yEvent = sim.hMax;
 
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-purple-950/80 text-purple-300 border-purple-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-purple-950/80 text-purple-300 border-purple-600/50';
         badge.textContent = 'VERTICAL TRIGGERS TIME';
 
-        trigAxis.className = 'text-xs font-mono text-purple-400 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800 font-bold';
+        trigAxis.className = 'text-[13px] font-mono text-purple-400 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800 font-bold';
         trigAxis.textContent = 'TRIGGER: Y-AXIS (vy = 0)';
 
         step1Dim.textContent = 'VERTICAL (Y-AXIS)';
-        step1Dim.className = 'font-mono text-[10px] text-purple-400 font-semibold';
+        step1Dim.className = 'font-mono text-[13px] text-purple-400 font-semibold';
         step1Desc.innerHTML = `Apex event is reached when vertical velocity vanishes: <span class="font-mono text-white font-bold">v_y(t*) = 0</span>.`;
         step1Eq.innerHTML = `v_{0y} &minus; g &times; t* = 0 &nbsp;&rArr;&nbsp; t* = v_{0y} / g`;
 
@@ -724,7 +719,7 @@
         step2Eq.innerHTML = `t* = ${sim.v0y.toFixed(1)} / 9.81 = ${tEvent.toFixed(2)} s`;
 
         step4Dim.textContent = 'HORIZONTAL (X-AXIS)';
-        step4Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
+        step4Dim.className = 'font-mono text-[13px] text-cyan-400 font-semibold';
         step4Desc.innerHTML = `Horizontal equation samples peak time <span class="font-mono text-amber-300">t* = ${tEvent.toFixed(2)}s</span> to find where peak occurs:`;
         step4Eq.innerHTML = `x(t*) = v_{0x} &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
 
@@ -741,14 +736,14 @@
         xEvent = sim.range;
         yEvent = 0;
 
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-amber-950/80 text-amber-300 border-amber-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-amber-950/80 text-amber-300 border-amber-600/50';
         badge.textContent = 'VERTICAL SETS FLIGHT TIME';
 
-        trigAxis.className = 'text-xs font-mono text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800 font-bold';
+        trigAxis.className = 'text-[13px] font-mono text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800 font-bold';
         trigAxis.textContent = 'TRIGGER: Y-AXIS (y = 0)';
 
         step1Dim.textContent = 'VERTICAL (Y-AXIS)';
-        step1Dim.className = 'font-mono text-[10px] text-amber-400 font-semibold';
+        step1Dim.className = 'font-mono text-[13px] text-amber-400 font-semibold';
         step1Desc.innerHTML = `Impact occurs when vertical coordinate reaches ground level: <span class="font-mono text-white font-bold">y(t*) = 0</span>.`;
         step1Eq.innerHTML = `v_{0y}t* &minus; &frac12;gt*&sup2; = 0 &nbsp;&rArr;&nbsp; t* = 2v_{0y} / g`;
 
@@ -756,7 +751,7 @@
         step2Eq.innerHTML = `t* = (2 &times; ${sim.v0y.toFixed(1)}) / 9.81 = ${tEvent.toFixed(2)} s`;
 
         step4Dim.textContent = 'HORIZONTAL (X-AXIS)';
-        step4Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
+        step4Dim.className = 'font-mono text-[13px] text-cyan-400 font-semibold';
         step4Desc.innerHTML = `Horizontal equation samples <span class="font-mono text-amber-300">t*</span> to find total horizontal range:`;
         step4Eq.innerHTML = `Range R = v_{0x} &times; t* = ${sim.v0x.toFixed(1)} &times; ${tEvent.toFixed(2)} = ${xEvent.toFixed(1)} m`;
 
@@ -768,14 +763,14 @@
         xEvent = sim.ringX;
         yEvent = Math.max(0, sim.v0y * tEvent - 0.5 * g * tEvent * tEvent);
 
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-bold border flex items-center gap-1.5 bg-emerald-950/80 text-emerald-300 border-emerald-600/50';
+        badge.className = 'px-2.5 py-1 rounded-md text-[13px] font-mono font-bold border flex items-center gap-1.5 bg-emerald-950/80 text-emerald-300 border-emerald-600/50';
         badge.textContent = 'TARGET INTERCEPT TIME';
 
-        trigAxis.className = 'text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold';
+        trigAxis.className = 'text-[13px] font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800 font-bold';
         trigAxis.textContent = 'TRIGGER: TARGET X-DISTANCE';
 
         step1Dim.textContent = 'HORIZONTAL (X-AXIS)';
-        step1Dim.className = 'font-mono text-[10px] text-cyan-400 font-semibold';
+        step1Dim.className = 'font-mono text-[13px] text-cyan-400 font-semibold';
         step1Desc.innerHTML = `Target hoop placed at distance <span class="font-mono text-white font-bold">x = ${sim.ringX.toFixed(1)} m</span>.`;
         step1Eq.innerHTML = `t* = x_target / v_{0x} = ${sim.ringX.toFixed(1)} / ${sim.v0x.toFixed(1)}`;
 
@@ -783,7 +778,7 @@
         step2Eq.innerHTML = `t* = ${tEvent.toFixed(2)} s`;
 
         step4Dim.textContent = 'VERTICAL (Y-AXIS)';
-        step4Dim.className = 'font-mono text-[10px] text-purple-400 font-semibold';
+        step4Dim.className = 'font-mono text-[13px] text-purple-400 font-semibold';
         const ringDiff = yEvent - sim.ringY;
         const hit = Math.abs(ringDiff) < 1.0;
         const hitMsg = hit ? 'DIRECT HOOP SWISH!' : (ringDiff > 0 ? `+${ringDiff.toFixed(1)}m TOO HIGH` : `${Math.abs(ringDiff).toFixed(1)}m TOO LOW`);
@@ -847,49 +842,42 @@
 
     // Dragging Wall Fixture directly on SVG
     const svgContainer = document.getElementById('svgContainer');
-    let isDraggingWall = false;
+    let activeWallPointerId = null;
 
-    svgContainer.addEventListener('mousedown', (e) => {
+    function updateWallFromPointer(e) {
+      if (activeWallPointerId !== e.pointerId || sim.eventMode !== 'wall') return;
+      const rect = svgContainer.getBoundingClientRect();
+      const pointerX = e.clientX - rect.left;
+      const relativeX = (pointerX / Math.max(rect.width, 1)) * 520;
+      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
+      sim.wallD = newD;
+      updateEventCalculations();
+      e.preventDefault();
+    }
+
+    svgContainer.addEventListener('pointerdown', (e) => {
       if (sim.eventMode !== 'wall') return;
-      isDraggingWall = true;
+      activeWallPointerId = e.pointerId;
+      if (svgContainer.setPointerCapture) svgContainer.setPointerCapture(e.pointerId);
+      updateWallFromPointer(e);
+      e.preventDefault();
     });
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isDraggingWall || sim.eventMode !== 'wall') return;
-      const rect = svgContainer.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const svgWidth = rect.width;
-      const relativeX = (mouseX / svgWidth) * 520;
-      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
-      sim.wallD = newD;
-      updateEventCalculations();
+    svgContainer.addEventListener('pointermove', updateWallFromPointer);
+
+    function endWallDrag(e) {
+      if (activeWallPointerId !== e.pointerId) return;
+      if (svgContainer.hasPointerCapture && svgContainer.hasPointerCapture(e.pointerId)) {
+        svgContainer.releasePointerCapture(e.pointerId);
+      }
+      activeWallPointerId = null;
+    }
+
+    svgContainer.addEventListener('pointerup', endWallDrag);
+    svgContainer.addEventListener('pointercancel', endWallDrag);
+    svgContainer.addEventListener('lostpointercapture', (e) => {
+      if (activeWallPointerId === e.pointerId) activeWallPointerId = null;
     });
-
-    window.addEventListener('mouseup', () => {
-      isDraggingWall = false;
-    });
-
-    // Touch support for dragging wall
-    svgContainer.addEventListener('touchstart', (e) => {
-      if (sim.eventMode !== 'wall' || e.touches.length !== 1) return;
-      isDraggingWall = true;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isDraggingWall || sim.eventMode !== 'wall' || e.touches.length !== 1) return;
-      const rect = svgContainer.getBoundingClientRect();
-      const mouseX = e.touches[0].clientX - rect.left;
-      const svgWidth = rect.width;
-      const relativeX = (mouseX / svgWidth) * 520;
-      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
-      sim.wallD = newD;
-      updateEventCalculations();
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isDraggingWall = false;
-    });
-
     // =========================================================================
     // DIAGNOSTIC QUIZ ENGINE
     // =========================================================================
@@ -936,20 +924,20 @@
 
       const badge = document.getElementById(`badgeQ${qNum}`);
       if (isCorrect) {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-600 font-bold';
         badge.textContent = 'CORRECT';
       } else {
-        badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
+        badge.className = 'text-[13px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-600 font-bold';
         badge.textContent = 'TRY AGAIN';
       }
 
       const explDiv = document.getElementById(`explQ${qNum}`);
       explDiv.classList.remove('hidden');
       if (isCorrect) {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-emerald-950/80 text-emerald-200 border-emerald-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       } else {
-        explDiv.className = 'p-3 rounded-lg text-xs leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
+        explDiv.className = 'p-3 rounded-lg text-[13px] leading-relaxed border bg-red-950/80 text-red-200 border-red-500/50';
         explDiv.innerHTML = data[`text${choice}`];
       }
 

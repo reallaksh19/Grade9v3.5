@@ -117,6 +117,18 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
   font-size: 13.5px !important;
 }
 
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 13px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 13px !important;
+}
+
 /* ==========================================================================
    2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
    ========================================================================== */
@@ -170,7 +182,7 @@ small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
 }
 
 .metric-tile-sub {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text-muted, #94a3b8);
 }
 
