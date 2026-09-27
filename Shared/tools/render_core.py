@@ -54,6 +54,7 @@ class Ctx:
     packages: list[dict]
     bank: list[dict]
     blueprints: dict
+    authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
 
     def gap(self, duty: str, record: str, detail: str, role: str) -> None:
@@ -617,14 +618,21 @@ DIGEST_SLOT = "g9-digest-pending"
 
 
 def render_digest(ctx: Ctx) -> str:
-    """Digest of the render inputs (manifest, packages, contract version). Kept for callers that
-    need an input fingerprint; the product's own digest (build()) hashes the rendered pages."""
+    """Fingerprint the exact authority-file bytes that can change rendered learner output."""
     h = hashlib.sha256()
+    if ctx.authority_hashes:
+        for label, digest in ctx.authority_hashes:
+            h.update(label.encode("utf-8"))
+            h.update(b"\0")
+            h.update(digest.encode("ascii"))
+            h.update(b"\n")
+        return h.hexdigest()[:16]
+
+    # Compatibility fallback for explicitly constructed contexts. Production context()
+    # always records file-byte authority hashes.
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
         h.update(json.dumps(p, sort_keys=True).encode())
-    # Selected bank records and blueprint policy both affect learner bytes and therefore
-    # belong in the render identity. Omitting either would permit a stale receipt.
     h.update(json.dumps(ctx.bank, sort_keys=True).encode())
     h.update(json.dumps(ctx.blueprints, sort_keys=True).encode())
     h.update(load_json(CONTRACT)["version"].encode())
@@ -691,11 +699,24 @@ def index_page(ctx: Ctx, digest: str) -> str:
 
 # ------------------------------------------------------------------ entry points
 
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def context(manifest_path: Path) -> Ctx:
     manifest = load_json(manifest_path)
-    packages = [load_json(REPO / p) for p in manifest["package_refs"]]
-    bank = [q for b in manifest.get("bank_refs", []) for q in load_json(REPO / b).get("questions", [])]
-    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS))
+    package_paths = [REPO / p for p in manifest["package_refs"]]
+    bank_paths = [REPO / b for b in manifest.get("bank_refs", [])]
+    packages = [load_json(p) for p in package_paths]
+    bank = [q for p in bank_paths for q in load_json(p).get("questions", [])]
+    authority_hashes = [
+        ("manifest", _file_sha256(manifest_path)),
+        *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
+        *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
+        ("blueprints", _file_sha256(BLUEPRINTS)),
+        ("quality-contract", _file_sha256(CONTRACT)),
+    ]
+    return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
 
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
