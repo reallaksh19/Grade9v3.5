@@ -144,7 +144,7 @@
         </div>
 
         <!-- SVG CANVAS -->
-        <div class="w-full flex-1 flex items-center justify-center min-h-[380px] relative bg-slate-950/80 rounded-xl border border-slate-800 p-2 overflow-hidden select-none" id="svgContainer">
+        <div class="w-full flex-1 flex items-center justify-center min-h-[380px] relative bg-slate-950/80 rounded-xl border border-slate-800 p-2 overflow-hidden select-none" id="svgContainer" style="touch-action:none">
           <svg id="eventSvg" viewBox="0 0 520 380" class="w-full h-full max-h-[380px] cursor-crosshair">
             <defs>
               <pattern id="gridPattern129" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -171,17 +171,17 @@
 
             <!-- Coordinate Axes -->
             <line x1="50" y1="20" x2="50" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="40" y="30" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">y (m)</text>
+            <text x="40" y="30" fill="#94a3b8" font-size="13" font-family="monospace" text-anchor="end">y (m)</text>
 
             <line x1="50" y1="320" x2="500" y2="320" stroke="#64748b" stroke-width="2"/>
-            <text x="495" y="335" fill="#94a3b8" font-size="10" font-family="monospace">x (m)</text>
-            <text x="42" y="335" fill="#64748b" font-size="10" font-family="monospace">0</text>
+            <text x="495" y="335" fill="#94a3b8" font-size="13" font-family="monospace">x (m)</text>
+            <text x="42" y="335" fill="#64748b" font-size="13" font-family="monospace">0</text>
 
             <!-- Ground Elevation Plane -->
             <g id="platformGroup">
               <line id="platformLine" x1="50" y1="320" x2="500" y2="320" stroke="#475569" stroke-width="2.5" stroke-dasharray="none"/>
               <rect id="platformFill" x="50" y="320" width="450" height="0" fill="#1e293b" fill-opacity="0.4"/>
-              <text id="platformLabel" x="480" y="315" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">Ground y=0m</text>
+              <text id="platformLabel" x="480" y="315" fill="#64748b" font-size="13" font-family="monospace" text-anchor="end">Ground y=0m</text>
             </g>
 
             <!-- Full Parabolic Trajectory -->
@@ -196,13 +196,13 @@
               <rect id="rectWall" x="-5" y="-120" width="10" height="120" fill="url(#wallGrad)" stroke="#06b6d4" stroke-width="1.5" rx="2"/>
               <!-- Wall Drag Handle Indicator -->
               <circle cx="0" cy="-60" r="10" fill="#06b6d4" fill-opacity="0.3" stroke="#06b6d4" stroke-width="1.5" class="cursor-ew-resize"/>
-              <text x="0" y="-128" fill="#67e8f9" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">WALL x = d</text>
-              <text id="wallDistLabel" x="0" y="16" fill="#67e8f9" font-size="9" font-family="monospace" text-anchor="middle">d = 30.0m</text>
-              <text id="wallHeightLabel" x="12" y="-60" fill="#94a3b8" font-size="8" font-family="monospace">h = 10m</text>
+              <text x="0" y="-128" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">WALL x = d</text>
+              <text id="wallDistLabel" x="0" y="16" fill="#67e8f9" font-size="13" font-family="monospace" text-anchor="middle">d = 30.0m</text>
+              <text id="wallHeightLabel" x="12" y="-60" fill="#94a3b8" font-size="13" font-family="monospace">h = 10m</text>
 
               <!-- Clearance Delta Bracket -->
               <line id="bracketLine" x1="16" y1="-120" x2="16" y2="-150" stroke="#10b981" stroke-width="2"/>
-              <text id="bracketText" x="22" y="-135" fill="#10b981" font-size="9" font-family="monospace">&Delta;y: +3.2m</text>
+              <text id="bracketText" x="22" y="-135" fill="#10b981" font-size="13" font-family="monospace">&Delta;y: +3.2m</text>
             </g>
 
             <!-- TARGET HOOP EVENT FIXTURE (Draggable) -->
@@ -210,22 +210,22 @@
               <circle cx="0" cy="0" r="14" fill="none" stroke="#10b981" stroke-width="3"/>
               <circle cx="0" cy="0" r="2" fill="#34d399"/>
               <line x1="-18" y1="0" x2="18" y2="0" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2"/>
-              <text x="0" y="-18" fill="#a7f3d0" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">TARGET HOOP</text>
-              <text id="ringCoordText" x="0" y="24" fill="#a7f3d0" font-size="8" font-family="monospace" text-anchor="middle">(35m, 12m)</text>
+              <text x="0" y="-18" fill="#a7f3d0" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">TARGET HOOP</text>
+              <text id="ringCoordText" x="0" y="24" fill="#a7f3d0" font-size="13" font-family="monospace" text-anchor="middle">(35m, 12m)</text>
             </g>
 
             <!-- APEX EVENT FIXTURE -->
             <g id="fixtureApex" class="hidden" transform="translate(200, 150)">
               <line x1="-35" y1="0" x2="35" y2="0" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3,3"/>
               <circle cx="0" cy="0" r="5" fill="#c084fc"/>
-              <text x="0" y="-12" fill="#e9d5ff" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">APEX (vy=0)</text>
+              <text x="0" y="-12" fill="#e9d5ff" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">APEX (vy=0)</text>
             </g>
 
             <!-- THE EVENT LOCATION MARKER (The Instant where t* is Evaluated) -->
             <g id="eventPointMarker" class="event-pulse" transform="translate(250, 200)">
               <circle cx="0" cy="0" r="14" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="2"/>
               <circle cx="0" cy="0" r="6" fill="#fbbf24"/>
-              <text x="0" y="-18" fill="#fde68a" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle">EVENT INSTANT t*</text>
+              <text x="0" y="-18" fill="#fde68a" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">EVENT INSTANT t*</text>
 
               <!-- Velocity Vectors at Event -->
               <line id="evVxLine" x1="0" y1="0" x2="28" y2="0" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowVx129)"/>
@@ -847,49 +847,42 @@
 
     // Dragging Wall Fixture directly on SVG
     const svgContainer = document.getElementById('svgContainer');
-    let isDraggingWall = false;
+    let activeWallPointerId = null;
 
-    svgContainer.addEventListener('mousedown', (e) => {
+    function updateWallFromPointer(e) {
+      if (activeWallPointerId !== e.pointerId || sim.eventMode !== 'wall') return;
+      const rect = svgContainer.getBoundingClientRect();
+      const pointerX = e.clientX - rect.left;
+      const relativeX = (pointerX / Math.max(rect.width, 1)) * 520;
+      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
+      sim.wallD = newD;
+      updateEventCalculations();
+      e.preventDefault();
+    }
+
+    svgContainer.addEventListener('pointerdown', (e) => {
       if (sim.eventMode !== 'wall') return;
-      isDraggingWall = true;
+      activeWallPointerId = e.pointerId;
+      if (svgContainer.setPointerCapture) svgContainer.setPointerCapture(e.pointerId);
+      updateWallFromPointer(e);
+      e.preventDefault();
     });
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isDraggingWall || sim.eventMode !== 'wall') return;
-      const rect = svgContainer.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const svgWidth = rect.width;
-      const relativeX = (mouseX / svgWidth) * 520;
-      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
-      sim.wallD = newD;
-      updateEventCalculations();
+    svgContainer.addEventListener('pointermove', updateWallFromPointer);
+
+    function endWallDrag(e) {
+      if (activeWallPointerId !== e.pointerId) return;
+      if (svgContainer.hasPointerCapture && svgContainer.hasPointerCapture(e.pointerId)) {
+        svgContainer.releasePointerCapture(e.pointerId);
+      }
+      activeWallPointerId = null;
+    }
+
+    svgContainer.addEventListener('pointerup', endWallDrag);
+    svgContainer.addEventListener('pointercancel', endWallDrag);
+    svgContainer.addEventListener('lostpointercapture', (e) => {
+      if (activeWallPointerId === e.pointerId) activeWallPointerId = null;
     });
-
-    window.addEventListener('mouseup', () => {
-      isDraggingWall = false;
-    });
-
-    // Touch support for dragging wall
-    svgContainer.addEventListener('touchstart', (e) => {
-      if (sim.eventMode !== 'wall' || e.touches.length !== 1) return;
-      isDraggingWall = true;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isDraggingWall || sim.eventMode !== 'wall' || e.touches.length !== 1) return;
-      const rect = svgContainer.getBoundingClientRect();
-      const mouseX = e.touches[0].clientX - rect.left;
-      const svgWidth = rect.width;
-      const relativeX = (mouseX / svgWidth) * 520;
-      const newD = Math.max(5, Math.min(sim.range * 0.95, (relativeX - sim.originX) / sim.scaleX));
-      sim.wallD = newD;
-      updateEventCalculations();
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isDraggingWall = false;
-    });
-
     // =========================================================================
     // DIAGNOSTIC QUIZ ENGINE
     // =========================================================================
