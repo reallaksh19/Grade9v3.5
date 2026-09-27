@@ -31601,7 +31601,7 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-PHY-NLM-FIRST-LAW-AUTHORED",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
         },
         {
           "package_id": "LIB-PHY-NLM-MOMENTUM-TRANSFER-AUTHORED",
