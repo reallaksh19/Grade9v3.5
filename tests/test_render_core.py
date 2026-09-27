@@ -108,6 +108,7 @@ class Renderer(unittest.TestCase):
         self.assertNotIn('vendor/katex/', html)
 
         labels = [label for label, _digest in ctx.authority_hashes]
+        self.assertIn("renderer-source", labels)
         self.assertIn("blueprints", labels)
         self.assertIn("tablet-css", labels)
         self.assertTrue(any(label.startswith("bank:") for label in labels))
