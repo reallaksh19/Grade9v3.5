@@ -1,0 +1,467 @@
+{
+  "schema": "product-review/v1",
+  "product": "phy-kin-2d-motion",
+  "verifier": "agent-verifier-6",
+  "reviewed_at": "2026-09-27",
+  "render_digest": "5e64f1570dc30ee2",
+  "previous_findings": [
+    {
+      "record": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "severity": "S1",
+      "status": "FIXED",
+      "note": "The pre-attempt caption now reads 'The launch' and the pre-attempt SVG (one stage group, no <title>/<desc>, aria-label 'The launch') shows only u_x = 12 m/s, u_y = 20 m/s and a marked apex point. The apex velocity, acceleration and v_y = 0 condition appear only in the post-attempt mount."
+    },
+    {
+      "record": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+      "severity": "S2",
+      "status": "FIXED",
+      "note": "ILLUSTRATOR part fixed: the pre-attempt caption is 'The flight' and the pre-attempt stage shows only g = 8 m/s², u_x = 12 m/s and u_y = 16 m/s. The AUTHOR part (rung 2 repeats rung 1) is still open and is re-filed below as S3."
+    },
+    {
+      "record": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "severity": "S3",
+      "status": "FIXED",
+      "note": "The third reconstruct prompt now belongs to the skater attempt ('At t = 4 s, what do v_x = 5 − t and v_y = 2t give…'), and both rubrics now name the requested outputs. But the fix put the final values into 'Your answer should contain', which renders in the attempt block before any attempt. That regression is filed as a new S1 for the skater and the boat."
+    },
+    {
+      "record": "PRODUCT-PHY-KIN-2D-MOTION",
+      "severity": "S3",
+      "status": "OPEN",
+      "note": "The page script is unchanged: any 3 characters unlock a unit, and search still filters on article.textContent, including locked answers. Re-filed below."
+    }
+  ],
+  "units_reviewed": [
+    {
+      "page": "core1.html",
+      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1.html",
+      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1.html",
+      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1a.html",
+      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1a.html",
+      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1a.html",
+      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core1b.html",
+      "unit": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core1b.html",
+      "unit": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core1b.html",
+      "unit": "MIC-PHY-KIN-PROJECTILE-MODEL",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-IITJEE-2011-P2-Q33",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2018-P2-Q08",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2019-P2-Q09",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2021-P1-Q05",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2021-P1-Q06",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2024-P2-Q09",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-IITJEE-2012-P1-Q05",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2022-P1-Q08",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2023-P1-Q01",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2025-P2-Q15",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-IITJEE-2011-P2-Q26",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2014-P1-Q11",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2026-P1-Q06",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEADV-2013-P1-Q07",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2.html",
+      "unit": "PYQ-PHY-JEEMAIN-2026-04APR-S2-Q29",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2a.html",
+      "unit": "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2a.html",
+      "unit": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core2a.html",
+      "unit": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core2a.html",
+      "unit": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core2a.html",
+      "unit": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": false
+    },
+    {
+      "page": "core2b.html",
+      "unit": "Q-PHY-KIN-2D-2B-REPRESENTATION-01",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2b.html",
+      "unit": "Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2b.html",
+      "unit": "Q-PHY-KIN-2D-2B-UNEQUAL-HEIGHT-03",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2b.html",
+      "unit": "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    },
+    {
+      "page": "core2b.html",
+      "unit": "Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05",
+      "checks": [
+        "physics",
+        "figure",
+        "teaching",
+        "interaction"
+      ],
+      "agrees": true
+    }
+  ],
+  "findings": [
+    {
+      "severity": "S1",
+      "duty_for": "AUTHOR",
+      "record": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
+      "page": "core1b.html",
+      "detail": "The final answer is printed before the attempt. The attempt block, which is visible before any attempt (confirmed in Chromium and on a screenshot, outside every disclosure), ends 'Your answer should contain: A per-axis validity check, the four component equations on one t, and v = (1, 8) m/s, r = (12, 16) m at t = 4 s.' Those are exactly the two quantities the task asks the learner to find, so the reconstruction attempt can be copied. This came in with the fix round 4 rewrite of the rubric. Keep the values out of the pre-attempt criteria: 'Your answer should contain: a per-axis validity check, the four component equations on one t, and the velocity and position at t = 4 s as component pairs.' The values v = (1, 8) m/s and r = (12, 16) m belong only in the locked model response, where they already are. (Alternatively, RENDERER: render success criteria after the attempt.)"
+    },
+    {
+      "severity": "S1",
+      "duty_for": "AUTHOR",
+      "record": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "page": "core1b.html",
+      "detail": "The final answer is printed before the attempt. The visible attempt block ends 'Your answer should contain: A two-column x/y setup on one clock, the position (15, 20) m at t = 5 s, and a rejected mixed-instant pair such as x(5 s) with y(4 s), (15, 16) m.' It gives the position the task asks for, and the worked rejected pair, before the learner has written anything. Use 'Your answer should contain: a two-column x/y setup on one clock, the boat's position at t = 5 s, and one pair of values you refuse to call a position, with the reason.' Keep (15, 20) m and (15, 16) m only in the locked model response."
+    },
+    {
+      "severity": "S2",
+      "duty_for": "AUTHOR",
+      "record": "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+      "page": "core2a.html",
+      "detail": "The family closure is false for the current transfer task. It reads 'The transfer task asks you first to decide, axis by axis, whether that condition holds at all.' The linked Core2B task (Q-PHY-KIN-2D-2B-MODEL-VALIDITY-02) now states both pucks' accelerations as constant and asks whether two pucks collide. It asks for no per-axis validity decision. Use: 'Established: with both acceleration components constant, the one-dimensional relations run once per axis on a shared interval with their signs kept. The transfer task puts two bodies on one clock: a collision needs both coordinates to agree at the same t, not just the paths to cross.'"
+    },
+    {
+      "severity": "S2",
+      "duty_for": "AUTHOR",
+      "record": "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03",
+      "page": "core2a.html",
+      "detail": "The family closure is false for the current transfer task. It reads 'The transfer task compares two equal-height events on one path using the same component facts, without solving for any time.' The linked Core2B task (Q-PHY-KIN-2D-2B-SAME-HEIGHT-VELOCITY-05) asks when the velocity points 45° below the horizontal, and solves 20 − 10t = −10 for t = 3 s. It compares no equal-height events. Use: 'Established: the apex is the event v_y = 0, with v_x unchanged and a_y = −g still acting. The transfer task names its event by a direction of motion, so the condition becomes a ratio of the two velocity components.'"
+    },
+    {
+      "severity": "S3",
+      "duty_for": "AUTHOR",
+      "record": "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04",
+      "page": "core2a.html",
+      "detail": "The family closure misdescribes the transfer task. It says 'The transfer task asks whether the projectile model itself still holds when a force keeps acting after release.' In Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04, no force keeps acting on the package: the model does hold, and the decision is the package's launch velocity, taken from the plane at release. Use: '…The transfer task gives no launch velocity: you decide what the package's velocity is at the instant of release, and which forces act on it afterwards.'"
+    },
+    {
+      "severity": "S3",
+      "duty_for": "AUTHOR",
+      "record": "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05",
+      "page": "core2a.html",
+      "detail": "Still open from round 3. Rung 2 ('Write the landing geometry first: identify Delta y when the projectile returns to its launch height.') asks the same thing as rung 1 ('What vertical displacement condition is true at a same-height landing?'). Make rung 2 climb: 'Write Δy(t) = 16t − 4t² for this launch and set it equal to that condition.'"
+    },
+    {
+      "severity": "S3",
+      "duty_for": "RENDERER",
+      "record": "PRODUCT-PHY-KIN-2D-MOTION",
+      "page": "core2b.html",
+      "detail": "Still open. Gating holds in Chromium: none of the 34 gated disclosures (core1a 3, core1b 6, core2 15, core2a 5, core2b 5) opened on click, Enter or Space without an attempt, and an empty or whitespace attempt does not unlock. Hints reveal one rung per click (1 → 2 → 3 → 4, then disabled) on all 5 Core2A items. Stage stepping, the display panel (dark theme, zoom 1.1) and Home (../../../index.html) work. All 8 lineage and repair link targets exist. There are no JS errors, no horizontal overflow at 1280 px and no overlapping figure labels. But any 3 characters ('abc') still unlock a unit. Search still filters on article.textContent, including locked answers: '4.5' shows only 2B-MODEL-VALIDITY-02, '14.1' only 2B-SAME-HEIGHT-VELOCITY-05, '200 m' only 2B-PROJECTILE-VALIDITY-04, '48' only 2A-SAME-HEIGHT-05, '7.5' only 2A-CONSTANT-ACCEL-02, and '4.75' only the Core1B basketball unit. Search only text outside locked disclosures (or only unlocked units)."
+    },
+    {
+      "severity": "S3",
+      "duty_for": "RENDERER",
+      "record": "PRODUCT-PHY-KIN-2D-MOTION",
+      "page": "index.html",
+      "detail": "An internal code reaches the learner. Every page footer reads 'Physics · PRODUCT-PHY-KIN-2D-MOTION'. Print the learner title instead: 'Physics · Two-dimensional kinematics and projectile model'."
+    }
+  ]
+}

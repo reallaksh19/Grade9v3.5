@@ -68,6 +68,10 @@ class Renderer(unittest.TestCase):
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
 
+    def test_source_option_labels_are_printed_once(self):
+        html = self.pages[render_core.ROLE_FILE["CORE2"]]
+        self.assertIsNone(re.search(r"\([a-d]\) \([A-D1-4]\)", html))
+
     def test_authored_svg_asset_is_mounted_with_its_stages(self):
         m = json.loads(manifest_file(self.tmp).read_text(encoding="utf-8"))
         pkg = json.loads((REPO / PKG).read_text(encoding="utf-8"))
@@ -137,6 +141,37 @@ class Promotion(unittest.TestCase):
         self.assertEqual(stamp["verification"], "v.json")
         self.assertEqual(merged["schema_version"], "0.2.0")
 
+
+class PromotionBatch(unittest.TestCase):
+    """A prerequisite taught by a sibling node counts only when the sibling is promoted in the same batch."""
+
+    def run_plan(self, verified):
+        def node(n, cap, pre):
+            ext = {"grade9v3:research_node": n}
+            return [{"id": f"MIC-{n}", "primary_capability_ref": cap, "prerequisite_refs": pre, "extensions": ext},
+                    {"id": cap, "extensions": ext}]
+        mics_a, caps_a = node("A", "CAP-A", [])
+        mics_b, caps_b = node("B", "CAP-B", ["CAP-A"])
+        staging = {"C": {"schema_version": "0.2.0", "microtopics": [mics_a, mics_b], "capabilities": [caps_a, caps_b]}}
+        board = {"subject": "Mathematics", "nodes": [
+            {"node": n, "chapter": "C", "level": "MICROTOPIC", "stage": "VERIFIED" if n in verified else "VERIFIER",
+             "duties": [], "verification": f"{n}.json"} for n in ("A", "B")]}
+        original = package_depth.package_duties
+        package_depth.package_duties = lambda pkg, rel, taught, limit: [
+            {"duty": "TEACH_PREREQUISITE_BRIDGE"} for m in pkg.get("microtopics", [])
+            for r in m.get("prerequisite_refs", []) if r not in taught]
+        try:
+            return promote_verified.plan(board, staging, set(), 4)
+        finally:
+            package_depth.package_duties = original
+
+    def test_a_verified_sibling_unblocks_its_dependent(self):
+        self.assertEqual(sorted(i["node"] for i in self.run_plan({"A", "B"})["promotable"]), ["A", "B"])
+
+    def test_an_unpromoted_sibling_does_not(self):
+        res = self.run_plan({"B"})
+        self.assertEqual(res["promotable"], [])
+        self.assertIn("depth duties", {r["reason"] for r in res["refused"]})
 
 if __name__ == "__main__":
     unittest.main()

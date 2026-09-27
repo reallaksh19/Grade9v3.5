@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -36,6 +37,9 @@ def complete_fixture(tmp: Path) -> Path:
     m = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
     m["compact_anchor"] = {"prompt": "Is x = 2 a solution of 3x + 2 = 9?",
                            "result": "No: 3 × 2 + 2 = 8, and 8 ≠ 9, so the claim is false for x = 2."}
+    m["elicitation"]["attempt"]["task"] = {
+        "prompt": "Decide, without solving, whether x = 5 makes 2x + 1 = 11 true, and whether x = 4 does. Show each substitution.",
+        "givens": ["2x + 1 = 11", "candidates x = 5 and x = 4"]}
     for u in m["construction_units"]:
         u.pop("migrated_from", None)
         u["worked_anchor_ref"] = "Q-MATH-LINEAR-01"
@@ -55,7 +59,9 @@ def complete_fixture(tmp: Path) -> Path:
               "transfer": {"dimension": "model_choice", "builds_on": ["Q-MATH-LINEAR-01"],
                            "statement": "The addition now sits inside the multiplication, so the undo order reverses: divide by 3 first.",
                            "invariant": "Each step is an equivalent operation on both sides, and the answer stays an exact fraction.",
-                           "protected_move_ref": None}})
+                           "protected_move_ref": None,
+                           "novelty": {"checked_against": ["Q-MATH-LINEAR-01", "MIC-MATH-CONSTRAINT:boundary_test"],
+                                       "why_new": "The earlier item undoes an addition then a multiplication; here the bracket reverses the undo order, which no earlier item shows."}}})
     t["answer"] = dict(q["answer"], summary="x = 7/3.",
                        reasoning=["Divide both sides by 3: x + 2 = 13/3.", "Subtract 2: x = 13/3 − 6/3 = 7/3.",
                                   "Check: 3(7/3 + 2) = 3 × 13/3 = 13."],
@@ -122,6 +128,16 @@ class Gate(unittest.TestCase):
         self.assertIn("C2A-REVEAL-GATED", {f["rule"] for f in report["findings"]})
         self.assertIn("CONT_LINK_UNRESOLVED", {c["code"] for c in report["continuity"]})
 
+    def test_lineage_to_a_core1a_worked_anchor_links_to_its_microtopic(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        m["selection"]["core2a"] = []                  # the earlier item is shown only as the Core1A worked anchor
+        manifest.write_text(json.dumps(m), encoding="utf-8")
+        out = self.build(manifest, draft=True)         # no Core2A practice is a gap; only the link matters here
+        self.assertIn('href="core1a.html#MIC-MATH-CONSTRAINT"', (out / "core2b.html").read_text(encoding="utf-8"))
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertNotIn("CONT_LINK_UNRESOLVED", {c["code"] for c in report["continuity"]})
+
     def test_pre_attempt_figure_that_shows_the_result_fails(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))
@@ -133,6 +149,84 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         self.assertIn("ALL-PRE-ATTEMPT-FIGURE-PARTIAL", {f["rule"] for f in report["findings"]})
 
+    def test_withheld_stages_are_absent_from_the_markup_not_hidden(self):
+        out = self.build(complete_fixture(self.tmp))
+        html = (out / "core2a.html").read_text(encoding="utf-8")
+        fig = re.search(r'<figure[^>]*data-g9-stage="PRE_ATTEMPT".*?</figure>', html, re.S).group(0)
+        self.assertIn('data-g9-stage-id="VIS-MATH-NL-1"', fig)
+        self.assertNotIn('data-g9-stage-id="VIS-MATH-NL-3"', fig)      # the exact point is the result
+        self.assertNotIn("<title", fig)
+        self.assertIn('aria-label="Number line"', fig)                   # named from the shown stage only
+        self.assertIn('data-g9-caption="stages">Number line</figcaption>', fig)   # not the purpose note
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertNotIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
+
+    def test_a_pre_attempt_figure_that_only_hides_later_stages_fails(self):
+        out = self.build(complete_fixture(self.tmp))
+        page = out / "core2a.html"
+        html = page.read_text(encoding="utf-8")
+        hidden = '<g data-g9-stage-id="VIS-MATH-NL-3" style="display:none"><text>7/3</text></g></svg>'
+        start = html.index('data-g9-stage="PRE_ATTEMPT"')
+        end = html.index("</svg>", start)
+        page.write_text(html[:end] + hidden + html[end + len("</svg>"):], encoding="utf-8")
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
+
+    def test_core1b_mounts_its_own_task_figure(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        rep = copy.deepcopy(next(r for r in pkg["representations"] if r["id"] == "REP-MATH-NUMBER-LINE"))
+        rep["id"] = "REP-MATH-TASK-CANDIDATES"
+        pkg["representations"].append(rep)
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["elicitation"]["attempt"]["task"]["representation_ref"] = "REP-MATH-TASK-CANDIDATES"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        html = (self.build(manifest) / "core1b.html").read_text(encoding="utf-8")
+        self.assertIn('data-g9-representation="REP-MATH-TASK-CANDIDATES"', html)
+        self.assertNotIn('data-g9-representation="REP-MATH-NUMBER-LINE"', html)
+
+    def test_core1_mounts_the_compact_anchor_figure(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        rep = copy.deepcopy(next(r for r in pkg["representations"] if r["id"] == "REP-MATH-NUMBER-LINE"))
+        rep["id"] = "REP-MATH-ANCHOR-X2"
+        pkg["representations"].append(rep)
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["compact_anchor"]["representation_ref"] = "REP-MATH-ANCHOR-X2"
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        html = (self.build(manifest) / "core1.html").read_text(encoding="utf-8")
+        self.assertIn('data-g9-representation="REP-MATH-ANCHOR-X2"', html)
+
+    def test_a_pre_attempt_figure_captioned_with_its_purpose_fails(self):
+        out = self.build(complete_fixture(self.tmp))
+        page = out / "core2a.html"
+        html = page.read_text(encoding="utf-8")
+        start = html.index('data-g9-stage="PRE_ATTEMPT"')
+        cap = html.index('data-g9-caption="stages"', start)
+        page.write_text(html[:cap] + 'data-g9-caption="purpose"' + html[cap + len('data-g9-caption="stages"'):], encoding="utf-8")
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
+
+    def test_success_criteria_and_ids_stay_out_of_the_pre_attempt_page(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["elicitation"]["attempt"]["produces"] = "Both substitutions: x = 5 gives 11 (true), x = 4 gives 9 (false)."
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        out = self.build(manifest)
+        html = (out / "core1b.html").read_text(encoding="utf-8")
+        before = html.split('data-blueprint-slot="reconstruction"')[0]
+        self.assertNotIn("x = 5 gives 11", before)                     # the answer's description waits
+        self.assertIn("x = 5 gives 11", html)                           # ...inside the gated reconstruction
+        for page in out.glob("core*.html"):
+            self.assertNotIn("FIXTURE-MATH-LINEAR", page.read_text(encoding="utf-8").split("<footer")[1])
+
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))
@@ -143,6 +237,20 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         codes = [c["code"] for c in report["continuity"]]
         self.assertEqual(sorted(codes), ["CONT_INPUT_NOT_RENDERED", "CONT_INPUT_UNRESOLVED"])
+
+    def test_one_scene_reused_for_different_items_fails(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        twin = copy.deepcopy(next(x for x in pkg["questions"] if x["id"] == "Q-MATH-LINEAR-01"))
+        twin.update(id="Q-MATH-LINEAR-TWIN", stem="Solve 5x + 1 = 12 over the rationals.")
+        pkg["questions"].append(twin)
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        m["selection"]["core2a"].append("Q-MATH-LINEAR-TWIN")
+        manifest.write_text(json.dumps(m), encoding="utf-8")
+        report = quality_gate.gate(self.build(manifest), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-FIGURE-SPECIFIC", {f["rule"] for f in report["findings"]})
 
     def test_a_report_cannot_claim_pass_with_findings(self):
         report = quality_gate.gate(self.build(complete_fixture(self.tmp)), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)

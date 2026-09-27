@@ -69,6 +69,10 @@ Definition of complete (Shared/workflows/research-first.v1.json `definition_of_c
   progressive hints, full derivation, and answer with an independent check.
 
 Hard rules:
+- Before every push, run the full suite: `python3 -m unittest discover -s tests -p "test_*.py"`. Only the
+  browser-runtime tests already failing on the base branch may fail; anything else you caused, you fix.
+- Never edit `Shared/tools/`, `tests/` or the quality contract. If a tool or test is wrong, say so in
+  your summary; the owner's session changes tools.
 - No web. No facts, numbers or exam identities from memory.
 - Fact fields (`must_cite_cards`) cite passing cards. Never mark them `AUTHORED_PEDAGOGICAL`.
 - A source question cites both its QUESTION card and its ANSWER_KEY card. Keep

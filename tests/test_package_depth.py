@@ -98,6 +98,13 @@ class Duties(unittest.TestCase):
         self.assertNotIn(("TEACH_PREREQUISITE_BRIDGE", m["id"]), {(d["duty"], d["record"]) for d in self.duties(pkg)})
 
 
+    def test_a_prerequisite_taught_in_the_same_package_needs_no_bridge(self):
+        pkg = copy.deepcopy(self.pkg)
+        m = pkg["microtopics"][0]
+        pkg["capabilities"].append({"id": "CAP-TAUGHT-HERE-ONLY"})
+        m["prerequisite_refs"] = ["CAP-TAUGHT-HERE-ONLY"]
+        self.assertNotIn(("TEACH_PREREQUISITE_BRIDGE", m["id"]), {(d["duty"], d["record"]) for d in self.duties(pkg)})
+
 class WorkflowAgreement(unittest.TestCase):
     def test_workflow_depth_duties_match_the_depth_tool(self):
         workflow = json.loads((REPO / "Shared/workflows/research-first.v1.json").read_text(encoding="utf-8"))

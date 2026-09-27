@@ -1,6 +1,6 @@
 {
   "schema": "learner-quality-contract/v1",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
   "families": {
     "DEPTH": "Content a learner needs, at the depth the references show.",
@@ -75,7 +75,6 @@
       "conditions",
       "invariant_changed",
       "safe_support",
-      "commitment",
       "changed_demand",
       "protected_move",
       "reasoning_route",
@@ -705,6 +704,44 @@
       "audit_refs": [],
       "grammar": null,
       "text": "A staged figure shown before the attempt stops before its final stage; the completed figure (which shows the result) appears only after the attempt."
+    },
+    {
+      "id": "ALL-PRE-ATTEMPT-MARKUP-WITHHELD",
+      "family": "INTERACTION",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1B",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "pre_attempt_markup_withheld"
+      },
+      "audit_refs": [],
+      "grammar": null,
+      "text": "Stages withheld before the attempt are absent from the page, not hidden: a pre-attempt figure's markup carries only the stages it shows, not the asset's own title or description of the whole figure, and its caption names only the shown stages (the representation's design purpose often names the result)."
+    },
+    {
+      "id": "ALL-FIGURE-SPECIFIC",
+      "family": "DEPTH",
+      "measure": "STATIC",
+      "roles": [
+        "CORE1A",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "severity": "S1",
+      "check": {
+        "op": "figures_specific_across_page",
+        "stages": [
+          "TEACHING",
+          "PRE_ATTEMPT"
+        ]
+      },
+      "audit_refs": [],
+      "grammar": "R2:question-aligned representation",
+      "text": "A teaching or pre-attempt figure depicts the situation of the one construction unit or question it is staged for; one scene reused for different situations is not a representation of them. Post-attempt figures may repeat."
     },
     {
       "id": "ALL-FIGURES-TITLED",

@@ -332,6 +332,22 @@ window.GRADE9V3_RESEARCH_FIRST_WORKFLOW = {
    "fields": "product manifest diagnostic",
    "do": "Select at least the intake's minimum number of short diagnostic items for the start page.",
    "contract_rules": []
+  },
+  "AUTHOR_RECONSTRUCTION_TASK": {
+   "role": "AUTHOR",
+   "fields": "microtopic.elicitation.attempt.task",
+   "do": "Give Core1B a concrete task (a body, givens, numbers or a situation) the learner reconstructs from; `produces` stays the description of a complete answer.",
+   "contract_rules": [
+    "C1B-BLOCKS"
+   ]
+  },
+  "AUTHOR_TRANSFER_NOVELTY": {
+   "role": "AUTHOR",
+   "fields": "question.transfer.novelty (checked_against, why_new)",
+   "do": "Check the transfer against every Core1A worked anchor and diagnose/repair, Core1B boundary test and Core2A item of the same capability; if its deciding move is already shown answered there, write a new task; record what you checked and why the decision is new.",
+   "contract_rules": [
+    "C2B-LINEAGE"
+   ]
   }
  },
  "definition_of_complete": "A unit is complete only when its records carry no depth duty (package_depth.py) and its product passes the rendered quality gate (quality_gate.py). Structural presence, a label, a validation report or a COMPLETED duty status never counts."

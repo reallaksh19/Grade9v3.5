@@ -47,6 +47,8 @@ DUTIES = {
     "AUTHOR_ELICITATION": ("AUTHOR", ["C1B-BLOCKS"]),
     "ACQUIRE_SOURCE": ("RESEARCHER", ["C2-BLOCKS"]),
     "AUTHOR_DIAGNOSTIC": ("AUTHOR", []),
+    "AUTHOR_RECONSTRUCTION_TASK": ("AUTHOR", ["C1B-BLOCKS"]),
+    "AUTHOR_TRANSFER_NOVELTY": ("AUTHOR", ["C2B-LINEAGE"]),
 }
 
 
@@ -72,6 +74,9 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         duties.append({"duty": kind, "role": role, "subject": pkg["subject"], "package": rel,
                        "record": record, "contract_rules": rules, "detail": detail})
 
+    # A prerequisite taught by another microtopic of this same package is bridged inside the product.
+    taught = taught | {c["id"] for c in pkg.get("capabilities", [])} | {
+        f"{pkg.get('subject')}:{c['id']}" for c in pkg.get("capabilities", [])}
     reps = {r["id"]: r for r in pkg.get("representations", [])}
     for r in reps.values():
         if not (r.get("scene_instances") or r.get("rendered_asset_refs")):
@@ -102,6 +107,8 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
             add("AUTHOR_GOVERNING_RELATION", m["id"], "no governing relation")
         if not m.get("elicitation"):
             add("AUTHOR_ELICITATION", m["id"], "no predict/attempt/reconstruct/boundary cycle for Core1B")
+        elif not ((m["elicitation"].get("attempt") or {}).get("task")):
+            add("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task); `produces` only describes the answer")
         for ref in m.get("prerequisite_refs", []):
             if ref not in taught:
                 add("TEACH_PREREQUISITE_BRIDGE", m["id"], f"prerequisite {ref} is taught by no library")
@@ -121,6 +128,9 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         if "CORE2B" in cores:
             if not roles.get("safe_ref"):
                 add("AUTHOR_SAFE_REPRESENTATION", q["id"], "no safe pre-commitment representation")
+            nov = (q.get("transfer") or {}).get("novelty") or {}
+            if not (nov.get("checked_against") and nov.get("why_new")):
+                add("AUTHOR_TRANSFER_NOVELTY", q["id"], "no record of the earlier items this transfer was checked against, and why its decision is new")
             if not (q.get("transfer") or {}).get("invariant"):
                 add("AUTHOR_LINEAGE_CHECK", q["id"], "no invariant-versus-changed lineage check")
         if cores & {"CORE2A", "CORE2B"} and not (q.get("independent_check") or (q.get("answer") or {}).get("check")):

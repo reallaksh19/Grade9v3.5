@@ -1,0 +1,668 @@
+{
+  "schema": "laws-of-motion-agent-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "subject": "Physics",
+  "chapter": 5,
+  "chapter_title": "Laws of Motion, Friction & Circular Dynamics",
+  "source_basis": {
+    "acquisition_id": "ACQ-4C6C8FE3B52DACC9C01C",
+    "bucket_id": "PHY-11-LAWS-OF-MOTION",
+    "registered_source": "p2.pdf",
+    "source_sha256": "4c6c8fe3b52dacc9c01c7e7ad428975a79b24e36c64ae0c9d95eedb9d6314a84",
+    "in_scope_pdf_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "in_scope_book_pages": "138 to 187",
+    "ocr_engine": "RapidOCR 1.2.3"
+  },
+  "mathematical_families": [
+    "Newton's Laws & Impulse-Momentum Theorem",
+    "Connected Bodies & Constraint Kinematics",
+    "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+    "Inclined Plane Dynamics & Angle of Repose",
+    "Circular Dynamics & Pseudo Forces"
+  ],
+  "explorer_recommendation": {
+    "name": "Dynamic Free Body Diagram & Two-Block Friction Threshold Lab",
+    "admission_test_passed": true,
+    "rationale": "Real-time interactive Free Body Diagram simulator for two stacked blocks (m1 on m2) with static and kinetic friction thresholds. Renders force vectors (Normal, Gravity, Friction couples, String Tension), checks threshold slipping condition, and computes common vs relative slip accelerations."
+  },
+  "clinic_candidates": [
+    {
+      "rank": 1,
+      "id": "Q-PHY-11-NLM-P32-L1B-12",
+      "title": "Connected Blocks with Light Spring Under External Pull",
+      "bottleneck": "Failing to recognize that spring force F_s = ma acts as an internal constraint force opposing the pulled mass M."
+    },
+    {
+      "rank": 2,
+      "id": "Q-PHY-11-NLM-P45-L1D-07",
+      "title": "Work Done Against Kinetic Friction at Constant Velocity",
+      "bottleneck": "Assuming zero net acceleration implies zero work done by the external pulling agent."
+    },
+    {
+      "rank": 3,
+      "id": "Q-PHY-11-NLM-P41-L1C-07",
+      "title": "Self-Adjusting Nature of Static Friction on Abrupt Stop",
+      "bottleneck": "Believing friction remains at its maximum limiting value rather than vanishing when no tending force exists."
+    },
+    {
+      "rank": 4,
+      "id": "Q-PHY-11-NLM-P03-TH-01",
+      "title": "Rotor / Death Well Minimum Angular Frequency",
+      "bottleneck": "Inverting the roles of normal reaction (providing centripetal acceleration) and static friction (balancing gravity)."
+    }
+  ],
+  "question_count": 20,
+  "rows": [
+    {
+      "id": "Q-PHY-11-NLM-P26-L1A-04",
+      "page": 26,
+      "book_page": "163",
+      "section": "LEVEL-IA",
+      "type": "SINGLE_CHOICE",
+      "source_label": "4",
+      "stem": "When we catch a cricket ball, we catch it at the front and make the hands move with the ball backwards. Why is that?",
+      "options": [
+        "(a) To reduce the impulse",
+        "(b) To increase the impulse",
+        "(c) To increase the time of contact, thereby increase the force",
+        "(d) To increase the time of contact, thereby decrease the force"
+      ],
+      "source_answer": "(d) To increase the time of contact, thereby decrease the force",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Impulse J = F_avg * Delta_t = Delta_p. Bringing the ball of fixed mass m and velocity v to rest involves a fixed change in momentum Delta_p. By moving the hands backward, contact duration Delta_t increases, which reduces the average impulsive force F_avg = Delta_p / Delta_t experienced by the hands. Option (d).",
+      "mathematical_family": "Newton's Laws & Impulse-Momentum Theorem",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P26-L1A-05",
+      "page": 26,
+      "book_page": "163",
+      "section": "LEVEL-IA",
+      "type": "SINGLE_CHOICE",
+      "source_label": "5",
+      "stem": "A person weighing 60kg in a small boat of mass 140kg that is at rest, throws a 4kg stone in the horizontal direction with velocity 10 m/s. The velocity of the boat immediately after the throw is:",
+      "options": [
+        "(a) 0.2 m/s",
+        "(b) 0.5 m/s",
+        "(c) 0.35 m/s",
+        "(d) 0.65 m/s"
+      ],
+      "source_answer": "(a) 0.2 m/s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "By conservation of total linear momentum for the system (boat + person + stone) from rest: (m_man + m_boat)*v + m_stone*u = 0 => (60 + 140)*v + 4(10) = 0 => 200*v = -40 => v = -0.2 m/s. The magnitude of recoil speed is 0.2 m/s. Option (a).",
+      "mathematical_family": "Newton's Laws & Impulse-Momentum Theorem",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P27-L1A-14",
+      "page": 27,
+      "book_page": "164",
+      "section": "LEVEL-IA",
+      "type": "SINGLE_CHOICE",
+      "source_label": "14",
+      "stem": "A body of mass 2 kg moving with a velocity of 3 m/s collides head-on with a body of mass 1 kg moving with velocity 4 m/s in opposite direction. After collision the two stick together. The common velocity is:",
+      "options": [
+        "(a) 2/3 m/s",
+        "(b) 1/3 m/s",
+        "(c) 1 m/s",
+        "(d) 4/3 m/s"
+      ],
+      "source_answer": "(a) 2/3 m/s",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Initial total momentum p_i = m1*v1 + m2*v2 = 2(3) + 1(-4) = 6 - 4 = +2 kg m/s. Combined mass after inelastic collision = 2 + 1 = 3 kg. Conservation of momentum: (m1 + m2)*v = p_i => 3*v = 2 => v = 2/3 m/s in direction of first body. Option (a).",
+      "mathematical_family": "Newton's Laws & Impulse-Momentum Theorem",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P28-L1A-25",
+      "page": 28,
+      "book_page": "165",
+      "section": "LEVEL-IA",
+      "type": "SINGLE_CHOICE",
+      "source_label": "25",
+      "stem": "A machine gun fires a bullet of mass 40g with a velocity of 1200 m/s. The man holding it can exert a maximum force of 144 N on the gun. How many bullets can he fire per second at the most?",
+      "options": [
+        "(a) 1",
+        "(b) 2",
+        "(c) 3",
+        "(d) 4"
+      ],
+      "source_answer": "(c) 3",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Momentum per bullet = m*v = 0.040 kg * 1200 m/s = 48 kg m/s. If n bullets are fired per second, rate of change of momentum is F = n * m*v. Given max force 144 N: 144 = n * 48 => n = 144 / 48 = 3 bullets per second. Option (c).",
+      "mathematical_family": "Newton's Laws & Impulse-Momentum Theorem",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P30-L1A-37",
+      "page": 30,
+      "book_page": "167",
+      "section": "LEVEL-IA",
+      "type": "SINGLE_CHOICE",
+      "source_label": "37",
+      "stem": "A lift of mass 1000 kg is moving upwards with an acceleration of 1 m/s^2. The tension in the supporting cable is (take g = 9.8 m/s^2):",
+      "options": [
+        "(a) 9800 N",
+        "(b) 10800 N",
+        "(c) 8800 N",
+        "(d) 11800 N"
+      ],
+      "source_answer": "(b) 10800 N",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Equation of motion for upward accelerating lift: T - mg = ma => T = m(g + a) = 1000 * (9.8 + 1) = 1000 * 10.8 = 10800 N. Option (b).",
+      "mathematical_family": "Newton's Laws & Impulse-Momentum Theorem",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P32-L1B-12",
+      "page": 32,
+      "book_page": "169",
+      "section": "LEVEL-1B",
+      "type": "SINGLE_CHOICE",
+      "source_label": "12",
+      "stem": "Two blocks of masses m and M are placed on a horizontal frictionless table connected by a light spring. Mass M is pulled to the right with a force F. If the acceleration of mass m is a, the acceleration of mass M will be:",
+      "options": [
+        "(a) (F + ma)/M",
+        "(b) (F - ma)/M",
+        "(c) am/M",
+        "(d) F/M"
+      ],
+      "source_answer": "(b) (F - ma)/M",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "The light spring transmits a force F_s that accelerates mass m with acceleration a, so F_s = m*a to the right. By Newton's third law, the spring exerts an equal and opposite force F_s = m*a on mass M pulling it to the left. Net force on M is F_net = F - F_s = F - m*a. Acceleration of M is a_M = (F - ma) / M. Option (b).",
+      "mathematical_family": "Connected Bodies & Constraint Kinematics",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P33-L1B-16",
+      "page": 33,
+      "book_page": "170",
+      "section": "LEVEL-1B",
+      "type": "SINGLE_CHOICE",
+      "source_label": "16",
+      "stem": "Two masses m1 and m2 (m1 > m2) are connected by a light inextensible string passing over a smooth massless pulley. The acceleration of the system is:",
+      "options": [
+        "(a) \\frac{m1 - m2}{m1 + m2}g",
+        "(b) \\frac{m1 + m2}{m1 - m2}g",
+        "(c) \\frac{2m1 m2}{m1 + m2}g",
+        "(d) \\frac{m1 m2}{m1 + m2}g"
+      ],
+      "source_answer": "(a) \\frac{m1 - m2}{m1 + m2}g",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Free Body Equations: m1*g - T = m1*a and T - m2*g = m2*a. Adding the equations cancels internal tension T: (m1 - m2)*g = (m1 + m2)*a => a = ((m1 - m2) / (m1 + m2)) * g. Option (a).",
+      "mathematical_family": "Connected Bodies & Constraint Kinematics",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P33-L1B-17",
+      "page": 33,
+      "book_page": "170",
+      "section": "LEVEL-1B",
+      "type": "SINGLE_CHOICE",
+      "source_label": "17",
+      "stem": "In the above Atwood machine, the tension in the string is:",
+      "options": [
+        "(a) \\frac{m1 - m2}{m1 + m2}g",
+        "(b) \\frac{2m1 m2}{m1 + m2}g",
+        "(c) \\frac{m1 m2}{m1 + m2}g",
+        "(d) (m1 + m2)g"
+      ],
+      "source_answer": "(b) \\frac{2m1 m2}{m1 + m2}g",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Substituting acceleration a = ((m1 - m2) / (m1 + m2))*g into T = m2*(g + a): T = m2 * (g + ((m1 - m2)/(m1 + m2))*g) = m2 * g * (1 + (m1 - m2)/(m1 + m2)) = m2 * g * (2*m1 / (m1 + m2)) = (2*m1*m2 / (m1 + m2)) * g. Option (b).",
+      "mathematical_family": "Connected Bodies & Constraint Kinematics",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P34-L1B-24",
+      "page": 34,
+      "book_page": "171",
+      "section": "LEVEL-1B",
+      "type": "SINGLE_CHOICE",
+      "source_label": "24",
+      "stem": "A uniform rope of length L and mass M is placed on a frictionless horizontal table. A force F is applied horizontally at one end. The tension at a distance x from the pulled end is:",
+      "options": [
+        "(a) F(1 - x/L)",
+        "(b) F*x/L",
+        "(c) F(1 + x/L)",
+        "(d) F"
+      ],
+      "source_answer": "(a) F(1 - x/L)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Entire rope accelerates with a = F / M. The section of the rope behind distance x has length L - x and mass m_rear = M * (L - x) / L. The tension T(x) at distance x is the only horizontal force pulling this rear section, so T(x) = m_rear * a = [M * (L - x) / L] * [F / M] = F * (1 - x / L). Option (a).",
+      "mathematical_family": "Connected Bodies & Constraint Kinematics",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P41-L1C-03",
+      "page": 41,
+      "book_page": "178",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "3",
+      "stem": "A good lubricant should be highly:",
+      "options": [
+        "(a) Viscous",
+        "(b) Non-volatile",
+        "(c) Both (a) and (b)",
+        "(d) Transparent"
+      ],
+      "source_answer": "(c) Both (a) and (b)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "An effective lubricant requires high viscosity to form a resilient fluid film capable of supporting mechanical loads without being squeezed out from between asperities, and must be non-volatile so it does not evaporate under operational heat. Both (a) and (b) are essential. Option (c).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P41-L1C-06",
+      "page": 41,
+      "book_page": "178",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "6",
+      "stem": "Sand is dusted on the railway tracks during rainy season to:",
+      "options": [
+        "(a) Make it always wet",
+        "(b) Increase friction",
+        "(c) Reduce consumption of fuel",
+        "(d) Make it always dry"
+      ],
+      "source_answer": "(b) Increase friction",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Rainwater acts as a thin fluid lubricant layer between smooth steel train wheels and tracks, dangerously dropping the static friction coefficient and causing wheel slip. Dusting coarse sand increases surface roughness and friction coefficient, restoring required tractive force. Option (b).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P41-L1C-07",
+      "page": 41,
+      "book_page": "178",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "7",
+      "stem": "When a moving body is suddenly stopped:",
+      "options": [
+        "(a) Frictional force increases",
+        "(b) Roughness is found on the road",
+        "(c) Tyres of the vehicles burst",
+        "(d) The frictional force reduces to zero as it is a self adjusting force"
+      ],
+      "source_answer": "(d) The frictional force reduces to zero as it is a self adjusting force",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Frictional force is a passive self-adjusting contact force. While moving, kinetic friction acts; once brought to rest and in the absence of any external tangential driving force tending to move it, static friction immediately adjusts to zero. Option (d).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S1",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P42-L1C-18",
+      "page": 42,
+      "book_page": "179",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "18",
+      "stem": "A block of mass m is placed on an inclined plane. With increase in inclination angle theta, the contact force exerted by the plane on the block (before slipping):",
+      "options": [
+        "(a) Decreases",
+        "(b) Increases",
+        "(c) Remains constant equal to mg",
+        "(d) First increases then decreases"
+      ],
+      "source_answer": "(c) Remains constant equal to mg",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "The contact force R is the vector resultant of normal reaction N = mg*cos(theta) and static friction f_s = mg*sin(theta). Since the block is stationary in static equilibrium, vector sum R + mg = 0 => |R| = sqrt(N^2 + f_s^2) = sqrt((mg*cos(theta))^2 + (mg*sin(theta))^2) = mg * sqrt(cos^2(theta) + sin^2(theta)) = mg = constant. Option (c).",
+      "mathematical_family": "Inclined Plane Dynamics & Angle of Repose",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S2",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P43-L1C-28",
+      "page": 43,
+      "book_page": "180",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "28",
+      "stem": "The minimum force required to slide a block of mass m on a horizontal plane having friction coefficient mu is:",
+      "options": [
+        "(a) \\mu mg",
+        "(b) \\frac{\\mu mg}{\\sqrt{1 + \\mu^2}}",
+        "(c) \\mu mg \\sqrt{1 + \\mu^2}",
+        "(d) \\frac{mg}{\\sqrt{1 + \\mu^2}}"
+      ],
+      "source_answer": "(b) \\frac{\\mu mg}{\\sqrt{1 + \\mu^2}}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Pulling at an upward angle theta: F*cos(theta) = mu * N = mu * (mg - F*sin(theta)) => F = (mu * mg) / (cos(theta) + mu*sin(theta)). Denominator is maximized when tan(theta) = mu, where max denominator value is sqrt(1 + mu^2). Hence minimum pulling force is F_min = (mu * mg) / sqrt(1 + mu^2). Option (b).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M2",
+        "A": "A2",
+        "S": "S1",
+        "overall": "HARD"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P44-L1C-48",
+      "page": 44,
+      "book_page": "181",
+      "section": "LEVEL-1C",
+      "type": "SINGLE_CHOICE",
+      "source_label": "48",
+      "stem": "When a body slides down an inclined plane with coefficient of friction mu and inclination theta > lambda, its acceleration is given by:",
+      "options": [
+        "(a) g(\\sin\\theta - \\mu\\cos\\theta)",
+        "(b) g(\\sin\\theta + \\mu\\cos\\theta)",
+        "(c) g(\\cos\\theta - \\mu\\sin\\theta)",
+        "(d) g\\sin\\theta"
+      ],
+      "source_answer": "(a) g(\\sin\\theta - \\mu\\cos\\theta)",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Down the plane, gravity component is mg*sin(theta). Opposing kinetic friction is f_k = mu * N = mu * mg*cos(theta). Net driving force down the plane F_net = mg*sin(theta) - mu*mg*cos(theta) = m*a. Dividing by m gives acceleration a = g*(sin(theta) - mu*cos(theta)). Option (a).",
+      "mathematical_family": "Inclined Plane Dynamics & Angle of Repose",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P45-L1D-02",
+      "page": 45,
+      "book_page": "182",
+      "section": "LEVEL-1D",
+      "type": "SINGLE_CHOICE",
+      "source_label": "2",
+      "stem": "A chain of length L is placed on a horizontal table. If the coefficient of static friction is mu, the maximum length of the chain that can hang over the edge without sliding is:",
+      "options": [
+        "(a) \\frac{\\mu L}{1 + \\mu}",
+        "(b) \\frac{L}{1 + \\mu}",
+        "(c) \\frac{\\mu L}{1 - \\mu}",
+        "(d) \\mu L"
+      ],
+      "source_answer": "(a) \\frac{\\mu L}{1 + \\mu}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Let hanging length be y. Weight of hanging section = (M/L)*y*g. Weight of portion on table = (M/L)*(L - y)*g. Max static friction force f_s = mu * N = mu * (M/L)*(L - y)*g. At verge of sliding: (M/L)*y*g = mu * (M/L)*(L - y)*g => y = mu*(L - y) => y*(1 + mu) = mu*L => y = (mu * L) / (1 + mu). Option (a).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C2",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P45-L1D-07",
+      "page": 45,
+      "book_page": "182",
+      "section": "LEVEL-1D",
+      "type": "SINGLE_CHOICE",
+      "source_label": "7",
+      "stem": "A boy pulls a 5kg block along a 20m long horizontal surface at a constant velocity by applying a horizontal force F. If the coefficient of kinetic friction is 0.2, how much work does the boy do on the block? (take g = 10 ms^-2):",
+      "options": [
+        "(a) 100 J",
+        "(b) 300 J",
+        "(c) 200 J",
+        "(d) 400 J"
+      ],
+      "source_answer": "(c) 200 J",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "At constant velocity, acceleration a = 0, so applied force F equals opposing kinetic friction: F = f_k = mu_k * m * g = 0.2 * 5 kg * 10 m/s^2 = 10 N. Work done by boy W = F * d = 10 N * 20 m = 200 J. Option (c).",
+      "mathematical_family": "Static vs Kinetic Friction & Self-Adjusting Thresholds",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P49-L1D-58",
+      "page": 49,
+      "book_page": "186",
+      "section": "LEVEL-1D",
+      "type": "SINGLE_CHOICE",
+      "source_label": "58",
+      "stem": "A block of mass m is placed on a surface with a vertical cross section given by y = x^3/6. If the coefficient of friction is 0.5, the maximum height above the ground at which the block can be placed without slipping is:",
+      "options": [
+        "(a) 1/6 m",
+        "(b) 2/3 m",
+        "(c) 1/3 m",
+        "(d) 1/2 m"
+      ],
+      "source_answer": "(a) 1/6 m",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Condition for no sliding on a slope: tan(theta) <= mu. Slope of curve is tan(theta) = dy/dx = d/dx(x^3/6) = 3*x^2/6 = x^2/2. Limiting equilibrium: x^2/2 = mu = 0.5 => x^2 = 1 => x = 1 m. Maximum height is y = 1^3 / 6 = 1/6 m. Option (a).",
+      "mathematical_family": "Inclined Plane Dynamics & Angle of Repose",
+      "hardness": {
+        "C": "C2",
+        "R": "R2",
+        "M": "M2",
+        "A": "A2",
+        "S": "S1",
+        "overall": "HARD"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P03-TH-01",
+      "page": 3,
+      "book_page": "140",
+      "section": "THEORY_CIRCULAR",
+      "type": "SINGLE_CHOICE",
+      "source_label": "TH-1",
+      "stem": "In a death well or rotor of radius R, the minimum angular speed omega at which a person of mass m can remain pinned to the vertical cylindrical wall with static friction coefficient mu is:",
+      "options": [
+        "(a) \\sqrt{g/(\\mu R)}",
+        "(b) \\sqrt{\\mu g/R}",
+        "(c) \\sqrt{g/R}",
+        "(d) \\sqrt{\\mu R/g}"
+      ],
+      "source_answer": "(a) \\sqrt{g/(\\mu R)}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Normal reaction N from the cylinder wall provides centripetal force: N = m * omega^2 * R. Vertical upward static friction f_s balances gravitational weight: f_s = m*g. To prevent slipping downward: f_s <= mu * N => m*g <= mu * m * omega^2 * R => omega^2 >= g / (mu * R) => omega_min = sqrt(g / (mu * R)). Option (a).",
+      "mathematical_family": "Circular Dynamics & Pseudo Forces",
+      "hardness": {
+        "C": "C2",
+        "R": "R2",
+        "M": "M1",
+        "A": "A1",
+        "S": "S1",
+        "overall": "MEDIUM"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-PHY-11-NLM-P06-TH-02",
+      "page": 6,
+      "book_page": "143",
+      "section": "FORMULAE_SHEET",
+      "type": "SINGLE_CHOICE",
+      "source_label": "TH-2",
+      "stem": "On a banked circular track of radius R and banking angle theta, the optimum speed to round the curve without any reliance on lateral friction is:",
+      "options": [
+        "(a) \\sqrt{R g \\tan\\theta}",
+        "(b) \\sqrt{R g \\cot\\theta}",
+        "(c) \\sqrt{R g \\sin\\theta}",
+        "(d) R g \\tan\\theta"
+      ],
+      "source_answer": "(a) \\sqrt{R g \\tan\\theta}",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "When friction is absent, normal force N components provide vertical balance and centripetal acceleration: N*cos(theta) = m*g and N*sin(theta) = m*v^2 / R. Dividing the two equations: tan(theta) = v^2 / (R*g) => v = sqrt(R*g*tan(theta)). Option (a).",
+      "mathematical_family": "Circular Dynamics & Pseudo Forces",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    }
+  ]
+}

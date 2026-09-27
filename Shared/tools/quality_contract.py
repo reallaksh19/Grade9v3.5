@@ -161,6 +161,23 @@ def _pre_attempt_partial(unit, check, ctx):
     return [f"{len(full)} pre-attempt figure(s) show every stage, including the result"] if full else []
 
 
+@op("pre_attempt_markup_withheld")
+def _pre_attempt_withheld(unit, check, ctx):
+    out = []
+    for f in unit["figures"]:
+        if f["stage"] != "PRE_ATTEMPT":
+            continue
+        if f.get("stages_in_dom", 0) > f.get("reveal_stages", 1):
+            out.append(f"a pre-attempt figure carries {f['stages_in_dom']} stage groups in its markup but shows "
+                       f"{f.get('reveal_stages', 1)}; hidden stages still reach the DOM, tooltips and screen readers")
+        if f.get("asset_text") and f.get("stages_total", 1) > f.get("reveal_stages", 1):
+            out.append("a pre-attempt figure keeps its asset's <title>/<desc>, which describe the whole figure")
+        if f.get("caption_source") == "purpose":
+            out.append("a pre-attempt figure is captioned with its representation's design purpose, which may name the "
+                       "result; caption it with the shown stages only")
+    return out
+
+
 @op("figures_titled")
 def _titled(unit, check, ctx):
     n = sum(1 for f in unit["figures"] if not f["titled"])
@@ -202,6 +219,20 @@ def _distinct(page, check, ctx):
             text, units = next(iter(repeated.items()))
             out.append(f"{field} repeats across {len(set(units))} items: \"{text[:60]}\"")
     return out
+
+
+@op("figures_specific_across_page")
+def _figures_specific(page, check, ctx):
+    """A teaching or pre-attempt figure is staged for one unit or question, not reused for others."""
+    mounts: dict[str, set] = {}
+    for unit in page["units"]:
+        for f in unit["figures"]:
+            if f["stage"] in check["stages"] and f.get("representation_ref"):
+                mounts.setdefault(f["representation_ref"], set()).add(f.get("mount") or unit["id"])
+    shared = {rep: sorted(ms) for rep, ms in mounts.items() if len(ms) > 1}
+    return [f"{rep} is the {'/'.join(check['stages']).lower()} figure for {len(ms)} different units or questions "
+            f"({', '.join(ms[:3])}{'…' if len(ms) > 3 else ''}); each needs a figure that depicts its own situation"
+            for rep, ms in shared.items()]
 
 
 @op("page_figures_min")

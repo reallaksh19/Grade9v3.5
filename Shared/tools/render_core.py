@@ -111,13 +111,63 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
         controls = ('<div class="g9-stage-controls"><button type="button" data-g9-stage-step="prev">Previous stage</button>'
                     '<span data-g9-stage-label></span>'
                     '<button type="button" data-g9-stage-step="next">Next stage</button></div>')
-    hidden = "".join(f'[data-g9-fig="{esc(record)}-{esc(rep_id)}"] [data-g9-stage-id="{esc(s)}"]{{display:none}}'
-                     for s in stage_ids if s not in shown)
+    withheld = [s for s in stage_ids if s not in shown]
+    labels = {st.get("id"): st.get("label") for st in rep.get("reveal_stages") or []}
+    if stage == "PRE_ATTEMPT":
+        # `purpose` is the illustrator's design note and often names the result ("so the double count is
+        # diagnosed"). Before the attempt the caption is only the labels of the stages actually shown.
+        caption = (f'<figcaption data-g9-block="stage_caption" data-g9-caption="stages">'
+                   f'{esc("; ".join(labels[s] for s in shown if labels.get(s)))}</figcaption>')
+    else:
+        caption = (f'<figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">'
+                   f'{esc(rep.get("purpose", ""))}</figcaption>')
+    if withheld:
+        # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
+        # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
+        # figure, so they go too; the accessible name is the shown stages' labels from the record.
+        svg = _without_stages(svg, set(withheld))
+        svg = re.sub(r"<(title|desc)\b[^>]*>.*?</\1>", "", svg, flags=re.S)
+        head = re.search(r"<svg\b[^>]*>", svg)
+        if head:                                       # the name comes from the shown stages below
+            clean = re.sub(r'\s(role|aria-label|aria-labelledby|aria-describedby)="[^"]*"', "", head.group(0))
+            svg = svg[:head.start()] + clean + svg[head.end():]
+        name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
+        svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
             f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages="{esc(" ".join(shown))}">'
-            f'{"<style>" + hidden + "</style>" if hidden else ""}{svg}{controls}'
-            f'<figcaption data-g9-block="representation_bridge">{esc(rep.get("purpose", ""))}</figcaption></figure>')
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}">'
+            f'{svg}{controls}{caption}</figure>')
+
+
+def _without_stages(svg: str, withheld: set[str]) -> str:
+    """Remove each <g data-g9-stage-id="…"> element whose stage is withheld, with everything inside it."""
+    out, i = [], 0
+    opener = re.compile(r'<g\b[^>]*\bdata-g9-stage-id="([^"]+)"[^>]*>')
+    while True:
+        m = opener.search(svg, i)
+        if not m:
+            out.append(svg[i:])
+            return "".join(out)
+        if m.group(1) not in withheld:
+            out.append(svg[i:m.end()])
+            i = m.end()
+            continue
+        out.append(svg[i:m.start()])
+        if m.group(0).endswith("/>"):                  # an empty withheld group
+            i = m.end()
+            continue
+        depth, j = 1, m.end()
+        tags = re.compile(r"<g\b[^>]*?(/?)>|</g\s*>")
+        while depth:
+            t = tags.search(svg, j)
+            if t is None:                      # malformed asset: drop the rest rather than leak it
+                return "".join(out)
+            if t.group(0).startswith("</"):
+                depth -= 1
+            elif not t.group(1):
+                depth += 1
+            j = t.end()
+        i = j
 
 
 # ------------------------------------------------------------------ small html helpers
@@ -223,7 +273,8 @@ def core1(ctx: Ctx, m: dict) -> str:
         ctx.gap("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor", "CORE1")
     rel_html = "".join(f'<div class="g9-relation"><p class="g9-expr">{esc(r["expression"])}</p>{para(r.get("meaning"))}'
                        f'{items(r.get("conditions"))}</div>' for r in rels)
-    rep = (m.get("representation_refs") or [None])[0]
+    # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
+    rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
     body = (slot("identity", block("scope", f"<h2>{esc(m['title'])}</h2>"), True)
             + slot("orientation",
                    block("hard_transition", para(m["inferential_jump"]), title="Hard transition")
@@ -291,19 +342,28 @@ def core1b(ctx: Ctx, m: dict) -> str:
     att = e.get("attempt") or {}
     bt = e.get("boundary_test") or {}
     model = att.get("model_response") or "; ".join(r.get("criterion", "") for r in att.get("rubric") or [])
+    task = att.get("task")
+    # The attempt's own figure; the Core1A unit's figure depicts the worked anchor, not this task.
+    task_rep = (task or {}).get("representation_ref") or unit.get("representation_ref")
+    if not task:
+        # `produces` describes the expected answer; it is not a task the learner can act on.
+        ctx.gap("AUTHOR_RECONSTRUCTION_TASK", m["id"], "no concrete Core1B task (elicitation.attempt.task)", "CORE1B")
     return (slot("identity", f"<h2>{esc(m['title'])}</h2>", True)
             + slot("attempt",
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
-                   + figure(ctx, unit.get("representation_ref"), "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True)
-                   + block("attempt_prompt", para(att.get("produces")), title="Attempt")
+                   + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
+                            allowed=(task or {}).get("stage_refs") or None)
+                   + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens"))) if task else "",
+                           title="Attempt")
                    + attempt_box("Your attempt"), True)
             + slot("reconstruction",
                    reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
                           + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                           + block("repair", items(w["repair"] for w in wrong), title="Repair")
+                          + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
                           + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
                           + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
-                          + figure(ctx, unit.get("representation_ref"), "POST_ATTEMPT", "CORE1B", m["id"] + "-full"))
+                          + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"))
                    + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
                    + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms")))), True))
 
@@ -322,7 +382,10 @@ def _custody(q: dict) -> str:
 
 def core2(ctx: Ctx, q: dict) -> str:
     ans = q["answer"]
-    stem = q["stem"] + ((" " + " ".join(f"({chr(97 + i)}) {o}" for i, o in enumerate(q["options"]))) if q.get("options") else "")
+    # A source option keeps its own label ("(A)", "(1)") because the key refers to it; unlabelled ones get a letter.
+    labelled = re.compile(r"\s*\(?[A-Za-z0-9]{1,2}[).]\s")
+    stem = q["stem"] + ((" " + " ".join(str(o) if labelled.match(str(o)) else f"({chr(97 + i)}) {o}"
+                                          for i, o in enumerate(q["options"]))) if q.get("options") else "")
     return (slot("identity", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>"), True)
             + slot("attempt", block("stem", para(stem)) + block("conditions", items(q.get("conditions")), title="Conditions")
                    + attempt_box("Your answer"), True)
@@ -404,32 +467,60 @@ def core2b(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SAFE_REPRESENTATION", q["id"], "no safe pre-commitment representation", "CORE2B")
     if not tr.get("invariant"):
         ctx.gap("AUTHOR_LINEAGE_CHECK", q["id"], "no invariant-versus-changed statement", "CORE2B")
+    novelty = tr.get("novelty") or {}
+    if not (novelty.get("checked_against") and novelty.get("why_new")):
+        ctx.gap("AUTHOR_TRANSFER_NOVELTY", q["id"],
+                "no record of which earlier items (Core1A anchors, Core1B boundary tests, Core2A items) this "
+                "task was checked against and why its decision is new", "CORE2B")
     qs = ctx.index("questions")
 
     def _short(text: str) -> str:
         return text if len(text) <= 90 else text[:87].rsplit(" ", 1)[0] + "…"
-    lineage = "".join(f'<li><a data-g9-lineage href="core2a.html#{esc(b)}">{esc(_short(qs[b]["stem"]) if b in qs else "Earlier practice item")}</a></li>'
-                      for b in tr.get("builds_on") or [])
+    sel = ctx.manifest.get("selection") or {}
+
+    def _where(b: str) -> str | None:
+        """The page and unit where the earlier item is rendered: its Core2A article, or the Core1A
+        microtopic that uses it as a worked anchor. None when this product does not show it."""
+        if b in (sel.get("core2a") or []):
+            return f"core2a.html#{b}"
+        for m in ctx.index("microtopics").values():
+            if m["id"] in (sel.get("microtopics") or []) and any(
+                    u.get("worked_anchor_ref") == b for u in m.get("construction_units") or []):
+                return f"core1a.html#{m['id']}"
+        return None
+
+    def _earlier(b: str) -> str:
+        label = esc(_short(qs[b]["stem"]) if b in qs else "Earlier practice item")
+        href = _where(b)
+        return f'<li><a data-g9-lineage href="{esc(href)}">{label}</a></li>' if href else f"<li>{label}</li>"
+    lineage = "".join(_earlier(b) for b in tr.get("builds_on") or [])
     check = (q.get("independent_check") or {}).get("statement") or ans.get("check")
     protected = next((s for s in ans.get("reasoning_route") or [] if s.get("id") == tr.get("protected_move_ref")), None)
+    # Safe pre-attempt support is the item's own first rung (orientation), never a generic sentence.
+    rung = next((r for r in sorted(q.get("hint_ladder") or [], key=lambda r: r["order"]) if r.get("purpose") == "ORIENT"), None)
+    rung_text = (rung.get("text") or "") if rung else ""
+    if rung and not rung_text and rung.get("from"):
+        kind, i = re.match(r"(hints|scaffolds)\[(\d+)\]", rung["from"]).groups()
+        rung_text = (q.get(kind) or [])[int(i)]["text"]
     return (slot("identity", block("provenance", f'<p class="g9-prov">{esc(q.get("origin"))} transfer</p>')
                  + block("stem", f"<h2>{esc(q['stem'])}</h2>")
                  + block("lineage", f"<ul>{lineage}</ul>" if lineage else "", title="Builds on"), True)
             + slot("attempt", block("conditions", items(q.get("conditions")), title="Conditions")
                    + figure(ctx, roles.get("safe_ref"), "PRE_ATTEMPT", "CORE2B", q["id"], allowed=roles.get("stage_refs"))
-                   + block("commitment", para("Commit to a model or representation and your first relation before opening support."))
-                   + attempt_box("Your commitment"), True)
-            + slot("post_attempt", reveal("Review and solution",
-                                          block("changed_demand", para(tr.get("statement")), title="What changed")
-                                          + block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
-                                          + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
-                                          + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
-                                          + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
-                                          + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
-                                          + block("independent_check", para(check), title="Independent check")
-                                          + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")
-                                          + block("lineage_check", para(tr.get("invariant")) and (para(tr.get("invariant")) + para(tr.get("statement"))),
-                                                  title="Lineage check")), True))
+                   + block("safe_support", para(rung_text), title="Where to start")
+                   + attempt_box("Your commitment: the model or representation you choose, and your first relation"), True)
+            + slot("post_attempt",
+                   block("lineage_check", para("Before you open the solution: what from the earlier item still holds here, "
+                                               "and what is different?") if tr.get("invariant") else "", title="Lineage check")
+                   + reveal("Review and solution",
+                            block("invariant_changed", para(tr.get("invariant")), title="What stayed valid")
+                            + block("changed_demand", para(tr.get("statement")), title="What changed")
+                            + block("protected_move", para(protected["action"]) if protected else "", title="The deciding move")
+                            + figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2B", q["id"] + "-bound")
+                            + block("answer", para(ans.get("summary")) + items(ans.get("reasoning"), True), title="Answer")
+                            + block("rubric", items(r.get("criterion") for r in ans.get("rubric") or []), title="Rubric")
+                            + block("independent_check", para(check), title="Independent check")
+                            + block("repair", _repair(ctx, q.get("repair_ref")), title="Repair")), True))
 
 
 RENDER = {"CORE1": core1, "CORE1A": core1a, "CORE1B": core1b, "CORE2": core2, "CORE2A": core2a, "CORE2B": core2b}
@@ -516,7 +607,12 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     return header, crumbs
 
 
+DIGEST_SLOT = "g9-digest-pending"
+
+
 def render_digest(ctx: Ctx) -> str:
+    """Digest of the render inputs (manifest, packages, contract version). Kept for callers that
+    need an input fingerprint; the product's own digest (build()) hashes the rendered pages."""
     h = hashlib.sha256()
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
@@ -543,7 +639,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
-            f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["product_id"])}</footer>'
+            f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
             f"<script>{JS}</script></body></html>\n")
 
 
@@ -576,11 +672,17 @@ def context(manifest_path: Path) -> Ctx:
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
     ctx = context(manifest_path)
-    digest = render_digest(ctx)
-    pages = {ROLE_FILE[r]: page(ctx, r, mode, digest) for r in ROLES}
-    index = index_page(ctx, digest)
+    # The digest names this exact render: a hash of the pages the learner receives (records, figures,
+    # renderer and blueprints all show up there). A product review is bound to it (build_products).
+    pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
+    index = index_page(ctx, DIGEST_SLOT)
     if mode != "EMBED":
         pages["index.html"] = index
+    h = hashlib.sha256()
+    for name in sorted(pages):
+        h.update(name.encode() + b"\0" + pages[name].encode())
+    digest = h.hexdigest()[:16]
+    pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
     if mode == "SINGLE_FILE":
         bodies = "".join(f'<section data-g9-role-section="{r}">{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
                          for r in ROLES)

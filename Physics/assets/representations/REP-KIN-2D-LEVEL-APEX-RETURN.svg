@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 500" role="img" aria-labelledby="rep-kin-level-title rep-kin-level-desc">
+  <title id="rep-kin-level-title">Level-ground launch with u = (6, 15) m/s: apex where v_y = 0, landing where Δy = 0</title>
+  <desc id="rep-kin-level-desc">Stage 1: a projectile launched from level ground with components u_x = 6 m/s and u_y = 15 m/s follows an arch back to the ground; two events are asked for, the highest point and the return to launch height. Stage 2: with +y up and g = 10 m/s², each event is named as a component condition: at the apex v_y = 0 while v_x stays 6 m/s and a_y stays −10 m/s², drawn as arrows at the top; at the return to launch height Δy = 0. One clock runs from t = 0 with open markers for t_apex and t_land. Stage 3: the markers are solved: 15 − 10t = 0 gives t = 1.5 s; 15t − 5t² = 0 gives t = 0 or 3 s, so the landing is at 3 s. Stage 4: the apex is 11.25 m above launch with v = (6 i + 0 j) m/s, and the range at t = 3 s is 18 m; the landing time is twice the apex time, and u_y²/(2g) = 225/20 = 11.25 m.</desc>
+  <defs>
+    <marker id="rep-kin-level-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-level-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launch from level ground: two events</text>
+    <line x1="40" y1="300" x2="540" y2="300" stroke="currentColor" stroke-width="2"/>
+    <path d="M150 300 Q330 -150 510 300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="150" cy="300" r="7" fill="currentColor"/>
+    <line x1="150" y1="300" x2="174" y2="300" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-level-arrow)"/>
+    <text x="156" y="322">u_x = 6 m/s</text>
+    <line x1="150" y1="300" x2="150" y2="240" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-level-arrow)"/>
+    <text x="142" y="238" text-anchor="end">u_y = 15 m/s</text>
+    <text x="330" y="59" text-anchor="middle">highest point (apex)</text>
+    <text x="510" y="322" text-anchor="middle">back at launch height</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="580" y="60">+y up, g = 10 m/s²</text>
+    <circle cx="330" cy="75" r="5" fill="currentColor"/>
+    <line x1="330" y1="75" x2="360" y2="75" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-level-arrow)"/>
+    <text x="366" y="80">v_x = 6 m/s</text>
+    <line x1="330" y1="81" x2="330" y2="121" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-level-arrow)"/>
+    <text x="330" y="141" text-anchor="middle">a_y = −10 m/s²</text>
+    <text x="580" y="100" font-weight="600">apex:</text>
+    <text x="580" y="122">v_y = 0, v_x stays 6 m/s</text>
+    <text x="580" y="160" font-weight="600">return to launch height:</text>
+    <text x="580" y="182">Δy = 0</text>
+    <text x="40" y="404" font-weight="600">one clock for both events</text>
+    <line x1="90" y1="440" x2="486" y2="440" stroke="currentColor" stroke-width="2" marker-end="url(#rep-kin-level-arrow)"/>
+    <text x="494" y="445">t</text>
+    <line x1="90" y1="432" x2="90" y2="448" stroke="currentColor" stroke-width="2"/>
+    <text x="90" y="466" text-anchor="middle">t = 0</text>
+    <circle cx="255" cy="440" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="255" y="426" text-anchor="middle">t_apex</text>
+    <circle cx="420" cy="440" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="420" y="426" text-anchor="middle">t_land</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="255" cy="440" r="7" fill="#1f6fb2"/>
+    <circle cx="420" cy="440" r="7" fill="#1f6fb2"/>
+    <text x="255" y="466" text-anchor="middle" fill="#1f6fb2">15 − 10t = 0: t = 1.5 s</text>
+    <text x="420" y="488" text-anchor="middle" fill="#1f6fb2">15t − 5t² = 0: t = 0 or 3 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-LEVEL-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="330" cy="75" r="7" fill="#1f6fb2"/>
+    <line x1="330" y1="151" x2="330" y2="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="338" y="225.5" font-weight="600" fill="#1f6fb2">11.25 m</text>
+    <circle cx="510" cy="300" r="7" fill="#1f6fb2"/>
+    <path d="M150 332 V340 H510 V332" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="330" y="360" text-anchor="middle" font-weight="600" fill="#1f6fb2">range 18 m at t = 3 s</text>
+    <text x="580" y="222" fill="#1f6fb2">apex at 1.5 s: 11.25 m up,</text>
+    <text x="580" y="244" fill="#1f6fb2">v = (6 i + 0 j) m/s</text>
+    <text x="580" y="282">check: 3 s = 2 × 1.5 s</text>
+    <text x="580" y="304">u_y²/(2g) = 225/20 = 11.25 m</text>
+  </g>
+</svg>

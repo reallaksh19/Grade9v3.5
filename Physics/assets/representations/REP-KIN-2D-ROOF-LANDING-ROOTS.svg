@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 440" role="img" aria-labelledby="rep-kin-roofroots-title rep-kin-roofroots-desc">
+  <title id="rep-kin-roofroots-title">A ball launched 15 m up with u = (10, 10) m/s toward a roof 3.75 m above launch</title>
+  <desc id="rep-kin-roofroots-desc">Stage 1: a projectile starts 15 m above level ground with u_x = 10 m/s and u_y = 10 m/s. A flat roof 18.75 m above the ground, which is 3.75 m above the launch point, starts 8 m horizontally from the launch point and extends beyond 30 m. Stage 2: the path and the roof level: 3.75 = 10t − 5t² factorises as (t − 0.5)(t − 1.5) = 0, so the path is at roof level at t = 0.5 s and t = 1.5 s, both marked. Stage 3: the root is chosen by x: at 0.5 s, x = 5 m, short of the roof; at 1.5 s, x = 15 m, on the roof; at the edge x = 8 m the ball is 4.8 m above launch, so it clears the edge. Stage 4: it lands at t = 1.5 s, 15 m out, with v = (10 i − 5 j) m/s.</desc>
+  <defs>
+    <marker id="rep-kin-roofroots-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-roofroots-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOFROOTS-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launch 15 m up; a flat roof 18.75 m up, from 8 m out</text>
+    <line x1="20" y1="330" x2="600" y2="330" stroke="currentColor" stroke-width="2"/>
+    <rect x="120" y="120" width="50" height="210" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M108 120 H100 V330 H108" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="94" y="230" text-anchor="end">15 m</text>
+    <path d="M632 67.5 H282 V330" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="632" y="89.5" text-anchor="end">roof (beyond 30 m)</text>
+    <text x="292" y="198.8">roof 18.75 m above ground</text>
+    <text x="292" y="220.8">= 3.75 m above launch</text>
+    <path d="M170 352 V360 H282 V352" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="226" y="380" text-anchor="middle">8 m</text>
+    <circle cx="170" cy="120" r="7" fill="currentColor"/>
+    <line x1="170" y1="120" x2="200" y2="120" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-roofroots-arrow)"/>
+    <text x="172" y="142" font-size="14">u_x = 10 m/s</text>
+    <line x1="170" y1="120" x2="170" y2="90" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-roofroots-arrow)"/>
+    <text x="164" y="98" text-anchor="end" font-size="14">u_y = 10 m/s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOFROOTS-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <path d="M170 120 Q275 15 380 67.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <line x1="170" y1="67.5" x2="632" y2="67.5" stroke="currentColor" stroke-width="1" stroke-dasharray="2 5"/>
+    <circle cx="240" cy="67.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="380" cy="67.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="700" y="60">roof level: 3.75 = 10t − 5t²</text>
+    <text x="700" y="82">(t − 0.5)(t − 1.5) = 0</text>
+    <text x="700" y="104">t = 0.5 s or t = 1.5 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOFROOTS-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="700" y="146" font-weight="600" fill="#1f6fb2">choose the root by x:</text>
+    <text x="700" y="168" fill="#1f6fb2">0.5 s: x = 5 m, short of the roof</text>
+    <text x="700" y="190" fill="#1f6fb2">1.5 s: x = 15 m, on the roof</text>
+    <text x="700" y="212" fill="#1f6fb2">edge x = 8 m: Δy = 4.8 m, cleared</text>
+    <text x="240" y="91.5" text-anchor="middle" fill="#1f6fb2">5 m</text>
+    <circle cx="282" cy="52.8" r="4" fill="#1f6fb2"/>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-ROOFROOTS-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="380" cy="67.5" r="7" fill="#1f6fb2"/>
+    <line x1="380" y1="67.5" x2="420" y2="87.5" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-roofroots-arrow-acc)"/>
+    <text x="700" y="254" font-weight="600">lands at t = 1.5 s, 15 m out</text>
+    <text x="700" y="276">v = (10 i − 5 j) m/s</text>
+    <text x="388" y="55.5" fill="#1f6fb2">15 m, 1.5 s</text>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" role="img" aria-labelledby="rep-kin-same-title rep-kin-same-desc">
+  <title id="rep-kin-same-title">A flight from level ground with u = (12, 16) m/s and g = 8 m/s²</title>
+  <desc id="rep-kin-same-desc">Stage 1: a projectile is launched with u_x = 12 m/s and u_y = 16 m/s where g = 8 m/s², and lands back at the launch height. Stage 2: with +y up, the landing condition is Δy = 0; one timeline starts at t = 0 at launch with an open marker for the landing. Stage 3: Δy = 16t − 0.5(8)t² = 0 has the non-zero root t = 4 s, which fills the landing marker. Stage 4: the range is 12(4) = 48 m, and the landing velocity is v = (12 i − 16 j) m/s: v_x is 12 m/s as at launch and v_y = 16 − 8(4) = −16 m/s.</desc>
+  <defs>
+    <marker id="rep-kin-same-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/></marker>
+    <marker id="rep-kin-same-arrow-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1f6fb2"/></marker>
+  </defs>
+  <g data-g9-stage-id="VIS-KIN-2D-SAME-V0" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="20" y="26" font-weight="600">Launch and landing at the same height, g = 8 m/s²</text>
+    <line x1="40" y1="250" x2="520" y2="250" stroke="currentColor" stroke-width="2"/>
+    <path d="M140 250 Q308 26 476 250" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="140" cy="250" r="7" fill="currentColor"/>
+    <line x1="140" y1="250" x2="188" y2="250" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-same-arrow)"/>
+    <text x="144" y="272">u_x = 12 m/s</text>
+    <line x1="140" y1="250" x2="140" y2="186" stroke="currentColor" stroke-width="2.5" marker-end="url(#rep-kin-same-arrow)"/>
+    <text x="134" y="194" text-anchor="end">u_y = 16 m/s</text>
+    <circle cx="476" cy="250" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SAME-V1" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="560" y="60">+y up</text>
+    <text x="560" y="100" font-weight="600">landing condition:</text>
+    <text x="560" y="122">Δy = 0</text>
+    <line x1="140" y1="360" x2="476" y2="360" stroke="currentColor" stroke-width="2" marker-end="url(#rep-kin-same-arrow)"/>
+    <text x="484" y="365">t</text>
+    <line x1="140" y1="352" x2="140" y2="368" stroke="currentColor" stroke-width="2"/>
+    <text x="140" y="386" text-anchor="middle">t = 0 (launch)</text>
+    <circle cx="420" cy="360" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="420" y="346" text-anchor="middle">landing</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SAME-V2" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <text x="560" y="162" fill="#1f6fb2">Δy = 16t − 0.5(8)t² = 0</text>
+    <text x="560" y="184" font-weight="600" fill="#1f6fb2">non-zero root: t = 4 s</text>
+    <circle cx="420" cy="360" r="7" fill="#1f6fb2"/>
+    <text x="420" y="386" text-anchor="middle" fill="#1f6fb2">t = 4 s</text>
+  </g>
+  <g data-g9-stage-id="VIS-KIN-2D-SAME-V3" font-family="system-ui,sans-serif" font-size="15" fill="currentColor">
+    <circle cx="476" cy="250" r="7" fill="#1f6fb2"/>
+    <path d="M140 292 V300 H476 V292" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text x="308" y="320" text-anchor="middle" font-weight="600" fill="#1f6fb2">range = 12(4) = 48 m</text>
+    <line x1="476" y1="250" x2="512" y2="298" stroke="#1f6fb2" stroke-width="2.5" marker-end="url(#rep-kin-same-arrow-acc)"/>
+    <text x="516" y="294" fill="#1f6fb2">v = (12 i − 16 j) m/s</text>
+    <text x="560" y="224">v_x = 12 m/s, as at launch</text>
+    <text x="560" y="246">v_y = 16 − 8(4) = −16 m/s</text>
+  </g>
+</svg>

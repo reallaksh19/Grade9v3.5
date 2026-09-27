@@ -16216,20 +16216,37 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "Only v_x changes; v_y remains constant."
             },
             "attempt": {
-              "produces": "Two correct component constant-acceleration equations using one t.",
+              "produces": "A per-axis validity check, the four component equations on one t, and v = (1, 8) m/s, r = (12, 16) m at t = 4 s.",
               "closure": "RUBRIC",
               "rubric": [
                 {
                   "criterion": "Each axis uses only its own signed initial values and acceleration while sharing the same time.",
                   "evidence_of": "2D component model use rather than a scalar-magnitude shortcut."
+                },
+                {
+                  "criterion": "The four component equations are evaluated at the one requested instant, t = 4 s, giving v = (1, 8) m/s and r = (12, 16) m.",
+                  "evidence_of": "Using the shared clock to read one plane state from the component equations."
                 }
               ],
               "accepted": [
-                "v_x=u_x+a_x t and v_y=u_y+a_y t with one t."
+                "Both a_x = −1 m/s² and a_y = 2 m/s² are constant, so the 1D equations apply on each axis. v_x = 5 − t, v_y = 2t, x = 5t − ½t², y = t². At t = 4 s: v = (1 i + 8 j) m/s and r = (12 i + 16 j) m.",
+                "a_x = −1 m/s² and a_y = 2 m/s² are both constant, so each axis takes its 1D equations on the same t: v_x = 5 − t, v_y = 0 + 2t, x = 5t − ½t², y = ½(2)t². At t = 4 s: v = (1, 8) m/s, r = (12, 16) m."
               ],
               "rejected": [
                 "Use |a| in both equations or use separate unrelated times."
-              ]
+              ],
+              "task": {
+                "prompt": "A skater on smooth ice starts at the origin moving at 5 m/s along +x. A steady wind then gives her an acceleration of 1 m/s² along −x and 2 m/s² along +y for 4 s. Decide on each axis whether the constant-acceleration equations apply, write the x and y equations with one shared t, and find her velocity and position at t = 4 s.",
+                "givens": [
+                  "Initial position (0, 0) m; initial velocity (5 i + 0 j) m/s.",
+                  "Acceleration (−1 i + 2 j) m/s², constant for the whole 4 s.",
+                  "Requested instant: t = 4 s."
+                ],
+                "representation_ref": "REP-KIN-2D-SKATER-WIND",
+                "stage_refs": [
+                  "VIS-KIN-2D-SKATER-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -16244,8 +16261,8 @@ window.GRADE9V3_CORE = {
                   "from_step_ref": "K2D2-2"
                 },
                 {
-                  "ask": "If one component equation finds the event time, what time must the other component use?",
-                  "why_this_ask": "Recovers the shared-clock coupling at an event.",
+                  "ask": "At t = 4 s, what do v_x = 5 − t and v_y = 2t give, and what do x = 5t − ½t² and y = t² give?",
+                  "why_this_ask": "Reads one plane state by putting the same clock value into every component equation before recombining.",
                   "from_step_ref": "K2D2-3"
                 }
               ],
@@ -16829,20 +16846,37 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "No. The component equations are separate, but the event uses one common elapsed time."
             },
             "attempt": {
-              "produces": "A two-column x/y setup with one shared t.",
+              "produces": "A two-column x/y setup on one clock, the position (15, 20) m at t = 5 s, and a rejected mixed-instant pair such as x(5 s) with y(4 s), (15, 16) m.",
               "closure": "RUBRIC",
               "rubric": [
                 {
                   "criterion": "Axes are kept separate while time/frame remain shared.",
                   "evidence_of": "Correct component independence model."
+                },
+                {
+                  "criterion": "The position at t = 5 s is (15, 20) m, and a pair taking x and y at different instants is refused as a position.",
+                  "evidence_of": "Treating a position as both components read on one clock."
                 }
               ],
               "accepted": [
-                "Separate x and y equations; same t for both."
+                "x(t) = 3t and y(t) = 4t on one clock, so at t = 5 s the boat is at (15, 20) m. A pair such as x(5 s) with y(4 s), (15, 16) m, mixes two instants and is not a position of the boat.",
+                "Separate columns x = 3t and y = 4t on the same t: at t = 5 s the boat is at (15, 20) m; pairing x at one instant with y at another, e.g. (15, 16) m, is not a position."
               ],
               "rejected": [
                 "Use x acceleration in the y equation or assign unrelated times."
-              ]
+              ],
+              "task": {
+                "prompt": "A boat crosses a river. Use the bank frame: origin at the starting jetty, +x downstream, +y straight across, t = 0 when the boat leaves. Relative to the bank the boat moves 3 m/s downstream and 4 m/s across, both steady. Set up an x column and a y column tied to one clock, then give the boat's position at t = 5 s and say which pair of values you would refuse to call its position.",
+                "givens": [
+                  "Frame: origin at the jetty, +x downstream, +y across the river, t = 0 at departure.",
+                  "Velocity components: v_x = 3 m/s, v_y = 4 m/s, both constant.",
+                  "Requested instant: t = 5 s."
+                ],
+                "representation_ref": "REP-KIN-2D-BOAT-RIVER",
+                "stage_refs": [
+                  "VIS-KIN-2D-BOAT-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
@@ -20188,54 +20222,72 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "Immediately after a horizontal launch, which acceleration component is zero in the ideal model?",
-              "defensible_answer": "a_x is zero; a_y is -g if +y is upward."
+              "prompt": "Just after the basketball leaves the player's hands, moving forward and upward, which acceleration component is zero in the ideal model?",
+              "defensible_answer": "a_x is zero; a_y is −g (−10 m/s²) with +y upward, even while the ball is still rising."
             },
             "attempt": {
-              "produces": "A model declaration and component-equation setup for a horizontal or oblique projectile.",
+              "produces": "The model and frame for the basketball, x(t), y(t), v_x(t) and v_y(t) with the 2 m starting height, and the ball's position and velocity at t = 0.5 s.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "The learner selects gravity-only free flight, uses a_x=0/a_y=-g and one common time before calculating any named projectile quantity.",
-                  "evidence_of": "Projectile model selection rather than formula recall."
+                  "criterion": "Declares gravity-only free flight with a_x = 0 and a_y = −10 m/s², and puts the origin on the floor below the release point so y = 2 m at t = 0.",
+                  "evidence_of": "Projectile model and frame selection rather than formula recall."
+                },
+                {
+                  "criterion": "Writes x = 6t and y = 2 + 8t − 5t² with one shared t, and v_x = 6, v_y = 8 − 10t.",
+                  "evidence_of": "Keeping the starting height and the common clock in the component equations."
+                },
+                {
+                  "criterion": "At t = 0.5 s gives (3, 4.75) m and (6, 3) m/s, and notes that v_y > 0, so the ball is still rising.",
+                  "evidence_of": "Reading the state at a given instant from simultaneous components."
                 }
               ],
               "accepted": [
+                "After release only gravity acts, so a = (0, −10) m/s². x = 6t, y = 2 + 8t − 5t², v_x = 6, v_y = 8 − 10t. At t = 0.5 s the ball is at (3, 4.75) m with velocity (6 i + 3 j) m/s.",
                 "State assumptions, set component accelerations, then solve x/y with one t."
               ],
               "rejected": [
-                "Start from a memorized range/height formula without establishing the free-flight component model."
-              ]
+                "'y = 8t − 5t² = 2.75 m at 0.5 s.' This drops the 2 m starting height: with the origin on the floor, y(0) = 2 m.",
+                "Start from a memorized range or maximum-height formula; this task asks for the state at a given instant, not a named event."
+              ],
+              "task": {
+                "prompt": "A basketball leaves a player's hands 2 m above the floor with velocity components 6 m/s horizontally and 8 m/s upward. Air resistance is negligible and g = 10 m/s². Declare the model and the frame (origin on the floor directly below the release point, +y up), write x(t), y(t), v_x(t) and v_y(t), and find the ball's position and velocity at t = 0.5 s.",
+                "givens": [
+                  "Release point: 2 m above the floor.",
+                  "Launch components: u_x = 6 m/s, u_y = 8 m/s (upward).",
+                  "g = 10 m/s²; air resistance negligible.",
+                  "Requested instant: t = 0.5 s."
+                ],
+                "representation_ref": "REP-KIN-2D-BASKETBALL-2M",
+                "stage_refs": [
+                  "VIS-KIN-2D-BBALL-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "What forces remain after release in the idealized problem?",
-                  "why_this_ask": "Elicits the gravity-only model.",
+                  "ask": "What forces act on the ball after it leaves the hands, and what acceleration components follow?",
+                  "why_this_ask": "Elicits the gravity-only model: a_x = 0, a_y = −10 m/s².",
                   "from_step_ref": "K2D3-1"
                 },
                 {
-                  "ask": "What are the horizontal and vertical component equations, and what clock do they share?",
-                  "why_this_ask": "Rebuilds the projectile specialization from 2D constant acceleration.",
+                  "ask": "Where is the origin, so what is y at t = 0?",
+                  "why_this_ask": "The frame puts the release point at y = 2 m, not at zero.",
+                  "from_step_ref": "K2D3-1"
+                },
+                {
+                  "ask": "What is y(t) with the 2 m start, and what is x(t)? Which clock do they share?",
+                  "why_this_ask": "Rebuilds both component equations with one common t.",
                   "from_step_ref": "K2D3-2"
                 },
                 {
-                  "ask": "What exact component condition identifies the event the question asks about?",
-                  "why_this_ask": "Separates model selection from event selection.",
-                  "from_step_ref": "K2D3-3"
-                },
-                {
-                  "ask": "If the event is the apex, what becomes zero and what definitely does not?",
-                  "why_this_ask": "Protects against the common full-velocity/full-acceleration zero shortcut.",
-                  "from_step_ref": "K2D3-4"
-                },
-                {
-                  "ask": "Does launch height equal landing height? If not, which shortcut becomes invalid?",
-                  "why_this_ask": "Makes the same-height boundary explicit.",
-                  "from_step_ref": "K2D3-5"
+                  "ask": "At t = 0.5 s, is v_y still positive? What does that say about the ball's motion then?",
+                  "why_this_ask": "Reads the vertical state from the component, not from a guess about the apex.",
+                  "from_step_ref": "K2D3-7"
                 }
               ],
-              "differs_from_teaching_path": "Teaching states the projectile specialization; reconstruction derives it from the post-release interaction model and coordinate choice."
+              "differs_from_teaching_path": "The teaching path goes from the model to named events (apex, landing). The learner route stops at a given instant: it fixes the frame and the starting height, writes both component equations with one clock, and reads the state at 0.5 s."
             },
             "boundary_test": {
               "prompt": "A launched object continues under significant horizontal thrust after release. May the standard a_x=0 projectile specialization be used?",
@@ -22797,39 +22849,54 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "No. While the fixed-separation constraint holds, their acceleration components along that coordinate are equal."
             },
             "attempt": {
-              "produces": "A declared connection constraint plus one signed Newton-II equation per body and an optional combined-system equation.",
+              "produces": "The tow-bar constraint, one signed Newton-II equation for the car and one for the trailer, the common acceleration and the tow-bar force.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations."
+              "model_response": "State the fixed-separation constraint first, use one sign convention, set the constrained acceleration components equal, and cancel internal partner forces only after combining both body equations.",
+              "task": {
+                "prompt": "A 1000 kg car tows a 500 kg trailer with a light rigid tow bar on a level road. The road pushes the car's drive wheels forward with 3000 N; ignore all resistance. State the constraint, write one Newton-II equation for the car and one for the trailer, and find the acceleration and the tow-bar force.",
+                "givens": [
+                  "Car 1000 kg; trailer 500 kg.",
+                  "Driving force on the car 3000 N forward.",
+                  "Rigid bar: the separation stays fixed."
+                ],
+                "representation_ref": "REP-NLM-CAR-TRAILER-TOWBAR",
+                "stage_refs": [
+                  "VIS-NLM-TOWBAR-V0"
+                ]
+              },
+              "accepted": [
+                "The fixed bar gives one acceleration. Car: 3000 − T = 1000a. Trailer: T = 500a. Adding gives a = 2 m/s², so T = 1000 N; check with the car: 3000 − 1000 = 2000 = 1000 × 2."
+              ]
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "What physical condition keeps the two bodies' relative separation fixed?",
+                  "ask": "What does the rigid tow bar keep fixed between the car and the trailer?",
                   "why_this_ask": "It makes the common acceleration a consequence rather than an assumption.",
                   "from_step_ref": "NLM9-1"
                 },
                 {
-                  "ask": "With one coordinate direction chosen, what must be true of their constrained acceleration components?",
-                  "why_this_ask": "It converts the physical constraint into the shared kinematic variable.",
+                  "ask": "With forward positive, what must be true of their two accelerations?",
+                  "why_this_ask": "It turns the constraint into one shared unknown.",
                   "from_step_ref": "NLM9-2"
                 },
                 {
-                  "ask": "Which interaction force belongs in each body's own equation?",
-                  "why_this_ask": "It prevents system-level cancellation from contaminating body-specific FBDs.",
+                  "ask": "Which forces go in the car's equation, and which in the trailer's? Where does the bar force appear?",
+                  "why_this_ask": "It keeps the bar force on each body's own equation.",
                   "from_step_ref": "NLM9-3"
                 },
                 {
-                  "ask": "Only after adding the two body equations, which force pair cancels?",
-                  "why_this_ask": "It locates internal-force cancellation at the correct system boundary.",
+                  "ask": "After adding the two equations, which pair cancels, and what are a and the bar force?",
+                  "why_this_ask": "It locates the internal-force cancellation and finishes the task.",
                   "from_step_ref": "NLM9-4"
                 }
               ],
               "differs_from_teaching_path": "The learner first proves the acceleration relation from the connection and only then decides whether to keep separate body equations or add them into a system equation."
             },
             "boundary_test": {
-              "prompt": "The contact between the bodies is lost. May a_A = a_B still be imposed from the old connection?",
-              "answer": "No. Once the constraint no longer keeps their separation fixed, their accelerations must be determined from their new individual dynamics.",
-              "confirms": "Common acceleration is conditional on an active kinematic constraint."
+              "prompt": "The tow bar snaps. May the car and the trailer still be given one acceleration?",
+              "answer": "No. With the bar gone, each body has its own force sum: the car accelerates at 3000/1000 = 3 m/s², and the trailer, with no forces along the road, keeps its velocity.",
+              "confirms": "A common acceleration holds only while the constraint is active."
             }
           },
           "misconceptions": [
@@ -23177,57 +23244,72 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "A horse pulls a cart while the cart pulls back on the horse. If you draw only the cart, should both of those horizontal forces appear on the cart's free-body diagram?",
-              "defensible_answer": "No. Only the horse-on-cart force acts on the cart; the cart-on-horse partner belongs on the horse's diagram."
+              "prompt": "A man stands in a boat. Should the man's weight appear on the boat's free-body diagram?",
+              "defensible_answer": "No. The man's weight is Earth pulling the man. On the boat, the force is the push of the man's feet."
             },
             "attempt": {
-              "produces": "Two separate body inventories, one for the cart and one for the horse, with the contact partner arrows assigned to the body each arrow acts on.",
+              "produces": "One free-body inventory for the boat only: Earth's pull, the man's push and the water's push, each with its agent, direction and size, with no force that acts on the man.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "Each diagram contains only the member of the contact pair acting on its chosen body.",
-                  "evidence_of": "Using force ownership rather than visual cancellation."
+                  "criterion": "Every force on the list acts on the boat and has a named agent.",
+                  "evidence_of": "Using force ownership to decide what goes on the diagram."
                 },
                 {
-                  "criterion": "The partner arrows are placed on different body diagrams.",
-                  "evidence_of": "Recognizing that equal-and-opposite partners do not cancel within one body's inventory."
+                  "criterion": "Uses the man's push on the boat (700 N down), not the man's weight, which acts on the man.",
+                  "evidence_of": "Separating a contact force on the boat from Earth's pull on another body."
+                },
+                {
+                  "criterion": "Finds the water's push, 2000 N up, from zero net force on the boat.",
+                  "evidence_of": "Using the completed inventory to find an unknown force."
                 }
               ],
               "accepted": [
-                "'Cart: horse pushes cart forward. Horse: cart pushes horse backward.' The two arrows are on different diagrams."
+                "On the boat: its weight 1300 N down (Earth), the man's push 700 N down (man) and the water's push 2000 N up (water). The man's weight acts on the man, not on the boat."
               ],
               "rejected": [
-                "Both equal-and-opposite arrows drawn on the cart and crossed out. This puts a force acting on the horse into the cart's inventory."
-              ]
+                "'The man's weight, 700 N, acts on the boat.' Earth pulls the man, not the boat; the boat feels the push of his feet, which is 700 N only because he stands still.",
+                "'The boat's upward push on the man, 700 N, also goes on the boat's diagram.' That force acts on the man, so it belongs on his diagram."
+              ],
+              "task": {
+                "prompt": "A 70 kg man stands in a 130 kg boat floating at rest on a lake. Take g = 10 m/s². Build the free-body inventory of the boat: every force, its agent, its direction and its size.",
+                "givens": [
+                  "Man 70 kg; boat 130 kg; g = 10 m/s².",
+                  "Everything is at rest."
+                ],
+                "representation_ref": "REP-NLM-MAN-IN-BOAT",
+                "stage_refs": [
+                  "VIS-NLM-BOAT-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Which single body are you describing first?",
+                  "ask": "Which body is the diagram for?",
                   "why_this_ask": "The diagram has no ownership until a body is chosen.",
                   "from_step_ref": "NLM3-1"
                 },
                 {
-                  "ask": "For the horse-on-cart force, which object receives the push?",
-                  "why_this_ask": "The receiver test decides membership without requiring a named law."
+                  "ask": "Which bodies act on the boat: Earth, the man, the water? Which way does each one push or pull?",
+                  "why_this_ask": "It builds the inventory from agents acting on the boat."
                 },
                 {
-                  "ask": "For the cart-on-horse partner, which object receives that push?",
-                  "why_this_ask": "The same test places the partner on the other diagram.",
+                  "ask": "Is the man's weight on the boat's diagram, or the man's push on the boat? How big is that push while he stands still?",
+                  "why_this_ask": "It replaces a force on the man with the contact force on the boat.",
                   "from_step_ref": "NLM3-2"
                 },
                 {
-                  "ask": "When you switch the chosen body, which contact arrow moves into the new inventory?",
-                  "why_this_ask": "Rebuilding the diagram tests whether body ownership, rather than arrow pairing, controls placement.",
-                  "from_step_ref": "NLM3-3"
+                  "ask": "What must the water's push be for the boat to stay at rest?",
+                  "why_this_ask": "It closes the inventory with zero net force: 1300 + 700 = 2000 N up."
                 }
               ],
-              "differs_from_teaching_path": "The teaching path demonstrates two correct diagrams. The learner route begins from one chosen body and repeatedly applies the receiver test until the separation of partner arrows is forced."
+              "differs_from_teaching_path": "The teaching path draws the cart and the horse. The learner route chooses the boat, asks which agents act on it, and replaces the man's weight with his push before balancing the forces."
             },
             "boundary_test": {
-              "prompt": "Two hands push the same box equally in opposite directions. Can those two forces both appear on the box's free-body diagram?",
-              "answer": "Yes. Both hands act on the same chosen box, so both forces belong there and may cancel in the net force.",
-              "confirms": "The rule is body ownership, not a ban on opposite arrows appearing together."
+              "prompt": "Now draw the man's diagram. Does the boat's upward push on him belong there? Does the water's push?",
+              "answer": "The boat's push on the man, 700 N up, belongs there with his weight, 700 N down. The water does not touch the man, so its push does not belong there.",
+              "confirms": "Each force goes on the diagram of the body it acts on; switching the body switches the inventory."
             }
           },
           "misconceptions": [
@@ -23546,57 +23628,74 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "Two people push the same box equally hard in opposite directions. If the box has zero net force, does that mean neither person is exerting a force?",
-              "defensible_answer": "No. Both forces are present; their opposite directional effects cancel in the net result."
+              "prompt": "A string pulls up on a box that still rests on the floor. Does the floor still push up on the box with a force equal to the box's weight?",
+              "defensible_answer": "No. The upward forces together must equal the weight; the string takes part of it, so the floor pushes with less."
             },
             "attempt": {
-              "produces": "A force inventory that keeps both opposite contributions visible plus a separate statement of the net result.",
+              "produces": "A three-force inventory for the box (Earth's pull, the string's pull and the floor's push), each with its agent, direction and size, and a separate statement that the net force is zero.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "Both nonzero contributions remain listed.",
-                  "evidence_of": "Not confusing cancellation with absence."
+                  "criterion": "Lists all three forces with their agents, including the floor's push.",
+                  "evidence_of": "Keeping every interaction in the inventory."
                 },
                 {
-                  "criterion": "Only the combined result is labelled zero.",
+                  "criterion": "Finds the floor's push, 20 N up, from zero net force instead of setting it equal to the weight.",
+                  "evidence_of": "Deriving an unknown force from the balance."
+                },
+                {
+                  "criterion": "Labels only the sum as zero; each force stays nonzero.",
                   "evidence_of": "Locating the zero at the level of the sum."
                 }
               ],
               "accepted": [
-                "'Left push present; right push present; equal and opposite, so the net force is zero.'"
+                "Earth pulls it down with 30 N, the string pulls up with 10 N and the floor pushes up with 20 N. The net force is zero, although all three forces are nonzero; the floor's push is 20 N, not 30 N."
               ],
               "rejected": [
+                "'The floor pushes up with 30 N, the box's weight.' The upward forces would then total 40 N against 30 N down, and the box would not stay at rest.",
                 "'No forces act because the net is zero.' This deletes the interactions instead of combining them."
-              ]
+              ],
+              "task": {
+                "prompt": "A 3 kg box rests on the floor while a string pulls straight up on it with 10 N; the box does not move. Take g = 10 m/s². List every force on the box with its agent, direction and size, and find the net force.",
+                "givens": [
+                  "Mass 3 kg; g = 10 m/s².",
+                  "String pull 10 N vertically upward.",
+                  "The box stays at rest on the floor."
+                ],
+                "representation_ref": "REP-NLM-BOX3-STRING-10N",
+                "stage_refs": [
+                  "VIS-NLM-BOX3-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Before adding anything, how many pushes are physically acting on the box?",
+                  "ask": "Which bodies touch or pull on the box? Name each agent.",
                   "why_this_ask": "It fixes the inventory before a zero total can erase it.",
                   "from_step_ref": "NLM2-1"
                 },
                 {
-                  "ask": "Which directions do those pushes point?",
-                  "why_this_ask": "Cancellation requires direction, so the learner has to preserve it."
+                  "ask": "Which way does each force point, and which sizes do you already know?",
+                  "why_this_ask": "Cancellation needs direction, and the weight (30 N) and string pull (10 N) are known."
                 },
                 {
-                  "ask": "If the two sizes match, what happens to the combined directional effect?",
-                  "why_this_ask": "The zero is derived from the pair rather than assumed from the motion.",
+                  "ask": "The box stays at rest. What must the upward forces add up to?",
+                  "why_this_ask": "The zero is derived from the balance, not assumed.",
                   "from_step_ref": "NLM2-2"
                 },
                 {
-                  "ask": "If both people push harder by the same amount, which statements change and which stay true?",
-                  "why_this_ask": "The variation separates individual magnitudes from the net result.",
+                  "ask": "So how hard must the floor push? Is that the box's weight?",
+                  "why_this_ask": "It separates the floor's push (20 N) from the weight (30 N).",
                   "from_step_ref": "NLM2-3"
                 }
               ],
-              "differs_from_teaching_path": "The teaching path lists and combines the forces. The learner route commits to the inventory first, then derives cancellation and tests it by changing both contributions together."
+              "differs_from_teaching_path": "The teaching path combines two equal opposite pushes. The learner route builds a three-force inventory with one unknown and uses the zero sum to find it."
             },
             "boundary_test": {
-              "prompt": "One of the two equal opposite pushes is removed. Is the net force still zero?",
-              "answer": "No. One nonzero force remains without an equal opposite contribution to cancel it.",
-              "confirms": "Zero net force came from cancellation between present forces, not from a property of the object."
+              "prompt": "The string pull is raised to 30 N, and then to 35 N. What is the floor's push in each case, and is the net force still zero?",
+              "answer": "At 30 N the floor's push is zero: the string alone balances the 30 N weight. At 35 N the floor cannot pull the box down, so the net force is 5 N upward and the box accelerates upward at 5/3 ≈ 1.7 m/s².",
+              "confirms": "Zero net force came from a balance the floor's push could adjust to; once that force cannot adjust, the forces no longer cancel."
             }
           },
           "misconceptions": [
@@ -23934,56 +24033,72 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "A bus starts forward and a loose object seems to shift backward to a passenger. Before adding any new force, did a new physical agent suddenly begin pulling the object backward?",
-              "defensible_answer": "No. The physical interactions need not change; the passenger's observer description changes because the bus is accelerating."
+              "prompt": "A train brakes and a ball on its smooth floor rolls toward the front. Did something start pushing the ball forward?",
+              "defensible_answer": "No. No new body touches the ball; the train slows down under it. Only the observer inside the train needs an extra term."
             },
             "attempt": {
-              "produces": "Two labelled observer descriptions of the same object: roadside and accelerating bus, with a statement of where the pseudo-force convention appears.",
+              "produces": "Two labelled descriptions of the ball, one from the platform and one from the braking train, each with the ball's horizontal forces and acceleration, and the size and direction of the pseudo-force in the train description.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "The roadside description keeps only physical interactions.",
-                  "evidence_of": "Not inventing a new physical agent when the observer changes."
+                  "criterion": "Platform: no horizontal physical force acts on the ball, so it keeps its velocity while the train slows.",
+                  "evidence_of": "Not inventing a physical agent."
                 },
                 {
-                  "criterion": "The bus description adds the pseudo-force specifically because that observer accelerates.",
-                  "evidence_of": "Attaching the convention to observer acceleration rather than to the object."
+                  "criterion": "Train: the ball accelerates forward at 2 m/s² relative to the train.",
+                  "evidence_of": "Reading the motion the accelerating observer sees."
+                },
+                {
+                  "criterion": "Accounts for that with a pseudo-force of 0.5 × 2 = 1 N pointing forward, opposite the train's acceleration, supplied by no body.",
+                  "evidence_of": "Attaching the pseudo-force to the observer's acceleration."
                 }
               ],
               "accepted": [
-                "'Roadside: physical forces only. Accelerating bus: same physical forces plus a backward pseudo-force for the bus description.'"
+                "Platform: no horizontal force acts, so the ball keeps its speed while the train slows under it. Train: the ball accelerates forward at 2 m/s², explained by a pseudo-force of 0.5 × 2 = 1 N pointing forward. No physical force has been added."
               ],
               "rejected": [
-                "'A new backward physical force appears when the bus starts.' This confuses an observer convention with an interaction."
-              ]
+                "'The braking pushes the ball forward with 1 N.' No body exerts that force; it appears only in the train observer's description.",
+                "'The pseudo-force points backward, the way the train accelerates.' It points opposite the frame's acceleration, so forward."
+              ],
+              "task": {
+                "prompt": "A 0.5 kg ball rests on the smooth floor of a train moving along a straight track. The train brakes, slowing at 2 m/s². Describe the ball's horizontal forces and motion as seen from the platform, then as seen from inside the train, and give the size and direction of any pseudo-force.",
+                "givens": [
+                  "Ball 0.5 kg on a frictionless train floor.",
+                  "Train deceleration 2 m/s² (acceleration 2 m/s² backward)."
+                ],
+                "representation_ref": "REP-NLM-TRAIN-BALL-BRAKING",
+                "stage_refs": [
+                  "VIS-NLM-TRAINBALL-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Did the set of physical objects touching or attracting the loose object change when the bus started?",
-                  "why_this_ask": "It tests whether a new physical agent exists before any observer convention is introduced.",
+                  "ask": "Which bodies touch the ball, and can any of them push it horizontally on a smooth floor?",
+                  "why_this_ask": "It rules out a new physical agent before any observer convention.",
                   "from_step_ref": "NLM4-2"
                 },
                 {
-                  "ask": "Which observer is accelerating during the bus start?",
-                  "why_this_ask": "The extra convention is tied to observer acceleration, so this must be explicit."
+                  "ask": "Seen from the platform, what does the ball's velocity do while the train brakes?",
+                  "why_this_ask": "The inertial description needs no extra term.",
+                  "from_step_ref": "NLM4-1"
                 },
                 {
-                  "ask": "What does the passenger see the loose object do relative to the bus?",
-                  "why_this_ask": "The observed relative motion is the phenomenon the bus description has to account for.",
-                  "from_step_ref": "NLM4-2"
+                  "ask": "Which observer accelerates, and in which direction?",
+                  "why_this_ask": "The pseudo-force is tied to the observer's acceleration: 2 m/s² backward."
                 },
                 {
-                  "ask": "Where should the pseudo-force be added so the two descriptions remain consistent about the same physical situation?",
-                  "why_this_ask": "The learner must attach the added term to the accelerating observer rather than to a new physical interaction.",
+                  "ask": "Seen from inside the train, which way does the ball accelerate and how fast? What pseudo-force, size and direction, accounts for that?",
+                  "why_this_ask": "It sizes the pseudo-force as m × a_frame, opposite the frame's acceleration: 1 N forward.",
                   "from_step_ref": "NLM4-3"
                 }
               ],
-              "differs_from_teaching_path": "The teaching path compares two observer accounts directly. The learner route first rules out a new physical agent, identifies which observer accelerates, then introduces the pseudo-force as a modelling convention."
+              "differs_from_teaching_path": "The teaching path compares observers of a bus that starts. The learner route takes a braking train, rules out a physical push first, and then sizes the pseudo-force from the train's deceleration."
             },
             "boundary_test": {
-              "prompt": "The bus now travels at constant velocity. Does changing from the roadside observer to the bus observer by itself require the added pseudo-force?",
-              "answer": "No. With no observer acceleration in this comparison, the extra pseudo-force convention is not required merely because the observers move relative to each other.",
+              "prompt": "The train now runs at a steady speed. Does a passenger need a pseudo-force to describe the ball?",
+              "answer": "No. The train frame is not accelerating, so the ball stays at rest relative to the floor and no pseudo-force is needed.",
               "confirms": "The trigger is observer acceleration, not observer motion in general."
             }
           },
@@ -24601,30 +24716,45 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "No. Static friction adjusts to the value required to prevent relative slip, up to the limit mu_s N."
             },
             "attempt": {
-              "produces": "A contact-state decision that computes the no-slip friction requirement, compares it with the static limit, and selects the correct model.",
+              "produces": "For each trial: the normal force, the static limit, a decision whether the box moves, the friction and the acceleration.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established."
+              "model_response": "Find N from the FBD, solve for f_required under no slip, compare |f_required| with mu_s N, and use the kinetic model only after sliding is established.",
+              "task": {
+                "prompt": "A 5 kg box rests on a floor with μ_s = 0.5 and μ_k = 0.4; take g = 10 m/s². A 30 N horizontal push is applied. Decide whether the box moves, and find the friction and the acceleration. Then repeat with a second child pressing straight down on the lid with 20 N while the same 30 N push acts.",
+                "givens": [
+                  "Mass 5 kg; μ_s = 0.5; μ_k = 0.4; g = 10 m/s².",
+                  "Horizontal push 30 N.",
+                  "Second trial: an extra 20 N downward press."
+                ],
+                "representation_ref": "REP-NLM-BOX5-PUSH-30N-PRESS-20N",
+                "stage_refs": [
+                  "VIS-NLM-BOX5-V0"
+                ]
+              },
+              "accepted": [
+                "Trial 1: N = 50 N, limit 25 N < 30 N, so the box slides; friction is 0.4 × 50 = 20 N and a = (30 − 20)/5 = 2 m/s². Trial 2: N = 70 N, limit 35 N ≥ 30 N, so the box stays at rest with 30 N of static friction."
+              ]
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "What normal reaction does the actual perpendicular force equation require?",
-                  "why_this_ask": "The friction limit depends on the real N, not a memorized mg shortcut.",
+                  "ask": "In each trial, what normal force does the vertical balance give?",
+                  "why_this_ask": "The limit depends on the real N (50 N, then 70 N), not on mg alone.",
                   "from_step_ref": "NLM8-1"
                 },
                 {
-                  "ask": "If the contact did not slip, what friction value would the tangential equation require?",
-                  "why_this_ask": "Static friction is determined by the demand of the no-slip state before the limit is tested.",
+                  "ask": "If the box did not slip, what friction would the 30 N push require?",
+                  "why_this_ask": "Static friction is set by the need of the no-slip state before the limit is tested.",
                   "from_step_ref": "NLM8-2"
                 },
                 {
-                  "ask": "Is that required magnitude within mu_s N?",
-                  "why_this_ask": "The inequality decides whether the assumed static state is physically available.",
+                  "ask": "Is 30 N within μ_s N in each trial?",
+                  "why_this_ask": "The inequality decides whether the no-slip state is possible (25 N, then 35 N).",
                   "from_step_ref": "NLM8-3"
                 },
                 {
-                  "ask": "Which contact state, if any, justifies an equality with a coefficient times N?",
-                  "why_this_ask": "It separates impending slip from established sliding.",
+                  "ask": "In the trial where the box slides, which friction model applies, and what acceleration results?",
+                  "why_this_ask": "It separates established sliding (μ_k N) from static friction.",
                   "from_step_ref": "NLM8-4"
                 }
               ],
@@ -25000,57 +25130,74 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "Must friction on a moving object always point opposite the object's motion?",
-              "defensible_answer": "No. Its direction opposes relative sliding or the tendency to slide at the contact."
+              "prompt": "A block is pressed against a wall and does not slide. Which way does the friction on it point, and does pressing harder make that friction larger?",
+              "defensible_answer": "Up, opposing the slide the block would have without friction. Pressing harder raises only the limit, not the friction the block actually needs."
             },
             "attempt": {
-              "produces": "A contact-level slip-tendency statement and a friction arrow.",
+              "produces": "The friction's direction from the block's tendency to slide, its size from the vertical balance, a check against μ_s N, and what changes and what does not when the push rises to 80 N.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "Names the relative slip tendency at the contact.",
-                  "evidence_of": "Reasoning from the contact rather than object velocity alone."
+                  "criterion": "Names the slip tendency: without friction the block would slide down the wall, so friction points up.",
+                  "evidence_of": "Reasoning from the contact rather than the block's velocity."
                 },
                 {
-                  "criterion": "Points friction opposite that relative slip tendency.",
-                  "evidence_of": "Using the physical definition consistently."
+                  "criterion": "Takes the friction's size, 20 N, from the vertical balance and checks it against μ_s N = 30 N.",
+                  "evidence_of": "Separating the friction needed from the most the contact can give."
+                },
+                {
+                  "criterion": "At 80 N, says the limit rises to 48 N but the friction stays 20 N.",
+                  "evidence_of": "Seeing that static friction answers the need, not the press."
                 }
               ],
               "accepted": [
-                "Belt outruns box -> box slips left relative to belt -> friction on box points right."
+                "Without friction the block would slide down the wall, so friction points up. It must balance the 20 N weight, so f = 20 N (the limit is 0.6 × 50 = 30 N). At 80 N the limit rises to 48 N, but the friction stays 20 N up because the need has not changed."
               ],
               "rejected": [
-                "Friction must point left because the box moves right."
-              ]
+                "'f = μ_s N = 0.6 × 50 = 30 N.' That is the most the contact can give; the block needs only 20 N.",
+                "'At 80 N the friction becomes 48 N.' The friction grows only if the block needs more."
+              ],
+              "task": {
+                "prompt": "A 2 kg block is pressed against a vertical wall by a 50 N horizontal push and does not slide. μ_s = 0.6 and g = 10 m/s². Give the direction and size of the friction on the block, then say what happens to the friction when the push is increased to 80 N.",
+                "givens": [
+                  "Block 2 kg; g = 10 m/s².",
+                  "Horizontal push 50 N, then 80 N.",
+                  "μ_s = 0.6 between block and wall."
+                ],
+                "representation_ref": "REP-NLM-BLOCK-WALL-50N",
+                "stage_refs": [
+                  "VIS-NLM-BLOCKWALL-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Which two surfaces are in contact?",
-                  "why_this_ask": "It locates the interaction.",
+                  "ask": "Which two surfaces are in contact, and which force presses them together?",
+                  "why_this_ask": "It locates the interaction and its normal force.",
                   "from_step_ref": "NLM5-1"
                 },
                 {
-                  "ask": "Which way would those surfaces slide relative to each other without friction?",
-                  "why_this_ask": "It identifies the relevant tendency.",
+                  "ask": "Without friction, which way would the block slide along the wall?",
+                  "why_this_ask": "It identifies the slip tendency.",
                   "from_step_ref": "NLM5-2"
                 },
                 {
-                  "ask": "Which way must friction oppose that relative motion?",
-                  "why_this_ask": "It reconstructs the force direction."
+                  "ask": "Which way must friction point, and how large must it be to keep the block still?",
+                  "why_this_ask": "It builds the friction from the need: 20 N up."
                 },
                 {
-                  "ask": "Does that direction have to oppose the box's ground-frame velocity?",
-                  "why_this_ask": "It tests the common shortcut.",
-                  "from_step_ref": "NLM5-3"
+                  "ask": "Is that within μ_s N? When the push rises to 80 N, which of the two numbers changes?",
+                  "why_this_ask": "It separates the need (20 N) from the limit (30 N, then 48 N).",
+                  "from_step_ref": "NLM5-4"
                 }
               ],
-              "differs_from_teaching_path": "The teaching path begins from the contact; the learner route begins from the misleading object-velocity shortcut and repairs it through relative slip."
+              "differs_from_teaching_path": "The teaching path begins with a block on a floor and a conveyor belt. The learner route turns the contact vertical, so the friction must hold up the weight and the press sets only the limit."
             },
             "boundary_test": {
-              "prompt": "If there is no relative sliding and no tendency to slide at a contact, must friction be nonzero?",
-              "answer": "No. Friction can be zero when no tangential contact force is needed.",
-              "confirms": "Friction responds to the contact constraint rather than existing automatically whenever surfaces touch."
+              "prompt": "The push is lowered to 30 N. Does the block still stay put?",
+              "answer": "No. The limit becomes 0.6 × 30 = 18 N, less than the 20 N needed, so the block slides down the wall.",
+              "confirms": "Friction supplies what the contact needs only up to μ_s N; beyond that the no-slip state fails."
             }
           },
           "misconceptions": [
@@ -25624,38 +25771,58 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "Two masses hang from the ends of one ideal string over a fixed ideal pulley. May the same symbol T be used for the tension magnitude on both sides?",
-              "defensible_answer": "Yes, but only because the string/pulley model has been declared ideal; each mass still has its own tension force on its own FBD."
+              "prompt": "A hand pulls a cart with a string, and a second string ties it to a cart behind. Must both strings carry the same tension?",
+              "defensible_answer": "No. A light string has one tension along its own length, but the two strings are separate, and each carries what its load needs."
             },
             "attempt": {
-              "produces": "An explicit model declaration plus separate body FBD tension assignments using one common magnitude only when justified.",
+              "produces": "The model (light, taut strings on a smooth track), the common acceleration, the tension in each string, and the bodies each string's pull acts on.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Declare the ideal string/pulley assumptions, put a tension arrow on each affected body along the local string, and use T_A = T_B = T only under those assumptions."
+              "model_response": "Declare each string light and taut, so each has one tension along its own length. Find a from the whole train, find each string's tension from what that string alone pulls, and put each tension arrow on the body at each end of its string.",
+              "task": {
+                "prompt": "On a smooth track a hand pulls a light string attached to a 2 kg cart with 15 N. A second light string ties that cart to a 3 kg cart behind it. State the model, find the acceleration and the tension in each string, and say which body each tension force acts on.",
+                "givens": [
+                  "Front cart 2 kg; rear cart 3 kg; smooth track.",
+                  "Hand's pull 15 N on the front string.",
+                  "Both strings light and taut."
+                ],
+                "representation_ref": "REP-NLM-CARTS-2KG-3KG-15N",
+                "stage_refs": [
+                  "VIS-NLM-CARTS15-V0"
+                ]
+              },
+              "accepted": [
+                "Each light string has one tension along its length. a = 15/5 = 3 m/s². The front string's tension is 15 N and acts on the front cart. The rear string's tension is 3 × 3 = 9 N and acts backward on the front cart and forward on the rear cart. The two strings have different tensions."
+              ]
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "What assumptions about the string and pulley have actually been declared?",
-                  "why_this_ask": "Equal tension must be tied to a model rather than memorized as universal.",
+                  "ask": "What does 'light and taut' let you say about the tension along one string?",
+                  "why_this_ask": "A single tension along a string must come from the model.",
                   "from_step_ref": "NLM10-1"
                 },
                 {
-                  "ask": "Which body does each string force act on?",
-                  "why_this_ask": "It keeps equal magnitudes from becoming an invalid cancellation on one FBD.",
+                  "ask": "Are the two strings one string? May one T be used for both?",
+                  "why_this_ask": "It stops the one-symbol shortcut from spreading to a second string.",
+                  "from_step_ref": "NLM10-3"
+                },
+                {
+                  "ask": "Which body does the rear string pull on at each end, and what does the rear cart's equation give for its tension?",
+                  "why_this_ask": "It assigns ownership and sizes the rear tension: 3 × 3 = 9 N.",
                   "from_step_ref": "NLM10-2"
                 },
                 {
-                  "ask": "Under those assumptions, can the two tension magnitudes be represented by one T?",
-                  "why_this_ask": "It derives the compact relation only after model and ownership are fixed.",
-                  "from_step_ref": "NLM10-3"
+                  "ask": "Which forces act on the front cart, and does 15 − 9 equal its mass times a?",
+                  "why_this_ask": "It checks the result on the other body.",
+                  "from_step_ref": "NLM10-5"
                 }
               ],
-              "differs_from_teaching_path": "The learner has to earn the single tension symbol by first stating the model and assigning the two forces to their bodies."
+              "differs_from_teaching_path": "The teaching path earns one T for one string over a pulley. The learner route has two strings and must decide that each has its own tension."
             },
             "boundary_test": {
-              "prompt": "The pulley axle has significant friction. Does this capability still guarantee equal tension on the two sides?",
-              "answer": "No. The ideal redirection assumption has been broken, so equal tension is no longer guaranteed by this model.",
-              "confirms": "Uniform tension is model-conditional, not universal."
+              "prompt": "The rear string is replaced by a 1 kg rope. Is the tension still the same all along it?",
+              "answer": "No. The rope has mass, so the light-string model no longer holds and equal tension is no longer guaranteed: with a = 15/6 = 2.5 m/s², the rope pulls the rear cart with 3 × 2.5 = 7.5 N but is pulled at its front end with 4 × 2.5 = 10 N.",
+              "confirms": "One tension along a string is a result of the light-string model, not a universal rule."
             }
           },
           "misconceptions": [
@@ -26423,56 +26590,74 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "A low-friction cart is already moving when the push ends. Must a new forward force keep acting just to preserve that motion?",
-              "defensible_answer": "No. If the net force is zero, the cart can keep the velocity it already has."
+              "prompt": "A car cruises at a steady speed along a straight, level road with its engine running. Must the forward driving force be larger than the backward resistance just to keep it moving?",
+              "defensible_answer": "No. At steady velocity the net force is zero, so the forward and backward forces are equal in size."
             },
             "attempt": {
-              "produces": "A two-case prediction for a released moving cart and an initially resting cart under the same zero-net-force condition.",
+              "produces": "The total resistive force on the car with its direction, the net force on the car, and the car's velocity 10 s later, each justified from the steady 25 m/s.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "The moving cart is allowed to continue steadily.",
-                  "evidence_of": "Separating motion from acceleration."
+                  "criterion": "Reads 'a steady 25 m/s in a straight line' as zero acceleration, so the net force is zero.",
+                  "evidence_of": "Separating motion from change of motion."
                 },
                 {
-                  "criterion": "The resting cart is allowed to remain at rest under the same rule.",
-                  "evidence_of": "Recognizing unchanged velocity as the common condition."
+                  "criterion": "Finds the resistive total, 2000 N backward, from that balance rather than from the size of the speed.",
+                  "evidence_of": "Using the net-force condition to find an unknown force."
+                },
+                {
+                  "criterion": "Keeps the velocity at 25 m/s in the same direction after 10 s.",
+                  "evidence_of": "Recognizing unchanged velocity, not rest, as what zero net force preserves."
                 }
               ],
               "accepted": [
-                "'The moving cart keeps moving steadily; the resting cart stays at rest. Neither has to change velocity.'"
+                "The velocity is not changing, so the net force is zero and the resistive forces total 2000 N backward. With nothing changed, the car is still moving at 25 m/s in the same direction 10 s later."
               ],
               "rejected": [
-                "'Zero net force makes both carts stop.' This turns zero net force into a command for zero velocity rather than unchanged velocity."
-              ]
+                "'The driving force must be bigger than the resistance, or the car would slow down.' At steady speed the net force is zero, so the two forces are equal.",
+                "'With zero net force the car is at rest 10 s later.' Zero net force keeps the velocity unchanged; it does not stop the car."
+              ],
+              "task": {
+                "prompt": "A 1500 kg car cruises at a steady 25 m/s along a straight, level road. The road pushes it forward with a driving force of 2000 N. Find the total resistive force and the net force on the car, and say what its velocity will be 10 s later if nothing changes.",
+                "givens": [
+                  "Mass 1500 kg; speed a steady 25 m/s in a straight line.",
+                  "Driving force 2000 N forward.",
+                  "Resistive forces (air and rolling) act backward."
+                ],
+                "representation_ref": "REP-NLM-CAR-CRUISE-2000N",
+                "stage_refs": [
+                  "VIS-NLM-CRUISE-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "After the hand leaves the cart, is the hand still exerting the forward push?",
-                  "why_this_ask": "It removes the continuing-contact explanation before discussing what the cart does.",
+                  "ask": "What does 'a steady 25 m/s in a straight line' tell you about the car's acceleration?",
+                  "why_this_ask": "It separates 'is moving' from 'is changing its motion' before any force is discussed.",
+                  "from_step_ref": "NLM1-1"
+                },
+                {
+                  "ask": "So what must the net force on the car be?",
+                  "why_this_ask": "The net-force value is derived from the unchanged velocity, not assumed from the speed."
+                },
+                {
+                  "ask": "The road pushes forward with 2000 N. What total backward force makes the net force zero?",
+                  "why_this_ask": "It finds the unknown resistance from the balance.",
                   "from_step_ref": "NLM1-2"
                 },
                 {
-                  "ask": "What would count as a change of velocity in the next few moments?",
-                  "why_this_ask": "The learner must name acceleration-like changes rather than equate movement itself with force."
-                },
-                {
-                  "ask": "If none of those changes occurs, what part of the cart's motion is staying the same?",
-                  "why_this_ask": "It identifies unchanged velocity as the invariant.",
+                  "ask": "If nothing changes for 10 s, can the velocity change? What is it then?",
+                  "why_this_ask": "It identifies unchanged velocity, not rest, as what zero net force keeps.",
                   "from_step_ref": "NLM1-3"
-                },
-                {
-                  "ask": "Does that same rule also allow a cart whose starting velocity is zero?",
-                  "why_this_ask": "The rest case checks that the learner has not replaced one special state with another."
                 }
               ],
-              "differs_from_teaching_path": "The teaching path presents the moving and resting cases as a finished comparison. The learner route first removes the push, defines what change would look like, then discovers that both cases share unchanged velocity."
+              "differs_from_teaching_path": "The teaching path compares a released moving cart with a resting cart. The learner route starts from the car's steady speed, derives the zero net force from it, and uses that to find the unknown resistance and the later velocity."
             },
             "boundary_test": {
-              "prompt": "A cart moving east begins to slow down. Can zero net force still describe that interval?",
-              "answer": "No. Slowing down is a change of velocity, so the zero-net-force condition no longer fits the stated interval.",
-              "confirms": "The rule is about unchanged velocity, not simply about whether the object is moving."
+              "prompt": "The driver eases off and the driving force drops to 500 N while the resistance is still 2000 N. Is the net force still zero, and what happens to the speed?",
+              "answer": "No. The net force is 2000 − 500 = 1500 N backward, so the car slows at 1500/1500 = 1 m/s². Zero net force described only the steady interval.",
+              "confirms": "Zero net force goes with unchanged velocity, not with motion as such."
             }
           },
           "misconceptions": [
@@ -26823,52 +27008,67 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "Left, with the net force; velocity direction does not set acceleration direction."
             },
             "attempt": {
-              "produces": "A one-body signed force sum and a signed acceleration.",
+              "produces": "The signed net force on the car, its signed acceleration, and the time the car takes to stop.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "Sums forces before using F = ma.",
-                  "evidence_of": "Using net external force rather than a selected force."
+                  "criterion": "Adds the friction and the drag with their signs before using F = ma.",
+                  "evidence_of": "Using the net external force rather than a selected force."
                 },
                 {
-                  "criterion": "Keeps the acceleration sign consistent with the chosen axis.",
-                  "evidence_of": "Maintaining direction through the scalar component equation."
+                  "criterion": "Keeps the acceleration negative (backward) while the velocity is positive.",
+                  "evidence_of": "Keeping direction through the component equation."
+                },
+                {
+                  "criterion": "Uses the signed acceleration to find the stopping time, 20/5 = 4 s.",
+                  "evidence_of": "Linking the second law to the change in velocity."
                 }
               ],
               "accepted": [
-                "+12 N on 4 kg -> +3 m/s^2."
+                "F_net = −5400 − 600 = −6000 N, so a = −6000/1200 = −5 m/s². It stops after 20/5 = 4 s. The acceleration points backward while the velocity points forward."
               ],
               "rejected": [
-                "Using the direction of velocity to choose acceleration sign."
-              ]
+                "'The car moves forward, so its acceleration is +5 m/s².' The sign of the acceleration comes from the net force, not from the velocity."
+              ],
+              "task": {
+                "prompt": "A 1200 kg car moving at 20 m/s brakes. The road's friction on it is 5400 N backward and air drag is 600 N backward. Take forward as positive. Find the net force and the acceleration, and how long the car takes to stop if these forces stay constant.",
+                "givens": [
+                  "Mass 1200 kg; initial velocity +20 m/s.",
+                  "Road friction 5400 N backward; air drag 600 N backward."
+                ],
+                "representation_ref": "REP-NLM-CAR-BRAKING-1200KG",
+                "stage_refs": [
+                  "VIS-NLM-CARBRAKE-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Which body are we solving for?",
+                  "ask": "Which body is the equation about, and which horizontal forces act on it?",
                   "why_this_ask": "It fixes force ownership.",
                   "from_step_ref": "NLM6-1"
                 },
                 {
-                  "ask": "What is the signed sum of forces on that body?",
-                  "why_this_ask": "It constructs the quantity the law uses."
+                  "ask": "With forward positive, what is the signed sum of the road friction and the drag?",
+                  "why_this_ask": "It constructs the quantity the law uses: −6000 N.",
+                  "from_step_ref": "NLM6-2"
                 },
                 {
-                  "ask": "What positive mass belongs to that same body?",
-                  "why_this_ask": "It prevents cross-body substitution."
+                  "ask": "What acceleration does that net force give for the 1200 kg car, with its sign?",
+                  "why_this_ask": "It keeps the car's own mass and the sign together."
                 },
                 {
-                  "ask": "Does the zero-net-force boundary give zero acceleration?",
-                  "why_this_ask": "It independently checks the result.",
-                  "from_step_ref": "NLM6-3"
+                  "ask": "The velocity is +20 m/s and the acceleration is negative. How long until the velocity reaches zero?",
+                  "why_this_ask": "It uses the signed acceleration to answer the stopping question."
                 }
               ],
-              "differs_from_teaching_path": "The teaching path builds the force sum directly; the learner route starts from the body choice and uses the zero-force boundary as a final falsifier."
+              "differs_from_teaching_path": "The teaching path builds the force sum and returns to an equal-opposite case. The learner route builds a signed sum for a braking car and carries the signed acceleration to the stopping time."
             },
             "boundary_test": {
-              "prompt": "If the net external force is zero on a positive-mass body, what acceleration does F_net = ma give?",
-              "answer": "Zero acceleration.",
-              "confirms": "The second-law relation is consistent with the earlier first-law constant-velocity case."
+              "prompt": "Suppose the forces forward on the car add up to exactly 6000 N while the same 6000 N acts backward. What acceleration does F_net = ma give?",
+              "answer": "Zero. The net force is zero, so the car keeps whatever velocity it has.",
+              "confirms": "The second-law relation agrees with the first-law constant-velocity case."
             }
           },
           "misconceptions": [
@@ -27448,26 +27648,46 @@ window.GRADE9V3_CORE = {
               "defensible_answer": "It must shorten by 1 cm, because the total string length is fixed."
             },
             "attempt": {
-              "produces": "A coordinate declaration, fixed-length equation, and derived velocity/acceleration relation for one fixed-pulley string.",
+              "produces": "The fixed-length equation with its value, y_B after A rises 0.1 m, and B's signed velocity and acceleration at the instant.",
               "closure": "MODEL_RESPONSE",
-              "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0."
+              "model_response": "Choose both coordinates away from the pulley, write y_A + y_B = constant, then infer v_A + v_B = 0 and a_A + a_B = 0.",
+              "task": {
+                "prompt": "A taut inextensible string over a fixed pulley holds masses A and B, with y_A and y_B measured downward from the pulley. Now y_A = 0.6 m and y_B = 1.0 m. Find y_B after A has risen by 0.1 m. At an instant when A moves up at 0.2 m/s with an acceleration of 1.5 m/s² downward, find B's velocity and acceleration.",
+                "givens": [
+                  "y_A = 0.6 m and y_B = 1.0 m, both measured downward from the pulley.",
+                  "A rises by 0.1 m.",
+                  "Instant: v_A = −0.2 m/s, a_A = +1.5 m/s² (down positive)."
+                ],
+                "representation_ref": "REP-NLM-PULLEY-YA06-YB10",
+                "stage_refs": [
+                  "VIS-NLM-PULLEY16-V0"
+                ]
+              },
+              "accepted": [
+                "y_A + y_B = 1.6 m, so y_B = 1.6 − 0.5 = 1.1 m. v_B = −v_A = +0.2 m/s (moving down), and a_B = −a_A = −1.5 m/s² (1.5 m/s² upward)."
+              ]
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "Which portions of this one string can actually change length while the pulley stays fixed?",
-                  "why_this_ask": "It builds the constraint from geometry instead of a memorized ratio.",
+                  "ask": "Which two straight parts of the string change length, and what is their sum now?",
+                  "why_this_ask": "It builds the constraint from geometry: y_A + y_B = 1.6 m.",
                   "from_step_ref": "NLM11-1"
                 },
                 {
-                  "ask": "What equation states that their sum is fixed?",
-                  "why_this_ask": "It converts the inextensible-string model into the governing kinematic relation.",
+                  "ask": "A rises by 0.1 m. Which way does y_A change, and what must y_B be?",
+                  "why_this_ask": "It uses the fixed sum: y_A = 0.5 m, so y_B = 1.1 m.",
                   "from_step_ref": "NLM11-2"
                 },
                 {
-                  "ask": "What does that equation imply for signed accelerations in the same coordinates?",
-                  "why_this_ask": "It derives the relation used in the Newton-II equations.",
+                  "ask": "What does the fixed sum give for v_B and a_B, in the same down-positive coordinates?",
+                  "why_this_ask": "It derives v_B = −v_A and a_B = −a_A.",
                   "from_step_ref": "NLM11-3"
+                },
+                {
+                  "ask": "Translate the signs back: which way is B moving, and which way is its acceleration?",
+                  "why_this_ask": "It turns signed results into motion.",
+                  "from_step_ref": "NLM11-4"
                 }
               ],
               "differs_from_teaching_path": "The learner reconstructs the acceleration relation directly from the visible changing string segments rather than being handed an acceleration ratio."
@@ -27795,51 +28015,68 @@ window.GRADE9V3_CORE = {
           ],
           "elicitation": {
             "predict": {
-              "prompt": "If action and reaction are equal and opposite, why do they not automatically make the net force on one object zero?",
-              "defensible_answer": "They act on different objects, so they are not both terms in the same object's force sum."
+              "prompt": "A rocket's engine pushes exhaust gas backward. If the gas pushes the rocket forward equally hard, why do the two forces not cancel and leave the rocket at rest?",
+              "defensible_answer": "They act on different bodies, so they are not both terms in the rocket's force sum."
             },
             "attempt": {
-              "produces": "Two agent-target force statements and one arrow on each body.",
+              "produces": "The partner force named with its agent and target (gas on rocket), the body each of the two forces acts on, and the rocket's acceleration from the one force acting on it.",
               "closure": "RUBRIC",
               "rubric": [
                 {
-                  "criterion": "Names both partner forces with agent and target.",
-                  "evidence_of": "Keeping force ownership explicit."
+                  "criterion": "Names the partner: the gas pushes the rocket forward with 5000 N.",
+                  "evidence_of": "Keeping agent and target explicit."
                 },
                 {
-                  "criterion": "Places the partners on different body diagrams.",
-                  "evidence_of": "Avoiding false cancellation in one net-force sum."
+                  "criterion": "Places the engine's push on the gas and the gas's push on the rocket.",
+                  "evidence_of": "Avoiding false cancellation in one force sum."
+                },
+                {
+                  "criterion": "Uses only the force on the rocket: a = 5000/400 = 12.5 m/s² forward.",
+                  "evidence_of": "Using the body's own force sum."
                 }
               ],
               "accepted": [
-                "swimmer on water backward; water on swimmer forward; different bodies."
+                "The partner is the gas pushing on the rocket, 5000 N forward. It acts on the rocket, while the engine's push acts on the gas. The rocket's acceleration is 5000/400 = 12.5 m/s² forward."
               ],
               "rejected": [
-                "Both arrows cancel on the swimmer."
-              ]
+                "'The 5000 N on the gas and the 5000 N on the rocket cancel, so the rocket does not accelerate.' The two forces act on different bodies."
+              ],
+              "task": {
+                "prompt": "A 400 kg rocket far from any planet fires its engine, which pushes exhaust gas backward with a force of 5000 N. Name the partner force and the body it acts on, and find the rocket's acceleration.",
+                "givens": [
+                  "Rocket mass 400 kg (take it as constant for this instant).",
+                  "Engine's push on the gas: 5000 N backward.",
+                  "No other forces act."
+                ],
+                "representation_ref": "REP-NLM-ROCKET-EXHAUST-5000N",
+                "stage_refs": [
+                  "VIS-NLM-ROCKET-V0"
+                ]
+              }
             },
             "reconstruct": {
               "route": [
                 {
-                  "ask": "What is the interaction?",
-                  "why_this_ask": "It identifies the partner pair."
+                  "ask": "Which two bodies interact when the engine fires?",
+                  "why_this_ask": "It identifies the partner pair: rocket and gas."
                 },
                 {
-                  "ask": "Which body receives the first force?",
+                  "ask": "The engine pushes the gas backward. Which body receives that push?",
                   "why_this_ask": "It assigns ownership.",
                   "from_step_ref": "NLM7-1"
                 },
                 {
-                  "ask": "Which body receives the partner?",
-                  "why_this_ask": "It prevents both arrows landing on one diagram."
+                  "ask": "What is its partner: which body pushes, which receives, in which direction and how hard?",
+                  "why_this_ask": "It builds the gas-on-rocket force, 5000 N forward.",
+                  "from_step_ref": "NLM7-2"
                 },
                 {
-                  "ask": "Can both partners appear in one body's force sum?",
-                  "why_this_ask": "It tests the cancellation misconception.",
+                  "ask": "Which of the two forces belongs in the rocket's force sum, and what acceleration does it give?",
+                  "why_this_ask": "It tests the cancellation misconception and finishes the task.",
                   "from_step_ref": "NLM7-3"
                 }
               ],
-              "differs_from_teaching_path": "The teaching path names agent-target pairs before drawing; the learner route starts from the cancellation paradox and resolves it by body ownership."
+              "differs_from_teaching_path": "The teaching path names agent-target pairs before drawing. The learner route starts from the engine's push on the gas and has to find its partner before any acceleration can be found."
             },
             "boundary_test": {
               "prompt": "Can a third-law partner force ever be the force that balances another force on the same body?",
@@ -39581,7 +39818,7 @@ window.GRADE9V3_CORE = {
               "supports_move_ref": "R-KIN-2D-CA-REPRESENT"
             },
             {
-              "text": "Run the constant-acceleration relation once on x and once on y while keeping one shared 3 s interval.",
+              "text": "Substitute with signs: on x, v_x = 3 + 2(3) and Δx = 3(3) + ½(2)(3²); on y, v_y = 4 + (−1)(3) and Δy = 4(3) + ½(−1)(3²). Then assemble v and Δr from the two columns.",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-KIN-2D-CA-MODEL"
@@ -40059,7 +40296,7 @@ window.GRADE9V3_CORE = {
               "visual_stage_ref": "VIS-KIN-2D-SHARED-V1"
             },
             {
-              "text": "Name the physical condition that says the stone has reached the ground before solving for the event time.",
+              "text": "The ground is 20 m below the launch point and u_y = 0, so the landing condition is −20 = 0·t − ½(10)t². Solve it for t, then use that same t in x = 15t and in v_y = −10t.",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-KIN-LAUNCH-EVENT",
@@ -40262,7 +40499,7 @@ window.GRADE9V3_CORE = {
               "supports_move_ref": "R-KIN-2D-APEX-REPRESENT"
             },
             {
-              "text": "At the apex, decide which velocity component changes sign and set only that component to zero.",
+              "text": "From 0 = 20 − 10t you have the apex time. At that same t, v_x is still 12 m/s and a is still (0, −10) m/s²; get the height from Δy = 20t − 5t² (or from v_y² = u_y² − 2gΔy with v_y = 0).",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-KIN-2D-APEX-EVENT"
@@ -40463,7 +40700,7 @@ window.GRADE9V3_CORE = {
               "supports_move_ref": "R-KIN-2D-SAME-REPRESENT"
             },
             {
-              "text": "The vertical equation has a launch root and a later root; identify which event is requested before reusing the time.",
+              "text": "Factor 16t − 4t² = 4t(4 − t). Which factor gives the launch, and which gives the landing?",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-KIN-2D-SAME-EVENT"
@@ -40662,7 +40899,7 @@ window.GRADE9V3_CORE = {
               "supports_move_ref": "R-KIN-2D-CLOCK-REPRESENT"
             },
             {
-              "text": "Label the time beside each evaluated component before you pair the coordinates.",
+              "text": "With x(2) = 4 × 2 and y(2) = 10 − 2 × 2² worked out, write them as one pair (x, y). For the second part, write the time label next to x(2 s) and next to y(3 s): two different labels mean two different events.",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-KIN-2D-CLOCK-PAIR"
@@ -40780,7 +41017,7 @@ window.GRADE9V3_CORE = {
               "artifact_ref": null
             }
           ],
-          "stem": "Over 0<=t<=4 s, a particle has a_x=2 m/s^2 but a_y=3t m/s^2. Decide whether the ordinary constant-acceleration equations may be used exactly on x, on y, on both, or on neither over the whole interval. Explain the model choice before doing any further calculation.",
+          "stem": "Two pucks glide on a level air table; use one x-y frame and one clock with t = 0 at the start. Puck A starts at the origin with velocity (4 i + 0 j) m/s and constant acceleration (0 i + 2 j) m/s². Puck B starts at (12 i + 0 j) m with velocity (0 i + 2 j) m/s and no acceleration. Find where their paths cross, decide whether the pucks collide, and find the steady y-velocity B would need (same start, still unaccelerated) for a collision.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
           ],
@@ -40789,110 +41026,142 @@ window.GRADE9V3_CORE = {
           "subparts": [],
           "options": [],
           "conditions": [
-            "The acceleration components are given as functions of time.",
-            "No numerical integration is required; the task is model selection."
+            "Both pucks are described in the same fixed frame with the same clock.",
+            "Each puck's acceleration is constant for the whole motion.",
+            "Treat the pucks as points."
           ],
           "figure_refs": [],
           "figures": [],
           "reasoning_route": [
             {
-              "id": "R-KIN-2D-BMODEL-REPRESENT",
+              "id": "R-KIN-2D-BMEET-REPRESENT",
               "kind": "REPRESENT",
-              "action": "Write the acceleration histories separately over the interval: a_x(t)=2 and a_y(t)=3t.",
-              "why_valid": "The familiar component method remains available, but model validity must now be checked from how each acceleration component behaves with time.",
+              "action": "Write x_A(t) = 4t, y_A(t) = t², x_B(t) = 12 and y_B(t) = 2t in one table with a single t column.",
+              "why_valid": "Each puck's axes are separate constant-acceleration problems, and both pucks share the frame and clock declared in the stem.",
               "inputs": [
-                "0<=t<=4 s",
-                "a_x=2",
-                "a_y=3t"
+                "A: r0 = (0, 0), u = (4, 0), a = (0, 2)",
+                "B: r0 = (12, 0), u = (0, 2), a = (0, 0)"
               ],
-              "output": "One component is time-independent while the other explicitly varies with t."
+              "output": "Four component equations on one clock."
             },
             {
-              "id": "R-KIN-2D-BMODEL-DECIDE",
+              "id": "R-KIN-2D-BMEET-DECIDE",
               "kind": "DECIDE",
-              "action": "Decide separately for each axis whether the constant-acceleration condition is satisfied over the whole interval.",
-              "why_valid": "The standard constant-acceleration equations require the relevant acceleration component to remain constant; validity on one axis does not license the other.",
+              "action": "Define the collision as x_A = x_B and y_A = y_B holding at the same t, and do not accept the crossing point of the two paths as a collision.",
+              "why_valid": "Two points coincide only if every coordinate agrees at one instant; a path records where a body has been, not when, so a shared point on two paths can be visited at different times.",
               "inputs": [
-                "a_x(t)=2",
-                "a_y(t)=3t",
-                "constant-acceleration condition"
+                "four component equations",
+                "paths cross at (12, 9) m"
               ],
-              "output": "The model is exact on x and not exact on y over the interval."
+              "output": "Two equations in one unknown t, which must have a common root."
             },
             {
-              "id": "R-KIN-2D-BMODEL-BOUND",
+              "id": "R-KIN-2D-BMEET-TEST",
+              "kind": "TRANSFORM",
+              "action": "Solve the x-equality for t = 3 s and test the y-equality at that t: 9 m against 6 m.",
+              "why_valid": "The x-equation has a single root, so it is the only candidate time; the y-equation must also hold there.",
+              "inputs": [
+                "4t = 12",
+                "y_A(3) = 9 m",
+                "y_B(3) = 6 m"
+              ],
+              "output": "No common root, so no collision."
+            },
+            {
+              "id": "R-KIN-2D-BMEET-DESIGN",
               "kind": "CONNECT",
-              "action": "Use ordinary constant-acceleration relations only for x and withhold them from y unless a different valid treatment is supplied.",
-              "why_valid": "A model may be used only where its defining condition holds; rejecting it on y does not invalidate the independently valid x component.",
+              "action": "Require y_B(3 s) = y_A(3 s) = 9 m and solve 3v_B = 9 for v_B = 3 m/s.",
+              "why_valid": "The x-motion alone fixes the only possible meeting time, so the y-motion of B must be designed to match at that instant.",
               "inputs": [
-                "x condition satisfied",
-                "y condition violated"
+                "t = 3 s",
+                "y_A(3) = 9 m",
+                "y_B = v_B t"
               ],
-              "output": "Constant-acceleration equations are licensed on x only."
+              "output": "v_B = 3 m/s along +y."
             },
             {
-              "id": "R-KIN-2D-BMODEL-CHECK",
+              "id": "R-KIN-2D-BMEET-CHECK",
               "kind": "VERIFY",
-              "action": "Compare endpoint accelerations: a_x is 2 at both ends, whereas a_y changes from 0 to 12 m/s^2.",
-              "why_valid": "Endpoint comparison independently demonstrates constancy of x and non-constancy of y without relying on the equation choice.",
+              "action": "With v_B = 3 m/s, factor the two coordinate differences and confirm they share exactly one root, t = 3 s.",
+              "why_valid": "Factoring the differences checks the result without reusing the step that produced it.",
               "inputs": [
-                "t=0",
-                "t=4 s",
-                "a_x(t)",
-                "a_y(t)"
+                "x_A − x_B = 4t − 12",
+                "y_A − y_B = t(t − 3)"
               ],
-              "output": "The component-by-component model decision is confirmed."
+              "output": "Both vanish together only at t = 3 s, at (12, 9) m."
             }
           ],
-          "crux_move_ref": "R-KIN-2D-BMODEL-DECIDE",
+          "crux_move_ref": "R-KIN-2D-BMEET-DECIDE",
           "hints": [
             {
-              "text": "Is 'constant acceleration' one global label here, or must each component be checked over the interval?",
+              "text": "Put both pucks in one frame on one clock: which four quantities describe the two pucks at a given t?",
               "reveals": "CONCEPT"
+            },
+            {
+              "text": "Find every t at which the x-coordinates agree, then test the y-coordinates at exactly those times.",
+              "reveals": "METHOD"
             }
           ],
           "scaffolds": [
             {
-              "text": "Make one row for a_x(t) and one for a_y(t), and write the validity condition each row must satisfy.",
+              "text": "Make one table with columns t, x_A, y_A, x_B and y_B, and fill in the four expressions before substituting any time.",
               "support_kind": "REPRESENT",
               "reveals": "CONCEPT",
-              "supports_move_ref": "R-KIN-2D-BMODEL-REPRESENT"
+              "supports_move_ref": "R-KIN-2D-BMEET-REPRESENT"
             }
           ],
           "transfer": {
-            "dimension": "model_choice",
-            "statement": "The learner must decide component-by-component whether the constant-acceleration model is valid instead of being told that it applies.",
+            "dimension": "reasoning_steps",
+            "statement": "The learner must turn 'do they collide?' into two coordinate equations that share one unknown t, test whether they have a common root, and then design a value that makes them agree. Crossing paths is the tempting substitute.",
             "builds_on": [
-              "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02"
+              "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02",
+              "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01"
             ],
-            "protected_move_ref": "R-KIN-2D-BMODEL-DECIDE",
-            "invariant": "Each axis is still handled with its own signed values over one shared time interval; what changes is that the constant-acceleration condition must be checked rather than assumed."
+            "protected_move_ref": "R-KIN-2D-BMEET-DECIDE",
+            "invariant": "Each body's axes still run the 1D constant-acceleration equations with their own signed values on one shared clock, exactly as in the single-particle item. What changes is that two bodies must satisfy two coordinate equations at one common t.",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-KIN-2D-1A-CONSTANT-ACCEL-01 (Core1A worked anchor): one puck, time from y = 0, then x read at 6 s; no second body and no common-root test.",
+                "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION misconceptions (Core1A diagnose/repair): magnitude in both equations, per-axis validity, reusing t; none compares two bodies.",
+                "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION boundary test (Core1B): whether a_y = 3t allows the constant-a equations; a validity question, not a meeting.",
+                "Q-PHY-KIN-2D-2A-CONSTANT-ACCEL-02 (Core2A): one particle's v and Δr after a given 3 s; the time is handed over, not tested for consistency.",
+                "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01 (Core1A anchor, secondary capability): rejects a mixed-time pair for one drone, not a crossing point of two paths."
+              ],
+              "why_new": "Every earlier item of this capability follows one body: find a time from one axis (y = 0 at 6 s, or a given 3 s) and read the other axis there. The Core1B test and the diagnose/repair prompts ask whether the equations apply or which t to reuse. None has two bodies, and none asks whether two equations in the same t have a common root. The shared-clock anchor rejects a mixed-time pair for one body; here the learner must reject a real crossing point of two paths because the two bodies reach it at different times, and then design v_B so they do not."
+            }
           },
-          "check": "A constant total direction or a constant x component does not make the y component constant.",
+          "check": "With v_B = 3 m/s, y_A − y_B = t² − 3t = t(t − 3), which is zero at t = 0 and t = 3 s; x_A − x_B = 4t − 12 is zero only at t = 3 s. Both differences vanish together only at t = 3 s, at (12, 9) m, so exactly one collision occurs.",
           "solution": {
-            "summary": "The constant-acceleration equations are exact on x because a_x is constant, but not on y because a_y changes with time over the interval.",
+            "summary": "The paths cross at (12, 9) m, but the pucks do not collide: A is there at t = 3 s, while B reaches it only at t = 4.5 s (at t = 3 s B is at (12, 6) m, 3 m behind). A collision needs B to move at 3 m/s along +y.",
             "steps": [
-              "Check each acceleration component separately.",
-              "a_x=2 is constant, so the 1D constant-acceleration x relations are valid.",
-              "a_y=3t varies with time, so the constant-a y relations are not exact over the whole interval."
+              "A: x_A = 4t, y_A = ½(2)t² = t². B: x_B = 12, y_B = 2t.",
+              "A's path is y = (x/4)² = x²/16; B's path is the line x = 12. They cross where x = 12 and y = 144/16 = 9 m, at (12, 9) m.",
+              "A collision needs x_A = x_B and y_A = y_B at one and the same t.",
+              "x_A = x_B gives 4t = 12, so t = 3 s is the only instant the x-coordinates agree.",
+              "At t = 3 s: y_A = 9 m but y_B = 6 m. The y-coordinates differ, so there is no collision. B reaches y = 9 m only at t = 9/2 = 4.5 s, after A has left.",
+              "For a collision B must be at y = 9 m at t = 3 s: v_B × 3 = 9, so v_B = 3 m/s along +y."
             ],
             "rubric": [
               {
-                "criterion": "Checks x and y acceleration components separately.",
-                "evidence_of": "Model validity is treated per component."
+                "criterion": "Writes x and y for both pucks against one shared t.",
+                "evidence_of": "Two bodies are described in one frame on one clock."
               },
               {
-                "criterion": "Accepts constant-acceleration equations only on x.",
-                "evidence_of": "Does not let one valid axis license the other."
+                "criterion": "Treats a collision as both coordinate equalities at the same t, and rejects the crossing point of the paths as proof of a collision.",
+                "evidence_of": "A meeting is an event in time, not a point in the plane."
+              },
+              {
+                "criterion": "Finds v_B = 3 m/s by requiring y_B = y_A at the time fixed by the x-equation.",
+                "evidence_of": "Uses the consistency condition to design, not only to test."
               }
             ]
           },
           "repair": {
-            "step_ref": "K2D2-1",
+            "step_ref": "K2D2-3",
             "microtopic_ref": "MIC-PHY-KIN-2D-CONSTANT-ACCELERATION",
-            "action": "Check separately whether a_x and a_y are constant over the interval before choosing constant-acceleration equations on either axis.",
-            "why_valid": "The familiar one-dimensional kinematic relations are exact only on an axis whose acceleration component is constant over the interval.",
-            "output": "per-axis model-validity decision"
+            "action": "If one axis determines an event time, reuse that same time on the other axis before recombining and checking the plane state.",
+            "why_valid": "The event occurs once for the object; a time obtained from one component is the clock value for every component at that same event.",
+            "output": "event time transferred across axes, then one checked plane state"
           }
         },
         "delivery": {
@@ -40957,11 +41226,11 @@ window.GRADE9V3_CORE = {
           "initial_visual_ref": null,
           "initial_visual_stage_ref": null,
           "protected_move_refs": [
-            "R-KIN-2D-BMODEL-DECIDE"
+            "R-KIN-2D-BMEET-DECIDE"
           ],
           "pre_attempt_scaffold_limit": 1,
           "pre_attempt_hint_limit": 1,
-          "post_attempt_hint_limit": 1
+          "post_attempt_hint_limit": 2
         }
       },
       "scene_ref": null,
@@ -41254,7 +41523,7 @@ window.GRADE9V3_CORE = {
               "artifact_ref": null
             }
           ],
-          "stem": "An object is launched and, after release, a small rocket motor continues to provide a horizontal thrust that gives a_x=2 m/s^2 while gravity gives a_y=-g. Decide whether the standard ideal projectile specialization a_x=0, a_y=-g is valid and state the correct bounded model to use.",
+          "stem": "A supply plane flies horizontally at a steady 50 m/s, 80 m above level ground, and releases a package. Air resistance on the package is negligible; take +y upward and g = 10 m/s². In the ground frame, choose the model and the package's initial velocity. Then find how long the package falls, how far ahead of the release point it lands, and where the plane is when it lands.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
           ],
@@ -41263,9 +41532,9 @@ window.GRADE9V3_CORE = {
           "subparts": [],
           "options": [],
           "conditions": [
-            "Air resistance is neglected.",
-            "The horizontal rocket thrust remains active after release.",
-            "The question asks for model selection, not a full trajectory calculation."
+            "Air resistance on the package is negligible.",
+            "The plane keeps flying horizontally at a steady 50 m/s after the release.",
+            "Ground frame: origin at the ground point directly below the release, +x in the plane's direction of travel, +y up."
           ],
           "figure_refs": [],
           "figures": [],
@@ -41273,56 +41542,70 @@ window.GRADE9V3_CORE = {
             {
               "id": "R-KIN-TRANSFER-INTERACTIONS",
               "kind": "REPRESENT",
-              "action": "Inventory the interactions and acceleration components that remain after release before assigning a named motion model.",
-              "why_valid": "Model validity follows from the retained post-release interactions, not from the fact that the object was launched or follows a curved path.",
+              "action": "List what acts on the package after release: gravity only. The engine thrust acts on the plane, and air resistance is negligible.",
+              "why_valid": "The model after release follows from the interactions on the released body, not from the motion of the vehicle it left.",
               "inputs": [
-                "horizontal rocket thrust remains active",
-                "a_x=2 m/s^2",
-                "a_y=-g"
+                "plane engine",
+                "gravity",
+                "negligible air resistance"
               ],
-              "output": "Post-release motion has nonzero horizontal acceleration and gravitational vertical acceleration.",
+              "output": "Only gravity acts on the package after release.",
               "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
               "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
             },
             {
+              "id": "R-KIN-TRANSFER-ACCEL",
+              "kind": "TRANSFORM",
+              "action": "Turn the interaction list into component accelerations: a_x = 0, a_y = −10 m/s².",
+              "why_valid": "Gravity is vertical, and no horizontal interaction remains on the package.",
+              "inputs": [
+                "gravity only",
+                "+y up"
+              ],
+              "output": "a = (0, −10) m/s².",
+              "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+              "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
+            },
+            {
               "id": "R-KIN-TRANSFER-MODEL",
               "kind": "DECIDE",
-              "action": "Reject the standard gravity-only projectile specialization because its defining horizontal-acceleration condition is violated.",
-              "why_valid": "The standard specialization requires gravity-only free flight and therefore a_x=0, while the active motor gives a_x=2 m/s^2.",
+              "action": "Start the ideal projectile model at the instant of release with the package's velocity at that instant, u = (50, 0) m/s in the ground frame. Reject u = 0 ('it drops straight down') and reject keeping the plane's thrust.",
+              "why_valid": "Until release the package moves with the plane, and release changes the forces, not the velocity. Free flight begins from the velocity the body already has.",
               "inputs": [
-                "projectile condition a_x=0",
-                "actual a_x=2 m/s^2",
-                "active post-release thrust"
+                "plane velocity 50 m/s horizontal",
+                "a = (0, −10) m/s²",
+                "release instant"
               ],
-              "output": "The standard ideal projectile specialization is invalid for this interval.",
+              "output": "Projectile with u = (50, 0) m/s and a = (0, −10) m/s² from the release.",
               "representation_ref": "REP-KIN-2D-PROJECTILE-MODEL",
               "visual_stage_ref": "VIS-KIN-2D-PROJ-V3"
             },
             {
-              "id": "R-KIN-TRANSFER-PARENT",
+              "id": "R-KIN-TRANSFER-SOLVE",
               "kind": "CONNECT",
-              "action": "Use the parent two-dimensional constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as both components remain constant.",
-              "why_valid": "Rejecting a specialization does not discard the more general component model whose validity conditions are still satisfied.",
+              "action": "Get t = 4 s from −80 = −5t², then x = 50 × 4 = 200 m, and put the plane at 50 × 4 = 200 m at the same t.",
+              "why_valid": "The landing is one event; the package's two axes and the plane share its time.",
               "inputs": [
-                "constant a_x=2 m/s^2",
-                "constant a_y=-g",
-                "one shared time"
+                "Δy = −80 m",
+                "u_y = 0",
+                "u_x = 50 m/s",
+                "plane speed 50 m/s"
               ],
-              "output": "Use component constant-acceleration equations in x and y with one common clock.",
+              "output": "Lands 200 m ahead after 4 s, with the plane directly above.",
               "representation_ref": "REP-KIN-2D-SHARED-CLOCK",
               "visual_stage_ref": "VIS-KIN-2D-SHARED-V2"
             },
             {
               "id": "R-KIN-TRANSFER-CHECK",
               "kind": "VERIFY",
-              "action": "Check the model boundary by switching the motor off while keeping drag negligible.",
-              "why_valid": "Once the horizontal thrust ends, a_x returns to zero and gravity-only free flight licenses the standard projectile specialization from that later instant.",
+              "action": "Redo the motion in the plane's frame: the package starts at rest there and falls straight down under g.",
+              "why_valid": "A second frame gives the same relative position without reusing the ground-frame arithmetic.",
               "inputs": [
-                "motor off",
-                "drag negligible",
-                "gravity retained"
+                "plane frame",
+                "package initially at rest in it",
+                "a = (0, −10) m/s²"
               ],
-              "output": "The specialization becomes valid exactly when its defining interaction condition is restored."
+              "output": "The package stays directly below the plane, as the ground-frame result says."
             }
           ],
           "crux_move_ref": "R-KIN-TRANSFER-MODEL",
@@ -41334,39 +41617,67 @@ window.GRADE9V3_CORE = {
           ],
           "scaffolds": [
             {
-              "text": "List the post-release interactions and the acceleration components they imply before you name any motion model.",
+              "text": "List the post-release interactions on the package, and the acceleration components they imply, before you name any motion model.",
               "support_kind": "REPRESENT",
               "reveals": "CONCEPT",
               "supports_move_ref": "R-KIN-TRANSFER-INTERACTIONS",
               "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
               "visual_stage_ref": "VIS-KIN-2D-PROJ-V1"
+            },
+            {
+              "text": "Write the vertical equation for the 80 m fall with the vertical launch component you chose, and find its time before touching x.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "supports_move_ref": "R-KIN-TRANSFER-SOLVE",
+              "visual_ref": "REP-KIN-2D-PROJECTILE-MODEL",
+              "visual_stage_ref": "VIS-KIN-2D-PROJ-V2"
             }
           ],
           "transfer": {
             "dimension": "model_choice",
-            "statement": "The learner must reject the familiar projectile specialization because one of its defining force/model conditions is explicitly broken.",
+            "statement": "No launch velocity is stated. The learner must decide that the free-flight model starts at release with the carrier's velocity, not from rest and not with the carrier's thrust.",
             "builds_on": [
               "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04"
             ],
             "protected_move_ref": "R-KIN-TRANSFER-MODEL",
-            "invariant": "Component-by-component constant-acceleration kinematics with one shared clock still applies; what fails is only the special case a_x = 0 that the projectile model adds."
+            "invariant": "The fall time still comes from the vertical drop alone with u_y = 0, and one clock still serves both axes, as in the cliff launch. What changes is that the horizontal launch speed must be found from the release situation.",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): the balcony throw states u = (8, 6) m/s, so the launch velocity is given.",
+                "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): u = (6, 15) m/s is stated; the decision there is the event condition.",
+                "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): the roof throw states u = (5, 20) m/s; the decision there is the drop.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): an existing v_x persists without a force; it does not ask where a released body's v_x comes from.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): a thrust stays on after release; here the thrust stays with the plane, and the package's launch state is at issue.",
+                "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): the launch components 12 and 20 m/s are given, already resolved.",
+                "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): the stone is launched at a stated 15 m/s; the launch speed is not reconstructed.",
+                "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): u = (12, 16) m/s is stated, and the root choice is the demand."
+              ],
+              "why_new": "Every earlier item of this capability states the launch components (u_x = 8, 6, 5, 12, 15 or 12 m/s). The Core1B boundary test decides whether a thrust that stays on breaks a_x = 0, and the diagnose/repair says an existing v_x persists without a force. None asks where a launch velocity comes from when nothing throws the body. Here the learner must build u from the carrier's motion at release, where the tempting routes are u_x = 0 or the plane's thrust. No earlier item shows that initial-state decision answered."
+            }
           },
-          "check": "If the motor is switched off after release and drag remains negligible, the standard a_x=0 projectile model becomes valid from that later instant.",
+          "check": "In the plane's frame the package starts at rest and has only the vertical acceleration g, so it falls straight down below the plane. That agrees with the ground-frame result that plane and package are both 200 m ahead after 4 s.",
           "solution": {
-            "summary": "The standard ideal projectile specialization is not valid because a_x is not zero. Use the more general 2D constant-acceleration model with a_x=2 m/s^2 and a_y=-g for as long as those components remain constant.",
+            "summary": "After release only gravity acts, so the package is an ideal projectile with a = (0, −10) m/s². It leaves with the plane's velocity, u = (50, 0) m/s. It falls for 4 s, lands 200 m ahead of the release point, and at that instant the plane is 200 m ahead too, directly above it at 80 m.",
             "steps": [
-              "The standard projectile specialization requires gravity-only free flight.",
-              "The active rocket motor adds a retained horizontal acceleration.",
-              "Therefore use the parent 2D constant-acceleration capability rather than the gravity-only projectile specialization."
+              "After release the engine pushes the plane, not the package; with air resistance negligible only gravity acts, so a_x = 0 and a_y = −10 m/s².",
+              "Just before release the package moves with the plane, so its initial velocity in the ground frame is u = (50, 0) m/s, not zero.",
+              "Vertical: −80 = 0·t − 5t², so t = 4 s.",
+              "Horizontal: x = 50 × 4 = 200 m ahead of the release point.",
+              "The plane also covers 50 × 4 = 200 m, so it is directly above the landing point, 80 m up.",
+              "Impact velocity: (50 i − 40 j) m/s."
             ],
             "rubric": [
               {
-                "criterion": "Rejects the gravity-only projectile specialization.",
-                "evidence_of": "Checks model conditions before formula use."
+                "criterion": "Declares gravity-only free flight after release (a_x = 0), since the engine acts on the plane and not on the package.",
+                "evidence_of": "The model comes from the interactions after release."
               },
               {
-                "criterion": "Falls back to the general component constant-acceleration model.",
-                "evidence_of": "Chooses the smallest valid parent model rather than inventing a new law."
+                "criterion": "Takes u = (50, 0) m/s in the ground frame as the package's launch velocity.",
+                "evidence_of": "The initial state is the velocity at release, even though nothing throws the package."
+              },
+              {
+                "criterion": "Finds t = 4 s from the 80 m drop alone, and 200 m, with the plane directly overhead.",
+                "evidence_of": "Keeps one clock across the axes and both bodies."
               }
             ]
           },
@@ -41560,7 +41871,16 @@ window.GRADE9V3_CORE = {
               "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01"
             ],
             "protected_move_ref": "R-KIN-2D-BREP-FRAME",
-            "invariant": "One fixed frame and one shared clock still govern both components; only the source of the signed component values changes, from given functions to a verbal description."
+            "invariant": "One fixed frame and one shared clock still govern both components; only the source of the signed component values changes, from given functions to a verbal description.",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-KIN-2D-1A-SHARED-CLOCK-01 (Core1A worked anchor): the drone's x(t) and y(t) are given; no sign has to be chosen for the verbal task.",
+                "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS misconceptions (Core1A diagnose/repair): two clocks and arbitrary pairing; neither translates compass words into signs.",
+                "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS boundary test (Core1B): a_x = 0 with a_y nonzero arrives already signed, unlike the south acceleration here.",
+                "Q-PHY-KIN-2D-2A-SHARED-CLOCK-01 (Core2A): the tracker gives x(t) = 4t and y(t) = 10 − 2t², so the frame work is already done there."
+              ],
+              "why_new": "Every earlier item of this capability hands the learner component functions (x(t) = 6t, y(t) = 8t − t²; x(t) = 4t, y(t) = 10 − 2t²) or already-signed components (the Core1B a_x = 0 test). Here there are only compass words, including an acceleration opposite to one velocity component, so the learner must choose the axes and assign every sign. No earlier item shows that translation answered."
+            }
           },
           "check": "Any consistently declared perpendicular axis convention is acceptable if all signs are transformed consistently.",
           "solution": {
@@ -41686,7 +42006,7 @@ window.GRADE9V3_CORE = {
               "artifact_ref": null
             }
           ],
-          "stem": "An ideal projectile passes the same height once on the way up and once on the way down. Without calculating the times, compare v_x, v_y, speed and acceleration at those two events.",
+          "stem": "A stone is thrown from the edge of a high cliff with u_x = 10 m/s and u_y = 20 m/s. Take +y upward, g = 10 m/s², and neglect air resistance; the stone is still in the air at every instant asked about. When, and where relative to the launch point, is the stone's velocity directed 45° below the horizontal? What is its speed then?",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
           ],
@@ -41696,8 +42016,8 @@ window.GRADE9V3_CORE = {
           "options": [],
           "conditions": [
             "Air resistance is neglected.",
-            "Both events occur on the same trajectory at the same vertical position.",
-            "Take +y upward."
+            "The cliff is high enough that the stone has not landed at the instants in question.",
+            "Positions are measured from the launch point with +x in the direction of the throw and +y up."
           ],
           "figure_refs": [],
           "figures": [],
@@ -41705,112 +42025,121 @@ window.GRADE9V3_CORE = {
             {
               "id": "R-KIN-2D-BSTATE-REPRESENT",
               "kind": "REPRESENT",
-              "action": "Represent the two events at the same height on one ideal trajectory, one ascending and one descending, and compare the requested quantities component by component.",
-              "why_valid": "The task asks for a relation between two states rather than their times, so shared height and direction of travel are the demand-bearing event facts.",
+              "action": "Write the component histories: v_x = 10, v_y = 20 − 10t, x = 10t, Δy = 20t − 5t².",
+              "why_valid": "Ideal flight gives a_x = 0 and a_y = −g on one shared clock.",
               "inputs": [
-                "same projectile",
-                "same height",
-                "ascending event",
-                "descending event"
+                "u = (10, 20) m/s",
+                "g = 10 m/s²"
               ],
-              "output": "A two-event comparison frame for v_x, v_y, speed and acceleration without event times."
+              "output": "Velocity and position components as functions of t."
             },
             {
               "id": "R-KIN-2D-BSTATE-DECIDE",
               "kind": "DECIDE",
-              "action": "Choose direct component invariants at equal height as the comparison method instead of solving for the two event times.",
-              "why_valid": "In ideal flight a_x=0 fixes v_x, while constant vertical acceleration gives equal vertical speed magnitude at the same height; ascent and descent determine opposite signs.",
+              "action": "Express '45° below the horizontal' as a condition on the velocity components, v_y/v_x = tan(−45°) = −1, rather than on the displacement.",
+              "why_valid": "The direction of motion at an instant is the direction of the velocity vector, fixed by the ratio of its components; the displacement direction describes where the stone is, not where it is heading.",
               "inputs": [
-                "a_x=0",
-                "a_y=-g",
-                "same vertical position",
-                "ascent versus descent"
+                "direction 45° below horizontal",
+                "v_x = 10 m/s"
               ],
-              "output": "Compare v_x directly and compare v_y by equal magnitude with opposite direction, without a time calculation."
+              "output": "Event condition v_y = −10 m/s."
+            },
+            {
+              "id": "R-KIN-2D-BSTATE-SOLVE",
+              "kind": "TRANSFORM",
+              "action": "Solve 20 − 10t = −10 for t = 3 s.",
+              "why_valid": "v_y is linear in t, so the condition has one root.",
+              "inputs": [
+                "v_y = 20 − 10t",
+                "v_y = −10 m/s"
+              ],
+              "output": "t = 3 s."
             },
             {
               "id": "R-KIN-2D-BSTATE-RECOMBINE",
               "kind": "CONNECT",
-              "action": "Combine the component relations to conclude that speed magnitudes are equal while velocity vectors differ because v_y changes sign.",
-              "why_valid": "Speed depends on v_x^2+v_y^2, whereas vector equality also requires matching component signs.",
+              "action": "Evaluate x = 30 m and Δy = 15 m at t = 3 s, and combine v = (10, −10) m/s into a speed of 10√2 m/s.",
+              "why_valid": "Position and speed belong to the same instant as the direction condition.",
               "inputs": [
-                "same v_x",
-                "equal |v_y|",
-                "opposite v_y signs"
+                "t = 3 s"
               ],
-              "output": "The speeds are equal, but the velocity vectors are different."
-            },
-            {
-              "id": "R-KIN-2D-BSTATE-ACCEL",
-              "kind": "CONNECT",
-              "action": "Keep acceleration a=(0,-g) at both events.",
-              "why_valid": "Gravity is the same retained interaction at both locations, so acceleration does not reverse when vertical velocity reverses.",
-              "inputs": [
-                "gravity-only ideal projectile model"
-              ],
-              "output": "Acceleration is identical and downward at both events."
+              "output": "30 m out, 15 m above launch, speed ≈ 14.1 m/s."
             },
             {
               "id": "R-KIN-2D-BSTATE-CHECK",
               "kind": "VERIFY",
-              "action": "Check vector equality explicitly: ascent has positive v_y and descent has negative v_y, so identical velocity vectors are impossible.",
-              "why_valid": "A sign difference in any Cartesian component distinguishes two vectors even when their magnitudes match.",
+              "action": "Check the speed with v² = u² − 2gΔy, and check that Δy > 0 is consistent with a launch steeper than 45°.",
+              "why_valid": "The time-free relation tests the result without reusing the time.",
               "inputs": [
-                "v_y,up>0",
-                "v_y,down<0"
+                "u² = 500",
+                "Δy = 15 m"
               ],
-              "output": "Equal speed is not mistaken for equal velocity."
+              "output": "v² = 200, matching 10√2 m/s."
             }
           ],
           "crux_move_ref": "R-KIN-2D-BSTATE-DECIDE",
           "hints": [
             {
-              "text": "At the same height, which horizontal quantity is unchanged throughout ideal flight, and what must differ between ascent and descent?",
+              "text": "During the flight, which velocity component changes and which stays fixed?",
               "reveals": "CONCEPT"
             },
             {
-              "text": "Compare component signs first; only then compare speed magnitudes.",
+              "text": "Write the direction condition as a relation between v_x and v_y at one instant, then solve v_y(t) for that value.",
               "reveals": "METHOD"
             }
           ],
           "scaffolds": [
             {
-              "text": "Make a comparison table for v_x, v_y, speed and acceleration; enter only ‘same height’, ‘upward’ and ‘downward’ before choosing a method.",
+              "text": "Draw the velocity arrow at an unknown later instant with its two components labelled, and mark the 45° angle below the horizontal on it.",
               "support_kind": "REPRESENT",
               "reveals": "CONCEPT",
               "supports_move_ref": "R-KIN-2D-BSTATE-REPRESENT"
             }
           ],
           "transfer": {
-            "dimension": "reasoning_steps",
-            "statement": "The learner must compare two equal-height events by component invariants rather than solve a routine time/range calculation.",
+            "dimension": "representation_translation",
+            "statement": "The event is given as a direction of motion, and the learner must translate it into a ratio of velocity components at one instant before any equation can be solved.",
             "builds_on": [
               "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03"
             ],
             "protected_move_ref": "R-KIN-2D-BSTATE-DECIDE",
-            "invariant": "v_x stays constant and a = (0, −g) at every instant of ideal flight, exactly as at the apex; the task changes from locating one event to comparing two."
+            "invariant": "v_x stays constant and v_y = u_y − gt, as at the apex, and the event time still serves both axes. What changes is that the event condition is a ratio of the two components instead of one component reaching zero.",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): the event is a given instant, 1 s, not a direction of motion.",
+                "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): events set by v_y = 0 and Δy = 0, each a single component.",
+                "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): impact set by Δy = −25 m; the impact direction is only an output.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): compares two equal-height states and finds no event time; no direction condition.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): whether a_x = 0 holds under thrust; no event is located.",
+                "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): the apex, where one component (v_y) vanishes; the parent this task generalises to a component ratio.",
+                "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): the event is ground impact, Δy = −20 m.",
+                "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): the event is a same-height return, Δy = 0."
+              ],
+              "why_new": "Every earlier event of this capability is fixed by one component: a given time (1 s), v_y = 0 at the apex, Δy = 0 at a same-height return, or Δy = −h at impact. The same-height diagnose/repair compares two states without finding a time. Impact direction appears only as an output, after the time is known. Here the event itself is a direction of motion, and the learner must build the condition v_y = −v_x from the two components and must not use the displacement direction (Δy = −Δx, which gives 6 s). No earlier item shows that translation answered."
+            }
           },
-          "check": "The two velocity vectors cannot be identical because one has upward v_y and the other downward v_y.",
+          "check": "Time-free check: v² = u² − 2gΔy = (100 + 400) − 2(10)(15) = 200, so v = 10√2 m/s. The stone is still above its launch point because its launch angle is steeper than 45° (tan θ = 20/10 = 2).",
           "solution": {
-            "summary": "v_x is the same at both events; v_y has equal magnitude and opposite sign; therefore the speed is the same but the velocity vectors differ. Acceleration is the same (0,-g) at both events.",
+            "summary": "At t = 3 s, when the stone is 30 m out and 15 m above the launch point. Its velocity is (10 i − 10 j) m/s, and its speed is 10√2 ≈ 14.1 m/s.",
             "steps": [
-              "Horizontal velocity remains constant because a_x=0.",
-              "At equal height in the same gravity-only trajectory, the vertical speed magnitude matches on ascent and descent, with opposite signs.",
-              "Combining the components gives equal speed magnitudes but different velocity directions.",
-              "Gravity gives the same downward acceleration at both events."
+              "45° below the horizontal means v_y/v_x = −1, so v_y = −v_x.",
+              "v_x stays 10 m/s, so the condition is v_y = −10 m/s.",
+              "v_y = 20 − 10t = −10 gives t = 3 s.",
+              "Position at t = 3 s: x = 10 × 3 = 30 m, Δy = 20 × 3 − 5 × 9 = 15 m above launch.",
+              "Speed = √(10² + 10²) = 10√2 ≈ 14.1 m/s."
             ],
             "rubric": [
               {
-                "criterion": "Keeps v_x unchanged across the two events.",
-                "evidence_of": "Uses the horizontal component invariant."
+                "criterion": "Translates '45° below the horizontal' into a condition on velocity components, v_y = −v_x.",
+                "evidence_of": "A direction becomes a component ratio at one instant."
               },
               {
-                "criterion": "Gives v_y equal magnitude and opposite sign.",
-                "evidence_of": "Understands same-height vertical-state symmetry without confusing vector equality."
+                "criterion": "Uses the constant v_x and solves v_y(t) = −10 m/s for t = 3 s.",
+                "evidence_of": "Uses the component invariants of the model."
               },
               {
-                "criterion": "Distinguishes equal speed from equal velocity.",
-                "evidence_of": "Recombines components conceptually rather than comparing only magnitudes."
+                "criterion": "Reports position and speed at that same t, and does not use the direction of the displacement.",
+                "evidence_of": "Keeps velocity direction and position direction distinct."
               }
             ]
           },
@@ -41915,7 +42244,7 @@ window.GRADE9V3_CORE = {
               "artifact_ref": null
             }
           ],
-          "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. Take +y upward and g=10 m/s^2. Find the ground-impact time and horizontal range. Do not assume launch and landing are at the same height.",
+          "stem": "An ideal projectile begins 15 m above level ground with u_x=10 m/s and u_y=10 m/s. A flat roof 18.75 m above the ground (3.75 m above the launch point) begins 8 m horizontally from the launch point and extends beyond 30 m. Take +y upward and g=10 m/s^2. When and where does the projectile land on the roof, and with what velocity? Do not assume launch and landing are at the same height.",
           "source_refs": [
             "SRC-AUTHOR-KIN-2D-EXAMSIDE-ADAPTATION"
           ],
@@ -41925,7 +42254,7 @@ window.GRADE9V3_CORE = {
           "options": [],
           "conditions": [
             "Air resistance is neglected.",
-            "Ground is 15 m below the launch point.",
+            "The roof is 3.75 m above the launch point and occupies horizontal distances from 8 m to beyond 30 m.",
             "The initial velocity components are already resolved."
           ],
           "figure_refs": [],
@@ -41934,77 +42263,77 @@ window.GRADE9V3_CORE = {
             {
               "id": "R-KIN-2D-BHEIGHT-REPRESENT",
               "kind": "REPRESENT",
-              "action": "Use the launch point as vertical reference and mark the ground 15 m below it while retaining the gravity-only model.",
-              "why_valid": "The changed geometry is an event condition, not a new physical law; one reference converts the height difference into vertical displacement.",
+              "action": "Use the launch point as origin: the roof is the region y = +3.75 m, x ≥ 8 m.",
+              "why_valid": "The landing surface is a region in both coordinates, so both its height and its horizontal extent enter the event.",
               "inputs": [
                 "launch 15 m above ground",
-                "+y upward",
-                "u_x=10",
-                "u_y=10",
-                "g=10"
+                "roof 18.75 m above ground",
+                "roof from x = 8 m"
               ],
-              "output": "Ground impact lies at Delta y=-15 m from launch."
+              "output": "Event: y = +3.75 m while x ≥ 8 m."
+            },
+            {
+              "id": "R-KIN-2D-BHEIGHT-ROOTS",
+              "kind": "TRANSFORM",
+              "action": "Solve 3.75 = 10t − 5t² for t = 0.5 s and t = 1.5 s.",
+              "why_valid": "A launch that rises above a level crosses it twice, so the vertical condition has two positive roots.",
+              "inputs": [
+                "u_y = 10 m/s",
+                "g = 10 m/s²",
+                "Δy = 3.75 m"
+              ],
+              "output": "Two candidate times, 0.5 s and 1.5 s."
             },
             {
               "id": "R-KIN-2D-BHEIGHT-EVENT",
               "kind": "DECIDE",
-              "action": "Choose Delta y=-15 m as the impact condition instead of reusing the familiar same-height condition Delta y=0.",
-              "why_valid": "The landing surface is below launch, so the actual geometry—not familiarity with the parent problem—determines the event condition.",
+              "action": "Choose the landing root by evaluating x at each root against the roof's extent: x = 5 m at 0.5 s is short of the roof; x = 15 m at 1.5 s is on it.",
+              "why_valid": "The vertical equation only says when the ball is at roof level; whether roof is there depends on x at the same instant.",
               "inputs": [
-                "ground 15 m below launch",
-                "parent same-height condition Delta y=0"
+                "x = 10t",
+                "roof from x = 8 m",
+                "t = 0.5 s, 1.5 s"
               ],
-              "output": "The correct event equation is -15=10t-5t^2."
-            },
-            {
-              "id": "R-KIN-2D-BHEIGHT-SOLVE",
-              "kind": "TRANSFORM",
-              "action": "Solve the event equation and select the positive physical root t=3 s.",
-              "why_valid": "Only a nonnegative post-launch time can represent the stated future ground-impact event.",
-              "inputs": [
-                "-15=10t-5t^2"
-              ],
-              "output": "Ground-impact time t=3 s."
+              "output": "Landing at t = 1.5 s."
             },
             {
               "id": "R-KIN-2D-BHEIGHT-REUSE",
               "kind": "CONNECT",
-              "action": "Reuse t=3 s in horizontal motion to obtain Delta x=30 m.",
-              "why_valid": "Horizontal range and vertical ground contact describe the same impact event, so both components must share its time.",
+              "action": "Read x = 15 m and v = (10, 10 − 15) = (10, −5) m/s at t = 1.5 s.",
+              "why_valid": "All requested quantities belong to the one landing event.",
               "inputs": [
-                "t_impact=3 s",
-                "u_x=10 m/s",
-                "a_x=0"
+                "t = 1.5 s",
+                "u_x = 10 m/s",
+                "v_y = 10 − 10t"
               ],
-              "output": "Horizontal range=30 m."
+              "output": "Lands 15 m out at (10 i − 5 j) m/s."
             },
             {
               "id": "R-KIN-2D-BHEIGHT-CHECK",
               "kind": "VERIFY",
-              "action": "Substitute t=3 s into vertical displacement and compare with the same-height shortcut time 2 s.",
-              "why_valid": "Back-substitution must reproduce -15 m, whereas 2 s reproduces Delta y=0 and therefore identifies the wrong event.",
+              "action": "Check |v_y| at roof level from v_y² = u_y² − 2gΔy, and check that the ball clears the roof edge at x = 8 m.",
+              "why_valid": "The time-free relation and the edge check test the result by a route that does not reuse the quadratic.",
               "inputs": [
-                "t=3 s",
-                "candidate t=2 s",
-                "vertical displacement equation"
+                "v_y² = 100 − 75",
+                "at x = 8 m, Δy = 4.8 m"
               ],
-              "output": "t=3 s gives -15 m and the familiar 2 s shortcut is falsified for ground impact."
+              "output": "|v_y| = 5 m/s and the edge is cleared."
             }
           ],
           "crux_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
           "hints": [
             {
-              "text": "What vertical displacement identifies ground impact relative to the launch point?",
+              "text": "Where is the roof relative to the launch point, vertically and horizontally?",
               "reveals": "CONCEPT"
             },
             {
-              "text": "Find the physical root from the y equation, then use that same time in x.",
+              "text": "Solve the vertical equation for every time the ball is at roof height, then find x at each of those times.",
               "reveals": "METHOD"
             }
           ],
           "scaffolds": [
             {
-              "text": "Sketch only the launch level and ground relative to one vertical origin before writing an event equation.",
+              "text": "Sketch the launch point, the roof level 3.75 m above it and the roof edge 8 m out, all from one origin, before writing any equation.",
               "support_kind": "REPRESENT",
               "reveals": "CONCEPT",
               "supports_move_ref": "R-KIN-2D-BHEIGHT-REPRESENT"
@@ -42012,30 +42341,49 @@ window.GRADE9V3_CORE = {
           ],
           "transfer": {
             "dimension": "reasoning_steps",
-            "statement": "The learner must replace the familiar same-height condition with an unequal-height event condition and carry the resulting time across axes.",
+            "statement": "The landing condition has two positive roots, and the learner must use the horizontal extent of the landing surface, evaluated at each root, to decide which is the landing.",
             "builds_on": [
               "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05"
             ],
             "protected_move_ref": "R-KIN-2D-BHEIGHT-EVENT",
-            "invariant": "The gravity-only model, a_x = 0 and a_y = −g, and the rule that one event time serves both axes still hold; only the vertical condition that defines landing changes."
+            "invariant": "The gravity-only model, a_x = 0 and a_y = −g, still holds, the landing condition still comes from the actual Δy, and one event time still serves both axes. What changes is that the vertical condition alone no longer picks out the event.",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-KIN-PROJ-1A-MODEL-01 (Core1A worked anchor): state at a given 1 s after release; no landing surface and no root choice.",
+                "Q-PHY-KIN-PROJ-1A-EVENTS-01 (Core1A worked anchor): level-ground roots 0 and 3 s; only the launch root is discarded.",
+                "Q-PHY-KIN-PROJ-1A-UNEQUAL-01 (Core1A worked anchor): roof 25 m up, landing below launch; the negative root is discarded and the positive root is the landing.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL misconceptions (Core1A diagnose/repair): the same-height shortcut is refused when the heights differ; no two later roots are compared.",
+                "MIC-PHY-KIN-PROJECTILE-MODEL boundary test (Core1B): a thrust that stays on breaks a_x = 0; not a landing question.",
+                "Q-PHY-KIN-2D-2A-PROJECTILE-APEX-03 (Core2A): a single v_y = 0 root at 2 s; nothing to choose.",
+                "Q-PHY-KIN-2D-2A-HORIZONTAL-LAUNCH-04 (Core2A): −20 = −5t² has one positive root, so the landing time is forced.",
+                "Q-PHY-KIN-2D-2A-SAME-HEIGHT-05 (Core2A): roots 0 and 4 s, and the choice is launch against landing, never between two later crossings."
+              ],
+              "why_new": "In every earlier landing the roots split as 'launch or negative' against 'landing': 0 and 3 s on level ground (Core1A events anchor), a negative root and 5 s from the roof (Core1A unequal-height anchor), 0 and 4 s (Core2A same-height item), a single positive root from the cliff (Core2A horizontal launch). The learner has only ever discarded the zero or negative root. Here both roots are later positive times at the landing height, and only x at each root against the roof's edge decides the landing. No earlier item shows that decision."
+            }
           },
-          "check": "Substitution into the vertical displacement gives -15 m; the nonzero same-height time 2u_y/g=2 s is not the ground-impact time.",
+          "check": "v_y² = u_y² − 2gΔy = 100 − 2(10)(3.75) = 25, so |v_y| = 5 m/s at roof level, matching the ±5 m/s at the two roots. The apex is 5 m above launch (u_y²/2g), above the roof level, so the path does reach 3.75 m twice.",
           "solution": {
-            "summary": "Ground impact occurs at t=3 s and the horizontal range is 30 m.",
+            "summary": "It lands on the roof at t = 1.5 s, 15 m horizontally from the launch point, moving at (10 i − 5 j) m/s. The other root of the height equation, t = 0.5 s at x = 5 m, is the ball rising through roof level before it reaches the roof.",
             "steps": [
-              "Use the vertical impact condition Delta y=-15=10t-5t^2.",
-              "Solve 5t^2-10t-15=0, giving the physical root t=3 s.",
-              "Reuse t=3 s horizontally: Delta x=10(3)=30 m.",
-              "The same-height shortcut would use the wrong event condition here."
+              "Roof level relative to launch: Δy = +3.75 m, so 3.75 = 10t − 5t².",
+              "5t² − 10t + 3.75 = 0, or t² − 2t + 0.75 = 0 = (t − 0.5)(t − 1.5), so t = 0.5 s or t = 1.5 s.",
+              "At t = 0.5 s, x = 10(0.5) = 5 m. The roof starts at 8 m, so there is no roof there; the ball is still rising (v_y = +5 m/s).",
+              "The ball clears the roof edge: at x = 8 m, t = 0.8 s and Δy = 8 − 3.2 = 4.8 m, which is above 3.75 m.",
+              "At t = 1.5 s, x = 15 m, which is on the roof, and v_y = 10 − 15 = −5 m/s, so the ball is falling onto it.",
+              "Landing: t = 1.5 s, 15 m from launch horizontally, v = (10 i − 5 j) m/s."
             ],
             "rubric": [
               {
-                "criterion": "Uses the actual vertical displacement -15 m rather than a same-height shortcut.",
-                "evidence_of": "Selects the event condition from geometry."
+                "criterion": "Writes the landing condition as Δy = +3.75 m from the actual geometry.",
+                "evidence_of": "Selects the event condition from the stated heights."
               },
               {
-                "criterion": "Reuses the physical impact time in the horizontal equation.",
-                "evidence_of": "Preserves the one-clock invariant."
+                "criterion": "Keeps both positive roots and chooses between them from x at each root and the roof's horizontal extent.",
+                "evidence_of": "Selects the root with the other axis rather than by habit."
+              },
+              {
+                "criterion": "Reports the landing velocity from components at the chosen time, with v_y negative.",
+                "evidence_of": "Reads every quantity at one event time."
               }
             ]
           },
@@ -42579,7 +42927,7 @@ window.GRADE9V3_CORE = {
               "visual_stage_ref": "VIS-NLM-FRICTION-V1"
             },
             {
-              "text": "Assume rest provisionally. Use the perpendicular equation to find N, then the tangential equation to find the friction value that rest would require; do not set it equal to mu_s N.",
+              "text": "Write the friction rest needs and the most the contact can give, μ_s N, each in terms of m, g and θ. Which of the two must not exceed the other?",
               "support_kind": "CONNECT",
               "reveals": "METHOD",
               "supports_move_ref": "R-NLM-INCLINE-STATIC-DEMAND",
@@ -42587,7 +42935,7 @@ window.GRADE9V3_CORE = {
               "visual_stage_ref": "VIS-NLM-FRICTION-V2"
             },
             {
-              "text": "Now test whether the required friction magnitude is within the static bound before simplifying the inequality.",
+              "text": "Once your comparison is written, divide both sides by mg cos θ, which is positive for θ below 90°, to leave a condition on θ and μ_s alone.",
               "support_kind": "EXECUTE",
               "reveals": "METHOD",
               "supports_move_ref": "R-NLM-INCLINE-STATIC-FEASIBILITY",
@@ -42688,6 +43036,552 @@ window.GRADE9V3_CORE = {
       "adapter_ref": null,
       "injection_refs": [],
       "explorer_locator": "public/physics/nlm/explorers/friction-threshold/index.html"
+    },
+    {
+      "id": "physics:q-phy-nlm-incline-2b-friction-direction-02:core2b",
+      "subject": "Physics",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+      "projection": {
+        "contract_version": "1.1",
+        "core": "CORE2B",
+        "orientation": null,
+        "concept": {
+          "microtopic_ref": "MIC-PHY-NLM-FRICTION-QUANT",
+          "title": "Quantitative static and kinetic friction conditions",
+          "intrinsic_badge": "HARD",
+          "inferential_jump": "Static friction is a responsive contact force: solve for the friction required to prevent relative slip and compare it with the limiting value mu_s N. Equality is a threshold condition, while the kinetic model is used only after sliding is established.",
+          "entry_assumptions": [
+            "Can determine friction direction from relative slip tendency.",
+            "Can write Newton-II equations for a chosen body."
+          ],
+          "teaching_path": [
+            {
+              "id": "NLM8-1",
+              "role": "DECLARE",
+              "action": "Build the chosen-body FBD and determine the normal reaction N from the force balance or acceleration perpendicular to the contact; do not assume N = mg.",
+              "why_valid": "The normal reaction is the contact force needed by the actual perpendicular dynamics and can differ from mg when the surface is inclined or other forces have perpendicular components.",
+              "inputs": [
+                "CAP-NLM-FBD-BODY-OWNERSHIP",
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "perpendicular force equation -> actual N >= 0"
+            },
+            {
+              "id": "NLM8-2",
+              "role": "TRANSFORM",
+              "action": "Assume no relative sliding provisionally and solve the tangential Newton-II equation for the static friction value f_required that would make that motion possible.",
+              "why_valid": "Static friction takes the value required by the no-slip state, provided the contact can supply it.",
+              "inputs": [
+                "CAP-NLM-SECOND-LAW"
+              ],
+              "output": "no-slip dynamics -> f_s = f_required"
+            },
+            {
+              "id": "NLM8-3",
+              "role": "VERIFY",
+              "action": "Compare |f_required| with mu_s N.",
+              "why_valid": "The static-contact model permits any required value only up to the limiting magnitude.",
+              "inputs": [],
+              "output": "|f_required| <= mu_s N -> static state feasible; |f_required| > mu_s N -> static state impossible"
+            },
+            {
+              "id": "NLM8-4",
+              "role": "TRANSFORM",
+              "action": "Use |f_s| = mu_s N only at impending slip; if relative sliding is already established, use |f_k| = mu_k N with direction opposing the relative sliding.",
+              "why_valid": "The limiting equality and the sliding model describe different contact states and are not unconditional identities.",
+              "inputs": [],
+              "output": "impending slip -> |f_s| = mu_s N; sliding -> |f_k| = mu_k N"
+            }
+          ],
+          "elicitation": null,
+          "misconceptions": [
+            {
+              "wrong_idea": "Friction always equals mu N.",
+              "diagnostic_prompt": "A small horizontal force is applied to a block that remains at rest. Must static friction already equal mu_s N?",
+              "repair": "No. First solve the force required for no slip. Static friction matches that requirement up to its limit; equality occurs only at impending slip."
+            },
+            {
+              "wrong_idea": "The normal force is always mg.",
+              "diagnostic_prompt": "If an extra force presses a block into a horizontal surface, can the normal reaction still be assumed equal to mg?",
+              "repair": "Determine N from the perpendicular free-body equation. N = mg is only a special case."
+            },
+            {
+              "wrong_idea": "If both mu_s and mu_k are given, the coefficients themselves tell you which friction model to use.",
+              "diagnostic_prompt": "A problem gives both mu_s and mu_k but does not say whether the contact slips. Can you choose kinetic friction just because mu_k is supplied?",
+              "repair": "No. Determine the contact state first: test whether the no-slip friction demand fits within mu_s N. Use the kinetic model only after sliding is established."
+            }
+          ],
+          "representation_refs": [
+            "REP-NLM-FRICTION-THRESHOLD"
+          ],
+          "representations": [
+            {
+              "representation_ref": "REP-NLM-FRICTION-THRESHOLD",
+              "correspondence": [
+                {
+                  "element": "normal-force arrow",
+                  "symbol": "N",
+                  "in_words": "The normal-force arrow represents the contact's perpendicular force magnitude N from the actual perpendicular dynamics."
+                },
+                {
+                  "element": "static-friction arrow",
+                  "symbol": "f_s",
+                  "in_words": "The static-friction arrow represents the signed friction required by the no-slip state, bounded by mu_s N."
+                },
+                {
+                  "element": "kinetic-friction arrow",
+                  "symbol": "f_k",
+                  "in_words": "The kinetic-friction arrow represents the signed sliding friction whose magnitude is mu_k N after sliding is established."
+                }
+              ],
+              "scenes": []
+            }
+          ],
+          "relation_checks": [
+            "A zero tangential demand permits f_s = 0 even if mu_s N is positive.",
+            "At impending slip the inequality reaches equality.",
+            "The force direction must reverse if the relative sliding direction reverses.",
+            "Units reduce to newtons because mu_k is dimensionless."
+          ],
+          "exit_task": {
+            "prompt": "A contact has known normal reaction N and coefficient mu_s. The no-slip force equation requires tangential friction f_required. State the test for whether static contact is possible, when equality with mu_s N is justified, and what changes once sliding is established.",
+            "source_ref": "SRC-AUTHOR-NLM",
+            "answer": {
+              "kind": "MODEL_RESPONSE",
+              "summary": "Static contact is possible when |f_required| <= mu_s N. Equality |f_s| = mu_s N is justified only at impending slip. After relative sliding is established, use the kinetic model |f_k| = mu_k N with direction opposite the relative sliding.",
+              "reasoning": [
+                "Static friction supplies the required no-slip value rather than an automatic maximum.",
+                "The limiting value mu_s N is a bound and becomes an equality only at the threshold of slipping.",
+                "The kinetic model belongs to a different contact state: established relative sliding."
+              ],
+              "check": "If f_required = 0, the rule must allow f_s = 0 even when mu_s N is nonzero; that falsifies the unconditional f = mu N shortcut.",
+              "acceptable_alternatives": [],
+              "subpart_answers": [],
+              "verification_status": "CHECKED_BY_AUTHOR"
+            },
+            "oracle": {
+              "no_numeric_claim": "The exit compares a symbolic friction demand with a symbolic static bound and distinguishes contact states; no numerical force is computed."
+            }
+          },
+          "worked_anchors": [
+            {
+              "question_ref": "Q-PHY-NLM-1A-CANCEL-01",
+              "stem": "A 1.5 kg lamp hangs at rest from a ceiling cord. Take g = 10 m/s² and up as positive. List each force on the lamp with its size, find the net force, and say what would happen if the cord were cut.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The cord pulls up with 15 N and gravity pulls down with 15 N; the net force is zero. If the cord were cut, the lamp would accelerate downward at 10 m/s².",
+                "reasoning": [
+                  "Two agents act on the lamp: the Earth, through its weight, and the cord, through its tension.",
+                  "Weight: 1.5 × 10 = 15 N, so −15 N on the declared axis.",
+                  "The lamp is at rest, so F_net = 0: T − 15 = 0 and T = +15 N. Both forces are real and non-zero.",
+                  "Cut the cord and only the weight remains: F_net = −15 N and a = −15/1.5 = −10 m/s²."
+                ],
+                "check": "The cut-cord case shows that the 15 N weight was acting all along; the tension had been cancelling it, not removing it."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-CONNECTED-BODIES-01",
+              "stem": "Blocks A (3 kg) and B (2 kg) touch on a smooth floor, A to the left of B. A 20 N force pushes A to the right into B, and a 5 N force pushes B to the left, back toward A. The blocks stay in contact. Write one Newton-II equation per block and solve for their acceleration and the contact force.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The blocks accelerate together at 3 m/s² to the right, and the contact force between them is 11 N.",
+                "reasoning": [
+                  "Maintained contact fixes the separation of A and B, so with rightward positive a_A = a_B = a.",
+                  "For A: the 20 N push acts right and B pushes back on A with the contact force N, so 20 − N = 3a.",
+                  "For B: A pushes B right with N and the 5 N force acts left, so N − 5 = 2a.",
+                  "Adding the equations removes N: 15 = 5a, so a = 3 m/s². Then N = 5 + 2 × 3 = 11 N."
+                ],
+                "check": "Check A on its own: 20 − 11 = 9 N, and 3 kg × 3 m/s² = 9 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-CONSTRAINT-TENSION-01",
+              "stem": "Masses A (3 kg) and B (1 kg) hang from one light inextensible string over a fixed, frictionless, light pulley, with y_A and y_B measured downward from the pulley. Take g = 10 m/s². Using a_A + a_B = 0 and one tension T, find a_A, a_B and T, and name the assumption each of those two relations rests on.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "a_A = +5 m/s² (down), a_B = −5 m/s² (up) and T = 15 N. The acceleration relation rests on the fixed string length; the single T rests on the ideal pulley and string.",
+                "reasoning": [
+                  "The fixed total length gives a_A + a_B = 0 in these coordinates; this uses geometry only.",
+                  "One tension T is licensed separately, because the string is light and the pulley is light and frictionless.",
+                  "Down positive for each mass: A: 30 − T = 3a_A. B: 10 − T = 1 × a_B = −a_A.",
+                  "Subtracting B's equation from A's: 20 = 4a_A, so a_A = 5 m/s², a_B = −5 m/s², and T = 30 − 3 × 5 = 15 N."
+                ],
+                "check": "As one system driven by the weight difference, (3 − 1) × 10 = 20 N on 4 kg gives 5 m/s², matching the two body equations."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-ELEVATOR-FRAMES-01",
+              "stem": "A 60 kg person stands on a scale in a lift that accelerates upward at 2 m/s². Take g = 10 m/s² and up as positive. Find the scale reading using the ground frame, then again using the lift frame with a pseudo-force, and compare.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "Both descriptions give a scale reading of 720 N.",
+                "reasoning": [
+                  "Ground frame: the physical forces are the scale's push N up and the weight 600 N down, and the person accelerates at +2 m/s².",
+                  "Ground-frame equation: N − 600 = 60 × 2, so N = 720 N.",
+                  "Lift frame: the person is at rest, and the frame accelerates at +2 m/s², so add F_pseudo = −m a_frame = −120 N.",
+                  "Lift-frame equation: N − 600 − 120 = 0, so N = 720 N, the same reading."
+                ],
+                "check": "With the lift at rest or moving steadily, a_frame = 0, the pseudo-force vanishes and both frames give N = 600 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FBD-OWNERSHIP-01",
+              "stem": "A 50 kg child stands on a 20 kg box that rests on the floor. Take g = 10 m/s². Build the free-body inventory of the box: name each force, its agent, its direction and its size.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "On the box: its weight 200 N down (Earth), the child's push 500 N down (child), and the floor's push 700 N up (floor). The child's own weight is not on the box's diagram.",
+                "reasoning": [
+                  "Chosen body: the box. Every arrow must answer 'who acts on the box?'.",
+                  "Earth on box: weight 20 × 10 = 200 N down. Child on box: a contact push down; the child is at rest, so it equals the child's weight, 500 N.",
+                  "Floor on box: the box is at rest, so the floor pushes up with 200 + 500 = 700 N.",
+                  "The child's 500 N weight acts on the child, and the box's 500 N upward push acts on the child too; both belong on the child's diagram."
+                ],
+                "check": "Taking child and box together, the floor supports a total weight of 700 N, the same floor force the box's own diagram gives."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FRICTION-DIRECTION-01",
+              "stem": "A book rests on a tray. A waiter first carries the tray at steady speed in a straight line, then speeds up forward; the book never slips. Find the friction force of the tray on the book in each stage, including whether it can be zero.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "During the steady carry the friction is zero; while the tray speeds up, static friction on the book points forward.",
+                "reasoning": [
+                  "Choose the book as the body; the contact is the tray's top surface, and friction acts along it.",
+                  "Steady carry: if the tray became perfectly slippery, the book would keep moving with the tray, so there is no slip tendency and the friction is zero.",
+                  "Speeding up: without friction the book would keep its old speed while the tray moved ahead, so the book would slip backward relative to the tray.",
+                  "Static friction opposes that tendency, so the tray's friction on the book points forward, the same way the book is moving."
+                ],
+                "check": "The book speeds up forward and friction is the only horizontal force on it, so by F_net = m a that force must point forward, which agrees."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-FRICTION-TEST-01",
+              "stem": "A 4 kg box rests on a rough horizontal floor with μ_s = 0.5 and μ_k = 0.4. Take g = 10 m/s². A horizontal pull of 15 N is applied, and in a second trial a pull of 25 N. For each trial decide whether the box stays at rest, and find the friction force and the acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "At 15 N the box stays at rest with 15 N of static friction. At 25 N it slides, kinetic friction is 16 N, and the acceleration is 2.25 m/s².",
+                "reasoning": [
+                  "Vertical balance gives N = mg = 4 × 10 = 40 N, so static friction can supply at most μ_s N = 0.5 × 40 = 20 N.",
+                  "15 N trial: rest would need friction of 15 N, and 15 N ≤ 20 N, so the box stays at rest with f_s = 15 N and a = 0.",
+                  "25 N trial: rest would need 25 N of friction, more than the 20 N available, so the box slides.",
+                  "Once sliding, f_k = μ_k N = 0.4 × 40 = 16 N against the motion, so a = (25 − 16)/4 = 2.25 m/s² in the direction of the pull."
+                ],
+                "check": "Had friction been set to 20 N in the 15 N trial, the net force would be 5 N backward on a box at rest, which static friction can never produce."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-NET-ZERO-01",
+              "stem": "An ice-hockey puck of mass 0.2 kg slides across smooth ice at 4 m/s after the stick loses contact. Friction and air resistance are negligible. What horizontal forces act on it, what is its velocity 3 s later, and would a puck at rest on the same ice start moving?",
+              "figure_refs": [],
+              "answer": {
+                "summary": "No horizontal force acts. The puck still moves at 4 m/s, having covered 12 m, and a puck at rest stays at rest.",
+                "reasoning": [
+                  "Once the stick loses contact, nothing touches the puck horizontally, so the horizontal net force is zero.",
+                  "F_net = m a gives a = 0/0.2 = 0 m/s², so the velocity does not change: after 3 s it is still 4 m/s.",
+                  "Equal times give equal advances: 4 m in each second, 12 m in 3 s.",
+                  "A puck at rest under the same zero net force keeps its zero velocity, so it stays at rest."
+                ],
+                "check": "With even a small friction force added, the puck would slow down: the force changes the velocity rather than keeping it up."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-SECOND-LAW-01",
+              "stem": "A 10 kg crate is pulled up a smooth ramp inclined at 30° by a rope parallel to the ramp with a force of 70 N. Take g = 10 m/s². Using axes along and perpendicular to the ramp, find the crate's acceleration and the normal force, and the pull that would give zero acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "a = 2 m/s² up the ramp, N ≈ 86.6 N, and a 50 N pull would give zero acceleration.",
+                "reasoning": [
+                  "Body: the crate. +x up the ramp, +y out of the ramp. Forces: the 70 N pull along +x, the 100 N weight vertically down, the normal force N along +y.",
+                  "Resolve the weight: 100 × sin 30° = 50 N down the ramp and 100 × cos 30° ≈ 86.6 N into the ramp.",
+                  "Along the ramp: F_net = 70 − 50 = 20 N, so a = 20/10 = 2 m/s² up the ramp.",
+                  "Across the ramp the crate keeps contact, so a_y = 0 and N ≈ 86.6 N. A 50 N pull would make F_net = 0 along the ramp, so a = 0."
+                ],
+                "check": "Units: 20 N / 10 kg = 2 m/s². On level ground (0°) the same method gives N = 100 N and no down-slope weight component."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-STRING-FBD-01",
+              "stem": "A light, taut, inextensible string runs from a 2 kg cart on a smooth table, over a frictionless light pulley at the table's edge, down to a 1 kg hanging mass. Take g = 10 m/s². State the model that allows one tension T, list the forces on each body, and find the acceleration and T.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "One T is allowed by the ideal string and pulley. The acceleration is 10/3 ≈ 3.33 m/s² and T = 20/3 ≈ 6.67 N.",
+                "reasoning": [
+                  "The string is light, taut and inextensible and the pulley is light and frictionless, so one tension T acts along the whole string.",
+                  "On the cart: T pulls it toward the pulley; its weight and the table's normal force balance vertically.",
+                  "On the hanging mass: T pulls it up and its 10 N weight pulls it down; both bodies share one acceleration magnitude a.",
+                  "Cart: T = 2a. Hanging mass, down positive: 10 − T = 1 × a. Adding gives 10 = 3a, so a = 10/3 m/s² and T = 20/3 N."
+                ],
+                "check": "T ≈ 6.67 N is less than the 10 N weight, as it must be for a mass that accelerates downward."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-STRING-LENGTH-01",
+              "stem": "One taut inextensible string passes over a fixed pulley and holds A and B. With y_A and y_B measured downward from the pulley along each segment, y_A = 1.2 m and y_B = 0.8 m. A then moves down by 0.3 m. Find B's new position, and B's velocity at an instant when A moves down at 0.5 m/s.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "B rises to y_B = 0.5 m; when A moves down at 0.5 m/s, v_B = −0.5 m/s, that is 0.5 m/s upward.",
+                "reasoning": [
+                  "Both coordinates are measured away from the pulley, so the changing length is y_A + y_B = 1.2 + 0.8 = 2.0 m, fixed.",
+                  "After A moves down 0.3 m, y_A = 1.5 m, so y_B = 2.0 − 1.5 = 0.5 m: B has risen 0.3 m.",
+                  "Differentiating y_A + y_B = 2.0 m gives v_A + v_B = 0.",
+                  "With v_A = +0.5 m/s, v_B = −0.5 m/s: B moves toward the pulley at 0.5 m/s."
+                ],
+                "check": "The new lengths 1.5 m and 0.5 m still add to 2.0 m, so the string has neither stretched nor gone slack."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-SYSTEM-CHOICE-01",
+              "stem": "A 2 kg bucket hangs from a light rope tied under a 1 kg bucket. A second rope lifts the top bucket with a 45 N upward force. Take g = 10 m/s² and up as positive. Choose a system to find the acceleration, then a different system to find the tension in the rope between the buckets.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The buckets accelerate upward at 5 m/s², and the rope between them carries 30 N.",
+                "reasoning": [
+                  "For the acceleration, take both buckets as one system: the connecting rope's pulls are internal and drop out.",
+                  "External forces on the system: 45 N up and weight (1 + 2) × 10 = 30 N down, so 45 − 30 = 3a and a = 5 m/s².",
+                  "For the connecting rope, isolate the lower bucket: that rope's pull is external to it.",
+                  "Lower bucket: T − 2 × 10 = 2 × 5, so T = 30 N."
+                ],
+                "check": "Check the top bucket alone: 45 − 10 − 30 = 5 N, and 1 kg × 5 m/s² = 5 N."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-TENSION-VALUE-01",
+              "stem": "A 2 kg lamp hangs from a light cord inside a lift. Take up as positive and g = 10 m/s². Find the cord tension when the lift (a) moves up at steady speed, (b) accelerates upward at 2 m/s², and (c) accelerates downward at 3 m/s².",
+              "figure_refs": [],
+              "answer": {
+                "summary": "The tension is 20 N, 24 N and 14 N in the three cases.",
+                "reasoning": [
+                  "Only the cord and the lamp's weight act on the lamp, and nothing makes the cord non-ideal, so T comes from the lamp's own equation: T − 20 = 2a.",
+                  "(a) Steady speed means a = 0, so T = 20 N.",
+                  "(b) a = +2 m/s², so T = 20 + 2 × 2 = 24 N.",
+                  "(c) a = −3 m/s², so T = 20 + 2 × (−3) = 14 N."
+                ],
+                "check": "In free fall, a = −10 m/s², the same equation gives T = 20 − 20 = 0: the cord goes slack, as expected."
+              }
+            },
+            {
+              "question_ref": "Q-PHY-NLM-1A-THIRD-LAW-01",
+              "stem": "In space, a 70 kg astronaut pushes a 350 kg satellite with a force of 140 N. During the push, find the force on each body and each body's acceleration.",
+              "figure_refs": [],
+              "answer": {
+                "summary": "Each body feels 140 N, in opposite directions: the satellite accelerates at 0.4 m/s² away from the astronaut, and the astronaut at 2 m/s² the other way.",
+                "reasoning": [
+                  "The interaction is the contact between hand and satellite: astronaut on satellite and satellite on astronaut.",
+                  "Astronaut on satellite: 140 N, on the satellite's diagram. Satellite on astronaut: 140 N the opposite way, on the astronaut's diagram.",
+                  "Satellite: a = 140/350 = 0.4 m/s².",
+                  "Astronaut: a = 140/70 = 2 m/s², in the opposite direction. Neither diagram contains both forces, so they do not cancel."
+                ],
+                "check": "Mass times acceleration gives 350 × 0.4 = 140 N and 70 × 2 = 140 N: both equal the one shared interaction force."
+              }
+            }
+          ]
+        },
+        "application": {
+          "question_ref": "Q-PHY-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+          "family_ref": "FAM-PHY-NLM-INCLINE-MODELLING",
+          "exposure": [
+            {
+              "core": "CORE2B",
+              "role": "NEW_TRANSFER",
+              "artifact_ref": null
+            }
+          ],
+          "stem": "A 4 kg block rests on a rough fixed 30° incline with μ_s = 0.5; take g = 10 m/s². A force P acts on it up the slope, parallel to the plane. In three trials P = 15 N, 20 N and 26 N, and the block stays at rest each time. In each trial find the direction and size of the static friction, without assuming it points uphill, and check that it is within the static limit.",
+          "source_refs": [
+            "SRC-AUTHOR-NLM"
+          ],
+          "origin": "AUTHORED",
+          "original_number": "AUTHOR-NLM-INCLINE-2B-FRICTION-DIRECTION-02",
+          "subparts": [],
+          "options": [],
+          "conditions": [
+            "The plane is fixed.",
+            "The block remains at rest in all three trials.",
+            "P acts exactly parallel to the plane."
+          ],
+          "figure_refs": [],
+          "figures": [],
+          "reasoning_route": [
+            {
+              "id": "R-NLM-2B-SLOPEF-TENDENCY",
+              "kind": "REPRESENT",
+              "action": "Along the slope, compare P with the weight's down-slope part, 20 N, with friction removed.",
+              "why_valid": "The friction direction depends on the net tendency of the other forces along the contact.",
+              "inputs": [
+                "mg sin 30° = 20 N",
+                "P = 15, 20, 26 N"
+              ],
+              "output": "Net tendency P − 20 N."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-DIRECTION",
+              "kind": "DECIDE",
+              "action": "Point friction against the tendency in each trial: up when P < 20 N, none at 20 N, down when P > 20 N.",
+              "why_valid": "Static friction opposes the slip that would occur without it.",
+              "inputs": [
+                "P − 20 = −5, 0, +6 N"
+              ],
+              "output": "Up, zero, down."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-SIZE",
+              "kind": "TRANSFORM",
+              "action": "Size = |P − 20|: 5 N, 0 and 6 N.",
+              "why_valid": "At rest the forces along the slope balance.",
+              "inputs": [
+                "balance along slope"
+              ],
+              "output": "5 N, 0, 6 N."
+            },
+            {
+              "id": "R-NLM-2B-SLOPEF-LIMIT",
+              "kind": "VERIFY",
+              "action": "N = 34.6 N, so μ_s N ≈ 17.3 N, above every need.",
+              "why_valid": "Rest is only possible within the limit.",
+              "inputs": [
+                "μ_s = 0.5"
+              ],
+              "output": "All three trials possible."
+            }
+          ],
+          "crux_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+          "hints": [
+            {
+              "text": "Temporarily remove friction from the model. Which way would the block tend to move in each trial?",
+              "reveals": "CONCEPT"
+            },
+            {
+              "text": "How does the push in each trial compare with the part of the weight that pulls down the slope?",
+              "reveals": "CONCEPT"
+            }
+          ],
+          "scaffolds": [],
+          "transfer": {
+            "dimension": "model_choice",
+            "statement": "The learner must choose the static-friction direction from the changed slip tendency, including a zero-friction boundary, instead of carrying over the familiar downhill-gravity case.",
+            "builds_on": [
+              "Q-PHY-NLM-INCLINE-2A-STATIC-02"
+            ],
+            "invariant": "Friction still opposes the slip tendency the block would have without it; what changes is that a push along the slope can cancel that tendency or reverse it.",
+            "protected_move_ref": "R-NLM-2B-SLOPEF-DIRECTION",
+            "novelty": {
+              "checked_against": [
+                "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): friction on a book on a level tray, forward or zero; there is no slope, and it never reverses.",
+                "MIC-PHY-NLM-FRICTION misconceptions (Core1A diagnose/repair): friction can point with the motion, or be zero, for carried bodies on level contacts.",
+                "MIC-PHY-NLM-FRICTION boundary test (Core1B): zero friction with no slip tendency; here the tendency comes from a push that can reverse it.",
+                "Q-PHY-NLM-2A-COV-04 (Core2A): the braking truck's crate, one direction with no reversal.",
+                "Q-PHY-NLM-2A-FRICTION-ZERO-08 (Core2A): zero friction with no horizontal force at all; here zero needs P = mg sin 30° exactly.",
+                "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A, parent): friction on a slope with no applied force, always uphill at mg sin θ."
+              ],
+              "why_new": "In the earlier items the slip tendency comes from a single cause (a tray or truck changing speed, or gravity alone on a slope), so friction has one fixed direction. Here a push along the slope competes with gravity. The learner must find the net tendency in each trial, and the friction comes out 5 N up, zero, then 6 N down. No earlier item shows friction on one contact reversing as a force is changed."
+            }
+          },
+          "check": "The signed friction up the slope is 20 − P: +5, 0, −6 N. It changes sign exactly at P = mg sin 30°.",
+          "solution": {
+            "summary": "When P<mg sin(theta) static friction acts up the slope, when P>mg sin(theta) it acts down the slope, and at P = mg sin(theta) the required static friction is zero. Here mg sin 30° = 20 N: at P = 15 N friction is 5 N up the slope, at 20 N it is zero, and at 26 N it is 6 N down the slope. The limit is 0.5 × 34.6 ≈ 17.3 N, so all three are possible at rest.",
+            "steps": [
+              "Along the slope, without friction the net push is P − 20 N (up the slope positive).",
+              "P = 15 N: the block would slide down, so friction points up with 5 N.",
+              "P = 20 N: no tendency, so friction is zero.",
+              "P = 26 N: the block would slide up, so friction points down with 6 N.",
+              "N = mg cos 30° ≈ 34.6 N, so μ_s N ≈ 17.3 N, above all three needs."
+            ],
+            "rubric": [
+              {
+                "criterion": "Finds each trial's slip tendency from P against mg sin 30°.",
+                "evidence_of": "Uses the no-friction tendency, not a rule that friction points uphill."
+              },
+              {
+                "criterion": "Gives 5 N up, zero and 6 N down.",
+                "evidence_of": "Lets friction reverse or vanish."
+              },
+              {
+                "criterion": "Checks each against μ_s mg cos 30° ≈ 17.3 N.",
+                "evidence_of": "Keeps the limit as a ceiling, not a value."
+              }
+            ]
+          },
+          "repair": {
+            "step_ref": "NLM5-2",
+            "microtopic_ref": "MIC-PHY-NLM-FRICTION",
+            "action": "Imagine the relative sliding or tendency to slide if friction were absent, then point friction opposite that relative tendency.",
+            "why_valid": "Contact friction resists relative sliding between the surfaces.",
+            "output": "belt at 2 m/s, box at 0.5 m/s -> box slips left relative to the belt -> friction on the box points right"
+          }
+        },
+        "delivery": {
+          "web": {
+            "blueprint_ref": "BP-CORE2B-TRANSFER@1.0.0",
+            "blueprint_id": "BP-CORE2B-TRANSFER",
+            "blueprint_version": "1.0.0",
+            "shell_ref": "G9-TABLET-SHELL-V1",
+            "layout_family": "TRANSFER_ATTEMPT",
+            "required_slots": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "slot_order": [
+              "identity",
+              "attempt",
+              "post_attempt"
+            ],
+            "interaction_policy": {
+              "attempt_before_reveal": "FROM_PROJECTION",
+              "progressive_support": true,
+              "solution_policy": "POST_ATTEMPT"
+            },
+            "representation_policy": {
+              "preferred_mount_modes": [
+                "PORTABLE_SCENE",
+                "COMPONENT",
+                "STATIC_FIGURE"
+              ],
+              "legacy_iframe": "MIGRATION_ONLY"
+            },
+            "responsive_policy": {
+              "compact": "SINGLE_PANE",
+              "medium": "STACKED_SUPPORT",
+              "expanded": "STAGE_SUPPORT",
+              "primary_fraction": 0.68,
+              "support_fraction": 0.32
+            },
+            "touch_policy": {
+              "minimum_target_css_px": 48,
+              "minimum_control_gap_css_px": 8
+            },
+            "packaging_modes": [
+              "PUBLIC",
+              "PAGES",
+              "OFFLINE_DIRECTORY",
+              "SINGLE_FILE",
+              "EMBED"
+            ],
+            "forbidden": [
+              "PAGE_LOCAL_ACADEMIC_TRUTH",
+              "HOVER_ONLY_ESSENTIAL_INFORMATION",
+              "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+            ]
+          }
+        },
+        "presentation": {
+          "attempt_before_reveal": true,
+          "show_full_construction": false,
+          "show_solution_initially": false,
+          "initial_visual_ref": null,
+          "initial_visual_stage_ref": null,
+          "protected_move_refs": [
+            "R-NLM-2B-SLOPEF-DIRECTION"
+          ],
+          "pre_attempt_scaffold_limit": 0,
+          "pre_attempt_hint_limit": 2,
+          "post_attempt_hint_limit": 2
+        }
+      },
+      "scene_ref": null,
+      "adapter_ref": null,
+      "injection_refs": [],
+      "explorer_locator": null
     }
   ],
   "bucket_availability": [
@@ -42844,7 +43738,77 @@ window.GRADE9V3_CORE = {
         {
           "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
           "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-CONTACT-LOSS-06"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRAME-SELECTION-05"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-STATE-01"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-WALKING-02"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-FRICTION-ZERO-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-2B-STRING-MODEL-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-AXES-01"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
           "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
+        },
+        {
+          "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+          "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+          "source_ref": "Q-PHY-NLM-INCLINE-2B-TIMING-05"
         }
       ],
       "projection_refs": [
@@ -42871,7 +43835,8 @@ window.GRADE9V3_CORE = {
         "physics:mic-phy-nlm-single-string-constraint:core1b",
         "physics:mic-phy-nlm-third-law:core1a",
         "physics:mic-phy-nlm-third-law:core1b",
-        "physics:q-phy-nlm-incline-2a-static-02:core2a"
+        "physics:q-phy-nlm-incline-2a-static-02:core2a",
+        "physics:q-phy-nlm-incline-2b-friction-direction-02:core2b"
       ]
     },
     {
@@ -43128,7 +44093,105 @@ window.GRADE9V3_CORE = {
       "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
       "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
       "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONNECTED-SYSTEM-02"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONSTRAINT-VS-TENSION-07"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-CONTACT-LOSS-06"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRAME-SELECTION-05"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-STATE-01"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-TOP-BLOCK-05"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-WALKING-02"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-FRICTION-ZERO-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-PULLEY-REPRESENTATION-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-2B-STRING-MODEL-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-AXES-01"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-COMPONENT-TRAP-04"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
       "source_ref": "Q-PHY-NLM-INCLINE-2B-HORIZONTAL-THRESHOLD-03"
+    },
+    {
+      "subject": "Physics",
+      "bucket_ref": "BUCKET-PHY-NLM-FIRST-LAW",
+      "code": "CORE2B_FAMILIAR_PARENT_UNAVAILABLE",
+      "detail": "No structured familiar Core2A parent from transfer.builds_on[] was compiled.",
+      "source_ref": "Q-PHY-NLM-INCLINE-2B-TIMING-05"
     }
   ]
 };

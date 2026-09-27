@@ -350,10 +350,10 @@ def corroboration_findings(cid: str, card: dict, tier: str | None, acq: dict, al
         if pages and not quote_found(src.get("quote", ""), pages, src.get("page", 0)):
             found.append(_finding("EVIDENCE_QUOTE_NOT_FOUND", where, f"quote is not on page {src.get('page')} (±1) of {other['acquisition_id']}"))
             continue
+        publishers.add(entry["publisher"])       # counted once, verified or not
         if pages:
-            publishers.add(entry["publisher"])
             agreeing += 1
-        else:  # snapshot missing: texts_for already reported it; the count cannot be judged
+        else:  # snapshot missing: texts_for already reported it; the count cannot be judged yet
             unverified += 1
     need = rule["requires"]["min_independent_publishers"]
     if agreeing + unverified < need:
