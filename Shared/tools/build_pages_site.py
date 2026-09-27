@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parents[2]
 PUBLIC = REPO / "public"
 DOCS = REPO / "docs"
 PAGES_MANIFEST = DOCS / ".pages-manifest.json"
-GENERATOR_VERSION = "1.1.0"
+GENERATOR_VERSION = "1.2.0"
 
 EXTRA_SOURCES = {
     "tools/app.css": "tools/app.css",
@@ -37,6 +37,19 @@ TEXT_REWRITES = {
         ("../../../tools/run-builder/index.html", "../../tools/run-builder/index.html"),
     ),
 }
+
+# External runtime URLs are permitted in source only when publication can deterministically
+# rewrite them to a checked-in compatible runtime. The deployed docs/ tree is local-only.
+VENDOR_REWRITES = {
+    "https://cdn.tailwindcss.com": "vendor/tailwind/3.4.17/tailwind-play.js",
+    "https://cdn.tailwindcss.com/3.4.17": "vendor/tailwind/3.4.17/tailwind-play.js",
+    "https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js": "vendor/tailwind/3.4.17/tailwind-play.js",
+    "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css": "vendor/katex/0.16.8/katex.min.css",
+    "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js": "vendor/katex/0.16.8/katex.min.js",
+    "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js": "vendor/katex/0.16.8/contrib/auto-render.min.js",
+}
+
+RUNTIME_TAG = re.compile(r"<(?:script|link)\\b[^>]*>", re.IGNORECASE)
 
 HTML_LINK = re.compile(r"""\b(?:href|src)\s*=\s*["']([^"'<>]+)["']""", re.IGNORECASE)
 ROOT_PROJECT_LINK = re.compile(
@@ -72,6 +85,28 @@ def _public_payload(relative: str, content: bytes) -> bytes:
         text = text.replace(before, after)
 
     if needs_html_transform:
+        # Runtime dependencies are publication authority, not page-local policy. Keep legacy
+        # source compatible while making the generated Pages bytes deterministic and offline.
+        for external, local_target in VENDOR_REWRITES.items():
+            if external in text:
+                text = text.replace(external, _relative_from(relative, local_target))
+
+        # Fail closed on any remaining remote script or stylesheet. Ordinary external learner
+        # links (for example official source papers) are navigation, not runtime dependencies.
+        for tag in RUNTIME_TAG.findall(text):
+            lower = tag.lower()
+            is_runtime = lower.startswith("<script") or (
+                lower.startswith("<link") and "stylesheet" in lower
+            )
+            if not is_runtime:
+                continue
+            for raw in HTML_LINK.findall(tag):
+                split = urlsplit(raw.strip())
+                if split.scheme.lower() in {"http", "https"} or split.netloc:
+                    raise ValueError(
+                        f"unapproved external runtime dependency in {relative}: {raw}"
+                    )
+
         # GitHub project Pages is served below /<repo>/, so domain-root links from
         # static source pages must become paths relative to the mirrored document.
         def root_repl(match: re.Match[str]) -> str:
