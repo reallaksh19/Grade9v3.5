@@ -10857,98 +10857,87 @@
       "origin": "AUTHORED",
       "origin_ref": "SRC-AUTHOR-NLM",
       "original_identifier": "AUTHOR-NLM-2B-FRICTION-STATE-01",
-      "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.55 and μ_k = 0.40; take g = 10 m/s². A 50 N pull is applied, first horizontally and then, in a second trial, at 37° above the horizontal (sin 37° = 0.6, cos 37° = 0.8). The statement does not say whether the crate slips. For each trial decide whether the crate stays at rest, and find the friction force and the acceleration.",
+      "stem": "A 10 kg crate rests on a rough horizontal floor with μ_s = 0.75; take g = 10 m/s². A rope on the crate can be pulled horizontally, at 37° above the horizontal, or at 53° above the horizontal (sin 37° = cos 53° = 0.6, cos 37° = sin 53° = 0.8). For each direction, find the smallest pull that starts the crate sliding. A worker can pull with at most 61 N: in which of the three directions can the worker start the crate?",
       "subparts": [],
       "options": [],
       "conditions": [
-        "The crate stays in contact with the floor in both trials.",
-        "Resolve the angled pull into horizontal and vertical components.",
-        "Do not assume a friction equality before deciding the contact state."
+        "The crate stays in contact with the floor in every direction.",
+        "Resolve each pull into horizontal and vertical components.",
+        "The pull is the unknown: do not take N = mg before the vertical balance is written."
       ],
       "figure_refs": [],
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Horizontal pull: N = 100 N and the limit is 55 N, which covers the 50 N needed, so the crate stays at rest with 50 N of static friction. Angled pull: N = 100 − 30 = 70 N and the limit is 38.5 N, less than the 40 N needed, so the crate slides; kinetic friction is 0.40 × 70 = 28 N and a = (40 − 28)/10 = 1.2 m/s². The tilted pull has the smaller horizontal part, yet it moves the crate.",
+        "summary": "When the crate is just about to slide, the friction it needs equals the limit μ_s N, and N = 100 − P sin θ. So P cos θ = 0.75(100 − P sin θ), which gives P = 75/(cos θ + 0.75 sin θ). Horizontal: 75 N. At 37°: 75/1.25 = 60 N. At 53°: 75/1.2 = 62.5 N. The 37° pull needs the least, and a worker limited to 61 N can start the crate only in that direction.",
         "reasoning": [
-          "Horizontal trial: N = mg = 100 N. Rest would need 50 N of friction, and μ_s N = 55 N, so the crate stays at rest and f = 50 N.",
-          "Angled trial: the pull's components are 40 N horizontal and 30 N up, so N = 100 − 30 = 70 N.",
-          "Rest would need 40 N of friction, but μ_s N = 0.55 × 70 = 38.5 N, so rest is impossible and the crate slides.",
-          "Sliding: f_k = μ_k N = 28 N opposite the motion, so a = (40 − 28)/10 = 1.2 m/s²."
+          "With a pull P at angle θ above the horizontal, the vertical balance gives N = mg − P sin θ = 100 − P sin θ.",
+          "Until the crate moves, friction must equal the horizontal part P cos θ; the smallest starting pull makes that need equal to the limit: P cos θ = 0.75(100 − P sin θ).",
+          "Solving, P = 75/(cos θ + 0.75 sin θ): 75/1 = 75 N at 0°, 75/(0.8 + 0.45) = 60 N at 37°, 75/(0.6 + 0.6) = 62.5 N at 53°.",
+          "Only the 37° threshold, 60 N, is within the worker's 61 N; horizontally 75 N is needed, and at 53° 62.5 N."
         ],
-        "check": "Angled trial with a = 1.2 m/s²: vertical 70 + 30 − 100 = 0 (no vertical acceleration) and horizontal 40 − 28 = 12 N = 10 × 1.2. In the horizontal trial the 5 N margin (55 − 50) shows why that crate does not move.",
+        "check": "At 37° with P = 60 N: horizontal part 48 N, vertical part 36 N, so N = 64 N and μ_s N = 48 N, exactly the need. At 53° with P = 61 N: need 61 × 0.6 = 36.6 N, but N = 100 − 48.8 = 51.2 N gives a limit of 38.4 N, so the crate stays at rest.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR",
         "rubric": [
           {
-            "criterion": "Computes N separately for each trial, 100 N and 70 N, before any friction limit.",
-            "evidence_of": "The static limit depends on the actual contact force."
+            "criterion": "Writes N = 100 − P sin θ with the pull still unknown, before using the limit.",
+            "evidence_of": "The static limit depends on the actual contact force, which here depends on the pull."
           },
           {
-            "criterion": "Compares the friction rest would need with μ_s N in each trial and reaches opposite verdicts.",
-            "evidence_of": "Selects the contact model from a test, not from the coefficients given."
+            "criterion": "Sets the need P cos θ equal to μ_s N only at the start of sliding and finds 75 N, 60 N and 62.5 N.",
+            "evidence_of": "Turning the no-slip test into a threshold for an unknown force."
           },
           {
-            "criterion": "Uses μ_k N = 28 N only in the sliding trial and gets a = 1.2 m/s².",
-            "evidence_of": "Keeps static and kinetic states distinct."
+            "criterion": "Decides that only the 37° direction works for a 61 N worker.",
+            "evidence_of": "Comparing thresholds across directions instead of assuming more tilt is always better or always worse."
           }
         ],
         "reasoning_route": [
           {
             "id": "R-NLM-2B-STATE-NORMAL",
             "kind": "TRANSFORM",
-            "action": "Find N in each trial from the vertical balance: 100 N for the horizontal pull, 100 − 30 = 70 N for the angled pull.",
-            "why_valid": "The crate has no vertical acceleration, so the vertical forces balance, and the angled pull carries part of the weight.",
+            "action": "Write N from the vertical balance with the pull unknown: N = 100 − P sin θ.",
+            "why_valid": "The crate has no vertical acceleration, and the upward part of the pull carries part of the weight.",
             "inputs": [
               "m = 10 kg",
-              "P = 50 N",
-              "sin 37° = 0.6"
+              "g = 10 m/s²",
+              "pull P at θ above the horizontal"
             ],
-            "output": "N = 100 N and N = 70 N."
+            "output": "N = 100 − P sin θ."
           },
           {
             "id": "R-NLM-2B-STATE-DEMAND",
             "kind": "CONNECT",
-            "action": "Assume rest provisionally and read the friction it would need: the horizontal part of the pull, 50 N and then 40 N.",
-            "why_valid": "At rest the horizontal forces balance, so friction must equal the horizontal pull.",
+            "action": "At the smallest starting pull the need equals the limit: P cos θ = 0.75(100 − P sin θ).",
+            "why_valid": "Below that pull static friction can supply the need; at it, the need reaches μ_s N.",
             "inputs": [
-              "P cos 0° = 50 N",
-              "P cos 37° = 40 N"
+              "need P cos θ",
+              "limit μ_s N"
             ],
-            "output": "Needs: 50 N and 40 N."
+            "output": "P = 75/(cos θ + 0.75 sin θ)."
           },
           {
             "id": "R-NLM-2B-STATE-DECIDE",
             "kind": "DECIDE",
-            "action": "Compare each need with its own limit μ_s N: 50 N ≤ 55 N keeps the crate at rest; 40 N > 38.5 N rules rest out, so the angled trial uses the kinetic model.",
-            "why_valid": "Static friction can supply any need up to μ_s N and no more, and the limit moves with N.",
+            "action": "Evaluate the threshold in each direction (75 N, 60 N, 62.5 N) and compare with the worker's 61 N.",
+            "why_valid": "Tilting lowers N but also the horizontal part, so the threshold must be computed, not guessed, for each direction.",
             "inputs": [
-              "needs 50 N and 40 N",
-              "limits 55 N and 38.5 N"
+              "θ = 0°, 37°, 53°",
+              "worker's limit 61 N"
             ],
-            "output": "Trial 1 at rest; trial 2 sliding."
-          },
-          {
-            "id": "R-NLM-2B-STATE-KINETIC",
-            "kind": "TRANSFORM",
-            "action": "In the sliding trial take f_k = μ_k N = 28 N opposite the motion and get a = (40 − 28)/10 = 1.2 m/s².",
-            "why_valid": "Once the crate slides, kinetic friction has the fixed value μ_k N.",
-            "inputs": [
-              "μ_k = 0.40",
-              "N = 70 N"
-            ],
-            "output": "a = 1.2 m/s²."
+            "output": "Only the 37° pull can start the crate."
           },
           {
             "id": "R-NLM-2B-STATE-CHECK",
             "kind": "VERIFY",
-            "action": "Substitute a = 1.2 m/s² back into both force equations of the sliding trial.",
-            "why_valid": "Both components must balance with the chosen model.",
+            "action": "Substitute P = 60 N at 37° into both force equations.",
+            "why_valid": "At the threshold, the vertical balance holds and the need equals μ_s N.",
             "inputs": [
-              "vertical: 70 + 30 − 100",
-              "horizontal: 40 − 28"
+              "vertical: 64 + 36 − 100",
+              "horizontal need 48 N, limit 0.75 × 64"
             ],
-            "output": "0 and 12 N = 10 × 1.2."
+            "output": "0 and 48 N = 48 N."
           }
         ],
         "crux_move_ref": "R-NLM-2B-STATE-DECIDE",
@@ -10967,7 +10956,7 @@
           "conditions",
           "answer"
         ],
-        "reason": "Change the earlier threshold exercise into an unlabeled contact-state selection task: the learner must decide whether static contact is feasible before choosing a friction model."
+        "reason": "Change the earlier threshold exercise so that the pull is the unknown, lowers N as it grows, and must be compared across directions."
       },
       "exposure": [
         {
@@ -10978,13 +10967,13 @@
       ],
       "hints": [
         {
-          "text": "The presence of mu_s and mu_k does not tell you which one to use. What contact state would you test first?",
+          "text": "At the smallest pull that starts the crate, what contact state is the crate in, and what does that say about the friction?",
           "reveals": "CONCEPT",
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V1"
         },
         {
-          "text": "Before deciding the friction model, ask whether the vertical component of the pull changes the normal reaction.",
+          "text": "Write N from the vertical balance with P still unknown; then compare the friction the crate needs with μ_s N.",
           "reveals": "CONCEPT",
           "visual_ref": "REP-NLM-FRICTION-THRESHOLD",
           "visual_stage_ref": "VIS-NLM-FRICTION-V2"
@@ -10992,24 +10981,25 @@
       ],
       "transfer": {
         "dimension": "model_choice",
-        "statement": "The learner must infer the contact state and choose the static-feasibility or kinetic-friction model instead of being told that the bodies are at impending slip or already sliding.",
+        "statement": "The learner must turn the no-slip test into a threshold for an unknown pull that also changes N, and compare that threshold across directions, instead of deciding the state for a given pull.",
         "builds_on": [
           "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01"
         ],
-        "invariant": "The normal force from the actual force balance, the provisional no-slip requirement and its comparison with μ_s N all carry over; what changes is that the contact state is not given and must be decided.",
+        "invariant": "N from the actual vertical balance and the comparison of the friction needed with μ_s N carry over; what changes is that the pull is unknown and its direction is the choice.",
         "protected_move_ref": "R-NLM-2B-STATE-DECIDE",
         "novelty": {
           "checked_against": [
-            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): horizontal pulls on a 4 kg box keep N = mg in both trials, so only the need changes; here the need falls and the limit falls further.",
-            "MIC-PHY-NLM-FRICTION-QUANT misconceptions (Core1A diagnose/repair): 'find N from the perpendicular equation' is stated as a rule for a pressing force; no state is reversed by a lighter contact.",
-            "MIC-PHY-NLM-FRICTION-QUANT boundary test (Core1B): a zero friction need against a positive limit, with no second trial to compare.",
-            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a no-slip formula for stacked blocks with N = mg; the state is not decided.",
-            "Q-PHY-NLM-2A-FRICTION-STATIC-09 (Core2A): the block is told to stay at rest, so the state is handed over.",
-            "Q-PHY-NLM-2A-FRICTION-KINETIC-10 (Core2A): the block is told it is sliding, so μ_k is handed over.",
-            "Q-PHY-NLM-INCLINE-2A-STATIC-02 (Core2A): a rest condition, tan θ ≤ μ_s, with no applied pull at all.",
-            "Q-PHY-NLM-INCLINE-2A-SLIDING-03 (Core2A): sliding stated, so no contact state is chosen."
+            "Q-PHY-NLM-1A-FRICTION-TEST-01 (Core1A worked anchor): given horizontal pulls on a 4 kg box, N = mg; the state is decided for each given pull.",
+            "Q-PHY-NLM-1A-FRICTION-DIRECTION-01 (Core1A worked anchor): the book on the tray never slips; only the friction's direction and size are found.",
+            "MIC-PHY-NLM-FRICTION-QUANT Core1B attempt: a given 30 N push on a 5 kg box, then with a 20 N downward press; the state is decided for each given push, and N is changed by a separate force.",
+            "MIC-PHY-NLM-FRICTION-QUANT Core1B boundary test: a zero friction need against a positive limit.",
+            "MIC-PHY-NLM-FRICTION Core1B attempt: a block pressed on a wall; the press sets only the limit.",
+            "Q-PHY-NLM-2A-FRICTION-THRESHOLD-01 (Core2A): a no-slip threshold for stacked blocks with N = mg, so the force does not change N.",
+            "Q-PHY-NLM-2A-FRICTION-ZERO-08, -STATIC-09, -KINETIC-10 and Q-PHY-NLM-2A-COV-04 (Core2A): the state is given or no threshold is sought.",
+            "Q-PHY-NLM-INCLINE-2A-STATIC-02 and -SLIDING-03 (Core2A): an incline rest condition or stated sliding, with no applied pull.",
+            "Q-PHY-NLM-2B-FRICTION-ANGLED-THRESHOLD-04 (Core2B): a push below the horizontal, whose tilt only raises N and the threshold; there is no best direction."
           ],
-          "why_new": "Every earlier friction-quant item either states the contact state or keeps N = mg while the need changes. Here the same 50 N pull is applied at two angles. The tilted pull has the smaller horizontal part, yet it slides, because it also lowers N and the limit falls below the need. The learner must recompute the limit for each trial before choosing a model. No earlier item shows a state decision reversed by a change in N."
+          "why_new": "Every earlier friction item either gives the pull and asks for the state, gives the state, or asks for one threshold whose tilt only makes things worse. Here the pull is unknown and lowers N as it grows, and its direction is the choice. Tilting upward first helps and then hurts: the smallest starting pull is 75 N, 60 N and 62.5 N at 0°, 37° and 53°. The learner must compute and compare a threshold for each direction and finds that the best one is neither horizontal nor the steepest."
         }
       },
       "repair_ref": "NLM8-2",
@@ -11023,7 +11013,7 @@
         {
           "order": 2,
           "purpose": "REPRESENT",
-          "text": "Draw the crate twice, once per trial, with its weight, N, the pull (resolved in the second trial) and a friction arrow labelled f, not μN.",
+          "text": "Draw the crate for one direction with its weight, N, the pull split into horizontal and vertical parts, and a friction arrow labelled f. Keep the pull as P, not a number.",
           "provenance": "AUTHORED_SCAFFOLD"
         },
         {
@@ -11041,10 +11031,10 @@
           "VIS-NLM-CRATE50-V0"
         ]
       },
-      "failure_signal": "You kept the crate at rest in the angled trial because 40 N < 0.55 × 100 = 55 N: the upward part of the pull lightens the contact to N = 70 N, so the limit is 38.5 N. Or you used μ_k in the horizontal trial, where the crate never slips.",
+      "failure_signal": "You found 75 N for every direction because you kept N = mg = 100 N: the upward part of the pull lightens the contact. Or you chose 53° because it lightens the contact most: its horizontal part shrinks faster, so it needs 62.5 N, more than the 60 N at 37°.",
       "family_exposure": {
         "family_ref": "FAM-PHY-NLM-PRACTICE",
-        "closure": "Established: the static limit moves with N, so a pull that lightens the contact can start sliding even though it asks for less friction."
+        "closure": "Established: tilting a pull upward trades horizontal drive against a lighter contact, so the smallest pull that starts a body comes at an in-between angle, not horizontally or at the steepest angle."
       }
     },
     {
