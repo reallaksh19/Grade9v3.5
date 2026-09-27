@@ -109,7 +109,9 @@ class Renderer(unittest.TestCase):
 
         labels = [label for label, _digest in ctx.authority_hashes]
         self.assertIn("blueprints", labels)
+        self.assertIn("tablet-css", labels)
         self.assertTrue(any(label.startswith("bank:") for label in labels))
+        self.assertTrue(any(label.startswith("asset:") for label in labels))
 
         changed = copy.deepcopy(ctx)
         changed.authority_hashes = list(ctx.authority_hashes)
