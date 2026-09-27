@@ -28,6 +28,7 @@ import html
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -215,6 +216,46 @@ def attempt_box(label: str) -> str:
             f'<button type="button" data-g9-commit>I have attempted this</button></div>')
 
 
+_MATHML_NS = "http://www.w3.org/1998/Math/MathML"
+_MATHML_TAGS = {"math", "mrow", "mi", "mn", "mo", "msub", "msup", "mfrac", "mtext", "msqrt"}
+_MATHML_ATTRS = {"display", "mathvariant"}
+ET.register_namespace("", _MATHML_NS)
+
+
+def _safe_mathml(value: str | None) -> str | None:
+    """Return canonical restricted presentation MathML, or None if it is unsafe/malformed."""
+    if not value:
+        return None
+    try:
+        root = ET.fromstring(value)
+    except ET.ParseError:
+        return None
+    for node in root.iter():
+        if not node.tag.startswith("{" + _MATHML_NS + "}"):
+            return None
+        local = node.tag.split("}", 1)[1]
+        if local not in _MATHML_TAGS:
+            return None
+        for attr in node.attrib:
+            if attr.split("}", 1)[-1] not in _MATHML_ATTRS:
+                return None
+    if root.tag != "{" + _MATHML_NS + "}math":
+        return None
+    return ET.tostring(root, encoding="unicode", short_empty_elements=True)
+
+
+def _relation_expression(ctx: Ctx, relation: dict, record: str) -> str:
+    if relation.get("mathml"):
+        mathml = _safe_mathml(relation["mathml"])
+        if mathml is None:
+            ctx.gap("AUTHOR_GOVERNING_RELATION", relation["id"],
+                    "relation.mathml is malformed or outside the restricted presentation-MathML subset",
+                    "CORE1")
+        else:
+            return f'<div class="g9-math" data-g9-math="mathml">{mathml}</div>'
+    return f'<p class="g9-expr">{esc(relation["expression"])}</p>'
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -278,7 +319,7 @@ def core1(ctx: Ctx, m: dict) -> str:
     anchor = m.get("compact_anchor")
     if not anchor:
         ctx.gap("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor", "CORE1")
-    rel_html = "".join(f'<div class="g9-relation"><p class="g9-expr">{esc(r["expression"])}</p>{para(r.get("meaning"))}'
+    rel_html = "".join(f'<div class="g9-relation">{_relation_expression(ctx, r, m["id"])}{para(r.get("meaning"))}'
                        f'{items(r.get("conditions"))}</div>' for r in rels)
     # The compact anchor's own figure; the microtopic's first representation is often shared across the map.
     rep = (anchor or {}).get("representation_ref") or (m.get("representation_refs") or [None])[0]
@@ -646,14 +687,9 @@ def _asset_root(ctx: Ctx) -> str:
 
 
 def _shared_head_assets(ctx: Ctx) -> str:
-    """Renderer-owned tablet/math assets; no generated-product post-processing."""
+    """Renderer-owned tablet shell asset. Static relation math is canonical MathML."""
     root = _asset_root(ctx)
-    return (
-        f'<link rel="stylesheet" href="{esc(root)}vendor/katex/0.16.8/katex.min.css">'
-        f'<script defer src="{esc(root)}vendor/katex/0.16.8/katex.min.js"></script>'
-        f'<script defer src="{esc(root)}vendor/katex/0.16.8/contrib/auto-render.min.js"></script>'
-        f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
-    )
+    return f'<link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
