@@ -41,8 +41,8 @@ TEXT_REWRITES = {
 # External runtime URLs are permitted in source only when publication can deterministically
 # rewrite them to a checked-in compatible runtime. The deployed docs/ tree is local-only.
 VENDOR_REWRITES = {
-    "https://cdn.tailwindcss.com": "vendor/tailwind/3.4.17/tailwind-play.js",
     "https://cdn.tailwindcss.com/3.4.17": "vendor/tailwind/3.4.17/tailwind-play.js",
+    "https://cdn.tailwindcss.com": "vendor/tailwind/3.4.17/tailwind-play.js",
     "https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js": "vendor/tailwind/3.4.17/tailwind-play.js",
     "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css": "vendor/katex/0.16.8/katex.min.css",
     "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js": "vendor/katex/0.16.8/katex.min.js",
