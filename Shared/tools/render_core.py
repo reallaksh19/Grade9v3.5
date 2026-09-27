@@ -58,6 +58,7 @@ class Ctx:
     blueprints: dict
     authority_hashes: list[tuple[str, str]] = field(default_factory=list)
     gaps: list[dict] = field(default_factory=list)
+    figure_instances: dict[str, int] = field(default_factory=dict)
 
     def gap(self, duty: str, record: str, detail: str, role: str) -> None:
         self.gaps.append({"duty": duty, "record": record, "detail": detail, "core": role,
@@ -90,6 +91,27 @@ def asset_svg(ref: str) -> str | None:
     return text[text.find("<svg"):] if "<svg" in text else None
 
 
+def _scope_svg_ids(svg: str, scope: str) -> str:
+    """Namespace one inline SVG instance so repeated authored assets keep valid DOM identity."""
+    ids = re.findall(r'\bid="([^"]+)"', svg)
+    if not ids:
+        return svg
+    mapping = {old: f"{scope}--{old}" for old in ids}
+    out = svg
+    for old, new in mapping.items():
+        out = out.replace(f'id="{old}"', f'id="{new}"')
+        out = out.replace(f'url(#{old})', f'url(#{new})')
+        out = out.replace(f'href="#{old}"', f'href="#{new}"')
+        out = out.replace(f"xlink:href=\"#{old}\"", f"xlink:href=\"#{new}\"")
+    for attr in ("aria-labelledby", "aria-describedby"):
+        pattern = re.compile(rf'{attr}="([^"]+)"')
+        out = pattern.sub(
+            lambda m: f'{attr}="' + " ".join(mapping.get(token, token) for token in m.group(1).split()) + '"',
+            out,
+        )
+    return out
+
+
 def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, first_stage_only: bool = False,
            allowed: list[str] | None = None) -> str:
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
@@ -109,6 +131,10 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if not (named and described):
         ctx.gap("BUILD_SCENE", rep_id, "authored SVG lacks an accessible name and title/description pair", role)
         return ""
+    instance_base = re.sub(r"[^A-Za-z0-9_-]+", "-", f"{role}-{record}-{rep_id}").strip("-")
+    instance_no = ctx.figure_instances.get(instance_base, 0) + 1
+    ctx.figure_instances[instance_base] = instance_no
+    svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
     stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
     if stage == "PRE_ATTEMPT" and not allowed:
@@ -764,6 +790,25 @@ def context(manifest_path: Path) -> Ctx:
     return Ctx(manifest, packages, bank, load_json(BLUEPRINTS), authority_hashes)
 
 
+def _single_file_fragment(page_html: str, role: str) -> str:
+    """Scope role-level unit anchors and convert cross-Core links for one-document packaging."""
+    match = re.search(r"<main>(.*)</main>", page_html, re.S)
+    if not match:
+        raise ValueError(f"{role}: rendered page has no main")
+    fragment = match.group(1)
+    article_ids = re.findall(r'<article\b[^>]*\bid="([^"]+)"', fragment)
+    for old in article_ids:
+        fragment = fragment.replace(f'id="{old}"', f'id="g9-{role}--{old}"', 1)
+    file_to_role = {ROLE_FILE[r]: r for r in ROLES}
+    def cross_link(m: re.Match[str]) -> str:
+        target_role = file_to_role.get(m.group(1))
+        return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
+    fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
+    for old in article_ids:
+        fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
+    return fragment
+
+
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
     ctx = context(manifest_path)
     # The digest names this exact render: a hash of the pages the learner receives (records, figures,
@@ -780,7 +825,7 @@ def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], lis
     if mode == "SINGLE_FILE":
         bodies = "".join(
             f'<section id="g9-role-{r}" data-g9-role-section="{r}">'
-            f'{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
+            f'{_single_file_fragment(pages[ROLE_FILE[r]], r)}</section>'
             for r in ROLES
         )
         pages = {"product.html": pages[ROLE_FILE["CORE1"]].replace(
