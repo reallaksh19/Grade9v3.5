@@ -1,0 +1,533 @@
+{
+  "schema": "coordinate-geometry-agent-evidence/v1",
+  "status": "EVIDENCE_VERIFIED_COMPLETE",
+  "subject": "Mathematics",
+  "chapter": 3,
+  "chapter_title": "Coordinate Geometry",
+  "source_basis": {
+    "acquisition_id": "ACQ-1DD05CE5AA04B532EC68",
+    "bucket_id": "MAT-09-COORDINATE-GEOMETRY",
+    "registered_source": "m2.pdf",
+    "source_sha256": "1dd05ce5aa04b532ec68c4054f55af1677ecb210be00b8f3085d6f29215a230c",
+    "in_scope_pdf_pages": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "in_scope_book_pages": "3.1 to 3.12",
+    "ocr_engine": "RapidOCR 1.2.3"
+  },
+  "mathematical_families": [
+    "Quadrant Sign Rules & Axis Identification",
+    "Metric Projections & Axis Distances",
+    "Geometric Figures in the Coordinate Plane",
+    "Coordinate Translation & Vector Motion",
+    "Lines & Incidence in Coordinate Geometry"
+  ],
+  "explorer_recommendation": {
+    "name": "Dynamic 2D Cartesian Quadrant & Sign Boundary Explorer",
+    "admission_test_passed": true,
+    "rationale": "Allows dragging point P(x, y) freely across the plane to dynamically observe sign transitions across axes (x=0, y=0), distance projections (|x|, |y|), and enclosing polygon areas in real time."
+  },
+  "clinic_candidates": [
+    {
+      "rank": 1,
+      "id": "Q-MAT-09-CG-P19-NUM-03",
+      "title": "Coordinate Triangle Area Formulation",
+      "bottleneck": "Synthesizing boundary axis intercepts with geometric area formula without distance formula overkill."
+    },
+    {
+      "rank": 2,
+      "id": "Q-MAT-09-CG-P21-ARC-01",
+      "title": "Orthogonal Projection onto Coordinate Axes",
+      "bottleneck": "Identifying foot of perpendicular coordinates (0, y) without confusing with reflection or x-axis projection."
+    }
+  ],
+  "question_count": 19,
+  "rows": [
+    {
+      "id": "Q-MAT-09-CG-CP1-01",
+      "page": 15,
+      "book_page": "3.4",
+      "section": "CHECK_POINT_1",
+      "type": "CHECK_POINT",
+      "source_label": "1",
+      "stem": "Determine the quadrant/axis for points: (a) (3, -2), (b) (-4, 5), (c) (-2, -3), (d) (5, 0), (e) (-3, 0), (f) (0, 4), (g) (2, 5).",
+      "options": null,
+      "source_answer": "(a) IV quadrant, (b) II quadrant, (c) III quadrant, (d) on positive x axis, (e) on Negative x axis, (f) on Positive y axis, (g) I quadrant",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Sign analysis: (+,-) in IV; (-,+) in II; (-,-) in III; y=0 and x>0 on +x axis; y=0 and x<0 on -x axis; x=0 and y>0 on +y axis; (+,+) in I.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-POL-P15-CP1-02",
+      "page": 15,
+      "book_page": "3.4",
+      "section": "CHECK_POINT_1",
+      "type": "CHECK_POINT",
+      "source_label": "2",
+      "stem": "Find the distance of point P(3, 8) from (i) x-axis, (ii) y-axis.",
+      "options": null,
+      "source_answer": "(i) 8, (ii) 3",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Distance from x-axis is |y| = 8; distance from y-axis is |x| = 3.",
+      "mathematical_family": "Metric Projections & Axis Distances",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-POL-P15-CP1-05",
+      "page": 15,
+      "book_page": "3.4",
+      "section": "CHECK_POINT_1",
+      "type": "CHECK_POINT",
+      "source_label": "5",
+      "stem": "Plot points A(0, 0), B(5, 0), C(5, 4), D(0, 4) and identify the figure ABCD.",
+      "options": null,
+      "source_answer": "Rectangle",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Adjacent sides are parallel to axes and perpendicular, length 5 and 4. Opposite sides equal, all angles 90 deg. Hence Rectangle.",
+      "mathematical_family": "Geometric Figures in the Coordinate Plane",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-FIB-01",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "1",
+      "stem": "Point (-5, 8) lies in _____ quadrant.",
+      "options": null,
+      "source_answer": "II",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "x = -5 < 0, y = 8 > 0. A negative abscissa and positive ordinate defines Quadrant II.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-FIB-02",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "2",
+      "stem": "_____ are the signs of the abscissa and ordinate of a point in the second quadrant.",
+      "options": null,
+      "source_answer": "-, +",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Quadrant II has x < 0 (-) and y > 0 (+).",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-FIB-03",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "3",
+      "stem": "Abscissa of all the points on the y-axis is _____.",
+      "options": null,
+      "source_answer": "0",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Every point on the y-axis has coordinate (0, y). The x-coordinate (abscissa) is identically 0.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-FIB-04",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "4",
+      "stem": "In the third quadrant, _____ coordinates are negative.",
+      "options": null,
+      "source_answer": "Both",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "In Quadrant III, x < 0 and y < 0. Both coordinates are negative.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-FIB-05",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "FILL_IN_THE_BLANKS",
+      "source_label": "5",
+      "stem": "If x coordinate of a point is zero, then this point always lies on the _____.",
+      "options": null,
+      "source_answer": "y-axis",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Points with x = 0 form the equation of the y-axis.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-TF-01",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "1",
+      "stem": "The coordinates of origin are (0, 0).",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "True",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "By definition of the Cartesian coordinate origin, intersection of axes is (0, 0).",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-TF-02",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "2",
+      "stem": "The coordinate axes divide the plane into four parts called quadrants.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "True",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Two perpendicular intersecting lines divide the Cartesian plane into 4 disjoint open regions called quadrants.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-TF-03",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "3",
+      "stem": "The point (-1, 0) lies in the second quadrant.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "False",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "(-1, 0) has y = 0, so it lies on the negative x-axis, not in any quadrant. False.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-TF-04",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "TRUE_FALSE",
+      "source_label": "4",
+      "stem": "Points (1, -1) and (-1, 1) lie in the same quadrant.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "source_answer": "False",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "(1, -1) is in Quadrant IV (+,-), while (-1, 1) is in Quadrant II (-,+). False.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P17-SC-01",
+      "page": 17,
+      "book_page": "3.6",
+      "section": "ASSESSMENT_CORNER",
+      "type": "SINGLE_CHOICE",
+      "source_label": "1",
+      "stem": "Position of point (-6, 0) on graph paper is:",
+      "options": {
+        "A": "In I quadrant",
+        "B": "On negative direction of x-axis",
+        "C": "In II quadrant",
+        "D": "On negative direction of y-axis"
+      },
+      "source_answer": "B",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Since y = 0 and x = -6 < 0, the point lies on the negative x-axis.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P18-SC-14",
+      "page": 18,
+      "book_page": "3.7",
+      "section": "ASSESSMENT_CORNER",
+      "type": "SINGLE_CHOICE",
+      "source_label": "14",
+      "stem": "To locate a point (-a, -b) in the third quadrant if a > 0, b > 0:",
+      "options": {
+        "A": "Move only in the negative direction of the x-axis",
+        "B": "Move 'a' units in negative direction of x-axis then 'b' units vertically downward",
+        "C": "Move 'a' units in positive direction of x-axis then 'b' units upward",
+        "D": "Move only in positive direction of y-axis"
+      },
+      "source_answer": "B",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "To plot (-a, -b) with a,b > 0: start at origin, move a units left along -x, then b units down parallel to -y.",
+      "mathematical_family": "Coordinate Translation & Vector Motion",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P19-AR-01",
+      "page": 19,
+      "book_page": "3.8",
+      "section": "ASSESSMENT_CORNER",
+      "type": "ASSERTION_REASON",
+      "source_label": "1",
+      "stem": "Assertion: The point (0, 4) lies on the y-axis. Reason: The x-coordinate of any point on the y-axis is zero.",
+      "options": {
+        "A": "Both Assertion and Reason are true and Reason is correct explanation of Assertion",
+        "B": "Both true, Reason is not correct explanation",
+        "C": "Assertion is true, Reason is false",
+        "D": "Assertion is false, Reason is true"
+      },
+      "source_answer": "A",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Both are true, and the Reason provides the exact definition and condition for a point to lie on the y-axis.",
+      "mathematical_family": "Quadrant Sign Rules & Axis Identification",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P19-NUM-01",
+      "page": 19,
+      "book_page": "3.8",
+      "section": "ASSESSMENT_CORNER",
+      "type": "NUMERICAL",
+      "source_label": "1",
+      "stem": "Find the perpendicular distance of the point P(3, 4) from the y-axis.",
+      "options": null,
+      "source_answer": "3",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "The perpendicular distance of any point (x, y) from the y-axis is |x|. For P(3, 4), |x| = 3.",
+      "mathematical_family": "Metric Projections & Axis Distances",
+      "hardness": {
+        "C": "C1",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P19-NUM-03",
+      "page": 19,
+      "book_page": "3.8",
+      "section": "ASSESSMENT_CORNER",
+      "type": "NUMERICAL",
+      "source_label": "3",
+      "stem": "Find the area of triangle formed by the points (1, 0), (0, 0) and (0, 6).",
+      "options": null,
+      "source_answer": "3",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Base lies on x-axis from (0,0) to (1,0), length = 1. Height lies on y-axis from (0,0) to (0,6), length = 6. Area = 1/2 * base * height = 1/2 * 1 * 6 = 3 sq units.",
+      "mathematical_family": "Geometric Figures in the Coordinate Plane",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A1",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P21-ARC-01",
+      "page": 21,
+      "book_page": "3.10",
+      "section": "ARCHIVE_CORNER",
+      "type": "ARCHIVE_CORNER",
+      "source_label": "1",
+      "stem": "The foot of the perpendicular from P(-3, 2) to the y-axis is M. The coordinates of M are:",
+      "options": {
+        "A": "(-3, 0)",
+        "B": "(0, 2)",
+        "C": "(0, -3)",
+        "D": "(-3, 2)"
+      },
+      "source_answer": "B",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Projecting P(x, y) perpendicularly onto the y-axis sets x = 0 while preserving y. Hence M = (0, 2).",
+      "mathematical_family": "Metric Projections & Axis Distances",
+      "hardness": {
+        "C": "C1",
+        "R": "R1",
+        "M": "M1",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    },
+    {
+      "id": "Q-MAT-09-CG-P21-ARC-02",
+      "page": 21,
+      "book_page": "3.10",
+      "section": "ARCHIVE_CORNER",
+      "type": "ARCHIVE_CORNER",
+      "source_label": "2",
+      "stem": "The number of straight lines passing through the point (1, 2) is:",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "Infinitely many"
+      },
+      "source_answer": "D",
+      "source_answer_status": "PRESENT",
+      "independent_derivation": "Through any single given point in a plane, infinitely many straight lines can be drawn with different slopes.",
+      "mathematical_family": "Lines & Incidence in Coordinate Geometry",
+      "hardness": {
+        "C": "C0",
+        "R": "R0",
+        "M": "M0",
+        "A": "A0",
+        "S": "S0",
+        "overall": "EASY"
+      },
+      "fidelity_status": "VERIFIED"
+    }
+  ]
+}
