@@ -227,6 +227,20 @@ class Pr306UiRegressions(unittest.TestCase):
                 self.assertIsNone(css_micro.search(source))
                 self.assertIsNone(canvas_micro.search(source))
 
+    def test_changed_webpage_style_blocks_have_balanced_braces(self):
+        paths = [
+            "public/physics/motion-in-2d/explorers/motions_in_2d/index.html",
+            "public/physics/motion-in-2d/explorers/the_apex_fallacy/index.html",
+            "public/physics/motion-in-2d/explorers/the_event_clock/index.html",
+            "standalone/motion-in-2d-master-suite.html",
+        ]
+        style_re = __import__("re").compile(r"<style[^>]*>([\\s\\S]*?)</style>", __import__("re").I)
+        for rel in paths:
+            with self.subTest(path=rel):
+                source = (REPO / rel).read_text(encoding="utf-8")
+                for style in style_re.findall(source):
+                    self.assertEqual(style.count("{"), style.count("}"))
+
 
 if __name__ == "__main__":
     unittest.main()
