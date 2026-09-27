@@ -46,5 +46,21 @@ class ReviewClearance(unittest.TestCase):
         self.assertIsNone(self.clearance({"render_digest": "abc", "findings": [{"severity": "S1", "resolved": "fixed in abc"}]}))
 
 
+
+class RenderDigest(unittest.TestCase):
+    """The digest a review is bound to changes whenever the learner's pages change, figures included."""
+
+    def test_a_changed_figure_asset_changes_the_digest(self):
+        from Shared.tools import render_core  # noqa: PLC0415
+        manifest = REPO / "products/physics/phy-nlm-first-law.manifest.json"
+        _, _, before = render_core.build(manifest)
+        original = render_core.asset_svg
+        render_core.asset_svg = lambda ref: (original(ref) or "").replace("</svg>", "<!-- changed --></svg>") or None
+        try:
+            _, _, after = render_core.build(manifest)
+        finally:
+            render_core.asset_svg = original
+        self.assertNotEqual(before, after)
+
 if __name__ == "__main__":
     unittest.main()

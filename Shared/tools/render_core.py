@@ -353,14 +353,14 @@ def core1b(ctx: Ctx, m: dict) -> str:
                    block("predict", para((e.get("predict") or {}).get("prompt")), title="Predict")
                    + figure(ctx, task_rep, "PRE_ATTEMPT", "CORE1B", m["id"], first_stage_only=True,
                             allowed=(task or {}).get("stage_refs") or None)
-                   + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens")) + (
-                       f'<p class="g9-prov">Your answer should contain: {esc(att["produces"])}</p>' if att.get("produces") else ""))
-                       if task else "", title="Attempt")
+                   + block("attempt_prompt", (para(task["prompt"]) + items(task.get("givens"))) if task else "",
+                           title="Attempt")
                    + attempt_box("Your attempt"), True)
             + slot("reconstruction",
                    reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
                           + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                           + block("repair", items(w["repair"] for w in wrong), title="Repair")
+                          + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
                           + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
                           + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
                           + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"))
@@ -607,7 +607,12 @@ def shell(ctx: Ctx, role: str, mode: str) -> tuple[str, str]:
     return header, crumbs
 
 
+DIGEST_SLOT = "g9-digest-pending"
+
+
 def render_digest(ctx: Ctx) -> str:
+    """Digest of the render inputs (manifest, packages, contract version). Kept for callers that
+    need an input fingerprint; the product's own digest (build()) hashes the rendered pages."""
     h = hashlib.sha256()
     h.update(json.dumps(ctx.manifest, sort_keys=True).encode())
     for p in ctx.packages:
@@ -634,7 +639,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>{articles}</main>'
-            f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["product_id"])}</footer>'
+            f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
             f"<script>{JS}</script></body></html>\n")
 
 
@@ -667,11 +672,17 @@ def context(manifest_path: Path) -> Ctx:
 
 def build(manifest_path: Path, mode: str = "PAGES") -> tuple[dict[str, str], list[dict], str]:
     ctx = context(manifest_path)
-    digest = render_digest(ctx)
-    pages = {ROLE_FILE[r]: page(ctx, r, mode, digest) for r in ROLES}
-    index = index_page(ctx, digest)
+    # The digest names this exact render: a hash of the pages the learner receives (records, figures,
+    # renderer and blueprints all show up there). A product review is bound to it (build_products).
+    pages = {ROLE_FILE[r]: page(ctx, r, mode, DIGEST_SLOT) for r in ROLES}
+    index = index_page(ctx, DIGEST_SLOT)
     if mode != "EMBED":
         pages["index.html"] = index
+    h = hashlib.sha256()
+    for name in sorted(pages):
+        h.update(name.encode() + b"\0" + pages[name].encode())
+    digest = h.hexdigest()[:16]
+    pages = {name: html.replace(DIGEST_SLOT, digest) for name, html in pages.items()}
     if mode == "SINGLE_FILE":
         bodies = "".join(f'<section data-g9-role-section="{r}">{re.search(r"<main>(.*)</main>", pages[ROLE_FILE[r]], re.S).group(1)}</section>'
                          for r in ROLES)

@@ -211,6 +211,22 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
 
+    def test_success_criteria_and_ids_stay_out_of_the_pre_attempt_page(self):
+        manifest = complete_fixture(self.tmp)
+        m = json.loads(manifest.read_text(encoding="utf-8"))
+        pkg_path = Path(m["package_refs"][0])
+        pkg = json.loads(pkg_path.read_text(encoding="utf-8"))
+        mic = next(x for x in pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        mic["elicitation"]["attempt"]["produces"] = "Both substitutions: x = 5 gives 11 (true), x = 4 gives 9 (false)."
+        pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
+        out = self.build(manifest)
+        html = (out / "core1b.html").read_text(encoding="utf-8")
+        before = html.split('data-blueprint-slot="reconstruction"')[0]
+        self.assertNotIn("x = 5 gives 11", before)                     # the answer's description waits
+        self.assertIn("x = 5 gives 11", html)                           # ...inside the gated reconstruction
+        for page in out.glob("core*.html"):
+            self.assertNotIn("FIXTURE-MATH-LINEAR", page.read_text(encoding="utf-8").split("<footer")[1])
+
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)
         m = json.loads(manifest.read_text(encoding="utf-8"))
