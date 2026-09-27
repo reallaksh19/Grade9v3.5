@@ -20,33 +20,77 @@
     "last_checked"
   ],
   "properties": {
-    "manifest_id": {"type": "string", "minLength": 1},
-    "version": {"type": "string", "minLength": 1},
-    "acquisition_ref": {"type": "string", "minLength": 1},
-    "target_package": {"type": "string", "minLength": 1},
-    "inspector_id": {"type": "string", "minLength": 1},
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acquisition_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_package": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inspector_id": {
+      "type": "string",
+      "minLength": 1
+    },
     "inspection_sections": {
       "type": "array",
-      "items": {"type": "string", "minLength": 1},
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
       "minItems": 1,
       "uniqueItems": true
     },
-    "access_status": {"enum": ["SECTION_INSPECTED", "FULL_ITEM_INSPECTED"]},
-    "resource": {"type": "object"},
-    "extensions": {"$ref": "#/$defs/bank_extensions"},
+    "access_status": {
+      "enum": [
+        "SECTION_INSPECTED",
+        "FULL_ITEM_INSPECTED"
+      ]
+    },
+    "resource": {
+      "type": "object"
+    },
+    "extensions": {
+      "$ref": "#/$defs/bank_extensions"
+    },
     "questions": {
       "type": "array",
-      "items": {"$ref": "#/$defs/exam_bank_question"},
+      "items": {
+        "$ref": "#/$defs/exam_bank_question"
+      },
       "minItems": 1
     },
-    "resources": {"type": "array", "items": {"type": "object"}, "minItems": 1},
-    "last_checked": {"type": "string", "format": "date"}
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "minItems": 1
+    },
+    "last_checked": {
+      "type": "string",
+      "format": "date"
+    }
   },
   "$defs": {
     "nullable_uri": {
       "anyOf": [
-        {"type": "string", "format": "uri", "minLength": 1},
-        {"type": "null"}
+        {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
       ]
     },
     "bank_extensions": {
@@ -62,27 +106,58 @@
         "grade9v3:accepted_question_count"
       ],
       "properties": {
-        "grade9v3:pass_scope": {"const": "PASS_1_QUESTION_BANK_ONLY"},
-        "grade9v3:generated_sets": {"const": false},
-        "grade9v3:source_hint_policy": {"type": "string", "minLength": 1},
-        "grade9v3:wording_policy": {"type": "string", "minLength": 1},
-        "grade9v3:source_resource_policy": {"type": "string", "minLength": 1},
-        "grade9v3:accepted_question_count": {"type": "integer", "minimum": 1},
+        "grade9v3:pass_scope": {
+          "const": "PASS_1_QUESTION_BANK_ONLY"
+        },
+        "grade9v3:generated_sets": {
+          "const": false
+        },
+        "grade9v3:source_hint_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grade9v3:wording_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grade9v3:source_resource_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grade9v3:accepted_question_count": {
+          "type": "integer",
+          "minimum": 1
+        },
         "grade9v3:topic_counts": {
           "type": "object",
           "minProperties": 1,
-          "additionalProperties": {"type": "integer", "minimum": 0}
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
         },
-        "grade9v3:concept_namespace": {"type": "string", "minLength": 1},
+        "grade9v3:concept_namespace": {
+          "type": "string",
+          "minLength": 1
+        },
         "grade9v3:local_family_additions": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "invariant_demand"],
+            "required": [
+              "id",
+              "invariant_demand"
+            ],
             "properties": {
-              "id": {"type": "string", "minLength": 1},
-              "invariant_demand": {"type": "string", "minLength": 1}
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "invariant_demand": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           },
           "uniqueItems": true
@@ -126,10 +201,26 @@
           ],
           "properties": {
             "grade9v3:provenance_class": {
-              "enum": ["PYQ_VERIFIED", "PYQ_ADAPTED", "SOURCE_UNVERIFIED"]
+              "enum": [
+                "PYQ_VERIFIED",
+                "PYQ_ADAPTED",
+                "SOURCE_UNVERIFIED"
+              ]
             },
-            "grade9v3:source_custody": {"$ref": "#/$defs/source_custody"},
-            "grade9v3:analysis": {"$ref": "#/$defs/analysis"}
+            "grade9v3:source_custody": {
+              "$ref": "#/$defs/source_custody"
+            },
+            "grade9v3:analysis": {
+              "$ref": "#/$defs/analysis"
+            },
+            "grade9v3:math_spans": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/math_span"
+              },
+              "uniqueItems": true,
+              "description": "Explicit learner-facing math spans. Runtime text inference is forbidden; only these declared literals may be typeset."
+            }
           }
         }
       }
@@ -154,15 +245,48 @@
         "wording_custody"
       ],
       "properties": {
-        "authority_class": {"enum": ["OFFICIAL_EXAM_ORGANIZER_ARCHIVE"]},
-        "exam": {"type": "string", "minLength": 1},
-        "year": {"type": "integer", "minimum": 1900, "maximum": 2100},
-        "paper": {"type": "string", "minLength": 1},
-        "section": {"enum": ["Physics", "Chemistry", "Mathematics"]},
-        "question_number": {"type": "string", "minLength": 1},
-        "paper_url": {"type": "string", "format": "uri", "minLength": 1},
-        "archive_url": {"type": "string", "format": "uri", "minLength": 1},
-        "answer_key_url": {"$ref": "#/$defs/nullable_uri"},
+        "authority_class": {
+          "enum": [
+            "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
+          ]
+        },
+        "exam": {
+          "type": "string",
+          "minLength": 1
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "paper": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "enum": [
+            "Physics",
+            "Chemistry",
+            "Mathematics"
+          ]
+        },
+        "question_number": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paper_url": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "archive_url": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "answer_key_url": {
+          "$ref": "#/$defs/nullable_uri"
+        },
         "answer_authority": {
           "enum": [
             "OFFICIAL_PAPER_EMBEDDED_KEY",
@@ -171,10 +295,24 @@
             "OFFICIAL_NTA_FINAL_ANSWER_KEY"
           ]
         },
-        "last_checked": {"type": "string", "format": "date"},
-        "source_status": {"enum": ["PYQ_VERIFIED_PARENT"]},
-        "parent_ref": {"type": "string", "minLength": 1},
-        "wording_custody": {"enum": ["FAITHFUL_NON_VERBATIM_RESTATEMENT"]}
+        "last_checked": {
+          "type": "string",
+          "format": "date"
+        },
+        "source_status": {
+          "enum": [
+            "PYQ_VERIFIED_PARENT"
+          ]
+        },
+        "parent_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wording_custody": {
+          "enum": [
+            "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+          ]
+        }
       }
     },
     "analysis": {
@@ -193,25 +331,69 @@
         "transfer_profile"
       ],
       "properties": {
-        "topic": {"type": "string", "minLength": 1},
-        "concept_bucket": {"type": "string", "minLength": 1},
-        "exam_source_badge": {"type": "string", "minLength": 1},
-        "original_question_type": {"type": "string", "minLength": 1},
-        "learner_question_type": {"type": "string", "minLength": 1},
-        "difficulty": {"$ref": "#/$defs/difficulty"},
-        "expected_time_seconds": {"type": "integer", "minimum": 1},
-        "common_wrong_route": {"type": "string", "minLength": 1},
-        "stable_crux_move": {"type": "string", "minLength": 1},
-        "transfer_profile": {"$ref": "#/$defs/transfer_profile"}
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "concept_bucket": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exam_source_badge": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_question_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "learner_question_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "difficulty": {
+          "$ref": "#/$defs/difficulty"
+        },
+        "expected_time_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "common_wrong_route": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stable_crux_move": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transfer_profile": {
+          "$ref": "#/$defs/transfer_profile"
+        }
       }
     },
     "difficulty": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["band", "score", "components", "basis"],
+      "required": [
+        "band",
+        "score",
+        "components",
+        "basis"
+      ],
       "properties": {
-        "band": {"enum": ["D1", "D2", "D3", "D4"]},
-        "score": {"type": "integer", "minimum": 0, "maximum": 10},
+        "band": {
+          "enum": [
+            "D1",
+            "D2",
+            "D3",
+            "D4"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
         "components": {
           "type": "object",
           "additionalProperties": false,
@@ -223,60 +405,151 @@
             "trap_exception_sensitivity"
           ],
           "properties": {
-            "concept_model_selection": {"type": "integer", "minimum": 0, "maximum": 2},
-            "representation_translation": {"type": "integer", "minimum": 0, "maximum": 2},
-            "reasoning_chain_length": {"type": "integer", "minimum": 0, "maximum": 2},
-            "algebra_computational_load": {"type": "integer", "minimum": 0, "maximum": 2},
-            "trap_exception_sensitivity": {"type": "integer", "minimum": 0, "maximum": 2}
+            "concept_model_selection": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "representation_translation": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "reasoning_chain_length": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "algebra_computational_load": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "trap_exception_sensitivity": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            }
           }
         },
-        "basis": {"type": "string", "minLength": 1}
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "transfer_profile": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["core2b_candidate", "dimension", "classification"],
+      "required": [
+        "core2b_candidate",
+        "dimension",
+        "classification"
+      ],
       "properties": {
-        "core2b_candidate": {"type": "boolean"},
+        "core2b_candidate": {
+          "type": "boolean"
+        },
         "dimension": {
           "anyOf": [
-            {"enum": ["model_choice", "representation_translation", "novelty", "reasoning_steps"]},
-            {"type": "null"}
+            {
+              "enum": [
+                "model_choice",
+                "representation_translation",
+                "novelty",
+                "reasoning_steps"
+              ]
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "classification": {
-          "enum": ["REAL_TRANSFER_CANDIDATE", "SAME_FAMILY_VARIATION"]
+          "enum": [
+            "REAL_TRANSFER_CANDIDATE",
+            "SAME_FAMILY_VARIATION"
+          ]
         }
       },
       "allOf": [
         {
           "if": {
-            "properties": {"core2b_candidate": {"const": true}},
-            "required": ["core2b_candidate"]
+            "properties": {
+              "core2b_candidate": {
+                "const": true
+              }
+            },
+            "required": [
+              "core2b_candidate"
+            ]
           },
           "then": {
             "properties": {
-              "classification": {"const": "REAL_TRANSFER_CANDIDATE"},
+              "classification": {
+                "const": "REAL_TRANSFER_CANDIDATE"
+              },
               "dimension": {
-                "enum": ["model_choice", "representation_translation", "novelty", "reasoning_steps"]
+                "enum": [
+                  "model_choice",
+                  "representation_translation",
+                  "novelty",
+                  "reasoning_steps"
+                ]
               }
             }
           }
         },
         {
           "if": {
-            "properties": {"core2b_candidate": {"const": false}},
-            "required": ["core2b_candidate"]
+            "properties": {
+              "core2b_candidate": {
+                "const": false
+              }
+            },
+            "required": [
+              "core2b_candidate"
+            ]
           },
           "then": {
             "properties": {
-              "classification": {"const": "SAME_FAMILY_VARIATION"},
-              "dimension": {"type": "null"}
+              "classification": {
+                "const": "SAME_FAMILY_VARIATION"
+              },
+              "dimension": {
+                "type": "null"
+              }
             }
           }
         }
       ]
+    },
+    "math_span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "literal",
+        "tex",
+        "display"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^(stem|conditions|common_wrong_route|answer_summary|answer_check|option:[0-9]+|source_hint:[0-9]+|scaffold:[0-9]+|answer_reasoning:[0-9]+)$"
+        },
+        "literal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display": {
+          "type": "boolean"
+        }
+      }
     }
   }
 }
