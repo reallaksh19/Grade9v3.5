@@ -468,6 +468,7 @@ def _render_core_unit(article: Node) -> dict:
                         or max(1, sum(1 for n in f.iter() if n.tag and "data-g9-stage-id" in n.attrs)),
                         "stages_in_dom": sum(1 for n in f.iter() if n.tag and "data-g9-stage-id" in n.attrs),
                         "asset_text": svg is not None and (svg.first("title") is not None or svg.first("desc") is not None),
+                        "caption_source": (f.first("figcaption").attrs.get("data-g9-caption") if f.first("figcaption") else None),
                         "representation_ref": f.attrs.get("data-g9-representation"),
                         "mount": next((a.attrs["data-g9-cu"] for a in f.ancestors() if a.tag and "data-g9-cu" in a.attrs),
                                       article.attrs["data-g9-unit"])})

@@ -277,6 +277,14 @@
         "asset_text": {
           "type": "boolean",
           "description": "The figure's SVG carries its asset's own <title> or <desc>, which describe the whole figure, result included."
+        },
+        "caption_source": {
+          "enum": [
+            "stages",
+            "purpose",
+            null
+          ],
+          "description": "Where the figure's caption comes from: the shown stages' labels, or the representation's design purpose (which may name the result). Null when the page does not say."
         }
       }
     },

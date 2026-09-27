@@ -172,6 +172,9 @@ def _pre_attempt_withheld(unit, check, ctx):
                        f"{f.get('reveal_stages', 1)}; hidden stages still reach the DOM, tooltips and screen readers")
         if f.get("asset_text") and f.get("stages_total", 1) > f.get("reveal_stages", 1):
             out.append("a pre-attempt figure keeps its asset's <title>/<desc>, which describe the whole figure")
+        if f.get("caption_source") == "purpose":
+            out.append("a pre-attempt figure is captioned with its representation's design purpose, which may name the "
+                       "result; caption it with the shown stages only")
     return out
 
 

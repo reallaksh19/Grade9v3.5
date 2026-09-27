@@ -157,6 +157,7 @@ class Gate(unittest.TestCase):
         self.assertNotIn('data-g9-stage-id="VIS-MATH-NL-3"', fig)      # the exact point is the result
         self.assertNotIn("<title", fig)
         self.assertIn('aria-label="Number line"', fig)                   # named from the shown stage only
+        self.assertIn('data-g9-caption="stages">Number line</figcaption>', fig)   # not the purpose note
         report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
         self.assertNotIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
 
@@ -199,6 +200,16 @@ class Gate(unittest.TestCase):
         pkg_path.write_text(json.dumps(pkg), encoding="utf-8")
         html = (self.build(manifest) / "core1.html").read_text(encoding="utf-8")
         self.assertIn('data-g9-representation="REP-MATH-ANCHOR-X2"', html)
+
+    def test_a_pre_attempt_figure_captioned_with_its_purpose_fails(self):
+        out = self.build(complete_fixture(self.tmp))
+        page = out / "core2a.html"
+        html = page.read_text(encoding="utf-8")
+        start = html.index('data-g9-stage="PRE_ATTEMPT"')
+        cap = html.index('data-g9-caption="stages"', start)
+        page.write_text(html[:cap] + 'data-g9-caption="purpose"' + html[cap + len('data-g9-caption="stages"'):], encoding="utf-8")
+        report = quality_gate.gate(out, "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        self.assertIn("ALL-PRE-ATTEMPT-MARKUP-WITHHELD", {f["rule"] for f in report["findings"]})
 
     def test_every_owner_input_must_resolve_to_a_rendered_unit(self):
         manifest = complete_fixture(self.tmp)
