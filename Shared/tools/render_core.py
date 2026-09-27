@@ -803,6 +803,7 @@ def context(manifest_path: Path) -> Ctx:
         if isinstance(ref, str)
     })
     authority_hashes = [
+        ("renderer-source", _file_sha256(Path(__file__))),
         ("manifest", _file_sha256(manifest_path)),
         *[(f"package:{p}", _file_sha256(path)) for p, path in zip(manifest["package_refs"], package_paths)],
         *[(f"bank:{p}", _file_sha256(path)) for p, path in zip(manifest.get("bank_refs", []), bank_paths)],
